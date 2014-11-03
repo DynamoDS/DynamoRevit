@@ -9,6 +9,7 @@ bin/
 tmp/
 *.tmp
 *.bak
+*.dll
 *.swp
 *~.nib
 local.properties
@@ -213,3 +214,4 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+src/AssemblySharedInfoGenerator/AssemblySharedInfo.cs
