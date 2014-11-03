@@ -2,8 +2,8 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-	<REVIT_VERSION Condition=" '$(REVIT_VERSION)' == '' ">Revit_2014</REVIT_VERSION>
 	<RevitVersionNumber>2014</RevitVersionNumber>
+	<REVIT_VERSION Condition=" '$(REVIT_VERSION)' == '' ">Revit_$(RevitVersionNumber)</REVIT_VERSION>
     <OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
     <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
 	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
@@ -21,8 +21,8 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-	<REVIT_VERSION Condition=" '$(REVIT_VERSION)' == '' ">Revit_2014</REVIT_VERSION>
 	<RevitVersionNumber>2014</RevitVersionNumber>
+	<REVIT_VERSION Condition=" '$(REVIT_VERSION)' == '' ">Revit_$(RevitVersionNumber)</REVIT_VERSION>
     <OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
     <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
 	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
