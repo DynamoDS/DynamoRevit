@@ -166,7 +166,7 @@
       <HintPath>$(DYNAMOAPI)\DSNodeServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Analysis">
+	<Reference Include="Analysis">
       <HintPath>$(DYNAMOAPI)\Analysis.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -178,10 +178,6 @@
       <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitServices">
-      <HintPath>$(DYNAMOAPI)\Revit_2014\RevitServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="RevitNodes_DynamoCustomization.xml" />
@@ -191,6 +187,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RevitServices\RevitServices.csproj">
+      <Project>{e4701f9e-41ab-4044-8166-85d924feb632}</Project>
+      <Name>RevitServices</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
