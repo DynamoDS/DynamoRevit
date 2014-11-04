@@ -65,7 +65,7 @@ limitations under the License.
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\AssemblySharedInfoGenerator\AssemblySharedInfo.cs">
+    <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs">
       <Link>AssemblySharedInfo.cs</Link>
     </Compile>
     <Compile Include="Elements\ElementUtils.cs" />

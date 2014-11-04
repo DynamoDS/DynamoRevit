@@ -70,7 +70,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\AssemblySharedInfoGenerator\AssemblySharedInfo.cs">
+    <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs">
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
     <Compile Include="AnalysisDisplay\FaceAnalysisDisplay.cs" />
