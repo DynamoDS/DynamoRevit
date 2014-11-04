@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoRevit", "DynamoRevit\DynamoRevit.csproj", "{FD56AE51-739E-4893-8DE4-925D60C7097C}"
 	ProjectSection(ProjectDependencies) = postProject
+		{0BC2A611-BD0E-4FCC-A1DE-81F14ED369B2} = {0BC2A611-BD0E-4FCC-A1DE-81F14ED369B2}
 		{133FC760-5699-46D9-BEA6-E816B5F01016} = {133FC760-5699-46D9-BEA6-E816B5F01016}
 	EndProjectSection
 EndProject
