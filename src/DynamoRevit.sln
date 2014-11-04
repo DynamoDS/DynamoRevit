@@ -11,16 +11,31 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoRevit", "DynamoRevit\
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitServices", "Libraries\RevitServices\RevitServices.csproj", "{E4701F9E-41AB-4044-8166-85D924FEB632}"
+	ProjectSection(ProjectDependencies) = postProject
+		{133FC760-5699-46D9-BEA6-E816B5F01016} = {133FC760-5699-46D9-BEA6-E816B5F01016}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Legacy", "Legacy", "{DA6EF41A-E2F4-4F67-A899-828846E39DA5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoRevitVersionSelector", "Legacy\DynamoRevitVersionSelector\DynamoRevitVersionSelector.csproj", "{53D05530-CF64-4883-8F86-B2B819934F83}"
+	ProjectSection(ProjectDependencies) = postProject
+		{133FC760-5699-46D9-BEA6-E816B5F01016} = {133FC760-5699-46D9-BEA6-E816B5F01016}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitNodes", "Libraries\RevitNodes\RevitNodes.csproj", "{0BC2A611-BD0E-4FCC-A1DE-81F14ED369B2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{133FC760-5699-46D9-BEA6-E816B5F01016} = {133FC760-5699-46D9-BEA6-E816B5F01016}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitNodesUI", "Libraries\RevitNodesUI\RevitNodesUI.csproj", "{75940ACC-3708-4526-8D91-7E3365BAF682}"
+	ProjectSection(ProjectDependencies) = postProject
+		{133FC760-5699-46D9-BEA6-E816B5F01016} = {133FC760-5699-46D9-BEA6-E816B5F01016}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrations", "Libraries\Migrations\Migrations.csproj", "{06B9E5B0-7C50-4351-9D88-E159DC25755F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{133FC760-5699-46D9-BEA6-E816B5F01016} = {133FC760-5699-46D9-BEA6-E816B5F01016}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,10 +76,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{06B9E5B0-7C50-4351-9D88-E159DC25755F} = {05E800BE-758B-4D40-913E-35226C7859C2}
+		{E4701F9E-41AB-4044-8166-85D924FEB632} = {05E800BE-758B-4D40-913E-35226C7859C2}
 		{0BC2A611-BD0E-4FCC-A1DE-81F14ED369B2} = {05E800BE-758B-4D40-913E-35226C7859C2}
 		{75940ACC-3708-4526-8D91-7E3365BAF682} = {05E800BE-758B-4D40-913E-35226C7859C2}
-		{E4701F9E-41AB-4044-8166-85D924FEB632} = {05E800BE-758B-4D40-913E-35226C7859C2}
+		{06B9E5B0-7C50-4351-9D88-E159DC25755F} = {05E800BE-758B-4D40-913E-35226C7859C2}
 		{53D05530-CF64-4883-8F86-B2B819934F83} = {DA6EF41A-E2F4-4F67-A899-828846E39DA5}
 	EndGlobalSection
 EndGlobal
