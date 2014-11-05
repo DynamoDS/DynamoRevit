@@ -58,7 +58,7 @@
     <SetProperty Id="DYNAMO_INSTALLDIR" Value="[ProgramFiles64Folder]\Dynamo 0.7" After="LaunchConditions"></SetProperty>
 
     <Feature Id="DYNAMOREVIT_CORE_FEATURE"
-             Title="DynamoRevit Core"
+             Title="Dynamo for Revit"
              Level="1">
       <ComponentGroupRef Id="RELEASE"/>
       <Feature Id="DYNAMO_CORE_SAMPLES"
