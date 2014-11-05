@@ -61,6 +61,11 @@
              Title="DynamoRevit Core"
              Level="1">
       <ComponentGroupRef Id="RELEASE"/>
+      <Feature Id="DYNAMO_CORE_SAMPLES"
+             Title="Sample Content"
+             Level="1" >
+        <ComponentGroupRef Id="SAMPLES"/>
+      </Feature>
     </Feature>
 
     <!--Revit features are only the addin. All Revit assets are currently installed as part of core.-->
