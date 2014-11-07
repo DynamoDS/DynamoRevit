@@ -63,7 +63,7 @@
     <Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>$(DYNAMOAPI)\Microsoft.Practices.Prism.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -144,7 +144,7 @@
   <ItemGroup>
     <Reference Include="ProtoCore">
       <HintPath>$(DYNAMOAPI)\ProtoCore.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DSIronPython">
       <HintPath>$(DYNAMOAPI)\DSIronPython.dll</HintPath>
@@ -160,7 +160,7 @@
     </Reference>
     <Reference Include="DynamoUtilities">
       <HintPath>$(DYNAMOAPI)\DynamoUtilities.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DSNodeServices">
       <HintPath>$(DYNAMOAPI)\DSNodeServices.dll</HintPath>
