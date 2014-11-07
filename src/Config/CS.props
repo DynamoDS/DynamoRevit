@@ -4,6 +4,8 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
 	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2014</RevitVersionNumber>
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
+	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">..\..\..\..\Dynamo\bin\$(Platform)\$(Configuration)</DYNAMOTESTAPI>
+	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\test\$(Platform)\$(Configuration)</TestOutputPath>
     <OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
     <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
 	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
@@ -23,6 +25,8 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
 	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2014</RevitVersionNumber>
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
+	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">..\..\..\..\Dynamo\bin\$(Platform)\$(Configuration)</DYNAMOTESTAPI>
+	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\test\$(Platform)\$(Configuration)\test</TestOutputPath>
     <OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
     <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
 	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
