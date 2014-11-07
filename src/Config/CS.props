@@ -8,7 +8,8 @@
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\test\$(Platform)\$(Configuration)</TestOutputPath>
     <OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
     <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
-	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
+	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">$(SolutionDir)..\..\Dynamo\bin\$(Platform)\$(Configuration)</DYNAMOAPI>
+	<DYNAMOAPI  Condition=" !Exists('$(DYNAMOAPI)') ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
 	<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
     <REVITAPI  Condition=" '$(REVITAPI)' == '' ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
@@ -26,10 +27,11 @@
 	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2014</RevitVersionNumber>
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
 	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">$(SolutionDir)..\..\Dynamo\bin\$(Platform)\$(Configuration)</DYNAMOTESTAPI>
-	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\test\$(Platform)\$(Configuration)\test</TestOutputPath>
+	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\test\$(Platform)\$(Configuration)</TestOutputPath>
     <OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
     <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
-	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
+	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">$(SolutionDir)..\..\Dynamo\bin\$(Platform)\$(Configuration)</DYNAMOAPI>
+	<DYNAMOAPI  Condition=" !Exists('$(DYNAMOAPI)') ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
 	<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
     <REVITAPI  Condition=" '$(REVITAPI)' == '' ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
