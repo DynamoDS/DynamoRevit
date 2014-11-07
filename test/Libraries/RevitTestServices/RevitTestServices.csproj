@@ -103,7 +103,7 @@
       <Private>False</Private>
     </ProjectReference>
     <Reference Include="TestServices">
-      <HintPath>$(DYNAMOAPI)\TestServices.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\TestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCoreTests">
