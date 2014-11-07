@@ -102,11 +102,10 @@
       <Name>RevitServices</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\TestServices\TestServices.csproj">
-      <Project>{6cd0f0cf-8199-49f9-b0ea-0b9598b44419}</Project>
-      <Name>TestServices</Name>
+    <Reference Include="TestServices">
+      <HintPath>$(DYNAMOAPI)\TestServices.dll</HintPath>
       <Private>False</Private>
-    </ProjectReference>
+    </Reference>
     <Reference Include="DynamoCoreTests">
       <HintPath>$(DYNAMOTESTAPI)\DynamoCoreTests.dll</HintPath>
       <Private>False</Private>
