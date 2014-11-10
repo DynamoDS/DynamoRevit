@@ -13,7 +13,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RevitSystemTests</RootNamespace>
     <AssemblyName>RevitSystemTests</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
