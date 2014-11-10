@@ -15,6 +15,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
+	<TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+	<Prefer32Bit>false</Prefer32Bit>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,6 +35,8 @@
     <BaseIntermediateOutputPath>$(OutputPath)\int\</BaseIntermediateOutputPath>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
+	<TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+	<Prefer32Bit>false</Prefer32Bit>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -52,6 +56,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
+	<TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <DefineConstants>DEBUG;TRACE;REVIT_2014</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -70,6 +75,7 @@
     <BaseIntermediateOutputPath>$(OutputPath)\int\</BaseIntermediateOutputPath>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
+	<TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <DefineConstants>TRACE;REVIT_2014</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

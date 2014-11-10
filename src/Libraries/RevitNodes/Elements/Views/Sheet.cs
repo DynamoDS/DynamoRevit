@@ -157,7 +157,13 @@ namespace Revit.Elements.Views
                 Autodesk.Revit.DB.UV placement = null;
                 if (packer.TryPack(viewWidth, viewHeight, out placement))
                 {
+#if REVIT_2014
                     if (sheet.Views.Contains(view))
+#else
+                    var dbViews = sheet.GetAllPlacedViews().Select(x => Document.GetElement(x)).
+                        OfType<Autodesk.Revit.DB.View>();
+                    if (dbViews.Contains(view))
+#endif
                     {
                         //move the view
                         //find the corresponding viewport
@@ -279,8 +285,11 @@ namespace Revit.Elements.Views
             get
             {
                 return
-                    InternalViewSheet.Views.Cast<Autodesk.Revit.DB.View>()
-                        .ToList()
+#if REVIT_2014
+                    InternalViewSheet.Views.Cast<Autodesk.Revit.DB.View>().ToList()
+#else
+                    InternalViewSheet.GetAllPlacedViews().Select(x => Document.GetElement(x)).OfType<Autodesk.Revit.DB.View>()
+#endif
                         .Select(x => (View) ElementWrapper.ToDSType(x, true))
                         .ToArray();
             }

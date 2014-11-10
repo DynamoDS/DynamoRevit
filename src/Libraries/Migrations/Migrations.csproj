@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>$(OutputPath)\nodes\</OutputPath>
+    <OutputPath>$(OutputPath)\nodes</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -32,10 +32,28 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug%28Revit2014%29|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>$(OutputPath)\nodes</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release%28Revit2014%29|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>$(OutputPath)\nodes</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xaml" />
+	<Reference Include="System.Xaml" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
 	<Reference Include="Microsoft.Practices.Prism">
       <HintPath>$(DYNAMOAPI)\Microsoft.Practices.Prism.dll</HintPath>
@@ -50,7 +68,19 @@
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
 	<Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DynamoMSOffice\Excel.cs" />
+    <Compile Include="DynamoPython\dynPython.cs" />
+    <Compile Include="DynamoRaaS\Nodes.cs" />
     <Compile Include="MigrationHelpers.cs" />
+    <Compile Include="CoreNodes\dynBaseTypes.cs" />
+    <Compile Include="CoreNodes\dynColors.cs" />
+    <Compile Include="CoreNodes\dynCommunication.cs" />
+    <Compile Include="CoreNodes\dynFiles.cs" />
+    <Compile Include="CoreNodes\dynFormula.cs" />
+    <Compile Include="CoreNodes\dynMultithreading.cs" />
+    <Compile Include="CoreNodes\dynOptimize.cs" />
+    <Compile Include="CoreNodes\dynTimer.cs" />
+    <Compile Include="CoreNodes\Measurement.cs" />
     <Compile Include="RevitNodes\AdaptiveComponents.cs" />
     <Compile Include="RevitNodes\AnalysisDisplay.cs" />
     <Compile Include="RevitNodes\Annotation.cs" />
@@ -107,7 +137,7 @@
     </Reference>
     <Reference Include="DynamoUnits">
       <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
-      <Private>False</Private>
+	  <Private>False</Private>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
