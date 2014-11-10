@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Revit</RootNamespace>
     <AssemblyName>RevitNodes</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup>
@@ -28,6 +28,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>$(OutputPath)\RevitNodes.XML</DocumentationFile>
     <NoWarn>1591</NoWarn>
+	<Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>$(OutputPath)\RevitNodes.XML</DocumentationFile>
     <NoWarn>1591</NoWarn>
+	<Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -116,6 +118,7 @@
     <Compile Include="GeometryConversion\GeometryDebugging.cs" />
     <Compile Include="GeometryConversion\CurveUtils.cs" />
     <Compile Include="GeometryConversion\HermiteToNurbs.cs" />
+	<Compile Include="GeometryConversion\ProtoToRevitMesh.cs" />
     <Compile Include="GeometryConversion\NurbsUtils.cs" />
     <Compile Include="GeometryConversion\PolygonContainment.cs" />
     <Compile Include="GeometryConversion\RevitToProtoSolid.cs" />
