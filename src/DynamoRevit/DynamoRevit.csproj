@@ -13,7 +13,6 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Dynamo.Applications</RootNamespace>
     <AssemblyName>DynamoRevitDS</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -43,6 +42,27 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
     <DebugSymbols>true</DebugSymbols>
+    <NoWarn>618</NoWarn>
+    <DocumentationFile>$(OutputPath)\DynamoRevitDS.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release%28Revit2014%29|AnyCPU'">
+	<DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE;REVIT_2014;ENABLE_DYNAMO_SCHEDULER</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+    <WarningLevel>3</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <NoWarn>618</NoWarn>
+    <DocumentationFile>$(OutputPath)\DynamoRevitDS.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug%28Revit2014%29|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>TRACE;DEBUG;REVIT_2014;ENABLE_DYNAMO_SCHEDULER</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+    <WarningLevel>3</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <NoWarn>618</NoWarn>
     <DocumentationFile>$(OutputPath)\DynamoRevitDS.XML</DocumentationFile>
   </PropertyGroup>

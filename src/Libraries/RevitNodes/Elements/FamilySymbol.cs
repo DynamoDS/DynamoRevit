@@ -110,7 +110,12 @@ namespace Revit.Elements
 
             // obtain the family symbol with the provided name
             var symbol =
+#if REVIT_2014
                 family.InternalFamily.Symbols.Cast<Autodesk.Revit.DB.FamilySymbol>().FirstOrDefault(x => x.Name == name);
+#else
+                family.InternalFamily.GetFamilySymbolIds().Select(x=>Document.GetElement(x)).
+                Cast<Autodesk.Revit.DB.FamilySymbol>().FirstOrDefault(x => x.Name == name);
+#endif
 
             if (symbol == null)
             {
@@ -153,7 +158,12 @@ namespace Revit.Elements
 
             // obtain the family symbol with the provided name
             var symbol =
+#if REVIT_2014
                 family.Symbols.Cast<Autodesk.Revit.DB.FamilySymbol>().FirstOrDefault(x => x.Name == typeName);
+#else
+                family.GetFamilySymbolIds().Select(x => DocumentManager.Instance.CurrentDBDocument.GetElement(x)).
+                OfType<Autodesk.Revit.DB.FamilySymbol>().FirstOrDefault(x => x.Name == typeName);
+#endif
 
             if (symbol == null)
             {

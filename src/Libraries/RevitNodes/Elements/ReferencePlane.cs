@@ -48,7 +48,11 @@ namespace Revit.Elements
         /// <param name="referencePlane"></param>
         private ReferencePlane( Autodesk.Revit.DB.ReferencePlane referencePlane)
         {
+#if REVIT_2014
             InternalSetReferencePlane(referencePlane);
+#else
+            this.InternalReferencePlane = referencePlane;
+#endif
         }
 
         /// <summary>
