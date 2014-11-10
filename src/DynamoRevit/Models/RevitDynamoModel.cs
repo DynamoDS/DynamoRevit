@@ -21,6 +21,7 @@ using Dynamo.Utilities;
 
 using Revit.Elements;
 using RevitServices.Elements;
+using RevitServices.Materials;
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
@@ -31,6 +32,12 @@ namespace Dynamo.Applications.Models
 {
     public class RevitDynamoModel : DynamoModel
     {
+        /// <summary>
+        ///     Flag for syncing up document switches between Application.DocumentClosing and
+        ///     Application.DocumentClosed events.
+        /// </summary>
+        private bool updateCurrentUIDoc;
+
         #region Events
 
         public event EventHandler RevitDocumentChanged;
@@ -58,7 +65,7 @@ namespace Dynamo.Applications.Models
         {
             // where necessary, assign defaults
             if (string.IsNullOrEmpty(configuration.Context))
-                configuration.Context = Core.Context.REVIT_2014;
+                configuration.Context = Core.Context.REVIT_2015;
             if (string.IsNullOrEmpty(configuration.DynamoCorePath))
             {
                 var asmLocation = Assembly.GetExecutingAssembly().Location;
@@ -143,7 +150,10 @@ namespace Dynamo.Applications.Models
 
         private void InitializeMaterials()
         {
-            // Does nothing: MaterialsManager is Revit 2015 specific.
+            // Ensure that the current document has the needed materials
+            // and graphic styles to support visualization in Revit.
+            var mgr = MaterialsManager.Instance;
+            IdlePromise.ExecuteOnIdleAsync(mgr.InitializeForActiveDocumentOnIdle);
         }
 
         #endregion
@@ -322,7 +332,11 @@ namespace Dynamo.Applications.Models
         /// </summary>
         public void HandleApplicationDocumentClosing(Document doc)
         {
-            // no-op on revit2014
+            // ReSharper disable once PossibleUnintendedReferenceComparison
+            if (DocumentManager.Instance.CurrentDBDocument.Equals(doc))
+            {
+                updateCurrentUIDoc = true;
+            }
         }
 
         /// <summary>
@@ -346,8 +360,9 @@ namespace Dynamo.Applications.Models
             {
                 // If Dynamo's active UI document's document is the one that was just closed
                 // then set Dynamo's active UI document to whatever revit says is active.
-                if (DocumentManager.Instance.CurrentUIDocument.Document == null)
+                if (updateCurrentUIDoc)
                 {
+                    updateCurrentUIDoc = false;
                     DocumentManager.Instance.CurrentUIDocument =
                         DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
                 }
