@@ -160,7 +160,7 @@
     </Reference>
     <Reference Include="DynamoUtilities">
       <HintPath>$(DYNAMOAPI)\DynamoUtilities.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DSNodeServices">
       <HintPath>$(DYNAMOAPI)\DSNodeServices.dll</HintPath>
