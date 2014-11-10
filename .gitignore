@@ -5,11 +5,11 @@
 *.pydevproject
 .project
 .metadata
+src/DynamoRevitInstall/harvest/
 bin/
 tmp/
 *.tmp
 *.bak
-*.dll
 *.swp
 *~.nib
 local.properties
