@@ -11,8 +11,8 @@ using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Core.Threading;
 using Dynamo.Interfaces;
-using Dynamo.Tests;
 using Dynamo.ViewModels;
+using Dynamo.Tests;
 
 using NUnit.Framework;
 
@@ -100,7 +100,7 @@ namespace RevitTestServices
                     {
                         StartInTestMode = true,
                         DynamoCorePath = Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\"),
-                        Context = "Revit 2014",
+                        Context = "Revit 2015",
                         SchedulerThread = new TestSchedulerThread()
                     });
 
@@ -136,10 +136,17 @@ namespace RevitTestServices
                 var p1 = new Plane(XYZ.BasisZ, XYZ.Zero);
                 var p2 = new Plane(XYZ.BasisZ, new XYZ(0, 0, 5));
 
-                SketchPlane sp1 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewSketchPlane(p1);
-                SketchPlane sp2 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewSketchPlane(p2);
-                Curve c1 = DocumentManager.Instance.CurrentUIApplication.Application.Create.NewLineBound(XYZ.Zero, new XYZ(1, 0, 0));
-                Curve c2 = DocumentManager.Instance.CurrentUIApplication.Application.Create.NewLineBound(new XYZ(0, 0, 5), new XYZ(1, 0, 5));
+                //TODO" 2014->2015
+                //SketchPlane sp1 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewSketchPlane(p1);
+                //SketchPlane sp2 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewSketchPlane(p2);
+                //Curve c1 = DocumentManager.Instance.CurrentUIApplication.Application.Create.NewLineBound(XYZ.Zero, new XYZ(1, 0, 0));
+                //Curve c2 = DocumentManager.Instance.CurrentUIApplication.Application.Create.NewLineBound(new XYZ(0, 0, 5), new XYZ(1, 0, 5));
+
+                var sp1 = Autodesk.Revit.DB.SketchPlane.Create(DocumentManager.Instance.CurrentDBDocument, p1);
+                var sp2 = Autodesk.Revit.DB.SketchPlane.Create(DocumentManager.Instance.CurrentDBDocument, p2);
+                var c1 = Autodesk.Revit.DB.Line.CreateBound(XYZ.Zero, new XYZ(1, 0, 0));
+                var c2 = Autodesk.Revit.DB.Line.CreateBound(new XYZ(0, 0, 5), new XYZ(1, 0, 5));
+
                 mc1 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewModelCurve(c1, sp1);
                 mc2 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewModelCurve(c2, sp2);
 
@@ -160,8 +167,13 @@ namespace RevitTestServices
 
                 var p1 = new Plane(XYZ.BasisZ, XYZ.Zero);
 
-                SketchPlane sp1 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewSketchPlane(p1);
-                Curve c1 = DocumentManager.Instance.CurrentUIApplication.Application.Create.NewLineBound(XYZ.Zero, new XYZ(1, 0, 0));
+                //TODO: 2014->2015
+                //SketchPlane sp1 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewSketchPlane(p1);
+                //Curve c1 = DocumentManager.Instance.CurrentUIApplication.Application.Create.NewLineBound(XYZ.Zero, new XYZ(1, 0, 0));
+
+                SketchPlane sp1 = Autodesk.Revit.DB.SketchPlane.Create(DocumentManager.Instance.CurrentDBDocument, p1);
+                Curve c1 = Autodesk.Revit.DB.Line.CreateBound(XYZ.Zero, new XYZ(1, 0, 0));
+
                 mc1 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewModelCurve(c1, sp1);
 
                 trans.Commit();
