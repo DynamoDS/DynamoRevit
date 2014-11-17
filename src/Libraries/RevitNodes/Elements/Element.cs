@@ -29,8 +29,7 @@ namespace Revit.Elements
         /// <summary>
         /// A reference to the current Document.
         /// </summary>
-        [IsVisibleInDynamoLibrary(false)]
-        public static Document Document
+        internal static Document Document
         {
             get { return DocumentManager.Instance.CurrentDBDocument; }
         }
@@ -56,7 +55,6 @@ namespace Revit.Elements
         /// <summary>
         /// Get the Name of the Element
         /// </summary>
-        [IsVisibleInDynamoLibrary(false)]
         public string Name
         {
             get
@@ -94,7 +92,6 @@ namespace Revit.Elements
         /// <summary>
         /// Get the Element Unique Id for this element
         /// </summary>
-        [IsVisibleInDynamoLibrary(false)]
         public string UniqueId
         {
             get
@@ -106,8 +103,7 @@ namespace Revit.Elements
         /// <summary>
         /// A reference to the element
         /// </summary>
-        //[SupressImportIntoVM]
-        [IsVisibleInDynamoLibrary(false)]
+        [SupressImportIntoVM]
         public abstract Autodesk.Revit.DB.Element InternalElement
         {
             get;
