@@ -1,4 +1,4 @@
-﻿using DynamoUnits;
+using DynamoUnits;
 
 using NUnit.Framework;
 
