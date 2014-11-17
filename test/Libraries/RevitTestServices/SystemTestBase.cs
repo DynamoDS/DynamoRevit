@@ -3,23 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Core.Threading;
 using Dynamo.Interfaces;
-using Dynamo.Tests;
 using Dynamo.ViewModels;
-
+using Dynamo.Tests;
+using Dynamo.Models;
 using NUnit.Framework;
-
 using ProtoCore.Mirror;
-
 using RevitNodesTests;
-
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
@@ -100,7 +95,7 @@ namespace RevitTestServices
                     {
                         StartInTestMode = true,
                         DynamoCorePath = Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\"),
-                        Context = "Revit 2014",
+                        Context = "Revit 2015",
                         SchedulerThread = new TestSchedulerThread()
                     });
 
@@ -136,10 +131,11 @@ namespace RevitTestServices
                 var p1 = new Plane(XYZ.BasisZ, XYZ.Zero);
                 var p2 = new Plane(XYZ.BasisZ, new XYZ(0, 0, 5));
 
-                SketchPlane sp1 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewSketchPlane(p1);
-                SketchPlane sp2 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewSketchPlane(p2);
-                Curve c1 = DocumentManager.Instance.CurrentUIApplication.Application.Create.NewLineBound(XYZ.Zero, new XYZ(1, 0, 0));
-                Curve c2 = DocumentManager.Instance.CurrentUIApplication.Application.Create.NewLineBound(new XYZ(0, 0, 5), new XYZ(1, 0, 5));
+                SketchPlane sp1 = SketchPlane.Create(DocumentManager.Instance.CurrentDBDocument, p1);
+                SketchPlane sp2 = SketchPlane.Create(DocumentManager.Instance.CurrentDBDocument, p2);
+                Curve c1 = Line.CreateBound(XYZ.Zero, new XYZ(1, 0, 0));
+                Curve c2 = Line.CreateBound(new XYZ(0, 0, 5), new XYZ(1, 0, 5));
+
                 mc1 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewModelCurve(c1, sp1);
                 mc2 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewModelCurve(c2, sp2);
 
@@ -160,8 +156,9 @@ namespace RevitTestServices
 
                 var p1 = new Plane(XYZ.BasisZ, XYZ.Zero);
 
-                SketchPlane sp1 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewSketchPlane(p1);
-                Curve c1 = DocumentManager.Instance.CurrentUIApplication.Application.Create.NewLineBound(XYZ.Zero, new XYZ(1, 0, 0));
+                SketchPlane sp1 = SketchPlane.Create(DocumentManager.Instance.CurrentDBDocument, p1);
+                Curve c1 = Line.CreateBound(XYZ.Zero, new XYZ(1, 0, 0));
+
                 mc1 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewModelCurve(c1, sp1);
 
                 trans.Commit();
@@ -227,6 +224,17 @@ namespace RevitTestServices
             var data = mirror.GetData();
             Assert.IsTrue(data.IsCollection);
             Assert.AreEqual(count, data.GetElements().Count);
+        }
+
+        public NodeModel GetNode<T>(string guid) where T : NodeModel
+        {
+            var allNodes = ViewModel.Model.Nodes;
+            var nodes = allNodes.Where(x => string.CompareOrdinal(x.GUID.ToString(), guid) == 0);
+            if (nodes.Count() < 1)
+                return null;
+            else if (nodes.Count() > 1)
+                throw new Exception("There are more than one nodes with the same GUID!");
+            return nodes.ElementAt(0) as T;
         }
 
         public object GetPreviewValue(string guid)
