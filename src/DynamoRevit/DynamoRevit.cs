@@ -403,7 +403,7 @@ namespace Dynamo.Applications
                 revitDynamoModel.OnRequestsCrashPrompt(
                     revitDynamoModel,
                     new CrashPromptArgs(args.Exception.Message + "\n\n" + args.Exception.StackTrace));
-                dynamoViewModel.Exit(false); // don't allow cancellation
+                dynamoViewModel.PerformShutdownSequence(new DynamoViewModel.ShutdownParams(false, false)); // don't allow cancellation
             }
             catch { }
             finally
