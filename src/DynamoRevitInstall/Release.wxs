@@ -3,6 +3,7 @@
     <Fragment>
         <DirectoryRef Id="DYNAMO_INSTALLDIR">
             <Directory Id="dir0906B7B9C5B07477956688D4026559D4" Name="Revit_2014" />
+            <Directory Id="dir0294C2B061F71D34F96AE79FE53A15B3" Name="Revit_2015" />
         </DirectoryRef>
     </Fragment>
     <Fragment>
