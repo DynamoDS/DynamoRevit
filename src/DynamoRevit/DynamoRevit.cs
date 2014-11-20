@@ -100,7 +100,21 @@ namespace Dynamo.Applications
             {
 #if ENABLE_DYNAMO_SCHEDULER
                 extCommandData = commandData;
-                commandData.Application.Idling += OnRevitIdleOnce;
+                //commandData.Application.Idling += OnRevitIdleOnce;
+
+                // create core data models
+                revitDynamoModel = InitializeCoreModel(extCommandData);
+                dynamoViewModel = InitializeCoreViewModel(revitDynamoModel);
+
+                // handle initialization steps after RevitDynamoModel is created.
+                revitDynamoModel.HandlePostInitialization();
+
+                // show the window
+                InitializeCoreView().Show();
+
+                TryOpenWorkspaceInCommandData(extCommandData);
+                SubscribeApplicationEvents(extCommandData);
+
 #else
 
                 IdlePromise.ExecuteOnIdleAsync(
