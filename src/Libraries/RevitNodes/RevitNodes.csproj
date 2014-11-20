@@ -166,7 +166,7 @@
       <HintPath>$(DYNAMOAPI)\DSNodeServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
-	<Reference Include="Analysis">
+    <Reference Include="Analysis">
       <HintPath>$(DYNAMOAPI)\Analysis.dll</HintPath>
       <Private>False</Private>
     </Reference>
