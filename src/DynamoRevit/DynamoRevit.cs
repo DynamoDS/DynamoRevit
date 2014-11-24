@@ -113,7 +113,6 @@ namespace Dynamo.Applications
 
                 TryOpenWorkspaceInCommandData(extCommandData);
                 SubscribeApplicationEvents(extCommandData);
-
 #else
 
                 IdlePromise.ExecuteOnIdleAsync(
