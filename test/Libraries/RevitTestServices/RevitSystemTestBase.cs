@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
+
+using SystemTestServices;
+
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Dynamo.Applications;
@@ -13,8 +15,7 @@ using Dynamo.Models;
 using Dynamo.Tests;
 using Dynamo.ViewModels;
 using NUnit.Framework;
-using ProtoCore.Mirror;
-using RevitNodesTests;
+
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
@@ -35,38 +36,20 @@ namespace RevitTestServices
     }
 
     [TestFixture]
-    public abstract class SystemTestBase
+    public abstract class RevitSystemTestBase : SystemTestBase
     {
-        protected DynamoViewModel ViewModel;
-        protected string workingDirectory;
+        #region public methods
 
         [SetUp]
-        public void Setup()
+        public override void Setup()
         {
-            AssemblyResolver.Setup();
-
-            SetupCore();
-
-            if (string.IsNullOrEmpty(workingDirectory))
-            {
-                workingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            }
-
-            StartDynamo();
+            base.Setup();
 
             DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
         }
 
-        /// <summary>
-        /// Implement this method to do any setup neceessary for your tests.
-        /// </summary>
-        protected virtual void SetupCore()
-        {
-            
-        }
-
         [TearDown]
-        public void TearDown()
+        public override void TearDown()
         {
             // Automatic transaction strategy requires that we 
             // close the transaction if it hasn't been closed by 
@@ -76,12 +59,7 @@ namespace RevitTestServices
             TransactionManager.Instance.ForceCloseTransaction();
         }
 
-        protected void CurrentUIApplication_ViewActivating(object sender, Autodesk.Revit.UI.Events.ViewActivatingEventArgs e)
-        {
-            ((RevitDynamoModel)this.ViewModel.Model).SetRunEnabledBasedOnContext(e.NewActiveView);
-        }
-
-        protected void StartDynamo()
+        public override void StartDynamo()
         {
             try
             {
@@ -114,6 +92,15 @@ namespace RevitTestServices
             {
                 Console.WriteLine(ex.StackTrace);
             }
+        }
+
+        #endregion
+
+        #region protected methods
+
+        protected void CurrentUIApplication_ViewActivating(object sender, Autodesk.Revit.UI.Events.ViewActivatingEventArgs e)
+        {
+            ((RevitDynamoModel)this.ViewModel.Model).SetRunEnabledBasedOnContext(e.NewActiveView);
         }
 
         /// <summary>
@@ -183,180 +170,6 @@ namespace RevitTestServices
             initialDoc.Close(false);
         }
 
-        protected void OpenAndRun(string subPath)
-        {
-            string samplePath = Path.Combine(workingDirectory, subPath);
-            string testPath = Path.GetFullPath(samplePath);
-
-            Assert.IsTrue(File.Exists(testPath), string.Format("Could not find file: {0} for testing.", testPath));
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
-        }
-
-        #region Revit unit test helper methods
-
-        public void RunCurrentModel()
-        {
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
-        }
-
-        public void AssertNoDummyNodes()
-        {
-            var nodes = ViewModel.Model.Nodes;
-
-            double dummyNodesCount = nodes.OfType<DSCoreNodesUI.DummyNode>().Count();
-            if (dummyNodesCount >= 1)
-            {
-                Assert.Fail("Number of dummy nodes found in Sample: " + dummyNodesCount);
-            }
-        }
-
-        public void AssertPreviewCount(string guid, int count)
-        {
-            string varname = GetVarName(guid);
-            var mirror = GetRuntimeMirror(varname);
-            Assert.IsNotNull(mirror);
-
-            var data = mirror.GetData();
-            Assert.IsTrue(data.IsCollection);
-            Assert.AreEqual(count, data.GetElements().Count);
-        }
-
-        public NodeModel GetNode<T>(string guid) where T : NodeModel
-        {
-            var allNodes = ViewModel.Model.Nodes;
-            var nodes = allNodes.Where(x => string.CompareOrdinal(x.GUID.ToString(), guid) == 0);
-            if (nodes.Count() < 1)
-                return null;
-            else if (nodes.Count() > 1)
-                throw new Exception("There are more than one nodes with the same GUID!");
-            return nodes.ElementAt(0) as T;
-        }
-
-        public object GetPreviewValue(string guid)
-        {
-            string varname = GetVarName(guid);
-            var mirror = GetRuntimeMirror(varname);
-            Assert.IsNotNull(mirror);
-
-            return mirror.GetData().Data;
-        }
-
-        /// <summary>
-        /// Get a collection from a node's mirror data.
-        /// </summary>
-        /// <param name="guid"></param>
-        /// <returns>A list of objects if the data is a collection, else null.</returns>
-        public List<object> GetPreviewCollection(string guid)
-        {
-            string varname = GetVarName(guid);
-            var mirror = GetRuntimeMirror(varname);
-            Assert.IsNotNull(mirror);
-            var data = mirror.GetData();
-            if (data == null)
-            {
-                Assert.Fail("The mirror has no data.");
-            }
-
-            var dataColl = mirror.GetData().GetElements();
-            if (dataColl == null)
-            {
-                return null;
-            }
-
-            var elements = dataColl.Select(x => x.Data).ToList();
-
-            return elements;
-        }
-
-        public object GetPreviewValueAtIndex(string guid, int index)
-        {
-            string varname = GetVarName(guid);
-            var mirror = GetRuntimeMirror(varname);
-            Assert.IsNotNull(mirror);
-            var data = mirror.GetData();
-            if (data == null) return null;
-            if (!data.IsCollection) return null;
-            var elements = data.GetElements();
-            return elements[index].Data;
-        }
-
-        public List<object> GetFlattenedPreviewValues(string guid)
-        {
-            string varname = GetVarName(guid);
-            var mirror = GetRuntimeMirror(varname);
-            Assert.IsNotNull(mirror);
-            var data = mirror.GetData();
-            if (data == null) return null;
-            if (!data.IsCollection)
-            {
-                return data.Data == null ? new List<object>() : new List<object>(){data.Data};
-            }
-            var elements = data.GetElements();
-
-            var objects = GetSublistItems(elements);
-
-            return objects;
-        }
-
-        private static List<object> GetSublistItems(IEnumerable<MirrorData> datas)
-        {
-            var objects = new List<object>();
-            foreach (var data in datas)
-            {
-                if (!data.IsCollection)
-                {
-                    objects.Add(data.Data);
-                }
-                else
-                {
-                    objects.AddRange(GetSublistItems(data.GetElements()));
-                }
-            }
-            return objects;
-        } 
-
-        public void AssertClassName(string guid, string className)
-        {
-            string varname = GetVarName(guid);
-            var mirror = GetRuntimeMirror(varname);
-            Assert.IsNotNull(mirror);
-            var classInfo = mirror.GetData().Class;
-            Assert.AreEqual(classInfo.ClassName, className);
-        }
-
-        protected static bool IsFuzzyEqual(double d0, double d1, double tol)
-        {
-            return System.Math.Abs(d0 - d1) < tol;
-        }
-
-        private string GetVarName(string guid)
-        {
-            var model = ViewModel.Model;
-            var node = model.CurrentWorkspace.NodeFromWorkspace(guid);
-            Assert.IsNotNull(node);
-            return node.AstIdentifierBase;
-        }
-
-        private RuntimeMirror GetRuntimeMirror(string varName)
-        {
-            RuntimeMirror mirror = null;
-            Assert.DoesNotThrow(() => mirror = ViewModel.Model.EngineController.GetMirror(varName));
-            return mirror;
-        }
-
-        protected bool IsNodeInErrorOrWarningState(string guid)
-        {
-            var model = ViewModel.Model;
-            var node = model.CurrentWorkspace.NodeFromWorkspace(guid);
-            Assert.IsNotNull(node);
-            return node.State == Dynamo.Models.ElementState.Error ||
-                    node.State == Dynamo.Models.ElementState.Warning;
-        }
-
         #endregion
-
     }
 }
