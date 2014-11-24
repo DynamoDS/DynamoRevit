@@ -26,7 +26,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitNodesTests", "..\test\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitServicesTests", "..\test\Libraries\RevitServicesTests\RevitServicesTests.csproj", "{AD0499ED-50D3-46F4-9FC9-3F71D88C4870}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrations", "Migrations\Migrations.csproj", "{06B9E5B0-7C50-4351-9D88-E159DC25755F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrations", "Libraries\Migrations\Migrations.csproj", "{06B9E5B0-7C50-4351-9D88-E159DC25755F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Legacy", "Legacy", "{398542E6-659A-48C8-86EB-33164D227C90}"
 EndProject
