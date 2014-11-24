@@ -68,7 +68,7 @@
     <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs">
       <Link>AssemblySharedInfo.cs</Link>
     </Compile>
-    <Compile Include="SystemTestBase.cs" />
+    <Compile Include="RevitSystemTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RevitNodeTestBase.cs" />
   </ItemGroup>
@@ -94,7 +94,7 @@
       <HintPath>$(DYNAMOAPI)\nodes\DSCoreNodesUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoUnits">
+    <Reference Include="Units">
       <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -109,6 +109,14 @@
     </Reference>
     <Reference Include="DynamoCoreTests">
       <HintPath>$(DYNAMOTESTAPI)\DynamoCoreTests.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SystemTestServices">
+      <HintPath>$(DYNAMOTESTAPI)\SystemTestServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TestServices">
+      <HintPath>$(DYNAMOTESTAPI)\TestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
