@@ -7,16 +7,30 @@ using Dynamo.Controls;
 using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.UI;
-
+using Dynamo.Wpf;
 using ProtoCore.AST.AssociativeAST;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 
 namespace DSRevitNodesUI
 {
+    public class SiteLocationNodeViewCustomization : INodeViewCustomization<SiteLocation>
+    {
+        public void CustomizeView(SiteLocation model, NodeView nodeView)
+        {
+            var locCtrl = new LocationControl { DataContext = this };
+            nodeView.inputGrid.Children.Add(locCtrl);
+        }
+
+        public void Dispose()
+        {
+
+        }
+    }
+
     [NodeName("SiteLocation"), NodeCategory(BuiltinNodeCategories.ANALYZE),
      NodeDescription("Returns the current Revit site location."), IsDesignScriptCompatible]
-    public class SiteLocation : RevitNodeModel, IWpfNode
+    public class SiteLocation : RevitNodeModel
     {
         private readonly RevitDynamoModel model;
 
@@ -60,12 +74,6 @@ namespace DSRevitNodesUI
                         DynamoUnits.Location.ByLatitudeAndLongitude), new List<AssociativeNode>() { latNode, longNode, nameNode });
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
-        }
-
-        public void SetupCustomUIElements(dynNodeView view)
-        {
-            var locCtrl = new LocationControl { DataContext = this };
-            view.inputGrid.Children.Add(locCtrl);
         }
 
         public override string ToString()

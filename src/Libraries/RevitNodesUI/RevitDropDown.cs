@@ -8,10 +8,10 @@ using DSCore;
 using DSCoreNodesUI;
 
 using Dynamo.Applications.Models;
-using Dynamo.DSEngine;
 using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.Utilities;
+
 using ProtoCore.AST.AssociativeAST;
 
 using Revit.Elements;
@@ -29,7 +29,6 @@ namespace DSRevitNodesUI
 {
     public abstract class RevitDropDownBase : DSDropDownBase
     {
-
         protected RevitDropDownBase(WorkspaceModel workspaceModel, string value) : base(workspaceModel, value)
         {
             var revModel = workspaceModel.DynamoModel as RevitDynamoModel;
@@ -59,7 +58,7 @@ namespace DSRevitNodesUI
         public FamilyTypes(WorkspaceModel workspaceModel) : base(workspaceModel, "Family Type")
         {}
         
-        protected override void PopulateItems()
+        public override void PopulateItems()
         {
             Items.Clear();
 
@@ -75,9 +74,7 @@ namespace DSRevitNodesUI
 
             foreach (Family family in fec.ToElements())
             {
-                var symbols = family.GetFamilySymbolIds().Select(x => DocumentManager.Instance.CurrentDBDocument.GetElement(x)).
-                    OfType<FamilySymbol>();
-                foreach (FamilySymbol fs in symbols)
+                foreach (FamilySymbol fs in family.Symbols)
                 {
                     Items.Add(new DynamoDropDownItem(string.Format("{0}:{1}", family.Name, fs.Name), fs));
                 }
@@ -154,7 +151,7 @@ namespace DSRevitNodesUI
             }
         }
 
-        protected override void PopulateItems() //(IEnumerable set, bool readOnly)
+        public override void PopulateItems() //(IEnumerable set, bool readOnly)
         {
             //only update the collection on evaluate
             //if the item coming in is different
@@ -302,7 +299,7 @@ namespace DSRevitNodesUI
         public FloorTypes(WorkspaceModel workspaceModel)
             : base(workspaceModel, "Floor Type") { }
 
-        protected override void PopulateItems()
+        public override void PopulateItems()
         {
             Items.Clear();
 
@@ -357,7 +354,7 @@ namespace DSRevitNodesUI
         public WallTypes(WorkspaceModel workspaceModel)
             : base(workspaceModel, "Wall Type") { }
 
-        protected override void PopulateItems()
+        public override void PopulateItems()
         {
             Items.Clear();
 
@@ -412,7 +409,7 @@ namespace DSRevitNodesUI
             OutPortData[0].ToolTipString = "The selected Category.";
         }
 
-        protected override void PopulateItems()
+        public override void PopulateItems()
         {
             Items.Clear();
             foreach (var constant in Enum.GetValues(typeof(BuiltInCategory)))
@@ -448,7 +445,7 @@ namespace DSRevitNodesUI
         public Levels(WorkspaceModel workspaceModel)
             : base(workspaceModel, "Levels"){}
 
-        protected override void PopulateItems()
+        public override void PopulateItems()
         {
             Items.Clear();
 
@@ -503,7 +500,7 @@ namespace DSRevitNodesUI
             PopulateItems();
         }
 
-        protected override void PopulateItems()
+        public override void PopulateItems()
         {
             Items.Clear();
 
@@ -591,7 +588,7 @@ namespace DSRevitNodesUI
             return new []{AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall)};
         }
     }
-
+    
     [NodeName("Views")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("All views available in the current document.")]
@@ -600,7 +597,7 @@ namespace DSRevitNodesUI
     {
         public Views(WorkspaceModel workspaceModel) : base(workspaceModel, "Views") { }
 
-        protected override void PopulateItems()
+        public override void PopulateItems()
         {
             var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             var views = fec.OfClass(typeof(View)).ToElements();
@@ -641,4 +638,6 @@ namespace DSRevitNodesUI
             return new []{AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node)};
         }
     }
+
+        
 }
