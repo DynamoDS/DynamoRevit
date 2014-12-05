@@ -7,80 +7,101 @@
     </Fragment>
     <Fragment>
         <ComponentGroup Id="SAMPLES">
-            <Component Id="cmp6A642DAE7FC8767113BEB73810882F51" Directory="dirE10E3F9A86E60E6567ADBE6BA0596E9A" Guid="{4BB3CAA0-B9C7-46E8-BB4D-83CB29FBD700}">
+            <Component Id="cmp6A642DAE7FC8767113BEB73810882F51" Directory="dirE10E3F9A86E60E6567ADBE6BA0596E9A" Guid="{AB10438C-DD2E-4B1A-B190-3430FCAFD40F}">
                 <File Id="fil0749B296A4DF364A2D6F9D2C5B417A51" KeyPath="yes" Source="$(var.samples)\Basics\Basics_Basic01.dyn" />
             </Component>
-            <Component Id="cmp43BBC525DC0159FA543C4F852C37E0B7" Directory="dirE10E3F9A86E60E6567ADBE6BA0596E9A" Guid="{3CE5531B-3191-472E-B479-A4CF56827F95}">
+            <Component Id="cmp43BBC525DC0159FA543C4F852C37E0B7" Directory="dirE10E3F9A86E60E6567ADBE6BA0596E9A" Guid="{EDF66A63-4EDC-40AF-B0E7-6A4E187DB72A}">
                 <File Id="fil011B22C9DF3F1844ED9408F58DC9731B" KeyPath="yes" Source="$(var.samples)\Basics\Basics_Basic02.dyn" />
             </Component>
-            <Component Id="cmp504E3A4FC19A27254526E75ADA19BD0B" Directory="dirE10E3F9A86E60E6567ADBE6BA0596E9A" Guid="{0A63603C-EA81-443E-9301-02428A7C016E}">
+            <Component Id="cmp504E3A4FC19A27254526E75ADA19BD0B" Directory="dirE10E3F9A86E60E6567ADBE6BA0596E9A" Guid="{97F368D1-C519-47CC-AC8C-AFA94D0FB2D1}">
                 <File Id="fil81C8A018227090A731069BF064C1649C" KeyPath="yes" Source="$(var.samples)\Basics\Basics_Basic03.dyn" />
             </Component>
-            <Component Id="cmp8046F7B96DA22869EFBC73B2359A2C54" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{A2C01105-D820-4075-8705-D82D409432B3}">
+            <Component Id="cmp8046F7B96DA22869EFBC73B2359A2C54" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{45D3F919-4ECD-42B5-A9DD-B24BCA5F9070}">
                 <File Id="fil4A5971DE3E904BFFD965CDEB35FADA64" KeyPath="yes" Source="$(var.samples)\Core\Core_AttractorPoint.dyn" />
             </Component>
-            <Component Id="cmpB52E36D13CD7252445781EB4F72B85CA" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{A58DD646-7270-412D-AA32-5D86A49B286C}">
+            <Component Id="cmpB52E36D13CD7252445781EB4F72B85CA" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{354CA022-3552-4316-B059-80849908E11B}">
                 <File Id="fil6F573DDD5FFEE1609848DC1081B8562B" KeyPath="yes" Source="$(var.samples)\Core\Core_CodeBlocks.dyn" />
             </Component>
-            <Component Id="cmp08B33B134E67309EB1E5C6603B75FAE0" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{91D5180B-1E54-4010-B3B3-AA1C481DD20E}">
+            <Component Id="cmp08B33B134E67309EB1E5C6603B75FAE0" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{073776B3-A29E-4D67-BF47-5BDB63E6BBBE}">
                 <File Id="filCD1925781CCFE8348B676BAD3E057A95" KeyPath="yes" Source="$(var.samples)\Core\Core_ListLacing.dyn" />
             </Component>
-            <Component Id="cmp6135DF1B8D662045A00F891A3B0491F7" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{1950021E-AA59-4B66-B458-13F7F98E4BB9}">
+            <Component Id="cmp6135DF1B8D662045A00F891A3B0491F7" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{73F9A375-8D61-4133-81D0-0721184FF101}">
                 <File Id="filB91E60C2207C3C2CD9AD2BF434660D4B" KeyPath="yes" Source="$(var.samples)\Core\Core_Math.dyn" />
             </Component>
-            <Component Id="cmpE58B6A01E85A86603C1A3630C84C8527" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{1F3E4BE7-3480-40CB-91E1-6F7885845CC7}">
+            <Component Id="cmpE58B6A01E85A86603C1A3630C84C8527" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{06242190-CBDC-49BD-A301-97C999E6978A}">
                 <File Id="fil59BBBD7B013CCAE32D6C76FE86E04EDF" KeyPath="yes" Source="$(var.samples)\Core\Core_PassingFunctions.dyn" />
             </Component>
-            <Component Id="cmp04DD03CF8E4A232D77AB2148DB08FB33" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{6B385832-A1D8-4997-B7EF-B3EF076ED7B0}">
+            <Component Id="cmp04DD03CF8E4A232D77AB2148DB08FB33" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{DCF20573-3496-432C-8603-6E7012C7C9AC}">
                 <File Id="fil0C187826CEFEFE396E246AD8EC3324DB" KeyPath="yes" Source="$(var.samples)\Core\Core_Python.dyn" />
             </Component>
-            <Component Id="cmpE5CAA5D84014FFFB7705C7C66349C89A" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{F52A4DA4-216A-4289-84C4-C2E9A76030C8}">
+            <Component Id="cmpE5CAA5D84014FFFB7705C7C66349C89A" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{AD8F1339-1367-4EFA-B61D-712B7F56493E}">
                 <File Id="fil7A2AF10F9A47D48C4B4E62CFCFAD3219" KeyPath="yes" Source="$(var.samples)\Core\Core_RangeSyntax.dyn" />
             </Component>
-            <Component Id="cmp4427119836AD2F670B290B39B2806799" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{055F67C8-A7D8-4A0F-A90B-4CC0FE9ACC0D}">
+            <Component Id="cmp4427119836AD2F670B290B39B2806799" Directory="dir2DA26D943A4CEB0685BFFA7E94D1B62A" Guid="{99D140A7-F5A6-4396-B0CE-E2416E7280FC}">
                 <File Id="fil3825EFB5DBF86A42CCB110903187A6DD" KeyPath="yes" Source="$(var.samples)\Core\Core_Strings.dyn" />
             </Component>
-            <Component Id="cmp3EE7C447103851998572E5AC7DC36D83" Directory="dirE40332174A632405AD0CB03741D18651" Guid="{712434F8-D8CF-4010-BDB7-7F9F72697EC0}">
+            <Component Id="cmp3EE7C447103851998572E5AC7DC36D83" Directory="dirE40332174A632405AD0CB03741D18651" Guid="{FCBBD526-2973-408F-88D7-17E24BFB168E}">
                 <File Id="fil33D61E01B947C6A11A4BCFAD9F691D29" KeyPath="yes" Source="$(var.samples)\Geometry\Geometry_Curves.dyn" />
             </Component>
-            <Component Id="cmpB56D2264578D14D180CC8863D88F7B54" Directory="dirE40332174A632405AD0CB03741D18651" Guid="{03FC6FF3-AB09-4A20-8CE9-F70F6E3F81B8}">
+            <Component Id="cmpB56D2264578D14D180CC8863D88F7B54" Directory="dirE40332174A632405AD0CB03741D18651" Guid="{65AF5E55-D5B8-4C29-A5C3-5FEDE2F0AB48}">
                 <File Id="filCA790B92BDCE833EF8958C2B87901F64" KeyPath="yes" Source="$(var.samples)\Geometry\Geometry_Points.dyn" />
             </Component>
-            <Component Id="cmpDC32E0A89A6EBEC863177BC50524B23E" Directory="dirE40332174A632405AD0CB03741D18651" Guid="{6E86F3C1-1A6B-4D76-87C7-EE8EEA79E290}">
+            <Component Id="cmpDC32E0A89A6EBEC863177BC50524B23E" Directory="dirE40332174A632405AD0CB03741D18651" Guid="{3C8C2C45-6CA9-4B59-A099-1B5EAB6CB7D2}">
                 <File Id="fil92EAD9DCAC13946729BF8D39F19FD1AF" KeyPath="yes" Source="$(var.samples)\Geometry\Geometry_Solids.dyn" />
             </Component>
-            <Component Id="cmpF5B1524DEF8042C0C3F49107C104EA63" Directory="dirE40332174A632405AD0CB03741D18651" Guid="{82F87F28-656C-40B6-A57F-36DF65F225CE}">
+            <Component Id="cmpF5B1524DEF8042C0C3F49107C104EA63" Directory="dirE40332174A632405AD0CB03741D18651" Guid="{DA4C3BF6-2109-45B8-B21E-BF212F3B600F}">
                 <File Id="fil5DA70A90F5960F793E1EAD64113C4C61" KeyPath="yes" Source="$(var.samples)\Geometry\Geometry_Surfaces.dyn" />
             </Component>
-            <Component Id="cmp1D0404814F0D40A218F0FCA1D4432679" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{6A777710-CFA0-48E5-96C5-043B5259D4CE}">
+            <Component Id="cmp1D0404814F0D40A218F0FCA1D4432679" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{AAF0A9DD-FE33-4344-BE77-6836EBE32C0A}">
                 <File Id="filF5C77263AD649005B88E14E91FA35B3B" KeyPath="yes" Source="$(var.samples)\ImportExport\gradient.bmp" />
             </Component>
-            <Component Id="cmpAB121746346F22AB8B77D8F81AA14371" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{0121A88C-6976-42DE-B283-44B161AD768C}">
+            <Component Id="cmpAB121746346F22AB8B77D8F81AA14371" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{CC4686AE-2797-4FB0-878C-37B6A89A4822}">
                 <File Id="filA8FEA0E4AB332421ECBEA23126B7A553" KeyPath="yes" Source="$(var.samples)\ImportExport\grayscale3.bmp" />
             </Component>
-            <Component Id="cmpB4CD23635D62FC6FE2007DC29278B807" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{7869E69A-1C5D-469B-A72A-4AA440123E31}">
+            <Component Id="cmpB4CD23635D62FC6FE2007DC29278B807" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{32EDC906-5C87-4D63-95B8-AA03C0C931D5}">
                 <File Id="fil10CBB0D0C7C1CA177E4A74B21E5B410D" KeyPath="yes" Source="$(var.samples)\ImportExport\helix.csv" />
             </Component>
-            <Component Id="cmp02A958314F86E53AB9656AFB1087E886" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{2A752889-B0D1-4737-883C-3F879FEF248A}">
+            <Component Id="cmp02A958314F86E53AB9656AFB1087E886" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{CAF6679C-3A71-41C7-9947-AEB12D89440A}">
                 <File Id="fil8A3EC6DE7E2C72E194C4810AF9A2F025" KeyPath="yes" Source="$(var.samples)\ImportExport\helix.xlsx" />
             </Component>
-            <Component Id="cmp2BAA8BF7E9DE35B391C7E13CC85FB8A0" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{2223906B-0754-4681-B7B1-8042593AB376}">
+            <Component Id="cmp2BAA8BF7E9DE35B391C7E13CC85FB8A0" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{D57375CF-A5A4-4C6B-8482-60DDA37EBE29}">
                 <File Id="fil5AF103F99494F47E7B78D49F62080B81" KeyPath="yes" Source="$(var.samples)\ImportExport\helix_smaller.csv" />
             </Component>
-            <Component Id="cmp758983929EB9012217EBE586343525FA" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{4EACC2B7-3238-4693-8CE2-66CFAEC7F9C7}">
+            <Component Id="cmp758983929EB9012217EBE586343525FA" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{1BE9D0EC-B188-479C-B54D-DC7304B54927}">
                 <File Id="fil47A40BB165F84530FBE78D4024D1943C" KeyPath="yes" Source="$(var.samples)\ImportExport\icosohedron_points.csv" />
             </Component>
-            <Component Id="cmp0F7D47875D18C8D289F37371B885D3CF" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{64A28CBC-AD15-4306-98D5-7763617B9273}">
+            <Component Id="cmp0F7D47875D18C8D289F37371B885D3CF" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{F14326DD-5FF2-4CC9-AE9E-8E1280C7097D}">
                 <File Id="fil5711F23DCF86FFA06892155A6A67041D" KeyPath="yes" Source="$(var.samples)\ImportExport\ImportExport_CSV to Stuff.dyn" />
             </Component>
-            <Component Id="cmp46A7DD4989A7A04681F2ED8CE4535F25" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{6E4D18E4-F7C2-4DE5-A9F2-78B922078628}">
+            <Component Id="cmp46A7DD4989A7A04681F2ED8CE4535F25" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{5C862E47-6DF8-4A5E-91D9-85D2D825C87F}">
                 <File Id="fil22F9D6763F74DD651C1D45CC5E2BDC2E" KeyPath="yes" Source="$(var.samples)\ImportExport\ImportExport_Data To Excel.dyn" />
             </Component>
-            <Component Id="cmpB862A92EB27AA61C82934B5B987C6C9C" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{23983F6F-704C-477B-B508-744408A1ABFC}">
+            <Component Id="cmpB862A92EB27AA61C82934B5B987C6C9C" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{CD1BCDA5-F0D4-4651-8218-97E1E35A5590}">
                 <File Id="fil42E208C3F71FD61D4F70774C7994EB41" KeyPath="yes" Source="$(var.samples)\ImportExport\ImportExport_Excel to Dynamo.dyn" />
             </Component>
-            <Component Id="cmpA6E2D07150BC66A2BFA7D049BEF5791A" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{7C2D7339-B732-4702-A8E9-F2A67AEB7C50}">
+            <Component Id="cmpA6E2D07150BC66A2BFA7D049BEF5791A" Directory="dirC512523A46D7E900F88970E8AAB44AD1" Guid="{BB75C85D-0BFA-4B80-B6E2-9796C2AC83BD}">
                 <File Id="filFC29C51F482F8E076D9D135713126F35" KeyPath="yes" Source="$(var.samples)\ImportExport\sphere.csv" />
+            </Component>
+            <Component Id="cmp0BC197B4F358C8B68034109A37221FFE" Directory="dirC80B050524970F6643CC8C232A49A166" Guid="{6DB162EB-438F-441F-A9ED-6747FF13BFD9}">
+                <File Id="fil2363283104245AA2687AC99FB4ACCD1A" KeyPath="yes" Source="$(var.samples)\Revit\DynamoSample.rvt" />
+            </Component>
+            <Component Id="cmpF6350C7FEFD48B57BE9A309BE2613C82" Directory="dirC80B050524970F6643CC8C232A49A166" Guid="{F1CC50EA-E5A8-46E2-9980-E22FCD3D3F61}">
+                <File Id="fil6248702BB39AF612A0BCB651A7B01236" KeyPath="yes" Source="$(var.samples)\Revit\Revit_Adaptive Component Placement.dyn" />
+            </Component>
+            <Component Id="cmp6E1226487DE1E2291366017565C68572" Directory="dirC80B050524970F6643CC8C232A49A166" Guid="{7D7A98E4-4CE9-49FF-AAA4-40FADE93689C}">
+                <File Id="fil7C1F69FD97EEA5A649A52EF547801E98" KeyPath="yes" Source="$(var.samples)\Revit\Revit_Color.dyn" />
+            </Component>
+            <Component Id="cmp346AE0CB0C0568707E0F932F69A43325" Directory="dirC80B050524970F6643CC8C232A49A166" Guid="{08BB9B43-CC25-4280-9E7A-BE2AEB052D2D}">
+                <File Id="fil7353C88E03FFDB3A14E18D0C5D023977" KeyPath="yes" Source="$(var.samples)\Revit\Revit_Floors and Framing.dyn" />
+            </Component>
+            <Component Id="cmpBD1D25B89198AAF596DF9283B25FF6F1" Directory="dirC80B050524970F6643CC8C232A49A166" Guid="{12EADA45-3EE8-488F-A028-52A99560FE5F}">
+                <File Id="filEAD55EECCE7137ACD01EF571AE571CBA" KeyPath="yes" Source="$(var.samples)\Revit\Revit_ImportSolid.dyn" />
+            </Component>
+            <Component Id="cmp10E903D4B793D4531B3AD37F32EE53BE" Directory="dirC80B050524970F6643CC8C232A49A166" Guid="{ACB9E916-C4E8-4A17-BCB4-AF2AB2DAA627}">
+                <File Id="fil21F4D99B3C0605AE68BC00D2B89DDA6A" KeyPath="yes" Source="$(var.samples)\Revit\Revit_PlaceFamiliesByLevel_Set Parameters.dyn" />
+            </Component>
+            <Component Id="cmp24CA0F6E8178A1F55EC4F63850D86030" Directory="dirC80B050524970F6643CC8C232A49A166" Guid="{146D9742-7767-487B-9A0D-B8ADD1999D2F}">
+                <File Id="fil694ED5753472513194B0AB7FD9330655" KeyPath="yes" Source="$(var.samples)\Revit\Revit_StructuralFraming.dyn" />
             </Component>
         </ComponentGroup>
     </Fragment>
@@ -92,6 +113,11 @@
     <Fragment>
         <DirectoryRef Id="dir915D00C23048C951FDC1693619DCAD04">
             <Directory Id="dirC512523A46D7E900F88970E8AAB44AD1" Name="ImportExport" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="dir915D00C23048C951FDC1693619DCAD04">
+            <Directory Id="dirC80B050524970F6643CC8C232A49A166" Name="Revit" />
         </DirectoryRef>
     </Fragment>
     <Fragment>
