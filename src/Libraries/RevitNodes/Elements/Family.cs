@@ -32,6 +32,15 @@ namespace Revit.Elements
 
         private Family(Autodesk.Revit.DB.Family family)
         {
+            SafeInit(() => InitFamily(family));
+        }
+
+        #endregion
+
+        #region Helper for private constructors
+
+        private void InitFamily(Autodesk.Revit.DB.Family family)
+        {
             InternalSetFamily(family);
         }
 

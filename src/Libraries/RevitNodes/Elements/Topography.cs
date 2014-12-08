@@ -61,6 +61,25 @@ namespace Revit.Elements
 
         private Topography(IList<XYZ> points)
         {
+            SafeInit(() => InitTopography(points));
+        }
+
+        [SupressImportIntoVM]
+        private Topography(TopographySurface topoSurface)
+        {
+            SafeInit(() => InitTopography(topoSurface));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a Topography element
+        /// </summary>
+        /// <param name="points"></param>
+        private void InitTopography(IList<XYZ> points)
+        {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldSurf =
                 ElementBinder.GetElementFromTrace<TopographySurface>(Document);
@@ -81,15 +100,19 @@ namespace Revit.Elements
             }
             else
             {
-                ElementBinder.SetElementForTrace(this.InternalElement);  
+                ElementBinder.SetElementForTrace(this.InternalElement);
             }
 
             // necessary so the points in the topography are valid
             DocumentManager.Regenerate();
         }
 
+        /// <summary>
+        /// Initialize a Topography element
+        /// </summary>
+        /// <param name="topoSurface"></param>
         [SupressImportIntoVM]
-        private Topography(TopographySurface topoSurface)
+        private void InitTopography(TopographySurface topoSurface)
         {
             InternalSetTopographySurface(topoSurface);
         }

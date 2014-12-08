@@ -41,6 +41,19 @@ namespace Revit.Elements
         /// <param name="material"></param>
         private Material(Autodesk.Revit.DB.Material material)
         {
+            SafeInit(() => InitMaterial(material));
+        }
+
+        #endregion
+
+        #region Helper for private constructors
+
+        /// <summary>
+        /// Initialize a Material element
+        /// </summary>
+        /// <param name="material"></param>
+        private void InitMaterial(Autodesk.Revit.DB.Material material)
+        {
             InternalSetMaterial(material);
         }
 
