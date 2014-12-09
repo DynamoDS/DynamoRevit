@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using Autodesk.DesignScript.Geometry;
-using Autodesk.DesignScript.Runtime;
-using Autodesk.Revit.DB;
+﻿using System.Collections.Generic;
 
-using Edge = Autodesk.Revit.DB.Edge;
-using Element = Revit.Elements.Element;
+using Autodesk.DesignScript.Runtime;
+
 using Face = Autodesk.Revit.DB.Face;
-using Point = Autodesk.DesignScript.Geometry.Point;
 using Solid = Autodesk.DesignScript.Geometry.Solid;
-using UV = Autodesk.DesignScript.Geometry.UV;
+using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace Revit.GeometryConversion
 {
