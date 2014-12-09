@@ -14,7 +14,7 @@
     <RootNamespace>Revit</RootNamespace>
     <AssemblyName>RevitNodes</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
