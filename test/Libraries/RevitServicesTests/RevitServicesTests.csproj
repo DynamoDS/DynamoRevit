@@ -29,6 +29,8 @@ limitations under the License.
     <RootNamespace>RevitServicesTests</RootNamespace>
     <AssemblyName>RevitServicesTests</AssemblyName>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
