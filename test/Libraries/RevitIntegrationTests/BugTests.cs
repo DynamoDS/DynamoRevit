@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
 
@@ -13,6 +14,9 @@ using Revit.Elements;
 using RevitNodesTests;
 
 using RTF.Framework;
+using RevitServices.Persistence;
+using System.Collections.Generic;
+using RevitServices.Transactions;
 
 namespace RevitSystemTests
 {
@@ -550,8 +554,55 @@ namespace RevitSystemTests
 
         }
 
-       
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void MAGN_5160()
+        {
+            var workspace = ViewModel.Model.CurrentWorkspace;
 
+            string samplePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_5160.dyn");
+            string testPath = Path.GetFullPath(samplePath);
 
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            RunCurrentModel();
+
+            var ModelCurveByCurveNode = GetNode<DSFunction>("f4ef10a1-1aed-49d5-8474-39cdbdf5fea6");
+            var NurbsCurveByPointsNode = GetNode<DSFunction>("d200379e-5c8c-4f8b-968d-2f0887223d68");
+            var NurbsCurveByControlPointsNode = GetNode<DSFunction>("8ba3309a-6ded-4059-a074-fa0c2b291919");
+            var LineByStartPointEndPointNode = GetNode<DSFunction>("7979f6ce-63b6-4cfb-9872-9d05812a111c");
+
+            //Connect the output of NurbsCurve.ByPoints node to the input of ModelCurve.ByCurve node
+            var connector = workspace.AddConnection(NurbsCurveByPointsNode, ModelCurveByCurveNode, 0, 0);
+            RunCurrentModel();
+            var curves = GetAllCurveElements();
+            Assert.AreEqual(1, curves.Count);
+
+            //Connect the output of NurbsCurve.ByControlPoints node to the input of ModelCurve.ByCurve node
+            connector = workspace.AddConnection(NurbsCurveByControlPointsNode, ModelCurveByCurveNode, 0, 0);
+            RunCurrentModel();
+            //There will be an error and there should be no curves in the document
+            curves = GetAllCurveElements();
+            Assert.AreEqual(0, curves.Count);
+
+            //Connect the output of Line.ByStartPointEndPoint node to the input of ModelCurve.ByCurve node
+            connector = workspace.AddConnection(LineByStartPointEndPointNode, ModelCurveByCurveNode, 0, 0);
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            RunCurrentModel();
+            //There should be only one curve in the document
+            curves = GetAllCurveElements();
+            Assert.AreEqual(1, curves.Count);
+        }
+
+        protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
+        {
+            var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(Autodesk.Revit.DB.CurveElement));
+            return fec.ToElements().Cast<Autodesk.Revit.DB.CurveElement>().ToList();
+        }
     }
 }
