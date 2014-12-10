@@ -473,7 +473,6 @@ namespace RevitSystemTests
         }
 
         [Test]
-        [Category("Failure")]
         [TestModel(@".\ElementBinding\magn-2523.rfa")]
         public void Rebinding_ExceptionIsThrown()
         {
