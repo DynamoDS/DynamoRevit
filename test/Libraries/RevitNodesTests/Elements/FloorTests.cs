@@ -106,6 +106,8 @@ namespace RevitNodesTests.Elements
             var floor = Floor.ByOutlineTypeAndLevel(outline, floorType, level);
 
             Assert.NotNull(floor);
+            Assert.IsTrue(floor.InternalFloor.FloorType.IsFoundationSlab);
+            Assert.AreEqual(floor.InternalFloor.FloorType.Name, "6\" Foundation Slab");
         }
     }
 }
