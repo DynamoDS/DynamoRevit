@@ -29,7 +29,7 @@ namespace Revit.Elements
         /// <param name="instance"></param>
         protected FamilyInstance(Autodesk.Revit.DB.FamilyInstance instance)
         {
-            InternalSetFamilyInstance(instance);
+            SafeInit(() => InitFamilyInstance(instance));
         }
 
         /// <summary>
@@ -38,56 +38,77 @@ namespace Revit.Elements
         internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, XYZ pos,
             Autodesk.Revit.DB.Level level)
         {
-            try
-            {
-                //Phase 1 - Check to see if the object exists and should be rebound
-                var oldFam =
-                    ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
-
-                //There was a point, rebind to that, and adjust its position
-                if (oldFam != null)
-                {
-                    InternalSetFamilyInstance(oldFam);
-                    InternalSetLevel(level);
-                    InternalSetFamilySymbol(fs);
-                    InternalSetPosition(pos);
-                    return;
-                }
-
-                //Phase 2- There was no existing point, create one
-                TransactionManager.Instance.EnsureInTransaction(Document);
-
-                Autodesk.Revit.DB.FamilyInstance fi;
-
-                if (Document.IsFamilyDocument)
-                {
-                    fi = Document.FamilyCreate.NewFamilyInstance(pos, fs, level,
-                        Autodesk.Revit.DB.Structure.StructuralType.NonStructural);
-                }
-                else
-                {
-                    fi = Document.Create.NewFamilyInstance(
-                        pos, fs, level, Autodesk.Revit.DB.Structure.StructuralType.NonStructural);
-                }
-
-                InternalSetFamilyInstance(fi);
-
-                TransactionManager.Instance.TransactionTaskDone();
-
-                ElementBinder.SetElementForTrace(InternalElement);
-            }
-            catch (Exception e)
-            {
-                var elementManager = ElementIDLifecycleManager<int>.GetInstance();
-                elementManager.UnRegisterAssociation(Id, this);
-                throw e;
-            }
+            SafeInit(() => InitFamilyInstance(fs, pos, level));
         }
 
         /// <summary>
         /// Internal constructor for a FamilyInstance
         /// </summary>
         internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, XYZ pos)
+        {
+            SafeInit(() => InitFamilyInstance(fs, pos));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a FamilyInstance element
+        /// </summary>
+        /// <param name="instance"></param>
+        private void InitFamilyInstance(Autodesk.Revit.DB.FamilyInstance instance)
+        {
+            InternalSetFamilyInstance(instance);
+        }
+
+        /// <summary>
+        /// Initialize a FamilyInstance element
+        /// </summary>
+        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, XYZ pos,
+            Autodesk.Revit.DB.Level level)
+        {
+            //Phase 1 - Check to see if the object exists and should be rebound
+            var oldFam =
+                ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
+
+            //There was a point, rebind to that, and adjust its position
+            if (oldFam != null)
+            {
+                InternalSetFamilyInstance(oldFam);
+                InternalSetLevel(level);
+                InternalSetFamilySymbol(fs);
+                InternalSetPosition(pos);
+                return;
+            }
+
+            //Phase 2- There was no existing point, create one
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            Autodesk.Revit.DB.FamilyInstance fi;
+
+            if (Document.IsFamilyDocument)
+            {
+                fi = Document.FamilyCreate.NewFamilyInstance(pos, fs, level,
+                    Autodesk.Revit.DB.Structure.StructuralType.NonStructural);
+            }
+            else
+            {
+                fi = Document.Create.NewFamilyInstance(
+                    pos, fs, level, Autodesk.Revit.DB.Structure.StructuralType.NonStructural);
+            }
+
+            InternalSetFamilyInstance(fi);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            ElementBinder.SetElementForTrace(InternalElement);
+        }
+
+        /// <summary>
+        /// Initialize a FamilyInstance element
+        /// </summary>
+        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, XYZ pos)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldFam =

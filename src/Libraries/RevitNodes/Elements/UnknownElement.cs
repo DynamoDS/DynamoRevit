@@ -24,6 +24,15 @@ namespace Revit.Elements
         /// <param name="element"></param>
         private UnknownElement(Autodesk.Revit.DB.Element element)
         {
+            SafeInit(() => InitUnknownElement(element));
+        }
+
+        /// <summary>
+        /// Initialize an UnknownElement element
+        /// </summary>
+        /// <param name="element"></param>
+        private void InitUnknownElement(Autodesk.Revit.DB.Element element)
+        {
             InternalSetElement(element);
         }
 

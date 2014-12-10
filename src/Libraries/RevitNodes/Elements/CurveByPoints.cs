@@ -40,10 +40,27 @@ namespace Revit.Elements
         /// <param name="curveByPoints"></param>
         private CurveByPoints(Autodesk.Revit.DB.CurveByPoints curveByPoints)
         {
-            InternalSetCurveElement(curveByPoints);
+            SafeInit(() => InitCurveByPoints(curveByPoints));
         }
 
         private CurveByPoints(IEnumerable<Autodesk.Revit.DB.ReferencePoint> refPoints, bool isReferenceLine)
+        {
+            SafeInit(() => InitCurveByPoints(refPoints, isReferenceLine));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// </summary>
+        /// <param name="curveByPoints"></param>
+        private void InitCurveByPoints(Autodesk.Revit.DB.CurveByPoints curveByPoints)
+        {
+            InternalSetCurveElement(curveByPoints);
+        }
+
+        private void InitCurveByPoints(IEnumerable<Autodesk.Revit.DB.ReferencePoint> refPoints, bool isReferenceLine)
         {
             //Add all of the elements in the sequence to a ReferencePointArray.
             var refPtArr = new ReferencePointArray();

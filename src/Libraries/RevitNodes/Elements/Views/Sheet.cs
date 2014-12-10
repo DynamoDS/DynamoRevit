@@ -47,13 +47,45 @@ namespace Revit.Elements.Views
         /// </summary>
         private Sheet(Autodesk.Revit.DB.ViewSheet view)
         {
-            InternalSetViewSheet(view);
+            SafeInit(() => InitSheet(view));
         }
 
         /// <summary>
         /// Private constructor
         /// </summary>
         private Sheet(string nameOfSheet, string numberOfSheet, IEnumerable<Autodesk.Revit.DB.View> views)
+        {
+            SafeInit(() => InitSheet(nameOfSheet, numberOfSheet, views));
+        }
+
+        /// <summary>
+        /// Private constructor.
+        /// </summary>
+        /// <param name="sheetName"></param>
+        /// <param name="sheetNumber"></param>
+        /// <param name="titleBlockFamilySymbol"></param>
+        /// <param name="views"></param>
+        private Sheet(string sheetName, string sheetNumber, Autodesk.Revit.DB.FamilySymbol titleBlockFamilySymbol, IEnumerable<Autodesk.Revit.DB.View> views)
+        {
+            SafeInit(() => InitSheet(sheetName, sheetNumber, titleBlockFamilySymbol, views));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a Sheet element
+        /// </summary>
+        private void InitSheet(Autodesk.Revit.DB.ViewSheet view)
+        {
+            InternalSetViewSheet(view);
+        }
+
+        /// <summary>
+        /// Initialize a Sheet element
+        /// </summary>
+        private void InitSheet(string nameOfSheet, string numberOfSheet, IEnumerable<Autodesk.Revit.DB.View> views)
         {
 
             //Phase 1 - Check to see if the object exists and should be rebound
@@ -76,7 +108,7 @@ namespace Revit.Elements.Views
             // create sheet without title block
             var sheet = Autodesk.Revit.DB.ViewSheet.Create(Document, ElementId.InvalidElementId);
 
-            InternalSetViewSheet( sheet );
+            InternalSetViewSheet(sheet);
             InternalSetSheetName(nameOfSheet);
             InternalSetSheetNumber(numberOfSheet);
             InternalAddViewsToSheetView(views);
@@ -87,13 +119,13 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Private constructor.
+        /// Initialize a Sheet element
         /// </summary>
         /// <param name="sheetName"></param>
         /// <param name="sheetNumber"></param>
         /// <param name="titleBlockFamilySymbol"></param>
         /// <param name="views"></param>
-        private Sheet(string sheetName, string sheetNumber, Autodesk.Revit.DB.FamilySymbol titleBlockFamilySymbol, IEnumerable<Autodesk.Revit.DB.View> views)
+        private void InitSheet(string sheetName, string sheetNumber, Autodesk.Revit.DB.FamilySymbol titleBlockFamilySymbol, IEnumerable<Autodesk.Revit.DB.View> views)
         {
 
             //Phase 1 - Check to see if the object exists

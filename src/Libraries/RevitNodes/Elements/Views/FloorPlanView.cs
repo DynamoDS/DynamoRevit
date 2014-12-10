@@ -24,13 +24,33 @@ namespace Revit.Elements.Views
         /// </summary>
         private FloorPlanView(Autodesk.Revit.DB.ViewPlan view)
         {
-            InternalSetPlanView(view);
+            SafeInit(() => InitFloorPlanView(view));
         }
 
         /// <summary>
         /// Private constructor
         /// </summary>
         private FloorPlanView(Autodesk.Revit.DB.Level level)
+        {
+            SafeInit(() => InitFloorPlanView(level));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a FloorPlanView element
+        /// </summary>
+        private void InitFloorPlanView(Autodesk.Revit.DB.ViewPlan view)
+        {
+            InternalSetPlanView(view);
+        }
+
+        /// <summary>
+        /// Initialize a FloorPlanView element
+        /// </summary>
+        private void InitFloorPlanView(Autodesk.Revit.DB.Level level)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 

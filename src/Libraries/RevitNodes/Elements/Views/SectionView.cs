@@ -46,13 +46,33 @@ namespace Revit.Elements.Views
         /// </summary>
         private SectionView(Autodesk.Revit.DB.ViewSection view)
         {
-            InternalSetSectionView(view);
+            SafeInit(() => InitSectionView(view));
         }
 
         /// <summary>
         /// Private constructor
         /// </summary>
         private SectionView( BoundingBoxXYZ bbox )
+        {
+            SafeInit(() => InitSectionView(bbox));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a SectionView element
+        /// </summary>
+        private void InitSectionView(Autodesk.Revit.DB.ViewSection view)
+        {
+            InternalSetSectionView(view);
+        }
+
+        /// <summary>
+        /// Initialize a SectionView element
+        /// </summary>
+        private void InitSectionView(BoundingBoxXYZ bbox)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
