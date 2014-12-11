@@ -38,6 +38,19 @@ namespace Revit.Elements
         /// <param name="floorType"></param>
         private FloorType(Autodesk.Revit.DB.FloorType floorType)
         {
+            SafeInit(() => InitFloorType(floorType));
+        }
+
+        #endregion
+
+        #region Private constructors
+
+        /// <summary>
+        /// Initialize a FloorType element
+        /// </summary>
+        /// <param name="floorType"></param>
+        private void InitFloorType(Autodesk.Revit.DB.FloorType floorType)
+        {
             InternalSetFloorType(floorType);
         }
 

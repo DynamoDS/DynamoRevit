@@ -70,7 +70,7 @@ namespace Revit.Elements
         /// <param name="divPath"></param>
         private DividedPath(Autodesk.Revit.DB.DividedPath divPath)
         {
-            InternalSetDividedPath(divPath);
+            SafeInit(() => InitDividedPath(divPath));
         }
 
         /// <summary>
@@ -79,6 +79,29 @@ namespace Revit.Elements
         /// <param name="c">Host curves</param>
         /// <param name="divs">Number of divisions</param>
         private DividedPath(ElementCurveReference[] c, int divs)
+        {
+            SafeInit(() => InitDividedPath(c, divs));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a DividedPath element  
+        /// </summary>
+        /// <param name="divPath"></param>
+        private void InitDividedPath(Autodesk.Revit.DB.DividedPath divPath)
+        {
+            InternalSetDividedPath(divPath);
+        }
+
+        /// <summary>
+        /// Initialize a DividedPath element
+        /// </summary>
+        /// <param name="c">Host curves</param>
+        /// <param name="divs">Number of divisions</param>
+        private void InitDividedPath(ElementCurveReference[] c, int divs)
         {
             // PB: This constructor always *recreates* the divided path.
             // Mutating the divided path would require obtaining the referenced 
@@ -91,7 +114,7 @@ namespace Revit.Elements
             TransactionManager.Instance.EnsureInTransaction(Document);
 
             // build the divided path
-            var divPath = Autodesk.Revit.DB.DividedPath.Create( Document, curveRefs );
+            var divPath = Autodesk.Revit.DB.DividedPath.Create(Document, curveRefs);
             divPath.FixedNumberOfPoints = divs;
 
             // set internally

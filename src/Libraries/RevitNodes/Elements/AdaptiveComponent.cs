@@ -31,6 +31,51 @@ namespace Revit.Elements
         /// <param name="fs">FamilySymbol to place</param>
         private AdaptiveComponent(Point[] pts, FamilySymbol fs)
         {
+            SafeInit(() => InitAdaptiveComponent(pts, fs));
+        }
+
+        /// <summary>
+        /// Internal constructor for the AdaptiveComponent wrapper
+        /// </summary>
+        /// <param name="pts">Points to use as reference</param>
+        /// <param name="f">Face to use as reference</param>
+        /// <param name="fs">FamilySymbol to place</param>
+        private AdaptiveComponent(double[][] pts, ElementFaceReference f, FamilySymbol fs)
+        {
+            SafeInit(() => InitAdaptiveComponent(pts, f, fs));
+        }
+
+        /// <summary>
+        /// Internal constructor for the AdaptiveComponent wrapper
+        /// </summary>
+        /// <param name="params">Params on curve to reference</param>
+        /// <param name="c">Curve to use as reference</param>
+        /// <param name="fs">FamilySymbol to place</param>
+        private AdaptiveComponent(double[] parms, Reference c, FamilySymbol fs)
+        {
+            SafeInit(() => InitAdaptiveComponent(parms, c, fs));
+        }
+
+        /// <summary>
+        /// Internal constructor for existing Elements.
+        /// </summary>
+        /// <param name="familyInstance"></param>
+        private AdaptiveComponent(Autodesk.Revit.DB.FamilyInstance familyInstance)
+        {
+            SafeInit(() => InitAdaptiveComponent(familyInstance));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize an AdaptiveComponent element
+        /// </summary>
+        /// <param name="pts">Points to use as reference</param>
+        /// <param name="fs">FamilySymbol to place</param>
+        private void InitAdaptiveComponent(Point[] pts, FamilySymbol fs)
+        {
 
             // if the family instance is present in trace...
             var oldFam =
@@ -39,9 +84,9 @@ namespace Revit.Elements
             // just mutate it...
             if (oldFam != null)
             {
-               InternalSetFamilyInstance(oldFam);
+                InternalSetFamilyInstance(oldFam);
                 if (fs.InternalFamilySymbol.Id != oldFam.Symbol.Id)
-                   InternalSetFamilySymbol(fs);
+                    InternalSetFamilySymbol(fs);
                 InternalSetPositions(pts.ToXyzs());
                 return;
             }
@@ -64,12 +109,12 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Internal constructor for the AdaptiveComponent wrapper
+        /// Initialize an AdaptiveComponent element
         /// </summary>
         /// <param name="pts">Points to use as reference</param>
         /// <param name="f">Face to use as reference</param>
         /// <param name="fs">FamilySymbol to place</param>
-        private AdaptiveComponent(double[][] pts, ElementFaceReference f, FamilySymbol fs)
+        private void InitAdaptiveComponent(double[][] pts, ElementFaceReference f, FamilySymbol fs)
         {
             // if the family instance is present in trace...
             var oldFam =
@@ -80,8 +125,8 @@ namespace Revit.Elements
             {
                 InternalSetFamilyInstance(oldFam);
                 if (fs.InternalFamilySymbol.Id != oldFam.Symbol.Id)
-                   InternalSetFamilySymbol(fs);
-                InternalSetUvsAndFace(pts.ToUvs(), f.InternalReference );
+                    InternalSetFamilySymbol(fs);
+                InternalSetUvsAndFace(pts.ToUvs(), f.InternalReference);
                 return;
             }
 
@@ -94,19 +139,19 @@ namespace Revit.Elements
                 throw new Exception("An adaptive component could not be found or created.");
 
             InternalSetFamilyInstance(fam);
-            InternalSetUvsAndFace(pts.ToUvs(), f.InternalReference );
+            InternalSetUvsAndFace(pts.ToUvs(), f.InternalReference);
 
             TransactionManager.Instance.TransactionTaskDone();
 
         }
 
         /// <summary>
-        /// Internal constructor for the AdaptiveComponent wrapper
+        /// Initialize an AdaptiveComponent element
         /// </summary>
         /// <param name="parms">Params on curve to reference</param>
         /// <param name="c">Curve to use as reference</param>
         /// <param name="fs">FamilySymbol to place</param>
-        private AdaptiveComponent(double[] parms, Reference c, FamilySymbol fs)
+        private void InitAdaptiveComponent(double[] parms, Reference c, FamilySymbol fs)
         {
             // if the family instance is present in trace...
             var oldFam =
@@ -117,7 +162,7 @@ namespace Revit.Elements
             {
                 InternalSetFamilyInstance(oldFam);
                 if (fs.InternalFamilySymbol.Id != oldFam.Symbol.Id)
-                   InternalSetFamilySymbol(fs);
+                    InternalSetFamilySymbol(fs);
                 InternalSetParamsAndCurve(parms, c);
                 return;
             }
@@ -138,10 +183,10 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Internal constructor for existing Elements.
+        /// Initialize an AdaptiveComponent element
         /// </summary>
         /// <param name="familyInstance"></param>
-        private AdaptiveComponent(Autodesk.Revit.DB.FamilyInstance familyInstance)
+        private void InitAdaptiveComponent(Autodesk.Revit.DB.FamilyInstance familyInstance)
         {
             InternalSetFamilyInstance(familyInstance);
         }
@@ -150,7 +195,7 @@ namespace Revit.Elements
 
         #region Internal mutators
 
-       /// <summary>
+        /// <summary>
        /// Set the family symbol for the internal family instance 
        /// </summary>
        /// <param name="fs"></param>
