@@ -8,6 +8,15 @@ namespace Revit.Elements
 {
     public class Category
     {
+        #region private constructors
+
+        private Category(Autodesk.Revit.DB.Category category)
+        {
+            internalCategory = category;
+        }
+
+        #endregion
+
         #region private members
 
         private readonly Autodesk.Revit.DB.Category internalCategory;
@@ -70,15 +79,6 @@ namespace Revit.Elements
             }
 
             return new Category(category);
-        }
-
-        #endregion
-
-        #region private constructors
-
-        private Category(Autodesk.Revit.DB.Category category)
-        {
-            internalCategory = category;
         }
 
         #endregion

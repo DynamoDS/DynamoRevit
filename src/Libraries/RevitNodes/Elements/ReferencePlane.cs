@@ -48,7 +48,7 @@ namespace Revit.Elements
         /// <param name="referencePlane"></param>
         private ReferencePlane( Autodesk.Revit.DB.ReferencePlane referencePlane)
         {
-            this.InternalReferencePlane = referencePlane;
+            SafeInit(() => InitReferencePlane(referencePlane));
         }
 
         /// <summary>
@@ -59,6 +59,31 @@ namespace Revit.Elements
         /// <param name="normal"></param>
         /// <param name="view"></param>
         private ReferencePlane(XYZ bubbleEnd, XYZ freeEnd, XYZ normal, View view )
+        {
+            SafeInit(() => InitReferencePlane(bubbleEnd, freeEnd, normal, view));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a ReferencePlane element
+        /// </summary>
+        /// <param name="referencePlane"></param>
+        private void InitReferencePlane(Autodesk.Revit.DB.ReferencePlane referencePlane)
+        {
+            InternalReferencePlane = referencePlane;
+        }
+
+        /// <summary>
+        /// Initialize a ReferencePlane element
+        /// </summary>
+        /// <param name="bubbleEnd"></param>
+        /// <param name="freeEnd"></param>
+        /// <param name="normal"></param>
+        /// <param name="view"></param>
+        private void InitReferencePlane(XYZ bubbleEnd, XYZ freeEnd, XYZ normal, View view)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldEle =
@@ -87,8 +112,8 @@ namespace Revit.Elements
                 refPlane = Document.FamilyCreate.NewReferencePlane(
                     bubbleEnd,
                     freeEnd,
-                    normal, 
-                    view );
+                    normal,
+                    view);
             }
             else
             {
@@ -96,7 +121,7 @@ namespace Revit.Elements
                     bubbleEnd,
                     freeEnd,
                     normal,
-                    view );
+                    view);
             }
 
             InternalSetReferencePlane(refPlane);
