@@ -185,25 +185,47 @@ namespace Revit.Elements
       /// <param name="curtainHolderElement"></param>
       private CurtainGrid(Autodesk.Revit.DB.Element curtainHolderElement)
       {
-          InternalCurtainHolderElement = curtainHolderElement;
-          InternalGridReference = null; //compute from faceReference  
+          SafeInit(() => InitCurtainGrid(curtainHolderElement));
       }
 
       private CurtainGrid(Autodesk.Revit.DB.Element curtainHolderElement, Autodesk.Revit.DB.Reference faceReference)
       {
-         InternalCurtainHolderElement = curtainHolderElement;
-         if (faceReference == null)
-            InternalGridReference = null;
-         else
-         {
+          SafeInit(() => InitCurtainGrid(curtainHolderElement, faceReference));
+      }
 
-            var faceObject =
-               InternalCurtainHolderElement.GetGeometryObjectFromReference(InternalGridReference);
-            if (!(faceObject is Autodesk.Revit.DB.Face))
-               throw new Exception("Reference should be to Face of the Element.");
+      #endregion
 
-            InternalGridReference = faceReference; //compute from faceReference  
-         }
+      #region Helpers for private constructors
+      /// <summary>
+      /// Initialize a curtain grid
+      /// </summary>
+      /// <param name="curtainHolderElement"></param>
+      private void InitCurtainGrid(Autodesk.Revit.DB.Element curtainHolderElement)
+      {
+          InternalCurtainHolderElement = curtainHolderElement;
+          InternalGridReference = null; //compute from faceReference  
+      }
+
+      /// <summary>
+      /// Initialize a CurtainGrid element
+      /// </summary>
+      /// <param name="curtainHolderElement"></param>
+      /// <param name="faceReference"></param>
+      private void InitCurtainGrid(Autodesk.Revit.DB.Element curtainHolderElement, Autodesk.Revit.DB.Reference faceReference)
+      {
+          InternalCurtainHolderElement = curtainHolderElement;
+          if (faceReference == null)
+              InternalGridReference = null;
+          else
+          {
+
+              var faceObject =
+                 InternalCurtainHolderElement.GetGeometryObjectFromReference(InternalGridReference);
+              if (!(faceObject is Autodesk.Revit.DB.Face))
+                  throw new Exception("Reference should be to Face of the Element.");
+
+              InternalGridReference = faceReference; //compute from faceReference  
+          }
       }
 
       #endregion

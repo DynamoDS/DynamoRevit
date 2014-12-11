@@ -41,6 +41,19 @@ namespace Revit.Elements
         /// <param name="type"></param>
         private ModelTextType(Autodesk.Revit.DB.ModelTextType type)
         {
+            SafeInit(() => InitModelTextType(type));
+        }
+
+        #endregion
+
+        #region Helper for private constructors
+
+        /// <summary>
+        /// Initialize a ModelTextType element
+        /// </summary>
+        /// <param name="type"></param>
+        private void InitModelTextType(Autodesk.Revit.DB.ModelTextType type)
+        {
             InternalSetModelTextType(type);
         }
 

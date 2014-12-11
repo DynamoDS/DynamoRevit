@@ -310,8 +310,21 @@ namespace Revit.Elements
       /// <param name="panelElement"></param>
       protected CurtainPanel(Autodesk.Revit.DB.Panel panelElement)
       {
-         InternalSetFamilyInstance(panelElement);
-         boundsCache = null;
+          SafeInit(() => InitCurtainPanel(panelElement));
+      }
+
+      #endregion
+
+      #region Helper for private constructors
+
+      /// <summary>
+      /// Initialize a CurtainPanel element
+      /// </summary>
+      /// <param name="panelElement"></param>
+      private void InitCurtainPanel(Autodesk.Revit.DB.Panel panelElement)
+      {
+          InternalSetFamilyInstance(panelElement);
+          boundsCache = null;
       }
 
       #endregion

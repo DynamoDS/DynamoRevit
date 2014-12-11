@@ -28,7 +28,26 @@ namespace Revit.Elements
 
         internal Autodesk.Revit.DB.ImportInstance InternalImportInstance { get; private set; }
 
+        #region Private constructor
+
+        /// <summary>
+        /// Constructor for ImportInstance
+        /// </summary>
+        /// <param name="satPath"></param>
+        /// <param name="translation"></param>
         internal ImportInstance(string satPath, XYZ translation = null)
+        {
+            SafeInit(() => InitImportInstance(satPath, translation));
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Initialize an ImportInstance element
+        /// </summary>
+        /// <param name="satPath"></param>
+        /// <param name="translation"></param>
+        private void InitImportInstance(string satPath, XYZ translation = null)
         {
             var instance = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.ImportInstance>(Document);
             if (null != instance)

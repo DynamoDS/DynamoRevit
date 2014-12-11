@@ -40,6 +40,19 @@ namespace Revit.Elements
         /// <param name="type"></param>
         private WallType(Autodesk.Revit.DB.WallType type)
         {
+            SafeInit(() => InitWallType(type));
+        }
+
+        #endregion
+
+        #region Helper for private constructors
+
+        /// <summary>
+        /// Initialize a WallType element
+        /// </summary>
+        /// <param name="type"></param>
+        private void InitWallType(Autodesk.Revit.DB.WallType type)
+        {
             InternalSetWallType(type);
         }
 

@@ -43,7 +43,7 @@ namespace Revit.Elements
         /// <param name="form"></param>
         private Form(Autodesk.Revit.DB.Form form)
         {
-            InternalSetForm(form);
+            SafeInit(() => InitForm(form));
         }
 
         /// <summary>
@@ -52,6 +52,29 @@ namespace Revit.Elements
         /// <param name="isSolid"></param>
         /// <param name="curves"></param>
         private Form(bool isSolid, ReferenceArrayArray curves)
+        {
+            SafeInit(() => InitForm(isSolid, curves));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a form element
+        /// </summary>
+        /// <param name="form"></param>
+        private void InitForm(Autodesk.Revit.DB.Form form)
+        {
+            InternalSetForm(form);
+        }
+
+        /// <summary>
+        /// Initialize a form element
+        /// </summary>
+        /// <param name="isSolid"></param>
+        /// <param name="curves"></param>
+        private void InitForm(bool isSolid, ReferenceArrayArray curves)
         {
             // clean it up
             TransactionManager.Instance.EnsureInTransaction(Document);

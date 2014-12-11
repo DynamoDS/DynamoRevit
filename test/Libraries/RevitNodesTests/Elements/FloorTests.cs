@@ -85,6 +85,30 @@ namespace RevitNodesTests.Elements
             Assert.Throws(typeof(ArgumentNullException), () => Floor.ByOutlineTypeAndLevel(outline, null, level));
             Assert.Throws(typeof(ArgumentNullException), () => Floor.ByOutlineTypeAndLevel(outline, floorType, null));
         }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void CreateFoundationSlab_ByOutlineTypeAndLevel_CurveArrayFloorTypeLevel()
+        {
+            var elevation = 100;
+            var level = Level.ByElevation(elevation);
+
+            var outline = new[]
+            {
+                Line.ByStartPointEndPoint(Point.ByCoordinates(0, 0, 0), Point.ByCoordinates(100, 0, 0)),
+                Line.ByStartPointEndPoint(Point.ByCoordinates(100, 0, 0), Point.ByCoordinates(100, 100, 0)),
+                Line.ByStartPointEndPoint(Point.ByCoordinates(100, 100, 0), Point.ByCoordinates(0, 100, 0)),
+                Line.ByStartPointEndPoint(Point.ByCoordinates(0, 100, 0), Point.ByCoordinates(0, 0, 0))
+            };
+
+            var floorType = FloorType.ByName("6\" Foundation Slab");
+
+            var floor = Floor.ByOutlineTypeAndLevel(outline, floorType, level);
+
+            Assert.NotNull(floor);
+            Assert.IsTrue(floor.InternalFloor.FloorType.IsFoundationSlab);
+            Assert.AreEqual(floor.InternalFloor.FloorType.Name, "6\" Foundation Slab");
+        }
     }
 }
 

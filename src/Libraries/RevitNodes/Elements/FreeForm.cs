@@ -50,7 +50,7 @@ namespace Revit.Elements
         [SupressImportIntoVM]
         private FreeForm(Autodesk.Revit.DB.FreeFormElement ele)
         {
-            InternalSetFreeFormElement(ele);
+            SafeInit(() => InitFreeForm(ele));
         }
 
         /// <summary>
@@ -59,6 +59,28 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="solid"></param>
         private FreeForm(Autodesk.Revit.DB.Solid solid)
+        {
+            SafeInit(() => InitFreeForm(solid));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a FreeForm element
+        /// </summary>
+        /// <param name="ele"></param>
+        private void InitFreeForm(Autodesk.Revit.DB.FreeFormElement ele)
+        {
+            InternalSetFreeFormElement(ele);
+        }
+
+        /// <summary>
+        /// Initialize a FreeForm element
+        /// </summary>
+        /// <param name="solid"></param>
+        private void InitFreeForm(Autodesk.Revit.DB.Solid solid)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var ele =
