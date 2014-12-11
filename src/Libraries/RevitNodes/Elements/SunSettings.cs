@@ -20,6 +20,11 @@ namespace Revit.Elements
 
         private SunSettings(SunAndShadowSettings settings)
         {
+            SafeInit(() => InitSunSettings(settings));
+        }
+
+        private void InitSunSettings(SunAndShadowSettings settings)
+        {
             InternalSunAndShadowSettings = settings;
             InternalElementId = settings.Id;
             InternalUniqueId = settings.UniqueId;

@@ -45,7 +45,7 @@ namespace Revit.Elements
         /// <param name="existingSketchPlane"></param>
         private SketchPlane(Autodesk.Revit.DB.SketchPlane existingSketchPlane)
         {
-            InternalSetSketchPlane(existingSketchPlane);
+            SafeInit(() => InitSketchPlane(existingSketchPlane));
         }
 
         /// <summary>
@@ -53,6 +53,28 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="p"></param>
         private SketchPlane(Autodesk.Revit.DB.Plane p)
+        {
+            SafeInit(() => InitSketchPlane(p));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a SketchPlane element
+        /// </summary>
+        /// <param name="existingSketchPlane"></param>
+        private void InitSketchPlane(Autodesk.Revit.DB.SketchPlane existingSketchPlane)
+        {
+            InternalSetSketchPlane(existingSketchPlane);
+        }
+
+        /// <summary>
+        /// Initialize a SketchPlane element
+        /// </summary>
+        /// <param name="p"></param>
+        private void InitSketchPlane(Autodesk.Revit.DB.Plane p)
         {
 
             //Phase 1 - Check to see if the object exists and should be rebound
