@@ -42,6 +42,20 @@ namespace RevitNodesTests.Elements
 
         }
 
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void CanSuccessfullySetAndGetElement()
+        {
+            var wall = ElementSelector.ByElementId(184176, true);
+            var famSym = FamilySymbol.ByName("18\" x 18\"");
+
+            var name = "Column";
+            wall.SetParameterByName(name, famSym);
+            var sym = wall.GetParameterValueByName(name) as Element;
+            Assert.NotNull(sym);
+            Assert.AreEqual(sym.Name, "18\" x 18\"");
+        }        
+
         #region Face/Solid Extraction
 
         [Test]
