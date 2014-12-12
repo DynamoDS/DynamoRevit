@@ -69,6 +69,10 @@ namespace Revit.Elements
                     ElementBinder.SetRawDataForTrace(null);
                     SafeInit(init);
                 }
+                else
+                {
+                    throw e;
+                }
             }
         }
 
