@@ -25,13 +25,42 @@ namespace Revit.Elements.Views
         /// </summary>
         private AxonometricView(Autodesk.Revit.DB.View3D view)
         {
-            InternalSetView3D(view);
+            SafeInit(() => InitAxonometricView(view));
         }
 
         /// <summary>
         /// Private constructor
         /// </summary>
-        private AxonometricView(XYZ eye, XYZ target, BoundingBoxXYZ bbox, string name = DEFAULT_VIEW_NAME, bool isolate = false)
+        private AxonometricView(XYZ eye, XYZ target, BoundingBoxXYZ bbox, string name = DEFAULT_VIEW_NAME,
+            bool isolate = false)
+        {
+            SafeInit(() => InitAxonometricView(eye, target, bbox, name, isolate));
+        }
+
+        /// <summary>
+        /// Private constructor
+        /// </summary>
+        private AxonometricView(XYZ eye, XYZ target, string name = DEFAULT_VIEW_NAME, Autodesk.Revit.DB.Element element = null, bool isolate = false)
+        {
+            SafeInit(() => InitAxonometricView(eye, target, name, element, isolate));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize an AxonometricView element
+        /// </summary>
+        private void InitAxonometricView(Autodesk.Revit.DB.View3D view)
+        {
+            InternalSetView3D(view);
+        }
+
+        /// <summary>
+        /// Initialize an AxonometricView element
+        /// </summary>
+        private void InitAxonometricView(XYZ eye, XYZ target, BoundingBoxXYZ bbox, string name = DEFAULT_VIEW_NAME, bool isolate = false)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldEle =
@@ -61,9 +90,9 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Private constructor
+        /// Initialize an AxonometricView element
         /// </summary>
-        private AxonometricView(XYZ eye, XYZ target, string name = DEFAULT_VIEW_NAME, Autodesk.Revit.DB.Element element = null, bool isolate = false)
+        private void InitAxonometricView(XYZ eye, XYZ target, string name = DEFAULT_VIEW_NAME, Autodesk.Revit.DB.Element element = null, bool isolate = false)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldEle =
@@ -92,6 +121,8 @@ namespace Revit.Elements.Views
             ElementBinder.SetElementForTrace(this.InternalElement);
         }
 
+        #endregion
+
         private void InternalSetIsolation(Autodesk.Revit.DB.Element element, bool isolate)
         {
             if (isolate && element != null)
@@ -107,8 +138,6 @@ namespace Revit.Elements.Views
             else
                 InternalRemoveIsolation();
         }
-
-        #endregion
 
         #region Public static constructors
 

@@ -45,7 +45,7 @@ namespace Revit.Elements
         /// <param name="divSurf"></param>
         private DividedSurface(Autodesk.Revit.DB.DividedSurface divSurf)
         {
-            InternalSetDividedSurface(divSurf);
+            SafeInit(() => InitDividedSurface(divSurf));
         }
 
         /// <summary>
@@ -56,6 +56,31 @@ namespace Revit.Elements
         /// <param name="vDivs"></param>
         /// <param name="rotation"></param>
         private DividedSurface(ElementFaceReference elementFace, int uDivs, int vDivs, double rotation)
+        {
+            SafeInit(() => InitDividedSurface(elementFace, uDivs, vDivs, rotation));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a DividedSurface element
+        /// </summary>
+        /// <param name="divSurf"></param>
+        private void InitDividedSurface(Autodesk.Revit.DB.DividedSurface divSurf)
+        {
+            InternalSetDividedSurface(divSurf);
+        }
+
+        /// <summary>
+        /// Initialize a DividedSurface element
+        /// </summary>
+        /// <param name="elementFace"></param>
+        /// <param name="uDivs"></param>
+        /// <param name="vDivs"></param>
+        /// <param name="rotation"></param>
+        private void InitDividedSurface(ElementFaceReference elementFace, int uDivs, int vDivs, double rotation)
         {
             // if the family instance is present in trace...
             var oldEle =

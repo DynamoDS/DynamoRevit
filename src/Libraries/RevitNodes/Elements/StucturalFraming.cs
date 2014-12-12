@@ -29,13 +29,45 @@ namespace Revit.Elements
         /// <param name="instance"></param>
         private StructuralFraming(Autodesk.Revit.DB.FamilyInstance instance)
         {
-            InternalSetFamilyInstance(instance);
+            SafeInit(() => InitStructuralFraming(instance));
         }
 
         /// <summary>
         /// Internal constructor - creates a single StructuralFraming instance
         /// </summary>
-        internal StructuralFraming(Autodesk.Revit.DB.Curve curve, Autodesk.Revit.DB.XYZ upVector, Autodesk.Revit.DB.Level level, Autodesk.Revit.DB.Structure.StructuralType structuralType, Autodesk.Revit.DB.FamilySymbol symbol)
+        internal StructuralFraming(Autodesk.Revit.DB.Curve curve, Autodesk.Revit.DB.XYZ upVector, 
+            Autodesk.Revit.DB.Level level, Autodesk.Revit.DB.Structure.StructuralType structuralType, 
+            Autodesk.Revit.DB.FamilySymbol symbol)
+        {
+            SafeInit(() => InitStructuralFraming(curve, upVector, level, structuralType, symbol));
+        }
+
+        /// <summary>
+        /// Internal constructor - creates a single StructuralFraming instance
+        /// </summary>
+        internal StructuralFraming(Autodesk.Revit.DB.Curve curve, Autodesk.Revit.DB.Level level,
+            Autodesk.Revit.DB.Structure.StructuralType structuralType, Autodesk.Revit.DB.FamilySymbol symbol)
+        {
+            SafeInit(() => InitStructuralFraming(curve, level, structuralType, symbol));
+        }
+        
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a StructuralFraming element
+        /// </summary>
+        /// <param name="instance"></param>
+        private void InitStructuralFraming(Autodesk.Revit.DB.FamilyInstance instance)
+        {
+            InternalSetFamilyInstance(instance);
+        }
+
+        /// <summary>
+        /// Initialize a StructuralFraming element
+        /// </summary>
+        private void InitStructuralFraming(Autodesk.Revit.DB.Curve curve, Autodesk.Revit.DB.XYZ upVector, Autodesk.Revit.DB.Level level, Autodesk.Revit.DB.Structure.StructuralType structuralType, Autodesk.Revit.DB.FamilySymbol symbol)
         {
 
             //Phase 1 - Check to see if the object exists and should be rebound
@@ -55,7 +87,7 @@ namespace Revit.Elements
             TransactionManager.Instance.EnsureInTransaction(Document);
 
             var creationData = GetCreationData(curve, upVector, level, structuralType, symbol);
-            
+
             Autodesk.Revit.DB.FamilyInstance fi;
             if (Document.IsFamilyDocument)
             {
@@ -77,7 +109,7 @@ namespace Revit.Elements
                     throw new Exception("Could not create the FamilyInstance");
                 }
 
-                fi = (Autodesk.Revit.DB.FamilyInstance) Document.GetElement(elementIds.First());
+                fi = (Autodesk.Revit.DB.FamilyInstance)Document.GetElement(elementIds.First());
             }
 
             InternalSetFamilyInstance(fi);
@@ -88,9 +120,9 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Internal constructor - creates a single StructuralFraming instance
+        /// Initialize a StructuralFraming element
         /// </summary>
-        internal StructuralFraming(Autodesk.Revit.DB.Curve curve, Autodesk.Revit.DB.Level level, Autodesk.Revit.DB.Structure.StructuralType structuralType, Autodesk.Revit.DB.FamilySymbol symbol)
+        private void InitStructuralFraming(Autodesk.Revit.DB.Curve curve, Autodesk.Revit.DB.Level level, Autodesk.Revit.DB.Structure.StructuralType structuralType, Autodesk.Revit.DB.FamilySymbol symbol)
         {
 
             //Phase 1 - Check to see if the object exists and should be rebound
@@ -147,7 +179,7 @@ namespace Revit.Elements
 
             ElementBinder.SetElementForTrace(this.InternalElement);
         }
-        
+
         #endregion
 
         #region Private helper methods
