@@ -44,13 +44,33 @@ namespace Revit.Elements.Views
         /// </summary>
         private DraftingView(Autodesk.Revit.DB.ViewDrafting view)
         {
-            InternalSetDraftingView(view);
+            SafeInit(() => InitDraftingView(view));
         }
       
         /// <summary>
         /// Private constructor
         /// </summary>
         private DraftingView(string name)
+        {
+            SafeInit(() => InitDraftingView(name));
+        }
+
+        #endregion
+
+        #region Private constructors
+
+        /// <summary>
+        /// Initialize a DraftingView element
+        /// </summary>
+        private void InitDraftingView(Autodesk.Revit.DB.ViewDrafting view)
+        {
+            InternalSetDraftingView(view);
+        }
+
+        /// <summary>
+        /// Initialize a DraftingView element
+        /// </summary>
+        private void InitDraftingView(string name)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 

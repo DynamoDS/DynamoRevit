@@ -49,7 +49,7 @@ namespace Revit.Elements
         /// <param name="refPt"></param>
         private ReferencePoint(Autodesk.Revit.DB.ReferencePoint refPt)
         {
-            InternalSetReferencePoint(refPt);
+            SafeInit(() => InitReferencePoint(refPt));
         }
 
         /// <summary>
@@ -58,6 +58,51 @@ namespace Revit.Elements
         /// <param name="faceReference"></param>
         /// <param name="uv"></param>
         private ReferencePoint(Reference faceReference, UV uv)
+        {
+            SafeInit(() => InitReferencePoint(faceReference, uv));
+        }
+
+        /// <summary>
+        /// Internal constructor for ReferencePoint Elements that a persistent relationship to a Curve
+        /// </summary>
+        /// <param name="curveReference"></param>
+        /// <param name="parameter"></param>
+        /// <param name="measurementType"></param>
+        /// <param name="measureFrom"></param>
+        private ReferencePoint(Reference curveReference, double parameter, PointOnCurveMeasurementType measurementType,
+            PointOnCurveMeasureFrom measureFrom)
+        {
+            SafeInit(() => InitReferencePoint(curveReference, parameter, measurementType, measureFrom));
+        }
+
+        /// <summary>
+        /// Internal constructor for the ReferencePoint
+        /// </summary>
+        /// <param name="xyz"></param>
+        private ReferencePoint(XYZ xyz)
+        {
+            SafeInit(() => InitReferencePoint(xyz));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a ReferencePoint element
+        /// </summary>
+        /// <param name="refPt"></param>
+        private void InitReferencePoint(Autodesk.Revit.DB.ReferencePoint refPt)
+        {
+            InternalSetReferencePoint(refPt);
+        }
+
+        /// <summary>
+        /// Initialize a ReferencePoint element
+        /// </summary>
+        /// <param name="faceReference"></param>
+        /// <param name="uv"></param>
+        private void InitReferencePoint(Reference faceReference, UV uv)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldRefPt =
@@ -86,13 +131,13 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Internal constructor for ReferencePoint Elements that a persistent relationship to a Curve
+        /// Initialize a ReferencePoint element
         /// </summary>
         /// <param name="curveReference"></param>
         /// <param name="parameter"></param>
         /// <param name="measurementType"></param>
         /// <param name="measureFrom"></param>
-        private ReferencePoint(Reference curveReference, double parameter, PointOnCurveMeasurementType measurementType,
+        private void InitReferencePoint(Reference curveReference, double parameter, PointOnCurveMeasurementType measurementType,
             PointOnCurveMeasureFrom measureFrom)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
@@ -120,10 +165,10 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Internal constructor for the ReferencePoint
+        /// Initialize a ReferencePoint element
         /// </summary>
         /// <param name="xyz"></param>
-        private ReferencePoint(XYZ xyz)
+        private void InitReferencePoint(XYZ xyz)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldRefPt =

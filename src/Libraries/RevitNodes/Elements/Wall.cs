@@ -38,7 +38,7 @@ namespace Revit.Elements
         /// <param name="wall"></param>
         private Wall(Autodesk.Revit.DB.Wall wall)
         {
-            InternalSetWall(wall);
+            SafeInit(() => InitWall(wall));
         }
 
         /// <summary>
@@ -51,7 +51,36 @@ namespace Revit.Elements
         /// <param name="offset"></param>
         /// <param name="flip"></param>
         /// <param name="isStructural"></param>
-        private Wall(Curve curve, Autodesk.Revit.DB.WallType wallType, Autodesk.Revit.DB.Level baseLevel, double height, double offset, bool flip, bool isStructural)
+        private Wall(Curve curve, Autodesk.Revit.DB.WallType wallType, Autodesk.Revit.DB.Level baseLevel,
+            double height, double offset, bool flip, bool isStructural)
+        {
+            SafeInit(() => InitWall(curve, wallType, baseLevel, height, offset, flip, isStructural));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a Wall element
+        /// </summary>
+        /// <param name="wall"></param>
+        private void InitWall(Autodesk.Revit.DB.Wall wall)
+        {
+            InternalSetWall(wall);
+        }
+
+        /// <summary>
+        /// Initialize a Wall element
+        /// </summary>
+        /// <param name="curve"></param>
+        /// <param name="wallType"></param>
+        /// <param name="baseLevel"></param>
+        /// <param name="height"></param>
+        /// <param name="offset"></param>
+        /// <param name="flip"></param>
+        /// <param name="isStructural"></param>
+        private void InitWall(Curve curve, Autodesk.Revit.DB.WallType wallType, Autodesk.Revit.DB.Level baseLevel, double height, double offset, bool flip, bool isStructural)
         {
             // This creates a new wall and deletes the old one
             TransactionManager.Instance.EnsureInTransaction(Document);
@@ -65,28 +94,28 @@ namespace Revit.Elements
             // if you can't, rebuild 
             if (wallElem != null && wallElem.Location is Autodesk.Revit.DB.LocationCurve)
             {
-               var wallLocation = wallElem.Location as Autodesk.Revit.DB.LocationCurve;
-               if ((wallLocation.Curve is Autodesk.Revit.DB.Line == curve is Autodesk.Revit.DB.Line) ||
-                   (wallLocation.Curve is Autodesk.Revit.DB.Arc == curve is Autodesk.Revit.DB.Arc))
-               {
-                  wallLocation.Curve = curve;
+                var wallLocation = wallElem.Location as Autodesk.Revit.DB.LocationCurve;
+                if ((wallLocation.Curve is Autodesk.Revit.DB.Line == curve is Autodesk.Revit.DB.Line) ||
+                    (wallLocation.Curve is Autodesk.Revit.DB.Arc == curve is Autodesk.Revit.DB.Arc))
+                {
+                    wallLocation.Curve = curve;
 
-                  Autodesk.Revit.DB.Parameter baseLevelParameter =
-                     wallElem.get_Parameter(Autodesk.Revit.DB.BuiltInParameter.WALL_BASE_CONSTRAINT);
-                  Autodesk.Revit.DB.Parameter topOffsetParameter =
-                     wallElem.get_Parameter(Autodesk.Revit.DB.BuiltInParameter.WALL_USER_HEIGHT_PARAM);
-                  Autodesk.Revit.DB.Parameter wallTypeParameter =
-                     wallElem.get_Parameter(Autodesk.Revit.DB.BuiltInParameter.ELEM_TYPE_PARAM);
-                  if (baseLevelParameter.AsElementId() != baseLevel.Id)
-                     baseLevelParameter.Set(baseLevel.Id);
-                  if (Math.Abs(topOffsetParameter.AsDouble() - height) > 1.0e-10)
-                     topOffsetParameter.Set(height);
-                  if (wallTypeParameter.AsElementId() != wallType.Id)
-                     wallTypeParameter.Set(wallType.Id);
-                  successfullyUsedExistingWall = true;
-               }
+                    Autodesk.Revit.DB.Parameter baseLevelParameter =
+                       wallElem.get_Parameter(Autodesk.Revit.DB.BuiltInParameter.WALL_BASE_CONSTRAINT);
+                    Autodesk.Revit.DB.Parameter topOffsetParameter =
+                       wallElem.get_Parameter(Autodesk.Revit.DB.BuiltInParameter.WALL_USER_HEIGHT_PARAM);
+                    Autodesk.Revit.DB.Parameter wallTypeParameter =
+                       wallElem.get_Parameter(Autodesk.Revit.DB.BuiltInParameter.ELEM_TYPE_PARAM);
+                    if (baseLevelParameter.AsElementId() != baseLevel.Id)
+                        baseLevelParameter.Set(baseLevel.Id);
+                    if (Math.Abs(topOffsetParameter.AsDouble() - height) > 1.0e-10)
+                        topOffsetParameter.Set(height);
+                    if (wallTypeParameter.AsElementId() != wallType.Id)
+                        wallTypeParameter.Set(wallType.Id);
+                    successfullyUsedExistingWall = true;
+                }
             }
- 
+
             var wall = successfullyUsedExistingWall ? wallElem :
                      Autodesk.Revit.DB.Wall.Create(Document, curve, wallType.Id, baseLevel.Id, height, offset, flip, isStructural);
             InternalSetWall(wall);

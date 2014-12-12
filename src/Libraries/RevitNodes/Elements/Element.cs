@@ -26,6 +26,56 @@ namespace Revit.Elements
     public abstract class Element : IDisposable, IGraphicItem, IFormattable
     {
         /// <summary>
+        /// Handling exceptions when calling the initializing function
+        /// </summary>
+        /// <param name="init"></param>
+        protected void SafeInit(Action init)
+        {
+            var elementManager = ElementIDLifecycleManager<int>.GetInstance();
+            var element = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Element>(Document);
+            int count = 0;
+            int id = 0;
+            if (null != element)
+            {
+                id = element.Id.IntegerValue;
+                count = elementManager.GetRegisteredCount(id);
+            }
+            try
+            {
+                init();
+            }
+            catch (Exception e)
+            {
+                //If the element is newly created and bound but the creation is aborted because
+                //of an exception, it need to be unregistered.
+                if (element == null && InternalElementId != null)
+                {
+                    elementManager.UnRegisterAssociation(Id, this);
+                    internalId = null;
+                    throw e;
+                }
+                else if (element != null)
+                {
+                    //If the internal element has already been bound, and if the registered count has increased,
+                    //it need to be unregistered.
+                    if (elementManager.GetRegisteredCount(id) == count + 1)
+                    {
+                        elementManager.UnRegisterAssociation(Id, this);
+                        internalId = null;
+                    }
+
+                    //It means that the updating operation failed, an attemption of making a new element is made.
+                    ElementBinder.SetRawDataForTrace(null);
+                    SafeInit(init);
+                }
+                else
+                {
+                    throw e;
+                }
+            }
+        }
+
+        /// <summary>
         /// A reference to the current Document.
         /// </summary>
         internal static Document Document
@@ -400,6 +450,8 @@ namespace Revit.Elements
         /// <returns></returns>
         internal IEnumerable<Autodesk.Revit.DB.GeometryObject> InternalGeometry(bool useSymbolGeometry = false)
         {
+            DocumentManager.Regenerate();
+
             var thisElement = InternalElement;
 
             var goptions0 = new Options { ComputeReferences = true };

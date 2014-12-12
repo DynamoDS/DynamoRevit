@@ -45,6 +45,29 @@ namespace Revit.Elements
         /// <param name="name"></param>
         private Level(double elevation, string name)
         {
+            SafeInit(() => InitLevel(elevation, name));
+        }
+
+        /// <summary>
+        /// Private constructor for Level
+        /// </summary>
+        /// <param name="level"></param>
+        private Level(Autodesk.Revit.DB.Level level)
+        {
+            SafeInit(() => InitLevel(level));
+        }
+
+        #endregion
+
+        #region Private constructor
+
+        /// <summary>
+        /// Initialize a Level element
+        /// </summary>
+        /// <param name="elevation"></param>
+        /// <param name="name"></param>
+        private void InitLevel(double elevation, string name)
+        {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldEle =
                 ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Level>(Document);
@@ -81,7 +104,7 @@ namespace Revit.Elements
 
         }
 
-        private Level(Autodesk.Revit.DB.Level level)
+        private void InitLevel(Autodesk.Revit.DB.Level level)
         {
             this.InternalSetLevel(level);
         }
