@@ -49,5 +49,9 @@
     <AL TargetType="library" EmbedResources="$(ProjectDir)SimpleRaaSImages.resources" OutputAssembly="$(OutDir)SimpleRaaS.resources.dll" />
   </Target>
   <Target Name="AfterBuild">
+    <ItemGroup>
+      <DeleteFiles Include="$(TargetDir)$(ProjectName).*" />
+    </ItemGroup>    
+	<Delete Files="@(DeleteFiles)" />
   </Target>
 </Project>
