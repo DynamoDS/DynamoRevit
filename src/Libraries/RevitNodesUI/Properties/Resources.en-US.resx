@@ -117,23 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AllElementsatLevelDescription" xml:space="preserve">
+  <data name="ElementsatLevelDescription" xml:space="preserve">
     <value>Get all the elements at the specified Level from the model.</value>
     <comment>Description for All Elements at Level</comment>
   </data>
-  <data name="AllElementsInActiveViewDescription" xml:space="preserve">
+  <data name="ElementsInActiveViewDescription" xml:space="preserve">
     <value>Get all the elements which are visible in the active view.</value>
     <comment>Description for All Elements In Active View</comment>
   </data>
-  <data name="AllElementsofCategoryDescription" xml:space="preserve">
+  <data name="ElementsofCategoryDescription" xml:space="preserve">
     <value>Get all elements of the specified category from the model.</value>
     <comment>Description for All Elements of Category</comment>
   </data>
-  <data name="AllElementsofFamilyTypeDescription" xml:space="preserve">
+  <data name="ElementsofFamilyTypeDescription" xml:space="preserve">
     <value>Get all elements of the specified family type from the model.</value>
     <comment>Description for All Elements of Family Type</comment>
   </data>
-  <data name="AllElementsofTypeDescription" xml:space="preserve">
+  <data name="ElementsofTypeDescription" xml:space="preserve">
     <value>All elements in the active document of a given type.</value>
     <comment>Description for All Elements of Type</comment>
   </data>

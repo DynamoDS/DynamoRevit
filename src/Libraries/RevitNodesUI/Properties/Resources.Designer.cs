@@ -61,56 +61,56 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All built-in categories..
+        /// </summary>
+        public static string CategoriesDescription {
+            get {
+                return ResourceManager.GetString("CategoriesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get all the elements at the specified Level from the model..
         /// </summary>
-        public static string AllElementsatLevelDescription {
+        public static string ElementsatLevelDescription {
             get {
-                return ResourceManager.GetString("AllElementsatLevelDescription", resourceCulture);
+                return ResourceManager.GetString("ElementsatLevelDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Get all the elements which are visible in the active view..
         /// </summary>
-        public static string AllElementsInActiveViewDescription {
+        public static string ElementsInActiveViewDescription {
             get {
-                return ResourceManager.GetString("AllElementsInActiveViewDescription", resourceCulture);
+                return ResourceManager.GetString("ElementsInActiveViewDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Get all elements of the specified category from the model..
         /// </summary>
-        public static string AllElementsofCategoryDescription {
+        public static string ElementsofCategoryDescription {
             get {
-                return ResourceManager.GetString("AllElementsofCategoryDescription", resourceCulture);
+                return ResourceManager.GetString("ElementsofCategoryDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Get all elements of the specified family type from the model..
         /// </summary>
-        public static string AllElementsofFamilyTypeDescription {
+        public static string ElementsofFamilyTypeDescription {
             get {
-                return ResourceManager.GetString("AllElementsofFamilyTypeDescription", resourceCulture);
+                return ResourceManager.GetString("ElementsofFamilyTypeDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to All elements in the active document of a given type..
         /// </summary>
-        public static string AllElementsofTypeDescription {
+        public static string ElementsofTypeDescription {
             get {
-                return ResourceManager.GetString("AllElementsofTypeDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All built-in categories..
-        /// </summary>
-        public static string CategoriesDescription {
-            get {
-                return ResourceManager.GetString("CategoriesDescription", resourceCulture);
+                return ResourceManager.GetString("ElementsofTypeDescription", resourceCulture);
             }
         }
         

@@ -124,7 +124,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements of Family Type"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("AllElementsofFamilyTypeDescription",typeof(Properties.Resources)),
+     NodeDescription("ElementsofFamilyTypeDescription",typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsOfFamilyType : ElementsQueryBase
     {
@@ -149,7 +149,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements of Type"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("AllElementsofTypeDescription", typeof(Properties.Resources)),
+     NodeDescription("ElementsofTypeDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsOfType : ElementsQueryBase
     {
@@ -173,7 +173,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements of Category"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("AllElementsofCategoryDescription", typeof(Properties.Resources)),
+     NodeDescription("ElementsofCategoryDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsOfCategory : ElementsQueryBase
     {
@@ -197,7 +197,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements at Level"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("AllElementsatLevelDescription", typeof(Properties.Resources)),
+     NodeDescription("ElementsatLevelDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsAtLevel : ElementsQueryBase
     {
@@ -220,7 +220,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements In Active View"), NodeCategory(BuiltinNodeCategories.REVIT_VIEW),
-     NodeDescription("AllElementsInActiveViewDescription", typeof(Properties.Resources)),
+     NodeDescription("ElementsInActiveViewDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsInView : RevitNodeModel
     {
