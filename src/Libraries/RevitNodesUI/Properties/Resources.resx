@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllElementsatLevelDescription" xml:space="preserve">
+    <value>Get all the elements at the specified Level from the model.</value>
+    <comment>Description for All Elements at Level</comment>
+  </data>
+  <data name="AllElementsInActiveViewDescription" xml:space="preserve">
+    <value>Get all the elements which are visible in the active view.</value>
+    <comment>Description for All Elements In Active View</comment>
+  </data>
+  <data name="AllElementsofCategoryDescription" xml:space="preserve">
+    <value>Get all elements of the specified category from the model.</value>
+    <comment>Description for All Elements of Category</comment>
+  </data>
+  <data name="AllElementsofFamilyTypeDescription" xml:space="preserve">
+    <value>Get all elements of the specified family type from the model.</value>
+    <comment>Description for All Elements of Family Type</comment>
+  </data>
+  <data name="AllElementsofTypeDescription" xml:space="preserve">
+    <value>All elements in the active document of a given type.</value>
+    <comment>Description for All Elements of Type</comment>
+  </data>
+  <data name="CategoriesDescription" xml:space="preserve">
+    <value>All built-in categories.</value>
+    <comment>Description for Categories</comment>
+  </data>
+  <data name="ElementTypesDescription" xml:space="preserve">
+    <value>All element subtypes.</value>
+    <comment>Description for Element Types</comment>
+  </data>
+  <data name="FamilyTypesDescription" xml:space="preserve">
+    <value>All family types available in the document.</value>
+    <comment>Description for Family Types</comment>
+  </data>
+  <data name="FloorTypesDescription" xml:space="preserve">
+    <value>All floor types available in the document.</value>
+    <comment>Description for Floor Types</comment>
+  </data>
+  <data name="GetFamilyParameterDescription" xml:space="preserve">
+    <value>Given a Family Instance or Symbol, allows the user to select a parameter as a string.</value>
+    <comment>Description for Get Family Parameter</comment>
+  </data>
+  <data name="LevelsDescription" xml:space="preserve">
+    <value>Select a level in the active document</value>
+    <comment>Description for Levels</comment>
+  </data>
+  <data name="SelectAnalysisResultsDescription" xml:space="preserve">
+    <value>Select analysis results from the document.</value>
+    <comment>Description for Select Analysis Results</comment>
+  </data>
+  <data name="SelectDividedSurfaceFamiliesDescription" xml:space="preserve">
+    <value>Select a divided surface and get its family instances.</value>
+    <comment>Description for Select Divided Surface Families</comment>
+  </data>
+  <data name="SelectEdgeDescription" xml:space="preserve">
+    <value>Select an edge.</value>
+    <comment>Description for Select Edge</comment>
+  </data>
+  <data name="SelectFaceDescription" xml:space="preserve">
+    <value>Select a face.</value>
+    <comment>Description for Select Face</comment>
+  </data>
+  <data name="SelectFacesDesciption" xml:space="preserve">
+    <value>Select multiple faces from the Revit document.</value>
+    <comment>Description for Select Faces</comment>
+  </data>
+  <data name="SelectModelElementDescription" xml:space="preserve">
+    <value>Select a model element from the document.</value>
+    <comment>Description for Select Model Element</comment>
+  </data>
+  <data name="SelectModelElementsDescription" xml:space="preserve">
+    <value>Select multiple elements from the Revit document.</value>
+    <comment>Description for Select Model Elements</comment>
+  </data>
+  <data name="SelectPointonFaceDescription" xml:space="preserve">
+    <value>Select a point on a face.</value>
+    <comment>Description for Select Point on Face</comment>
+  </data>
+  <data name="SelectUVonFaceDescription" xml:space="preserve">
+    <value>Select a UV on a face.</value>
+    <comment>Description for Select UV on Face</comment>
+  </data>
+  <data name="SiteLocationDescription" xml:space="preserve">
+    <value>Returns the current Revit site location.</value>
+    <comment>Desciption for SiteLocation</comment>
+  </data>
+  <data name="SpacingRuleLayoutDescription" xml:space="preserve">
+    <value>A spacing rule layout for calculating divided paths.</value>
+    <comment>Description for Spacing Rule Layout</comment>
+  </data>
+  <data name="StructuralColumnTypesDescription" xml:space="preserve">
+    <value>Select a structural column type in the active document</value>
+    <comment>Description for Structural Column Types</comment>
+  </data>
+  <data name="StructuralFramingTypesDescription" xml:space="preserve">
+    <value>Select a structural framing type in the active document</value>
+    <comment>Description for Structural Framing Types</comment>
+  </data>
+  <data name="SunSettingsCurrentDescription" xml:space="preserve">
+    <value>Returns the SunSettings of the current View.</value>
+    <comment>Description for SunSettings.Current</comment>
+  </data>
+  <data name="ViewsDescription" xml:space="preserve">
+    <value>All views available in the current document.</value>
+    <comment>Description for Views</comment>
+  </data>
+  <data name="WallTypesDescription" xml:space="preserve">
+    <value>All floor types available in the document.</value>
+    <comment>Description for Wall Types</comment>
+  </data>
+</root>

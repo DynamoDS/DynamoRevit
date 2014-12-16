@@ -14,7 +14,7 @@ using RevitServices.Persistence;
 namespace DSRevitNodesUI
 {
     [NodeName("SunSettings.Current"), NodeCategory(BuiltinNodeCategories.REVIT_VIEW),
-     NodeDescription("Returns the SunSettings of the current View."), IsDesignScriptCompatible]
+     NodeDescription("SunSettingsCurrentDescription", typeof(Properties.Resources)), IsDesignScriptCompatible]
     public class SunSettings : RevitNodeModel
     {
         private string settingsID;
