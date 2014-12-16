@@ -124,7 +124,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements of Family Type"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Get all elements of the specified family type from the model."),
+     NodeDescription("ElementsofFamilyTypeDescription",typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsOfFamilyType : ElementsQueryBase
     {
@@ -149,7 +149,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements of Type"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("All elements in the active document of a given type."),
+     NodeDescription("ElementsofTypeDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsOfType : ElementsQueryBase
     {
@@ -173,7 +173,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements of Category"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Get all elements of the specified category from the model."),
+     NodeDescription("ElementsofCategoryDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsOfCategory : ElementsQueryBase
     {
@@ -197,7 +197,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements at Level"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Get all the elements at the specified Level from the model."),
+     NodeDescription("ElementsatLevelDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsAtLevel : ElementsQueryBase
     {
@@ -220,7 +220,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements In Active View"), NodeCategory(BuiltinNodeCategories.REVIT_VIEW),
-     NodeDescription("Get all the elements which are visible in the active view."),
+     NodeDescription("ElementsInActiveViewDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsInView : RevitNodeModel
     {

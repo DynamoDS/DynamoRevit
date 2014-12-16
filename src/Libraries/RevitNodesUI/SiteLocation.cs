@@ -29,7 +29,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("SiteLocation"), NodeCategory(BuiltinNodeCategories.ANALYZE),
-     NodeDescription("Returns the current Revit site location."), IsDesignScriptCompatible]
+     NodeDescription("SiteLocationDescription", typeof(Properties.Resources)), IsDesignScriptCompatible]
     public class SiteLocation : RevitNodeModel
     {
         private readonly RevitDynamoModel model;
