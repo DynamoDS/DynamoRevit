@@ -426,8 +426,8 @@ namespace Dynamo.Nodes
 
     #endregion
 
-    [NodeName("Select Analysis Results"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("SelectAnalysisResultsDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible,
+    [NodeName(/*NXLT*/"Select Analysis Results"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription(/*NXLT*/"SelectAnalysisResultsDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible,
      IsVisibleInDynamoLibrary(false)]
     public class DSAnalysisResultSelection : ElementSelection<Element>
     {
@@ -440,8 +440,8 @@ namespace Dynamo.Nodes
                 "Analysis Results") { }
     }
 
-    [NodeName("Select Model Element"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("SelectModelElementDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [NodeName(/*NXLT*/"Select Model Element"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription(/*NXLT*/"SelectModelElementDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSModelElementSelection : ElementSelection<Element>
     {
         public DSModelElementSelection(WorkspaceModel workspaceModel)
@@ -453,8 +453,8 @@ namespace Dynamo.Nodes
                 "Element") { }
     }
 
-    [NodeName("Select Face"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("SelectFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [NodeName(/*NXLT*/"Select Face"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription(/*NXLT*/"SelectFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSFaceSelection : ReferenceSelection
     {
         public DSFaceSelection(WorkspaceModel workspaceModel)
@@ -466,8 +466,8 @@ namespace Dynamo.Nodes
                 "Face of Element Id") { }
     }
 
-    [NodeName("Select Edge"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("SelectEdgeDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [NodeName(/*NXLT*/"Select Edge"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription(/*NXLT*/"SelectEdgeDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSEdgeSelection : ReferenceSelection
     {
         public DSEdgeSelection(WorkspaceModel workspaceModel)
@@ -479,8 +479,8 @@ namespace Dynamo.Nodes
                 "Edge of Element Id") { }
     }
 
-    [NodeName("Select Point on Face"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("SelectPointonFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [NodeName(/*NXLT*/"Select Point on Face"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription(/*NXLT*/"SelectPointonFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSPointOnElementSelection : ReferenceSelection
     {
         public DSPointOnElementSelection(WorkspaceModel workspaceModel)
@@ -541,8 +541,8 @@ namespace Dynamo.Nodes
         }
     }
 
-    [NodeName("Select UV on Face"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("SelectUVonFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [NodeName(/*NXLT*/"Select UV on Face"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription(/*NXLT*/"SelectUVonFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSUvOnElementSelection : ReferenceSelection
     {
         public DSUvOnElementSelection(WorkspaceModel workspaceModel)
@@ -602,9 +602,9 @@ namespace Dynamo.Nodes
         }
     }
 
-    [NodeName("Select Divided Surface Families"),
+    [NodeName(/*NXLT*/"Select Divided Surface Families"),
      NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("SelectDividedSurfaceFamiliesDescription", typeof(DSRevitNodesUI.Properties.Resources)),
+     NodeDescription(/*NXLT*/"SelectDividedSurfaceFamiliesDescription", typeof(DSRevitNodesUI.Properties.Resources)),
      IsDesignScriptCompatible]
     public class DSDividedSurfaceFamiliesSelection : ElementSelection<DividedSurface>
     {
@@ -626,8 +626,8 @@ namespace Dynamo.Nodes
         }
     }
 
-    [NodeName("Select Model Elements"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("SelectModelElementsDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [NodeName(/*NXLT*/"Select Model Elements"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription(/*NXLT*/"SelectModelElementsDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSModelElementsSelection : ElementSelection<Element>
     {
         public DSModelElementsSelection(WorkspaceModel workspaceModel)
@@ -639,8 +639,8 @@ namespace Dynamo.Nodes
                 "Elements") { }
     }
 
-    [NodeName("Select Faces"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("SelectFacesDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [NodeName(/*NXLT*/"Select Faces"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription(/*NXLT*/"SelectFacesDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class SelectFaces : ReferenceSelection
     {
         public SelectFaces(WorkspaceModel workspaceModel)

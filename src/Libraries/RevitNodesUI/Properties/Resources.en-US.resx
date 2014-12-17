@@ -225,4 +225,37 @@
     <value>All floor types available in the document.</value>
     <comment>Description for Wall Types</comment>
   </data>
+  <data name="PortDataALevelToolTip" xml:space="preserve">
+    <value>A Level</value>
+  </data>
+  <data name="PortDataAllElementsInDocumentToolTip" xml:space="preserve">
+    <value>All elements in the active document of a given type.</value>
+  </data>
+  <data name="PortDataAllVisibleElementsToolTip" xml:space="preserve">
+    <value>All visible elements in the active view.</value>
+  </data>
+  <data name="PortDataCategoryToolTip" xml:space="preserve">
+    <value>The Category</value>
+  </data>
+  <data name="PortDataElementAtLevelToolTip" xml:space="preserve">
+    <value>Elements at the given level.</value>
+  </data>
+  <data name="PortDataElementsToolTip" xml:space="preserve">
+    <value>The list of elements matching the query.</value>
+  </data>
+  <data name="PortDataElementTypeToolTip" xml:space="preserve">
+    <value>An element type.</value>
+  </data>
+  <data name="PortDataFamilTypeToolTip" xml:space="preserve">
+    <value>The Family Type.</value>
+  </data>
+  <data name="PortDataFamilySymbolToolTip" xml:space="preserve">
+    <value>Family Symbol or Instance</value>
+  </data>
+  <data name="PortDataLocationToolTip" xml:space="preserve">
+    <value>The location of the current Revit project.</value>
+  </data>
+  <data name="PortDataSunSettingToolTip" xml:space="preserve">
+    <value>SunSettings element.</value>
+  </data>
 </root>

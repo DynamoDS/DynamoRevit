@@ -28,8 +28,8 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("SiteLocation"), NodeCategory(BuiltinNodeCategories.ANALYZE),
-     NodeDescription("SiteLocationDescription", typeof(Properties.Resources)), IsDesignScriptCompatible]
+    [NodeName(/*NXLT*/"SiteLocation"), NodeCategory(BuiltinNodeCategories.ANALYZE),
+     NodeDescription(/*NXLT*/"SiteLocationDescription", typeof(Properties.Resources)), IsDesignScriptCompatible]
     public class SiteLocation : RevitNodeModel
     {
         private readonly RevitDynamoModel model;
@@ -39,7 +39,7 @@ namespace DSRevitNodesUI
         public SiteLocation(WorkspaceModel workspaceModel)
             : base(workspaceModel)
         {
-            OutPortData.Add(new PortData("Location", "The location of the current Revit project."));
+            OutPortData.Add(new PortData(/*NXLT*/"Location", Properties.Resources.PortDataLocationToolTip));
             RegisterAllPorts();
 
             Location = DynamoUnits.Location.ByLatitudeAndLongitude(0.0, 0.0);

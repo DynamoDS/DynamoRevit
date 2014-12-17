@@ -123,15 +123,16 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("All Elements of Family Type"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("ElementsofFamilyTypeDescription",typeof(Properties.Resources)),
+    [NodeName(/*NXLT*/"All Elements of Family Type"), 
+     NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription(/*NXLT*/"ElementsofFamilyTypeDescription",typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsOfFamilyType : ElementsQueryBase
     {
         public ElementsOfFamilyType(WorkspaceModel workspaceModel) : base(workspaceModel)
         {
-            InPortData.Add(new PortData("Family Type", "The Family Type."));
-            OutPortData.Add(new PortData("Elements", "The list of elements matching the query."));
+            InPortData.Add(new PortData(/*NXLT*/"Family Type", Properties.Resources.PortDataFamilTypeToolTip));
+            OutPortData.Add(new PortData(/*NXLT*/"Elements", Properties.Resources.PortDataElementsToolTip));
 
             RegisterAllPorts();
         }
@@ -148,16 +149,15 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("All Elements of Type"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("ElementsofTypeDescription", typeof(Properties.Resources)),
+    [NodeName(/*NXLT*/"All Elements of Type"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription(/*NXLT*/"ElementsofTypeDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsOfType : ElementsQueryBase
     {
         public ElementsOfType(WorkspaceModel workspaceModel) : base(workspaceModel)
         {
-            InPortData.Add(new PortData("element type", "An element type."));
-            OutPortData.Add(
-                new PortData("elements", "All elements in the active document of a given type."));
+            InPortData.Add(new PortData(/*NXLT*/"element type", Properties.Resources.PortDataElementTypeToolTip));
+            OutPortData.Add(new PortData(/*NXLT*/"elements", Properties.Resources.PortDataAllElementsInDocumentToolTip));
             RegisterAllPorts();
         }
 
@@ -172,15 +172,15 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("All Elements of Category"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("ElementsofCategoryDescription", typeof(Properties.Resources)),
+    [NodeName(/*NXLT*/"All Elements of Category"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription(/*NXLT*/"ElementsofCategoryDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsOfCategory : ElementsQueryBase
     {
         public ElementsOfCategory(WorkspaceModel workspaceModel) : base(workspaceModel)
         {
-            InPortData.Add(new PortData("Category", "The Category"));
-            OutPortData.Add(new PortData("Elements", "The list of elements matching the query."));
+            InPortData.Add(new PortData(/*NXLT*/"Category", Properties.Resources.PortDataCategoryToolTip));
+            OutPortData.Add(new PortData(/*NXLT*/"Elements", Properties.Resources.PortDataElementTypeToolTip));
 
             RegisterAllPorts();
         }
@@ -196,15 +196,15 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("All Elements at Level"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("ElementsatLevelDescription", typeof(Properties.Resources)),
+    [NodeName(/*NXLT*/"All Elements at Level"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription(/*NXLT*/"ElementsatLevelDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsAtLevel : ElementsQueryBase
     {
         public ElementsAtLevel(WorkspaceModel workspaceModel) : base(workspaceModel)
         {
-            InPortData.Add(new PortData("Level", "A Level"));
-            OutPortData.Add(new PortData("Elements", "Elements at the given level."));
+            InPortData.Add(new PortData(/*NXLT*/"Level", Properties.Resources.PortDataALevelToolTip));
+            OutPortData.Add(new PortData(/*NXLT*/"Elements", Properties.Resources.PortDataElementAtLevelToolTip));
 
             RegisterAllPorts();
         }
@@ -219,8 +219,8 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("All Elements In Active View"), NodeCategory(BuiltinNodeCategories.REVIT_VIEW),
-     NodeDescription("ElementsInActiveViewDescription", typeof(Properties.Resources)),
+    [NodeName(/*NXLT*/"All Elements In Active View"), NodeCategory(BuiltinNodeCategories.REVIT_VIEW),
+     NodeDescription(/*NXLT*/"ElementsInActiveViewDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsInView : RevitNodeModel
     {
@@ -230,7 +230,7 @@ namespace DSRevitNodesUI
 
         public ElementsInView(WorkspaceModel workspaceModel) : base(workspaceModel)
         {
-            OutPortData.Add(new PortData("elements", "All visible elements in the active view."));
+            OutPortData.Add(new PortData(/*NXLT*/"elements", Properties.Resources.PortDataAllVisibleElementsToolTip));
             RegisterAllPorts();
 
             DocumentManager.Instance.CurrentUIApplication.ViewActivated +=

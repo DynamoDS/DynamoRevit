@@ -13,15 +13,15 @@ using RevitServices.Persistence;
 
 namespace DSRevitNodesUI
 {
-    [NodeName("SunSettings.Current"), NodeCategory(BuiltinNodeCategories.REVIT_VIEW),
-     NodeDescription("SunSettingsCurrentDescription", typeof(Properties.Resources)), IsDesignScriptCompatible]
+    [NodeName(/*NXLT*/"SunSettings.Current"), NodeCategory(BuiltinNodeCategories.REVIT_VIEW),
+     NodeDescription(/*NXLT*/"SunSettingsCurrentDescription", typeof(Properties.Resources)), IsDesignScriptCompatible]
     public class SunSettings : RevitNodeModel
     {
         private string settingsID;
 
         public SunSettings(WorkspaceModel workspaceModel) : base(workspaceModel)
         {
-            OutPortData.Add(new PortData("SunSettings", "SunSettings element."));
+            OutPortData.Add(new PortData(/*NXLT*/"SunSettings", Properties.Resources.PortDataSunSettingToolTip));
             
             RegisterAllPorts();
             
