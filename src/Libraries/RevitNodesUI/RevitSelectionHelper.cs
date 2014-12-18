@@ -9,7 +9,7 @@ using RevitServices.Persistence;
 
 namespace Revit.Interactivity
 {
-    internal class RevitReferenceSelectionHelper : IModelSelectionHelper<Reference>
+    internal class RevitReferenceSelectionHelper : LogSourceBase, IModelSelectionHelper<Reference>
     {
         private static readonly RevitReferenceSelectionHelper instance =
             new RevitReferenceSelectionHelper();
@@ -20,16 +20,15 @@ namespace Revit.Interactivity
         }
 
         public IEnumerable<Reference> RequestSelectionOfType(
-            string selectionMessage, SelectionType selectionType, SelectionObjectType objectType,
-            ILogger logger)
+            string selectionMessage, SelectionType selectionType, SelectionObjectType objectType)
         {
             switch (selectionType)
             {
                 case SelectionType.One:
-                    return RequestReferenceSelection(selectionMessage, logger, objectType);
+                    return RequestReferenceSelection(selectionMessage, AsLogger(), objectType);
 
                 case SelectionType.Many:
-                    return RequestMultipleReferencesSelection(selectionMessage, logger, objectType);
+                    return RequestMultipleReferencesSelection(selectionMessage, AsLogger(), objectType);
             }
 
             return null;
@@ -45,7 +44,7 @@ namespace Revit.Interactivity
             Reference reference = null;
 
             var choices = doc.Selection;
-            List<ElementId> elementIds = new List<ElementId>();
+            var elementIds = new List<ElementId>();
             choices.SetElementIds(elementIds);
 
             logger.Log(message);
@@ -74,7 +73,7 @@ namespace Revit.Interactivity
             IList<Reference> references = null;
 
             var choices = doc.Selection;
-            List<ElementId> elementIds = new List<ElementId>();
+            var elementIds = new List<ElementId>();
             choices.SetElementIds(elementIds);
 
             logger.Log(message);
@@ -101,7 +100,7 @@ namespace Revit.Interactivity
         #endregion
     }
 
-    internal class RevitElementSelectionHelper<T> : IModelSelectionHelper<T> where T : Element
+    internal class RevitElementSelectionHelper<T> : LogSourceBase, IModelSelectionHelper<T> where T : Element
     {
         private static readonly RevitElementSelectionHelper<T> instance = new RevitElementSelectionHelper<T>();
 
@@ -115,21 +114,19 @@ namespace Revit.Interactivity
         /// </summary>
         /// <typeparam name="T">The type of the Element.</typeparam>
         /// <param name="selectionMessage">The message to display.</param>
-        /// <param name="logger">A logger.</param>
         /// <param name="selectionType">The selection type.</param>
         /// <param name="objectType">The selection object type.</param>
         /// <returns></returns>
         public IEnumerable<T> RequestSelectionOfType(
-            string selectionMessage, SelectionType selectionType, SelectionObjectType objectType,
-            ILogger logger)
+            string selectionMessage, SelectionType selectionType, SelectionObjectType objectType)
         {
             switch (selectionType)
             {
                 case SelectionType.One:
-                    return RequestElementSelection(selectionMessage, logger);
+                    return RequestElementSelection(selectionMessage, AsLogger());
 
                 case SelectionType.Many:
-                    return RequestMultipleElementsSelection(selectionMessage, logger);
+                    return RequestMultipleElementsSelection(selectionMessage, AsLogger());
             }
 
             return null;

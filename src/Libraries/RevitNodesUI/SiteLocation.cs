@@ -3,27 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Dynamo.Applications.Models;
-using Dynamo.Controls;
 using Dynamo.Models;
 using Dynamo.Nodes;
-using Dynamo.UI;
 
 using ProtoCore.AST.AssociativeAST;
 using Revit.GeometryConversion;
+
+using RevitServices.Elements;
 using RevitServices.Persistence;
 
 namespace DSRevitNodesUI
 {
     [NodeName("SiteLocation"), NodeCategory(BuiltinNodeCategories.ANALYZE),
      NodeDescription("Returns the current Revit site location."), IsDesignScriptCompatible]
-    public class SiteLocation : RevitNodeModel, IWpfNode
+    public class SiteLocation : RevitNodeModel
     {
         private readonly RevitDynamoModel model;
 
         public DynamoUnits.Location Location { get; set; }
 
-        public SiteLocation(WorkspaceModel workspaceModel)
-            : base(workspaceModel)
+        public SiteLocation()
         {
             OutPortData.Add(new PortData("Location", "The location of the current Revit project."));
             RegisterAllPorts();
@@ -32,20 +31,19 @@ namespace DSRevitNodesUI
 
             ArgumentLacing = LacingStrategy.Disabled;
 
-            model = (RevitDynamoModel)workspaceModel.DynamoModel;
-            model.RevitDocumentChanged += model_RevitDocumentChanged;
-            model.RevitServicesUpdater.ElementsModified += RevitServicesUpdater_ElementsModified;
+            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += model_RevitDocumentChanged;
+            RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
 
             Update();
         }
 
         #region public methods
 
-        public override void Destroy()
+        public override void Dispose()
         {
-            base.Destroy();
-            model.RevitDocumentChanged -= model_RevitDocumentChanged;
-            model.RevitServicesUpdater.ElementsModified -= RevitServicesUpdater_ElementsModified;
+            base.Dispose();
+            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += model_RevitDocumentChanged;
+            RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
@@ -60,12 +58,6 @@ namespace DSRevitNodesUI
                         DynamoUnits.Location.ByLatitudeAndLongitude), new List<AssociativeNode>() { latNode, longNode, nameNode });
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
-        }
-
-        public void SetupCustomUIElements(dynNodeView view)
-        {
-            var locCtrl = new LocationControl { DataContext = this };
-            view.inputGrid.Children.Add(locCtrl);
         }
 
         public override string ToString()
@@ -99,7 +91,7 @@ namespace DSRevitNodesUI
         private void Update()
         {
             ForceReExecuteOfNode = true; 
-            RequiresRecalc = true;
+            OnAstUpdated();
 
             var location = DocumentManager.Instance.CurrentDBDocument.SiteLocation;
             Location.Name = location.PlaceName;
