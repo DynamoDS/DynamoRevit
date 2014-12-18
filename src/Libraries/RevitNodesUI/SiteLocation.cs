@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Dynamo.Applications.Models;
+using Dynamo.Controls;
 using Dynamo.Models;
 using Dynamo.Nodes;
-
+using Dynamo.Wpf;
 using ProtoCore.AST.AssociativeAST;
 using Revit.GeometryConversion;
 
@@ -14,6 +15,20 @@ using RevitServices.Persistence;
 
 namespace DSRevitNodesUI
 {
+    public class SiteLocationNodeViewCustomization : INodeViewCustomization<SiteLocation>
+    {
+        public void CustomizeView(SiteLocation model, NodeView nodeView)
+        {
+            var locCtrl = new LocationControl { DataContext = this };
+            nodeView.inputGrid.Children.Add(locCtrl);
+        }
+
+        public void Dispose()
+        {
+
+        }
+    }
+
     [NodeName("SiteLocation"), NodeCategory(BuiltinNodeCategories.ANALYZE),
      NodeDescription("Returns the current Revit site location."), IsDesignScriptCompatible]
     public class SiteLocation : RevitNodeModel

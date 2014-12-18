@@ -45,7 +45,7 @@ namespace Revit.Elements
         /// <param name="grid"></param>
         private Grid(Autodesk.Revit.DB.Grid grid)
         {
-            InternalSetGrid(grid);
+            SafeInit(() => InitGrid(grid));
         }
 
         /// <summary>
@@ -54,10 +54,42 @@ namespace Revit.Elements
         /// <param name="line"></param>
         private Grid(Autodesk.Revit.DB.Line line)
         {
+            SafeInit(() => InitGrid(line));
+        }
+
+        /// <summary>
+        /// Private constructor that creates a new Element every time
+        /// </summary>
+        /// <param name="arc"></param>
+        private Grid(Autodesk.Revit.DB.Arc arc)
+        {
+            SafeInit(() => InitGrid(arc));
+        }
+
+        #endregion
+
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a Grid element
+        /// </summary>
+        /// <param name="grid"></param>
+        private void InitGrid(Autodesk.Revit.DB.Grid grid)
+        {
+            InternalSetGrid(grid);
+        }
+
+        /// <summary>
+        /// Initialize a Grid element
+        /// </summary>
+        /// <param name="line"></param>
+        private void InitGrid(Autodesk.Revit.DB.Line line)
+        {
             // Changing the underlying curve requires destroying the Grid
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            Autodesk.Revit.DB.Grid g = Document.Create.NewGrid( line );
+            Autodesk.Revit.DB.Grid g = Document.Create.NewGrid(line);
             InternalSetGrid(g);
 
             TransactionManager.Instance.TransactionTaskDone();
@@ -66,10 +98,10 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Private constructor that creates a new Element every time
+        /// Initialize a Grid element
         /// </summary>
         /// <param name="arc"></param>
-        private Grid(Autodesk.Revit.DB.Arc arc)
+        private void InitGrid(Autodesk.Revit.DB.Arc arc)
         {
             // Changing the underlying curve requires destroying the Grid
             TransactionManager.Instance.EnsureInTransaction(Document);

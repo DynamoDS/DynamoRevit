@@ -52,7 +52,7 @@ namespace Revit.Elements
         /// <param name="element"></param>
         private ModelText(Autodesk.Revit.DB.ModelText element)
         {
-            InternalSetModelText(element);
+            SafeInit(() => InitModelText(element));
         }
 
         /// <summary>
@@ -64,7 +64,37 @@ namespace Revit.Elements
         /// <param name="yCoordinateInPlane"></param>
         /// <param name="textDepth"></param>
         /// <param name="modelTextType"></param>
-        private ModelText(string text, Autodesk.Revit.DB.SketchPlane sketchPlane, double xCoordinateInPlane, double yCoordinateInPlane, double textDepth, Autodesk.Revit.DB.ModelTextType modelTextType)
+        private ModelText(string text, Autodesk.Revit.DB.SketchPlane sketchPlane, double xCoordinateInPlane,
+            double yCoordinateInPlane, double textDepth, Autodesk.Revit.DB.ModelTextType modelTextType)
+        {
+            SafeInit(() => InitModelText(text, sketchPlane, xCoordinateInPlane, yCoordinateInPlane, textDepth, modelTextType));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a ModelText element
+        /// </summary>
+        /// <param name="element"></param>
+        private void InitModelText(Autodesk.Revit.DB.ModelText element)
+        {
+            InternalSetModelText(element);
+        }
+
+        /// <summary>
+        /// Initialize a ModelText element
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="sketchPlane"></param>
+        /// <param name="xCoordinateInPlane"></param>
+        /// <param name="yCoordinateInPlane"></param>
+        /// <param name="textDepth"></param>
+        /// <param name="modelTextType"></param>
+        private void InitModelText(string text, Autodesk.Revit.DB.SketchPlane sketchPlane, 
+            double xCoordinateInPlane, double yCoordinateInPlane, double textDepth,
+            Autodesk.Revit.DB.ModelTextType modelTextType)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldEle =
@@ -74,7 +104,7 @@ namespace Revit.Elements
             // Note: not sure if there's a way to mutate the sketchPlane for a ModelText, so we need
             // to insure the Element hasn't changed position, otherwise, we destroy and rebuild the Element
             if (oldEle != null && PositionUnchanged(oldEle, sketchPlane, xCoordinateInPlane, yCoordinateInPlane))
-            {            
+            {
                 // There was an element and it's position hasn't changed
                 InternalSetModelText(oldEle);
                 InternalSetText(text);

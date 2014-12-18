@@ -23,13 +23,33 @@ namespace Revit.Elements.Views
         /// </summary>
         private CeilingPlanView(Autodesk.Revit.DB.ViewPlan view)
         {
-            InternalSetPlanView(view);
+            SafeInit(() => InitCeilingPlanView(view));
         }
 
         /// <summary>
         /// Private constructor
         /// </summary>
         private CeilingPlanView(Autodesk.Revit.DB.Level level)
+        {
+            SafeInit(() => InitCeilingPlanView(level));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a CeilingPlanView element
+        /// </summary>
+        private void InitCeilingPlanView(Autodesk.Revit.DB.ViewPlan view)
+        {
+            InternalSetPlanView(view);
+        }
+
+        /// <summary>
+        /// Initialize a CeilingPlanView element
+        /// </summary>
+        private void InitCeilingPlanView(Autodesk.Revit.DB.Level level)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 

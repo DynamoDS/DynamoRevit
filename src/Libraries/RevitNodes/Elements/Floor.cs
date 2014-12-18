@@ -41,13 +41,33 @@ namespace Revit.Elements
         /// </summary>
         private Floor(Autodesk.Revit.DB.Floor floor)
         {
-            InternalSetFloor(floor);
+            SafeInit(() => InitFloor(floor));
         }
       
         /// <summary>
         /// Private constructor
         /// </summary>
         private Floor(CurveArray curveArray, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level)
+        {
+            SafeInit(() => InitFloor(curveArray, floorType, level));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a floor element
+        /// </summary>
+        private void InitFloor(Autodesk.Revit.DB.Floor floor)
+        {
+            InternalSetFloor(floor);
+        }
+
+        /// <summary>
+        /// Initialize a floor element
+        /// </summary>
+        private void InitFloor(CurveArray curveArray, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
@@ -62,7 +82,7 @@ namespace Revit.Elements
                 floor = Document.Create.NewFloor(curveArray, floorType, level, false);
             }
 
-            InternalSetFloor( floor );
+            InternalSetFloor(floor);
 
             TransactionManager.Instance.TransactionTaskDone();
 
