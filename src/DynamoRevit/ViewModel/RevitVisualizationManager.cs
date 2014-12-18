@@ -106,7 +106,8 @@ namespace Dynamo
                 || !DrawToAlternateContext)
                 return;
 
-            var values = dynamoModel.Nodes
+            var values = dynamoModel.Workspaces.OfType<HomeWorkspaceModel>()
+                .SelectMany(ws => ws.Nodes)
                 .Where(x => x.IsVisible).Where(x => x.CachedValue != null)
                 .Select(x => x.CachedValue);
 
