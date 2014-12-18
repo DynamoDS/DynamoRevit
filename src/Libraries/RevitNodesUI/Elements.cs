@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Windows.Data;
 
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
@@ -35,19 +34,21 @@ namespace DSRevitNodesUI
 {
     public abstract class ElementsQueryBase : RevitNodeModel
     {
-        protected ElementsQueryBase(WorkspaceModel workspaceModel) : base(workspaceModel)
+        protected ElementsQueryBase()
         {
-            var u = RevitDynamoModel.RevitServicesUpdater;
+            var u = RevitServicesUpdater.Instance;
             u.ElementsAdded += Updater_ElementsAdded;
             u.ElementsModified += Updater_ElementsModified;
             u.ElementsDeleted += Updater_ElementsDeleted;
+
+            ShouldDisplayPreviewCore = false;
         }
 
-        public override void Destroy()
+        public override void Dispose()
         {
-            base.Destroy();
+            base.Dispose();
 
-            var u = RevitDynamoModel.RevitServicesUpdater;
+            var u = RevitServicesUpdater.Instance;
             u.ElementsModified -= Updater_ElementsModified;
             u.ElementsDeleted -= Updater_ElementsDeleted;
         }
@@ -68,7 +69,7 @@ namespace DSRevitNodesUI
             DebugElements(updated);
 #endif
             forceReExecuteOfNode = true;
-            RequiresRecalc = true;
+            OnAstUpdated();
         }
 
 
@@ -80,7 +81,7 @@ namespace DSRevitNodesUI
             DebugElements(updated);
 #endif
             forceReExecuteOfNode = true;
-            RequiresRecalc = true;
+            OnAstUpdated();
 
         }
 
@@ -92,7 +93,7 @@ namespace DSRevitNodesUI
             DebugElements(deleted);
 #endif
             forceReExecuteOfNode = true;
-            RequiresRecalc = true;
+            OnAstUpdated();
 
         }
 
@@ -113,14 +114,6 @@ namespace DSRevitNodesUI
             }
         }
 
-
-        protected override bool ShouldDisplayPreviewCore
-        {
-            get
-            {
-                return false; // Previews are not shown for this node type.
-            }
-        }
     }
 
     [NodeName("All Elements of Family Type"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
@@ -128,7 +121,7 @@ namespace DSRevitNodesUI
      IsDesignScriptCompatible]
     public class ElementsOfFamilyType : ElementsQueryBase
     {
-        public ElementsOfFamilyType(WorkspaceModel workspaceModel) : base(workspaceModel)
+        public ElementsOfFamilyType()
         {
             InPortData.Add(new PortData("Family Type", "The Family Type."));
             OutPortData.Add(new PortData("Elements", "The list of elements matching the query."));
@@ -153,7 +146,7 @@ namespace DSRevitNodesUI
      IsDesignScriptCompatible]
     public class ElementsOfType : ElementsQueryBase
     {
-        public ElementsOfType(WorkspaceModel workspaceModel) : base(workspaceModel)
+        public ElementsOfType()
         {
             InPortData.Add(new PortData("element type", "An element type."));
             OutPortData.Add(
@@ -177,7 +170,7 @@ namespace DSRevitNodesUI
      IsDesignScriptCompatible]
     public class ElementsOfCategory : ElementsQueryBase
     {
-        public ElementsOfCategory(WorkspaceModel workspaceModel) : base(workspaceModel)
+        public ElementsOfCategory()
         {
             InPortData.Add(new PortData("Category", "The Category"));
             OutPortData.Add(new PortData("Elements", "The list of elements matching the query."));
@@ -201,7 +194,7 @@ namespace DSRevitNodesUI
      IsDesignScriptCompatible]
     public class ElementsAtLevel : ElementsQueryBase
     {
-        public ElementsAtLevel(WorkspaceModel workspaceModel) : base(workspaceModel)
+        public ElementsAtLevel()
         {
             InPortData.Add(new PortData("Level", "A Level"));
             OutPortData.Add(new PortData("Elements", "Elements at the given level."));
@@ -228,35 +221,41 @@ namespace DSRevitNodesUI
         private HashSet<ElementId> elementIds = new HashSet<ElementId>();
         private HashSet<string> uniqueIds = new HashSet<string>();
 
-        public ElementsInView(WorkspaceModel workspaceModel) : base(workspaceModel)
+        public ElementsInView()
         {
             OutPortData.Add(new PortData("elements", "All visible elements in the active view."));
             RegisterAllPorts();
 
             DocumentManager.Instance.CurrentUIApplication.ViewActivated +=
                 RevitDynamoModel_RevitDocumentChanged;
-            RevitDynamoModel.RevitDocumentChanged += RevitDynamoModel_RevitDocumentChanged;
-            RevitDynamoModel.RevitServicesUpdater.ElementsDeleted +=
+
+            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened +=
+                RevitDynamoModel_RevitDocumentChanged;
+
+            RevitServicesUpdater.Instance.ElementsDeleted +=
                 RevitServicesUpdaterOnElementsDeleted;
-            RevitDynamoModel.RevitServicesUpdater.ElementsModified +=
+            RevitServicesUpdater.Instance.ElementsModified +=
                 RevitServicesUpdaterOnElementsModified;
-            RevitDynamoModel.RevitServicesUpdater.ElementsAdded +=
+            RevitServicesUpdater.Instance.ElementsAdded +=
                 RevitServicesUpdaterOnElementsAdded;
 
             RevitDynamoModel_RevitDocumentChanged(null, null);
         }
 
-        public override void Destroy()
+        public override void Dispose()
         {
-            base.Destroy();
+            base.Dispose();
             DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
                 RevitDynamoModel_RevitDocumentChanged;
-            RevitDynamoModel.RevitDocumentChanged -= RevitDynamoModel_RevitDocumentChanged;
-            RevitDynamoModel.RevitServicesUpdater.ElementsDeleted -=
+
+            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -=
+                RevitDynamoModel_RevitDocumentChanged;
+
+            RevitServicesUpdater.Instance.ElementsDeleted -=
                 RevitServicesUpdaterOnElementsDeleted;
-            RevitDynamoModel.RevitServicesUpdater.ElementsModified -=
+            RevitServicesUpdater.Instance.ElementsModified -=
                 RevitServicesUpdaterOnElementsModified;
-            RevitDynamoModel.RevitServicesUpdater.ElementsAdded -=
+            RevitServicesUpdater.Instance.ElementsAdded -=
                 RevitServicesUpdaterOnElementsAdded;
         }
 
@@ -276,7 +275,7 @@ namespace DSRevitNodesUI
             if (recalc)
             {
                 ForceReExecuteOfNode = true;
-                RequiresRecalc = true;
+                OnAstUpdated();
             }
         }
 
@@ -372,7 +371,7 @@ namespace DSRevitNodesUI
             if (updated.Any(uniqueIds.Contains))
             {
                 ForceReExecuteOfNode = true;
-                RequiresRecalc = true;
+                OnAstUpdated();
             }
         }
 
@@ -383,7 +382,7 @@ namespace DSRevitNodesUI
             elementIds = new HashSet<ElementId>(elements.Select(x => x.Id));
             uniqueIds = new HashSet<string>(elements.Select(x => x.UniqueId));
             ForceReExecuteOfNode = true;
-            RequiresRecalc = true;
+            OnAstUpdated();
         }
 
         private void RevitServicesUpdaterOnElementsDeleted(
@@ -397,7 +396,7 @@ namespace DSRevitNodesUI
                     new HashSet<string>(elementIds.Select(id => document.GetElement(id).UniqueId));
 
                 ForceReExecuteOfNode = true;
-                RequiresRecalc = true;
+                OnAstUpdated();
             }
         }
 
