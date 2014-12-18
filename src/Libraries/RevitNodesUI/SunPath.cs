@@ -9,6 +9,8 @@ using Dynamo.Models;
 using Dynamo.Nodes;
 
 using ProtoCore.AST.AssociativeAST;
+
+using RevitServices.Elements;
 using RevitServices.Persistence;
 
 namespace DSRevitNodesUI
@@ -19,23 +21,23 @@ namespace DSRevitNodesUI
     {
         private string settingsID;
 
-        public SunSettings(WorkspaceModel workspaceModel) : base(workspaceModel)
+        public SunSettings()
         {
             OutPortData.Add(new PortData("SunSettings", "SunSettings element."));
             
             RegisterAllPorts();
             
-            RevitDynamoModel.RevitServicesUpdater.ElementsModified += Updater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
             DocumentManager.Instance.CurrentUIApplication.ViewActivated += CurrentUIApplication_ViewActivated;
 
             CurrentUIApplicationOnViewActivated();
         }
 
-        public override void Destroy()
+        public override void Dispose()
         {
-            base.Destroy();
+            base.Dispose();
 
-            RevitDynamoModel.RevitServicesUpdater.ElementsModified -= Updater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
             DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
                 CurrentUIApplication_ViewActivated;
         }
@@ -50,7 +52,7 @@ namespace DSRevitNodesUI
             settingsID =
                 DocumentManager.Instance.CurrentDBDocument.ActiveView.SunAndShadowSettings.UniqueId;
             ForceReExecuteOfNode = true;
-            RequiresRecalc = true;
+            OnAstUpdated();
         }
 
         private void Updater_ElementsModified(IEnumerable<string> updated)
@@ -58,7 +60,7 @@ namespace DSRevitNodesUI
             if (updated.Contains(settingsID))
             {
                 ForceReExecuteOfNode = true;
-                RequiresRecalc = true;
+                OnAstUpdated();
             }
         }
 
