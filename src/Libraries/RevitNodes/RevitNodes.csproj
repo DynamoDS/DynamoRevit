@@ -26,7 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>C:\Users\Yu\dev\github\DynamoRevit\src\..\..\Dynamo\bin\AnyCPU\Debug\Revit_2014\$(UICulture)\RevitNodes.XML</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\$(UICulture)\RevitNodes.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -35,7 +35,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>$(OutputPath)\$(UICulture)\RevitNodes.XML</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\$(UICulture)\RevitNodes.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
