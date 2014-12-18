@@ -8,6 +8,7 @@ using DSCore;
 using DSCoreNodesUI;
 
 using Dynamo.Applications.Models;
+using Dynamo.DSEngine;
 using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.Utilities;
@@ -113,6 +114,7 @@ namespace DSRevitNodesUI
         private const string noFamilyParameters = "No family parameters available.";
         private Element element;
         private ElementId storedId = null;
+        internal EngineController EngineController { get; set; }
 
         public FamilyInstanceParameters()
             : base("Parameter") 
@@ -214,7 +216,10 @@ namespace DSRevitNodesUI
             var index = InPorts[0].Connectors[0].Start.Index;
             
             var identifier = inputNode.GetAstIdentifierForOutputIndex(index).Name;
-            var data = this.Workspace.DynamoModel.EngineController.GetMirror(identifier).GetData();
+
+            if (this.EngineController == null) return null;
+            var data = this.EngineController.GetMirror(identifier).GetData();
+
             object family = null;
             if (data.IsCollection)
                 family = data.GetElements().FirstOrDefault();
