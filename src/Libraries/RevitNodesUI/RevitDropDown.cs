@@ -29,11 +29,7 @@ namespace DSRevitNodesUI
 {
     public abstract class RevitDropDownBase : DSDropDownBase
     {
-<<<<<<< HEAD
         protected RevitDropDownBase(string value) : base(value)
-=======
-        protected RevitDropDownBase(WorkspaceModel workspaceModel, string value) : base(workspaceModel, value)
->>>>>>> 4279d44af494eba0b0730427242f56c9b4dab85c
         {
             DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
         }
@@ -59,12 +55,6 @@ namespace DSRevitNodesUI
 
         public FamilyTypes() : base("Family Type") { }
 
-<<<<<<< HEAD
-=======
-        public FamilyTypes(WorkspaceModel workspaceModel) : base(workspaceModel, "Family Type")
-        {}
-        
->>>>>>> 4279d44af494eba0b0730427242f56c9b4dab85c
         public override void PopulateItems()
         {
             Items.Clear();
