@@ -7,7 +7,7 @@ namespace RevitServices.Threading
 {
     public class RevitSchedulerThread : ISchedulerThread
     {
-        private DynamoScheduler scheduler;
+        private IScheduler scheduler;
         private readonly UIApplication revitApplication;
 
         public RevitSchedulerThread(UIApplication revitApplication)
@@ -15,7 +15,7 @@ namespace RevitServices.Threading
             this.revitApplication = revitApplication;
         }
 
-        public void Initialize(DynamoScheduler owningScheduler)
+        public void Initialize(IScheduler owningScheduler)
         {
             scheduler = owningScheduler;
             revitApplication.Idling += OnRevitIdle; // Register idle handler.
