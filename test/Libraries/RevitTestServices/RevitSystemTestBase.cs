@@ -24,7 +24,7 @@ namespace RevitTestServices
 {
     public class TestSchedulerThread : ISchedulerThread
     {
-        public void Initialize(DynamoScheduler owningScheduler)
+        public void Initialize(IScheduler owningScheduler)
         {
 
         }
