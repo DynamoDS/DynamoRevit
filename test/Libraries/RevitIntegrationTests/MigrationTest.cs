@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 
 using DSCoreNodesUI;
@@ -14,13 +15,19 @@ namespace RevitSystemTests
     {
         private void TestMigration(string filename)
         {
+            throw new NotImplementedException("LC Modularization repair");
+
+            /*
+
             string testPath = Path.Combine(workingDirectory, filename);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
 
-            var nodes = ViewModel.Model.Nodes;
+            var nodes = ViewModel.Model.CurrentWorkspace.Nodes;
             int unresolvedNodeCount = 0;
             string str = "\n";
 
@@ -38,6 +45,7 @@ namespace RevitSystemTests
             {
                 Assert.Fail("Number of unresolved nodes found in TestCase: " + unresolvedNodeCount +str);
             }
+             */
         }
 
         [Test]

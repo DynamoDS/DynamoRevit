@@ -32,9 +32,9 @@ namespace RevitSystemTests
 
             // Check that all nodes and connectors are loaded
             Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(2, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(2, model.CurrentWorkspace.Connectors.Count());
 
-            var nodes = ViewModel.Model.Nodes;
+            var nodes = ViewModel.Model.CurrentWorkspace.Nodes;
 
             double dummyNodesCount = nodes.OfType<DummyNode>().Count();
 
@@ -45,7 +45,9 @@ namespace RevitSystemTests
             }
 
             // Run the model
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization fixing
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            RunCurrentModel();
 
             // Check node output
             NodeModel node = model.CurrentWorkspace.NodeFromWorkspace("58d488dd-b668-467f-b3ac-d46b5a97fabe");
@@ -70,9 +72,9 @@ namespace RevitSystemTests
 
             // Check that all nodes and connectors are loaded
             Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(2, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(2, model.CurrentWorkspace.Connectors.Count());
 
-            var nodes = ViewModel.Model.Nodes;
+            var nodes = ViewModel.Model.CurrentWorkspace.Nodes;
 
             double dummyNodesCount = nodes.OfType<DummyNode>().Count();
 
@@ -83,7 +85,9 @@ namespace RevitSystemTests
             }
 
             // Run the model
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization fixing
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            RunCurrentModel();
 
             // Check node output
             NodeModel node = model.CurrentWorkspace.NodeFromWorkspace("7fdb538d-22a3-412c-b646-d0fb23ca2dc6");
@@ -108,9 +112,9 @@ namespace RevitSystemTests
 
             // Check that all nodes and connectors are loaded
             Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(2, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(2, model.CurrentWorkspace.Connectors.Count());
 
-            var nodes = ViewModel.Model.Nodes;
+            var nodes = ViewModel.Model.CurrentWorkspace.Nodes;
 
             double dummyNodesCount = nodes.OfType<DummyNode>().Count();
 
@@ -121,7 +125,9 @@ namespace RevitSystemTests
             }
 
             // Run the model
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization fixing
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            RunCurrentModel();
 
             // Check node output
             NodeModel node = model.CurrentWorkspace.NodeFromWorkspace("783ce70c-789d-4c2a-ad40-c16d6d933fd4");

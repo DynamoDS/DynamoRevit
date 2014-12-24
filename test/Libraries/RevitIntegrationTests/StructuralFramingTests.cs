@@ -58,9 +58,12 @@ namespace RevitSystemTests
 
         private void AssertTypeAndCountWhenSelectingFromDropDown(int selectedIndex)
         {
-            var slider = ViewModel.Model.AllNodes.FirstOrDefault(x => x is IntegerSlider) as IntegerSlider;
+            throw new NotImplementedException("LC Modularization repair");
 
-            var typeSelector = ViewModel.Model.AllNodes.FirstOrDefault(x => x is AllElementsInBuiltInCategory) as RevitDropDownBase;
+            /*
+            var slider = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x is IntegerSlider) as IntegerSlider;
+
+            var typeSelector = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x is AllElementsInBuiltInCategory) as RevitDropDownBase;
             typeSelector.SelectedIndex = selectedIndex;
 
             RunCurrentModel();
@@ -77,11 +80,12 @@ namespace RevitSystemTests
             fec.WherePasses(symbolFilter);
 
             Assert.AreEqual(fec.ToElements().Count, slider.Value);
+             */
         }
 
         private void CompareSliderCountAndMemberCount(BuiltInCategory cat, int sliderCount)
         {
-            var slider = ViewModel.Model.AllNodes.FirstOrDefault(x => x is IntegerSlider) as IntegerSlider;
+            var slider = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x is IntegerSlider) as IntegerSlider;
             slider.Value = sliderCount;
 
             RunCurrentModel();
