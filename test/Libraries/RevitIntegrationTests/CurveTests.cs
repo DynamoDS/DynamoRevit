@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 
 using Autodesk.Revit.DB;
@@ -20,13 +21,18 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void CurveByPoints()
         {
+            throw new NotImplementedException("LC Modularization repair");
+
+            /*
             var model = ViewModel.Model;
 
             string samplePath = Path.Combine(workingDirectory, @".\Curve\CurveByPoints.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             //cerate some points and wire them
             //to the selections
@@ -44,7 +50,7 @@ namespace RevitSystemTests
                 trans.Commit();
             }
 
-            var ptSelectNodes = ViewModel.Model.Nodes.Where(x => x is DSModelElementSelection);
+            var ptSelectNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is DSModelElementSelection);
             if (!ptSelectNodes.Any())
                 Assert.Fail("Could not find point selection nodes in dynamo graph.");
 
@@ -53,7 +59,9 @@ namespace RevitSystemTests
             ((DSModelElementSelection)ptSelectNodes.ElementAt(2)).UpdateSelection(new []{p3});
             ((DSModelElementSelection)ptSelectNodes.ElementAt(3)).UpdateSelection(new []{p4});
 
-            ViewModel.Model.RunExpression();
+           //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
             fec.OfClass(typeof(CurveElement));
@@ -64,15 +72,18 @@ namespace RevitSystemTests
             Assert.IsTrue(mc.IsReferenceLine);
 
             //now flip the switch for creating a reference curve
-            var boolNode = ViewModel.Model.Nodes.Where(x => x is DSCoreNodesUI.BoolSelector).First();
+            var boolNode = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is DSCoreNodesUI.BoolSelector).First();
 
             ((DSCoreNodesUI.BasicInteractive<bool>)boolNode).Value = false;
 
-            ViewModel.Model.RunExpression();
+           //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
             Assert.AreEqual(fec.ToElements().Count(), 1);
 
             mc = (CurveByPoints)fec.ToElements().ElementAt(0);
             Assert.IsFalse(mc.IsReferenceLine);
+             */
         }
 
         [Test]
@@ -83,7 +94,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
         }
 
         [Test]
@@ -94,7 +107,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
             fec.OfClass(typeof(CurveElement));
@@ -110,7 +125,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
         }
 
         [Test]
@@ -121,7 +138,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
         }
 
         [Test]
@@ -137,7 +156,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
             fec.OfClass(typeof(CurveElement));
@@ -147,10 +168,12 @@ namespace RevitSystemTests
             //now change one of the number inputs and rerun
             //verify that there are still only two reference points in
             //the model
-            var node = ViewModel.Model.Nodes.OfType<DoubleInput>().First();
+            var node = ViewModel.Model.CurrentWorkspace.Nodes.OfType<DoubleInput>().First();
             node.Value = "12.0";
 
-            ViewModel.Model.RunExpression();
+           //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             fec = null;
             fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
@@ -168,9 +191,11 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             model.Open(testPath);
-            ViewModel.Model.RunExpression();
+           //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
-            var extrudeNode = ViewModel.Model.Nodes.First(x => x is CreateExtrusionGeometry);
+            var extrudeNode = ViewModel.Model.CurrentWorkspace.Nodes.First(x => x is CreateExtrusionGeometry);
 
             var result = (Solid)VisualizationManager.GetDrawablesFromNode(extrudeNode).Values.First();
             double volumeMin = 3850;
@@ -190,7 +215,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
 
             FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
@@ -209,7 +236,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
         }
     }
 }

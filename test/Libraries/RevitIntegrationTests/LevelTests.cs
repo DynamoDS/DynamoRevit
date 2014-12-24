@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 
 using NUnit.Framework;
 
@@ -60,7 +61,7 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(9, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(8, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(8, model.CurrentWorkspace.Connectors.Count());
 
             var levelByElevationAndName = GetPreviewValue
                                     ("f004b19e-f67a-4422-8e4e-5fd4eeea4dff") as Revit.Elements.Level;

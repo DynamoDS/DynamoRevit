@@ -27,7 +27,7 @@ namespace RevitSystemTests
 
             OpenAndRunDynamoDefinition(@".\SiteLocation\SiteLocation.dyn");
 
-            var locNode = ViewModel.Model.Nodes.FirstOrDefault(x => x is SiteLocation);
+            var locNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x is SiteLocation);
 
             // Set to Dubai 
             SetLocation(doc, 25.287, 55.321);
