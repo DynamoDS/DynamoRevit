@@ -33,7 +33,7 @@ namespace RevitSystemTests
             //args = FSharpList<FScheme.Value>.Cons(FScheme.Value.NewContainer(rp), args);
 
             ////find the XYZFromReferencePoint node
-            //var node = ViewModel.Model.Nodes.Where(x => x is XyzFromReferencePoint).First();
+            //var node = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is XyzFromReferencePoint).First();
 
             //FScheme.Value v = ((NodeWithOneOutput)node).Evaluate(args);
             //Assert.IsInstanceOf(typeof(XYZ), ((FScheme.Value.Container)v).Item);
@@ -49,7 +49,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
         }
 
         [Test]
@@ -60,7 +62,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
         }
 
         [Test]
@@ -71,7 +75,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
         }
 
         [Test]
@@ -82,7 +88,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
         }
     }
 }

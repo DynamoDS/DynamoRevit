@@ -18,7 +18,7 @@ namespace RevitSystemTests
             //model.Open(testPath);
             //ViewModel.Model.RunExpression();
 
-            //var blendNode = ViewModel.Model.Nodes.First(x => x is CreateBlendGeometry);
+            //var blendNode = ViewModel.Model.CurrentWorkspace.Nodes.First(x => x is CreateBlendGeometry);
             //var result = (Solid)VisualizationManager.GetDrawablesFromNode(blendNode).Values.First();
             //double volumeMin = 3700000.0;
             //double volumeMax = 3900000.0;
@@ -60,7 +60,7 @@ namespace RevitSystemTests
             //model.Open(testPath);
             //ViewModel.Model.RunExpression();
 
-            //var revolveNode = ViewModel.Model.Nodes.First(x => x is CreateRevolvedGeometry);
+            //var revolveNode = ViewModel.Model.CurrentWorkspace.Nodes.First(x => x is CreateRevolvedGeometry);
             //var result = (Solid)VisualizationManager.GetDrawablesFromNode(revolveNode).Values.First();
             //double volumeMin = 13300.0;
             //double volumeMax = 13550.0;
@@ -84,7 +84,7 @@ namespace RevitSystemTests
             //    model.Open(testPath);
             //    ViewModel.Model.RunExpression();
 
-            //    var skeletonNode = ViewModel.Model.Nodes.First(x => x is SkinCurveLoops);
+            //    var skeletonNode = ViewModel.Model.CurrentWorkspace.Nodes.First(x => x is SkinCurveLoops);
             //    var result = (Solid)VisualizationManager.GetDrawablesFromNode(skeletonNode).Values.First();
             //    double volumeMin = 82500.0;
             //    double volumeMax = 84500.0;
@@ -106,7 +106,7 @@ namespace RevitSystemTests
             //model.Open(testPath);
             //ViewModel.Model.RunExpression();
 
-            //var sweepNode = ViewModel.Model.Nodes.First(x => x is CreateSweptGeometry);
+            //var sweepNode = ViewModel.Model.CurrentWorkspace.Nodes.First(x => x is CreateSweptGeometry);
             //var result = (Solid)VisualizationManager.GetDrawablesFromNode(sweepNode).Values.First();
             //double volumeMin = 11800.0;
             //double volumeMax = 12150.0;

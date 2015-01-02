@@ -22,11 +22,12 @@ using RevitServices.Persistence;
 
 namespace RevitServices.Elements
 {
-    public class RevitServicesUpdater : IDisposable
+    public class RevitServicesUpdater
     {
         //TODO: To handle multiple documents, should store unique ids as opposed to ElementIds.
 
         private readonly ControlledApplication application;
+        private readonly HashSet<IUpdater> registeredUpdaters;
 
         public event ElementUpdateDelegate ElementsAdded;
         public event ElementUpdateDelegateElementId ElementAddedForID;
@@ -62,16 +63,97 @@ namespace RevitServices.Elements
 
         #endregion
 
+        #region Singleton
+
+        /// <summary>
+        ///     Initializes the static Instance of the RevitServicesUpdater.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="updaters"></param>
+        public static void Initialize(ControlledApplication app, IEnumerable<IUpdater> updaters)
+        {
+            lock (mutex)
+            {
+                if (instance == null)
+                {
+                    instance = new RevitServicesUpdater(app, updaters);
+                }
+                else
+                {
+                    throw new InvalidOperationException("RevitServicesUpdater can only be initialized once.");
+                }
+            }
+        }
+
+        /// <summary>
+        ///     The static instance of the RevitServicesUpdater.
+        /// </summary>
+        public static RevitServicesUpdater Instance
+        {
+            get
+            {
+                lock (mutex)
+                {
+                    if (instance == null)
+                    {
+                        throw new InvalidOperationException(
+                            "RevitServicesUpdater has not been initialized.");
+                    }
+                    return instance;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     Disposes the static intance of the RevitServicesUpdater. Can be re-initialized at a later point.
+        /// </summary>
+        public static void DisposeInstance()
+        {
+            lock (mutex)
+            {
+                if (instance == null)
+                    return;
+
+                instance.Dispose();
+                instance = null;
+            }
+        }
+
+        private static RevitServicesUpdater instance;
+        private static readonly object mutex = new object();
+
+        #endregion
+
         // constructor takes the AddInId for the add-in associated with this updater
-        public RevitServicesUpdater(/*AddInId id, */ControlledApplication app, IEnumerable<IUpdater> updaters)
+        private RevitServicesUpdater(/*AddInId id, */ControlledApplication app, IEnumerable<IUpdater> updaters)
         {
             application = app;
+            registeredUpdaters = new HashSet<IUpdater>(updaters);
+
             application.DocumentChanged += ApplicationDocumentChanged;
 
-            foreach (var updater in updaters)
+            foreach (var updater in registeredUpdaters)
             {
                 ((ElementTypeSpecificUpdater)updater).Updated += RevitServicesUpdater_Updated;
             }
+        }
+
+        public void AddUpdater(IUpdater updater)
+        {
+            if (registeredUpdaters.Contains(updater)) 
+                return;
+
+            registeredUpdaters.Add(updater);
+            ((ElementTypeSpecificUpdater)updater).Updated += RevitServicesUpdater_Updated;
+        }
+
+        public void RemoveUpdater(IUpdater updater)
+        {
+            if (!registeredUpdaters.Contains(updater)) 
+                return;
+
+            registeredUpdaters.Remove(updater);
+            ((ElementTypeSpecificUpdater)updater).Updated -= RevitServicesUpdater_Updated;
         }
 
         /// <summary>
@@ -89,9 +171,14 @@ namespace RevitServices.Elements
             ProcessUpdates(doc, modified, deleted, added, addedIds);
         }
 
-        public void Dispose()
+        private void Dispose()
         {
-            application.DocumentChanged -= ApplicationDocumentChanged;
+            application.DocumentChanged -= ApplicationDocumentChanged; 
+            
+            foreach (var updater in registeredUpdaters)
+            {
+                ((ElementTypeSpecificUpdater)updater).Updated -= RevitServicesUpdater_Updated;
+            }
         }
 
         //TODO: remove once we are using unique ids
