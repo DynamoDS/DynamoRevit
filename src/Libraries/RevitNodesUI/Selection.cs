@@ -17,6 +17,7 @@ using Revit.GeometryConversion;
 using Revit.GeometryObjects;
 using Revit.Interactivity;
 
+using RevitServices.Elements;
 using RevitServices.Persistence;
 
 using DividedSurface = Autodesk.Revit.DB.DividedSurface;

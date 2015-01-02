@@ -22,7 +22,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization fixing
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            RunCurrentModel();
 
             //ensure that the bounce curve count is the same
             var curveColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document, DocumentManager.Instance.CurrentUIDocument.ActiveView.Id);
@@ -45,7 +47,7 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(24, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(26, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(26, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
