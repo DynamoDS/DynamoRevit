@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Autodesk.Revit.DB;
@@ -16,12 +17,17 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void ImportCubeAndThenImportSphere()
         {
+            throw new NotImplementedException("LC Modularisation repair");
+            /*
+
             //Run the graph to create an ImportInstance
             string dynFilePath = Path.Combine(workingDirectory, @".\ImportInstance\ImportInstance.dyn");
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             //Check the number of instances
             var instances = GetAllImportInstances().OfType<Autodesk.Revit.DB.ImportInstance>();
@@ -34,7 +40,9 @@ namespace RevitSystemTests
             connector.Connect(createSphereNode.OutPorts[0]);
 
             //Run the graph again
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             //Check the number of instances
             instances = GetAllImportInstances().OfType<Autodesk.Revit.DB.ImportInstance>();
@@ -45,11 +53,14 @@ namespace RevitSystemTests
             connector.Connect(createCubeNode.OutPorts[0]);
 
             //Run the graph again
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            //LC: Modularization
+            RunCurrentModel();
+            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             //Check the number of instances
             instances = GetAllImportInstances().OfType<Autodesk.Revit.DB.ImportInstance>();
             Assert.AreEqual(1, instances.Count());
+             */
         }
 
         /// <summary>
