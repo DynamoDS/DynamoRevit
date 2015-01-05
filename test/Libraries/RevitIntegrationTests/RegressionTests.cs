@@ -63,9 +63,9 @@ namespace RevitSystemTests
                 
                 //run the expression and assert that it does not
                 //throw an error
-                //LC: Modularization
+    
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
                 var errorNodes =
                     ViewModel.Model.CurrentWorkspace.Nodes.Where(
                         x => x.State == ElementState.Error || x.State == ElementState.Warning);

@@ -22,8 +22,8 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+ fixing
+            
             RunCurrentModel();
 
             //ensure that the bounce curve count is the same

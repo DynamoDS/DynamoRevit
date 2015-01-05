@@ -38,8 +38,6 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
             RunCurrentModel();
         }
 
@@ -63,8 +61,6 @@ namespace RevitSystemTests
             Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
 
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
             RunCurrentModel();
         }
 
@@ -87,8 +83,6 @@ namespace RevitSystemTests
             Assert.AreEqual(20, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(23, model.CurrentWorkspace.Connectors.Count());
 
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
             RunCurrentModel();
 
             // Check for Walls Creation
@@ -130,8 +124,6 @@ namespace RevitSystemTests
             Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(17, model.CurrentWorkspace.Connectors.Count());
 
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
             RunCurrentModel();
         }
 
@@ -155,9 +147,7 @@ namespace RevitSystemTests
             Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(14, model.CurrentWorkspace.Connectors.Count());
 
-           //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             // there should not be any crash on running this graph.
             // below node should have an error because there is no selection for Floor Type.
@@ -516,8 +506,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
             
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
             RunCurrentModel();
         }
         [Test]
@@ -538,8 +527,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             ViewModel.DynamicRunEnabled = true;
             ViewModel.OpenCommand.Execute(testPath2);
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
             RunCurrentModel();
         }
         [Test]
