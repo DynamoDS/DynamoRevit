@@ -473,14 +473,12 @@ namespace RevitSystemTests
         public void CreateDifferentNumberOfElementsInDynamoWithDifferentLacingStrategies()
         {
 
-            throw new NotImplementedException("LC Modularization repair");
-
-            /*
             //This is to test that the same node can bind correctly with different number of elements
             //when the lacing strategies for the node change
 
             Assert.Inconclusive("TO DO");
 
+            /*
             //Create 4x2 reference points
             string dynFilePath = Path.Combine(workingDirectory, @".\ElementBinding\CreateDifferentNumberOfPoints.dyn");
             string testPath = Path.GetFullPath(dynFilePath);
@@ -506,14 +504,14 @@ namespace RevitSystemTests
             node.ArgumentLacing = Dynamo.Models.LacingStrategy.Longest;
 
             //Run the graph again
-          //LC: Modularization
+          
             RunCurrentModel();
             
 
             //Check the number of the refrence points
             points = GetAllReferencePointElements(true);
             Assert.AreEqual(4, points.Count);
-             */
+            */
         }
 
         [Test]
@@ -530,7 +528,6 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
-            
 
             //Check the number of the family instances
             var instances = GetAllFamilyInstances(true);
@@ -545,15 +542,14 @@ namespace RevitSystemTests
             //Change the value of the slider from 19.89 to 18.0
             slider.Value = 18.0;
             //Run the graph again
-           //LC: Modularization
+           
             RunCurrentModel();
             
             //Change the value of the slider from 18.0 to 16.0
             slider.Value = 16.0;
             //Run the graph again
-           //LC: Modularization
+           
             RunCurrentModel();
-            
 
             //Check the number of family instances
             instances = GetAllFamilyInstances(true);
@@ -572,9 +568,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-   
             RunCurrentModel();
-            
             
             var selNodes = model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.GUID.ToString(), "7cc9bd94-7f46-4520-8a47-60baf4419087"));
             Assert.IsTrue(selNodes.Any());
@@ -597,7 +591,6 @@ namespace RevitSystemTests
             slider.Value = 0;
    
             RunCurrentModel();
-            
 
             //Check that the ModelCurve node has a warning/error
             Assert.IsTrue(IsNodeInErrorOrWarningState("bebfd220-3c77-4f06-8a8a-143ac07974a3"));
@@ -606,7 +599,6 @@ namespace RevitSystemTests
             slider.Value = 5;
    
             RunCurrentModel();
-            
 
             curves = GetAllModelCurves();
             Assert.AreEqual(1, curves.Count());
@@ -620,7 +612,6 @@ namespace RevitSystemTests
             slider.Value = 8;
    
             RunCurrentModel();
-            
 
             curves = GetAllModelCurves();
             Assert.AreEqual(1, curves.Count());

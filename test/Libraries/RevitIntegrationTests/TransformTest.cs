@@ -45,7 +45,6 @@ namespace RevitSystemTests
             }
 
             // Run the model
- fixing
             
             RunCurrentModel();
 
@@ -84,9 +83,7 @@ namespace RevitSystemTests
                 Assert.Fail("Number of dummy nodes found: " + dummyNodesCount);
             }
 
-            // Run the model
- fixing
-            
+            // Run the model           
             RunCurrentModel();
 
             // Check node output
@@ -125,8 +122,6 @@ namespace RevitSystemTests
             }
 
             // Run the model
- fixing
-            
             RunCurrentModel();
 
             // Check node output

@@ -22,7 +22,6 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
- fixing
             
             RunCurrentModel();
 

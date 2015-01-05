@@ -176,7 +176,7 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             model.Open(testPath);
-           //LC: Modularization
+           
             RunCurrentModel();
             
 
