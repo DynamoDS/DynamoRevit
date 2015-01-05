@@ -7,9 +7,10 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
 using DSCoreNodesUI;
-
+using Dynamo.Annotations;
 using Dynamo.Models;
 using Dynamo.Nodes;
+using Dynamo.Search.SearchElements;
 using Dynamo.Selection;
 
 using NUnit.Framework;
@@ -31,8 +32,6 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void SanityCheck()
         {
-            var model = ViewModel.Model;
-
             string samplePath = Path.Combine(workingDirectory, @".\Core\SanityCheck.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
@@ -40,7 +39,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            var errorNodes = model.Nodes.Where(x => x.State == ElementState.Warning);
+            var errorNodes = AllNodes.Where(x => x.State == ElementState.Warning);
             Assert.Greater(errorNodes.Count(), 0);
         }
 
@@ -139,35 +138,33 @@ namespace RevitSystemTests
 
         [Test, TestCaseSource("SetupCopyPastes")]
         [TestModel(@".\empty.rfa")]
-        public void CanCopyAndPasteAllNodesOnRevit(string typeName)
+        public void CanCopyAndPasteAllNodesOnRevit(NodeModelSearchElement searchElement)
         {
             var model = ViewModel.Model;
 
-            Assert.DoesNotThrow(() => model.CurrentWorkspace.AddNode(0, 0, typeName), string.Format("Could not create node : {0}", typeName));
+            searchElement.ProduceNode(); // puts the node into the current workspace
 
-            var node = model.AllNodes.FirstOrDefault();
+            var node = AllNodes.FirstOrDefault();
 
             DynamoSelection.Instance.ClearSelection();
             DynamoSelection.Instance.Selection.Add(node);
             Assert.AreEqual(1, DynamoSelection.Instance.Selection.Count);
 
-            Assert.DoesNotThrow(() => model.Copy(null), string.Format("Could not copy node : {0}", node.GetType()));
-            Assert.DoesNotThrow(() => model.Paste(null), string.Format("Could not paste node : {0}", node.GetType()));
+            Assert.DoesNotThrow(() => model.Copy(), string.Format("Could not copy node : {0}", node.GetType()));
+            Assert.DoesNotThrow(() => model.Paste(), string.Format("Could not paste node : {0}", node.GetType()));
 
-            model.Clear(null);
-             
+            model.ClearCurrentWorkspace();
         }
 
-        private List<string> SetupCopyPastes()
+        private IEnumerable<NodeModelSearchElement> SetupCopyPastes()
         {
             var excludes = new List<string>();
-            excludes.Add("Dynamo.Nodes.DSFunction");
-            excludes.Add("Dynamo.Nodes.Symbol");
-            excludes.Add("Dynamo.Nodes.Output");
-            excludes.Add("Dynamo.Nodes.Function");
-            excludes.Add("Dynamo.Nodes.LacerBase");
-            excludes.Add("Dynamo.Nodes.FunctionWithRevit");
-            return ViewModel.Model.BuiltInTypesByName.Where(x => !excludes.Contains(x.Key)).Select(kvp => kvp.Key).ToList();
+            excludes.Add("Input");
+            excludes.Add("Output");
+
+            return
+                ViewModel.Model.SearchModel.SearchEntries.OfType<NodeModelSearchElement>()
+                    .Where(x => !excludes.Contains(x.Name));
         }
     }
 }

@@ -77,9 +77,7 @@ namespace RevitSystemTests
             var refPt = ReferencePoint.ByCoordinates(0, 0, 0);
             selectNode.UpdateSelection(new[] { refPt.InternalElement });
 
-           //LC: Modularization
             RunCurrentModel();
-            
 
             Assert.AreEqual(0, watchNode.CachedValue);
 
@@ -89,9 +87,7 @@ namespace RevitSystemTests
 
             Assert.AreEqual(true, selectNode.ForceReExecuteOfNode);
 
-           //LC: Modularization
             RunCurrentModel();
-            
 
             Assert.AreNotEqual(0, watchNode.CachedValue); //Actual value depends on units
         }
