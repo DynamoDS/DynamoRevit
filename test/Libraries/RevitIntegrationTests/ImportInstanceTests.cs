@@ -25,9 +25,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //Check the number of instances
             var instances = GetAllImportInstances().OfType<Autodesk.Revit.DB.ImportInstance>();
@@ -40,9 +40,9 @@ namespace RevitSystemTests
             connector.Connect(createSphereNode.OutPorts[0]);
 
             //Run the graph again
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //Check the number of instances
             instances = GetAllImportInstances().OfType<Autodesk.Revit.DB.ImportInstance>();
@@ -53,9 +53,9 @@ namespace RevitSystemTests
             connector.Connect(createCubeNode.OutPorts[0]);
 
             //Run the graph again
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //Check the number of instances
             instances = GetAllImportInstances().OfType<Autodesk.Revit.DB.ImportInstance>();

@@ -22,9 +22,9 @@ namespace RevitSystemTests
             string testPath = Path.Combine(workingDirectory, filename);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
 
             var nodes = ViewModel.Model.CurrentWorkspace.Nodes;
