@@ -7,9 +7,10 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
 using DSCoreNodesUI;
-
+using Dynamo.Annotations;
 using Dynamo.Models;
 using Dynamo.Nodes;
+using Dynamo.Search.SearchElements;
 using Dynamo.Selection;
 
 using NUnit.Framework;
@@ -31,30 +32,21 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void SanityCheck()
         {
-            throw new NotImplementedException("LC Modularization");
-            /*
-            var model = ViewModel.Model;
-
             string samplePath = Path.Combine(workingDirectory, @".\Core\SanityCheck.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
             //Assert that there are some errors in the graph
             ViewModel.OpenCommand.Execute(testPath);
-           //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
-            var errorNodes = model.Nodes.Where(x => x.State == ElementState.Warning);
+
+            var errorNodes = AllNodes.Where(x => x.State == ElementState.Warning);
             Assert.Greater(errorNodes.Count(), 0);
-             */
         }
 
         [Test]
         [TestModel(@".\empty.rfa")]
         public void CanChangeLacingAndHaveElementsUpdate()
         {
-            throw new NotImplementedException("LC Modularization repair");
-
-            /*
             string samplePath = Path.Combine(workingDirectory, @".\Core\LacingTest.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
@@ -66,9 +58,7 @@ namespace RevitSystemTests
             //test the shortest lacing
             xyzNode.ArgumentLacing = LacingStrategy.Shortest;
 
-           //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             var fec = new FilteredElementCollector((Autodesk.Revit.DB.Document)DocumentManager.Instance.CurrentDBDocument);
             fec.OfClass(typeof(ReferencePoint));
@@ -76,9 +66,8 @@ namespace RevitSystemTests
 
             //test the longest lacing
             xyzNode.ArgumentLacing = LacingStrategy.Longest;
-           //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
             fec = null;
 
             fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
@@ -88,16 +77,15 @@ namespace RevitSystemTests
 
             //test the cross product lacing
             xyzNode.ArgumentLacing = LacingStrategy.CrossProduct;
-           //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
             fec = null;
 
             fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
 
             fec.OfClass(typeof(ReferencePoint));
             Assert.AreEqual(20, fec.ToElements().Count());
-             */
         }
 
         [Test, Category("Failure")]
@@ -110,7 +98,6 @@ namespace RevitSystemTests
             Assert.AreEqual(3, ViewModel.Model.CurrentWorkspace.Nodes.Count());
 
             RunCurrentModel();
-            //Assert.DoesNotThrow(()=>ViewModel.Model.RunExpression());
 
             //verify we have a reference point
             var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
@@ -135,9 +122,7 @@ namespace RevitSystemTests
             node.Value = node.Value + .1;
 
             ////run the expression again
-            //LC Mod fixing
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model());
 
             //fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             //fec.OfClass(typeof(ReferencePoint));
@@ -153,44 +138,33 @@ namespace RevitSystemTests
 
         [Test, TestCaseSource("SetupCopyPastes")]
         [TestModel(@".\empty.rfa")]
-        public void CanCopyAndPasteAllNodesOnRevit(string typeName)
+        public void CanCopyAndPasteAllNodesOnRevit(NodeModelSearchElement searchElement)
         {
-            throw new NotImplementedException("LC Modularization disable");
-            /*
-
             var model = ViewModel.Model;
 
-            Assert.DoesNotThrow(() => model.CurrentWorkspace.AddNode(0, 0, typeName), string.Format("Could not create node : {0}", typeName));
+            searchElement.ProduceNode(); // puts the node into the current workspace
 
-            var node = model.AllNodes.FirstOrDefault();
+            var node = AllNodes.FirstOrDefault();
 
             DynamoSelection.Instance.ClearSelection();
             DynamoSelection.Instance.Selection.Add(node);
             Assert.AreEqual(1, DynamoSelection.Instance.Selection.Count);
 
-            Assert.DoesNotThrow(() => model.Copy(null), string.Format("Could not copy node : {0}", node.GetType()));
-            Assert.DoesNotThrow(() => model.Paste(null), string.Format("Could not paste node : {0}", node.GetType()));
+            Assert.DoesNotThrow(() => model.Copy(), string.Format("Could not copy node : {0}", node.GetType()));
+            Assert.DoesNotThrow(() => model.Paste(), string.Format("Could not paste node : {0}", node.GetType()));
 
-            model.Clear(null);
-             */
+            model.ClearCurrentWorkspace();
         }
 
-        private List<string> SetupCopyPastes()
+        private IEnumerable<NodeModelSearchElement> SetupCopyPastes()
         {
-            throw new NotImplementedException("LC modularization repair");
-
-            /*
-
             var excludes = new List<string>();
-            excludes.Add("Dynamo.Nodes.DSFunction");
-            excludes.Add("Dynamo.Nodes.Symbol");
-            excludes.Add("Dynamo.Nodes.Output");
-            excludes.Add("Dynamo.Nodes.Function");
-            excludes.Add("Dynamo.Nodes.LacerBase");
-            excludes.Add("Dynamo.Nodes.FunctionWithRevit");
-            return ViewModel.Model.BuiltInTypesByName.Where(x => !excludes.Contains(x.Key)).Select(kvp => kvp.Key).ToList();
-        
-             */
+            excludes.Add("Input");
+            excludes.Add("Output");
+
+            return
+                ViewModel.Model.SearchModel.SearchEntries.OfType<NodeModelSearchElement>()
+                    .Where(x => !excludes.Contains(x.Name));
         }
     }
 }

@@ -151,7 +151,7 @@ namespace RevitSystemTests
             //string testPath = Path.GetFullPath(samplePath);
 
             //model.OpenWorkspace(testPath);
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
         }
 
         [Test]

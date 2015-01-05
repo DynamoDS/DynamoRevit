@@ -76,9 +76,7 @@ namespace RevitSystemTests
             var refPt = ReferencePoint.ByCoordinates(0, 0, 0);
             selectNode.UpdateSelection(new[] { refPt.InternalElement });
 
-           //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             Assert.AreEqual(0, watchNode.CachedValue);
 
@@ -87,9 +85,8 @@ namespace RevitSystemTests
             TransactionManager.Instance.ForceCloseTransaction();
 
             Assert.AreEqual(true, selectNode.ForceReExecuteOfNode);
-           //LC: Modularization
+           
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             Assert.AreNotEqual(0, watchNode.CachedValue); //Actual value depends on units
         }
@@ -106,9 +103,9 @@ namespace RevitSystemTests
             
             selectionNode.ClearSelections();
 
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             var element = GetPreviewCollection(guid);
             Assert.Null(element);
         }
@@ -125,9 +122,9 @@ namespace RevitSystemTests
 
             selectionNode.ClearSelections();
 
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             var element = GetPreviewCollection(guid);
             Assert.Null(element);
         }
@@ -154,9 +151,9 @@ namespace RevitSystemTests
             // returns a list of objects
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectAndMultiSelect.dyn"));
 
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             var guid = "34f4f2cc-63c3-41ec-91fa-68db7820cee5";
             var element = GetPreviewCollection(guid);
@@ -214,9 +211,9 @@ namespace RevitSystemTests
         public void SelectEdge()
         {
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectEdge.dyn"));
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             var selectionNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n is ReferenceSelection) as ReferenceSelection;
             Assert.NotNull(selectionNode);
@@ -224,9 +221,9 @@ namespace RevitSystemTests
             Assert.IsInstanceOf<NurbsCurve>(element);
 
             selectionNode.ClearSelections();
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             element = GetPreviewValue(selectionNode.GUID.ToString());
             Assert.Null(element);
         }

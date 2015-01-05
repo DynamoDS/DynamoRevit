@@ -581,9 +581,9 @@ namespace RevitSystemTests
             Assert.IsFalse(string.IsNullOrEmpty(excelFilePath));
             Assert.IsTrue(File.Exists(excelFilePath));
 
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
         }
 
@@ -662,9 +662,9 @@ namespace RevitSystemTests
             Assert.AreEqual(7, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
 
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
 
             var workspace = model.CurrentWorkspace;

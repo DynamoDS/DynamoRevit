@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 using Autodesk.Revit.DB;
+using Dynamo.Models;
 using DynamoUtilities;
 using RevitServices.Persistence;
 using RevitTestServices;
@@ -155,6 +157,14 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
+        }
+
+        public IEnumerable<NodeModel> AllNodes
+        {
+            get 
+            {
+                return this.Model.Workspaces.SelectMany(x => x.Nodes);
+            }
         }
 
         /// <summary>

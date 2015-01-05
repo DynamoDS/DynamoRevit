@@ -21,9 +21,6 @@ namespace RevitSystemTests
         [TestModel(@".\DividedSurface\DividedSurface.rfa")]
         public void DividedSurface()
         {
-            throw new NotImplementedException("LC Modularization");
-
-            /*
             var model = ViewModel.Model;
 
             string samplePath = Path.Combine(workingDirectory, @".\DividedSurface\DividedSurface.dyn");
@@ -47,9 +44,9 @@ namespace RevitSystemTests
             //can we change the number of divisions
             var numNode = ViewModel.Model.CurrentWorkspace.Nodes.OfType<DoubleInput>().First();
             numNode.Value = "10";
-           //LC: Modularization
+           
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //did it create a divided surface?
             Assert.AreEqual(10, ds.USpacingRule.Number);
@@ -57,12 +54,10 @@ namespace RevitSystemTests
 
             //ensure there is a warning when we try to set a negative number of divisions
             numNode.Value = "-5";
-           //LC: Modularization
+           
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             Assert.Greater(ViewModel.Model.EngineController.LiveRunnerCore.RuntimeStatus.WarningCount, 0);
-        
-             */
         }
     }
 }

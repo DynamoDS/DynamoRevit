@@ -149,9 +149,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //Modify the wall in Revit
             using (var trans = new Transaction(DocumentManager.Instance.CurrentUIDocument.Document, "ModifyInRevit"))
@@ -188,9 +188,9 @@ namespace RevitSystemTests
                     trans.Commit();
             }
 
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             IList<Element> rps2 = GetAllWallElements(false);
             Assert.AreEqual(1, rps2.Count);
         }
@@ -204,9 +204,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //Change the position of the reference point
             var points = GetAllReferencePointElements(true);
@@ -221,9 +221,9 @@ namespace RevitSystemTests
             }
 
             //Run the graph once again
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             points = GetAllReferencePointElements(true);
             Assert.AreEqual(1, points.Count);
             pnt = points[0] as ReferencePoint;
@@ -246,9 +246,9 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
 
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             
             var model = ViewModel.Model;
             var selNodes = model.AllNodes.Where(x => string.Equals(x.GUID.ToString(), "6a79717b-7438-458a-a725-587be0ba84fd"));
@@ -269,9 +269,9 @@ namespace RevitSystemTests
             }
 
             //Run the graph again
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             var id2 = GetBindingElementIdForNode(node.GUID);
 
             //Check the number of reference points
@@ -294,9 +294,9 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
 
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //Undo the creation of a reference point in Revit
             Assert.Inconclusive("TO DO");
@@ -310,9 +310,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //Select one of the walls
             var model = ViewModel.Model;
@@ -323,9 +323,9 @@ namespace RevitSystemTests
             var el = DocumentManager.Instance.CurrentDBDocument.GetElement(elId);
             //selNode.SelectionResults.Add(el);
 
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //Ensure the running result is correct
             Assert.AreEqual(true, GetPreviewValue("6e4abc3b-83fd-44fe-821b-447f1ec0a56c"));
@@ -372,9 +372,9 @@ namespace RevitSystemTests
             var selNode = selNodes.First() as ElementSelection<Autodesk.Revit.DB.Element>;
             //selNode.SelectionResults.Add(rp);
 
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //Undo the creation of a reference point in Revit
             Assert.Inconclusive("TO DO");
@@ -413,17 +413,17 @@ namespace RevitSystemTests
             var selNode = selNodes.First() as ElementSelection<Autodesk.Revit.DB.Element>;
             IEnumerable<Element> selection1 = new[] { rp1 };
             selNode.UpdateSelection(selection1);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             var id1 = selNode.SelectionResults.First();
 
             //Select the second reference point in Dynamo
             IEnumerable<Element> selection2 = new[] { rp2 };
             selNode.UpdateSelection(selection2);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             var id2 = selNode.SelectionResults.First();
 
             //Ensure the element binding is not the same
@@ -441,9 +441,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //Check the number of the refrence points
             var points = GetAllReferencePointElements(true);
@@ -459,9 +459,9 @@ namespace RevitSystemTests
             slider.Value = 3;
 
             //Run the graph again
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //Check the number of the refrence points
             points = GetAllReferencePointElements(true);
@@ -473,22 +473,20 @@ namespace RevitSystemTests
         public void CreateDifferentNumberOfElementsInDynamoWithDifferentLacingStrategies()
         {
 
-            throw new NotImplementedException("LC Modularization repair");
-
-            /*
             //This is to test that the same node can bind correctly with different number of elements
             //when the lacing strategies for the node change
 
             Assert.Inconclusive("TO DO");
 
+            /*
             //Create 4x2 reference points
             string dynFilePath = Path.Combine(workingDirectory, @".\ElementBinding\CreateDifferentNumberOfPoints.dyn");
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //Check the number of the refrence points
             var points = GetAllReferencePointElements(true);
@@ -506,14 +504,14 @@ namespace RevitSystemTests
             node.ArgumentLacing = Dynamo.Models.LacingStrategy.Longest;
 
             //Run the graph again
-          //LC: Modularization
+          
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //Check the number of the refrence points
             points = GetAllReferencePointElements(true);
             Assert.AreEqual(4, points.Count);
-             */
+            */
         }
 
         [Test]
@@ -528,9 +526,8 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             //Check the number of the family instances
             var instances = GetAllFamilyInstances(true);
@@ -545,15 +542,14 @@ namespace RevitSystemTests
             //Change the value of the slider from 19.89 to 18.0
             slider.Value = 18.0;
             //Run the graph again
-           //LC: Modularization
+           
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             //Change the value of the slider from 18.0 to 16.0
             slider.Value = 16.0;
             //Run the graph again
-           //LC: Modularization
+           
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             //Check the number of family instances
             instances = GetAllFamilyInstances(true);
@@ -572,9 +568,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-               //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
             
             var selNodes = model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.GUID.ToString(), "7cc9bd94-7f46-4520-8a47-60baf4419087"));
             Assert.IsTrue(selNodes.Any());
@@ -583,9 +577,9 @@ namespace RevitSystemTests
 
             //Change the slider value to 10
             slider.Value = 10;
-               //LC: Modularization
+   
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             var curves = GetAllModelCurves();
             Assert.AreEqual(1, curves.Count());
 
@@ -595,18 +589,16 @@ namespace RevitSystemTests
 
             //Change the slider value to 0 to cause a warning/error
             slider.Value = 0;
-               //LC: Modularization
+   
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             //Check that the ModelCurve node has a warning/error
             Assert.IsTrue(IsNodeInErrorOrWarningState("bebfd220-3c77-4f06-8a8a-143ac07974a3"));
 
             //Change the slider value to 5
             slider.Value = 5;
-               //LC: Modularization
+   
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             curves = GetAllModelCurves();
             Assert.AreEqual(1, curves.Count());
@@ -618,9 +610,8 @@ namespace RevitSystemTests
 
             //Change the slider value to 8
             slider.Value = 8;
-               //LC: Modularization
+   
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             curves = GetAllModelCurves();
             Assert.AreEqual(1, curves.Count());
