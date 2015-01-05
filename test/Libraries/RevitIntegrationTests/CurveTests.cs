@@ -21,18 +21,14 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void CurveByPoints()
         {
-            throw new NotImplementedException("LC Modularization repair");
-
-            /*
             var model = ViewModel.Model;
 
             string samplePath = Path.Combine(workingDirectory, @".\Curve\CurveByPoints.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             //cerate some points and wire them
             //to the selections
@@ -59,9 +55,7 @@ namespace RevitSystemTests
             ((DSModelElementSelection)ptSelectNodes.ElementAt(2)).UpdateSelection(new []{p3});
             ((DSModelElementSelection)ptSelectNodes.ElementAt(3)).UpdateSelection(new []{p4});
 
-           //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
             fec.OfClass(typeof(CurveElement));
@@ -76,14 +70,12 @@ namespace RevitSystemTests
 
             ((DSCoreNodesUI.BasicInteractive<bool>)boolNode).Value = false;
 
-           //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
             Assert.AreEqual(fec.ToElements().Count(), 1);
 
             mc = (CurveByPoints)fec.ToElements().ElementAt(0);
             Assert.IsFalse(mc.IsReferenceLine);
-             */
         }
 
         [Test]
@@ -94,9 +86,8 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
         }
 
         [Test]
@@ -107,9 +98,8 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
             fec.OfClass(typeof(CurveElement));
@@ -125,9 +115,7 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
         }
 
         [Test]
@@ -138,9 +126,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
         }
 
         [Test]
@@ -156,9 +144,8 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
             fec.OfClass(typeof(CurveElement));
@@ -171,9 +158,7 @@ namespace RevitSystemTests
             var node = ViewModel.Model.CurrentWorkspace.Nodes.OfType<DoubleInput>().First();
             node.Value = "12.0";
 
-           //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             fec = null;
             fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
@@ -193,7 +178,7 @@ namespace RevitSystemTests
             model.Open(testPath);
            //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             var extrudeNode = ViewModel.Model.CurrentWorkspace.Nodes.First(x => x is CreateExtrusionGeometry);
 
@@ -215,10 +200,8 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
-            RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
+            RunCurrentModel();
 
             FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
             fec.OfClass(typeof(CurveElement));
@@ -236,9 +219,8 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
         }
     }
 }

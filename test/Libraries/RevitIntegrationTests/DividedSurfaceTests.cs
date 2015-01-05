@@ -49,7 +49,7 @@ namespace RevitSystemTests
             numNode.Value = "10";
            //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             //did it create a divided surface?
             Assert.AreEqual(10, ds.USpacingRule.Number);
@@ -59,7 +59,7 @@ namespace RevitSystemTests
             numNode.Value = "-5";
            //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             Assert.Greater(ViewModel.Model.EngineController.LiveRunnerCore.RuntimeStatus.WarningCount, 0);
         
              */

@@ -45,8 +45,8 @@ namespace RevitSystemTests
             }
 
             // Run the model
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+ fixing
+            
             RunCurrentModel();
 
             // Check node output
@@ -85,8 +85,8 @@ namespace RevitSystemTests
             }
 
             // Run the model
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+ fixing
+            
             RunCurrentModel();
 
             // Check node output
@@ -125,8 +125,8 @@ namespace RevitSystemTests
             }
 
             // Run the model
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+ fixing
+            
             RunCurrentModel();
 
             // Check node output
