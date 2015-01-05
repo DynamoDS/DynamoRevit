@@ -17,9 +17,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
         }
 
         [Test]
@@ -30,9 +30,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
         }
 
         [Test]
@@ -43,9 +43,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
         }
 
         [Test]
@@ -56,9 +56,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
         }
     }
 }

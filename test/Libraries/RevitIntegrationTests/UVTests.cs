@@ -19,7 +19,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
         }
     }
 }

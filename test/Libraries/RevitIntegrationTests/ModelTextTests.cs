@@ -18,9 +18,9 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
 
-            //LC: Modularization
+
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
         }
     }
 }
