@@ -173,5 +173,16 @@ namespace RevitTestServices
         }
 
         #endregion
+
+        protected void MakeConnector(NodeModel start, NodeModel end, int portStart, int portEnd)
+        {
+            var cmdStart = new DynamoModel.MakeConnectionCommand(start.GUID, portStart, PortType.Output,
+                DynamoModel.MakeConnectionCommand.Mode.Begin);
+            this.Model.ExecuteCommand(cmdStart);
+
+            var cmdend = new DynamoModel.MakeConnectionCommand(end.GUID, portEnd, PortType.Input,
+                DynamoModel.MakeConnectionCommand.Mode.End);
+            this.Model.ExecuteCommand(cmdend);
+        }
     }
 }

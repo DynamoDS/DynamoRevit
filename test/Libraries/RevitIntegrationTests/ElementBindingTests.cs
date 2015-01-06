@@ -234,9 +234,6 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void CreateInDynamoDeleteInRevit()
         {
-            throw new NotImplementedException("LC Modularization repair");
-            
-            /*
             //This test case is to test that elements can be created via Dynamo.
             //After they are deleted in Revit, we can still create them via Dynamo.
 
@@ -251,7 +248,7 @@ namespace RevitSystemTests
             
             
             var model = ViewModel.Model;
-            var selNodes = model.AllNodes.Where(x => string.Equals(x.GUID.ToString(), "6a79717b-7438-458a-a725-587be0ba84fd"));
+            var selNodes = model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.GUID.ToString(), "6a79717b-7438-458a-a725-587be0ba84fd"));
             Assert.IsTrue(selNodes.Any());
             var node = selNodes.First();
             var id1 = GetBindingElementIdForNode(node.GUID);
@@ -281,7 +278,6 @@ namespace RevitSystemTests
 
             //Ensure the binding elements are different
             Assert.IsTrue(!id1.Equals(id2));
-             */
         }
 
         [Test, Ignore]
