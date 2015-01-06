@@ -36,9 +36,9 @@ namespace RevitNodesTests.Elements
 
             DocumentManager.Regenerate();
 
-            var elemId1 = ele.GetParameterValueByName(paramName);
+            var elemId1 = ele.GetParameterValueByName(paramName) as Element;
 
-            Assert.AreEqual(mat.InternalElement.Id, elemId1);
+            Assert.AreEqual(mat.InternalElement.Id, elemId1.InternalElement.Id);
 
         }
 
