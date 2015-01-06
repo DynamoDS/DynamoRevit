@@ -57,9 +57,6 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void CreatePointEndSample()
         {
-            throw new NotImplementedException("LC Modularization disable");
-
-            /*
             var model = ViewModel.Model;
 
             string samplePath = Path.Combine(workingDirectory, @".\Samples\createpointend.dyn");
@@ -76,8 +73,8 @@ namespace RevitSystemTests
             // test copying and pasting the workflow
             DynamoSelection.Instance.ClearSelection();
             DynamoSelection.Instance.Selection.AddRange(ViewModel.Model.CurrentWorkspace.Nodes);
-            model.Copy(null);
-            model.Paste(null);
+            model.Copy();
+            model.Paste();
 
             // evaluate graph
             var refPtNodeId = "16d1ceb2-c780-45d1-9dfb-d9c49836a931";
@@ -95,7 +92,6 @@ namespace RevitSystemTests
             refPt = GetPreviewValue(refPtNodeId) as ReferencePoint;
             Assert.IsNotNull(refPt);
             Assert.AreEqual(56.78, refPt.Z);
-             */
         }
 
         [Test]
