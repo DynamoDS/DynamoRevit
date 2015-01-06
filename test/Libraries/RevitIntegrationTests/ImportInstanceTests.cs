@@ -17,9 +17,6 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void ImportCubeAndThenImportSphere()
         {
-            throw new NotImplementedException("LC Modularisation repair");
-            /*
-
             //Run the graph to create an ImportInstance
             string dynFilePath = Path.Combine(workingDirectory, @".\ImportInstance\ImportInstance.dyn");
             string testPath = Path.GetFullPath(dynFilePath);
@@ -36,8 +33,7 @@ namespace RevitSystemTests
             //Connect the code block node to create sphere to the ImportInstance node
             var importInstanceNode = GetNode<DSFunction>("7b989ec5-eb4b-4c5a-b861-423a0e1cf0e9");
             var createSphereNode = GetNode<CodeBlockNodeModel>("40b63be4-7cb3-4e90-9d1c-7ff4f89df56f");
-            var connector = importInstanceNode.InPorts[0].Connectors[0];
-            connector.Connect(createSphereNode.OutPorts[0]);
+            MakeConnector(createSphereNode, importInstanceNode, 0, 0);
 
             //Run the graph again
 
@@ -50,7 +46,7 @@ namespace RevitSystemTests
 
             //Connect the code block node to create cube to the ImportInstance node
             var createCubeNode = GetNode<CodeBlockNodeModel>("d9fc1b61-8985-4264-806f-f60628500b39");
-            connector.Connect(createCubeNode.OutPorts[0]);
+            MakeConnector(createCubeNode, importInstanceNode, 0, 0);
 
             //Run the graph again
 
@@ -60,7 +56,6 @@ namespace RevitSystemTests
             //Check the number of instances
             instances = GetAllImportInstances().OfType<Autodesk.Revit.DB.ImportInstance>();
             Assert.AreEqual(1, instances.Count());
-             */
         }
 
         /// <summary>
