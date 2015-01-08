@@ -30,8 +30,6 @@ namespace RevitSystemTests
             Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
 
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
             RunCurrentModel();
 
             // TODO:(Ritesh)Need to add more verification. 
@@ -77,9 +75,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-           //LC: Modularization
             RunCurrentModel();
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
             const string adaptiveComponentNodeId = "ac5bd8f9-fcf5-46db-b795-3590044edb56";
             AssertPreviewCount(adaptiveComponentNodeId, 5);

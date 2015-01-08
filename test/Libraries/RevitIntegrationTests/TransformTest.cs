@@ -45,8 +45,7 @@ namespace RevitSystemTests
             }
 
             // Run the model
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
             RunCurrentModel();
 
             // Check node output
@@ -84,9 +83,7 @@ namespace RevitSystemTests
                 Assert.Fail("Number of dummy nodes found: " + dummyNodesCount);
             }
 
-            // Run the model
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            // Run the model           
             RunCurrentModel();
 
             // Check node output
@@ -125,8 +122,6 @@ namespace RevitSystemTests
             }
 
             // Run the model
-            //LC: Modularization fixing
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
             RunCurrentModel();
 
             // Check node output
