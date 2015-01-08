@@ -21,7 +21,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
         }
 
         [Test]
@@ -32,7 +34,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
         }
 
         [Test]
@@ -43,7 +47,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
         }
 
         [Test, TestModel(@".\Empty.rvt")]
@@ -69,7 +75,9 @@ namespace RevitSystemTests
             stringNodes[0].Value = tmp1;
             stringNodes[1].Value = tmp2;
 
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
             // Ensure that our two temporary files have some data
             var tmp1Info = new FileInfo(tmp1);

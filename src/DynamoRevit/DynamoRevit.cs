@@ -2,6 +2,8 @@ using System.Linq;
 
 using Dynamo.Applications;
 
+using RevitServices.Elements;
+
 #region
 using System;
 using System.Diagnostics;
@@ -256,7 +258,6 @@ namespace Dynamo.Applications
             InitializeAssemblies();
             InitializeUnits();
             InitializeDocumentManager(commandData);
-            InitializeMigrationManager();
 
             initializedCore = true;
         }
@@ -278,12 +279,7 @@ namespace Dynamo.Applications
 
             hasRegisteredApplicationEvents = true;
         }
-
-        private static void InitializeMigrationManager()
-        {
-            MigrationManager.Instance.MigrationTargets.Add(typeof(WorkspaceMigrationsRevit));
-        }
-
+        
         public static void InitializeUnits()
         {
             // set revit units
@@ -321,7 +317,7 @@ namespace Dynamo.Applications
         {
 
             if (commandData.JournalData != null && commandData.JournalData.ContainsKey("dynPath"))
-                dynamoViewModel.Model.OpenWorkspace(commandData.JournalData["dynPath"]);
+                dynamoViewModel.Model.OpenFileFromPath(commandData.JournalData["dynPath"]);
         }
 
         private static string GetRevitContext(ExternalCommandData commandData)
@@ -400,7 +396,7 @@ namespace Dynamo.Applications
         {
             var view = (DynamoView)sender;
 
-            revitDynamoModel.RevitServicesUpdater.Dispose();
+            RevitServicesUpdater.DisposeInstance();
             DocumentManager.OnLogError -= revitDynamoModel.Logger.Log;
 
             view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
@@ -495,7 +491,7 @@ namespace Dynamo.Applications
         {
             var uiApplication = DocumentManager.Instance.CurrentUIApplication;
             uiApplication.Idling -= DeleteKeeperElementOnce;
-            DynamoRevit.DeleteKeeperElement();
+            DeleteKeeperElement();
         }
 
 #endif

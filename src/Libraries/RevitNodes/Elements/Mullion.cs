@@ -128,7 +128,7 @@ namespace Revit.Elements
 
          //var hostingGrid = Panel.ByElement(UnknownElement.FromExisting(host));
 
-         var panels = CurtainPanel.ByElement(UnknownElement.FromExisting(host));
+         var panels = CurtainPanel.ByElement(UnknownElement.FromExisting(host, true));
 
          var result = new List<CurtainPanel>();
 

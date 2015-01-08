@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 
 using NUnit.Framework;
 
@@ -19,7 +20,7 @@ namespace RevitSystemTests
             //string testPath = Path.GetFullPath(samplePath);
 
             //model.Open(testPath);
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             ////ensure that the level count is the same
             //var levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
@@ -29,7 +30,7 @@ namespace RevitSystemTests
             ////change the number and run again
             //var numNode = (DoubleInput)ViewModel.Model.DynamoModel.Nodes.First(x => x is DoubleInput);
             //numNode.Value = "0..20..2";
-            //Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            
 
             ////ensure that the level count is the same
             //levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
@@ -60,7 +61,7 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(9, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(8, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(8, model.CurrentWorkspace.Connectors.Count());
 
             var levelByElevationAndName = GetPreviewValue
                                     ("f004b19e-f67a-4422-8e4e-5fd4eeea4dff") as Revit.Elements.Level;
