@@ -62,6 +62,7 @@
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
     <Compile Include="Elements.cs" />
+    <Compile Include="FamilyInstanceParametersNodeViewCustomization.cs" />
     <Compile Include="LocationControl.xaml.cs">
       <DependentUpon>LocationControl.xaml</DependentUpon>
     </Compile>

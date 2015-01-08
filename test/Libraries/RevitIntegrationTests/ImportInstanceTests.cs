@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Autodesk.Revit.DB;
@@ -21,7 +22,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
             //Check the number of instances
             var instances = GetAllImportInstances().OfType<Autodesk.Revit.DB.ImportInstance>();
@@ -30,11 +33,12 @@ namespace RevitSystemTests
             //Connect the code block node to create sphere to the ImportInstance node
             var importInstanceNode = GetNode<DSFunction>("7b989ec5-eb4b-4c5a-b861-423a0e1cf0e9");
             var createSphereNode = GetNode<CodeBlockNodeModel>("40b63be4-7cb3-4e90-9d1c-7ff4f89df56f");
-            var connector = importInstanceNode.InPorts[0].Connectors[0];
-            connector.Connect(createSphereNode.OutPorts[0]);
+            MakeConnector(createSphereNode, importInstanceNode, 0, 0);
 
             //Run the graph again
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
             //Check the number of instances
             instances = GetAllImportInstances().OfType<Autodesk.Revit.DB.ImportInstance>();
@@ -42,10 +46,12 @@ namespace RevitSystemTests
 
             //Connect the code block node to create cube to the ImportInstance node
             var createCubeNode = GetNode<CodeBlockNodeModel>("d9fc1b61-8985-4264-806f-f60628500b39");
-            connector.Connect(createCubeNode.OutPorts[0]);
+            MakeConnector(createCubeNode, importInstanceNode, 0, 0);
 
             //Run the graph again
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
             //Check the number of instances
             instances = GetAllImportInstances().OfType<Autodesk.Revit.DB.ImportInstance>();

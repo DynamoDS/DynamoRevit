@@ -8,6 +8,7 @@ using DSCore;
 using DSCoreNodesUI;
 
 using Dynamo.Applications.Models;
+using Dynamo.DSEngine;
 using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.Utilities;
@@ -29,11 +30,9 @@ namespace DSRevitNodesUI
 {
     public abstract class RevitDropDownBase : DSDropDownBase
     {
-        protected RevitDropDownBase(WorkspaceModel workspaceModel, string value) : base(workspaceModel, value)
+        protected RevitDropDownBase(string value) : base(value)
         {
-            var revModel = workspaceModel.DynamoModel as RevitDynamoModel;
-            if (revModel != null) 
-                revModel.RevitDocumentChanged += Controller_RevitDocumentChanged;
+            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
         void Controller_RevitDocumentChanged(object sender, EventArgs e)
@@ -53,11 +52,10 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FamilyTypes : RevitDropDownBase
     {
-        private const string noFamilyTypes = "No family types available.";
+        private const string NO_FAMILY_TYPES = "No family types available.";
 
-        public FamilyTypes(WorkspaceModel workspaceModel) : base(workspaceModel, "Family Type")
-        {}
-        
+        public FamilyTypes() : base("Family Type") { }
+
         public override void PopulateItems()
         {
             Items.Clear();
@@ -67,7 +65,7 @@ namespace DSRevitNodesUI
             fec.OfClass(typeof(Family));
             if (fec.ToElements().Count == 0)
             {
-                Items.Add(new DynamoDropDownItem(noFamilyTypes, null));
+                Items.Add(new DynamoDropDownItem(NO_FAMILY_TYPES, null));
                 SelectedIndex = 0;
                 return;
             }
@@ -86,7 +84,7 @@ namespace DSRevitNodesUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             if (Items.Count == 0 ||
-                Items[0].Name == noFamilyTypes ||
+                Items[0].Name == NO_FAMILY_TYPES ||
                 SelectedIndex == -1)
             {
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
@@ -116,11 +114,12 @@ namespace DSRevitNodesUI
         private const string noFamilyParameters = "No family parameters available.";
         private Element element;
         private ElementId storedId = null;
+        internal EngineController EngineController { get; set; }
 
-        public FamilyInstanceParameters(WorkspaceModel workspaceModel)
-            : base(workspaceModel, "Parameter") 
+        public FamilyInstanceParameters()
+            : base("Parameter") 
         {
-            this.AddPort(PortType.INPUT, new PortData(/*NXLT*/"f", Properties.Resources.PortDataFamilySymbolToolTip), 0);
+            this.AddPort(PortType.Input, new PortData(/*NXLT*/"f", Properties.Resources.PortDataFamilySymbolToolTip), 0);
             this.PropertyChanged += OnPropertyChanged;
         }
 
@@ -213,11 +212,15 @@ namespace DSRevitNodesUI
 
         private Element GetInputElement()
         {
+            /*
             var inputNode = InPorts[0].Connectors[0].Start.Owner;
             var index = InPorts[0].Connectors[0].Start.Index;
             
             var identifier = inputNode.GetAstIdentifierForOutputIndex(index).Name;
-            var data = this.Workspace.DynamoModel.EngineController.GetMirror(identifier).GetData();
+
+            if (this.EngineController == null) return null;
+            var data = this.EngineController.GetMirror(identifier).GetData();
+
             object family = null;
             if (data.IsCollection)
                 family = data.GetElements().FirstOrDefault();
@@ -229,25 +232,30 @@ namespace DSRevitNodesUI
                 return null;
 
             return elem.InternalElement;
+             */
+
+            return null;
         }
 
-        protected override void SaveNode(XmlDocument xmlDoc, XmlElement nodeElement, SaveContext context)
+        protected override void SerializeCore(XmlElement nodeElement, SaveContext context)
         {
+            base.SerializeCore(nodeElement, context);
             if (this.storedId != null)
             {
-                XmlElement outEl = xmlDoc.CreateElement("familyid");
+                XmlElement outEl = nodeElement.OwnerDocument.CreateElement("familyid");
                 outEl.SetAttribute("value", this.storedId.IntegerValue.ToString(CultureInfo.InvariantCulture));
                 nodeElement.AppendChild(outEl);
 
-                XmlElement param = xmlDoc.CreateElement("index");
+                XmlElement param = nodeElement.OwnerDocument.CreateElement("index");
                 param.SetAttribute("value", SelectedIndex.ToString(CultureInfo.InvariantCulture));
                 nodeElement.AppendChild(param);
             }
 
         }
 
-        protected override void LoadNode(XmlNode nodeElement)
+        protected override void DeserializeCore(XmlElement nodeElement, SaveContext context)
         {
+            base.DeserializeCore(nodeElement, context);
             var doc = DocumentManager.Instance.CurrentDBDocument;
 
             int index = -1;
@@ -296,8 +304,7 @@ namespace DSRevitNodesUI
     {
         private const string noFloorTypes = "No floor types available.";
 
-        public FloorTypes(WorkspaceModel workspaceModel)
-            : base(workspaceModel, "Floor Type") { }
+        public FloorTypes() : base("Floor Type") { }
 
         public override void PopulateItems()
         {
@@ -351,8 +358,7 @@ namespace DSRevitNodesUI
     {
         private const string noWallTypes = "No wall types available.";
 
-        public WallTypes(WorkspaceModel workspaceModel)
-            : base(workspaceModel, "Wall Type") { }
+        public WallTypes() : base("Wall Type") { }
 
         public override void PopulateItems()
         {
@@ -403,7 +409,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class Categories : EnumBase<BuiltInCategory>
     {
-        public Categories(WorkspaceModel workspace) : base(workspace)
+        public Categories()
         {
             OutPorts[0].PortName = "Category";
             OutPortData[0].ToolTipString = "The selected Category.";
@@ -442,8 +448,7 @@ namespace DSRevitNodesUI
     {
         private const string noLevels = "No levels available.";
 
-        public Levels(WorkspaceModel workspaceModel)
-            : base(workspaceModel, "Levels"){}
+        public Levels() : base("Levels") { }
 
         public override void PopulateItems()
         {
@@ -492,8 +497,7 @@ namespace DSRevitNodesUI
         private BuiltInCategory category;
 
         internal AllElementsInBuiltInCategory(
-            BuiltInCategory category, string outputMessage, string noTypesMessage, WorkspaceModel workspaceModel)
-            : base(workspaceModel, outputMessage)
+            BuiltInCategory category, string outputMessage, string noTypesMessage) : base(outputMessage)
         {
             this.category = category;
             this.noTypesMessage = noTypesMessage;
@@ -550,8 +554,8 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class StructuralFramingTypes : AllElementsInBuiltInCategory
     {
-        public StructuralFramingTypes(WorkspaceModel workspaceModel)
-            : base(BuiltInCategory.OST_StructuralFraming, "Framing Types", "No structural framing types available.", workspaceModel){}
+        public StructuralFramingTypes()
+            : base(BuiltInCategory.OST_StructuralFraming, "Framing Types", "No structural framing types available."){}
     }
 
     [NodeName(/*NXLT*/"Structural Column Types")]
@@ -560,8 +564,8 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class StructuralColumnTypes : AllElementsInBuiltInCategory
     {
-        public StructuralColumnTypes(WorkspaceModel workspaceModel)
-            : base(BuiltInCategory.OST_StructuralColumns, "Column Types", "No structural column types available.", workspaceModel){}
+        public StructuralColumnTypes()
+            : base(BuiltInCategory.OST_StructuralColumns, "Column Types", "No structural column types available."){}
     }
 
     [NodeName(/*NXLT*/"Spacing Rule Layout")]
@@ -569,7 +573,6 @@ namespace DSRevitNodesUI
     [NodeDescription(/*NXLT*/"SpacingRuleLayoutDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class SpacingRuleLayouts : EnumAsInt<SpacingRuleLayout> {
-        public SpacingRuleLayouts(WorkspaceModel workspace) : base(workspace) { }
     }
 
     [NodeName(/*NXLT*/"Element Types")]
@@ -578,8 +581,6 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ElementTypes : AllChildrenOfType<Element>
     {
-        public ElementTypes(WorkspaceModel workspace) : base(workspace) { }
-
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             var typeName = AstFactory.BuildStringNode(Items[SelectedIndex].Name);
@@ -595,7 +596,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class Views : RevitDropDownBase
     {
-        public Views(WorkspaceModel workspaceModel) : base(workspaceModel, "Views") { }
+        public Views() : base("Views") { }
 
         public override void PopulateItems()
         {
