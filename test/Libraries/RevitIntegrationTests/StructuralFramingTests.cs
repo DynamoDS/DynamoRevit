@@ -58,9 +58,6 @@ namespace RevitSystemTests
 
         private void AssertTypeAndCountWhenSelectingFromDropDown(int selectedIndex)
         {
-            throw new NotImplementedException("LC Modularization repair");
-
-            /*
             var slider = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x is IntegerSlider) as IntegerSlider;
 
             var typeSelector = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x is AllElementsInBuiltInCategory) as RevitDropDownBase;
@@ -68,7 +65,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
             
-            var dynamoSymbol = typeSelector.GetValue(0).Data as FamilySymbol;
+            var dynamoSymbol = typeSelector.GetValue(0, ViewModel.Model.EngineController).Data as FamilySymbol;
             var revitSymbol = dynamoSymbol.InternalElement;
 
             Console.WriteLine("Family type is now set to {0}", revitSymbol);
@@ -80,7 +77,6 @@ namespace RevitSystemTests
             fec.WherePasses(symbolFilter);
 
             Assert.AreEqual(fec.ToElements().Count, slider.Value);
-             */
         }
 
         private void CompareSliderCountAndMemberCount(BuiltInCategory cat, int sliderCount)
