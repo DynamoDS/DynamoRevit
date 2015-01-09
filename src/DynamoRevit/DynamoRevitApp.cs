@@ -52,7 +52,7 @@ namespace Dynamo.Applications
                 ElementBinder.IsEnabled = true;
 
                 //TAF load english_us TODO add a way to localize
-                res = Resource_en_us.ResourceManager;
+                res = Resources.ResourceManager;
 
                 // Create new ribbon panel
                 RibbonPanel ribbonPanel =
@@ -66,7 +66,6 @@ namespace Dynamo.Applications
                                 res.GetString("App_Name"),
                                 assemblyName,
                                 "Dynamo.Applications.DynamoRevit"));
-
 
                 Bitmap dynamoIcon = Resources.logo_square_32x32;
 

@@ -46,9 +46,9 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("Family Types")]
+    [NodeName(/*NXLT*/"Family Types")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
-    [NodeDescription("All family types available in the document.")]
+    [NodeDescription(/*NXLT*/"FamilyTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class FamilyTypes : RevitDropDownBase
     {
@@ -105,9 +105,9 @@ namespace DSRevitNodesUI
 
     }
 
-    [NodeName("Get Family Parameter")]
+    [NodeName(/*NXLT*/"Get Family Parameter")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
-    [NodeDescription("Given a Family Instance or Symbol, allows the user to select a parameter as a string.")]
+    [NodeDescription(/*NXLT*/"GetFamilyParameterDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class FamilyInstanceParameters : RevitDropDownBase 
     {
@@ -119,7 +119,7 @@ namespace DSRevitNodesUI
         public FamilyInstanceParameters()
             : base("Parameter") 
         {
-            this.AddPort(PortType.Input, new PortData("f", "Family Symbol or Instance"), 0);
+            this.AddPort(PortType.Input, new PortData(/*NXLT*/"f", Properties.Resources.PortDataFamilySymbolToolTip), 0);
             this.PropertyChanged += OnPropertyChanged;
         }
 
@@ -296,9 +296,9 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("Floor Types")]
+    [NodeName(/*NXLT*/"Floor Types")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
-    [NodeDescription("All floor types available in the document.")]
+    [NodeDescription(/*NXLT*/"FloorTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class FloorTypes : RevitDropDownBase
     {
@@ -350,9 +350,9 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("Wall Types")]
+    [NodeName(/*NXLT*/"Wall Types")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
-    [NodeDescription("All floor types available in the document.")]
+    [NodeDescription(/*NXLT*/"WallTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class WallTypes : RevitDropDownBase
     {
@@ -403,9 +403,9 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("Categories")]
+    [NodeName(/*NXLT*/"Categories")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
-    [NodeDescription("All built-in categories.")]
+    [NodeDescription(/*NXLT*/"CategoriesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class Categories : EnumBase<BuiltInCategory>
     {
@@ -440,9 +440,9 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("Levels")]
+    [NodeName(/*NXLT*/"Levels")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
-    [NodeDescription("Select a level in the active document")]
+    [NodeDescription(/*NXLT*/"LevelsDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class Levels : RevitDropDownBase
     {
@@ -548,9 +548,9 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("Structural Framing Types")]
+    [NodeName(/*NXLT*/"Structural Framing Types")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
-    [NodeDescription("Select a structural framing type in the active document")]
+    [NodeDescription(/*NXLT*/"StructuralFramingTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class StructuralFramingTypes : AllElementsInBuiltInCategory
     {
@@ -558,9 +558,9 @@ namespace DSRevitNodesUI
             : base(BuiltInCategory.OST_StructuralFraming, "Framing Types", "No structural framing types available."){}
     }
 
-    [NodeName("Structural Column Types")]
+    [NodeName(/*NXLT*/"Structural Column Types")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
-    [NodeDescription("Select a structural column type in the active document")]
+    [NodeDescription(/*NXLT*/"StructuralColumnTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class StructuralColumnTypes : AllElementsInBuiltInCategory
     {
@@ -568,16 +568,16 @@ namespace DSRevitNodesUI
             : base(BuiltInCategory.OST_StructuralColumns, "Column Types", "No structural column types available."){}
     }
 
-    [NodeName("Spacing Rule Layout")]
+    [NodeName(/*NXLT*/"Spacing Rule Layout")]
     [NodeCategory(BuiltinNodeCategories.GEOMETRY_CURVE_DIVIDE)]
-    [NodeDescription("A spacing rule layout for calculating divided paths.")]
+    [NodeDescription(/*NXLT*/"SpacingRuleLayoutDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class SpacingRuleLayouts : EnumAsInt<SpacingRuleLayout> {
     }
 
-    [NodeName("Element Types")]
+    [NodeName(/*NXLT*/"Element Types")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
-    [NodeDescription("All element subtypes.")]
+    [NodeDescription(/*NXLT*/"ElementTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class ElementTypes : AllChildrenOfType<Element>
     {
@@ -590,9 +590,9 @@ namespace DSRevitNodesUI
         }
     }
     
-    [NodeName("Views")]
+    [NodeName(/*NXLT*/"Views")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
-    [NodeDescription("All views available in the current document.")]
+    [NodeDescription(/*NXLT*/"ViewsDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class Views : RevitDropDownBase
     {
