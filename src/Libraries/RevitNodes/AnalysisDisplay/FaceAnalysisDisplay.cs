@@ -215,12 +215,12 @@ namespace Revit.AnalysisDisplay
 
             if (string.IsNullOrEmpty(name))
             {
-                name = Resource1.AnalysisResultsDefaultName;
+                name = Properties.Resources.AnalysisResultsDefaultName;
             }
 
             if (string.IsNullOrEmpty(description))
             {
-                description = Resource1.AnalysisResultsDefaultDescription;
+                description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
             var data = SurfaceAnalysisData.BySurfacePointsAndResults(surface, sampleLocations.ToList(), new List<string> { "Dynamo Data" }, new List<IList<double>>{samples});
@@ -257,12 +257,12 @@ namespace Revit.AnalysisDisplay
 
             if (string.IsNullOrEmpty(name))
             {
-                name = Resource1.AnalysisResultsDefaultName;
+                name = Properties.Resources.AnalysisResultsDefaultName;
             }
 
             if (string.IsNullOrEmpty(description))
             {
-                description = Resource1.AnalysisResultsDefaultDescription;
+                description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
             return new FaceAnalysisDisplay(view.InternalView, data, name, description, unitType);

@@ -20,7 +20,6 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkProfile />
-    
   </PropertyGroup>
   <PropertyGroup>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
@@ -36,6 +35,7 @@
     <NoWarn>618</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>$(OutputPath)\DynamoRevitDS.XML</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\$(UICulture)\DynamoRevitDS.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -47,6 +47,7 @@
     <NoWarn>618</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>$(OutputPath)\DynamoRevitDS.XML</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\$(UICulture)\DynamoRevitDS.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoRaaSHelper">
@@ -120,10 +121,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resource_en_us.Designer.cs">
+    <Compile Include="Properties\Resources.en-US.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resource_en_us.resx</DependentUpon>
+      <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\RevitWatchHandler.cs" />
     <Compile Include="Models\SingleSignOnManager.cs" />
@@ -136,10 +137,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resource_en_us.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource_en_us.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Properties\Resources.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
