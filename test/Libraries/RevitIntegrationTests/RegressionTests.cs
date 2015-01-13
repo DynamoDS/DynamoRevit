@@ -18,6 +18,7 @@ using NUnit.Framework;
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
+using RevitServices.Elements;
 
 namespace RevitSystemTests
 {
@@ -58,14 +59,16 @@ namespace RevitSystemTests
 
                 //open the dyn file
                 ViewModel.OpenCommand.Execute(dynamoFilePath);
-                Assert.IsTrue(ViewModel.Model.Nodes.Count > 0);
+                Assert.IsTrue(ViewModel.Model.CurrentWorkspace.Nodes.Count > 0);
                 AssertNoDummyNodes();
                 
                 //run the expression and assert that it does not
                 //throw an error
-                Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+    
+            RunCurrentModel();
+            
                 var errorNodes =
-                    ViewModel.Model.Nodes.Where(
+                    ViewModel.Model.CurrentWorkspace.Nodes.Where(
                         x => x.State == ElementState.Error || x.State == ElementState.Warning);
                 Assert.AreEqual(0, errorNodes.Count());
             }
@@ -77,6 +80,7 @@ namespace RevitSystemTests
             {
                 ViewModel.Model.ShutDown(false);
                 ViewModel = null;
+                RevitServicesUpdater.DisposeInstance();
                 TearDown();
             }
 

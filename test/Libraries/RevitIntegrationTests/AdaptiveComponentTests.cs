@@ -28,9 +28,9 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
 
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            RunCurrentModel();
 
             // TODO:(Ritesh)Need to add more verification. 
             // Tracking ID http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-3983
@@ -52,7 +52,7 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(6, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(5, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(5, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
@@ -75,12 +75,12 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-            ViewModel.Model.RunExpression();
+            RunCurrentModel();
 
             const string adaptiveComponentNodeId = "ac5bd8f9-fcf5-46db-b795-3590044edb56";
             AssertPreviewCount(adaptiveComponentNodeId, 5);
 
-            var acNode = ViewModel.Model.Nodes.FirstOrDefault(x => x.GUID.ToString() == adaptiveComponentNodeId);
+            var acNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x.GUID.ToString() == adaptiveComponentNodeId);
             Assert.NotNull(acNode);
 
             var adaptiveComponent = GetPreviewValueAtIndex(adaptiveComponentNodeId, 3) as Revit.Elements.AdaptiveComponent;
