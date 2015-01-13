@@ -68,7 +68,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
             
-            var dynamoSymbol = typeSelector.GetValue(0).Data as FamilySymbol;
+            var dynamoSymbol = typeSelector.GetValue(0, ViewModel.Model.EngineController).Data as FamilySymbol;
             var revitSymbol = dynamoSymbol.InternalElement;
 
             Console.WriteLine("Family type is now set to {0}", revitSymbol);

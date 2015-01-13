@@ -9,7 +9,7 @@ namespace RevitSystemTests
     [TestFixture]
     public class RenderingAsAServiceTests : SystemTest
     {
-        [Test]
+        [Test, Category("Failure")]
         [TestModel(@".\empty.rfa")]
         public void CanOpenDaylightingMinimalSample()
         {
@@ -23,7 +23,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
         }
 
-        [Test]
+        [Test, Category("Failure")]
         [TestModel(@".\empty.rfa")]
         public void CanOpenSimpleCloudRender()
         {
@@ -34,7 +34,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
         }
 
-        [Test]
+        [Test, Category("Failure")]
         [TestModel(@".\empty.rfa")]
         public void CanOpenDaylightingExtractingData()
         {
@@ -46,7 +46,7 @@ namespace RevitSystemTests
             Assert.AreEqual(53, model.CurrentWorkspace.Nodes.Count);
             AssertNoDummyNodes();
         }
-        [Test]
+        [Test, Category("Failure")]
         [TestModel(@".\empty.rfa")]
         public void CanOpenDaylightingandAnalysisDisplay()
         {

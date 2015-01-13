@@ -24,8 +24,6 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
-            
-
 
             var nodes = ViewModel.Model.CurrentWorkspace.Nodes;
             int unresolvedNodeCount = 0;
