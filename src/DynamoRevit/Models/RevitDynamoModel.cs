@@ -1,25 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 
 using Dynamo.Core.Threading;
 
-using ProtoCore;
 using DSIronPython;
 using DSNodeServices;
 
-using Dynamo.Interfaces;
 using Dynamo.Models;
-using Dynamo.Nodes;
 using Dynamo.Utilities;
 
 using Revit.Elements;
@@ -28,7 +22,9 @@ using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
 
+using Category = Revit.Elements.Category;
 using Element = Autodesk.Revit.DB.Element;
+using View = Autodesk.Revit.DB.View;
 
 namespace Dynamo.Applications.Models
 {
@@ -46,8 +42,6 @@ namespace Dynamo.Applications.Models
         #endregion
 
         #region Properties/Fields
-        public RevitServicesUpdater RevitServicesUpdater { get; private set; }
-
         internal override string AppVersion
         {
             get
@@ -63,7 +57,7 @@ namespace Dynamo.Applications.Models
 
         public new static RevitDynamoModel Start()
         {
-            return RevitDynamoModel.Start(new StartConfiguration());
+            return Start(new StartConfiguration());
         }
 
         public new static RevitDynamoModel Start(StartConfiguration configuration)
@@ -79,8 +73,6 @@ namespace Dynamo.Applications.Models
 
             if (configuration.Preferences == null)
                 configuration.Preferences = new PreferenceSettings();
-            if (configuration.Runner == null)
-                configuration.Runner = new RevitDynamoRunner();
 
             return new RevitDynamoModel(configuration);
         }
@@ -88,17 +80,14 @@ namespace Dynamo.Applications.Models
         private RevitDynamoModel(StartConfiguration configuration) :
             base(configuration)
         {
-            string context = configuration.Context;
-            IPreferences preferences = configuration.Preferences;
-            string corePath = configuration.DynamoCorePath;
-            bool isTestMode = configuration.StartInTestMode;
-
-            RevitServicesUpdater = new RevitServicesUpdater(DynamoRevitApp.ControlledApplication, DynamoRevitApp.Updaters);
+            RevitServicesUpdater.Initialize(DynamoRevitApp.ControlledApplication, DynamoRevitApp.Updaters);
             SubscribeRevitServicesUpdaterEvents();
 
             InitializeDocumentManager();
             SubscribeDocumentManagerEvents();
             SubscribeTransactionManagerEvents();
+
+            MigrationManager.MigrationTargets.Add(typeof(WorkspaceMigrationsRevit));
 
             SetupPython();
         }
@@ -122,7 +111,8 @@ namespace Dynamo.Applications.Models
         {
             if (setupPython) return;
 
-            IronPythonEvaluator.OutputMarshaler.RegisterMarshaler((Autodesk.Revit.DB.Element element) => ElementWrapper.ToDSType(element, (bool)true));
+            IronPythonEvaluator.OutputMarshaler.RegisterMarshaler(
+                (Element element) => element.ToDSType(true));
 
             // Turn off element binding during iron python script execution
             IronPythonEvaluator.EvaluationBegin += (a, b, c, d, e) => ElementBinder.IsEnabled = false;
@@ -133,7 +123,7 @@ namespace Dynamo.Applications.Models
             {
                 var marshaler = new DataMarshaler();
                 marshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
-                marshaler.RegisterMarshaler((Revit.Elements.Category element) => element.InternalCategory);
+                marshaler.RegisterMarshaler((Category element) => element.InternalCategory);
 
                 Func<object, object> unwrap = marshaler.Marshal;
                 scope.SetVariable("UnwrapElement", unwrap);
@@ -149,11 +139,11 @@ namespace Dynamo.Applications.Models
             {
                 DocumentManager.Instance.CurrentUIDocument =
                     DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
-                this.Logger.LogWarning(GetDocumentPointerMessage(), WarningLevel.Moderate);
+                Logger.LogWarning(GetDocumentPointerMessage(), WarningLevel.Moderate);
             }
         }
 
-        private void InitializeMaterials()
+        private static void InitializeMaterials()
         {
             // Does nothing: MaterialsManager is Revit 2015 specific.
         }
@@ -164,14 +154,14 @@ namespace Dynamo.Applications.Models
 
         private void SubscribeRevitServicesUpdaterEvents()
         {
-            RevitServicesUpdater.ElementsDeleted += RevitServicesUpdater_ElementsDeleted;
-            RevitServicesUpdater.ElementsModified += RevitServicesUpdater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsDeleted += RevitServicesUpdater_ElementsDeleted;
+            RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
         }
 
         private void UnsubscribeRevitServicesUpdaterEvents()
         {
-            RevitServicesUpdater.ElementsDeleted -= RevitServicesUpdater_ElementsDeleted;
-            RevitServicesUpdater.ElementsModified -= RevitServicesUpdater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsDeleted -= RevitServicesUpdater_ElementsDeleted;
+            RevitServicesUpdater.Instance.ElementsModified -= RevitServicesUpdater_ElementsModified;
         }
 
         private void SubscribeTransactionManagerEvents()
@@ -186,12 +176,12 @@ namespace Dynamo.Applications.Models
 
         private void SubscribeDocumentManagerEvents()
         {
-            DocumentManager.OnLogError += this.Logger.Log;
+            DocumentManager.OnLogError += Logger.Log;
         }
 
         private void UnsubscribeDocumentManagerEvents()
         {
-            DocumentManager.OnLogError -= this.Logger.Log;
+            DocumentManager.OnLogError -= Logger.Log;
         }
 
         #endregion
@@ -223,7 +213,7 @@ namespace Dynamo.Applications.Models
         {
             var uiApplication = DocumentManager.Instance.CurrentUIApplication;
             uiApplication.Idling -= ShutdownRevitHostOnce;
-            RevitDynamoModel.ShutdownRevitHost();
+            ShutdownRevitHost();
         }
 
 #else
@@ -245,7 +235,7 @@ namespace Dynamo.Applications.Models
             base.ShutDownCore(shutDownHost);
 
             // unsubscribe events
-            RevitServicesUpdater.UnRegisterAllChangeHooks();
+            RevitServicesUpdater.Instance.UnRegisterAllChangeHooks();
 
             UnsubscribeDocumentManagerEvents();
             UnsubscribeRevitServicesUpdaterEvents();
@@ -273,9 +263,8 @@ namespace Dynamo.Applications.Models
         /// 
         public override void ResetEngine(bool markNodesAsDirty = false)
         {
-            AsyncTaskCompletedHandler handler = HandleResetEngineCompletion;
-            if (markNodesAsDirty || DynamicRunEnabled)
-                handler = OnResetMarkNodesAsDirty;
+            AsyncTaskCompletedHandler handler =
+                _ => OnResetMarkNodesAsDirty(markNodesAsDirty);
 
             IdlePromise.ExecuteOnIdleAsync(ResetEngineInternal, handler);
         }
@@ -284,45 +273,29 @@ namespace Dynamo.Applications.Models
         /// This event handler is called if 'markNodesAsDirty' in a 
         /// prior call to RevitDynamoModel.ResetEngine was set to 'true'.
         /// </summary>
-        /// <param name="asyncTask">The DelegateBasedAsyncTask that was scheduled
-        /// for execution in RevitDynamoModel.ResetEngine method.</param>
-        /// 
-        private void OnResetMarkNodesAsDirty(AsyncTask asyncTask)
+        /// <param name="markNodesAsDirty"></param>
+        private void OnResetMarkNodesAsDirty(bool markNodesAsDirty)
         {
-            Nodes.ForEach(n => n.RequiresRecalc = true);
-            HandleResetEngineCompletion(asyncTask);
+            foreach (var workspace in Workspaces.OfType<HomeWorkspaceModel>())
+                workspace.ResetEngine(EngineController, markNodesAsDirty);
         }
 
-        /// <summary>
-        /// This event handler is called when DelegateBasedAsyncTask scheduled 
-        /// in RevitDynamoModel.ResetEngine is completed. If dynamic run is 
-        /// enabled, this method kicks start another round of evaluation based 
-        /// on the newly created engine.
-        /// </summary>
-        /// <param name="asyncTask">The DelegateBasedAsyncTask that was scheduled
-        /// for execution in RevitDynamoModel.ResetEngine method.</param>
-        /// 
-        private void HandleResetEngineCompletion(AsyncTask asyncTask)
-        {
-            if (DynamicRunEnabled)
-                RunExpression();
-        }
-
-        public void SetRunEnabledBasedOnContext(Autodesk.Revit.DB.View newView)
+        public void SetRunEnabledBasedOnContext(View newView)
         {
             var view = newView as View3D;
 
             if (view != null && view.IsPerspective
-                && this.Context != Core.Context.VASARI_2014)
+                && Context != Core.Context.VASARI_2014)
             {
-                this.Logger.LogWarning(
+                Logger.LogWarning(
                     "Dynamo is not available in a perspective view. Please switch to another view to Run.",
                     WarningLevel.Moderate);
-                this.RunEnabled = false;
+                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
+                    ws.RunEnabled = false;
             }
             else
             {
-                this.Logger.Log(
+                Logger.Log(
                     string.Format("Active view is now {0}", newView.Name));
 
                 // If there is a current document, then set the run enabled
@@ -330,14 +303,18 @@ namespace Dynamo.Applications.Models
                 // the same document.
                 if (DocumentManager.Instance.CurrentUIDocument != null)
                 {
-                    this.RunEnabled =
-                        newView.Document.Equals(DocumentManager.Instance.CurrentDBDocument);
+                    var newEnabled = newView.Document.Equals(DocumentManager.Instance.CurrentDBDocument);
 
-                    if (this.RunEnabled == false)
+                    if (!newEnabled)
                     {
-                        this.Logger.LogWarning(
+                        Logger.LogWarning(
                             "Dynamo is not pointing at this document. Run will be disabled.",
                             WarningLevel.Error);
+                    }
+
+                    foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
+                    {
+                        ws.RunEnabled = newEnabled;
                     }
                 }
             }
@@ -360,8 +337,9 @@ namespace Dynamo.Applications.Models
             if (DocumentManager.Instance.CurrentUIDocument == null)
             {
                 DocumentManager.Instance.CurrentUIDocument = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
-                this.Logger.LogWarning(GetDocumentPointerMessage(), WarningLevel.Moderate);
-                this.RunEnabled = true;
+                Logger.LogWarning(GetDocumentPointerMessage(), WarningLevel.Moderate);
+                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
+                    ws.RunEnabled = true;
                 ResetForNewDocument();
             }
         }
@@ -387,8 +365,9 @@ namespace Dynamo.Applications.Models
             if (DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument == null)
             {
                 DocumentManager.Instance.CurrentUIDocument = null;
-                this.RunEnabled = false;
-                this.Logger.LogWarning(
+                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
+                    ws.RunEnabled = false;
+                Logger.LogWarning(
                     "Dynamo no longer has an active document. Please open a document.",
                     WarningLevel.Error);
             }
@@ -406,7 +385,7 @@ namespace Dynamo.Applications.Models
             var uiDoc = DocumentManager.Instance.CurrentUIDocument;
             if (uiDoc != null)
             {
-                this.SetRunEnabledBasedOnContext(uiDoc.ActiveView);
+                SetRunEnabledBasedOnContext(uiDoc.ActiveView);
             }
         }
 
@@ -425,7 +404,8 @@ namespace Dynamo.Applications.Models
                     DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
 
                 InitializeMaterials();
-                this.RunEnabled = true;
+                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
+                    ws.RunEnabled = true;
             }
         }
 
@@ -443,14 +423,19 @@ namespace Dynamo.Applications.Models
         /// </summary>
         private void ResetForNewDocument()
         {
-            foreach (var node in this.Nodes)
-                node.RequiresRecalc = true;
-
-            foreach (var node in this.Nodes)
+            foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
-                lock (node.RenderPackagesMutex)
+                foreach (var node in ws.Nodes)
+                    node.ForceReExecuteOfNode = true;
+
+                ws.OnAstUpdated();
+                
+                foreach (var node in ws.Nodes)
                 {
-                    node.RenderPackages.Clear();
+                    lock (node.RenderPackagesMutex)
+                    {
+                        node.RenderPackages.Clear();
+                    }
                 }
             }
 
@@ -484,7 +469,7 @@ namespace Dynamo.Applications.Models
 
             foreach (FailureMessageAccessor fail in query)
             {
-                this.Logger.Log("!! Warning: " + fail.GetDescriptionText());
+                Logger.Log("!! Warning: " + fail.GetDescriptionText());
                 failuresAccessor.DeleteWarning(fail);
             }
         }
@@ -497,19 +482,20 @@ namespace Dynamo.Applications.Models
             var nodes = ElementBinder.GetNodesFromElementIds(deleted, CurrentWorkspace, EngineController);
             foreach (var node in nodes)
             {
-                node.RequiresRecalc = true;
                 node.ForceReExecuteOfNode = true;
+                node.OnAstUpdated();
             }
         }
 
         private void RevitServicesUpdater_ElementsModified(IEnumerable<string> updated)
         {
-            var updatedIds = updated.Select(x =>
-            {
-                Element ret;
-                ElementUtils.TryGetElement(DocumentManager.Instance.CurrentDBDocument, x, out ret);
-                return ret;
-            }).Select(x => x.Id);
+            var updatedIds = updated.Select(
+                x =>
+                {
+                    Element ret;
+                    DocumentManager.Instance.CurrentDBDocument.TryGetElement(x, out ret);
+                    return ret;
+                }).Select(x => x.Id);
             
             if (!updatedIds.Any())
                 return;
@@ -517,8 +503,8 @@ namespace Dynamo.Applications.Models
             var nodes = ElementBinder.GetNodesFromElementIds(updatedIds, CurrentWorkspace, EngineController);
             foreach (var node in nodes)
             {
-                node.RequiresRecalc = true;
                 node.ForceReExecuteOfNode = true;
+                node.OnAstUpdated();
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 
 using DSCoreNodesUI;
@@ -17,10 +18,12 @@ namespace RevitSystemTests
             string testPath = Path.Combine(workingDirectory, filename);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
 
-            var nodes = ViewModel.Model.Nodes;
+            var nodes = ViewModel.Model.CurrentWorkspace.Nodes;
             int unresolvedNodeCount = 0;
             string str = "\n";
 

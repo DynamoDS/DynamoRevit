@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
@@ -37,7 +38,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            RunCurrentModel();
         }
 
         [Test, Category("Failure")]
@@ -58,9 +59,9 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
 
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            RunCurrentModel();
         }
 
         [Test]
@@ -80,9 +81,9 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(20, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(23, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(23, model.CurrentWorkspace.Connectors.Count());
 
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            RunCurrentModel();
 
             // Check for Walls Creation
             var walls = "b7392d1d-6333-4bed-b10d-7b83520d2c3e";
@@ -121,9 +122,9 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(17, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(17, model.CurrentWorkspace.Connectors.Count());
 
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+            RunCurrentModel();
         }
 
         [Test, Category("Failure")]
@@ -144,9 +145,9 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(14, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(14, model.CurrentWorkspace.Connectors.Count());
 
-            ViewModel.Model.RunExpression();
+            RunCurrentModel();
 
             // there should not be any crash on running this graph.
             // below node should have an error because there is no selection for Floor Type.
@@ -173,7 +174,7 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(2, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(1, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(1, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
@@ -214,7 +215,7 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(5, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count());
 
             // evaluate graph
             var refPtNodeId = "92774673-e265-4378-b8ba-aef86c1a616e";
@@ -267,7 +268,7 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(4, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count());
 
             // If this test reaches here, it means there is no hang in system.
             Assert.Pass();
@@ -295,7 +296,7 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(20, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(29, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(29, model.CurrentWorkspace.Connectors.Count());
 
             // Validation for Geometry Instance import.
             var geometryInstance = "d017525b-2b02-44c4-88cf-2ed887c14a17";
@@ -335,7 +336,7 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
@@ -377,7 +378,7 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(7, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(6, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(6, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
@@ -407,7 +408,7 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(28, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(32, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(32, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
@@ -456,7 +457,7 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(10, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(9, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(9, model.CurrentWorkspace.Connectors.Count());
 
             /* As Nodes output is Null because of Empty List, this doesn’t need any validation on 
              any node. Test reaches here means there is no Crash on running the graph. */
@@ -485,7 +486,7 @@ namespace RevitSystemTests
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(4, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count);
+            Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count());
 
             var refPlane = GetPreviewValue("85c1f8c5-00da-4a7e-94c7-655140e39f6a") as Plane;
             Assert.IsNotNull(refPlane);
@@ -505,7 +506,8 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
             
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
         }
         [Test]
         [Category("RegressionTests")]
@@ -525,7 +527,8 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             ViewModel.DynamicRunEnabled = true;
             ViewModel.OpenCommand.Execute(testPath2);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
         }
         [Test]
         [Category("RegressionTests")]
@@ -559,8 +562,6 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void MAGN_5160()
         {
-            var workspace = ViewModel.Model.CurrentWorkspace;
-
             string samplePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_5160.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
@@ -577,20 +578,20 @@ namespace RevitSystemTests
             var LineByStartPointEndPointNode = GetNode<DSFunction>("7979f6ce-63b6-4cfb-9872-9d05812a111c");
 
             //Connect the output of NurbsCurve.ByPoints node to the input of ModelCurve.ByCurve node
-            var connector = workspace.AddConnection(NurbsCurveByPointsNode, ModelCurveByCurveNode, 0, 0);
+            MakeConnector(NurbsCurveByPointsNode, ModelCurveByCurveNode, 0, 0);
             RunCurrentModel();
             var curves = GetAllCurveElements();
             Assert.AreEqual(1, curves.Count);
 
             //Connect the output of NurbsCurve.ByControlPoints node to the input of ModelCurve.ByCurve node
-            connector = workspace.AddConnection(NurbsCurveByControlPointsNode, ModelCurveByCurveNode, 0, 0);
+            MakeConnector(NurbsCurveByControlPointsNode, ModelCurveByCurveNode, 0, 0);
             RunCurrentModel();
             //There will be an error and there should be no curves in the document
             curves = GetAllCurveElements();
             Assert.AreEqual(0, curves.Count);
 
             //Connect the output of Line.ByStartPointEndPoint node to the input of ModelCurve.ByCurve node
-            connector = workspace.AddConnection(LineByStartPointEndPointNode, ModelCurveByCurveNode, 0, 0);
+            MakeConnector(LineByStartPointEndPointNode, ModelCurveByCurveNode, 0, 0);
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
             RunCurrentModel();
             //There should be only one curve in the document

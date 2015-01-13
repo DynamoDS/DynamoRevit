@@ -31,7 +31,7 @@ namespace RevitSystemTests
 
             ////update any number node and verify 
             ////that the element gets updated not recreated
-            //var doubleNodes = ViewModel.Model.Nodes.Where(x => x is DoubleInput);
+            //var doubleNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is DoubleInput);
             //var node = doubleNodes.First() as DoubleInput;
 
             //Assert.IsNotNull(node);
