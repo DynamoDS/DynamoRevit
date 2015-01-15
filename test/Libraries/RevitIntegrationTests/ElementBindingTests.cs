@@ -251,7 +251,7 @@ namespace RevitSystemTests
             
             
             var model = ViewModel.Model;
-            var selNodes = model.AllNodes.Where(x => string.Equals(x.GUID.ToString(), "6a79717b-7438-458a-a725-587be0ba84fd"));
+            var selNodes = model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.GUID.ToString(), "6a79717b-7438-458a-a725-587be0ba84fd"));
             Assert.IsTrue(selNodes.Any());
             var node = selNodes.First();
             var id1 = GetBindingElementIdForNode(node.GUID);

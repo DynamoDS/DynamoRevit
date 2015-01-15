@@ -53,13 +53,6 @@ namespace DSRevitNodesUI
             u.ElementsDeleted -= Updater_ElementsDeleted;
         }
 
-        private bool forceReExecuteOfNode;
-
-        public override bool ForceReExecuteOfNode
-        {
-            get { return forceReExecuteOfNode; }
-        }
-
         protected virtual void Updater_ElementsAdded(IEnumerable<string> updated)
         {
             if (!updated.Any()) return;
@@ -68,7 +61,7 @@ namespace DSRevitNodesUI
             Debug.WriteLine("There are {0} updated elements", updated.Count());
             DebugElements(updated);
 #endif
-            forceReExecuteOfNode = true;
+            ForceReExecuteOfNode = true;
             OnAstUpdated();
         }
 
@@ -80,7 +73,7 @@ namespace DSRevitNodesUI
             Debug.WriteLine("There are {0} modified elements", updated.Count());
             DebugElements(updated);
 #endif
-            forceReExecuteOfNode = true;
+            ForceReExecuteOfNode = true;
             OnAstUpdated();
 
         }
@@ -92,7 +85,7 @@ namespace DSRevitNodesUI
             Debug.WriteLine("There are {0} deleted elements", deleted.Count());
             DebugElements(deleted);
 #endif
-            forceReExecuteOfNode = true;
+            ForceReExecuteOfNode = true;
             OnAstUpdated();
 
         }
