@@ -123,6 +123,15 @@
   <data name="AnalysisResultsDefaultName" xml:space="preserve">
     <value>Dynamo Analysis Results</value>
   </data>
+  <data name="Array_Count_Mismatch" xml:space="preserve">
+    <value>The number of sample points and number of samples must be the same.</value>
+  </data>
+  <data name="Dynamo_AVF_Data_Name" xml:space="preserve">
+    <value>Dynamo Data</value>
+  </data>
+  <data name="Tag_Lookup_Error" xml:space="preserve">
+    <value>The specified surface does not correspond to a Revit surface.</value>
+  </data>
   <data name="View_ExportAsImage_Path_Invalid" xml:space="preserve">
     <value>The supplied path is invalid.</value>
   </data>

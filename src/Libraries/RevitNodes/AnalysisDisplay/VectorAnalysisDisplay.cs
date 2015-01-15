@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Analysis;
-using Analysis.DataTypes;
 
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
@@ -22,63 +21,36 @@ namespace Revit.AnalysisDisplay
     [DSNodeServices.RegisterForTrace]
     public class VectorAnalysisDisplay : AbstractAnalysisDisplay
     {
-
         #region Private constructors
-
         /// <summary>
         /// Create a Point Analysis Display in the current view
         /// </summary>
         /// <param name="view"></param>
         /// <param name="sampleLocations"></param>
         /// <param name="samples"></param>
-        private VectorAnalysisDisplay(Autodesk.Revit.DB.View view, IEnumerable<VectorAnalysisData> data, 
+        /// <param name="resultsName"></param>
+        /// <param name="description"></param>
+        /// <param name="unitType"></param>
+        private VectorAnalysisDisplay(Autodesk.Revit.DB.View view, VectorData data, 
             string resultsName, string description, Type unitType)
         {
-            var sfm = GetSpatialFieldManagerFromView(view, (uint)data.First().Results.Count());
-
-            //var sfmAndId = GetElementAndPrimitiveIdFromTrace();
-
-            //// we can rebind as we're dealing with the same view
-            //if (sfmAndId != null && sfmAndId.Item1.Id == sfm.Id)
-            //{
-            //    InternalSetSpatialFieldManager(sfm);
-            //    //InternalSetPrimitiveId(sfmAndId.Item2);
-            //    InternalSetSpatialFieldValues(sampleLocations, samples);
-            //    return;
-            //}
-
-            //// the input view has changed, remove the old primitive from the old view
-            //if (sfmAndId != null)
-            //{
-            //    var oldSfm = sfmAndId.Item1;
-            //    var oldId = sfmAndId.Item2;
-
-            //    oldSfm.RemoveSpatialFieldPrimitive(oldId);
-            //}
+            var sfm = GetSpatialFieldManagerFromView(view);
 
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            // TEMPORARY UNTIL WE RESOLVE TRACE
             sfm.Clear();
 
-            var vectorAnalysisDatas = data as VectorAnalysisData[] ?? data.ToArray();
-            sfm.SetMeasurementNames(vectorAnalysisDatas.SelectMany(d => d.Results.Keys).Distinct().ToList());
+            sfm.SetMeasurementNames(new List<string>() { Revit.Resource1.Dynamo_AVF_Data_Name });
 
             var primitiveIds = new List<int>();
 
             InternalSetSpatialFieldManager(sfm);
 
-            foreach (var d in vectorAnalysisDatas)
-            {
-                var primitiveId = SpatialFieldManager.AddSpatialFieldPrimitive();
-                InternalSetSpatialFieldValues(primitiveId, d, resultsName, description, unitType);
-                primitiveIds.Add(primitiveId);
-            }
-
-            //SetElementAndPrimitiveIdsForTrace(SpatialFieldManager, primitiveIds);
+            var primitiveId = SpatialFieldManager.AddSpatialFieldPrimitive();
+            InternalSetSpatialFieldValues(primitiveId, data, resultsName, description, unitType);
+            primitiveIds.Add(primitiveId);
 
             TransactionManager.Instance.TransactionTaskDone();
-
         }
 
         #endregion
@@ -91,32 +63,15 @@ namespace Revit.AnalysisDisplay
         /// </summary>
         /// <param name="sampleLocations"></param>
         /// <param name="samples"></param>
-        private void InternalSetSpatialFieldValues(int primitiveId, VectorAnalysisData data, string schemaName, string description, Type unitType)
+        private void InternalSetSpatialFieldValues(int primitiveId, VectorData data, string schemaName, string description, Type unitType)
         {
-            var values = data.Results.Values;
-
-            var height = values.First().Count();
-            var width = values.Count();
-
-            // Transpose and convert the analysis values to a special Revit type
-            var valList = new List<VectorAtPoint>();
-            for (int i = 0; i < height; i++)
-            {
-                var lst = new List<XYZ>() { };
-
-                for (int j = 0; j < width; j++)
-                {
-                    lst.Add(values.ElementAt(j).ElementAt(i).ToXyz());
-                }
-                valList.Add(new VectorAtPoint(lst));
-            }
-
+            var valList = data.Values.Select(v => new VectorAtPoint(new List<XYZ> { v.ToXyz() }));
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            var sampleValues = new FieldValues(valList);
+            var sampleValues = new FieldValues(valList.ToList());
 
             // Convert the sample points to a special Revit Type
-            var samplePts = new FieldDomainPointsByXYZ(data.CalculationLocations.Select(p=>p.ToXyz()).ToList());
+            var samplePts = new FieldDomainPointsByXYZ(data.ValueLocations.Select(p=>p.ToXyz()).ToList());
 
             // Get the analysis results schema
             var schemaIndex = GetAnalysisResultSchemaIndex(schemaName, description, unitType);
@@ -176,8 +131,8 @@ namespace Revit.AnalysisDisplay
                 description = Resource1.AnalysisResultsDefaultDescription;
             }
 
-            var data = VectorAnalysisData.ByPointsAndResults(sampleLocations, new List<string> { "Dynamo Data" }, new List<IList<Vector>>{samples});
-            return new VectorAnalysisDisplay(view.InternalView, new List<VectorAnalysisData>() { data }, name, description, unitType);
+            var data = VectorData.ByPointsAndValues(sampleLocations, samples );
+            return new VectorAnalysisDisplay(view.InternalView, data, name, description, unitType);
         }
 
         /// <summary>
@@ -190,7 +145,7 @@ namespace Revit.AnalysisDisplay
         /// <param name="unitType">An optional Unit type to provide conversions in the analysis results.</param>
         /// <returns>A VectorAnalysisDisplay object.</returns>
         public static VectorAnalysisDisplay ByViewAndVectorAnalysisData(View view,
-                        VectorAnalysisData[] data,
+                        VectorData data,
             string name = "", string description = "", Type unitType = null)
         {
 
@@ -202,11 +157,6 @@ namespace Revit.AnalysisDisplay
             if (data == null)
             {
                 throw new ArgumentNullException("data");
-            }
-
-            if (!data.Any())
-            {
-                throw new Exception("There is no input data.");
             }
 
             if (string.IsNullOrEmpty(name))
