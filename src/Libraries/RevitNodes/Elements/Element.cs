@@ -340,7 +340,7 @@ namespace Revit.Elements
 
             var patternCollector = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             patternCollector.OfClass(typeof(FillPatternElement));
-            FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().Name == "Solid fill");
+            FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
 
             ogs.SetProjectionFillColor(new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue));
             ogs.SetProjectionFillPatternId(solidFill.Id);
