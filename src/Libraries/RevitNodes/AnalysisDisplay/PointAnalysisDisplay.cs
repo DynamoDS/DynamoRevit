@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Analysis;
-using Analysis.DataTypes;
 
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
@@ -16,6 +15,8 @@ using View = Revit.Elements.Views.View;
 using RevitServices.Persistence;
 using System.Runtime.Serialization;
 using RevitServices.Elements;
+
+using Point = Autodesk.DesignScript.Geometry.Point;
 
 namespace Revit.AnalysisDisplay
 {
@@ -63,102 +64,73 @@ namespace Revit.AnalysisDisplay
     public class PointAnalysisDisplay : AbstractAnalysisDisplay
     {
         #region Private constructors
-
         /// <summary>
         /// Create a Point Analysis Display in the current view
         /// </summary>
         /// <param name="view"></param>
         /// <param name="sampleLocations"></param>
         /// <param name="samples"></param>
-        private PointAnalysisDisplay(Autodesk.Revit.DB.View view, IEnumerable<PointAnalysisData> data, string resultsName, string description, Type unitType)
+        /// <param name="data"></param>
+        /// <param name="resultsName"></param>
+        /// <param name="description"></param>
+        /// <param name="unitType"></param>
+        private PointAnalysisDisplay(Autodesk.Revit.DB.View view, PointData data, string resultsName, string description, Type unitType)
         {
-            var sfm = GetSpatialFieldManagerFromView(view, (uint)data.First().Results.Count());
-
-            //var sfmAndIds = GetElementAndPrimitiveIdListFromTrace();
-
-            //// the input view has changed, remove the old primitive from the old view
-            //if (sfmAndIds != null)
-            //{
-            //    var oldSfm = sfmAndIds.Item1;
-            //    var oldIds = sfmAndIds.Item2;
-
-            //    foreach (var oldId in oldIds)
-            //    {
-            //        oldSfm.RemoveSpatialFieldPrimitive(oldId); 
-            //    }
-            //}
+            var sfm = GetSpatialFieldManagerFromView(view);
 
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            // TEMPORARY UNTIL WE RESOLVE TRACE
             sfm.Clear();
 
-            var pointAnalysisData = data as PointAnalysisData[] ?? data.ToArray();
-            sfm.SetMeasurementNames(pointAnalysisData.SelectMany(d => d.Results.Keys).Distinct().ToList());
+            sfm.SetMeasurementNames(new List<string>(){Revit.Resource1.Dynamo_AVF_Data_Name});
 
             var primitiveIds = new List<int>();
 
             InternalSetSpatialFieldManager(sfm);
 
-            foreach (var d in pointAnalysisData)
-            {
-                InternalSetSpatialFieldValues(d, ref primitiveIds, resultsName, description, unitType);
-            }
-
-            //SetElementAndPrimitiveIdsForTrace(SpatialFieldManager, primitiveIds);
+            InternalSetSpatialFieldValues(data, ref primitiveIds, resultsName, description, unitType);
 
             TransactionManager.Instance.TransactionTaskDone();
-
         }
 
         #endregion
 
         #region Private mutators
-
         /// <summary>
         /// Set the spatial field values for the current spatial field primitive.  The two 
         /// input sequences should be of the same length.
         /// </summary>
         /// <param name="pointLocations"></param>
         /// <param name="values"></param>
-        private void InternalSetSpatialFieldValues(PointAnalysisData data, ref List<int> primitiveIds, string schemaName, string description, Type unitType)
+        /// <param name="data"></param>
+        /// <param name="primitiveIds"></param>
+        /// <param name="schemaName"></param>
+        /// <param name="description"></param>
+        /// <param name="unitType"></param>
+        private void InternalSetSpatialFieldValues(IStructuredData<Point, double> data, ref List<int> primitiveIds, string schemaName, string description, Type unitType)
         {
-            var values = data.Results.Values;
-
-            var height = values.First().Count();
-            var width = values.Count();
-
-            // Transpose and convert the analysis values to a special Revit type
-            var transposedVals = new List<List<double>>();
-            for (int i = 0; i < height; i++)
-            {
-                var lst = new List<double>() { };
-
-                for (int j = 0; j < width; j++)
-                {
-                    lst.Add(values.ElementAt(j).ElementAt(i));
-                }
-                transposedVals.Add(lst);
-            }
-
             TransactionManager.Instance.EnsureInTransaction(Document);
 
             // We chunk here because the API has a limitation for the 
             // number of points that can be sent in one run.
 
             var chunkSize = 1000;
-            var pointLocations = data.CalculationLocations.Select(l=>l.ToXyz());
 
-            while (pointLocations.Any()) 
+            var dataLocations = data.ValueLocations.Select(l=>l.ToXyz());
+            var values = data.Values.ToList();
+
+            while (dataLocations.Any()) 
             {
-                // Convert the analysis values to a special Revit type
-                var pointLocationChunk = pointLocations.Take(chunkSize).ToList<XYZ>();
-                var valuesChunk = transposedVals.Take(chunkSize).ToList();
-                var valList = valuesChunk.Select(n => new ValueAtPoint(n)).ToList();
+                // Compute the chunks
+                var pointLocationChunk = dataLocations.Take(chunkSize);
+                var valuesChunk = values.Take(chunkSize).ToList();
 
-                // Convert the sample points to a special Revit Type
-                var samplePts = new FieldDomainPointsByXYZ(pointLocationChunk.ToList<XYZ>());
-                var sampleValues = new FieldValues(valList);
+                // Create the ValueAtPoint objects
+                var valList = valuesChunk.Select(n => new ValueAtPoint(new List<double>{n}));
+
+                // Create the field domain points and values
+                var samplePts = new FieldDomainPointsByXYZ(pointLocationChunk.ToList());
+                var sampleValues = new FieldValues(valList.ToList());
 
                 // Get the analysis results schema
                 var schemaIndex = GetAnalysisResultSchemaIndex(schemaName, description, unitType);
@@ -168,8 +140,8 @@ namespace Revit.AnalysisDisplay
                 primitiveIds.Add(primitiveId);
                 SpatialFieldManager.UpdateSpatialFieldPrimitive(primitiveId, samplePts, sampleValues, schemaIndex);
 
-                pointLocations = pointLocations.Skip(chunkSize);
-                transposedVals = transposedVals.Skip(chunkSize).ToList();
+                dataLocations = dataLocations.Skip(chunkSize);
+                values = values.Skip(chunkSize).ToList();
             }
 
             TransactionManager.Instance.TransactionTaskDone();
@@ -223,8 +195,8 @@ namespace Revit.AnalysisDisplay
                 description = Resource1.AnalysisResultsDefaultDescription;
             }
 
-            var data = PointAnalysisData.ByPointsAndResults (sampleLocations, new List<string>{"Dynamo Data"}, new List<IList<double>>{samples});
-            return new PointAnalysisDisplay(view.InternalView, new List<PointAnalysisData> { data }, name, description, unitType);
+            var data = PointData.ByPointsAndValues(sampleLocations, samples);
+            return new PointAnalysisDisplay(view.InternalView, data, name, description, unitType);
         }
 
         /// <summary>
@@ -237,7 +209,7 @@ namespace Revit.AnalysisDisplay
         /// <param name="unitType">An optional Unit type to provide conversions in the analysis results.</param>
         /// <returns>An PointAnalysisDisplay object.</returns>
         public static PointAnalysisDisplay ByViewAndPointAnalysisData(View view,
-                        PointAnalysisData[] data,
+                        PointData data,
             string name = "", string description = "", Type unitType = null)
         {
             if (view == null)
@@ -248,11 +220,6 @@ namespace Revit.AnalysisDisplay
             if (data == null)
             {
                 throw new ArgumentNullException("data");
-            }
-
-            if (!data.Any())
-            {
-                throw new Exception("There is no input data.");
             }
 
             if (string.IsNullOrEmpty(name))
