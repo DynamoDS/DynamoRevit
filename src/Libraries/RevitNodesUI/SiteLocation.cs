@@ -105,8 +105,7 @@ namespace DSRevitNodesUI
 
         private void Update()
         {
-            ForceReExecuteOfNode = true; 
-            OnAstUpdated();
+            OnNodeModified(forceExecute:true);
 
             var location = DocumentManager.Instance.CurrentDBDocument.SiteLocation;
             Location.Name = location.PlaceName;

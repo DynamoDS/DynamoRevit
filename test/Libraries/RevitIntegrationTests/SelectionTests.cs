@@ -84,8 +84,8 @@ namespace RevitSystemTests
 
             TransactionManager.Instance.ForceCloseTransaction();
 
-            Assert.AreEqual(true, selectNode.ForceReExecuteOfNode);
-           
+            Assert.AreEqual(true, selectNode.NeedsForceExecution);
+
             RunCurrentModel();
 
             Assert.AreNotEqual(0, watchNode.CachedValue); //Actual value depends on units
