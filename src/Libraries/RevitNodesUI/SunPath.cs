@@ -51,16 +51,14 @@ namespace DSRevitNodesUI
         {
             settingsID =
                 DocumentManager.Instance.CurrentDBDocument.ActiveView.SunAndShadowSettings.UniqueId;
-            ForceReExecuteOfNode = true;
-            OnAstUpdated();
+            OnNodeModified(forceExecute:true);
         }
 
         private void Updater_ElementsModified(IEnumerable<string> updated)
         {
             if (updated.Contains(settingsID))
             {
-                ForceReExecuteOfNode = true;
-                OnAstUpdated();
+                OnNodeModified(forceExecute:true);
             }
         }
 
