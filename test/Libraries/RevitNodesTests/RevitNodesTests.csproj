@@ -15,6 +15,7 @@
     <AssemblyName>RevitNodesTests</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    
   </PropertyGroup>
   <PropertyGroup>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
@@ -137,7 +138,7 @@
       <Name>RevitServices</Name>
       <Private>False</Private>
     </ProjectReference>
-	<Reference Include="TestServices">
+    <Reference Include="TestServices">
       <HintPath>$(DYNAMOTESTAPI)\TestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>

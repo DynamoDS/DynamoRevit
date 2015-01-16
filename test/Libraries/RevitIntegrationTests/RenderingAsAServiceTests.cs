@@ -27,7 +27,6 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void CanOpenSimpleCloudRender()
         {
-            var model = ViewModel.Model;
             string samplePath = Path.Combine(workingDirectory, @".\Samples\SimpleCloudRender.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);

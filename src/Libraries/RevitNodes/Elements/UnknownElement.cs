@@ -24,6 +24,15 @@ namespace Revit.Elements
         /// <param name="element"></param>
         private UnknownElement(Autodesk.Revit.DB.Element element)
         {
+            SafeInit(() => InitUnknownElement(element));
+        }
+
+        /// <summary>
+        /// Initialize an UnknownElement element
+        /// </summary>
+        /// <param name="element"></param>
+        private void InitUnknownElement(Autodesk.Revit.DB.Element element)
+        {
             InternalSetElement(element);
         }
 
@@ -39,9 +48,10 @@ namespace Revit.Elements
         /// set this value manually if that's not what you want.
         /// </summary>
         /// <param name="element"></param>
-        internal static UnknownElement FromExisting(Autodesk.Revit.DB.Element element)
+        internal static UnknownElement FromExisting(Autodesk.Revit.DB.Element element, bool isRevitOwned)
         {
-            return new UnknownElement(element);
+            var el = new UnknownElement(element) { IsRevitOwned = isRevitOwned };
+            return el;
         }
 
         public override string ToString()

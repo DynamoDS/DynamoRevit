@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-
+using Dynamo.Controls;
 using Dynamo.Interfaces;
-using Dynamo.Models;
 
+using Dynamo.Models;
+using Dynamo.Wpf;
 using ProtoCore.AST.AssociativeAST;
 
 using Revit.Elements;
@@ -24,10 +24,14 @@ using DividedSurface = Autodesk.Revit.DB.DividedSurface;
 using Element = Autodesk.Revit.DB.Element;
 using RevitDynamoModel = Dynamo.Applications.Models.RevitDynamoModel;
 using Point = Autodesk.DesignScript.Geometry.Point;
+using String = System.String;
 using UV = Autodesk.DesignScript.Geometry.UV;
 
 namespace Dynamo.Nodes
 {
+
+    #region RevitSelection
+
     public abstract class RevitSelection<TSelection, TResult> : SelectionBase<TSelection, TResult>
     {
         protected Document SelectionOwner { get; private set; }
@@ -35,6 +39,7 @@ namespace Dynamo.Nodes
 
         #region public properties
 
+        /* TODO: Now that nodes know nothing about their owners, we can't access RunEnabled.
         public override bool CanSelect
         {
             get { return base.CanSelect && RevitDynamoModel.RunEnabled; }
@@ -49,30 +54,6 @@ namespace Dynamo.Nodes
                     ? base.SelectionSuggestion
                     : "Selection is disabled when Dynamo run is disabled.";
             }
-        }
-
-        #endregion
-
-        #region protected constructors
-
-        protected RevitSelection(
-            WorkspaceModel workspaceModel, SelectionType selectionType,
-            SelectionObjectType selectionObjectType, string message, string prefix)
-            : base(workspaceModel, selectionType, selectionObjectType, message, prefix)
-        {
-            Logger = workspaceModel.DynamoModel.Logger;
-
-            RevitDynamoModel = Workspace.DynamoModel as RevitDynamoModel;
-
-            // we need to obtain the dynamo model directly from the workspace model 
-            // here, as it is not yet initialized on the base constructor
-            var revMod = workspaceModel.DynamoModel as RevitDynamoModel;
-            if (revMod == null) return;
-
-            revMod.RevitServicesUpdater.ElementsDeleted += Updater_ElementsDeleted;
-            revMod.RevitServicesUpdater.ElementsModified += Updater_ElementsModified;
-            revMod.RevitDocumentChanged += Controller_RevitDocumentChanged;
-            revMod.PropertyChanged += revMod_PropertyChanged;
         }
 
         /// <summary>
@@ -92,6 +73,21 @@ namespace Dynamo.Nodes
                 RaisePropertyChanged("SelectionSuggestion");
             }
         }
+        */
+
+        #endregion
+
+        #region protected constructors
+
+        protected RevitSelection(SelectionType selectionType,
+            SelectionObjectType selectionObjectType, string message, string prefix)
+            : base(selectionType, selectionObjectType, message, prefix)
+        {
+            RevitServicesUpdater.Instance.ElementsDeleted += Updater_ElementsDeleted;
+            RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
+            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
+            //revMod.PropertyChanged += revMod_PropertyChanged;
+        }
 
         #endregion
 
@@ -106,11 +102,12 @@ namespace Dynamo.Nodes
 
         #region public methods
 
-        public override void Destroy()
+        public override void Dispose()
         {
-            base.Destroy();
-            RevitDynamoModel.RevitServicesUpdater.ElementsDeleted -= Updater_ElementsDeleted;
-            RevitDynamoModel.RevitServicesUpdater.ElementsModified -= Updater_ElementsModified;
+            base.Dispose();
+            RevitServicesUpdater.Instance.ElementsDeleted -= Updater_ElementsDeleted;
+            RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
+            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -= Controller_RevitDocumentChanged;
         }
 
         public override void UpdateSelection(IEnumerable<TSelection> rawSelection)
@@ -131,6 +128,10 @@ namespace Dynamo.Nodes
         #endregion
     }
 
+    #endregion
+
+    #region ElementSelection
+
     /// <summary>
     /// A selection type where the derived class specifies the type to select,
     /// and returns an element.
@@ -139,10 +140,9 @@ namespace Dynamo.Nodes
     public abstract class ElementSelection<TSelection> : RevitSelection<TSelection, Element>
         where TSelection : Element
     {
-        protected ElementSelection(
-            WorkspaceModel workspaceModel, SelectionType selectionType,
+        protected ElementSelection(SelectionType selectionType,
             SelectionObjectType selectionObjectType, string message, string prefix)
-            : base(workspaceModel, selectionType, selectionObjectType, message, prefix) { }
+            : base(selectionType, selectionObjectType, message, prefix) { }
 
         public override IModelSelectionHelper<TSelection> SelectionHelper
         {
@@ -258,15 +258,18 @@ namespace Dynamo.Nodes
         }
     }
 
+    #endregion
+
+    #region ReferenceSelection
+
     /// <summary>
     /// A selection type for selecting reference objects in Revit (Faces, Edges, etc.)
     /// </summary>
     public abstract class ReferenceSelection : RevitSelection<Reference, Reference>
     {
-        protected ReferenceSelection(
-            WorkspaceModel workspaceModel, SelectionType selectionType,
+        protected ReferenceSelection(SelectionType selectionType,
             SelectionObjectType selectionObjectType, string message, string prefix)
-            : base(workspaceModel, selectionType, selectionObjectType, message, prefix) { }
+            : base(selectionType, selectionObjectType, message, prefix) { }
 
         public override IModelSelectionHelper<Reference> SelectionHelper
         {
@@ -403,8 +406,7 @@ namespace Dynamo.Nodes
                 
             // We want this modification to trigger a graph reevaluation
             // and we want the AST for this node to be regenerated.
-            RequiresRecalc = true;
-            ForceReExecuteOfNode = true;
+            OnNodeModified(forceExecute:true);
         }
 
         protected override IEnumerable<Reference> ExtractSelectionResults(Reference selection)
@@ -413,14 +415,15 @@ namespace Dynamo.Nodes
         }
     }
 
+    #endregion
+
     [NodeName("Select Analysis Results"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("Select analysis results from the document."), IsDesignScriptCompatible,
      IsVisibleInDynamoLibrary(false)]
     public class DSAnalysisResultSelection : ElementSelection<Element>
     {
-        public DSAnalysisResultSelection(WorkspaceModel workspaceModel)
+        public DSAnalysisResultSelection()
             : base(
-                workspaceModel,
                 SelectionType.One,
                 SelectionObjectType.None,
                 "Select an analysis result.",
@@ -431,9 +434,8 @@ namespace Dynamo.Nodes
      NodeDescription("Select a model element from the document."), IsDesignScriptCompatible]
     public class DSModelElementSelection : ElementSelection<Element>
     {
-        public DSModelElementSelection(WorkspaceModel workspaceModel)
+        public DSModelElementSelection()
             : base(
-                workspaceModel,
                 SelectionType.One,
                 SelectionObjectType.None,
                 "Select Model Element",
@@ -444,9 +446,8 @@ namespace Dynamo.Nodes
      NodeDescription("Select a face."), IsDesignScriptCompatible]
     public class DSFaceSelection : ReferenceSelection
     {
-        public DSFaceSelection(WorkspaceModel workspaceModel)
+        public DSFaceSelection()
             : base(
-                workspaceModel,
                 SelectionType.One,
                 SelectionObjectType.Face,
                 "Select a face.",
@@ -457,9 +458,8 @@ namespace Dynamo.Nodes
      NodeDescription("Select an edge."), IsDesignScriptCompatible]
     public class DSEdgeSelection : ReferenceSelection
     {
-        public DSEdgeSelection(WorkspaceModel workspaceModel)
+        public DSEdgeSelection()
             : base(
-                workspaceModel,
                 SelectionType.One,
                 SelectionObjectType.Edge,
                 "Select an edge.",
@@ -470,9 +470,8 @@ namespace Dynamo.Nodes
      NodeDescription("Select a point on a face."), IsDesignScriptCompatible]
     public class DSPointOnElementSelection : ReferenceSelection
     {
-        public DSPointOnElementSelection(WorkspaceModel workspaceModel)
+        public DSPointOnElementSelection()
             : base(
-                workspaceModel,
                 SelectionType.One,
                 SelectionObjectType.PointOnFace,
                 "Select a point on a face.",
@@ -532,9 +531,8 @@ namespace Dynamo.Nodes
      NodeDescription("Select a UV on a face."), IsDesignScriptCompatible]
     public class DSUvOnElementSelection : ReferenceSelection
     {
-        public DSUvOnElementSelection(WorkspaceModel workspaceModel)
+        public DSUvOnElementSelection()
             : base(
-                workspaceModel,
                 SelectionType.One,
                 SelectionObjectType.PointOnFace,
                 "Select a point on a face.",
@@ -595,9 +593,8 @@ namespace Dynamo.Nodes
      IsDesignScriptCompatible]
     public class DSDividedSurfaceFamiliesSelection : ElementSelection<DividedSurface>
     {
-        public DSDividedSurfaceFamiliesSelection(WorkspaceModel workspaceModel)
+        public DSDividedSurfaceFamiliesSelection()
             : base(
-                workspaceModel,
                 SelectionType.One,
                 SelectionObjectType.None,
                 "Select a divided surface.",
@@ -617,9 +614,8 @@ namespace Dynamo.Nodes
      NodeDescription("Select multiple elements from the Revit document."), IsDesignScriptCompatible]
     public class DSModelElementsSelection : ElementSelection<Element>
     {
-        public DSModelElementsSelection(WorkspaceModel workspaceModel)
+        public DSModelElementsSelection()
             : base(
-                workspaceModel,
                 SelectionType.Many,
                 SelectionObjectType.None,
                 "Select elements.",
@@ -630,9 +626,8 @@ namespace Dynamo.Nodes
      NodeDescription("Select multiple faces from the Revit document."), IsDesignScriptCompatible]
     public class SelectFaces : ReferenceSelection
     {
-        public SelectFaces(WorkspaceModel workspaceModel)
+        public SelectFaces()
             : base(
-                workspaceModel,
                 SelectionType.Many,
                 SelectionObjectType.Face,
                 "Select faces.",

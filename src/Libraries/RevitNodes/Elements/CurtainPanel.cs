@@ -39,7 +39,7 @@ namespace Revit.Elements
             Autodesk.Revit.DB.CurtainGrid grid = null;
             if (host is Autodesk.Revit.DB.Wall)
             {
-               hostingGrid = CurtainGrid.ByElement(UnknownElement.FromExisting(host));
+               hostingGrid = CurtainGrid.ByElement(UnknownElement.FromExisting(host, true));
             }
             else
             {
@@ -310,8 +310,21 @@ namespace Revit.Elements
       /// <param name="panelElement"></param>
       protected CurtainPanel(Autodesk.Revit.DB.Panel panelElement)
       {
-         InternalSetFamilyInstance(panelElement);
-         boundsCache = null;
+          SafeInit(() => InitCurtainPanel(panelElement));
+      }
+
+      #endregion
+
+      #region Helper for private constructors
+
+      /// <summary>
+      /// Initialize a CurtainPanel element
+      /// </summary>
+      /// <param name="panelElement"></param>
+      private void InitCurtainPanel(Autodesk.Revit.DB.Panel panelElement)
+      {
+          InternalSetFamilyInstance(panelElement);
+          boundsCache = null;
       }
 
       #endregion
@@ -390,7 +403,7 @@ namespace Revit.Elements
 
          //var hostingGrid = CurtainGrid.ByElement(UnknownElement.FromExisting(host));
 
-         var mullions = Mullion.ByElement(UnknownElement.FromExisting(host));//hostingGrid.GetMullions();
+         var mullions = Mullion.ByElement(UnknownElement.FromExisting(host, true));//hostingGrid.GetMullions();
          int numberMullions = mullions.Length;
          var result = new List<Mullion>();
 

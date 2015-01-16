@@ -14,7 +14,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(graph);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
         }
 
         [Test]
@@ -74,11 +76,11 @@ namespace RevitSystemTests
 
             //ViewModel.OpenCommand.Execute(testPath);
 
-            //var selectionNode = ViewModel.Model.Nodes.Where(x => x is dynCurvesBySelection).First();
+            //var selectionNode = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is dynCurvesBySelection).First();
             //((dynCurvesBySelection)selectionNode).SelectedElement = cbp;
 
             ////delete the transaction node when testing
-            ////var transNode = ViewModel.Model.Nodes.Where(x => x is dynTransaction).First();
+            ////var transNode = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is dynTransaction).First();
             ////ViewModel.RunCommand(vm.DeleteCommand, transNode);
 
             //ViewModel.RunExpressionCommand.Execute(true);
@@ -109,14 +111,14 @@ namespace RevitSystemTests
 
         //    ViewModel.OpenCommand.Execute(testPath);
 
-        //    var selectionNodes = ViewModel.Model.Nodes.Where(x => x is dynPointBySelection);
+        //    var selectionNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is dynPointBySelection);
         //    Assert.AreEqual(2, selectionNodes.Count());
 
         //    ((dynPointBySelection)selectionNodes.ElementAt(0)).SelectedElement = p1;
         //    ((dynPointBySelection)selectionNodes.ElementAt(1)).SelectedElement = p2;
 
         //    //delete the transaction node when testing
-        //    //var transNode = ViewModel.Model.Nodes.Where(x => x is dynTransaction).First();
+        //    //var transNode = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is dynTransaction).First();
         //    //ViewModel.RunCommand(vm.DeleteCommand, transNode);
 
         //    ViewModel.RunExpressionCommand.Execute(true);

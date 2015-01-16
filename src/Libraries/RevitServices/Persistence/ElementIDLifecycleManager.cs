@@ -88,7 +88,8 @@ namespace RevitServices.Persistence
                 //ID already existed, check we're not over adding
                 if (existingWrappers.Contains(wrapper))
                 {
-                    existingWrappers.Remove(wrapper);
+                    int index = existingWrappers.FindIndex((x) => object.ReferenceEquals(x, wrapper));
+                    existingWrappers.RemoveAt(index);
                     if (existingWrappers.Count == 0)
                     {
                         wrappers.Remove(elementID);
@@ -134,6 +135,23 @@ namespace RevitServices.Persistence
                 return wrappers[id].Count;
             }
             
+        }
+
+        /// <summary>
+        /// Return null if no wrappers are registered with this ID.
+        /// Otherwise, returns the first wrapper.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public object GetFirstWrapper(T id)
+        {
+            List<object> wrappersForGivenId;
+            if (wrappers.TryGetValue(id, out wrappersForGivenId))
+            {
+                if (null != wrappersForGivenId && wrappersForGivenId.Count > 0)
+                    return wrappersForGivenId.First();
+            }
+            return null;
         }
 
         /// <summary>

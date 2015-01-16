@@ -27,6 +27,56 @@ namespace Revit.Elements
     public abstract class Element : IDisposable, IGraphicItem, IFormattable
     {
         /// <summary>
+        /// Handling exceptions when calling the initializing function
+        /// </summary>
+        /// <param name="init"></param>
+        protected void SafeInit(Action init)
+        {
+            var elementManager = ElementIDLifecycleManager<int>.GetInstance();
+            var element = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Element>(Document);
+            int count = 0;
+            int id = 0;
+            if (null != element)
+            {
+                id = element.Id.IntegerValue;
+                count = elementManager.GetRegisteredCount(id);
+            }
+            try
+            {
+                init();
+            }
+            catch (Exception e)
+            {
+                //If the element is newly created and bound but the creation is aborted because
+                //of an exception, it need to be unregistered.
+                if (element == null && InternalElementId != null)
+                {
+                    elementManager.UnRegisterAssociation(Id, this);
+                    internalId = null;
+                    throw e;
+                }
+                else if (element != null)
+                {
+                    //If the internal element has already been bound, and if the registered count has increased,
+                    //it need to be unregistered.
+                    if (elementManager.GetRegisteredCount(id) == count + 1)
+                    {
+                        elementManager.UnRegisterAssociation(Id, this);
+                        internalId = null;
+                    }
+
+                    //It means that the updating operation failed, an attemption of making a new element is made.
+                    ElementBinder.SetRawDataForTrace(null);
+                    SafeInit(init);
+                }
+                else
+                {
+                    throw e;
+                }
+            }
+        }
+
+        /// <summary>
         /// A reference to the current Document.
         /// </summary>
         internal static Document Document
@@ -238,7 +288,14 @@ namespace Revit.Elements
             switch (param.StorageType)
             {
                 case StorageType.ElementId:
-                    result = param.AsElementId();
+                    int id = param.AsElementId().IntegerValue;
+                    // When the element is obtained here, to convert it to our element wrapper, it
+                    // need to be figured out whether this element is created by us. Here the existing
+                    // element wrappers will be checked. If there is one, its property to specify
+                    // whether it is created by us will be followed. If there is none, it means the
+                    // element is not created by us.
+                    var ele = ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(id) as Element;
+                    result = ElementSelector.ByElementId(id, ele == null ? true : ele.IsRevitOwned);
                     break;
                 case StorageType.String:
                     result = param.AsString();
@@ -283,7 +340,7 @@ namespace Revit.Elements
 
             var patternCollector = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             patternCollector.OfClass(typeof(FillPatternElement));
-            FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().Name == "Solid fill");
+            FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
 
             ogs.SetProjectionFillColor(new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue));
             ogs.SetProjectionFillPatternId(solidFill.Id);
@@ -401,6 +458,8 @@ namespace Revit.Elements
         /// <returns></returns>
         internal IEnumerable<Autodesk.Revit.DB.GeometryObject> InternalGeometry(bool useSymbolGeometry = false)
         {
+            DocumentManager.Regenerate();
+
             var thisElement = InternalElement;
 
             var goptions0 = new Options { ComputeReferences = true };

@@ -41,7 +41,19 @@ namespace Revit.Elements
       /// <param name="mullionElement"></param>
       protected Mullion(Autodesk.Revit.DB.Mullion mullionElement)
       {
-         InternalSetFamilyInstance(mullionElement);
+          SafeInit(() => InitMullion(mullionElement));
+      }
+      #endregion
+
+      #region Helper for private constructors
+
+      /// <summary>
+      /// Initialize a Mullion element
+      /// </summary>
+      /// <param name="mullionElement"></param>
+      protected void InitMullion(Autodesk.Revit.DB.Mullion mullionElement)
+      {
+          InternalSetFamilyInstance(mullionElement);
       }
       #endregion
 
@@ -116,7 +128,7 @@ namespace Revit.Elements
 
          //var hostingGrid = Panel.ByElement(UnknownElement.FromExisting(host));
 
-         var panels = CurtainPanel.ByElement(UnknownElement.FromExisting(host));
+         var panels = CurtainPanel.ByElement(UnknownElement.FromExisting(host, true));
 
          var result = new List<CurtainPanel>();
 

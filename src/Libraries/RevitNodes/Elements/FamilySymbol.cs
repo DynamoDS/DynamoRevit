@@ -42,6 +42,19 @@ namespace Revit.Elements
         /// <param name="symbol"></param>
         private FamilySymbol(Autodesk.Revit.DB.FamilySymbol symbol)
         {
+            SafeInit(() => InitFamilySymbol(symbol));
+        }
+
+        #endregion
+
+        #region Helper for private constructors
+
+        /// <summary>
+        /// Initialize a FamilySymbol element
+        /// </summary>
+        /// <param name="symbol"></param>
+        private void InitFamilySymbol(Autodesk.Revit.DB.FamilySymbol symbol)
+        {
             InternalSetFamilySymbol(symbol);
         }
 

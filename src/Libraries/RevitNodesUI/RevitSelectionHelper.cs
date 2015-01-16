@@ -9,7 +9,7 @@ using RevitServices.Persistence;
 
 namespace Revit.Interactivity
 {
-    internal class RevitReferenceSelectionHelper : IModelSelectionHelper<Reference>
+    internal class RevitReferenceSelectionHelper : LogSourceBase, IModelSelectionHelper<Reference>
     {
         private static readonly RevitReferenceSelectionHelper instance =
             new RevitReferenceSelectionHelper();
@@ -20,16 +20,15 @@ namespace Revit.Interactivity
         }
 
         public IEnumerable<Reference> RequestSelectionOfType(
-            string selectionMessage, SelectionType selectionType, SelectionObjectType objectType,
-            ILogger logger)
+            string selectionMessage, SelectionType selectionType, SelectionObjectType objectType)
         {
             switch (selectionType)
             {
                 case SelectionType.One:
-                    return RequestReferenceSelection(selectionMessage, logger, objectType);
+                    return RequestReferenceSelection(selectionMessage, AsLogger(), objectType);
 
                 case SelectionType.Many:
-                    return RequestMultipleReferencesSelection(selectionMessage, logger, objectType);
+                    return RequestMultipleReferencesSelection(selectionMessage, AsLogger(), objectType);
             }
 
             return null;
@@ -45,8 +44,8 @@ namespace Revit.Interactivity
             Reference reference = null;
 
             var choices = doc.Selection;
-            List<ElementId> elementIds = new List<ElementId>();
-            choices.SetElementIds(elementIds);
+
+            choices.Elements.Clear();
 
             logger.Log(message);
 
@@ -74,8 +73,9 @@ namespace Revit.Interactivity
             IList<Reference> references = null;
 
             var choices = doc.Selection;
-            List<ElementId> elementIds = new List<ElementId>();
-            choices.SetElementIds(elementIds);
+
+            choices.Elements.Clear();
+
 
             logger.Log(message);
 
@@ -101,7 +101,7 @@ namespace Revit.Interactivity
         #endregion
     }
 
-    internal class RevitElementSelectionHelper<T> : IModelSelectionHelper<T> where T : Element
+    internal class RevitElementSelectionHelper<T> : LogSourceBase, IModelSelectionHelper<T> where T : Element
     {
         private static readonly RevitElementSelectionHelper<T> instance = new RevitElementSelectionHelper<T>();
 
@@ -115,21 +115,19 @@ namespace Revit.Interactivity
         /// </summary>
         /// <typeparam name="T">The type of the Element.</typeparam>
         /// <param name="selectionMessage">The message to display.</param>
-        /// <param name="logger">A logger.</param>
         /// <param name="selectionType">The selection type.</param>
         /// <param name="objectType">The selection object type.</param>
         /// <returns></returns>
         public IEnumerable<T> RequestSelectionOfType(
-            string selectionMessage, SelectionType selectionType, SelectionObjectType objectType,
-            ILogger logger)
+            string selectionMessage, SelectionType selectionType, SelectionObjectType objectType)
         {
             switch (selectionType)
             {
                 case SelectionType.One:
-                    return RequestElementSelection(selectionMessage, logger);
+                    return RequestElementSelection(selectionMessage, AsLogger());
 
                 case SelectionType.Many:
-                    return RequestMultipleElementsSelection(selectionMessage, logger);
+                    return RequestMultipleElementsSelection(selectionMessage, AsLogger());
             }
 
             return null;
@@ -177,8 +175,7 @@ namespace Revit.Interactivity
             Element e = null;
 
             var choices = doc.Selection;
-            List<ElementId> elementIds = new List<ElementId>();
-            choices.SetElementIds(elementIds);
+            choices.Elements.Clear();
 
             logger.Log(selectionMessage);
 
@@ -201,8 +198,7 @@ namespace Revit.Interactivity
             var doc = DocumentManager.Instance.CurrentUIDocument;
 
             var choices = doc.Selection;
-            List<ElementId> elementIds = new List<ElementId>();
-            choices.SetElementIds(elementIds);
+            choices.Elements.Clear();
 
             logger.Log(selectionMessage);
 
@@ -229,169 +225,4 @@ namespace Revit.Interactivity
         }
     }
 
-    #region junk
-
-    //public static Reference RequestFaceReferenceSelection(string message, ILogger logger)
-    //{
-    //    var doc = DocumentManager.Instance.CurrentUIDocument;
-
-    //    Reference faceRef = null;
-
-    //    var choices = doc.Selection;
-    //    choices.Elements.Clear();
-
-    //    logger.Log(message);
-    //    faceRef = doc.Selection.PickObject(ObjectType.Face);
-
-    //    return faceRef;
-    //}
-
-    //public static Reference RequestEdgeReferenceSelection(string message, ILogger logger)
-    //{
-    //    var doc = DocumentManager.Instance.CurrentUIDocument;
-
-    //    var choices = doc.Selection;
-    //    choices.Elements.Clear();
-
-    //    logger.Log(message);
-    //    var edgeRef = doc.Selection.PickObject(ObjectType.Edge);
-
-    //    return edgeRef;
-    //}
-
-    //public static DividedSurface RequestDividedSurfaceSelection(string message, ILogger logger)
-    //{
-    //    var doc = DocumentManager.Instance.CurrentUIDocument;
-
-    //    DividedSurface f = null;
-
-    //    var choices = doc.Selection;
-
-    //    choices.Elements.Clear();
-
-    //    logger.Log(message);
-
-    //    var formRef = doc.Selection.PickObject(
-    //        ObjectType.Element,
-    //        new DividedSurfaceSelectionFilter());
-
-    //    if (formRef != null)
-    //    {
-    //        //get the element
-    //        var el = DocumentManager.Instance.CurrentDBDocument.GetElement(formRef);
-    //        f = (DividedSurface)el;
-    //    }
-    //    return f;
-    //}
-
-    //public static ElementId RequestAnalysisResultInstanceSelection(
-    //    string message, ILogger logger)
-    //{
-    //    var doc = DocumentManager.Instance.CurrentUIDocument;
-
-    //    try
-    //    {
-    //        var view = doc.ActiveView;
-
-    //        var sfm = SpatialFieldManager.GetSpatialFieldManager(view);
-
-    //        if (sfm != null)
-    //        {
-    //            sfm.GetRegisteredResults();
-
-    //            var choices = doc.Selection;
-
-    //            choices.Elements.Clear();
-
-    //            logger.Log(message);
-
-    //            var fsRef = doc.Selection.PickObject(ObjectType.Element);
-
-    //            if (fsRef != null)
-    //            {
-    //                var analysisResult = doc.Document.GetElement(fsRef.ElementId);
-
-    //                return analysisResult.Id;
-    //            }
-    //            return null;
-    //        }
-    //        return null;
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        logger.Log(ex);
-    //        return null;
-    //    }
-    //}
-
-    //public static ElementId RequestModelElementSelection(string message, ILogger logger)
-    //{
-    //    var doc = DocumentManager.Instance.CurrentUIDocument;
-
-    //    Element selectedElement = null;
-
-    //    var choices = doc.Selection;
-    //    choices.Elements.Clear();
-
-    //    logger.Log(message);
-
-    //    var fsRef = doc.Selection.PickObject(ObjectType.Element);
-    //    if (fsRef != null)
-    //    {
-    //        selectedElement = doc.Document.GetElement(fsRef.ElementId);
-    //        if (selectedElement is FamilyInstance || selectedElement is HostObject ||
-    //            selectedElement is ImportInstance ||
-    //            selectedElement is CombinableElement)
-    //            return selectedElement.Id;
-    //    }
-
-    //    return selectedElement != null ? selectedElement.Id : null;
-    //}
-
-    //public static Reference RequestReferenceXYZSelection(string message, ILogger logger)
-    //{
-    //    var doc = DocumentManager.Instance.CurrentUIDocument;
-
-    //    var choices = doc.Selection;
-    //    choices.Elements.Clear();
-
-    //    logger.Log(message);
-
-    //    var xyzRef = doc.Selection.PickObject(ObjectType.PointOnElement);
-
-    //    return xyzRef;
-    //}
-
-    //public class CurveSelectionFilter : ISelectionFilter
-    //{
-    //    public bool AllowElement(Element element)
-    //    {
-    //        if (element.Category.Name == "Model Lines" || element.Category.Name == "Lines")
-    //            return true;
-    //        return false;
-    //    }
-
-    //    public bool AllowReference(Reference refer, XYZ point)
-    //    {
-    //        return false;
-    //    }
-    //}
-
-    //public class DividedSurfaceSelectionFilter : ISelectionFilter
-    //{
-    //    public bool AllowElement(Element elem)
-    //    {
-    //        if (elem is DividedSurface)
-    //            return true;
-    //        return false;
-    //    }
-
-    //    public bool AllowReference(Reference reference, XYZ position)
-    //    {
-    //        return false;
-    //    }
-    //}
-
-
-    #endregion
 }

@@ -26,13 +26,41 @@ namespace Revit.Elements.Views
         /// </summary>
         private PerspectiveView(Autodesk.Revit.DB.View3D view)
         {
-            InternalSetView3D(view);
+            SafeInit(() => InitPerspectiveView(view));
         }
 
         /// <summary>
         /// Private constructor
         /// </summary>
         private PerspectiveView(XYZ eye, XYZ target, BoundingBoxXYZ bbox, string name, bool isolate)
+        {
+            SafeInit(() => InitPerspectiveView(eye, target, bbox, name, isolate));
+        }
+
+        /// <summary>
+        /// Private constructor
+        /// </summary>
+        private PerspectiveView(XYZ eye, XYZ target, Autodesk.Revit.DB.Element element, string name, bool isolate)
+        {
+            SafeInit(() => InitPerspectiveView(eye, target, element, name, isolate));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a PerspectiveView element
+        /// </summary>
+        private void InitPerspectiveView(Autodesk.Revit.DB.View3D view)
+        {
+            InternalSetView3D(view);
+        }
+
+        /// <summary>
+        /// Initialize a PerspectiveView element
+        /// </summary>
+        private void InitPerspectiveView(XYZ eye, XYZ target, BoundingBoxXYZ bbox, string name, bool isolate)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldEle =
@@ -76,9 +104,9 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Private constructor
+        /// Initialize a PerspectiveView element
         /// </summary>
-        private PerspectiveView(XYZ eye, XYZ target, Autodesk.Revit.DB.Element element, string name, bool isolate)
+        private void InitPerspectiveView(XYZ eye, XYZ target, Autodesk.Revit.DB.Element element, string name, bool isolate)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldEle =
@@ -88,7 +116,7 @@ namespace Revit.Elements.Views
             if (oldEle != null)
             {
                 InternalSetView3D(oldEle);
-                InternalSetOrientation( BuildOrientation3D(eye, target) );
+                InternalSetOrientation(BuildOrientation3D(eye, target));
                 if (isolate)
                 {
                     InternalIsolateInView(element);

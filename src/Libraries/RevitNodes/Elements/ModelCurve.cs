@@ -31,7 +31,7 @@ namespace Revit.Elements
         /// <param name="curve"></param>
         private ModelCurve(Autodesk.Revit.DB.ModelCurve curve)
         {
-            InternalSetCurveElement(curve);
+            SafeInit(() => InitModelCurve(curve));
         }
 
         // PB: This implementation borrows the somewhat risky notions from the original Dynamo
@@ -44,6 +44,33 @@ namespace Revit.Elements
         /// <param name="crv"></param>
         /// <param name="makeReferenceCurve"></param>
         private ModelCurve(Autodesk.Revit.DB.Curve crv, bool makeReferenceCurve)
+        {
+            SafeInit(() => InitModelCurve(crv, makeReferenceCurve));
+        }
+
+        #endregion
+
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Initialize a ModelCurve element
+        /// </summary>
+        /// <param name="curve"></param>
+        private void InitModelCurve(Autodesk.Revit.DB.ModelCurve curve)
+        {
+            InternalSetCurveElement(curve);
+        }
+
+        // PB: This implementation borrows the somewhat risky notions from the original Dynamo
+        // implementation.  In short, it has the ability to infer a sketch plane,
+        // which might also mean deleting the original one.
+
+        /// <summary>
+        /// Initialize a ModelCurve element
+        /// </summary>
+        /// <param name="crv"></param>
+        /// <param name="makeReferenceCurve"></param>
+        private void InitModelCurve(Autodesk.Revit.DB.Curve crv, bool makeReferenceCurve)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var mc =

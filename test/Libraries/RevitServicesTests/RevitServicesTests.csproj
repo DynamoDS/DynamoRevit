@@ -30,6 +30,7 @@ limitations under the License.
     <AssemblyName>RevitServicesTests</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
