@@ -6,8 +6,9 @@ using Autodesk.Revit.DB;
 using Dynamo.Controls;
 using Dynamo.Nodes;
 using Dynamo.Wpf;
+using Dynamo.Wpf.Nodes;
 
-namespace DSRevitNodesUI
+namespace Dynamo.Wpf.Nodes.Revit
 {
     // TODO(Peter): These classes implement NodeViewCustomizations for various Revit selection nodes.
     // Because SelectionBaseNodeViewCustomization is a generic class and NodeViewCustomizations
