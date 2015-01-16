@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using DSCoreNodesUI;
 using Dynamo.Wpf;
+using Dynamo.Wpf.Nodes;
+using DSRevitNodesUI;
 
-namespace DSRevitNodesUI
+namespace Dynamo.Wpf.Nodes.Revit
 {
     public class FamilyInstanceParametersNodeViewCustomization : DropDownNodeViewCustomization, INodeViewCustomization<FamilyInstanceParameters>
     {
