@@ -18,6 +18,7 @@ using NUnit.Framework;
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
+using RevitServices.Elements;
 
 namespace RevitSystemTests
 {
@@ -79,6 +80,7 @@ namespace RevitSystemTests
             {
                 ViewModel.Model.ShutDown(false);
                 ViewModel = null;
+                RevitServicesUpdater.DisposeInstance();
                 TearDown();
             }
 

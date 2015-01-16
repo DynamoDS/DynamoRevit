@@ -76,8 +76,8 @@ namespace RevitSystemTests
             // test copying and pasting the workflow
             DynamoSelection.Instance.ClearSelection();
             DynamoSelection.Instance.Selection.AddRange(ViewModel.Model.CurrentWorkspace.Nodes);
-            model.Copy(null);
-            model.Paste(null);
+            model.Copy();
+            model.Paste();
 
             // evaluate graph
             var refPtNodeId = "16d1ceb2-c780-45d1-9dfb-d9c49836a931";
