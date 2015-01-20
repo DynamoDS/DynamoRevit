@@ -406,8 +406,7 @@ namespace Dynamo.Nodes
                 
             // We want this modification to trigger a graph reevaluation
             // and we want the AST for this node to be regenerated.
-            ForceReExecuteOfNode = true;
-            OnAstUpdated();
+            OnNodeModified(forceExecute:true);
         }
 
         protected override IEnumerable<Reference> ExtractSelectionResults(Reference selection)
