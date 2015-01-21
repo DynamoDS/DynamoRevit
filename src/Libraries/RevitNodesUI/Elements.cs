@@ -61,8 +61,7 @@ namespace DSRevitNodesUI
             Debug.WriteLine("There are {0} updated elements", updated.Count());
             DebugElements(updated);
 #endif
-            ForceReExecuteOfNode = true;
-            OnAstUpdated();
+            OnNodeModified(forceExecute:true);
         }
 
 
@@ -73,8 +72,7 @@ namespace DSRevitNodesUI
             Debug.WriteLine("There are {0} modified elements", updated.Count());
             DebugElements(updated);
 #endif
-            ForceReExecuteOfNode = true;
-            OnAstUpdated();
+            OnNodeModified(forceExecute:true);
 
         }
 
@@ -85,8 +83,7 @@ namespace DSRevitNodesUI
             Debug.WriteLine("There are {0} deleted elements", deleted.Count());
             DebugElements(deleted);
 #endif
-            ForceReExecuteOfNode = true;
-            OnAstUpdated();
+            OnNodeModified(forceExecute:true);
 
         }
 
@@ -267,8 +264,7 @@ namespace DSRevitNodesUI
             }
             if (recalc)
             {
-                ForceReExecuteOfNode = true;
-                OnAstUpdated();
+                OnNodeModified(forceExecute:true);
             }
         }
 
@@ -363,8 +359,7 @@ namespace DSRevitNodesUI
         {
             if (updated.Any(uniqueIds.Contains))
             {
-                ForceReExecuteOfNode = true;
-                OnAstUpdated();
+                OnNodeModified(forceExecute:true);
             }
         }
 
@@ -374,8 +369,7 @@ namespace DSRevitNodesUI
             var elements = GetElementsVisibleInActiveView();
             elementIds = new HashSet<ElementId>(elements.Select(x => x.Id));
             uniqueIds = new HashSet<string>(elements.Select(x => x.UniqueId));
-            ForceReExecuteOfNode = true;
-            OnAstUpdated();
+            OnNodeModified(forceExecute:true);
         }
 
         private void RevitServicesUpdaterOnElementsDeleted(
@@ -388,8 +382,7 @@ namespace DSRevitNodesUI
                 uniqueIds =
                     new HashSet<string>(elementIds.Select(id => document.GetElement(id).UniqueId));
 
-                ForceReExecuteOfNode = true;
-                OnAstUpdated();
+                OnNodeModified(forceExecute: true);
             }
         }
 
