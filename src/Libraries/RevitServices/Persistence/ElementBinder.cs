@@ -384,7 +384,7 @@ namespace RevitServices.Persistence
                         || (n is CodeBlockNodeModel));
             }).Select((n) => n.GUID);
 
-            var nodeTraceDataList = core.GetCallsitesForNodes(nodeGuids);
+            var nodeTraceDataList = core.DSExecutable.RuntimeData.GetCallsitesForNodes(nodeGuids, core.DSExecutable);
 
             bool areElementsFoundForThisNode;
             foreach (Guid guid in nodeTraceDataList.Keys)
