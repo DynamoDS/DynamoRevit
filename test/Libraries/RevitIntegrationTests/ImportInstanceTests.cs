@@ -17,6 +17,9 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void ImportCubeAndThenImportSphere()
         {
+            throw new NotImplementedException("LC Modularisation repair");
+            /*
+
             //Run the graph to create an ImportInstance
             string dynFilePath = Path.Combine(workingDirectory, @".\ImportInstance\ImportInstance.dyn");
             string testPath = Path.GetFullPath(dynFilePath);
@@ -56,6 +59,7 @@ namespace RevitSystemTests
             //Check the number of instances
             instances = GetAllImportInstances().OfType<Autodesk.Revit.DB.ImportInstance>();
             Assert.AreEqual(1, instances.Count());
+             */
         }
 
         /// <summary>

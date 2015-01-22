@@ -15,6 +15,10 @@ namespace RevitSystemTests
     {
         private void TestMigration(string filename)
         {
+            throw new NotImplementedException("LC Modularization repair");
+
+            /*
+
             string testPath = Path.Combine(workingDirectory, filename);
 
             ViewModel.OpenCommand.Execute(testPath);
@@ -41,6 +45,7 @@ namespace RevitSystemTests
             {
                 Assert.Fail("Number of unresolved nodes found in TestCase: " + unresolvedNodeCount +str);
             }
+             */
         }
 
         [Test]

@@ -52,7 +52,7 @@ namespace Dynamo.Applications
                 ElementBinder.IsEnabled = true;
 
                 //TAF load english_us TODO add a way to localize
-                res = Resource_en_us.ResourceManager;
+                res = Resources.ResourceManager;
 
                 // Create new ribbon panel
                 RibbonPanel ribbonPanel =
@@ -66,7 +66,6 @@ namespace Dynamo.Applications
                                 res.GetString("App_Name"),
                                 assemblyName,
                                 "Dynamo.Applications.DynamoRevit"));
-
 
                 Bitmap dynamoIcon = Resources.logo_square_32x32;
 
@@ -146,13 +145,17 @@ namespace Dynamo.Applications
             // Set the LibG folder based on the context.
             // LibG is set to reference the libg_219 folder by default.
             var versionInt = int.Parse(application.ControlledApplication.VersionNumber);
-            if (versionInt > 2014)
+            switch (versionInt)
             {
-                DynamoPathManager.Instance.SetLibGPath("220");
-            }
-            else
-            {
-                DynamoPathManager.Instance.SetLibGPath("219");
+                case 2016:
+                    DynamoPathManager.Instance.SetLibGPath("221");
+                    break;
+                case 2015:
+                    DynamoPathManager.Instance.SetLibGPath("220");
+                    break;
+                default:
+                    DynamoPathManager.Instance.SetLibGPath("219");
+                    break;
             }
         }
 
