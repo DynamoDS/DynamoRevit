@@ -44,6 +44,7 @@ namespace Revit.Interactivity
             Reference reference = null;
 
             var choices = doc.Selection;
+
             choices.Elements.Clear();
 
             logger.Log(message);
@@ -72,7 +73,9 @@ namespace Revit.Interactivity
             IList<Reference> references = null;
 
             var choices = doc.Selection;
+
             choices.Elements.Clear();
+
 
             logger.Log(message);
 

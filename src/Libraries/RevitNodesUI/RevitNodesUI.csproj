@@ -95,6 +95,10 @@
       <HintPath>$(DYNAMOAPI)\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="CoreNodeModelsWpf">
+      <HintPath>$(DYNAMOAPI)\nodes\CoreNodeModelsWpf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DSCoreNodesUI">
       <HintPath>$(DYNAMOAPI)\nodes\DSCoreNodesUI.dll</HintPath>
       <Private>False</Private>
