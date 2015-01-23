@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -8,9 +6,6 @@ using Autodesk.DesignScript.Geometry;
 
 using DSCore.File;
 
-using DSCoreNodesUI;
-
-using Dynamo.Nodes;
 using Dynamo.Selection;
 using Dynamo.Tests;
 
@@ -19,6 +14,9 @@ using NUnit.Framework;
 using Revit.Elements;
 
 using RTF.Framework;
+
+using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
+using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 
 namespace RevitSystemTests
 {
