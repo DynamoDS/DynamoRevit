@@ -15,15 +15,15 @@ using RevitServices.Persistence;
 
 namespace DSRevitNodesUI
 {
-    [NodeName(/*NXLT*/"SunSettings.Current"), NodeCategory(BuiltinNodeCategories.REVIT_VIEW),
-     NodeDescription(/*NXLT*/"SunSettingsCurrentDescription", typeof(Properties.Resources)), IsDesignScriptCompatible]
+    [NodeName("SunSettings.Current"), NodeCategory(BuiltinNodeCategories.REVIT_VIEW),
+     NodeDescription("SunSettingsCurrentDescription", typeof(Properties.Resources)), IsDesignScriptCompatible]
     public class SunSettings : RevitNodeModel
     {
         private string settingsID;
 
         public SunSettings()
         {
-            OutPortData.Add(new PortData(/*NXLT*/"SunSettings", Properties.Resources.PortDataSunSettingToolTip));
+            OutPortData.Add(new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip));
             
             RegisterAllPorts();
             
@@ -51,16 +51,14 @@ namespace DSRevitNodesUI
         {
             settingsID =
                 DocumentManager.Instance.CurrentDBDocument.ActiveView.SunAndShadowSettings.UniqueId;
-            ForceReExecuteOfNode = true;
-            OnAstUpdated();
+            OnNodeModified(forceExecute:true);
         }
 
         private void Updater_ElementsModified(IEnumerable<string> updated)
         {
             if (updated.Contains(settingsID))
             {
-                ForceReExecuteOfNode = true;
-                OnAstUpdated();
+                OnNodeModified(forceExecute:true);
             }
         }
 
