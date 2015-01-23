@@ -215,12 +215,12 @@ namespace Revit.AnalysisDisplay
 
             if (string.IsNullOrEmpty(name))
             {
-                name = Resource1.AnalysisResultsDefaultName;
+                name = Properties.Resources.AnalysisResultsDefaultName;
             }
 
             if (string.IsNullOrEmpty(description))
             {
-                description = Resource1.AnalysisResultsDefaultDescription;
+                description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
             var data = PointAnalysisData.ByPointsAndResults (sampleLocations, new List<string>{"Dynamo Data"}, new List<IList<double>>{samples});
@@ -257,12 +257,12 @@ namespace Revit.AnalysisDisplay
 
             if (string.IsNullOrEmpty(name))
             {
-                name = Resource1.AnalysisResultsDefaultName;
+                name = Properties.Resources.AnalysisResultsDefaultName;
             }
 
             if (string.IsNullOrEmpty(description))
             {
-                description = Resource1.AnalysisResultsDefaultDescription;
+                description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
             return new PointAnalysisDisplay(view.InternalView, data, name, description, unitType);
