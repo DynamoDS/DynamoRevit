@@ -6,7 +6,10 @@ using Dynamo.Applications.Models;
 using Dynamo.Controls;
 using Dynamo.Models;
 using Dynamo.Nodes;
+
+using Dynamo.UI;
 using Dynamo.Wpf;
+
 using ProtoCore.AST.AssociativeAST;
 using Revit.GeometryConversion;
 
@@ -29,8 +32,8 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName(/*NXLT*/"SiteLocation"), NodeCategory(BuiltinNodeCategories.ANALYZE),
-     NodeDescription(/*NXLT*/"SiteLocationDescription", typeof(Properties.Resources)), IsDesignScriptCompatible]
+    [NodeName("SiteLocation"), NodeCategory(BuiltinNodeCategories.ANALYZE),
+     NodeDescription("SiteLocationDescription", typeof(Properties.Resources)), IsDesignScriptCompatible]
     public class SiteLocation : RevitNodeModel
     {
         private readonly RevitDynamoModel model;
@@ -39,7 +42,7 @@ namespace DSRevitNodesUI
 
         public SiteLocation()
         {
-            OutPortData.Add(new PortData(/*NXLT*/"Location", Properties.Resources.PortDataLocationToolTip));
+            OutPortData.Add(new PortData("Location", Properties.Resources.PortDataLocationToolTip));
             RegisterAllPorts();
 
             Location = DynamoUnits.Location.ByLatitudeAndLongitude(0.0, 0.0);
@@ -105,8 +108,7 @@ namespace DSRevitNodesUI
 
         private void Update()
         {
-            ForceReExecuteOfNode = true; 
-            OnAstUpdated();
+            OnNodeModified(forceExecute:true);
 
             var location = DocumentManager.Instance.CurrentDBDocument.SiteLocation;
             Location.Name = location.PlaceName;
