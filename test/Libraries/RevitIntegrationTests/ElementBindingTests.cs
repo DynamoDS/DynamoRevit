@@ -11,6 +11,8 @@ using Dynamo.Nodes;
 using RevitServices.Persistence;
 
 using Transaction = Autodesk.Revit.DB.Transaction;
+using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
+using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 
 namespace RevitSystemTests
 {
@@ -127,7 +129,8 @@ namespace RevitSystemTests
         private ElementId GetBindingElementIdForNode(Guid guid)
         {
             ProtoCore.Core core = ViewModel.Model.EngineController.LiveRunnerCore;
-            var guidToCallSites = core.GetCallsitesForNodes(new []{guid});
+            var guidToCallSites = core.DSExecutable.RuntimeData.GetCallsitesForNodes(new[] { guid }, core.DSExecutable);
+
             var callSites = guidToCallSites[guid];
             if (!callSites.Any())
                 return null;
@@ -149,7 +152,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
             //Modify the wall in Revit
             using (var trans = new Transaction(DocumentManager.Instance.CurrentUIDocument.Document, "ModifyInRevit"))
@@ -186,7 +191,9 @@ namespace RevitSystemTests
                     trans.Commit();
             }
 
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
             IList<Element> rps2 = GetAllWallElements(false);
             Assert.AreEqual(1, rps2.Count);
         }
@@ -200,7 +207,9 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
             //Change the position of the reference point
             var points = GetAllReferencePointElements(true);
@@ -215,7 +224,9 @@ namespace RevitSystemTests
             }
 
             //Run the graph once again
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
             points = GetAllReferencePointElements(true);
             Assert.AreEqual(1, points.Count);
             pnt = points[0] as ReferencePoint;
@@ -234,9 +245,13 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() =>ViewModel.Model.RunExpression());
+
+
+            RunCurrentModel();
+            
+            
             var model = ViewModel.Model;
-            var selNodes = model.AllNodes.Where(x => string.Equals(x.GUID.ToString(), "6a79717b-7438-458a-a725-587be0ba84fd"));
+            var selNodes = model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.GUID.ToString(), "6a79717b-7438-458a-a725-587be0ba84fd"));
             Assert.IsTrue(selNodes.Any());
             var node = selNodes.First();
             var id1 = GetBindingElementIdForNode(node.GUID);
@@ -254,7 +269,9 @@ namespace RevitSystemTests
             }
 
             //Run the graph again
-            Assert.DoesNotThrow(() =>ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
             var id2 = GetBindingElementIdForNode(node.GUID);
 
             //Check the number of reference points
@@ -275,7 +292,10 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() =>ViewModel.Model.RunExpression());
+
+
+            RunCurrentModel();
+            
 
             //Undo the creation of a reference point in Revit
             Assert.Inconclusive("TO DO");
@@ -289,18 +309,22 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() =>ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
             //Select one of the walls
             var model = ViewModel.Model;
-            var selNodes = model.AllNodes.Where(x => x is ElementSelection<Autodesk.Revit.DB.Element>);
+            var selNodes = model.CurrentWorkspace.Nodes.Where(x => x is ElementSelection<Autodesk.Revit.DB.Element>);
             var selNode = selNodes.First() as ElementSelection<Autodesk.Revit.DB.Element>;
 
             var elId = new ElementId(184273);
             var el = DocumentManager.Instance.CurrentDBDocument.GetElement(elId);
             //selNode.SelectionResults.Add(el);
 
-            Assert.DoesNotThrow(() =>ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
             //Ensure the running result is correct
             Assert.AreEqual(true, GetPreviewValue("6e4abc3b-83fd-44fe-821b-447f1ec0a56c"));
@@ -343,11 +367,13 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             var model = ViewModel.Model;
-            var selNodes = model.AllNodes.Where(x => x is ElementSelection<Autodesk.Revit.DB.Element>);
+            var selNodes = model.CurrentWorkspace.Nodes.Where(x => x is ElementSelection<Autodesk.Revit.DB.Element>);
             var selNode = selNodes.First() as ElementSelection<Autodesk.Revit.DB.Element>;
             //selNode.SelectionResults.Add(rp);
 
-            Assert.DoesNotThrow(() =>ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
             //Undo the creation of a reference point in Revit
             Assert.Inconclusive("TO DO");
@@ -382,17 +408,21 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             var model = ViewModel.Model;
-            var selNodes = model.AllNodes.Where(x => x is ElementSelection<Autodesk.Revit.DB.Element>);
+            var selNodes = model.CurrentWorkspace.Nodes.Where(x => x is ElementSelection<Autodesk.Revit.DB.Element>);
             var selNode = selNodes.First() as ElementSelection<Autodesk.Revit.DB.Element>;
             IEnumerable<Element> selection1 = new[] { rp1 };
             selNode.UpdateSelection(selection1);
-            Assert.DoesNotThrow(() =>ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
             var id1 = selNode.SelectionResults.First();
 
             //Select the second reference point in Dynamo
             IEnumerable<Element> selection2 = new[] { rp2 };
             selNode.UpdateSelection(selection2);
-            Assert.DoesNotThrow(() =>ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
             var id2 = selNode.SelectionResults.First();
 
             //Ensure the element binding is not the same
@@ -410,14 +440,16 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() =>ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
             //Check the number of the refrence points
             var points = GetAllReferencePointElements(true);
             Assert.AreEqual(8, points.Count);
 
             var model = ViewModel.Model;
-            var selNodes = model.AllNodes.Where(x => string.Equals(x.GUID.ToString(), "a52bee11-4382-4c42-a676-443f9d7eedf2"));
+            var selNodes = model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.GUID.ToString(), "a52bee11-4382-4c42-a676-443f9d7eedf2"));
             Assert.IsTrue(selNodes.Any());
             var node = selNodes.First();
             var slider = node as IntegerSlider;
@@ -426,7 +458,9 @@ namespace RevitSystemTests
             slider.Value = 3;
 
             //Run the graph again
-            Assert.DoesNotThrow(() =>ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
             //Check the number of the refrence points
             points = GetAllReferencePointElements(true);
@@ -437,17 +471,21 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void CreateDifferentNumberOfElementsInDynamoWithDifferentLacingStrategies()
         {
+
             //This is to test that the same node can bind correctly with different number of elements
             //when the lacing strategies for the node change
 
             Assert.Inconclusive("TO DO");
 
+            /*
             //Create 4x2 reference points
             string dynFilePath = Path.Combine(workingDirectory, @".\ElementBinding\CreateDifferentNumberOfPoints.dyn");
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() =>ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
             //Check the number of the refrence points
             var points = GetAllReferencePointElements(true);
@@ -465,11 +503,14 @@ namespace RevitSystemTests
             node.ArgumentLacing = Dynamo.Models.LacingStrategy.Longest;
 
             //Run the graph again
-           ViewModel.Model.RunExpression();
+          
+            RunCurrentModel();
+            
 
             //Check the number of the refrence points
             points = GetAllReferencePointElements(true);
             Assert.AreEqual(4, points.Count);
+            */
         }
 
         [Test]
@@ -484,14 +525,15 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(dynFilePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
 
             //Check the number of the family instances
             var instances = GetAllFamilyInstances(true);
             Assert.AreEqual(8, instances.Count);
 
             var model = ViewModel.Model;
-            var selNodes = model.AllNodes.Where(x => string.Equals(x.GUID.ToString(), "2411be0e-abff-4d32-804c-5e5025a92257"));
+            var selNodes = model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.GUID.ToString(), "2411be0e-abff-4d32-804c-5e5025a92257"));
             Assert.IsTrue(selNodes.Any());
             var node = selNodes.First();
             var slider = node as DoubleSlider;
@@ -499,11 +541,14 @@ namespace RevitSystemTests
             //Change the value of the slider from 19.89 to 18.0
             slider.Value = 18.0;
             //Run the graph again
-            ViewModel.Model.RunExpression();
+           
+            RunCurrentModel();
+            
             //Change the value of the slider from 18.0 to 16.0
             slider.Value = 16.0;
             //Run the graph again
-            ViewModel.Model.RunExpression();
+           
+            RunCurrentModel();
 
             //Check the number of family instances
             instances = GetAllFamilyInstances(true);
@@ -522,16 +567,18 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-            Assert.DoesNotThrow(() => model.RunExpression());
+            RunCurrentModel();
             
-            var selNodes = model.AllNodes.Where(x => string.Equals(x.GUID.ToString(), "7cc9bd94-7f46-4520-8a47-60baf4419087"));
+            var selNodes = model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.GUID.ToString(), "7cc9bd94-7f46-4520-8a47-60baf4419087"));
             Assert.IsTrue(selNodes.Any());
             var node = selNodes.First();
             var slider = node as IntegerSlider;
 
             //Change the slider value to 10
             slider.Value = 10;
-            Assert.DoesNotThrow(() => model.RunExpression());
+   
+            RunCurrentModel();
+            
             var curves = GetAllModelCurves();
             Assert.AreEqual(1, curves.Count());
 
@@ -541,14 +588,16 @@ namespace RevitSystemTests
 
             //Change the slider value to 0 to cause a warning/error
             slider.Value = 0;
-            Assert.DoesNotThrow(() => model.RunExpression());
+   
+            RunCurrentModel();
 
             //Check that the ModelCurve node has a warning/error
             Assert.IsTrue(IsNodeInErrorOrWarningState("bebfd220-3c77-4f06-8a8a-143ac07974a3"));
 
             //Change the slider value to 5
             slider.Value = 5;
-            Assert.DoesNotThrow(() => model.RunExpression());
+   
+            RunCurrentModel();
 
             curves = GetAllModelCurves();
             Assert.AreEqual(1, curves.Count());
@@ -560,7 +609,8 @@ namespace RevitSystemTests
 
             //Change the slider value to 8
             slider.Value = 8;
-            Assert.DoesNotThrow(() => model.RunExpression());
+   
+            RunCurrentModel();
 
             curves = GetAllModelCurves();
             Assert.AreEqual(1, curves.Count());

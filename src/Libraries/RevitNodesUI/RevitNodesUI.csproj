@@ -62,6 +62,7 @@
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
     <Compile Include="Elements.cs" />
+    <Compile Include="FamilyInstanceParametersNodeViewCustomization.cs" />
     <Compile Include="LocationControl.xaml.cs">
       <DependentUpon>LocationControl.xaml</DependentUpon>
     </Compile>
@@ -90,6 +91,10 @@
     </Reference>
     <Reference Include="ProtoCore">
       <HintPath>$(DYNAMOAPI)\ProtoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CoreNodeModelsWpf">
+      <HintPath>$(DYNAMOAPI)\nodes\CoreNodeModelsWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DSCoreNodesUI">

@@ -40,7 +40,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             //first assert that we have only one node
-            var nodeCount = ViewModel.Model.Nodes.Count;
+            var nodeCount = ViewModel.Model.CurrentWorkspace.Nodes.Count;
             Assert.AreEqual(1, nodeCount);
 
             //assert that we have the right number of family symbols
@@ -49,7 +49,7 @@ namespace RevitSystemTests
             fec.OfClass(typeof(Family));
             int count = fec.ToElements().Cast<Family>().Sum(f => f.Symbols.Cast<FamilySymbol>().Count());
 
-            var typeSelNode = (FamilyTypes)ViewModel.Model.Nodes.First();
+            var typeSelNode = (FamilyTypes)ViewModel.Model.CurrentWorkspace.Nodes.First();
             Assert.AreEqual(typeSelNode.Items.Count, count);
 
             //assert that the selected index is correct
@@ -76,7 +76,7 @@ namespace RevitSystemTests
             var refPt = ReferencePoint.ByCoordinates(0, 0, 0);
             selectNode.UpdateSelection(new[] { refPt.InternalElement });
 
-            ViewModel.Model.RunExpression();
+            RunCurrentModel();
 
             Assert.AreEqual(0, watchNode.CachedValue);
 
@@ -84,9 +84,9 @@ namespace RevitSystemTests
 
             TransactionManager.Instance.ForceCloseTransaction();
 
-            Assert.AreEqual(true, selectNode.ForceReExecuteOfNode);
+            Assert.AreEqual(true, selectNode.NeedsForceExecution);
 
-            ViewModel.Model.RunExpression();
+            RunCurrentModel();
 
             Assert.AreNotEqual(0, watchNode.CachedValue); //Actual value depends on units
         }
@@ -98,12 +98,14 @@ namespace RevitSystemTests
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectAndMultiSelect.dyn"));
 
             var guid = "938e1543-c1d5-4c92-83a7-3abcae2b8264";
-            var selectionNode = ViewModel.Model.Nodes.FirstOrDefault(n => n.GUID.ToString() == guid) as ElementSelection<Element>;
+            var selectionNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == guid) as ElementSelection<Element>;
             Assert.NotNull(selectionNode, "The requested node could not be found");
             
             selectionNode.ClearSelections();
 
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
             var element = GetPreviewCollection(guid);
             Assert.Null(element);
         }
@@ -115,12 +117,14 @@ namespace RevitSystemTests
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectAndMultiSelect.dyn"));
 
             var guid = "34f4f2cc-63c3-41ec-91fa-68db7820cee5";
-            var selectionNode = ViewModel.Model.Nodes.FirstOrDefault(n => n.GUID.ToString() == guid) as ElementSelection<Element>;
+            var selectionNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == guid) as ElementSelection<Element>;
             Assert.NotNull(selectionNode, "The requested node could not be found");
 
             selectionNode.ClearSelections();
 
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
             var element = GetPreviewCollection(guid);
             Assert.Null(element);
         }
@@ -132,7 +136,8 @@ namespace RevitSystemTests
             // returns only one object NOT a list of objects
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectAndMultiSelect.dyn"));
 
-            Assert.DoesNotThrow(()=>ViewModel.Model.RunExpression());
+            RunCurrentModel();
+           // Assert.DoesNotThrow(()=>ViewModel.Model.RunExpression());
 
             var guid = "938e1543-c1d5-4c92-83a7-3abcae2b8264";
             var element = GetPreviewValue(guid);
@@ -146,7 +151,9 @@ namespace RevitSystemTests
             // returns a list of objects
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectAndMultiSelect.dyn"));
 
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
 
             var guid = "34f4f2cc-63c3-41ec-91fa-68db7820cee5";
             var element = GetPreviewCollection(guid);
@@ -181,7 +188,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             // Get the selection node
-            var selectNode = (ReferenceSelection)(ViewModel.Model.Nodes.FirstOrDefault(x => x is ReferenceSelection));
+            var selectNode = (ReferenceSelection)(ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x is ReferenceSelection));
             Assert.NotNull(selectNode);
 
             // The select faces node returns a list of lists
@@ -204,15 +211,19 @@ namespace RevitSystemTests
         public void SelectEdge()
         {
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectEdge.dyn"));
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
 
-            var selectionNode = ViewModel.Model.Nodes.FirstOrDefault(n => n is ReferenceSelection) as ReferenceSelection;
+            RunCurrentModel();
+            
+
+            var selectionNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n is ReferenceSelection) as ReferenceSelection;
             Assert.NotNull(selectionNode);
             var element = GetPreviewValue(selectionNode.GUID.ToString());
             Assert.IsInstanceOf<NurbsCurve>(element);
 
             selectionNode.ClearSelections();
-            Assert.DoesNotThrow(() => ViewModel.Model.RunExpression());
+
+            RunCurrentModel();
+            
             element = GetPreviewValue(selectionNode.GUID.ToString());
             Assert.Null(element);
         }
@@ -241,7 +252,7 @@ namespace RevitSystemTests
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectDividedSurfaceFamilies.dyn"));
 
             // Get the selection node
-            var selectNode = (ElementSelection<DividedSurface>)(ViewModel.Model.Nodes.FirstOrDefault(x => x is ElementSelection<DividedSurface>));
+            var selectNode = (ElementSelection<DividedSurface>)(ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x is ElementSelection<DividedSurface>));
             Assert.NotNull(selectNode);
 
             var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
@@ -298,7 +309,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             // Get the selection node
-            var selectNode = (ReferenceSelection)(ViewModel.Model.Nodes.FirstOrDefault(x => x is ReferenceSelection));
+            var selectNode = (ReferenceSelection)(ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x is ReferenceSelection));
             Assert.NotNull(selectNode);
 
             // The select faces node returns a list of lists
@@ -403,8 +414,11 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             // Find the first node of the specified selection type
+            
+            //LC Modularization repair: I don't think we can be as simplistic as choosing
+            //the current workspace
             var selectNode =
-                ViewModel.Model.HomeSpace.FirstNodeFromWorkspace<RevitSelection<T1, T2>>();
+                ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<RevitSelection<T1, T2>>();
             Assert.NotNull(selectNode);
 
             switch (selectionType)

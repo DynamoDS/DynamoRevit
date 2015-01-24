@@ -5,8 +5,6 @@ using Autodesk.Revit.DB;
 
 using DSRevitNodesUI;
 
-using Dynamo.Nodes;
-
 using NUnit.Framework;
 
 using RevitServices.Persistence;
@@ -14,6 +12,7 @@ using RevitServices.Persistence;
 using RTF.Framework;
 
 using FamilySymbol = Revit.Elements.FamilySymbol;
+using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 
 namespace RevitSystemTests
 {
@@ -58,14 +57,14 @@ namespace RevitSystemTests
 
         private void AssertTypeAndCountWhenSelectingFromDropDown(int selectedIndex)
         {
-            var slider = ViewModel.Model.AllNodes.FirstOrDefault(x => x is IntegerSlider) as IntegerSlider;
+            var slider = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x is IntegerSlider) as IntegerSlider;
 
-            var typeSelector = ViewModel.Model.AllNodes.FirstOrDefault(x => x is AllElementsInBuiltInCategory) as RevitDropDownBase;
+            var typeSelector = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x is AllElementsInBuiltInCategory) as RevitDropDownBase;
             typeSelector.SelectedIndex = selectedIndex;
 
             RunCurrentModel();
             
-            var dynamoSymbol = typeSelector.GetValue(0).Data as FamilySymbol;
+            var dynamoSymbol = typeSelector.GetValue(0, ViewModel.Model.EngineController).Data as FamilySymbol;
             var revitSymbol = dynamoSymbol.InternalElement;
 
             Console.WriteLine("Family type is now set to {0}", revitSymbol);
@@ -81,7 +80,7 @@ namespace RevitSystemTests
 
         private void CompareSliderCountAndMemberCount(BuiltInCategory cat, int sliderCount)
         {
-            var slider = ViewModel.Model.AllNodes.FirstOrDefault(x => x is IntegerSlider) as IntegerSlider;
+            var slider = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x is IntegerSlider) as IntegerSlider;
             slider.Value = sliderCount;
 
             RunCurrentModel();

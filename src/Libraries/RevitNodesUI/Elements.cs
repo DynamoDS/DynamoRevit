@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Windows.Data;
 
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
@@ -35,28 +34,23 @@ namespace DSRevitNodesUI
 {
     public abstract class ElementsQueryBase : RevitNodeModel
     {
-        protected ElementsQueryBase(WorkspaceModel workspaceModel) : base(workspaceModel)
+        protected ElementsQueryBase()
         {
-            var u = RevitDynamoModel.RevitServicesUpdater;
+            var u = RevitServicesUpdater.Instance;
             u.ElementsAdded += Updater_ElementsAdded;
             u.ElementsModified += Updater_ElementsModified;
             u.ElementsDeleted += Updater_ElementsDeleted;
+
+            ShouldDisplayPreviewCore = false;
         }
 
-        public override void Destroy()
+        public override void Dispose()
         {
-            base.Destroy();
+            base.Dispose();
 
-            var u = RevitDynamoModel.RevitServicesUpdater;
+            var u = RevitServicesUpdater.Instance;
             u.ElementsModified -= Updater_ElementsModified;
             u.ElementsDeleted -= Updater_ElementsDeleted;
-        }
-
-        private bool forceReExecuteOfNode;
-
-        public override bool ForceReExecuteOfNode
-        {
-            get { return forceReExecuteOfNode; }
         }
 
         protected virtual void Updater_ElementsAdded(IEnumerable<string> updated)
@@ -67,8 +61,7 @@ namespace DSRevitNodesUI
             Debug.WriteLine("There are {0} updated elements", updated.Count());
             DebugElements(updated);
 #endif
-            forceReExecuteOfNode = true;
-            RequiresRecalc = true;
+            OnNodeModified(forceExecute:true);
         }
 
 
@@ -79,8 +72,7 @@ namespace DSRevitNodesUI
             Debug.WriteLine("There are {0} modified elements", updated.Count());
             DebugElements(updated);
 #endif
-            forceReExecuteOfNode = true;
-            RequiresRecalc = true;
+            OnNodeModified(forceExecute:true);
 
         }
 
@@ -91,8 +83,7 @@ namespace DSRevitNodesUI
             Debug.WriteLine("There are {0} deleted elements", deleted.Count());
             DebugElements(deleted);
 #endif
-            forceReExecuteOfNode = true;
-            RequiresRecalc = true;
+            OnNodeModified(forceExecute:true);
 
         }
 
@@ -113,14 +104,6 @@ namespace DSRevitNodesUI
             }
         }
 
-
-        protected override bool ShouldDisplayPreviewCore
-        {
-            get
-            {
-                return false; // Previews are not shown for this node type.
-            }
-        }
     }
 
     [NodeName(/*NXLT*/"All Elements of Family Type"), 
@@ -129,7 +112,7 @@ namespace DSRevitNodesUI
      IsDesignScriptCompatible]
     public class ElementsOfFamilyType : ElementsQueryBase
     {
-        public ElementsOfFamilyType(WorkspaceModel workspaceModel) : base(workspaceModel)
+        public ElementsOfFamilyType()
         {
             InPortData.Add(new PortData(/*NXLT*/"Family Type", Properties.Resources.PortDataFamilTypeToolTip));
             OutPortData.Add(new PortData(/*NXLT*/"Elements", Properties.Resources.PortDataElementsToolTip));
@@ -154,7 +137,7 @@ namespace DSRevitNodesUI
      IsDesignScriptCompatible]
     public class ElementsOfType : ElementsQueryBase
     {
-        public ElementsOfType(WorkspaceModel workspaceModel) : base(workspaceModel)
+        public ElementsOfType()
         {
             InPortData.Add(new PortData(/*NXLT*/"element type", Properties.Resources.PortDataElementTypeToolTip));
             OutPortData.Add(new PortData(/*NXLT*/"elements", Properties.Resources.PortDataAllElementsInDocumentToolTip));
@@ -177,7 +160,7 @@ namespace DSRevitNodesUI
      IsDesignScriptCompatible]
     public class ElementsOfCategory : ElementsQueryBase
     {
-        public ElementsOfCategory(WorkspaceModel workspaceModel) : base(workspaceModel)
+        public ElementsOfCategory()
         {
             InPortData.Add(new PortData(/*NXLT*/"Category", Properties.Resources.PortDataCategoryToolTip));
             OutPortData.Add(new PortData(/*NXLT*/"Elements", Properties.Resources.PortDataElementTypeToolTip));
@@ -201,7 +184,7 @@ namespace DSRevitNodesUI
      IsDesignScriptCompatible]
     public class ElementsAtLevel : ElementsQueryBase
     {
-        public ElementsAtLevel(WorkspaceModel workspaceModel) : base(workspaceModel)
+        public ElementsAtLevel()
         {
             InPortData.Add(new PortData(/*NXLT*/"Level", Properties.Resources.PortDataALevelToolTip));
             OutPortData.Add(new PortData(/*NXLT*/"Elements", Properties.Resources.PortDataElementAtLevelToolTip));
@@ -228,35 +211,41 @@ namespace DSRevitNodesUI
         private HashSet<ElementId> elementIds = new HashSet<ElementId>();
         private HashSet<string> uniqueIds = new HashSet<string>();
 
-        public ElementsInView(WorkspaceModel workspaceModel) : base(workspaceModel)
+        public ElementsInView()
         {
             OutPortData.Add(new PortData(/*NXLT*/"elements", Properties.Resources.PortDataAllVisibleElementsToolTip));
             RegisterAllPorts();
 
             DocumentManager.Instance.CurrentUIApplication.ViewActivated +=
                 RevitDynamoModel_RevitDocumentChanged;
-            RevitDynamoModel.RevitDocumentChanged += RevitDynamoModel_RevitDocumentChanged;
-            RevitDynamoModel.RevitServicesUpdater.ElementsDeleted +=
+
+            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened +=
+                RevitDynamoModel_RevitDocumentChanged;
+
+            RevitServicesUpdater.Instance.ElementsDeleted +=
                 RevitServicesUpdaterOnElementsDeleted;
-            RevitDynamoModel.RevitServicesUpdater.ElementsModified +=
+            RevitServicesUpdater.Instance.ElementsModified +=
                 RevitServicesUpdaterOnElementsModified;
-            RevitDynamoModel.RevitServicesUpdater.ElementsAdded +=
+            RevitServicesUpdater.Instance.ElementsAdded +=
                 RevitServicesUpdaterOnElementsAdded;
 
             RevitDynamoModel_RevitDocumentChanged(null, null);
         }
 
-        public override void Destroy()
+        public override void Dispose()
         {
-            base.Destroy();
+            base.Dispose();
             DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
                 RevitDynamoModel_RevitDocumentChanged;
-            RevitDynamoModel.RevitDocumentChanged -= RevitDynamoModel_RevitDocumentChanged;
-            RevitDynamoModel.RevitServicesUpdater.ElementsDeleted -=
+
+            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -=
+                RevitDynamoModel_RevitDocumentChanged;
+
+            RevitServicesUpdater.Instance.ElementsDeleted -=
                 RevitServicesUpdaterOnElementsDeleted;
-            RevitDynamoModel.RevitServicesUpdater.ElementsModified -=
+            RevitServicesUpdater.Instance.ElementsModified -=
                 RevitServicesUpdaterOnElementsModified;
-            RevitDynamoModel.RevitServicesUpdater.ElementsAdded -=
+            RevitServicesUpdater.Instance.ElementsAdded -=
                 RevitServicesUpdaterOnElementsAdded;
         }
 
@@ -275,8 +264,7 @@ namespace DSRevitNodesUI
             }
             if (recalc)
             {
-                ForceReExecuteOfNode = true;
-                RequiresRecalc = true;
+                OnNodeModified(forceExecute:true);
             }
         }
 
@@ -371,8 +359,7 @@ namespace DSRevitNodesUI
         {
             if (updated.Any(uniqueIds.Contains))
             {
-                ForceReExecuteOfNode = true;
-                RequiresRecalc = true;
+                OnNodeModified(forceExecute:true);
             }
         }
 
@@ -382,8 +369,7 @@ namespace DSRevitNodesUI
             var elements = GetElementsVisibleInActiveView();
             elementIds = new HashSet<ElementId>(elements.Select(x => x.Id));
             uniqueIds = new HashSet<string>(elements.Select(x => x.UniqueId));
-            ForceReExecuteOfNode = true;
-            RequiresRecalc = true;
+            OnNodeModified(forceExecute:true);
         }
 
         private void RevitServicesUpdaterOnElementsDeleted(
@@ -396,8 +382,7 @@ namespace DSRevitNodesUI
                 uniqueIds =
                     new HashSet<string>(elementIds.Select(id => document.GetElement(id).UniqueId));
 
-                ForceReExecuteOfNode = true;
-                RequiresRecalc = true;
+                OnNodeModified(forceExecute: true);
             }
         }
 

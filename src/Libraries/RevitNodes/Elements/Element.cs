@@ -288,7 +288,14 @@ namespace Revit.Elements
             switch (param.StorageType)
             {
                 case StorageType.ElementId:
-                    result = param.AsElementId();
+                    int id = param.AsElementId().IntegerValue;
+                    // When the element is obtained here, to convert it to our element wrapper, it
+                    // need to be figured out whether this element is created by us. Here the existing
+                    // element wrappers will be checked. If there is one, its property to specify
+                    // whether it is created by us will be followed. If there is none, it means the
+                    // element is not created by us.
+                    var ele = ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(id) as Element;
+                    result = ElementSelector.ByElementId(id, ele == null ? true : ele.IsRevitOwned);
                     break;
                 case StorageType.String:
                     result = param.AsString();
@@ -333,7 +340,7 @@ namespace Revit.Elements
 
             var patternCollector = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             patternCollector.OfClass(typeof(FillPatternElement));
-            FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().Name == "Solid fill");
+            FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
 
             ogs.SetProjectionFillColor(new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue));
             ogs.SetProjectionFillPatternId(solidFill.Id);
