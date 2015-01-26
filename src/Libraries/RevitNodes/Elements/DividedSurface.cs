@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 
 using Autodesk.DesignScript.Runtime;
-using Autodesk.Revit.DB;
 
 using Revit.GeometryReferences;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-using Face = Autodesk.DesignScript.Geometry.Face;
 
 namespace Revit.Elements
 {
     /// <summary>
     /// A Revit DividedSurface
     /// </summary>
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class DividedSurface : Element
     {
         #region Private Properties

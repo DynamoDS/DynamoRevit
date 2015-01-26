@@ -14,7 +14,6 @@
     <RootNamespace>Revit</RootNamespace>
     <AssemblyName>RevitNodes</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
@@ -42,6 +41,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamoServices">
+      <HintPath>..\..\..\..\Dynamo\bin\AnyCPU\Debug\DynamoServices.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="RevitAPI">
       <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 using Analysis;
@@ -9,8 +8,6 @@ using Analysis.DataTypes;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Analysis;
-
-using DynamoUnits;
 
 using Revit.GeometryConversion;
 
@@ -26,7 +23,7 @@ namespace Revit.AnalysisDisplay
     /// <summary>
     /// A Revit Point Analysis Display 
     /// </summary>
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class FaceAnalysisDisplay : AbstractAnalysisDisplay
     {
         internal const string DefaultTag = "RevitFaceReference";
