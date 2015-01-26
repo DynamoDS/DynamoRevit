@@ -1,7 +1,7 @@
 using System.Linq;
 
 using Dynamo.Applications;
-
+using Greg.AuthProviders;
 using RevitServices.Elements;
 
 #region
@@ -102,7 +102,7 @@ namespace Dynamo.Applications
 
             try
             {
-#if ENABLE_DYNAMO_SCHEDULER
+
                 extCommandData = commandData;
 
                 // create core data models
@@ -117,22 +117,7 @@ namespace Dynamo.Applications
 
                 TryOpenWorkspaceInCommandData(extCommandData);
                 SubscribeApplicationEvents(extCommandData);
-#else
 
-                IdlePromise.ExecuteOnIdleAsync(
-                    delegate
-                    {
-                        // create core data models
-                        revitDynamoModel = InitializeCoreModel(commandData);
-                        dynamoViewModel = InitializeCoreViewModel(revitDynamoModel);
-
-                        // show the window
-                        InitializeCoreView().Show();
-
-                        TryOpenWorkspaceInCommandData(commandData);
-                        SubscribeViewActivating(commandData);
-                    });
-#endif
                 // Disable the Dynamo button to prevent a re-run
                 DynamoRevitApp.DynamoButton.Enabled = false;
             }
@@ -173,28 +158,15 @@ namespace Dynamo.Applications
                 Path.GetFullPath(
                     Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\");
 
-#if !ENABLE_DYNAMO_SCHEDULER
-
-            return RevitDynamoModel.Start(
-                new RevitDynamoModel.StartConfiguration()
-                {
-                    Preferences = prefs,
-                    DynamoCorePath = corePath,
-                    Context = GetRevitContext(commandData)
-                });
-
-#else
-
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.StartConfiguration()
                 {
                     Preferences = prefs,
                     DynamoCorePath = corePath,
                     Context = GetRevitContext(commandData),
-                    SchedulerThread = new RevitSchedulerThread(commandData.Application)
+                    SchedulerThread = new RevitSchedulerThread(commandData.Application),
+                    AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher))
                 });
-
-#endif
         }
 
         private static DynamoViewModel InitializeCoreViewModel(RevitDynamoModel revitDynamoModel)
@@ -209,9 +181,6 @@ namespace Dynamo.Applications
                     WatchHandler =
                         new RevitWatchHandler(vizManager, revitDynamoModel.PreferenceSettings)
                 });
-
-            revitDynamoModel.PackageManagerClient.RequestAuthentication +=
-                 SingleSignOnManager.RegisterSingleSignOn;
 
 #if ENABLE_DYNAMO_SCHEDULER
 
@@ -241,8 +210,6 @@ namespace Dynamo.Applications
             dynamoView.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
             dynamoView.Closed += OnDynamoViewClosed;
 
-            SingleSignOnManager.UIDispatcher = dynamoView.Dispatcher;
-
             return dynamoView;
         }
 
@@ -250,10 +217,6 @@ namespace Dynamo.Applications
         private static void InitializeCore(ExternalCommandData commandData)
         {
             if (initializedCore) return;
-
-#if !ENABLE_DYNAMO_SCHEDULER
-            IdlePromise.RegisterIdle(commandData.Application);
-#endif
 
             InitializeAssemblies();
             InitializeUnits();
@@ -290,6 +253,7 @@ namespace Dynamo.Applications
 
         public static void InitializeAssemblies()
         {
+            RevitAssemblyLoader.LoadAll();
             AppDomain.CurrentDomain.AssemblyResolve +=
                 Analyze.Render.AssemblyHelper.ResolveAssemblies;
         }
