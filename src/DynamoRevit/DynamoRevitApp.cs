@@ -51,7 +51,6 @@ namespace Dynamo.Applications
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
                 ElementBinder.IsEnabled = true;
 
-                //TAF load english_us TODO add a way to localize
                 res = Resources.ResourceManager;
 
                 // Create new ribbon panel
