@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
+using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
 
 using Dynamo.Core;
@@ -14,16 +15,20 @@ using Revit.GeometryConversion;
 
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+
 using Curve = Autodesk.DesignScript.Geometry.Curve;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using PolyCurve = Autodesk.DesignScript.Geometry.PolyCurve;
+using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace Dynamo
 {
     class RevitVisualizationManager : VisualizationManager
     {
         private ElementId keeperId = ElementId.InvalidElementId;
-        
+        private ElementId directShapeId = ElementId.InvalidElementId;
+        private MethodInfo method;
+
         public ElementId KeeperId
         {
             get { return keeperId; }
@@ -107,27 +112,27 @@ namespace Dynamo
                 .Select(x => x.CachedValue);
 
             var geoms = new List<GeometryObject>();
-            values.ToList().ForEach(md=>RevitGeometryFromMirrorData(md, ref geoms));
+            foreach (var value in values)
+            {
+                RevitGeometryFromMirrorData(value, ref geoms);
+            }
 
             Draw(geoms);
         }
 
         private void Draw(IEnumerable<GeometryObject> geoms)
         {
-            Type geometryElementType = typeof(GeometryElement);
-            MethodInfo[] geometryElementTypeMethods =
-                geometryElementType.GetMethods(BindingFlags.Static | BindingFlags.Public);
-
-            MethodInfo method =
-                geometryElementTypeMethods.FirstOrDefault(x => x.Name == "SetForTransientDisplay");
-
             if (method == null)
-                return;
+            {
+                Type geometryElementType = typeof(GeometryElement);
+                MethodInfo[] geometryElementTypeMethods =
+                    geometryElementType.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
 
-            var styles = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            styles.OfClass(typeof(GraphicsStyle));
+                method = geometryElementTypeMethods.FirstOrDefault(x => x.Name == "SetForTransientDisplay");
 
-            Element gStyle = styles.ToElements().FirstOrDefault(x => x.Name == "Dynamo");
+                if (method == null)
+                    return;
+            }
 
             RevitServices.Threading.IdlePromise.ExecuteOnIdleAsync(
                 () =>
@@ -135,7 +140,7 @@ namespace Dynamo
                     TransactionManager.Instance.EnsureInTransaction(
                         DocumentManager.Instance.CurrentDBDocument);
 
-                    if (keeperId != ElementId.InvalidElementId && 
+                    if (keeperId != ElementId.InvalidElementId &&
                         DocumentManager.Instance.CurrentDBDocument.GetElement(keeperId) != null)
                     {
                         DocumentManager.Instance.CurrentUIDocument.Document.Delete(keeperId);
@@ -146,11 +151,7 @@ namespace Dynamo
                     argsM[0] = DocumentManager.Instance.CurrentUIDocument.Document;
                     argsM[1] = ElementId.InvalidElementId;
                     argsM[2] = geoms;
-                    if (gStyle != null)
-                        argsM[3] = gStyle.Id;
-                    else
-                        argsM[3] = ElementId.InvalidElementId;
-
+                    argsM[3] = ElementId.InvalidElementId;
                     keeperId = (ElementId)method.Invoke(null, argsM);
 
                     TransactionManager.Instance.ForceCloseTransaction();
@@ -182,6 +183,11 @@ namespace Dynamo
             {
                 try
                 {
+                    if (data.Data == null)
+                    {
+                        return;
+                    }
+
                     var geom = data.Data as PolyCurve;
                     if (geom != null)
                     {
@@ -215,6 +221,21 @@ namespace Dynamo
                         Tesselate(curve, ref geoms);
                         return;
                     }
+
+                    var surf = data.Data as Surface;
+                    if (surf != null)
+                    {
+                        geoms.AddRange(surf.ToRevitType());
+                        return;
+                    }
+
+                    var solid = data.Data as Autodesk.DesignScript.Geometry.Solid;
+                    if (solid != null)
+                    {
+                        geoms.AddRange(solid.ToRevitType());
+                        return;
+                    }
+
                 }
                 catch (Exception ex)
                 {

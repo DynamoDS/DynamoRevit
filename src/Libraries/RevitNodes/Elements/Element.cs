@@ -15,8 +15,7 @@ using RevitServices.Transactions;
 using Color = DSCore.Color;
 using Area = DynamoUnits.Area;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
-using Face = Autodesk.Revit.DB.Face;
-using Solid = Autodesk.DesignScript.Geometry.Solid;
+using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace Revit.Elements
 {

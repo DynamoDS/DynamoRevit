@@ -177,7 +177,7 @@ namespace Revit.Elements.Views
 
             if (view.IsPerspective)
             {
-                var farClip = view.get_Parameter("Far Clip Active");
+                var farClip = view.LookupParameter("Far Clip Active");
                 farClip.Set(0);
             }
             else
@@ -331,7 +331,7 @@ namespace Revit.Elements.Views
             var FBaseArray = new ElementClassFilter(typeof(Autodesk.Revit.DB.BaseArray));
             //ElementClassFilter FBasePoint = new ElementClassFilter(typeof(Autodesk.Revit.DB.BasePoint));
             var FBeamSystem = new ElementClassFilter(typeof(Autodesk.Revit.DB.BeamSystem));
-            var FBoundaryConditions = new ElementClassFilter(typeof(Autodesk.Revit.DB.BoundaryConditions));
+            var FBoundaryConditions = new ElementClassFilter(typeof(Autodesk.Revit.DB.Structure.BoundaryConditions));
             //ElementClassFilter FCombinableElement = new ElementClassFilter(typeof(Autodesk.Revit.DB.CombinableElement));
             //Autodesk.Revit.DB..::..ComponentRepeater
             //Autodesk.Revit.DB..::..ComponentRepeaterSlot

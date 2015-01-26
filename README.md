@@ -1,7 +1,7 @@
 DynamoRevit
 ===========
 
-Dynamo libaries and ExternalApplication implementation for Revit.
+Dynamo libraries and ExternalApplication implementation for Revit.
 
 Branches:
 - Revit2014 : Built on Revit2014 API, works only for Revit2014
