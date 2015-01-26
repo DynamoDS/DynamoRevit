@@ -87,7 +87,6 @@ namespace Dynamo.Applications.Models
         private RevitDynamoModel(StartConfiguration configuration) :
             base(configuration)
         {
-            RevitServicesUpdater.Initialize(DynamoRevitApp.ControlledApplication, DynamoRevitApp.Updaters);
             SubscribeRevitServicesUpdaterEvents();
 
             InitializeDocumentManager();
@@ -212,17 +211,15 @@ namespace Dynamo.Applications.Models
         {
             if (shutdownHost)
             {
-                var uiApplication = DocumentManager.Instance.CurrentUIApplication;
-                uiApplication.Idling += ShutdownRevitHostOnce;
+                DynamoRevit.AddIdleAction(ShutdownRevitHostOnce);
             }
 
             base.PreShutdownCore(shutdownHost);
         }
 
-        private static void ShutdownRevitHostOnce(object sender, IdlingEventArgs idlingEventArgs)
+        private static void ShutdownRevitHostOnce()
         {
             var uiApplication = DocumentManager.Instance.CurrentUIApplication;
-            uiApplication.Idling -= ShutdownRevitHostOnce;
             ShutdownRevitHost();
         }
 
