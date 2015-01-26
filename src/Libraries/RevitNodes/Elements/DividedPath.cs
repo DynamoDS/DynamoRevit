@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Autodesk.DesignScript.Geometry;
+
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 
-using Revit.GeometryConversion;
 using Revit.GeometryReferences;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
@@ -15,7 +14,7 @@ namespace Revit.Elements
     /// <summary>
     /// A Revit DividedPath
     /// </summary>
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class DividedPath: Element
     {
         #region Private fields
