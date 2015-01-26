@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Autodesk.DesignScript.Geometry;
+
 using Autodesk.Revit.DB;
-using DSNodeServices;
+
 using Revit.GeometryReferences;
 using RevitServices.Persistence;
-using RevitServices.Transactions;
- 
+
 
 namespace Revit.Elements
 {
