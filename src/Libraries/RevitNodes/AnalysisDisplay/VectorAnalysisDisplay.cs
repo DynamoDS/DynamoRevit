@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Analysis;
 using Analysis.DataTypes;
 
 using Autodesk.DesignScript.Geometry;
@@ -19,7 +18,7 @@ namespace Revit.AnalysisDisplay
     /// <summary>
     /// A Revit Vector Analysis Display 
     /// </summary>
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class VectorAnalysisDisplay : AbstractAnalysisDisplay
     {
 

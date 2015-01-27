@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Autodesk.DesignScript.Geometry;
+﻿using System.Linq;
+
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-using Revit.Elements;
+
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
@@ -14,7 +11,7 @@ namespace Revit.Elements
     /// <summary>
     /// A Revit FreeForm element
     /// </summary>
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     [IsVisibleInDynamoLibrary(false)]
     public class FreeForm : Element
     {
