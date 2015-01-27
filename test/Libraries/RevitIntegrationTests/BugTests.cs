@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
@@ -18,6 +17,9 @@ using RTF.Framework;
 using RevitServices.Persistence;
 using System.Collections.Generic;
 using RevitServices.Transactions;
+
+using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
+using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 
 namespace RevitSystemTests
 {

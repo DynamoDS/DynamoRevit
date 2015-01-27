@@ -18,7 +18,7 @@ namespace Revit.AnalysisDisplay
     /// <summary>
     /// A Revit Vector Analysis Display 
     /// </summary>
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class VectorAnalysisDisplay : AbstractAnalysisDisplay
     {
         #region Private constructors
@@ -40,7 +40,7 @@ namespace Revit.AnalysisDisplay
 
             sfm.Clear();
 
-            sfm.SetMeasurementNames(new List<string>() { Revit.Resource1.Dynamo_AVF_Data_Name });
+            sfm.SetMeasurementNames(new List<string>() { Properties.Resources.Dynamo_AVF_Data_Name });
 
             var primitiveIds = new List<int>();
 
@@ -123,12 +123,12 @@ namespace Revit.AnalysisDisplay
 
             if (string.IsNullOrEmpty(name))
             {
-                name = Resource1.AnalysisResultsDefaultName;
+                name = Properties.Resources.AnalysisResultsDefaultName;
             }
 
             if (string.IsNullOrEmpty(description))
             {
-                description = Resource1.AnalysisResultsDefaultDescription;
+                description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
             var data = VectorData.ByPointsAndValues(sampleLocations, samples );
@@ -161,12 +161,12 @@ namespace Revit.AnalysisDisplay
 
             if (string.IsNullOrEmpty(name))
             {
-                name = Resource1.AnalysisResultsDefaultName;
+                name = Properties.Resources.AnalysisResultsDefaultName;
             }
 
             if (string.IsNullOrEmpty(description))
             {
-                description = Resource1.AnalysisResultsDefaultDescription;
+                description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
             return new VectorAnalysisDisplay(view.InternalView, data, name, description, unitType);

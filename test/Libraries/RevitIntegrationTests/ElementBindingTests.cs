@@ -11,6 +11,8 @@ using Dynamo.Nodes;
 using RevitServices.Persistence;
 
 using Transaction = Autodesk.Revit.DB.Transaction;
+using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
+using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 
 namespace RevitSystemTests
 {

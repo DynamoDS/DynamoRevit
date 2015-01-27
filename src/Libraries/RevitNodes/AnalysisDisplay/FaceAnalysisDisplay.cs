@@ -21,7 +21,7 @@ namespace Revit.AnalysisDisplay
     /// <summary>
     /// A Revit Point Analysis Display 
     /// </summary>
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class FaceAnalysisDisplay : AbstractAnalysisDisplay
     {
         internal const string DefaultTag = "RevitFaceReference";
@@ -43,7 +43,7 @@ namespace Revit.AnalysisDisplay
 
             sfm.Clear();
 
-            sfm.SetMeasurementNames(new List<string>(){Revit.Resource1.Dynamo_AVF_Data_Name});
+            sfm.SetMeasurementNames(new List<string>(){Properties.Resources.Dynamo_AVF_Data_Name});
 
             InternalSetSpatialFieldManager(sfm);
             var primitiveIds = new List<int>();
@@ -158,23 +158,23 @@ namespace Revit.AnalysisDisplay
 
             if (sampleLocations.Length != samples.Length)
             {
-                throw new Exception(Revit.Resource1.Array_Count_Mismatch);
+                throw new Exception(Properties.Resources.Array_Count_Mismatch);
             }
 
             if (string.IsNullOrEmpty(name))
             {
-                name = Resource1.AnalysisResultsDefaultName;
+                name = Properties.Resources.AnalysisResultsDefaultName;
             }
 
             if (string.IsNullOrEmpty(description))
             {
-                description = Resource1.AnalysisResultsDefaultDescription;
+                description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
             var reference = surface.Tags.LookupTag(DefaultTag) as Reference;
             if (reference == null)
             {
-                throw new Exception(Revit.Resource1.Tag_Lookup_Error);
+                throw new Exception(Properties.Resources.Tag_Lookup_Error);
             }
 
             var data = SurfaceData.BySurfacePointsAndValues(surface, sampleLocations, samples);
@@ -206,12 +206,12 @@ namespace Revit.AnalysisDisplay
 
             if (string.IsNullOrEmpty(name))
             {
-                name = Resource1.AnalysisResultsDefaultName;
+                name = Properties.Resources.AnalysisResultsDefaultName;
             }
 
             if (string.IsNullOrEmpty(description))
             {
-                description = Resource1.AnalysisResultsDefaultDescription;
+                description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
             return new FaceAnalysisDisplay(view.InternalView, data, name, description, unitType);
