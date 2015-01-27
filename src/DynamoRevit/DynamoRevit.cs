@@ -416,7 +416,6 @@ namespace Dynamo.Applications
         {
             var view = (DynamoView)sender;
 
-            RevitServicesUpdater.DisposeInstance();
             DocumentManager.OnLogError -= revitDynamoModel.Logger.Log;
 
             view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;

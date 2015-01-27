@@ -96,6 +96,7 @@ namespace Dynamo.Applications
         {
             UnsubscribeAssemblyResolvingEvent();
             UnsubscribeDocumentChangedEvent();
+            RevitServicesUpdater.DisposeInstance();
 
             return Result.Succeeded;
         }
