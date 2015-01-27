@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
-using DSNodeServices;
-using Revit.GeometryConversion;
-using Revit.GeometryReferences;
+
 using RevitServices.Persistence;
-using RevitServices.Transactions;
-using Face = Autodesk.DesignScript.Geometry.Face;
-using Plane = Autodesk.DesignScript.Geometry.Plane;
 
 namespace Revit.Elements
 {

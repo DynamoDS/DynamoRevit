@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Analysis;
 using Analysis.DataTypes;
 
 using Autodesk.DesignScript.Geometry;
@@ -19,7 +18,7 @@ namespace Revit.AnalysisDisplay
     /// <summary>
     /// A Revit Vector Analysis Display 
     /// </summary>
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class VectorAnalysisDisplay : AbstractAnalysisDisplay
     {
 
@@ -168,12 +167,12 @@ namespace Revit.AnalysisDisplay
 
             if (string.IsNullOrEmpty(name))
             {
-                name = Resource1.AnalysisResultsDefaultName;
+                name = Properties.Resources.AnalysisResultsDefaultName;
             }
 
             if (string.IsNullOrEmpty(description))
             {
-                description = Resource1.AnalysisResultsDefaultDescription;
+                description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
             var data = VectorAnalysisData.ByPointsAndResults(sampleLocations, new List<string> { "Dynamo Data" }, new List<IList<Vector>>{samples});
@@ -211,12 +210,12 @@ namespace Revit.AnalysisDisplay
 
             if (string.IsNullOrEmpty(name))
             {
-                name = Resource1.AnalysisResultsDefaultName;
+                name = Properties.Resources.AnalysisResultsDefaultName;
             }
 
             if (string.IsNullOrEmpty(description))
             {
-                description = Resource1.AnalysisResultsDefaultDescription;
+                description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
             return new VectorAnalysisDisplay(view.InternalView, data, name, description, unitType);

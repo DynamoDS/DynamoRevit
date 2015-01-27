@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Analysis;
 using Analysis.DataTypes;
 
 using Autodesk.DesignScript.Runtime;
@@ -59,7 +58,7 @@ namespace Revit.AnalysisDisplay
     /// <summary>
     /// A Revit Point Analysis Display 
     /// </summary>
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class PointAnalysisDisplay : AbstractAnalysisDisplay
     {
         #region Private constructors
@@ -215,12 +214,12 @@ namespace Revit.AnalysisDisplay
 
             if (string.IsNullOrEmpty(name))
             {
-                name = Resource1.AnalysisResultsDefaultName;
+                name = Properties.Resources.AnalysisResultsDefaultName;
             }
 
             if (string.IsNullOrEmpty(description))
             {
-                description = Resource1.AnalysisResultsDefaultDescription;
+                description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
             var data = PointAnalysisData.ByPointsAndResults (sampleLocations, new List<string>{"Dynamo Data"}, new List<IList<double>>{samples});
@@ -257,12 +256,12 @@ namespace Revit.AnalysisDisplay
 
             if (string.IsNullOrEmpty(name))
             {
-                name = Resource1.AnalysisResultsDefaultName;
+                name = Properties.Resources.AnalysisResultsDefaultName;
             }
 
             if (string.IsNullOrEmpty(description))
             {
-                description = Resource1.AnalysisResultsDefaultDescription;
+                description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
             return new PointAnalysisDisplay(view.InternalView, data, name, description, unitType);
