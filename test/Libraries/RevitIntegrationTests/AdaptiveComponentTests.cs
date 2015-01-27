@@ -1,12 +1,13 @@
 ﻿using System.IO;
 using System.Linq;
 
-using Dynamo.Nodes;
 using Dynamo.Tests;
 
 using NUnit.Framework;
 
 using RTF.Framework;
+
+using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
 
 namespace RevitSystemTests
 {

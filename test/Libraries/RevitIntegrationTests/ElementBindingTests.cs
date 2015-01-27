@@ -11,6 +11,8 @@ using Dynamo.Nodes;
 using RevitServices.Persistence;
 
 using Transaction = Autodesk.Revit.DB.Transaction;
+using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
+using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 
 namespace RevitSystemTests
 {
@@ -127,7 +129,8 @@ namespace RevitSystemTests
         private ElementId GetBindingElementIdForNode(Guid guid)
         {
             ProtoCore.Core core = ViewModel.Model.EngineController.LiveRunnerCore;
-            var guidToCallSites = core.GetCallsitesForNodes(new []{guid});
+            var guidToCallSites = core.DSExecutable.RuntimeData.GetCallsitesForNodes(new[] { guid }, core.DSExecutable);
+
             var callSites = guidToCallSites[guid];
             if (!callSites.Any())
                 return null;

@@ -5,8 +5,6 @@ using Autodesk.Revit.DB;
 
 using DSRevitNodesUI;
 
-using Dynamo.Nodes;
-
 using NUnit.Framework;
 
 using RevitServices.Persistence;
@@ -14,6 +12,7 @@ using RevitServices.Persistence;
 using RTF.Framework;
 
 using FamilySymbol = Revit.Elements.FamilySymbol;
+using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 
 namespace RevitSystemTests
 {

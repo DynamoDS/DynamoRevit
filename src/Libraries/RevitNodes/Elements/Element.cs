@@ -6,7 +6,8 @@ using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 
-using DSNodeServices;
+using DynamoServices;
+
 using DynamoUnits;
 using Revit.GeometryConversion;
 using Revit.GeometryReferences;
@@ -159,7 +160,7 @@ namespace Revit.Elements
         }
 
         private ElementId internalId;
-        
+
         /// <summary>
         /// The element id for this element
         /// </summary>
@@ -171,7 +172,8 @@ namespace Revit.Elements
                     return InternalElement != null ? InternalElement.Id : null;
                 return internalId;
             }
-            set { 
+            set
+            {
                 internalId = value;
 
                 var elementManager = ElementIDLifecycleManager<int>.GetInstance();
@@ -339,7 +341,7 @@ namespace Revit.Elements
 
             var patternCollector = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             patternCollector.OfClass(typeof(FillPatternElement));
-            FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().Name == "Solid fill");
+            FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
 
             ogs.SetProjectionFillColor(new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue));
             ogs.SetProjectionFillPatternId(solidFill.Id);
@@ -415,7 +417,7 @@ namespace Revit.Elements
 
         private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, SIUnit value)
         {
-            if(param.StorageType != StorageType.Double)
+            if (param.StorageType != StorageType.Double)
                 throw new Exception("The parameter's storage type is not an integer.");
 
             param.Set(value.ConvertToHostUnits());
@@ -503,11 +505,11 @@ namespace Revit.Elements
                 if (geomInstance != null)
                 {
                     var instanceGeom = useSymbolGeometry ? geomInstance.GetSymbolGeometry() : geomInstance.GetInstanceGeometry();
-                    instanceGeometryObjects.AddRange( CollectConcreteGeometry(instanceGeom) );
+                    instanceGeometryObjects.AddRange(CollectConcreteGeometry(instanceGeom));
                 }
                 else if (geomElement != null)
                 {
-                    instanceGeometryObjects.AddRange( CollectConcreteGeometry(geometryElement) );
+                    instanceGeometryObjects.AddRange(CollectConcreteGeometry(geometryElement));
                 }
                 else
                 {
@@ -559,7 +561,7 @@ namespace Revit.Elements
                 // The is the geometry with the correctly computed References, from GetSymbolGeometry
                 var refs = InternalGeometry<Autodesk.Revit.DB.Curve>(true).Select(x => x.Reference);
 
-                return geoms.Zip( refs, (geom, reference) => geom.ToProtoType(true, reference))
+                return geoms.Zip(refs, (geom, reference) => geom.ToProtoType(true, reference))
                     .ToArray();
             }
         }

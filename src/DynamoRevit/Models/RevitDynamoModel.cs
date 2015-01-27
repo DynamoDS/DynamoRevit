@@ -11,10 +11,11 @@ using Autodesk.Revit.UI.Events;
 using Dynamo.Core.Threading;
 
 using DSIronPython;
-using DSNodeServices;
 
 using Dynamo.Models;
 using Dynamo.Utilities;
+
+using DynamoServices;
 
 using Revit.Elements;
 using RevitServices.Elements;
@@ -441,9 +442,9 @@ namespace Dynamo.Applications.Models
             foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
                 foreach (var node in ws.Nodes)
-                    node.ForceReExecuteOfNode = true;
+                    node.MarkNodeAsModified(forceExecute:true);
 
-                ws.OnAstUpdated();
+                ws.OnNodesModified();
                 
                 foreach (var node in ws.Nodes)
                 {
@@ -497,8 +498,7 @@ namespace Dynamo.Applications.Models
             var nodes = ElementBinder.GetNodesFromElementIds(deleted, CurrentWorkspace, EngineController);
             foreach (var node in nodes)
             {
-                node.ForceReExecuteOfNode = true;
-                node.OnAstUpdated();
+                node.OnNodeModified(forceExecute:true);
             }
         }
 
@@ -518,8 +518,7 @@ namespace Dynamo.Applications.Models
             var nodes = ElementBinder.GetNodesFromElementIds(updatedIds, CurrentWorkspace, EngineController);
             foreach (var node in nodes)
             {
-                node.ForceReExecuteOfNode = true;
-                node.OnAstUpdated();
+                node.OnNodeModified(forceExecute:true);
             }
         }
 

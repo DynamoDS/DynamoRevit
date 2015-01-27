@@ -61,8 +61,7 @@ namespace DSRevitNodesUI
             Debug.WriteLine("There are {0} updated elements", updated.Count());
             DebugElements(updated);
 #endif
-            ForceReExecuteOfNode = true;
-            OnAstUpdated();
+            OnNodeModified(forceExecute:true);
         }
 
 
@@ -73,8 +72,7 @@ namespace DSRevitNodesUI
             Debug.WriteLine("There are {0} modified elements", updated.Count());
             DebugElements(updated);
 #endif
-            ForceReExecuteOfNode = true;
-            OnAstUpdated();
+            OnNodeModified(forceExecute:true);
 
         }
 
@@ -85,8 +83,7 @@ namespace DSRevitNodesUI
             Debug.WriteLine("There are {0} deleted elements", deleted.Count());
             DebugElements(deleted);
 #endif
-            ForceReExecuteOfNode = true;
-            OnAstUpdated();
+            OnNodeModified(forceExecute:true);
 
         }
 
@@ -109,15 +106,16 @@ namespace DSRevitNodesUI
 
     }
 
-    [NodeName("All Elements of Family Type"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Get all elements of the specified family type from the model."),
+    [NodeName("All Elements of Family Type"), 
+     NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription("ElementsofFamilyTypeDescription",typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsOfFamilyType : ElementsQueryBase
     {
         public ElementsOfFamilyType()
         {
-            InPortData.Add(new PortData("Family Type", "The Family Type."));
-            OutPortData.Add(new PortData("Elements", "The list of elements matching the query."));
+            InPortData.Add(new PortData("Family Type", Properties.Resources.PortDataFamilTypeToolTip));
+            OutPortData.Add(new PortData("Elements", Properties.Resources.PortDataElementsToolTip));
 
             RegisterAllPorts();
         }
@@ -135,15 +133,14 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements of Type"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("All elements in the active document of a given type."),
+     NodeDescription("ElementsofTypeDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsOfType : ElementsQueryBase
     {
         public ElementsOfType()
         {
-            InPortData.Add(new PortData("element type", "An element type."));
-            OutPortData.Add(
-                new PortData("elements", "All elements in the active document of a given type."));
+            InPortData.Add(new PortData("element type", Properties.Resources.PortDataElementTypeToolTip));
+            OutPortData.Add(new PortData("elements", Properties.Resources.PortDataAllElementsInDocumentToolTip));
             RegisterAllPorts();
         }
 
@@ -159,14 +156,14 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements of Category"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Get all elements of the specified category from the model."),
+     NodeDescription("ElementsofCategoryDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsOfCategory : ElementsQueryBase
     {
         public ElementsOfCategory()
         {
-            InPortData.Add(new PortData("Category", "The Category"));
-            OutPortData.Add(new PortData("Elements", "The list of elements matching the query."));
+            InPortData.Add(new PortData("Category", Properties.Resources.PortDataCategoryToolTip));
+            OutPortData.Add(new PortData("Elements", Properties.Resources.PortDataElementTypeToolTip));
 
             RegisterAllPorts();
         }
@@ -183,14 +180,14 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements at Level"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Get all the elements at the specified Level from the model."),
+     NodeDescription("ElementsatLevelDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsAtLevel : ElementsQueryBase
     {
         public ElementsAtLevel()
         {
-            InPortData.Add(new PortData("Level", "A Level"));
-            OutPortData.Add(new PortData("Elements", "Elements at the given level."));
+            InPortData.Add(new PortData("Level", Properties.Resources.PortDataALevelToolTip));
+            OutPortData.Add(new PortData("Elements", Properties.Resources.PortDataElementAtLevelToolTip));
 
             RegisterAllPorts();
         }
@@ -206,7 +203,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("All Elements In Active View"), NodeCategory(BuiltinNodeCategories.REVIT_VIEW),
-     NodeDescription("Get all the elements which are visible in the active view."),
+     NodeDescription("ElementsInActiveViewDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsInView : RevitNodeModel
     {
@@ -216,7 +213,7 @@ namespace DSRevitNodesUI
 
         public ElementsInView()
         {
-            OutPortData.Add(new PortData("elements", "All visible elements in the active view."));
+            OutPortData.Add(new PortData("elements", Properties.Resources.PortDataAllVisibleElementsToolTip));
             RegisterAllPorts();
 
             DocumentManager.Instance.CurrentUIApplication.ViewActivated +=
@@ -267,8 +264,7 @@ namespace DSRevitNodesUI
             }
             if (recalc)
             {
-                ForceReExecuteOfNode = true;
-                OnAstUpdated();
+                OnNodeModified(forceExecute:true);
             }
         }
 
@@ -363,8 +359,7 @@ namespace DSRevitNodesUI
         {
             if (updated.Any(uniqueIds.Contains))
             {
-                ForceReExecuteOfNode = true;
-                OnAstUpdated();
+                OnNodeModified(forceExecute:true);
             }
         }
 
@@ -374,8 +369,7 @@ namespace DSRevitNodesUI
             var elements = GetElementsVisibleInActiveView();
             elementIds = new HashSet<ElementId>(elements.Select(x => x.Id));
             uniqueIds = new HashSet<string>(elements.Select(x => x.UniqueId));
-            ForceReExecuteOfNode = true;
-            OnAstUpdated();
+            OnNodeModified(forceExecute:true);
         }
 
         private void RevitServicesUpdaterOnElementsDeleted(
@@ -388,8 +382,7 @@ namespace DSRevitNodesUI
                 uniqueIds =
                     new HashSet<string>(elementIds.Select(id => document.GetElement(id).UniqueId));
 
-                ForceReExecuteOfNode = true;
-                OnAstUpdated();
+                OnNodeModified(forceExecute: true);
             }
         }
 

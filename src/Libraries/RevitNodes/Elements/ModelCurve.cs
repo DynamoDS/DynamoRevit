@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 
 using Autodesk.DesignScript.Geometry;
-using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 
 using Revit.GeometryConversion;
@@ -12,7 +11,6 @@ using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using Curve = Autodesk.Revit.DB.Curve;
-using Line = Autodesk.Revit.DB.Line;
 using Plane = Autodesk.Revit.DB.Plane;
 
 namespace Revit.Elements
@@ -20,7 +18,7 @@ namespace Revit.Elements
     /// <summary>
     /// A Revit ModelCurve
     /// </summary>
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class ModelCurve : CurveElement
     {
         #region Private constructors
