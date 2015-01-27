@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-using Analysis.DataTypes;
+﻿using Analysis;
 
 using Autodesk.DesignScript.Geometry;
 
@@ -8,8 +6,6 @@ using NUnit.Framework;
 
 using Revit.AnalysisDisplay;
 using Revit.Application;
-
-using RevitNodesTests;
 
 using RevitTestServices;
 
@@ -86,13 +82,12 @@ namespace RevitNodesTests.AnalysisDisplay
                 -1
             };
 
-            var data = PointAnalysisData.ByPointsAndResults(
+            var data = PointData.ByPointsAndValues(
                 samplePoints,
-                new List<string>() { "Test points." },
-                new IList<double>[] { sampleValues });
+                sampleValues);
 
             var doc = Document.Current;
-            var grid = PointAnalysisDisplay.ByViewAndPointAnalysisData(doc.ActiveView, new []{data});
+            var grid = PointAnalysisDisplay.ByViewAndPointAnalysisData(doc.ActiveView, data);
 
             Assert.NotNull(grid);
         }
@@ -115,15 +110,13 @@ namespace RevitNodesTests.AnalysisDisplay
                 -1
             };
 
-            var data = PointAnalysisData.ByPointsAndResults(
+            var data = PointData.ByPointsAndValues(
                 samplePoints,
-                new List<string>() { "Test points." },
-                new IList<double>[] { sampleValues });
+                sampleValues);
 
             var doc = Document.Current;
-            Assert.Throws(typeof(System.ArgumentNullException), () => PointAnalysisDisplay.ByViewAndPointAnalysisData(null, new []{data}));
+            Assert.Throws(typeof(System.ArgumentNullException), () => PointAnalysisDisplay.ByViewAndPointAnalysisData(null, data));
             Assert.Throws(typeof(System.ArgumentNullException), () => PointAnalysisDisplay.ByViewAndPointAnalysisData(doc.ActiveView, null));
-            Assert.Throws(typeof(System.Exception), () => PointAnalysisDisplay.ByViewAndPointAnalysisData(doc.ActiveView, new PointAnalysisData[] { }));
         }
     }
 }

@@ -42,7 +42,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoServices">
-      <HintPath>..\..\..\..\Dynamo\bin\AnyCPU\Debug\DynamoServices.dll</HintPath>
       <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />

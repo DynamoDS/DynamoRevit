@@ -79,6 +79,33 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The number of sample locations and samples is not equal..
+        /// </summary>
+        public static string Array_Count_Mismatch {
+            get {
+                return ResourceManager.GetString("Array_Count_Mismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamo Data.
+        /// </summary>
+        public static string Dynamo_AVF_Data_Name {
+            get {
+                return ResourceManager.GetString("Dynamo_AVF_Data_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Revit face with the corresponding tag could not be found..
+        /// </summary>
+        public static string Tag_Lookup_Error {
+            get {
+                return ResourceManager.GetString("Tag_Lookup_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The supplied path is invalid..
         /// </summary>
         public static string View_ExportAsImage_Path_Invalid {
