@@ -85,6 +85,10 @@ namespace Revit.Elements
             //Phase 2- There was no existing point, create one
             TransactionManager.Instance.EnsureInTransaction(Document);
 
+            //If the symbol is not active, then activate it
+            if (!fs.IsActive)
+                fs.Activate();
+
             Autodesk.Revit.DB.FamilyInstance fi;
 
             if (Document.IsFamilyDocument)
@@ -125,6 +129,10 @@ namespace Revit.Elements
 
             //Phase 2- There was no existing point, create one
             TransactionManager.Instance.EnsureInTransaction(Document);
+
+            //If the symbol is not active, then activate it
+            if (!fs.IsActive)
+                fs.Activate();
 
             Autodesk.Revit.DB.FamilyInstance fi;
 

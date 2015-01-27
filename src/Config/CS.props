@@ -16,6 +16,7 @@
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</TestOutputPath>
     <REVITAPI  Condition=" '$(REVITAPI)' == '' ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
+	<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture Copernicus</REVITAPI>
     <BaseIntermediateOutputPath>$(OutputPath)\int\</BaseIntermediateOutputPath>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -38,6 +39,7 @@
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</TestOutputPath>
     <REVITAPI  Condition=" '$(REVITAPI)' == '' ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
+	<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture Copernicus</REVITAPI>
     <BaseIntermediateOutputPath>$(OutputPath)\int\</BaseIntermediateOutputPath>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>

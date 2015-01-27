@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 
 using Dynamo.Applications;
@@ -89,6 +90,8 @@ namespace Dynamo.Applications
      Regeneration(RegenerationOption.Manual)]
     public class DynamoRevit : IExternalCommand
     {
+        private static readonly List<Action> idleActions = new List<Action>();
+
         private static ExternalCommandData extCommandData;
         private static DynamoViewModel dynamoViewModel;
         private static RevitDynamoModel revitDynamoModel;
@@ -117,6 +120,8 @@ namespace Dynamo.Applications
 
                 TryOpenWorkspaceInCommandData(extCommandData);
                 SubscribeApplicationEvents(extCommandData);
+
+                extCommandData.Application.Idling += OnApplicationIdle;
 #else
 
                 IdlePromise.ExecuteOnIdleAsync(
@@ -150,6 +155,22 @@ namespace Dynamo.Applications
             }
 
             return Result.Succeeded;
+        }
+        
+        private static void OnApplicationIdle(object sender, IdlingEventArgs e)
+        {
+            if (idleActions.Count == 0)
+                    return;
+
+            Action pendingAction = null;
+            lock (idleActions)
+            {
+                pendingAction = idleActions[0];
+                idleActions.RemoveAt(0);
+            }
+
+            if (pendingAction != null)
+                pendingAction();
         }
 
         public static RevitDynamoModel RevitDynamoModel
@@ -217,8 +238,7 @@ namespace Dynamo.Applications
 
             revitDynamoModel.ShutdownStarted += (drm) =>
             {
-                var uiApplication = DocumentManager.Instance.CurrentUIApplication;
-                uiApplication.Idling += DeleteKeeperElementOnce;
+                AddIdleAction(DeleteKeeperElement);
             };
 
 #else
@@ -396,13 +416,12 @@ namespace Dynamo.Applications
         {
             var view = (DynamoView)sender;
 
-            RevitServicesUpdater.DisposeInstance();
             DocumentManager.OnLogError -= revitDynamoModel.Logger.Log;
 
             view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
             view.Closed -= OnDynamoViewClosed;
-            DocumentManager.Instance.CurrentUIApplication.ViewActivating -=
-                OnApplicationViewActivating;
+            AddIdleAction(() => DocumentManager.Instance.CurrentUIApplication.ViewActivating -=
+            OnApplicationViewActivating);
 
             AppDomain.CurrentDomain.AssemblyResolve -=
                 Analyze.Render.AssemblyHelper.ResolveAssemblies;
@@ -485,17 +504,6 @@ namespace Dynamo.Applications
         }
         #endregion
 
-#if ENABLE_DYNAMO_SCHEDULER
-
-        private static void DeleteKeeperElementOnce(object sender, IdlingEventArgs idlingEventArgs)
-        {
-            var uiApplication = DocumentManager.Instance.CurrentUIApplication;
-            uiApplication.Idling -= DeleteKeeperElementOnce;
-            DeleteKeeperElement();
-        }
-
-#endif
-
         /// <summary>
         /// This method access Revit API, therefore it needs to be called only 
         /// by idle thread (i.e. in an 'UIApplication.Idling' event handler).
@@ -530,5 +538,16 @@ namespace Dynamo.Applications
         }
 
         #endregion
+
+        /// <summary>
+        /// Add an action to run when the application is in the idle state
+        /// </summary>
+        public static void AddIdleAction(Action a)
+        {
+            lock (idleActions)
+            {
+                idleActions.Add(a);
+            }
+        }
     }
 }

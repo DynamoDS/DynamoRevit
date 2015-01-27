@@ -72,8 +72,9 @@ namespace DSRevitNodesUI
 
             foreach (Family family in fec.ToElements())
             {
-                foreach (FamilySymbol fs in family.Symbols)
+                foreach (var id in family.GetFamilySymbolIds())
                 {
+                    var fs = family.Document.GetElement(id);
                     Items.Add(new DynamoDropDownItem(string.Format("{0}:{1}", family.Name, fs.Name), fs));
                 }
             }
