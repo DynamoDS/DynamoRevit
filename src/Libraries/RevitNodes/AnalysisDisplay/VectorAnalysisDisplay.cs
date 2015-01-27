@@ -56,13 +56,16 @@ namespace Revit.AnalysisDisplay
         #endregion
 
         #region Private mutators
-
         /// <summary>
         /// Set the spatial field values for the current spatial field primitive.  The two 
         /// input sequences should be of the same length.
         /// </summary>
         /// <param name="sampleLocations"></param>
         /// <param name="samples"></param>
+        /// <param name="data"></param>
+        /// <param name="schemaName"></param>
+        /// <param name="description"></param>
+        /// <param name="unitType"></param>
         private void InternalSetSpatialFieldValues(int primitiveId, VectorData data, string schemaName, string description, Type unitType)
         {
             var valList = data.Values.Select(v => new VectorAtPoint(new List<XYZ> { v.ToXyz() }));
@@ -139,7 +142,7 @@ namespace Revit.AnalysisDisplay
         /// Show a Vector Analysis Display in the Revit view.
         /// </summary>
         /// <param name="view">The view into which you want to draw the analysis results.</param>
-        /// <param name="data">A list of VectorAnalysisData objects.</param>
+        /// <param name="data">A list of VectorData objects.</param>
         /// <param name="name">An optional analysis results name to show on the results legend.</param>
         /// <param name="description">An optional analysis results description to show on the results legend.</param>
         /// <param name="unitType">An optional Unit type to provide conversions in the analysis results.</param>
