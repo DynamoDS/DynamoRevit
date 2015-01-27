@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Revit {
+namespace Revit.Properties {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace Revit {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resource1 {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resource1() {
+        internal Resources() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Revit.Resource1", typeof(Resource1).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Revit.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace Revit {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Revit {
         /// <summary>
         ///   Looks up a localized string similar to Analysis Results from Dynamo.
         /// </summary>
-        internal static string AnalysisResultsDefaultDescription {
+        public static string AnalysisResultsDefaultDescription {
             get {
                 return ResourceManager.GetString("AnalysisResultsDefaultDescription", resourceCulture);
             }
@@ -72,16 +72,16 @@ namespace Revit {
         /// <summary>
         ///   Looks up a localized string similar to Dynamo Analysis Results.
         /// </summary>
-        internal static string AnalysisResultsDefaultName {
+        public static string AnalysisResultsDefaultName {
             get {
                 return ResourceManager.GetString("AnalysisResultsDefaultName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The number of sample points and number of samples must be the same..
+        ///   Looks up a localized string similar to The number of sample locations and samples is not equal..
         /// </summary>
-        internal static string Array_Count_Mismatch {
+        public static string Array_Count_Mismatch {
             get {
                 return ResourceManager.GetString("Array_Count_Mismatch", resourceCulture);
             }
@@ -90,16 +90,16 @@ namespace Revit {
         /// <summary>
         ///   Looks up a localized string similar to Dynamo Data.
         /// </summary>
-        internal static string Dynamo_AVF_Data_Name {
+        public static string Dynamo_AVF_Data_Name {
             get {
                 return ResourceManager.GetString("Dynamo_AVF_Data_Name", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The specified surface does not correspond to a Revit surface..
+        ///   Looks up a localized string similar to A Revit face with the corresponding tag could not be found..
         /// </summary>
-        internal static string Tag_Lookup_Error {
+        public static string Tag_Lookup_Error {
             get {
                 return ResourceManager.GetString("Tag_Lookup_Error", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Revit {
         /// <summary>
         ///   Looks up a localized string similar to The supplied path is invalid..
         /// </summary>
-        internal static string View_ExportAsImage_Path_Invalid {
+        public static string View_ExportAsImage_Path_Invalid {
             get {
                 return ResourceManager.GetString("View_ExportAsImage_Path_Invalid", resourceCulture);
             }
