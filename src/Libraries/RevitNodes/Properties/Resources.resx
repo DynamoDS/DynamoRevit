@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="App_Description" xml:space="preserve">
-    <value>Visual Programming</value>
+  <data name="AnalysisResultsDefaultDescription" xml:space="preserve">
+    <value>Analysis Results from Dynamo</value>
   </data>
-  <data name="App_Name" xml:space="preserve">
-    <value>Dynamo 0.7</value>
+  <data name="AnalysisResultsDefaultName" xml:space="preserve">
+    <value>Dynamo Analysis Results</value>
+  </data>
+  <data name="View_ExportAsImage_Path_Invalid" xml:space="preserve">
+    <value>The supplied path is invalid.</value>
   </data>
 </root>
