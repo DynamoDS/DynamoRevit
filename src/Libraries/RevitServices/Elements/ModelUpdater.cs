@@ -26,7 +26,6 @@ namespace RevitServices.Elements
     {
         //TODO: To handle multiple documents, should store unique ids as opposed to ElementIds.
 
-        private readonly ControlledApplication application;
         private readonly HashSet<IUpdater> registeredUpdaters;
 
         public event ElementUpdateDelegate ElementsAdded;
@@ -70,13 +69,13 @@ namespace RevitServices.Elements
         /// </summary>
         /// <param name="app"></param>
         /// <param name="updaters"></param>
-        public static void Initialize(ControlledApplication app, IEnumerable<IUpdater> updaters)
+        public static void Initialize(IEnumerable<IUpdater> updaters)
         {
             lock (mutex)
             {
                 if (instance == null)
                 {
-                    instance = new RevitServicesUpdater(app, updaters);
+                    instance = new RevitServicesUpdater(updaters);
                 }
                 else
                 {
@@ -125,12 +124,9 @@ namespace RevitServices.Elements
         #endregion
 
         // constructor takes the AddInId for the add-in associated with this updater
-        private RevitServicesUpdater(/*AddInId id, */ControlledApplication app, IEnumerable<IUpdater> updaters)
+        private RevitServicesUpdater(/*AddInId id, */IEnumerable<IUpdater> updaters)
         {
-            application = app;
             registeredUpdaters = new HashSet<IUpdater>(updaters);
-
-            application.DocumentChanged += ApplicationDocumentChanged;
 
             foreach (var updater in registeredUpdaters)
             {
@@ -172,9 +168,7 @@ namespace RevitServices.Elements
         }
 
         private void Dispose()
-        {
-            application.DocumentChanged -= ApplicationDocumentChanged; 
-            
+        {            
             foreach (var updater in registeredUpdaters)
             {
                 ((ElementTypeSpecificUpdater)updater).Updated -= RevitServicesUpdater_Updated;
@@ -211,7 +205,7 @@ namespace RevitServices.Elements
             OnElementsAdded(doc, addedIds);
         }
 
-        void ApplicationDocumentChanged(object sender, DocumentChangedEventArgs args)
+        public void ApplicationDocumentChanged(object sender, DocumentChangedEventArgs args)
         {
             var doc = args.GetDocument();
             var added = args.GetAddedElementIds().Select(x => doc.GetElement(x).UniqueId);

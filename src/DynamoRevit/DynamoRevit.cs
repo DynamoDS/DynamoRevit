@@ -238,10 +238,7 @@ namespace Dynamo.Applications
 
             revitDynamoModel.ShutdownStarted += (drm) =>
             {
-                lock (idleActions)
-                {
-                    idleActions.Add(DeleteKeeperElement);
-                }
+                AddIdleAction(DeleteKeeperElement);
             };
 
 #else
@@ -424,8 +421,8 @@ namespace Dynamo.Applications
 
             view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
             view.Closed -= OnDynamoViewClosed;
-            DocumentManager.Instance.CurrentUIApplication.ViewActivating -=
-                OnApplicationViewActivating;
+            AddIdleAction(() => DocumentManager.Instance.CurrentUIApplication.ViewActivating -=
+            OnApplicationViewActivating);
 
             AppDomain.CurrentDomain.AssemblyResolve -=
                 Analyze.Render.AssemblyHelper.ResolveAssemblies;
@@ -542,5 +539,16 @@ namespace Dynamo.Applications
         }
 
         #endregion
+
+        /// <summary>
+        /// Add an action to run when the application is in the idle state
+        /// </summary>
+        public static void AddIdleAction(Action a)
+        {
+            lock (idleActions)
+            {
+                idleActions.Add(a);
+            }
+        }
     }
 }
