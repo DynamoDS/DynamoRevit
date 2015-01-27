@@ -1,13 +1,11 @@
 ﻿using System;
-using Autodesk.Revit.DB;
-using Autodesk.DesignScript.Geometry;
-using DSNodeServices;
-using Revit.Elements;
+
+using DynamoServices;
+
 using Revit.GeometryConversion;
 using Revit.GeometryReferences;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-using Point = Autodesk.DesignScript.Geometry.Point;
 
 namespace Revit.Elements
 {
