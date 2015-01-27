@@ -33,7 +33,7 @@ namespace Revit.Elements.Views
         {
             if (string.IsNullOrEmpty(path))
             {
-                throw new ArgumentException(Resource1.View_ExportAsImage_Path_Invalid, "path");
+                throw new ArgumentException(Properties.Resources.View_ExportAsImage_Path_Invalid, "path");
             }
 
             var fileType = ImageFileType.PNG;

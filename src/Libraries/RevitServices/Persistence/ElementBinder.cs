@@ -3,15 +3,13 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Autodesk.Revit.DB;
-using DSNodeServices;
+using DynamoServices;
 
 using ProtoCore;
 
 using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.DSEngine;
-using System.Runtime.Serialization;
-using RevitServices.Persistence;
 
 namespace RevitServices.Persistence
 {
@@ -384,7 +382,7 @@ namespace RevitServices.Persistence
                         || (n is CodeBlockNodeModel));
             }).Select((n) => n.GUID);
 
-            var nodeTraceDataList = core.GetCallsitesForNodes(nodeGuids);
+            var nodeTraceDataList = core.DSExecutable.RuntimeData.GetCallsitesForNodes(nodeGuids, core.DSExecutable);
 
             bool areElementsFoundForThisNode;
             foreach (Guid guid in nodeTraceDataList.Keys)
