@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using Autodesk.DesignScript.Geometry;
+
 using Autodesk.Revit.DB;
-using DSNodeServices;
+
+using DynamoServices;
+
 using Revit.GeometryConversion;
-using Revit.GeometryObjects;
-using Revit.GeometryReferences;
+
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-using Curve = Autodesk.DesignScript.Geometry.Curve;
+
 using Point = Autodesk.DesignScript.Geometry.Point;
 
 namespace Revit.Elements
