@@ -51,6 +51,7 @@ limitations under the License.
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoServices">
+      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
       <HintPath>..\..\..\..\Dynamo\bin\AnyCPU\Debug\DynamoServices.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">

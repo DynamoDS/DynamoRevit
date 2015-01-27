@@ -171,12 +171,6 @@ namespace Revit.AnalysisDisplay
                 description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
-            var reference = surface.Tags.LookupTag(DefaultTag) as Reference;
-            if (reference == null)
-            {
-                throw new Exception(Properties.Resources.Tag_Lookup_Error);
-            }
-
             var data = SurfaceData.BySurfacePointsAndValues(surface, sampleLocations, samples);
 
             return new FaceAnalysisDisplay(view.InternalView, data, name, description, unitType);
@@ -186,7 +180,7 @@ namespace Revit.AnalysisDisplay
         /// Show a colored Face Analysis Display in the Revit view.
         /// </summary>
         /// <param name="view">The view into which you want to draw the analysis results.</param>
-        /// <param name="data">A collection of SurfaceAnalysisData objects.</param>
+        /// <param name="data">A collection of SurfaceData objects.</param>
         /// <param name="name">An optional analysis results name to show on the results legend.</param>
         /// <param name="description">An optional analysis results description to show on the results legend.</param>
         /// <param name="unitType">An optional Unit type to provide conversions in the analysis results.</param>

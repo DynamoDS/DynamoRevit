@@ -203,7 +203,7 @@ namespace Revit.AnalysisDisplay
         /// Show a colored Point Analysis Display in the Revit view.
         /// </summary>
         /// <param name="view">The view into which you want to draw the analysis results.</param>
-        /// <param name="data">A list of PointAnalysisData objects.</param>
+        /// <param name="data">A list of PointData objects.</param>
         /// <param name="name">An optional analysis results name to show on the results legend.</param>
         /// <param name="description">An optional analysis results description to show on the results legend.</param>
         /// <param name="unitType">An optional Unit type to provide conversions in the analysis results.</param>
