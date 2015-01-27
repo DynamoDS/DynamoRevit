@@ -171,12 +171,6 @@ namespace Revit.AnalysisDisplay
                 description = Properties.Resources.AnalysisResultsDefaultDescription;
             }
 
-            var reference = surface.Tags.LookupTag(DefaultTag) as Reference;
-            if (reference == null)
-            {
-                throw new Exception(Properties.Resources.Tag_Lookup_Error);
-            }
-
             var data = SurfaceData.BySurfacePointsAndValues(surface, sampleLocations, samples);
 
             return new FaceAnalysisDisplay(view.InternalView, data, name, description, unitType);
