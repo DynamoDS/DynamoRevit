@@ -418,7 +418,7 @@ namespace Dynamo.Nodes
     #endregion
 
     [NodeName("Select Analysis Results"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Select analysis results from the document."), IsDesignScriptCompatible,
+     NodeDescription("SelectAnalysisResultsDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible,
      IsVisibleInDynamoLibrary(false)]
     public class DSAnalysisResultSelection : ElementSelection<Element>
     {
@@ -431,7 +431,7 @@ namespace Dynamo.Nodes
     }
 
     [NodeName("Select Model Element"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Select a model element from the document."), IsDesignScriptCompatible]
+     NodeDescription("SelectModelElementDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSModelElementSelection : ElementSelection<Element>
     {
         public DSModelElementSelection()
@@ -443,7 +443,7 @@ namespace Dynamo.Nodes
     }
 
     [NodeName("Select Face"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Select a face."), IsDesignScriptCompatible]
+     NodeDescription("SelectFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSFaceSelection : ReferenceSelection
     {
         public DSFaceSelection()
@@ -455,7 +455,7 @@ namespace Dynamo.Nodes
     }
 
     [NodeName("Select Edge"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Select an edge."), IsDesignScriptCompatible]
+     NodeDescription("SelectEdgeDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSEdgeSelection : ReferenceSelection
     {
         public DSEdgeSelection()
@@ -467,7 +467,7 @@ namespace Dynamo.Nodes
     }
 
     [NodeName("Select Point on Face"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Select a point on a face."), IsDesignScriptCompatible]
+     NodeDescription("SelectPointonFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSPointOnElementSelection : ReferenceSelection
     {
         public DSPointOnElementSelection()
@@ -528,7 +528,7 @@ namespace Dynamo.Nodes
     }
 
     [NodeName("Select UV on Face"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Select a UV on a face."), IsDesignScriptCompatible]
+     NodeDescription("SelectUVonFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSUvOnElementSelection : ReferenceSelection
     {
         public DSUvOnElementSelection()
@@ -589,7 +589,7 @@ namespace Dynamo.Nodes
 
     [NodeName("Select Divided Surface Families"),
      NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Select a divided surface and get its family instances."),
+     NodeDescription("SelectDividedSurfaceFamiliesDescription", typeof(DSRevitNodesUI.Properties.Resources)),
      IsDesignScriptCompatible]
     public class DSDividedSurfaceFamiliesSelection : ElementSelection<DividedSurface>
     {
@@ -611,7 +611,7 @@ namespace Dynamo.Nodes
     }
 
     [NodeName("Select Model Elements"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Select multiple elements from the Revit document."), IsDesignScriptCompatible]
+     NodeDescription("SelectModelElementsDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSModelElementsSelection : ElementSelection<Element>
     {
         public DSModelElementsSelection()
@@ -623,7 +623,7 @@ namespace Dynamo.Nodes
     }
 
     [NodeName("Select Faces"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
-     NodeDescription("Select multiple faces from the Revit document."), IsDesignScriptCompatible]
+     NodeDescription("SelectFacesDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class SelectFaces : ReferenceSelection
     {
         public SelectFaces()
