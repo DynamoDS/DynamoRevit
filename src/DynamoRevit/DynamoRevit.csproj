@@ -54,9 +54,7 @@
       <HintPath>$(DynamoExternPath)\DynamoRaaS\DynamoRaaSHelper.dll</HintPath>
     </Reference>
     <Reference Include="DynamoServices">
-      <HintPath>..\..\..\Dynamo\bin\AnyCPU\Debug\DynamoServices.dll</HintPath>
       <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
-      <HintPath>..\..\..\Dynamo\bin\AnyCPU\Debug\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Greg, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
