@@ -212,29 +212,22 @@ namespace DSRevitNodesUI
 
         private Element GetInputElement()
         {
-            /*
             var inputNode = InPorts[0].Connectors[0].Start.Owner;
             var index = InPorts[0].Connectors[0].Start.Index;
             
             var identifier = inputNode.GetAstIdentifierForOutputIndex(index).Name;
 
-            if (this.EngineController == null) return null;
+            if (EngineController == null) return null;
             var data = this.EngineController.GetMirror(identifier).GetData();
 
-            object family = null;
-            if (data.IsCollection)
-                family = data.GetElements().FirstOrDefault();
-            else
-                family = data.Data;
+
+            object family = data.IsCollection ? 
+                data.GetElements().FirstOrDefault() : 
+                data.Data;
 
             var elem = family as Revit.Elements.Element;
-            if(null == elem)
-                return null;
 
-            return elem.InternalElement;
-             */
-
-            return null;
+            return null == elem ? null : elem.InternalElement;
         }
 
         protected override void SerializeCore(XmlElement nodeElement, SaveContext context)
