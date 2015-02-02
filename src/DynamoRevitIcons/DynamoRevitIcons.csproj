@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SolutionDir)Config/CS.props" />
+  </ImportGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A31E274C-524A-40CA-85FF-595D3DB53777}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DynamoRevitIcons</RootNamespace>
+    <AssemblyName>DynamoRevitIcons</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>TRACE;DEBUG;ENABLE_DYNAMO_SCHEDULER</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>    
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>    
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DSRevitNodesUIImages.resx" />
+    <EmbeddedResource Include="RevitNodesImages.resx" />
+    <EmbeddedResource Include="SimpleRaaSImages.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="BeforeBuild">
+    <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v2.0">
+      <Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
+    </GetReferenceAssemblyPaths>
+    <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)RevitNodesImages.resx" OutputResources="$(ProjectDir)RevitNodesImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)RevitNodesImages.resources" OutputAssembly="$(OutputPath)RevitNodes.resources.dll" />
+    <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)DSRevitNodesUIImages.resx" OutputResources="$(ProjectDir)DSRevitNodesUIImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)DSRevitNodesUIImages.resources" OutputAssembly="$(OutputPath)DSRevitNodesUI.resources.dll" />
+    <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)SimpleRaaSImages.resx" OutputResources="$(ProjectDir)SimpleRaaSImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)SimpleRaaSImages.resources" OutputAssembly="$(OutputPath)SimpleRaaS.resources.dll" />
+  </Target>
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <DeleteFiles Include="$(TargetDir)$(ProjectName).*" />
+    </ItemGroup>    
+	<Delete Files="@(DeleteFiles)" />
+  </Target>
+</Project>
