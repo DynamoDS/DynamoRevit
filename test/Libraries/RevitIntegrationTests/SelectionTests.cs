@@ -21,6 +21,7 @@ using RevitServices.Transactions;
 using RTF.Framework;
 
 using ReferencePoint = Revit.Elements.ReferencePoint;
+using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace RevitSystemTests
 {
@@ -47,7 +48,7 @@ namespace RevitSystemTests
             //in the node's items source
             var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
             fec.OfClass(typeof(Family));
-            int count = fec.ToElements().Cast<Family>().Sum(f => f.Symbols.Cast<FamilySymbol>().Count());
+            int count = fec.ToElements().Cast<Family>().Sum(f => f.GetFamilySymbolIds().Count());
 
             var typeSelNode = (FamilyTypes)ViewModel.Model.CurrentWorkspace.Nodes.First();
             Assert.AreEqual(typeSelNode.Items.Count, count);
