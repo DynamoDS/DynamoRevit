@@ -35,7 +35,7 @@ limitations under the License.
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG;ENABLE_DYNAMO_SCHEDULER</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -43,7 +43,7 @@ limitations under the License.
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>TRACE;ENABLE_DYNAMO_SCHEDULER</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DebugSymbols>true</DebugSymbols>
@@ -51,6 +51,8 @@ limitations under the License.
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoServices">
+      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
+      <HintPath>..\..\..\..\Dynamo\bin\AnyCPU\Debug\DynamoServices.dll</HintPath>
       <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">
@@ -85,7 +87,6 @@ limitations under the License.
     <Compile Include="Persistence\ElementBinder.cs" />
     <Compile Include="Persistence\ElementIDLifecycleManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Threading\IdlePromise.cs" />
     <Compile Include="Threading\RevitSchedulerThread.cs" />
     <Compile Include="Transactions\TransactionManager.cs" />
   </ItemGroup>
