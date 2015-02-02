@@ -197,8 +197,6 @@ namespace Dynamo.Applications.Models
             base.OnEvaluationCompleted(sender, e);
         }
 
-#if ENABLE_DYNAMO_SCHEDULER
-
         protected override void PreShutdownCore(bool shutdownHost)
         {
             if (shutdownHost)
@@ -217,18 +215,6 @@ namespace Dynamo.Applications.Models
             ShutdownRevitHost();
         }
 
-#else
-
-        protected override void PreShutdownCore(bool shutdownHost)
-        {
-            if (shutdownHost)
-                IdlePromise.ExecuteOnShutdown(ShutdownRevitHost);
-
-            base.PreShutdownCore(shutdownHost);
-        }
-
-#endif
-
         protected override void ShutDownCore(bool shutDownHost)
         {
             DisposeLogic.IsShuttingDown = true;
@@ -242,17 +228,6 @@ namespace Dynamo.Applications.Models
             UnsubscribeRevitServicesUpdaterEvents();
             UnsubscribeTransactionManagerEvents();
         }
-
-#if !ENABLE_DYNAMO_SCHEDULER
-
-        protected override void PostShutdownCore(bool shutdownHost)
-        {
-            IdlePromise.ClearPromises();
-            IdlePromise.Shutdown();
-            base.PostShutdownCore(shutdownHost);
-        }
-
-#endif
 
         /// <summary>
         /// This method is typically called when a new workspace is opened or
