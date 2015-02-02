@@ -20,16 +20,14 @@
     <Optimize>false</Optimize>
     <DefineConstants>TRACE;DEBUG;ENABLE_DYNAMO_SCHEDULER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <OutputPath>$(OutputPath)\..\</OutputPath>
+    <WarningLevel>4</WarningLevel>    
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <OutputPath>$(OutputPath)\..\</OutputPath>
+    <WarningLevel>4</WarningLevel>    
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="DSRevitNodesUIImages.resx" />
@@ -42,11 +40,11 @@
       <Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
     </GetReferenceAssemblyPaths>
     <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)RevitNodesImages.resx" OutputResources="$(ProjectDir)RevitNodesImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
-    <AL TargetType="library" EmbedResources="$(ProjectDir)RevitNodesImages.resources" OutputAssembly="$(OutDir)RevitNodes.resources.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)RevitNodesImages.resources" OutputAssembly="$(OutputPath)RevitNodes.resources.dll" />
     <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)DSRevitNodesUIImages.resx" OutputResources="$(ProjectDir)DSRevitNodesUIImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
-    <AL TargetType="library" EmbedResources="$(ProjectDir)DSRevitNodesUIImages.resources" OutputAssembly="$(OutDir)DSRevitNodesUI.resources.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)DSRevitNodesUIImages.resources" OutputAssembly="$(OutputPath)DSRevitNodesUI.resources.dll" />
     <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)SimpleRaaSImages.resx" OutputResources="$(ProjectDir)SimpleRaaSImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
-    <AL TargetType="library" EmbedResources="$(ProjectDir)SimpleRaaSImages.resources" OutputAssembly="$(OutDir)SimpleRaaS.resources.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)SimpleRaaSImages.resources" OutputAssembly="$(OutputPath)SimpleRaaS.resources.dll" />
   </Target>
   <Target Name="AfterBuild">
     <ItemGroup>
