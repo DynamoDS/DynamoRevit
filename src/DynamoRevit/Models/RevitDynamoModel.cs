@@ -498,7 +498,7 @@ namespace Dynamo.Applications.Models
 
         protected override void OpenFileImpl(OpenFileCommand command)
         {
-            IdlePromise.ExecuteOnIdleAsync(() => base.OpenFileImpl(command));
+            DynamoRevit.AddIdleAction(() => base.OpenFileImpl(command));
         }
     }
 }
