@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 using Autodesk.Revit.DB;
@@ -46,7 +45,7 @@ namespace Revit.Interactivity
 
             var choices = doc.Selection;
 
-            choices.SetElementIds(new Collection<ElementId>());
+            choices.Elements.Clear();
 
             logger.Log(message);
 
@@ -75,7 +74,7 @@ namespace Revit.Interactivity
 
             var choices = doc.Selection;
 
-            choices.SetElementIds(new Collection<ElementId>());
+            choices.Elements.Clear();
 
 
             logger.Log(message);
@@ -176,7 +175,7 @@ namespace Revit.Interactivity
             Element e = null;
 
             var choices = doc.Selection;
-            choices.SetElementIds(new Collection<ElementId>());
+            choices.Elements.Clear();
 
             logger.Log(selectionMessage);
 
@@ -199,7 +198,7 @@ namespace Revit.Interactivity
             var doc = DocumentManager.Instance.CurrentUIDocument;
 
             var choices = doc.Selection;
-            choices.SetElementIds(new Collection<ElementId>());
+            choices.Elements.Clear();
 
             logger.Log(selectionMessage);
 
