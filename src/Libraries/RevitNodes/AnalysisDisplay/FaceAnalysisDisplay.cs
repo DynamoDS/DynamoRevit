@@ -19,7 +19,6 @@ using RevitServices.Transactions;
 
 using UV = Autodesk.Revit.DB.UV;
 using View = Revit.Elements.Views.View;
-using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace Revit.AnalysisDisplay
 {

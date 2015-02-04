@@ -13,7 +13,6 @@ using Revit.GeometryReferences;
 
 using Edge = Autodesk.Revit.DB.Edge;
 using Face = Autodesk.Revit.DB.Face;
-using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace Revit.GeometryConversion
 {
