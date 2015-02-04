@@ -155,10 +155,6 @@
       <HintPath>$(DYNAMOAPI)\DSIronPython.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoUnits">
-      <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DynamoCoreWpf">
       <HintPath>$(DYNAMOAPI)\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
