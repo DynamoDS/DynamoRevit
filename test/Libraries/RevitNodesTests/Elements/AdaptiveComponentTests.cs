@@ -66,7 +66,7 @@ namespace RevitNodesTests.Elements
 
             foreach (var pair in unconvertedPairs)
             {
-                pair.Item1.ShouldBeApproximately(pair.Item2 * UnitConverter.HostToDynamoFactor);
+                pair.Item1.ShouldBeApproximately(pair.Item2 * UnitConverter.HostToDynamoFactor(UnitType.UT_Length));
             }
 
             Assert.NotNull(ac);
