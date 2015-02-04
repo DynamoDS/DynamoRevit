@@ -1,24 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-using DynamoUnits;
+
+using RevitServices.Persistence;
 
 namespace Revit.GeometryConversion
 {
     [SupressImportIntoVM]
     public static class UnitConverter
     {
-        public static double DynamoToHostFactor
+        //public static double DynamoToHostFactor
+        //{
+        //    get { return Length.FromDouble(1.0).ConvertToHostUnits(); }
+        //}
+
+        //public static double HostToDynamoFactor
+        //{
+        //    get { return 1 / DynamoToHostFactor; }
+        //}
+
+        public static double DynamoToHostFactor(UnitType unitType)
         {
-            get { return Length.FromDouble(1.0).ConvertToHostUnits(); }
+            var revitDisplayUnits =
+                DocumentManager.Instance.CurrentDBDocument.GetUnits()
+                    .GetFormatOptions(unitType)
+                    .DisplayUnits;
+            return UnitUtils.ConvertToInternalUnits(1, revitDisplayUnits);
         }
 
-        public static double HostToDynamoFactor
+        public static double HostToDynamoFactor(UnitType unitType)
         {
-            get { return 1 / DynamoToHostFactor; }
+            return 1/DynamoToHostFactor(unitType);
         }
 
         /// <summary>
@@ -37,7 +50,7 @@ namespace Revit.GeometryConversion
                 throw new ArgumentNullException("geometry");
             }
 
-            var result = (T)geometry.Scale(HostToDynamoFactor);
+            var result = (T)geometry.Scale(HostToDynamoFactor(UnitType.UT_Length));
             return result;
         }
 
@@ -57,7 +70,7 @@ namespace Revit.GeometryConversion
                 throw new ArgumentNullException("geometry");
             }
 
-            var result = (T)geometry.Scale(DynamoToHostFactor);
+            var result = (T)geometry.Scale(DynamoToHostFactor(UnitType.UT_Length));
             return result;
         }
         
