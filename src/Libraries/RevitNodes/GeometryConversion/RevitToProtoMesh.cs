@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
-using Mesh = Autodesk.Revit.DB.Mesh;
 
 namespace Revit.GeometryConversion
 {
@@ -24,7 +23,7 @@ namespace Revit.GeometryConversion
 
         }
 
-        public static Autodesk.DesignScript.Geometry.Mesh[] ToProtoType(IEnumerable<Mesh> meshArray,
+        public static Autodesk.DesignScript.Geometry.Mesh[] ToProtoType(this Autodesk.Revit.DB.MeshArray meshArray,
             bool performHostUnitConversion = true)
         {
             return meshArray.Cast<Autodesk.Revit.DB.Mesh>().Select(x => x.ToProtoType(performHostUnitConversion)).ToArray();
