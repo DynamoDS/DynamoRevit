@@ -10,16 +10,6 @@ namespace Revit.GeometryConversion
     [SupressImportIntoVM]
     public static class UnitConverter
     {
-        //public static double DynamoToHostFactor
-        //{
-        //    get { return Length.FromDouble(1.0).ConvertToHostUnits(); }
-        //}
-
-        //public static double HostToDynamoFactor
-        //{
-        //    get { return 1 / DynamoToHostFactor; }
-        //}
-
         public static double DynamoToHostFactor(UnitType unitType)
         {
             var revitDisplayUnits =
