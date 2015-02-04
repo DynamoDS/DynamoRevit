@@ -40,8 +40,6 @@ using Autodesk.Revit.DB.Events;
 
 #endregion
 
-#if ENABLE_DYNAMO_SCHEDULER
-
 namespace RevitServices.Threading
 {
     // SCHEDULER: This class will be removed once DynamoScheduler work is 
@@ -81,8 +79,6 @@ namespace RevitServices.Threading
     }
 }
 
-#endif
-
 namespace Dynamo.Applications
 {
     [Transaction(TransactionMode.Manual),
@@ -102,7 +98,6 @@ namespace Dynamo.Applications
 
             try
             {
-
                 extCommandData = commandData;
 
                 // create core data models
@@ -117,7 +112,7 @@ namespace Dynamo.Applications
 
                 TryOpenWorkspaceInCommandData(extCommandData);
                 SubscribeApplicationEvents(extCommandData);
-
+				
                 // Disable the Dynamo button to prevent a re-run
                 DynamoRevitApp.DynamoButton.Enabled = false;
             }
@@ -182,20 +177,12 @@ namespace Dynamo.Applications
                         new RevitWatchHandler(vizManager, revitDynamoModel.PreferenceSettings)
                 });
 
-#if ENABLE_DYNAMO_SCHEDULER
-
             revitDynamoModel.ShutdownStarted += (drm) =>
             {
                 var uiApplication = DocumentManager.Instance.CurrentUIApplication;
                 uiApplication.Idling += DeleteKeeperElementOnce;
             };
 
-#else
-
-            revitDynamoModel.ShutdownStarted += (drm) =>
-                IdlePromise.ExecuteOnShutdown(DeleteKeeperElement);
-
-#endif
             return viewModel;
         }
 
@@ -449,7 +436,6 @@ namespace Dynamo.Applications
         }
         #endregion
 
-#if ENABLE_DYNAMO_SCHEDULER
 
         private static void DeleteKeeperElementOnce(object sender, IdlingEventArgs idlingEventArgs)
         {
@@ -458,24 +444,12 @@ namespace Dynamo.Applications
             DeleteKeeperElement();
         }
 
-#endif
-
         /// <summary>
         /// This method access Revit API, therefore it needs to be called only 
         /// by idle thread (i.e. in an 'UIApplication.Idling' event handler).
         /// </summary>
         private static void DeleteKeeperElement()
         {
-#if !ENABLE_DYNAMO_SCHEDULER
-
-            if (!IdlePromise.InIdleThread)
-            {
-                throw new AccessViolationException(
-                    "'DeleteKeeperElement' must be called in idle thread");
-            }
-
-#endif
-
             var dbDoc = DocumentManager.Instance.CurrentDBDocument;
             if (null == dbDoc || (dynamoViewModel == null))
                 return;
