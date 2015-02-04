@@ -25,7 +25,7 @@ namespace Revit.GeometryConversion
         }
 
         /// <summary>
-        /// Convert from Revit API internal units (feet) to Dynamo internal units (meters) 
+        /// Convert from Revit API internal units (feet) to Revit Display units.
         /// 
         /// Can be used simply as geometry.InDynamoUnits() as the type is constrained
         /// </summary>
@@ -45,7 +45,7 @@ namespace Revit.GeometryConversion
         }
 
         /// <summary>
-        /// Convert from Dynamo internal units (meters) to Revit API internal units (feet)
+        /// Convert from Revit Display Units to Revit API internal units (feet)
         /// 
         /// Can be used simply as geometry.InHostUnits()
         /// </summary>
