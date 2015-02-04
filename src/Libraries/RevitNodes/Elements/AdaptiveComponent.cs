@@ -77,7 +77,6 @@ namespace Revit.Elements
         /// <param name="fs">FamilySymbol to place</param>
         private void InitAdaptiveComponent(Point[] pts, FamilySymbol fs)
         {
-
             // if the family instance is present in trace...
             var oldFam =
                 ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
@@ -89,24 +88,35 @@ namespace Revit.Elements
                 if (fs.InternalFamilySymbol.Id != oldFam.Symbol.Id)
                     InternalSetFamilySymbol(fs);
                 InternalSetPositions(pts.ToXyzs());
+
                 return;
             }
 
             // otherwise create a new family instance...
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            var fam = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(Element.Document, fs.InternalFamilySymbol);
-
-            if (fam == null)
-                throw new Exception("An adaptive component could not be found or created.");
-
-            InternalSetFamilyInstance(fam);
-            InternalSetPositions(pts.ToXyzs());
+            using (Autodesk.Revit.DB.SubTransaction st = new SubTransaction(Document))
+            {
+                try
+                {
+                    st.Start();
+                    var fam = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(Element.Document, fs.InternalFamilySymbol);
+                    InternalSetFamilyInstance(fam);
+                    InternalSetPositions(pts.ToXyzs());
+                    st.Commit();
+                }
+                catch (Exception)
+                {
+                    st.RollBack();
+                    throw new ArgumentException("An adaptive component could not be found or created.");
+                }
+            }
 
             TransactionManager.Instance.TransactionTaskDone();
 
             // remember this value
             ElementBinder.SetElementForTrace(this.InternalElement);
+
         }
 
         /// <summary>
@@ -128,19 +138,29 @@ namespace Revit.Elements
                 if (fs.InternalFamilySymbol.Id != oldFam.Symbol.Id)
                     InternalSetFamilySymbol(fs);
                 InternalSetUvsAndFace(pts.ToUvs(), f.InternalReference);
+
                 return;
             }
 
             // otherwise create a new family instance...
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            var fam = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(Element.Document, fs.InternalFamilySymbol);
-
-            if (fam == null)
-                throw new Exception("An adaptive component could not be found or created.");
-
-            InternalSetFamilyInstance(fam);
-            InternalSetUvsAndFace(pts.ToUvs(), f.InternalReference);
+            using (Autodesk.Revit.DB.SubTransaction st = new SubTransaction(Document))
+            {
+                try
+                {
+                    st.Start();
+                    var fam = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(Element.Document, fs.InternalFamilySymbol);
+                    InternalSetFamilyInstance(fam);
+                    InternalSetUvsAndFace(pts.ToUvs(), f.InternalReference);
+                    st.Commit();
+                }
+                catch (Exception)
+                {
+                    st.RollBack();
+                    throw new ArgumentException("An adaptive component could not be found or created.");
+                }
+            }
 
             TransactionManager.Instance.TransactionTaskDone();
 
@@ -165,22 +185,31 @@ namespace Revit.Elements
                 if (fs.InternalFamilySymbol.Id != oldFam.Symbol.Id)
                     InternalSetFamilySymbol(fs);
                 InternalSetParamsAndCurve(parms, c);
+
                 return;
             }
 
             // otherwise create a new family instance...
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            var fam = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(Element.Document, fs.InternalFamilySymbol);
-
-            if (fam == null)
-                throw new Exception("An adaptive component could not be found or created.");
-
-            InternalSetFamilyInstance(fam);
-            InternalSetParamsAndCurve(parms, c);
+            using (Autodesk.Revit.DB.SubTransaction st = new SubTransaction(Document))
+            {
+                try
+                {
+                    st.Start();
+                    var fam = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(Element.Document, fs.InternalFamilySymbol);
+                    InternalSetFamilyInstance(fam);
+                    InternalSetParamsAndCurve(parms, c);
+                    st.Commit();
+                }
+                catch (Exception)
+                {
+                    st.RollBack();
+                    throw new ArgumentException("An adaptive component could not be found or created.");
+                }
+            }
 
             TransactionManager.Instance.TransactionTaskDone();
-
         }
 
         /// <summary>
