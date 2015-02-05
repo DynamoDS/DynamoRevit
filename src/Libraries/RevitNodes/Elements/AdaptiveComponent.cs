@@ -104,10 +104,10 @@ namespace Revit.Elements
                     InternalSetPositions(pts.ToXyzs());
                     st.Commit();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     st.RollBack();
-                    throw new ArgumentException("An adaptive component could not be found or created.");
+                    throw new ArgumentException("An Adaptive Component could not be created. " + ex.Message);
                 }
             }
 
@@ -154,10 +154,10 @@ namespace Revit.Elements
                     InternalSetUvsAndFace(pts.ToUvs(), f.InternalReference);
                     st.Commit();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     st.RollBack();
-                    throw new ArgumentException("An adaptive component could not be found or created.");
+                    throw new ArgumentException("An Adaptive Component could not be created. " + ex.Message);
                 }
             }
 
@@ -201,10 +201,10 @@ namespace Revit.Elements
                     InternalSetParamsAndCurve(parms, c);
                     st.Commit();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     st.RollBack();
-                    throw new ArgumentException("An adaptive component could not be found or created.");
+                    throw new ArgumentException("An Adaptive Component could not be created. " + ex.Message);
                 }
             }
 
