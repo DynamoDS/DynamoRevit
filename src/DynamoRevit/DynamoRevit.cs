@@ -185,7 +185,6 @@ namespace Dynamo.Applications
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher))
                 });
-
         }
 
         private static DynamoViewModel InitializeCoreViewModel(RevitDynamoModel revitDynamoModel)
