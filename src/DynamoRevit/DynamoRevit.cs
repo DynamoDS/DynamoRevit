@@ -95,6 +95,8 @@ namespace Dynamo.Applications
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
+            UpdateManager.UpdateManager.Instance.RegisterExternalApplicationProcessId(Process.GetCurrentProcess().Id);
+
             HandleDebug(commandData);
             
             InitializeCore(commandData);
