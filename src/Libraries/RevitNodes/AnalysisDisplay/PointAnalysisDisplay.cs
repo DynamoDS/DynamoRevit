@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Analysis;
 using Analysis.DataTypes;
 
 using Autodesk.DesignScript.Runtime;
@@ -59,7 +58,7 @@ namespace Revit.AnalysisDisplay
     /// <summary>
     /// A Revit Point Analysis Display 
     /// </summary>
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class PointAnalysisDisplay : AbstractAnalysisDisplay
     {
         #region Private constructors

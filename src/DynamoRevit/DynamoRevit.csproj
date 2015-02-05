@@ -28,7 +28,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG;ENABLE_DYNAMO_SCHEDULER</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
@@ -40,7 +40,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>TRACE;ENABLE_DYNAMO_SCHEDULER</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
     <DebugSymbols>true</DebugSymbols>
@@ -52,6 +52,10 @@
   <ItemGroup>
     <Reference Include="DynamoRaaSHelper">
       <HintPath>$(DynamoExternPath)\DynamoRaaS\DynamoRaaSHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamoServices">
+      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Greg, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -78,7 +82,7 @@
     <Reference Include="PresentationFramework">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="ProtoGeometry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ProtoGeometry">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(DYNAMOAPI)\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
@@ -127,7 +131,6 @@
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\RevitWatchHandler.cs" />
-    <Compile Include="Models\SingleSignOnManager.cs" />
     <Compile Include="ViewModel\RevitVisualizationManager.cs" />
     <Compile Include="Migration\WorkspaceMigrationsRevit.cs" />
   </ItemGroup>
@@ -166,10 +169,6 @@
     <Reference Include="DynamoUtilities">
       <HintPath>$(DYNAMOAPI)\DynamoUtilities.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="DSNodeServices">
-      <HintPath>$(DYNAMOAPI)\DSNodeServices.dll</HintPath>
-      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>

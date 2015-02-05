@@ -51,7 +51,6 @@ namespace Dynamo.Applications
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
                 ElementBinder.IsEnabled = true;
 
-                //TAF load english_us TODO add a way to localize
                 res = Resources.ResourceManager;
 
                 // Create new ribbon panel
@@ -81,6 +80,9 @@ namespace Dynamo.Applications
 
                 RegisterAdditionalUpdaters(application);
 
+                RevitServicesUpdater.Initialize(DynamoRevitApp.Updaters);
+                SubscribeDocumentChangedEvent();
+
                 return Result.Succeeded;
             }
             catch (Exception ex)
@@ -93,6 +95,8 @@ namespace Dynamo.Applications
         public Result OnShutdown(UIControlledApplication application)
         {
             UnsubscribeAssemblyResolvingEvent();
+            UnsubscribeDocumentChangedEvent();
+            RevitServicesUpdater.DisposeInstance();
 
             return Result.Succeeded;
         }
@@ -167,6 +171,16 @@ namespace Dynamo.Applications
         private void UnsubscribeAssemblyResolvingEvent()
         {
             AppDomain.CurrentDomain.AssemblyResolve -= AssemblyHelper.ResolveAssembly;
+        }
+
+        private void SubscribeDocumentChangedEvent()
+        {
+            ControlledApplication.DocumentChanged += RevitServicesUpdater.Instance.ApplicationDocumentChanged;
+        }
+
+        private void UnsubscribeDocumentChangedEvent()
+        {
+            ControlledApplication.DocumentChanged -= RevitServicesUpdater.Instance.ApplicationDocumentChanged;
         }
     }
 }

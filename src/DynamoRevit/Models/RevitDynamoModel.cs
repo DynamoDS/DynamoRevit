@@ -11,10 +11,11 @@ using Autodesk.Revit.UI.Events;
 using Dynamo.Core.Threading;
 
 using DSIronPython;
-using DSNodeServices;
 
 using Dynamo.Models;
 using Dynamo.Utilities;
+
+using DynamoServices;
 
 using Revit.Elements;
 using RevitServices.Elements;
@@ -87,7 +88,6 @@ namespace Dynamo.Applications.Models
         private RevitDynamoModel(StartConfiguration configuration) :
             base(configuration)
         {
-            RevitServicesUpdater.Initialize(DynamoRevitApp.ControlledApplication, DynamoRevitApp.Updaters);
             SubscribeRevitServicesUpdaterEvents();
 
             InitializeDocumentManager();
@@ -206,37 +206,21 @@ namespace Dynamo.Applications.Models
             base.OnEvaluationCompleted(sender, e);
         }
 
-#if ENABLE_DYNAMO_SCHEDULER
-
         protected override void PreShutdownCore(bool shutdownHost)
         {
             if (shutdownHost)
             {
-                var uiApplication = DocumentManager.Instance.CurrentUIApplication;
-                uiApplication.Idling += ShutdownRevitHostOnce;
+                DynamoRevit.AddIdleAction(ShutdownRevitHostOnce);
             }
 
             base.PreShutdownCore(shutdownHost);
         }
 
-        private static void ShutdownRevitHostOnce(object sender, IdlingEventArgs idlingEventArgs)
+        private static void ShutdownRevitHostOnce()
         {
             var uiApplication = DocumentManager.Instance.CurrentUIApplication;
-            uiApplication.Idling -= ShutdownRevitHostOnce;
             ShutdownRevitHost();
         }
-
-#else
-
-        protected override void PreShutdownCore(bool shutdownHost)
-        {
-            if (shutdownHost)
-                IdlePromise.ExecuteOnShutdown(ShutdownRevitHost);
-
-            base.PreShutdownCore(shutdownHost);
-        }
-
-#endif
 
         protected override void ShutDownCore(bool shutDownHost)
         {
@@ -251,17 +235,6 @@ namespace Dynamo.Applications.Models
             UnsubscribeRevitServicesUpdaterEvents();
             UnsubscribeTransactionManagerEvents();
         }
-
-#if !ENABLE_DYNAMO_SCHEDULER
-
-        protected override void PostShutdownCore(bool shutdownHost)
-        {
-            IdlePromise.ClearPromises();
-            IdlePromise.Shutdown();
-            base.PostShutdownCore(shutdownHost);
-        }
-
-#endif
 
         /// <summary>
         /// This method is typically called when a new workspace is opened or

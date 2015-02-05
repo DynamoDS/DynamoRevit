@@ -55,9 +55,6 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void CreatePointEndSample()
         {
-            throw new NotImplementedException("LC Modularization disable");
-
-            /*
             var model = ViewModel.Model;
 
             string samplePath = Path.Combine(workingDirectory, @".\Samples\createpointend.dyn");
@@ -93,7 +90,6 @@ namespace RevitSystemTests
             refPt = GetPreviewValue(refPtNodeId) as ReferencePoint;
             Assert.IsNotNull(refPt);
             Assert.AreEqual(56.78, refPt.Z);
-             */
         }
 
         [Test]

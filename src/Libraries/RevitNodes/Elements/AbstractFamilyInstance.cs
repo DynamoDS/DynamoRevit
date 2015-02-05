@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Autodesk.DesignScript.Runtime;
+﻿using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 
 using Revit.GeometryConversion;
@@ -13,7 +12,7 @@ namespace Revit.Elements
     /// <summary>
     /// An abstract Revit FamilyInstance - implementors include FamilyInstance, AdaptiveComponent, StructuralFraming
     /// </summary>
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     [IsVisibleInDynamoLibrary(false)]
     public abstract class AbstractFamilyInstance : Element
     {
