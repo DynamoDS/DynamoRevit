@@ -336,7 +336,7 @@ namespace Revit.Elements
                 case StorageType.Double:
                     var paramType = param.Definition.ParameterType;
                     if (IsConvertableParameterType(paramType))
-                        result = param.AsDouble()*UnitConverter.HostToDynamoFactor(
+                        result = param.AsDouble() * UnitConverter.HostToDynamoFactor(
                             ParameterTypeToUnitType(paramType));
                     else
                         result = param.AsDouble();
