@@ -83,7 +83,7 @@ namespace RevitNodesTests.Elements
             };
             var fs = FamilySymbol.ByName("3PointAC");
 
-            Assert.Throws(typeof (Exception), () => AdaptiveComponent.ByPoints(pts, fs));
+            Assert.Throws(typeof(ArgumentNullException), () => AdaptiveComponent.ByPoints(pts, fs));
         }
 
         [Test]
