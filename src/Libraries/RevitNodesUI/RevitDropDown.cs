@@ -33,7 +33,7 @@ namespace DSRevitNodesUI
     {
         protected RevitDropDownBase(string value) : base(value)
         {
-            DynamoRevit.AddIdleAction(()=>DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged);
+           DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
         void Controller_RevitDocumentChanged(object sender, EventArgs e)
