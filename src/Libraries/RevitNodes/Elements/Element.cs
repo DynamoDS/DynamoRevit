@@ -270,19 +270,32 @@ namespace Revit.Elements
             // or transactions and which must necessarily be threaded in a specific way.
         }
 
+        internal bool IsConvertableParameterType(ParameterType paramType)
+        {
+            return paramType == ParameterType.Length || paramType == ParameterType.Area ||
+                paramType == ParameterType.Volume || paramType == ParameterType.Angle ||
+                paramType == ParameterType.Slope || paramType == ParameterType.Currency ||
+                paramType == ParameterType.MassDensity;
+        }
+
         internal UnitType ParameterTypeToUnitType(ParameterType parameterType)
         {
             switch (parameterType)
             {
                 case ParameterType.Length:
                     return UnitType.UT_Length;
-                case ParameterType.Volume:
-                    return UnitType.UT_Volume;
                 case ParameterType.Area:
                     return UnitType.UT_Area;
-                case ParameterType.Acceleration:
-                    return UnitType.UT_Acceleration;
-                // TODO: expand this
+                case ParameterType.Volume:
+                    return UnitType.UT_Volume;
+                case ParameterType.Angle:
+                    return UnitType.UT_Angle;
+                case ParameterType.Slope:
+                    return UnitType.UT_Slope;
+                case ParameterType.Currency:
+                    return UnitType.UT_Currency;
+                case ParameterType.MassDensity:
+                    return UnitType.UT_MassDensity;
                 default:
                     throw new Exception("ParameterType cannot be converted to UnitType");
             }
@@ -321,9 +334,12 @@ namespace Revit.Elements
                     result = param.AsInteger();
                     break;
                 case StorageType.Double:
-                    result = param.AsDouble()
-                        * UnitConverter.HostToDynamoFactor(
-                            ParameterTypeToUnitType(param.Definition.ParameterType));
+                    var paramType = param.Definition.ParameterType;
+                    if (IsConvertableParameterType(paramType))
+                        result = param.AsDouble()*UnitConverter.HostToDynamoFactor(
+                            ParameterTypeToUnitType(paramType));
+                    else
+                        result = param.AsDouble();
                     break;
                 default:
                     throw new Exception(string.Format("Parameter {0} has no storage type.", param));
