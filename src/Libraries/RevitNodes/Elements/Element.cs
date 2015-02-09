@@ -270,6 +270,24 @@ namespace Revit.Elements
             // or transactions and which must necessarily be threaded in a specific way.
         }
 
+        internal UnitType ParameterTypeToUnitType(ParameterType parameterType)
+        {
+            switch (parameterType)
+            {
+                case ParameterType.Length:
+                    return UnitType.UT_Length;
+                case ParameterType.Volume:
+                    return UnitType.UT_Volume;
+                case ParameterType.Area:
+                    return UnitType.UT_Area;
+                case ParameterType.Acceleration:
+                    return UnitType.UT_Acceleration;
+                // TODO: expand this
+                default:
+                    throw new Exception("ParameterType cannot be converted to UnitType");
+            }
+        }
+
         /// <summary>
         /// Get the value of one of the element's parameters.
         /// </summary>
@@ -303,21 +321,9 @@ namespace Revit.Elements
                     result = param.AsInteger();
                     break;
                 case StorageType.Double:
-                    switch (param.Definition.ParameterType)
-                    {
-                        case ParameterType.Length:
-                            result = Length.FromFeet(param.AsDouble());
-                            break;
-                        case ParameterType.Area:
-                            result = Area.FromSquareFeet(param.AsDouble());
-                            break;
-                        case ParameterType.Volume:
-                            result = Volume.FromCubicFeet(param.AsDouble());
-                            break;
-                        default:
-                            result = param.AsDouble();
-                            break;
-                    }
+                    result = param.AsDouble()
+                        * UnitConverter.HostToDynamoFactor(
+                            ParameterTypeToUnitType(param.Definition.ParameterType));
                     break;
                 default:
                     throw new Exception(string.Format("Parameter {0} has no storage type.", param));
