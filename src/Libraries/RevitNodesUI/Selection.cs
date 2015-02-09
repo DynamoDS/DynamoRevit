@@ -5,6 +5,8 @@ using System.Linq;
 
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+
+using Dynamo.Applications;
 using Dynamo.Controls;
 using Dynamo.Interfaces;
 
@@ -83,10 +85,13 @@ namespace Dynamo.Nodes
             SelectionObjectType selectionObjectType, string message, string prefix)
             : base(selectionType, selectionObjectType, message, prefix)
         {
-            RevitServicesUpdater.Instance.ElementsDeleted += Updater_ElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
-            //revMod.PropertyChanged += revMod_PropertyChanged;
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    RevitServicesUpdater.Instance.ElementsDeleted += Updater_ElementsDeleted;
+                    RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
+                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
+                });
         }
 
         #endregion
