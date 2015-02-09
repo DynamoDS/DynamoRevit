@@ -16,11 +16,18 @@ namespace Revit.GeometryConversion
                 DocumentManager.Instance.CurrentDBDocument.GetUnits()
                     .GetFormatOptions(unitType)
                     .DisplayUnits;
+
+            // Here we use the Revit API to return the conversion
+            // factor between the display units in Revit and the internal
+            // units (decimal feet). We are not converting a value, so 
+            // we simply supply 1 to return the converstion factor.
             return UnitUtils.ConvertToInternalUnits(1, revitDisplayUnits);
         }
 
         public static double HostToDynamoFactor(UnitType unitType)
         {
+            // Here we invert the conversion factor to return
+            // the conversion from internal units to display units.
             return 1/DynamoToHostFactor(unitType);
         }
 
