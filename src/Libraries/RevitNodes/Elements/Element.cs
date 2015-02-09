@@ -270,7 +270,7 @@ namespace Revit.Elements
             // or transactions and which must necessarily be threaded in a specific way.
         }
 
-        internal bool IsConvertableParameterType(ParameterType paramType)
+        internal static bool IsConvertableParameterType(ParameterType paramType)
         {
             return paramType == ParameterType.Length || paramType == ParameterType.Area ||
                 paramType == ParameterType.Volume || paramType == ParameterType.Angle ||
@@ -278,7 +278,7 @@ namespace Revit.Elements
                 paramType == ParameterType.MassDensity;
         }
 
-        internal UnitType ParameterTypeToUnitType(ParameterType parameterType)
+        internal static UnitType ParameterTypeToUnitType(ParameterType parameterType)
         {
             switch (parameterType)
             {
@@ -400,7 +400,14 @@ namespace Revit.Elements
             if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
                 throw new Exception("The parameter's storage type is not a number.");
 
-            param.Set(value);
+            double valueToSet = value;
+            var paramType = param.Definition.ParameterType;
+
+            if (IsConvertableParameterType(paramType))
+                valueToSet = param.AsDouble() * UnitConverter.DynamoToHostFactor(
+                    ParameterTypeToUnitType(paramType));
+            
+            param.Set(valueToSet);
         }
 
         private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, Element value)
@@ -433,14 +440,6 @@ namespace Revit.Elements
                 throw new Exception("The parameter's storage type is not an integer.");
 
             param.Set(value == false ? 0 : 1);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, SIUnit value)
-        {
-            if(param.StorageType != StorageType.Double)
-                throw new Exception("The parameter's storage type is not an integer.");
-
-            param.Set(value.ConvertToHostUnits());
         }
 
         #endregion
