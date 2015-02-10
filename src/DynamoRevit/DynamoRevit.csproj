@@ -28,28 +28,34 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG;ENABLE_DYNAMO_SCHEDULER</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <NoWarn>618</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>$(OutputPath)\DynamoRevitDS.XML</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\$(UICulture)\DynamoRevitDS.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>TRACE;ENABLE_DYNAMO_SCHEDULER</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
     <DebugSymbols>true</DebugSymbols>
     <NoWarn>618</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>$(OutputPath)\DynamoRevitDS.XML</DocumentationFile>
+    <DocumentationFile>$(OutputPath)\$(UICulture)\DynamoRevitDS.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoRaaSHelper">
       <HintPath>$(DynamoExternPath)\DynamoRaaS\DynamoRaaSHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamoServices">
+      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Greg, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -76,7 +82,7 @@
     <Reference Include="PresentationFramework">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="ProtoGeometry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ProtoGeometry">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(DYNAMOAPI)\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
@@ -119,13 +125,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resource_en_us.Designer.cs">
+    <Compile Include="Properties\Resources.en-US.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resource_en_us.resx</DependentUpon>
+      <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\RevitWatchHandler.cs" />
-    <Compile Include="Models\SingleSignOnManager.cs" />
     <Compile Include="ViewModel\RevitVisualizationManager.cs" />
     <Compile Include="Migration\WorkspaceMigrationsRevit.cs" />
   </ItemGroup>
@@ -135,10 +140,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resource_en_us.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource_en_us.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Properties\Resources.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -165,10 +169,6 @@
     <Reference Include="DynamoUtilities">
       <HintPath>$(DYNAMOAPI)\DynamoUtilities.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="DSNodeServices">
-      <HintPath>$(DYNAMOAPI)\DSNodeServices.dll</HintPath>
-      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>

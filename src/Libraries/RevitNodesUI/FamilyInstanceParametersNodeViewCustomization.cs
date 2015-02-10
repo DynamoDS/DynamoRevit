@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DSCoreNodesUI;
-using Dynamo.Wpf;
-using Dynamo.Wpf.Nodes;
-using DSRevitNodesUI;
+﻿using DSRevitNodesUI;
 
 namespace Dynamo.Wpf.Nodes.Revit
 {

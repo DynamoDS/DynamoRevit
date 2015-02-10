@@ -6,9 +6,8 @@ using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 
 using Revit.GeometryConversion;
-using Revit.GeometryObjects;
 using Revit.GeometryReferences;
-using RevitServices.Elements;
+
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using Point = Autodesk.DesignScript.Geometry.Point;
@@ -19,7 +18,7 @@ namespace Revit.Elements
     /// <summary>
     /// A Revit Adaptive Component
     /// </summary>
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class AdaptiveComponent : AbstractFamilyInstance
     {
         #region Private constructors
