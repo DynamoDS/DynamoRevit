@@ -106,7 +106,7 @@ namespace Revit.Elements
                 catch (Exception ex)
                 {
                     st.RollBack();
-                    throw new ArgumentException(Resource1.Adaptive_Component_Creation_Failed + ex.Message);
+                    throw new ArgumentException(Revit.Properties.Resources.Adaptive_Component_Creation_Failed + ex.Message);
                 }
             }
 
@@ -156,7 +156,7 @@ namespace Revit.Elements
                 catch (Exception ex)
                 {
                     st.RollBack();
-                    throw new ArgumentException(Resource1.Adaptive_Component_Creation_Failed + ex.Message);
+                    throw new ArgumentException(Revit.Properties.Resources.Adaptive_Component_Creation_Failed + ex.Message);
                 }
             }
 
@@ -203,7 +203,7 @@ namespace Revit.Elements
                 catch (Exception ex)
                 {
                     st.RollBack();
-                    throw new ArgumentException(Resource1.Adaptive_Component_Creation_Failed + ex.Message);
+                    throw new ArgumentException(Revit.Properties.Resources.Adaptive_Component_Creation_Failed + ex.Message);
                 }
             }
 
