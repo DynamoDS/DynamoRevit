@@ -142,6 +142,9 @@ namespace RevitSystemTests
                 workingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             }
 
+            // We override the RevitSystemTestBase's Setup method here
+            // so we can specify that we want to load a specific version
+            // of ASM. Revit 2016 will not work with any version of ASM before 221.
             DynamoPathManager.PreloadAsmVersion("221", DynamoPathManager.Instance);
 
             CreateTemporaryFolder();
