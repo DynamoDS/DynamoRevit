@@ -110,9 +110,14 @@ namespace Dynamo.Nodes
         public override void Dispose()
         {
             base.Dispose();
-            RevitServicesUpdater.Instance.ElementsDeleted -= Updater_ElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -= Controller_RevitDocumentChanged;
+
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    RevitServicesUpdater.Instance.ElementsDeleted -= Updater_ElementsDeleted;
+                    RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
+                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -= Controller_RevitDocumentChanged;
+                });
         }
 
         public override void UpdateSelection(IEnumerable<TSelection> rawSelection)
