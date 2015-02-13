@@ -495,5 +495,10 @@ namespace Dynamo.Applications.Models
         }
 
         #endregion
+
+        protected override void OpenFileImpl(OpenFileCommand command)
+        {
+            DynamoRevit.AddIdleAction(() => base.OpenFileImpl(command));
+        }
     }
 }
