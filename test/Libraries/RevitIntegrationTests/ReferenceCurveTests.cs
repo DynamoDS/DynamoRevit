@@ -1,4 +1,13 @@
-﻿using NUnit.Framework;
+﻿using System.IO;
+using System.Linq;
+
+using Autodesk.Revit.DB;
+
+using Dynamo.Nodes;
+
+using NUnit.Framework;
+
+using RevitServices.Persistence;
 
 using RTF.Framework;
 
@@ -11,37 +20,38 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void ReferenceCurve()
         {
-            //var model = ViewModel.Model;
+            var model = ViewModel.Model;
 
-            //string samplePath = Path.Combine(workingDirectory, @".\ReferenceCurve\ReferenceCurve.dyn");
-            //string testPath = Path.GetFullPath(samplePath);
+            string samplePath = Path.Combine(workingDirectory, @".\ReferenceCurve\ReferenceCurve.dyn");
+            string testPath = Path.GetFullPath(samplePath);
 
-            //model.Open(testPath);
-            //ViewModel.Model.RunExpression();
+            ViewModel.OpenCommand.Execute(testPath);
 
-            //FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            //fec.OfClass(typeof(CurveElement));
+            AssertNoDummyNodes();
 
-            ////verify five model curves created
-            //int count = fec.ToElements().Count;
-            //Assert.IsInstanceOf(typeof(ModelCurve), fec.ToElements().First());
-            //Assert.IsTrue(((ModelCurve)fec.ToElements().First()).IsReferenceLine);
-            //Assert.AreEqual(5, count);
+            RunCurrentModel();
 
-            //ElementId id = fec.ToElements().First().Id;
+            FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(CurveElement));
 
-            ////update any number node and verify 
-            ////that the element gets updated not recreated
-            //var doubleNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is DoubleInput);
-            //var node = doubleNodes.First() as DoubleInput;
+            //verify five model curves created
+            int count = fec.ToElements().Count;
+            Assert.IsInstanceOf(typeof(ModelCurve), fec.ToElements().First());
+            Assert.IsTrue(((ModelCurve)fec.ToElements().First()).IsReferenceLine);
+            Assert.AreEqual(5, count);
 
-            //Assert.IsNotNull(node);
+            ElementId id = fec.ToElements().First().Id;
 
-            //node.Value = node.Value + .1;
-            //ViewModel.Model.RunExpression();
-            //Assert.AreEqual(5, fec.ToElements().Count);
+            //update any number node and verify 
+            //that the element gets updated not recreated
+            var doubleNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is DoubleInput);
+            var node = doubleNodes.First() as DoubleInput;
 
-            Assert.Inconclusive("Porting : DoubleInput");
+            Assert.IsNotNull(node);
+
+            node.Value = node.Value + .1;
+            RunCurrentModel();
+            Assert.AreEqual(5, fec.ToElements().Count);
         }
     }
 }
