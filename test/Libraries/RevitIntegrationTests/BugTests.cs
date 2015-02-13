@@ -601,6 +601,25 @@ namespace RevitSystemTests
             Assert.AreEqual(1, curves.Count);
         }
 
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\Bugs\StructuralFoundationTest.rvt")]
+        public void MAGN_4679()
+        {
+           string samplePath = Path.Combine(workingDirectory, @".\Bugs\StructuralFoundationTest.dyn");
+           string testPath = Path.GetFullPath(samplePath);
+
+           //open the test file
+           ViewModel.OpenCommand.Execute(testPath);
+           AssertNoDummyNodes();
+
+           RunCurrentModel();
+
+           var watchNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<Watch>();
+           Assert.NotNull(watchNode.CachedValue);
+           Assert.IsInstanceOf<Autodesk.DesignScript.Geometry.Point>(watchNode.CachedValue);
+        }
+
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
         {
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
