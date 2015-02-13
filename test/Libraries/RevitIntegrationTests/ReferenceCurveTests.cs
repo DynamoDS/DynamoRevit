@@ -40,8 +40,6 @@ namespace RevitSystemTests
             Assert.IsTrue(((ModelCurve)fec.ToElements().First()).IsReferenceLine);
             Assert.AreEqual(5, count);
 
-            ElementId id = fec.ToElements().First().Id;
-
             //update any number node and verify 
             //that the element gets updated not recreated
             var doubleNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is DoubleInput);
