@@ -7,7 +7,7 @@ using Autodesk.Revit.DB;
 using DSCore;
 using DSCoreNodesUI;
 
-using Dynamo.Applications.Models;
+using Dynamo.Applications;
 using Dynamo.DSEngine;
 using Dynamo.Models;
 using Dynamo.Nodes;
@@ -18,6 +18,7 @@ using ProtoCore.AST.AssociativeAST;
 using Revit.Elements;
 
 using RevitServices.Persistence;
+
 using Category = Revit.Elements.Category;
 using Element = Autodesk.Revit.DB.Element;
 using Family = Autodesk.Revit.DB.Family;
@@ -32,7 +33,7 @@ namespace DSRevitNodesUI
     {
         protected RevitDropDownBase(string value) : base(value)
         {
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
+            DynamoRevit.AddIdleAction(()=>DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged);
         }
 
         void Controller_RevitDocumentChanged(object sender, EventArgs e)
@@ -213,29 +214,22 @@ namespace DSRevitNodesUI
 
         private Element GetInputElement()
         {
-            /*
             var inputNode = InPorts[0].Connectors[0].Start.Owner;
             var index = InPorts[0].Connectors[0].Start.Index;
             
             var identifier = inputNode.GetAstIdentifierForOutputIndex(index).Name;
 
-            if (this.EngineController == null) return null;
+            if (EngineController == null) return null;
             var data = this.EngineController.GetMirror(identifier).GetData();
 
-            object family = null;
-            if (data.IsCollection)
-                family = data.GetElements().FirstOrDefault();
-            else
-                family = data.Data;
+
+            object family = data.IsCollection ? 
+                data.GetElements().FirstOrDefault() : 
+                data.Data;
 
             var elem = family as Revit.Elements.Element;
-            if(null == elem)
-                return null;
 
-            return elem.InternalElement;
-             */
-
-            return null;
+            return null == elem ? null : elem.InternalElement;
         }
 
         protected override void SerializeCore(XmlElement nodeElement, SaveContext context)

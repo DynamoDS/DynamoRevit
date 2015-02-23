@@ -6,10 +6,17 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 using Autodesk.Revit.DB;
+
+using Dynamo;
 using Dynamo.Models;
 using DynamoUtilities;
+
+using NUnit.Framework;
+
 using RevitServices.Persistence;
 using RevitTestServices;
+
+using TestServices;
 
 namespace RevitSystemTests
 {
@@ -122,6 +129,31 @@ namespace RevitSystemTests
         protected string defsPath;
         protected string emptyModelPath1;
         protected string emptyModelPath;
+
+        [SetUp]
+        public override void Setup()
+        {
+            AssemblyResolver.Setup();
+
+            SetupCore();
+
+            if (string.IsNullOrEmpty(workingDirectory))
+            {
+                workingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            }
+
+            // We override the RevitSystemTestBase's Setup method here
+            // so we can specify that we want to load a specific version
+            // of ASM. Revit 2016 will not work with any version of ASM before 221.
+            DynamoPathManager.PreloadAsmVersion("221", DynamoPathManager.Instance);
+
+            CreateTemporaryFolder();
+
+            // Setup Temp PreferenceSetting Location for testing
+            PreferenceSettings.DynamoTestPath = Path.Combine(TempFolder, "UserPreferenceTest.xml");
+
+            StartDynamo();
+        }
 
         public override void SetupCore()
         {

@@ -32,6 +32,8 @@ namespace Revit.Elements
         /// <param name="init"></param>
         protected void SafeInit(Action init)
         {
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+
             var elementManager = ElementIDLifecycleManager<int>.GetInstance();
             var element = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Element>(Document);
             int count = 0;
