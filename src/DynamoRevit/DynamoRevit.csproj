@@ -112,6 +112,7 @@
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
     <Compile Include="DynamoRevitApp.cs" />
+    <Compile Include="GeometryConfiguration.cs" />
     <Compile Include="Models\RevitDynamoModel.cs" />
     <Compile Include="Models\RevitNodeModel.cs" />
     <Compile Include="DynamoRevit.cs" />
