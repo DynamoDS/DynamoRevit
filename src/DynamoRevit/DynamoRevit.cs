@@ -1,7 +1,7 @@
 using System.Linq;
 
 using Dynamo.Applications;
-
+using Greg.AuthProviders;
 using RevitServices.Elements;
 
 #region
@@ -171,9 +171,9 @@ namespace Dynamo.Applications
                     Preferences = prefs,
                     DynamoCorePath = corePath,
                     Context = GetRevitContext(commandData),
-                    SchedulerThread = new RevitSchedulerThread(commandData.Application)
+                    SchedulerThread = new RevitSchedulerThread(commandData.Application),
+                    AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher))
                 });
-
         }
 
         private static DynamoViewModel InitializeCoreViewModel(RevitDynamoModel revitDynamoModel)
@@ -188,9 +188,6 @@ namespace Dynamo.Applications
                     WatchHandler =
                         new RevitWatchHandler(vizManager, revitDynamoModel.PreferenceSettings)
                 });
-
-            revitDynamoModel.PackageManagerClient.RequestAuthentication +=
-                 SingleSignOnManager.RegisterSingleSignOn;
 
             revitDynamoModel.ShutdownStarted += (drm) =>
             {
@@ -211,8 +208,6 @@ namespace Dynamo.Applications
 
             dynamoView.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
             dynamoView.Closed += OnDynamoViewClosed;
-
-            SingleSignOnManager.UIDispatcher = dynamoView.Dispatcher;
 
             return dynamoView;
         }
@@ -257,6 +252,7 @@ namespace Dynamo.Applications
 
         public static void InitializeAssemblies()
         {
+            RevitAssemblyLoader.LoadAll();
             AppDomain.CurrentDomain.AssemblyResolve +=
                 Analyze.Render.AssemblyHelper.ResolveAssemblies;
         }

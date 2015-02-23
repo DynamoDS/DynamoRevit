@@ -127,7 +127,6 @@
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\RevitWatchHandler.cs" />
-    <Compile Include="Models\SingleSignOnManager.cs" />
     <Compile Include="ViewModel\RevitVisualizationManager.cs" />
     <Compile Include="Migration\WorkspaceMigrationsRevit.cs" />
   </ItemGroup>
