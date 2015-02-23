@@ -24,6 +24,9 @@ set file_name=!file_name:~0,-3!.%extension%
 echo:  \--^> !file_name!    
 echo "%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\11.0\TextTransform.exe" -out !file_name! %%d
 "%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\11.0\TextTransform.exe" -out !file_name! %%d
+
+echo "%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\12.0\TextTransform.exe" -out !file_name! %%d
+"%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\12.0\TextTransform.exe" -out !file_name! %%d
 )
 
 :: delete T4 list and return to previous directory
