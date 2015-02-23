@@ -158,6 +158,7 @@ namespace Dynamo.Applications
                 {
                     Preferences = prefs,
                     DynamoCorePath = corePath,
+                    GeometryConfiguration = new GeometryConfiguration(),
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher))
