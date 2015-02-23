@@ -1,6 +1,6 @@
 ﻿using Autodesk.Revit.DB;
 
-using DSNodeServices;
+using DynamoServices;
 
 using Revit.GeometryConversion;
 using Revit.GeometryReferences;
@@ -73,7 +73,7 @@ namespace Revit.Elements
         /// <param name="referencePlane"></param>
         private void InitReferencePlane(Autodesk.Revit.DB.ReferencePlane referencePlane)
         {
-            InternalReferencePlane = referencePlane;
+            InternalSetReferencePlane(referencePlane);
         }
 
         /// <summary>

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DSCoreNodesUI;
-using Dynamo.Wpf;
+﻿using DSRevitNodesUI;
 
-namespace DSRevitNodesUI
+namespace Dynamo.Wpf.Nodes.Revit
 {
     public class FamilyInstanceParametersNodeViewCustomization : DropDownNodeViewCustomization, INodeViewCustomization<FamilyInstanceParameters>
     {

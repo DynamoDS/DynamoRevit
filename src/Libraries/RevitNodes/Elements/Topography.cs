@@ -11,7 +11,7 @@ using Point = Autodesk.DesignScript.Geometry.Point;
 
 namespace Revit.Elements
 {
-    [DSNodeServices.RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class Topography : Element
     {
         #region internal properties

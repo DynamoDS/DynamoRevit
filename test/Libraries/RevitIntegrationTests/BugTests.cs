@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
@@ -18,6 +17,9 @@ using RTF.Framework;
 using RevitServices.Persistence;
 using System.Collections.Generic;
 using RevitServices.Transactions;
+
+using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
+using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 
 namespace RevitSystemTests
 {
@@ -597,6 +599,25 @@ namespace RevitSystemTests
             //There should be only one curve in the document
             curves = GetAllCurveElements();
             Assert.AreEqual(1, curves.Count);
+        }
+
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\Bugs\StructuralFoundationTest.rvt")]
+        public void MAGN_4679()
+        {
+           string samplePath = Path.Combine(workingDirectory, @".\Bugs\StructuralFoundationTest.dyn");
+           string testPath = Path.GetFullPath(samplePath);
+
+           //open the test file
+           ViewModel.OpenCommand.Execute(testPath);
+           AssertNoDummyNodes();
+
+           RunCurrentModel();
+
+           var watchNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<Watch>();
+           Assert.NotNull(watchNode.CachedValue);
+           Assert.IsInstanceOf<Autodesk.DesignScript.Geometry.Point>(watchNode.CachedValue);
         }
 
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
