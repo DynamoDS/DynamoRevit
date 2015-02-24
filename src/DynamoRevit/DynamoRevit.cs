@@ -487,9 +487,18 @@ namespace Dynamo.Applications
         /// </summary>
         public static void AddIdleAction(Action a)
         {
-            lock (idleActions)
+            // If we are running in test mode, invoke 
+            // the action immediately.
+            if (DynamoModel.IsTestMode)
             {
-                idleActions.Add(a);
+                a.Invoke();
+            }
+            else
+            {
+                lock (idleActions)
+                {
+                    idleActions.Add(a);
+                } 
             }
         }
     }
