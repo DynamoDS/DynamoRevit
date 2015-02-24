@@ -156,6 +156,8 @@ namespace RevitTestServices
         {
             base.Setup();
 
+            ((HomeWorkspaceModel)ViewModel.Model.CurrentWorkspace).DynamicRunEnabled = false;
+
             DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
         }
 
