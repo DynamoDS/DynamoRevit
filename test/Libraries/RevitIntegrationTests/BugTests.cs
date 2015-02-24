@@ -13,6 +13,8 @@ using Revit.Elements;
 
 using RevitNodesTests;
 
+using RevitTestServices;
+
 using RTF.Framework;
 using RevitServices.Persistence;
 using System.Collections.Generic;
@@ -24,7 +26,7 @@ using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 namespace RevitSystemTests
 {
     [TestFixture]
-    class BugTests : SystemTest
+    class BugTests : RevitSystemTestBase
     {
         [Test]
         [Category("RegressionTests")]

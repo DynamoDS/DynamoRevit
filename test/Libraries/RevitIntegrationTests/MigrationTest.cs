@@ -6,12 +6,14 @@ using DSCoreNodesUI;
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    public class MigrationTest : SystemTest
+    public class MigrationTest : RevitSystemTestBase
     {
         private void TestMigration(string filename)
         {

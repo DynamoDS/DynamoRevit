@@ -2,12 +2,14 @@
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class TopographyTests : SystemTest
+    class TopographyTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\empty.rvt")]

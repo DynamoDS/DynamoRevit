@@ -9,16 +9,20 @@ using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.Tests;
+
 using NUnit.Framework;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+
+using RevitTestServices;
+
 using RTF.Framework;
 using ReferencePoint = Revit.Elements.ReferencePoint;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class SelectionTests : SystemTest
+    class SelectionTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\empty.rfa")]

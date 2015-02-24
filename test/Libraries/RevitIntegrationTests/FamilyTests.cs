@@ -2,12 +2,14 @@
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class FamilyTests : SystemTest
+    class FamilyTests : RevitSystemTestBase
     {   
         [Test]
         [TestModel(@".\Family\GetFamilyInstancesByType.rvt")]

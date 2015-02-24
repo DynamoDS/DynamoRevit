@@ -2,12 +2,14 @@
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class LengthTests : SystemTest
+    class LengthTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\empty.rfa")]
