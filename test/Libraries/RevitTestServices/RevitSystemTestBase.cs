@@ -12,6 +12,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 
+using Dynamo;
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Core.Threading;
@@ -26,6 +27,8 @@ using NUnit.Framework;
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
+
+using TestServices;
 
 namespace RevitTestServices
 {
@@ -151,12 +154,34 @@ namespace RevitTestServices
 
         #region public methods
 
+        /// <summary>
+        /// We override the setup method here so that we can
+        /// call a specific version of the ASM preload.
+        /// </summary>
         [SetUp]
         public override void Setup()
         {
-            base.Setup();
+            AssemblyResolver.Setup();
+
+            SetupCore();
+
+            if (string.IsNullOrEmpty(workingDirectory))
+            {
+                workingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            }
+
+            DynamoPathManager.PreloadAsmVersion("221", DynamoPathManager.Instance);
+
+            CreateTemporaryFolder();
+
+            // Setup Temp PreferenceSetting Location for testing
+            PreferenceSettings.DynamoTestPath = Path.Combine(TempFolder, "UserPreferenceTest.xml");
+
+            StartDynamo();
 
             DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
+
+            ((HomeWorkspaceModel)ViewModel.Model.CurrentWorkspace).DynamicRunEnabled = false;
         }
 
         [TearDown]
