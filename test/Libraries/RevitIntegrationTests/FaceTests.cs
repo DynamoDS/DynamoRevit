@@ -2,12 +2,14 @@
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    internal class FaceTests : SystemTest
+    internal class FaceTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\Face\GetSurfaceDomain.rvt")]

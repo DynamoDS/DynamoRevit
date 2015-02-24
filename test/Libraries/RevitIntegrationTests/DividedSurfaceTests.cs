@@ -10,12 +10,14 @@ using NUnit.Framework;
 
 using RevitServices.Persistence;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class DividedSurfaceTests : SystemTest
+    class DividedSurfaceTests : RevitSystemTestBase
     {
         [Test, Category("Failure")]
         [TestModel(@".\DividedSurface\DividedSurface.rfa")]

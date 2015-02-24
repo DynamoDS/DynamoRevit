@@ -4,12 +4,15 @@ using Autodesk.Revit.DB;
 using Dynamo.Nodes;
 using NUnit.Framework;
 using RevitServices.Persistence;
+
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class LevelTests : SystemTest
+    class LevelTests : RevitSystemTestBase
     {
         [Test, Category("Failure")]
         [TestModel(@".\Level\Level.rvt")]

@@ -14,7 +14,6 @@
     <AssemblyName>RevitTestServices</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,14 +45,6 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="ProtoGeometry">
-      <HintPath>$(DYNAMOAPI)\ProtoGeometry.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="ProtoInterface">
-      <HintPath>$(DYNAMOAPI)\ProtoInterface.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -61,6 +52,10 @@
     <Reference Include="RevitAPIUI">
       <HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="RTFRevit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\extern\RevitTestFramework\RTFRevit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -91,14 +86,6 @@
       <HintPath>$(DYNAMOAPI)\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ProtoCore">
-      <HintPath>$(DYNAMOAPI)\ProtoCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DSCoreNodesUI">
-      <HintPath>$(DYNAMOAPI)\nodes\DSCoreNodesUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DynamoUnits">
       <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
       <Private>False</Private>
@@ -108,12 +95,9 @@
       <Name>RevitServices</Name>
       <Private>False</Private>
     </ProjectReference>
+    <Reference Include="System.XML" />
     <Reference Include="TestServices">
       <HintPath>$(DYNAMOTESTAPI)\TestServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoCoreTests">
-      <HintPath>$(DYNAMOTESTAPI)\DynamoCoreTests.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SystemTestServices">

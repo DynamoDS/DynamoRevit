@@ -6,12 +6,15 @@ using Autodesk.Revit.DB;
 using Dynamo.Nodes;
 using NUnit.Framework;
 using RevitServices.Persistence;
+
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    public class ImportInstanceTests : SystemTest
+    public class ImportInstanceTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\empty.rfa")]
