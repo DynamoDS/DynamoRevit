@@ -151,9 +151,19 @@ namespace RevitTestServices
 
         #region public methods
 
+        [SetUp]
+        public override void Setup()
+        {
+            base.Setup();
+
+            DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
+        }
+
         [TearDown]
         public override void TearDown()
         {
+            DocumentManager.Instance.CurrentUIApplication.ViewActivating -= CurrentUIApplication_ViewActivating;
+
             // Automatic transaction strategy requires that we 
             // close the transaction if it hasn't been closed by 
             // by the end of an evaluation. It is possible to 
@@ -172,8 +182,6 @@ namespace RevitTestServices
                 RTF.Applications.RevitTestExecutive.CommandData.Application;
             DocumentManager.Instance.CurrentUIDocument =
                 RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
-
-            DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
 
             var config = RevitTestConfiguration.LoadConfiguration();
 
@@ -274,6 +282,11 @@ namespace RevitTestServices
         /// </summary>
         protected static void SwapCurrentModel(string modelPath)
         {
+            DocumentManager.Instance.CurrentUIApplication =
+                RTF.Applications.RevitTestExecutive.CommandData.Application;
+            DocumentManager.Instance.CurrentUIDocument =
+                RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
+
             Document initialDoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument.Document;
             DocumentManager.Instance.CurrentUIApplication.OpenAndActivateDocument(modelPath);
             initialDoc.Close(false);
