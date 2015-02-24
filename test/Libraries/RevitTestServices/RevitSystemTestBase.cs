@@ -151,19 +151,6 @@ namespace RevitTestServices
 
         #region public methods
 
-        //[SetUp]
-        //public override void Setup()
-        //{
-        //    base.Setup();
-
-        //    DocumentManager.Instance.CurrentUIApplication =
-        //        RTF.Applications.RevitTestExecutive.CommandData.Application;
-        //    DocumentManager.Instance.CurrentUIDocument =
-        //        RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
-
-        //    DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
-        //}
-
         [TearDown]
         public override void TearDown()
         {
