@@ -2,12 +2,14 @@
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class ModelTextTests : SystemTest
+    class ModelTextTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\ModelText\ModelText.rfa")]

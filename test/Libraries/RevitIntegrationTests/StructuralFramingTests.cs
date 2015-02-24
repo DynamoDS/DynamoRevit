@@ -9,6 +9,8 @@ using NUnit.Framework;
 
 using RevitServices.Persistence;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 using FamilySymbol = Revit.Elements.FamilySymbol;
@@ -17,7 +19,7 @@ using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 namespace RevitSystemTests
 {
     [TestFixture]
-    public class StructuralFramingTests : SystemTest
+    public class StructuralFramingTests : RevitSystemTestBase
     {
         [Test, TestModel(@".\StructuralFraming\StructuralFraming.rvt")]
         public void StructuralFraming_Beam()

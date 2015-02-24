@@ -2,12 +2,14 @@
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class IntersectionTests : SystemTest
+    class IntersectionTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\Intersect\CurveCurveIntersection.rfa")]

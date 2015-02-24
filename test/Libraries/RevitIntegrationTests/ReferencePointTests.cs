@@ -7,12 +7,14 @@ using NUnit.Framework;
 
 using RevitServices.Persistence;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    public class ReferencePointTests : SystemTest
+    public class ReferencePointTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\empty.rfa")]

@@ -2,12 +2,14 @@
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class DividedCurveTests : SystemTest
+    class DividedCurveTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\DividedCurve\DividedCurve.rfa")]
