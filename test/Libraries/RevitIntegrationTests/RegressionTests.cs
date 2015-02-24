@@ -2,28 +2,19 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 
-using Autodesk.Revit.DB;
-
-using Dynamo.Applications;
-using Dynamo.Applications.Models;
 using Dynamo.Models;
-using Dynamo.ViewModels;
-
-using DynamoUtilities;
 
 using NUnit.Framework;
 
-using RevitServices.Persistence;
-using RevitServices.Threading;
-using RevitServices.Transactions;
 using RevitServices.Elements;
+
+using RevitTestServices;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    public class RegressionTest : SystemTest
+    public class RegressionTest : RevitSystemTestBase
     {
         /// <summary>
         /// Automated creation of regression test cases. Opens each workflow

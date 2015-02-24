@@ -15,7 +15,6 @@
     <AssemblyName>RevitSystemTests</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,8 +43,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamoCoreWpf">
+      <HintPath>$(DYNAMOTESTAPI)\DynamoCoreWpf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>$(DYNAMOAPI)\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\Microsoft.Practices.Prism.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
@@ -56,12 +59,12 @@
     <Reference Include="PresentationCore" />
     <Reference Include="ProtoGeometry, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(DYNAMOAPI)\ProtoGeometry.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ProtoInterface, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(DYNAMOAPI)\ProtoInterface.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\ProtoInterface.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
@@ -77,7 +80,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.XML" />
+    <Reference Include="SystemTestServices">
+      <HintPath>$(DYNAMOTESTAPI)\SystemTestServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -88,7 +94,6 @@
     <Compile Include="AnalysisDisplayTests.cs" />
     <Compile Include="RevitLibraryTests.cs" />
     <Compile Include="ImportInstanceTests.cs" />
-    <Compile Include="SystemTest.cs" />
     <Compile Include="SiteLocationTests.cs" />
     <Compile Include="RenderingAsAServiceTests.cs" />
     <Compile Include="DividedCurveTests.cs" />
@@ -125,20 +130,21 @@
     <Compile Include="ViewTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DynamoUtilities">
-      <HintPath>$(DYNAMOAPI)\DynamoUtilities.dll</HintPath>
+    <ProjectReference Include="..\RevitTestServices\RevitTestServices.csproj">
+      <Project>{589f14d7-2937-479c-834a-d44197cb1930}</Project>
+      <Name>RevitTestServices</Name>
       <Private>False</Private>
-    </Reference>
+    </ProjectReference>
     <Reference Include="ProtoCore">
-      <HintPath>$(DYNAMOAPI)\ProtoCore.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DSCoreNodesUI">
-      <HintPath>$(DYNAMOAPI)\nodes\DSCoreNodesUI.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\nodes\DSCoreNodesUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">
-      <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="$(SolutionDir)Libraries\RevitNodesUI\RevitNodesUI.csproj">
@@ -151,21 +157,13 @@
       <Name>RevitNodes</Name>
       <Private>False</Private>
     </ProjectReference>
-    <Reference Include="DynamoCoreTests">
-      <HintPath>$(DYNAMOTESTAPI)\DynamoCoreTests.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj">
       <Project>{FD56AE51-739E-4893-8DE4-925D60C7097C}</Project>
       <Name>DynamoRevit</Name>
       <Private>False</Private>
     </ProjectReference>
-    <Reference Include="DynamoCoreWpf">
-      <HintPath>$(DYNAMOAPI)\DynamoCoreWpf.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DynamoCore">
-      <HintPath>$(DYNAMOAPI)\DynamoCore.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj">
@@ -173,14 +171,6 @@
       <Name>RevitServices</Name>
       <Private>False</Private>
     </ProjectReference>
-    <Reference Include="SystemTestServices">
-      <HintPath>$(DYNAMOTESTAPI)\SystemTestServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TestServices">
-      <HintPath>$(DYNAMOTESTAPI)\TestServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <ProjectReference Include="..\RevitNodesTests\RevitNodesTests.csproj">
       <Project>{9e79dc8d-25b1-491f-b094-ea39de1bbc66}</Project>
       <Name>RevitNodesTests</Name>

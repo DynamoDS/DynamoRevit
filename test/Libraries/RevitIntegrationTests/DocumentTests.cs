@@ -4,12 +4,14 @@ using NUnit.Framework;
 
 using RevitServices.Persistence;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class DocumentTests : SystemTest
+    class DocumentTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@"./empty.rfa")]

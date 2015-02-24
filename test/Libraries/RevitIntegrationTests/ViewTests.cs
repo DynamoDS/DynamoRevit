@@ -5,12 +5,14 @@ using Dynamo.Nodes;
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class ViewTests : SystemTest
+    class ViewTests : RevitSystemTestBase
     {
 
         [Test]

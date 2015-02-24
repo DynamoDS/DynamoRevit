@@ -3,6 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using NUnit.Framework;
+
+using RevitTestServices;
+
 using RTF.Framework;
 using Autodesk.Revit.DB;
 
@@ -17,7 +20,7 @@ using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 namespace RevitSystemTests
 {
     [TestFixture]
-    internal class ElementBindingTests : SystemTest
+    internal class ElementBindingTests : RevitSystemTestBase
     {
         /// <summary>
         /// This function gets all the model curves in the current Revit document

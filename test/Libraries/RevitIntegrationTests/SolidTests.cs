@@ -1,10 +1,12 @@
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
-    class SolidTests : SystemTest
+    class SolidTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\empty.rfa")]

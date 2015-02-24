@@ -13,6 +13,8 @@ using NUnit.Framework;
 
 using Revit.Elements;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
@@ -21,7 +23,7 @@ using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 namespace RevitSystemTests
 {
     [TestFixture]
-    class SampleTests : SystemTest
+    class SampleTests : RevitSystemTestBase
     {
         #region OLD Sample Tests
 

@@ -54,6 +54,7 @@ limitations under the License.
       <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
       <HintPath>..\..\..\..\Dynamo\bin\AnyCPU\Debug\DynamoServices.dll</HintPath>
       <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>$(DYNAMOAPI)\Microsoft.Practices.Prism.dll</HintPath>
@@ -97,10 +98,6 @@ limitations under the License.
     </Reference>
     <Reference Include="ProtoCore">
       <HintPath>$(DYNAMOAPI)\ProtoCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DSNodeServices">
-      <HintPath>$(DYNAMOAPI)\DSNodeServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

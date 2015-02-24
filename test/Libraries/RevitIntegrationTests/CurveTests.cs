@@ -10,12 +10,14 @@ using NUnit.Framework;
 
 using RevitServices.Persistence;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class CurveTests : SystemTest
+    class CurveTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\empty.rfa")]
