@@ -1,68 +1,136 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-
-using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using DSCoreNodesUI;
-using Dynamo.Controls;
-using Dynamo.Interfaces;
-
 using Dynamo.Models;
-using Dynamo.Wpf;
 using ProtoCore.AST.AssociativeAST;
-
-using Revit.Elements;
-using Revit.GeometryConversion;
-using Revit.GeometryObjects;
-using Revit.Interactivity;
-
-using RevitServices.Elements;
-using RevitServices.Persistence;
-
-using DividedSurface = Autodesk.Revit.DB.DividedSurface;
-using Element = Autodesk.Revit.DB.Element;
-using RevitDynamoModel = Dynamo.Applications.Models.RevitDynamoModel;
-using Point = Autodesk.DesignScript.Geometry.Point;
-using String = System.String;
-using UV = Autodesk.DesignScript.Geometry.UV;
-using Dynamo.Applications.Models;
 using Dynamo.Nodes;
+using Revit.Elements;
+using RevitServices.Persistence;
 
 namespace DSRevitNodesUI
 {
-    public enum ConversionUnit { Feet, Inches, Millimeters, Centimeters, Meters, Degrees, Radians, Kilograms, Pounds }
+    public static class RevitConversion
+    {
+        public enum RevitUnits {UT_Length,UT_Mass,UT_Area,UT_Volume,UT_Angle}
+        public enum ConversionMetricUnit { Length, Area, Volume,}
+        public enum ConversionUnit
+        {
+            Feet, Inches, Millimeters, Centimeters, Meters, Degrees, Radians, Kilograms, Pounds,
+            CubicMeters, CubicFoot, SquareMeter, SquareFoot
+        }
+        public enum RevitDisplayUnit
+        {
+            DUT_FEET_FRACTIONAL_INCHES,
+            DUT_CUBIC_FEET,
+            DUT_SQUARE_FEET
+        };
+
+        public static readonly Dictionary<ConversionMetricUnit, RevitUnits> RevitConversionDefaults =
+          new Dictionary<ConversionMetricUnit, RevitUnits>()
+            {
+                {ConversionMetricUnit.Length, RevitUnits.UT_Length},              
+                {ConversionMetricUnit.Area, RevitUnits.UT_Area},
+                {ConversionMetricUnit.Volume, RevitUnits.UT_Volume},                               
+            };
+
+        public static readonly Dictionary<RevitDisplayUnit, List<ConversionUnit>> RevitUnitConversionLookup =
+         new Dictionary<RevitDisplayUnit, List<ConversionUnit>>()
+            {
+                {RevitDisplayUnit.DUT_FEET_FRACTIONAL_INCHES, new List<ConversionUnit>() {ConversionUnit.Feet}},              
+                {RevitDisplayUnit.DUT_CUBIC_FEET, new List<ConversionUnit>() {ConversionUnit.CubicFoot}},
+                {RevitDisplayUnit.DUT_SQUARE_FEET, new List<ConversionUnit>() {ConversionUnit.SquareMeter}}                               
+            };
+
+        public static readonly Dictionary<ConversionMetricUnit, List<ConversionUnit>> ConversionMetricLookup =
+           new Dictionary<ConversionMetricUnit, List<ConversionUnit>>()
+            {               
+                {ConversionMetricUnit.Length, new List<ConversionUnit>()
+                                    {ConversionUnit.Feet,ConversionUnit.Inches,ConversionUnit.Millimeters,ConversionUnit.Centimeters, 
+                                        ConversionUnit.Meters}},
+                {ConversionMetricUnit.Area, new List<ConversionUnit>()
+                                    {ConversionUnit.SquareMeter,ConversionUnit.SquareFoot}},
+                   {ConversionMetricUnit.Volume, new List<ConversionUnit>()
+                                    {ConversionUnit.CubicMeters,ConversionUnit.CubicFoot}}
+            };
+
+        public static readonly Dictionary<ConversionMetricUnit, ConversionUnit> ConversionDefaults =
+            new Dictionary<ConversionMetricUnit, ConversionUnit>()
+            {
+                {ConversionMetricUnit.Length, ConversionUnit.Meters},
+                {ConversionMetricUnit.Area, ConversionUnit.SquareMeter},
+                {ConversionMetricUnit.Volume, ConversionUnit.CubicMeters},                    
+            };
+
+        public static readonly Dictionary<RevitDisplayUnit, ConversionUnit> RevitUnitConversionDefault =
+         new Dictionary<RevitDisplayUnit, ConversionUnit>()
+            {
+                {RevitDisplayUnit.DUT_FEET_FRACTIONAL_INCHES, ConversionUnit.Feet},              
+                {RevitDisplayUnit.DUT_CUBIC_FEET, ConversionUnit.CubicFoot},
+                {RevitDisplayUnit.DUT_SQUARE_FEET,ConversionUnit.SquareMeter}                               
+            };
+       
+    }
    
     [NodeName("Translate Units"), NodeCategory(BuiltinNodeCategories.ANALYZE),
      NodeDescription("RevitConversionNodeDescription", typeof (Properties.Resources)), IsDesignScriptCompatible]
     public class RevitConvert : DynamoConvert
-    {
-        private readonly ConversionUnit fromConversion;
-        private readonly ConversionUnit toConversion;
+    {       
+       private object selectedMetricConversion;
+       private object selectedFromConversion;
+       private object selectedToConversion;
 
-        public RevitConvert() : base(0)
-        {            
-            SelectedFromConversion = fromConversion;
-            SelectedToConversion = toConversion;
-        }
+       public RevitConvert() : base()
+       {                    
+       }
 
-        public override IEnumerable<AssociativeNode> BuildOutputAst(
-           List<AssociativeNode> inputAstNodes)
+        public override object SelectedMetricConversion
         {
-            var conversionToNode =
-                AstFactory.BuildDoubleNode(1);
+            get { return selectedMetricConversion; }
+            set
+            {
+                selectedMetricConversion = value;
+                var revitUnit = RevitConversion.RevitConversionDefaults[(RevitConversion.ConversionMetricUnit)value];
+                var revitDisplayUnits = DocumentManager.Instance.CurrentDBDocument.GetUnits().
+                                           GetFormatOptions((UnitType) Enum.Parse(typeof(UnitType), revitUnit.ToString())).DisplayUnits;
+                SelectedFromConversionSource = RevitConversion.RevitUnitConversionLookup[(RevitConversion.RevitDisplayUnit) 
+                    Enum.Parse(typeof(RevitConversion.RevitDisplayUnit),revitDisplayUnits.ToString())];
+                SelectedToConversionSource =
+                        RevitConversion.ConversionMetricLookup[(RevitConversion.ConversionMetricUnit)Enum.Parse(typeof(RevitConversion.ConversionMetricUnit), value.ToString())];
 
-            var conversionFromNode =
-                AstFactory.BuildDoubleNode(1);
-            AssociativeNode node = null;
+                SelectedFromConversion =
+                    RevitConversion.RevitUnitConversionDefault[(RevitConversion.RevitDisplayUnit)
+                    Enum.Parse(typeof(RevitConversion.RevitDisplayUnit), revitDisplayUnits.ToString())];
+                SelectedToConversion = RevitConversion.ConversionDefaults[(RevitConversion.ConversionMetricUnit)Enum.Parse(typeof(RevitConversion.ConversionMetricUnit), value.ToString())];
 
-            node = AstFactory.BuildFunctionCall(
-                        new Func<double, double, double, double>(ConvertUnits),
-                        new List<AssociativeNode> { inputAstNodes[0], conversionFromNode, conversionToNode });
-
-            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
+                RaisePropertyChanged("SelectedMetricConversion");
+            }
         }
 
+        public override object SelectedFromConversion
+        {
+            get { return selectedFromConversion; }
+            set
+            {
+                if (value != null)
+                    selectedFromConversion = (RevitConversion.ConversionUnit)Enum.Parse(typeof(RevitConversion.ConversionUnit), value.ToString());
+                else
+                    selectedFromConversion = null;
+                RaisePropertyChanged("SelectedFromConversion");
+            }
+        }
+
+        public override object SelectedToConversion
+        {
+            get { return selectedToConversion; }
+            set
+            {
+                if (value != null)
+                    selectedToConversion = (RevitConversion.ConversionUnit)Enum.Parse(typeof(RevitConversion.ConversionUnit), value.ToString());
+                else
+                    selectedToConversion = null;
+                RaisePropertyChanged("SelectedToConversion");
+            }
+        }
     }
 }
