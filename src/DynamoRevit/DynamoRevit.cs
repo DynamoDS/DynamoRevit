@@ -69,9 +69,7 @@ namespace RevitServices.Threading
             AsyncTaskCompletedHandler completionHandler = null)
         {
             var scheduler = DynamoRevit.RevitDynamoModel.Scheduler;
-            var task = new DelegateBasedAsyncTask(scheduler);
-
-            task.Initialize(p);
+            var task = new DelegateBasedAsyncTask(scheduler, p);
             if (completionHandler != null)
                 task.Completed += completionHandler;
 
