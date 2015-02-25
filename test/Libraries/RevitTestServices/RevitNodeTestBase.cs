@@ -15,7 +15,7 @@ namespace RevitTestServices
     /// </summary>
     public class RevitNodeTestBase : GeometricTestBase
     {
-        public const string ANALYSIS_DISPLAY_TESTS = "AnalysisDisplayTests";
+        protected const string ANALYSIS_DISPLAY_TESTS = "AnalysisDisplayTests";
 
         public RevitNodeTestBase()
         {
@@ -25,13 +25,18 @@ namespace RevitTestServices
         [SetUp]
         public override void Setup()
         {
+            DocumentManager.Instance.CurrentUIApplication =
+                RTF.Applications.RevitTestExecutive.CommandData.Application;
+            DocumentManager.Instance.CurrentUIDocument =
+                RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
+
             SetupTransactionManager();
             DisableElementBinder();
             base.Setup();
             SetUpHostUnits();
         }
 
-        public void SetupTransactionManager()
+        private static void SetupTransactionManager()
         {
             // create the transaction manager object
             TransactionManager.SetupManager(new AutomaticTransactionStrategy());
@@ -43,7 +48,7 @@ namespace RevitTestServices
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
         }
 
-        public void DisableElementBinder()
+        private static void DisableElementBinder()
         {
             ElementBinder.IsEnabled = false;
         }

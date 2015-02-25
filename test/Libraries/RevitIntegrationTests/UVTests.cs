@@ -2,12 +2,14 @@
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    internal class UVTests : SystemTest
+    internal class UVTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\empty.rfa")]

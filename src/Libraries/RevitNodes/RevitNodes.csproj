@@ -41,6 +41,7 @@
   <ItemGroup>
     <Reference Include="DynamoServices">
       <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="RevitAPI">
@@ -171,10 +172,6 @@
     <Compile Include="Transaction\Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DSNodeServices">
-      <HintPath>$(DYNAMOAPI)\DSNodeServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Analysis">
       <HintPath>$(DYNAMOAPI)\Analysis.dll</HintPath>
       <Private>False</Private>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -7,9 +6,8 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
 using DSCoreNodesUI;
-using Dynamo.Annotations;
+
 using Dynamo.Models;
-using Dynamo.Nodes;
 using Dynamo.Search.SearchElements;
 using Dynamo.Selection;
 
@@ -18,12 +16,14 @@ using NUnit.Framework;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class CoreTests : SystemTest
+    class CoreTests : RevitSystemTestBase
     {
         /// <summary>
         /// Sanity Check graph should always have nodes that error.
