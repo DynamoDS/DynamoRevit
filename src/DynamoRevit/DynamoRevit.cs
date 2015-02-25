@@ -146,19 +146,47 @@ namespace Dynamo.Applications
 
         #region Initialization
 
+        /// <summary>
+        /// DynamoShapeManager.dll is a companion assembly of Dynamo core components,
+        /// we do not want a static reference to it (since the Revit add-on can be 
+        /// installed anywhere that's outside of Dynamo), we do not want a duplicated 
+        /// reference to it. Here we use reflection to obtain GetGeometryFactoryPath
+        /// method, and call it to get the geometry factory assembly path.
+        /// </summary>
+        /// <param name="corePath">The path where DynamoShapeManager.dll can be 
+        /// located.</param>
+        /// <param name="asmVersion">Version of ASM for this session. Valid values 
+        /// are as defined in LibraryVersion enum in DynamoShapeManager.dll.</param>
+        /// <returns>Returns the full path to geometry factory assembly.</returns>
+        /// 
+        private static string GetGeometryFactoryPath(string corePath, int asmVersion)
+        {
+            var dynamoAsmPath = Path.Combine(corePath, "DynamoShapeManager.dll");
+            var assembly = Assembly.LoadFrom(dynamoAsmPath);
+            if (assembly == null)
+                throw new FileNotFoundException("File not found", dynamoAsmPath);
+
+            var utilities = assembly.GetType("DynamoShapeManager.Utilities");
+            var getGeometryFactoryPath = utilities.GetMethod("GetGeometryFactoryPath");
+
+            return (getGeometryFactoryPath.Invoke(
+                null, new object[] { corePath, asmVersion }) as string);
+        }
+
         private static RevitDynamoModel InitializeCoreModel(ExternalCommandData commandData)
         {
             var prefs = PreferenceSettings.Load();
-            var corePath =
-                Path.GetFullPath(
-                    Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\");
+            var assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
+            var parentDirectory = Directory.GetParent(assemblyDirectory);
+            var corePath = parentDirectory.FullName;
 
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.StartConfiguration()
                 {
                     Preferences = prefs,
                     DynamoCorePath = corePath,
-                    GeometryConfiguration = new GeometryConfiguration(),
+                    GeometryFactoryPath = GetGeometryFactoryPath(corePath, 219),
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher))
