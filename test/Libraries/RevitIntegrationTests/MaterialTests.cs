@@ -2,12 +2,14 @@
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class MaterialTests : SystemTest
+    class MaterialTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\Material\GetMaterialByName.rfa")]

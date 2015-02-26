@@ -10,12 +10,14 @@ using NUnit.Framework;
 
 using RevitServices.Persistence;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class DividedSurfaceTests : SystemTest
+    class DividedSurfaceTests : RevitSystemTestBase
     {
         [Test, Category("Failure")]
         [TestModel(@".\DividedSurface\DividedSurface.rfa")]
@@ -57,7 +59,7 @@ namespace RevitSystemTests
            
             RunCurrentModel();
             
-            Assert.Greater(ViewModel.Model.EngineController.LiveRunnerCore.RuntimeStatus.WarningCount, 0);
+            Assert.Greater(ViewModel.Model.EngineController.LiveRunnerCore.__TempCoreHostForRefactoring.RuntimeStatus.WarningCount, 0);
         }
     }
 }

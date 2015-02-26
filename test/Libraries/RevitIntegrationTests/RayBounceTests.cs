@@ -7,12 +7,14 @@ using NUnit.Framework;
 
 using RevitServices.Persistence;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class RayBounceTests : SystemTest
+    class RayBounceTests : RevitSystemTestBase
     {
         [Test, Category("Failure")]
         [TestModel(@".\RayBounce\RayBounce.rvt")]
