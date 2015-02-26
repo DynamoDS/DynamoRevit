@@ -218,8 +218,6 @@ namespace RevitTestServices
                 // create the transaction manager object
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
 
-                DynamoRevit.InitializeUnits();
-
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new DynamoModel.StartConfiguration()
                     {
