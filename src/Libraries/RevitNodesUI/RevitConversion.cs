@@ -101,7 +101,7 @@ namespace DSRevitNodesUI
             };
     }
    
-    [NodeName("Translate Units"), NodeCategory(BuiltinNodeCategories.ANALYZE),
+    [NodeName("Convert Units"), NodeCategory(BuiltinNodeCategories.ANALYZE),
      NodeDescription("RevitConversionNodeDescription", typeof (Properties.Resources)), IsDesignScriptCompatible]
     public class RevitConvert : DynamoConvert
     {       
