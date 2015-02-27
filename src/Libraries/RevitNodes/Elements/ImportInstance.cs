@@ -102,7 +102,9 @@ namespace Revit.Elements
         }
 
         #region Public properties
-
+        /// <summary>
+        /// Gets the specified string from import instance
+        /// </summary>
         public string Path { get; private set; }
 
         #endregion

@@ -74,7 +74,9 @@ namespace Revit.Elements
         #endregion
 
         #region Public properties
-
+        /// <summary>
+        /// Get the name of the specified wall type
+        /// </summary>
         public new string Name 
         {
             get

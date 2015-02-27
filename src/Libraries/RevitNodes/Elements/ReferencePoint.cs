@@ -239,7 +239,9 @@ namespace Revit.Elements
         #endregion
 
         #region Public properties
-
+        /// <summary>
+        /// Get X axis value from specified reference point
+        /// </summary>
         public double X
         {
             get
@@ -249,7 +251,9 @@ namespace Revit.Elements
             set { InternalSetPosition(new XYZ(value, Y, Z)); }
         }
 
-
+        /// <summary>
+        /// Get Y axis value from specified reference point
+        /// </summary>
         public double Y
         {
             get
@@ -259,7 +263,9 @@ namespace Revit.Elements
             set { InternalSetPosition(new XYZ(X, value, Z)); }
         }
 
-
+        /// <summary>
+        /// Get Z axis value from specified reference point
+        /// </summary>
         public double Z
         {
             get
@@ -268,7 +274,9 @@ namespace Revit.Elements
             }
             set { InternalSetPosition(new XYZ(X, Y, value)); }
         }
-
+        /// <summary>
+        /// Get point from reference point 
+        /// </summary>
         public Point Point
         {
             get
@@ -276,7 +284,9 @@ namespace Revit.Elements
                 return InternalReferencePoint.Position.ToPoint();
             }
         }
-
+        /// <summary>
+        /// Get a plane from reference point
+        /// </summary>
         public Plane XYPlane
         {
             get
@@ -286,7 +296,9 @@ namespace Revit.Elements
                 return xy.ToPlane();
             }
         }
-
+        /// <summary>
+        /// Get a plane from reference point
+        /// </summary>
         public Plane YZPlane
         {
             get
@@ -296,7 +308,9 @@ namespace Revit.Elements
                 return yz.ToPlane();
             }
         }
-
+        /// <summary>
+        /// Get a plane from reference point
+        /// </summary>
         public Plane XZPlane
         {
             get

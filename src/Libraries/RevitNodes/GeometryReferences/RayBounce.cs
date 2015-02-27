@@ -13,6 +13,14 @@ namespace Revit.References
 {
     public static class RayBounce
     {
+        /// <summary>
+        /// Get points and elements by providing origin point, direction,and defining max bounces, 3D view
+        /// </summary>
+        /// <param name="origin"></param>
+        /// <param name="direction"></param>
+        /// <param name="maxBounces"></param>
+        /// <param name="view"></param>
+        /// <returns></returns>
         [MultiReturn(new[] { "points", "elements" })]
         public static Dictionary<string,object> ByOriginDirection(Point origin, Vector direction, int maxBounces, Elements.Views.View3D view)
         {
