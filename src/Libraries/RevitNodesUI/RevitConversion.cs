@@ -11,7 +11,7 @@ using RevitServices.Persistence;
 
 namespace DSRevitNodesUI
 {
-    public static class RevitConversion
+    public static class RevitUnitTypes
     {
         public enum RevitUnits {UT_Length,UT_Mass,UT_Area,UT_Volume,UT_Angle}
         public enum ConversionMetricUnit { Length, Area, Volume,}
@@ -79,11 +79,17 @@ namespace DSRevitNodesUI
             {               
                 {ConversionMetricUnit.Length, new List<ConversionUnit>()
                                     {ConversionUnit.Feet,ConversionUnit.Inches,ConversionUnit.Millimeters,ConversionUnit.Centimeters, 
-                                        ConversionUnit.Meters}},
+                                        ConversionUnit.Meters,ConversionUnit.Decimeters}},
                 {ConversionMetricUnit.Area, new List<ConversionUnit>()
-                                    {ConversionUnit.SquareMeter,ConversionUnit.SquareFoot}},
+                                    {ConversionUnit.SquareMeter,ConversionUnit.SquareFoot,ConversionUnit.SquareInch,
+                                        ConversionUnit.SquareCentimeter,ConversionUnit.SquareMillimeter,
+                                        ConversionUnit.Acres,ConversionUnit.Hectares}},
                    {ConversionMetricUnit.Volume, new List<ConversionUnit>()
-                                    {ConversionUnit.CubicMeters,ConversionUnit.CubicFoot}}
+                   {
+                       ConversionUnit.CubicMeters,ConversionUnit.CubicFoot,ConversionUnit.CubicInches,
+                       ConversionUnit.CubicCentimeter,ConversionUnit.CubicMillimeter,ConversionUnit.CubicYards,
+                       ConversionUnit.Litres,ConversionUnit.USGallons
+                   }}
             };
 
         public static readonly Dictionary<ConversionMetricUnit, ConversionUnit> ConversionDefaults =
@@ -111,22 +117,22 @@ namespace DSRevitNodesUI
         {
             get { return selectedMetricConversion; }
             set
-            {
+            {             
                 selectedMetricConversion = value;
-                var revitUnit = RevitConversion.RevitConversionDefaults[(RevitConversion.ConversionMetricUnit)value];
+                var revitUnit = RevitUnitTypes.RevitConversionDefaults[(RevitUnitTypes.ConversionMetricUnit)value];
                 var revitDisplayUnits = DocumentManager.Instance.CurrentDBDocument.GetUnits().
                                            GetFormatOptions((UnitType) Enum.Parse(typeof(UnitType), revitUnit.ToString())).DisplayUnits;
-                var convertUnit = RevitConversion.RevitUnitConversionLookup[(RevitConversion.RevitDisplayUnit)
-                    Enum.Parse(typeof(RevitConversion.RevitDisplayUnit), revitDisplayUnits.ToString())];
+                var convertUnit = RevitUnitTypes.RevitUnitConversionLookup[(RevitUnitTypes.RevitDisplayUnit)
+                    Enum.Parse(typeof(RevitUnitTypes.RevitDisplayUnit), revitDisplayUnits.ToString())];
 
-                SelectedFromConversionSource = Enum.GetValues(typeof (RevitConversion.ConversionUnit))
-                    .Cast<RevitConversion.ConversionUnit>().ToList();
+                SelectedFromConversionSource = Enum.GetValues(typeof (RevitUnitTypes.ConversionUnit))
+                    .Cast<RevitUnitTypes.ConversionUnit>().ToList();
 
                 SelectedToConversionSource =
-                        RevitConversion.ConversionMetricLookup[(RevitConversion.ConversionMetricUnit)Enum.Parse(typeof(RevitConversion.ConversionMetricUnit), value.ToString())];
+                        RevitUnitTypes.ConversionMetricLookup[(RevitUnitTypes.ConversionMetricUnit)Enum.Parse(typeof(RevitUnitTypes.ConversionMetricUnit), value.ToString())];
 
                 SelectedFromConversion = convertUnit;
-                SelectedToConversion = RevitConversion.ConversionDefaults[(RevitConversion.ConversionMetricUnit)Enum.Parse(typeof(RevitConversion.ConversionMetricUnit), value.ToString())];
+                SelectedToConversion = RevitUnitTypes.ConversionDefaults[(RevitUnitTypes.ConversionMetricUnit)Enum.Parse(typeof(RevitUnitTypes.ConversionMetricUnit), value.ToString())];
 
                 RaisePropertyChanged("SelectedMetricConversion");
             }
@@ -138,7 +144,7 @@ namespace DSRevitNodesUI
             set
             {
                 if (value != null)
-                    selectedFromConversion = (RevitConversion.ConversionUnit)Enum.Parse(typeof(RevitConversion.ConversionUnit), value.ToString());
+                    selectedFromConversion = (RevitUnitTypes.ConversionUnit)Enum.Parse(typeof(RevitUnitTypes.ConversionUnit), value.ToString());
                 else
                     selectedFromConversion = null;              
                 RaisePropertyChanged("SelectedFromConversion");
@@ -151,7 +157,7 @@ namespace DSRevitNodesUI
             set
             {
                 if (value != null)
-                    selectedToConversion = (RevitConversion.ConversionUnit)Enum.Parse(typeof(RevitConversion.ConversionUnit), value.ToString());
+                    selectedToConversion = (RevitUnitTypes.ConversionUnit)Enum.Parse(typeof(RevitUnitTypes.ConversionUnit), value.ToString());
                 else
                     selectedToConversion = null;
                 RaisePropertyChanged("SelectedToConversion");
