@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Autodesk.Revit.DB;
 using DSCoreNodesUI;
 using Dynamo.Models;
@@ -16,14 +17,19 @@ namespace DSRevitNodesUI
         public enum ConversionMetricUnit { Length, Area, Volume,}
         public enum ConversionUnit
         {
-            Feet, Inches, Millimeters, Centimeters, Meters, Degrees, Radians, Kilograms, Pounds,
-            CubicMeters, CubicFoot, SquareMeter, SquareFoot
+            Feet, Inches, Millimeters, Centimeters, Decimeters, Meters, 
+            SquareMeter, SquareFoot,SquareInch,SquareCentimeter,SquareMillimeter,
+            Acres, Hectares, CubicMeters, CubicFoot, CubicYards, CubicInches,CubicCentimeter,
+            CubicMillimeter,Litres,USGallons
         }
         public enum RevitDisplayUnit
         {
-            DUT_FEET_FRACTIONAL_INCHES,
-            DUT_CUBIC_FEET,
-            DUT_SQUARE_FEET
+            DUT_DECIMAL_FEET,DUT_FEET_FRACTIONAL_INCHES,DUT_DECIMAL_INCHES,DUT_FRACTIONAL_INCHES,
+            DUT_METERS,DUT_CENTIMETERS,DUT_MILLIMETERS,DUT_DECIMETERS,DUT_METERS_CENTIMETERS,
+            DUT_SQUARE_FEET, DUT_SQUARE_INCHES, DUT_SQUARE_METERS, DUT_SQUARE_CENTIMETERS,
+            DUT_SQUARE_MILLIMETERS, DUT_SQUARE_ACRES, DUT_SQUARE_HECTARES,
+            DUT_CUBIC_YARDS, DUT_CUBIC_FEET, DUT_CUBIC_INCHES, DUT_CUBIC_METERS, DUT_CUBIC_CENTIMETERS,
+            DUT_CUBIC_MILLIMETERS, DUT_CUBIC_LITRES, DUT_CUBIC_GALLONS_US
         };
 
         public static readonly Dictionary<ConversionMetricUnit, RevitUnits> RevitConversionDefaults =
@@ -34,12 +40,38 @@ namespace DSRevitNodesUI
                 {ConversionMetricUnit.Volume, RevitUnits.UT_Volume},                               
             };
 
-        public static readonly Dictionary<RevitDisplayUnit, List<ConversionUnit>> RevitUnitConversionLookup =
-         new Dictionary<RevitDisplayUnit, List<ConversionUnit>>()
+        public static readonly Dictionary<RevitDisplayUnit, ConversionUnit> RevitUnitConversionLookup =
+         new Dictionary<RevitDisplayUnit, ConversionUnit>()
             {
-                {RevitDisplayUnit.DUT_FEET_FRACTIONAL_INCHES, new List<ConversionUnit>() {ConversionUnit.Feet}},              
-                {RevitDisplayUnit.DUT_CUBIC_FEET, new List<ConversionUnit>() {ConversionUnit.CubicFoot}},
-                {RevitDisplayUnit.DUT_SQUARE_FEET, new List<ConversionUnit>() {ConversionUnit.SquareMeter}}                               
+                /* LENGTH - DEFAULT UNITS */
+                {RevitDisplayUnit.DUT_FEET_FRACTIONAL_INCHES, ConversionUnit.Feet},    
+                {RevitDisplayUnit.DUT_DECIMAL_FEET,ConversionUnit.Feet},   
+                {RevitDisplayUnit.DUT_DECIMAL_INCHES, ConversionUnit.Inches}, 
+                {RevitDisplayUnit.DUT_FRACTIONAL_INCHES, ConversionUnit.Inches},   
+                {RevitDisplayUnit.DUT_METERS, ConversionUnit.Meters},   
+                {RevitDisplayUnit.DUT_CENTIMETERS,ConversionUnit.Centimeters},   
+                {RevitDisplayUnit.DUT_MILLIMETERS, ConversionUnit.Millimeters},   
+                {RevitDisplayUnit.DUT_DECIMETERS, ConversionUnit.Decimeters},   
+
+                /*AREA - DEFAULT UNITS*/
+                {RevitDisplayUnit.DUT_SQUARE_FEET, ConversionUnit.SquareFoot},
+                {RevitDisplayUnit.DUT_SQUARE_INCHES,  ConversionUnit.SquareInch},
+                {RevitDisplayUnit.DUT_SQUARE_METERS, ConversionUnit.SquareMeter},
+                {RevitDisplayUnit.DUT_SQUARE_CENTIMETERS, ConversionUnit.SquareCentimeter},
+                {RevitDisplayUnit.DUT_SQUARE_MILLIMETERS, ConversionUnit.SquareMillimeter},               
+                {RevitDisplayUnit.DUT_SQUARE_ACRES, ConversionUnit.Acres},
+                {RevitDisplayUnit.DUT_SQUARE_HECTARES, ConversionUnit.Hectares},
+
+                /*VOLUME - DEFAULT UNITS */
+                {RevitDisplayUnit.DUT_CUBIC_YARDS, ConversionUnit.CubicYards},
+                {RevitDisplayUnit.DUT_CUBIC_FEET,  ConversionUnit.CubicFoot},
+                {RevitDisplayUnit.DUT_CUBIC_INCHES,  ConversionUnit.CubicInches},
+                {RevitDisplayUnit.DUT_CUBIC_METERS,  ConversionUnit.CubicMeters},
+                {RevitDisplayUnit.DUT_CUBIC_CENTIMETERS,  ConversionUnit.CubicCentimeter},
+                {RevitDisplayUnit.DUT_CUBIC_MILLIMETERS,  ConversionUnit.CubicMillimeter},
+                {RevitDisplayUnit.DUT_CUBIC_LITRES,  ConversionUnit.Litres},
+                {RevitDisplayUnit.DUT_CUBIC_GALLONS_US,  ConversionUnit.USGallons}
+                                       
             };
 
         public static readonly Dictionary<ConversionMetricUnit, List<ConversionUnit>> ConversionMetricLookup =
@@ -61,15 +93,6 @@ namespace DSRevitNodesUI
                 {ConversionMetricUnit.Area, ConversionUnit.SquareMeter},
                 {ConversionMetricUnit.Volume, ConversionUnit.CubicMeters},                    
             };
-
-        public static readonly Dictionary<RevitDisplayUnit, ConversionUnit> RevitUnitConversionDefault =
-         new Dictionary<RevitDisplayUnit, ConversionUnit>()
-            {
-                {RevitDisplayUnit.DUT_FEET_FRACTIONAL_INCHES, ConversionUnit.Feet},              
-                {RevitDisplayUnit.DUT_CUBIC_FEET, ConversionUnit.CubicFoot},
-                {RevitDisplayUnit.DUT_SQUARE_FEET,ConversionUnit.SquareMeter}                               
-            };
-       
     }
    
     [NodeName("Translate Units"), NodeCategory(BuiltinNodeCategories.ANALYZE),
@@ -78,10 +101,10 @@ namespace DSRevitNodesUI
     {       
        private object selectedMetricConversion;
        private object selectedFromConversion;
-       private object selectedToConversion;
+       private object selectedToConversion;     
 
-       public RevitConvert() : base()
-       {                    
+       public RevitConvert() : base("From Revit")
+       {                        
        }
 
         public override object SelectedMetricConversion
@@ -93,14 +116,16 @@ namespace DSRevitNodesUI
                 var revitUnit = RevitConversion.RevitConversionDefaults[(RevitConversion.ConversionMetricUnit)value];
                 var revitDisplayUnits = DocumentManager.Instance.CurrentDBDocument.GetUnits().
                                            GetFormatOptions((UnitType) Enum.Parse(typeof(UnitType), revitUnit.ToString())).DisplayUnits;
-                SelectedFromConversionSource = RevitConversion.RevitUnitConversionLookup[(RevitConversion.RevitDisplayUnit) 
-                    Enum.Parse(typeof(RevitConversion.RevitDisplayUnit),revitDisplayUnits.ToString())];
+                var convertUnit = RevitConversion.RevitUnitConversionLookup[(RevitConversion.RevitDisplayUnit)
+                    Enum.Parse(typeof(RevitConversion.RevitDisplayUnit), revitDisplayUnits.ToString())];
+
+                SelectedFromConversionSource = Enum.GetValues(typeof (RevitConversion.ConversionUnit))
+                    .Cast<RevitConversion.ConversionUnit>().ToList();
+
                 SelectedToConversionSource =
                         RevitConversion.ConversionMetricLookup[(RevitConversion.ConversionMetricUnit)Enum.Parse(typeof(RevitConversion.ConversionMetricUnit), value.ToString())];
 
-                SelectedFromConversion =
-                    RevitConversion.RevitUnitConversionDefault[(RevitConversion.RevitDisplayUnit)
-                    Enum.Parse(typeof(RevitConversion.RevitDisplayUnit), revitDisplayUnits.ToString())];
+                SelectedFromConversion = convertUnit;
                 SelectedToConversion = RevitConversion.ConversionDefaults[(RevitConversion.ConversionMetricUnit)Enum.Parse(typeof(RevitConversion.ConversionMetricUnit), value.ToString())];
 
                 RaisePropertyChanged("SelectedMetricConversion");
@@ -115,7 +140,7 @@ namespace DSRevitNodesUI
                 if (value != null)
                     selectedFromConversion = (RevitConversion.ConversionUnit)Enum.Parse(typeof(RevitConversion.ConversionUnit), value.ToString());
                 else
-                    selectedFromConversion = null;
+                    selectedFromConversion = null;              
                 RaisePropertyChanged("SelectedFromConversion");
             }
         }
