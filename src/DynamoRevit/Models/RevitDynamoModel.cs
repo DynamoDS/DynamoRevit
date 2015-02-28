@@ -266,8 +266,11 @@ namespace Dynamo.Applications.Models
                 Logger.LogWarning(
                     "Dynamo is not available in a perspective view. Please switch to another view to Run.",
                     WarningLevel.Moderate);
-                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
-                    ws.RunEnabled = false;
+                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>().Cast<HomeWorkspaceModel>())
+                {
+                    ws.RunSettings.RunEnabled = false;
+                }
+                    
             }
             else
             {
@@ -288,9 +291,9 @@ namespace Dynamo.Applications.Models
                             WarningLevel.Error);
                     }
 
-                    foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
+                    foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
                     {
-                        ws.RunEnabled = newEnabled;
+                        ws.RunSettings.RunEnabled = newEnabled;
                     }
                 }
             }
@@ -314,8 +317,11 @@ namespace Dynamo.Applications.Models
             {
                 DocumentManager.Instance.CurrentUIDocument = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
                 Logger.LogWarning(GetDocumentPointerMessage(), WarningLevel.Moderate);
-                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
-                    ws.RunEnabled = true;
+                foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                {
+                    ws.RunSettings.RunEnabled = true;
+                }
+                    
                 ResetForNewDocument();
             }
         }
@@ -341,8 +347,11 @@ namespace Dynamo.Applications.Models
             if (DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument == null)
             {
                 DocumentManager.Instance.CurrentUIDocument = null;
-                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
-                    ws.RunEnabled = false;
+                foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                {
+                    ws.RunSettings.RunEnabled = false;
+                }
+                    
                 Logger.LogWarning(
                     "Dynamo no longer has an active document. Please open a document.",
                     WarningLevel.Error);
@@ -380,8 +389,10 @@ namespace Dynamo.Applications.Models
                     DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
 
                 InitializeMaterials();
-                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
-                    ws.RunEnabled = true;
+                foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                {
+                    ws.RunSettings.RunEnabled = true;
+                }
             }
         }
 

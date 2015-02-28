@@ -156,7 +156,7 @@ namespace RevitTestServices
         {
             base.Setup();
 
-            ((HomeWorkspaceModel)ViewModel.Model.CurrentWorkspace).DynamicRunEnabled = false;
+            ((HomeWorkspaceModel)ViewModel.Model.CurrentWorkspace).RunSettings.RunType = RunType.Manually;
 
             DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
         }
