@@ -83,6 +83,8 @@ namespace Dynamo.Applications
      Regeneration(RegenerationOption.Manual)]
     public class DynamoRevit : IExternalCommand
     {
+        enum Versions { ShapeManager = 219 }
+
         private static ExternalCommandData extCommandData;
         private static DynamoViewModel dynamoViewModel;
         private static RevitDynamoModel revitDynamoModel;
@@ -153,11 +155,9 @@ namespace Dynamo.Applications
         /// </summary>
         /// <param name="corePath">The path where DynamoShapeManager.dll can be 
         /// located.</param>
-        /// <param name="asmVersion">Version of ASM for this session. Valid values 
-        /// are as defined in LibraryVersion enum in DynamoShapeManager.dll.</param>
         /// <returns>Returns the full path to geometry factory assembly.</returns>
         /// 
-        private static string GetGeometryFactoryPath(string corePath, int asmVersion)
+        private static string GetGeometryFactoryPath(string corePath)
         {
             var dynamoAsmPath = Path.Combine(corePath, "DynamoShapeManager.dll");
             var assembly = Assembly.LoadFrom(dynamoAsmPath);
@@ -167,8 +167,8 @@ namespace Dynamo.Applications
             var utilities = assembly.GetType("DynamoShapeManager.Utilities");
             var getGeometryFactoryPath = utilities.GetMethod("GetGeometryFactoryPath");
 
-            return (getGeometryFactoryPath.Invoke(
-                null, new object[] { corePath, asmVersion }) as string);
+            return (getGeometryFactoryPath.Invoke(null,
+                new object[] { corePath, Versions.ShapeManager }) as string);
         }
 
         private static RevitDynamoModel InitializeCoreModel(ExternalCommandData commandData)
@@ -184,7 +184,7 @@ namespace Dynamo.Applications
                 {
                     Preferences = prefs,
                     DynamoCorePath = corePath,
-                    GeometryFactoryPath = GetGeometryFactoryPath(corePath, 219),
+                    GeometryFactoryPath = GetGeometryFactoryPath(corePath),
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher))
