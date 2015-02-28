@@ -140,6 +140,8 @@ namespace Dynamo.Applications
 
             //add an additional node processing folder
             DynamoPathManager.Instance.Nodes.Add(Path.Combine(assDir, "nodes"));
+
+            // TODO(PATHMANAGER): Remove reference to DynamoUtilities.dll when this is done.
         }
 
         private void SubscribeAssemblyResolvingEvent()
