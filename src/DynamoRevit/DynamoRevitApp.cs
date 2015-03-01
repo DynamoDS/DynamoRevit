@@ -146,21 +146,7 @@ namespace Dynamo.Applications
             //add an additional node processing folder
             DynamoPathManager.Instance.Nodes.Add(Path.Combine(assDir, "nodes"));
 
-            // Set the LibG folder based on the context.
-            // LibG is set to reference the libg_219 folder by default.
-            var versionInt = int.Parse(application.ControlledApplication.VersionNumber);
-            switch (versionInt)
-            {
-                case 2016:
-                    DynamoPathManager.Instance.SetLibGPath("221");
-                    break;
-                case 2015:
-                    DynamoPathManager.Instance.SetLibGPath("220");
-                    break;
-                default:
-                    DynamoPathManager.Instance.SetLibGPath("219");
-                    break;
-            }
+            // TODO(PATHMANAGER): Remove reference to DynamoUtilities.dll when this is done.
         }
 
         private void SubscribeAssemblyResolvingEvent()
