@@ -170,8 +170,6 @@ namespace RevitTestServices
                 workingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             }
 
-            DynamoPathManager.PreloadAsmVersion("221", DynamoPathManager.Instance);
-
             CreateTemporaryFolder();
 
             // Setup Temp PreferenceSetting Location for testing
