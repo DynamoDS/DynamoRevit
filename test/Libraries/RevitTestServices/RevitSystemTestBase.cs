@@ -218,10 +218,16 @@ namespace RevitTestServices
                 // create the transaction manager object
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
 
+                var assemblyLocation = Assembly.GetExecutingAssembly().Location;
+                var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
+                var parentDirectory = Directory.GetParent(assemblyDirectory);
+                var corePath = parentDirectory.FullName;
+
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new DynamoModel.StartConfiguration()
                     {
                         StartInTestMode = true,
+                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(corePath),
                         DynamoCorePath = Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\"),
                         Context = "Revit 2014",
                         SchedulerThread = new TestSchedulerThread()
