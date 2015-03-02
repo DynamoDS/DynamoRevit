@@ -14,7 +14,7 @@ namespace Revit.References
     public static class RayBounce
     {
         /// <summary>
-        /// Get points and elements by providing origin point, direction,and defining max bounces, 3D view
+        /// Returns positions and elements hit by ray bounce from the specified origin point and direction
         /// </summary>
         /// <param name="origin"></param>
         /// <param name="direction"></param>

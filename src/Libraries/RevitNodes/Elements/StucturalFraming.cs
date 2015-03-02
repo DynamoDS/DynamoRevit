@@ -238,7 +238,7 @@ namespace Revit.Elements
 
         #region Public properties
         /// <summary>
-        /// Get a curve from the localtion of the structural element
+        /// Gets curve geometry from location of the specified structural element
         /// </summary>
         new public Autodesk.DesignScript.Geometry.Curve Location
         {
@@ -252,7 +252,7 @@ namespace Revit.Elements
             }
         }
         /// <summary>
-        /// Get Family symbol from the structural element
+        /// Gets family symbol from the specified structural element
         /// </summary>
         public new FamilySymbol Symbol
         {    

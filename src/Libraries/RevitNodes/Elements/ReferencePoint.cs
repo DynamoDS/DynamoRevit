@@ -240,7 +240,7 @@ namespace Revit.Elements
 
         #region Public properties
         /// <summary>
-        /// Get X axis value from specified reference point
+        /// Gets 'X' coordinate of the specified ReferencePoint
         /// </summary>
         public double X
         {
@@ -252,7 +252,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get Y axis value from specified reference point
+        /// Gets 'Y' coordinate of the specified ReferencePoint
         /// </summary>
         public double Y
         {
@@ -264,7 +264,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get Z axis value from specified reference point
+        /// Gets 'Z' coordinate of the specified ReferencePoint
         /// </summary>
         public double Z
         {
@@ -275,7 +275,7 @@ namespace Revit.Elements
             set { InternalSetPosition(new XYZ(X, Y, value)); }
         }
         /// <summary>
-        /// Get point from reference point 
+        /// Gets point geometry from the specified ReferencePoint
         /// </summary>
         public Point Point
         {
@@ -285,7 +285,7 @@ namespace Revit.Elements
             }
         }
         /// <summary>
-        /// Get a plane from reference point
+        /// Gets XY plane of the specified ReferencePoint
         /// </summary>
         public Plane XYPlane
         {
@@ -297,7 +297,7 @@ namespace Revit.Elements
             }
         }
         /// <summary>
-        /// Get a plane from reference point
+        /// Gets YZ plane of the specified ReferencePoint
         /// </summary>
         public Plane YZPlane
         {
@@ -309,7 +309,7 @@ namespace Revit.Elements
             }
         }
         /// <summary>
-        /// Get a plane from reference point
+        /// Gets XZ plane of the specified ReferencePoint
         /// </summary>
         public Plane XZPlane
         {
