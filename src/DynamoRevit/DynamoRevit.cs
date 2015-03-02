@@ -157,7 +157,7 @@ namespace Dynamo.Applications
         /// located.</param>
         /// <returns>Returns the full path to geometry factory assembly.</returns>
         /// 
-        private static string GetGeometryFactoryPath(string corePath)
+        public static string GetGeometryFactoryPath(string corePath)
         {
             var dynamoAsmPath = Path.Combine(corePath, "DynamoShapeManager.dll");
             var assembly = Assembly.LoadFrom(dynamoAsmPath);
