@@ -156,7 +156,7 @@ namespace Revit.Elements
 
         #region Public properties
         /// <summary>
-        /// Get an element plane reference from a specified sketch plane
+        /// Gets an element plane reference from a specified sketch plane
         /// </summary>
         public ElementPlaneReference ElementPlaneReference
         {
