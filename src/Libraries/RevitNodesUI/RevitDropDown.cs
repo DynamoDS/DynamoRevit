@@ -562,7 +562,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("Spacing Rule Layout")]
-    [NodeCategory(BuiltinNodeCategories.GEOMETRY_CURVE_DIVIDE)]
+    [NodeCategory(BuiltinNodeCategories.GEOMETRY_CURVE_ACTION)]
     [NodeDescription("SpacingRuleLayoutDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class SpacingRuleLayouts : EnumAsInt<SpacingRuleLayout> {
