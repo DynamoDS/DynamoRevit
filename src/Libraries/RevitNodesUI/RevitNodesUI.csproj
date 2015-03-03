@@ -76,7 +76,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
-    <Compile Include="RevitConversion.cs" />
     <Compile Include="SelectionNodeViewCustomizations.cs" />
     <Compile Include="SiteLocation.cs" />
     <Compile Include="RevitDropDown.cs" />
