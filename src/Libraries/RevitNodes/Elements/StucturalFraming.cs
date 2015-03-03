@@ -237,7 +237,9 @@ namespace Revit.Elements
         #endregion
 
         #region Public properties
-
+        /// <summary>
+        /// Gets curve geometry from location of the specified structural element
+        /// </summary>
         new public Autodesk.DesignScript.Geometry.Curve Location
         {
             get
@@ -249,7 +251,9 @@ namespace Revit.Elements
                 throw new Exception("The location of the structural element is not a valid curve!");
             }
         }
-
+        /// <summary>
+        /// Gets family symbol from the specified structural element
+        /// </summary>
         public new FamilySymbol Symbol
         {    
             // NOTE: Because AbstractFamilyInstance is not visible in the library
