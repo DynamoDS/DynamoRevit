@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Windows.Forms;
 
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 
@@ -71,6 +72,41 @@ namespace Dynamo.Applications.Models
         {
             if (RevitDocumentChanged != null)
                 RevitDocumentChanged(this, EventArgs.Empty);
+        }
+
+        public event Action RevitDocumentLost;
+        private void OnRevitDocumentLost()
+        {
+            var handler = RevitDocumentLost;
+            if (handler != null) handler();
+        }
+
+        public event Action RevitContextUnavailable;
+        private void OnRevitContextUnavailable()
+        {
+            var handler = RevitContextUnavailable;
+            if (handler != null) handler();
+        }
+
+        public event Action RevitContextAvailable;
+        private void OnRevitContextAvailable()
+        {
+            var handler = RevitContextAvailable;
+            if (handler != null) handler();
+        }
+
+        public event Action<View> RevitViewChanged;
+        private void OnRevitViewChanged(View newView)
+        {
+            var handler = RevitViewChanged;
+            if (handler != null) handler(newView);
+        }
+
+        public event Action InvalidRevitDocumentActivated;
+        private void OnInvalidRevitDocumentActivated()
+        {
+            var handler = InvalidRevitDocumentActivated;
+            if (handler != null) handler();
         }
 
         #endregion
@@ -167,7 +203,8 @@ namespace Dynamo.Applications.Models
             {
                 DocumentManager.Instance.CurrentUIDocument =
                     DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
-                Logger.LogWarning(GetDocumentPointerMessage(), WarningLevel.Moderate);
+
+                OnRevitDocumentChanged();
             }
         }
 
@@ -375,14 +412,12 @@ namespace Dynamo.Applications.Models
             if (view != null && view.IsPerspective
                 && Context != Core.Context.VASARI_2014)
             {
-                Logger.LogWarning(
-                    "Dynamo is not available in a perspective view. Please switch to another view to Run.",
-                    WarningLevel.Moderate);
+                OnRevitContextUnavailable();
+
                 foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>().Cast<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = false;
-                }
-                    
+                }   
             }
             else
             {
@@ -398,9 +433,7 @@ namespace Dynamo.Applications.Models
 
                     if (!newEnabled)
                     {
-                        Logger.LogWarning(
-                            "Dynamo is not pointing at this document. Run will be disabled.",
-                            WarningLevel.Error);
+                        OnInvalidRevitDocumentActivated();
                     }
 
                     foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
@@ -413,7 +446,7 @@ namespace Dynamo.Applications.Models
 
         #endregion
 
-        #region Event handlers 
+        #region Event handlers
 
         /// <summary>
         /// Handler Revit's DocumentOpened event.
@@ -428,7 +461,8 @@ namespace Dynamo.Applications.Models
             if (DocumentManager.Instance.CurrentUIDocument == null)
             {
                 DocumentManager.Instance.CurrentUIDocument = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
-                Logger.LogWarning(GetDocumentPointerMessage(), WarningLevel.Moderate);
+                OnRevitDocumentChanged();
+
                 foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = true;
@@ -468,9 +502,7 @@ namespace Dynamo.Applications.Models
                     ws.RunSettings.RunEnabled = false;
                 }
                     
-                Logger.LogWarning(
-                    "Dynamo no longer has an active document. Please open a document.",
-                    WarningLevel.Error);
+                OnRevitDocumentLost();
             }
             else
             {
@@ -481,6 +513,8 @@ namespace Dynamo.Applications.Models
                     updateCurrentUIDoc = false;
                     DocumentManager.Instance.CurrentUIDocument =
                         DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
+
+                    OnRevitDocumentChanged();
                 }
             }
 
@@ -505,21 +539,14 @@ namespace Dynamo.Applications.Models
                 DocumentManager.Instance.CurrentUIDocument =
                     DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
 
+                OnRevitDocumentChanged();
+
                 InitializeMaterials();
                 foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = true;
                 }
             }
-        }
-
-        private static string GetDocumentPointerMessage()
-        {
-            var docPath = DocumentManager.Instance.CurrentUIDocument.Document.PathName;
-            var message = string.IsNullOrEmpty(docPath)
-                ? "a new document."
-                : string.Format("document: {0}", docPath);
-            return string.Format("Dynamo is now running on {0}", message);
         }
 
         /// <summary>
@@ -614,5 +641,15 @@ namespace Dynamo.Applications.Models
             DynamoRevit.AddIdleAction(() => base.OpenFileImpl(command));
         }
 
+    }
+
+    public class PointedDocumentChangedEventArgs : EventArgs
+    {
+        public string Path { get; internal set; }
+
+        public PointedDocumentChangedEventArgs(string path)
+        {
+            Path = path;
+        }
     }
 }
