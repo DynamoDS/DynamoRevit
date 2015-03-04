@@ -40,11 +40,11 @@
       <Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
     </GetReferenceAssemblyPaths>
     <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)RevitNodesImages.resx" OutputResources="$(ProjectDir)RevitNodesImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
-    <AL TargetType="library" EmbedResources="$(ProjectDir)RevitNodesImages.resources" OutputAssembly="$(OutputPath)RevitNodes.resources.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)RevitNodesImages.resources" OutputAssembly="$(OutputPath)RevitNodes.customization.dll" />
     <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)DSRevitNodesUIImages.resx" OutputResources="$(ProjectDir)DSRevitNodesUIImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
-    <AL TargetType="library" EmbedResources="$(ProjectDir)DSRevitNodesUIImages.resources" OutputAssembly="$(OutputPath)DSRevitNodesUI.resources.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)DSRevitNodesUIImages.resources" OutputAssembly="$(OutputPath)DSRevitNodesUI.customization.dll" />
     <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)SimpleRaaSImages.resx" OutputResources="$(ProjectDir)SimpleRaaSImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
-    <AL TargetType="library" EmbedResources="$(ProjectDir)SimpleRaaSImages.resources" OutputAssembly="$(OutputPath)SimpleRaaS.resources.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)SimpleRaaSImages.resources" OutputAssembly="$(OutputPath)SimpleRaaS.customization.dll" />
   </Target>
   <Target Name="AfterBuild">
     <ItemGroup>
