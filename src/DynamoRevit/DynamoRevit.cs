@@ -1,5 +1,3 @@
-using System.Linq;
-
 using Dynamo.Applications;
 using Greg.AuthProviders;
 using RevitServices.Elements;
@@ -24,13 +22,9 @@ using Dynamo.Core;
 using Dynamo.Core.Threading;
 using Dynamo.Models;
 using Dynamo.Services;
-using Dynamo.Utilities;
 using Dynamo.ViewModels;
 
 using DynamoUnits;
-
-using DynamoUtilities;
-
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using RevitServices.Threading;

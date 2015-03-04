@@ -2,7 +2,6 @@
 using System.IO;
 using System.Reflection;
 using Dynamo.Interfaces;
-using DynamoUtilities;
 
 namespace Dynamo.Applications
 {
@@ -18,10 +17,6 @@ namespace Dynamo.Applications
             // so we have to walk up one level.
             var currentAssemblyPath = Assembly.GetExecutingAssembly().Location;
             var currentAssemblyDir = Path.GetDirectoryName(currentAssemblyPath);
-            var parentDirectory = Directory.GetParent(currentAssemblyDir);
-
-            // Setup the core paths
-            DynamoPathManager.Instance.InitializeCore(parentDirectory.Name);
 
             preloadLibraryPaths = new List<string>
             {
