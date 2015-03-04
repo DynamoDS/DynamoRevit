@@ -68,6 +68,7 @@ namespace Dynamo.Applications.Models
         #region Events
 
         public event EventHandler RevitDocumentChanged;
+
         public virtual void OnRevitDocumentChanged()
         {
             if (RevitDocumentChanged != null)
@@ -75,6 +76,7 @@ namespace Dynamo.Applications.Models
         }
 
         public event Action RevitDocumentLost;
+
         private void OnRevitDocumentLost()
         {
             var handler = RevitDocumentLost;
@@ -82,6 +84,7 @@ namespace Dynamo.Applications.Models
         }
 
         public event Action RevitContextUnavailable;
+
         private void OnRevitContextUnavailable()
         {
             var handler = RevitContextUnavailable;
@@ -89,6 +92,7 @@ namespace Dynamo.Applications.Models
         }
 
         public event Action RevitContextAvailable;
+
         private void OnRevitContextAvailable()
         {
             var handler = RevitContextAvailable;
@@ -96,6 +100,7 @@ namespace Dynamo.Applications.Models
         }
 
         public event Action<View> RevitViewChanged;
+
         private void OnRevitViewChanged(View newView)
         {
             var handler = RevitViewChanged;
@@ -103,6 +108,7 @@ namespace Dynamo.Applications.Models
         }
 
         public event Action InvalidRevitDocumentActivated;
+
         private void OnInvalidRevitDocumentActivated()
         {
             var handler = InvalidRevitDocumentActivated;
@@ -112,15 +118,15 @@ namespace Dynamo.Applications.Models
         #endregion
 
         #region Properties/Fields
-        internal override string AppVersion
+        override internal string AppVersion
         {
             get
             {
-                return base.AppVersion + 
+                return base.AppVersion +
                     "-R" + DocumentManager.Instance.CurrentUIApplication.Application.VersionBuild;
             }
         }
-     
+
         #endregion
 
         #region Constructors
@@ -143,6 +149,10 @@ namespace Dynamo.Applications.Models
             base(configuration)
         {
             externalCommandData = configuration.ExternalCommandData;
+
+            RevitServicesUpdater.Initialize(
+                DynamoRevitApp.ControlledApplication,
+                DynamoRevitApp.Updaters);
 
             SubscribeRevitServicesUpdaterEvents();
 
@@ -171,6 +181,7 @@ namespace Dynamo.Applications.Models
         }
 
         private bool setupPython;
+
         private void SetupPython()
         {
             if (setupPython) return;
@@ -179,14 +190,16 @@ namespace Dynamo.Applications.Models
                 (Element element) => element.ToDSType(true));
 
             // Turn off element binding during iron python script execution
-            IronPythonEvaluator.EvaluationBegin += (a, b, c, d, e) => ElementBinder.IsEnabled = false;
+            IronPythonEvaluator.EvaluationBegin +=
+                (a, b, c, d, e) => ElementBinder.IsEnabled = false;
             IronPythonEvaluator.EvaluationEnd += (a, b, c, d, e) => ElementBinder.IsEnabled = true;
 
             // register UnwrapElement method in ironpython
             IronPythonEvaluator.EvaluationBegin += (a, b, scope, d, e) =>
             {
                 var marshaler = new DataMarshaler();
-                marshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
+                marshaler.RegisterMarshaler(
+                    (Revit.Elements.Element element) => element.InternalElement);
                 marshaler.RegisterMarshaler((Category element) => element.InternalCategory);
 
                 Func<object, object> unwrap = marshaler.Marshal;
@@ -234,12 +247,14 @@ namespace Dynamo.Applications.Models
 
         private void SubscribeTransactionManagerEvents()
         {
-            TransactionManager.Instance.TransactionWrapper.FailuresRaised += TransactionManager_FailuresRaised;
+            TransactionManager.Instance.TransactionWrapper.FailuresRaised +=
+                TransactionManager_FailuresRaised;
         }
 
         private void UnsubscribeTransactionManagerEvents()
         {
-            TransactionManager.Instance.TransactionWrapper.FailuresRaised -= TransactionManager_FailuresRaised;
+            TransactionManager.Instance.TransactionWrapper.FailuresRaised -=
+                TransactionManager_FailuresRaised;
         }
 
         private void SubscribeDocumentManagerEvents()
@@ -414,10 +429,11 @@ namespace Dynamo.Applications.Models
             {
                 OnRevitContextUnavailable();
 
-                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>().Cast<HomeWorkspaceModel>())
+                foreach (
+                    var ws in Workspaces.OfType<HomeWorkspaceModel>().Cast<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = false;
-                }   
+                }
             }
             else
             {
@@ -429,7 +445,8 @@ namespace Dynamo.Applications.Models
                 // the same document.
                 if (DocumentManager.Instance.CurrentUIDocument != null)
                 {
-                    var newEnabled = newView.Document.Equals(DocumentManager.Instance.CurrentDBDocument);
+                    var newEnabled =
+                        newView.Document.Equals(DocumentManager.Instance.CurrentDBDocument);
 
                     if (!newEnabled)
                     {
@@ -460,14 +477,15 @@ namespace Dynamo.Applications.Models
             // present a message telling us where Dynamo is pointing.
             if (DocumentManager.Instance.CurrentUIDocument == null)
             {
-                DocumentManager.Instance.CurrentUIDocument = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
+                DocumentManager.Instance.CurrentUIDocument =
+                    DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
                 OnRevitDocumentChanged();
 
                 foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = true;
                 }
-                    
+
                 ResetForNewDocument();
             }
         }
@@ -501,7 +519,7 @@ namespace Dynamo.Applications.Models
                 {
                     ws.RunSettings.RunEnabled = false;
                 }
-                    
+
                 OnRevitDocumentLost();
             }
             else
@@ -557,7 +575,7 @@ namespace Dynamo.Applications.Models
             foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
                 ws.MarkNodesAsModifiedAndRequestRun(ws.Nodes);
-                
+
                 foreach (var node in ws.Nodes)
                 {
                     lock (node.RenderPackagesMutex)
@@ -589,7 +607,7 @@ namespace Dynamo.Applications.Models
         private void TransactionManager_FailuresRaised(FailuresAccessor failuresAccessor)
         {
             IList<FailureMessageAccessor> failList = failuresAccessor.GetFailureMessages();
-            
+
             IEnumerable<FailureMessageAccessor> query =
                 from fail in failList
                 where fail.GetSeverity() == FailureSeverity.Warning
@@ -602,15 +620,19 @@ namespace Dynamo.Applications.Models
             }
         }
 
-        private void RevitServicesUpdater_ElementsDeleted(Document document, IEnumerable<ElementId> deleted)
+        private void RevitServicesUpdater_ElementsDeleted(
+            Document document, IEnumerable<ElementId> deleted)
         {
             if (!deleted.Any())
                 return;
 
-            var nodes = ElementBinder.GetNodesFromElementIds(deleted, CurrentWorkspace, EngineController);
+            var nodes = ElementBinder.GetNodesFromElementIds(
+                deleted,
+                CurrentWorkspace,
+                EngineController);
             foreach (var node in nodes)
             {
-                node.OnNodeModified(forceExecute:true);
+                node.OnNodeModified(forceExecute: true);
             }
         }
 
@@ -623,11 +645,14 @@ namespace Dynamo.Applications.Models
                     DocumentManager.Instance.CurrentDBDocument.TryGetElement(x, out ret);
                     return ret;
                 }).Select(x => x.Id);
-            
+
             if (!updatedIds.Any())
                 return;
 
-            var nodes = ElementBinder.GetNodesFromElementIds(updatedIds, CurrentWorkspace, EngineController);
+            var nodes = ElementBinder.GetNodesFromElementIds(
+                updatedIds,
+                CurrentWorkspace,
+                EngineController);
             foreach (var node in nodes)
             {
                 node.OnNodeModified(true);
@@ -641,15 +666,5 @@ namespace Dynamo.Applications.Models
             DynamoRevit.AddIdleAction(() => base.OpenFileImpl(command));
         }
 
-    }
-
-    public class PointedDocumentChangedEventArgs : EventArgs
-    {
-        public string Path { get; internal set; }
-
-        public PointedDocumentChangedEventArgs(string path)
-        {
-            Path = path;
-        }
     }
 }
