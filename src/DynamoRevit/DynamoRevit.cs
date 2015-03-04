@@ -1,3 +1,5 @@
+using Dynamo.Applications.ViewModel;
+
 using System.Linq;
 
 using Dynamo.Applications;
@@ -195,7 +197,7 @@ namespace Dynamo.Applications
         {
             var vizManager = new RevitVisualizationManager(revitDynamoModel);
 
-            var viewModel = DynamoViewModel.Start(
+            var viewModel = DynamoRevitViewModel.Start(
                 new DynamoViewModel.StartConfiguration()
                 {
                     DynamoModel = revitDynamoModel,
