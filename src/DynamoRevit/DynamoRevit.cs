@@ -173,7 +173,6 @@ namespace Dynamo.Applications
 
         private static RevitDynamoModel InitializeCoreModel(ExternalCommandData commandData)
         {
-            var prefs = PreferenceSettings.Load();
             var assemblyLocation = Assembly.GetExecutingAssembly().Location;
             var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
             var parentDirectory = Directory.GetParent(assemblyDirectory);
@@ -182,7 +181,6 @@ namespace Dynamo.Applications
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.StartConfiguration()
                 {
-                    Preferences = prefs,
                     DynamoCorePath = corePath,
                     GeometryFactoryPath = GetGeometryFactoryPath(corePath),
                     Context = GetRevitContext(commandData),

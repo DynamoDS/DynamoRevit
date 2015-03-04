@@ -72,9 +72,6 @@ namespace Dynamo.Applications.Models
                 configuration.DynamoCorePath = Path.GetDirectoryName(asmLocation);
             }
 
-            if (configuration.Preferences == null)
-                configuration.Preferences = new PreferenceSettings();
-
             return new RevitDynamoModel(configuration);
         }
 
