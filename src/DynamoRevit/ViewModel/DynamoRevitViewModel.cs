@@ -119,6 +119,7 @@ namespace Dynamo.Applications.ViewModel
             model.RevitContextUnavailable -= model_RevitContextUnavailable;
             model.RevitDocumentLost -= model_RevitDocumentLost;
             model.RevitViewChanged -= model_RevitViewChanged;
+            model.InvalidRevitDocumentActivated -= model_InvalidRevitDocumentActivated;
         }
     }
 }
