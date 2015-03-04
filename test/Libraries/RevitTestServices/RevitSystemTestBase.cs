@@ -156,7 +156,7 @@ namespace RevitTestServices
         {
             base.Setup();
 
-            ((HomeWorkspaceModel)ViewModel.Model.CurrentWorkspace).RunSettings.RunType = RunType.Manually;
+            ((HomeWorkspaceModel)ViewModel.Model.CurrentWorkspace).RunSettings.RunType = RunType.Manual;
 
             DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
         }
@@ -220,10 +220,16 @@ namespace RevitTestServices
 
                 DynamoRevit.InitializeUnits();
 
+                var assemblyLocation = Assembly.GetExecutingAssembly().Location;
+                var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
+                var parentDirectory = Directory.GetParent(assemblyDirectory);
+                var corePath = parentDirectory.FullName;
+
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new DynamoModel.StartConfiguration()
                     {
                         StartInTestMode = true,
+                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(corePath),
                         DynamoCorePath = Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\"),
                         Context = "Revit 2014",
                         SchedulerThread = new TestSchedulerThread()
