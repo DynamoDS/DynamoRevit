@@ -42,7 +42,7 @@ namespace Dynamo.Applications.ViewModel
             model.InvalidRevitDocumentActivated += model_InvalidRevitDocumentActivated;
         }
 
-        public static DynamoViewModel Start(StartConfiguration startConfiguration)
+        public static DynamoRevitViewModel Start(StartConfiguration startConfiguration)
         {
             var model = startConfiguration.DynamoModel ?? DynamoModel.Start();
             var vizManager = startConfiguration.VisualizationManager ?? new VisualizationManager(model);
