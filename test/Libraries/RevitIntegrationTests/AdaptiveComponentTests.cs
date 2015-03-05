@@ -16,7 +16,7 @@ namespace RevitSystemTests
     [TestFixture]
     class AdaptiveComponentTests : RevitSystemTestBase
     {
-        [Test, Category("Failure")]
+        [Test]
         [TestModel(@".\AdaptiveComponent\AdaptiveComponentByFace.rfa")]
         public void AdaptiveComponentByFace()
         {
