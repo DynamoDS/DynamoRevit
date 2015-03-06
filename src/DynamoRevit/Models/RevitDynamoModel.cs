@@ -424,7 +424,7 @@ namespace Dynamo.Applications.Models
         {
             foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
-                ws.MarkNodesAsModified(ws.Nodes);
+                ws.MarkNodesAsModifiedAndRequestRun(ws.Nodes);
                 
                 foreach (var node in ws.Nodes)
                 {
