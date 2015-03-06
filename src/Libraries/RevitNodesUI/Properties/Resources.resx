@@ -258,4 +258,7 @@
   <data name="PortDataSunSettingToolTip" xml:space="preserve">
     <value>SunSettings element.</value>
   </data>
+  <data name="SiteLocationFamilyDocumentWarning" xml:space="preserve">
+    <value>Site Location is not available in a family document.</value>
+  </data>
 </root>
