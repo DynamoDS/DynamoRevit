@@ -485,7 +485,7 @@ namespace Dynamo.Applications.Models
             var nodes = ElementBinder.GetNodesFromElementIds(updatedIds, CurrentWorkspace, EngineController);
             foreach (var node in nodes)
             {
-                node.OnNodeModified(forceExecute:true);
+                node.OnNodeModified(false);
             }
         }
 
