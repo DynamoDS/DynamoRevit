@@ -56,8 +56,7 @@ namespace Dynamo.Applications.ViewModel
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Error;
-            hsvm.CurrentNotificationMessage =
-                "Dynamo is not pointing at the current document.";
+            hsvm.CurrentNotificationMessage = Properties.Resources.DocumentPointingWarning;
         }
 
         void model_RevitViewChanged(View view)
@@ -65,31 +64,28 @@ namespace Dynamo.Applications.ViewModel
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Moderate;
             hsvm.CurrentNotificationMessage =
-                String.Format("The active view is now {0}", view.Name);
+                String.Format(Properties.Resources.ActiveViewWarning, view.Name);
         }
 
         void model_RevitDocumentLost()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Error;
-            hsvm.CurrentNotificationMessage =
-                "Dynamo no longer has an active document. Please open a document.";
+            hsvm.CurrentNotificationMessage = Properties.Resources.DocumentLostWarning;
         }
 
         void model_RevitContextUnavailable()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Error;
-            hsvm.CurrentNotificationMessage =
-                "Dynamo is not available in the current context.";
+            hsvm.CurrentNotificationMessage = Properties.Resources.RevitInvalidContextWarning;
         }
 
         void model_RevitContextAvailable()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Moderate;
-            hsvm.CurrentNotificationMessage =
-                String.Format("Dynamo is now available.", DocumentManager.Instance.CurrentDBDocument.ActiveView.Name);
+            hsvm.CurrentNotificationMessage = Properties.Resources.RevitValidContextMessage;
         }
 
         void model_RevitDocumentChanged(object sender, EventArgs e)
@@ -106,7 +102,7 @@ namespace Dynamo.Applications.ViewModel
             var message = String.IsNullOrEmpty(docPath)
                 ? "a new document."
                 : String.Format("document: {0}", docPath);
-            return String.Format("Dynamo is now running on {0}", message);
+            return String.Format(Properties.Resources.DocumentPointerMessage, message);
         }
 
         protected override void UnsubscribeAllEvents()
