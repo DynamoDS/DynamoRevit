@@ -17,11 +17,6 @@ namespace RevitTestServices
     {
         protected const string ANALYSIS_DISPLAY_TESTS = "AnalysisDisplayTests";
 
-        public RevitNodeTestBase()
-        {
-            AssemblyResolver.Setup();
-        }
-
         [SetUp]
         public override void Setup()
         {
