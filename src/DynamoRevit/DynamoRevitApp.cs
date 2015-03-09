@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Reflection;
 using System.Resources;
 using System.Windows;
@@ -33,6 +34,8 @@ namespace Dynamo.Applications
         public static ControlledApplication ControlledApplication;
         public static List<IUpdater> Updaters = new List<IUpdater>();
         internal static PushButton DynamoButton;
+
+        private AssemblyHelper assemblyHelper;
 
         public Result OnStartup(UIControlledApplication application)
         {
@@ -116,12 +119,25 @@ namespace Dynamo.Applications
 
         private void SubscribeAssemblyResolvingEvent()
         {
-            AppDomain.CurrentDomain.AssemblyResolve += AssemblyHelper.ResolveAssembly;
+            if (assemblyHelper == null)
+            {
+                var assemblyLocation = Assembly.GetExecutingAssembly().Location;
+                var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
+                var parentDirectory = Directory.GetParent(assemblyDirectory);
+
+                var resolutionPath = new[] { assemblyDirectory };
+                assemblyHelper = new AssemblyHelper(parentDirectory.FullName, resolutionPath);
+                AppDomain.CurrentDomain.AssemblyResolve += assemblyHelper.ResolveAssembly;
+            }
         }
 
         private void UnsubscribeAssemblyResolvingEvent()
         {
-            AppDomain.CurrentDomain.AssemblyResolve -= AssemblyHelper.ResolveAssembly;
+            if (assemblyHelper != null)
+            {
+                AppDomain.CurrentDomain.AssemblyResolve -= assemblyHelper.ResolveAssembly;
+                assemblyHelper = null;
+            }
         }
     }
 }
