@@ -227,22 +227,6 @@ namespace Dynamo.Applications.Models
         }
 
         /// <summary>
-        /// This method is typically called when a new workspace is opened or
-        /// when user forcefully resets the engine in the event of an error.
-        /// </summary>
-        /// <param name="markNodesAsDirty">RequiresRecalc property of all nodes
-        /// in the home workspace will be set to 'true' if this parameter is 
-        /// true.</param>
-        /// 
-        public override void ResetEngine(bool markNodesAsDirty = false)
-        {
-            AsyncTaskCompletedHandler handler =
-                _ => OnResetMarkNodesAsDirty(markNodesAsDirty);
-
-            IdlePromise.ExecuteOnIdleAsync(ResetEngineInternal, handler);
-        }
-
-        /// <summary>
         /// This event handler is called if 'markNodesAsDirty' in a 
         /// prior call to RevitDynamoModel.ResetEngine was set to 'true'.
         /// </summary>
@@ -409,10 +393,7 @@ namespace Dynamo.Applications.Models
         {
             foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
-                foreach (var node in ws.Nodes)
-                    node.MarkNodeAsModified(forceExecute:true);
-
-                ws.OnNodesModified();
+                ws.MarkNodesAsModifiedAndRequestRun(ws.Nodes);
                 
                 foreach (var node in ws.Nodes)
                 {
@@ -486,8 +467,13 @@ namespace Dynamo.Applications.Models
             var nodes = ElementBinder.GetNodesFromElementIds(updatedIds, CurrentWorkspace, EngineController);
             foreach (var node in nodes)
             {
-                node.OnNodeModified(forceExecute:true);
+                node.OnNodeModified(false);
             }
+        }
+
+        protected override void OpenFileImpl(OpenFileCommand command)
+        {
+            IdlePromise.ExecuteOnIdleAsync(() => base.OpenFileImpl(command));
         }
 
         #endregion
