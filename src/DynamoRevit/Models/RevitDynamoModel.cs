@@ -332,7 +332,7 @@ namespace Dynamo.Applications.Models
                 OnRevitContextUnavailable();
 
                 foreach (
-                    var ws in Workspaces.OfType<HomeWorkspaceModel>().Cast<HomeWorkspaceModel>())
+                    var ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = false;
                 }
