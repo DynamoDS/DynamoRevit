@@ -222,15 +222,13 @@ namespace RevitTestServices
 
                 var assemblyLocation = Assembly.GetExecutingAssembly().Location;
                 var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-                var parentDirectory = Directory.GetParent(assemblyDirectory);
-                var corePath = parentDirectory.FullName;
+                var corePath = Directory.GetParent(assemblyDirectory).FullName;
 
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new DynamoModel.StartConfiguration()
                     {
                         StartInTestMode = true,
                         GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(corePath),
-                        DynamoCorePath = Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\"),
                         Context = "Revit 2014",
                         SchedulerThread = new TestSchedulerThread()
                     });

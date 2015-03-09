@@ -15,16 +15,22 @@ namespace RevitTestServices
     /// </summary>
     public class RevitNodeTestBase : GeometricTestBase
     {
+        private AssemblyResolver assemblyResolver;
         protected const string ANALYSIS_DISPLAY_TESTS = "AnalysisDisplayTests";
 
         public RevitNodeTestBase()
         {
-            AssemblyResolver.Setup();
         }
 
         [SetUp]
         public override void Setup()
         {
+            if (assemblyResolver == null)
+            {
+                assemblyResolver = new AssemblyResolver();
+                assemblyResolver.Setup();
+            }
+
             DocumentManager.Instance.CurrentUIApplication =
                 RTF.Applications.RevitTestExecutive.CommandData.Application;
             DocumentManager.Instance.CurrentUIDocument =
@@ -62,6 +68,12 @@ namespace RevitTestServices
             // run the test framework without running Dynamo, so
             // we ensure that the transaction is closed here.
             TransactionManager.Instance.ForceCloseTransaction();
+
+            if (assemblyResolver != null)
+            {
+                assemblyResolver.TearDown();
+                assemblyResolver = null;
+            }
         }
 
         private static void SetUpHostUnits()

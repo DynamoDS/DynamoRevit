@@ -66,11 +66,6 @@ namespace Dynamo.Applications.Models
             // where necessary, assign defaults
             if (string.IsNullOrEmpty(configuration.Context))
                 configuration.Context = Core.Context.REVIT_2014;
-            if (string.IsNullOrEmpty(configuration.DynamoCorePath))
-            {
-                var asmLocation = Assembly.GetExecutingAssembly().Location;
-                configuration.DynamoCorePath = Path.GetDirectoryName(asmLocation);
-            }
 
             return new RevitDynamoModel(configuration);
         }
