@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Autodesk.Revit.DB;
 
 using Dynamo.Applications.Models;
 using Dynamo.Interfaces;
@@ -16,7 +14,7 @@ using RevitServices.Persistence;
 
 namespace Dynamo.Applications.ViewModel
 {
-    public class DynamoRevitViewModel : DynamoViewModel, IDisposable
+    public class DynamoRevitViewModel : DynamoViewModel
     {
         protected DynamoRevitViewModel(
             DynamoModel dynamoModel,
@@ -62,7 +60,7 @@ namespace Dynamo.Applications.ViewModel
                 "Dynamo is not pointing at the current document.";
         }
 
-        void model_RevitViewChanged(Autodesk.Revit.DB.View view)
+        void model_RevitViewChanged(View view)
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Moderate;
@@ -111,7 +109,7 @@ namespace Dynamo.Applications.ViewModel
             return String.Format("Dynamo is now running on {0}", message);
         }
 
-        public void Dispose()
+        protected override void UnsubscribeAllEvents()
         {
             var model = (RevitDynamoModel)Model;
             model.RevitDocumentChanged -= model_RevitDocumentChanged;
@@ -120,6 +118,8 @@ namespace Dynamo.Applications.ViewModel
             model.RevitDocumentLost -= model_RevitDocumentLost;
             model.RevitViewChanged -= model_RevitViewChanged;
             model.InvalidRevitDocumentActivated -= model_InvalidRevitDocumentActivated;
+
+            base.UnsubscribeAllEvents();
         }
     }
 }
