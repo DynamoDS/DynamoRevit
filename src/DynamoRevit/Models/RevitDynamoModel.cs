@@ -41,6 +41,9 @@ namespace Dynamo.Applications.Models
 
         #region Events
 
+        /// <summary>
+        /// Event triggered when the current Revit document is changed.
+        /// </summary>
         public event EventHandler RevitDocumentChanged;
 
         public virtual void OnRevitDocumentChanged()
@@ -49,6 +52,10 @@ namespace Dynamo.Applications.Models
                 RevitDocumentChanged(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Event triggered when the Revit document that Dynamo had 
+        /// previously been pointing at has been closed.
+        /// </summary>
         public event Action RevitDocumentLost;
 
         private void OnRevitDocumentLost()
@@ -57,6 +64,10 @@ namespace Dynamo.Applications.Models
             if (handler != null) handler();
         }
 
+        /// <summary>
+        /// Event triggered when Revit enters a context 
+        /// where external applications are not allowed.
+        /// </summary>
         public event Action RevitContextUnavailable;
 
         private void OnRevitContextUnavailable()
@@ -65,6 +76,10 @@ namespace Dynamo.Applications.Models
             if (handler != null) handler();
         }
 
+        /// <summary>
+        /// Event triggered when Revit enters a context where
+        /// external applications are allowed.
+        /// </summary>
         public event Action RevitContextAvailable;
 
         private void OnRevitContextAvailable()
@@ -73,6 +88,9 @@ namespace Dynamo.Applications.Models
             if (handler != null) handler();
         }
 
+        /// <summary>
+        /// Event triggered when the active Revit view changes.
+        /// </summary>
         public event Action<View> RevitViewChanged;
 
         private void OnRevitViewChanged(View newView)
@@ -81,6 +99,10 @@ namespace Dynamo.Applications.Models
             if (handler != null) handler(newView);
         }
 
+        /// <summary>
+        /// Event triggered when a document other than the
+        /// one Dynamo is pointing at becomes active.
+        /// </summary>
         public event Action InvalidRevitDocumentActivated;
 
         private void OnInvalidRevitDocumentActivated()
@@ -290,22 +312,6 @@ namespace Dynamo.Applications.Models
         }
 
         /// <summary>
-        /// This method is typically called when a new workspace is opened or
-        /// when user forcefully resets the engine in the event of an error.
-        /// </summary>
-        /// <param name="markNodesAsDirty">RequiresRecalc property of all nodes
-        /// in the home workspace will be set to 'true' if this parameter is 
-        /// true.</param>
-        /// 
-        public override void ResetEngine(bool markNodesAsDirty = false)
-        {
-            AsyncTaskCompletedHandler handler =
-                _ => OnResetMarkNodesAsDirty(markNodesAsDirty);
-
-            IdlePromise.ExecuteOnIdleAsync(ResetEngineInternal, handler);
-        }
-
-        /// <summary>
         /// This event handler is called if 'markNodesAsDirty' in a 
         /// prior call to RevitDynamoModel.ResetEngine was set to 'true'.
         /// </summary>
@@ -470,11 +476,8 @@ namespace Dynamo.Applications.Models
         {
             foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
-                foreach (var node in ws.Nodes)
-                    node.MarkNodeAsModified(forceExecute: true);
-
-                ws.OnNodesModified();
-
+                ws.MarkNodesAsModifiedAndRequestRun(ws.Nodes);
+                
                 foreach (var node in ws.Nodes)
                 {
                     lock (node.RenderPackagesMutex)
@@ -554,8 +557,13 @@ namespace Dynamo.Applications.Models
                 EngineController);
             foreach (var node in nodes)
             {
-                node.OnNodeModified(forceExecute: true);
+                node.OnNodeModified(false);
             }
+        }
+
+        protected override void OpenFileImpl(OpenFileCommand command)
+        {
+            IdlePromise.ExecuteOnIdleAsync(() => base.OpenFileImpl(command));
         }
 
         #endregion
