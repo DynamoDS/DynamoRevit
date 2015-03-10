@@ -27,6 +27,8 @@ using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
 
+using TestServices;
+
 namespace RevitTestServices
 {
     public class RevitTestConfiguration
@@ -201,17 +203,25 @@ namespace RevitTestServices
 
                 DynamoRevit.InitializeUnits();
 
+                // Create a remote test config option specifying a fallback path
+                // one directory above the executing assembly. If the core path is not
+                // specified in the config, or the config is not present, it is assumed
+                // that the executing assembly's directory will be a Revit sub-folder, so
+                // we need to set core to the parent directory.
                 var assemblyLocation = Assembly.GetExecutingAssembly().Location;
                 var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-                var corePath = Directory.GetParent(assemblyDirectory).FullName;
+                var parentDirectory = Directory.GetParent(assemblyDirectory).FullName;
+                var remoteConfig = new RemoteTestSessionConfig(parentDirectory);
 
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new DynamoModel.StartConfiguration()
                     {
                         StartInTestMode = true,
-                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(corePath),
+                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(remoteConfig.DynamoCorePath),
+                        DynamoCorePath = remoteConfig.DynamoCorePath,
                         Context = "Revit 2014",
-                        SchedulerThread = new TestSchedulerThread()
+                        SchedulerThread = new TestSchedulerThread(),
+                        PackageManagerAddress = "https://www.dynamopackages.com"
                     });
 
                 Model = DynamoRevit.RevitDynamoModel;
