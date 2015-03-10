@@ -44,11 +44,6 @@ namespace RevitTestServices
         public string SamplesPath { get; set; }
 
         /// <summary>
-        /// Directory where custom node definitions are kept
-        /// </summary>
-        public string DefinitionsPath { get; set; }
-
-        /// <summary>
         /// TestConfiguration file name
         /// </summary>
         private const string TEST_CONFIGURATION_FILE_S = "RevitTestConfiguration.xml";
@@ -108,16 +103,6 @@ namespace RevitTestServices
                 string samplesLoc = Path.Combine(assDir, @"..\..\..\..\doc\distrib\Samples\");
                 SamplesPath = Path.GetFullPath(samplesLoc);
             }
-
-            //set the custom node loader search path
-            if (string.IsNullOrEmpty(DefinitionsPath))
-            {
-                string defsLoc = Path.Combine(
-                    DynamoPathManager.Instance.Packages,
-                    "Dynamo Sample Custom Nodes",
-                    "dyf");
-                DefinitionsPath = Path.GetFullPath(defsLoc);
-            }
         }
 
         private void Save(string filePath)
@@ -147,7 +132,6 @@ namespace RevitTestServices
     public class RevitSystemTestBase : SystemTestBase
     {
         private string samplesPath;
-        private string defsPath;
         protected string emptyModelPath1;
         protected string emptyModelPath;
 
@@ -194,9 +178,6 @@ namespace RevitTestServices
 
             //get the samples path
             samplesPath = config.SamplesPath;
-
-            //set the custom node loader search path
-            defsPath = config.DefinitionsPath;
 
             emptyModelPath = Path.Combine(workingDirectory, "empty.rfa");
 
