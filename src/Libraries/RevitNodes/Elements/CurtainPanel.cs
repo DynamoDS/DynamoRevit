@@ -207,7 +207,7 @@ namespace Revit.Elements
                   lengthVal += crv.Length;
                }
             }
-            return lengthVal * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
+             return lengthVal*UnitConverter.HostToDynamoFactor;
          }
       }
 
@@ -265,7 +265,7 @@ namespace Revit.Elements
                   throw new Exception(" Curtain Panel is not rectangular");
                result = cLoop.GetRectangularWidth(cLoop.GetPlane());
             }
-            return result * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
+             return result*UnitConverter.HostToDynamoFactor;
          }
       }
 
@@ -295,7 +295,7 @@ namespace Revit.Elements
                   throw new Exception(" Curtain Panel is not rectangular");
                result = cLoop.GetRectangularHeight(cLoop.GetPlane());
             }
-            return result * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
+            return result * UnitConverter.HostToDynamoFactor;
          }
       }
 

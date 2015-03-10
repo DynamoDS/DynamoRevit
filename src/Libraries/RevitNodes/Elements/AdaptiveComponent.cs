@@ -75,6 +75,7 @@ namespace Revit.Elements
         /// <param name="fs">FamilySymbol to place</param>
         private void InitAdaptiveComponent(Point[] pts, FamilySymbol fs)
         {
+
             // if the family instance is present in trace...
             var oldFam =
                 ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
@@ -86,35 +87,24 @@ namespace Revit.Elements
                 if (fs.InternalFamilySymbol.Id != oldFam.Symbol.Id)
                     InternalSetFamilySymbol(fs);
                 InternalSetPositions(pts.ToXyzs());
-
                 return;
             }
 
             // otherwise create a new family instance...
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            using (Autodesk.Revit.DB.SubTransaction st = new SubTransaction(Document))
-            {
-                try
-                {
-                    st.Start();
-                    var fam = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(Element.Document, fs.InternalFamilySymbol);
-                    InternalSetFamilyInstance(fam);
-                    InternalSetPositions(pts.ToXyzs());
-                    st.Commit();
-                }
-                catch (Exception ex)
-                {
-                    st.RollBack();
-                    throw new ArgumentException(Revit.Properties.Resources.Adaptive_Component_Creation_Failed + ex.Message);
-                }
-            }
+            var fam = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(Element.Document, fs.InternalFamilySymbol);
+
+            if (fam == null)
+                throw new Exception("An adaptive component could not be found or created.");
+
+            InternalSetFamilyInstance(fam);
+            InternalSetPositions(pts.ToXyzs());
 
             TransactionManager.Instance.TransactionTaskDone();
 
             // remember this value
             ElementBinder.SetElementForTrace(this.InternalElement);
-
         }
 
         /// <summary>
@@ -136,29 +126,19 @@ namespace Revit.Elements
                 if (fs.InternalFamilySymbol.Id != oldFam.Symbol.Id)
                     InternalSetFamilySymbol(fs);
                 InternalSetUvsAndFace(pts.ToUvs(), f.InternalReference);
-
                 return;
             }
 
             // otherwise create a new family instance...
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            using (Autodesk.Revit.DB.SubTransaction st = new SubTransaction(Document))
-            {
-                try
-                {
-                    st.Start();
-                    var fam = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(Element.Document, fs.InternalFamilySymbol);
-                    InternalSetFamilyInstance(fam);
-                    InternalSetUvsAndFace(pts.ToUvs(), f.InternalReference);
-                    st.Commit();
-                }
-                catch (Exception ex)
-                {
-                    st.RollBack();
-                    throw new ArgumentException(Revit.Properties.Resources.Adaptive_Component_Creation_Failed + ex.Message);
-                }
-            }
+            var fam = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(Element.Document, fs.InternalFamilySymbol);
+
+            if (fam == null)
+                throw new Exception("An adaptive component could not be found or created.");
+
+            InternalSetFamilyInstance(fam);
+            InternalSetUvsAndFace(pts.ToUvs(), f.InternalReference);
 
             TransactionManager.Instance.TransactionTaskDone();
 
@@ -183,31 +163,22 @@ namespace Revit.Elements
                 if (fs.InternalFamilySymbol.Id != oldFam.Symbol.Id)
                     InternalSetFamilySymbol(fs);
                 InternalSetParamsAndCurve(parms, c);
-
                 return;
             }
 
             // otherwise create a new family instance...
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            using (Autodesk.Revit.DB.SubTransaction st = new SubTransaction(Document))
-            {
-                try
-                {
-                    st.Start();
-                    var fam = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(Element.Document, fs.InternalFamilySymbol);
-                    InternalSetFamilyInstance(fam);
-                    InternalSetParamsAndCurve(parms, c);
-                    st.Commit();
-                }
-                catch (Exception ex)
-                {
-                    st.RollBack();
-                    throw new ArgumentException(Revit.Properties.Resources.Adaptive_Component_Creation_Failed + ex.Message);
-                }
-            }
+            var fam = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(Element.Document, fs.InternalFamilySymbol);
+
+            if (fam == null)
+                throw new Exception("An adaptive component could not be found or created.");
+
+            InternalSetFamilyInstance(fam);
+            InternalSetParamsAndCurve(parms, c);
 
             TransactionManager.Instance.TransactionTaskDone();
+
         }
 
         /// <summary>
@@ -224,18 +195,18 @@ namespace Revit.Elements
         #region Internal mutators
 
         /// <summary>
-        /// Set the family symbol for the internal family instance 
-        /// </summary>
-        /// <param name="fs"></param>
-        private void InternalSetFamilySymbol(FamilySymbol fs)
-        {
-            TransactionManager.Instance.EnsureInTransaction(Document);
+       /// Set the family symbol for the internal family instance 
+       /// </summary>
+       /// <param name="fs"></param>
+        private void InternalSetFamilySymbol( FamilySymbol fs)
+       {
+          TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalFamilyInstance.Symbol = fs.InternalFamilySymbol;
+          InternalFamilyInstance.Symbol = fs.InternalFamilySymbol;
 
-            TransactionManager.Instance.TransactionTaskDone();
+          TransactionManager.Instance.TransactionTaskDone();
 
-        }
+       }
 
         /// <summary>
         /// Set the positions of the internal family instance from a list of XYZ points
@@ -585,5 +556,6 @@ namespace Revit.Elements
 
         #endregion
 
+        
     }
 }

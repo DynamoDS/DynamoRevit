@@ -14,9 +14,8 @@ namespace Revit.Elements
    public class Mullion : AbstractFamilyInstance
    {
       #region Properties
-
-      /// <summary>
-      /// Gets curve geometry from the specified Mullion Element
+       /// <summary>
+       /// Gets curve geometry from the specified Mullion Element
       /// </summary>
       public Autodesk.DesignScript.Geometry.Curve LocationCurve
       {
@@ -169,8 +168,7 @@ namespace Revit.Elements
          }
          return result.ToArray();
       }
-
-       /// <summary>
+      /// <summary>
        /// Returns FamilyInstance object as represented by the specified mullion
        /// </summary>
        /// <returns></returns>

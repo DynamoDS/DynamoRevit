@@ -270,37 +270,6 @@ namespace Revit.Elements
             // or transactions and which must necessarily be threaded in a specific way.
         }
 
-        internal static bool IsConvertableParameterType(ParameterType paramType)
-        {
-            return paramType == ParameterType.Length || paramType == ParameterType.Area ||
-                paramType == ParameterType.Volume || paramType == ParameterType.Angle ||
-                paramType == ParameterType.Slope || paramType == ParameterType.Currency ||
-                paramType == ParameterType.MassDensity;
-        }
-
-        internal static UnitType ParameterTypeToUnitType(ParameterType parameterType)
-        {
-            switch (parameterType)
-            {
-                case ParameterType.Length:
-                    return UnitType.UT_Length;
-                case ParameterType.Area:
-                    return UnitType.UT_Area;
-                case ParameterType.Volume:
-                    return UnitType.UT_Volume;
-                case ParameterType.Angle:
-                    return UnitType.UT_Angle;
-                case ParameterType.Slope:
-                    return UnitType.UT_Slope;
-                case ParameterType.Currency:
-                    return UnitType.UT_Currency;
-                case ParameterType.MassDensity:
-                    return UnitType.UT_MassDensity;
-                default:
-                    throw new Exception("ParameterType cannot be converted to UnitType");
-            }
-        }
-
         /// <summary>
         /// Get the value of one of the element's parameters.
         /// </summary>
@@ -334,12 +303,21 @@ namespace Revit.Elements
                     result = param.AsInteger();
                     break;
                 case StorageType.Double:
-                    var paramType = param.Definition.ParameterType;
-                    if (IsConvertableParameterType(paramType))
-                        result = param.AsDouble() * UnitConverter.HostToDynamoFactor(
-                            ParameterTypeToUnitType(paramType));
-                    else
-                        result = param.AsDouble();
+                    switch (param.Definition.ParameterType)
+                    {
+                        case ParameterType.Length:
+                            result = Length.FromFeet(param.AsDouble());
+                            break;
+                        case ParameterType.Area:
+                            result = Area.FromSquareFeet(param.AsDouble());
+                            break;
+                        case ParameterType.Volume:
+                            result = Volume.FromCubicFeet(param.AsDouble());
+                            break;
+                        default:
+                            result = param.AsDouble();
+                            break;
+                    }
                     break;
                 default:
                     throw new Exception(string.Format("Parameter {0} has no storage type.", param));
@@ -400,14 +378,7 @@ namespace Revit.Elements
             if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
                 throw new Exception("The parameter's storage type is not a number.");
 
-            double valueToSet = value;
-            var paramType = param.Definition.ParameterType;
-
-            if (IsConvertableParameterType(paramType))
-                valueToSet = param.AsDouble() * UnitConverter.DynamoToHostFactor(
-                    ParameterTypeToUnitType(paramType));
-            
-            param.Set(valueToSet);
+            param.Set(value);
         }
 
         private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, Element value)
@@ -440,6 +411,14 @@ namespace Revit.Elements
                 throw new Exception("The parameter's storage type is not an integer.");
 
             param.Set(value == false ? 0 : 1);
+        }
+
+        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, SIUnit value)
+        {
+            if(param.StorageType != StorageType.Double)
+                throw new Exception("The parameter's storage type is not an integer.");
+
+            param.Set(value.ConvertToHostUnits());
         }
 
         #endregion

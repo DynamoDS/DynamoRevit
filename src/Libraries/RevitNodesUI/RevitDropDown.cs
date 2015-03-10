@@ -7,7 +7,7 @@ using Autodesk.Revit.DB;
 using DSCore;
 using DSCoreNodesUI;
 
-using Dynamo.Applications;
+using Dynamo.Applications.Models;
 using Dynamo.DSEngine;
 using Dynamo.Models;
 using Dynamo.Nodes;
@@ -18,7 +18,6 @@ using ProtoCore.AST.AssociativeAST;
 using Revit.Elements;
 
 using RevitServices.Persistence;
-
 using Category = Revit.Elements.Category;
 using Element = Autodesk.Revit.DB.Element;
 using Family = Autodesk.Revit.DB.Family;
@@ -33,7 +32,7 @@ namespace DSRevitNodesUI
     {
         protected RevitDropDownBase(string value) : base(value)
         {
-           DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
+            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
         void Controller_RevitDocumentChanged(object sender, EventArgs e)

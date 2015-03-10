@@ -102,9 +102,8 @@ namespace Revit.Elements
         }
 
         #region Public properties
-
-        /// <summary>
-        /// Gets file path of the sat file that represents the geometry of the specified ImportInstance Element
+         /// <summary>
+         /// Gets file path of the sat file that represents the geometry of the specified ImportInstance Element
         /// </summary>
         public string Path { get; private set; }
 

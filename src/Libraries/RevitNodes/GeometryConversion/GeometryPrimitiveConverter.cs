@@ -54,7 +54,7 @@ namespace Revit.GeometryConversion
 
         public static Autodesk.Revit.DB.XYZ ToXyz(this Vector vec, bool convertUnits = false)
         {
-            if (convertUnits) vec = vec.Scale(UnitConverter.DynamoToHostFactor(UnitType.UT_Length));
+            if (convertUnits) vec = vec.Scale(UnitConverter.DynamoToHostFactor);
             return new XYZ(vec.X, vec.Y, vec.Z);
         }
 
@@ -160,7 +160,7 @@ namespace Revit.GeometryConversion
         public static Vector ToVector(this XYZ xyz, bool convertUnits = false)
         {
             var v = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(xyz.X, xyz.Y, xyz.Z);
-            return convertUnits ? v.Scale(UnitConverter.HostToDynamoFactor(UnitType.UT_Length)) : v;
+            return convertUnits ? v.Scale(UnitConverter.HostToDynamoFactor) : v;
         }
 
         public static Autodesk.DesignScript.Geometry.UV ToProtoType(this Autodesk.Revit.DB.UV uv)

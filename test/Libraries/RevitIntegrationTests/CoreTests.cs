@@ -69,9 +69,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             fec = null;
-
-            fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-
+            fec = new FilteredElementCollector((Autodesk.Revit.DB.Document)DocumentManager.Instance.CurrentDBDocument);
             fec.OfClass(typeof(ReferencePoint));
             Assert.AreEqual(5, fec.ToElements().Count());
 
@@ -81,9 +79,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             fec = null;
-
-            fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-
+            fec = new FilteredElementCollector((Autodesk.Revit.DB.Document)DocumentManager.Instance.CurrentDBDocument);
             fec.OfClass(typeof(ReferencePoint));
             Assert.AreEqual(20, fec.ToElements().Count());
         }
@@ -100,8 +96,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             //verify we have a reference point
-            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-
+            var fec = new FilteredElementCollector((Autodesk.Revit.DB.Document)DocumentManager.Instance.CurrentDBDocument);
             fec.OfClass(typeof(ReferencePoint));
             Assert.AreEqual(1, fec.ToElements().Count());
 
@@ -109,8 +104,7 @@ namespace RevitSystemTests
             var initialDoc = (UIDocument)DocumentManager.Instance.CurrentUIDocument;
             string shellPath = Path.Combine(workingDirectory, @".\empty1.rfa");
             TransactionManager.Instance.ForceCloseTransaction();
-            DocumentManager.Instance.CurrentUIApplication.OpenAndActivateDocument(shellPath);
-
+            ((UIApplication)DocumentManager.Instance.CurrentUIApplication).OpenAndActivateDocument(shellPath);
             initialDoc.Document.Close(false);
 
             ////assert that the doc is set on the DocumentManager

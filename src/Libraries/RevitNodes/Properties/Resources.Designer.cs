@@ -61,15 +61,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An adaptive component could not be found or created..
-        /// </summary>
-        internal static string Adaptive_Component_Creation_Failed {
-            get {
-                return ResourceManager.GetString("Adaptive_Component_Creation_Failed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Analysis Results from Dynamo.
         /// </summary>
         internal static string AnalysisResultsDefaultDescription {

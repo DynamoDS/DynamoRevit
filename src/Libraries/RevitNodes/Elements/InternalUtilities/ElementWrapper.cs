@@ -40,8 +40,7 @@ namespace Revit.Elements
                 return AdaptiveComponent.FromExisting(ele, isRevitOwned);
             }
 
-            if (ele.StructuralType != Autodesk.Revit.DB.Structure.StructuralType.NonStructural &&
-                ele.StructuralType != Autodesk.Revit.DB.Structure.StructuralType.Footing)
+            if (ele.StructuralType != Autodesk.Revit.DB.Structure.StructuralType.NonStructural)
             {
                 return StructuralFraming.FromExisting(ele, isRevitOwned);
             }

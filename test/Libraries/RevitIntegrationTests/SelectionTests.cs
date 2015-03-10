@@ -87,7 +87,7 @@ namespace RevitSystemTests
 
             Assert.AreNotEqual(0, watchNode.CachedValue); //Actual value depends on units
         }
-
+    
         [Test, Category("SmokeTests"), TestModel(@".\Selection\Selection.rfa")]
         public void EmptySingleSelectionReturnsNull()
         {
@@ -491,7 +491,7 @@ namespace RevitSystemTests
             using (var t = new Transaction(DocumentManager.Instance.CurrentDBDocument))
             {
                 t.Start("Delete wall test.");
-                DocumentManager.Instance.CurrentDBDocument.Delete(wall.Id);
+                DocumentManager.Instance.CurrentDBDocument.Delete(wall);
                 t.Commit();
             }
 

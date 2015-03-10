@@ -33,8 +33,6 @@
     <WarningLevel>3</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <NoWarn>618</NoWarn>
-    <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>$(OutputPath)\DynamoRevitDS.XML</DocumentationFile>
     <DocumentationFile>$(OutputPath)\$(UICulture)\DynamoRevitDS.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -45,8 +43,6 @@
     <WarningLevel>3</WarningLevel>
     <DebugSymbols>true</DebugSymbols>
     <NoWarn>618</NoWarn>
-    <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>$(OutputPath)\DynamoRevitDS.XML</DocumentationFile>
     <DocumentationFile>$(OutputPath)\$(UICulture)\DynamoRevitDS.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
@@ -154,6 +150,10 @@
       <HintPath>$(DYNAMOAPI)\DSIronPython.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DynamoUnits">
+      <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DynamoCoreWpf">
       <HintPath>$(DYNAMOAPI)\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
@@ -190,7 +190,6 @@ copy /Y "$(DynamoExternPath)\DynamoRaaS\JobMonitor.dll" "$(OutputPath)"
 copy /Y "$(DynamoExternPath)\DynamoRaaS\RevitRaaS.dll" "$(OutputPath)"
 copy /Y "$(DynamoExternPath)\DynamoRaaS\SDF.dll" "$(OutputPath)"
 copy /Y "$(DynamoExternPath)\DynamoRaaS\*_DynamoCustomization.xml" "$(OutputPath)"
-copy /Y "$(DynamoExternPath)\DynamoRaaS\SimpleRaas.xml" "$(OutputPath)\en-US"
 copy /Y "$(DynamoExternPath)\DynamoRaaS\en-US\*resources.dll" "$(OutputPath)\en-US"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

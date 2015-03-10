@@ -155,7 +155,6 @@ namespace Revit.Elements
         #endregion
 
         #region Public properties
-        
         /// <summary>
         /// Get an element plane reference from a specified sketch plane
         /// </summary>
@@ -166,10 +165,9 @@ namespace Revit.Elements
                 return new ElementPlaneReference(this.InternalSketchPlane.GetPlaneReference());
             }
         }
-
         /// <summary>
         /// Gets the plane geometry of the specified sketch plane
-        /// </summary>
+        /// </summary
         public Autodesk.DesignScript.Geometry.Plane Plane
         {
             get

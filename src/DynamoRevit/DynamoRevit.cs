@@ -1,3 +1,5 @@
+using System.Linq;
+
 using Dynamo.Applications;
 using Greg.AuthProviders;
 using RevitServices.Elements;
@@ -22,7 +24,12 @@ using Dynamo.Core;
 using Dynamo.Core.Threading;
 using Dynamo.Models;
 using Dynamo.Services;
+using Dynamo.Utilities;
 using Dynamo.ViewModels;
+
+using DynamoUnits;
+
+using DynamoUtilities;
 
 using RevitServices.Persistence;
 using RevitServices.Transactions;
@@ -105,7 +112,7 @@ namespace Dynamo.Applications
 
                 TryOpenWorkspaceInCommandData(extCommandData);
                 SubscribeApplicationEvents(extCommandData);
-
+				
                 // Disable the Dynamo button to prevent a re-run
                 DynamoRevitApp.DynamoButton.Enabled = false;
             }
@@ -226,6 +233,7 @@ namespace Dynamo.Applications
             if (initializedCore) return;
 
             InitializeAssemblies();
+            InitializeUnits();
             InitializeDocumentManager(commandData);
 
             initializedCore = true;
@@ -247,6 +255,14 @@ namespace Dynamo.Applications
             commandData.Application.Application.DocumentOpened += OnApplicationDocumentOpened;
 
             hasRegisteredApplicationEvents = true;
+        }
+        
+        public static void InitializeUnits()
+        {
+            // set revit units
+            BaseUnit.HostApplicationInternalAreaUnit = AreaUnit.SquareFoot;
+            BaseUnit.HostApplicationInternalLengthUnit = LengthUnit.DecimalFoot;
+            BaseUnit.HostApplicationInternalVolumeUnit = VolumeUnit.CubicFoot;
         }
 
         public static void InitializeAssemblies()
