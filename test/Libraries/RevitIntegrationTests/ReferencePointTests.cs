@@ -36,7 +36,8 @@ namespace RevitSystemTests
                 fec.WherePasses(ef);
                 Assert.AreEqual(1, fec.ToElements().Count());
 
-                DocumentManager.Instance.CurrentDBDocument.Delete(rp);
+                DocumentManager.Instance.CurrentDBDocument.Delete(rp.Id);
+
                 trans.Commit();
             }
         }

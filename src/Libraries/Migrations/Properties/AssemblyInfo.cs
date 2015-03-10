@@ -6,5 +6,6 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("Migrations")]
 [assembly: AssemblyCulture("")]
+
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("a5ede2ae-f22a-4c5e-9612-9abc23b8b029")]
