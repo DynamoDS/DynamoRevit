@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Reflection;
 using Dynamo.Models;
-
+using DynamoUtilities;
 using NUnit.Framework;
-
 using RevitServices.Elements;
-
 using RevitTestServices;
 
 namespace RevitSystemTests
@@ -43,6 +41,15 @@ namespace RevitSystemTests
 
                 //open the revit model
                 SwapCurrentModel(revitFilePath);
+
+                //Set the directory
+                string assDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                DynamoPathManager.Instance.AddResolutionPath(assDir);
+                DynamoPathManager.Instance.Nodes.Add(Path.Combine(assDir, "nodes"));
+                string mainPath = Path.GetFullPath(Path.Combine(assDir, @"..\"));
+                DynamoPathManager.Instance.InitializeCore(mainPath);
+                DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "RevitNodes.dll"));
+                DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "SimpleRaaS.dll"));
 
                 //Setup should be called after swapping document, so that RevitDynamoModel 
                 //is now associated with swapped model.
