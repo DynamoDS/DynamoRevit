@@ -47,6 +47,10 @@
       <HintPath>$(DYNAMOTESTAPI)\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DynamoUtilities, Version=0.8.0.622, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(DYNAMOTESTAPI)\DynamoUtilities.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>$(DYNAMOTESTAPI)\Microsoft.Practices.Prism.dll</HintPath>
       <Private>False</Private>

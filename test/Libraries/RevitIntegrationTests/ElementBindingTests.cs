@@ -201,7 +201,7 @@ namespace RevitSystemTests
             Assert.AreEqual(1, rps2.Count);
         }
 
-        [Test]
+        [Test, Category("Failure")]
         [TestModel(@".\empty.rfa")]
         public void CreateInDynamoModifyInRevitReRun()
         {
