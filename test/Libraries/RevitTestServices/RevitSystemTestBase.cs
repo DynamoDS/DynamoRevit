@@ -154,28 +154,10 @@ namespace RevitTestServices
 
         #region public methods
 
-        /// <summary>
-        /// We override the setup method here so that we can
-        /// call a specific version of the ASM preload.
-        /// </summary>
         [SetUp]
         public override void Setup()
         {
-            AssemblyResolver.Setup();
-
-            SetupCore();
-
-            if (string.IsNullOrEmpty(workingDirectory))
-            {
-                workingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            }
-
-            CreateTemporaryFolder();
-
-            // Setup Temp PreferenceSetting Location for testing
-            PreferenceSettings.DynamoTestPath = Path.Combine(TempFolder, "UserPreferenceTest.xml");
-
-            StartDynamo();
+            base.Setup();
 
             ((HomeWorkspaceModel)ViewModel.Model.CurrentWorkspace).RunSettings.RunType = RunType.Manual;
 
@@ -238,8 +220,6 @@ namespace RevitTestServices
             {
                 // create the transaction manager object
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
-
-                DynamoRevit.InitializeUnits();
 
                 // Create a remote test config option specifying a fallback path
                 // one directory above the executing assembly. If the core path is not

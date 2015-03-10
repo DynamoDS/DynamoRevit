@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Dynamo.Applications;
+
 using Dynamo.Models;
 using DynamoUtilities;
 using NUnit.Framework;
@@ -42,14 +42,6 @@ namespace RevitSystemTests
 
                 //open the revit model
                 SwapCurrentModel(revitFilePath);
-
-                if (!RevitServicesUpdater.IsInitialized)
-                {
-                    // The instance of the RevitServicesUpdater is disposed after every run. 
-                    // This is usually created in DynamoRevitApp. We'll recreate it here, but only
-                    // starting the second time as it will have been created when Dynamo started.
-                    RevitServicesUpdater.Initialize(DynamoRevitApp.Updaters);
-                }
 
                 //Set the directory
                 string assDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);

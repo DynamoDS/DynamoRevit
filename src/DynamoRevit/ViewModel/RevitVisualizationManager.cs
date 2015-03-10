@@ -251,7 +251,7 @@ namespace Dynamo
             var verts = pkg.LineStripVertices;
 
             // we scale the tesselation rather than the curve
-            var conv = UnitConverter.DynamoToHostFactor;
+            var conv = UnitConverter.DynamoToHostFactor(UnitType.UT_Length);
 
             // add the revit Lines to geometry collection
             for (var i = 0; i < lineCount; i += 3)

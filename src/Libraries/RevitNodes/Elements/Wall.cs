@@ -1,4 +1,7 @@
 ﻿using System;
+
+using Autodesk.Revit.DB;
+
 using DynamoServices;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
@@ -170,7 +173,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("wallType");
             }
 
-            height = height*UnitConverter.DynamoToHostFactor;
+            height = height * UnitConverter.DynamoToHostFactor(UnitType.UT_Length);
 
             if (height < 1e-6 || height > 30000)
             {

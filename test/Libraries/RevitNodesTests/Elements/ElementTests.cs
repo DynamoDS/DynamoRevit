@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
 
@@ -54,7 +55,39 @@ namespace RevitNodesTests.Elements
             var sym = wall.GetParameterValueByName(name) as Element;
             Assert.NotNull(sym);
             Assert.AreEqual(sym.Name, "18\" x 18\"");
-        }        
+        }
+
+        [Test] 
+        [TestModel(@".\element.rvt")]
+        public void CanSuccessfullySetElementParamWithUnitType()
+        {
+            var wall = ElementSelector.ByElementId(184176, true);
+
+            var newHeight = 45.5;
+
+            var name = "Unconnected Height";
+            wall.SetParameterByName(name, newHeight);
+
+            var height = (double)(wall.GetParameterValueByName(name));
+
+            Assert.NotNull(height);
+
+            height.ShouldBeApproximately(newHeight);
+        }
+
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void CanSuccessfullyGetElementParamWithUnitType()
+        {
+            var wall = ElementSelector.ByElementId(184176, true);
+
+            var name = "Unconnected Height";
+            var height = (double)(wall.GetParameterValueByName(name));
+
+            Assert.NotNull(height);
+
+            height.ShouldBeApproximately(20.0);
+        }
 
         #region Face/Solid Extraction
 
