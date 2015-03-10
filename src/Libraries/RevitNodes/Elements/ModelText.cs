@@ -252,7 +252,7 @@ namespace Revit.Elements
         /// </summary>
         public double Depth
         {
-            get { return InternalModelText.Depth*UnitConverter.HostToDynamoFactor; }
+            get { return InternalModelText.Depth * UnitConverter.HostToDynamoFactor(UnitType.UT_Length); }
         }
 
         /// <summary>
@@ -300,8 +300,11 @@ namespace Revit.Elements
                 throw new ArgumentNullException("modelTextType");
             }
 
-            return new ModelText(text, sketchPlane.InternalSketchPlane, xCoordinateInPlane * UnitConverter.DynamoToHostFactor, yCoordinateInPlane * UnitConverter.DynamoToHostFactor,
-                textDepth * UnitConverter.DynamoToHostFactor, modelTextType.InternalModelTextType);
+            return new ModelText(text, sketchPlane.InternalSketchPlane, 
+                xCoordinateInPlane * UnitConverter.DynamoToHostFactor(UnitType.UT_Length),
+                yCoordinateInPlane * UnitConverter.DynamoToHostFactor(UnitType.UT_Length),
+                textDepth * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), 
+                modelTextType.InternalModelTextType);
         }
 
         #endregion
