@@ -57,7 +57,7 @@ namespace Revit.Elements
         #region public static constructors
 
         /// <summary>
-        /// Get a Revit category by the built in category name.
+        /// Gets a Revit category by the built-in category name.
         /// </summary>
         /// <param name="name">The built in category name.</param>
         /// <returns></returns>
