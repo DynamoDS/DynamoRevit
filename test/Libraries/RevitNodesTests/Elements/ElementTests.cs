@@ -156,8 +156,8 @@ namespace RevitNodesTests.Elements
 
             var bbox = BoundingBox.ByGeometry(solids);
 
-            bbox.MaxPoint.ShouldBeApproximately(-64.266, -7.999, 60.693, 1e-3);
-            bbox.MinPoint.ShouldBeApproximately(-92.708, -38.479, 0, 1e-3);
+            bbox.MaxPoint.ShouldBeApproximately(-210.846457, -26.243438, 199.124016, 1e-2);
+            bbox.MinPoint.ShouldBeApproximately(-304.160105, -126.243438, 0, 1e-2);
         }
         
         [Test]
