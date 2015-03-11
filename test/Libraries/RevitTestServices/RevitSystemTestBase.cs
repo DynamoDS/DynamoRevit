@@ -201,8 +201,6 @@ namespace RevitTestServices
                 // create the transaction manager object
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
 
-                DynamoRevit.InitializeUnits();
-
                 // Create a remote test config option specifying a fallback path
                 // one directory above the executing assembly. If the core path is not
                 // specified in the config, or the config is not present, it is assumed

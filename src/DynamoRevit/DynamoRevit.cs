@@ -24,7 +24,6 @@ using Dynamo.Models;
 using Dynamo.Services;
 using Dynamo.ViewModels;
 
-using DynamoUnits;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using RevitServices.Threading;
@@ -224,7 +223,6 @@ namespace Dynamo.Applications
             if (initializedCore) return;
 
             InitializeAssemblies();
-            InitializeUnits();
             InitializeDocumentManager(commandData);
 
             initializedCore = true;
@@ -246,14 +244,6 @@ namespace Dynamo.Applications
             commandData.Application.Application.DocumentOpened += OnApplicationDocumentOpened;
 
             hasRegisteredApplicationEvents = true;
-        }
-        
-        public static void InitializeUnits()
-        {
-            // set revit units
-            BaseUnit.HostApplicationInternalAreaUnit = AreaUnit.SquareFoot;
-            BaseUnit.HostApplicationInternalLengthUnit = LengthUnit.DecimalFoot;
-            BaseUnit.HostApplicationInternalVolumeUnit = VolumeUnit.CubicFoot;
         }
 
         public static void InitializeAssemblies()
