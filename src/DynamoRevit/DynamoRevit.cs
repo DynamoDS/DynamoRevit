@@ -24,6 +24,8 @@ using Dynamo.Models;
 using Dynamo.Services;
 using Dynamo.ViewModels;
 
+using DynamoUtilities;
+
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using RevitServices.Threading;
