@@ -43,13 +43,18 @@ namespace RevitSystemTests
                 SwapCurrentModel(revitFilePath);
 
                 //Set the directory
-                string assDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                DynamoPathManager.Instance.AddResolutionPath(assDir);
-                DynamoPathManager.Instance.Nodes.Add(Path.Combine(assDir, "nodes"));
-                string mainPath = Path.GetFullPath(Path.Combine(assDir, @"..\"));
-                DynamoPathManager.Instance.InitializeCore(mainPath);
-                DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "RevitNodes.dll"));
-                DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "SimpleRaaS.dll"));
+                var assemblyPath = Assembly.GetExecutingAssembly().Location;
+                var assemblyDir = Path.GetDirectoryName(assemblyPath);
+                var parentDirectory = Directory.GetParent(assemblyDir).FullName;
+
+                var revitPathResolver = new RevitTestPathResolver();
+                revitPathResolver.AddResolutionPath(assemblyDir);
+                revitPathResolver.AddNodeDirectory(Path.Combine(assemblyDir, "nodes"));
+                revitPathResolver.AddPreloadLibraryPath(Path.Combine(assemblyDir, "RevitNodes.dll"));
+                revitPathResolver.AddPreloadLibraryPath(Path.Combine(assemblyDir, "SimpleRaaS.dll"));
+
+                //Ensure SystemTestBase picks it up.
+                pathResolver = revitPathResolver;
 
                 //Setup should be called after swapping document, so that RevitDynamoModel 
                 //is now associated with swapped model.
