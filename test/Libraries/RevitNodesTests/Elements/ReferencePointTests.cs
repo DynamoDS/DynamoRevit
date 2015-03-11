@@ -7,6 +7,8 @@ using NUnit.Framework;
 
 using Revit.GeometryConversion;
 
+using RevitServices.Persistence;
+
 using RevitTestServices;
 
 using RTF.Framework;
@@ -67,7 +69,7 @@ namespace RevitNodesTests
             InternalPosition(rp).ShouldBeApproximately(pt.InHostUnits());
         }
 
-        [Test, Category("Failure")]
+        [Test]
         [TestModel(@".\empty.rfa")]
         public void ByLengthOnCurveReference_ShouldPlaceReferencePointCorrectly()
         {
@@ -75,19 +77,23 @@ namespace RevitNodesTests
             var modelCurve = ModelCurve.ByCurve(l);
             var rp = ReferencePoint.ByLengthOnCurveReference(modelCurve.ElementCurveReference, 0.5);
 
+            DocumentManager.Instance.CurrentDBDocument.Regenerate();
+
             var pt = Point.ByCoordinates(0.5, 0, 0);
 
             rp.Point.ShouldBeApproximately(pt);
             InternalPosition(rp).ShouldBeApproximately(pt.InHostUnits());
         }
 
-        [Test, Category("Failure")]
+        [Test]
         [TestModel(@".\empty.rfa")]
         public void ByParameterOnCurveReference_ShouldPlaceReferencePointCorrectly()
         {
             var l = Line.ByStartPointEndPoint(Point.ByCoordinates(0, 0, 0), Point.ByCoordinates(1, 0, 0));
             var modelCurve = ModelCurve.ByCurve(l);
             var rp = ReferencePoint.ByParameterOnCurveReference(modelCurve.ElementCurveReference, 0.5);
+
+            DocumentManager.Instance.CurrentDBDocument.Regenerate();
 
             var pt = Point.ByCoordinates(0.5, 0, 0);
 
