@@ -289,7 +289,7 @@ namespace Dynamo.Applications
                 DocumentManager.Instance.CurrentUIApplication = commandData.Application;
         }
 
-        private static void SetupDynamoPaths()
+        public static void SetupDynamoPaths()
         {
             // The executing assembly will be in Revit_20xx, so 
             // we have to walk up one level. Unfortunately, we
