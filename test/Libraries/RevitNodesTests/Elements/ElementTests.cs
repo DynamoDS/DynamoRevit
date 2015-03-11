@@ -2,10 +2,13 @@
 using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
+using Autodesk.Revit.Creation;
+using Autodesk.Revit.DB;
 
 using NUnit.Framework;
 
 using Revit.Elements;
+using Revit.GeometryConversion;
 using Revit.GeometryReferences;
 
 using RevitServices.Persistence;
@@ -13,6 +16,9 @@ using RevitServices.Persistence;
 using RevitTestServices;
 
 using RTF.Framework;
+
+using Element = Revit.Elements.Element;
+using FamilySymbol = Revit.Elements.FamilySymbol;
 
 namespace RevitNodesTests.Elements
 {
@@ -63,16 +69,31 @@ namespace RevitNodesTests.Elements
         {
             var wall = ElementSelector.ByElementId(184176, true);
 
-            var newHeight = 45.5;
+            SetExpectedWallHeight(wall, 45.5);
+            GetExpectedWallHeight(wall, 45.5);
 
+            // Change project to meters
+            var units = DocumentManager.Instance.CurrentDBDocument.GetUnits();
+            units.SetFormatOptions(UnitType.UT_Length, new FormatOptions(DisplayUnitType.DUT_METERS));
+            DocumentManager.Instance.CurrentDBDocument.SetUnits(units);
+
+            SetExpectedWallHeight(wall, 45.5);
+            GetExpectedWallHeight(wall, 45.5);
+        }
+
+        private static void SetExpectedWallHeight(Element wall, double value)
+        {
             var name = "Unconnected Height";
-            wall.SetParameterByName(name, newHeight);
+            wall.SetParameterByName(name, value);
+        }
 
+        private static void GetExpectedWallHeight(Element wall, double value)
+        {
+            var name = "Unconnected Height";
             var height = (double)(wall.GetParameterValueByName(name));
 
             Assert.NotNull(height);
-
-            height.ShouldBeApproximately(newHeight);
+            height.ShouldBeApproximately(value);
         }
 
         [Test]
@@ -80,13 +101,7 @@ namespace RevitNodesTests.Elements
         public void CanSuccessfullyGetElementParamWithUnitType()
         {
             var wall = ElementSelector.ByElementId(184176, true);
-
-            var name = "Unconnected Height";
-            var height = (double)(wall.GetParameterValueByName(name));
-
-            Assert.NotNull(height);
-
-            height.ShouldBeApproximately(20.0);
+            GetExpectedWallHeight(wall, 20);
         }
 
         #region Face/Solid Extraction
