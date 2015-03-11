@@ -187,6 +187,8 @@ namespace RevitTestServices
             DocumentManager.Instance.CurrentUIDocument =
                 RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
 
+            DynamoRevit.SetupDynamoPaths();
+
             var config = RevitTestConfiguration.LoadConfiguration();
 
             //get the test path
