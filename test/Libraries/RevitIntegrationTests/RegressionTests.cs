@@ -46,14 +46,8 @@ namespace RevitSystemTests
                 var assemblyPath = Assembly.GetExecutingAssembly().Location;
                 var assemblyDir = Path.GetDirectoryName(assemblyPath);
 
-                var revitPathResolver = new RevitTestPathResolver();
-                revitPathResolver.AddResolutionPath(assemblyDir);
-                revitPathResolver.AddNodeDirectory(Path.Combine(assemblyDir, "nodes"));
-                revitPathResolver.AddPreloadLibraryPath(Path.Combine(assemblyDir, "RevitNodes.dll"));
-                revitPathResolver.AddPreloadLibraryPath(Path.Combine(assemblyDir, "SimpleRaaS.dll"));
-
                 //Ensure SystemTestBase picks it up.
-                pathResolver = revitPathResolver;
+                pathResolver = new RevitTestPathResolver(assemblyDir);
 
                 //Setup should be called after swapping document, so that RevitDynamoModel 
                 //is now associated with swapped model.

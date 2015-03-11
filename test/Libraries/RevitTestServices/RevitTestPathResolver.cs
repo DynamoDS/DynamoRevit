@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using Dynamo.Interfaces;
 
 namespace RevitTestServices
@@ -14,6 +15,14 @@ namespace RevitTestServices
             additionalResolutionPaths = new HashSet<string>();
             additionalNodeDirectories = new HashSet<string>();
             preloadedLibraryPaths = new HashSet<string>();
+        }
+
+        public RevitTestPathResolver(string assemblyDirectory) : this()
+        {
+            AddResolutionPath(assemblyDirectory);
+            AddNodeDirectory(Path.Combine(assemblyDirectory, "nodes"));
+            AddPreloadLibraryPath(Path.Combine(assemblyDirectory, "RevitNodes.dll"));
+            AddPreloadLibraryPath(Path.Combine(assemblyDirectory, "SimpleRaaS.dll"));
         }
 
         public IEnumerable<string> AdditionalResolutionPaths

@@ -211,13 +211,19 @@ namespace RevitTestServices
                 var parentDirectory = Directory.GetParent(assemblyDirectory).FullName;
                 var remoteConfig = new RemoteTestSessionConfig(parentDirectory);
 
+                // Note that there is another data member pathResolver in base class 
+                // SystemTestBase. That pathResolver will be used only in StartDynamo
+                // of the base class, here a local instance of pathResolver is used.
+                // 
+                var revitTestPathResolver = new RevitTestPathResolver(assemblyDirectory);
+
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new DynamoModel.StartConfiguration()
                     {
                         StartInTestMode = true,
                         GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(remoteConfig.DynamoCorePath),
                         DynamoCorePath = remoteConfig.DynamoCorePath,
-                        PathResolver = new RevitTestPathResolver(),
+                        PathResolver = revitTestPathResolver,
                         Context = "Revit 2014",
                         SchedulerThread = new TestSchedulerThread(),
                         PackageManagerAddress = "https://www.dynamopackages.com"
