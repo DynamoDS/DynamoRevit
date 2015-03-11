@@ -214,8 +214,8 @@ namespace RevitNodesTests.Elements
 
             var bbox = BoundingBox.ByGeometry(crvs);
 
-            bbox.MaxPoint.ShouldBeApproximately(15.240, 0, 0, 1e-3);
-            bbox.MinPoint.ShouldBeApproximately(0, -30.480, 0, 1e-3);
+            bbox.MaxPoint.ShouldBeApproximately(50.0, 0, 0, 1e-3);
+            bbox.MinPoint.ShouldBeApproximately(0, -100.0, 0, 1e-3);
 
             var refs = crvs.Select(x => ElementCurveReference.TryGetCurveReference(x));
 
