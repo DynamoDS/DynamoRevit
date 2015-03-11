@@ -45,7 +45,6 @@ namespace RevitSystemTests
                 //Set the directory
                 var assemblyPath = Assembly.GetExecutingAssembly().Location;
                 var assemblyDir = Path.GetDirectoryName(assemblyPath);
-                var parentDirectory = Directory.GetParent(assemblyDir).FullName;
 
                 var revitPathResolver = new RevitTestPathResolver();
                 revitPathResolver.AddResolutionPath(assemblyDir);
