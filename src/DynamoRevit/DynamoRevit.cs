@@ -175,6 +175,7 @@ namespace Dynamo.Applications
                 new RevitDynamoModel.StartConfiguration()
                 {
                     GeometryFactoryPath = GetGeometryFactoryPath(corePath),
+                    PathResolver = new RevitPathResolver(),
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher))

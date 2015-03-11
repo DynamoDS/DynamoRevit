@@ -217,6 +217,7 @@ namespace RevitTestServices
                         StartInTestMode = true,
                         GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(remoteConfig.DynamoCorePath),
                         DynamoCorePath = remoteConfig.DynamoCorePath,
+                        PathResolver = new RevitTestPathResolver(),
                         Context = "Revit 2014",
                         SchedulerThread = new TestSchedulerThread(),
                         PackageManagerAddress = "https://www.dynamopackages.com"
