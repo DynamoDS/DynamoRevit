@@ -85,6 +85,9 @@ namespace Dynamo.Applications
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
+            //Set the directory
+            SetupDynamoPaths();
+
             HandleDebug(commandData);
             
             InitializeCore(commandData);
@@ -257,6 +260,30 @@ namespace Dynamo.Applications
         {
             if (DocumentManager.Instance.CurrentUIApplication == null)
                 DocumentManager.Instance.CurrentUIApplication = commandData.Application;
+        }
+
+        private static void SetupDynamoPaths()
+        {
+            // The executing assembly will be in Revit_20xx, so 
+            // we have to walk up one level. Unfortunately, we
+            // can't use DynamoPathManager here because those are not
+            // initialized until the DynamoModel is constructed.
+            string assDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            // Add the Revit_20xx folder for assembly resolution
+            DynamoPathManager.Instance.AddResolutionPath(assDir);
+
+            // Setup the core paths
+            DynamoPathManager.Instance.InitializeCore(Path.GetFullPath(assDir + @"\.."));
+
+            // Add Revit-specific paths for loading.
+            DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "RevitNodes.dll"));
+            DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "SimpleRaaS.dll"));
+
+            //add an additional node processing folder
+            DynamoPathManager.Instance.Nodes.Add(Path.Combine(assDir, "nodes"));
+
+            // TODO(PATHMANAGER): Remove reference to DynamoUtilities.dll when this is done.
         }
 
         #endregion

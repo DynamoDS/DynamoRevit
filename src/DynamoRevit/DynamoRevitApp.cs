@@ -14,12 +14,15 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
 using Dynamo.Applications.Properties;
+using Dynamo.Utilities;
+
+using DynamoUtilities;
+
 using RevitServices.Elements;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
 using MessageBox = System.Windows.Forms.MessageBox;
-using Dynamo.Utilities;
 
 namespace Dynamo.Applications
 {
@@ -34,8 +37,6 @@ namespace Dynamo.Applications
         public static ControlledApplication ControlledApplication;
         public static List<IUpdater> Updaters = new List<IUpdater>();
         internal static PushButton DynamoButton;
-
-        private AssemblyHelper assemblyHelper;
 
         public Result OnStartup(UIControlledApplication application)
         {
@@ -119,24 +120,44 @@ namespace Dynamo.Applications
 
         private void SubscribeAssemblyResolvingEvent()
         {
-            if (assemblyHelper == null)
+            AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
+        }
+
+        private void UnsubscribeAssemblyResolvingEvent()
+        {
+            AppDomain.CurrentDomain.AssemblyResolve -= ResolveAssembly;
+        }
+
+        /// <summary>
+        /// Handler to the ApplicationDomain's AssemblyResolve event.
+        /// If an assembly's location cannot be resolved, an exception is
+        /// thrown. Failure to resolve an assembly will leave Dynamo in 
+        /// a bad state, so we should throw an exception here which gets caught 
+        /// by our unhandled exception handler and presents the crash dialogue.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public static Assembly ResolveAssembly(object sender, ResolveEventArgs args)
+        {
+            string assemblyPath = string.Empty;
+            try
             {
                 var assemblyLocation = Assembly.GetExecutingAssembly().Location;
                 var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
                 var parentDirectory = Directory.GetParent(assemblyDirectory);
 
-                var resolutionPath = new[] { assemblyDirectory };
-                assemblyHelper = new AssemblyHelper(parentDirectory.FullName, resolutionPath);
-                AppDomain.CurrentDomain.AssemblyResolve += assemblyHelper.ResolveAssembly;
+                // First check the core path
+                assemblyPath = Path.Combine(parentDirectory.FullName, new AssemblyName(args.Name).Name + ".dll");
+                if (File.Exists(assemblyPath))
+                {
+                    return Assembly.LoadFrom(assemblyPath);
+                }
+                return null;
             }
-        }
-
-        private void UnsubscribeAssemblyResolvingEvent()
-        {
-            if (assemblyHelper != null)
+            catch (Exception ex)
             {
-                AppDomain.CurrentDomain.AssemblyResolve -= assemblyHelper.ResolveAssembly;
-                assemblyHelper = null;
+                throw new Exception(string.Format("There location of the assembly, {0} could not be resolved for {1loading.", assemblyPath), ex);
             }
         }
     }
