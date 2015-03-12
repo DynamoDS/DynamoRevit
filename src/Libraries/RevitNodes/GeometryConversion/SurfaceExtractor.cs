@@ -238,15 +238,84 @@ namespace Revit.GeometryConversion
 
         }
 
+        private static bool EdgeLoopsTouchSurface(
+            Autodesk.DesignScript.Geometry.Surface surface,
+            IEnumerable<PolyCurve> edgeLoops)
+        {
+            bool loopsTouch = true;
+
+            foreach (var polyCurve in edgeLoops)
+            {
+                var subCurves = polyCurve.Curves();
+
+                foreach (var curve in subCurves)
+                {
+                    if (curve.DoesIntersect(surface))
+                        continue;
+
+                    loopsTouch = false;
+                    break;
+                }
+
+                subCurves.ForEach(x => x.Dispose());
+
+                if (!loopsTouch)
+                    break;
+            }
+
+            return loopsTouch;
+        }
+
         public static Surface ExtractSurface(Autodesk.Revit.DB.RuledFace face, IEnumerable<PolyCurve> edgeLoops)
         {
+            // Handle the simple case: the RuledFace completely contains the 
+            // edge loops, allowing for a valid trim downstream
+
             var c0 = face.get_Curve(0).ToProtoType(false);
             var c1 = face.get_Curve(1).ToProtoType(false);
 
-            var result = Surface.ByLoft(new[] {c0, c1});
+            var result = Surface.ByLoft(new[] { c0, c1 });
+
+            if (EdgeLoopsTouchSurface(result, edgeLoops))
+            {
+                c0.Dispose();
+                c1.Dispose();
+                return result;
+            }
+
+            // If the generated ruled Surface does not contain the edge loops,
+            // we need to extend the Surface in the direction of the loft
+
+            result.Dispose();
+
+            var bb = BoundingBox.ByGeometry(edgeLoops);
+
+            var bounds = bb.MaxPoint.DistanceTo(bb.MinPoint) * 2.0;
+
+            var v1 = Vector.ByTwoPoints(c0.StartPoint, c1.StartPoint);
+            var v2 = v1.Reverse();
+
+            var c1Move = c1.Translate(v1, bounds) as Curve;
+            var c0Move = c0.Translate(v2, bounds) as Curve;
+
+            result = Surface.ByLoft(new[] { c0Move, c1Move });
+
+            bool success = EdgeLoopsTouchSurface(result, edgeLoops);
+
             c0.Dispose();
             c1.Dispose();
-            return result;
+            c0Move.Dispose();
+            c1Move.Dispose();
+
+            if (success)
+                return result;
+
+            // Hopefully this code is never reached. If it is, we'll have to 
+            // investigate the particular Revit geometry that caused the problem
+
+            result.Dispose();
+
+            throw new Exception("Could not extract valid Surface from RuledFace");
         }
     }
 }
