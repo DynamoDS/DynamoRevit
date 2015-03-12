@@ -561,7 +561,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("Spacing Rule Layout")]
-    [NodeCategory("Revit.Elements.DividedPath.Actions")]
+    [NodeCategory(BuiltinNodeCategories.REVIT_ELEMENTS_DIVIDEDPATH_ACTION)]
     [NodeDescription("SpacingRuleLayoutDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class SpacingRuleLayouts : EnumAsInt<SpacingRuleLayout> {

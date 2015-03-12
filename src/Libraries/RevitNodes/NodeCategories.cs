@@ -13,5 +13,7 @@
         public const string REVIT_BAKE = "Revit.Bake";
         public const string REVIT_API = "Revit.API";
         public const string REVIT_ELEMENTS_DIVIDEDPATH_ACTION = "Revit.Elements.DividedPath.Actions";
+
+        public const string ANALYZE = "Analyze";
     }
 }
