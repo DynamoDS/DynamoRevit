@@ -7,7 +7,6 @@ using Dynamo.Applications.Properties;
 using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.ViewModels;
-using Dynamo.Wpf.Interfaces;
 using Dynamo.Wpf.ViewModels.Core;
 
 using RevitServices.Persistence;
@@ -16,20 +15,8 @@ namespace Dynamo.Applications.ViewModel
 {
     public class DynamoRevitViewModel : DynamoViewModel
     {
-        protected DynamoRevitViewModel(
-            DynamoModel dynamoModel,
-            IWatchHandler watchHandler,
-            IVisualizationManager vizManager,
-            string commandFilePath,
-            IBrandingResourceProvider resourceProvider,
-            bool showLogin = false) :
-                base(
-                dynamoModel,
-                watchHandler,
-                vizManager,
-                commandFilePath,
-                resourceProvider,
-                showLogin)
+        private DynamoRevitViewModel(StartConfiguration startConfiguration) :
+            base(startConfiguration)
         {
             var model = (RevitDynamoModel)Model;
             model.RevitDocumentChanged += model_RevitDocumentChanged;
@@ -42,14 +29,17 @@ namespace Dynamo.Applications.ViewModel
 
         public static DynamoRevitViewModel Start(StartConfiguration startConfiguration)
         {
-            var model = startConfiguration.DynamoModel ?? DynamoModel.Start();
-            var vizManager = startConfiguration.VisualizationManager ?? new VisualizationManager(model);
-            var watchHandler = startConfiguration.WatchHandler ?? new DefaultWatchHandler(vizManager,
-                model.PreferenceSettings);
-            var resourceProvider = startConfiguration.BrandingResourceProvider ?? new DefaultBrandingResourceProvider();
+            if (startConfiguration.DynamoModel == null)
+                startConfiguration.DynamoModel = DynamoModel.Start();
 
-            return new DynamoRevitViewModel(model, watchHandler, vizManager, startConfiguration.CommandFilePath, resourceProvider,
-                startConfiguration.ShowLogin);
+            if (startConfiguration.VisualizationManager == null)
+                startConfiguration.VisualizationManager = new VisualizationManager(startConfiguration.DynamoModel);
+
+            if (startConfiguration.WatchHandler == null)
+                startConfiguration.WatchHandler = new DefaultWatchHandler(startConfiguration.VisualizationManager,
+                    startConfiguration.DynamoModel.PreferenceSettings);
+
+            return new DynamoRevitViewModel(startConfiguration);
         }
 
         void model_InvalidRevitDocumentActivated()
