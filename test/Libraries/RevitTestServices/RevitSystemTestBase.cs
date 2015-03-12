@@ -213,7 +213,7 @@ namespace RevitTestServices
                 var remoteConfig = new RemoteTestSessionConfig(Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\"));
 
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
-                    new RevitStartConfiguration()
+                    new RevitDynamoModel.RevitStartConfiguration()
                     {
                         StartInTestMode = true,
                         GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(remoteConfig.DynamoCorePath),

@@ -33,27 +33,27 @@ using View = Autodesk.Revit.DB.View;
 
 namespace Dynamo.Applications.Models
 {
-    public interface IRevitStartConfiguration : IStartConfiguration
-    {
-        ExternalCommandData ExternalCommandData { get; set; }
-    }
-
-    public struct RevitStartConfiguration : IRevitStartConfiguration
-    {
-        public string Context { get; set; }
-        public string DynamoCorePath { get; set; }
-        public IPreferences Preferences { get; set; }
-        public bool StartInTestMode { get; set; }
-        public IUpdateManager UpdateManager { get; set; }
-        public ISchedulerThread SchedulerThread { get; set; }
-        public string GeometryFactoryPath { get; set; }
-        public IAuthProvider AuthProvider { get; set; }
-        public string PackageManagerAddress { get; set; }
-        public ExternalCommandData ExternalCommandData { get; set; }
-    }
-
     public class RevitDynamoModel : DynamoModel
     {
+        public interface IRevitStartConfiguration : IStartConfiguration
+        {
+            ExternalCommandData ExternalCommandData { get; set; }
+        }
+
+        public struct RevitStartConfiguration : IRevitStartConfiguration
+        {
+            public string Context { get; set; }
+            public string DynamoCorePath { get; set; }
+            public IPreferences Preferences { get; set; }
+            public bool StartInTestMode { get; set; }
+            public IUpdateManager UpdateManager { get; set; }
+            public ISchedulerThread SchedulerThread { get; set; }
+            public string GeometryFactoryPath { get; set; }
+            public IAuthProvider AuthProvider { get; set; }
+            public string PackageManagerAddress { get; set; }
+            public ExternalCommandData ExternalCommandData { get; set; }
+        }
+
         /// <summary>
         ///     Flag for syncing up document switches between Application.DocumentClosing and
         ///     Application.DocumentClosed events.
