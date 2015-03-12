@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CategoriesDescription" xml:space="preserve">
-    <value>All built-in categories.</value>
-    <comment>Description for Categories</comment>
-  </data>
   <data name="ElementsatLevelDescription" xml:space="preserve">
     <value>Get all the elements at the specified Level from the model.</value>
     <comment>Description for All Elements at Level</comment>
@@ -140,6 +136,10 @@
   <data name="ElementsofTypeDescription" xml:space="preserve">
     <value>All elements in the active document of a given type.</value>
     <comment>Description for All Elements of Type</comment>
+  </data>
+  <data name="CategoriesDescription" xml:space="preserve">
+    <value>All built-in categories.</value>
+    <comment>Description for Categories</comment>
   </data>
   <data name="ElementTypesDescription" xml:space="preserve">
     <value>All element subtypes.</value>
