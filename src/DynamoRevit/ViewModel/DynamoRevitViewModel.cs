@@ -3,11 +3,11 @@
 using Autodesk.Revit.DB;
 
 using Dynamo.Applications.Models;
+using Dynamo.Applications.Properties;
 using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.ViewModels;
 using Dynamo.Wpf.Interfaces;
-using Dynamo.Wpf.UI;
 using Dynamo.Wpf.ViewModels.Core;
 
 using RevitServices.Persistence;
@@ -55,7 +55,7 @@ namespace Dynamo.Applications.ViewModel
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Error;
-            hsvm.CurrentNotificationMessage = Properties.Resources.DocumentPointingWarning;
+            hsvm.CurrentNotificationMessage = Resources.DocumentPointingWarning;
         }
 
         void model_RevitViewChanged(View view)
@@ -63,28 +63,28 @@ namespace Dynamo.Applications.ViewModel
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Moderate;
             hsvm.CurrentNotificationMessage =
-                String.Format(Properties.Resources.ActiveViewWarning, view.Name);
+                String.Format(Resources.ActiveViewWarning, view.Name);
         }
 
         void model_RevitDocumentLost()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Error;
-            hsvm.CurrentNotificationMessage = Properties.Resources.DocumentLostWarning;
+            hsvm.CurrentNotificationMessage = Resources.DocumentLostWarning;
         }
 
         void model_RevitContextUnavailable()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Error;
-            hsvm.CurrentNotificationMessage = Properties.Resources.RevitInvalidContextWarning;
+            hsvm.CurrentNotificationMessage = Resources.RevitInvalidContextWarning;
         }
 
         void model_RevitContextAvailable()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Moderate;
-            hsvm.CurrentNotificationMessage = Properties.Resources.RevitValidContextMessage;
+            hsvm.CurrentNotificationMessage = Resources.RevitValidContextMessage;
         }
 
         void model_RevitDocumentChanged(object sender, EventArgs e)
@@ -101,7 +101,7 @@ namespace Dynamo.Applications.ViewModel
             var message = String.IsNullOrEmpty(docPath)
                 ? "a new document."
                 : String.Format("document: {0}", docPath);
-            return String.Format(Properties.Resources.DocumentPointerMessage, message);
+            return String.Format(Resources.DocumentPointerMessage, message);
         }
 
         protected override void UnsubscribeAllEvents()
