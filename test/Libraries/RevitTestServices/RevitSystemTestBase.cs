@@ -27,6 +27,8 @@ using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
 
+using TestServices;
+
 namespace RevitTestServices
 {
     public class RevitTestConfiguration
@@ -40,11 +42,6 @@ namespace RevitTestServices
         /// Directory where Samples are kept
         /// </summary>
         public string SamplesPath { get; set; }
-
-        /// <summary>
-        /// Directory where custom node definitions are kept
-        /// </summary>
-        public string DefinitionsPath { get; set; }
 
         /// <summary>
         /// TestConfiguration file name
@@ -106,16 +103,6 @@ namespace RevitTestServices
                 string samplesLoc = Path.Combine(assDir, @"..\..\..\..\doc\distrib\Samples\");
                 SamplesPath = Path.GetFullPath(samplesLoc);
             }
-
-            //set the custom node loader search path
-            if (string.IsNullOrEmpty(DefinitionsPath))
-            {
-                string defsLoc = Path.Combine(
-                    DynamoPathManager.Instance.Packages,
-                    "Dynamo Sample Custom Nodes",
-                    "dyf");
-                DefinitionsPath = Path.GetFullPath(defsLoc);
-            }
         }
 
         private void Save(string filePath)
@@ -145,7 +132,6 @@ namespace RevitTestServices
     public class RevitSystemTestBase : SystemTestBase
     {
         private string samplesPath;
-        private string defsPath;
         protected string emptyModelPath1;
         protected string emptyModelPath;
 
@@ -185,6 +171,8 @@ namespace RevitTestServices
             DocumentManager.Instance.CurrentUIDocument =
                 RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
 
+            DynamoRevit.SetupDynamoPaths();
+
             var config = RevitTestConfiguration.LoadConfiguration();
 
             //get the test path
@@ -192,9 +180,6 @@ namespace RevitTestServices
 
             //get the samples path
             samplesPath = config.SamplesPath;
-
-            //set the custom node loader search path
-            defsPath = config.DefinitionsPath;
 
             emptyModelPath = Path.Combine(workingDirectory, "empty.rfa");
 
@@ -218,21 +203,22 @@ namespace RevitTestServices
                 // create the transaction manager object
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
 
-                DynamoRevit.InitializeUnits();
-
-                var assemblyLocation = Assembly.GetExecutingAssembly().Location;
-                var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-                var parentDirectory = Directory.GetParent(assemblyDirectory);
-                var corePath = parentDirectory.FullName;
+                // Create a remote test config option specifying a fallback path
+                // one directory above the executing assembly. If the core path is not
+                // specified in the config, or the config is not present, it is assumed
+                // that the executing assembly's directory will be a Revit sub-folder, so
+                // we need to set core to the parent directory.
+                var remoteConfig = new RemoteTestSessionConfig(Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\"));
 
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new DynamoModel.StartConfiguration()
                     {
                         StartInTestMode = true,
-                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(corePath),
-                        DynamoCorePath = Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\"),
+                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(remoteConfig.DynamoCorePath),
+                        DynamoCorePath = remoteConfig.DynamoCorePath,
                         Context = "Revit 2014",
-                        SchedulerThread = new TestSchedulerThread()
+                        SchedulerThread = new TestSchedulerThread(),
+                        PackageManagerAddress = "https://www.dynamopackages.com"
                     });
 
                 Model = DynamoRevit.RevitDynamoModel;

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Autodesk.Revit.Creation;
+
 using Dynamo.Applications.Models;
 using Dynamo.Controls;
 using Dynamo.Models;
@@ -66,6 +68,12 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
+            if (Location == null)
+            {
+                var nullNode = AstFactory.BuildNullNode();
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), nullNode) };
+            }
+
             var latNode = AstFactory.BuildDoubleNode(Location.Latitude);
             var longNode = AstFactory.BuildDoubleNode(Location.Longitude);
             var nameNode = AstFactory.BuildStringNode(Location.Name);
@@ -109,6 +117,13 @@ namespace DSRevitNodesUI
         private void Update()
         {
             OnNodeModified(forceExecute:true);
+
+            if (DocumentManager.Instance.CurrentDBDocument.IsFamilyDocument)
+            {
+                Location = null;
+                Warning(Properties.Resources.SiteLocationFamilyDocumentWarning);
+                return;
+            }
 
             var location = DocumentManager.Instance.CurrentDBDocument.SiteLocation;
             Location.Name = location.PlaceName;
