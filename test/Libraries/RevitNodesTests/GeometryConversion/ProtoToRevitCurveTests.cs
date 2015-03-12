@@ -30,10 +30,6 @@ namespace RevitNodesTests.GeometryConversion
 
             var bspline = NurbsCurve.ByControlPoints(pts, 3);
 
-            // do scaling for check
-            var metersToFeet = 1/0.3048;
-            var bsplineScaled = (NurbsCurve)bspline.Scale(metersToFeet);
-
             // by default, performs conversion
             var revitCurve = bspline.ToRevitType();
 
@@ -42,18 +38,15 @@ namespace RevitNodesTests.GeometryConversion
 
             var revitSpline = (Autodesk.Revit.DB.NurbSpline)revitCurve;
 
-            Assert.AreEqual(bsplineScaled.Degree, revitSpline.Degree);
-            Assert.AreEqual(bsplineScaled.ControlPoints().Count(), revitSpline.CtrlPoints.Count);
+            Assert.AreEqual(bspline.Degree, revitSpline.Degree);
+            Assert.AreEqual(bspline.ControlPoints().Count(), revitSpline.CtrlPoints.Count);
 
-            // We tesselate but not convert units. We are trying to find out if
-            // ToRevitType did the conversion properly by comparing to a scaled
-            // version of the original bspline (bsplineScaled)
             var tessPts = revitSpline.Tessellate().Select(x => x.ToPoint(false));
 
             //assert the tesselation is very close to original curve
             foreach (var pt in tessPts)
             {
-                var closestPt = bsplineScaled.ClosestPointTo(pt);
+                var closestPt = bspline.ClosestPointTo(pt);
                 Assert.Less(closestPt.DistanceTo(pt), 1e-6);
             }
         }

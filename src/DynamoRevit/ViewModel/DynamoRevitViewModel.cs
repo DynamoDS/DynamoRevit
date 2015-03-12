@@ -46,9 +46,8 @@ namespace Dynamo.Applications.ViewModel
             var vizManager = startConfiguration.VisualizationManager ?? new VisualizationManager(model);
             var watchHandler = startConfiguration.WatchHandler ?? new DefaultWatchHandler(vizManager,
                 model.PreferenceSettings);
-            var resourceProvider = startConfiguration.BrandingResourceProvider ?? new DefaultBrandingResourceProvider();
 
-            return new DynamoRevitViewModel(model, watchHandler, vizManager, startConfiguration.CommandFilePath, resourceProvider,
+            return new DynamoRevitViewModel(model, watchHandler, vizManager, startConfiguration.CommandFilePath, startConfiguration.BrandingResourceProvider,
                 startConfiguration.ShowLogin);
         }
 

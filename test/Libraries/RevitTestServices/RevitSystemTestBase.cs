@@ -187,6 +187,8 @@ namespace RevitTestServices
             DocumentManager.Instance.CurrentUIDocument =
                 RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
 
+            DynamoRevit.SetupDynamoPaths();
+
             var config = RevitTestConfiguration.LoadConfiguration();
 
             //get the test path
@@ -219,8 +221,6 @@ namespace RevitTestServices
             {
                 // create the transaction manager object
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
-
-                DynamoRevit.InitializeUnits();
 
                 // Create a remote test config option specifying a fallback path
                 // one directory above the executing assembly. If the core path is not
