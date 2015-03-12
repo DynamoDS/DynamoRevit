@@ -5,7 +5,6 @@ using Autodesk.Revit.DB;
 using Dynamo.Applications.Models;
 using Dynamo.Applications.Properties;
 using Dynamo.Interfaces;
-using Dynamo.Models;
 using Dynamo.ViewModels;
 using Dynamo.Wpf.ViewModels.Core;
 
@@ -30,7 +29,14 @@ namespace Dynamo.Applications.ViewModel
         public static DynamoRevitViewModel Start(StartConfiguration startConfiguration)
         {
             if (startConfiguration.DynamoModel == null)
-                startConfiguration.DynamoModel = DynamoModel.Start();
+            {
+                startConfiguration.DynamoModel = RevitDynamoModel.Start();
+            }
+            else
+            {
+                if (startConfiguration.DynamoModel.GetType() != typeof(RevitDynamoModel))
+                    throw new Exception("An instance of RevitDynamoViewModel is required to construct a DynamoRevitViewModel.");
+            }
 
             if (startConfiguration.VisualizationManager == null)
                 startConfiguration.VisualizationManager = new VisualizationManager(startConfiguration.DynamoModel);
