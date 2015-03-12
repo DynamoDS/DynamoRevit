@@ -27,6 +27,8 @@ using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
 
+using RTF.Applications;
+
 using TestServices;
 
 namespace RevitTestServices
@@ -230,14 +232,15 @@ namespace RevitTestServices
                 var remoteConfig = new RemoteTestSessionConfig(Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\"));
 
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
-                    new DynamoModel.StartConfiguration()
+                    new RevitStartConfiguration()
                     {
                         StartInTestMode = true,
                         GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(remoteConfig.DynamoCorePath),
                         DynamoCorePath = remoteConfig.DynamoCorePath,
                         Context = "Revit 2014",
                         SchedulerThread = new TestSchedulerThread(),
-                        PackageManagerAddress = "https://www.dynamopackages.com"
+                        PackageManagerAddress = "https://www.dynamopackages.com",
+                        ExternalCommandData = RevitTestExecutive.CommandData
                     });
 
                 Model = DynamoRevit.RevitDynamoModel;
