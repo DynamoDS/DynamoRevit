@@ -408,7 +408,7 @@ namespace Revit.Elements
             var paramType = param.Definition.ParameterType;
 
             if (IsConvertableParameterType(paramType))
-                valueToSet = param.AsDouble() * UnitConverter.DynamoToHostFactor(
+                valueToSet = value * UnitConverter.DynamoToHostFactor(
                     ParameterTypeToUnitType(paramType));
             
             param.Set(valueToSet);
