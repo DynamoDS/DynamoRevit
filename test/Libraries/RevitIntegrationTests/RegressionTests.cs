@@ -8,6 +8,7 @@ using DynamoUtilities;
 using NUnit.Framework;
 using RevitServices.Elements;
 using RevitTestServices;
+using Dynamo.Applications;
 
 namespace RevitSystemTests
 {
@@ -95,7 +96,7 @@ namespace RevitSystemTests
         {
             var testParameters = new List<RegressionTestData>();
 
-			var config = RevitTestConfiguration.LoadConfiguration();
+            var config = RevitTestConfiguration.LoadConfiguration();
             string testsLoc = Path.Combine(config.WorkingDirectory, "Regression");
             var regTestPath = Path.GetFullPath(testsLoc);
 

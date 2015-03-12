@@ -157,7 +157,7 @@ namespace Dynamo.Applications
             }
             catch (Exception ex)
             {
-                throw new Exception(string.Format("There location of the assembly, {0} could not be resolved for {1loading.", assemblyPath), ex);
+                throw new Exception(string.Format("The location of the assembly, {0} could not be resolved for loading.", assemblyPath), ex);
             }
         }
     }
