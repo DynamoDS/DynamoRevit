@@ -4,6 +4,7 @@ using System.Linq;
 
 using Autodesk.Revit.Creation;
 
+using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Controls;
 using Dynamo.Models;
@@ -17,6 +18,7 @@ using Revit.GeometryConversion;
 
 using RevitServices.Elements;
 using RevitServices.Persistence;
+using RevitServices.Threading;
 
 namespace DSRevitNodesUI
 {
@@ -48,13 +50,18 @@ namespace DSRevitNodesUI
             RegisterAllPorts();
 
             Location = DynamoUnits.Location.ByLatitudeAndLongitude(0.0, 0.0);
-
+            Location.Name = string.Empty;
+            
             ArgumentLacing = LacingStrategy.Disabled;
 
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += model_RevitDocumentChanged;
-            RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += model_RevitDocumentChanged;
+                    RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
 
-            Update();
+                    Update();
+                });
         }
 
         #region public methods
@@ -62,8 +69,14 @@ namespace DSRevitNodesUI
         public override void Dispose()
         {
             base.Dispose();
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += model_RevitDocumentChanged;
-            RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened +=
+                        model_RevitDocumentChanged;
+                    RevitServicesUpdater.Instance.ElementsModified +=
+                        RevitServicesUpdater_ElementsModified;
+                });
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
@@ -116,8 +129,6 @@ namespace DSRevitNodesUI
 
         private void Update()
         {
-            OnNodeModified(forceExecute:true);
-
             if (DocumentManager.Instance.CurrentDBDocument.IsFamilyDocument)
             {
                 Location = null;
@@ -129,6 +140,8 @@ namespace DSRevitNodesUI
             Location.Name = location.PlaceName;
             Location.Latitude = location.Latitude.ToDegrees();
             Location.Longitude = location.Longitude.ToDegrees();
+
+            OnNodeModified(true);
 
             RaisePropertyChanged("Location");
         }
