@@ -38,7 +38,7 @@ namespace RevitNodesTests.Elements
             var internalPos =
                 InternalLocation(famInst.InternalElement as Autodesk.Revit.DB.FamilyInstance);
 
-            (internalPos * UnitConverter.HostToDynamoFactor).ShouldBeApproximately(
+            (internalPos * UnitConverter.HostToDynamoFactor(UnitType.UT_Length)).ShouldBeApproximately(
                 Point.ByCoordinates(0, 1, 2));
         }
 
@@ -59,7 +59,7 @@ namespace RevitNodesTests.Elements
             var internalPos =
                 InternalLocation(famInst.InternalElement as Autodesk.Revit.DB.FamilyInstance);
 
-            (internalPos * UnitConverter.HostToDynamoFactor).ShouldBeApproximately(
+            (internalPos * UnitConverter.HostToDynamoFactor(UnitType.UT_Length)).ShouldBeApproximately(
                 Point.ByCoordinates(0, 1, 2));
         }
 

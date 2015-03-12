@@ -230,22 +230,6 @@ namespace Dynamo.Applications.Models
         }
 
         /// <summary>
-        /// This method is typically called when a new workspace is opened or
-        /// when user forcefully resets the engine in the event of an error.
-        /// </summary>
-        /// <param name="markNodesAsDirty">RequiresRecalc property of all nodes
-        /// in the home workspace will be set to 'true' if this parameter is 
-        /// true.</param>
-        /// 
-        public override void ResetEngine(bool markNodesAsDirty = false)
-        {
-            AsyncTaskCompletedHandler handler =
-                _ => OnResetMarkNodesAsDirty(markNodesAsDirty);
-
-            IdlePromise.ExecuteOnIdleAsync(ResetEngineInternal, handler);
-        }
-
-        /// <summary>
         /// This event handler is called if 'markNodesAsDirty' in a 
         /// prior call to RevitDynamoModel.ResetEngine was set to 'true'.
         /// </summary>
@@ -266,8 +250,11 @@ namespace Dynamo.Applications.Models
                 Logger.LogWarning(
                     "Dynamo is not available in a perspective view. Please switch to another view to Run.",
                     WarningLevel.Moderate);
-                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
-                    ws.RunEnabled = false;
+                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>().Cast<HomeWorkspaceModel>())
+                {
+                    ws.RunSettings.RunEnabled = false;
+                }
+                    
             }
             else
             {
@@ -288,9 +275,9 @@ namespace Dynamo.Applications.Models
                             WarningLevel.Error);
                     }
 
-                    foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
+                    foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
                     {
-                        ws.RunEnabled = newEnabled;
+                        ws.RunSettings.RunEnabled = newEnabled;
                     }
                 }
             }
@@ -314,8 +301,11 @@ namespace Dynamo.Applications.Models
             {
                 DocumentManager.Instance.CurrentUIDocument = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
                 Logger.LogWarning(GetDocumentPointerMessage(), WarningLevel.Moderate);
-                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
-                    ws.RunEnabled = true;
+                foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                {
+                    ws.RunSettings.RunEnabled = true;
+                }
+                    
                 ResetForNewDocument();
             }
         }
@@ -341,8 +331,11 @@ namespace Dynamo.Applications.Models
             if (DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument == null)
             {
                 DocumentManager.Instance.CurrentUIDocument = null;
-                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
-                    ws.RunEnabled = false;
+                foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                {
+                    ws.RunSettings.RunEnabled = false;
+                }
+                    
                 Logger.LogWarning(
                     "Dynamo no longer has an active document. Please open a document.",
                     WarningLevel.Error);
@@ -380,8 +373,10 @@ namespace Dynamo.Applications.Models
                     DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
 
                 InitializeMaterials();
-                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
-                    ws.RunEnabled = true;
+                foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                {
+                    ws.RunSettings.RunEnabled = true;
+                }
             }
         }
 
@@ -401,10 +396,7 @@ namespace Dynamo.Applications.Models
         {
             foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
-                foreach (var node in ws.Nodes)
-                    node.MarkNodeAsModified(forceExecute:true);
-
-                ws.OnNodesModified();
+                ws.MarkNodesAsModifiedAndRequestRun(ws.Nodes);
                 
                 foreach (var node in ws.Nodes)
                 {
@@ -478,8 +470,13 @@ namespace Dynamo.Applications.Models
             var nodes = ElementBinder.GetNodesFromElementIds(updatedIds, CurrentWorkspace, EngineController);
             foreach (var node in nodes)
             {
-                node.OnNodeModified(forceExecute:true);
+                node.OnNodeModified(false);
             }
+        }
+
+        protected override void OpenFileImpl(OpenFileCommand command)
+        {
+            IdlePromise.ExecuteOnIdleAsync(() => base.OpenFileImpl(command));
         }
 
         #endregion

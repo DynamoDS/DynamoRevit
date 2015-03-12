@@ -14,7 +14,9 @@ namespace Revit.Elements
    public class Mullion : AbstractFamilyInstance
    {
       #region Properties
-
+       /// <summary>
+       /// Gets curve geometry from the specified Mullion Element
+      /// </summary>
       public Autodesk.DesignScript.Geometry.Curve LocationCurve
       {
          get
@@ -112,7 +114,10 @@ namespace Revit.Elements
       #endregion
 
       #region public methods
-
+      /// <summary>
+      /// Returns curtain panels supported by the specified Mullion Element
+      /// </summary>
+      /// <returns></returns>
       public CurtainPanel[] SupportedPanels()
       {
          var elementAsMullion = InternalElement as Autodesk.Revit.DB.Mullion;
@@ -163,7 +168,10 @@ namespace Revit.Elements
          }
          return result.ToArray();
       }
-
+      /// <summary>
+       /// Returns FamilyInstance object as represented by the specified mullion
+       /// </summary>
+       /// <returns></returns>
       public FamilyInstance AsFamilyInstance()
       {
          return FamilyInstance.FromExisting(InternalElement as Autodesk.Revit.DB.FamilyInstance, true);

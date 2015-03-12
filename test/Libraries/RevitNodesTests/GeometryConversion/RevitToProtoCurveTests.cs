@@ -46,9 +46,7 @@ namespace RevitNodesTests.GeometryConversion
             Assert.AreEqual(revitSpline.CtrlPoints.Count, protoSpline.ControlPoints().Count());
             Assert.AreEqual(revitSpline.Weights.Cast<double>().Count(), protoSpline.Weights().Length);
 
-            // We scale the tesselation for comparison
-            var feetToMeters = 0.3048;
-            var tessPtsProto = revitSpline.Tessellate().Select(x => x.ToPoint(false).Scale(feetToMeters)).Cast<Autodesk.DesignScript.Geometry.Point>();
+            var tessPtsProto = revitSpline.Tessellate().Select(x => x.ToPoint(false));
 
             // assert the tesselation is very close to original curve
             foreach (var pt in tessPtsProto)

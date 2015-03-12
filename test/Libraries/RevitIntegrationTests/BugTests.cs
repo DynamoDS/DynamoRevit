@@ -529,7 +529,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             ViewModel.OpenCommand.Execute(testPath);
-            ViewModel.DynamicRunEnabled = true;
+            ViewModel.HomeSpace.RunSettings.RunType = RunType.Automatic;
             ViewModel.OpenCommand.Execute(testPath2);
 
             RunCurrentModel();

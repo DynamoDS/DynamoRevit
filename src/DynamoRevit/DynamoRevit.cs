@@ -1,5 +1,3 @@
-using System.Linq;
-
 using Dynamo.Applications;
 using Greg.AuthProviders;
 using RevitServices.Elements;
@@ -24,10 +22,7 @@ using Dynamo.Core;
 using Dynamo.Core.Threading;
 using Dynamo.Models;
 using Dynamo.Services;
-using Dynamo.Utilities;
 using Dynamo.ViewModels;
-
-using DynamoUnits;
 
 using DynamoUtilities;
 
@@ -83,6 +78,8 @@ namespace Dynamo.Applications
      Regeneration(RegenerationOption.Manual)]
     public class DynamoRevit : IExternalCommand
     {
+        enum Versions { ShapeManager = 219 }
+
         private static ExternalCommandData extCommandData;
         private static DynamoViewModel dynamoViewModel;
         private static RevitDynamoModel revitDynamoModel;
@@ -90,6 +87,9 @@ namespace Dynamo.Applications
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
+            //Set the directory
+            SetupDynamoPaths();
+
             HandleDebug(commandData);
             
             InitializeCore(commandData);
@@ -144,18 +144,45 @@ namespace Dynamo.Applications
 
         #region Initialization
 
+        /// <summary>
+        /// DynamoShapeManager.dll is a companion assembly of Dynamo core components,
+        /// we do not want a static reference to it (since the Revit add-on can be 
+        /// installed anywhere that's outside of Dynamo), we do not want a duplicated 
+        /// reference to it. Here we use reflection to obtain GetGeometryFactoryPath
+        /// method, and call it to get the geometry factory assembly path.
+        /// </summary>
+        /// <param name="corePath">The path where DynamoShapeManager.dll can be 
+        /// located.</param>
+        /// <returns>Returns the full path to geometry factory assembly.</returns>
+        /// 
+        public static string GetGeometryFactoryPath(string corePath)
+        {
+            var dynamoAsmPath = Path.Combine(corePath, "DynamoShapeManager.dll");
+            var assembly = Assembly.LoadFrom(dynamoAsmPath);
+            if (assembly == null)
+                throw new FileNotFoundException("File not found", dynamoAsmPath);
+
+            var utilities = assembly.GetType("DynamoShapeManager.Utilities");
+            var getGeometryFactoryPath = utilities.GetMethod("GetGeometryFactoryPath");
+
+            return (getGeometryFactoryPath.Invoke(null,
+                new object[] { corePath, Versions.ShapeManager }) as string);
+        }
+
         private static RevitDynamoModel InitializeCoreModel(ExternalCommandData commandData)
         {
             var prefs = PreferenceSettings.Load();
-            var corePath =
-                Path.GetFullPath(
-                    Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\");
+            var assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
+            var parentDirectory = Directory.GetParent(assemblyDirectory);
+            var corePath = parentDirectory.FullName;
 
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.StartConfiguration()
                 {
                     Preferences = prefs,
                     DynamoCorePath = corePath,
+                    GeometryFactoryPath = GetGeometryFactoryPath(corePath),
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher))
@@ -204,7 +231,6 @@ namespace Dynamo.Applications
             if (initializedCore) return;
 
             InitializeAssemblies();
-            InitializeUnits();
             InitializeDocumentManager(commandData);
 
             initializedCore = true;
@@ -227,14 +253,6 @@ namespace Dynamo.Applications
 
             hasRegisteredApplicationEvents = true;
         }
-        
-        public static void InitializeUnits()
-        {
-            // set revit units
-            BaseUnit.HostApplicationInternalAreaUnit = AreaUnit.SquareFoot;
-            BaseUnit.HostApplicationInternalLengthUnit = LengthUnit.DecimalFoot;
-            BaseUnit.HostApplicationInternalVolumeUnit = VolumeUnit.CubicFoot;
-        }
 
         public static void InitializeAssemblies()
         {
@@ -247,6 +265,30 @@ namespace Dynamo.Applications
         {
             if (DocumentManager.Instance.CurrentUIApplication == null)
                 DocumentManager.Instance.CurrentUIApplication = commandData.Application;
+        }
+
+        public static void SetupDynamoPaths()
+        {
+            // The executing assembly will be in Revit_20xx, so 
+            // we have to walk up one level. Unfortunately, we
+            // can't use DynamoPathManager here because those are not
+            // initialized until the DynamoModel is constructed.
+            string assDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            // Add the Revit_20xx folder for assembly resolution
+            DynamoPathManager.Instance.AddResolutionPath(assDir);
+
+            // Setup the core paths
+            DynamoPathManager.Instance.InitializeCore(Path.GetFullPath(assDir + @"\.."));
+
+            // Add Revit-specific paths for loading.
+            DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "RevitNodes.dll"));
+            DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "SimpleRaaS.dll"));
+
+            //add an additional node processing folder
+            DynamoPathManager.Instance.Nodes.Add(Path.Combine(assDir, "nodes"));
+
+            // TODO(PATHMANAGER): Remove reference to DynamoUtilities.dll when this is done.
         }
 
         #endregion
