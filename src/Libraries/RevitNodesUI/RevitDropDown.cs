@@ -10,7 +10,6 @@ using DSCoreNodesUI;
 using Dynamo.Applications.Models;
 using Dynamo.DSEngine;
 using Dynamo.Models;
-using Dynamo.Nodes;
 using Dynamo.Utilities;
 
 using ProtoCore.AST.AssociativeAST;
