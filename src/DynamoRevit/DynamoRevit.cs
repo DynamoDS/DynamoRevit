@@ -177,7 +177,7 @@ namespace Dynamo.Applications
             var corePath = parentDirectory.FullName;
 
             return RevitDynamoModel.Start(
-                new RevitStartConfiguration()
+                new RevitDynamoModel.RevitStartConfiguration()
                 {
                     Preferences = prefs,
                     DynamoCorePath = corePath,
