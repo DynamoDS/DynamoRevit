@@ -230,14 +230,18 @@ namespace Dynamo.Applications.Models
                 return;
             }
 
-            commandData.Application.ViewActivating += OnApplicationViewActivating;
-            commandData.Application.ViewActivated += OnApplicationViewActivated;
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    commandData.Application.ViewActivating += OnApplicationViewActivating;
+                    commandData.Application.ViewActivated += OnApplicationViewActivated;
 
-            commandData.Application.Application.DocumentClosing += OnApplicationDocumentClosing;
-            commandData.Application.Application.DocumentClosed += OnApplicationDocumentClosed;
-            commandData.Application.Application.DocumentOpened += OnApplicationDocumentOpened;
+                    commandData.Application.Application.DocumentClosing += OnApplicationDocumentClosing;
+                    commandData.Application.Application.DocumentClosed += OnApplicationDocumentClosed;
+                    commandData.Application.Application.DocumentOpened += OnApplicationDocumentOpened;
 
-            hasRegisteredApplicationEvents = true;
+                    hasRegisteredApplicationEvents = true;
+                });
         }
 
         private void UnsubscribeApplicationEvents(ExternalCommandData commandData)
@@ -247,14 +251,18 @@ namespace Dynamo.Applications.Models
                 return;
             }
 
-            commandData.Application.ViewActivating -= OnApplicationViewActivating;
-            commandData.Application.ViewActivated -= OnApplicationViewActivated;
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    commandData.Application.ViewActivating -= OnApplicationViewActivating;
+                    commandData.Application.ViewActivated -= OnApplicationViewActivated;
 
-            commandData.Application.Application.DocumentClosing -= OnApplicationDocumentClosing;
-            commandData.Application.Application.DocumentClosed -= OnApplicationDocumentClosed;
-            commandData.Application.Application.DocumentOpened -= OnApplicationDocumentOpened;
+                    commandData.Application.Application.DocumentClosing -= OnApplicationDocumentClosing;
+                    commandData.Application.Application.DocumentClosed -= OnApplicationDocumentClosed;
+                    commandData.Application.Application.DocumentOpened -= OnApplicationDocumentOpened;
 
-            hasRegisteredApplicationEvents = false;
+                    hasRegisteredApplicationEvents = false;
+                });
         }
 
         #endregion
