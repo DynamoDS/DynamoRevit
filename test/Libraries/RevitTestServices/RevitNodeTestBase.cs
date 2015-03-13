@@ -1,4 +1,7 @@
-﻿using DynamoUnits;
+using System.IO;
+using System.Reflection;
+
+using DynamoUnits;
 
 using NUnit.Framework;
 
@@ -29,6 +32,12 @@ namespace RevitTestServices
             DisableElementBinder();
             base.Setup();
             SetUpHostUnits();
+        }
+
+        protected override TestSessionConfiguration GetTestSessionConfiguration()
+        {
+            var asmDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            return new TestSessionConfiguration(Path.GetFullPath(asmDir + @"\..\"), asmDir);
         }
 
         private static void SetupTransactionManager()

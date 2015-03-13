@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamoShapeManager">
+      <HintPath>$(DYNAMOAPI)\DynamoShapeManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>$(DYNAMOAPI)\Microsoft.Practices.Prism.dll</HintPath>
       <Private>False</Private>
@@ -56,6 +60,7 @@
       <HintPath>..\..\..\extern\RevitTestFramework\RTFRevit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
@@ -109,7 +114,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y /R $(ProjectDir)TestServices.dll.config $(TestOutputPath)\..\</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y /R $(ProjectDir)TestServices.dll.config $(TestOutputPath)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
