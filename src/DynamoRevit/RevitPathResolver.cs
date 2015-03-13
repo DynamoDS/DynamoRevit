@@ -18,6 +18,11 @@ namespace Dynamo.Applications
             var currentAssemblyPath = Assembly.GetExecutingAssembly().Location;
             var currentAssemblyDir = Path.GetDirectoryName(currentAssemblyPath);
 
+            // Just making sure we are looking at the right level of nesting.
+            var nodesDirectory = Path.Combine(currentAssemblyDir, "nodes");
+            if (!Directory.Exists(nodesDirectory))
+                throw new DirectoryNotFoundException(nodesDirectory);
+
             preloadLibraryPaths = new List<string>
             {
                 // Add Revit-specific library paths for preloading.
@@ -25,11 +30,8 @@ namespace Dynamo.Applications
                 Path.Combine(currentAssemblyDir, "SimpleRaaS.dll")
             };
 
-            additionalNodeDirectories = new List<string>
-            {
-                // Add an additional node processing folder
-                Path.Combine(currentAssemblyDir, "nodes")
-            };
+            // Add an additional node processing folder
+            additionalNodeDirectories = new List<string> { nodesDirectory };
 
             // Add the Revit_20xx folder for assembly resolution
             additionalResolutionPaths = new List<string> { currentAssemblyDir };

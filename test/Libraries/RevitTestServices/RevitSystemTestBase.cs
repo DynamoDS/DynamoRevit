@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
+using System.Configuration;
 
 using SystemTestServices;
 
@@ -19,6 +20,8 @@ using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.ViewModels;
 
+using DynamoShapeManager;
+
 using DynamoUtilities;
 
 using NUnit.Framework;
@@ -26,6 +29,8 @@ using NUnit.Framework;
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
+
+using RTF.Applications;
 
 using TestServices;
 
@@ -194,39 +199,30 @@ namespace RevitTestServices
             }
         }
 
-        protected override void StartDynamo()
+        protected override void StartDynamo(TestSessionConfiguration testConfig)
         {
             try
             {
                 // create the transaction manager object
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
 
-                // Create a remote test config option specifying a fallback path
-                // one directory above the executing assembly. If the core path is not
-                // specified in the config, or the config is not present, it is assumed
-                // that the executing assembly's directory will be a Revit sub-folder, so
-                // we need to set core to the parent directory.
-                var assemblyLocation = Assembly.GetExecutingAssembly().Location;
-                var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-                var parentDirectory = Directory.GetParent(assemblyDirectory).FullName;
-                var remoteConfig = new RemoteTestSessionConfig(parentDirectory);
-
                 // Note that there is another data member pathResolver in base class 
                 // SystemTestBase. That pathResolver will be used only in StartDynamo
                 // of the base class, here a local instance of pathResolver is used.
                 // 
-                var revitTestPathResolver = new RevitTestPathResolver(assemblyDirectory);
+                var revitTestPathResolver = new RevitTestPathResolver(testConfig.DynamoCorePath);
 
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
-                    new DynamoModel.StartConfiguration()
+                    new RevitDynamoModel.RevitStartConfiguration()
                     {
                         StartInTestMode = true,
-                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(remoteConfig.DynamoCorePath),
-                        DynamoCorePath = remoteConfig.DynamoCorePath,
+                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(testConfig.DynamoCorePath),
+                        DynamoCorePath = testConfig.DynamoCorePath,
                         PathResolver = revitTestPathResolver,
                         Context = "Revit 2014",
                         SchedulerThread = new TestSchedulerThread(),
-                        PackageManagerAddress = "https://www.dynamopackages.com"
+                        PackageManagerAddress = "https://www.dynamopackages.com",
+                        ExternalCommandData = RevitTestExecutive.CommandData
                     });
 
                 Model = DynamoRevit.RevitDynamoModel;
@@ -246,6 +242,18 @@ namespace RevitTestServices
             {
                 Console.WriteLine(ex.StackTrace);
             }
+        }
+
+        protected override TestSessionConfiguration GetTestSessionConfiguration()
+        {
+            // Create a remote test config option specifying a core path
+            // one directory above the executing assembly. If the core path is not
+            // specified in the config, or the config is not present, it is assumed
+            // that the executing assembly's directory will be a Revit sub-folder, so
+            // we need to set core to the parent directory.
+
+            var asmDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            return new TestSessionConfiguration(Path.GetFullPath(asmDir + @"\..\"), asmDir);
         }
 
         protected void OpenSampleDefinition(string relativeFilePath)

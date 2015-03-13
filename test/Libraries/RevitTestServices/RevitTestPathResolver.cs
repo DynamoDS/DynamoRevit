@@ -19,10 +19,21 @@ namespace RevitTestServices
 
         public RevitTestPathResolver(string assemblyDirectory) : this()
         {
+            var nodesDirectory = Path.Combine(assemblyDirectory, "nodes");
+            var revitNodesDll = Path.Combine(assemblyDirectory, "RevitNodes.dll");
+            var simpleRaaSDll = Path.Combine(assemblyDirectory, "SimpleRaaS.dll");
+
+            if (!Directory.Exists(nodesDirectory))
+                throw new DirectoryNotFoundException(nodesDirectory);
+            if (!File.Exists(revitNodesDll))
+                throw new FileNotFoundException(revitNodesDll);
+            if (!File.Exists(simpleRaaSDll))
+                throw new FileNotFoundException(simpleRaaSDll);
+
             AddResolutionPath(assemblyDirectory);
-            AddNodeDirectory(Path.Combine(assemblyDirectory, "nodes"));
-            AddPreloadLibraryPath(Path.Combine(assemblyDirectory, "RevitNodes.dll"));
-            AddPreloadLibraryPath(Path.Combine(assemblyDirectory, "SimpleRaaS.dll"));
+            AddNodeDirectory(nodesDirectory);
+            AddPreloadLibraryPath(revitNodesDll);
+            AddPreloadLibraryPath(simpleRaaSDll);
         }
 
         public IEnumerable<string> AdditionalResolutionPaths
