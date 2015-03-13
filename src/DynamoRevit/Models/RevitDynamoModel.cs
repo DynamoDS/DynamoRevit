@@ -239,6 +239,11 @@ namespace Dynamo.Applications.Models
 
         private void UnsubscribeApplicationEvents(ExternalCommandData commandData)
         {
+            if (!hasRegisteredApplicationEvents)
+            {
+                return;
+            }
+
             commandData.Application.ViewActivating -= OnApplicationViewActivating;
             commandData.Application.ViewActivated -= OnApplicationViewActivated;
 
