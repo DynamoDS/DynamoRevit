@@ -162,7 +162,8 @@
     <Reference Include="DynamoUtilities">
       <HintPath>$(DYNAMOAPI)\DynamoUtilities.dll</HintPath>
       <Private>True</Private>
-    </Reference>  </ItemGroup>
+    </Reference>
+    </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\logo_square_32x32.png" />
     <Content Include="Resources\logo_square_64x64.png" />
