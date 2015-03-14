@@ -400,12 +400,7 @@ namespace Revit.Elements
             if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
                 throw new Exception("The parameter's storage type is not a number.");
 
-            double valueToSet = value;
-            var paramType = param.Definition.ParameterType;
-
-            if (IsConvertableParameterType(paramType))
-                valueToSet = value * UnitConverter.DynamoToHostFactor(
-                    ParameterTypeToUnitType(paramType));
+            var valueToSet = GetConvertedParameterValue(param, value);
             
             param.Set(valueToSet);
         }
@@ -423,7 +418,9 @@ namespace Revit.Elements
             if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
                 throw new Exception("The parameter's storage type is not a number.");
 
-            param.Set(value);
+            var valueToSet = GetConvertedParameterValue(param, value);
+
+            param.Set(valueToSet);
         }
 
         private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, string value)
@@ -440,6 +437,18 @@ namespace Revit.Elements
                 throw new Exception("The parameter's storage type is not an integer.");
 
             param.Set(value == false ? 0 : 1);
+        }
+
+        private static double GetConvertedParameterValue(Autodesk.Revit.DB.Parameter param, double value)
+        {
+            var paramType = param.Definition.ParameterType;
+
+            if (IsConvertableParameterType(paramType))
+            {
+                return value * UnitConverter.DynamoToHostFactor(ParameterTypeToUnitType(paramType));
+            }
+
+            return value;
         }
 
         #endregion
