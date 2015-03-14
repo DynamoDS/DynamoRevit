@@ -210,7 +210,9 @@ namespace RevitTestServices
                 // SystemTestBase. That pathResolver will be used only in StartDynamo
                 // of the base class, here a local instance of pathResolver is used.
                 // 
-                var revitTestPathResolver = new RevitTestPathResolver(testConfig.DynamoCorePath);
+                var assemblyPath = Assembly.GetExecutingAssembly().Location;
+                var assemblyDirectory = Path.GetDirectoryName(assemblyPath);
+                var revitTestPathResolver = new RevitTestPathResolver(assemblyDirectory);
 
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new RevitDynamoModel.RevitStartConfiguration()

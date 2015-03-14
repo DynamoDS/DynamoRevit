@@ -18,17 +18,20 @@ namespace Dynamo.Applications
             var currentAssemblyPath = Assembly.GetExecutingAssembly().Location;
             var currentAssemblyDir = Path.GetDirectoryName(currentAssemblyPath);
 
-            // Just making sure we are looking at the right level of nesting.
             var nodesDirectory = Path.Combine(currentAssemblyDir, "nodes");
+            var revitNodesDll = Path.Combine(currentAssemblyDir, "RevitNodes.dll");
+            var simpleRaaSDll = Path.Combine(currentAssemblyDir, "SimpleRaaS.dll");
+
+            // Just making sure we are looking at the right level of nesting.
             if (!Directory.Exists(nodesDirectory))
                 throw new DirectoryNotFoundException(nodesDirectory);
+            if (!File.Exists(revitNodesDll))
+                throw new FileNotFoundException(revitNodesDll);
+            if (!File.Exists(simpleRaaSDll))
+                throw new FileNotFoundException(simpleRaaSDll);
 
-            preloadLibraryPaths = new List<string>
-            {
-                // Add Revit-specific library paths for preloading.
-                Path.Combine(currentAssemblyDir, "RevitNodes.dll"),
-                Path.Combine(currentAssemblyDir, "SimpleRaaS.dll")
-            };
+            // Add Revit-specific library paths for preloading.
+            preloadLibraryPaths = new List<string> { revitNodesDll, simpleRaaSDll };
 
             // Add an additional node processing folder
             additionalNodeDirectories = new List<string> { nodesDirectory };
