@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -14,9 +15,6 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
 using Dynamo.Applications.Properties;
-using Dynamo.Utilities;
-
-using DynamoUtilities;
 
 using RevitServices.Elements;
 using RevitServices.Persistence;
@@ -49,18 +47,19 @@ namespace Dynamo.Applications
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
                 ElementBinder.IsEnabled = true;
 
-                res = Resources.ResourceManager;
-
                 // Create new ribbon panel
                 RibbonPanel ribbonPanel =
-                    application.CreateRibbonPanel(res.GetString("App_Description"));
+                    application.CreateRibbonPanel(Resources.App_Description);
+
+                var fvi = FileVersionInfo.GetVersionInfo(assemblyName);
+                var dynVersion = String.Format(Resources.App_Name, fvi.FileMajorPart, fvi.FileMinorPart);
 
                 DynamoButton =
                     (PushButton)
                         ribbonPanel.AddItem(
                             new PushButtonData(
-                                "Dynamo 0.7",
-                                res.GetString("App_Name"),
+                                dynVersion,
+                                dynVersion,
                                 assemblyName,
                                 "Dynamo.Applications.DynamoRevit"));
 
