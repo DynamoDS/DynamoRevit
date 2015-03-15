@@ -121,7 +121,7 @@
     <value>Visual Programming</value>
   </data>
   <data name="App_Name" xml:space="preserve">
-    <value>Dynamo 0.7</value>
+    <value>Dynamo {0}.{1}</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="logo_square_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
