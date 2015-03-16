@@ -11,7 +11,7 @@ namespace RevitSystemTests
     [TestFixture]
     public class RenderingAsAServiceTests : RevitSystemTestBase
     {
-        [Test, Category("Failure")]
+        [Test]
         [TestModel(@".\empty.rfa")]
         public void CanOpenDaylightingMinimalSample()
         {
@@ -35,7 +35,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
         }
 
-        [Test, Category("Failure")]
+        [Test]
         [TestModel(@".\empty.rfa")]
         public void CanOpenDaylightingExtractingData()
         {
@@ -48,7 +48,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
         }
 
-        [Test, Category("Failure")]
+        [Test]
         [TestModel(@".\empty.rfa")]
         public void CanOpenDaylightingandAnalysisDisplay()
         {
