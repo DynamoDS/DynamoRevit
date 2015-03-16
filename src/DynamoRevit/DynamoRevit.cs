@@ -1,10 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 
 using Dynamo.Applications;
 using Greg.AuthProviders;
-using RevitServices.Elements;
-using DynamoUtilities;
 
 #region
 using System;
@@ -33,7 +30,6 @@ using RevitServices.Transactions;
 using RevitServices.Threading;
 
 using MessageBox = System.Windows.Forms.MessageBox;
-using Autodesk.Revit.DB.Events;
 
 #endregion
 
@@ -91,9 +87,6 @@ namespace Dynamo.Applications
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UpdateManager.UpdateManager.Instance.RegisterExternalApplicationProcessId(Process.GetCurrentProcess().Id);
-			
-            //Set the directory
-            SetupDynamoPaths();
 
             HandleDebug(commandData);
             
@@ -193,7 +186,6 @@ namespace Dynamo.Applications
 
         private static RevitDynamoModel InitializeCoreModel(ExternalCommandData commandData)
         {
-            var prefs = PreferenceSettings.Load();
             var assemblyLocation = Assembly.GetExecutingAssembly().Location;
             var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
             var parentDirectory = Directory.GetParent(assemblyDirectory);
@@ -202,9 +194,8 @@ namespace Dynamo.Applications
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
                 {
-                    Preferences = prefs,
-                    DynamoCorePath = corePath,
                     GeometryFactoryPath = GetGeometryFactoryPath(corePath),
+                    PathResolver = new RevitPathResolver(),
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
@@ -269,30 +260,6 @@ namespace Dynamo.Applications
         {
             if (DocumentManager.Instance.CurrentUIApplication == null)
                 DocumentManager.Instance.CurrentUIApplication = commandData.Application;
-        }
-
-        public static void SetupDynamoPaths()
-        {
-            // The executing assembly will be in Revit_20xx, so 
-            // we have to walk up one level. Unfortunately, we
-            // can't use DynamoPathManager here because those are not
-            // initialized until the DynamoModel is constructed.
-            string assDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            // Add the Revit_20xx folder for assembly resolution
-            DynamoPathManager.Instance.AddResolutionPath(assDir);
-
-            // Setup the core paths
-            DynamoPathManager.Instance.InitializeCore(Path.GetFullPath(assDir + @"\.."));
-
-            // Add Revit-specific paths for loading.
-            DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "RevitNodes.dll"));
-            DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "SimpleRaaS.dll"));
-
-            //add an additional node processing folder
-            DynamoPathManager.Instance.Nodes.Add(Path.Combine(assDir, "nodes"));
-
-            // TODO(PATHMANAGER): Remove reference to DynamoUtilities.dll when this is done.
         }
 
         #endregion

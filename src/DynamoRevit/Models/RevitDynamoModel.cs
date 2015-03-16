@@ -45,6 +45,7 @@ namespace Dynamo.Applications.Models
         {
             public string Context { get; set; }
             public string DynamoCorePath { get; set; }
+            public IPathResolver PathResolver { get; set; }
             public IPreferences Preferences { get; set; }
             public bool StartInTestMode { get; set; }
             public IUpdateManager UpdateManager { get; set; }
@@ -98,14 +99,6 @@ namespace Dynamo.Applications.Models
             // where necessary, assign defaults
             if (string.IsNullOrEmpty(configuration.Context))
                 configuration.Context = Core.Context.REVIT_2015;
-            if (string.IsNullOrEmpty(configuration.DynamoCorePath))
-            {
-                var asmLocation = Assembly.GetExecutingAssembly().Location;
-                configuration.DynamoCorePath = Path.GetDirectoryName(asmLocation);
-            }
-
-            if (configuration.Preferences == null)
-                configuration.Preferences = new PreferenceSettings();
 
             return new RevitDynamoModel(configuration);
         }
