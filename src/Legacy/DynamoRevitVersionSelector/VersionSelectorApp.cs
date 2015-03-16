@@ -22,12 +22,12 @@ namespace Dynamo.Applications
     {
         public static List<IInstalledProduct> Products { get; private set; }
 
-        public static string GetDynamoRevitPath(IInstalledProduct product)
+        public static string GetDynamoRevitPath(IInstalledProduct product, string revitVersion)
         {
             if (product.VersionInfo.Item1 == 0 && product.VersionInfo.Item2 < 7)
                 return string.Empty; //0.6.3 and older version not supported for Revit2015 onwards
 
-            return Path.Combine(product.InstallLocation, "Revit_2015", "DynamoRevitDS.dll");
+            return Path.Combine(product.InstallLocation, string.Format("Revit_{0}", revitVersion), "DynamoRevitDS.dll");
         }
 
         public Result OnStartup(UIControlledApplication application)
@@ -35,8 +35,8 @@ namespace Dynamo.Applications
             // now we have a default path, but let's look at
             // the load path file to see what was last selected
             var cachedPath = String.Empty;
-            var fileLoc = Utils.GetVersionSaveFileLocation(
-                application.ControlledApplication.VersionName);
+            var revitVersion = application.ControlledApplication.VersionNumber;
+            var fileLoc = Utils.GetVersionSaveFileLocation(revitVersion);
 
             if (File.Exists(fileLoc))
             {
@@ -56,7 +56,7 @@ namespace Dynamo.Applications
             int index = -1;
             foreach (var p in dynamoProducts.Products)
             {
-                var path = VersionLoader.GetDynamoRevitPath(p);
+                var path = VersionLoader.GetDynamoRevitPath(p, revitVersion);
                 if (!File.Exists(path))
                     continue;
 
@@ -78,7 +78,7 @@ namespace Dynamo.Applications
                     button.CurrentButton = button.GetItems().ElementAt(index);
             }
 
-            string loadPath = GetDynamoRevitPath(Products.Last());
+            string loadPath = GetDynamoRevitPath(Products.Last(), revitVersion);
             if (File.Exists(cachedPath))
                 loadPath = cachedPath;
             
@@ -98,7 +98,7 @@ namespace Dynamo.Applications
                 return false; //Index out of range
 
             var p = Products[index];
-            var path = GetDynamoRevitPath(p);
+            var path = GetDynamoRevitPath(p, revitVersion);
             Utils.WriteToFile(path, revitVersion);
 
             Utils.ShowRestartMessage(p.VersionString);
@@ -144,7 +144,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(0, commandData.Application.Application.VersionName))
+            if (!VersionLoader.CacheApplicationPath(0, commandData.Application.Application.VersionNumber))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -157,7 +157,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(1, commandData.Application.Application.VersionName))
+            if (!VersionLoader.CacheApplicationPath(1, commandData.Application.Application.VersionNumber))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -170,7 +170,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(2, commandData.Application.Application.VersionName))
+            if (!VersionLoader.CacheApplicationPath(2, commandData.Application.Application.VersionNumber))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -183,7 +183,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(3, commandData.Application.Application.VersionName))
+            if (!VersionLoader.CacheApplicationPath(3, commandData.Application.Application.VersionNumber))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -196,7 +196,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(4, commandData.Application.Application.VersionName))
+            if (!VersionLoader.CacheApplicationPath(4, commandData.Application.Application.VersionNumber))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -209,7 +209,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(5, commandData.Application.Application.VersionName))
+            if (!VersionLoader.CacheApplicationPath(5, commandData.Application.Application.VersionNumber))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -222,7 +222,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(6, commandData.Application.Application.VersionName))
+            if (!VersionLoader.CacheApplicationPath(6, commandData.Application.Application.VersionNumber))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -235,7 +235,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(7, commandData.Application.Application.VersionName))
+            if (!VersionLoader.CacheApplicationPath(7, commandData.Application.Application.VersionNumber))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -248,7 +248,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(8, commandData.Application.Application.VersionName))
+            if (!VersionLoader.CacheApplicationPath(8, commandData.Application.Application.VersionNumber))
                 return Result.Failed;
 
             return Result.Succeeded;
