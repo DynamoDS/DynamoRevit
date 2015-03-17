@@ -176,8 +176,6 @@ namespace RevitTestServices
             DocumentManager.Instance.CurrentUIDocument =
                 RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
 
-            DynamoRevit.SetupDynamoPaths();
-
             var config = RevitTestConfiguration.LoadConfiguration();
 
             //get the test path
@@ -208,12 +206,21 @@ namespace RevitTestServices
                 // create the transaction manager object
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
 
+                // Note that there is another data member pathResolver in base class 
+                // SystemTestBase. That pathResolver will be used only in StartDynamo
+                // of the base class, here a local instance of pathResolver is used.
+                // 
+                var assemblyPath = Assembly.GetExecutingAssembly().Location;
+                var assemblyDirectory = Path.GetDirectoryName(assemblyPath);
+                var revitTestPathResolver = new RevitTestPathResolver(assemblyDirectory);
+
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new RevitDynamoModel.RevitStartConfiguration()
                     {
                         StartInTestMode = true,
                         GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(testConfig.DynamoCorePath),
                         DynamoCorePath = testConfig.DynamoCorePath,
+                        PathResolver = revitTestPathResolver,
                         Context = "Revit 2014",
                         SchedulerThread = new TestSchedulerThread(),
                         PackageManagerAddress = "https://www.dynamopackages.com",

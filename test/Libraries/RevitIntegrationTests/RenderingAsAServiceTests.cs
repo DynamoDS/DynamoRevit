@@ -47,6 +47,7 @@ namespace RevitSystemTests
             Assert.AreEqual(53, model.CurrentWorkspace.Nodes.Count);
             AssertNoDummyNodes();
         }
+
         [Test]
         [TestModel(@".\empty.rfa")]
         public void CanOpenDaylightingandAnalysisDisplay()
