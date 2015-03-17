@@ -2,23 +2,26 @@
 using System.Linq;
 using Autodesk.Revit.DB;
 using Dynamo.Nodes;
+using Dynamo.Tests;
+
 using NUnit.Framework;
 using RevitServices.Persistence;
+
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class LevelTests : SystemTest
+    class LevelTests : RevitSystemTestBase
     {
-        [Test, Category("Failure")]
+        [Test]
         [TestModel(@".\Level\Level.rvt")]
         public void Level()
         {
-            var model = ViewModel.Model;
-
-            string samplePath = Path.Combine(workingDirectory, @".\Level\Level.dyn");
-            string testPath = Path.GetFullPath(samplePath);
+            var samplePath = Path.Combine(workingDirectory, @".\Level\Level.dyn");
+            var testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
 
@@ -28,19 +31,19 @@ namespace RevitSystemTests
 
             //ensure that the level count is the same
             var levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            levelColl.OfClass(typeof(Autodesk.Revit.DB.Level));
+            levelColl.OfClass(typeof(Level));
             Assert.AreEqual(levelColl.ToElements().Count(), 6);
 
             //change the number and run again
-            var numNode = (DoubleInput)ViewModel.Model.CurrentWorkspace.Nodes.First(x => x is DoubleInput);
+            var numNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<DoubleInput>();
             numNode.Value = "0..20..2";
 
+            RunCurrentModel();
 
             //ensure that the level count is the same
             levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            levelColl.OfClass(typeof(Autodesk.Revit.DB.Level));
+            levelColl.OfClass(typeof(Level));
             Assert.AreEqual(levelColl.ToElements().Count(), 11);
-
        }
 
         [Test]

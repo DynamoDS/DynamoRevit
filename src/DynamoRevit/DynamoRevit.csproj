@@ -150,10 +150,6 @@
       <HintPath>$(DYNAMOAPI)\DSIronPython.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoUnits">
-      <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DynamoCoreWpf">
       <HintPath>$(DYNAMOAPI)\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
@@ -189,7 +185,8 @@ copy /Y "$(DynamoExternPath)\DynamoRaaS\SimpleRaaS.dll" "$(OutputPath)"
 copy /Y "$(DynamoExternPath)\DynamoRaaS\JobMonitor.dll" "$(OutputPath)"
 copy /Y "$(DynamoExternPath)\DynamoRaaS\RevitRaaS.dll" "$(OutputPath)"
 copy /Y "$(DynamoExternPath)\DynamoRaaS\SDF.dll" "$(OutputPath)"
-copy /Y "$(DynamoExternPath)\DynamoRaaS\*_DynamoCustomization.xml" "$(OutputPath)"</PostBuildEvent>
+copy /Y "$(DynamoExternPath)\DynamoRaaS\*_DynamoCustomization.xml" "$(OutputPath)"
+copy /Y "$(DynamoExternPath)\DynamoRaaS\en-US\*resources.dll" "$(OutputPath)\en-US"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

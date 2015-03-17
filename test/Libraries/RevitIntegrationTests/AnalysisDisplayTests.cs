@@ -6,12 +6,14 @@ using NUnit.Framework;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class AnalysisDisplayTests : SystemTest
+    class AnalysisDisplayTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\AnalysisDisplay\Surfaces.rvt")]

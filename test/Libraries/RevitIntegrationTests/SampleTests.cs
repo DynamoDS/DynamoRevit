@@ -13,6 +13,8 @@ using NUnit.Framework;
 
 using Revit.Elements;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
@@ -21,7 +23,7 @@ using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 namespace RevitSystemTests
 {
     [TestFixture]
-    class SampleTests : SystemTest
+    class SampleTests : RevitSystemTestBase
     {
         #region OLD Sample Tests
 
@@ -865,7 +867,7 @@ namespace RevitSystemTests
         #region New Sample Tests
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2014.rvt")]
         public void Revit_Adaptive_Component_Placement()
         {
             var model = ViewModel.Model;
@@ -910,7 +912,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2014.rvt")]
         public void Revit_Color()
         {
             var model = ViewModel.Model;
@@ -937,7 +939,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2014.rvt")]
         public void Revit_Floors_and_Framing()
         {
             // this test marked as Ignore because on running it is throwing error from Revit side.
@@ -950,8 +952,8 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(30, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(34, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(28, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(32, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
@@ -965,7 +967,7 @@ namespace RevitSystemTests
                 Assert.IsNotNull(floors);
             }
 
-            var structuralFraming = "7e0d143c-9948-478b-ba2a-742362418299";
+            var structuralFraming = "e779956e-198b-4518-96fb-e95c79a15dbf";
             var levelCount = 5;
 
             AssertPreviewCount(structuralFraming, levelCount);
@@ -975,7 +977,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2014.rvt")]
         public void Revit_ImportSolid()
         {
             var model = ViewModel.Model;
@@ -999,7 +1001,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2014.rvt")]
         public void Revit_PlaceFamiliesByLevel_Set_Parameters()
         {
             var model = ViewModel.Model;
@@ -1026,7 +1028,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2014.rvt")]
         public void Revit_StructuralFraming()
         {
             var model = ViewModel.Model;
@@ -1036,12 +1038,12 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(13, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
-            var familyInstance = "caa240c5-4e05-486f-a621-ad27b2e0386c";
+            var familyInstance = "32628bb7-8593-4d3a-944c-3e5ea635be6c";
             AssertPreviewCount(familyInstance, 9);
 
             // get all Families.

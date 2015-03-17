@@ -42,8 +42,6 @@ namespace Dynamo.Applications
         {
             try
             {
-                SetupDynamoPaths(application);
-
                 SubscribeAssemblyResolvingEvent();
 
                 ControlledApplication = application.ControlledApplication;
@@ -120,48 +118,47 @@ namespace Dynamo.Applications
             Updaters.Add(sunUpdater);
         }
 
-        private static void SetupDynamoPaths(UIControlledApplication application)
-        {
-            // The executing assembly will be in Revit_20xx, so 
-            // we have to walk up one level. Unfortunately, we
-            // can't use DynamoPathManager here because those are not
-            // initialized until the DynamoModel is constructed.
-            string assDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            // Add the Revit_20xx folder for assembly resolution
-            DynamoPathManager.Instance.AddResolutionPath(assDir);
-
-            // Setup the core paths
-            DynamoPathManager.Instance.InitializeCore(Path.GetFullPath(assDir + @"\.."));
-
-            // Add Revit-specific paths for loading.
-            DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "RevitNodes.dll"));
-            DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "SimpleRaaS.dll"));
-
-            //add an additional node processing folder
-            DynamoPathManager.Instance.Nodes.Add(Path.Combine(assDir, "nodes"));
-
-            // Set the LibG folder based on the context.
-            // LibG is set to reference the libg_219 folder by default.
-            var versionInt = int.Parse(application.ControlledApplication.VersionNumber);
-            if (versionInt > 2014)
-            {
-                DynamoPathManager.Instance.SetLibGPath("220");
-            }
-            else
-            {
-                DynamoPathManager.Instance.SetLibGPath("219");
-            }
-        }
-
         private void SubscribeAssemblyResolvingEvent()
         {
-            AppDomain.CurrentDomain.AssemblyResolve += AssemblyHelper.ResolveAssembly;
+            AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
         }
 
         private void UnsubscribeAssemblyResolvingEvent()
         {
-            AppDomain.CurrentDomain.AssemblyResolve -= AssemblyHelper.ResolveAssembly;
+            AppDomain.CurrentDomain.AssemblyResolve -= ResolveAssembly;
+        }
+
+        /// <summary>
+        /// Handler to the ApplicationDomain's AssemblyResolve event.
+        /// If an assembly's location cannot be resolved, an exception is
+        /// thrown. Failure to resolve an assembly will leave Dynamo in 
+        /// a bad state, so we should throw an exception here which gets caught 
+        /// by our unhandled exception handler and presents the crash dialogue.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public static Assembly ResolveAssembly(object sender, ResolveEventArgs args)
+        {
+            string assemblyPath = string.Empty;
+            try
+            {
+                var assemblyLocation = Assembly.GetExecutingAssembly().Location;
+                var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
+                var parentDirectory = Directory.GetParent(assemblyDirectory);
+
+                // First check the core path
+                assemblyPath = Path.Combine(parentDirectory.FullName, new AssemblyName(args.Name).Name + ".dll");
+                if (File.Exists(assemblyPath))
+                {
+                    return Assembly.LoadFrom(assemblyPath);
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("The location of the assembly, {0} could not be resolved for loading.", assemblyPath), ex);
+            }
         }
     }
 }

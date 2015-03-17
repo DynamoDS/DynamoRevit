@@ -14,7 +14,6 @@
     <AssemblyName>RevitTestServices</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamoShapeManager">
+      <HintPath>$(DYNAMOAPI)\DynamoShapeManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>$(DYNAMOAPI)\Microsoft.Practices.Prism.dll</HintPath>
       <Private>False</Private>
@@ -44,14 +47,6 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="ProtoGeometry">
-      <HintPath>$(DYNAMOAPI)\ProtoGeometry.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="ProtoInterface">
-      <HintPath>$(DYNAMOAPI)\ProtoInterface.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -60,7 +55,12 @@
       <HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="RTFRevit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\extern\RevitTestFramework\RTFRevit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
@@ -89,14 +89,6 @@
       <HintPath>$(DYNAMOAPI)\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ProtoCore">
-      <HintPath>$(DYNAMOAPI)\ProtoCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DSCoreNodesUI">
-      <HintPath>$(DYNAMOAPI)\nodes\DSCoreNodesUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DynamoUnits">
       <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
       <Private>False</Private>
@@ -106,12 +98,9 @@
       <Name>RevitServices</Name>
       <Private>False</Private>
     </ProjectReference>
+    <Reference Include="System.XML" />
     <Reference Include="TestServices">
       <HintPath>$(DYNAMOTESTAPI)\TestServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoCoreTests">
-      <HintPath>$(DYNAMOTESTAPI)\DynamoCoreTests.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SystemTestServices">
@@ -124,6 +113,9 @@
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Y /R $(ProjectDir)TestServices.dll.config $(TestOutputPath)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

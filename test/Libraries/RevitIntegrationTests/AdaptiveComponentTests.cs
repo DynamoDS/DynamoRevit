@@ -5,6 +5,8 @@ using Dynamo.Tests;
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
@@ -12,9 +14,9 @@ using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
 namespace RevitSystemTests
 {
     [TestFixture]
-    class AdaptiveComponentTests : SystemTest
+    class AdaptiveComponentTests : RevitSystemTestBase
     {
-        [Test, Category("Failure")]
+        [Test]
         [TestModel(@".\AdaptiveComponent\AdaptiveComponentByFace.rfa")]
         public void AdaptiveComponentByFace()
         {

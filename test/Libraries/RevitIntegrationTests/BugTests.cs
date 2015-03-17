@@ -13,6 +13,8 @@ using Revit.Elements;
 
 using RevitNodesTests;
 
+using RevitTestServices;
+
 using RTF.Framework;
 using RevitServices.Persistence;
 using System.Collections.Generic;
@@ -24,7 +26,7 @@ using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 namespace RevitSystemTests
 {
     [TestFixture]
-    class BugTests : SystemTest
+    class BugTests : RevitSystemTestBase
     {
         [Test]
         [Category("RegressionTests")]
@@ -129,21 +131,21 @@ namespace RevitSystemTests
             RunCurrentModel();
         }
 
-        [Test, Category("Failure")]
+        [Test]
         [Category("RegressionTests")]
         [TestModel(@".\Bugs\MAGN_2576_DataImport.rvt")]
         public void MAGN_2576()
         {
-            // Details are available in defect http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-2576
-            var model = ViewModel.Model;
-            var workspace = ViewModel.Model.CurrentWorkspace;
-
-            string samplePath = Path.Combine(workingDirectory, @".\\Bugs\Defect_MAGN_2576.dyn");
-            string testPath = Path.GetFullPath(samplePath);
+            var samplePath = Path.Combine(workingDirectory, @".\\Bugs\Defect_MAGN_2576.dyn");
+            var testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
 
             AssertNoDummyNodes();
+
+            // Details are available in defect http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-2576
+            var model = ViewModel.Model;
+            var workspace = ViewModel.Model.CurrentWorkspace;
 
             // check all the nodes and connectors are loaded
             Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count);
@@ -153,7 +155,7 @@ namespace RevitSystemTests
 
             // there should not be any crash on running this graph.
             // below node should have an error because there is no selection for Floor Type.
-            NodeModel nodeModel = workspace.NodeFromWorkspace("cc38d11d-cda2-4294-81dc-119776af7338");
+            var nodeModel = workspace.NodeFromWorkspace("cc38d11d-cda2-4294-81dc-119776af7338");
             Assert.AreEqual(ElementState.Warning, nodeModel.State);
 
         }
@@ -527,7 +529,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             ViewModel.OpenCommand.Execute(testPath);
-            ViewModel.DynamicRunEnabled = true;
+            ViewModel.HomeSpace.RunSettings.RunType = RunType.Automatic;
             ViewModel.OpenCommand.Execute(testPath2);
 
             RunCurrentModel();
