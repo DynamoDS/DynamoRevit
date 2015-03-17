@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,21 +9,36 @@ using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
-using DynamoRevitVersionSelector;
 using DynamoRevitVersionSelector.Properties;
-
-using DynamoVersionSelector.Utilities;
-
 
 namespace Dynamo.Applications
 {
+    internal struct DynamoProduct
+    {
+        public string InstallLocation;
+        public Tuple<int, int, int, int> VersionInfo;
+
+        public string VersionString
+        {
+            get
+            {
+                return string.Format(
+                    "Dynamo {0}.{1}.{2}.{3}",
+                    VersionInfo.Item1,
+                    VersionInfo.Item2,
+                    VersionInfo.Item3,
+                    VersionInfo.Item4);
+            }
+        }
+    }
+
     [Transaction(TransactionMode.Automatic)]
     [Regeneration(RegenerationOption.Manual)]
     public class VersionLoader : IExternalApplication
     {
-        public static List<IInstalledProduct> Products { get; private set; }
+        internal static List<DynamoProduct> Products { get; private set; }
 
-        public static string GetDynamoRevitPath(IInstalledProduct product, string revitVersion)
+        internal static string GetDynamoRevitPath(DynamoProduct product, string revitVersion)
         {
             if (product.VersionInfo.Item1 == 0 && product.VersionInfo.Item2 < 7)
                 return Path.Combine(product.InstallLocation, "DynamoRevit.dll"); //0.6.3 and older version
@@ -50,11 +66,11 @@ namespace Dynamo.Applications
                 new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
 
             var debugPath = revitFolder.Parent.FullName;
-            var dynamoProducts = DynamoProducts.FindDynamoInstallations(debugPath);
+            var dynamoProducts = FindDynamoInstallations(debugPath);
 
-            Products = new List<IInstalledProduct>();
+            Products = new List<DynamoProduct>();
             int index = -1;
-            foreach (var p in dynamoProducts.Products)
+            foreach (var p in dynamoProducts)
             {
                 var path = VersionLoader.GetDynamoRevitPath(p, revitVersion);
                 if (!File.Exists(path))
@@ -134,6 +150,31 @@ namespace Dynamo.Applications
         public Result OnShutdown(UIControlledApplication application)
         {
             return Result.Succeeded;
+        }
+
+        private static IEnumerable<DynamoProduct> FindDynamoInstallations(string debugPath)
+        {
+            var assembly = Assembly.LoadFrom(Path.Combine(debugPath, "DynamoInstallDetective.dll"));
+            var type = assembly.GetType("DynamoInstallDetective.Utilities");
+
+            var installationsMethod = type.GetMethod(
+                "FindDynamoInstallations",
+                BindingFlags.Public | BindingFlags.Static);
+
+            if (installationsMethod == null)
+            {
+                throw new MissingMethodException("Method 'DynamoInstallDetective.Utilities.FindDynamoInstallations' not found");
+            }
+
+            var methodParams = new object[] { debugPath };
+            var installs = installationsMethod.Invoke(null, methodParams) as IEnumerable;
+            if(null == installs)
+                return null;
+
+            return
+                installs.Cast<KeyValuePair<string, Tuple<int, int, int, int>>>()
+                    .Select(
+                        p => new DynamoProduct() { InstallLocation = p.Key, VersionInfo = p.Value });
         }
 
     }
