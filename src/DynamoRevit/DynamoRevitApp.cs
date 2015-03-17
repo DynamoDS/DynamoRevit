@@ -149,20 +149,24 @@ namespace Dynamo.Applications
         /// <returns></returns>
         public static Assembly ResolveAssembly(object sender, ResolveEventArgs args)
         {
-            string assemblyPath = string.Empty;
+            var assemblyPath = string.Empty;
+            var assemblyName = new AssemblyName(args.Name).Name + ".dll";
+
             try
             {
                 var assemblyLocation = Assembly.GetExecutingAssembly().Location;
                 var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-                var parentDirectory = Directory.GetParent(assemblyDirectory);
 
-                // First check the core path
-                assemblyPath = Path.Combine(parentDirectory.FullName, new AssemblyName(args.Name).Name + ".dll");
-                if (File.Exists(assemblyPath))
+                // Try "Dynamo 0.x\Revit_20xx" folder first...
+                assemblyPath = Path.Combine(assemblyDirectory, assemblyName);
+                if (!File.Exists(assemblyPath))
                 {
-                    return Assembly.LoadFrom(assemblyPath);
+                    // If assembly cannot be found, try in "Dynamo 0.x" folder.
+                    var parentDirectory = Directory.GetParent(assemblyDirectory);
+                    assemblyPath = Path.Combine(parentDirectory.FullName, assemblyName);
                 }
-                return null;
+
+                return (File.Exists(assemblyPath) ? Assembly.LoadFrom(assemblyPath) : null);
             }
             catch (Exception ex)
             {
