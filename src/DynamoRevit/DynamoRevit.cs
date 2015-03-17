@@ -100,15 +100,7 @@ namespace Dynamo.Applications
                 revitDynamoModel = InitializeCoreModel(extCommandData);
                 dynamoViewModel = InitializeCoreViewModel(revitDynamoModel);
 
-                // Add the main exec path to the system PATH
-                // This is required to pickup certain dlls.
-                string path =
-                    string.Format(
-                        Environment.GetEnvironmentVariable(
-                            "Path",
-                            EnvironmentVariableTarget.Process) + ";{0}",
-                        DynamoPathManager.Instance.MainExecPath);
-                Environment.SetEnvironmentVariable("Path", path, EnvironmentVariableTarget.Process);
+                UpdateSystemPathForProcess();
 
                 revitDynamoModel.Logger.Log("SYSTEM", string.Format("Environment Path:{0}", Environment.GetEnvironmentVariable("PATH")));
 
@@ -155,6 +147,23 @@ namespace Dynamo.Applications
 
             if (pendingAction != null)
                 pendingAction();
+        }
+
+        private static void UpdateSystemPathForProcess()
+        {
+            var assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
+            var parentDirectory = Directory.GetParent(assemblyDirectory);
+            var corePath = parentDirectory.FullName;
+
+            // Add the main exec path to the system PATH
+            // This is required to pickup certain dlls.
+            var path =
+                string.Format(
+                    Environment.GetEnvironmentVariable(
+                        "Path",
+                        EnvironmentVariableTarget.Process) + ";{0}", corePath);
+            Environment.SetEnvironmentVariable("Path", path, EnvironmentVariableTarget.Process);
         }
 
         public static RevitDynamoModel RevitDynamoModel
