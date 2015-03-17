@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Dynamo.Interfaces;
 
 namespace RevitTestServices
@@ -12,13 +13,7 @@ namespace RevitTestServices
 
         public RevitTestPathResolver()
         {
-            additionalResolutionPaths = new HashSet<string>();
-            additionalNodeDirectories = new HashSet<string>();
-            preloadedLibraryPaths = new HashSet<string>();
-        }
-
-        public RevitTestPathResolver(string assemblyDirectory) : this()
-        {
+            var assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var nodesDirectory = Path.Combine(assemblyDirectory, "nodes");
             var revitNodesDll = Path.Combine(assemblyDirectory, "RevitNodes.dll");
             var simpleRaaSDll = Path.Combine(assemblyDirectory, "SimpleRaaS.dll");
@@ -30,10 +25,9 @@ namespace RevitTestServices
             if (!File.Exists(simpleRaaSDll))
                 throw new FileNotFoundException(simpleRaaSDll);
 
-            AddResolutionPath(assemblyDirectory);
-            AddNodeDirectory(nodesDirectory);
-            AddPreloadLibraryPath(revitNodesDll);
-            AddPreloadLibraryPath(simpleRaaSDll);
+            additionalResolutionPaths = new HashSet<string> { assemblyDirectory };
+            additionalNodeDirectories = new HashSet<string> { nodesDirectory };
+            preloadedLibraryPaths = new HashSet<string> { revitNodesDll, simpleRaaSDll };
         }
 
         public IEnumerable<string> AdditionalResolutionPaths
