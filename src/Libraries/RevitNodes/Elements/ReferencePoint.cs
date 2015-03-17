@@ -239,7 +239,9 @@ namespace Revit.Elements
         #endregion
 
         #region Public properties
-
+        /// <summary>
+        /// Gets 'X' coordinate of the specified ReferencePoint
+        /// </summary>
         public double X
         {
             get
@@ -249,7 +251,9 @@ namespace Revit.Elements
             set { InternalSetPosition(new XYZ(value, Y, Z)); }
         }
 
-
+        /// <summary>
+        /// Gets 'Y' coordinate of the specified ReferencePoint
+        /// </summary>
         public double Y
         {
             get
@@ -259,7 +263,9 @@ namespace Revit.Elements
             set { InternalSetPosition(new XYZ(X, value, Z)); }
         }
 
-
+        /// <summary>
+        /// Gets 'Z' coordinate of the specified ReferencePoint
+        /// </summary>
         public double Z
         {
             get
@@ -268,7 +274,9 @@ namespace Revit.Elements
             }
             set { InternalSetPosition(new XYZ(X, Y, value)); }
         }
-
+        /// <summary>
+        /// Gets point geometry from the specified ReferencePoint
+        /// </summary>
         public Point Point
         {
             get
@@ -276,7 +284,9 @@ namespace Revit.Elements
                 return InternalReferencePoint.Position.ToPoint();
             }
         }
-
+        /// <summary>
+        /// Gets XY plane of the specified ReferencePoint
+        /// </summary>
         public Plane XYPlane
         {
             get
@@ -286,7 +296,9 @@ namespace Revit.Elements
                 return xy.ToPlane();
             }
         }
-
+        /// <summary>
+        /// Gets YZ plane of the specified ReferencePoint
+        /// </summary>
         public Plane YZPlane
         {
             get
@@ -296,7 +308,9 @@ namespace Revit.Elements
                 return yz.ToPlane();
             }
         }
-
+        /// <summary>
+        /// Gets XZ plane of the specified ReferencePoint
+        /// </summary>
         public Plane XZPlane
         {
             get
@@ -395,8 +409,8 @@ namespace Revit.Elements
                 throw new ArgumentNullException("elementCurveReference");
             }
 
-            return new ReferencePoint(ElementCurveReference.TryGetCurveReference(elementCurveReference).InternalReference, 
-                UnitConverter.DynamoToHostFactor * length, PointOnCurveMeasurementType.SegmentLength, PointOnCurveMeasureFrom.Beginning);
+            return new ReferencePoint(ElementCurveReference.TryGetCurveReference(elementCurveReference).InternalReference,
+                UnitConverter.DynamoToHostFactor(UnitType.UT_Length) * length, PointOnCurveMeasurementType.SegmentLength, PointOnCurveMeasureFrom.Beginning);
         }
 
         /// <summary>

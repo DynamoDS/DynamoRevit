@@ -4,12 +4,14 @@ using NUnit.Framework;
 
 using RevitServices.Persistence;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class DocumentTests : SystemTest
+    class DocumentTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@"./empty.rfa")]
@@ -41,7 +43,7 @@ namespace RevitSystemTests
             var initialDoc = DocumentManager.Instance.CurrentUIDocument;
             var newDoc = OpenAndActivateNewModel(emptyModelPath1);
 
-            Assert.False(ViewModel.RunEnabled);
+            Assert.False(ViewModel.HomeSpace.RunSettings.RunEnabled);
         }
 
         [Test]
@@ -51,7 +53,7 @@ namespace RevitSystemTests
             // Swap to a document that only has one open perspective view
             SwapCurrentModel(Path.Combine(workingDirectory, "model_with_box.rvt"));
 
-            Assert.False(ViewModel.RunEnabled);
+            Assert.False(ViewModel.HomeSpace.RunSettings.RunEnabled);
 
             // Then you need to swap back because the journal's ID_FLUSH_UNDO
             // is disabled in perspective as well

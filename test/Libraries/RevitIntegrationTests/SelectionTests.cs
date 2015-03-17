@@ -2,31 +2,28 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
-
 using DSRevitNodesUI;
-
 using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.Tests;
 
 using NUnit.Framework;
-
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
-using RTF.Framework;
+using RevitTestServices;
 
+using RTF.Framework;
 using ReferencePoint = Revit.Elements.ReferencePoint;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class SelectionTests : SystemTest
+    class SelectionTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\empty.rfa")]
@@ -363,6 +360,126 @@ namespace RevitSystemTests
 
         }
 
+        [Test]
+        [TestModel(@".\Selection\DynamoSample.rvt")]
+        public void DynamoAllSelectionNodeTests_WithPreSelectedEntities()
+        {
+            var model = ViewModel.Model;
+            string samplePath = Path.Combine(workingDirectory,
+                                                @".\Selection\DynamoAllSelectionNodeTests.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            
+            ViewModel.OpenCommand.Execute(testPath);
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(35, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(18, model.CurrentWorkspace.Connectors.Count());
+            
+            AssertNoDummyNodes();
+
+            // evaluate  graph
+            RunCurrentModel();
+
+            // ElementsAtLevel
+            var allElementAtLevelNodeID = "da009f85-80e6-4541-b8fd-165ea7f23449";
+            AssertPreviewCount(allElementAtLevelNodeID, 81);
+
+            var wall = GetPreviewValueAtIndex(allElementAtLevelNodeID, 0) as Revit.Elements.Wall;
+            Assert.IsNotNull(wall);
+
+            var floor = GetPreviewValueAtIndex(allElementAtLevelNodeID, 2) as Revit.Elements.Floor;
+            Assert.IsNotNull(floor);
+
+            // ElementsOfCategory & Categories, as output of Categories 
+            // passed to ElementsOFCategory
+            var elementsOfCategoryNodeID = "24f225e1-8883-48c3-a8ba-773b2734336c";
+            AssertPreviewCount(elementsOfCategoryNodeID, 22);
+            for (int i = 0; i <= 21; i++)
+            {
+                var refPt = GetPreviewValueAtIndex(elementsOfCategoryNodeID, i) as ReferencePoint;
+                Assert.IsNotNull(refPt);
+            }
+
+            // ElementsOfFamilyType & Family Type, as FamilyType output passed to 
+            // ElementsOfFamilyTypes node.
+            var elementsOfFamilyTypeNodeID = "657017f1-4775-4daa-b00e-8d85392be6b5";
+            AssertPreviewCount(elementsOfFamilyTypeNodeID, 11);
+            for (int i = 0; i <= 10; i++)
+            {
+                var family = GetPreviewValueAtIndex(elementsOfFamilyTypeNodeID, i) 
+                                                        as Revit.Elements.AbstractFamilyInstance;
+                Assert.IsNotNull(family);
+            }
+
+            // ElementsOfType & ElementTypes, as ElementType output passed to ElementsOfTypes node.
+            var elementsOfTypeNodeID = "186142a6-eb54-4d39-8292-5b016a3a1c3b";
+            AssertPreviewCount(elementsOfTypeNodeID, 27);
+            for (int i = 0; i <= 26; i++)
+            {
+                var curtainGridLine = GetPreviewValueAtIndex(elementsOfTypeNodeID, i) 
+                                                            as Revit.Elements.Element;
+                Assert.IsNotNull(curtainGridLine);
+            }
+
+            // Select Model Elements
+            var selectModelElementsNodeID = "e18b4c42-71b7-4f32-b0a5-6aa89ac32aeb";
+            AssertPreviewCount(selectModelElementsNodeID, 8);
+            for (int i = 0; i <= 7; i++)
+            {
+                var wall1 = GetPreviewValueAtIndex(selectModelElementsNodeID, i) as Revit.Elements.Wall ;
+                Assert.IsNotNull(wall1);
+            }
+
+            // Select Model Element
+            var selectModelElementNode = GetPreviewValue
+                                ("137a10ad-a34f-4524-aaed-1c608e7ce8b6") as Revit.Elements.Element;
+            Assert.IsNotNull(selectModelElementNode);
+
+            // Select Face
+            var selectFaceNodeID = GetPreviewValueAtIndex
+                                        ("26942776-c0f5-4a23-9be7-95ef80809951", 0) as Surface;
+            Assert.IsNotNull(selectFaceNodeID);
+
+            // Select Faces (Below Node ID taken from Flatter to make it 1D array)
+            var selectFacesNodeID = "00a2189b-88f4-4e15-b9f0-efefa6357b37";
+            AssertPreviewCount(selectFacesNodeID, 5);
+            for (int i = 0; i <= 4; i++)
+            {
+                var surface = GetPreviewValueAtIndex(selectFacesNodeID, i) as Surface;
+                Assert.IsNotNull(surface);
+            }
+
+            // StructuralFramingTypes
+            var structuralFramingTypesNodeID = GetPreviewValue("b786fdf5-b6fa-4aab-a2fd-b40ac12b8b87");
+            Assert.IsNotNull(structuralFramingTypesNodeID);
+
+            // StructuralColumnTypes
+            var structuralColumnTypesNodeID = GetPreviewValue("6daf7b70-8693-46ff-8e9c-23798c8d31f8");
+            Assert.IsNotNull(structuralColumnTypesNodeID);
+
+            // Floor Type
+            var floorTypesNodeID = GetPreviewValue("e718e402-13d1-458f-8b16-705aba49e3ac");
+            Assert.IsNotNull(floorTypesNodeID);
+
+            // Wall Type
+            var wallTypesNodeID = GetPreviewValue("4ef3c2ed-4131-432d-9f1f-d48ae863cc23");
+            Assert.IsNotNull(wallTypesNodeID);
+
+            // Select Edge
+            var selectEdgeNodeID = GetPreviewValue("90b176d6-a31e-4a06-b82e-c2991050eb96") 
+                                                        as Autodesk.DesignScript.Geometry.Line;
+            Assert.IsNotNull(selectEdgeNodeID);
+
+            // Views
+            var viewNodeID = GetPreviewValue
+                ("a4070b7f-dddb-406e-bbe8-7c1dbe6b1d8f") as Revit.Elements.Views.FloorPlanView;
+            Assert.IsNotNull(viewNodeID);
+            
+        }
+
+
+        # region Private Methods
+
         private int DeleteWallAndRun<T>(string testGuid)
         {
             var walls = GetWalls();
@@ -398,7 +515,6 @@ namespace RevitSystemTests
             return fec.ToElements().Cast<Wall>().ToList();
         }
 
-        
 
 
         /// <summary>
@@ -481,5 +597,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
         }
+
+        #endregion 
     }
 }

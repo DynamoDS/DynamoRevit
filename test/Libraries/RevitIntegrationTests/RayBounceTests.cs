@@ -7,19 +7,21 @@ using NUnit.Framework;
 
 using RevitServices.Persistence;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class RayBounceTests : SystemTest
+    class RayBounceTests : RevitSystemTestBase
     {
         [Test, Category("Failure")]
         [TestModel(@".\RayBounce\RayBounce.rvt")]
         public void RayBounce()
         {
-            string samplePath = Path.Combine(workingDirectory, @".\RayBounce\RayBounce.dyn");
-            string testPath = Path.GetFullPath(samplePath);
+            var samplePath = Path.Combine(workingDirectory, @".\RayBounce\RayBounce.dyn");
+            var testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
             
@@ -28,7 +30,7 @@ namespace RevitSystemTests
             //ensure that the bounce curve count is the same
             var curveColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document, DocumentManager.Instance.CurrentUIDocument.ActiveView.Id);
             curveColl.OfClass(typeof(CurveElement));
-            Assert.AreEqual(curveColl.ToElements().Count(), 36);
+            Assert.AreEqual(curveColl.ToElements().Count(), 33);
         }
 
         [Test, Category("IntegrationTests")]
@@ -52,7 +54,7 @@ namespace RevitSystemTests
 
             // Validation for Reference Points.
             var modelCurve = "64b62b8e-a07e-477e-ba5d-9e33eb03debf";
-            AssertPreviewCount(modelCurve, 45);
+            AssertPreviewCount(modelCurve, 50);
 
             for (int i = 0; i <= 42; i++)
             {

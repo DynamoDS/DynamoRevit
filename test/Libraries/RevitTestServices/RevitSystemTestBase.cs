@@ -1,27 +1,141 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Xml.Serialization;
+using System.Configuration;
 
 using SystemTestServices;
 
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using Autodesk.Revit.UI.Events;
+
+using Dynamo;
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Core.Threading;
 using Dynamo.Interfaces;
 using Dynamo.Models;
-using Dynamo.Tests;
 using Dynamo.ViewModels;
+
+using DynamoShapeManager;
+
+using DynamoUtilities;
+
 using NUnit.Framework;
 
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
 
+using RTF.Applications;
+
+using TestServices;
+
 namespace RevitTestServices
 {
+    public class RevitTestConfiguration
+    {
+        /// <summary>
+        /// Directory where test files are kept
+        /// </summary>
+        public string WorkingDirectory { get; set; }
+
+        /// <summary>
+        /// Directory where Samples are kept
+        /// </summary>
+        public string SamplesPath { get; set; }
+
+        /// <summary>
+        /// Directory where custom node definitions are kept
+        /// </summary>
+        public string DefinitionsPath { get; set; }
+
+        /// <summary>
+        /// TestConfiguration file name
+        /// </summary>
+        private const string TEST_CONFIGURATION_FILE_S = "RevitTestConfiguration.xml";
+
+        /// <summary>
+        /// Loads configuration
+        /// </summary>
+        /// <returns></returns>
+        public static RevitTestConfiguration LoadConfiguration()
+        {
+            var fi = new FileInfo(Assembly.GetExecutingAssembly().Location);
+            string assDir = fi.DirectoryName;
+            var config = new RevitTestConfiguration();
+            try
+            {
+                var configPath = Path.Combine(assDir, TEST_CONFIGURATION_FILE_S);
+                if (File.Exists(configPath))
+                {
+                    var serializer = new XmlSerializer(typeof(RevitTestConfiguration));
+                    using (var fs = new FileStream(configPath, FileMode.Open, FileAccess.Read))
+                    {
+                        config = serializer.Deserialize(fs) as RevitTestConfiguration;
+                    }
+                }
+#if DEBUG
+                else
+                {
+                    config.SetDefaultValuesToUninitializedProperties();
+                    config.Save(configPath);
+                }
+#endif
+            }
+            catch (Exception ex)
+            {
+                Debug.Print(ex.Message);
+            }
+
+            config.SetDefaultValuesToUninitializedProperties();
+            return config;
+        }
+
+        private void SetDefaultValuesToUninitializedProperties()
+        {
+            var fi = new FileInfo(Assembly.GetExecutingAssembly().Location);
+            string assDir = fi.DirectoryName;
+
+            //get the test path
+            if (string.IsNullOrEmpty(WorkingDirectory))
+            {
+                string testsLoc = Path.Combine(assDir, @"..\..\..\..\test\System\");
+                WorkingDirectory = Path.GetFullPath(testsLoc);
+            }
+
+            //get the samples path
+            if (string.IsNullOrEmpty(SamplesPath))
+            {
+                string samplesLoc = Path.Combine(assDir, @"..\..\..\..\doc\distrib\Samples\");
+                SamplesPath = Path.GetFullPath(samplesLoc);
+            }
+
+            //set the custom node loader search path
+            if (string.IsNullOrEmpty(DefinitionsPath))
+            {
+                string defsLoc = Path.Combine(
+                    DynamoPathManager.Instance.Packages,
+                    "Dynamo Sample Custom Nodes",
+                    "dyf");
+                DefinitionsPath = Path.GetFullPath(defsLoc);
+            }
+        }
+
+        private void Save(string filePath)
+        {
+            var serializer = new XmlSerializer(typeof(RevitTestConfiguration));
+            using (var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+            {
+                serializer.Serialize(fs, this);
+            }
+        }
+    }
+
     public class TestSchedulerThread : ISchedulerThread
     {
         public void Initialize(IScheduler owningScheduler)
@@ -36,8 +150,13 @@ namespace RevitTestServices
     }
 
     [TestFixture]
-    public abstract class RevitSystemTestBase : SystemTestBase
+    public class RevitSystemTestBase : SystemTestBase
     {
+        private string samplesPath;
+        private string defsPath;
+        protected string emptyModelPath1;
+        protected string emptyModelPath;
+
         #region public methods
 
         [SetUp]
@@ -45,12 +164,16 @@ namespace RevitTestServices
         {
             base.Setup();
 
+            ((HomeWorkspaceModel)ViewModel.Model.CurrentWorkspace).RunSettings.RunType = RunType.Manual;
+
             DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
         }
 
         [TearDown]
         public override void TearDown()
         {
+            DocumentManager.Instance.CurrentUIApplication.ViewActivating -= CurrentUIApplication_ViewActivating;
+
             // Automatic transaction strategy requires that we 
             // close the transaction if it hasn't been closed by 
             // by the end of an evaluation. It is possible to 
@@ -59,22 +182,62 @@ namespace RevitTestServices
             TransactionManager.Instance.ForceCloseTransaction();
         }
 
-        public override void StartDynamo()
+        #endregion
+
+        #region protected methods
+
+        protected override void SetupCore()
+        {
+            DocumentManager.Instance.CurrentUIApplication =
+                RTF.Applications.RevitTestExecutive.CommandData.Application;
+            DocumentManager.Instance.CurrentUIDocument =
+                RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
+
+            DynamoRevit.SetupDynamoPaths();
+
+            var config = RevitTestConfiguration.LoadConfiguration();
+
+            //get the test path
+            workingDirectory = config.WorkingDirectory;
+
+            //get the samples path
+            samplesPath = config.SamplesPath;
+
+            //set the custom node loader search path
+            defsPath = config.DefinitionsPath;
+
+            emptyModelPath = Path.Combine(workingDirectory, "empty.rfa");
+
+            if (DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber.Contains("2014") &&
+                DocumentManager.Instance.CurrentUIApplication.Application.VersionName.Contains("Vasari"))
+            {
+                emptyModelPath = Path.Combine(workingDirectory, "emptyV.rfa");
+                emptyModelPath1 = Path.Combine(workingDirectory, "emptyV1.rfa");
+            }
+            else
+            {
+                emptyModelPath = Path.Combine(workingDirectory, "empty.rfa");
+                emptyModelPath1 = Path.Combine(workingDirectory, "empty1.rfa");
+            }
+        }
+
+        protected override void StartDynamo(TestSessionConfiguration testConfig)
         {
             try
             {
                 // create the transaction manager object
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
 
-                DynamoRevit.InitializeUnits();
-
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
-                    new RevitDynamoModel.StartConfiguration()
+                    new RevitDynamoModel.RevitStartConfiguration()
                     {
                         StartInTestMode = true,
-                        DynamoCorePath = Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\"),
+                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(testConfig.DynamoCorePath),
+                        DynamoCorePath = testConfig.DynamoCorePath,
                         Context = "Revit 2014",
-                        SchedulerThread = new TestSchedulerThread()
+                        SchedulerThread = new TestSchedulerThread(),
+                        PackageManagerAddress = "https://www.dynamopackages.com",
+                        ExternalCommandData = RevitTestExecutive.CommandData
                     });
 
                 Model = DynamoRevit.RevitDynamoModel;
@@ -96,67 +259,44 @@ namespace RevitTestServices
             }
         }
 
-        #endregion
+        protected override TestSessionConfiguration GetTestSessionConfiguration()
+        {
+            // Create a remote test config option specifying a core path
+            // one directory above the executing assembly. If the core path is not
+            // specified in the config, or the config is not present, it is assumed
+            // that the executing assembly's directory will be a Revit sub-folder, so
+            // we need to set core to the parent directory.
 
-        #region protected methods
+            var asmDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            return new TestSessionConfiguration(Path.GetFullPath(asmDir + @"\..\"), asmDir);
+        }
 
-        protected void CurrentUIApplication_ViewActivating(object sender, Autodesk.Revit.UI.Events.ViewActivatingEventArgs e)
+        protected void OpenSampleDefinition(string relativeFilePath)
+        {
+            string samplePath = Path.Combine(samplesPath, relativeFilePath);
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+        }
+
+        protected IEnumerable<NodeModel> AllNodes
+        {
+            get
+            {
+                return this.Model.Workspaces.SelectMany(x => x.Nodes);
+            }
+        }
+
+        private void CurrentUIApplication_ViewActivating(object sender, ViewActivatingEventArgs e)
         {
             ((RevitDynamoModel)this.ViewModel.Model).SetRunEnabledBasedOnContext(e.NewActiveView);
-        }
-
-        /// <summary>
-        /// Creates two model curves separated in Z.
-        /// </summary>
-        /// <param name="mc1"></param>
-        /// <param name="mc2"></param>
-        protected void CreateTwoModelCurves(out ModelCurve mc1, out ModelCurve mc2)
-        {
-            //create two model curves 
-            using (var trans = new Transaction(DocumentManager.Instance.CurrentUIDocument.Document, "CreateTwoModelCurves"))
-            {
-                trans.Start();
-
-                var p1 = new Plane(XYZ.BasisZ, XYZ.Zero);
-                var p2 = new Plane(XYZ.BasisZ, new XYZ(0, 0, 5));
-
-                SketchPlane sp1 = SketchPlane.Create(DocumentManager.Instance.CurrentDBDocument, p1);
-                SketchPlane sp2 = SketchPlane.Create(DocumentManager.Instance.CurrentDBDocument, p2);
-                Curve c1 = Line.CreateBound(XYZ.Zero, new XYZ(1, 0, 0));
-                Curve c2 = Line.CreateBound(new XYZ(0, 0, 5), new XYZ(1, 0, 5));
-                mc1 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewModelCurve(c1, sp1);
-                mc2 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewModelCurve(c2, sp2);
-
-                trans.Commit();
-            }
-        }
-
-        /// <summary>
-        /// Creates one model curve on a plane with an origin at 0,0,0
-        /// </summary>
-        /// <param name="mc1"></param>
-        protected void CreateOneModelCurve(out ModelCurve mc1)
-        {
-            //create two model curves 
-            using (var trans = new Transaction(DocumentManager.Instance.CurrentUIDocument.Document, "CreateTwoModelCurves"))
-            {
-                trans.Start();
-
-                var p1 = new Plane(XYZ.BasisZ, XYZ.Zero);
-
-                SketchPlane sp1 = SketchPlane.Create(DocumentManager.Instance.CurrentDBDocument, p1);
-                Curve c1 = Line.CreateBound(XYZ.Zero, new XYZ(1, 0, 0));
-                mc1 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewModelCurve(c1, sp1);
-
-                trans.Commit();
-            }
         }
 
         /// <summary>
         /// Opens and activates a new model.
         /// </summary>
         /// <param name="modelPath"></param>
-        protected UIDocument OpenAndActivateNewModel(string modelPath)
+        protected static UIDocument OpenAndActivateNewModel(string modelPath)
         {
             DocumentManager.Instance.CurrentUIApplication.OpenAndActivateDocument(modelPath);
             return DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
@@ -165,11 +305,46 @@ namespace RevitTestServices
         /// <summary>
         /// Opens and activates a new model, and closes the old model.
         /// </summary>
-        protected void SwapCurrentModel(string modelPath)
+        protected static void SwapCurrentModel(string modelPath)
         {
+            DocumentManager.Instance.CurrentUIApplication =
+                RTF.Applications.RevitTestExecutive.CommandData.Application;
+            DocumentManager.Instance.CurrentUIDocument =
+                RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
+
             Document initialDoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument.Document;
             DocumentManager.Instance.CurrentUIApplication.OpenAndActivateDocument(modelPath);
             initialDoc.Close(false);
+        }
+
+        /// <summary>
+        /// This function gets all the family instances in the current Revit document
+        /// </summary>
+        /// <param name="startNewTransaction">whether do the filtering in a new transaction</param>
+        /// <returns>the family instances</returns>
+        protected static IList<Element> GetAllFamilyInstances(bool startNewTransaction)
+        {
+            if (startNewTransaction)
+            {
+                using (var trans = new Transaction(DocumentManager.Instance.CurrentUIDocument.Document, "FilteringElements"))
+                {
+                    trans.Start();
+
+                    ElementClassFilter ef = new ElementClassFilter(typeof(FamilyInstance));
+                    FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+                    fec.WherePasses(ef);
+
+                    trans.Commit();
+                    return fec.ToElements();
+                }
+            }
+            else
+            {
+                ElementClassFilter ef = new ElementClassFilter(typeof(FamilyInstance));
+                FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+                fec.WherePasses(ef);
+                return fec.ToElements();
+            }
         }
 
         #endregion

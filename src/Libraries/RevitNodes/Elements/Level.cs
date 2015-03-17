@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 
+using Autodesk.Revit.DB;
+
 using DynamoServices;
 
 using Revit.GeometryConversion;
@@ -167,7 +169,7 @@ namespace Revit.Elements
         /// </summary>
         public double Elevation
         {
-            get { return InternalLevel.Elevation*UnitConverter.HostToDynamoFactor; }
+            get { return InternalLevel.Elevation*UnitConverter.HostToDynamoFactor(UnitType.UT_Length); }
         }
 
         /// <summary>
@@ -177,7 +179,7 @@ namespace Revit.Elements
         {
             get
             {
-                return InternalLevel.ProjectElevation * UnitConverter.HostToDynamoFactor;
+                return InternalLevel.ProjectElevation * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
             }
         }
 
@@ -209,7 +211,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("name");
             }
 
-            return new Level(elevation * UnitConverter.DynamoToHostFactor, name);
+            return new Level(elevation * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), name);
         }
 
         /// <summary>
@@ -220,7 +222,7 @@ namespace Revit.Elements
         /// <returns></returns>
         public static Level ByElevation(double elevation)
         {
-            return new Level(elevation * UnitConverter.DynamoToHostFactor, null);
+            return new Level(elevation * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), null);
         }
 
         /// <summary>
@@ -236,7 +238,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("level");
             }
 
-            return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor, null);
+            return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), null);
         }
 
         /// <summary>
@@ -259,7 +261,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("name");
             }
 
-            return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor, name);
+            return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), name);
         }
 
         #endregion

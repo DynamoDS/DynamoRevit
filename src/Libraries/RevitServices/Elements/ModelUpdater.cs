@@ -84,6 +84,17 @@ namespace RevitServices.Elements
             }
         }
 
+        public static bool IsInitialized
+        {
+            get
+            {
+                lock (mutex)
+                {
+                    return instance != null;
+                }
+            }
+        }
+
         /// <summary>
         ///     The static instance of the RevitServicesUpdater.
         /// </summary>

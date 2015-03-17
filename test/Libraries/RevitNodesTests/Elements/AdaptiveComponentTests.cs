@@ -66,7 +66,7 @@ namespace RevitNodesTests.Elements
 
             foreach (var pair in unconvertedPairs)
             {
-                pair.Item1.ShouldBeApproximately(pair.Item2 * UnitConverter.HostToDynamoFactor);
+                pair.Item1.ShouldBeApproximately(pair.Item2 * UnitConverter.HostToDynamoFactor(UnitType.UT_Length));
             }
 
             Assert.NotNull(ac);
@@ -83,7 +83,7 @@ namespace RevitNodesTests.Elements
             };
             var fs = FamilySymbol.ByName("3PointAC");
 
-            Assert.Throws(typeof (Exception), () => AdaptiveComponent.ByPoints(pts, fs));
+            Assert.Throws(typeof(ArgumentException), () => AdaptiveComponent.ByPoints(pts, fs));
         }
 
         [Test]

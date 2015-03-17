@@ -1,10 +1,14 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
+using Autodesk.Revit.Creation;
+using Autodesk.Revit.DB;
 
 using NUnit.Framework;
 
 using Revit.Elements;
+using Revit.GeometryConversion;
 using Revit.GeometryReferences;
 
 using RevitServices.Persistence;
@@ -12,6 +16,9 @@ using RevitServices.Persistence;
 using RevitTestServices;
 
 using RTF.Framework;
+
+using Element = Revit.Elements.Element;
+using FamilySymbol = Revit.Elements.FamilySymbol;
 
 namespace RevitNodesTests.Elements
 {
@@ -54,7 +61,48 @@ namespace RevitNodesTests.Elements
             var sym = wall.GetParameterValueByName(name) as Element;
             Assert.NotNull(sym);
             Assert.AreEqual(sym.Name, "18\" x 18\"");
-        }        
+        }
+
+        [Test] 
+        [TestModel(@".\element.rvt")]
+        public void CanSuccessfullySetElementParamWithUnitType()
+        {
+            var wall = ElementSelector.ByElementId(184176, true);
+
+            SetExpectedWallHeight(wall, 45.5);
+            GetExpectedWallHeight(wall, 45.5);
+
+            // Change project to meters
+            var units = DocumentManager.Instance.CurrentDBDocument.GetUnits();
+            units.SetFormatOptions(UnitType.UT_Length, new FormatOptions(DisplayUnitType.DUT_METERS));
+            DocumentManager.Instance.CurrentDBDocument.SetUnits(units);
+
+            SetExpectedWallHeight(wall, 45.5);
+            GetExpectedWallHeight(wall, 45.5);
+        }
+
+        private static void SetExpectedWallHeight(Element wall, double value)
+        {
+            var name = "Unconnected Height";
+            wall.SetParameterByName(name, value);
+        }
+
+        private static void GetExpectedWallHeight(Element wall, double value)
+        {
+            var name = "Unconnected Height";
+            var height = (double)(wall.GetParameterValueByName(name));
+
+            Assert.NotNull(height);
+            height.ShouldBeApproximately(value);
+        }
+
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void CanSuccessfullyGetElementParamWithUnitType()
+        {
+            var wall = ElementSelector.ByElementId(184176, true);
+            GetExpectedWallHeight(wall, 20);
+        }
 
         #region Face/Solid Extraction
 
@@ -69,8 +117,8 @@ namespace RevitNodesTests.Elements
 
             var bbox = BoundingBox.ByGeometry(solids);
 
-            bbox.MaxPoint.ShouldBeApproximately(-64.266, -7.999, 60.693, 1e-3);
-            bbox.MinPoint.ShouldBeApproximately(-92.708, -38.479, 0, 1e-3);
+            bbox.MaxPoint.ShouldBeApproximately(-210.846457, -26.243438, 199.124016, 1e-2);
+            bbox.MinPoint.ShouldBeApproximately(-304.160105, -126.243438, 0, 1e-2);
         }
 
         [Test]
@@ -84,8 +132,8 @@ namespace RevitNodesTests.Elements
 
             var bbox = BoundingBox.ByGeometry(faces);
 
-            bbox.MaxPoint.ShouldBeApproximately(-64.266, -7.999, 60.693, 1e-3);
-            bbox.MinPoint.ShouldBeApproximately(-92.708, -38.479, 0, 1e-3);
+            bbox.MaxPoint.ShouldBeApproximately(-210.846457, -26.243438, 199.124016, 1e-2);
+            bbox.MinPoint.ShouldBeApproximately(-304.160105, -126.243438, 0, 1e-2);
 
             var refs = faces.Select(x => ElementFaceReference.TryGetFaceReference(x));
 
@@ -108,8 +156,8 @@ namespace RevitNodesTests.Elements
 
             var bbox = BoundingBox.ByGeometry(solids);
 
-            bbox.MaxPoint.ShouldBeApproximately(-64.266, -7.999, 60.693, 1e-3);
-            bbox.MinPoint.ShouldBeApproximately(-92.708, -38.479, 0, 1e-3);
+            bbox.MaxPoint.ShouldBeApproximately(-210.846457, -26.243438, 199.124016, 1e-2);
+            bbox.MinPoint.ShouldBeApproximately(-304.160105, -126.243438, 0, 1e-2);
         }
         
         [Test]
@@ -143,8 +191,8 @@ namespace RevitNodesTests.Elements
 
             var bbox = BoundingBox.ByGeometry(crvs);
 
-            bbox.MinPoint.ShouldBeApproximately(-31.607, -26.870, 0, 1e-3);
-            bbox.MaxPoint.ShouldBeApproximately(25.434, 33.212, 0, 1e-3);
+            bbox.MinPoint.ShouldBeApproximately(-103.697, -88.156, 0, 1e-2);
+            bbox.MaxPoint.ShouldBeApproximately(83.445, 108.963, 0, 1e-2);
 
             var refs = crvs.Select(x => ElementCurveReference.TryGetCurveReference(x));
 
@@ -166,8 +214,8 @@ namespace RevitNodesTests.Elements
 
             var bbox = BoundingBox.ByGeometry(crvs);
 
-            bbox.MaxPoint.ShouldBeApproximately(15.240, 0, 0, 1e-3);
-            bbox.MinPoint.ShouldBeApproximately(0, -30.480, 0, 1e-3);
+            bbox.MaxPoint.ShouldBeApproximately(50.0, 0, 0, 1e-3);
+            bbox.MinPoint.ShouldBeApproximately(0, -100.0, 0, 1e-3);
 
             var refs = crvs.Select(x => ElementCurveReference.TryGetCurveReference(x));
 

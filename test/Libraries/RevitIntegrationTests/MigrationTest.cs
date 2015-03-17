@@ -6,12 +6,14 @@ using DSCoreNodesUI;
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    public class MigrationTest : SystemTest
+    public class MigrationTest : RevitSystemTestBase
     {
         private void TestMigration(string filename)
         {
@@ -19,15 +21,13 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
 
-
             RunCurrentModel();
-            
 
             var nodes = ViewModel.Model.CurrentWorkspace.Nodes;
-            int unresolvedNodeCount = 0;
-            string str = "\n";
+            var unresolvedNodeCount = 0;
+            var str = "\n";
 
-            foreach (var node in nodes.OfType<DSCoreNodesUI.DummyNode>())
+            foreach (var node in nodes.OfType<DummyNode>())
             {
                 if (node.NodeNature == DummyNode.Nature.Unresolved) 
                 {
@@ -113,25 +113,11 @@ namespace RevitSystemTests
             TestMigration(@".\Migration\TestMigration_Geometry_Surface.dyn");
         }
 
-        [Test, Category("Failure")]
-        [TestModel(@".\empty.rfa")]
-        public void TestMigration_Geometry_Transform()
-        {
-            TestMigration(@".\Migration\TestMigration_Geometry_Transform.dyn");
-        }
-
         [Test]
         [TestModel(@".\empty.rfa")]
         public void TestMigration_Revit_API()
         {
             TestMigration(@".\Migration\TestMigration_Revit_API.dyn");
-        }
-
-        [Test, Category("Failure")]
-        [TestModel(@".\empty.rfa")]
-        public void TestMigration_Revit_Bake()
-        {
-            TestMigration(@".\Migration\TestMigration_Revit_Bake.dyn");
         }
 
         [Test]

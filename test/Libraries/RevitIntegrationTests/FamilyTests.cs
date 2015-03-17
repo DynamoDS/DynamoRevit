@@ -2,12 +2,14 @@
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class FamilyTests : SystemTest
+    class FamilyTests : RevitSystemTestBase
     {   
         [Test]
         [TestModel(@".\Family\GetFamilyInstancesByType.rvt")]
@@ -55,15 +57,13 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
-            
 
             var pnt = GetPreviewValue("79dde258-ddce-49b7-9700-da21b2d5a9ae") as Autodesk.DesignScript.Geometry.Point;
             Assert.IsNotNull(pnt);
 
-            //Check the value is (-9.586931, -35.209237, 8.170673) in the metric system
-            Assert.IsTrue(IsFuzzyEqual(pnt.X, -9.586931, 1.0e-6));
-            Assert.IsTrue(IsFuzzyEqual(pnt.Y, -35.209237, 1.0e-6));
-            Assert.IsTrue(IsFuzzyEqual(pnt.Z, 8.170673, 1.0e-6));
+            Assert.IsTrue(IsFuzzyEqual(pnt.X, -31.453185696, 1.0e-6));
+            Assert.IsTrue(IsFuzzyEqual(pnt.Y, -115.515869423, 1.0e-6));
+            Assert.IsTrue(IsFuzzyEqual(pnt.Z, 26.806669948, 1.0e-6));
         }
 
         [Test]

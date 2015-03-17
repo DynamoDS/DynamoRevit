@@ -1,44 +1,50 @@
 ﻿using System.IO;
 using System.Linq;
+using Autodesk.Revit.DB;
+using Dynamo.Nodes;
+using Dynamo.Tests;
 
 using NUnit.Framework;
+using RevitServices.Persistence;
+
+using RevitTestServices;
 
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class LevelTests : SystemTest
+    class LevelTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\Level\Level.rvt")]
         public void Level()
         {
-            //var model = ViewModel.Model;
+            var samplePath = Path.Combine(workingDirectory, @".\Level\Level.dyn");
+            var testPath = Path.GetFullPath(samplePath);
 
-            //string samplePath = Path.Combine(workingDirectory, @".\Level\Level.dyn");
-            //string testPath = Path.GetFullPath(samplePath);
+            ViewModel.OpenCommand.Execute(testPath);
 
-            //model.Open(testPath);
-            
+            AssertNoDummyNodes();
 
-            ////ensure that the level count is the same
-            //var levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            //levelColl.OfClass(typeof(Autodesk.Revit.DB.Level));
-            //Assert.AreEqual(levelColl.ToElements().Count(), 6);
+            RunCurrentModel();
 
-            ////change the number and run again
-            //var numNode = (DoubleInput)ViewModel.Model.DynamoModel.Nodes.First(x => x is DoubleInput);
-            //numNode.Value = "0..20..2";
-            
+            //ensure that the level count is the same
+            var levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            levelColl.OfClass(typeof(Level));
+            Assert.AreEqual(levelColl.ToElements().Count(), 6);
 
-            ////ensure that the level count is the same
-            //levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            //levelColl.OfClass(typeof(Autodesk.Revit.DB.Level));
-            //Assert.AreEqual(levelColl.ToElements().Count(), 11);
+            //change the number and run again
+            var numNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<DoubleInput>();
+            numNode.Value = "0..20..2";
 
-            Assert.Inconclusive("Porting : DoubleInput");
-        }
+            RunCurrentModel();
+
+            //ensure that the level count is the same
+            levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            levelColl.OfClass(typeof(Level));
+            Assert.AreEqual(levelColl.ToElements().Count(), 11);
+       }
 
         [Test]
         [Category("IntegrationTests")]
