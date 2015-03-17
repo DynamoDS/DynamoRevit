@@ -20,17 +20,18 @@
     <Optimize>false</Optimize>
     <DefineConstants>TRACE;DEBUG;ENABLE_DYNAMO_SCHEDULER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>    
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>    
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="DSRevitNodesUIImages.resx" />
+    <EmbeddedResource Include="DynamoRaaSImages.resx" />
     <EmbeddedResource Include="RevitNodesImages.resx" />
     <EmbeddedResource Include="SimpleRaaSImages.resx" />
   </ItemGroup>
@@ -49,7 +50,7 @@
   <Target Name="AfterBuild">
     <ItemGroup>
       <DeleteFiles Include="$(TargetDir)$(ProjectName).*" />
-    </ItemGroup>    
-	<Delete Files="@(DeleteFiles)" />
+    </ItemGroup>
+    <Delete Files="@(DeleteFiles)" />
   </Target>
 </Project>
