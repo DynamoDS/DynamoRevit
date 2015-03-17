@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-
 using Dynamo.Models;
 using DynamoUtilities;
 using NUnit.Framework;
@@ -45,7 +44,11 @@ namespace RevitSystemTests
                 SwapCurrentModel(revitFilePath);
 
                 //Set the directory
-                DynamoRevit.SetupDynamoPaths();
+                var assemblyPath = Assembly.GetExecutingAssembly().Location;
+                var assemblyDir = Path.GetDirectoryName(assemblyPath);
+
+                //Ensure SystemTestBase picks it up.
+                pathResolver = new RevitTestPathResolver(assemblyDir);
 
                 //Setup should be called after swapping document, so that RevitDynamoModel 
                 //is now associated with swapped model.
@@ -93,8 +96,7 @@ namespace RevitSystemTests
         {
             var testParameters = new List<RegressionTestData>();
 
-            DynamoRevit.SetupDynamoPaths();
-			var config = RevitTestConfiguration.LoadConfiguration();
+            var config = RevitTestConfiguration.LoadConfiguration();
             string testsLoc = Path.Combine(config.WorkingDirectory, "Regression");
             var regTestPath = Path.GetFullPath(testsLoc);
 

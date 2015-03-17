@@ -10,7 +10,6 @@ using DSCoreNodesUI;
 using Dynamo.Applications;
 using Dynamo.DSEngine;
 using Dynamo.Models;
-using Dynamo.Nodes;
 using Dynamo.Utilities;
 
 using ProtoCore.AST.AssociativeAST;
@@ -564,7 +563,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("Spacing Rule Layout")]
-    [NodeCategory(BuiltinNodeCategories.GEOMETRY_CURVE_DIVIDE)]
+    [NodeCategory(BuiltinNodeCategories.REVIT_ELEMENTS_DIVIDEDPATH_ACTION)]
     [NodeDescription("SpacingRuleLayoutDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class SpacingRuleLayouts : EnumAsInt<SpacingRuleLayout> {
