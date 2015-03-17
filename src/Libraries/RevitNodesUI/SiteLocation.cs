@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Autodesk.Revit.Creation;
+
+using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Controls;
 using Dynamo.Models;
-using Dynamo.Nodes;
 
 using Dynamo.UI;
 using Dynamo.Wpf;
@@ -13,8 +15,10 @@ using Dynamo.Wpf;
 using ProtoCore.AST.AssociativeAST;
 using Revit.GeometryConversion;
 
+using Revit.Elements;
 using RevitServices.Elements;
 using RevitServices.Persistence;
+using RevitServices.Threading;
 
 namespace DSRevitNodesUI
 {
@@ -46,13 +50,18 @@ namespace DSRevitNodesUI
             RegisterAllPorts();
 
             Location = DynamoUnits.Location.ByLatitudeAndLongitude(0.0, 0.0);
-
+            Location.Name = string.Empty;
+            
             ArgumentLacing = LacingStrategy.Disabled;
 
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += model_RevitDocumentChanged;
-            RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += model_RevitDocumentChanged;
+                    RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
 
-            Update();
+                    Update();
+                });
         }
 
         #region public methods
@@ -60,12 +69,24 @@ namespace DSRevitNodesUI
         public override void Dispose()
         {
             base.Dispose();
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += model_RevitDocumentChanged;
-            RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened +=
+                        model_RevitDocumentChanged;
+                    RevitServicesUpdater.Instance.ElementsModified +=
+                        RevitServicesUpdater_ElementsModified;
+                });
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
+            if (Location == null)
+            {
+                var nullNode = AstFactory.BuildNullNode();
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), nullNode) };
+            }
+
             var latNode = AstFactory.BuildDoubleNode(Location.Latitude);
             var longNode = AstFactory.BuildDoubleNode(Location.Longitude);
             var nameNode = AstFactory.BuildStringNode(Location.Name);
@@ -108,12 +129,19 @@ namespace DSRevitNodesUI
 
         private void Update()
         {
-            OnNodeModified(forceExecute:true);
+            if (DocumentManager.Instance.CurrentDBDocument.IsFamilyDocument)
+            {
+                Location = null;
+                Warning(Properties.Resources.SiteLocationFamilyDocumentWarning);
+                return;
+            }
 
             var location = DocumentManager.Instance.CurrentDBDocument.SiteLocation;
             Location.Name = location.PlaceName;
             Location.Latitude = location.Latitude.ToDegrees();
             Location.Longitude = location.Longitude.ToDegrees();
+
+            OnNodeModified(true);
 
             RaisePropertyChanged("Location");
         }

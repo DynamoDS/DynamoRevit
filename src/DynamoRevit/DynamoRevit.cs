@@ -1,10 +1,7 @@
-
 using System.Collections.Generic;
-using System.Linq;
 
 using Dynamo.Applications;
 using Greg.AuthProviders;
-using RevitServices.Elements;
 
 #region
 using System;
@@ -33,7 +30,6 @@ using RevitServices.Transactions;
 using RevitServices.Threading;
 
 using MessageBox = System.Windows.Forms.MessageBox;
-using Autodesk.Revit.DB.Events;
 
 #endregion
 
@@ -111,7 +107,6 @@ namespace Dynamo.Applications
                 InitializeCoreView().Show();
 
                 TryOpenWorkspaceInCommandData(extCommandData);
-                SubscribeApplicationEvents(extCommandData);
 
                 extCommandData.Application.Idling += OnApplicationIdle;
 
@@ -191,21 +186,20 @@ namespace Dynamo.Applications
 
         private static RevitDynamoModel InitializeCoreModel(ExternalCommandData commandData)
         {
-            var prefs = PreferenceSettings.Load();
             var assemblyLocation = Assembly.GetExecutingAssembly().Location;
             var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
             var parentDirectory = Directory.GetParent(assemblyDirectory);
             var corePath = parentDirectory.FullName;
 
             return RevitDynamoModel.Start(
-                new RevitDynamoModel.StartConfiguration()
+                new RevitDynamoModel.RevitStartConfiguration()
                 {
-                    Preferences = prefs,
-                    DynamoCorePath = corePath,
                     GeometryFactoryPath = GetGeometryFactoryPath(corePath),
+                    PathResolver = new RevitPathResolver(),
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
-                    AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher))
+                    AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
+                    ExternalCommandData = commandData
                 });
         }
 
@@ -255,25 +249,7 @@ namespace Dynamo.Applications
             initializedCore = true;
         }
 
-        private static bool hasRegisteredApplicationEvents;
-        private static void SubscribeApplicationEvents(ExternalCommandData commandData)
-        {
-            if (hasRegisteredApplicationEvents)
-            {
-                return;
-            }
-
-            commandData.Application.ViewActivating += OnApplicationViewActivating;
-            commandData.Application.ViewActivated += OnApplicationViewActivated;
-
-            commandData.Application.Application.DocumentClosing += OnApplicationDocumentClosing;
-            commandData.Application.Application.DocumentClosed += OnApplicationDocumentClosed;
-            commandData.Application.Application.DocumentOpened += OnApplicationDocumentOpened;
-
-            hasRegisteredApplicationEvents = true;
-        }
-
-        public static void InitializeAssemblies()
+        private static void InitializeAssemblies()
         {
             RevitAssemblyLoader.LoadAll();
             AppDomain.CurrentDomain.AssemblyResolve +=
@@ -386,8 +362,9 @@ namespace Dynamo.Applications
 
             view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
             view.Closed -= OnDynamoViewClosed;
+
             AddIdleAction(() => DocumentManager.Instance.CurrentUIApplication.ViewActivating -=
-            OnApplicationViewActivating);
+            revitDynamoModel.OnApplicationViewActivating);
 
             AppDomain.CurrentDomain.AssemblyResolve -=
                 Analyze.Render.AssemblyHelper.ResolveAssemblies;
@@ -400,75 +377,12 @@ namespace Dynamo.Applications
             revitDynamoModel = null;
         }
 
-        #region Application event handler
-        /// <summary>
-        /// Handler for Revit's DocumentOpened event.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnApplicationDocumentOpened(object sender, DocumentOpenedEventArgs e)
+        private static void DeleteKeeperElementOnce(object sender, IdlingEventArgs idlingEventArgs)
         {
-            if (revitDynamoModel != null)
-            {
-                revitDynamoModel.HandleApplicationDocumentOpened();
-            }
+            var uiApplication = DocumentManager.Instance.CurrentUIApplication;
+            uiApplication.Idling -= DeleteKeeperElementOnce;
+            DeleteKeeperElement();
         }
-
-        /// <summary>
-        /// Handler for Revit's DocumentClosing event.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnApplicationDocumentClosing(object sender, DocumentClosingEventArgs e)
-        {
-            if (revitDynamoModel != null)
-            {
-                revitDynamoModel.HandleApplicationDocumentClosing(e.Document);
-            }
-        }
-
-        /// <summary>
-        /// Handler for Revit's DocumentClosed event.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnApplicationDocumentClosed(object sender, DocumentClosedEventArgs e)
-        {
-            if (revitDynamoModel != null)
-            {
-                revitDynamoModel.HandleApplicationDocumentClosed();
-            }
-        }
-
-        /// <summary>
-        /// Handler for Revit's ViewActivating event.
-        /// Addins are not available in some views in Revit, notably perspective views.
-        /// This will present a warning that Dynamo is not available to run and disable the run button.
-        /// This handler is called before the ViewActivated event registered on the RevitDynamoModel.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnApplicationViewActivating(object sender, ViewActivatingEventArgs e)
-        {
-            if (revitDynamoModel != null)
-            {
-                revitDynamoModel.SetRunEnabledBasedOnContext(e.NewActiveView);
-            }
-        }
-
-        /// <summary>
-        /// Handler for Revit's ViewActivated event.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnApplicationViewActivated(object sender, ViewActivatedEventArgs e)
-        {
-            if (revitDynamoModel != null)
-            {
-                revitDynamoModel.HandleRevitViewActivated();
-            }
-        }
-        #endregion
 
         /// <summary>
         /// This method access Revit API, therefore it needs to be called only 
