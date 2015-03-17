@@ -144,7 +144,13 @@ namespace Revit.Elements.Views
 
             return new SectionView(box.ToRevitType());
         }
-
+        /// <summary>
+        /// Creates a Revit ViewSection by a specified corrdinate system, minPoint and maxPoint
+        /// </summary>
+        /// <param name="cs"></param>
+        /// <param name="minPoint"></param>
+        /// <param name="maxPoint"></param>
+        /// <returns></returns>
         public static SectionView ByCoordinateSystemMinPointMaxPoint(
             Autodesk.DesignScript.Geometry.CoordinateSystem cs,
             Autodesk.DesignScript.Geometry.Point minPoint,

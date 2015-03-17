@@ -12,12 +12,14 @@ using NUnit.Framework;
 
 using ProtoCore.Mirror;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class TransformTest : SystemTest
+    class TransformTest : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\empty.rvt")]

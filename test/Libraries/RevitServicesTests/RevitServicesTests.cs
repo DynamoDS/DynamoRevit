@@ -18,6 +18,15 @@ namespace RevitServicesTests
             get { return DocumentManager.Instance.CurrentUIDocument.Document; }
         }
 
+        [SetUp]
+        public void Setup()
+        {
+            DocumentManager.Instance.CurrentUIApplication =
+                RTF.Applications.RevitTestExecutive.CommandData.Application;
+            DocumentManager.Instance.CurrentUIDocument =
+                RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
+        }
+
         [Test]
         [Category("UnitTests")]
         public void MakePoint()
@@ -156,7 +165,6 @@ namespace RevitServicesTests
             Assert.Inconclusive("TODO: find an example that would cause revit to emit failures");
         }
 
-
         [Test]
         [Category("UnitTests")]
         public void TestRoundTripElementSerialisation()
@@ -204,7 +212,6 @@ namespace RevitServicesTests
             Assert.IsTrue(elementId.IntID == 42);
             Assert.IsTrue(elementId.StringID == "{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}");
         }
-
 
         [Test]
         [Category("UnitTests")]

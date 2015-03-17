@@ -30,7 +30,7 @@ namespace Dynamo.Applications
             visualizationManager = vizManager;
         }
 
-        private WatchViewModel ProcessThing(Element element, ProtoCore.Core core, string tag, bool showRawData, WatchHandlerCallback callback)
+        private WatchViewModel ProcessThing(Element element, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
             var id = element.Id;
 
@@ -49,28 +49,28 @@ namespace Dynamo.Applications
         }
 
         //If no dispatch target is found, then invoke base watch handler.
-        private WatchViewModel ProcessThing(object obj, ProtoCore.Core core, string tag, bool showRawData, WatchHandlerCallback callback)
+        private WatchViewModel ProcessThing(object obj, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
-            return baseHandler.Process(obj, core, tag, showRawData, callback);
+            return baseHandler.Process(obj, runtimeCore, tag, showRawData, callback);
         }
 
-        private WatchViewModel ProcessThing(MirrorData data, ProtoCore.Core core, string tag, bool showRawData, WatchHandlerCallback callback)
+        private WatchViewModel ProcessThing(MirrorData data, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
             try
             {
-                return baseHandler.Process(data, core, tag, showRawData, callback);
+                return baseHandler.Process(data, runtimeCore, tag, showRawData, callback);
             }
             catch (Exception)
             {
-                return callback(data.Data, core, tag, showRawData);
+                return callback(data.Data, runtimeCore, tag, showRawData);
             }
         }
 
-        public WatchViewModel Process(dynamic value, ProtoCore.Core core, string tag, bool showRawData, WatchHandlerCallback callback)
+        public WatchViewModel Process(dynamic value, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
             return Object.ReferenceEquals(value, null)
                 ? new WatchViewModel(visualizationManager, "null", tag)
-                : ProcessThing(value, core, tag, showRawData, callback);
+                : ProcessThing(value, runtimeCore, tag, showRawData, callback);
         }
     }
 }

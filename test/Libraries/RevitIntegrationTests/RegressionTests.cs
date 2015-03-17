@@ -3,27 +3,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-
-using Autodesk.Revit.DB;
-
-using Dynamo.Applications;
-using Dynamo.Applications.Models;
 using Dynamo.Models;
-using Dynamo.ViewModels;
-
 using DynamoUtilities;
-
 using NUnit.Framework;
-
-using RevitServices.Persistence;
-using RevitServices.Threading;
-using RevitServices.Transactions;
 using RevitServices.Elements;
+using RevitTestServices;
+using Dynamo.Applications;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    public class RegressionTest : SystemTest
+    public class RegressionTest : RevitSystemTestBase
     {
         /// <summary>
         /// Automated creation of regression test cases. Opens each workflow
@@ -52,6 +42,9 @@ namespace RevitSystemTests
 
                 //open the revit model
                 SwapCurrentModel(revitFilePath);
+
+                //Set the directory
+                DynamoRevit.SetupDynamoPaths();
 
                 //Setup should be called after swapping document, so that RevitDynamoModel 
                 //is now associated with swapped model.
@@ -99,6 +92,7 @@ namespace RevitSystemTests
         {
             var testParameters = new List<RegressionTestData>();
 
+            DynamoRevit.SetupDynamoPaths();
 			var config = RevitTestConfiguration.LoadConfiguration();
             string testsLoc = Path.Combine(config.WorkingDirectory, "Regression");
             var regTestPath = Path.GetFullPath(testsLoc);
