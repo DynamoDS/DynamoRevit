@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Dynamo.Applications.Properties {
+namespace DynamoRevitVersionSelector.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Dynamo.Applications.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Dynamo.Applications.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DynamoRevitVersionSelector.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,30 +61,29 @@ namespace Dynamo.Applications.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Visual Programming.
+        ///   Looks up a localized string similar to Dynamo Version.
         /// </summary>
-        internal static string App_Description {
+        internal static string DynamoVersions {
             get {
-                return ResourceManager.GetString("App_Description", resourceCulture);
+                return ResourceManager.GetString("DynamoVersions", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dynamo {0}.{1}.
+        ///   Looks up a localized string similar to Dynamo {0}.
         /// </summary>
-        internal static string App_Name {
+        internal static string DynamoVersionText {
             get {
-                return ResourceManager.GetString("App_Name", resourceCulture);
+                return ResourceManager.GetString("DynamoVersionText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Dynamo version {0} will be loaded after Revit restart..
         /// </summary>
-        internal static System.Drawing.Bitmap logo_square_32x32 {
+        internal static string RestartMessage {
             get {
-                object obj = ResourceManager.GetObject("logo_square_32x32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("RestartMessage", resourceCulture);
             }
         }
     }
