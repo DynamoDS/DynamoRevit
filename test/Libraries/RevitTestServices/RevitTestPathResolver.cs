@@ -62,5 +62,15 @@ namespace RevitTestServices
             if (!preloadedLibraryPaths.Contains(preloadLibraryPath))
                 preloadedLibraryPaths.Add(preloadLibraryPath);
         }
+
+        public string UserDataRootFolder
+        {
+            get { return string.Empty; }
+        }
+
+        public string CommonDataRootFolder
+        {
+            get { return string.Empty; }
+        }
     }
 }
