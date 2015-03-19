@@ -54,5 +54,15 @@ namespace Dynamo.Applications
         {
             get { return preloadLibraryPaths; }
         }
+
+        public string UserDataRootFolder
+        {
+            get { return string.Empty; }
+        }
+
+        public string CommonDataRootFolder
+        {
+            get { return string.Empty; }
+        }
     }
 }
