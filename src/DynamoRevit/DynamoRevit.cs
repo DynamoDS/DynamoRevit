@@ -1,3 +1,5 @@
+using RevitServices.Elements;
+
 using System.Collections.Generic;
 
 using Dynamo.Applications;
@@ -357,6 +359,8 @@ namespace Dynamo.Applications
         private static void OnDynamoViewClosed(object sender, EventArgs e)
         {
             var view = (DynamoView)sender;
+
+            RevitServicesUpdater.DisposeInstance();
 
             view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
             view.Closed -= OnDynamoViewClosed;
