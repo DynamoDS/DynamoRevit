@@ -89,9 +89,6 @@ namespace Dynamo.Applications
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            //Set the directory
-            SetupDynamoPaths();
-
             HandleDebug(commandData);
             
             InitializeCore(commandData);
@@ -111,7 +108,6 @@ namespace Dynamo.Applications
                 InitializeCoreView().Show();
 
                 TryOpenWorkspaceInCommandData(extCommandData);
-                SubscribeApplicationEvents(extCommandData);
 
                 // Disable the Dynamo button to prevent a re-run
                 DynamoRevitApp.DynamoButton.Enabled = false;
@@ -173,21 +169,20 @@ namespace Dynamo.Applications
 
         private static RevitDynamoModel InitializeCoreModel(ExternalCommandData commandData)
         {
-            var prefs = PreferenceSettings.Load();
             var assemblyLocation = Assembly.GetExecutingAssembly().Location;
             var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
             var parentDirectory = Directory.GetParent(assemblyDirectory);
             var corePath = parentDirectory.FullName;
 
             return RevitDynamoModel.Start(
-                new RevitDynamoModel.StartConfiguration()
+                new RevitDynamoModel.RevitStartConfiguration()
                 {
-                    Preferences = prefs,
-                    DynamoCorePath = corePath,
                     GeometryFactoryPath = GetGeometryFactoryPath(corePath),
+                    PathResolver = new RevitPathResolver(),
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
-                    AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher))
+                    AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
+                    ExternalCommandData = commandData
                 });
         }
 
@@ -238,25 +233,7 @@ namespace Dynamo.Applications
             initializedCore = true;
         }
 
-        private static bool hasRegisteredApplicationEvents;
-        private static void SubscribeApplicationEvents(ExternalCommandData commandData)
-        {
-            if (hasRegisteredApplicationEvents)
-            {
-                return;
-            }
-
-            commandData.Application.ViewActivating += OnApplicationViewActivating;
-            commandData.Application.ViewActivated += OnApplicationViewActivated;
-
-            commandData.Application.Application.DocumentClosing += OnApplicationDocumentClosing;
-            commandData.Application.Application.DocumentClosed += OnApplicationDocumentClosed;
-            commandData.Application.Application.DocumentOpened += OnApplicationDocumentOpened;
-
-            hasRegisteredApplicationEvents = true;
-        }
-
-        public static void InitializeAssemblies()
+        private static void InitializeAssemblies()
         {
             RevitAssemblyLoader.LoadAll();
             AppDomain.CurrentDomain.AssemblyResolve +=
@@ -267,30 +244,6 @@ namespace Dynamo.Applications
         {
             if (DocumentManager.Instance.CurrentUIApplication == null)
                 DocumentManager.Instance.CurrentUIApplication = commandData.Application;
-        }
-
-        public static void SetupDynamoPaths()
-        {
-            // The executing assembly will be in Revit_20xx, so 
-            // we have to walk up one level. Unfortunately, we
-            // can't use DynamoPathManager here because those are not
-            // initialized until the DynamoModel is constructed.
-            string assDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            // Add the Revit_20xx folder for assembly resolution
-            DynamoPathManager.Instance.AddResolutionPath(assDir);
-
-            // Setup the core paths
-            DynamoPathManager.Instance.InitializeCore(Path.GetFullPath(assDir + @"\.."));
-
-            // Add Revit-specific paths for loading.
-            DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "RevitNodes.dll"));
-            DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "SimpleRaaS.dll"));
-
-            //add an additional node processing folder
-            DynamoPathManager.Instance.Nodes.Add(Path.Combine(assDir, "nodes"));
-
-            // TODO(PATHMANAGER): Remove reference to DynamoUtilities.dll when this is done.
         }
 
         #endregion
@@ -390,94 +343,15 @@ namespace Dynamo.Applications
             var view = (DynamoView)sender;
 
             RevitServicesUpdater.DisposeInstance();
-            DocumentManager.OnLogError -= revitDynamoModel.Logger.Log;
 
             view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
             view.Closed -= OnDynamoViewClosed;
-            DocumentManager.Instance.CurrentUIApplication.ViewActivating -=
-                OnApplicationViewActivating;
 
             AppDomain.CurrentDomain.AssemblyResolve -=
                 Analyze.Render.AssemblyHelper.ResolveAssemblies;
 
-            // KILLDYNSETTINGS - this is suspect
-            revitDynamoModel.Logger.Dispose();
-
             DynamoRevitApp.DynamoButton.Enabled = true;
-
-            revitDynamoModel = null;
         }
-
-        #region Application event handler
-        /// <summary>
-        /// Handler for Revit's DocumentOpened event.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnApplicationDocumentOpened(object sender, DocumentOpenedEventArgs e)
-        {
-            if (revitDynamoModel != null)
-            {
-                revitDynamoModel.HandleApplicationDocumentOpened();
-            }
-        }
-
-        /// <summary>
-        /// Handler for Revit's DocumentClosing event.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnApplicationDocumentClosing(object sender, DocumentClosingEventArgs e)
-        {
-            if (revitDynamoModel != null)
-            {
-                revitDynamoModel.HandleApplicationDocumentClosing(e.Document);
-            }
-        }
-
-        /// <summary>
-        /// Handler for Revit's DocumentClosed event.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnApplicationDocumentClosed(object sender, DocumentClosedEventArgs e)
-        {
-            if (revitDynamoModel != null)
-            {
-                revitDynamoModel.HandleApplicationDocumentClosed();
-            }
-        }
-
-        /// <summary>
-        /// Handler for Revit's ViewActivating event.
-        /// Addins are not available in some views in Revit, notably perspective views.
-        /// This will present a warning that Dynamo is not available to run and disable the run button.
-        /// This handler is called before the ViewActivated event registered on the RevitDynamoModel.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnApplicationViewActivating(object sender, ViewActivatingEventArgs e)
-        {
-            if (revitDynamoModel != null)
-            {
-                revitDynamoModel.SetRunEnabledBasedOnContext(e.NewActiveView);
-            }
-        }
-
-        /// <summary>
-        /// Handler for Revit's ViewActivated event.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnApplicationViewActivated(object sender, ViewActivatedEventArgs e)
-        {
-            if (revitDynamoModel != null)
-            {
-                revitDynamoModel.HandleRevitViewActivated();
-            }
-        }
-        #endregion
-
 
         private static void DeleteKeeperElementOnce(object sender, IdlingEventArgs idlingEventArgs)
         {

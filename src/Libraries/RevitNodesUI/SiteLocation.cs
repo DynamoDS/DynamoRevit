@@ -7,7 +7,6 @@ using Autodesk.Revit.Creation;
 using Dynamo.Applications.Models;
 using Dynamo.Controls;
 using Dynamo.Models;
-using Dynamo.Nodes;
 
 using Dynamo.UI;
 using Dynamo.Wpf;
@@ -15,6 +14,7 @@ using Dynamo.Wpf;
 using ProtoCore.AST.AssociativeAST;
 using Revit.GeometryConversion;
 
+using Revit.Elements;
 using RevitServices.Elements;
 using RevitServices.Persistence;
 

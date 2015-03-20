@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
+using System.Configuration;
 
 using SystemTestServices;
 
@@ -19,6 +20,8 @@ using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.ViewModels;
 
+using DynamoShapeManager;
+
 using DynamoUtilities;
 
 using NUnit.Framework;
@@ -26,6 +29,8 @@ using NUnit.Framework;
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
+
+using RTF.Applications;
 
 using TestServices;
 
@@ -42,11 +47,6 @@ namespace RevitTestServices
         /// Directory where Samples are kept
         /// </summary>
         public string SamplesPath { get; set; }
-
-        /// <summary>
-        /// Directory where custom node definitions are kept
-        /// </summary>
-        public string DefinitionsPath { get; set; }
 
         /// <summary>
         /// TestConfiguration file name
@@ -108,16 +108,6 @@ namespace RevitTestServices
                 string samplesLoc = Path.Combine(assDir, @"..\..\..\..\doc\distrib\Samples\");
                 SamplesPath = Path.GetFullPath(samplesLoc);
             }
-
-            //set the custom node loader search path
-            if (string.IsNullOrEmpty(DefinitionsPath))
-            {
-                string defsLoc = Path.Combine(
-                    DynamoPathManager.Instance.Packages,
-                    "Dynamo Sample Custom Nodes",
-                    "dyf");
-                DefinitionsPath = Path.GetFullPath(defsLoc);
-            }
         }
 
         private void Save(string filePath)
@@ -147,7 +137,6 @@ namespace RevitTestServices
     public class RevitSystemTestBase : SystemTestBase
     {
         private string samplesPath;
-        private string defsPath;
         protected string emptyModelPath1;
         protected string emptyModelPath;
 
@@ -187,8 +176,6 @@ namespace RevitTestServices
             DocumentManager.Instance.CurrentUIDocument =
                 RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
 
-            DynamoRevit.SetupDynamoPaths();
-
             var config = RevitTestConfiguration.LoadConfiguration();
 
             //get the test path
@@ -196,9 +183,6 @@ namespace RevitTestServices
 
             //get the samples path
             samplesPath = config.SamplesPath;
-
-            //set the custom node loader search path
-            defsPath = config.DefinitionsPath;
 
             emptyModelPath = Path.Combine(workingDirectory, "empty.rfa");
 
@@ -215,29 +199,30 @@ namespace RevitTestServices
             }
         }
 
-        protected override void StartDynamo()
+        protected override void StartDynamo(TestSessionConfiguration testConfig)
         {
             try
             {
                 // create the transaction manager object
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
 
-                // Create a remote test config option specifying a fallback path
-                // one directory above the executing assembly. If the core path is not
-                // specified in the config, or the config is not present, it is assumed
-                // that the executing assembly's directory will be a Revit sub-folder, so
-                // we need to set core to the parent directory.
-                var remoteConfig = new RemoteTestSessionConfig(Path.GetFullPath(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\..\"));
+                // Note that there is another data member pathResolver in base class 
+                // SystemTestBase. That pathResolver will be used only in StartDynamo
+                // of the base class, here a local instance of pathResolver is used.
+                // 
+                var revitTestPathResolver = new RevitTestPathResolver();
 
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
-                    new DynamoModel.StartConfiguration()
+                    new RevitDynamoModel.RevitStartConfiguration()
                     {
                         StartInTestMode = true,
-                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(remoteConfig.DynamoCorePath),
-                        DynamoCorePath = remoteConfig.DynamoCorePath,
+                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(testConfig.DynamoCorePath),
+                        DynamoCorePath = testConfig.DynamoCorePath,
+                        PathResolver = revitTestPathResolver,
                         Context = "Revit 2014",
                         SchedulerThread = new TestSchedulerThread(),
-                        PackageManagerAddress = "https://www.dynamopackages.com"
+                        PackageManagerAddress = "https://www.dynamopackages.com",
+                        ExternalCommandData = RevitTestExecutive.CommandData
                     });
 
                 Model = DynamoRevit.RevitDynamoModel;
@@ -257,6 +242,18 @@ namespace RevitTestServices
             {
                 Console.WriteLine(ex.StackTrace);
             }
+        }
+
+        protected override TestSessionConfiguration GetTestSessionConfiguration()
+        {
+            // Create a remote test config option specifying a core path
+            // one directory above the executing assembly. If the core path is not
+            // specified in the config, or the config is not present, it is assumed
+            // that the executing assembly's directory will be a Revit sub-folder, so
+            // we need to set core to the parent directory.
+
+            var asmDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            return new TestSessionConfiguration(Path.GetFullPath(asmDir + @"\..\"), asmDir);
         }
 
         protected void OpenSampleDefinition(string relativeFilePath)

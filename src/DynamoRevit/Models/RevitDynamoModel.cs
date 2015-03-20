@@ -4,21 +4,25 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 
-using Dynamo.Core.Threading;
-
 using DSIronPython;
 
+using Dynamo.Interfaces;
 using Dynamo.Models;
+using Dynamo.UpdateManager;
 using Dynamo.Utilities;
 
 using DynamoServices;
 
+using Greg;
+
 using Revit.Elements;
+
 using RevitServices.Elements;
 using RevitServices.Materials;
 using RevitServices.Persistence;
@@ -33,11 +37,33 @@ namespace Dynamo.Applications.Models
 {
     public class RevitDynamoModel : DynamoModel
     {
+        public interface IRevitStartConfiguration : IStartConfiguration
+        {
+            ExternalCommandData ExternalCommandData { get; set; }
+        }
+
+        public struct RevitStartConfiguration : IRevitStartConfiguration
+        {
+            public string Context { get; set; }
+            public string DynamoCorePath { get; set; }
+            public IPathResolver PathResolver { get; set; }
+            public IPreferences Preferences { get; set; }
+            public bool StartInTestMode { get; set; }
+            public IUpdateManager UpdateManager { get; set; }
+            public ISchedulerThread SchedulerThread { get; set; }
+            public string GeometryFactoryPath { get; set; }
+            public IAuthProvider AuthProvider { get; set; }
+            public string PackageManagerAddress { get; set; }
+            public ExternalCommandData ExternalCommandData { get; set; }
+        }
+
         /// <summary>
         ///     Flag for syncing up document switches between Application.DocumentClosing and
         ///     Application.DocumentClosed events.
         /// </summary>
         private bool updateCurrentUIDoc;
+
+        private readonly ExternalCommandData externalCommandData;
 
         #region Events
 
@@ -129,34 +155,28 @@ namespace Dynamo.Applications.Models
 
         public new static RevitDynamoModel Start()
         {
-            return Start(new StartConfiguration());
+            return Start(new RevitStartConfiguration());
         }
 
-        public new static RevitDynamoModel Start(StartConfiguration configuration)
+        public new static RevitDynamoModel Start(IRevitStartConfiguration configuration)
         {
             // where necessary, assign defaults
             if (string.IsNullOrEmpty(configuration.Context))
                 configuration.Context = Core.Context.REVIT_2015;
-            if (string.IsNullOrEmpty(configuration.DynamoCorePath))
-            {
-                var asmLocation = Assembly.GetExecutingAssembly().Location;
-                configuration.DynamoCorePath = Path.GetDirectoryName(asmLocation);
-            }
-
-            if (configuration.Preferences == null)
-                configuration.Preferences = new PreferenceSettings();
 
             return new RevitDynamoModel(configuration);
         }
 
-        private RevitDynamoModel(StartConfiguration configuration) :
+        private RevitDynamoModel(IRevitStartConfiguration configuration) :
             base(configuration)
         {
-            RevitServicesUpdater.Initialize(
-                DynamoRevitApp.ControlledApplication,
-                DynamoRevitApp.Updaters);
+            externalCommandData = configuration.ExternalCommandData;
+
+            RevitServicesUpdater.Initialize(DynamoRevitApp.ControlledApplication, DynamoRevitApp.Updaters);
+
             SubscribeRevitServicesUpdaterEvents();
 
+            SubscribeApplicationEvents(configuration.ExternalCommandData);
             InitializeDocumentManager();
             SubscribeDocumentManagerEvents();
             SubscribeTransactionManagerEvents();
@@ -267,6 +287,97 @@ namespace Dynamo.Applications.Models
             DocumentManager.OnLogError -= Logger.Log;
         }
 
+        private bool hasRegisteredApplicationEvents;
+        private void SubscribeApplicationEvents(ExternalCommandData commandData)
+        {
+            if (hasRegisteredApplicationEvents)
+            {
+                return;
+            }
+
+            commandData.Application.ViewActivating += OnApplicationViewActivating;
+            commandData.Application.ViewActivated += OnApplicationViewActivated;
+
+            commandData.Application.Application.DocumentClosing += OnApplicationDocumentClosing;
+            commandData.Application.Application.DocumentClosed += OnApplicationDocumentClosed;
+            commandData.Application.Application.DocumentOpened += OnApplicationDocumentOpened;
+
+            hasRegisteredApplicationEvents = true;
+        }
+
+        private void UnsubscribeApplicationEvents(ExternalCommandData commandData)
+        {
+            if (!hasRegisteredApplicationEvents)
+            {
+                return;
+            }
+
+            commandData.Application.ViewActivating -= OnApplicationViewActivating;
+            commandData.Application.ViewActivated -= OnApplicationViewActivated;
+
+            commandData.Application.Application.DocumentClosing -= OnApplicationDocumentClosing;
+            commandData.Application.Application.DocumentClosed -= OnApplicationDocumentClosed;
+            commandData.Application.Application.DocumentOpened -= OnApplicationDocumentOpened;
+
+            hasRegisteredApplicationEvents = false;
+        }
+
+        #endregion
+
+        #region Application event handler
+        /// <summary>
+        /// Handler for Revit's DocumentOpened event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnApplicationDocumentOpened(object sender, Autodesk.Revit.DB.Events.DocumentOpenedEventArgs e)
+        {
+            HandleApplicationDocumentOpened();
+        }
+
+        /// <summary>
+        /// Handler for Revit's DocumentClosing event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnApplicationDocumentClosing(object sender, Autodesk.Revit.DB.Events.DocumentClosingEventArgs e)
+        {
+            HandleApplicationDocumentClosing(e.Document);
+        }
+
+        /// <summary>
+        /// Handler for Revit's DocumentClosed event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnApplicationDocumentClosed(object sender, Autodesk.Revit.DB.Events.DocumentClosedEventArgs e)
+        {
+            HandleApplicationDocumentClosed();
+        }
+
+        /// <summary>
+        /// Handler for Revit's ViewActivating event.
+        /// Addins are not available in some views in Revit, notably perspective views.
+        /// This will present a warning that Dynamo is not available to run and disable the run button.
+        /// This handler is called before the ViewActivated event registered on the RevitDynamoModel.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        internal void OnApplicationViewActivating(object sender, ViewActivatingEventArgs e)
+        {
+            SetRunEnabledBasedOnContext(e.NewActiveView);
+        }
+
+        /// <summary>
+        /// Handler for Revit's ViewActivated event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnApplicationViewActivated(object sender, ViewActivatedEventArgs e)
+        {
+            HandleRevitViewActivated();
+        }
+
         #endregion
 
         #region Public methods
@@ -306,6 +417,7 @@ namespace Dynamo.Applications.Models
             // unsubscribe events
             RevitServicesUpdater.Instance.UnRegisterAllChangeHooks();
 
+            UnsubscribeApplicationEvents(externalCommandData);
             UnsubscribeDocumentManagerEvents();
             UnsubscribeRevitServicesUpdaterEvents();
             UnsubscribeTransactionManagerEvents();
@@ -372,7 +484,7 @@ namespace Dynamo.Applications.Models
         /// It is called when a document is opened, but NOT when a document is 
         /// created from a template.
         /// </summary>
-        public void HandleApplicationDocumentOpened()
+        private void HandleApplicationDocumentOpened()
         {
             // If the current document is null, for instance if there are
             // no documents open, then set the current document, and 
@@ -396,7 +508,7 @@ namespace Dynamo.Applications.Models
         /// Handler Revit's DocumentClosing event.
         /// It is called when a document is closing.
         /// </summary>
-        public void HandleApplicationDocumentClosing(Document doc)
+        private void HandleApplicationDocumentClosing(Document doc)
         {
             // ReSharper disable once PossibleUnintendedReferenceComparison
             if (DocumentManager.Instance.CurrentDBDocument.Equals(doc))
@@ -409,7 +521,7 @@ namespace Dynamo.Applications.Models
         /// Handle Revit's DocumentClosed event.
         /// It is called when a document is closed.
         /// </summary>
-        public void HandleApplicationDocumentClosed()
+        private void HandleApplicationDocumentClosed()
         {
             // If the active UI document is null, it means that all views have been 
             // closed from all document. Clear our reference, present a warning,
@@ -450,7 +562,7 @@ namespace Dynamo.Applications.Models
         /// It is called when a view is activated. It is called after the 
         /// ViewActivating event.
         /// </summary>
-        public void HandleRevitViewActivated()
+        private void HandleRevitViewActivated()
         {
             // If there is no active document, then set it to whatever
             // document has just been activated
@@ -557,7 +669,7 @@ namespace Dynamo.Applications.Models
                 EngineController);
             foreach (var node in nodes)
             {
-                node.OnNodeModified(false);
+                node.OnNodeModified(true);
             }
         }
 
@@ -567,5 +679,6 @@ namespace Dynamo.Applications.Models
         }
 
         #endregion
+
     }
 }

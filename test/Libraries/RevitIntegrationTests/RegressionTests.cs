@@ -43,8 +43,8 @@ namespace RevitSystemTests
                 //open the revit model
                 SwapCurrentModel(revitFilePath);
 
-                //Set the directory
-                DynamoRevit.SetupDynamoPaths();
+                //Ensure SystemTestBase picks up the right directory.
+                pathResolver = new RevitTestPathResolver();
 
                 //Setup should be called after swapping document, so that RevitDynamoModel 
                 //is now associated with swapped model.
@@ -92,8 +92,7 @@ namespace RevitSystemTests
         {
             var testParameters = new List<RegressionTestData>();
 
-            DynamoRevit.SetupDynamoPaths();
-			var config = RevitTestConfiguration.LoadConfiguration();
+            var config = RevitTestConfiguration.LoadConfiguration();
             string testsLoc = Path.Combine(config.WorkingDirectory, "Regression");
             var regTestPath = Path.GetFullPath(testsLoc);
 

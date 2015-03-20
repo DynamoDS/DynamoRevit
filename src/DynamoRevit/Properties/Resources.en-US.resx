@@ -124,7 +124,7 @@
     <value>Visual Programming</value>
   </data>
   <data name="App_Name" xml:space="preserve">
-    <value>Dynamo 0.7</value>
+    <value>Dynamo {0}.{1}</value>
   </data>
   <data name="DocumentLostWarning" xml:space="preserve">
     <value>Dynamo no longer has an active document. Please open a document.</value>
