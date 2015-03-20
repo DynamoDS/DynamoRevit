@@ -363,9 +363,6 @@ namespace Dynamo.Applications
             view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
             view.Closed -= OnDynamoViewClosed;
 
-            AddIdleAction(() => DocumentManager.Instance.CurrentUIApplication.ViewActivating -=
-            revitDynamoModel.OnApplicationViewActivating);
-
             AppDomain.CurrentDomain.AssemblyResolve -=
                 Analyze.Render.AssemblyHelper.ResolveAssemblies;
 
