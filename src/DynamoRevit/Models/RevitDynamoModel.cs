@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 
 using Autodesk.Revit.DB;
@@ -16,14 +14,12 @@ using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.UpdateManager;
 using Dynamo.Utilities;
-
 using DynamoServices;
 
 using Greg;
 
 using Revit.Elements;
 
-using RevitServices.Elements;
 using RevitServices.Materials;
 using RevitServices.Persistence;
 using RevitServices.Threading;
@@ -150,9 +146,7 @@ namespace Dynamo.Applications.Models
         {
             externalCommandData = configuration.ExternalCommandData;
 
-            RevitServicesUpdater.Initialize(
-                DynamoRevitApp.ControlledApplication,
-                DynamoRevitApp.Updaters);
+            RevitServicesUpdater.Initialize(DynamoRevitApp.Updaters);
 
             SubscribeRevitServicesUpdaterEvents();
 
@@ -318,7 +312,7 @@ namespace Dynamo.Applications.Models
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnApplicationDocumentOpened(object sender, Autodesk.Revit.DB.Events.DocumentOpenedEventArgs e)
+        private void OnApplicationDocumentOpened(object sender, DocumentOpenedEventArgs e)
         {
             HandleApplicationDocumentOpened();
         }
@@ -328,7 +322,7 @@ namespace Dynamo.Applications.Models
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnApplicationDocumentClosing(object sender, Autodesk.Revit.DB.Events.DocumentClosingEventArgs e)
+        private void OnApplicationDocumentClosing(object sender, DocumentClosingEventArgs e)
         {
             HandleApplicationDocumentClosing(e.Document);
         }
@@ -338,7 +332,7 @@ namespace Dynamo.Applications.Models
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnApplicationDocumentClosed(object sender, Autodesk.Revit.DB.Events.DocumentClosedEventArgs e)
+        private void OnApplicationDocumentClosed(object sender, DocumentClosedEventArgs e)
         {
             HandleApplicationDocumentClosed();
         }
