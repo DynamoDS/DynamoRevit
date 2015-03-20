@@ -358,20 +358,13 @@ namespace Dynamo.Applications
         {
             var view = (DynamoView)sender;
 
-            DocumentManager.OnLogError -= revitDynamoModel.Logger.Log;
-
             view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
             view.Closed -= OnDynamoViewClosed;
 
             AppDomain.CurrentDomain.AssemblyResolve -=
                 Analyze.Render.AssemblyHelper.ResolveAssemblies;
 
-            // KILLDYNSETTINGS - this is suspect
-            revitDynamoModel.Logger.Dispose();
-
             DynamoRevitApp.DynamoButton.Enabled = true;
-
-            revitDynamoModel = null;
         }
 
         private static void DeleteKeeperElementOnce(object sender, IdlingEventArgs idlingEventArgs)
