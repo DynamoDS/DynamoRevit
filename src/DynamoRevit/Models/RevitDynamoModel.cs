@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Windows.Forms;
 
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 
@@ -66,25 +67,88 @@ namespace Dynamo.Applications.Models
 
         #region Events
 
+        /// <summary>
+        /// Event triggered when the current Revit document is changed.
+        /// </summary>
         public event EventHandler RevitDocumentChanged;
+
         public virtual void OnRevitDocumentChanged()
         {
             if (RevitDocumentChanged != null)
                 RevitDocumentChanged(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Event triggered when the Revit document that Dynamo had 
+        /// previously been pointing at has been closed.
+        /// </summary>
+        public event Action RevitDocumentLost;
+
+        private void OnRevitDocumentLost()
+        {
+            var handler = RevitDocumentLost;
+            if (handler != null) handler();
+        }
+
+        /// <summary>
+        /// Event triggered when Revit enters a context 
+        /// where external applications are not allowed.
+        /// </summary>
+        public event Action RevitContextUnavailable;
+
+        private void OnRevitContextUnavailable()
+        {
+            var handler = RevitContextUnavailable;
+            if (handler != null) handler();
+        }
+
+        /// <summary>
+        /// Event triggered when Revit enters a context where
+        /// external applications are allowed.
+        /// </summary>
+        public event Action RevitContextAvailable;
+
+        private void OnRevitContextAvailable()
+        {
+            var handler = RevitContextAvailable;
+            if (handler != null) handler();
+        }
+
+        /// <summary>
+        /// Event triggered when the active Revit view changes.
+        /// </summary>
+        public event Action<View> RevitViewChanged;
+
+        private void OnRevitViewChanged(View newView)
+        {
+            var handler = RevitViewChanged;
+            if (handler != null) handler(newView);
+        }
+
+        /// <summary>
+        /// Event triggered when a document other than the
+        /// one Dynamo is pointing at becomes active.
+        /// </summary>
+        public event Action InvalidRevitDocumentActivated;
+
+        private void OnInvalidRevitDocumentActivated()
+        {
+            var handler = InvalidRevitDocumentActivated;
+            if (handler != null) handler();
+        }
+
         #endregion
 
         #region Properties/Fields
-        internal override string AppVersion
+        override internal string AppVersion
         {
             get
             {
-                return base.AppVersion + 
+                return base.AppVersion +
                     "-R" + DocumentManager.Instance.CurrentUIApplication.Application.VersionBuild;
             }
         }
-     
+
         #endregion
 
         #region Constructors
@@ -109,6 +173,7 @@ namespace Dynamo.Applications.Models
             externalCommandData = configuration.ExternalCommandData;
 
             RevitServicesUpdater.Initialize(DynamoRevitApp.ControlledApplication, DynamoRevitApp.Updaters);
+
             SubscribeRevitServicesUpdaterEvents();
 
             SubscribeApplicationEvents(configuration.ExternalCommandData);
@@ -136,6 +201,7 @@ namespace Dynamo.Applications.Models
         }
 
         private bool setupPython;
+
         private void SetupPython()
         {
             if (setupPython) return;
@@ -144,14 +210,16 @@ namespace Dynamo.Applications.Models
                 (Element element) => element.ToDSType(true));
 
             // Turn off element binding during iron python script execution
-            IronPythonEvaluator.EvaluationBegin += (a, b, c, d, e) => ElementBinder.IsEnabled = false;
+            IronPythonEvaluator.EvaluationBegin +=
+                (a, b, c, d, e) => ElementBinder.IsEnabled = false;
             IronPythonEvaluator.EvaluationEnd += (a, b, c, d, e) => ElementBinder.IsEnabled = true;
 
             // register UnwrapElement method in ironpython
             IronPythonEvaluator.EvaluationBegin += (a, b, scope, d, e) =>
             {
                 var marshaler = new DataMarshaler();
-                marshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
+                marshaler.RegisterMarshaler(
+                    (Revit.Elements.Element element) => element.InternalElement);
                 marshaler.RegisterMarshaler((Category element) => element.InternalCategory);
 
                 Func<object, object> unwrap = marshaler.Marshal;
@@ -168,7 +236,8 @@ namespace Dynamo.Applications.Models
             {
                 DocumentManager.Instance.CurrentUIDocument =
                     DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
-                Logger.LogWarning(GetDocumentPointerMessage(), WarningLevel.Moderate);
+
+                OnRevitDocumentChanged();
             }
         }
 
@@ -198,12 +267,14 @@ namespace Dynamo.Applications.Models
 
         private void SubscribeTransactionManagerEvents()
         {
-            TransactionManager.Instance.TransactionWrapper.FailuresRaised += TransactionManager_FailuresRaised;
+            TransactionManager.Instance.TransactionWrapper.FailuresRaised +=
+                TransactionManager_FailuresRaised;
         }
 
         private void UnsubscribeTransactionManagerEvents()
         {
-            TransactionManager.Instance.TransactionWrapper.FailuresRaised -= TransactionManager_FailuresRaised;
+            TransactionManager.Instance.TransactionWrapper.FailuresRaised -=
+                TransactionManager_FailuresRaised;
         }
 
         private void SubscribeDocumentManagerEvents()
@@ -370,14 +441,13 @@ namespace Dynamo.Applications.Models
             if (view != null && view.IsPerspective
                 && Context != Core.Context.VASARI_2014)
             {
-                Logger.LogWarning(
-                    "Dynamo is not available in a perspective view. Please switch to another view to Run.",
-                    WarningLevel.Moderate);
-                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>().Cast<HomeWorkspaceModel>())
+                OnRevitContextUnavailable();
+
+                foreach (
+                    var ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = false;
                 }
-                    
             }
             else
             {
@@ -389,13 +459,12 @@ namespace Dynamo.Applications.Models
                 // the same document.
                 if (DocumentManager.Instance.CurrentUIDocument != null)
                 {
-                    var newEnabled = newView.Document.Equals(DocumentManager.Instance.CurrentDBDocument);
+                    var newEnabled =
+                        newView.Document.Equals(DocumentManager.Instance.CurrentDBDocument);
 
                     if (!newEnabled)
                     {
-                        Logger.LogWarning(
-                            "Dynamo is not pointing at this document. Run will be disabled.",
-                            WarningLevel.Error);
+                        OnInvalidRevitDocumentActivated();
                     }
 
                     foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
@@ -408,7 +477,7 @@ namespace Dynamo.Applications.Models
 
         #endregion
 
-        #region Event handlers 
+        #region Event handlers
 
         /// <summary>
         /// Handler Revit's DocumentOpened event.
@@ -422,13 +491,15 @@ namespace Dynamo.Applications.Models
             // present a message telling us where Dynamo is pointing.
             if (DocumentManager.Instance.CurrentUIDocument == null)
             {
-                DocumentManager.Instance.CurrentUIDocument = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
-                Logger.LogWarning(GetDocumentPointerMessage(), WarningLevel.Moderate);
+                DocumentManager.Instance.CurrentUIDocument =
+                    DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
+                OnRevitDocumentChanged();
+
                 foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = true;
                 }
-                    
+
                 ResetForNewDocument();
             }
         }
@@ -462,10 +533,8 @@ namespace Dynamo.Applications.Models
                 {
                     ws.RunSettings.RunEnabled = false;
                 }
-                    
-                Logger.LogWarning(
-                    "Dynamo no longer has an active document. Please open a document.",
-                    WarningLevel.Error);
+
+                OnRevitDocumentLost();
             }
             else
             {
@@ -476,6 +545,8 @@ namespace Dynamo.Applications.Models
                     updateCurrentUIDoc = false;
                     DocumentManager.Instance.CurrentUIDocument =
                         DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
+
+                    OnRevitDocumentChanged();
                 }
             }
 
@@ -500,21 +571,14 @@ namespace Dynamo.Applications.Models
                 DocumentManager.Instance.CurrentUIDocument =
                     DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
 
+                OnRevitDocumentChanged();
+
                 InitializeMaterials();
                 foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = true;
                 }
             }
-        }
-
-        private static string GetDocumentPointerMessage()
-        {
-            var docPath = DocumentManager.Instance.CurrentUIDocument.Document.PathName;
-            var message = string.IsNullOrEmpty(docPath)
-                ? "a new document."
-                : string.Format("document: {0}", docPath);
-            return string.Format("Dynamo is now running on {0}", message);
         }
 
         /// <summary>
@@ -557,7 +621,7 @@ namespace Dynamo.Applications.Models
         private void TransactionManager_FailuresRaised(FailuresAccessor failuresAccessor)
         {
             IList<FailureMessageAccessor> failList = failuresAccessor.GetFailureMessages();
-            
+
             IEnumerable<FailureMessageAccessor> query =
                 from fail in failList
                 where fail.GetSeverity() == FailureSeverity.Warning
@@ -570,15 +634,19 @@ namespace Dynamo.Applications.Models
             }
         }
 
-        private void RevitServicesUpdater_ElementsDeleted(Document document, IEnumerable<ElementId> deleted)
+        private void RevitServicesUpdater_ElementsDeleted(
+            Document document, IEnumerable<ElementId> deleted)
         {
             if (!deleted.Any())
                 return;
 
-            var nodes = ElementBinder.GetNodesFromElementIds(deleted, CurrentWorkspace, EngineController);
+            var nodes = ElementBinder.GetNodesFromElementIds(
+                deleted,
+                CurrentWorkspace,
+                EngineController);
             foreach (var node in nodes)
             {
-                node.OnNodeModified(forceExecute:true);
+                node.OnNodeModified(forceExecute: true);
             }
         }
 
@@ -591,11 +659,14 @@ namespace Dynamo.Applications.Models
                     DocumentManager.Instance.CurrentDBDocument.TryGetElement(x, out ret);
                     return ret;
                 }).Select(x => x.Id);
-            
+
             if (!updatedIds.Any())
                 return;
 
-            var nodes = ElementBinder.GetNodesFromElementIds(updatedIds, CurrentWorkspace, EngineController);
+            var nodes = ElementBinder.GetNodesFromElementIds(
+                updatedIds,
+                CurrentWorkspace,
+                EngineController);
             foreach (var node in nodes)
             {
                 node.OnNodeModified(true);

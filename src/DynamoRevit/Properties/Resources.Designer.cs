@@ -61,6 +61,15 @@ namespace Dynamo.Applications.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The active view is now {0}..
+        /// </summary>
+        internal static string ActiveViewWarning {
+            get {
+                return ResourceManager.GetString("ActiveViewWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Visual Programming.
         /// </summary>
         internal static string App_Description {
@@ -79,12 +88,57 @@ namespace Dynamo.Applications.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dynamo no longer has an active document. Please open a document..
+        /// </summary>
+        internal static string DocumentLostWarning {
+            get {
+                return ResourceManager.GetString("DocumentLostWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamo is now running on {0}..
+        /// </summary>
+        internal static string DocumentPointerMessage {
+            get {
+                return ResourceManager.GetString("DocumentPointerMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamo is not pointing at the current document..
+        /// </summary>
+        internal static string DocumentPointingWarning {
+            get {
+                return ResourceManager.GetString("DocumentPointingWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap logo_square_32x32 {
             get {
                 object obj = ResourceManager.GetObject("logo_square_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamo is not available in the current context..
+        /// </summary>
+        internal static string RevitInvalidContextWarning {
+            get {
+                return ResourceManager.GetString("RevitInvalidContextWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamo is now available..
+        /// </summary>
+        internal static string RevitValidContextMessage {
+            get {
+                return ResourceManager.GetString("RevitValidContextMessage", resourceCulture);
             }
         }
     }
