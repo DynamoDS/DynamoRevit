@@ -20,6 +20,7 @@ using Greg;
 
 using Revit.Elements;
 
+using RevitServices.Elements;
 using RevitServices.Materials;
 using RevitServices.Persistence;
 using RevitServices.Threading;
