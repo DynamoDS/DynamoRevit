@@ -116,5 +116,21 @@ namespace RevitNodesTests.GeometryConversion
             Assert.False(CurveUtils.IsLineLike(arc.ToRevitType(false)));
         }
 
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void CurvesAreSimilar_Lines()
+        {
+            var a = Point.ByCoordinates(0, 0);
+            var b = Point.ByCoordinates(1, 1);
+            
+            var line1 = Line.ByStartPointEndPoint(a, b);
+            var line2 = Line.ByStartPointEndPoint(b, a);
+
+            var revitLine1 = line1.ToRevitType();
+            var revitLine2 = line2.ToRevitType();
+
+            Assert.True(CurveUtils.CurvesAreSimilar(revitLine1, revitLine1));
+            Assert.False(CurveUtils.CurvesAreSimilar(revitLine1, revitLine2));
+        }
     }
 }
