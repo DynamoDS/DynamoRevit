@@ -101,7 +101,8 @@ namespace Revit.Elements
                 if ((wallLocation.Curve is Autodesk.Revit.DB.Line == curve is Autodesk.Revit.DB.Line) ||
                     (wallLocation.Curve is Autodesk.Revit.DB.Arc == curve is Autodesk.Revit.DB.Arc))
                 {
-                    wallLocation.Curve = curve;
+                    if(!CurveUtils.CurvesAreSimilar(wallLocation.Curve, curve))
+                        wallLocation.Curve = curve;
 
                     Autodesk.Revit.DB.Parameter baseLevelParameter =
                        wallElem.get_Parameter(Autodesk.Revit.DB.BuiltInParameter.WALL_BASE_CONSTRAINT);

@@ -5,6 +5,8 @@ using Autodesk.Revit.DB;
 
 using DynamoServices;
 
+using DynamoUnits;
+
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
@@ -133,7 +135,8 @@ namespace Revit.Elements
         private void InternalSetElevation(double elevation)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
-            this.InternalLevel.Elevation = elevation;
+            if(!InternalLevel.Elevation.AlmostEquals(elevation, 1.0e-6))
+                InternalLevel.Elevation = elevation;
             TransactionManager.Instance.TransactionTaskDone();
         }
 
