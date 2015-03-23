@@ -227,9 +227,16 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            //update the curve
+            // Updating the curve will cause a document modification event
+            // which will be handled by this node and could cause an 
+            // infinite loop. Check the framing's curve for similarity to the 
+            // provided curve and update only if the two are different.
+
             var locCurve = InternalFamilyInstance.Location as LocationCurve;
-            locCurve.Curve = crv;
+            if (!CurveUtils.CurvesAreSimilar(locCurve.Curve, crv))
+            {
+                locCurve.Curve = crv;
+            }
 
             TransactionManager.Instance.TransactionTaskDone();
         }

@@ -4,6 +4,8 @@ using Autodesk.Revit.DB;
 
 using DynamoServices;
 
+using DynamoUnits;
+
 using Revit.GeometryConversion;
 
 using RevitServices.Persistence;
@@ -138,7 +140,8 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalModelText.Depth = depth;
+            if(!InternalModelText.Depth.AlmostEquals(depth, 1.0e-6))
+                InternalModelText.Depth = depth;
 
             TransactionManager.Instance.TransactionTaskDone();
         }
@@ -151,7 +154,8 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalModelText.Text = text;
+            if(InternalModelText.Text != text)
+                InternalModelText.Text = text;
 
             TransactionManager.Instance.TransactionTaskDone();
         }
@@ -164,7 +168,8 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalModelText.ModelTextType = modelTextType;
+            if(InternalModelText.ModelTextType.UniqueId != modelTextType.UniqueId)
+                InternalModelText.ModelTextType = modelTextType;
 
             TransactionManager.Instance.TransactionTaskDone();
         }
