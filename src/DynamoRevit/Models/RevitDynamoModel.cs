@@ -147,8 +147,6 @@ namespace Dynamo.Applications.Models
         {
             externalCommandData = configuration.ExternalCommandData;
 
-            RevitServicesUpdater.Initialize(DynamoRevitApp.Updaters);
-
             SubscribeRevitServicesUpdaterEvents();
 
             SubscribeApplicationEvents(configuration.ExternalCommandData);
