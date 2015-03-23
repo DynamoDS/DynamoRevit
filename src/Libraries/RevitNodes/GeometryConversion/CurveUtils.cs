@@ -79,18 +79,18 @@ namespace Revit.GeometryConversion
             return false;
         }
 
-        public static bool CurvesAreSimilar(Curve a, Curve b, double tolerance = 1.0e-6)
+        public static bool CurvesAreSimilar(Curve a, Curve b)
         {
             if (a.GetType() != b.GetType())
                 return false;
 
-            if (!CurvesHaveSameEndpoints(a, b, tolerance))
+            if (!CurvesHaveSameEndpoints(a, b, Tolerance))
                 return false;
 
             dynamic ad = a;
             dynamic bd = b;
 
-            return AreSimilar(ad, bd, tolerance);
+            return AreSimilar(ad, bd, Tolerance);
         }
 
         #region IsLineLike Helpers
@@ -189,7 +189,7 @@ namespace Revit.GeometryConversion
         private static bool CompareRandomParameterLocationDistances(
             Curve a, Curve b, double tolerance)
         {
-            for (var i = 10; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var rand = new Random();
                 var t = rand.NextDouble();
