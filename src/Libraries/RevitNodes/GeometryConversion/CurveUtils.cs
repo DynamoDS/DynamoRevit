@@ -79,6 +79,17 @@ namespace Revit.GeometryConversion
             return false;
         }
 
+        /// <summary>
+        /// This method uses basic checks to compare curves for similarity.
+        /// It starts by comparing the curves' end points. Curves which have similar
+        /// end points but different directions will not be regarded as similar,
+        /// because directionality is important in Revit for other purposes. 
+        /// Depending on the curve type, other comparisons are then performed. 
+        /// </summary>
+        /// <param name="a">The first curve.</param>
+        /// <param name="b">The second curve.</param>
+        /// <returns>Returns true if the curves are similar within Tolerance, and 
+        /// false if they are not.</returns>
         public static bool CurvesAreSimilar(Curve a, Curve b)
         {
             if (a.GetType() != b.GetType())
