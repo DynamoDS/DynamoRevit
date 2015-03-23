@@ -2,6 +2,8 @@
 
 using Autodesk.DesignScript.Runtime;
 
+using DynamoUnits;
+
 using Revit.GeometryReferences;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
@@ -188,7 +190,8 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalDividedSurface.AllGridRotation = rotation;
+            if(!InternalDividedSurface.AllGridRotation.AlmostEquals(rotation, 1.0e-6))
+                InternalDividedSurface.AllGridRotation = rotation;
 
             TransactionManager.Instance.TransactionTaskDone();
         }
