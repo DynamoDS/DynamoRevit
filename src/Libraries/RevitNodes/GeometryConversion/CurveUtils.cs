@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Media;
 
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+
+using DynamoUnits;
 
 namespace Revit.GeometryConversion
 {
@@ -28,7 +28,7 @@ namespace Revit.GeometryConversion
                 XYZ norm = null;
 
                 //keep old plane computations
-                if (System.Math.Abs(p0.Z - p2.Z) < Tolerance)
+                if (Math.Abs(p0.Z - p2.Z) < Tolerance)
                 {
                     norm = XYZ.BasisZ;
                 }
@@ -69,7 +69,7 @@ namespace Revit.GeometryConversion
             return bestFitPlane.ToPlane(false);
         }
 
-        public static bool IsLineLike(Autodesk.Revit.DB.Curve crv)
+        public static bool IsLineLike(Curve crv)
         {
             if (crv is Line) return true;
             if (crv is HermiteSpline) return IsLineLikeInternal(crv as HermiteSpline);
@@ -79,14 +79,28 @@ namespace Revit.GeometryConversion
             return false;
         }
 
+        public static bool CurvesAreSimilar(Curve a, Curve b, double tolerance = 1.0e-6)
+        {
+            if (a.GetType() != b.GetType())
+                return false;
+
+            if (!CurvesHaveSameEndpoints(a, b, tolerance))
+                return false;
+
+            dynamic ad = a;
+            dynamic bd = b;
+
+            return AreSimilar(ad, bd, tolerance);
+        }
+
         #region IsLineLike Helpers
 
-        private static bool IsLineLikeInternal(Autodesk.Revit.DB.NurbSpline crv)
+        private static bool IsLineLikeInternal(NurbSpline crv)
         {
             return IsLineLikeInternal(crv.CtrlPoints);
         }
 
-        private static bool IsLineLikeInternal(Autodesk.Revit.DB.HermiteSpline crv)
+        private static bool IsLineLikeInternal(HermiteSpline crv)
         {
             var controlPoints = crv.ControlPoints;
             var controlPointsAligned = IsLineLikeInternal(controlPoints);
@@ -122,6 +136,72 @@ namespace Revit.GeometryConversion
                 // end points?
                 return !points.Any(x => x.ToPoint(false).DistanceTo(line) > Tolerance);
             }
+        }
+
+        // This test checks end points with directionality. Curves that share end points
+        /// but are reversed are not considered similar.
+        private static bool CurvesHaveSameEndpoints(Curve a, Curve b, double tolerance)
+        {
+            return a.GetEndPoint(0).IsAlmostEqualTo(b.GetEndPoint(0), tolerance) &&
+                a.GetEndPoint(1).IsAlmostEqualTo(b.GetEndPoint(1));
+        }
+
+        private static bool AreSimilar(Line a, Line b, double tolerance)
+        {
+            return CurvesHaveSameEndpoints(a,b, tolerance);
+        }
+
+        private static bool AreSimilar(Arc a, Arc b, double tolerance)
+        {
+            return a.Center.IsAlmostEqualTo(b.Center) && 
+                a.Radius.AlmostEquals(b.Radius, 1.0e-6) && 
+                a.IsCyclic == b.IsCyclic;
+        }
+
+        private static bool AreSimilar(HermiteSpline a, HermiteSpline b, double tolerance)
+        {
+            return CompareRandomParameterLocationDistances(a, b, tolerance);
+        }
+
+        private static bool AreSimilar(NurbSpline a, NurbSpline b, double tolerance)
+        {
+            return CompareRandomParameterLocationDistances(a, b, tolerance);
+        }
+
+        private static bool AreSimilar(Ellipse a, Ellipse b, double tolerance)
+        {
+            return a.Center.IsAlmostEqualTo(b.Center, tolerance) &&
+                a.RadiusX.AlmostEquals(b.RadiusX, tolerance) &&
+                a.RadiusY.AlmostEquals(b.RadiusY, tolerance);
+        }
+
+        private static bool AreSimilar(CylindricalHelix a, CylindricalHelix b, double tolerance)
+        {
+            return a.Height.AlmostEquals(b.Height, tolerance) &&
+                a.BasePoint.IsAlmostEqualTo(b.BasePoint, tolerance) &&
+                a.Pitch.AlmostEquals(b.Pitch, tolerance) &&
+                a.Radius.AlmostEquals(b.Radius, tolerance) &&
+                a.XVector.IsAlmostEqualTo(b.XVector) &&
+                a.YVector.IsAlmostEqualTo(b.YVector) &&
+                a.ZVector.IsAlmostEqualTo(b.ZVector);
+        }
+
+        private static bool CompareRandomParameterLocationDistances(
+            Curve a, Curve b, double tolerance)
+        {
+            for (var i = 10; i < 10; i++)
+            {
+                var rand = new Random();
+                var t = rand.NextDouble();
+
+                var ptA = a.Evaluate(t, true);
+                var ptB = b.Evaluate(t, true);
+
+                if (ptA.DistanceTo(ptB) > tolerance)
+                    return false;
+            }
+
+            return true;
         }
 
         #endregion
