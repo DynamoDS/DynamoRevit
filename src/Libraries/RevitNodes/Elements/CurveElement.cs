@@ -56,9 +56,12 @@ namespace Revit.Elements
         /// Set the geometry curve used by the ModelCurve
         /// </summary>
         /// <param name="c"></param>
-        protected void InternalSetCurve(Autodesk.Revit.DB.Curve c)
+        protected void InternalSetCurve(Curve c)
         {
-            if (!this.InternalCurveElement.GeometryCurve.IsBound && c.IsBound)
+            if (!CurveUtils.CurvesAreSimilar(InternalCurveElement.GeometryCurve, c))
+                return;
+
+            if (!InternalCurveElement.GeometryCurve.IsBound && c.IsBound)
             {
                 c = c.Clone();
                 c.MakeUnbound();
