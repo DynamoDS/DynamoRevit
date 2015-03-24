@@ -130,13 +130,23 @@ namespace Revit.Elements
         #endregion
 
         #region Public static constructors
-
+        /// <summary>
+        /// Gets form from given curves
+        /// </summary>
+        /// <param name="curves"></param>
+        /// <param name="isSolid"></param>
+        /// <returns></returns>
         public static Form ByLoftCrossSections(Autodesk.DesignScript.Geometry.Curve[] curves, bool isSolid = true)
         {
             if (curves == null) throw new ArgumentNullException("curves");
             return ByLoftCrossSectionsInternal(curves, isSolid);
         }
-
+        /// <summary>
+        ///  Gets form from given curves
+        /// </summary>
+        /// <param name="curves"></param>
+        /// <param name="isSolid"></param>
+        /// <returns></returns>
         public static Form ByLoftCrossSections(Autodesk.DesignScript.Geometry.Curve[][] curves, bool isSolid = true)
         {
             if (curves == null) throw new ArgumentNullException("curves");
