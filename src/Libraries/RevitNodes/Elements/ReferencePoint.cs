@@ -202,7 +202,8 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalReferencePoint.Position = xyz;
+            if(!InternalReferencePoint.Position.IsAlmostEqualTo(xyz))
+                InternalReferencePoint.Position = xyz;
 
             TransactionManager.Instance.TransactionTaskDone();
         }
@@ -221,7 +222,7 @@ namespace Revit.Elements
             PointOnCurveMeasurementType measurementType, PointOnCurveMeasureFrom measureFrom)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
-
+            
             var plc = new PointLocationOnCurve(measurementType, parameter, measureFrom);
             var edgePoint = Document.Application.Create.NewPointOnEdge(curveReference, plc);
             InternalReferencePoint.SetPointElementReference(edgePoint);
