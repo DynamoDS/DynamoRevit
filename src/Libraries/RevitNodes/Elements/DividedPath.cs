@@ -224,7 +224,12 @@ namespace Revit.Elements
         #endregion
 
         #region Static constructors
-
+        /// <summary>
+        ///  Creates a revit divided path on a curve given the curve and number of division
+        /// </summary>
+        /// <param name="curve"></param>
+        /// <param name="divisions"></param>
+        /// <returns></returns>
         public static DividedPath ByCurveAndDivisions(Autodesk.DesignScript.Geometry.Curve curve, int divisions)
         {
             if (curve == null)
@@ -239,7 +244,12 @@ namespace Revit.Elements
 
             return new DividedPath(new[] { ElementCurveReference.TryGetCurveReference(curve) }, divisions);
         }
-
+        /// <summary>
+        ///  Creates a revit divided path on a curve given curves and number of division
+        /// </summary>
+        /// <param name="curve"></param>
+        /// <param name="divisions"></param>
+        /// <returns></returns>
         public static DividedPath ByCurvesAndDivisions(Autodesk.DesignScript.Geometry.Curve[] curve, int divisions)
         {
             if (curve == null)
