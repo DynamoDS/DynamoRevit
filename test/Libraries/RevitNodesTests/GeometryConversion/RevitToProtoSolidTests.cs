@@ -38,7 +38,7 @@ namespace RevitNodesTests.GeometryConversion
             }
         }
 
-        [Test, Category("Failure")]
+        [Test]
         [TestModel(@".\Solids.rfa")]
         public void ToProtoType_Boolean_ShouldConvertAllFormsInDocument()
         {
