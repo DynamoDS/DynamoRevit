@@ -78,7 +78,9 @@ namespace Revit.Elements
       }
 
       private PolyCurve[] boundsCache = null;
-
+      /// <summary>
+      /// Gets poly curve from curtain panel
+      /// </summary>
       public PolyCurve[] Boundaries
       {
          get
@@ -121,7 +123,9 @@ namespace Revit.Elements
             return boundsCache;
          }
       }
-
+       /// <summary>
+       /// Returns true of the specific curtain panel has plane. Otherwise return false
+       /// </summary>
       public bool HasPlane
       {
          get
@@ -154,7 +158,9 @@ namespace Revit.Elements
             return true;
          }
       }
-
+       /// <summary>
+       /// Gets panel plane from the given curtain panel
+       /// </summary>
       public Plane PanelPlane
       {
          get
@@ -190,7 +196,9 @@ namespace Revit.Elements
              return plane.ToPlane();
          }
       }
-
+      /// <summary>
+      /// Gets the length of the specific curtain panel
+      /// </summary>
       public double Length
       {
          get
@@ -210,7 +218,9 @@ namespace Revit.Elements
             return lengthVal * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
          }
       }
-
+       /// <summary>
+       /// Checks whether the specific curtain panel is rectangular. Return true of the curtain panel is rectangular. Otherwise return false
+       /// </summary>
       public bool IsRectangular
       {
          get
@@ -238,7 +248,9 @@ namespace Revit.Elements
             return result;
          }
       }
-
+       /// <summary>
+       /// Gets the width of the specific curtain panel
+       /// </summary>
       public double Width
       {
          get
@@ -268,7 +280,9 @@ namespace Revit.Elements
             return result * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
          }
       }
-
+       /// <summary>
+       /// Gets height of the specific curtain panel
+       /// </summary>
       public double Height
       {
          get
@@ -390,7 +404,10 @@ namespace Revit.Elements
       #endregion
 
       #region public methods
-
+       /// <summary>
+       /// Gets Mullion from curtain panel
+       /// </summary>
+       /// <returns></returns>
       public Mullion[] SupportingMullions()
       {
          var elementAsPanel = InternalElement as Autodesk.Revit.DB.Panel;
@@ -441,7 +458,10 @@ namespace Revit.Elements
          }
          return result.ToArray();
       }
-
+       /// <summary>
+       /// Gets family instance from curtainPanel
+       /// </summary>
+       /// <returns></returns>
       public FamilyInstance AsFamilyInstance()
       {
          return FamilyInstance.FromExisting(InternalElement as Autodesk.Revit.DB.FamilyInstance, true);

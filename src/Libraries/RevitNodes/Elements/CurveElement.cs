@@ -114,7 +114,12 @@ namespace Revit.Elements
         }
 
         #endregion
-
+        /// <summary>
+        /// Transforms a smooth curve into an approximate polygonal representation with a given tolerance for max length
+        /// </summary>
+        /// <param name="package"></param>
+        /// <param name="tol"></param>
+        /// <param name="gridLines"></param>
         public new void Tessellate(IRenderPackage package, double tol, int gridLines)
         {
             //Ensure that the object is still alive
