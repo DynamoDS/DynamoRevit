@@ -219,7 +219,7 @@ namespace Revit.Elements
          }
       }
        /// <summary>
-       /// Checks whether the specific curtain panel is rectangular. Return true of the curtain panel is rectangular. Otherwise return false
+       /// Checks whether the specific curtain panel is rectangular. Return true if the curtain panel is rectangular. Otherwise return false
        /// </summary>
       public bool IsRectangular
       {
