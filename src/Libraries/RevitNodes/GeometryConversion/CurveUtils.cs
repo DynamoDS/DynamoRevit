@@ -165,8 +165,9 @@ namespace Revit.GeometryConversion
         private static bool AreSimilar(Arc a, Arc b, double tolerance)
         {
             return a.Center.IsAlmostEqualTo(b.Center) && 
-                a.Radius.AlmostEquals(b.Radius, 1.0e-6) && 
-                a.IsCyclic == b.IsCyclic;
+                a.Radius.AlmostEquals(b.Radius, Tolerance) && 
+                a.IsCyclic == b.IsCyclic &&
+                a.Normal.IsAlmostEqualTo(b.Normal);
         }
 
         private static bool AreSimilar(HermiteSpline a, HermiteSpline b, double tolerance)
@@ -183,7 +184,8 @@ namespace Revit.GeometryConversion
         {
             return a.Center.IsAlmostEqualTo(b.Center, tolerance) &&
                 a.RadiusX.AlmostEquals(b.RadiusX, tolerance) &&
-                a.RadiusY.AlmostEquals(b.RadiusY, tolerance);
+                a.RadiusY.AlmostEquals(b.RadiusY, tolerance) && 
+                a.Normal.IsAlmostEqualTo(b.Normal);
         }
 
         private static bool AreSimilar(CylindricalHelix a, CylindricalHelix b, double tolerance)
@@ -200,7 +202,7 @@ namespace Revit.GeometryConversion
         private static bool CompareRandomParameterLocationDistances(
             Curve a, Curve b, double tolerance)
         {
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < 20; i++)
             {
                 var rand = new Random();
                 var t = rand.NextDouble();
