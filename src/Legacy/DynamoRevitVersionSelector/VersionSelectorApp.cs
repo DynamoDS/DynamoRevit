@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Media.Imaging;
+
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -36,6 +40,8 @@ namespace Dynamo.Applications
     [Regeneration(RegenerationOption.Manual)]
     public class VersionLoader : IExternalApplication
     {
+        private static UIControlledApplication uiApplication;
+        private static SplitButton splitButton;
         internal static List<DynamoProduct> Products { get; private set; }
 
         internal static string GetDynamoRevitPath(DynamoProduct product, string revitVersion)
@@ -48,6 +54,7 @@ namespace Dynamo.Applications
 
         public Result OnStartup(UIControlledApplication application)
         {
+            uiApplication = application;
             // now we have a default path, but let's look at
             // the load path file to see what was last selected
             var cachedPath = String.Empty;
@@ -89,9 +96,10 @@ namespace Dynamo.Applications
             {
                 RibbonPanel ribbonPanel = application.CreateRibbonPanel(Resources.DynamoVersions);
 
-                var button = AddSplitButtonGroup(ribbonPanel);
+                splitButton = AddSplitButtonGroup(ribbonPanel);
+                
                 if(index != -1)
-                    button.CurrentButton = button.GetItems().ElementAt(index);
+                    splitButton.CurrentButton = splitButton.GetItems().ElementAt(index);
             }
 
             string loadPath = GetDynamoRevitPath(Products.Last(), revitVersion);
@@ -101,23 +109,38 @@ namespace Dynamo.Applications
             if (String.IsNullOrEmpty(loadPath))
                 return Result.Failed;
 
-            var ass = Assembly.LoadFrom(loadPath);
-            var revitApp = ass.CreateInstance("Dynamo.Applications.DynamoRevitApp");
-            revitApp.GetType().GetMethod("OnStartup").Invoke(revitApp, new object[] { application });
+            if (Products.Count == 1) //If only one product is installed load the Revit App directly
+            {
+                var ass = Assembly.LoadFrom(loadPath);
+                var revitApp = ass.CreateInstance("Dynamo.Applications.DynamoRevitApp");
+                revitApp.GetType().GetMethod("OnStartup").Invoke(revitApp, new object[] { application });
+            }
 
             return Result.Succeeded;
         }
 
-        public static bool CacheApplicationPath(int index, string revitVersion)
+        public static bool LaunchDynamoCommand(int index, ExternalCommandData commandData)
         {
             if (index >= Products.Count)
                 return false; //Index out of range
 
+            var revitVersion = commandData.Application.Application.VersionNumber;
             var p = Products[index];
             var path = GetDynamoRevitPath(p, revitVersion);
             Utils.WriteToFile(path, revitVersion);
 
-            Utils.ShowRestartMessage(p.VersionString);
+            //Initialize application
+            var ass = Assembly.LoadFrom(path);
+            var revitApp = ass.CreateInstance("Dynamo.Applications.DynamoRevitApp");
+            revitApp.GetType().GetMethod("OnStartup").Invoke(revitApp, new object[] { uiApplication });
+
+            //Invoke command
+            string message = string.Empty;
+            var revitCmd = ass.CreateInstance("Dynamo.Applications.DynamoRevit");
+            revitCmd.GetType().GetMethod("Execute").Invoke(revitCmd, new object[] {commandData, message, null });
+
+            splitButton.Enabled = false; //Disable the split button, no more needed.
+            uiApplication = null; //release application, no more needed.
             return true;
         }
 
@@ -126,6 +149,15 @@ namespace Dynamo.Applications
             var versionData = new SplitButtonData("versions", Resources.DynamoVersions);
             var button = panel.AddItem(versionData) as SplitButton;
 
+            Bitmap dynamoIcon = Resources.dynamo_32x32;
+
+            BitmapSource bitmapSource =
+                Imaging.CreateBitmapSourceFromHBitmap(
+                    dynamoIcon.GetHbitmap(),
+                    IntPtr.Zero,
+                    Int32Rect.Empty,
+                    BitmapSizeOptions.FromEmptyOptions());
+
             PushButton item = null;
             int i = 0;
             foreach (var p in Products)
@@ -133,12 +165,16 @@ namespace Dynamo.Applications
                 var name = p.VersionString;
                 var versionInfo = p.VersionInfo;
                 var text = string.Format("{0}.{1}.{2}", versionInfo.Item1, versionInfo.Item2, versionInfo.Item3);
-
+                
                 var itemData = new PushButtonData(
                                 name,
                                 String.Format(Resources.DynamoVersionText, text),
                                 Assembly.GetExecutingAssembly().Location,
                                 String.Format("Dynamo.Applications.Command{0}", i++));
+
+                itemData.Image = bitmapSource;
+                itemData.LargeImage = bitmapSource;
+                itemData.ToolTip = string.Format(Resources.DynamoVersionTooltip, text);
                 item = button.AddPushButton(itemData);
             }
 
@@ -185,7 +221,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(0, commandData.Application.Application.VersionNumber))
+            if (!VersionLoader.LaunchDynamoCommand(0, commandData))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -198,7 +234,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(1, commandData.Application.Application.VersionNumber))
+            if (!VersionLoader.LaunchDynamoCommand(1, commandData))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -211,7 +247,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(2, commandData.Application.Application.VersionNumber))
+            if (!VersionLoader.LaunchDynamoCommand(2, commandData))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -224,7 +260,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(3, commandData.Application.Application.VersionNumber))
+            if (!VersionLoader.LaunchDynamoCommand(3, commandData))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -237,7 +273,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(4, commandData.Application.Application.VersionNumber))
+            if (!VersionLoader.LaunchDynamoCommand(4, commandData))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -250,7 +286,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(5, commandData.Application.Application.VersionNumber))
+            if (!VersionLoader.LaunchDynamoCommand(5, commandData))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -263,7 +299,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(6, commandData.Application.Application.VersionNumber))
+            if (!VersionLoader.LaunchDynamoCommand(6, commandData))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -276,7 +312,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(7, commandData.Application.Application.VersionNumber))
+            if (!VersionLoader.LaunchDynamoCommand(7, commandData))
                 return Result.Failed;
 
             return Result.Succeeded;
@@ -289,7 +325,7 @@ namespace Dynamo.Applications
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (!VersionLoader.CacheApplicationPath(8, commandData.Application.Application.VersionNumber))
+            if (!VersionLoader.LaunchDynamoCommand(8, commandData))
                 return Result.Failed;
 
             return Result.Succeeded;
