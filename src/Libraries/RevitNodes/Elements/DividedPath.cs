@@ -225,7 +225,7 @@ namespace Revit.Elements
 
         #region Static constructors
         /// <summary>
-        ///  Creates a revit divided path on a curve given the curve and number of division
+        ///  Creates a Revit divided path on the given curve with specified amount of division
         /// </summary>
         /// <param name="curve"></param>
         /// <param name="divisions"></param>
@@ -239,13 +239,13 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception("The number of divisions must be greater than 2!");
+                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreateThan2);
             }
 
             return new DividedPath(new[] { ElementCurveReference.TryGetCurveReference(curve) }, divisions);
         }
         /// <summary>
-        ///  Creates a revit divided path on a curve given curves and number of division
+        /// Creates a Revit divided path on the given collection of curves with specified amount of division
         /// </summary>
         /// <param name="curve"></param>
         /// <param name="divisions"></param>
@@ -259,7 +259,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception("The number of divisions must be greater than 2!");
+                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreateThan2);
             }
 
             if (curve.Any(x => x == null))
