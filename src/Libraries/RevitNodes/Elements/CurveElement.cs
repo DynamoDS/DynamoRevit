@@ -5,7 +5,7 @@ using Autodesk.Revit.DB;
 using Revit.GeometryConversion;
 using Revit.GeometryReferences;
 using RevitServices.Persistence;
-
+using Autodesk.DesignScript.Runtime;
 namespace Revit.Elements
 {
     public abstract class CurveElement : Element, IGraphicItem
@@ -117,7 +117,7 @@ namespace Revit.Elements
         }
 
         #endregion
-
+        [IsVisibleInDynamoLibrary(false)]
         public new void Tessellate(IRenderPackage package, double tol, int gridLines)
         {
             //Ensure that the object is still alive
