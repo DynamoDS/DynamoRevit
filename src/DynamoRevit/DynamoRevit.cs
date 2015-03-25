@@ -362,8 +362,6 @@ namespace Dynamo.Applications
         {
             var view = (DynamoView)sender;
 
-            RevitServicesUpdater.DisposeInstance();
-
             view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
             view.Closed -= OnDynamoViewClosed;
 
