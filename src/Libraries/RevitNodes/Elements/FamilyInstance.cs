@@ -173,14 +173,18 @@ namespace Revit.Elements
         #endregion
 
         #region Public properties
-        
+        /// <summary>
+        /// Gets family symbol of the specific family instance
+        /// </summary>
         public new FamilySymbol Symbol
         {
             // NOTE: Because AbstractFamilyInstance is not visible in the library
             //       we redefine this method on FamilyInstance
             get { return base.Symbol; }
         }
-
+        /// <summary>
+        /// Gets the location of the specific family instance
+        /// </summary>
         public new Point Location
         {
             // NOTE: Because AbstractFamilyInstance is not visible in the library
