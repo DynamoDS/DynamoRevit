@@ -412,7 +412,7 @@ namespace Revit.Elements
       {
          var elementAsPanel = InternalElement as Autodesk.Revit.DB.Panel;
          if (elementAsPanel == null)
-            throw new Exception("Curtain Panel should represent Revit panel");
+            throw new Exception(Properties.Resources.CurtainPanelShouldRepresentRevitPanel);
          var bounds = this.Boundaries;
 
          var host = elementAsPanel.Host;

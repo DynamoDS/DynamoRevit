@@ -129,6 +129,9 @@
   <data name="CurtainPanelIsNotPlanar" xml:space="preserve">
     <value>Curtain Panel is not planar</value>
   </data>
+  <data name="CurtainPanelShouldRepresentRevitPanel" xml:space="preserve">
+    <value>Curtain Panel should represent Revit panel</value>
+  </data>
   <data name="CurtainPannelIsNotRectangular" xml:space="preserve">
     <value>Curtain Panel is not rectangular</value>
   </data>

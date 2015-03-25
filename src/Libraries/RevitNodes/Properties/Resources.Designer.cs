@@ -97,6 +97,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curtain Panel should represent Revit panel.
+        /// </summary>
+        internal static string CurtainPanelShouldRepresentRevitPanel {
+            get {
+                return ResourceManager.GetString("CurtainPanelShouldRepresentRevitPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Curtain Panel is not rectangular.
         /// </summary>
         internal static string CurtainPannelIsNotRectangular {
