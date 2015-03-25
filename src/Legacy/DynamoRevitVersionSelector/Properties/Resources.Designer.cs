@@ -61,6 +61,16 @@ namespace DynamoRevitVersionSelector.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dynamo_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("dynamo_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dynamo Version.
         /// </summary>
         internal static string DynamoVersions {
@@ -75,6 +85,15 @@ namespace DynamoRevitVersionSelector.Properties {
         internal static string DynamoVersionText {
             get {
                 return ResourceManager.GetString("DynamoVersionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launches Dynamo {0}, to launch a different version of Dynamo you may need to restart Revit.
+        /// </summary>
+        internal static string DynamoVersionTooltip {
+            get {
+                return ResourceManager.GetString("DynamoVersionTooltip", resourceCulture);
             }
         }
         
