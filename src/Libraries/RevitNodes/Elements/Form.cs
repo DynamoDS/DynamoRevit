@@ -131,7 +131,7 @@ namespace Revit.Elements
 
         #region Public static constructors
         /// <summary>
-        /// Gets form from given curves
+        /// Creates a Form by lofting a list of curves
         /// </summary>
         /// <param name="curves"></param>
         /// <param name="isSolid"></param>
@@ -142,7 +142,7 @@ namespace Revit.Elements
             return ByLoftCrossSectionsInternal(curves, isSolid);
         }
         /// <summary>
-        /// Gets form from given curves
+        /// Creates a Form by lofting a nested list of curves
         /// </summary>
         /// <param name="curves"></param>
         /// <param name="isSolid"></param>
