@@ -397,6 +397,8 @@ namespace Dynamo.Applications.Models
             UnsubscribeDocumentManagerEvents();
             UnsubscribeRevitServicesUpdaterEvents();
             UnsubscribeTransactionManagerEvents();
+
+            RevitServicesUpdater.DisposeInstance();
         }
 
         /// <summary>
