@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 using DynamoServices;
 
@@ -23,6 +24,17 @@ namespace RevitServices.Persistence
         {
             wrappers = new Dictionary<T, List<object>>();
             revitDeleted = new Dictionary<T, bool>();
+        }
+
+        public static void DisposeInstance()
+        {
+            lock (singletonMutex)
+            {
+                if (manager != null)
+                {
+                    manager = null;
+                }
+            }
         }
 
         /// <summary>
@@ -180,6 +192,20 @@ namespace RevitServices.Persistence
 
         }
 
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("ElementIdLifeCycleManager:");
+            foreach (var kvp in wrappers)
+            {
+                sb.AppendLine(string.Format("\tElement ID {0}:", kvp.Key));
+                foreach (var item in kvp.Value)
+                {
+                    sb.AppendLine(string.Format("\t\t{0}:", item));
+                }
+            }
 
+            return sb.ToString();
+        }
     }
 }
