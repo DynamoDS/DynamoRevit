@@ -159,7 +159,7 @@ namespace Revit.Elements
          }
       }
       /// <summary>
-      ///  Get a plane of the given curtain panel, if it is planar
+      ///  Gets a plane of the given curtain panel, if it is planar
       /// </summary>
       public Plane PanelPlane
       {
