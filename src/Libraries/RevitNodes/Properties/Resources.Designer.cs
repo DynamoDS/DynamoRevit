@@ -88,6 +88,33 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curtain Panel is not planar.
+        /// </summary>
+        internal static string CurtainPanelIsNotPlanar {
+            get {
+                return ResourceManager.GetString("CurtainPanelIsNotPlanar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curtain Panel is not rectangular.
+        /// </summary>
+        internal static string CurtainPannelIsNotRectangular {
+            get {
+                return ResourceManager.GetString("CurtainPannelIsNotRectangular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of divisions must be greater than 2!.
+        /// </summary>
+        internal static string NumberOfDivisionsMustBeGreaterThan2 {
+            get {
+                return ResourceManager.GetString("NumberOfDivisionsMustBeGreaterThan2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The supplied path is invalid..
         /// </summary>
         internal static string View_ExportAsImage_Path_Invalid {

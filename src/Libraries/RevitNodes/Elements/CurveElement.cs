@@ -5,7 +5,7 @@ using Autodesk.Revit.DB;
 using Revit.GeometryConversion;
 using Revit.GeometryReferences;
 using RevitServices.Persistence;
-
+using Autodesk.DesignScript.Runtime;
 namespace Revit.Elements
 {
     public abstract class CurveElement : Element, IGraphicItem
@@ -114,12 +114,7 @@ namespace Revit.Elements
         }
 
         #endregion
-        /// <summary>
-        /// Transforms a smooth curve into an approximate polygonal representation with a given tolerance for max length
-        /// </summary>
-        /// <param name="package"></param>
-        /// <param name="tol"></param>
-        /// <param name="gridLines"></param>
+        [IsVisibleInDynamoLibrary(false)]
         public new void Tessellate(IRenderPackage package, double tol, int gridLines)
         {
             //Ensure that the object is still alive
