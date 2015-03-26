@@ -68,15 +68,15 @@ namespace DSRevitNodesUI
 
         public override void Dispose()
         {
-            base.Dispose();
             DynamoRevit.AddIdleAction(
                 () =>
                 {
-                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened +=
+                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -=
                         model_RevitDocumentChanged;
-                    RevitServicesUpdater.Instance.ElementsModified +=
+                    RevitServicesUpdater.Instance.ElementsModified -=
                         RevitServicesUpdater_ElementsModified;
                 });
+            base.Dispose();
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
