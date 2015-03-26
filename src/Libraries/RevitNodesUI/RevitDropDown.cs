@@ -44,6 +44,12 @@ namespace DSRevitNodesUI
                 SelectedIndex = 0;
             }
         }
+
+        public override void Dispose()
+        {
+            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -= Controller_RevitDocumentChanged;
+            base.Dispose();
+        }
     }
 
     [NodeName("Family Types")]
