@@ -211,6 +211,7 @@ namespace RevitTestServices
                 // of the base class, here a local instance of pathResolver is used.
                 // 
                 var revitTestPathResolver = new RevitTestPathResolver();
+                revitTestPathResolver.InitializePreloadedLibraries();
 
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new RevitDynamoModel.RevitStartConfiguration()
