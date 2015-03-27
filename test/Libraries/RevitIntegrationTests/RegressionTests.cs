@@ -45,6 +45,7 @@ namespace RevitSystemTests
 
                 //Ensure SystemTestBase picks up the right directory.
                 pathResolver = new RevitTestPathResolver();
+                (pathResolver as RevitTestPathResolver).InitializePreloadedLibraries();
 
                 //Setup should be called after swapping document, so that RevitDynamoModel 
                 //is now associated with swapped model.
