@@ -51,7 +51,13 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalFamilyInstance.Symbol = fs;
+            // Don't attempt to set the symbol if it is the same.
+            // Doing so will raise a document modification event which
+            // will, in turn, be responded to by this node causing an infinite loop.
+            if (InternalFamilyInstance.Symbol.UniqueId != fs.UniqueId)
+            {
+                InternalFamilyInstance.Symbol = fs;
+            }
 
             TransactionManager.Instance.TransactionTaskDone();
         }
