@@ -78,7 +78,9 @@ namespace Revit.Elements
       }
 
       private PolyCurve[] boundsCache = null;
-
+       /// <summary>
+       ///  Gets curtain panel boundaries
+       /// </summary>
       public PolyCurve[] Boundaries
       {
          get
@@ -121,7 +123,9 @@ namespace Revit.Elements
             return boundsCache;
          }
       }
-
+       /// <summary>
+       /// Checks if the specific curtain panel is planar
+       /// </summary>
       public bool HasPlane
       {
          get
@@ -154,7 +158,9 @@ namespace Revit.Elements
             return true;
          }
       }
-
+       /// <summary>
+       /// Gets a plane of the given curtain panel, if it is planar
+       /// </summary>
       public Plane PanelPlane
       {
          get
@@ -172,25 +178,27 @@ namespace Revit.Elements
                   cLoop.Append(crv);
                }
                if (!cLoop.HasPlane())
-                  throw new Exception(" Curtain Panel is not planar");
+                  throw new Exception(Properties.Resources.CurtainPanelIsNotPlanar);
                var thisPlane = cLoop.GetPlane();
                if (plane == null)
                   plane = thisPlane;
                else if (Math.Abs(plane.Normal.DotProduct(thisPlane.Normal)) < 1.0 - 1.0e-9)
-                  throw new Exception(" Curtain Panel is not planar");
+                   throw new Exception(Properties.Resources.CurtainPanelIsNotPlanar);
                else
                {
                   if (Math.Abs((plane.Origin - thisPlane.Origin).DotProduct(plane.Normal)) > 1.0e-9)
-                     throw new Exception(" Curtain Panel is not planar");
+                      throw new Exception(Properties.Resources.CurtainPanelIsNotPlanar);
                }
             }
             if (plane == null)
-               throw new Exception(" Curtain Panel is not planar");
+                throw new Exception(Properties.Resources.CurtainPanelIsNotPlanar);
 
              return plane.ToPlane();
          }
       }
-
+       /// <summary>
+       /// Gets the length of the specific curtain panel boundaries
+       /// </summary>
       public double Length
       {
          get
@@ -210,7 +218,9 @@ namespace Revit.Elements
             return lengthVal * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
          }
       }
-
+       /// <summary>
+      /// Checks whether the specific curtain panel is rectangular. Return true if the curtain panel is rectangular. Otherwise return false
+       /// </summary>
       public bool IsRectangular
       {
          get
@@ -238,7 +248,9 @@ namespace Revit.Elements
             return result;
          }
       }
-
+       /// <summary>
+      /// Gets the width of the specific curtain panel, if it's rectangular
+       /// </summary>
       public double Width
       {
          get
@@ -249,7 +261,7 @@ namespace Revit.Elements
             for (; enumCurveLoops.MoveNext();)
             {
                if (num > 0)
-                  throw new Exception(" Curtain Panel is not rectangular");
+                  throw new Exception(Properties.Resources.CurtainPannelIsNotRectangular);
                num++;
                var cLoop = new CurveLoop();
                var crvArr = (CurveArray) enumCurveLoops.Current;
@@ -260,15 +272,17 @@ namespace Revit.Elements
                   cLoop.Append(crv);
                }
                if (!cLoop.HasPlane())
-                  throw new Exception(" Curtain Panel is not rectangular");
+                   throw new Exception(Properties.Resources.CurtainPannelIsNotRectangular);
                if (!cLoop.IsRectangular(cLoop.GetPlane()))
-                  throw new Exception(" Curtain Panel is not rectangular");
+                   throw new Exception(Properties.Resources.CurtainPannelIsNotRectangular);
                result = cLoop.GetRectangularWidth(cLoop.GetPlane());
             }
             return result * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
          }
       }
-
+       /// <summary>
+       /// Gets the height of the specific curtain panel, if it's rectangular
+       /// </summary>
       public double Height
       {
          get
@@ -279,7 +293,7 @@ namespace Revit.Elements
             for (; enumCurveLoops.MoveNext();)
             {
                if (num > 0)
-                  throw new Exception(" Curtain Panel is not rectangular");
+                   throw new Exception(Properties.Resources.CurtainPannelIsNotRectangular);
                num++;
                var cLoop = new CurveLoop();
                var crvArr = (CurveArray) enumCurveLoops.Current;
@@ -290,9 +304,9 @@ namespace Revit.Elements
                   cLoop.Append(crv);
                }
                if (!cLoop.HasPlane())
-                  throw new Exception(" Curtain Panel is not rectangular");
+                   throw new Exception(Properties.Resources.CurtainPannelIsNotRectangular);
                if (!cLoop.IsRectangular(cLoop.GetPlane()))
-                  throw new Exception(" Curtain Panel is not rectangular");
+                   throw new Exception(Properties.Resources.CurtainPannelIsNotRectangular);
                result = cLoop.GetRectangularHeight(cLoop.GetPlane());
             }
             return result * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
@@ -390,12 +404,15 @@ namespace Revit.Elements
       #endregion
 
       #region public methods
-
+       /// <summary>
+       /// Gets Mullions hosting the specified curtain panel
+       /// </summary>
+       /// <returns></returns>
       public Mullion[] SupportingMullions()
       {
          var elementAsPanel = InternalElement as Autodesk.Revit.DB.Panel;
          if (elementAsPanel == null)
-            throw new Exception("Curtain Panel should represent Revit panel");
+            throw new Exception(Properties.Resources.CurtainPanelShouldRepresentRevitPanel);
          var bounds = this.Boundaries;
 
          var host = elementAsPanel.Host;

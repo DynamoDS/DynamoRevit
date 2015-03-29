@@ -88,6 +88,9 @@
       <HintPath>$(DYNAMOTESTAPI)\SystemTestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="TestServices">
+      <HintPath>..\..\..\..\Dynamo\bin\AnyCPU\Debug\TestServices.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>

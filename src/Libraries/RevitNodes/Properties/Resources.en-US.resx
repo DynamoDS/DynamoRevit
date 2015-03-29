@@ -134,6 +134,18 @@
   </data>
   <data name="Tag_Lookup_Error" xml:space="preserve">
     <value>The specified surface does not correspond to a Revit surface.</value>
+    </data>
+  <data name="CurtainPanelIsNotPlanar" xml:space="preserve">
+    <value>Curtain Panel is not planar</value>
+  </data>
+  <data name="CurtainPanelShouldRepresentRevitPanel" xml:space="preserve">
+    <value>Curtain Panel should represent Revit panel</value>
+  </data>
+  <data name="CurtainPannelIsNotRectangular" xml:space="preserve">
+    <value>Curtain Panel is not rectangular</value>
+  </data>
+  <data name="NumberOfDivisionsMustBeGreaterThan2" xml:space="preserve">
+    <value>The number of divisions must be greater than 2!</value>
   </data>
   <data name="View_ExportAsImage_Path_Invalid" xml:space="preserve">
     <value>The supplied path is invalid.</value>
