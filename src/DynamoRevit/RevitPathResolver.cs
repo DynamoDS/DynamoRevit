@@ -31,7 +31,23 @@ namespace Dynamo.Applications
                 throw new FileNotFoundException(simpleRaaSDll);
 
             // Add Revit-specific library paths for preloading.
-            preloadLibraryPaths = new List<string> { revitNodesDll, simpleRaaSDll };
+            preloadLibraryPaths = new List<string>
+            {
+                "VMDataBridge.dll",
+                "ProtoGeometry.dll",
+                "DSCoreNodes.dll",
+                "DSOffice.dll",
+                "DSIronPython.dll",
+                "FunctionObject.ds",
+                "Optimize.ds",
+                "DynamoConversions.dll",
+                "DynamoUnits.dll",
+                "Tessellation.dll",
+                "Analysis.dll",
+
+                revitNodesDll,
+                simpleRaaSDll
+            };
 
             // Add an additional node processing folder
             additionalNodeDirectories = new List<string> { nodesDirectory };
