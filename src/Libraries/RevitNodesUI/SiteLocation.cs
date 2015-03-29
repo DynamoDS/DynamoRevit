@@ -61,9 +61,9 @@ namespace DSRevitNodesUI
 
         public override void Dispose()
         {
+            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -= model_RevitDocumentChanged;
+            RevitServicesUpdater.Instance.ElementsModified -= RevitServicesUpdater_ElementsModified;
             base.Dispose();
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += model_RevitDocumentChanged;
-            RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)

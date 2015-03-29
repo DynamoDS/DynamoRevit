@@ -1,24 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Dynamo.Interfaces;
+using System.Reflection;
+using TestServices;
 
 namespace RevitTestServices
 {
-    public class RevitTestPathResolver : IPathResolver
+    public class RevitTestPathResolver : TestPathResolver
     {
-        private readonly HashSet<string> additionalResolutionPaths;
-        private readonly HashSet<string> additionalNodeDirectories;
-        private readonly HashSet<string> preloadedLibraryPaths;
-
-        public RevitTestPathResolver()
+        public void InitializePreloadedLibraries()
         {
-            additionalResolutionPaths = new HashSet<string>();
-            additionalNodeDirectories = new HashSet<string>();
-            preloadedLibraryPaths = new HashSet<string>();
-        }
+            AddPreloadLibraryPath("VMDataBridge.dll");
+            AddPreloadLibraryPath("ProtoGeometry.dll");
+            AddPreloadLibraryPath("DSCoreNodes.dll");
+            AddPreloadLibraryPath("DSOffice.dll");
+            AddPreloadLibraryPath("DSIronPython.dll");
+            AddPreloadLibraryPath("FunctionObject.ds");
+            AddPreloadLibraryPath("Optimize.ds");
+            AddPreloadLibraryPath("DynamoConversions.dll");
+            AddPreloadLibraryPath("DynamoUnits.dll");
+            AddPreloadLibraryPath("Tessellation.dll");
+            AddPreloadLibraryPath("Analysis.dll");
 
-        public RevitTestPathResolver(string assemblyDirectory) : this()
-        {
+            var assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var nodesDirectory = Path.Combine(assemblyDirectory, "nodes");
             var revitNodesDll = Path.Combine(assemblyDirectory, "RevitNodes.dll");
             var simpleRaaSDll = Path.Combine(assemblyDirectory, "SimpleRaaS.dll");
@@ -30,43 +33,8 @@ namespace RevitTestServices
             if (!File.Exists(simpleRaaSDll))
                 throw new FileNotFoundException(simpleRaaSDll);
 
-            AddResolutionPath(assemblyDirectory);
-            AddNodeDirectory(nodesDirectory);
             AddPreloadLibraryPath(revitNodesDll);
             AddPreloadLibraryPath(simpleRaaSDll);
-        }
-
-        public IEnumerable<string> AdditionalResolutionPaths
-        {
-            get { return additionalResolutionPaths; }
-        }
-
-        public IEnumerable<string> AdditionalNodeDirectories
-        {
-            get { return additionalNodeDirectories; }
-        }
-
-        public IEnumerable<string> PreloadedLibraryPaths
-        {
-            get { return preloadedLibraryPaths; }
-        }
-
-        public void AddNodeDirectory(string nodeDirectory)
-        {
-            if (!additionalNodeDirectories.Contains(nodeDirectory))
-                additionalNodeDirectories.Add(nodeDirectory);
-        }
-
-        public void AddResolutionPath(string resolutionPath)
-        {
-            if (!additionalResolutionPaths.Contains(resolutionPath))
-                additionalResolutionPaths.Add(resolutionPath);
-        }
-
-        public void AddPreloadLibraryPath(string preloadLibraryPath)
-        {
-            if (!preloadedLibraryPaths.Contains(preloadLibraryPath))
-                preloadedLibraryPaths.Add(preloadLibraryPath);
         }
     }
 }

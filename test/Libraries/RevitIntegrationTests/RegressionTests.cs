@@ -43,12 +43,9 @@ namespace RevitSystemTests
                 //open the revit model
                 SwapCurrentModel(revitFilePath);
 
-                //Set the directory
-                var assemblyPath = Assembly.GetExecutingAssembly().Location;
-                var assemblyDir = Path.GetDirectoryName(assemblyPath);
-
-                //Ensure SystemTestBase picks it up.
-                pathResolver = new RevitTestPathResolver(assemblyDir);
+                //Ensure SystemTestBase picks up the right directory.
+                pathResolver = new RevitTestPathResolver();
+                (pathResolver as RevitTestPathResolver).InitializePreloadedLibraries();
 
                 //Setup should be called after swapping document, so that RevitDynamoModel 
                 //is now associated with swapped model.
