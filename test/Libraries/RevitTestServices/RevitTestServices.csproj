@@ -110,10 +110,6 @@
       <HintPath>$(DYNAMOTESTAPI)\SystemTestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="TestServices">
-      <HintPath>$(DYNAMOTESTAPI)\TestServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
