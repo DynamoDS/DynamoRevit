@@ -33,6 +33,8 @@ namespace RevitTestServices
             if (!File.Exists(simpleRaaSDll))
                 throw new FileNotFoundException(simpleRaaSDll);
 
+            AddNodeDirectory(nodesDirectory);
+            AddResolutionPath(assemblyDirectory);
             AddPreloadLibraryPath(revitNodesDll);
             AddPreloadLibraryPath(simpleRaaSDll);
         }
