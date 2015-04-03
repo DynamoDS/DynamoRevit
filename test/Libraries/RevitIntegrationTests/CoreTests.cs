@@ -58,6 +58,7 @@ namespace RevitSystemTests
             Assert.IsNotNull(xyzNode);
             
             //test the shortest lacing
+            //xyzNode.ArgumentLacing = LacingStrategy.Shortest;
             xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "Shortest"));
 
             RunCurrentModel();
@@ -67,6 +68,7 @@ namespace RevitSystemTests
             Assert.AreEqual(4, fec.ToElements().Count());
 
             //test the longest lacing
+            //xyzNode.ArgumentLacing = LacingStrategy.Longest;
             xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "Longest"));
             RunCurrentModel();
 
@@ -76,6 +78,7 @@ namespace RevitSystemTests
             Assert.AreEqual(5, fec.ToElements().Count());
 
             //test the cross product lacing
+            //xyzNode.ArgumentLacing = LacingStrategy.CrossProduct;
             xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "CrossProduct"));
 
             RunCurrentModel();
