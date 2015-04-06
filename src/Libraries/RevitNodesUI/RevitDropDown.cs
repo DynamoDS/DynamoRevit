@@ -409,8 +409,9 @@ namespace DSRevitNodesUI
     {
         public Categories()
         {
-            OutPorts[0].PortName = "Category";
-            OutPortData[0].ToolTipString = "The selected Category.";
+            OutPortData[0].NickName = Properties.Resources.PortDataCategoriesName;
+            OutPortData[0].ToolTipString = Properties.Resources.PortDataCategoriesToolTip;
+            OutPorts[0].SetPortData(OutPortData[0]);
         }
 
         public override void PopulateItems()
