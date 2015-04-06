@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Resources;
 using System.Windows;
 using System.Windows.Interop;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 using Autodesk.Revit.ApplicationServices;
@@ -38,6 +39,14 @@ namespace Dynamo.Applications
 
         public Result OnStartup(UIControlledApplication application)
         {
+            // Revit2015+ has disabled hardware acceleration for WPF to
+            // avoid issues with rendering certain elements in the Revit UI. 
+            // Here we get it back, by setting the ProcessRenderMode to Default,
+            // signifying that we want to use hardware rendering if it's 
+            // available.
+
+            RenderOptions.ProcessRenderMode = RenderMode.Default;
+
             try
             {
                 SubscribeAssemblyResolvingEvent();

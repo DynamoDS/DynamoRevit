@@ -126,6 +126,15 @@
   <data name="AnalysisResultsDefaultName" xml:space="preserve">
     <value>Dynamo Analysis Results</value>
   </data>
+  <data name="Array_Count_Mismatch" xml:space="preserve">
+    <value>The number of sample locations and samples is not equal.</value>
+  </data>
+  <data name="Dynamo_AVF_Data_Name" xml:space="preserve">
+    <value>Dynamo Data</value>
+  </data>
+  <data name="Tag_Lookup_Error" xml:space="preserve">
+    <value>A Revit face with the corresponding tag could not be found.</value>
+</data>
   <data name="CurtainPanelIsNotPlanar" xml:space="preserve">
     <value>Curtain Panel is not planar</value>
   </data>
