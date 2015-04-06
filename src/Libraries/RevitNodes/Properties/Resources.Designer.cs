@@ -77,8 +77,18 @@ namespace Revit.Properties {
                 return ResourceManager.GetString("AnalysisResultsDefaultName", resourceCulture);
             }
         }
-        
+
         /// <summary>
+        ///   Looks up a localized string similar to The number of sample points and number of samples must be the same..
+        /// </summary>
+        internal static string Array_Count_Mismatch
+        {
+            get
+            {
+                return ResourceManager.GetString("Array_Count_Mismatch", resourceCulture);
+            }
+        }
+
         ///   Looks up a localized string similar to Curtain Panel is not planar.
         /// </summary>
         internal static string CurtainPanelIsNotPlanar {
@@ -86,21 +96,40 @@ namespace Revit.Properties {
                 return ResourceManager.GetString("CurtainPanelIsNotPlanar", resourceCulture);
             }
         }
-        
+
         /// <summary>
+        ///   Looks up a localized string similar to Dynamo Data.
+        /// </summary>
+        internal static string Dynamo_AVF_Data_Name
+        {
+            get { return ResourceManager.GetString("Dynamo_AVF_Data_Name", resourceCulture); }
+        }
+
         ///   Looks up a localized string similar to Curtain Panel is not rectangular.
         /// </summary>
         internal static string CurtainPanelIsNotRectangular {
-            get {
+            get
+            {
                 return ResourceManager.GetString("CurtainPanelIsNotRectangular", resourceCulture);
             }
         }
-        
+
         /// <summary>
+        ///   Looks up a localized string similar to The specified surface does not correspond to a Revit surface..
+        /// </summary>
+        internal static string Tag_Lookup_Error
+        {
+            get
+            {
+                return ResourceManager.GetString("Tag_Lookup_Error", resourceCulture);
+            }
+        }
+
         ///   Looks up a localized string similar to Curtain Panel should represent Revit panel.
         /// </summary>
         internal static string CurtainPanelShouldRepresentRevitPanel {
-            get {
+            get 
+            {
                 return ResourceManager.GetString("CurtainPanelShouldRepresentRevitPanel", resourceCulture);
             }
         }
@@ -108,8 +137,10 @@ namespace Revit.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The number of divisions must be greater than 2!.
         /// </summary>
-        internal static string NumberOfDivisionMustBeGreateThan2 {
-            get {
+        internal static string NumberOfDivisionMustBeGreateThan2 
+        {
+            get 
+            {
                 return ResourceManager.GetString("NumberOfDivisionMustBeGreateThan2", resourceCulture);
             }
         }
@@ -118,7 +149,8 @@ namespace Revit.Properties {
         ///   Looks up a localized string similar to The supplied path is invalid..
         /// </summary>
         internal static string View_ExportAsImage_Path_Invalid {
-            get {
+            get 
+            {
                 return ResourceManager.GetString("View_ExportAsImage_Path_Invalid", resourceCulture);
             }
         }
