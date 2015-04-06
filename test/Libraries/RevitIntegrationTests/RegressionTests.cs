@@ -74,7 +74,6 @@ namespace RevitSystemTests
             {
                 ViewModel.Model.ShutDown(false);
                 ViewModel = null;
-                RevitServicesUpdater.DisposeInstance();
                 TearDown();
             }
 

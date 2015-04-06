@@ -261,4 +261,10 @@
   <data name="SiteLocationFamilyDocumentWarning" xml:space="preserve">
     <value>Site Location is not available in a family document.</value>
   </data>
+  <data name="PortDataCategoriesName" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="PortDataCategoriesToolTip" xml:space="preserve">
+    <value>The selected Category.</value>
+  </data>
 </root>
