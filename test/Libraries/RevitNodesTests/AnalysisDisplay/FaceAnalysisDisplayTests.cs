@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
-using Analysis.DataTypes;
+using Analysis;
 
 using Autodesk.Revit.DB;
 
@@ -119,10 +118,10 @@ namespace RevitNodesTests.AnalysisDisplay
                 -1
             };
 
-            var data = SurfaceAnalysisData.BySurfacePointsAndResults(surface, samplePoints, new List<string>(){"Sample Data"}, new IList<double>[]{sampleValues} );
+            var data = SurfaceData.BySurfacePointsAndValues(surface, samplePoints, sampleValues );
 
             var doc = Document.Current;
-            var grid = FaceAnalysisDisplay.ByViewAndFaceAnalysisData(doc.ActiveView, new []{data});
+            var grid = FaceAnalysisDisplay.ByViewAndFaceAnalysisData(doc.ActiveView, data);
 
             Assert.NotNull(grid);
         }
@@ -146,12 +145,11 @@ namespace RevitNodesTests.AnalysisDisplay
                 -1
             };
 
-            var data = SurfaceAnalysisData.BySurfacePointsAndResults(surface, samplePoints, new List<string>() { "Sample Data" }, new IList<double>[] { sampleValues });
+            var data = SurfaceData.BySurfacePointsAndValues(surface, samplePoints, sampleValues);
             var doc = Document.Current;
 
-            Assert.Throws(typeof(System.ArgumentNullException), () => FaceAnalysisDisplay.ByViewAndFaceAnalysisData(null, new []{data}));
+            Assert.Throws(typeof(System.ArgumentNullException), () => FaceAnalysisDisplay.ByViewAndFaceAnalysisData(null, data));
             Assert.Throws(typeof(System.ArgumentNullException), () => FaceAnalysisDisplay.ByViewAndFaceAnalysisData(doc.ActiveView, null));
-            Assert.Throws(typeof(System.Exception), () => FaceAnalysisDisplay.ByViewAndFaceAnalysisData(doc.ActiveView, new SurfaceAnalysisData[]{}));
         }
     }
 }
