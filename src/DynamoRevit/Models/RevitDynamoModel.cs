@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
+using System.Diagnostics;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Soap;
 using System.Windows.Forms;
 
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 
@@ -15,10 +18,11 @@ using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.UpdateManager;
 using Dynamo.Utilities;
-
 using DynamoServices;
 
 using Greg;
+
+using ProtoCore;
 
 using Revit.Elements;
 
@@ -67,24 +71,65 @@ namespace Dynamo.Applications.Models
         #region Events
 
         public event EventHandler RevitDocumentChanged;
+
         public virtual void OnRevitDocumentChanged()
         {
             if (RevitDocumentChanged != null)
                 RevitDocumentChanged(this, EventArgs.Empty);
         }
 
+        public event Action RevitDocumentLost;
+
+        private void OnRevitDocumentLost()
+        {
+            var handler = RevitDocumentLost;
+            if (handler != null) handler();
+        }
+
+        public event Action RevitContextUnavailable;
+
+        private void OnRevitContextUnavailable()
+        {
+            var handler = RevitContextUnavailable;
+            if (handler != null) handler();
+        }
+
+        public event Action RevitContextAvailable;
+
+        private void OnRevitContextAvailable()
+        {
+            var handler = RevitContextAvailable;
+            if (handler != null) handler();
+        }
+
+        public event Action<View> RevitViewChanged;
+
+        private void OnRevitViewChanged(View newView)
+        {
+            var handler = RevitViewChanged;
+            if (handler != null) handler(newView);
+        }
+
+        public event Action InvalidRevitDocumentActivated;
+
+        private void OnInvalidRevitDocumentActivated()
+        {
+            var handler = InvalidRevitDocumentActivated;
+            if (handler != null) handler();
+        }
+
         #endregion
 
         #region Properties/Fields
-        internal override string AppVersion
+        override internal string AppVersion
         {
             get
             {
-                return base.AppVersion + 
+                return base.AppVersion +
                     "-R" + DocumentManager.Instance.CurrentUIApplication.Application.VersionBuild;
             }
         }
-     
+
         #endregion
 
         #region Constructors
@@ -118,6 +163,60 @@ namespace Dynamo.Applications.Models
             MigrationManager.MigrationTargets.Add(typeof(WorkspaceMigrationsRevit));
 
             SetupPython();
+
+            WorkspaceEvents.WorkspaceAdded += WorkspaceEvents_WorkspaceAdded;
+        }
+
+        /// <summary>
+        /// A map of historical element ids associated with a workspace.
+        /// </summary>
+        private Dictionary<Guid, Dictionary<Guid, List<int>>> historicalElementData = new Dictionary<Guid, Dictionary<Guid, List<int>>>();
+
+        private bool isFirstEvaluation = true;
+
+        void WorkspaceEvents_WorkspaceAdded(WorkspacesModificationEventArgs args)
+        {
+            // The workspace's PreloadedTraceData should be available here
+            // before the workspace has been run. We use this trace data to
+            // get a dictionary, keyed by node guid, of element ids which
+            // have been saved to the file. This dictionary will be used only
+            // once, after the first run of the graph to reconcile elements that 
+            // are newly created with what had been created previously, removing
+            // any elements from the model that were pre-existing and associated
+            // with Dynamo, but no longer created by Dynamo.
+            
+            var hws = Workspaces.FirstOrDefault(ws => ws is HomeWorkspaceModel) as HomeWorkspaceModel;
+            if (hws == null) return;
+
+            var serializedTraceData = hws.PreloadedTraceData;
+            if (serializedTraceData == null) return;
+
+            historicalElementData.Add(args.Id, new Dictionary<Guid, List<int>>());
+
+            foreach (var kvp in serializedTraceData)
+            {
+                var idList = new List<int>();
+
+                historicalElementData[args.Id].Add(kvp.Key, idList);
+
+                foreach (var callSiteData in kvp.Value)
+                {
+                    var serializables = DeserializeCallsiteData(callSiteData);
+                    idList.AddRange(serializables.Select(ser => ((SerializableId)ser).IntID));
+                }
+            }
+        }
+
+        private static IEnumerable<ISerializable> DeserializeCallsiteData(string callSiteData)
+        {
+            Validity.Assert(!String.IsNullOrEmpty(callSiteData));
+            var data = Convert.FromBase64String(callSiteData);
+            var formatter = new SoapFormatter();
+            var s = new MemoryStream(data);
+            var helper = (CallSite.TraceSerialiserHelper)formatter.Deserialize(s);
+
+            var serializables = helper.TraceData.SelectMany(std => std.RecursiveGetNestedData());
+            return serializables;
         }
 
         #endregion
@@ -135,6 +234,7 @@ namespace Dynamo.Applications.Models
         }
 
         private bool setupPython;
+
         private void SetupPython()
         {
             if (setupPython) return;
@@ -143,14 +243,16 @@ namespace Dynamo.Applications.Models
                 (Element element) => element.ToDSType(true));
 
             // Turn off element binding during iron python script execution
-            IronPythonEvaluator.EvaluationBegin += (a, b, c, d, e) => ElementBinder.IsEnabled = false;
+            IronPythonEvaluator.EvaluationBegin +=
+                (a, b, c, d, e) => ElementBinder.IsEnabled = false;
             IronPythonEvaluator.EvaluationEnd += (a, b, c, d, e) => ElementBinder.IsEnabled = true;
 
             // register UnwrapElement method in ironpython
             IronPythonEvaluator.EvaluationBegin += (a, b, scope, d, e) =>
             {
                 var marshaler = new DataMarshaler();
-                marshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
+                marshaler.RegisterMarshaler(
+                    (Revit.Elements.Element element) => element.InternalElement);
                 marshaler.RegisterMarshaler((Category element) => element.InternalCategory);
 
                 Func<object, object> unwrap = marshaler.Marshal;
@@ -167,7 +269,8 @@ namespace Dynamo.Applications.Models
             {
                 DocumentManager.Instance.CurrentUIDocument =
                     DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
-                Logger.LogWarning(GetDocumentPointerMessage(), WarningLevel.Moderate);
+
+                OnRevitDocumentChanged();
             }
         }
 
@@ -197,12 +300,14 @@ namespace Dynamo.Applications.Models
 
         private void SubscribeTransactionManagerEvents()
         {
-            TransactionManager.Instance.TransactionWrapper.FailuresRaised += TransactionManager_FailuresRaised;
+            TransactionManager.Instance.TransactionWrapper.FailuresRaised +=
+                TransactionManager_FailuresRaised;
         }
 
         private void UnsubscribeTransactionManagerEvents()
         {
-            TransactionManager.Instance.TransactionWrapper.FailuresRaised -= TransactionManager_FailuresRaised;
+            TransactionManager.Instance.TransactionWrapper.FailuresRaised -=
+                TransactionManager_FailuresRaised;
         }
 
         private void SubscribeDocumentManagerEvents()
@@ -266,7 +371,7 @@ namespace Dynamo.Applications.Models
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnApplicationDocumentOpened(object sender, Autodesk.Revit.DB.Events.DocumentOpenedEventArgs e)
+        private void OnApplicationDocumentOpened(object sender, DocumentOpenedEventArgs e)
         {
             HandleApplicationDocumentOpened();
         }
@@ -276,7 +381,7 @@ namespace Dynamo.Applications.Models
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnApplicationDocumentClosing(object sender, Autodesk.Revit.DB.Events.DocumentClosingEventArgs e)
+        private void OnApplicationDocumentClosing(object sender, DocumentClosingEventArgs e)
         {
             HandleApplicationDocumentClosing(e.Document);
         }
@@ -286,7 +391,7 @@ namespace Dynamo.Applications.Models
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnApplicationDocumentClosed(object sender, Autodesk.Revit.DB.Events.DocumentClosedEventArgs e)
+        private void OnApplicationDocumentClosed(object sender, DocumentClosedEventArgs e)
         {
             HandleApplicationDocumentClosed();
         }
@@ -320,10 +425,99 @@ namespace Dynamo.Applications.Models
 
         public override void OnEvaluationCompleted(object sender, EvaluationCompletedEventArgs e)
         {
+            Debug.WriteLine(ElementIDLifecycleManager<int>.GetInstance());
+
+            if (historicalElementData.ContainsKey(CurrentWorkspace.Guid))
+            {
+                ReconcileHistoricalElements();
+            }
+
             // finally close the transaction!
             TransactionManager.Instance.ForceCloseTransaction();
 
             base.OnEvaluationCompleted(sender, e);
+        }
+
+        private void ReconcileHistoricalElements()
+        {
+            // Read the current run's trace data into a dictionary which matches
+            // the layout of our historical element data. 
+
+            var traceData = EngineController.LiveRunnerCore.RuntimeData.GetTraceDataForNodes(
+                CurrentWorkspace.Nodes.Select(n => n.GUID),
+                EngineController.LiveRunnerCore.DSExecutable);
+
+            var currentRunData = new Dictionary<Guid, List<int>>();
+            foreach (var kvp in traceData)
+            {
+                var idList = new List<int>();
+                currentRunData.Add(kvp.Key, idList);
+
+                foreach (var serializables in kvp.Value.Select(DeserializeCallsiteData)) {
+                    idList.AddRange(serializables.Select(ser => ((SerializableId)ser).IntID));
+                }
+            }
+
+            // Compare the historical element data and the current run
+            // data to see whether there are elements that had been
+            // created by nodes previously, which were not created in 
+            // this run. Store the elements ids of all the elements that
+            // can't be found in the orphans collection.
+
+            var workspaceHistory = historicalElementData[CurrentWorkspace.Guid];
+            var orphanedIds = new List<int>();
+
+            foreach (var kvp in workspaceHistory)
+            {
+                var nodeGuid = kvp.Key;
+
+                // If the current run doesn't have a key for 
+                // this guid, then all of these elements are 
+                // orphaned.
+
+                if (!currentRunData.ContainsKey(nodeGuid))
+                {
+                    orphanedIds.AddRange(kvp.Value);
+                    continue;
+                }
+
+                var currentRunNodeGuids = currentRunData[nodeGuid];
+
+                // If the current run didn't create an element
+                // in the current run, then add an orphan.
+
+                orphanedIds.AddRange(kvp.Value.Where(id => !currentRunNodeGuids.Contains(id)));
+            }
+
+            // Delete all the orphans.
+            IdlePromise.ExecuteOnIdleAsync(
+                () =>
+                {
+                    var toDelete = new List<ElementId>();
+                    foreach (var id in orphanedIds)
+                    {
+                        // Check whether the element is valid before attempting to delete.
+                        Element el;
+                        if (DocumentManager.Instance.CurrentDBDocument.TryGetElement(new ElementId(id), out el))
+                        {
+                            toDelete.Add(el.Id);
+                        }
+                    }
+
+                    using (var trans = new Transaction(DocumentManager.Instance.CurrentDBDocument))
+                    {
+                        trans.Start("Dynamo element reconciliation.");
+                        DocumentManager.Instance.CurrentDBDocument.Delete(toDelete);
+                        trans.Commit();
+                    }
+                });
+
+            Debug.WriteLine("ELEMENT RECONCILIATION: {0} elements were orphaned.", orphanedIds.Count);
+
+            // When reconciliation is complete, wipe the historical data.
+            // At this point, element binding is as up to date as it's going to get.
+
+            historicalElementData.Remove(CurrentWorkspace.Guid);
         }
 
         protected override void PreShutdownCore(bool shutdownHost)
@@ -355,6 +549,8 @@ namespace Dynamo.Applications.Models
             UnsubscribeDocumentManagerEvents();
             UnsubscribeRevitServicesUpdaterEvents();
             UnsubscribeTransactionManagerEvents();
+
+            ElementIDLifecycleManager<int>.DisposeInstance();
         }
 
         /// <summary>
@@ -375,14 +571,13 @@ namespace Dynamo.Applications.Models
             if (view != null && view.IsPerspective
                 && Context != Core.Context.VASARI_2014)
             {
-                Logger.LogWarning(
-                    "Dynamo is not available in a perspective view. Please switch to another view to Run.",
-                    WarningLevel.Moderate);
-                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>().Cast<HomeWorkspaceModel>())
+                OnRevitContextUnavailable();
+
+                foreach (
+                    var ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = false;
                 }
-                    
             }
             else
             {
@@ -394,13 +589,12 @@ namespace Dynamo.Applications.Models
                 // the same document.
                 if (DocumentManager.Instance.CurrentUIDocument != null)
                 {
-                    var newEnabled = newView.Document.Equals(DocumentManager.Instance.CurrentDBDocument);
+                    var newEnabled =
+                        newView.Document.Equals(DocumentManager.Instance.CurrentDBDocument);
 
                     if (!newEnabled)
                     {
-                        Logger.LogWarning(
-                            "Dynamo is not pointing at this document. Run will be disabled.",
-                            WarningLevel.Error);
+                        OnInvalidRevitDocumentActivated();
                     }
 
                     foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
@@ -413,7 +607,7 @@ namespace Dynamo.Applications.Models
 
         #endregion
 
-        #region Event handlers 
+        #region Event handlers
 
         /// <summary>
         /// Handler Revit's DocumentOpened event.
@@ -427,13 +621,15 @@ namespace Dynamo.Applications.Models
             // present a message telling us where Dynamo is pointing.
             if (DocumentManager.Instance.CurrentUIDocument == null)
             {
-                DocumentManager.Instance.CurrentUIDocument = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
-                Logger.LogWarning(GetDocumentPointerMessage(), WarningLevel.Moderate);
+                DocumentManager.Instance.CurrentUIDocument =
+                    DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
+                OnRevitDocumentChanged();
+
                 foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = true;
                 }
-                    
+
                 ResetForNewDocument();
             }
         }
@@ -467,10 +663,8 @@ namespace Dynamo.Applications.Models
                 {
                     ws.RunSettings.RunEnabled = false;
                 }
-                    
-                Logger.LogWarning(
-                    "Dynamo no longer has an active document. Please open a document.",
-                    WarningLevel.Error);
+
+                OnRevitDocumentLost();
             }
             else
             {
@@ -481,6 +675,8 @@ namespace Dynamo.Applications.Models
                     updateCurrentUIDoc = false;
                     DocumentManager.Instance.CurrentUIDocument =
                         DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
+
+                    OnRevitDocumentChanged();
                 }
             }
 
@@ -505,21 +701,14 @@ namespace Dynamo.Applications.Models
                 DocumentManager.Instance.CurrentUIDocument =
                     DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
 
+                OnRevitDocumentChanged();
+
                 InitializeMaterials();
                 foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = true;
                 }
             }
-        }
-
-        private static string GetDocumentPointerMessage()
-        {
-            var docPath = DocumentManager.Instance.CurrentUIDocument.Document.PathName;
-            var message = string.IsNullOrEmpty(docPath)
-                ? "a new document."
-                : string.Format("document: {0}", docPath);
-            return string.Format("Dynamo is now running on {0}", message);
         }
 
         /// <summary>
@@ -530,7 +719,7 @@ namespace Dynamo.Applications.Models
             foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
                 ws.MarkNodesAsModifiedAndRequestRun(ws.Nodes);
-                
+
                 foreach (var node in ws.Nodes)
                 {
                     lock (node.RenderPackagesMutex)
@@ -562,7 +751,7 @@ namespace Dynamo.Applications.Models
         private void TransactionManager_FailuresRaised(FailuresAccessor failuresAccessor)
         {
             IList<FailureMessageAccessor> failList = failuresAccessor.GetFailureMessages();
-            
+
             IEnumerable<FailureMessageAccessor> query =
                 from fail in failList
                 where fail.GetSeverity() == FailureSeverity.Warning
@@ -575,15 +764,19 @@ namespace Dynamo.Applications.Models
             }
         }
 
-        private void RevitServicesUpdater_ElementsDeleted(Document document, IEnumerable<ElementId> deleted)
+        private void RevitServicesUpdater_ElementsDeleted(
+            Document document, IEnumerable<ElementId> deleted)
         {
             if (!deleted.Any())
                 return;
 
-            var nodes = ElementBinder.GetNodesFromElementIds(deleted, CurrentWorkspace, EngineController);
+            var nodes = ElementBinder.GetNodesFromElementIds(
+                deleted,
+                CurrentWorkspace,
+                EngineController);
             foreach (var node in nodes)
             {
-                node.OnNodeModified(forceExecute:true);
+                node.OnNodeModified(forceExecute: true);
             }
         }
 
@@ -596,11 +789,14 @@ namespace Dynamo.Applications.Models
                     DocumentManager.Instance.CurrentDBDocument.TryGetElement(x, out ret);
                     return ret;
                 }).Select(x => x.Id);
-            
+
             if (!updatedIds.Any())
                 return;
 
-            var nodes = ElementBinder.GetNodesFromElementIds(updatedIds, CurrentWorkspace, EngineController);
+            var nodes = ElementBinder.GetNodesFromElementIds(
+                updatedIds,
+                CurrentWorkspace,
+                EngineController);
             foreach (var node in nodes)
             {
                 node.OnNodeModified(true);

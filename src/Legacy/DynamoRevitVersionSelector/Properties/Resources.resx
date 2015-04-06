@@ -117,28 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Adaptive_Component_Creation_Failed" xml:space="preserve">
-    <value>An adaptive component could not be found or created.</value>
+  <data name="DynamoVersions" xml:space="preserve">
+    <value>Dynamo Version</value>
   </data>
-  <data name="AnalysisResultsDefaultDescription" xml:space="preserve">
-    <value>Analysis Results from Dynamo</value>
+  <data name="DynamoVersionText" xml:space="preserve">
+    <value>Dynamo {0}</value>
   </data>
-  <data name="AnalysisResultsDefaultName" xml:space="preserve">
-    <value>Dynamo Analysis Results</value>
+  <data name="RestartMessage" xml:space="preserve">
+    <value>Dynamo version {0} will be loaded after Revit restart.</value>
   </data>
-  <data name="CurtainPanelIsNotPlanar" xml:space="preserve">
-    <value>Curtain Panel is not planar</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="dynamo_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dynamo_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CurtainPanelShouldRepresentRevitPanel" xml:space="preserve">
-    <value>Curtain Panel should represent Revit panel</value>
-  </data>
-  <data name="CurtainPannelIsNotRectangular" xml:space="preserve">
-    <value>Curtain Panel is not rectangular</value>
-  </data>
-  <data name="NumberOfDivisionsMustBeGreaterThan2" xml:space="preserve">
-    <value>The number of divisions must be greater than 2!</value>
-  </data>
-  <data name="View_ExportAsImage_Path_Invalid" xml:space="preserve">
-    <value>The supplied path is invalid.</value>
+  <data name="DynamoVersionTooltip" xml:space="preserve">
+    <value>Launches Dynamo {0}, to launch a different version of Dynamo you may need to restart Revit</value>
   </data>
 </root>

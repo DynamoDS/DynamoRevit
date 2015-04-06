@@ -88,6 +88,10 @@
       <HintPath>$(DYNAMOTESTAPI)\SystemTestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="TestServices">
+      <HintPath>$(DYNAMOTESTAPI)\TestServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>

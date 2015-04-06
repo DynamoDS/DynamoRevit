@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Dynamo.Applications.Properties {
+namespace DynamoRevitVersionSelector.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Dynamo.Applications.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Dynamo.Applications.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DynamoRevitVersionSelector.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,84 +61,48 @@ namespace Dynamo.Applications.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The active view is now {0}..
-        /// </summary>
-        internal static string ActiveViewWarning {
-            get {
-                return ResourceManager.GetString("ActiveViewWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Visual Programming.
-        /// </summary>
-        internal static string App_Description {
-            get {
-                return ResourceManager.GetString("App_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dynamo {0}.{1}.
-        /// </summary>
-        internal static string App_Name {
-            get {
-                return ResourceManager.GetString("App_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dynamo no longer has an active document. Please open a document..
-        /// </summary>
-        internal static string DocumentLostWarning {
-            get {
-                return ResourceManager.GetString("DocumentLostWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dynamo is now running on {0}..
-        /// </summary>
-        internal static string DocumentPointerMessage {
-            get {
-                return ResourceManager.GetString("DocumentPointerMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dynamo is not pointing at the current document..
-        /// </summary>
-        internal static string DocumentPointingWarning {
-            get {
-                return ResourceManager.GetString("DocumentPointingWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo_square_32x32 {
+        internal static System.Drawing.Bitmap dynamo_32x32 {
             get {
-                object obj = ResourceManager.GetObject("logo_square_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("dynamo_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dynamo is not available in the current context..
+        ///   Looks up a localized string similar to Dynamo Version.
         /// </summary>
-        internal static string RevitInvalidContextWarning {
+        internal static string DynamoVersions {
             get {
-                return ResourceManager.GetString("RevitInvalidContextWarning", resourceCulture);
+                return ResourceManager.GetString("DynamoVersions", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dynamo is now available..
+        ///   Looks up a localized string similar to Dynamo {0}.
         /// </summary>
-        internal static string RevitValidContextMessage {
+        internal static string DynamoVersionText {
             get {
-                return ResourceManager.GetString("RevitValidContextMessage", resourceCulture);
+                return ResourceManager.GetString("DynamoVersionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launches Dynamo {0}, to launch a different version of Dynamo you may need to restart Revit.
+        /// </summary>
+        internal static string DynamoVersionTooltip {
+            get {
+                return ResourceManager.GetString("DynamoVersionTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamo version {0} will be loaded after Revit restart..
+        /// </summary>
+        internal static string RestartMessage {
+            get {
+                return ResourceManager.GetString("RestartMessage", resourceCulture);
             }
         }
     }
