@@ -1,10 +1,13 @@
 ﻿using Autodesk.Revit.DB;
+
 using NUnit.Framework;
-using Revit.Elements.InternalUtilities;
+
 using Revit.GeometryConversion;
+
 using RevitTestServices;
+
 using RTF.Framework;
-using System;
+
 using FamilyInstance = Revit.Elements.FamilyInstance;
 using FamilySymbol = Revit.Elements.FamilySymbol;
 using Point = Autodesk.DesignScript.Geometry.Point;
@@ -84,31 +87,5 @@ namespace RevitNodesTests.Elements
             Assert.Throws(typeof(System.ArgumentNullException), () => FamilyInstance.ByCoordinates(null, 0, 1, 2));
         }
 
-        [Test]
-        [TestModel(@".\MassWithBoxAndCone.rfa")]
-        public void Rotate_ZAxis()
-        {
-           var famSym = FamilySymbol.ByName("Box");
-           var pt = Point.ByCoordinates(0, 1, 2);
-           var famInst = FamilyInstance.ByPoint(famSym, pt);
-           Assert.NotNull(famInst);
-
-           var transform = famInst.InternalFamilyInstance.GetTransform();
-           double[] rotationAngles;
-           TransformUtils.ExtractEularAnglesFromTransform(transform, out rotationAngles);
-           Assert.AreEqual(0.0, rotationAngles[0]);
-
-           RevitServices.Persistence.DocumentManager.Instance.CurrentDBDocument.Regenerate();
-
-           famInst.SetRotation(30);
-           transform = famInst.InternalFamilyInstance.GetTransform();
-           TransformUtils.ExtractEularAnglesFromTransform(transform, out rotationAngles);
-           Assert.AreEqual(30.0, rotationAngles[0] * 180 / Math.PI, 1.0e-6);
-
-           famInst.SetRotation(60);
-           transform = famInst.InternalFamilyInstance.GetTransform();
-           TransformUtils.ExtractEularAnglesFromTransform(transform, out rotationAngles);
-           Assert.AreEqual(60.0, rotationAngles[0] * 180 / Math.PI, 1.0e-6);
-        }
     }
 }
