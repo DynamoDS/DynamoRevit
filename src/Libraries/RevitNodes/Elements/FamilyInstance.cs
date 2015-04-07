@@ -9,6 +9,8 @@ using Revit.GeometryConversion;
 
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+using Revit.Elements.InternalUtilities;
+using DynamoUnits;
 
 using Point = Autodesk.DesignScript.Geometry.Point;
 
@@ -298,5 +300,37 @@ namespace Revit.Elements
             return InternalFamilyInstance.Name;
         }
 
+       #region Public methods
+        /// <summary>
+        /// Sets the Euler angle of the family instance around its local Z-axis.
+        /// </summary>        
+        /// <param name="degree">The Euler angle around Z-axis.</param>
+        /// <returns>The result family instance.</returns>
+        public FamilyInstance SetRotation(double degree)
+        {
+           if (this == null)
+              throw new ArgumentNullException("familyInstance");
+
+           TransactionManager.Instance.EnsureInTransaction(Document);
+
+           // Rotate the element.
+           var oldTransform = InternalFamilyInstance.GetTransform();
+           double[] oldRotationAngles;
+           TransformUtils.ExtractEularAnglesFromTransform(oldTransform, out oldRotationAngles);
+
+           Double newRotationAngle = degree * Math.PI / 180;
+
+           if (!oldRotationAngles[0].AlmostEquals(newRotationAngle, 1.0e-6))
+           {
+              double rotateAngle = newRotationAngle - oldRotationAngles[0];
+              var axis = Line.CreateUnbound(oldTransform.Origin, oldTransform.BasisZ);
+              ElementTransformUtils.RotateElement(Document, new ElementId(Id), axis, -rotateAngle);
+           }
+
+           TransactionManager.Instance.TransactionTaskDone();
+
+           return this;
+        }
+       #endregion
     }
 }
