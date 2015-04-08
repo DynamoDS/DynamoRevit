@@ -90,8 +90,6 @@ namespace Dynamo.Applications
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            UpdateManager.UpdateManager.Instance.RegisterExternalApplicationProcessId(Process.GetCurrentProcess().Id);
-
             HandleDebug(commandData);
             
             InitializeCore(commandData);
@@ -102,6 +100,7 @@ namespace Dynamo.Applications
 
                 // create core data models
                 revitDynamoModel = InitializeCoreModel(extCommandData);
+                revitDynamoModel.UpdateManager.RegisterExternalApplicationProcessId(Process.GetCurrentProcess().Id);
                 dynamoViewModel = InitializeCoreViewModel(revitDynamoModel);
 
                 UpdateSystemPathForProcess();
