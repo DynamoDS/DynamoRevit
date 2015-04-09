@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Adaptive_Component_Creation_Failed" xml:space="preserve">
+    <value>An adaptive component could not be found or created.</value>
+  </data>
   <data name="AnalysisResultsDefaultDescription" xml:space="preserve">
     <value>Analysis Results from Dynamo</value>
   </data>
@@ -124,14 +127,14 @@
     <value>Dynamo Analysis Results</value>
   </data>
   <data name="Array_Count_Mismatch" xml:space="preserve">
-    <value>The number of sample points and number of samples must be the same.</value>
+    <value>The number of sample locations and samples is not equal.</value>
   </data>
   <data name="Dynamo_AVF_Data_Name" xml:space="preserve">
     <value>Dynamo Data</value>
   </data>
   <data name="Tag_Lookup_Error" xml:space="preserve">
-    <value>The specified surface does not correspond to a Revit surface.</value>
-</data>
+    <value>A Revit face with the corresponding tag could not be found.</value>
+  </data>
   <data name="CurtainPanelIsNotPlanar" xml:space="preserve">
     <value>Curtain Panel is not planar</value>
   </data>
