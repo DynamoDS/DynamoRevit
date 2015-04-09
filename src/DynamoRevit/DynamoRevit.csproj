@@ -36,6 +36,8 @@
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>$(OutputPath)\DynamoRevitDS.XML</DocumentationFile>
     <DocumentationFile>$(OutputPath)\$(UICulture)\DynamoRevitDS.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -48,6 +50,8 @@
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>$(OutputPath)\DynamoRevitDS.XML</DocumentationFile>
     <DocumentationFile>$(OutputPath)\$(UICulture)\DynamoRevitDS.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoRaaSHelper">

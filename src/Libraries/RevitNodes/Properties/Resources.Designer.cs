@@ -135,9 +135,9 @@ namespace Revit.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The number of divisions must be greater than 2!.
         /// </summary>
-        internal static string NumberOfDivisionsShouldBeGreaterThan2 {
+        internal static string NumberOfDivisionMustBeGreateThan2 {
             get {
-                return ResourceManager.GetString("NumberOfDivisionsShouldBeGreaterThan2", resourceCulture);
+                return ResourceManager.GetString("NumberOfDivisionMustBeGreateThan2", resourceCulture);
             }
         }
         
