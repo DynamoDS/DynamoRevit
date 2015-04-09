@@ -117,7 +117,16 @@ namespace Revit.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The number of divisions must be greater than 2!.
         /// </summary>
-        internal static string NumberOfDivisionsMustBeGreaterThan2 {
+        internal static string NumberOfDivisionMustBeGreateThan2 {
+            get {
+                return ResourceManager.GetString("NumberOfDivisionMustBeGreateThan2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Revit face with the corresponding tag could not be found..
+        /// </summary>
+        internal static string Tag_Lookup_Error {
             get {
                 return ResourceManager.GetString("NumberOfDivisionsMustBeGreaterThan2", resourceCulture);
             }

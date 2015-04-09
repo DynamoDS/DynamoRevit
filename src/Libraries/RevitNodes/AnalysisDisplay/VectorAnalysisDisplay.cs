@@ -28,8 +28,10 @@ namespace Revit.AnalysisDisplay
         /// Create a Point Analysis Display in the current view
         /// </summary>
         /// <param name="view"></param>
-        /// <param name="sampleLocations"></param>
-        /// <param name="samples"></param>
+        /// <param name="data"></param>
+        /// <param name="resultsName"></param>
+        /// <param name="description"></param>
+        /// <param name="unitType"></param>
         private VectorAnalysisDisplay(Autodesk.Revit.DB.View view, IEnumerable<VectorAnalysisData> data, 
             string resultsName, string description, Type unitType)
         {
