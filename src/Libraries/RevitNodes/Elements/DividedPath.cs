@@ -239,7 +239,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreaterThan2);
+                throw new Exception(Properties.Resources.NumberOfDivisionsMustBeGreaterThan2);
             }
 
             return new DividedPath(new[] { ElementCurveReference.TryGetCurveReference(curve) }, divisions);
@@ -259,7 +259,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreaterThan2);
+                throw new Exception(Properties.Resources.NumberOfDivisionsMustBeGreaterThan2);
             }
 
             if (curve.Any(x => x == null))
