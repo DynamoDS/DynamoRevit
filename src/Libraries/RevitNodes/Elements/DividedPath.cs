@@ -157,7 +157,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreateThan2);
+                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreaterThan2);
             }
 
             return new DividedPath(new[] { ElementCurveReference.TryGetCurveReference(element) }, divisions);
@@ -173,7 +173,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreateThan2);
+                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreaterThan2);
             }
 
             if (curveReferences.Any(x => x == null))
@@ -194,7 +194,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreateThan2);
+                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreaterThan2);
             }
 
             return new DividedPath(new[] { ElementCurveReference.TryGetCurveReference(element) }, divisions);
@@ -210,7 +210,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreateThan2);
+                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreaterThan2);
             }
 
             if (elements.Any(x => x == null))
@@ -239,7 +239,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreateThan2);
+                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreaterThan2);
             }
 
             return new DividedPath(new[] { ElementCurveReference.TryGetCurveReference(curve) }, divisions);
@@ -259,7 +259,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreateThan2);
+                throw new Exception(Properties.Resources.NumberOfDivisionMustBeGreaterThan2);
             }
 
             if (curve.Any(x => x == null))

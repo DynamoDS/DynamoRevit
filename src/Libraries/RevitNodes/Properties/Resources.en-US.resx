@@ -144,7 +144,7 @@
   <data name="CurtainPannelIsNotRectangular" xml:space="preserve">
     <value>Curtain Panel is not rectangular</value>
   </data>
-  <data name="NumberOfDivisionMustBeGreateThan2" xml:space="preserve">
+  <data name="NumberOfDivisionMustBeGreaterThan2" xml:space="preserve">
     <value>The number of divisions must be greater than 2!</value>
   </data>
   <data name="View_ExportAsImage_Path_Invalid" xml:space="preserve">
