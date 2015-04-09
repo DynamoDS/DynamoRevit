@@ -922,8 +922,8 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(16, model.CurrentWorkspace.Nodes.Count);
-            Assert.AreEqual(21, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(23, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
