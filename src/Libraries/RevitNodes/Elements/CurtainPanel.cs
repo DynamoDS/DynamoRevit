@@ -218,8 +218,10 @@ namespace Revit.Elements
             return lengthVal * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
          }
       }
+
        /// <summary>
-       /// Checks if the specific curtain panel is rectangular
+       /// Checks whether the specific curtain panel is rectangular. Returns 
+       /// true if the curtain panel is rectangular. Otherwise returns false
        /// </summary>
       public bool IsRectangular
       {
