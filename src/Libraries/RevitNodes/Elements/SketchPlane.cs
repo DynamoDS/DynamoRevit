@@ -167,7 +167,7 @@ namespace Revit.Elements
         }
         /// <summary>
         /// Gets the plane geometry of the specified sketch plane
-        /// </summary
+        /// </summary>
         public Autodesk.DesignScript.Geometry.Plane Plane
         {
             get
