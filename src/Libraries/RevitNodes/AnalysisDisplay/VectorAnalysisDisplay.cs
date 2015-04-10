@@ -28,8 +28,7 @@ namespace Revit.AnalysisDisplay
         /// Create a Vector Analysis Display in the current view
         /// </summary>
         /// <param name="view"></param>
-        /// <param name="sampleLocations"></param>
-        /// <param name="samples"></param>
+        /// <param name="data"></param>
         /// <param name="resultsName"></param>
         /// <param name="description"></param>
         /// <param name="unitType"></param>
