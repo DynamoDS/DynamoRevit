@@ -73,14 +73,10 @@ namespace RevitServices.Elements
         {
             lock (mutex)
             {
-                if (instance == null)
-                {
-                    instance = new RevitServicesUpdater(updaters);
-                }
-                else
-                {
-                    throw new InvalidOperationException("RevitServicesUpdater can only be initialized once.");
-                }
+                if (instance != null)
+                    DisposeInstance();
+
+                instance = new RevitServicesUpdater(updaters);
             }
         }
 
