@@ -622,6 +622,24 @@ namespace RevitSystemTests
            Assert.IsInstanceOf<Autodesk.DesignScript.Geometry.Point>(watchNode.CachedValue);
         }
 
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void MAGN_6710()
+        {
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_6710.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            //open the test file
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            RunCurrentModel();
+
+            var curves = GetAllCurveElements();
+            Assert.AreEqual(1, curves.Count);
+        }
+
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
         {
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
