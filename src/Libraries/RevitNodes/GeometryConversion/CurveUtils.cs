@@ -14,6 +14,32 @@ namespace Revit.GeometryConversion
     {
         public static readonly double Tolerance = 1e-6;
 
+        public static bool ReferencePointsAreSame(ReferencePoint pnt1, ReferencePoint pnt2)
+        {
+            if (pnt1.Position.IsAlmostEqualTo(pnt2.Position, Tolerance))
+                return true;
+
+            return false;
+        }
+
+        public static bool PointArraysAreSame(ReferencePointArray pnts1, ReferencePointArray pnts2)
+        {
+            int size1 = pnts1.Size;
+            int size2 = pnts2.Size;
+            if (size1 != size2)
+                return false;
+
+            for (int i = 0; i < size1; i++)
+            {
+                var pnt1 = pnts1.get_Item(i);
+                var pnt2 = pnts2.get_Item(i);
+                if (!ReferencePointsAreSame(pnt1, pnt2))
+                    return false;
+            }
+
+            return true;
+        }
+
         public static Plane GetPlaneFromCurve(Curve c, bool planarOnly)
         {
             //find the plane of the curve and generate a sketch plane
