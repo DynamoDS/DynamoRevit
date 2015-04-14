@@ -27,7 +27,18 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return string.Format("{0} : {1}", Name, InternalParameter.AsValueString(new FormatOptions(){}));
+            string value = string.Empty;
+            switch(InternalParameter.StorageType)
+            {
+                case StorageType.String:
+                    value = InternalParameter.AsString();
+                    break;
+                default:
+                    var ops = new FormatOptions() { };
+                    value = InternalParameter.AsValueString(ops);
+                    break;
+            }
+            return string.Format("{0} : {1}", Name, value);
         }
     }
 }
