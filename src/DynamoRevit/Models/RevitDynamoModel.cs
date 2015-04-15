@@ -199,24 +199,11 @@ namespace Dynamo.Applications.Models
 
                 historicalElementData[args.Id].Add(kvp.Key, idList);
 
-                foreach (var callSiteData in kvp.Value)
+                foreach (var serializables in kvp.Value.Select(CallSite.GetAllSerializablesFromSingleRunTraceData)) 
                 {
-                    var serializables = DeserializeCallsiteData(callSiteData);
                     idList.AddRange(serializables.Select(ser => ((SerializableId)ser).IntID));
                 }
             }
-        }
-
-        private static IEnumerable<ISerializable> DeserializeCallsiteData(string callSiteData)
-        {
-            Validity.Assert(!String.IsNullOrEmpty(callSiteData));
-            var data = Convert.FromBase64String(callSiteData);
-            var formatter = new SoapFormatter();
-            var s = new MemoryStream(data);
-            var helper = (CallSite.TraceSerialiserHelper)formatter.Deserialize(s);
-
-            var serializables = helper.TraceData.SelectMany(std => std.RecursiveGetNestedData());
-            return serializables;
         }
 
         #endregion
@@ -453,7 +440,8 @@ namespace Dynamo.Applications.Models
                 var idList = new List<int>();
                 currentRunData.Add(kvp.Key, idList);
 
-                foreach (var serializables in kvp.Value.Select(DeserializeCallsiteData)) {
+                foreach (var serializables in kvp.Value.Select(CallSite.GetAllSerializablesFromSingleRunTraceData))
+                {
                     idList.AddRange(serializables.Select(ser => ((SerializableId)ser).IntID));
                 }
             }
@@ -489,28 +477,19 @@ namespace Dynamo.Applications.Models
                 orphanedIds.AddRange(kvp.Value.Where(id => !currentRunNodeGuids.Contains(id)));
             }
 
-            // Delete all the orphans.
-            IdlePromise.ExecuteOnIdleAsync(
-                () =>
-                {
-                    var toDelete = new List<ElementId>();
-                    foreach (var id in orphanedIds)
+            if (IsTestMode)
+            {
+                DeleteOrphanedElements(orphanedIds);
+            }
+            else
+            {
+                // Delete all the orphans.
+                IdlePromise.ExecuteOnIdleAsync(
+                    () =>
                     {
-                        // Check whether the element is valid before attempting to delete.
-                        Element el;
-                        if (DocumentManager.Instance.CurrentDBDocument.TryGetElement(new ElementId(id), out el))
-                        {
-                            toDelete.Add(el.Id);
-                        }
-                    }
-
-                    using (var trans = new Transaction(DocumentManager.Instance.CurrentDBDocument))
-                    {
-                        trans.Start("Dynamo element reconciliation.");
-                        DocumentManager.Instance.CurrentDBDocument.Delete(toDelete);
-                        trans.Commit();
-                    }
-                });
+                        DeleteOrphanedElements(orphanedIds);
+                    });
+            }
 
             Debug.WriteLine("ELEMENT RECONCILIATION: {0} elements were orphaned.", orphanedIds.Count);
 
@@ -518,6 +497,25 @@ namespace Dynamo.Applications.Models
             // At this point, element binding is as up to date as it's going to get.
 
             historicalElementData.Remove(CurrentWorkspace.Guid);
+        }
+
+        private static void DeleteOrphanedElements(List<int> orphanedIds)
+        {
+            var toDelete = new List<ElementId>();
+            foreach (var id in orphanedIds)
+            {
+                // Check whether the element is valid before attempting to delete.
+                Element el;
+                if (DocumentManager.Instance.CurrentDBDocument.TryGetElement(new ElementId(id), out el))
+                    toDelete.Add(el.Id);
+            }
+
+            using (var trans = new SubTransaction(DocumentManager.Instance.CurrentDBDocument))
+            {
+                trans.Start();
+                DocumentManager.Instance.CurrentDBDocument.Delete(toDelete);
+                trans.Commit();
+            }
         }
 
         protected override void PreShutdownCore(bool shutdownHost)
