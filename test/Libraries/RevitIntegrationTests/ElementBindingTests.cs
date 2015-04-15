@@ -9,13 +9,16 @@ using RevitTestServices;
 using RTF.Framework;
 using Autodesk.Revit.DB;
 
+using Dynamo.Models;
 using Dynamo.Nodes;
+using Dynamo.Tests;
 
 using RevitServices.Persistence;
 
 using Transaction = Autodesk.Revit.DB.Transaction;
 using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
 using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
+using Utils = RevitServices.Elements.ElementUtils;
 
 namespace RevitSystemTests
 {
@@ -622,6 +625,75 @@ namespace RevitSystemTests
             arc = GetArcFromArcCurveElement(curve);
             Assert.IsNotNull(arc);
             IsFuzzyEqual(8, arc.Radius, 1.0e-6);
+        }
+
+        [Test, TestModel(@".\ElementBinding\RebindingSingleDimension.rfa")]
+        public void Rebinding_SingleDimensionDecreaseOnReopen()
+        {
+            var model = OpenElementBindingWorkspace("RebindingSingleDimension.dyn");
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var numNode = model.CurrentWorkspace.FirstNodeFromWorkspace<DoubleInput>();
+
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 3, 1);
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 8, 1);
+        }
+
+        [Test, TestModel(@".\ElementBinding\RebindingSingleDimension.rfa")]
+        public void Rebinding_SingleDimensionIncreaseOnReopen()
+        {
+            var model = OpenElementBindingWorkspace("RebindingSingleDimension.dyn");
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var numNode = model.CurrentWorkspace.FirstNodeFromWorkspace<DoubleInput>();
+
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 8, 1);
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 3, 1);
+        }
+
+        [Test, TestModel(@".\ElementBinding\RebindingMultiDimension.rfa")]
+        public void Rebinding_MultiDimensionDecreaseOnReopen()
+        {
+            var model = OpenElementBindingWorkspace("RebindingMultiDimension.dyn");
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var numNode = model.CurrentWorkspace.FirstNodeFromWorkspace<DoubleInput>();
+
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 3, 2);
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 8, 2);
+        }
+
+        [Test, TestModel(@".\ElementBinding\RebindingMultiDimension.rfa")]
+        public void Rebinding_MultiDimensionIncreaseOnReopen()
+        {
+            var model = OpenElementBindingWorkspace("RebindingMultiDimension.dyn");
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var numNode = model.CurrentWorkspace.FirstNodeFromWorkspace<DoubleInput>();
+
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 8, 2);
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 3, 2);
+        }
+
+        private DynamoModel OpenElementBindingWorkspace(string name)
+        {
+            var dynFilePath = Path.Combine(
+                workingDirectory, string.Format(
+                @".\ElementBinding\{0}", name));
+            var testPath = Path.GetFullPath(dynFilePath);
+
+            var model = ViewModel.Model;
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            return model;
+        }
+
+        private void ChangeNumberValueAndCheckElementCount(DoubleInput numNode, Document doc, int value, int power)
+        {
+            numNode.Value = value.ToString();
+            RunCurrentModel();
+            var refPts = Utils.AllElementsOfType<ReferencePoint>(doc);
+            Assert.AreEqual(refPts.Count(), Math.Pow(value + 1,power));
         }
     }
 }

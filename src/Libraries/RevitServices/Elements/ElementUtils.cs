@@ -64,5 +64,12 @@ namespace RevitServices.Elements
                 return false;
             }
         }
+
+        public static IEnumerable<Element> AllElementsOfType<T>(this Document document)
+        {
+            var fec = new FilteredElementCollector(document);
+            fec.OfClass(typeof(T));
+            return fec.ToElements();
+        } 
     }
 }
