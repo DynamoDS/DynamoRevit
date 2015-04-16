@@ -675,6 +675,21 @@ namespace RevitSystemTests
             ChangeNumberValueAndCheckElementCount(numNode, doc, 3, 2);
         }
 
+        [Test, TestModel(@".\ElementBinding\RebindingSingleDimension.rfa")]
+        public void Rebinding_NodeDeletedBeforeRun()
+        {
+            var model = OpenElementBindingWorkspace("RebindingSingleDimension.dyn");
+
+            var refPtNode = model.CurrentWorkspace.FirstNodeFromWorkspace<DSFunction>();
+            var command = new DynamoModel.DeleteModelCommand(refPtNode.GUID);
+            ViewModel.ExecuteCommand(command);
+            RunCurrentModel();
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var refPts = Utils.AllElementsOfType<ReferencePoint>(doc);
+            Assert.AreEqual(refPts.Count(), 0);
+        }
+
         private DynamoModel OpenElementBindingWorkspace(string name)
         {
             var dynFilePath = Path.Combine(
