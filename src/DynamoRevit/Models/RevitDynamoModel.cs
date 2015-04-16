@@ -14,6 +14,7 @@ using Autodesk.Revit.UI.Events;
 
 using DSIronPython;
 
+using Dynamo.DSEngine;
 using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.UpdateManager;
@@ -163,47 +164,50 @@ namespace Dynamo.Applications.Models
             MigrationManager.MigrationTargets.Add(typeof(WorkspaceMigrationsRevit));
 
             SetupPython();
-
-            WorkspaceEvents.WorkspaceAdded += WorkspaceEvents_WorkspaceAdded;
         }
-
-        /// <summary>
-        /// A map of historical element ids associated with a workspace.
-        /// </summary>
-        private Dictionary<Guid, Dictionary<Guid, List<int>>> historicalElementData = new Dictionary<Guid, Dictionary<Guid, List<int>>>();
 
         private bool isFirstEvaluation = true;
 
-        void WorkspaceEvents_WorkspaceAdded(WorkspacesModificationEventArgs args)
+        #endregion
+
+        #region trace reconciliation
+
+        protected override void PostTraceReconciliation(IEnumerable<ISerializable> orphanedSerializables)
         {
-            // The workspace's PreloadedTraceData should be available here
-            // before the workspace has been run. We use this trace data to
-            // get a dictionary, keyed by node guid, of element ids which
-            // have been saved to the file. This dictionary will be used only
-            // once, after the first run of the graph to reconcile elements that 
-            // are newly created with what had been created previously, removing
-            // any elements from the model that were pre-existing and associated
-            // with Dynamo, but no longer created by Dynamo.
-            
-            var hws = Workspaces.FirstOrDefault(ws => ws is HomeWorkspaceModel) as HomeWorkspaceModel;
-            if (hws == null) return;
+            var orphanedIds =
+                orphanedSerializables.Cast<SerializableId>().Select(sid => sid.IntID).ToList();
 
-            var serializedTraceData = hws.PreloadedTraceData;
-            if (serializedTraceData == null) return;
+            if (!orphanedIds.Any())
+                return;
 
-            historicalElementData.Add(args.Id, new Dictionary<Guid, List<int>>());
-
-            foreach (var kvp in serializedTraceData)
+            if (IsTestMode)
             {
-                var idList = new List<int>();
-
-                historicalElementData[args.Id].Add(kvp.Key, idList);
-
-                foreach (var serializables in kvp.Value.Select(CallSite.GetAllSerializablesFromSingleRunTraceData)) 
-                {
-                    idList.AddRange(serializables.Select(ser => ((SerializableId)ser).IntID));
-                }
+                DeleteOrphanedElements(orphanedIds);
             }
+            else
+            {
+                // Delete all the orphans.
+                IdlePromise.ExecuteOnIdleAsync(
+                    () =>
+                    {
+                        DeleteOrphanedElements(orphanedIds);
+                    });
+            }
+        }
+
+        private static void DeleteOrphanedElements(IEnumerable<int> orphanedIds)
+        {
+            var toDelete = new List<ElementId>();
+            foreach (var id in orphanedIds)
+            {
+                // Check whether the element is valid before attempting to delete.
+                Element el;
+                if (DocumentManager.Instance.CurrentDBDocument.TryGetElement(new ElementId(id), out el))
+                    toDelete.Add(el.Id);
+            }
+
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            DocumentManager.Instance.CurrentDBDocument.Delete(toDelete);
         }
 
         #endregion
@@ -414,108 +418,10 @@ namespace Dynamo.Applications.Models
         {
             Debug.WriteLine(ElementIDLifecycleManager<int>.GetInstance());
 
-            if (historicalElementData.ContainsKey(CurrentWorkspace.Guid))
-            {
-                ReconcileHistoricalElements();
-            }
-
             // finally close the transaction!
             TransactionManager.Instance.ForceCloseTransaction();
 
             base.OnEvaluationCompleted(sender, e);
-        }
-
-        private void ReconcileHistoricalElements()
-        {
-            // Read the current run's trace data into a dictionary which matches
-            // the layout of our historical element data. 
-
-            var traceData = EngineController.LiveRunnerCore.RuntimeData.GetTraceDataForNodes(
-                CurrentWorkspace.Nodes.Select(n => n.GUID),
-                EngineController.LiveRunnerCore.DSExecutable);
-
-            var currentRunData = new Dictionary<Guid, List<int>>();
-            foreach (var kvp in traceData)
-            {
-                var idList = new List<int>();
-                currentRunData.Add(kvp.Key, idList);
-
-                foreach (var serializables in kvp.Value.Select(CallSite.GetAllSerializablesFromSingleRunTraceData))
-                {
-                    idList.AddRange(serializables.Select(ser => ((SerializableId)ser).IntID));
-                }
-            }
-
-            // Compare the historical element data and the current run
-            // data to see whether there are elements that had been
-            // created by nodes previously, which were not created in 
-            // this run. Store the elements ids of all the elements that
-            // can't be found in the orphans collection.
-
-            var workspaceHistory = historicalElementData[CurrentWorkspace.Guid];
-            var orphanedIds = new List<int>();
-
-            foreach (var kvp in workspaceHistory)
-            {
-                var nodeGuid = kvp.Key;
-
-                // If the current run doesn't have a key for 
-                // this guid, then all of these elements are 
-                // orphaned.
-
-                if (!currentRunData.ContainsKey(nodeGuid))
-                {
-                    orphanedIds.AddRange(kvp.Value);
-                    continue;
-                }
-
-                var currentRunNodeGuids = currentRunData[nodeGuid];
-
-                // If the current run didn't create an element
-                // in the current run, then add an orphan.
-
-                orphanedIds.AddRange(kvp.Value.Where(id => !currentRunNodeGuids.Contains(id)));
-            }
-
-            if (IsTestMode)
-            {
-                DeleteOrphanedElements(orphanedIds);
-            }
-            else
-            {
-                // Delete all the orphans.
-                IdlePromise.ExecuteOnIdleAsync(
-                    () =>
-                    {
-                        DeleteOrphanedElements(orphanedIds);
-                    });
-            }
-
-            Debug.WriteLine("ELEMENT RECONCILIATION: {0} elements were orphaned.", orphanedIds.Count);
-
-            // When reconciliation is complete, wipe the historical data.
-            // At this point, element binding is as up to date as it's going to get.
-
-            historicalElementData.Remove(CurrentWorkspace.Guid);
-        }
-
-        private static void DeleteOrphanedElements(List<int> orphanedIds)
-        {
-            var toDelete = new List<ElementId>();
-            foreach (var id in orphanedIds)
-            {
-                // Check whether the element is valid before attempting to delete.
-                Element el;
-                if (DocumentManager.Instance.CurrentDBDocument.TryGetElement(new ElementId(id), out el))
-                    toDelete.Add(el.Id);
-            }
-
-            using (var trans = new SubTransaction(DocumentManager.Instance.CurrentDBDocument))
-            {
-                trans.Start();
-                DocumentManager.Instance.CurrentDBDocument.Delete(toDelete);
-                trans.Commit();
-            }
         }
 
         protected override void PreShutdownCore(bool shutdownHost)
