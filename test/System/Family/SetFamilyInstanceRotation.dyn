@@ -1,0 +1,17 @@
+<Workspace Version="0.8.1.960" X="-252.748843593371" Y="35.8310836634286" zoom="0.82770257044119" Name="Home" RunType="Manual" RunPeriod="100" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSModelElementSelection guid="fa088c23-8dbb-44fe-abfa-b7a2125729ae" type="Dynamo.Nodes.DSModelElementSelection" nickname="Select Model Element" x="402.589835881098" y="125.781644043405" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <instance id="181cb14b-22bc-4aff-a2b2-574e0a9ca40d-0002da96" />
+    </Dynamo.Nodes.DSModelElementSelection>
+    <Dynamo.Nodes.DSFunction guid="67b9d1ab-c89b-45f3-a068-4b5963816718" type="Dynamo.Nodes.DSFunction" nickname="FamilyInstance.SetRotation" x="861.540864590698" y="102.836730832744" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.FamilyInstance.SetRotation@double" />
+    <Dynamo.Nodes.DoubleInput guid="7fc20ba8-6735-4779-b6bd-cbc8174ac71e" type="Dynamo.Nodes.DoubleInput" nickname="Number" x="622.782391837308" y="459.583759767339" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.Double value="30" />
+    </Dynamo.Nodes.DoubleInput>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="fa088c23-8dbb-44fe-abfa-b7a2125729ae" start_index="0" end="67b9d1ab-c89b-45f3-a068-4b5963816718" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7fc20ba8-6735-4779-b6bd-cbc8174ac71e" start_index="0" end="67b9d1ab-c89b-45f3-a068-4b5963816718" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>
