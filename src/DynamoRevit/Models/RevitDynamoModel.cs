@@ -211,8 +211,15 @@ namespace Dynamo.Applications.Models
                     toDelete.Add(el.Id);
             }
 
-            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-            DocumentManager.Instance.CurrentDBDocument.Delete(toDelete);
+            if (!toDelete.Any())
+                return;
+
+            using (var trans = new Transaction(DocumentManager.Instance.CurrentDBDocument))
+            {
+                trans.Start("Dynamo element reconciliation.");
+                DocumentManager.Instance.CurrentDBDocument.Delete(toDelete);
+                trans.Commit();
+            }
         }
 
         #endregion
