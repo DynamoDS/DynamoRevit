@@ -80,5 +80,23 @@ namespace RevitSystemTests
 
             AssertPreviewCount("76076507-d16e-4480-802c-14ba87d88f81", 25);
         }
+
+        [Test]
+        [TestModel(@".\Family\SetFamilyInstanceRotation.rvt")]
+        public void SetFamilyInstanceRotation()
+        {
+           string samplePath = Path.Combine(workingDirectory, @".\Family\SetFamilyInstanceRotation.dyn");
+           string testPath = Path.GetFullPath(samplePath);
+
+           ViewModel.OpenCommand.Execute(testPath);
+
+           RunCurrentModel();
+           var elId = new Autodesk.Revit.DB.ElementId(187030);
+           var famInst = RevitServices.Persistence.DocumentManager.Instance.CurrentDBDocument.GetElement(elId) as Autodesk.Revit.DB.FamilyInstance;
+           var transform = famInst.GetTransform();
+           double[] rotationAngles;
+           Revit.Elements.InternalUtilities.TransformUtils.ExtractEularAnglesFromTransform(transform, out rotationAngles);
+           Assert.AreEqual(30.0, rotationAngles[0] * 180 / System.Math.PI, 1.0e-6);
+        }
     }
 }
