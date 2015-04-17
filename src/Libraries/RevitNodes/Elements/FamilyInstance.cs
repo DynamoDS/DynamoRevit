@@ -13,6 +13,7 @@ using DynamoUnits;
 using Revit.Elements.InternalUtilities;
 
 using Point = Autodesk.DesignScript.Geometry.Point;
+using Vector = Autodesk.DesignScript.Geometry.Vector;
 
 namespace Revit.Elements
 {
@@ -200,6 +201,17 @@ namespace Revit.Elements
             // NOTE: Because AbstractFamilyInstance is not visible in the library
             //       we redefine this method on FamilyInstance
             get { return base.Location; }
+        }
+
+        /// <summary>
+        /// Gets the FacingOrientation of the family instance
+        /// </summary>
+        public Vector FacingOrientation
+        {
+            get
+            {
+                return GeometryPrimitiveConverter.ToVector(InternalFamilyInstance.FacingOrientation);
+            }
         }
 
         #endregion
