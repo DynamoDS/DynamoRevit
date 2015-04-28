@@ -9,8 +9,11 @@ using Revit.GeometryConversion;
 
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+using DynamoUnits;
+using Revit.Elements.InternalUtilities;
 
 using Point = Autodesk.DesignScript.Geometry.Point;
+using Vector = Autodesk.DesignScript.Geometry.Vector;
 
 namespace Revit.Elements
 {
@@ -192,6 +195,17 @@ namespace Revit.Elements
             get { return base.Location; }
         }
 
+        /// <summary>
+        /// Gets the FacingOrientation of the family instance
+        /// </summary>
+        public Vector FacingOrientation
+        {
+            get
+            {
+                return GeometryPrimitiveConverter.ToVector(InternalFamilyInstance.FacingOrientation);
+            }
+        }
+
         #endregion
 
         #region Public static constructors
@@ -298,5 +312,39 @@ namespace Revit.Elements
             return InternalFamilyInstance.Name;
         }
 
+       #region Public Methods
+
+        /// <summary>
+        /// Sets the Euler angle of the family instance around its local Z-axis.
+        /// </summary>        
+        /// <param name="degree">The Euler angle around Z-axis.</param>
+        /// <returns>The result family instance.</returns>
+        public FamilyInstance SetRotation(double degree)
+        {
+           if (this == null)
+              throw new ArgumentNullException("familyInstance");
+
+           TransactionManager.Instance.EnsureInTransaction(Document);
+
+           // Rotate the element.
+           var oldTransform = InternalFamilyInstance.GetTransform();
+           double[] oldRotationAngles;
+           TransformUtils.ExtractEularAnglesFromTransform(oldTransform, out oldRotationAngles);
+
+           Double newRotationAngle = degree * Math.PI / 180;
+
+           if (!oldRotationAngles[0].AlmostEquals(newRotationAngle, 1.0e-6))
+           {
+              double rotateAngle = newRotationAngle - oldRotationAngles[0];
+              var axis = Line.CreateUnbound(oldTransform.Origin, oldTransform.BasisZ);
+              ElementTransformUtils.RotateElement(Document, new ElementId(Id), axis, -rotateAngle);
+           }
+
+           TransactionManager.Instance.TransactionTaskDone();
+
+           return this;
+        }
+
+       #endregion
     }
 }
