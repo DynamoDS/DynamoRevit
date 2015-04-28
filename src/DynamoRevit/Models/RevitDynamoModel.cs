@@ -198,10 +198,13 @@ namespace Dynamo.Applications.Models
 
         #region trace reconciliation
 
-        protected override void PostTraceReconciliation(IEnumerable<ISerializable> orphanedSerializables)
+        public override void PostTraceReconciliation(Dictionary<Guid, List<ISerializable>> orphanedSerializables)
         {
             var orphanedIds =
-                orphanedSerializables.Cast<SerializableId>().Select(sid => sid.IntID).ToList();
+                orphanedSerializables
+                .SelectMany(kvp=>kvp.Value)
+                .Cast<SerializableId>()
+                .Select(sid => sid.IntID).ToList();
 
             if (!orphanedIds.Any())
                 return;
