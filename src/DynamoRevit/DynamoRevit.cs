@@ -162,10 +162,9 @@ namespace Dynamo.Applications
             // Add the main exec path to the system PATH
             // This is required to pickup certain dlls.
             var path =
-                string.Format(
                     Environment.GetEnvironmentVariable(
                         "Path",
-                        EnvironmentVariableTarget.Process) + ";{0}", corePath);
+                        EnvironmentVariableTarget.Process) + ";" + corePath;
             Environment.SetEnvironmentVariable("Path", path, EnvironmentVariableTarget.Process);
         }
 
