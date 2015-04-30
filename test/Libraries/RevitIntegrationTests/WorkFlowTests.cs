@@ -6,16 +6,26 @@ using RevitTestServices;
 using Dynamo.Models;
 using RTF.Framework;
 using Autodesk.DesignScript.Geometry;
+using RevitServices.Persistence;
+using System.Collections.Generic;
+using RevitServices.Transactions;
 
 namespace RevitSystemTests
 {
     [TestFixture]
     public class WorkflowTests : RevitSystemTestBase
     {
+
+        protected static IList<Autodesk.Revit.DB.Wall> GetAllWalls()
+        {
+            var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(Autodesk.Revit.DB.Wall));
+            return fec.ToElements().Cast<Autodesk.Revit.DB.Wall>().ToList();
+        }
         
 
         [Test]
-        [TestModel(@".\Workflow\basic.rvt")]
+        [TestModel(@".\empty.rvt")]
         public void Workflow_test01()
         {
             // Create Wall.ByCurveAndHeight
@@ -41,6 +51,9 @@ namespace RevitSystemTests
                 Assert.IsNotNull(allwalls);
 
             }
+
+            var wallFromRevit = GetAllWalls();
+            Assert.AreEqual(4, wallFromRevit.Count);
 
         }
 
