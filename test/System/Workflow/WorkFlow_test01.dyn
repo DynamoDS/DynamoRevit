@@ -1,0 +1,35 @@
+<Workspace Version="0.8.1.1191" X="-55.146392477062" Y="-151.20051325945" zoom="1.07333337109291" Name="Home" RunType="Manual" RunPeriod="100" HasRunWithoutCrash="False">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="df732b14-7c5d-4406-ba46-d8701f74fe02" type="Dynamo.Nodes.DSFunction" nickname="Level.ByElevation" x="478.078112044819" y="449.08856364344" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.Level.ByElevation@double" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="7a77c1bc-ff47-4a26-8a24-a8b9dfcfaaf3" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="201" y="296" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="1..10..3;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="1367ca93-ad6b-459f-a264-61ebe1eb5edd" type="Dynamo.Nodes.DSFunction" nickname="Wall.ByCurveAndHeight" x="861.403937856265" y="282.600662512361" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.Wall.ByCurveAndHeight@Autodesk.DesignScript.Geometry.Curve,double,Revit.Elements.Level,Revit.Elements.WallType" />
+    <Dynamo.Nodes.DSFunction guid="aeaf70a1-fb49-4b69-91d9-285488a55161" type="Dynamo.Nodes.DSFunction" nickname="Point.ByCoordinates" x="63.7938170370377" y="-66.7300385578748" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double">
+      <PortInfo index="0" default="True" />
+      <PortInfo index="1" default="True" />
+      <PortInfo index="2" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <Dynamo.Nodes.DSFunction guid="00fc3cc8-30df-4fb5-93af-0edca180dd81" type="Dynamo.Nodes.DSFunction" nickname="Point.ByCoordinates" x="63.5537946984856" y="77.1597226401631" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double">
+      <PortInfo index="0" default="True" />
+      <PortInfo index="1" default="True" />
+      <PortInfo index="2" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="38e93fec-755b-4b56-b9cd-478b2278c665" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-225" y="-54" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="1;" ShouldFocus="false" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="1723fa4a-8997-4315-9478-e44964eb07f4" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-285" y="62" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="10;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="fec4f27b-0518-455d-8e06-a0ebe673ba6d" type="Dynamo.Nodes.DSFunction" nickname="Line.ByStartPointEndPoint" x="290.480309486036" y="-33.2701702040223" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point" />
+    <DSRevitNodesUI.WallTypes guid="5e3e1199-07a5-4f18-aa19-94ff292445ee" type="DSRevitNodesUI.WallTypes" nickname="Wall Types" x="670.887499450789" y="482.101057810783" isVisible="true" isUpstreamVisible="true" lacing="Disabled" index="0:Curtain Wall 1" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="df732b14-7c5d-4406-ba46-d8701f74fe02" start_index="0" end="1367ca93-ad6b-459f-a264-61ebe1eb5edd" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7a77c1bc-ff47-4a26-8a24-a8b9dfcfaaf3" start_index="0" end="df732b14-7c5d-4406-ba46-d8701f74fe02" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7a77c1bc-ff47-4a26-8a24-a8b9dfcfaaf3" start_index="0" end="1367ca93-ad6b-459f-a264-61ebe1eb5edd" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="aeaf70a1-fb49-4b69-91d9-285488a55161" start_index="0" end="fec4f27b-0518-455d-8e06-a0ebe673ba6d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="00fc3cc8-30df-4fb5-93af-0edca180dd81" start_index="0" end="fec4f27b-0518-455d-8e06-a0ebe673ba6d" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="38e93fec-755b-4b56-b9cd-478b2278c665" start_index="0" end="aeaf70a1-fb49-4b69-91d9-285488a55161" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="1723fa4a-8997-4315-9478-e44964eb07f4" start_index="0" end="00fc3cc8-30df-4fb5-93af-0edca180dd81" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="fec4f27b-0518-455d-8e06-a0ebe673ba6d" start_index="0" end="1367ca93-ad6b-459f-a264-61ebe1eb5edd" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5e3e1199-07a5-4f18-aa19-94ff292445ee" start_index="0" end="1367ca93-ad6b-459f-a264-61ebe1eb5edd" end_index="3" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+</Workspace>
