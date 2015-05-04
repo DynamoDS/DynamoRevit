@@ -26,7 +26,6 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rvt")]
         public void Wall()
         {
-            
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\Wall.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
@@ -46,14 +45,10 @@ namespace RevitSystemTests
             {
                 var allwalls = GetPreviewValueAtIndex(wall, i) as Wall;
                 Assert.IsNotNull(allwalls);
-
             }
-
             var wallFromRevit = GetAllWalls();
             Assert.AreEqual(4, wallFromRevit.Count);
-
         }
-
     }
 }
 
