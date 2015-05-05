@@ -256,6 +256,29 @@ namespace RevitSystemTests
                 Assert.IsNotNull(element);
             }
         }
+
+
+        [Test]
+        [TestModel(@".\Workflow\CodeBlocksReference\panelProject.rvt")]
+        public void Test_PanelsNodes()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Workflow\CodeBlocksReference\Panels_Nodes.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var model = ViewModel.Model;
+            Assert.AreEqual(32, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(42, model.CurrentWorkspace.Connectors.Count());
+
+            //check Element.OverrideColorInView
+            var color = "4845d25a-c7bd-4e61-8e5d-9dffee11d532";
+            AssertPreviewCount(color, 456);
+            for (int i = 0; i < 456; i++)
+            {
+                var element = GetPreviewValueAtIndex(color, i) as Element;
+                Assert.IsNotNull(element);
+            }         
+        }
     }
 }
 
