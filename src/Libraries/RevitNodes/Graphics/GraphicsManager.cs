@@ -44,15 +44,15 @@ namespace Revit.Graphics
                 for (var j = 0; j < 3; j++)
                 {
                     var xyz = triangle.get_Vertex(j);
-                    package.PushTriangleVertex(xyz.X, xyz.Y, xyz.Z);
+                    package.AddTriangleVertex(xyz.X, xyz.Y, xyz.Z);
                 }
 
                 var a = mesh.get_Triangle(i).get_Vertex(1).Subtract(mesh.get_Triangle(i).get_Vertex(0)).Normalize();
                 var b = mesh.get_Triangle(i).get_Vertex(2).Subtract(mesh.get_Triangle(i).get_Vertex(0)).Normalize();
                 var norm = a.CrossProduct(b);
-                package.PushTriangleVertexNormal(norm.X, norm.Y, norm.Z);
-                package.PushTriangleVertexNormal(norm.X, norm.Y, norm.Z);
-                package.PushTriangleVertexNormal(norm.X, norm.Y, norm.Z);
+                package.AddTriangleVertexNormal(norm.X, norm.Y, norm.Z);
+                package.AddTriangleVertexNormal(norm.X, norm.Y, norm.Z);
+                package.AddTriangleVertexNormal(norm.X, norm.Y, norm.Z);
             }
         }
     }
