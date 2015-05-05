@@ -196,7 +196,7 @@ namespace RevitSystemTests
 
         [Test]
         [TestModel(@".\Workflow\RevitProject\tower.rvt")]
-        public void Test_EllipseTower()
+        public void Test_EllipseTower01()
         {
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\RevitProject\01 Ellipse Tower v1.dyn");
             string testPath = Path.GetFullPath(samplePath);
@@ -205,6 +205,38 @@ namespace RevitSystemTests
             var model = ViewModel.Model;
             Assert.AreEqual(39, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(47, model.CurrentWorkspace.Connectors.Count());
+
+            //check Floor.ByOutLineTypeAndLevel
+            var floor = "1bcce36c-7ea3-4c70-9271-544fd378ec41";
+            AssertPreviewCount(floor, 14);
+            for (int i = 0; i < 14; i++)
+            {
+                var floors = GetPreviewValueAtIndex(floor, i) as Floor;
+                Assert.IsNotNull(floors);
+            }
+
+            //check Element.OverrideColorInView
+            var ele = "d986daac-eae1-4e80-9430-44527fcb133e";
+            AssertPreviewCount(ele, 126);
+            for (int i = 0; i < 126; i++)
+            {
+                var element = GetPreviewValueAtIndex(ele, i) as Element;
+                Assert.IsNotNull(element);
+            }
+        }
+
+
+        [Test]
+        [TestModel(@".\Workflow\RevitProject\tower.rvt")]
+        public void Test_EllipseTower03()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Workflow\RevitProject\03 Ellipse Tower v3.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var model = ViewModel.Model;
+            Assert.AreEqual(45, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(56, model.CurrentWorkspace.Connectors.Count());
 
             //check Floor.ByOutLineTypeAndLevel
             var floor = "1bcce36c-7ea3-4c70-9271-544fd378ec41";
