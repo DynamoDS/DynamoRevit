@@ -345,5 +345,12 @@ namespace RevitTestServices
                 DynamoModel.MakeConnectionCommand.Mode.End);
             this.Model.ExecuteCommand(cmdend);
         }
+
+        protected static IList<Autodesk.Revit.DB.Wall> GetAllWalls()
+        {
+            var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(Autodesk.Revit.DB.Wall));
+            return fec.ToElements().Cast<Autodesk.Revit.DB.Wall>().ToList();
+        }
     }
 }
