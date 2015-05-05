@@ -167,7 +167,7 @@ namespace RevitSystemTests
             Assert.AreEqual(16, model.CurrentWorkspace.Connectors.Count());
 
             //check elements in ImportInstance.ByGeometries are not null
-            Assert.IsNotNull(GetPreviewValue("e3fedc00-247a-4971-901c-7fcb063344c6"));
+            Assert.IsNotNull(GetPreviewValue("e3fedc00-247a-4971-901c-7fcb063344c6") as ImportInstance);
         }
 
 
