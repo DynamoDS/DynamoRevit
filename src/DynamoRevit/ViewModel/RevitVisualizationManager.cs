@@ -8,6 +8,7 @@ using Autodesk.Revit.DB;
 
 using Dynamo.Core;
 using Dynamo.DSEngine;
+using Dynamo.Interfaces;
 using Dynamo.Models;
 
 using ProtoCore.Mirror;
@@ -27,6 +28,8 @@ namespace Dynamo
         private ElementId keeperId = ElementId.InvalidElementId;
         private ElementId directShapeId = ElementId.InvalidElementId;
         private MethodInfo method;
+        private IRenderPackageFactory factory;
+
 
         public ElementId KeeperId
         {
@@ -45,6 +48,8 @@ namespace Dynamo
 
                 RequestAlternateContextClear += CleanupVisualizations;
                 dynamoModel.CleaningUp += CleanupVisualizations;
+
+                factory = new DefaultRenderPackageFactory();
             }
             else
             {
@@ -242,12 +247,12 @@ namespace Dynamo
         private void Tesselate(Autodesk.DesignScript.Geometry.Curve curve, ref List<GeometryObject> geoms)
         {
             // use the ASM tesselation of the curve
-            var pkg = new RenderPackage();
+            var pkg = factory.CreateRenderPackage();
             curve.Tessellate(pkg, 0.1);
 
             // get necessary info to enumerate and convert the lines
-            var lineCount = pkg.LineStripVertices.Count - 3;
-            var verts = pkg.LineStripVertices;
+            var lineCount = pkg.LineVertexCount * 3 - 3;
+            var verts = pkg.LineStripVertices.ToList();
 
             // we scale the tesselation rather than the curve
             var conv = UnitConverter.DynamoToHostFactor(UnitType.UT_Length);

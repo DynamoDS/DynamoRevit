@@ -4,6 +4,7 @@ using System.Linq;
 
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+using Dynamo;
 using Dynamo.DSEngine;
 
 using RevitServices.Materials;
@@ -18,7 +19,7 @@ namespace Revit.GeometryConversion
         public static IList<GeometryObject> ToRevitType(this Autodesk.DesignScript.Geometry.Surface srf,
             bool performHostUnitConversion = true)
         {
-            var rp = new RenderPackage();
+            var rp = new DefaultRenderPackage();
             if (performHostUnitConversion)
             {
                 var newSrf = srf.InHostUnits();
@@ -33,7 +34,7 @@ namespace Revit.GeometryConversion
             var tsb = new TessellatedShapeBuilder();
             tsb.OpenConnectedFaceSet(false);
 
-            var v = rp.TriangleVertices;
+            var v = rp.MeshVertices.ToList();
 
             for (int i = 0; i < v.Count; i += 9)
             {
@@ -54,7 +55,7 @@ namespace Revit.GeometryConversion
         public static IList<GeometryObject> ToRevitType(
             this Autodesk.DesignScript.Geometry.Solid solid, bool performHostUnitConversion = true)
         {
-            var rp = new RenderPackage();
+            var rp = new DefaultRenderPackage();
             if (performHostUnitConversion)
             {
                 var newSolid = solid.InHostUnits();
@@ -69,7 +70,7 @@ namespace Revit.GeometryConversion
             var tsb = new TessellatedShapeBuilder();
             tsb.OpenConnectedFaceSet(false);
 
-            var v = rp.TriangleVertices;
+            var v = rp.MeshVertices.ToList();
 
             for (int i = 0; i < v.Count; i += 9)
             {

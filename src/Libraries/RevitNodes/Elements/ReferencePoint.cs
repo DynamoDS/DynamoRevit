@@ -519,7 +519,7 @@ namespace Revit.Elements
 
             if (this.InternalElement.IsValidObject)
             {
-                package.PushPointVertex(X, Y, Z);
+                package.AddPointVertex(X, Y, Z);
             }
         }
 
