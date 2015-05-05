@@ -209,10 +209,20 @@ namespace RevitSystemTests
             //check Floor.ByOutLineTypeAndLevel
             var floor = "1bcce36c-7ea3-4c70-9271-544fd378ec41";
             AssertPreviewCount(floor, 14);
+            for (int i = 0; i < 14; i++)
+            {
+                var floors = GetPreviewValueAtIndex(floor, i) as Floor;
+                Assert.IsNotNull(floors);
+            }
 
             //check Element.OverrideColorInView
             var ele = "d986daac-eae1-4e80-9430-44527fcb133e";
             AssertPreviewCount(ele, 126);
+            for (int i = 0; i < 126; i++)
+            {
+                var element = GetPreviewValueAtIndex(ele, i) as Element;
+                Assert.IsNotNull(element);
+            }
         }
     }
 }
