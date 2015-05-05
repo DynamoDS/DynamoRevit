@@ -15,17 +15,15 @@ namespace RevitSystemTests
     [TestFixture]
     public class WorkflowTests : RevitSystemTestBase
     {
+
         [Test]
         [TestModel(@".\empty.rvt")]
         public void Wall()
         {
-
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\Wall.dyn");
             string testPath = Path.GetFullPath(samplePath);
-
             ViewModel.OpenCommand.Execute(testPath);
             var model = ViewModel.Model;
-
             RunCurrentModel();
             Assert.AreEqual(9, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(9, model.CurrentWorkspace.Connectors.Count());
@@ -39,13 +37,11 @@ namespace RevitSystemTests
             {
                 var allwalls = GetPreviewValueAtIndex(wall, i) as Wall;
                 Assert.IsNotNull(allwalls);
-
             }
-
             var wallFromRevit = GetAllWalls();
             Assert.AreEqual(4, wallFromRevit.Count);
-
         }
+
 
         [Test]
         [TestModel(@".\empty.rvt")]
@@ -82,6 +78,7 @@ namespace RevitSystemTests
             }
         }
 
+
         [Test]
         [TestModel(@".\Workflow\curve.rvt")]
         public void Test_StructureFrame()
@@ -104,7 +101,6 @@ namespace RevitSystemTests
                 var element = GetPreviewValueAtIndex(structuralFraming, i) as StructuralFraming;
                 Assert.IsNotNull(element);
             }
-
         }
 
 
@@ -132,6 +128,7 @@ namespace RevitSystemTests
             }
         }
 
+
         [Test]
         [TestModel(@".\Workflow\DynamoRevit\DynamoSample.rvt")]
         public void Test_AdaptiveComponent2()
@@ -154,8 +151,8 @@ namespace RevitSystemTests
                 var element = GetPreviewValueAtIndex(AC, i) as AdaptiveComponent;
                 Assert.IsNotNull(element);
             }
-
         }
+
 
         [Test]
         [TestModel(@".\Workflow\DynamoRevit\DynamoSample.rvt")]
@@ -172,6 +169,7 @@ namespace RevitSystemTests
             //check elements in ImportInstance.ByGeometries are not null
             Assert.IsNotNull(GetPreviewValue("e3fedc00-247a-4971-901c-7fcb063344c6"));
         }
+
 
         [Test]
         [TestModel(@".\Workflow\DynamoRevit\DynamoSample.rvt")]
@@ -195,6 +193,7 @@ namespace RevitSystemTests
             }
         }
 
+
         [Test]
         [TestModel(@".\Workflow\RevitProject\tower.rvt")]
         public void Test_EllipseTower()
@@ -214,7 +213,6 @@ namespace RevitSystemTests
             //check Element.OverrideColorInView
             var ele = "d986daac-eae1-4e80-9430-44527fcb133e";
             AssertPreviewCount(ele, 126);
-
         }
     }
 }
