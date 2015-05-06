@@ -235,6 +235,13 @@ namespace Dynamo.Nodes
                 return;
             }
 
+            // If the deleted list doesn't include any objects in the current selection
+            // then return;
+            if (!SelectionResults.Select(x => x.Id).Any(deleted.Contains))
+            {
+                return;
+            }
+
             // We are given a set of ElementIds, but because the elements
             // have already been deleted from Revit, we can't get the 
             // corresponding GUID. Instead, we just go through the collection of
