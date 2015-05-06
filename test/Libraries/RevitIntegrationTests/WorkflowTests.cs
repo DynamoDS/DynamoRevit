@@ -259,6 +259,47 @@ namespace RevitSystemTests
 
 
         [Test]
+        [TestModel(@".\Workflow\Python\HostedObjectStuff_Sample.rvt")]
+        public void Test_Python()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Workflow\Python\Revit API via Python.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var model = ViewModel.Model;
+            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(11, model.CurrentWorkspace.Connectors.Count());
+
+            //check Python Script
+            var pScript1 = "4caa3a16-50d9-4416-ae45-b5ad06d74c94";
+            AssertPreviewCount(pScript1, 2);
+            var flatvalue1 = GetFlattenedPreviewValues(pScript1);            
+            foreach(var ele in flatvalue1)
+            {     
+                Assert.IsNotNull(ele);
+            }    
+     
+            //check Python Script
+            var pScript2 = "fe96aff2-7e02-4e72-b11c-cc20582a48ea";
+            AssertPreviewCount(pScript2, 2);
+            for (int i = 0; i < 2; i++)
+            {
+                var pWall = GetPreviewValueAtIndex(pScript2, i) as Wall;
+                Assert.IsNotNull(pWall);
+            }
+
+            //check Python Script
+            var pScript3 = "5a3b301c-632b-4ec1-9fcb-c2623f04c53c";
+            AssertPreviewCount(pScript3, 2);
+            var flatvalue3 = GetFlattenedPreviewValues(pScript3);
+            foreach (var ele in flatvalue3)
+            {
+                Assert.IsNotNull(ele);
+            }
+        }
+
+
+        [Test]
         [TestModel(@".\Workflow\CodeBlocksReference\panelProject.rvt")]
         public void Test_PanelsNodes()
         {
@@ -277,7 +318,7 @@ namespace RevitSystemTests
             {
                 var element = GetPreviewValueAtIndex(color, i) as Element;
                 Assert.IsNotNull(element);
-            }         
+            }
         }
     }
 }
