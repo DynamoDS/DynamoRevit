@@ -43,11 +43,15 @@ namespace DSRevitNodesUI
 
         public override void Dispose()
         {
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    RevitServicesUpdater.Instance.ElementsModified -=
+                        Updater_ElementsModified;
+                    DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
+                        CurrentUIApplication_ViewActivated;
+                });
             base.Dispose();
-
-            RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
-                CurrentUIApplication_ViewActivated;
         }
 
         private void CurrentUIApplication_ViewActivated(object sender, ViewActivatedEventArgs e)
