@@ -4,6 +4,7 @@ using System.Linq;
 
 using Autodesk.Revit.UI.Events;
 
+using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Models;
 
@@ -12,6 +13,7 @@ using ProtoCore.AST.AssociativeAST;
 using Revit.Elements;
 using RevitServices.Elements;
 using RevitServices.Persistence;
+using RevitServices.Transactions;
 
 namespace DSRevitNodesUI
 {
@@ -23,14 +25,20 @@ namespace DSRevitNodesUI
 
         public SunSettings()
         {
-            OutPortData.Add(new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip));
-            
-            RegisterAllPorts();
-            
-            RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.ViewActivated += CurrentUIApplication_ViewActivated;
+            OutPortData.Add(
+                new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip));
 
-            CurrentUIApplicationOnViewActivated();
+            RegisterAllPorts();
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
+                    DocumentManager.Instance.CurrentUIApplication.ViewActivated +=
+                        CurrentUIApplication_ViewActivated;
+
+                    CurrentUIApplicationOnViewActivated();
+                }
+        );
         }
 
         public override void Dispose()
