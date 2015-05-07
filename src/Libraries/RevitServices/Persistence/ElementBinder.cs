@@ -366,11 +366,11 @@ namespace RevitServices.Persistence
             if (!ids.Any())
                 return nodes.AsEnumerable();
 
-            Core core = null;
-            if (engine != null && (engine.LiveRunnerCore != null))
-                core = engine.LiveRunnerCore;
+            RuntimeCore runtimeCore = null;
+            if (engine != null && (engine.LiveRunnerRuntimeCore != null))
+                runtimeCore = engine.LiveRunnerRuntimeCore;
 
-            if (core == null)
+            if (runtimeCore == null)
                 return null;
 
             // Selecting all nodes that are either a DSFunction,
@@ -382,7 +382,7 @@ namespace RevitServices.Persistence
                         || (n is CodeBlockNodeModel));
             }).Select((n) => n.GUID);
 
-            var nodeTraceDataList = core.DSExecutable.RuntimeData.GetCallsitesForNodes(nodeGuids, core.DSExecutable);
+            var nodeTraceDataList = runtimeCore.RuntimeData.GetCallsitesForNodes(nodeGuids, runtimeCore.DSExecutable);
 
             bool areElementsFoundForThisNode;
             foreach (Guid guid in nodeTraceDataList.Keys)
