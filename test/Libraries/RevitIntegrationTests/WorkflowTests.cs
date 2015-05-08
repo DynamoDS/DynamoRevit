@@ -47,6 +47,8 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rvt")]
         public void Test_Truss()
         {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7214
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\DynamoBasic\01 Truss.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
@@ -83,6 +85,8 @@ namespace RevitSystemTests
         [TestModel(@".\Workflow\curve.rvt")]
         public void Test_StructureFrame()
         {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7214
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\DynamoRevit\01_StructuralFraming.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
@@ -108,6 +112,8 @@ namespace RevitSystemTests
         [TestModel(@".\Workflow\DynamoRevit\DynamoSample.rvt")]
         public void Test_AdaptiveComponent1()
         {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7214
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\DynamoRevit\02_Adaptive Component Placement 1.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
@@ -133,6 +139,8 @@ namespace RevitSystemTests
         [TestModel(@".\Workflow\DynamoRevit\DynamoSample.rvt")]
         public void Test_AdaptiveComponent2()
         {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7214
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\DynamoRevit\03_Adaptive Component Placement 2.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
@@ -158,6 +166,8 @@ namespace RevitSystemTests
         [TestModel(@".\Workflow\DynamoRevit\DynamoSample.rvt")]
         public void Test_ImportSolid()
         {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7214
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\DynamoRevit\04_ImportSolid.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
@@ -175,6 +185,8 @@ namespace RevitSystemTests
         [TestModel(@".\Workflow\DynamoRevit\DynamoSample.rvt")]
         public void Test_PlaceFamiliesByLevel()
         {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7214
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\DynamoRevit\05_PlaceFamiliesByLevel_Set Parameters.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
@@ -198,6 +210,8 @@ namespace RevitSystemTests
         [TestModel(@".\Workflow\RevitProject\tower.rvt")]
         public void Test_EllipseTower01()
         {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7214
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\RevitProject\01 Ellipse Tower v1.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
@@ -231,6 +245,8 @@ namespace RevitSystemTests
         [TestModel(@".\Workflow\RevitProject\tower.rvt")]
         public void Test_EllipseTower03()
         {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7214
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\RevitProject\03 Ellipse Tower v3.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
@@ -263,6 +279,8 @@ namespace RevitSystemTests
         [TestModel(@".\Workflow\Python\HostedObjectStuff_Sample.rvt")]
         public void Test_Python()
         {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7214
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\Python\Revit API via Python.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
@@ -304,6 +322,8 @@ namespace RevitSystemTests
         [TestModel(@".\Workflow\CodeBlocksReference\panelProject.rvt")]
         public void Test_PanelsNodes()
         {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7214
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\CodeBlocksReference\Panels_Nodes.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
