@@ -134,8 +134,8 @@ namespace RevitSystemTests
         /// <returns>the element id</returns>
         private ElementId GetBindingElementIdForNode(Guid guid)
         {
-            ProtoCore.Core core = ViewModel.Model.EngineController.LiveRunnerCore;
-            var guidToCallSites = core.DSExecutable.RuntimeData.GetCallsitesForNodes(new[] { guid }, core.DSExecutable);
+            ProtoCore.RuntimeCore runtimeCore = ViewModel.Model.EngineController.LiveRunnerRuntimeCore;
+            var guidToCallSites = runtimeCore.RuntimeData.GetCallsitesForNodes(new[] { guid }, runtimeCore.DSExecutable);
 
             var callSites = guidToCallSites[guid];
             if (!callSites.Any())
