@@ -206,7 +206,7 @@ namespace RevitSystemTests
         }
 
 
-        [Test]
+        [Test, Category("Failure")]
         [TestModel(@".\Workflow\RevitProject\tower.rvt")]
         public void Test_EllipseTower01()
         {
@@ -235,13 +235,13 @@ namespace RevitSystemTests
             for (int i = 0; i < 126; i++)
             {
                 var element = GetPreviewValueAtIndex(ele, i) as Element;
-              //  Assert.IsNotNull(element); Thus node get error with the latest Dynamo
+                Assert.IsNotNull(element); //This node get error with the latest Dynamo
             }
            
         }
 
 
-        [Test]
+        [Test, Category("Failure")]
         [TestModel(@".\Workflow\RevitProject\tower.rvt")]
         public void Test_EllipseTower03()
         {
@@ -270,7 +270,7 @@ namespace RevitSystemTests
             for (int i = 0; i < 126; i++)
             {
                 var element = GetPreviewValueAtIndex(ele, i) as Element;
-                //  Assert.IsNotNull(element); Thus node get error with the latest Dynamo
+                Assert.IsNotNull(element); //This node get error with the latest Dynamo
             }
         }
 
@@ -332,6 +332,15 @@ namespace RevitSystemTests
             Assert.AreEqual(32, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(42, model.CurrentWorkspace.Connectors.Count());
 
+
+            //check AdaptiveComponent.ByPoints
+            var adaptiveComp = "954276c8-5452-49bd-92a8-46fa14421d09";
+            AssertPreviewCount(adaptiveComp, 456);
+            for (int i = 0; i < 456; i++)
+            {
+                var element = GetPreviewValueAtIndex(adaptiveComp, i) as AdaptiveComponent;
+                Assert.IsNotNull(element);
+            }
             //check Element.OverrideColorInView
             var color = "4845d25a-c7bd-4e61-8e5d-9dffee11d532";
             AssertPreviewCount(color, 456);
