@@ -77,8 +77,65 @@ namespace RevitSystemTests
                 var element = GetPreviewValueAtIndex(adaptiveComp, i) as AdaptiveComponent;
                 Assert.IsNotNull(element);
             }
+        }
 
 
+        [Test]
+        [TestModel(@".\Workflow\Lists and Structural Framing\Structure.rvt")]
+        public void Test_Curvy_surface_structure()
+        {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7346
+            string samplePath = Path.Combine(workingDirectory, @".\Workflow\Lists and Structural Framing\06 Curvy surface structure.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var model = ViewModel.Model;
+            Assert.AreEqual(34, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(41, model.CurrentWorkspace.Connectors.Count());
+
+            //check List.Map
+            var mapId = "d4c58803-4ac4-4994-acfc-a6b38381fb81";
+            AssertPreviewCount(mapId, 4);
+            var mapList = GetFlattenedPreviewValues(mapId);
+            foreach (var element in mapList)
+            {
+                Assert.IsNotNull(element);
+            }
+
+            //check StructuralFraming.BeamByCurve
+            var strucID = "a40220ce-325f-4eeb-92c4-7a36fb224999";
+            AssertPreviewCount(strucID, 100);
+            for (int i = 0; i < 100; i++)
+            {
+                var element = GetPreviewValueAtIndex(strucID, i) as StructuralFraming;
+                Assert.IsNotNull(element);
+            }
+        }
+
+
+        [Test, Category("Failure")]
+        [TestModel(@".\Workflow\Definitions\Panels.rvt")]
+        public void Test_Panels()// run times out
+        {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7346
+            string samplePath = Path.Combine(workingDirectory, @".\Workflow\Definitions\Panels.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var model = ViewModel.Model;
+            Assert.AreEqual(32, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(41, model.CurrentWorkspace.Connectors.Count());
+
+            //check Element.OverrideColorInView
+            var color = "4845d25a-c7bd-4e61-8e5d-9dffee11d532";
+            AssertPreviewCount(color, 500);
+            for (int i = 0; i < 500; i++)
+            {
+                var element = GetPreviewValueAtIndex(color, i) as Element;
+                Assert.IsNotNull(element);
+            }
         }
     }
 }
