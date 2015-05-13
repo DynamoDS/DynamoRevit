@@ -26,6 +26,7 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
+            AssertNoDummyNodes();
             var model = ViewModel.Model;
             Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
@@ -65,6 +66,7 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
+            AssertNoDummyNodes();
             var model = ViewModel.Model;
             Assert.AreEqual(23, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(27, model.CurrentWorkspace.Connectors.Count());
@@ -90,6 +92,7 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
+            AssertNoDummyNodes();
             var model = ViewModel.Model;
             Assert.AreEqual(34, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(41, model.CurrentWorkspace.Connectors.Count());
@@ -124,6 +127,7 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
+            AssertNoDummyNodes();
             var model = ViewModel.Model;
             Assert.AreEqual(32, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(41, model.CurrentWorkspace.Connectors.Count());
@@ -136,6 +140,54 @@ namespace RevitSystemTests
                 var element = GetPreviewValueAtIndex(color, i) as Element;
                 Assert.IsNotNull(element);
             }
+        }
+
+        [Test]
+        [TestModel(@".\Workflow\PerforatedScreenByImage\PanelWall.rvt")]
+        public void Test_PanelWall()
+        {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7346
+            string samplePath = Path.Combine(workingDirectory, @".\Workflow\PerforatedScreenByImage\PanelWall.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            AssertNoDummyNodes();
+
+            var model = ViewModel.Model;
+            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(21, model.CurrentWorkspace.Connectors.Count());
+
+            //check Element.SetParamterByName
+            var elementsID = "4ad86c1b-2e41-4374-b72b-467b3551c401";
+            AssertPreviewCount(elementsID, 60);
+            for (int i = 0; i < 60; i++)
+            {
+                var element = GetPreviewValueAtIndex(elementsID, i) as Element;
+                Assert.IsNotNull(element);
+            }
+        }
+
+        [Test]
+        [TestModel(@".\Workflow\PerforatedScreenByImage\PanelWall.rvt")]
+        public void Test_PerforationsByImage()
+        {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7346
+            string samplePath = Path.Combine(workingDirectory, @".\Workflow\PerforatedScreenByImage\Perforations by image.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            AssertNoDummyNodes();
+
+            var model = ViewModel.Model;
+            Assert.AreEqual(31, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(41, model.CurrentWorkspace.Connectors.Count());
+
+            //check ImportInstance.ByGeometries
+            var importInstanceID = "88f8982b-c29e-44c5-8f01-c18560ac9eb9";
+            var importInstance = GetPreviewValue(importInstanceID) as ImportInstance;
+            Assert.IsNotNull(importInstance);         
         }
     }
 }
