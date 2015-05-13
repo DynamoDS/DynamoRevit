@@ -19,7 +19,7 @@
     </DSCoreNodesUI.Input.DoubleSlider>
     <Dynamo.Nodes.DSFunction guid="13fe5414-d102-477b-bbc4-005092b8223a" type="Dynamo.Nodes.DSFunction" nickname="Image.ReadFromFile" x="1075.5834563528" y="1207.35864769242" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.IO.Image.ReadFromFile@var" />
     <DSCore.File.Filename guid="75c2b625-794c-4627-b7a8-55551552392b" type="DSCore.File.Filename" nickname="File Path" x="515.790346957145" y="1206.8995113986" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
-      <System.String>C:\Users\t_yanz\Documents\GitHub\DynamoRevit\test\System\Workflow\PerforatedScreenByImage\gradient.jpg</System.String>
+      <System.String>.\gradient.jpg</System.String>
     </DSCore.File.Filename>
     <DSCore.File.FileObject guid="325f5575-24a9-46da-b57b-27918f1e7dd3" type="DSCore.File.FileObject" nickname="File.FromPath" x="932.496224233191" y="1206.65007586041" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
     <Dynamo.Nodes.DSFunction guid="d78670f7-6782-4b01-baf9-907383139eb1" type="Dynamo.Nodes.DSFunction" nickname="Image.Pixels" x="1377.59275832706" y="1218.53858346309" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.IO.Image.Pixels@var,int,int" />
