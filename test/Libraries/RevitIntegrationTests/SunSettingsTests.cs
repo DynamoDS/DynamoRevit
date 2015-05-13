@@ -47,7 +47,7 @@ namespace RevitSystemTests
         {
             Revit.Elements.SunSettings sunValue = GetPreviewValue(sunNode.GUID.ToString()) as Revit.Elements.SunSettings;
             Assert.AreEqual(sunValue.Altitude, doc.ActiveView.SunAndShadowSettings.Altitude.ToDegrees(), 0.001);
-            Assert.AreEqual(sunValue.Azimuth, doc.ActiveView.SunAndShadowSettings.Altitude.ToDegrees(), 0.001);
+            Assert.AreEqual(sunValue.Azimuth, doc.ActiveView.SunAndShadowSettings.Azimuth.ToDegrees(), 0.001);
         }
 
 

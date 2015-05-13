@@ -74,7 +74,7 @@ namespace Revit.Elements
         public double Altitude
         {
             get { return InternalSunAndShadowSettings.GetFrameAltitude(InternalSunAndShadowSettings.ActiveFrame).ToDegrees(); }
-            set { InternalSunAndShadowSettings.Altitude = value.ToRadians(); }
+
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Revit.Elements
         public double Azimuth
         {
             get { return InternalSunAndShadowSettings.GetFrameAzimuth(InternalSunAndShadowSettings.ActiveFrame).ToDegrees(); }
-            set { InternalSunAndShadowSettings.Azimuth = -value.ToRadians(); }
+
         }
 
 
@@ -93,7 +93,7 @@ namespace Revit.Elements
         public DateTime StartDateTime
         {
             get { return InternalSunAndShadowSettings.StartDateAndTime; }
-            set { InternalSunAndShadowSettings.StartDateAndTime = value; }
+
         }
         
         /// <summary>
@@ -117,8 +117,9 @@ namespace Revit.Elements
             return string.Format(
                 "Name: {0}, Alt: {1}, Azim: {2}",
                 InternalSunAndShadowSettings.Name,
-                InternalSunAndShadowSettings.Altitude,
-                InternalSunAndShadowSettings.Azimuth);
+                InternalSunAndShadowSettings.Altitude.ToDegrees(),
+                InternalSunAndShadowSettings.Azimuth.ToDegrees()
+                );
         }
         
     }
