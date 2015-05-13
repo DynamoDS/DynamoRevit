@@ -195,6 +195,15 @@ namespace RevitSystemTests
                 var element = GetPreviewValueAtIndex(elementsID, i) as Element;
                 Assert.IsNotNull(element);
             }
+
+            //check AdaptiveComponent.ByPoint
+            var acID = "85e957b8-90b7-46a5-823c-18aaa4155c98";
+            AssertPreviewCount(acID, 60);
+            for (int i = 0; i < 60; i++)
+            {
+                var element = GetPreviewValueAtIndex(acID, i) as AdaptiveComponent;
+                Assert.IsNotNull(element);
+            }
         }
 
         [Test]
@@ -216,7 +225,27 @@ namespace RevitSystemTests
             //check ImportInstance.ByGeometries
             var importInstanceID = "88f8982b-c29e-44c5-8f01-c18560ac9eb9";
             var importInstance = GetPreviewValue(importInstanceID) as ImportInstance;
-            Assert.IsNotNull(importInstance);         
+            Assert.IsNotNull(importInstance);   
+      
+            //check Curve.ExtrudeAsSolid
+            var solidID = "15cdd045-e5dc-4217-85eb-0c7aac2c7901";
+            AssertPreviewCount(solidID, 20);
+            var solid = GetFlattenedPreviewValues(solidID);
+            foreach (var element in solid)
+            {
+                Assert.IsNotNull(solid);
+            }
+
+            //check Solid.ByUnion
+            var unionID = "0892604a-39a6-40f4-a12b-4043959de522";
+            var union = GetPreviewValue(unionID) as Solid;
+            Assert.IsNotNull(union);
+
+            //check Surface.SubtractFrom
+            var geometryID = "d15326de-522b-441f-b85b-90ae2dbb8207";
+            AssertPreviewCount(geometryID, 1);
+            var geometry = GetPreviewValueAtIndex(geometryID, 0) as Surface;
+            Assert.IsNotNull(geometry);
         }
     }
 }
