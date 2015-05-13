@@ -74,6 +74,7 @@ namespace Revit.Elements
         public double Altitude
         {
             get { return InternalSunAndShadowSettings.GetFrameAltitude(InternalSunAndShadowSettings.ActiveFrame).ToDegrees(); }
+
         }
 
         /// <summary>
@@ -82,7 +83,9 @@ namespace Revit.Elements
         public double Azimuth
         {
             get { return InternalSunAndShadowSettings.GetFrameAzimuth(InternalSunAndShadowSettings.ActiveFrame).ToDegrees(); }
+
         }
+
 
         /// <summary>
         ///     Gets the Start Date and Time of the solar study.
@@ -90,6 +93,7 @@ namespace Revit.Elements
         public DateTime StartDateTime
         {
             get { return InternalSunAndShadowSettings.StartDateAndTime; }
+
         }
         
         /// <summary>
@@ -108,5 +112,15 @@ namespace Revit.Elements
             get { return InternalSunAndShadowSettings.ActiveFrameTime; }
         }
 
+        public override string ToString()
+        {
+            return string.Format(
+                "Name: {0}, Alt: {1}, Azim: {2}",
+                InternalSunAndShadowSettings.Name,
+                InternalSunAndShadowSettings.Altitude.ToDegrees(),
+                InternalSunAndShadowSettings.Azimuth.ToDegrees()
+                );
+        }
+        
     }
 }
