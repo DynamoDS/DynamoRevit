@@ -117,6 +117,35 @@ namespace RevitSystemTests
         }
 
 
+        [Test]
+        [TestModel(@".\Workflow\Lists and Structural Framing\RevitProject.rvt")]
+        public void Test_Curvy_surface_structure_From_Revit()
+        {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7346
+            string samplePath = Path.Combine(workingDirectory, @".\Workflow\Lists and Structural Framing\05 Curvy surface structure From Revit.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            AssertNoDummyNodes();
+
+            var model = ViewModel.Model;
+            Assert.AreEqual(40, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(48, model.CurrentWorkspace.Connectors.Count());
+          
+            //check StructuralFraming.BeamByCurve
+            var strucID = "a40220ce-325f-4eeb-92c4-7a36fb224999";
+            var struc = GetPreviewValue(strucID) as StructuralFraming;
+            Assert.IsNotNull(struc);
+          
+            //check List.Map
+            var mapID = "d4c58803-4ac4-4994-acfc-a6b38381fb81";
+            AssertPreviewCount(mapID, 4);
+            var map = GetFlattenedPreviewValues(mapID);
+            Assert.AreEqual(map.Count, 100);       
+        }
+
         [Test, Category("Failure")]
         [TestModel(@".\Workflow\Definitions\Panels.rvt")]
         public void Test_Panels()// run times out
