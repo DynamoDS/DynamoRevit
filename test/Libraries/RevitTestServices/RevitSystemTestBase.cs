@@ -5,33 +5,21 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
-using System.Configuration;
-
 using SystemTestServices;
-
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
-
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Core.Threading;
 using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.ViewModels;
-
-using DynamoShapeManager;
-
-using DynamoUtilities;
-
 using NUnit.Framework;
-
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
-
 using RTF.Applications;
-
 using TestServices;
 
 namespace RevitTestServices
@@ -172,9 +160,9 @@ namespace RevitTestServices
         protected override void SetupCore()
         {
             DocumentManager.Instance.CurrentUIApplication =
-                RTF.Applications.RevitTestExecutive.CommandData.Application;
+                RevitTestExecutive.CommandData.Application;
             DocumentManager.Instance.CurrentUIDocument =
-                RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
+                RevitTestExecutive.CommandData.Application.ActiveUIDocument;
 
             var config = RevitTestConfiguration.LoadConfiguration();
 
@@ -294,9 +282,9 @@ namespace RevitTestServices
         protected static void SwapCurrentModel(string modelPath)
         {
             DocumentManager.Instance.CurrentUIApplication =
-                RTF.Applications.RevitTestExecutive.CommandData.Application;
+                RevitTestExecutive.CommandData.Application;
             DocumentManager.Instance.CurrentUIDocument =
-                RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
+                RevitTestExecutive.CommandData.Application.ActiveUIDocument;
 
             Document initialDoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument.Document;
             DocumentManager.Instance.CurrentUIApplication.OpenAndActivateDocument(modelPath);
@@ -344,6 +332,13 @@ namespace RevitTestServices
             var cmdend = new DynamoModel.MakeConnectionCommand(end.GUID, portEnd, PortType.Input,
                 DynamoModel.MakeConnectionCommand.Mode.End);
             this.Model.ExecuteCommand(cmdend);
+        }
+
+        protected static IList<Wall> GetAllWalls()
+        {
+            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(Wall));
+            return fec.ToElements().Cast<Wall>().ToList();
         }
     }
 }
