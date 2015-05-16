@@ -151,6 +151,8 @@ namespace RevitTestServices
             // run the test framework without running Dynamo, so
             // we ensure that the transaction is closed here.
             TransactionManager.Instance.ForceCloseTransaction();
+
+            base.TearDown();
         }
 
         #endregion
