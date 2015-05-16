@@ -191,6 +191,8 @@ namespace RevitTestServices
         {
             try
             {
+                UpdateSystemPathForProcess();
+
                 // create the transaction manager object
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
 
@@ -339,6 +341,22 @@ namespace RevitTestServices
             var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
             fec.OfClass(typeof(Wall));
             return fec.ToElements().Cast<Wall>().ToList();
+        }
+
+        private static void UpdateSystemPathForProcess()
+        {
+            var assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
+            var parentDirectory = Directory.GetParent(assemblyDirectory);
+            var corePath = parentDirectory.FullName;
+
+            // Add the main exec path to the system PATH
+            // This is required to pickup certain dlls.
+            var path =
+                Environment.GetEnvironmentVariable(
+                    "Path",
+                    EnvironmentVariableTarget.Process) + ";" + corePath;
+            Environment.SetEnvironmentVariable("Path", path, EnvironmentVariableTarget.Process);
         }
     }
 }
