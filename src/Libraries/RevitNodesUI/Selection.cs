@@ -235,9 +235,9 @@ namespace Dynamo.Nodes
                 return;
             }
 
-            // If the deleted list doesn't include any objects in the current selection
-            // then return;
-            if (!SelectionResults.Select(x => x.Id).Any(deleted.Contains))
+            // If the deleting operations does not make any elements in SelectionResults
+            // invalid, then there is no need to update.
+            if (SelectionResults.Select(el => !el.IsValidObject).Count() == 0)
             {
                 return;
             }
@@ -389,7 +389,7 @@ namespace Dynamo.Nodes
             if (!SelectionResults.Any() ||
                 !document.Equals(SelectionOwner) ||
                 !deleted.Any() ||
-                !SelectionResults.Any(x=>deleted.Contains(x.ElementId))) return;
+                !SelectionResults.Any(x => deleted.Contains(x.ElementId))) return;
 
             // The new selections is everything in the current selection
             // that is not in the deleted collection as well
