@@ -155,6 +155,10 @@ namespace RevitSystemTests
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\Definitions\Panels.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
+            
+            var filename = ViewModel.Model.CurrentWorkspace.Nodes.OfType<DSCore.File.Filename>().FirstOrDefault();
+            filename.Value = filename.Value.Replace(@".\", Path.GetDirectoryName(testPath) + @"\");
+
             RunCurrentModel();
             AssertNoDummyNodes();
             var model = ViewModel.Model;
@@ -180,6 +184,10 @@ namespace RevitSystemTests
             string samplePath = Path.Combine(workingDirectory, @".\Workflow\PerforatedScreenByImage\PanelWall.dyn");
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
+
+            var filename = ViewModel.Model.CurrentWorkspace.Nodes.OfType<DSCore.File.Filename>().FirstOrDefault();
+            filename.Value = filename.Value.Replace(@".\", Path.GetDirectoryName(testPath) + @"\");
+
             RunCurrentModel();
             AssertNoDummyNodes();
 
