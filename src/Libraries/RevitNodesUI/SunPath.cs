@@ -4,6 +4,7 @@ using System.Linq;
 
 using Autodesk.Revit.UI.Events;
 
+using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Models;
 
@@ -26,20 +27,30 @@ namespace DSRevitNodesUI
             OutPortData.Add(new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip));
             
             RegisterAllPorts();
-            
-            RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.ViewActivated += CurrentUIApplication_ViewActivated;
 
-            CurrentUIApplicationOnViewActivated();
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
+                    DocumentManager.Instance.CurrentUIApplication.ViewActivated +=
+                        CurrentUIApplication_ViewActivated;
+
+                    CurrentUIApplicationOnViewActivated();
+                }
+            );
         }
 
         public override void Dispose()
         {
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    RevitServicesUpdater.Instance.ElementsModified -=
+                        Updater_ElementsModified;
+                    DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
+                        CurrentUIApplication_ViewActivated;
+                });
             base.Dispose();
-
-            RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
-                CurrentUIApplication_ViewActivated;
         }
 
         private void CurrentUIApplication_ViewActivated(object sender, ViewActivatedEventArgs e)

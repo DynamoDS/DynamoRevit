@@ -108,5 +108,15 @@ namespace Revit.Elements
             get { return InternalSunAndShadowSettings.ActiveFrameTime; }
         }
 
+        public override string ToString()
+        {
+            return string.Format(
+                "Name: {0}, Alt: {1}, Azim: {2}",
+                InternalSunAndShadowSettings.Name,
+                InternalSunAndShadowSettings.Altitude.ToDegrees(),
+                InternalSunAndShadowSettings.Azimuth.ToDegrees()
+                );
+        }
+
     }
 }
