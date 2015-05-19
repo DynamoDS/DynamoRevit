@@ -19,6 +19,7 @@ using RTF.Framework;
 using RevitServices.Persistence;
 using System.Collections.Generic;
 using RevitServices.Transactions;
+using Revit.GeometryConversion;
 
 using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
 using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
@@ -619,6 +620,85 @@ namespace RevitSystemTests
 
             var curves = GetAllCurveElements();
             Assert.AreEqual(1, curves.Count);
+        }
+
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rvt")]
+        public void MAGN_7075()
+        {
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7075.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            //open the test file
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            RunCurrentModel();
+
+            //Create 4 curve elements in Revit
+            List<Autodesk.Revit.DB.Element> curves = new List<Autodesk.Revit.DB.Element>();
+            var document = DocumentManager.Instance.CurrentUIDocument.Document;
+            Autodesk.Revit.DB.Plane plane;
+            Autodesk.Revit.DB.SketchPlane sp;
+            using (var trans = new Autodesk.Revit.DB.Transaction(document, "CreateModelCurvesInRevit"))
+            {
+                trans.Start();
+
+                Point[] points = { Point.ByCoordinates(0, 0, 0), Point.ByCoordinates(200, 0, 0), Point.ByCoordinates(200, 100, 0), Point.ByCoordinates(0, 100, 0) };
+                var line1 = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(points[0], points[1]);
+                var line2 = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(points[1], points[2]);
+                var line3 = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(points[2], points[3]);
+                var line4 = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(points[3], points[0]);
+
+                var revitLine1 = line1.ToRevitType(false);
+                var revitLine2 = line2.ToRevitType(false);
+                var revitLine3 = line3.ToRevitType(false);
+                var revitLine4 = line4.ToRevitType(false);
+
+                plane = new Autodesk.Revit.DB.Plane(new Autodesk.Revit.DB.XYZ(0, 0, 1), new Autodesk.Revit.DB.XYZ(0, 0, 0));
+                sp = Autodesk.Revit.DB.SketchPlane.Create(document, plane);
+
+                var modelCurv1 = document.Create.NewModelCurve(revitLine1, sp);
+                var modelCurv2 = document.Create.NewModelCurve(revitLine2, sp);
+                var modelCurv3 = document.Create.NewModelCurve(revitLine3, sp);
+                var modelCurv4 = document.Create.NewModelCurve(revitLine4, sp);
+
+                trans.Commit();
+
+                curves.Add(modelCurv1);
+                curves.Add(modelCurv2);
+                curves.Add(modelCurv3);
+                curves.Add(modelCurv4);
+            }
+
+            var node = ViewModel.Model.CurrentWorkspace.Nodes.OfType<DSModelElementsSelection>().First();
+            node.UpdateSelection(curves);
+
+            RunCurrentModel();
+
+            //Create a line in Revit
+            Autodesk.Revit.DB.ElementId lineID;
+            using (var trans = new Autodesk.Revit.DB.Transaction(document, "CreateModelLine"))
+            {
+                trans.Start();
+                var line = document.Create.NewModelCurve(Autodesk.Revit.DB.Line.CreateBound(new Autodesk.Revit.DB.XYZ(-100, 0, 0),
+                    new Autodesk.Revit.DB.XYZ(-50, 0, 0)), sp);
+                lineID = line.Id;
+                trans.Commit();
+            }
+
+            RunCurrentModel();
+
+            //Delete the created line in Revit
+            using (var trans = new Autodesk.Revit.DB.Transaction(document, "DeleteReferencePoint"))
+            {
+                trans.Start();
+                document.Delete(lineID);
+                trans.Commit();
+            }
+
+            RunCurrentModel();
+            //There should be no infinite loop, otherwise, there will be an error with this test case.
         }
 
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
