@@ -235,6 +235,13 @@ namespace Dynamo.Nodes
                 return;
             }
 
+            // If the deleting operations does not make any elements in SelectionResults
+            // invalid, then there is no need to update.
+            if (SelectionResults.Select(el => !el.IsValidObject).Count() == 0)
+            {
+                return;
+            }
+
             // We are given a set of ElementIds, but because the elements
             // have already been deleted from Revit, we can't get the 
             // corresponding GUID. Instead, we just go through the collection of
@@ -382,7 +389,7 @@ namespace Dynamo.Nodes
             if (!SelectionResults.Any() ||
                 !document.Equals(SelectionOwner) ||
                 !deleted.Any() ||
-                !SelectionResults.Any(x=>deleted.Contains(x.ElementId))) return;
+                !SelectionResults.Any(x => deleted.Contains(x.ElementId))) return;
 
             // The new selections is everything in the current selection
             // that is not in the deleted collection as well

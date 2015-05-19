@@ -13,6 +13,7 @@ using ProtoCore.AST.AssociativeAST;
 using Revit.Elements;
 using RevitServices.Elements;
 using RevitServices.Persistence;
+using RevitServices.Transactions;
 
 namespace DSRevitNodesUI
 {
@@ -24,10 +25,10 @@ namespace DSRevitNodesUI
 
         public SunSettings()
         {
-            OutPortData.Add(new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip));
-            
-            RegisterAllPorts();
+            OutPortData.Add(
+                new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip));
 
+            RegisterAllPorts();
             DynamoRevit.AddIdleAction(
                 () =>
                 {
@@ -37,7 +38,7 @@ namespace DSRevitNodesUI
 
                     CurrentUIApplicationOnViewActivated();
                 }
-            );
+        );
         }
 
         public override void Dispose()

@@ -1,12 +1,24 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Autodesk.Revit.DB;
+
 using DSRevitNodesUI;
+
 using Dynamo.Models;
+
 using NUnit.Framework;
+
 using Revit.GeometryConversion;
+
 using RevitServices.Persistence;
-using RevitTestServices;
+
 using RTF.Framework;
+
+using RevitTestServices;
 
 namespace RevitSystemTests
 {
@@ -33,7 +45,7 @@ namespace RevitSystemTests
 
         private void AssertSunSettingsValues(NodeModel sunNode, Document doc)
         {
-            var sunValue = GetPreviewValue(sunNode.GUID.ToString()) as Revit.Elements.SunSettings;
+            Revit.Elements.SunSettings sunValue = GetPreviewValue(sunNode.GUID.ToString()) as Revit.Elements.SunSettings;
             Assert.IsNotNull(sunValue);
             //Assert.AreEqual(sunValue.Altitude, doc.ActiveView.SunAndShadowSettings.Altitude.ToDegrees(), 0.001);// can't seem to get Assert.AreEqual to not file, values were the same up to 13th significant digit 29.2838918336686__
             //Assert.AreEqual(sunValue.Azimuth, doc.ActiveView.SunAndShadowSettings.Azimuth.ToDegrees(), 0.001);
