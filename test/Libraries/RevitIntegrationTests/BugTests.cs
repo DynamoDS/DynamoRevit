@@ -621,6 +621,46 @@ namespace RevitSystemTests
             Assert.AreEqual(1, curves.Count);
         }
 
+        [Test, TestModel(@".\Samples\DynamoSample_2014.rvt")]
+        public void MAGN_6862_CrashWhenBackToBackFileOpen()
+        {
+            var model = ViewModel.Model;
+
+            OpenSampleDefinition(@".\Revit\Revit_Adaptive Component Placement.dyn");
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
+
+            OpenSampleDefinition(@".\Revit\Revit_Floors and Framing.dyn");
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(28, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(32, model.CurrentWorkspace.Connectors.Count());
+
+            OpenSampleDefinition(@".\Revit\Revit_ImportSolid.dyn");
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(20, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            var NodeId = "e3fedc00-247a-4971-901c-7fcb063344c6";
+
+            // get imported geometry instance.
+            var geometryInstance = GetPreviewValue(NodeId) as ImportInstance;
+            Assert.IsNotNull(geometryInstance);
+
+        }
+
+
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
         {
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
