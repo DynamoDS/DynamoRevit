@@ -640,7 +640,7 @@ namespace RevitSystemTests
             Assert.AreEqual(1, curves.Count);
         }
 
-        [Test, TestModel(@".\Samples\DynamoSample_2014.rvt")]
+        [Test, TestModel(@".\Samples\DynamoSample_2015.rvt")]
         public void MAGN_6862_CrashWhenBackToBackFileOpen()
         {
             var model = ViewModel.Model;
