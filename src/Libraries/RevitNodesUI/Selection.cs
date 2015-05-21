@@ -237,7 +237,7 @@ namespace Dynamo.Nodes
 
             // If the deleting operations does not make any elements in SelectionResults
             // invalid, then there is no need to update.
-            if (SelectionResults.Select(el => !el.IsValidObject).Count() == 0)
+            if (SelectionResults.Where(el => !el.IsValidObject).Count() == 0)
             {
                 return;
             }
