@@ -11,6 +11,11 @@ namespace Revit.Elements
 {
     public abstract class CurveElement : Element, IGraphicItem
     {
+        private const byte DefR = 101;
+        private const byte DefG = 86;
+        private const byte DefB = 130;
+        private const byte DefA = 255;
+
         public override Autodesk.Revit.DB.Element InternalElement
         {
             get { return InternalCurveElement; }
@@ -118,13 +123,32 @@ namespace Revit.Elements
         }
 
         #endregion
-       [IsVisibleInDynamoLibrary(false)]
+       
+        [IsVisibleInDynamoLibrary(false)]
         public new void Tessellate(IRenderPackage package, double tol, int gridLines)
         {
             //Ensure that the object is still alive
             if (!IsAlive) return;
 
             this.Curve.Tessellate(package, tol);
-        }
+
+            if (package.LineVertexCount > 0)
+            {
+                package.ApplyLineVertexColors(CreateColorByteArrayOfSize(package.LineVertexCount, DefR, DefG, DefB, DefA));
+            }
+       }
+
+       private static byte[] CreateColorByteArrayOfSize(int size, byte red, byte green, byte blue, byte alpha)
+       {
+           var arr = new byte[size * 4];
+           for (var i = 0; i < arr.Length; i += 4)
+           {
+               arr[i] = red;
+               arr[i + 1] = green;
+               arr[i + 2] = blue;
+               arr[i + 3] = alpha;
+           }
+           return arr;
+       }
     }
 }
