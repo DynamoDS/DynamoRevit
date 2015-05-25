@@ -1,4 +1,3 @@
-using RevitServices.Elements;
 
 using System.Collections.Generic;
 
@@ -11,6 +10,7 @@ using Greg.AuthProviders;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Interop;
@@ -34,6 +34,9 @@ using RevitServices.Transactions;
 using RevitServices.Threading;
 
 using MessageBox = System.Windows.Forms.MessageBox;
+using DynUpdateManager = Dynamo.UpdateManager.UpdateManager;
+using Microsoft.Win32;
+using Dynamo.UpdateManager;
 
 #endregion
 
@@ -214,6 +217,9 @@ namespace Dynamo.Applications
             var parentDirectory = Directory.GetParent(assemblyDirectory);
             var corePath = parentDirectory.FullName;
 
+            var umConfig = UpdateManagerConfiguration.GetSettings(new DynamoRevitLookUp());
+            Debug.Assert(umConfig.DynamoLookUp != null);
+
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
                 {
@@ -222,7 +228,8 @@ namespace Dynamo.Applications
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
-                    ExternalCommandData = commandData
+                    ExternalCommandData = commandData,
+                    UpdateManager = new DynUpdateManager(umConfig),
                 });
         }
 
@@ -440,6 +447,22 @@ namespace Dynamo.Applications
                     idleActions.Add(a);
                 } 
             }
+        }
+    }
+
+    internal class DynamoRevitLookUp : DynamoLookUp
+    {
+        public override IEnumerable<string> GetDynamoInstallLocations()
+        {
+            const string regKey64 = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\";
+            //Open HKLM for 64bit registry
+            var regKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+            //Open Windows/CurrentVersion/Uninstall registry key
+            regKey = regKey.OpenSubKey(regKey64);
+
+            //Get "InstallLocation" value as string for all the subkey that starts with "Dynamo"
+            return regKey.GetSubKeyNames().Where(s => s.StartsWith("Dynamo")).Select(
+                (s) => regKey.OpenSubKey(s).GetValue("InstallLocation") as string);
         }
     }
 }
