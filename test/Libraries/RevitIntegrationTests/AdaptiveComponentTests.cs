@@ -11,6 +11,8 @@ using RTF.Framework;
 
 using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
 
+using Revit.Elements;
+
 namespace RevitSystemTests
 {
     [TestFixture]
@@ -20,6 +22,9 @@ namespace RevitSystemTests
         [TestModel(@".\AdaptiveComponent\AdaptiveComponentByFace.rfa")]
         public void AdaptiveComponentByFace()
         {
+            // Create automation test for AdaptiveComponent
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-3983
+
             var model = ViewModel.Model;
 
             string testFilePath = Path.Combine(workingDirectory, @".\AdaptiveComponent\AdaptiveComponentByFace.dyn");
@@ -33,11 +38,17 @@ namespace RevitSystemTests
             Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
 
-            RunCurrentModel();
-
-            // TODO:(Ritesh)Need to add more verification. 
-            // Tracking ID http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-3983
-
+            RunCurrentModel();             
+          
+            //Check AdaptiveComponent.ByParamentersOnFace
+            var adapID = "3e449f19-ffcd-418e-b4f7-1e37f6339150";
+            AssertPreviewCount(adapID, 121);
+            for (int i = 0; i < 121; i++)
+            {
+                var adapValue = GetPreviewValueAtIndex(adapID, i) as AdaptiveComponent;
+                Assert.IsNotNull(adapValue);
+            } 
+     
         }
 
         [Test]
