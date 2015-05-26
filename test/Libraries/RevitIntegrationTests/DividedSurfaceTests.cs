@@ -14,6 +14,8 @@ using RevitTestServices;
 
 using RTF.Framework;
 
+using Revit.Elements;
+
 namespace RevitSystemTests
 {
     [TestFixture]
@@ -33,13 +35,18 @@ namespace RevitSystemTests
             RunCurrentModel();
             //ViewModel.Model.RunExpression();
 
+            //check DividedSurface
+            var dividedSurfaceID = "729a8380-11f0-4700-80df-14d70accc5ba";
+            var dividedSurface = GetPreviewValueAtIndex(dividedSurfaceID, 0) as Revit.Elements.DividedSurface;
+            Assert.IsNotNull(dividedSurface);
+            
             FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            fec.OfClass(typeof(DividedSurface));
+            fec.OfClass(typeof(Autodesk.Revit.DB.DividedSurface));
 
             //did it create a divided surface?
             Assert.AreEqual(1, fec.ToElements().Count());
 
-            var ds = (DividedSurface)fec.ToElements()[0];
+            var ds = (Autodesk.Revit.DB.DividedSurface)fec.ToElements()[0];
             Assert.AreEqual(5, ds.USpacingRule.Number);
             Assert.AreEqual(5, ds.VSpacingRule.Number);
 
@@ -60,6 +67,8 @@ namespace RevitSystemTests
             RunCurrentModel();
             
             Assert.Greater(ViewModel.Model.EngineController.LiveRunnerRuntimeCore.RuntimeStatus.WarningCount, 0);
+
+           
         }
     }
 }
