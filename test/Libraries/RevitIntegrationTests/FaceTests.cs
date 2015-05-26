@@ -6,6 +6,8 @@ using RevitTestServices;
 
 using RTF.Framework;
 
+using System.Linq;
+
 namespace RevitSystemTests
 {
     [TestFixture]
@@ -21,6 +23,23 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
+
+            AssertNoDummyNodes();
+            var model = ViewModel.Model;
+            Assert.AreEqual(7 ,model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(7, model.CurrentWorkspace.Connectors.Count());
+
+            //check UV.Bycoordinate
+            var uvID = "87702b56-9085-4c8e-89c0-3b2d7052c2dc";
+            AssertPreviewCount(uvID, 9);
+            var uvList = GetFlattenedPreviewValues(uvID);
+            Assert.AreEqual(uvList.Count(), 9);
+            foreach (var element in uvList)
+            {
+                Assert.IsNotNull(element);
+                Assert.AreEqual(element.GetType().ToString(), "Autodesk.DesignScript.Geometry.UV");
+            }
+
             
         }
     }
