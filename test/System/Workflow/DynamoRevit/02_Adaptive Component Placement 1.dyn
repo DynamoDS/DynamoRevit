@@ -1,0 +1,44 @@
+<Workspace Version="0.8.1.1193" X="-601.976300864124" Y="-452.143872585369" zoom="0.75867477981218" Name="Home" RunType="Manual" RunPeriod="100" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="357e7a53-361c-4c1e-81ae-83e16213a39a" type="Dynamo.Nodes.DSFunction" nickname="AdaptiveComponent.ByPoints" x="1950.12018923412" y="843.431848447188" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.AdaptiveComponent.ByPoints@Autodesk.DesignScript.Geometry.Point[],Revit.Elements.FamilySymbol" />
+    <Dynamo.Nodes.DSModelElementSelection guid="eed8d389-5ad2-4ac0-a270-7d737f487ad0" type="Dynamo.Nodes.DSModelElementSelection" nickname="Select Model Element" x="846.35713721073" y="813.096583627717" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <instance id="a82f4643-a505-4e28-b6d6-a6ee4cbe5cb6-000fae5c" />
+    </Dynamo.Nodes.DSModelElementSelection>
+    <Dynamo.Nodes.DSModelElementSelection guid="f46e385f-3b0a-446c-adeb-8d419a480cba" type="Dynamo.Nodes.DSModelElementSelection" nickname="Select Model Element" x="846.35713721073" y="671.368151070194" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <instance id="a82f4643-a505-4e28-b6d6-a6ee4cbe5cb6-000faebc" />
+    </Dynamo.Nodes.DSModelElementSelection>
+    <Dynamo.Nodes.DSModelElementSelection guid="fe4c569f-a1b4-46da-8e76-d1b1bd5b6ef4" type="Dynamo.Nodes.DSModelElementSelection" nickname="Select Model Element" x="846.35713721073" y="954.82501618524" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <instance id="a82f4643-a505-4e28-b6d6-a6ee4cbe5cb6-000faf4f" />
+    </Dynamo.Nodes.DSModelElementSelection>
+    <Dynamo.Nodes.DSFunction guid="83f06d4b-59ed-4888-a259-43d12f3d1736" type="Dynamo.Nodes.DSFunction" nickname="Curve.PointAtParameter" x="1499.1553726301" y="843.496460893599" isVisible="true" isUpstreamVisible="true" lacing="CrossProduct" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Curve.PointAtParameter@double" />
+    <DSCoreNodesUI.CreateList guid="765c3e25-1262-4f2b-ab25-08ece79508f5" type="DSCoreNodesUI.CreateList" nickname="Create List" x="1093.97818501915" y="777.087284360294" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="3" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="ddaba609-2fa0-4d18-be64-1443ad3d08f1" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1222" y="1047" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="0..1..#x;" ShouldFocus="false" />
+    <DSCoreNodesUI.Input.IntegerSlider guid="cc3ba87a-cc1f-4db6-99f2-769f3020e0df" type="DSCoreNodesUI.Input.IntegerSlider" nickname="Integer Slider" x="836.432595609163" y="1114.41035310441" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.Int32>9</System.Int32>
+      <Range min="2" max="10" step="1" />
+    </DSCoreNodesUI.Input.IntegerSlider>
+    <Dynamo.Nodes.DSFunction guid="13ca5899-91cd-448b-b475-a286eb0fbfba" type="Dynamo.Nodes.DSFunction" nickname="Transpose" x="1733.2451795357" y="852.959541872826" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="" function="Transpose@var[]..[]" />
+    <DSRevitNodesUI.FamilyTypes guid="2bc4ccef-dee5-4567-b976-89536f8908ce" type="DSRevitNodesUI.FamilyTypes" nickname="Family Types" x="1607.13347083469" y="1323.9296906553" isVisible="true" isUpstreamVisible="true" lacing="Disabled" index="2:3PointAC_SquareTruss:3PointAC_SquareTruss" />
+    <Dynamo.Nodes.DSFunction guid="1c420759-4d5f-45b4-8310-f1fa07e92c99" type="Dynamo.Nodes.DSFunction" nickname="CurveElement.Curve" x="1264.09296593463" y="803.053589218196" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.CurveElement.Curve" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="eed8d389-5ad2-4ac0-a270-7d737f487ad0" start_index="0" end="765c3e25-1262-4f2b-ab25-08ece79508f5" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f46e385f-3b0a-446c-adeb-8d419a480cba" start_index="0" end="765c3e25-1262-4f2b-ab25-08ece79508f5" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="fe4c569f-a1b4-46da-8e76-d1b1bd5b6ef4" start_index="0" end="765c3e25-1262-4f2b-ab25-08ece79508f5" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="83f06d4b-59ed-4888-a259-43d12f3d1736" start_index="0" end="13ca5899-91cd-448b-b475-a286eb0fbfba" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="765c3e25-1262-4f2b-ab25-08ece79508f5" start_index="0" end="1c420759-4d5f-45b4-8310-f1fa07e92c99" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ddaba609-2fa0-4d18-be64-1443ad3d08f1" start_index="0" end="83f06d4b-59ed-4888-a259-43d12f3d1736" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="cc3ba87a-cc1f-4db6-99f2-769f3020e0df" start_index="0" end="ddaba609-2fa0-4d18-be64-1443ad3d08f1" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="13ca5899-91cd-448b-b475-a286eb0fbfba" start_index="0" end="357e7a53-361c-4c1e-81ae-83e16213a39a" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2bc4ccef-dee5-4567-b976-89536f8908ce" start_index="0" end="357e7a53-361c-4c1e-81ae-83e16213a39a" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="1c420759-4d5f-45b4-8310-f1fa07e92c99" start_index="0" end="83f06d4b-59ed-4888-a259-43d12f3d1736" end_index="0" portType="0" />
+  </Connectors>
+  <Notes>
+    <Dynamo.Models.NoteModel guid="f5e682e4-c6dc-4cad-b589-d68a8d462143" text="Select curve from Revit" x="846.35713721073" y="635.617946335688" />
+    <Dynamo.Models.NoteModel guid="2dd763e1-3140-42bc-ad54-83172116abda" text="Select curve from Revit" x="846.35713721073" y="779.687312996161" />
+    <Dynamo.Models.NoteModel guid="693ca362-4259-4e91-870d-56b7b7652e80" text="Select curve from Revit" x="846.35713721073" y="921.415745553684" />
+    <Dynamo.Models.NoteModel guid="52b0f4d5-d259-4c98-b93f-d41cae027820" text="Run this graph the .RVT file in the Samples folder." x="837.916415601284" y="540.706854239215" />
+  </Notes>
+  <Annotations />
+</Workspace>
