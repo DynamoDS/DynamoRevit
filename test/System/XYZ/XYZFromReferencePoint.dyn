@@ -1,14 +1,18 @@
-<dynWorkspace X="-323.225" Y="-255.791">
-  <dynElements>
-    <Dynamo.Nodes.dynXYZFromReferencePoint type="Dynamo.Nodes.dynXYZFromReferencePoint" guid="9e68916a-5a82-460e-9022-4e09f9898651" nickname="XYZ From Reference Point" x="683.407936637945" y="297.988968613059" lacing="First" />
-    <Dynamo.Nodes.dynReferencePointByXYZ type="Dynamo.Nodes.dynReferencePointByXYZ" guid="8ba88ada-90b2-440f-bc7c-8963cf6a57ae" nickname="Ref Point" x="500.114924104006" y="300.757237178133" lacing="First">
-      <Run />
-    </Dynamo.Nodes.dynReferencePointByXYZ>
-    <Dynamo.Nodes.dynXYZZero type="Dynamo.Nodes.dynXYZZero" guid="b6e6ad0c-6c96-4d8e-a355-81862817ea8a" nickname="XYZ Zero" x="363.354980499183" y="291.071998424368" lacing="First" />
-  </dynElements>
-  <dynConnectors>
-    <Dynamo.Connectors.dynConnectorModel start="8ba88ada-90b2-440f-bc7c-8963cf6a57ae" start_index="0" end="9e68916a-5a82-460e-9022-4e09f9898651" end_index="0" portType="0" />
-    <Dynamo.Connectors.dynConnectorModel start="b6e6ad0c-6c96-4d8e-a355-81862817ea8a" start_index="0" end="8ba88ada-90b2-440f-bc7c-8963cf6a57ae" end_index="0" portType="0" />
-  </dynConnectors>
-  <dynNotes />
-</dynWorkspace>
+<Workspace Version="0.8.1.1441" X="-310.623592537047" Y="-285.084400065356" zoom="1.130842140625" Name="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="False">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="9e68916a-5a82-460e-9022-4e09f9898651" type="Dynamo.Nodes.DSFunction" nickname="ReferencePoint.Point" x="886.796183093708" y="313.906309640032" isVisible="true" isUpstreamVisible="true" lacing="First" assembly="RevitNodes.dll" function="Revit.Elements.ReferencePoint.Point" />
+    <Dynamo.Nodes.DSFunction guid="8ba88ada-90b2-440f-bc7c-8963cf6a57ae" type="Dynamo.Nodes.DSFunction" nickname="ReferencePoint.ByPoint" x="630.10654249095" y="300.757237178133" isVisible="true" isUpstreamVisible="true" lacing="First" assembly="RevitNodes.dll" function="Revit.Elements.ReferencePoint.ByPoint@Autodesk.DesignScript.Geometry.Point" />
+    <Dynamo.Nodes.DSFunction guid="b6e6ad0c-6c96-4d8e-a355-81862817ea8a" type="Dynamo.Nodes.DSFunction" nickname="Point.ByCoordinates" x="363.354980499183" y="291.071998424368" isVisible="true" isUpstreamVisible="true" lacing="First" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double">
+      <PortInfo index="0" default="True" />
+      <PortInfo index="1" default="True" />
+      <PortInfo index="2" default="True" />
+    </Dynamo.Nodes.DSFunction>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="8ba88ada-90b2-440f-bc7c-8963cf6a57ae" start_index="0" end="9e68916a-5a82-460e-9022-4e09f9898651" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b6e6ad0c-6c96-4d8e-a355-81862817ea8a" start_index="0" end="8ba88ada-90b2-440f-bc7c-8963cf6a57ae" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+</Workspace>
