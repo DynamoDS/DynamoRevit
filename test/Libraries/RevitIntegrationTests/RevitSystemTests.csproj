@@ -47,10 +47,6 @@
       <HintPath>$(DYNAMOTESTAPI)\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoUtilities, Version=0.8.0.622, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(DYNAMOTESTAPI)\DynamoUtilities.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>$(DYNAMOTESTAPI)\Microsoft.Practices.Prism.dll</HintPath>
       <Private>False</Private>
@@ -61,6 +57,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="ProtoGeometry, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(DYNAMOTESTAPI)\ProtoGeometry.dll</HintPath>
@@ -84,6 +81,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="SystemTestServices">
       <HintPath>$(DYNAMOTESTAPI)\SystemTestServices.dll</HintPath>
       <Private>False</Private>
@@ -100,6 +98,7 @@
     </Compile>
     <Compile Include="AdaptiveComponentTests.cs" />
     <Compile Include="AnalysisDisplayTests.cs" />
+    <Compile Include="DisplayTests.cs" />
     <Compile Include="RevitLibraryTests.cs" />
     <Compile Include="ImportInstanceTests.cs" />
     <Compile Include="SiteLocationTests.cs" />
