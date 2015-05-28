@@ -1,10 +1,11 @@
-<Workspace Version="0.6.2.39131" X="0" Y="0" zoom="1" Description="" Category="" Name="Home">
+<Workspace Version="0.8.1.1441" X="0" Y="0" zoom="1" Name="Home" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap />
   <Elements>
-    <Dynamo.Nodes.DoubleInput type="Dynamo.Nodes.DoubleInput" guid="e67424f4-cfde-4b98-833e-61b3335f4116" nickname="Number" x="224" y="217" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+    <Dynamo.Nodes.DoubleInput guid="e67424f4-cfde-4b98-833e-61b3335f4116" type="Dynamo.Nodes.DoubleInput" nickname="Number" x="224" y="217" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
       <System.Double value="2..3" />
     </Dynamo.Nodes.DoubleInput>
-    <Dynamo.Nodes.Watch type="Dynamo.Nodes.Watch" guid="598e39f2-4d18-4ea5-99b8-931c6b6d81bd" nickname="Watch" x="358" y="261" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
-    <Dynamo.Nodes.Python type="Dynamo.Nodes.Python" guid="234459e8-97c7-469c-b474-5fa268d9606a" nickname="Python Script" x="483" y="257" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+    <Dynamo.Nodes.Watch guid="598e39f2-4d18-4ea5-99b8-931c6b6d81bd" type="Dynamo.Nodes.Watch" nickname="Watch" x="358" y="261" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <DSIronPythonNode.PythonNode guid="234459e8-97c7-469c-b474-5fa268d9606a" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="483" y="257" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">
       <Script># Default imports
 import clr
 clr.AddReference('RevitAPI')
@@ -20,20 +21,21 @@ sys.path.append(exec_path)
 clr.AddReference('LibGNet')
 from Autodesk.LibG import *
 
-#The input to this node will be stored in the IN variable.
-dataEnteringNode = IN
+#The input to this node will be stored in the IN[0] variable.
+dataEnteringNode = IN[0]
 
 #Assign your output to the OUT variable
-OUT = IN[0] + IN[1]</Script>
-    </Dynamo.Nodes.Python>
-    <Dynamo.Nodes.Watch type="Dynamo.Nodes.Watch" guid="fd0ef004-b81e-4f64-a6f5-2230d60219df" nickname="Watch" x="651" y="265" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
-    <Dynamo.Nodes.Transaction type="Dynamo.Nodes.Transaction" guid="a9ab8b36-6b30-407e-adf2-c784e2306e09" nickname="Transaction" x="617" y="128" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+OUT = IN[0][0] + IN[0][1]</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Watch guid="fd0ef004-b81e-4f64-a6f5-2230d60219df" type="Dynamo.Nodes.Watch" nickname="Watch" x="651" y="265" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Nodes.DSFunction guid="a9ab8b36-6b30-407e-adf2-c784e2306e09" type="Dynamo.Nodes.DSFunction" nickname="Transaction.End" x="617" y="128" isVisible="true" isUpstreamVisible="true" lacing="Disabled" assembly="RevitNodes.dll" function="Revit.Transaction.Transaction.End@var" />
   </Elements>
   <Connectors>
     <Dynamo.Models.ConnectorModel start="e67424f4-cfde-4b98-833e-61b3335f4116" start_index="0" end="598e39f2-4d18-4ea5-99b8-931c6b6d81bd" end_index="0" portType="0" />
     <Dynamo.Models.ConnectorModel start="598e39f2-4d18-4ea5-99b8-931c6b6d81bd" start_index="0" end="234459e8-97c7-469c-b474-5fa268d9606a" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="234459e8-97c7-469c-b474-5fa268d9606a" start_index="0" end="fd0ef004-b81e-4f64-a6f5-2230d60219df" end_index="0" portType="0" />
     <Dynamo.Models.ConnectorModel start="234459e8-97c7-469c-b474-5fa268d9606a" start_index="0" end="a9ab8b36-6b30-407e-adf2-c784e2306e09" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="234459e8-97c7-469c-b474-5fa268d9606a" start_index="0" end="fd0ef004-b81e-4f64-a6f5-2230d60219df" end_index="0" portType="0" />
   </Connectors>
   <Notes />
+  <Annotations />
 </Workspace>
