@@ -69,8 +69,6 @@ namespace RevitSystemTests
             }
             finally
             {
-                ViewModel.Model.ShutDown(false);
-                ViewModel = null;
                 TearDown();
             }
 
