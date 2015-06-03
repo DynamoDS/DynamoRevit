@@ -322,6 +322,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selection is disabled when Dynamo run is disabled..
+        /// </summary>
+        internal static string SelectionIsDisabledDescription {
+            get {
+                return ResourceManager.GetString("SelectionIsDisabledDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a model element from the document..
         /// </summary>
         internal static string SelectModelElementDescription {
