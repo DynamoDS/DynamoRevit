@@ -20,6 +20,7 @@ using RevitServices.Persistence;
 using System.Collections.Generic;
 using RevitServices.Transactions;
 using Revit.GeometryConversion;
+using Dynamo.Applications.Models;
 
 using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
 using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
@@ -700,6 +701,29 @@ namespace RevitSystemTests
             RunCurrentModel();
             //There should be no infinite loop, otherwise, there will be an error with this test case.
         }
+
+
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void SelectionButtonShouldBeDisabledAfterOpeningNewDocument()
+        {
+             string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7251.dyn");
+             string testPath = Path.GetFullPath(filePath);
+
+             ViewModel.OpenCommand.Execute(testPath);
+             AssertNoDummyNodes();
+             RunCurrentModel();
+
+             var node = AllNodes.OfType<DSModelElementSelection>().ElementAt(0);
+             node.RevitDynamoModel = Model as RevitDynamoModel;
+             Assert.IsTrue(node.CanSelect);
+
+             string newRfaFilePath = Path.Combine(workingDirectory, "modelLines.rfa");
+             DocumentManager.Instance.CurrentUIApplication.OpenAndActivateDocument(newRfaFilePath);
+             node = AllNodes.OfType<DSModelElementSelection>().ElementAt(0);
+             Assert.IsFalse(node.CanSelect);
+         }
 
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
         {
