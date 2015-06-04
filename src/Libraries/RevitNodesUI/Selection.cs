@@ -37,14 +37,48 @@ namespace Dynamo.Nodes
     public abstract class RevitSelection<TSelection, TResult> : SelectionBase<TSelection, TResult>
     {
         protected Document SelectionOwner { get; private set; }
-        protected RevitDynamoModel RevitDynamoModel { get; private set; }
+        private RevitDynamoModel revitDynamoModel;
 
         #region public properties
 
-        /* TODO: Now that nodes know nothing about their owners, we can't access RunEnabled.
+        public RevitDynamoModel RevitDynamoModel
+        {
+            get
+            {
+               return revitDynamoModel;
+            }
+            set
+            {
+                if (revitDynamoModel != null)
+                {
+                    var hwm = revitDynamoModel.Workspaces.OfType<HomeWorkspaceModel>().ElementAt(0);
+                    hwm.RunSettings.PropertyChanged -= revMod_PropertyChanged;
+                }
+
+                revitDynamoModel = value;
+
+                if (revitDynamoModel != null)
+                {
+                    var hwm = revitDynamoModel.Workspaces.OfType<HomeWorkspaceModel>().ElementAt(0);
+                    hwm.RunSettings.PropertyChanged += revMod_PropertyChanged;
+                }
+            }
+       }
+
         public override bool CanSelect
         {
-            get { return base.CanSelect && RevitDynamoModel.RunEnabled; }
+            get
+            {
+                if (revitDynamoModel != null)
+                {
+                    var hwm = RevitDynamoModel.Workspaces.OfType<HomeWorkspaceModel>().ElementAt(0);
+                    return base.CanSelect && hwm.RunSettings.RunEnabled;
+                }
+                else
+                {
+                   return base.CanSelect;
+                }
+            }
             set { base.CanSelect = value; }
         }
 
@@ -52,9 +86,17 @@ namespace Dynamo.Nodes
         {
             get
             {
-                return RevitDynamoModel.RunEnabled
-                    ? base.SelectionSuggestion
-                    : "Selection is disabled when Dynamo run is disabled.";
+               if (revitDynamoModel != null)
+                {
+                    var hwm = RevitDynamoModel.Workspaces.OfType<HomeWorkspaceModel>().ElementAt(0);
+                    return hwm.RunSettings.RunEnabled
+                        ? base.SelectionSuggestion
+                        : DSRevitNodesUI.Properties.Resources.SelectionIsDisabledDescription;
+                }
+                else
+                {
+                    return base.SelectionSuggestion;
+                }   
             }
         }
 
@@ -75,7 +117,7 @@ namespace Dynamo.Nodes
                 RaisePropertyChanged("SelectionSuggestion");
             }
         }
-        */
+     
 
         #endregion
 
@@ -118,7 +160,12 @@ namespace Dynamo.Nodes
                     RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
                     DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -= Controller_RevitDocumentChanged;
                 });
-        }
+        if (revitDynamoModel != null)
+            {
+                var hwm = RevitDynamoModel.Workspaces.OfType<HomeWorkspaceModel>().ElementAt(0);
+                hwm.RunSettings.PropertyChanged -= revMod_PropertyChanged;
+            }
+         }
 
         public override void UpdateSelection(IEnumerable<TSelection> rawSelection)
         {
