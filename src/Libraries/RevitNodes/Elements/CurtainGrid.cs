@@ -290,7 +290,7 @@ namespace Revit.Elements
 
       public override string ToString()
       {
-         return "Curtain Grid";
+         return Properties.Resources.CurtainGridPreview;
       }
 
       internal static CurtainGridSet AllCurtainGrids(Autodesk.Revit.DB.Element revitElement)
