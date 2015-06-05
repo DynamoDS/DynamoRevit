@@ -225,12 +225,12 @@ namespace Revit.Elements
 
             if (uDivs <= 0)
             {
-                throw new Exception("uDivs must be a positive integer");
+                throw new Exception(string.Format(Properties.Resources.NotPositiveIntegerError, "uDivs"));
             }
 
             if (vDivs <= 0)
             {
-                throw new Exception("vDivs must be a positive integer");
+                throw new Exception(string.Format(Properties.Resources.NotPositiveIntegerError, "vDivs"));
             }
 
             return new DividedSurface(ElementFaceReference.TryGetFaceReference(faceReference), uDivs, vDivs, gridRotation);
@@ -271,12 +271,12 @@ namespace Revit.Elements
 
             if (uDivs <= 0)
             {
-                throw new Exception("uDivs must be a positive integer");
+                throw new Exception(string.Format(Properties.Resources.NotPositiveIntegerError, "uDivs"));
             }
 
             if (vDivs <= 0)
             {
-                throw new Exception("vDivs must be a positive integer");
+                throw new Exception(string.Format(Properties.Resources.NotPositiveIntegerError, "vDivs"));
             }
 
             return new DividedSurface(ElementFaceReference.TryGetFaceReference(surface), uDivs, vDivs, gridRotation);
