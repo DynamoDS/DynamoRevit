@@ -93,7 +93,7 @@ namespace Revit.Elements
 
             if (type == null)
             {
-                throw new Exception(String.Format("There is no ModelTextType of the name, {0}, in the current Document", name));
+                throw new Exception(String.Format(Properties.Resources.ModelTextTypeNotFound, name));
             }
 
             return new ModelTextType(type)

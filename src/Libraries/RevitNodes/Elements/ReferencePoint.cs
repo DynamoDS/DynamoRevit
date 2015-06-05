@@ -337,7 +337,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
             return ByPoint(Point.ByCoordinates(x, y, z));
         }
@@ -356,7 +356,7 @@ namespace Revit.Elements
 
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             return new ReferencePoint(pt.ToXyz());
@@ -373,7 +373,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             if (basePoint == null)
@@ -402,7 +402,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             if (elementCurveReference == null)
@@ -425,7 +425,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             if (elementCurveReference == null)
@@ -448,7 +448,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             if (elementFaceReference == null)
