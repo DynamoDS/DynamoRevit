@@ -483,7 +483,7 @@ namespace Revit.Elements
         {
             try
             {
-                return string.Format("Reference Point: Location=(X={0}, Y={1}, Z={2})", X, Y, Z);
+                return string.Format(Properties.Resources.ReferencePointPreview, X, Y, Z);
             }
             catch (Exception e)
             {
@@ -495,7 +495,7 @@ namespace Revit.Elements
         {
             try
             {
-                return string.Format("Reference Point: Location=(X={0}, Y={1}, Z={2})", X.ToString(format),
+                return string.Format(Properties.Resources.ReferencePointPreview, X.ToString(format),
                                     Y.ToString(format), Z.ToString(format));
             }
             catch (Exception e)
