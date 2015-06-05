@@ -151,7 +151,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return String.Format("Family: {0}", InternalFamily.Name);
+            return String.Format(Properties.Resources.FamilyPreview, InternalFamily.Name);
         }
 
         #endregion
