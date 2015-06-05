@@ -59,7 +59,7 @@ namespace Revit.Elements
 
             if (gridSets == null || gridSets.Size < 1)
             {
-               throw new Exception("Element has no Curtain Grids");
+               throw new Exception(Properties.Resources.CurtainGridNotFound);
             }
 
             if (InternalGridReference != null)
@@ -220,7 +220,7 @@ namespace Revit.Elements
               var faceObject =
                  InternalCurtainHolderElement.GetGeometryObjectFromReference(InternalGridReference);
               if (!(faceObject is Autodesk.Revit.DB.Face))
-                  throw new Exception("Reference should be to Face of the Element.");
+                  throw new Exception(Properties.Resources.CurtainGridReferenceError);
 
               InternalGridReference = faceReference; //compute from faceReference  
           }
@@ -320,7 +320,7 @@ namespace Revit.Elements
 
          if (gridSets == null || gridSets.Size < 1)
          {
-            throw new Exception("Element has no Curtain Grids");
+            throw new Exception(Properties.Resources.CurtainGridNotFound);
          }
          return gridSets;
       }

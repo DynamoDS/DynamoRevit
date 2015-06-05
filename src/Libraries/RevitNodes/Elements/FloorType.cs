@@ -103,7 +103,7 @@ namespace Revit.Elements
 
             if (floorType == null)
             {
-                throw new Exception("A Revit FloorType with that name could not be located in the document.");
+                throw new Exception(Properties.Resources.FloorTypeNotFound);
             }
 
             // until there is a way to create a FloorType from Dynamo, 
