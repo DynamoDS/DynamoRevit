@@ -30,7 +30,7 @@ namespace Revit.Elements
 
             var elementAsPanel = InternalElement as Autodesk.Revit.DB.Panel;
             if (elementAsPanel == null)
-               throw new Exception("InternalElement of Curtain Panel is not Panel");
+               throw new Exception(Properties.Resources.CurtainPanelInternalElementError);
 
             var host = elementAsPanel.Host;
 
@@ -55,7 +55,7 @@ namespace Revit.Elements
                   }
                }
                if (!found)
-                  throw new Exception("Could not find cell for panel");
+                  throw new Exception(Properties.Resources.CellForPanelNotFound);
             }
 
             ElementId uGridId = ElementId.InvalidElementId;
@@ -63,7 +63,7 @@ namespace Revit.Elements
             elementAsPanel.GetRefGridLines(ref uGridId, ref vGridId);
 
             if (grid == null && hostingGrid == null)
-               throw new Exception("Could not find cell for panel");
+               throw new Exception(Properties.Resources.CellForPanelNotFound);
 
             CurtainCell cell = hostingGrid != null
                ? hostingGrid.InternalCurtainGrid.GetCell(uGridId, vGridId)
@@ -72,7 +72,7 @@ namespace Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
 
             if (cell == null)
-               throw new Exception("Could not find cell for panel");
+               throw new Exception(Properties.Resources.CellForPanelNotFound);
             return cell.CurveLoops;
          }
       }

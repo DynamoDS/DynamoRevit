@@ -119,7 +119,7 @@ namespace Revit.Elements
 
             if (family == null)
             {
-                throw new Exception("A FamilySymbol with the specified name does not exist in the document");
+                throw new Exception(Properties.Resources.FamilySymbolNotFound1);
             }
 
             TransactionManager.Instance.TransactionTaskDone();
