@@ -90,8 +90,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return string.Format(Properties.Resources.FamilyInstancePreview, 
-                InternalFamilyInstance.Symbol.Name, InternalFamilyInstance.Name);
+            return string.Format("Family={0}, Type={1}", InternalFamilyInstance.Symbol.Name, InternalFamilyInstance.Name);
         }
     }
 }

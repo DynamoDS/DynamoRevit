@@ -133,7 +133,7 @@ namespace Revit.Elements.Views
 
         public override string ToString()
         {
-            return String.Format(Properties.Resources.ViewPreview, GetType().Name, InternalView.ViewName);
+            return GetType().Name + "(Name = " + InternalView.ViewName + " )";
         }
     }
 }
