@@ -90,7 +90,7 @@ namespace Revit.Elements
 
             if (mat == null)
             {
-                throw new Exception("A Material with the given name does not exist in the current Document");
+                throw new Exception(Properties.Resources.MaterialNotFound);
             }
 
             return new Material(mat)

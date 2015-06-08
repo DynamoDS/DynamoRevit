@@ -130,7 +130,7 @@ namespace Revit.Elements
 
             if (symbol == null)
             {
-               throw new Exception(String.Format("A FamilySymbol with the specified name, {0}, does not exist in the Family", name));
+               throw new Exception(String.Format(Properties.Resources.FamilySymbolNotFound2, name));
             }
 
             return new FamilySymbol(symbol)
@@ -164,7 +164,7 @@ namespace Revit.Elements
 
             if (family == null)
             {
-                throw new Exception(string.Format("A family with the specified name, {0}, could not be found in the document.", familyName));
+                throw new Exception(string.Format(Properties.Resources.FamilyNotFound, familyName));
             }
 
             // obtain the family symbol with the provided name
@@ -174,7 +174,7 @@ namespace Revit.Elements
 
             if (symbol == null)
             {
-                throw new Exception(String.Format("A FamilySymbol with the specified name, {0}, does not exist in the Family", typeName));
+                throw new Exception(String.Format(Properties.Resources.FamilySymbolNotFound2, typeName));
             }
 
             return new FamilySymbol(symbol)
@@ -203,7 +203,7 @@ namespace Revit.Elements
 
             if (symbol == null)
             {
-                throw new Exception(String.Format("A FamilySymbol with the specified name, {0}, does not exist in the document", name));
+                throw new Exception(String.Format(Properties.Resources.FamilySymbolNotFound3, name));
             }
 
             return new FamilySymbol(symbol)
