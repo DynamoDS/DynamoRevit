@@ -131,7 +131,7 @@ namespace Revit.Elements
             var enumerable = points as Point[] ?? points.ToArray();
             if (enumerable.Count() < 3)
             {
-                throw new Exception("A minimum of three points is required to create a topography surface.");
+                throw new Exception(Properties.Resources.TopographyNeedsThreePoints);
             }
 
             return new Topography(enumerable.Select(x => x.ToXyz()).ToList());

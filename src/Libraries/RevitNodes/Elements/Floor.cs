@@ -152,7 +152,7 @@ namespace Revit.Elements
 
             if (!outline.IsClosed)
             {
-                throw new ArgumentException("The input PolyCurve is not closed");
+                throw new ArgumentException(Properties.Resources.OpenInputPolyCurveError);
             }
 
             var ca = new CurveArray();
