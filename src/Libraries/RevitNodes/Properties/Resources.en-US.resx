@@ -150,28 +150,4 @@
   <data name="View_ExportAsImage_Path_Invalid" xml:space="preserve">
     <value>The supplied path is invalid.</value>
   </data>
-  <data name="CurtainGridPreview" xml:space="preserve">
-    <value>Curtain Grid</value>
-  </data>
-  <data name="CurtainPanelPreview" xml:space="preserve">
-    <value>Curtain Panel</value>
-  </data>
-  <data name="FamilyInstancePreview" xml:space="preserve">
-    <value>Family={0}, Type={1}</value>
-  </data>
-  <data name="FamilyPreview" xml:space="preserve">
-    <value>Family: {0}</value>
-  </data>
-  <data name="FamilySymbolPreview" xml:space="preserve">
-    <value>Family Type: {0}, Family: {1}</value>
-  </data>
-  <data name="LevelPreview" xml:space="preserve">
-    <value>Level(Name={0}, Elevation={1})</value>
-  </data>
-  <data name="ReferencePointPreview" xml:space="preserve">
-    <value>Reference Point: Location=(X={0}, Y={1}, Z={2})</value>
-  </data>
-  <data name="ViewPreview" xml:space="preserve">
-    <value>{0}(Name = {1} )</value>
-  </data>
 </root>
