@@ -192,7 +192,7 @@ namespace Revit.Elements
             }
 
             if (!Document.IsFamilyDocument)
-                throw new Exception("Revit can only create a ReferenceCurve in a family document!");
+                throw new Exception(Properties.Resources.ReferenceCurveCreationFailure);
 
            return new ModelCurve(ExtractLegalRevitCurve(curve), true);
         }
@@ -228,9 +228,7 @@ namespace Revit.Elements
             // more straightforward route of just providing an informative error message to the user.
             if (curve is PolyCurve)
             {
-                throw new Exception(
-                    "Revit does not support turning PolyCurves into ModelCurves.  "
-                        + "Try exploding your PolyCurve into multiple Curves.");
+                throw new Exception(Properties.Resources.PolyCurvesConversionError);
             }
 
             return curve.ToRevitType();
