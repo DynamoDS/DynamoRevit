@@ -174,4 +174,157 @@
   <data name="ViewPreview" xml:space="preserve">
     <value>{0}(Name = {1} )</value>
   </data>
+  <data name="CellForPanelNotFound" xml:space="preserve">
+    <value>Could not find cell for panel</value>
+  </data>
+  <data name="CurtainGridNotFound" xml:space="preserve">
+    <value>Element has no Curtain Grid.</value>
+  </data>
+  <data name="CurtainGridReferenceError" xml:space="preserve">
+    <value>Reference should be to Face of the Element.</value>
+  </data>
+  <data name="CurtainPanelInternalElementError" xml:space="preserve">
+    <value>InternalElement of Curtain Panel is not Panel.</value>
+  </data>
+  <data name="CurveNeedsTwoPoints" xml:space="preserve">
+    <value>Cannot create Curve By Points with less than two points.</value>
+  </data>
+  <data name="CurveReferenceExtractionDetail" xml:space="preserve">
+    <value>You supplied an {0}, but we could not extract a CurveReference from it!</value>
+  </data>
+  <data name="CurveReferenceExtractionFailure" xml:space="preserve">
+    <value>{0} requires a ElementCurveReference extracted from a Revit Element! </value>
+  </data>
+  <data name="CurveReferenceFailure" xml:space="preserve">
+    <value>A Curve Reference can only be obtained from an Element.</value>
+  </data>
+  <data name="CurveReferenceHint" xml:space="preserve">
+    <value>You can use the {0} or {1} to turn this Curve into a Revit Element.</value>
+  </data>
+  <data name="FaceReferenceExtractionDetail" xml:space="preserve">
+    <value>You supplied an {0}, but we could not extract a ElementFaceReference from it!</value>
+  </data>
+  <data name="FaceReferenceExtractionFailure" xml:space="preserve">
+    <value>{0} requires a ElementFaceReference extracted from a Revit Element! </value>
+  </data>
+  <data name="FaceReferenceFailure" xml:space="preserve">
+    <value>A Face Reference can only be obtained from an Element.</value>
+  </data>
+  <data name="FaceReferenceHint" xml:space="preserve">
+    <value>You can use the {0} to turn this Surface into a Revit Element, then extract a ElementFaceReference from it.</value>
+  </data>
+  <data name="FamilyInstanceCreationFailure" xml:space="preserve">
+    <value>Could not create the FamilyInstance</value>
+  </data>
+  <data name="FamilyNotFound" xml:space="preserve">
+    <value>A family with the specified name, {0}, could not be found in the document.</value>
+  </data>
+  <data name="FamilySymbolNotFound1" xml:space="preserve">
+    <value>A FamilySymbol with the specified name does not exist in the document.</value>
+  </data>
+  <data name="FamilySymbolNotFound2" xml:space="preserve">
+    <value>A FamilySymbol with the specified name, {0}, does not exist in the Family.</value>
+  </data>
+  <data name="FamilySymbolNotFound3" xml:space="preserve">
+    <value>A FamilySymbol with the specified name, {0}, does not exist in the document.</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>The file could not be found at: {0}</value>
+  </data>
+  <data name="FloorTypeNotFound" xml:space="preserve">
+    <value>A Revit FloorType with that name could not be located in the document.</value>
+  </data>
+  <data name="GeometryObjectReferenceFailure" xml:space="preserve">
+    <value>Could not get a geometry object from the current document using the provided reference</value>
+  </data>
+  <data name="GridCreationFailure" xml:space="preserve">
+    <value>A Grid Element can only be created in a Revit Project.</value>
+  </data>
+  <data name="InputParamsMismatch" xml:space="preserve">
+    <value>The input list of parameters does not have the same number of values required by the adaptive component.</value>
+  </data>
+  <data name="InputPointParamsMismatch" xml:space="preserve">
+    <value>The input list of points does not have the same number of values required by the adaptive component.</value>
+  </data>
+  <data name="InputUVParamsMismatch" xml:space="preserve">
+    <value>The input list of UVs does not have the same number of values required by the adaptive component.</value>
+  </data>
+  <data name="InstanceImportFailure" xml:space="preserve">
+    <value>Could not obtain ImportInstance from imported Element</value>
+  </data>
+  <data name="InvalidCategory" xml:space="preserve">
+    <value>The selected category is not valid in this document.</value>
+  </data>
+  <data name="InvalidColumnBaseLocation" xml:space="preserve">
+    <value>The end of the curve for creating a column should be above the start of the curve.</value>
+  </data>
+  <data name="InvalidElementLocation" xml:space="preserve">
+    <value>The location of the structural element is not a valid curve.</value>
+  </data>
+  <data name="InvalidWallHeight" xml:space="preserve">
+    <value>The height must be greater than 0 and less that 30000 ft.  You provided a height of {0} ft.</value>
+  </data>
+  <data name="MaterialNotFound" xml:space="preserve">
+    <value>A Material with the given name does not exist in the current Document.</value>
+  </data>
+  <data name="ModelTextCreationFailure" xml:space="preserve">
+    <value>ModelText Elements can only be created in a Family Document.</value>
+  </data>
+  <data name="ModelTextTypeNotFound" xml:space="preserve">
+    <value>There is no ModelTextType of the name, {0}, in the current Document.</value>
+  </data>
+  <data name="MullionParseError" xml:space="preserve">
+    <value>Mullion should represent Revit's Mullion.</value>
+  </data>
+  <data name="NotAdaptiveComponentError" xml:space="preserve">
+    <value>The FamilyInstance is not an adaptive component.</value>
+  </data>
+  <data name="NotPositiveIntegerError" xml:space="preserve">
+    <value>{0} must be a positive integer</value>
+  </data>
+  <data name="NullInputCurvesError" xml:space="preserve">
+    <value>Some of the input curves are null.</value>
+  </data>
+  <data name="OpenInputPolyCurveError" xml:space="preserve">
+    <value>The input PolyCurve is not closed.</value>
+  </data>
+  <data name="ParameterNotFound" xml:space="preserve">
+    <value>No parameter found by that name.</value>
+  </data>
+  <data name="ParameterStorageNotElement" xml:space="preserve">
+    <value>The parameter's storage type is not an Element.</value>
+  </data>
+  <data name="ParameterStorageNotInteger" xml:space="preserve">
+    <value>The parameter's storage type is not an integer.</value>
+  </data>
+  <data name="ParameterStorageNotNumber" xml:space="preserve">
+    <value>The parameter's storage type is not a number.</value>
+  </data>
+  <data name="ParameterStorageNotString" xml:space="preserve">
+    <value>The parameter's storage type is not a string.</value>
+  </data>
+  <data name="ParameterWithoutStorageType" xml:space="preserve">
+    <value>Parameter {0} has no storage type.</value>
+  </data>
+  <data name="PolyCurvesConversionError" xml:space="preserve">
+    <value>Revit does not support turning PolyCurves into ModelCurves. Try exploding your PolyCurve into multiple Curves.</value>
+  </data>
+  <data name="ReferenceCurveCreationFailure" xml:space="preserve">
+    <value>Revit can only create a ReferenceCurve in a Family Document.</value>
+  </data>
+  <data name="ReferencePointCreationFailure" xml:space="preserve">
+    <value>ReferencePoint Elements can only be created in a Family Document.</value>
+  </data>
+  <data name="SamplePointsMismatchError" xml:space="preserve">
+    <value>The number of sample points and number of samples must be the same.</value>
+  </data>
+  <data name="TopographyNeedsThreePoints" xml:space="preserve">
+    <value>A minimum of three points is required to create a topography surface.</value>
+  </data>
+  <data name="UnitTypeConversionError" xml:space="preserve">
+    <value>ParameterType cannot be converted to UnitType.</value>
+  </data>
+  <data name="WallTypeNotFound" xml:space="preserve">
+    <value>There is no WallType of the given name in the current Document.</value>
+  </data>
 </root>

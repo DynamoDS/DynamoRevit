@@ -19,8 +19,7 @@ namespace Revit.GeometryReferences
         {
             if ( curve.Reference == null )
             {
-                throw new Exception("A Curve Reference can only be obtained "
-                                    + "from an Element.");
+                throw new Exception(Properties.Resources.CurveReferenceFailure);
             }
             this.InternalReference = curve.Reference;
         }
@@ -64,13 +63,11 @@ namespace Revit.GeometryReferences
             }
             catch (RuntimeBinderException)
             {
-                throw new ArgumentException(nodeTypeString +
-                                            " requires a ElementCurveReference extracted from a Revit Element! ");
+                throw new ArgumentException(string.Format(Properties.Resources.CurveReferenceExtractionFailure, nodeTypeString));
             }
             catch (Exception)
             {
-                throw new ArgumentException("Could not obtain a CurveReference from the provided data! " + nodeTypeString +
-                                            " requires a ElementCurveReference extracted from a Revit Element! ");
+                throw new ArgumentException(string.Format(Properties.Resources.CurveReferenceExtractionFailure, nodeTypeString));
             }
         }
 
@@ -89,8 +86,8 @@ namespace Revit.GeometryReferences
             var cs = curveObject.InternalGeometry().OfType<Autodesk.Revit.DB.Curve>();
             if (cs.Any()) return new ElementCurveReference(cs.First());
 
-            throw new ArgumentException(nodeTypeString + " requires a ElementCurveReference extracted from a Revit Element! " +
-                             "You supplied an " + curveObject.ToString() + ", but we could not extract a CurveReference from it!");
+            throw new ArgumentException(string.Format(Properties.Resources.CurveReferenceExtractionFailure, nodeTypeString) +
+                 string.Format(Properties.Resources.CurveReferenceExtractionDetail, curveObject));
         }
 
         private static ElementCurveReference TryGetCurveReference(Autodesk.DesignScript.Geometry.Curve curveObject, string nodeTypeString = "This node")
@@ -104,9 +101,8 @@ namespace Revit.GeometryReferences
                 return new ElementCurveReference(tagRef);
             }
 
-            throw new ArgumentException(nodeTypeString + " requires a Curve extracted from a Revit Element! " +
-                                         "You can use the ModelCurve.ByCurve or ImportInstance.ByGeometry to " +
-                                            "turn this Curve into a Revit Element.");
+            throw new ArgumentException(string.Format(Properties.Resources.CurveReferenceExtractionFailure, nodeTypeString) +
+                string.Format(Properties.Resources.CurveReferenceHint, "ModelCurve.ByCurve", "ImportInstance.ByGeometry"));
         }
 
     }
