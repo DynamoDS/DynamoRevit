@@ -249,7 +249,7 @@ namespace Revit.Elements
             IList<ElementId> placePointIds = AdaptiveComponentInstanceUtils.GetInstancePlacementPointElementRefIds(InternalFamilyInstance);
 
             if (placePointIds.Count() != points.Count())
-                throw new Exception("The input list of points does not have the same number of values required by the adaptive component.");
+                throw new Exception(Properties.Resources.InputPointParamsMismatch);
 
             // Set the position of each placement point
             int i = 0;
@@ -275,7 +275,7 @@ namespace Revit.Elements
             var placePointIds = AdaptiveComponentInstanceUtils.GetInstancePlacementPointElementRefIds(InternalFamilyInstance);
 
             if (placePointIds.Count() != uvs.Length)
-                throw new Exception("The input list of UVs does not have the same number of values required by the adaptive component.");
+                throw new Exception(Properties.Resources.InputUVParamsMismatch);
 
             // Set the position of each placement point
             int i = 0;
@@ -303,7 +303,7 @@ namespace Revit.Elements
             var placePointIds = AdaptiveComponentInstanceUtils.GetInstancePlacementPointElementRefIds(InternalFamilyInstance);
 
             if (placePointIds.Count() != parms.Length)
-                throw new Exception("The input list of parameters does not have the same number of values required by the adaptive component.");
+                throw new Exception(Properties.Resources.InputParamsMismatch);
 
             // Set the position of each placement point
             int i = 0;
@@ -575,7 +575,7 @@ namespace Revit.Elements
             // Not all family instances are adaptive components
             if (!AdaptiveComponentInstanceUtils.HasAdaptiveFamilySymbol(familyInstance))
             {
-                throw new Exception("The FamilyInstance is not an adaptive component");
+                throw new Exception(Properties.Resources.NotAdaptiveComponentError);
             }
 
             return new AdaptiveComponent(familyInstance)
