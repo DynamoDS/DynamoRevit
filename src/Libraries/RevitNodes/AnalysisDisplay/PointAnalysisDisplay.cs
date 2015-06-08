@@ -182,7 +182,7 @@ namespace Revit.AnalysisDisplay
 
             if (sampleLocations.Length != samples.Length)
             {
-                throw new Exception("The number of sample points and number of samples must be the same");
+                throw new Exception(Properties.Resources.SamplePointsMismatchError);
             }
 
             if (string.IsNullOrEmpty(name))
