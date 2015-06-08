@@ -468,7 +468,7 @@ namespace Revit.Elements
 
       public override string ToString()
       {
-         return Properties.Resources.CurtainPanelPreview;
+         return "Curtain Panel";
       }
 
       #endregion

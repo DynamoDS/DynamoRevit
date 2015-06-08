@@ -289,7 +289,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return string.Format(Properties.Resources.LevelPreview, Name, Elevation);
+            return string.Format("Level(Name={0}, Elevation={1})", Name, Elevation);
         }
     }
 }
