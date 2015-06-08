@@ -115,15 +115,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Curtain Grid.
-        /// </summary>
-        internal static string CurtainGridPreview {
-            get {
-                return ResourceManager.GetString("CurtainGridPreview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Reference should be to Face of the Element..
         /// </summary>
         internal static string CurtainGridReferenceError {
@@ -156,15 +147,6 @@ namespace Revit.Properties {
         internal static string CurtainPanelIsNotRectangular {
             get {
                 return ResourceManager.GetString("CurtainPanelIsNotRectangular", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Curtain Panel.
-        /// </summary>
-        internal static string CurtainPanelPreview {
-            get {
-                return ResourceManager.GetString("CurtainPanelPreview", resourceCulture);
             }
         }
         
@@ -277,29 +259,11 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Family={0}, Type={1}.
-        /// </summary>
-        internal static string FamilyInstancePreview {
-            get {
-                return ResourceManager.GetString("FamilyInstancePreview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A family with the specified name, {0}, could not be found in the document..
         /// </summary>
         internal static string FamilyNotFound {
             get {
                 return ResourceManager.GetString("FamilyNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Family: {0}.
-        /// </summary>
-        internal static string FamilyPreview {
-            get {
-                return ResourceManager.GetString("FamilyPreview", resourceCulture);
             }
         }
         
@@ -327,15 +291,6 @@ namespace Revit.Properties {
         internal static string FamilySymbolNotFound3 {
             get {
                 return ResourceManager.GetString("FamilySymbolNotFound3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Family Type: {0}, Family: {1}.
-        /// </summary>
-        internal static string FamilySymbolPreview {
-            get {
-                return ResourceManager.GetString("FamilySymbolPreview", resourceCulture);
             }
         }
         
@@ -444,15 +399,6 @@ namespace Revit.Properties {
         internal static string InvalidWallHeight {
             get {
                 return ResourceManager.GetString("InvalidWallHeight", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Level(Name={0}, Elevation={1}).
-        /// </summary>
-        internal static string LevelPreview {
-            get {
-                return ResourceManager.GetString("LevelPreview", resourceCulture);
             }
         }
         
@@ -619,15 +565,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reference Point: Location=(X={0}, Y={1}, Z={2}).
-        /// </summary>
-        internal static string ReferencePointPreview {
-            get {
-                return ResourceManager.GetString("ReferencePointPreview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The number of sample points and number of samples must be the same..
         /// </summary>
         internal static string SamplePointsMismatchError {
@@ -669,15 +606,6 @@ namespace Revit.Properties {
         internal static string View_ExportAsImage_Path_Invalid {
             get {
                 return ResourceManager.GetString("View_ExportAsImage_Path_Invalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0}(Name = {1} ).
-        /// </summary>
-        internal static string ViewPreview {
-            get {
-                return ResourceManager.GetString("ViewPreview", resourceCulture);
             }
         }
         
