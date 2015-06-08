@@ -2,23 +2,18 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
 using Autodesk.Revit.DB.Electrical;
 using Autodesk.Revit.DB.Structure;
-
+using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Models;
-
 using ProtoCore.AST.AssociativeAST;
-
 using Revit.Elements;
 using Revit.Elements.InternalUtilities;
-
 using RevitServices.Elements;
 using RevitServices.Persistence;
-
 using Category = Revit.Elements.Category;
 using CurveElement = Autodesk.Revit.DB.CurveElement;
 using DividedSurface = Autodesk.Revit.DB.DividedSurface;
@@ -215,37 +210,46 @@ namespace DSRevitNodesUI
             OutPortData.Add(new PortData("elements", Properties.Resources.PortDataAllVisibleElementsToolTip));
             RegisterAllPorts();
 
-            DocumentManager.Instance.CurrentUIApplication.ViewActivated +=
-                RevitDynamoModel_RevitDocumentChanged;
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    DocumentManager.Instance.CurrentUIApplication.ViewActivated +=
+                        RevitDynamoModel_RevitDocumentChanged;
 
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened +=
-                RevitDynamoModel_RevitDocumentChanged;
+                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened +=
+                        RevitDynamoModel_RevitDocumentChanged;
 
-            RevitServicesUpdater.Instance.ElementsDeleted +=
-                RevitServicesUpdaterOnElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified +=
-                RevitServicesUpdaterOnElementsModified;
-            RevitServicesUpdater.Instance.ElementsAdded +=
-                RevitServicesUpdaterOnElementsAdded;
+                    RevitServicesUpdater.Instance.ElementsDeleted +=
+                        RevitServicesUpdaterOnElementsDeleted;
+                    RevitServicesUpdater.Instance.ElementsModified +=
+                        RevitServicesUpdaterOnElementsModified;
+                    RevitServicesUpdater.Instance.ElementsAdded +=
+                        RevitServicesUpdaterOnElementsAdded;
 
-            RevitDynamoModel_RevitDocumentChanged(null, null);
+                    RevitDynamoModel_RevitDocumentChanged(null, null);
+                });
         }
 
         public override void Dispose()
         {
+            DynamoRevit.AddIdleAction(
+                () =>
+                {
+                    DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
+                        RevitDynamoModel_RevitDocumentChanged;
+
+                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -=
+                        RevitDynamoModel_RevitDocumentChanged;
+
+                    RevitServicesUpdater.Instance.ElementsDeleted -=
+                        RevitServicesUpdaterOnElementsDeleted;
+                    RevitServicesUpdater.Instance.ElementsModified -=
+                        RevitServicesUpdaterOnElementsModified;
+                    RevitServicesUpdater.Instance.ElementsAdded -=
+                        RevitServicesUpdaterOnElementsAdded;
+                });
+
             base.Dispose();
-            DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
-                RevitDynamoModel_RevitDocumentChanged;
-
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -=
-                RevitDynamoModel_RevitDocumentChanged;
-
-            RevitServicesUpdater.Instance.ElementsDeleted -=
-                RevitServicesUpdaterOnElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified -=
-                RevitServicesUpdaterOnElementsModified;
-            RevitServicesUpdater.Instance.ElementsAdded -=
-                RevitServicesUpdaterOnElementsAdded;
         }
 
         private void RevitServicesUpdaterOnElementsAdded(IEnumerable<string> updated)
