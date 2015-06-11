@@ -106,7 +106,7 @@ namespace Revit.Elements
 
             if (type == null)
             {
-                throw new Exception("There is no WallType of the given name in the current Document");
+                throw new Exception(Properties.Resources.WallTypeNotFound);
             }
 
             return new WallType(type)

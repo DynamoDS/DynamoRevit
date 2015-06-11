@@ -9,6 +9,9 @@ using RevitTestServices;
 
 using RTF.Framework;
 
+using Revit.Elements;
+
+
 namespace RevitSystemTests
 {
     [TestFixture]
@@ -38,7 +41,18 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
-            
+            var model = ViewModel.Model;
+            Assert.AreEqual(10, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(16, model.CurrentWorkspace.Connectors.Count());
+
+            //check Element.OverrideColorInView
+            var elementID = "99608c4e-c064-4486-a016-7221a5df2e3a";
+            AssertPreviewCount(elementID, 100);
+            for (int i = 0; i < 100; i++)
+            {
+                var element = GetPreviewValueAtIndex(elementID, i) as Element;
+                Assert.IsNotNull(element);
+            }             
         }
 
         [Test]

@@ -75,7 +75,7 @@ namespace Revit.Elements
 
             if (category == null)
             {
-                throw new Exception("The selected category is not valid in this document.");
+                throw new Exception(Properties.Resources.InvalidCategory);
             }
 
             return new Category(category);
