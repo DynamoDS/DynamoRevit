@@ -46,7 +46,7 @@ namespace Revit.GeometryObjects
             }
             catch(Exception ex)
             {
-                throw new Exception("Could not get a geometry object from the current document using the provided reference.");
+                throw new Exception(Properties.Resources.GeometryObjectReferenceFailure);
             }
         }
 
