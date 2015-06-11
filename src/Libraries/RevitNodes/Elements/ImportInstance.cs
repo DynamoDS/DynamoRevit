@@ -69,7 +69,7 @@ namespace Revit.Elements
 
             if (importInstance == null)
             {
-                throw new Exception("Could not obtain ImportInstance from imported Element");
+                throw new Exception(Properties.Resources.InstanceImportFailure);
             }
 
             InternalSetImportInstance(importInstance);
@@ -124,7 +124,7 @@ namespace Revit.Elements
 
             if (!File.Exists(pathToFile))
             {
-                throw new ArgumentException("The file could not be found at: " + pathToFile );
+                throw new ArgumentException(string.Format(Properties.Resources.FileNotFound, pathToFile));
             }
 
             return new ImportInstance(pathToFile);
