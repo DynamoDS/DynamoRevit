@@ -287,7 +287,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ModelText Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ModelTextCreationFailure);
             }
 
             if (text == null)
