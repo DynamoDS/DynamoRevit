@@ -18,8 +18,7 @@ namespace Revit.GeometryReferences
         {
             if (face.Reference == null)
             {
-                throw new Exception("A Face Reference can only be obtained "
-                                    + "from an Element.");
+                throw new Exception(Properties.Resources.FaceReferenceFailure);
             }
             this.InternalReference = face.Reference;
         }
@@ -52,8 +51,7 @@ namespace Revit.GeometryReferences
             }
             catch (RuntimeBinderException)
             {
-                throw new ArgumentException(nodeTypeString +
-                                            " requires a ElementFaceReference extracted from a Revit Element! ");
+                throw new ArgumentException(string.Format(Properties.Resources.FaceReferenceExtractionFailure, nodeTypeString));
             }
             catch (Exception e)
             {
@@ -74,8 +72,8 @@ namespace Revit.GeometryReferences
             var ss = curveObject.InternalGeometry().OfType<Autodesk.Revit.DB.Solid>();
             if (ss.Any()) return new ElementFaceReference(ss.First().Faces.Cast<Autodesk.Revit.DB.Face>().First());
 
-            throw new ArgumentException(nodeTypeString + " requires a ElementFaceReference extracted from a Revit Element! " +
-                             "You supplied an " + curveObject.ToString() + ", but we could not extract a ElementFaceReference from it!");
+            throw new ArgumentException(string.Format(Properties.Resources.FaceReferenceExtractionFailure, nodeTypeString) +
+                string.Format(Properties.Resources.FaceReferenceExtractionDetail, curveObject));
         }
 
         private static ElementFaceReference TryGetFaceReference(Autodesk.DesignScript.Geometry.Surface curveObject, string nodeTypeString = "This node")
@@ -89,9 +87,8 @@ namespace Revit.GeometryReferences
                 return new ElementFaceReference(tagRef);
             }
 
-            throw new ArgumentException(nodeTypeString + " requires a ElementFaceReference extracted from a Revit Element! " +
-                                         "You can use the ImportInstance.ByGeometry to " +
-                                            "turn this Surface into a Revit Element, then extract a ElementFaceReference from it.");
+            throw new ArgumentException(string.Format(Properties.Resources.FaceReferenceExtractionFailure, nodeTypeString) +
+                string.Format(Properties.Resources.FaceReferenceHint, "ImportInstance.ByGeometry"));
         }
     }
 

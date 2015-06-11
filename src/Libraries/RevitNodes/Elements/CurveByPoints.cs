@@ -121,7 +121,7 @@ namespace Revit.Elements
         {
             if (points.Count() < 2)
             {
-                throw new Exception("Cannot create Curve By Points with less than two points.");
+                throw new Exception(Properties.Resources.CurveNeedsTwoPoints);
             }
 
             return new CurveByPoints(points.Select(x=>x.InternalReferencePoint), isReferenceLine);

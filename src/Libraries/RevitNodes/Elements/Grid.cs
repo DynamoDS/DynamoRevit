@@ -169,7 +169,7 @@ namespace Revit.Elements
         {
             if (Document.IsFamilyDocument)
             {
-                throw new Exception("A Grid Element can only be created in a Revit Project");
+                throw new Exception(Properties.Resources.GridCreationFailure);
             }
 
             if (line == null)
@@ -190,7 +190,7 @@ namespace Revit.Elements
         {
             if (Document.IsFamilyDocument)
             {
-                throw new Exception("A Grid Element can only be created in a Revit Project");
+                throw new Exception(Properties.Resources.GridCreationFailure);
             }
 
             if (start == null)
@@ -217,7 +217,7 @@ namespace Revit.Elements
         {
             if (Document.IsFamilyDocument)
             {
-                throw new Exception("A Grid Element can only be created in a Revit Project");
+                throw new Exception(Properties.Resources.GridCreationFailure);
             }
 
             if (arc == null)

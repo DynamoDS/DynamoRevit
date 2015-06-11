@@ -23,7 +23,7 @@ namespace Revit.Elements
          {
             var elementAsMullion = InternalElement as Autodesk.Revit.DB.Mullion;
             if (elementAsMullion == null)
-               throw new Exception("Mullion should represent Revit's Mullion");
+               throw new Exception(Properties.Resources.MullionParseError);
             var crv  = elementAsMullion.LocationCurve;
             return Revit.GeometryConversion.RevitToProtoCurve.ToProtoType(crv);
          }
@@ -64,7 +64,7 @@ namespace Revit.Elements
       {
          var elementAsMullion = mullionElement.InternalElement as Autodesk.Revit.DB.Mullion;
          if (elementAsMullion == null)
-            throw new Exception("Mullion should represent Revit's Mullion");
+            throw new Exception(Properties.Resources.MullionParseError);
          return new Mullion(elementAsMullion);
       }
 
@@ -122,7 +122,7 @@ namespace Revit.Elements
       {
          var elementAsMullion = InternalElement as Autodesk.Revit.DB.Mullion;
          if (elementAsMullion == null)
-            throw new Exception("Mullion should represent Revit's Mullion");
+            throw new Exception(Properties.Resources.MullionParseError);
 
          var host = elementAsMullion.Host;
 

@@ -95,7 +95,7 @@ namespace Revit.Elements
 
                 if (elementIds.Count == 0)
                 {
-                    throw new Exception("Could not create the FamilyInstance");
+                    throw new Exception(Properties.Resources.FamilyInstanceCreationFailure);
                 }
 
                 fi = (Autodesk.Revit.DB.FamilyInstance)Document.GetElement(elementIds.First());
@@ -106,7 +106,7 @@ namespace Revit.Elements
 
                 if (elementIds.Count == 0)
                 {
-                    throw new Exception("Could not create the FamilyInstance");
+                    throw new Exception(Properties.Resources.FamilyInstanceCreationFailure);
                 }
 
                 fi = (Autodesk.Revit.DB.FamilyInstance)Document.GetElement(elementIds.First());
@@ -153,7 +153,7 @@ namespace Revit.Elements
 
                 if (elementIds.Count == 0)
                 {
-                    throw new Exception("Could not create the FamilyInstance");
+                    throw new Exception(Properties.Resources.FamilyInstanceCreationFailure);
                 }
 
                 fi = (Autodesk.Revit.DB.FamilyInstance)Document.GetElement(elementIds.First());
@@ -166,7 +166,7 @@ namespace Revit.Elements
 
                 if (elementIds.Count == 0)
                 {
-                    throw new Exception("Could not create the FamilyInstance");
+                    throw new Exception(Properties.Resources.FamilyInstanceCreationFailure);
                 }
 
                 fi = (Autodesk.Revit.DB.FamilyInstance)Document.GetElement(elementIds.First());
@@ -255,7 +255,7 @@ namespace Revit.Elements
                 var crv = location as LocationCurve;
                 if (null != crv && null != crv.Curve)
                     return crv.Curve.ToProtoType();
-                throw new Exception("The location of the structural element is not a valid curve!");
+                throw new Exception(Properties.Resources.InvalidElementLocation);
             }
         }
         /// <summary>
@@ -395,7 +395,7 @@ namespace Revit.Elements
             // base is above its top. 
             if (end.Z <= start.Z)
             {
-                throw new Exception("The end of the curve for creating a column should be above the start of the curve.");
+                throw new Exception(Properties.Resources.InvalidColumnBaseLocation);
             }
 
             return new StructuralFraming(curve.ToRevitType(), level.InternalLevel, Autodesk.Revit.DB.Structure.StructuralType.Column, structuralColumnType.InternalFamilySymbol);
