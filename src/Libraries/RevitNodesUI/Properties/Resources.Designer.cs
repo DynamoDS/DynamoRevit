@@ -187,15 +187,6 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category.
-        /// </summary>
-        internal static string PortDataCategoriesName {
-            get {
-                return ResourceManager.GetString("PortDataCategoriesName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The selected Category..
         /// </summary>
         internal static string PortDataCategoriesToolTip {
