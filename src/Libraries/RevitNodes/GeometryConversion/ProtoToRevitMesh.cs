@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Dynamo;
@@ -23,12 +23,12 @@ namespace Revit.GeometryConversion
             if (performHostUnitConversion)
             {
                 var newSrf = srf.InHostUnits();
-                newSrf.Tessellate(rp);
+                newSrf.Tessellate(rp, new TessellationParameters());
                 newSrf.Dispose();
             }
             else
             {
-                srf.Tessellate(rp);
+                srf.Tessellate(rp, new TessellationParameters());
             }
 
             var tsb = new TessellatedShapeBuilder();
@@ -59,12 +59,12 @@ namespace Revit.GeometryConversion
             if (performHostUnitConversion)
             {
                 var newSolid = solid.InHostUnits();
-                newSolid.Tessellate(rp);
+                newSolid.Tessellate(rp,new TessellationParameters());
                 newSolid.Dispose();
             }
             else
             {
-                solid.Tessellate(rp);
+                solid.Tessellate(rp, new TessellationParameters());
             }
 
             var tsb = new TessellatedShapeBuilder();
