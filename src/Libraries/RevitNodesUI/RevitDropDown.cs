@@ -410,7 +410,7 @@ namespace DSRevitNodesUI
     {
         public Categories()
         {
-            OutPortData[0].NickName = Properties.Resources.PortDataCategoriesName;
+            OutPortData[0].NickName = "Category";
             OutPortData[0].ToolTipString = Properties.Resources.PortDataCategoriesToolTip;
             OutPorts[0].SetPortData(OutPortData[0]);
         }
