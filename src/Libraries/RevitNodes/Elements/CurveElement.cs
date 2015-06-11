@@ -125,12 +125,12 @@ namespace Revit.Elements
         #endregion
        
         [IsVisibleInDynamoLibrary(false)]
-        public new void Tessellate(IRenderPackage package, double tol, int gridLines)
+        public new void Tessellate(IRenderPackage package, TessellationParameters parameters)
         {
             //Ensure that the object is still alive
             if (!IsAlive) return;
 
-            this.Curve.Tessellate(package, tol);
+            this.Curve.Tessellate(package, parameters);
 
             if (package.LineVertexCount > 0)
             {
