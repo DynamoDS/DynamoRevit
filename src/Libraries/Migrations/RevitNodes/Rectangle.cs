@@ -9,7 +9,7 @@ namespace Dynamo.Nodes
         public static NodeMigrationData Migrate_0630_to_0700(NodeMigrationData data)
         {
             return MigrateToDsFunction(data, "ProtoGeometry.dll", "Rectangle.ByWidthHeight",
-                "Rectangle.ByWidthHeight@Autodesk.DesignScript.Geometry.CoordinateSystem,double,double");
+                "Rectangle.ByWidthLength@Autodesk.DesignScript.Geometry.CoordinateSystem,double,double");
         }
     }
 }
