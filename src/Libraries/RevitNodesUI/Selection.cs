@@ -269,7 +269,21 @@ namespace Dynamo.Nodes
 
         protected override string GetIdentifierFromModelObject(TSelection modelObject)
         {
-            return modelObject == null ? null : modelObject.UniqueId;
+            try
+            {
+                return modelObject == null ? null : modelObject.UniqueId;
+            }
+            catch (Autodesk.Revit.Exceptions.InvalidObjectException)
+            {
+                // This call is being made from SelectionBase.SerializeCore in 
+                // scenarios like dragging of a node (undo recorder needs the 
+                // node to be serialized prior to dragging). If the current 
+                // document is not the same as that of the selected modelObject,
+                // an exception will be thrown. Dynamo shouldn't be crashed in 
+                // cases like this, so handle this exception gracefully.
+                // 
+                return null;
+            }
         }
 
         protected override void Updater_ElementsDeleted(
