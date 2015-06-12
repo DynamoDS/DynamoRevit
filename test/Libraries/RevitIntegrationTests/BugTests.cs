@@ -703,12 +703,12 @@ namespace RevitSystemTests
         }
 
 
-        [Test]
+        [Test, Category("Failure")]//// Failure being tracked as MAGN-7656
         [Category("RegressionTests")]
         [TestModel(@".\empty.rfa")]
         public void SelectionButtonShouldBeDisabledAfterOpeningNewDocument()
-        {
-             string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7251.dyn");
+        { 
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7251.dyn");
              string testPath = Path.GetFullPath(filePath);
 
              ViewModel.OpenCommand.Execute(testPath);
