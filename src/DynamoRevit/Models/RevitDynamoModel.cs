@@ -131,6 +131,28 @@ namespace Dynamo.Applications.Models
             }
         }
 
+        public bool IsInRightDocumentContext
+        {
+            get
+            {
+                if (DocumentManager.Instance == null)
+                    return false; // Not initialized yet.
+
+                var dm = DocumentManager.Instance;
+                if (dm.CurrentDBDocument == null)
+                    return false; // There's no current document stored.
+
+                // Selection is not allowed in perspective view mode.
+                var view3D = dm.CurrentUIDocument.ActiveView as View3D;
+                if ((view3D != null) && view3D.IsPerspective)
+                    return false; // There's no view, or in perspective view.
+
+                // Is the cached document the same as the active document?
+                var currentHashCode = dm.CurrentDBDocument.GetHashCode();
+                return currentHashCode == dm.ActiveDocumentHashCode;
+            }
+        }
+
         #endregion
 
         #region Constructors
@@ -266,10 +288,11 @@ namespace Dynamo.Applications.Models
         private void InitializeDocumentManager()
         {
             // Set the intitial document.
-            if (DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument != null)
+            var activeUIDocument = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
+            if (activeUIDocument != null)
             {
-                DocumentManager.Instance.CurrentUIDocument =
-                    DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
+                DocumentManager.Instance.CurrentUIDocument = activeUIDocument;
+                DocumentManager.Instance.HandleDocumentActivation(activeUIDocument.ActiveView);
 
                 OnRevitDocumentChanged();
             }
@@ -384,6 +407,11 @@ namespace Dynamo.Applications.Models
         /// <param name="e"></param>
         private void OnApplicationDocumentClosing(object sender, DocumentClosingEventArgs e)
         {
+            // Invalidate the cached active document value if it is the closing document.
+            var activeDocumentHashCode = DocumentManager.Instance.ActiveDocumentHashCode;
+            if (e.Document != null && (e.Document.GetHashCode() == activeDocumentHashCode))
+                DocumentManager.Instance.HandleDocumentActivation(null);
+
             HandleApplicationDocumentClosing(e.Document);
         }
 
@@ -480,6 +508,8 @@ namespace Dynamo.Applications.Models
 
         public void SetRunEnabledBasedOnContext(View newView)
         {
+            DocumentManager.Instance.HandleDocumentActivation(newView);
+
             var view = newView as View3D;
 
             if (view != null && view.IsPerspective
@@ -535,8 +565,12 @@ namespace Dynamo.Applications.Models
             // present a message telling us where Dynamo is pointing.
             if (DocumentManager.Instance.CurrentUIDocument == null)
             {
-                DocumentManager.Instance.CurrentUIDocument =
-                    DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
+                var activeUIDocument = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
+
+                DocumentManager.Instance.CurrentUIDocument = activeUIDocument;
+                if (activeUIDocument != null)
+                    DocumentManager.Instance.HandleDocumentActivation(activeUIDocument.ActiveView);
+
                 OnRevitDocumentChanged();
 
                 foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())

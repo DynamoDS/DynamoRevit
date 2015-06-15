@@ -94,6 +94,23 @@ namespace RevitServices.Persistence
         }
 
         /// <summary>
+        /// Handle document activation, closure. See ActiveDocumentHashCode 
+        /// for more details.
+        /// </summary>
+        /// <param name="revitView">The Revit.DB.View object that is being 
+        /// activated. This parameter will be null if the currently active 
+        /// document is closed. If there is another document when the current 
+        /// document is closed, the next document will be activated again 
+        /// after active document is invalidated here.</param>
+        /// 
+        public void HandleDocumentActivation(View revitView)
+        {
+            ActiveDocumentHashCode = 0;
+            if (revitView != null && (revitView.Document != null))
+                ActiveDocumentHashCode = revitView.Document.GetHashCode();
+        }
+
+        /// <summary>
         /// Provides the currently active DB document.
         /// This is based on the CurrentUIDocument
         /// </summary>
@@ -104,6 +121,21 @@ namespace RevitServices.Persistence
                 return c == null ? null : c.Document;
             }
         }
+
+        /// <summary>
+        /// This property represents the hash code for the current active Revit
+        /// Document object. If there is no active document, this value will be 
+        /// set to zero. This property is made an 'int' because it is primarily
+        /// meant to indicate the active document for comparison purposes, no 
+        /// Document specific operations should be allowed on it. This property 
+        /// is updated when a document switch or a document closure happens. The
+        /// reason this property is needed because the following property cannot
+        /// reliably indicate the current active document:
+        /// 
+        ///     DocumentManager.CurrentUIApplication.ActiveUIDocument.Document
+        /// 
+        /// </summary>
+        public int ActiveDocumentHashCode { get; private set; }
 
         /// <summary>
         /// Provides the currently active UI document.
