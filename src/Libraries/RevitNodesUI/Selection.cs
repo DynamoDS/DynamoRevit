@@ -69,6 +69,10 @@ namespace Dynamo.Nodes
             {
                 if (revitDynamoModel != null)
                 {
+                    // Different document, disable selection button.
+                    if (!revitDynamoModel.IsInRightDocumentContext)
+                        return false;
+
                     var hwm = RevitDynamoModel.Workspaces.OfType<HomeWorkspaceModel>().ElementAt(0);
                     return base.CanSelect && hwm.RunSettings.RunEnabled;
                 }
