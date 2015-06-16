@@ -1,19 +1,13 @@
-
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Collections.Generic;
-
-using Dynamo.Applications.ViewModel;
-using Dynamo.Applications;
-
 using Greg.AuthProviders;
 
-#region
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Interop;
 using System.Windows.Threading;
@@ -23,12 +17,15 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 
+using Dynamo.Applications;
 using Dynamo.Applications.Models;
+using Dynamo.Applications.ViewModel;
 using Dynamo.Controls;
 using Dynamo.Core;
 using Dynamo.Core.Threading;
 using Dynamo.Models;
 using Dynamo.Services;
+using Dynamo.UpdateManager;
 using Dynamo.ViewModels;
 
 using RevitServices.Persistence;
@@ -38,9 +35,7 @@ using RevitServices.Threading;
 using MessageBox = System.Windows.Forms.MessageBox;
 using DynUpdateManager = Dynamo.UpdateManager.UpdateManager;
 using Microsoft.Win32;
-using Dynamo.UpdateManager;
 
-#endregion
 
 namespace RevitServices.Threading
 {
