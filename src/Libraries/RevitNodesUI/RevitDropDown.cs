@@ -555,7 +555,7 @@ namespace DSRevitNodesUI
     public class StructuralFramingTypes : AllElementsInBuiltInCategory
     {
         public StructuralFramingTypes()
-            : base(BuiltInCategory.OST_StructuralFraming, "Framing Types", "No structural framing types available."){}
+            : base(BuiltInCategory.OST_StructuralFraming, "Framing Types", Properties.Resources.DropDownNoFramingType){}
     }
 
     [NodeName("Structural Column Types")]
@@ -565,7 +565,7 @@ namespace DSRevitNodesUI
     public class StructuralColumnTypes : AllElementsInBuiltInCategory
     {
         public StructuralColumnTypes()
-            : base(BuiltInCategory.OST_StructuralColumns, "Column Types", "No structural column types available."){}
+            : base(BuiltInCategory.OST_StructuralColumns, "Column Types", Properties.Resources.DropDownNoColumnType){}
     }
 
     [NodeName("Spacing Rule Layout")]
