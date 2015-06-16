@@ -267,4 +267,10 @@
   <data name="SelectionIsDisabledDescription" xml:space="preserve">
     <value>Selection is disabled when Dynamo run is disabled.</value>
   </data>
+  <data name="DropDownNoColumnType" xml:space="preserve">
+    <value>No structural column types available.</value>
+  </data>
+  <data name="DropDownNoFramingType" xml:space="preserve">
+    <value>No structural framing types available.</value>
+  </data>
 </root>
