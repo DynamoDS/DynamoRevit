@@ -1,3 +1,8 @@
+
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Collections.Generic;
+
 using Dynamo.Applications.ViewModel;
 
 using Dynamo.Applications;
@@ -252,6 +257,12 @@ namespace Dynamo.Applications
         {
             if (initializedCore) return;
 
+            // Change the locale that LibG depends on.
+            StringBuilder sb = new StringBuilder("LANGUAGE=");
+            var revitLocale = System.Globalization.CultureInfo.CurrentUICulture.ToString();
+            sb.Append(revitLocale.Replace("-", "_"));
+            _putenv(sb.ToString());
+
             InitializeAssemblies();
             InitializeDocumentManager(commandData);
 
@@ -303,6 +314,9 @@ namespace Dynamo.Applications
 
             return context;
         }
+
+        [DllImport("msvcrt.dll")]
+        public static extern int _putenv(string env);
 
         #endregion
 
