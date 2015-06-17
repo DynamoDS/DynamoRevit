@@ -72,7 +72,7 @@ namespace Dynamo.Nodes
                 if (revitDynamoModel != null)
                 {
                     // Different document, disable selection button.
-                    if (!revitDynamoModel.IsInRightDocumentContext)
+                    if (!revitDynamoModel.IsInMatchingDocumentContext)
                         return false;
 
                     var hwm = RevitDynamoModel.Workspaces.OfType<HomeWorkspaceModel>().ElementAt(0);
