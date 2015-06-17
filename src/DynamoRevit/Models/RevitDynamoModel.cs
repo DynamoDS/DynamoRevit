@@ -155,7 +155,7 @@ namespace Dynamo.Applications.Models
             }
         }
 
-        public bool IsInRightDocumentContext
+        public bool IsInMatchingDocumentContext
         {
             get
             {
