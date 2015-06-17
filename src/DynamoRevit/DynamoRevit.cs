@@ -1,14 +1,14 @@
-using Dynamo.Applications.ViewModel;
 
-using Dynamo.Applications;
 using Greg.AuthProviders;
 
-#region
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Interop;
 using System.Windows.Threading;
@@ -18,12 +18,15 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 
+using Dynamo.Applications;
 using Dynamo.Applications.Models;
+using Dynamo.Applications.ViewModel;
 using Dynamo.Controls;
 using Dynamo.Core;
 using Dynamo.Core.Threading;
 using Dynamo.Models;
 using Dynamo.Services;
+using Dynamo.UpdateManager;
 using Dynamo.ViewModels;
 
 using RevitServices.Persistence;
@@ -34,9 +37,7 @@ using MessageBox = System.Windows.Forms.MessageBox;
 using DynUpdateManager = Dynamo.UpdateManager.UpdateManager;
 using System.Collections.Generic;
 using Microsoft.Win32;
-using Dynamo.UpdateManager;
 
-#endregion
 
 namespace RevitServices.Threading
 {
@@ -252,6 +253,12 @@ namespace Dynamo.Applications
         {
             if (initializedCore) return;
 
+            // Change the locale that LibG depends on.
+            StringBuilder sb = new StringBuilder("LANGUAGE=");
+            var revitLocale = System.Globalization.CultureInfo.CurrentUICulture.ToString();
+            sb.Append(revitLocale.Replace("-", "_"));
+            _putenv(sb.ToString());
+
             InitializeAssemblies();
             InitializeDocumentManager(commandData);
 
@@ -303,6 +310,9 @@ namespace Dynamo.Applications
 
             return context;
         }
+
+        [DllImport("msvcrt.dll")]
+        public static extern int _putenv(string env);
 
         #endregion
 
