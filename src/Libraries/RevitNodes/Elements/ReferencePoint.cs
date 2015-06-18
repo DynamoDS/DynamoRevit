@@ -510,8 +510,9 @@ namespace Revit.Elements
         /// Tessellate Reference Point to render package for visualization.
         /// </summary>
         /// <param name="package"></param>
-        /// <param name="parameters"></param>
-        void IGraphicItem.Tessellate(IRenderPackage package, TessellationParameters parameters)
+        /// <param name="tol"></param>
+        /// <param name="gridLines"></param>
+        void IGraphicItem.Tessellate(IRenderPackage package, double tol, int gridLines)
         {
             if (!IsAlive)
                 return;
