@@ -248,7 +248,7 @@ namespace Dynamo
         {
             // use the ASM tesselation of the curve
             var pkg = factory.CreateRenderPackage();
-            curve.Tessellate(pkg, factory.TessellationParameters);
+            curve.Tessellate(pkg, 0.1);
 
             // get necessary info to enumerate and convert the lines
             var lineCount = pkg.LineVertexCount * 3 - 3;
