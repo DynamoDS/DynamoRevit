@@ -26,7 +26,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
             var model = ViewModel.Model;
-            Assert.AreEqual(7 ,model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(7 ,model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(7, model.CurrentWorkspace.Connectors.Count());
 
             //check UV.Bycoordinate

@@ -29,7 +29,7 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertNoDummyNodes();
 
-            Assert.AreEqual(3, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(3, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(2, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check ReferencePoint.ByPoint
@@ -58,7 +58,7 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertNoDummyNodes();
 
-            Assert.AreEqual(7, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(7, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(6, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Point.ByCylindricalCoordinates
@@ -85,7 +85,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-            Assert.AreEqual(11, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(11, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(10, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Point.BysphericalCoordinates
@@ -110,7 +110,7 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertNoDummyNodes();
 
-            Assert.AreEqual(7, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(7, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(6, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check XYZ to Polar Coordinate
@@ -136,7 +136,7 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertNoDummyNodes();
 
-            Assert.AreEqual(12, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(12, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(13, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check XYZ to Spherical Coordinate

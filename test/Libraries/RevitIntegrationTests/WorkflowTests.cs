@@ -25,7 +25,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             var model = ViewModel.Model;
             RunCurrentModel();
-            Assert.AreEqual(9, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(9, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(9, model.CurrentWorkspace.Connectors.Count());
 
             // Check for Wall
@@ -54,7 +54,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(25, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(25, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(33, model.CurrentWorkspace.Connectors.Count());
 
             // Check StructuralFraming.BeamByCurve
@@ -92,7 +92,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
 
             //check structuralFraming.BraceByCurve
@@ -119,7 +119,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(10, model.CurrentWorkspace.Connectors.Count());
 
             //check AdaptiveComponent.ByPoint
@@ -146,7 +146,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(19, model.CurrentWorkspace.Connectors.Count());
 
             //check AdaptiveComponent.ByPoint
@@ -173,7 +173,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(16, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(16, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(16, model.CurrentWorkspace.Connectors.Count());
 
             //check elements in ImportInstance.ByGeometries are not null
@@ -192,7 +192,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(17, model.CurrentWorkspace.Connectors.Count());
 
             //check Element.SetParameterByName
@@ -217,7 +217,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(39, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(39, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(47, model.CurrentWorkspace.Connectors.Count());
 
             //check Floor.ByOutLineTypeAndLevel
@@ -252,7 +252,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(45, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(45, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(56, model.CurrentWorkspace.Connectors.Count());
 
             //check Floor.ByOutLineTypeAndLevel
@@ -286,7 +286,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(11, model.CurrentWorkspace.Connectors.Count());
 
             //check Python Script
@@ -329,7 +329,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(32, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(32, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(42, model.CurrentWorkspace.Connectors.Count());
 
 

@@ -66,7 +66,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(9, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(9, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(8, model.CurrentWorkspace.Connectors.Count());
 
             var levelByElevationAndName = GetPreviewValue
