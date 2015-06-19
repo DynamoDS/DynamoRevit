@@ -28,7 +28,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-            Assert.AreEqual(26, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(26, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(53, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Create List
@@ -53,7 +53,7 @@ namespace RevitSystemTests
               ViewModel.OpenCommand.Execute(testPath);
               RunCurrentModel();
               AssertNoDummyNodes();
-              Assert.AreEqual(30, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+              Assert.AreEqual(30, ViewModel.Model.CurrentWorkspace.Nodes.Count());
               Assert.AreEqual(53, ViewModel.Model.CurrentWorkspace.Connectors.Count());
             
           }
@@ -71,7 +71,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-            Assert.AreEqual(32, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(32, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(41, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Solid.ByRevolve
@@ -99,7 +99,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-            Assert.AreEqual(28, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(28, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(57, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Create List, which contain a list of Line
@@ -146,7 +146,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-            Assert.AreEqual(22, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(22, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(31, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Autodesk.DesignScript.Geomery.Solid.BySweep
@@ -177,7 +177,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-            Assert.AreEqual(3, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(3, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(3, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check cuboid.ByLengths
@@ -200,7 +200,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-            Assert.AreEqual(6, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(6, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(10, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Cuboid.ByCorners

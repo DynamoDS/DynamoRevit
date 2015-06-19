@@ -37,7 +37,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             //first assert that we have only one node
-            var nodeCount = ViewModel.Model.CurrentWorkspace.Nodes.Count;
+            var nodeCount = ViewModel.Model.CurrentWorkspace.Nodes.Count();
             Assert.AreEqual(1, nodeCount);
 
             //assert that we have the right number of family symbols
@@ -371,7 +371,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(35, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(35, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(18, model.CurrentWorkspace.Connectors.Count());
             
             AssertNoDummyNodes();
