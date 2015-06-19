@@ -155,10 +155,6 @@
       <HintPath>$(DYNAMOAPI)\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
-	<Reference Include="DynamoPackages">
-      <HintPath>$(DYNAMOAPI)\DynamoPackages.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DynamoCore">
       <HintPath>$(DYNAMOAPI)\DynamoCore.dll</HintPath>
       <Private>False</Private>
