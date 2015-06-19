@@ -96,7 +96,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             var model = ViewModel.Model;
-            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(31, model.CurrentWorkspace.Connectors.Count());
 
             //check PolyCurve.ByThickeningCurve
@@ -142,7 +142,7 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertNoDummyNodes();
             var model = ViewModel.Model;
-            Assert.AreEqual(33, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(33, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(40, model.CurrentWorkspace.Connectors.Count());
 
             //check curve.Offset
@@ -170,7 +170,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
             var model = ViewModel.Model;
-            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(29, model.CurrentWorkspace.Connectors.Count());
 
             //check ThickenCurve
@@ -272,7 +272,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
             var model = ViewModel.Model;
-            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(13, model.CurrentWorkspace.Connectors.Count());
             var ellipseArcID = "00ba9f14-ed23-4c27-b25e-4dc45c0cc801";
             var ellipseArc = GetPreviewValue(ellipseArcID) as EllipseArc;

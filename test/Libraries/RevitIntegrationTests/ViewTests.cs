@@ -42,7 +42,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(10, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(10, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(16, model.CurrentWorkspace.Connectors.Count());
 
             //check Element.OverrideColorInView

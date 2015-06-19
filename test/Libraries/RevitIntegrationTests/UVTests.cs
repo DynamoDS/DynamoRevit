@@ -25,7 +25,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            Assert.AreEqual(8, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(8, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(11, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check UV.ByCoordinates
