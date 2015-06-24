@@ -725,6 +725,26 @@ namespace RevitSystemTests
              Assert.IsFalse(node.CanSelect);
          }
 
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void CanOpenAndRunOtherFilesAfterOpeningFileWithSelectNode()
+        {
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7679.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            RunCurrentModel();
+
+            filePath = Path.Combine(workingDirectory, @".\Samples\MAGN_7679.dyn");
+            testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            RunCurrentModel();
+        }
+
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
         {
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
