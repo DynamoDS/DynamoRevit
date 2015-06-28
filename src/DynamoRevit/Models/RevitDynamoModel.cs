@@ -60,6 +60,7 @@ namespace Dynamo.Applications.Models
             public IAuthProvider AuthProvider { get; set; }
             public string PackageManagerAddress { get; set; }
             public ExternalCommandData ExternalCommandData { get; set; }
+            public IEnumerable<Dynamo.Extensions.IExtension> Extensions { get; set; }
         }
 
         /// <summary>
