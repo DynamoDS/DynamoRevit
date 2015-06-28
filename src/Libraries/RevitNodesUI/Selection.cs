@@ -51,16 +51,22 @@ namespace Dynamo.Nodes
             {
                 if (revitDynamoModel != null)
                 {
-                    var hwm = revitDynamoModel.Workspaces.OfType<HomeWorkspaceModel>().ElementAt(0);
-                    hwm.RunSettings.PropertyChanged -= revMod_PropertyChanged;
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (hwm != null)
+                    {
+                        hwm.RunSettings.PropertyChanged -= revMod_PropertyChanged;
+                    }
                 }
 
                 revitDynamoModel = value;
 
                 if (revitDynamoModel != null)
                 {
-                    var hwm = revitDynamoModel.Workspaces.OfType<HomeWorkspaceModel>().ElementAt(0);
-                    hwm.RunSettings.PropertyChanged += revMod_PropertyChanged;
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (hwm != null)
+                    {
+                        hwm.RunSettings.PropertyChanged += revMod_PropertyChanged;
+                    }
                 }
             }
        }
@@ -74,9 +80,16 @@ namespace Dynamo.Nodes
                     // Different document, disable selection button.
                     if (!revitDynamoModel.IsInMatchingDocumentContext)
                         return false;
-
-                    var hwm = RevitDynamoModel.Workspaces.OfType<HomeWorkspaceModel>().ElementAt(0);
-                    return base.CanSelect && hwm.RunSettings.RunEnabled;
+                    
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (hwm != null)
+                    {
+                        return base.CanSelect && hwm.RunSettings.RunEnabled;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
@@ -92,10 +105,17 @@ namespace Dynamo.Nodes
             {
                if (revitDynamoModel != null)
                 {
-                    var hwm = RevitDynamoModel.Workspaces.OfType<HomeWorkspaceModel>().ElementAt(0);
-                    return hwm.RunSettings.RunEnabled
-                        ? base.SelectionSuggestion
-                        : DSRevitNodesUI.Properties.Resources.SelectionIsDisabledDescription;
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (hwm != null)
+                    {
+                        return hwm.RunSettings.RunEnabled
+                            ? base.SelectionSuggestion
+                            : DSRevitNodesUI.Properties.Resources.SelectionIsDisabledDescription;
+                    }
+                    else
+                    {
+                        return DSRevitNodesUI.Properties.Resources.SelectionIsDisabledDescription;
+                    }
                 }
                 else
                 {
@@ -166,8 +186,11 @@ namespace Dynamo.Nodes
                 });
         if (revitDynamoModel != null)
             {
-                var hwm = RevitDynamoModel.Workspaces.OfType<HomeWorkspaceModel>().ElementAt(0);
-                hwm.RunSettings.PropertyChanged -= revMod_PropertyChanged;
+                var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                if (hwm != null)
+                {
+                    hwm.RunSettings.PropertyChanged -= revMod_PropertyChanged;
+                }
             }
          }
 
