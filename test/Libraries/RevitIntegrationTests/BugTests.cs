@@ -765,6 +765,24 @@ namespace RevitSystemTests
             RunCurrentModel();
         }
 
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void AllElementsInActiveViewReturnsViewableElements()
+        {
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7641_simplified.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            RunCurrentModel();
+            RunCurrentModel();
+
+            var elements = GetPreviewCollection("55a73e51-1021-44e4-aacd-a4222ca2ba25");
+            Assert.AreEqual(elements.Count(), 3);
+        }
+
+
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
         {
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
