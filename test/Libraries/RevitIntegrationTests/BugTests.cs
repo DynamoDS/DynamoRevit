@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using System.Windows.Documents;
 
 using Autodesk.DesignScript.Geometry;
 
@@ -743,6 +744,79 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             AssertNoDummyNodes();
             RunCurrentModel();
+        }
+
+        [Test, TestModel(@".\Samples\DynamoSample_2014.rvt")]
+        public void MAGN_6862_CrashWhenBackToBackFileOpen()
+        {
+            var model = ViewModel.Model;
+
+            //======================================================================
+
+            //Now Open First file in Run Automatic.
+            string filePath = Path.Combine(workingDirectory, 
+                                                @".\Bugs\Revit_AdaptiveComponentPlacement.dyn");
+            string testPath = Path.GetFullPath(filePath);
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+            //RunCurrentModel();
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
+
+            var refPtNodeId = "357e7a53-361c-4c1e-81ae-83e16213a39a";
+            AssertPreviewCount(refPtNodeId, 9);
+
+            // get all AdaptiveComponent.
+            for (int i = 0; i <= 8; i++)
+            {
+                var refPt = GetPreviewValueAtIndex(refPtNodeId, i) as AdaptiveComponent;
+                Assert.IsNotNull(refPt);
+            }
+            //======================================================================
+
+            //Now Open second file in Run Automatic.
+            string filePath1 = Path.Combine(workingDirectory,
+                                                @".\Bugs\Revit_FloorsandFraming.dyn");
+            string testPath1 = Path.GetFullPath(filePath1);
+            ViewModel.OpenCommand.Execute(testPath1);
+
+            AssertNoDummyNodes();
+            //RunCurrentModel();
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(28, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(32, model.CurrentWorkspace.Connectors.Count());
+
+            var floorByTypeAndLevel = "4074e4e4-c6ee-4413-8cbb-cc9af5b6127f";
+            AssertPreviewCount(floorByTypeAndLevel, 5);
+
+            // get all Floors.
+            for (int i = 0; i <= 4; i++)
+            {
+                var floors = GetPreviewValueAtIndex(floorByTypeAndLevel, i) as Floor;
+                Assert.IsNotNull(floors);
+            }
+            //======================================================================
+
+            // Now open third file in Run Automatic mode.
+            string filePath2 = Path.Combine(workingDirectory,
+                                                @".\Bugs\Revit_ImportSolid.dyn");
+            string testPath2 = Path.GetFullPath(filePath2);
+            ViewModel.OpenCommand.Execute(testPath2);
+
+            AssertNoDummyNodes();
+            //RunCurrentModel();
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(20, model.CurrentWorkspace.Connectors.Count());
+
+            var NodeId = "e3fedc00-247a-4971-901c-7fcb063344c6";
+
+            // get imported geometry instance.
+            var geometryInstance = GetPreviewValue(NodeId) as ImportInstance;
+            Assert.IsNotNull(geometryInstance);
+
         }
 
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
