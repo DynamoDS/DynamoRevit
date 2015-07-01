@@ -70,6 +70,24 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No structural column types available..
+        /// </summary>
+        internal static string DropDownNoColumnType {
+            get {
+                return ResourceManager.GetString("DropDownNoColumnType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No structural framing types available..
+        /// </summary>
+        internal static string DropDownNoFramingType {
+            get {
+                return ResourceManager.GetString("DropDownNoFramingType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get all the elements at the specified Level from the model..
         /// </summary>
         internal static string ElementsatLevelDescription {
@@ -183,15 +201,6 @@ namespace DSRevitNodesUI.Properties {
         internal static string PortDataAllVisibleElementsToolTip {
             get {
                 return ResourceManager.GetString("PortDataAllVisibleElementsToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Category.
-        /// </summary>
-        internal static string PortDataCategoriesName {
-            get {
-                return ResourceManager.GetString("PortDataCategoriesName", resourceCulture);
             }
         }
         
@@ -318,6 +327,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string SelectFacesDesciption {
             get {
                 return ResourceManager.GetString("SelectFacesDesciption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selection is disabled when Dynamo run is disabled..
+        /// </summary>
+        internal static string SelectionIsDisabledDescription {
+            get {
+                return ResourceManager.GetString("SelectionIsDisabledDescription", resourceCulture);
             }
         }
         

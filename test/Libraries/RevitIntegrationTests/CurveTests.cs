@@ -5,7 +5,7 @@ using System.Linq;
 using Autodesk.Revit.DB;
 
 using Dynamo.Nodes;
-
+using Autodesk.DesignScript.Geometry;
 using NUnit.Framework;
 
 using RevitServices.Persistence;
@@ -13,6 +13,8 @@ using RevitServices.Persistence;
 using RevitTestServices;
 
 using RTF.Framework;
+
+//using Revit.Elements;
 
 namespace RevitSystemTests
 {
@@ -90,6 +92,21 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
+            
+            AssertNoDummyNodes();
+
+            var model = ViewModel.Model;
+            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(31, model.CurrentWorkspace.Connectors.Count());
+
+            //check PolyCurve.ByThickeningCurve
+            var polyCurveId = "8f42e859-9f88-4b4f-b1d8-d3a2841b8d14";
+            AssertPreviewCount(polyCurveId, 4);
+            for (int i = 0; i < 4; i++)
+            {
+                var polyCurve = GetPreviewValueAtIndex(polyCurveId, i) as PolyCurve;
+                Assert.IsNotNull(polyCurve);
+            }
         }
 
         [Test]
@@ -107,6 +124,11 @@ namespace RevitSystemTests
             fec.OfClass(typeof(CurveElement));
 
             Assert.AreEqual(fec.ToElements().Count(), 1);
+
+            //check Arc.ByThreePoints
+            var arcID = "e52e6a42-7cf7-41f6-b8df-2b882992167d";
+            var arc = GetPreviewValue(arcID) as Autodesk.DesignScript.Geometry.Arc;
+            Assert.IsNotNull(arc);
         }
 
         [Test]
@@ -118,7 +140,22 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
-        }
+            AssertNoDummyNodes();
+            var model = ViewModel.Model;
+            Assert.AreEqual(33, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(40, model.CurrentWorkspace.Connectors.Count());
+
+            //check curve.Offset
+            var curve1ID = "d8269a9d-173a-486a-8d49-66f92725d2cf";
+            var curve2ID = "ac34ea91-2520-40dc-9b50-d0132e023786";
+            var curve3ID = "30d479f1-c437-4d26-aca4-d10f507722e2";
+            var curve1 = GetPreviewValue(curve1ID) as Autodesk.DesignScript.Geometry.Curve;
+            var curve2 = GetPreviewValue(curve2ID) as Autodesk.DesignScript.Geometry.Curve;
+            var curve3 = GetPreviewValue(curve3ID) as Autodesk.DesignScript.Geometry.Curve;
+            Assert.IsNotNull(curve1);
+            Assert.IsNotNull(curve2);
+            Assert.IsNotNull(curve3);
+         }
 
         [Test]
         [TestModel(@".\empty.rfa")]
@@ -130,8 +167,22 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
+           
+            AssertNoDummyNodes();
+            var model = ViewModel.Model;
+            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(29, model.CurrentWorkspace.Connectors.Count());
 
+            //check ThickenCurve
+            var curveId = "8f42e859-9f88-4b4f-b1d8-d3a2841b8d14";
+            AssertPreviewCount(curveId, 4);
+            for (int i = 0; i < 4; i++)
+            {
+                var curve = GetPreviewValueAtIndex(curveId, i) as PolyCurve;
+                Assert.IsNotNull(curve);
+            }
         }
+
 
         [Test]
         [TestModel(@".\empty.rfa")]
@@ -223,6 +274,39 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
+
+            AssertNoDummyNodes();
+            var model = ViewModel.Model;
+            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(13, model.CurrentWorkspace.Connectors.Count());
+            var ellipseArcID = "00ba9f14-ed23-4c27-b25e-4dc45c0cc801";
+            var ellipseArc = GetPreviewValue(ellipseArcID) as EllipseArc;
+            Assert.IsNotNull(ellipseArc);
+
         }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void CurvebyPoints_ByReferencePoints()
+        {
+            // This test is for testing the reference defect in
+            //http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-6710
+            // check whether CurveByPoints.ByReferencePoints does work.
+            string samplePath = Path.Combine(workingDirectory, @".\Curve\CurvebyPoints_ByReferencePoints.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            Assert.AreEqual(8, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(9, ViewModel.Model.CurrentWorkspace.Connectors.Count());
+
+            //check CurveByPoints.ByReferencePoints
+            var curveByPointsID = "94af7a17-0961-496a-86f7-53b458bafb58";
+            var curveByPoints = GetPreviewValue(curveByPointsID) as Revit.Elements.CurveByPoints;
+            Assert.IsNotNull(curveByPoints);
+        }
+
     }
 }

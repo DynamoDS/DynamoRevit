@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using System.Windows.Documents;
 
 using Autodesk.DesignScript.Geometry;
 
@@ -19,6 +20,8 @@ using RTF.Framework;
 using RevitServices.Persistence;
 using System.Collections.Generic;
 using RevitServices.Transactions;
+using Revit.GeometryConversion;
+using Dynamo.Applications.Models;
 
 using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
 using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
@@ -621,36 +624,192 @@ namespace RevitSystemTests
             Assert.AreEqual(1, curves.Count);
         }
 
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rvt")]
+        public void MAGN_7075()
+        {
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7075.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            //open the test file
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            RunCurrentModel();
+
+            //Create 4 curve elements in Revit
+            List<Autodesk.Revit.DB.Element> curves = new List<Autodesk.Revit.DB.Element>();
+            var document = DocumentManager.Instance.CurrentUIDocument.Document;
+            Autodesk.Revit.DB.Plane plane;
+            Autodesk.Revit.DB.SketchPlane sp;
+            using (var trans = new Autodesk.Revit.DB.Transaction(document, "CreateModelCurvesInRevit"))
+            {
+                trans.Start();
+
+                Point[] points = { Point.ByCoordinates(0, 0, 0), Point.ByCoordinates(200, 0, 0), Point.ByCoordinates(200, 100, 0), Point.ByCoordinates(0, 100, 0) };
+                var line1 = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(points[0], points[1]);
+                var line2 = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(points[1], points[2]);
+                var line3 = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(points[2], points[3]);
+                var line4 = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(points[3], points[0]);
+
+                var revitLine1 = line1.ToRevitType(false);
+                var revitLine2 = line2.ToRevitType(false);
+                var revitLine3 = line3.ToRevitType(false);
+                var revitLine4 = line4.ToRevitType(false);
+
+                plane = new Autodesk.Revit.DB.Plane(new Autodesk.Revit.DB.XYZ(0, 0, 1), new Autodesk.Revit.DB.XYZ(0, 0, 0));
+                sp = Autodesk.Revit.DB.SketchPlane.Create(document, plane);
+
+                var modelCurv1 = document.Create.NewModelCurve(revitLine1, sp);
+                var modelCurv2 = document.Create.NewModelCurve(revitLine2, sp);
+                var modelCurv3 = document.Create.NewModelCurve(revitLine3, sp);
+                var modelCurv4 = document.Create.NewModelCurve(revitLine4, sp);
+
+                trans.Commit();
+
+                curves.Add(modelCurv1);
+                curves.Add(modelCurv2);
+                curves.Add(modelCurv3);
+                curves.Add(modelCurv4);
+            }
+
+            var node = ViewModel.Model.CurrentWorkspace.Nodes.OfType<DSModelElementsSelection>().First();
+            node.UpdateSelection(curves);
+
+            RunCurrentModel();
+
+            //Create a line in Revit
+            Autodesk.Revit.DB.ElementId lineID;
+            using (var trans = new Autodesk.Revit.DB.Transaction(document, "CreateModelLine"))
+            {
+                trans.Start();
+                var line = document.Create.NewModelCurve(Autodesk.Revit.DB.Line.CreateBound(new Autodesk.Revit.DB.XYZ(-100, 0, 0),
+                    new Autodesk.Revit.DB.XYZ(-50, 0, 0)), sp);
+                lineID = line.Id;
+                trans.Commit();
+            }
+
+            RunCurrentModel();
+
+            //Delete the created line in Revit
+            using (var trans = new Autodesk.Revit.DB.Transaction(document, "DeleteReferencePoint"))
+            {
+                trans.Start();
+                document.Delete(lineID);
+                trans.Commit();
+            }
+
+            RunCurrentModel();
+            //There should be no infinite loop, otherwise, there will be an error with this test case.
+        }
+
+
+        [Test, Category("Failure")]//// Failure being tracked as MAGN-7656
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void SelectionButtonShouldBeDisabledAfterOpeningNewDocument()
+        { 
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7251.dyn");
+             string testPath = Path.GetFullPath(filePath);
+
+             ViewModel.OpenCommand.Execute(testPath);
+             AssertNoDummyNodes();
+             RunCurrentModel();
+
+             var node = AllNodes.OfType<DSModelElementSelection>().ElementAt(0);
+             node.RevitDynamoModel = Model as RevitDynamoModel;
+             Assert.IsTrue(node.CanSelect);
+
+             string newRfaFilePath = Path.Combine(workingDirectory, "modelLines.rfa");
+             DocumentManager.Instance.CurrentUIApplication.OpenAndActivateDocument(newRfaFilePath);
+             node = AllNodes.OfType<DSModelElementSelection>().ElementAt(0);
+             Assert.IsFalse(node.CanSelect);
+         }
+
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void CanOpenAndRunOtherFilesAfterOpeningFileWithSelectNode()
+        {
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7679.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            RunCurrentModel();
+
+            filePath = Path.Combine(workingDirectory, @".\Samples\MAGN_7679.dyn");
+            testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            RunCurrentModel();
+        }
+
         [Test, TestModel(@".\Samples\DynamoSample_2014.rvt")]
         public void MAGN_6862_CrashWhenBackToBackFileOpen()
         {
             var model = ViewModel.Model;
 
-            OpenSampleDefinition(@".\Revit\Revit_Adaptive Component Placement.dyn");
+            //======================================================================
+
+            //Now Open First file in Run Automatic.
+            string filePath = Path.Combine(workingDirectory, 
+                                                @".\Bugs\Revit_AdaptiveComponentPlacement.dyn");
+            string testPath = Path.GetFullPath(filePath);
+            ViewModel.OpenCommand.Execute(testPath);
 
             AssertNoDummyNodes();
-
+            //RunCurrentModel();
             // check all the nodes and connectors are loaded
             Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
 
-            OpenSampleDefinition(@".\Revit\Revit_Floors and Framing.dyn");
+            var refPtNodeId = "357e7a53-361c-4c1e-81ae-83e16213a39a";
+            AssertPreviewCount(refPtNodeId, 9);
+
+            // get all AdaptiveComponent.
+            for (int i = 0; i <= 8; i++)
+            {
+                var refPt = GetPreviewValueAtIndex(refPtNodeId, i) as AdaptiveComponent;
+                Assert.IsNotNull(refPt);
+            }
+            //======================================================================
+
+            //Now Open second file in Run Automatic.
+            string filePath1 = Path.Combine(workingDirectory,
+                                                @".\Bugs\Revit_FloorsandFraming.dyn");
+            string testPath1 = Path.GetFullPath(filePath1);
+            ViewModel.OpenCommand.Execute(testPath1);
 
             AssertNoDummyNodes();
-
+            //RunCurrentModel();
             // check all the nodes and connectors are loaded
             Assert.AreEqual(28, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(32, model.CurrentWorkspace.Connectors.Count());
 
-            OpenSampleDefinition(@".\Revit\Revit_ImportSolid.dyn");
+            var floorByTypeAndLevel = "4074e4e4-c6ee-4413-8cbb-cc9af5b6127f";
+            AssertPreviewCount(floorByTypeAndLevel, 5);
+
+            // get all Floors.
+            for (int i = 0; i <= 4; i++)
+            {
+                var floors = GetPreviewValueAtIndex(floorByTypeAndLevel, i) as Floor;
+                Assert.IsNotNull(floors);
+            }
+            //======================================================================
+
+            // Now open third file in Run Automatic mode.
+            string filePath2 = Path.Combine(workingDirectory,
+                                                @".\Bugs\Revit_ImportSolid.dyn");
+            string testPath2 = Path.GetFullPath(filePath2);
+            ViewModel.OpenCommand.Execute(testPath2);
 
             AssertNoDummyNodes();
-
+            //RunCurrentModel();
             // check all the nodes and connectors are loaded
             Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count);
             Assert.AreEqual(20, model.CurrentWorkspace.Connectors.Count());
-
-            RunCurrentModel();
 
             var NodeId = "e3fedc00-247a-4971-901c-7fcb063344c6";
 
@@ -659,7 +818,6 @@ namespace RevitSystemTests
             Assert.IsNotNull(geometryInstance);
 
         }
-
 
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
         {

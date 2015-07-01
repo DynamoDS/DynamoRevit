@@ -1,14 +1,14 @@
-using Dynamo.Applications.ViewModel;
 
-using Dynamo.Applications;
 using Greg.AuthProviders;
-using RevitServices.Elements;
 
-#region
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Interop;
 using System.Windows.Threading;
@@ -18,24 +18,26 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 
+using Dynamo.Applications;
 using Dynamo.Applications.Models;
+using Dynamo.Applications.ViewModel;
 using Dynamo.Controls;
 using Dynamo.Core;
 using Dynamo.Core.Threading;
 using Dynamo.Models;
 using Dynamo.Services;
+using Dynamo.UpdateManager;
 using Dynamo.ViewModels;
-
-using DynamoUtilities;
 
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using RevitServices.Threading;
 
 using MessageBox = System.Windows.Forms.MessageBox;
-using Autodesk.Revit.DB.Events;
+using DynUpdateManager = Dynamo.UpdateManager.UpdateManager;
+using System.Collections.Generic;
+using Microsoft.Win32;
 
-#endregion
 
 namespace RevitServices.Threading
 {
@@ -194,6 +196,9 @@ namespace Dynamo.Applications
             var parentDirectory = Directory.GetParent(assemblyDirectory);
             var corePath = parentDirectory.FullName;
 
+            var umConfig = UpdateManagerConfiguration.GetSettings(new DynamoRevitLookUp());
+            Debug.Assert(umConfig.DynamoLookUp != null);
+
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
                 {
@@ -202,7 +207,8 @@ namespace Dynamo.Applications
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
-                    ExternalCommandData = commandData
+                    ExternalCommandData = commandData,
+                    UpdateManager = new DynUpdateManager(umConfig),
                 });
         }
 
@@ -246,6 +252,12 @@ namespace Dynamo.Applications
         private static void InitializeCore(ExternalCommandData commandData)
         {
             if (initializedCore) return;
+
+            // Change the locale that LibG depends on.
+            StringBuilder sb = new StringBuilder("LANGUAGE=");
+            var revitLocale = System.Globalization.CultureInfo.CurrentUICulture.ToString();
+            sb.Append(revitLocale.Replace("-", "_"));
+            _putenv(sb.ToString());
 
             InitializeAssemblies();
             InitializeDocumentManager(commandData);
@@ -298,6 +310,9 @@ namespace Dynamo.Applications
 
             return context;
         }
+
+        [DllImport("msvcrt.dll")]
+        public static extern int _putenv(string env);
 
         #endregion
 
@@ -402,5 +417,21 @@ namespace Dynamo.Applications
         }
 
         #endregion
+    }
+
+    internal class DynamoRevitLookUp : DynamoLookUp
+    {
+        public override IEnumerable<string> GetDynamoInstallLocations()
+        {
+            const string regKey64 = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\";
+            //Open HKLM for 64bit registry
+            var regKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+            //Open Windows/CurrentVersion/Uninstall registry key
+            regKey = regKey.OpenSubKey(regKey64);
+
+            //Get "InstallLocation" value as string for all the subkey that starts with "Dynamo"
+            return regKey.GetSubKeyNames().Where(s => s.StartsWith("Dynamo")).Select(
+                (s) => regKey.OpenSubKey(s).GetValue("InstallLocation") as string);
+        }
     }
 }
