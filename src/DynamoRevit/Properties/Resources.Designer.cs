@@ -88,7 +88,7 @@ namespace Dynamo.Applications.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to document:.
+        ///   Looks up a localized string similar to document.
         /// </summary>
         internal static string Document {
             get {
@@ -130,6 +130,15 @@ namespace Dynamo.Applications.Properties {
             get {
                 object obj = ResourceManager.GetObject("logo_square_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a new document..
+        /// </summary>
+        internal static string NewDocument {
+            get {
+                return ResourceManager.GetString("NewDocument", resourceCulture);
             }
         }
         
