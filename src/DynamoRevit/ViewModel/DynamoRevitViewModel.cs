@@ -97,9 +97,9 @@ namespace Dynamo.Applications.ViewModel
             var docPath = DocumentManager.Instance.CurrentUIDocument.Document.PathName;
             var message = String.IsNullOrEmpty(docPath)
                 ? "a new document."
-                : String.Format("document: {0}", docPath);
+                : String.Format( Resources.Document+ " {0}", docPath);
             return String.Format(Resources.DocumentPointerMessage, message);
-        }
+        } 
 
         protected override void UnsubscribeAllEvents()
         {
