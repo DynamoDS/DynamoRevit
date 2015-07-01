@@ -460,7 +460,10 @@ namespace Revit.Elements
          }
          return result.ToArray();
       }
-
+      /// <summary>
+      /// Gets family instance from curtainPanel
+      /// </summary>
+      /// <returns></returns>
       public FamilyInstance AsFamilyInstance()
       {
          return FamilyInstance.FromExisting(InternalElement as Autodesk.Revit.DB.FamilyInstance, true);
