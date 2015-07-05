@@ -26,7 +26,7 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertNoDummyNodes();
             var model = ViewModel.Model;
-            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(14, model.CurrentWorkspace.Connectors.Count());
 
             //check Transaction.End

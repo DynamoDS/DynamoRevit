@@ -28,7 +28,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            Assert.AreEqual(10, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(10, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(13, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Topography.ByPoint
@@ -48,7 +48,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            Assert.AreEqual(2, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(2, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(1, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Topography.Points

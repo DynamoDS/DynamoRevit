@@ -48,7 +48,7 @@ namespace RevitSystemTests
             string testPath = Path.Combine(workingDirectory, @".\ReferencePoint\ReferencePoint.dyn");
             ViewModel.OpenCommand.Execute(testPath);
             
-            Assert.AreEqual(3, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(3, ViewModel.Model.CurrentWorkspace.Nodes.Count());
 
             RunCurrentModel();
             //ViewModel.Model.RunExpression();
