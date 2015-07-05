@@ -762,7 +762,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
             //RunCurrentModel();
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
 
             var refPtNodeId = "357e7a53-361c-4c1e-81ae-83e16213a39a";
@@ -785,7 +785,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
             //RunCurrentModel();
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(28, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(28, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(32, model.CurrentWorkspace.Connectors.Count());
 
             var floorByTypeAndLevel = "4074e4e4-c6ee-4413-8cbb-cc9af5b6127f";
@@ -808,7 +808,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
             //RunCurrentModel();
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(20, model.CurrentWorkspace.Connectors.Count());
 
             var NodeId = "e3fedc00-247a-4971-901c-7fcb063344c6";
