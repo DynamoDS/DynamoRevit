@@ -30,7 +30,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
             var model = ViewModel.Model;
-            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(26, model.CurrentWorkspace.Connectors.Count());
 
             //check Geometry.Intersect
@@ -56,7 +56,7 @@ namespace RevitSystemTests
                ViewModel.OpenCommand.Execute(testPath);
                RunCurrentModel();
                AssertNoDummyNodes();
-               Assert.AreEqual(16, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+               Assert.AreEqual(16, ViewModel.Model.CurrentWorkspace.Nodes.Count());
                Assert.AreEqual(28, ViewModel.Model.CurrentWorkspace.Connectors.Count());
             
            }
@@ -73,7 +73,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            Assert.AreEqual(11, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(11, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(9, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Geometry.Intersect
@@ -104,7 +104,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             AssertNoDummyNodes();
-            Assert.AreEqual(20, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(20, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(19, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Geometry.Intersect
