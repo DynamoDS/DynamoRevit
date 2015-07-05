@@ -50,7 +50,7 @@ namespace RevitSystemTests
 
                 //open the dyn file
                 ViewModel.OpenCommand.Execute(dynamoFilePath);
-                Assert.IsTrue(ViewModel.Model.CurrentWorkspace.Nodes.Count > 0);
+                Assert.IsTrue(ViewModel.Model.CurrentWorkspace.Nodes.Any());
                 AssertNoDummyNodes();
                 
                 //run the expression and assert that it does not
