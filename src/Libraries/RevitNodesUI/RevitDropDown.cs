@@ -300,7 +300,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FloorTypes : RevitDropDownBase
     {
-        private const string noFloorTypes = "No floor types available.";
+        private string noFloorTypes = Properties.Resources.NoFloorTypesAvailable;
 
         public FloorTypes() : base("Floor Type") { }
 
