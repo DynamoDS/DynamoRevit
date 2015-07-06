@@ -300,7 +300,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FloorTypes : RevitDropDownBase
     {
-        private string noFloorTypes = Properties.Resources.NoFloorTypesAvailable;
+        
 
         public FloorTypes() : base("Floor Type") { }
 
@@ -313,7 +313,7 @@ namespace DSRevitNodesUI
 
             if (fec.ToElements().Count == 0)
             {
-                Items.Add(new DynamoDropDownItem(noFloorTypes, null));
+                Items.Add(new DynamoDropDownItem(Properties.Resources.NoFloorTypesAvailable, null));
                 SelectedIndex = 0;
                 return;
             }
@@ -329,7 +329,7 @@ namespace DSRevitNodesUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             if (Items.Count == 0 || 
-                Items[0].Name == noFloorTypes ||
+                Items[0].Name == Properties.Resources.NoFloorTypesAvailable ||
                 SelectedIndex == -1)
             {
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
