@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 
 using NUnit.Framework;
 
@@ -21,7 +22,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             // check all the nodes are loaded
-            Assert.AreEqual(33, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(33, model.CurrentWorkspace.Nodes.Count());
             AssertNoDummyNodes();
         }
 
@@ -44,7 +45,7 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
 
-            Assert.AreEqual(53, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(53, model.CurrentWorkspace.Nodes.Count());
             AssertNoDummyNodes();
         }
 
@@ -59,7 +60,7 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
 
-            Assert.AreEqual(42, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(42, model.CurrentWorkspace.Nodes.Count());
             AssertNoDummyNodes();
         }
         [Test]
@@ -73,7 +74,7 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
 
-            Assert.AreEqual(7, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(7, model.CurrentWorkspace.Nodes.Count());
             AssertNoDummyNodes();
         }
         [Test]
@@ -87,7 +88,7 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
 
-            Assert.AreEqual(33, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(33, model.CurrentWorkspace.Nodes.Count());
             AssertNoDummyNodes();
         }
          [Test]
@@ -101,7 +102,7 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
             ViewModel.OpenCommand.Execute(testPath);
 
-            Assert.AreEqual(21, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(21, model.CurrentWorkspace.Nodes.Count());
             AssertNoDummyNodes();
         }
         

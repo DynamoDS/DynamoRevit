@@ -26,7 +26,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
             AssertNoDummyNodes();
-            Assert.AreEqual(13, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(13, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(12, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check material name

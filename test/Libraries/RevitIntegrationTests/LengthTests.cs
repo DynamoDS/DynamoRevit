@@ -26,7 +26,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             AssertNoDummyNodes();
-            Assert.AreEqual(10, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(10, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(5, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check length of String
