@@ -21,7 +21,9 @@
         </member>
         <member name="M:Analyze.Daylighting.CloudDaylightingJob.ByViewNameDivisionsGridBoundary(System.String,System.Int32,System.Int32,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point,Analyze.Render.RenderingEnvironment)">
             <summary>
-            Set the parameters of a daylighting analysis job to be run in the cloud.  \n\nDirect the output of this node with Cloud Render to submit the job.
+            Set the parameters of a daylighting analysis job to be run in the cloud. 
+            
+            Direct the output of this node with Cloud Render to submit the job.
             </summary>
             <param name="viewName">The name of the Revit 3D view</param>
             <param name="xDivisions">The number of divisions in X direction of sensor grid (> 150)</param>
@@ -34,7 +36,9 @@
         </member>
         <member name="M:Analyze.Render.CloudRenderingJob.ByViewNameWidthHeight(System.String,System.Int32,System.Int32,Analyze.Render.RenderType,Analyze.Render.RenderQuality)">
             <summary>
-            Set the parameters of a render job to be run in the cloud.  \n\nUse this node with CloudRender to submit the job.
+            Set the parameters of a render job to be run in the cloud. 
+            
+            Use this node with CloudRender to submit the job.
             </summary>
             <param name="viewName">The name of the 3D view</param>
             <param name="width">The width of the view (> 150)</param>
