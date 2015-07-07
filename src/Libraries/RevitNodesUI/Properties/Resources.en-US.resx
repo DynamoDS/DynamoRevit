@@ -273,4 +273,7 @@
   <data name="DropDownNoFramingType" xml:space="preserve">
     <value>No structural framing types available.</value>
   </data>
+  <data name="NoFloorTypesAvailable" xml:space="preserve">
+    <value>No floor types available.</value>
+  </data>
 </root>

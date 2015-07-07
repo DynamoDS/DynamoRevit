@@ -178,6 +178,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No floor types available..
+        /// </summary>
+        internal static string NoFloorTypesAvailable {
+            get {
+                return ResourceManager.GetString("NoFloorTypesAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Level.
         /// </summary>
         internal static string PortDataALevelToolTip {
