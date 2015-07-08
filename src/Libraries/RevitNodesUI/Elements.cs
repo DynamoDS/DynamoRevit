@@ -254,20 +254,25 @@ namespace DSRevitNodesUI
 
         private void RevitServicesUpdaterOnElementsAdded(IEnumerable<string> updated)
         {
+            var filter = GetVisibleElementFilter();
+
             bool recalc = false;
             foreach (var id in updated)
             {
                 Element e;
                 if (doc.TryGetElement(id, out e))
                 {
-                    uniqueIds.Add(id);
-                    elementIds.Add(e.Id);
-                    recalc = true;
+                    if (filter.PassesFilter(e))
+                    {
+                        uniqueIds.Add(id);
+                        elementIds.Add(e.Id);
+                        recalc = true;
+                    }
                 }
             }
             if (recalc)
             {
-                OnNodeModified(forceExecute:true);
+                OnNodeModified(forceExecute: true);
             }
         }
 

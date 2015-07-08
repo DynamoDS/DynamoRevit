@@ -314,7 +314,7 @@ namespace Revit.Elements
         {
             object result;
 
-            var param = InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>().FirstOrDefault(x => x.Definition.Name == parameterName);
+            var param = InternalElement.GetOrderedParameters().FirstOrDefault(x => x.Definition.Name == parameterName);
 
             if (param == null || !param.HasValue)
                 return string.Empty;
