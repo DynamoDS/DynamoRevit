@@ -746,6 +746,23 @@ namespace RevitSystemTests
             RunCurrentModel();
         }
 
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void AllElementsInActiveViewReturnsViewableElements()
+        {
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7641_simplified.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            RunCurrentModel();
+            RunCurrentModel();
+
+            var elements = GetPreviewCollection("55a73e51-1021-44e4-aacd-a4222ca2ba25");
+            Assert.AreEqual(elements.Count(), 3);
+        }
+
         [Test, TestModel(@".\Samples\DynamoSample_2014.rvt")]
         public void MAGN_6862_CrashWhenBackToBackFileOpen()
         {
