@@ -24,6 +24,7 @@ using Revit.GeometryConversion;
 
 using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
 using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
+using System;
 
 namespace RevitSystemTests
 {
@@ -744,6 +745,36 @@ namespace RevitSystemTests
              Assert.IsFalse(node.CanSelect);
          }
 
+
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\Samples\DynamoSample.rvt")]
+        public void GetParameterValueByNameWorksForSheetNumber()
+        {
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_5870.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            RunCurrentModel();
+
+            Action<string> checkFunc = delegate(string guid)
+            {
+                List<object> objects = GetPreviewCollection(guid);
+
+                Assert.AreEqual(objects.Count, 5);
+                Assert.IsTrue(string.CompareOrdinal(objects[0] as string, "A102") == 0);
+                Assert.IsTrue(string.CompareOrdinal(objects[1] as string, "A104") == 0);
+                Assert.IsTrue(string.CompareOrdinal(objects[2] as string, "A103") == 0);
+                Assert.IsTrue(string.CompareOrdinal(objects[3] as string, "A105") == 0);
+                Assert.IsTrue(string.CompareOrdinal(objects[4] as string, "A101") == 0);
+            };
+
+            checkFunc("a45ab78b-b7cb-4317-a763-ac8c9a55753f");
+            checkFunc("8fad0166-bb08-48e0-a62c-dcfb6b11a9fe");
+            checkFunc("d4fd1c38-e3cb-484b-8187-66061476cd6a");
+            checkFunc("6defe7da-caf9-489e-991d-4665eb26e786");
+        }
 
         [Test]
         [Category("RegressionTests")]
