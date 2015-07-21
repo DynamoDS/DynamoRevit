@@ -558,5 +558,92 @@ namespace RevitSystemTests
         }
 
 
+        [Test]
+        [TestModel(@".\Workflow\Vignette\Vignette-04-BaseFile.rvt")]
+        public void Test_Vignette_04_Attractors()
+        {
+            // Create automation for Dynamo files running in Dynamo Revit
+            //http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7971
+            string samplePath = Path.Combine(workingDirectory, @".\Workflow\Vignette\Vignette-04-Attractors.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            AssertNoDummyNodes();
+            var model = ViewModel.Model;
+            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
+
+            //check Element.SetParameterByName
+            var elementId = "ba0bd430-9f2d-4e1b-af13-c535c6ff6388";
+            AssertPreviewCount(elementId, 55);
+            for (int i = 0; i < 55; i++)
+            {
+                var elementValue = GetPreviewValueAtIndex(elementId, i) as Element;
+                Assert.IsNotNull(elementValue);
+            }                     
+        }
+
+
+
+        [Test]
+        [TestModel(@".\Workflow\Vignette\Vignette-04-BaseFile.rvt")]
+        public void Test_Vignette_04_Deviation()
+        {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7971
+            string samplePath = Path.Combine(workingDirectory, @".\Workflow\Vignette\Vignette-04-Deviation.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            AssertNoDummyNodes();
+            var model = ViewModel.Model;
+            Assert.AreEqual(20, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(28, model.CurrentWorkspace.Connectors.Count());
+
+            //check Element.OverrideColorInView
+            var elementId = "ae04fa3b-c494-403d-92d3-1f728dde45c9";
+            AssertPreviewCount(elementId, 880);
+            for (int i = 0; i < 880; i++)
+            {
+                var elementValue = GetPreviewValueAtIndex(elementId, i) as Element;
+                Assert.IsNotNull(elementValue);
+            }
+        }
+
+
+
+        [Test]
+        [TestModel(@".\Workflow\Vignette\Vignette-04-BaseFile.rvt")]
+        public void Test_Vignette_04_Solar()
+        {
+            // Create automation for Dynamo files running in Dynamo Revit
+            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7971
+            string samplePath = Path.Combine(workingDirectory, @".\Workflow\Vignette\Vignette-04-Solar.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            AssertNoDummyNodes();
+            var model = ViewModel.Model;
+            Assert.AreEqual(29, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(35, model.CurrentWorkspace.Connectors.Count());
+
+            //check Element.OverrideColorInView
+            var elementId = "ae04fa3b-c494-403d-92d3-1f728dde45c9";
+            AssertPreviewCount(elementId, 2);
+            for (int i = 0; i < 2; i++)
+            {
+                var elementValue = GetPreviewValueAtIndex(elementId, i) as Element;
+                Assert.IsNotNull(elementValue);
+            }
+
+            //check Polygon.PlaneDeviation
+            var listId = "f80ed841-3ccb-4fe5-9c13-594ffd53ab88";
+            var listValue = GetFlattenedPreviewValues(listId);
+            foreach (var ele in listValue)
+            {
+                Assert.IsNotNull(ele);
+            }
+        }
+
     }
 }
