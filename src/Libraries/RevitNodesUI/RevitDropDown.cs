@@ -356,7 +356,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class WallTypes : RevitDropDownBase
     {
-        private const string noWallTypes = "No wall types available.";
+ 
 
         public WallTypes() : base("Wall Type") { }
 
@@ -369,7 +369,7 @@ namespace DSRevitNodesUI
             fec.OfClass(typeof(Autodesk.Revit.DB.WallType));
             if (fec.ToElements().Count == 0)
             {
-                Items.Add(new DynamoDropDownItem(noWallTypes, null));
+                Items.Add(new DynamoDropDownItem(Properties.Resources.NoWallTypesAvailable, null));
                 SelectedIndex = 0;
                 return;
             }
@@ -385,7 +385,7 @@ namespace DSRevitNodesUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             if (Items.Count == 0 ||
-                Items[0].Name == noWallTypes ||
+                Items[0].Name == Properties.Resources.NoWallTypesAvailable ||
                 SelectedIndex == -1)
             {
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
