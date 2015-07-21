@@ -1,0 +1,53 @@
+<Workspace Version="0.8.2.2010" X="-1469.95653699247" Y="282.847855469952" zoom="0.853562519837236" Name="Home" RunType="Manual" RunPeriod="100" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSRevitNodesUI.FamilyTypes guid="0e87c3da-e983-445f-90f4-6b14aa965981" type="DSRevitNodesUI.FamilyTypes" nickname="Family Types" x="469.566437818107" y="144.928634764278" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="106:ROOF-PANEL-4PT:ROOF-PANEL-4PT" />
+    <DSRevitNodesUI.ElementsOfFamilyType guid="799316ef-369c-43ff-80af-18949fbe8b94" type="DSRevitNodesUI.ElementsOfFamilyType" nickname="All Elements of Family Type" x="806.862444073829" y="144.928634764278" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <Dynamo.Nodes.DSFunction guid="74af359e-3f99-41a5-9da2-2d8a4437bdfb" type="Dynamo.Nodes.DSFunction" nickname="AdaptiveComponent.Locations" x="1120.73995300622" y="272.12251681687" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.AdaptiveComponent.Locations" />
+    <Dynamo.Nodes.Watch guid="281dd926-6183-4932-9868-5373933a2763" type="Dynamo.Nodes.Watch" nickname="Watch" x="1122.03274296529" y="377.109282419412" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <DSCore.Map guid="ab7351af-5ac8-4f2c-89f0-9d436120768e" type="DSCore.Map" nickname="List.Map" x="1723.73553826072" y="272.12251681687" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <Dynamo.Nodes.DSFunction guid="506fd18b-5842-4dbe-b036-9654f30e1314" type="Dynamo.Nodes.DSFunction" nickname="List.GetItemAtIndex" x="1522.13236202666" y="340.68122821945" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="7c5dbdbd-3bf5-4208-9c5b-b4491a895cd2" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1421.14763670731" y="366.68122821945" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="0;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="4b6af9db-5aa1-4f8f-9b19-6e2cb43373e5" type="Dynamo.Nodes.DSFunction" nickname="Math.RemapRange" x="2613.01651327373" y="272.12251681687" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.Math.RemapRange@double[],double,double">
+      <PortInfo index="1" default="True" />
+      <PortInfo index="2" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <Dynamo.Nodes.DSFunction guid="1fa1c72d-6783-4db9-a893-3935d2e294dd" type="Dynamo.Nodes.DSFunction" nickname="Geometry.DistanceTo" x="2228.37633800752" y="272.12251681687" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Geometry.DistanceTo@Autodesk.DesignScript.Geometry.Geometry" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="4bf7a23d-2075-47f5-9c47-03a3a517f19b" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="2505.02890060657" y="329.210160028134" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="0.15;&#xA;0.45;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="ba0bd430-9f2d-4e1b-af13-c535c6ff6388" type="Dynamo.Nodes.DSFunction" nickname="Element.SetParameterByName" x="3024.69406895127" y="138.101847891767" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.Element.SetParameterByName@string,var" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="aebfecdc-5399-4311-a0b0-d8121ba27baa" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="2599.85829367212" y="445.660549269482" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="&quot;Aperture Ratio&quot;;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="88975864-c36f-4e1d-b571-d481e8ece8e1" type="Dynamo.Nodes.DSFunction" nickname="List.LastItem" x="1976.52606841239" y="366.68122821945" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.LastItem@var[]..[]" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="0e87c3da-e983-445f-90f4-6b14aa965981" start_index="0" end="799316ef-369c-43ff-80af-18949fbe8b94" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="799316ef-369c-43ff-80af-18949fbe8b94" start_index="0" end="74af359e-3f99-41a5-9da2-2d8a4437bdfb" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="799316ef-369c-43ff-80af-18949fbe8b94" start_index="0" end="281dd926-6183-4932-9868-5373933a2763" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="799316ef-369c-43ff-80af-18949fbe8b94" start_index="0" end="ba0bd430-9f2d-4e1b-af13-c535c6ff6388" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="74af359e-3f99-41a5-9da2-2d8a4437bdfb" start_index="0" end="ab7351af-5ac8-4f2c-89f0-9d436120768e" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ab7351af-5ac8-4f2c-89f0-9d436120768e" start_index="0" end="88975864-c36f-4e1d-b571-d481e8ece8e1" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ab7351af-5ac8-4f2c-89f0-9d436120768e" start_index="0" end="1fa1c72d-6783-4db9-a893-3935d2e294dd" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="506fd18b-5842-4dbe-b036-9654f30e1314" start_index="0" end="ab7351af-5ac8-4f2c-89f0-9d436120768e" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7c5dbdbd-3bf5-4208-9c5b-b4491a895cd2" start_index="0" end="506fd18b-5842-4dbe-b036-9654f30e1314" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4b6af9db-5aa1-4f8f-9b19-6e2cb43373e5" start_index="0" end="ba0bd430-9f2d-4e1b-af13-c535c6ff6388" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="1fa1c72d-6783-4db9-a893-3935d2e294dd" start_index="0" end="4b6af9db-5aa1-4f8f-9b19-6e2cb43373e5" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4bf7a23d-2075-47f5-9c47-03a3a517f19b" start_index="0" end="4b6af9db-5aa1-4f8f-9b19-6e2cb43373e5" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4bf7a23d-2075-47f5-9c47-03a3a517f19b" start_index="1" end="4b6af9db-5aa1-4f8f-9b19-6e2cb43373e5" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="aebfecdc-5399-4311-a0b0-d8121ba27baa" start_index="0" end="ba0bd430-9f2d-4e1b-af13-c535c6ff6388" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="88975864-c36f-4e1d-b571-d481e8ece8e1" start_index="0" end="1fa1c72d-6783-4db9-a893-3935d2e294dd" end_index="1" portType="0" />
+  </Connectors>
+  <Notes>
+    <Dynamo.Models.NoteModel guid="093de088-3e3d-4e6b-8b2d-1cf9135dd8fe" text="Select Family Type: ROOF-PANEL-4PT" x="470.150674258539" y="102.970524807007" />
+    <Dynamo.Models.NoteModel guid="62670526-0966-40e9-8ec3-8064b67e69b1" text="Select all elements of specified type" x="807.931614678197" y="103.658565962397" />
+    <Dynamo.Models.NoteModel guid="b8afc27f-6685-4dbf-a904-29964ef78bf9" text="Retrieve adaptive points of adaptive components" x="1118.96873694136" y="225.832094410269" />
+    <Dynamo.Models.NoteModel guid="497fa689-8dc9-44b3-ab70-19714f6a50c0" text="Get the first adaptive point of each adaptive component." x="1723.03058657856" y="214.084165425478" />
+    <Dynamo.Models.NoteModel guid="eae07d58-2ded-46be-8ba0-2b0e17a14d9b" text="Compare distance of the last adaptive point with all of the others" x="2224.07593049832" y="216.071770536344" />
+    <Dynamo.Models.NoteModel guid="28bf3ff0-9051-4635-9079-60acb2ce4742" text="Get the last adaptive component point to use as an attractor." x="1975.39003836344" y="463.00973368644" />
+    <Dynamo.Models.NoteModel guid="8cb2ec4d-ca5b-419c-8a99-a32e13e2099d" text="Remap distances to a suitable aperture range for ETFE" x="2615.13629281101" y="215.754134106144" />
+    <Dynamo.Models.NoteModel guid="0a04e705-b198-4f35-82ac-4660a7b6892e" text="Set Aperture Ratio Parameter.  The element input port should connect to the output port of &quot;All Element of Family Type&quot;" x="3019.758535203" y="55.8036937439386" />
+  </Notes>
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>
