@@ -20,22 +20,19 @@ namespace Dynamo.Applications
     public class RevitWatchHandler : IWatchHandler
     {
         private readonly IWatchHandler baseHandler;
-        private readonly IVisualizationManager visualizationManager;
         private readonly IPreferences preferences;
 
-        public RevitWatchHandler(IVisualizationManager vizManager, IPreferences prefs)
+        public RevitWatchHandler(IPreferences prefs)
         {
-            baseHandler = new DefaultWatchHandler(vizManager, prefs);
+            baseHandler = new DefaultWatchHandler(prefs);
             preferences = prefs;
-            visualizationManager = vizManager;
         }
 
         private WatchViewModel ProcessThing(Element element, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
             var id = element.Id;
 
-            var node = new WatchViewModel(visualizationManager, 
-                element.ToString(preferences.NumberFormat, CultureInfo.InvariantCulture), tag);
+            var node = new WatchViewModel(element.ToString(preferences.NumberFormat, CultureInfo.InvariantCulture), tag);
 
             node.Clicked += () =>
             {
@@ -69,7 +66,7 @@ namespace Dynamo.Applications
         public WatchViewModel Process(dynamic value, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
             return Object.ReferenceEquals(value, null)
-                ? new WatchViewModel(visualizationManager, "null", tag)
+                ? new WatchViewModel("null", tag)
                 : ProcessThing(value, runtimeCore, tag, showRawData, callback);
         }
     }
