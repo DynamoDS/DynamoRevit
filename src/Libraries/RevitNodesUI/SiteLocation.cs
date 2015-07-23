@@ -17,6 +17,9 @@ using Revit.GeometryConversion;
 using Revit.Elements;
 using RevitServices.Elements;
 using RevitServices.Persistence;
+using RevitServices.EventHandler;
+using Autodesk.Revit.DB.Events;
+using Dynamo.Applications;
 
 namespace DSRevitNodesUI
 {
@@ -51,7 +54,7 @@ namespace DSRevitNodesUI
 
             ArgumentLacing = LacingStrategy.Disabled;
 
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += model_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
 
             Update();
@@ -61,7 +64,7 @@ namespace DSRevitNodesUI
 
         public override void Dispose()
         {
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -= model_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsModified -= RevitServicesUpdater_ElementsModified;
             base.Dispose();
         }
