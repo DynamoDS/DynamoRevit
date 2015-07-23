@@ -49,7 +49,7 @@ namespace Dynamo.Applications.ViewModel
             DynamoRevit.AddIdleAction(DeleteKeeperElement);
         }
 
-        protected override void OnSceneClear()
+        protected override void OnClear()
         {
             IdlePromise.ExecuteOnIdleAsync(
                 () =>
@@ -65,6 +65,18 @@ namespace Dynamo.Applications.ViewModel
 
                     TransactionManager.Instance.ForceCloseTransaction();
                 });
+        }
+
+        protected override void OnActiveStateChanged()
+        {
+            if (active)
+            {
+                Draw();
+            }
+            else
+            {
+                OnClear();
+            }
         }
 
         protected override void OnEvaluationCompleted(object sender, EvaluationCompletedEventArgs e)
