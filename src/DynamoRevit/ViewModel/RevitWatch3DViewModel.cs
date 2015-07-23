@@ -165,7 +165,7 @@ namespace Dynamo.Applications.ViewModel
             var point = item as Point;
             if (point != null)
             {
-                geoms.Add(DocumentManager.Instance.CurrentUIApplication.Application.Create.NewPoint(point.ToXyz(false)));
+                geoms.Add(DocumentManager.Instance.CurrentUIApplication.Application.Create.NewPoint(point.ToXyz()));
                 return;
             }
 
@@ -182,14 +182,14 @@ namespace Dynamo.Applications.ViewModel
             var surf = item as Surface;
             if (surf != null)
             {
-                geoms.AddRange(surf.ToRevitType(false));
+                geoms.AddRange(surf.ToRevitType());
                 return;
             }
 
             var solid = item as Solid;
             if (solid != null)
             {
-                geoms.AddRange(solid.ToRevitType(false));
+                geoms.AddRange(solid.ToRevitType());
             }
         }
 
@@ -205,11 +205,14 @@ namespace Dynamo.Applications.ViewModel
             var lineCount = pkg.LineVertexCount * 3 - 3;
             var verts = pkg.LineStripVertices.ToList();
 
+            // we scale the tesselation rather than the curve
+            var conv = UnitConverter.DynamoToHostFactor(UnitType.UT_Length);
+
             // add the revit Lines to geometry collection
             for (var i = 0; i < lineCount; i += 3)
             {
-                var xyz0 = new XYZ(verts[i], verts[i + 1], verts[i + 2]);
-                var xyz1 = new XYZ(verts[i + 3], verts[i + 4], verts[i + 5]);
+                var xyz0 = new XYZ(verts[i] * conv, verts[i + 1] * conv, verts[i + 2] * conv);
+                var xyz1 = new XYZ(verts[i + 3] * conv, verts[i + 4] * conv, verts[i + 5] * conv);
 
                 result.Add(Line.CreateBound(xyz0, xyz1));
             }
