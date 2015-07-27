@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2010" X="-2076.64093366515" Y="429.100149012509" zoom="0.823093942333034" Name="Home" RunType="Manual" RunPeriod="100" HasRunWithoutCrash="True">
+<Workspace Version="0.8.2.2042" X="-1094.7020577841" Y="358.645144398379" zoom="0.484163276055841" Name="Home" RunType="Manual" RunPeriod="100" HasRunWithoutCrash="False">
   <NamespaceResolutionMap />
   <Elements>
     <DSRevitNodesUI.ElementsOfFamilyType guid="df83b4c7-91cd-4d5c-bd32-19ed95395617" type="DSRevitNodesUI.ElementsOfFamilyType" nickname="All Elements of Family Type" x="1474.84711980835" y="-386.067611651886" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
@@ -30,9 +30,6 @@
       <PortInfo index="3" default="True" />
     </Dynamo.Nodes.DSFunction>
     <Dynamo.Nodes.CodeBlockNodeModel guid="68df3dc5-e2d8-4d2b-9c02-f521bf0d70d2" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="2891.47943653041" y="207.776196725107" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="255;&#xA;0;" ShouldFocus="false" />
-    <DSCore.File.Filename guid="d5570d68-6cd4-4ff0-8852-c1a0518220f9" type="DSCore.File.Filename" nickname="File Path" x="2743.43485112" y="-673.18418797039" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
-      <System.String>C:\Users\Erick\Google Drive\EDUCATION\DYNAMO STUDIO RESELLER DEMO\ASSETS\Vignettes\04\Datasets\PanelAnalysis.xlsx</System.String>
-    </DSCore.File.Filename>
     <Dynamo.Nodes.CodeBlockNodeModel guid="06dc2bb0-cfee-46bc-93b9-fe5574745d82" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="2801.23003447197" y="-581.86832023773" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="&quot;Solar Orientation&quot;;&#xA;2;&#xA;0;&#xA;y;" ShouldFocus="false" />
     <Dynamo.Nodes.DSFunction guid="2310e519-c7e0-4a43-8a99-75d1190a24e1" type="Dynamo.Nodes.DSFunction" nickname="Excel.WriteToFile" x="3108.92135657395" y="-633.571966679798" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSOffice.dll" function="DSOffice.Excel.WriteToFile@string,string,int,int,var[][],bool">
       <PortInfo index="5" default="True" />
