@@ -4,18 +4,16 @@ using System.Globalization;
 using System.Linq;
 using System.Xml;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Events;
 using DSCore;
 using DSCoreNodesUI;
-
 using Dynamo.Applications;
 using Dynamo.DSEngine;
 using Dynamo.Models;
 using Dynamo.Utilities;
-
 using ProtoCore.AST.AssociativeAST;
-
 using Revit.Elements;
-
+using RevitServices.EventHandler;
 using RevitServices.Persistence;
 
 using Category = Revit.Elements.Category;
@@ -30,9 +28,10 @@ namespace DSRevitNodesUI
 {
     public abstract class RevitDropDownBase : DSDropDownBase
     {
+
         protected RevitDropDownBase(string value) : base(value)
         {
-           DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
         void Controller_RevitDocumentChanged(object sender, EventArgs e)
@@ -47,7 +46,7 @@ namespace DSRevitNodesUI
 
         public override void Dispose()
         {
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -= Controller_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= Controller_RevitDocumentChanged;
             base.Dispose();
         }
     }

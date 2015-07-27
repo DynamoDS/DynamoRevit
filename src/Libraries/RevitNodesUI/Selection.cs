@@ -26,6 +26,9 @@ using RevitDynamoModel = Dynamo.Applications.Models.RevitDynamoModel;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using String = System.String;
 using UV = Autodesk.DesignScript.Geometry.UV;
+using RevitServices.EventHandler;
+using Autodesk.Revit.DB.Events;
+using Dynamo.Applications;
 
 namespace Dynamo.Nodes
 {
@@ -150,7 +153,8 @@ namespace Dynamo.Nodes
         {
             RevitServicesUpdater.Instance.ElementsDeleted += Updater_ElementsDeleted;
             RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
+          
         }
 
         #endregion
@@ -171,7 +175,7 @@ namespace Dynamo.Nodes
             base.Dispose();
             RevitServicesUpdater.Instance.ElementsDeleted -= Updater_ElementsDeleted;
             RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -= Controller_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= Controller_RevitDocumentChanged;
 
             if (revitDynamoModel != null)
             {

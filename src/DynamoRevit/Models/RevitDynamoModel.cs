@@ -7,34 +7,26 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Soap;
 using System.Windows.Forms;
-
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
-
 using DSIronPython;
-
 using Dynamo.DSEngine;
 using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.UpdateManager;
 using Dynamo.Utilities;
-
 using DynamoServices;
-
 using Greg;
-
 using ProtoCore;
-
 using Revit.Elements;
-
 using RevitServices.Elements;
+
 using RevitServices.Materials;
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
-
 using Category = Revit.Elements.Category;
 using Element = Autodesk.Revit.DB.Element;
 using View = Autodesk.Revit.DB.View;
@@ -379,12 +371,11 @@ namespace Dynamo.Applications.Models
                 return;
             }
 
-            commandData.Application.ViewActivating += OnApplicationViewActivating;
-            commandData.Application.ViewActivated += OnApplicationViewActivated;
-
-            commandData.Application.Application.DocumentClosing += OnApplicationDocumentClosing;
-            commandData.Application.Application.DocumentClosed += OnApplicationDocumentClosed;
-            commandData.Application.Application.DocumentOpened += OnApplicationDocumentOpened;
+            DynamoRevitApp.EventHandlerProxy.ViewActivating += OnApplicationViewActivating;
+            DynamoRevitApp.EventHandlerProxy.ViewActivated += OnApplicationViewActivated;
+            DynamoRevitApp.EventHandlerProxy.DocumentClosing += OnApplicationDocumentClosing;
+            DynamoRevitApp.EventHandlerProxy.DocumentClosed += OnApplicationDocumentClosed;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += OnApplicationDocumentOpened;
 
             hasRegisteredApplicationEvents = true;
         }
@@ -396,12 +387,11 @@ namespace Dynamo.Applications.Models
                 return;
             }
 
-            commandData.Application.ViewActivating -= OnApplicationViewActivating;
-            commandData.Application.ViewActivated -= OnApplicationViewActivated;
-
-            commandData.Application.Application.DocumentClosing -= OnApplicationDocumentClosing;
-            commandData.Application.Application.DocumentClosed -= OnApplicationDocumentClosed;
-            commandData.Application.Application.DocumentOpened -= OnApplicationDocumentOpened;
+            DynamoRevitApp.EventHandlerProxy.ViewActivating -= OnApplicationViewActivating;
+            DynamoRevitApp.EventHandlerProxy.ViewActivated -= OnApplicationViewActivated;
+            DynamoRevitApp.EventHandlerProxy.DocumentClosing -= OnApplicationDocumentClosing;
+            DynamoRevitApp.EventHandlerProxy.DocumentClosed -= OnApplicationDocumentClosed;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= OnApplicationDocumentOpened;
 
             hasRegisteredApplicationEvents = false;
         }
