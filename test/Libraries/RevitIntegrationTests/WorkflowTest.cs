@@ -597,7 +597,7 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertNoDummyNodes();
             var model = ViewModel.Model;
-            Assert.AreEqual(20, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(28, model.CurrentWorkspace.Connectors.Count());
 
             //check Element.OverrideColorInView
@@ -624,7 +624,7 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertNoDummyNodes();
             var model = ViewModel.Model;
-            Assert.AreEqual(29, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(28, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(35, model.CurrentWorkspace.Connectors.Count());
 
             //check Element.OverrideColorInView
