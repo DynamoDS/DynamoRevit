@@ -35,7 +35,6 @@ using RevitServices.Threading;
 
 using MessageBox = System.Windows.Forms.MessageBox;
 using DynUpdateManager = Dynamo.UpdateManager.UpdateManager;
-using System.Collections.Generic;
 using Microsoft.Win32;
 
 
@@ -227,8 +226,7 @@ namespace Dynamo.Applications
 
             revitDynamoModel.ShutdownStarted += (drm) =>
             {
-                var uiApplication = DocumentManager.Instance.CurrentUIApplication;
-                uiApplication.Idling += DeleteKeeperElementOnce;
+                DynamoRevitApp.AddIdleAction(DeleteKeeperElement);
             };
 
             return viewModel;
