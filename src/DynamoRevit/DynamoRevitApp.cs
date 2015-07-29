@@ -53,8 +53,10 @@ namespace Dynamo.Applications
                 ElementBinder.IsEnabled = true;
 
                 // Create new ribbon panel
-                RibbonPanel ribbonPanel =
-                    application.CreateRibbonPanel(Resources.App_Description);
+                var panels = application.GetRibbonPanels();
+                var ribbonPanel = panels.FirstOrDefault(p => p.Name.Contains(Resources.App_Description));
+                if(null == ribbonPanel)
+                    ribbonPanel = application.CreateRibbonPanel(Resources.App_Description);
 
                 var fvi = FileVersionInfo.GetVersionInfo(assemblyName);
                 var dynVersion = String.Format(Resources.App_Name, fvi.FileMajorPart, fvi.FileMinorPart);
