@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Media;
@@ -35,10 +37,17 @@ namespace RevitSystemTests
             var testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
-            RunCurrentModel();
 
-            var packages = AllNodes.SelectMany<NodeModel,IRenderPackage>(n => n.RenderPackages);
-            
+            foreach (var n in Model.CurrentWorkspace.Nodes)
+            {
+                n.RenderPackagesUpdated += NodeRenderPackagesUpdated;
+            }
+
+            RunCurrentModel();
+        }
+
+        void NodeRenderPackagesUpdated(Guid guid, IEnumerable<IRenderPackage> packages)
+        {
             var curvePackage = packages.FirstOrDefault(p => p.LineVertexCount > 0);
             Assert.NotNull(curvePackage);
 

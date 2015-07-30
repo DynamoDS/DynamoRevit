@@ -26,14 +26,7 @@ namespace Dynamo.Applications.ViewModel
             model.RevitViewChanged += model_RevitViewChanged;
             model.InvalidRevitDocumentActivated += model_InvalidRevitDocumentActivated;
 
-            var watch3DParams = new Watch3DViewModelStartupParams
-            {
-                Factory = new DefaultRenderPackageFactory(),
-                Name = "Revit Background Preview",
-                IsActiveAtStart = true,
-                Model = model,
-                ViewModel = this
-            };
+            var watch3DParams = new Watch3DViewModelStartupParams(model, this, "Revit Background Preview");
 
             Watch3DViewModels.Add(RevitWatch3DViewModel.Start(watch3DParams));
         }
