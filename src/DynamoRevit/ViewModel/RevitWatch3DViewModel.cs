@@ -106,7 +106,7 @@ namespace Dynamo.Applications.ViewModel
         {
             var graphicItems = model.CurrentWorkspace.Nodes
                 .Where(n => n.IsVisible)
-                .SelectMany(n => n.GeneratedGraphicItems(model.EngineController));
+                .SelectMany(n => n.GeneratedGraphicItems(engineManager.EngineController));
 
             var geoms = new List<GeometryObject>();
             foreach (var item in graphicItems)
@@ -210,8 +210,8 @@ namespace Dynamo.Applications.ViewModel
             var result = new List<GeometryObject>();
 
             // use the ASM tesselation of the curve
-            var pkg = factory.CreateRenderPackage();
-            curve.Tessellate(pkg, factory.TessellationParameters);
+            var pkg = renderPackageFactory.CreateRenderPackage();
+            curve.Tessellate(pkg, renderPackageFactory.TessellationParameters);
 
             // get necessary info to enumerate and convert the lines
             var lineCount = pkg.LineVertexCount * 3 - 3;
