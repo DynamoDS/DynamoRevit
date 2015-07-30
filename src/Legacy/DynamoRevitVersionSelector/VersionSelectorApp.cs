@@ -162,9 +162,9 @@ namespace Dynamo.Applications
             }
             catch (Exception)
             {
-                splitButton.Enabled = true; //Disable the split button, no more needed.
-                splitButton.Visible = true; //Hide it from the UI
-                ribbonPanel.Visible = true; //Hide the panel
+                splitButton.Enabled = true; //Ensure that the split button is enabled.
+                splitButton.Visible = true; //Also the split button is visible
+                ribbonPanel.Visible = true; //As well as the panel is visible
                 throw;
             }
         }
