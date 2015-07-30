@@ -20,18 +20,14 @@ namespace Dynamo.Applications
     internal struct DynamoProduct
     {
         public string InstallLocation;
-        public Tuple<int, int, int, int> VersionInfo;
+        public Version VersionInfo;
 
         public string VersionString
         {
             get
             {
                 return string.Format(
-                    "Dynamo {0}.{1}.{2}.{3}",
-                    VersionInfo.Item1,
-                    VersionInfo.Item2,
-                    VersionInfo.Item3,
-                    VersionInfo.Item4);
+                    @"Dynamo {0}", VersionInfo.ToString(4));
             }
         }
     }
@@ -42,11 +38,12 @@ namespace Dynamo.Applications
     {
         private static UIControlledApplication uiApplication;
         private static SplitButton splitButton;
+        private static RibbonPanel ribbonPanel;
         internal static List<DynamoProduct> Products { get; private set; }
 
         internal static string GetDynamoRevitPath(DynamoProduct product, string revitVersion)
         {
-            if (product.VersionInfo.Item1 == 0 && product.VersionInfo.Item2 < 7)
+            if (product.VersionInfo < new Version(0, 7))
                 return Path.Combine(product.InstallLocation, "DynamoRevit.dll"); //0.6.3 and older version
 
             return Path.Combine(product.InstallLocation, string.Format("Revit_{0}", revitVersion), "DynamoRevitDS.dll");
@@ -94,7 +91,7 @@ namespace Dynamo.Applications
             // If only one version is installed, no multi-selection is required.
             if (Products.Count > 1)
             {
-                RibbonPanel ribbonPanel = application.CreateRibbonPanel(Resources.DynamoVersions);
+                ribbonPanel = application.CreateRibbonPanel(Resources.DynamoVersions);
 
                 splitButton = AddSplitButtonGroup(ribbonPanel);
                 
@@ -124,24 +121,52 @@ namespace Dynamo.Applications
             if (index >= Products.Count)
                 return false; //Index out of range
 
-            var revitVersion = commandData.Application.Application.VersionNumber;
-            var p = Products[index];
-            var path = GetDynamoRevitPath(p, revitVersion);
-            Utils.WriteToFile(path, revitVersion);
+            try
+            {
+                var revitVersion = commandData.Application.Application.VersionNumber;
+                var p = Products[index];
+                var path = GetDynamoRevitPath(p, revitVersion);
+                Utils.WriteToFile(path, revitVersion);
 
-            //Initialize application
-            var ass = Assembly.LoadFrom(path);
-            var revitApp = ass.CreateInstance("Dynamo.Applications.DynamoRevitApp");
-            revitApp.GetType().GetMethod("OnStartup").Invoke(revitApp, new object[] { uiApplication });
+                splitButton.Enabled = false; //Disable the split button, no more needed.
+                splitButton.Visible = false; //Hide it from the UI
+                //For older than 0.8.2, hide the Dynamo Versions ribbon panel
+                //Otherwise rename it to "Visual Programming", so that DynamoRevit
+                //will add it's button to this panel.
+                if (p.VersionInfo < new Version(0, 8, 2))
+                {
+                    ribbonPanel.Visible = false; //Hide the panel
+                }
+                else
+                {
+                    ribbonPanel.Name = Resources.VisualProgramming;//Same as used in App Description for DynamoRevitApp
+                    ribbonPanel.Title = Resources.VisualProgramming;
+                }
 
-            //Invoke command
-            string message = string.Empty;
-            var revitCmd = ass.CreateInstance("Dynamo.Applications.DynamoRevit");
-            revitCmd.GetType().GetMethod("Execute").Invoke(revitCmd, new object[] {commandData, message, null });
+                //Initialize application
+                var ass = Assembly.LoadFrom(path);
+                var revitApp = ass.CreateInstance("Dynamo.Applications.DynamoRevitApp");
+                revitApp.GetType()
+                    .GetMethod("OnStartup")
+                    .Invoke(revitApp, new object[] { uiApplication });
 
-            splitButton.Enabled = false; //Disable the split button, no more needed.
-            uiApplication = null; //release application, no more needed.
-            return true;
+                //Invoke command
+                string message = string.Empty;
+                var revitCmd = ass.CreateInstance("Dynamo.Applications.DynamoRevit");
+                revitCmd.GetType()
+                    .GetMethod("Execute")
+                    .Invoke(revitCmd, new object[] { commandData, message, null });
+
+                uiApplication = null; //release application, no more needed.
+                return true;
+            }
+            catch (Exception)
+            {
+                splitButton.Enabled = true; //Ensure that the split button is enabled.
+                splitButton.Visible = true; //Also the split button is visible
+                ribbonPanel.Visible = true; //As well as the panel is visible
+                throw;
+            }
         }
 
         private SplitButton AddSplitButtonGroup(RibbonPanel panel)
@@ -164,7 +189,7 @@ namespace Dynamo.Applications
             {
                 var name = p.VersionString;
                 var versionInfo = p.VersionInfo;
-                var text = string.Format("{0}.{1}.{2}", versionInfo.Item1, versionInfo.Item2, versionInfo.Item3);
+                var text = versionInfo.ToString(3);
                 
                 var itemData = new PushButtonData(
                                 name,
@@ -210,7 +235,8 @@ namespace Dynamo.Applications
             return
                 installs.Cast<KeyValuePair<string, Tuple<int, int, int, int>>>()
                     .Select(
-                        p => new DynamoProduct() { InstallLocation = p.Key, VersionInfo = p.Value });
+                        p => new DynamoProduct() { InstallLocation = p.Key, 
+                            VersionInfo = new Version(p.Value.Item1, p.Value.Item2, p.Value.Item3, p.Value.Item4) });
         }
 
     }
