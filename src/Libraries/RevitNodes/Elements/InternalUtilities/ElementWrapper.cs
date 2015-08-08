@@ -167,6 +167,10 @@ namespace Revit.Elements
             {
                 return FloorPlanView.FromExisting(view, isRevitOwned);
             }
+            else if (view.ViewType == ViewType.EngineeringPlan)
+            {
+                return StructuralPlanView.FromExisting(view, isRevitOwned);
+            }
             else
             {
                 // unknown type of plan view, just wrap as unknown
