@@ -32,9 +32,33 @@ namespace Revit.GeometryConversion
             {
                 return Tag(Transform(InternalConvert(dynGeom), transform), reference);
             }
-            catch (RuntimeBinderException)
+            catch (Exception)
             {
                 return null; 
+            }
+
+        }
+
+        /// <summary>
+        /// Get the edges and faces from the solid and convert them
+        /// </summary>
+        /// <param name="solid"></param>
+        /// <param name="reference"></param>
+        /// <param name="transform"></param>
+        /// <returns></returns>
+        public static IEnumerable<object> ConvertToMany(this Autodesk.Revit.DB.Solid solid, Autodesk.Revit.DB.Reference reference = null,
+            Autodesk.DesignScript.Geometry.CoordinateSystem transform = null)
+        {
+            if (solid == null) return null;
+
+            try
+            {
+                var convertedGeoms = InternalConvertToMany(solid);
+                return convertedGeoms.Select(x => { return Tag(Transform(x, transform), reference); });
+            }
+            catch (Exception)
+            {
+                return null;
             }
 
         }
@@ -109,6 +133,22 @@ namespace Revit.GeometryConversion
         private static Autodesk.DesignScript.Geometry.Solid InternalConvert(Autodesk.Revit.DB.Solid geom)
         {
             return geom.ToProtoType();
+        }
+
+        private static IEnumerable<Autodesk.DesignScript.Geometry.Geometry> InternalConvertToMany(Autodesk.Revit.DB.Solid geom)
+        {
+            List<Autodesk.DesignScript.Geometry.Geometry> result = new List<Autodesk.DesignScript.Geometry.Geometry>();
+            var faces = geom.Faces;
+            foreach (Autodesk.Revit.DB.Face face in faces)
+            {
+                result.AddRange(face.ToProtoType());
+            }
+            var edges = geom.Edges;
+            foreach (Autodesk.Revit.DB.Edge edge in edges)
+            {
+                result.Add(edge.AsCurve().ToProtoType());
+            }
+            return result;
         }
 
         private static Autodesk.DesignScript.Geometry.Point InternalConvert(Autodesk.Revit.DB.Point geom)
