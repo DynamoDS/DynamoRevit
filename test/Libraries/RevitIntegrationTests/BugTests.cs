@@ -811,12 +811,93 @@ namespace RevitSystemTests
             Assert.AreEqual(elements.Count(), 3);
         }
 
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\Bugs\EleBindingTest_MAGN-7937.rfa")]
+        public void EleBindingTest_MAGN_7937()
+        {
+
+            var model = ViewModel.Model;
+
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\EleBindingTest_MAGN-7937.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(2, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(1, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            string refPtNodeId = "23e2f77c-bd3f-4376-83aa-45dedde795b8";
+            var refPt = GetPreviewValue(refPtNodeId) as ReferencePoint;
+            Assert.IsNotNull(refPt);
+            Assert.AreEqual(7, refPt.Z);
+
+            // Count all Reference points in Revit.
+            var refPoints = GetAllReferencePoints();
+            Assert.AreEqual(1, refPoints.Count);
+
+            // change slider value and re-evaluate graph
+            IntegerSlider slider = model.CurrentWorkspace.NodeFromWorkspace
+                ("bdcd9b06-989f-4bac-a94d-b84a432d33ea") as IntegerSlider;
+            slider.Value = 10;
+
+            RunCurrentModel();
+
+            var modifiedRefPt = GetPreviewValue(refPtNodeId) as ReferencePoint;
+            Assert.IsNotNull(modifiedRefPt);
+            Assert.AreEqual(10, modifiedRefPt.Z);
+
+            // This is to validate there is no dulicate point in revit. 
+            // After slider update there should be only one ref point in revit.
+            var modifiedRefPoints1 = GetAllReferencePoints();
+            Assert.AreEqual(1, modifiedRefPoints1.Count);
+
+        }
+
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void ElementGeometryIssue_MAGN_7978()
+        {
+
+            var model = ViewModel.Model;
+
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\ElementGeometryIssue_MAGN_7978.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(6, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(4, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Check that it has returned the Surface from Import Instance node.
+            string nodeID = "7d28ba60-e656-4626-a61f-bcbf8c763b52";
+            var surface = GetPreviewValue(nodeID) as Surface;
+            Assert.IsNotNull(surface);
+        }
+
+
 
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
         {
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
             fec.OfClass(typeof(Autodesk.Revit.DB.CurveElement));
             return fec.ToElements().Cast<Autodesk.Revit.DB.CurveElement>().ToList();
+        }
+
+        protected static IList<Autodesk.Revit.DB.ReferencePoint> GetAllReferencePoints()
+        {
+            var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(Autodesk.Revit.DB.ReferencePoint));
+            return fec.ToElements().Cast<Autodesk.Revit.DB.ReferencePoint>().ToList();
         }
     }
 }
