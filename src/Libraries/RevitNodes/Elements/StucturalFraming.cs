@@ -259,13 +259,13 @@ namespace Revit.Elements
             }
         }
         /// <summary>
-        /// Gets family symbol from the specified structural element
+        /// Gets family type from the specified structural element
         /// </summary>
-        public new FamilySymbol Symbol
+        public new FamilyType Type
         {    
             // NOTE: Because AbstractFamilyInstance is not visible in the library
             //       we redefine this method on FamilyInstance
-            get { return base.Symbol; }
+            get { return base.Type; }
         }
 
         #endregion
@@ -283,7 +283,7 @@ namespace Revit.Elements
         /// <returns></returns>
         [Obsolete("Use StructuralFraming.BeamByCurve, StructuralFraming.BraceByCurve, or StructuralFraming.ColumnByCurve instead.")]
         public static StructuralFraming ByCurveLevelUpVectorAndType(Autodesk.DesignScript.Geometry.Curve curve, Level level, 
-            Autodesk.DesignScript.Geometry.Vector upVector, StructuralType structuralType, FamilySymbol structuralFramingType)
+            Autodesk.DesignScript.Geometry.Vector upVector, StructuralType structuralType, FamilyType structuralFramingType)
         {
             if (curve == null)
             {
@@ -316,7 +316,7 @@ namespace Revit.Elements
         /// <param name="level">The level with which you'd like the beam to be associated.</param>
         /// <param name="structuralFramingType">The structural framing type representing the beam.</param>
         /// <returns></returns>
-        public static StructuralFraming BeamByCurve(Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilySymbol structuralFramingType)
+        public static StructuralFraming BeamByCurve(Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilyType structuralFramingType)
         {
             if (curve == null)
             {
@@ -343,7 +343,7 @@ namespace Revit.Elements
         /// <param name="level">The level with which you'd like the brace to be associated.</param>
         /// <param name="structuralFramingType">The structural framing type representing the brace.</param>
         /// <returns></returns>
-        public static StructuralFraming BraceByCurve(Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilySymbol structuralFramingType)
+        public static StructuralFraming BraceByCurve(Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilyType structuralFramingType)
         {
             if (curve == null)
             {
@@ -371,7 +371,7 @@ namespace Revit.Elements
         /// <param name="structuralColumnType">The structural column type representing the column.</param>
         /// <returns></returns>
         public static StructuralFraming ColumnByCurve(
-            Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilySymbol structuralColumnType)
+            Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilyType structuralColumnType)
         {
             if (curve == null)
             {

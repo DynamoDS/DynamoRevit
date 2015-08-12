@@ -27,9 +27,9 @@ namespace RevitNodesTests.GeometryConversion
         [TestModel(@".\MassWithBoxAndCone.rfa")]
         public void CanConvertRevitToProtoType()
         {
-            var famSym = FamilySymbol.ByName("Box");
+            var famTyp = FamilyType.ByName("Box");
             var pt = Point.ByCoordinates(0, 1, 2);
-            var famInst = FamilyInstance.ByPoint(famSym, pt);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
 
             var bbox = famInst.BoundingBox;
             Assert.NotNull(bbox);
@@ -51,9 +51,9 @@ namespace RevitNodesTests.GeometryConversion
         [TestModel(@".\MassWithBoxAndCone.rfa")]
         public void CanConvertProtoToRevitType()
         {
-            var famSym = FamilySymbol.ByName("Box");
+            var famTyp = FamilyType.ByName("Box");
             var pt = Point.ByCoordinates(0, 1, 2);
-            var famInst = FamilyInstance.ByPoint(famSym, pt);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
 
             var bbox = famInst.BoundingBox;
 
