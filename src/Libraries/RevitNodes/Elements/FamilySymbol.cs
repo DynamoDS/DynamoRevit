@@ -9,10 +9,10 @@ using RevitServices.Persistence;
 namespace Revit.Elements
 {
     /// <summary>
-    /// A Revit FamilySymbol
+    /// A Revit FamilyType, the Revit API refers to this as a FamilySymbol
     /// </summary>
     [RegisterForTrace]
-    public class FamilySymbol: Element
+    public class FamilyType: Element
     {
 
         #region Internal Properties
@@ -39,10 +39,10 @@ namespace Revit.Elements
         #region Private constructors
 
         /// <summary>
-        /// Private constructor for build a DSFamilySymbol
+        /// Private constructor for building a DSFamilySymbol
         /// </summary>
         /// <param name="symbol"></param>
-        private FamilySymbol(Autodesk.Revit.DB.FamilySymbol symbol)
+        private FamilyType(Autodesk.Revit.DB.FamilySymbol symbol)
         {
             SafeInit(() => InitFamilySymbol(symbol));
         }
@@ -80,7 +80,7 @@ namespace Revit.Elements
         #region Public properties
 
         /// <summary>
-        /// Get the name of this Family Symbol
+        /// Get the name of this Family Type
         /// </summary>
         public new string Name
         {
@@ -91,7 +91,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get the parent family of this FamilySymbol
+        /// Get the parent family of this FamilyType
         /// </summary>
         public Family Family
         {
@@ -106,12 +106,12 @@ namespace Revit.Elements
         #region Public static constructors
 
         /// <summary>
-        /// Select a FamilySymbol given it's parent Family and the FamilySymbol's name.
+        /// Select a FamilyType given its parent Family and the FamilyType's name.
         /// </summary>
-        /// <param name="family">The FamilySymbol's parent Family</param>
-        /// <param name="name">The name of the FamilySymbol</param>
+        /// <param name="family">The FamilyTypes's parent Family</param>
+        /// <param name="name">The name of the FamilyType</param>
         /// <returns></returns>
-        public static FamilySymbol ByFamilyAndName(Family family, string name)
+        public static FamilyType ByFamilyAndName(Family family, string name)
         {
             if (family == null)
             {
@@ -132,19 +132,19 @@ namespace Revit.Elements
                throw new Exception(String.Format(Properties.Resources.FamilySymbolNotFound2, name));
             }
 
-            return new FamilySymbol(symbol)
+            return new FamilyType(symbol)
             {
                 IsRevitOwned = true
             };
         }
 
         /// <summary>
-        /// Select a FamilySymbol give it's family name and type name.
+        /// Select a FamilyType give it's family name and type name.
         /// </summary>
-        /// <param name="familyName">The FamilySymbol's parent Family name.</param>
-        /// <param name="typeName">The name of the FamilySymbol.</param>
+        /// <param name="familyName">The FamilyType's parent Family name.</param>
+        /// <param name="typeName">The name of the FamilyType.</param>
         /// <returns></returns>
-        public static FamilySymbol ByFamilyNameAndTypeName(string familyName, string typeName)
+        public static FamilyType ByFamilyNameAndTypeName(string familyName, string typeName)
         {
             if (familyName == null)
             {
@@ -175,19 +175,19 @@ namespace Revit.Elements
                 throw new Exception(String.Format(Properties.Resources.FamilySymbolNotFound2, typeName));
             }
 
-            return new FamilySymbol(symbol)
+            return new FamilyType(symbol)
             {
                 IsRevitOwned = true
             };
         }
 
         /// <summary>
-        /// Select a FamilySymbol given it's name.  This method will return the first FamilySymbol it finds if there are
-        /// two or more FamilySymbol's with the same name.
+        /// Select a FamilyType given it's name.  This method will return the first FamilyType it finds if there are
+        /// two or more FamilyTypes with the same name.
         /// </summary>
-        /// <param name="name">The name of the FamilySymbol</param>
+        /// <param name="name">The name of the FamilyType</param>
         /// <returns></returns>
-        public static FamilySymbol ByName(string name)
+        public static FamilyType ByName(string name)
         {
             if (name == null)
             {
@@ -204,7 +204,7 @@ namespace Revit.Elements
                 throw new Exception(String.Format(Properties.Resources.FamilySymbolNotFound3, name));
             }
 
-            return new FamilySymbol(symbol)
+            return new FamilyType(symbol)
             {
                 IsRevitOwned = true
             };
@@ -215,14 +215,14 @@ namespace Revit.Elements
         #region Internal static constructors
 
         /// <summary>
-        /// Obtain a FamilySymbol by selection. 
+        /// Obtain a FamilyType by selection. 
         /// </summary>
-        /// <param name="familySymbol"></param>
+        /// <param name="familyType"></param>
         /// <param name="isRevitOwned"></param>
         /// <returns></returns>
-        internal static FamilySymbol FromExisting(Autodesk.Revit.DB.FamilySymbol familySymbol, bool isRevitOwned)
+        internal static FamilyType FromExisting(Autodesk.Revit.DB.FamilySymbol familyType, bool isRevitOwned)
         {
-            return new FamilySymbol(familySymbol)
+            return new FamilyType(familyType)
             {
                 IsRevitOwned = isRevitOwned
             };

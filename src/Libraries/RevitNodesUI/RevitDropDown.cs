@@ -102,8 +102,8 @@ namespace DSRevitNodesUI
             };
 
             var functionCall = AstFactory.BuildFunctionCall
-                <System.String, System.String, Revit.Elements.FamilySymbol>
-                (Revit.Elements.FamilySymbol.ByFamilyNameAndTypeName, args);
+                <System.String, System.String, Revit.Elements.FamilyType>
+                (Revit.Elements.FamilyType.ByFamilyNameAndTypeName, args);
 
             return new[] {AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
         }

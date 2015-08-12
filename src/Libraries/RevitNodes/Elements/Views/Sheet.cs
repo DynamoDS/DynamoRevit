@@ -377,15 +377,15 @@ namespace Revit.Elements.Views
         //}
 
         /// <summary>
-        /// Create a Revit Sheet by the sheet name, number, a title block FamilySymbol, and a collection of views.  This method will automatically
+        /// Create a Revit Sheet by the sheet name, number, a title block FamilyType, and a collection of views.  This method will automatically
         /// pack the views onto the sheet. 
         /// </summary>
         /// <param name="sheetName"></param>
         /// <param name="sheetNumber"></param>
-        /// <param name="titleBlockFamilySymbol"></param>
+        /// <param name="titleBlockFamilyType"></param>
         /// <param name="views"></param>
         /// <returns></returns>
-        public static Sheet ByNameNumberTitleBlockAndViews(string sheetName, string sheetNumber, FamilySymbol titleBlockFamilySymbol, View[] views)
+        public static Sheet ByNameNumberTitleBlockAndViews(string sheetName, string sheetNumber, FamilyType titleBlockFamilyType, View[] views)
         {
             if (sheetName == null)
             {
@@ -397,9 +397,9 @@ namespace Revit.Elements.Views
                 throw new ArgumentNullException("sheetNumber");
             }
 
-            if (titleBlockFamilySymbol == null)
+            if (titleBlockFamilyType == null)
             {
-                throw new ArgumentNullException("titleBlockFamilySymbol");
+                throw new ArgumentNullException("titleBlockFamilyType");
             }
 
             if (views == null)
@@ -412,26 +412,26 @@ namespace Revit.Elements.Views
                 throw new ArgumentException("Must supply more than 0 views");
             }
 
-            return new Sheet(sheetName, sheetNumber, titleBlockFamilySymbol.InternalFamilySymbol, views.Select(x => x.InternalView));
+            return new Sheet(sheetName, sheetNumber, titleBlockFamilyType.InternalFamilySymbol, views.Select(x => x.InternalView));
         }
 
         /// <summary>
-        /// Create a Revit Sheet by the sheet name, number, a title block FamilySymbol, and a collection of views.  This method will automatically
+        /// Create a Revit Sheet by the sheet name, number, a title block FamilyType, and a collection of views.  This method will automatically
         /// pack the view onto the sheet.
         /// </summary>
         /// <param name="sheetName"></param>
         /// <param name="sheetNumber"></param>
-        /// <param name="titleBlockFamilySymbol"></param>
+        /// <param name="titleBlockFamilyType"></param>
         /// <param name="view"></param>
         /// <returns></returns>
-        public static Sheet ByNameNumberTitleBlockAndView(string sheetName, string sheetNumber, FamilySymbol titleBlockFamilySymbol, View view)
+        public static Sheet ByNameNumberTitleBlockAndView(string sheetName, string sheetNumber, FamilyType titleBlockFamilyType, View view)
         {
             if (view == null)
             {
                 throw new ArgumentNullException("view");
             }
 
-            return Sheet.ByNameNumberTitleBlockAndViews(sheetName, sheetNumber, titleBlockFamilySymbol, new[] { view });
+            return Sheet.ByNameNumberTitleBlockAndViews(sheetName, sheetNumber, titleBlockFamilyType, new[] { view });
         }
 
         #endregion
