@@ -193,8 +193,9 @@ namespace Revit.Elements
         public virtual void Dispose()
         {
 
-            // Do not cleanup Revit elements if we are shutting down Dynamo.
-            if (DisposeLogic.IsShuttingDown)
+            // Do not cleanup Revit elements if we are shutting down Dynamo or
+            // closing homeworkspace.
+            if (DisposeLogic.IsShuttingDown || DisposeLogic.IsClosingHomeworkspace)
                 return;
 
             bool didRevitDelete = ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(Id);
