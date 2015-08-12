@@ -64,9 +64,9 @@ namespace Revit.Elements
             return Family.FromExisting(ele, isRevitOwned);
         }
 
-        public static FamilySymbol Wrap(Autodesk.Revit.DB.FamilySymbol ele, bool isRevitOwned)
+        public static FamilyType Wrap(Autodesk.Revit.DB.FamilySymbol ele, bool isRevitOwned)
         {
-            return FamilySymbol.FromExisting(ele, isRevitOwned);
+            return FamilyType.FromExisting(ele, isRevitOwned);
         }
 
         public static Floor Wrap(Autodesk.Revit.DB.Floor ele, bool isRevitOwned)
