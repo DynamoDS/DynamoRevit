@@ -463,17 +463,19 @@ namespace Revit.Elements
 
             foreach (var geometryObject in InternalGeometry())
             {
-                try
+                var geoObj = geometryObject.Convert();
+                if (geoObj != null)
                 {
-                    var convert = geometryObject.Convert();
-                    if (convert != null)
-                    {
-                        converted.Add(convert);
-                    }
+                    converted.Add(geoObj);
                 }
-                catch (Exception)
+                else
                 {
-                    // we catch all geometry conversion exceptions
+                    var solid = geometryObject as Autodesk.Revit.DB.Solid;
+                    if (solid != null)
+                    {
+                        var geomObjs = solid.ConvertToMany();
+                        converted.AddRange(geomObjs.Where(x => { return x != null; }));
+                    }
                 }
             }
 
