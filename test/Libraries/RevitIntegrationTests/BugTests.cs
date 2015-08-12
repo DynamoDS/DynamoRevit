@@ -884,7 +884,30 @@ namespace RevitSystemTests
             Assert.IsNotNull(surface);
         }
 
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void OpenNewFileNotCleanupOldElements()
+        {
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7229_1.dyn");
+            string testPath = Path.GetFullPath(filePath);
+            ViewModel.OpenCommand.Execute(testPath);
 
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(Autodesk.Revit.DB.ReferencePoint));
+            Assert.AreEqual(4, fec.ToElements().Count());
+
+            filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7229_2.dyn");
+            testPath = Path.GetFullPath(filePath);
+            ViewModel.OpenCommand.Execute(testPath);
+            fec.OfClass(typeof(Autodesk.Revit.DB.ReferencePoint));
+            Assert.AreEqual(6, fec.ToElements().Count());
+
+            Model.ClearCurrentWorkspace();
+            fec.OfClass(typeof(Autodesk.Revit.DB.ReferencePoint));
+            Assert.AreEqual(6, fec.ToElements().Count());
+        }
 
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
         {
