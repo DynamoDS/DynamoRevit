@@ -834,7 +834,7 @@ namespace RevitSystemTests
             string refPtNodeId = "23e2f77c-bd3f-4376-83aa-45dedde795b8";
             var refPt = GetPreviewValue(refPtNodeId) as ReferencePoint;
             Assert.IsNotNull(refPt);
-            Assert.AreEqual(7, refPt.Z);
+            refPt.Z.ShouldBeApproximately(7);
 
             // Count all Reference points in Revit.
             var refPoints = GetAllReferencePoints();
@@ -849,7 +849,7 @@ namespace RevitSystemTests
 
             var modifiedRefPt = GetPreviewValue(refPtNodeId) as ReferencePoint;
             Assert.IsNotNull(modifiedRefPt);
-            Assert.AreEqual(10, modifiedRefPt.Z);
+            modifiedRefPt.Z.ShouldBeApproximately(10);
 
             // This is to validate there is no dulicate point in revit. 
             // After slider update there should be only one ref point in revit.
