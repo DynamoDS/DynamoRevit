@@ -113,6 +113,22 @@ namespace Dynamo.Applications.Models
             if (handler != null) handler();
         }
 
+        protected override void OnWorkspaceRemoving(WorkspaceModel obj)
+        {
+            base.OnWorkspaceRemoving(obj);
+
+            if (obj is HomeWorkspaceModel)
+                DisposeLogic.IsClosingHomeworkspace = true;
+        }
+
+        protected override void OnWorkspaceRemoved(WorkspaceModel obj)
+        {
+            base.OnWorkspaceRemoved(obj);
+
+            if (obj is HomeWorkspaceModel)
+                DisposeLogic.IsClosingHomeworkspace = false;
+        }
+
         #endregion
 
         #region Properties/Fields
@@ -168,6 +184,8 @@ namespace Dynamo.Applications.Models
         private RevitDynamoModel(IRevitStartConfiguration configuration) :
             base(configuration)
         {
+            DisposeLogic.IsShuttingDown = false;
+
             externalCommandData = configuration.ExternalCommandData;
 
             SubscribeRevitServicesUpdaterEvents();
