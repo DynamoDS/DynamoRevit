@@ -324,7 +324,9 @@ namespace Revit.Elements
         #endregion
 
         #region Public properties
-
+        /// <search>
+        /// symbol
+        /// </search>
         public new FamilyType Type
         {
             get

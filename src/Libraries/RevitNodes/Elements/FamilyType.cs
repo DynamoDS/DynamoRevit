@@ -111,6 +111,9 @@ namespace Revit.Elements
         /// <param name="family">The FamilyTypes's parent Family</param>
         /// <param name="name">The name of the FamilyType</param>
         /// <returns></returns>
+        /// <search>
+        /// symbol
+        /// </search>
         public static FamilyType ByFamilyAndName(Family family, string name)
         {
             if (family == null)
@@ -145,6 +148,9 @@ namespace Revit.Elements
         /// <param name="familyName">The FamilyType's parent Family name.</param>
         /// <param name="typeName">The name of the FamilyType.</param>
         /// <returns></returns>
+        ///  /// <search>
+        /// symbol
+        /// </search>
         public static FamilyType ByFamilyNameAndTypeName(string familyName, string typeName)
         {
             if (familyName == null)
@@ -189,6 +195,9 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="name">The name of the FamilyType</param>
         /// <returns></returns>
+        ///  /// <search>
+        /// symbol
+        /// </search>
         public static FamilyType ByName(string name)
         {
             if (name == null)
