@@ -261,6 +261,9 @@ namespace Revit.Elements
         /// <summary>
         /// Gets family type from the specified structural element
         /// </summary>
+        /// <search>
+        /// symbol
+        /// </search>
         public new FamilyType Type
         {    
             // NOTE: Because AbstractFamilyInstance is not visible in the library
