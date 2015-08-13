@@ -179,6 +179,9 @@ namespace Revit.Elements
         /// <summary>
         /// Gets family type of the specific family instance
         /// </summary>
+        /// <search>
+        /// symbol
+        /// </search>
         public new FamilyType Type
         {
             // NOTE: Because AbstractFamilyInstance is not visible in the library
@@ -273,6 +276,9 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="familyType"></param>
         /// <returns></returns>
+        /// <search>
+        /// byfamilysymbol,ByFamilySymbol
+        /// </search>
         public static FamilyInstance[] ByFamilyType(FamilyType familyType)
         {
             if (familyType == null)

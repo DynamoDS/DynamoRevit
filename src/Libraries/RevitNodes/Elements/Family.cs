@@ -68,6 +68,9 @@ namespace Revit.Elements
         /// <summary>
         /// Obtain the FamilyTypes from this Family
         /// </summary>
+        /// <search>
+        /// symbols,symbol
+        /// </search>
         public FamilyType[] Types
         {
             get
