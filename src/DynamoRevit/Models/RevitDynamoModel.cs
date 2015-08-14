@@ -136,9 +136,9 @@ namespace Dynamo.Applications.Models
             if (handler != null) handler();
         }
 
-        protected override void OnWorkspaceRemoving(WorkspaceModel obj)
+        protected override void OnWorkspaceRemoveStarted(WorkspaceModel obj)
         {
-            base.OnWorkspaceRemoving(obj);
+            base.OnWorkspaceRemoveStarted(obj);
 
             if (obj is HomeWorkspaceModel)
                 DisposeLogic.IsClosingHomeworkspace = true;
