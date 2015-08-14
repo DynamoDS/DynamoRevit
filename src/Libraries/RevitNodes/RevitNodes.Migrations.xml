@@ -40,14 +40,6 @@
     <oldName>Revit.Elements.FamilySymbol.Family</oldName>
     <newName>Revit.Elements.FamilyType.Family</newName>
   </priorNameHint>
-   <priorNameHint>
-    <oldName>Revit.Elements.FamilySymbol.Name</oldName>
-    <newName>Revit.Elements.FamilyType.Name</newName>
-  </priorNameHint>
-   <priorNameHint>
-    <oldName>Revit.Elements.FamilySymbol.Family</oldName>
-    <newName>Revit.Elements.FamilyType.Family</newName>
-  </priorNameHint>
   <priorNameHint>
     <oldName>Revit.Elements.StructuralFraming.Symbol</oldName>
     <newName>Revit.Elements.StructuralFraming.Type</newName>
