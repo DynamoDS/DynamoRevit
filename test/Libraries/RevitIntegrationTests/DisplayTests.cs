@@ -46,7 +46,7 @@ namespace RevitSystemTests
             RunCurrentModel();
         }
 
-        void NodeRenderPackagesUpdated(Guid guid, IEnumerable<IRenderPackage> packages)
+        void NodeRenderPackagesUpdated(NodeModel node, IEnumerable<IRenderPackage> packages)
         {
             var curvePackage = packages.FirstOrDefault(p => p.LineVertexCount > 0);
             Assert.NotNull(curvePackage);
