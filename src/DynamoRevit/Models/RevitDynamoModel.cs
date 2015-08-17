@@ -6,33 +6,26 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Soap;
 using System.Windows.Forms;
-
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
-
 using DSIronPython;
-
 using Dynamo.DSEngine;
 using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.UpdateManager;
 using Dynamo.Utilities;
 using DynamoServices;
-
 using Greg;
-
 using ProtoCore;
-
 using Revit.Elements;
-
 using RevitServices.Elements;
+
 using RevitServices.Materials;
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
-
 using Category = Revit.Elements.Category;
 using Element = Autodesk.Revit.DB.Element;
 using View = Autodesk.Revit.DB.View;
@@ -353,18 +346,13 @@ namespace Dynamo.Applications.Models
                 return;
             }
 
-            DynamoRevit.AddIdleAction(
-                () =>
-                {
-                    commandData.Application.ViewActivating += OnApplicationViewActivating;
-                    commandData.Application.ViewActivated += OnApplicationViewActivated;
+            DynamoRevitApp.EventHandlerProxy.ViewActivating += OnApplicationViewActivating;
+            DynamoRevitApp.EventHandlerProxy.ViewActivated += OnApplicationViewActivated;
+            DynamoRevitApp.EventHandlerProxy.DocumentClosing += OnApplicationDocumentClosing;
+            DynamoRevitApp.EventHandlerProxy.DocumentClosed += OnApplicationDocumentClosed;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += OnApplicationDocumentOpened;
 
-                    commandData.Application.Application.DocumentClosing += OnApplicationDocumentClosing;
-                    commandData.Application.Application.DocumentClosed += OnApplicationDocumentClosed;
-                    commandData.Application.Application.DocumentOpened += OnApplicationDocumentOpened;
-
-                    hasRegisteredApplicationEvents = true;
-                });
+            hasRegisteredApplicationEvents = true;
         }
 
         private void UnsubscribeApplicationEvents(ExternalCommandData commandData)
@@ -374,18 +362,13 @@ namespace Dynamo.Applications.Models
                 return;
             }
 
-            DynamoRevit.AddIdleAction(
-                () =>
-                {
-                    commandData.Application.ViewActivating -= OnApplicationViewActivating;
-                    commandData.Application.ViewActivated -= OnApplicationViewActivated;
+            DynamoRevitApp.EventHandlerProxy.ViewActivating -= OnApplicationViewActivating;
+            DynamoRevitApp.EventHandlerProxy.ViewActivated -= OnApplicationViewActivated;
+            DynamoRevitApp.EventHandlerProxy.DocumentClosing -= OnApplicationDocumentClosing;
+            DynamoRevitApp.EventHandlerProxy.DocumentClosed -= OnApplicationDocumentClosed;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= OnApplicationDocumentOpened;
 
-                    commandData.Application.Application.DocumentClosing -= OnApplicationDocumentClosing;
-                    commandData.Application.Application.DocumentClosed -= OnApplicationDocumentClosed;
-                    commandData.Application.Application.DocumentOpened -= OnApplicationDocumentOpened;
-
-                    hasRegisteredApplicationEvents = false;
-                });
+            hasRegisteredApplicationEvents = false;
         }
 
         #endregion
@@ -467,7 +450,7 @@ namespace Dynamo.Applications.Models
         {
             if (shutdownHost)
             {
-                DynamoRevit.AddIdleAction(ShutdownRevitHostOnce);
+                DynamoRevitApp.AddIdleAction(ShutdownRevitHostOnce);
             }
 
             base.PreShutdownCore(shutdownHost);
@@ -748,7 +731,7 @@ namespace Dynamo.Applications.Models
 
         protected override void OpenFileImpl(OpenFileCommand command)
         {
-            DynamoRevit.AddIdleAction(() => base.OpenFileImpl(command));
+            DynamoRevitApp.AddIdleAction(() => base.OpenFileImpl(command));
         }
 
     }

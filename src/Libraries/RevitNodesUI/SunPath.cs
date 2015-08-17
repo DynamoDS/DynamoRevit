@@ -29,28 +29,18 @@ namespace DSRevitNodesUI
                 new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip));
 
             RegisterAllPorts();
-            DynamoRevit.AddIdleAction(
-                () =>
-                {
-                    RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
-                    DocumentManager.Instance.CurrentUIApplication.ViewActivated +=
-                        CurrentUIApplication_ViewActivated;
 
-                    CurrentUIApplicationOnViewActivated();
-                }
-        );
+            RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
+            DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
+
+            DynamoRevitApp.AddIdleAction(() => CurrentUIApplicationOnViewActivated());
         }
 
         public override void Dispose()
         {
-            DynamoRevit.AddIdleAction(
-                () =>
-                {
-                    RevitServicesUpdater.Instance.ElementsModified -=
-                        Updater_ElementsModified;
-                    DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
-                        CurrentUIApplication_ViewActivated;
-                });
+            RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
+            DynamoRevitApp.EventHandlerProxy.ViewActivated -= CurrentUIApplication_ViewActivated;
+
             base.Dispose();
         }
 

@@ -80,7 +80,7 @@ namespace Dynamo.Applications
      Regeneration(RegenerationOption.Manual)]
     public class DynamoRevit : IExternalCommand
     {
-        private static readonly List<Action> idleActions = new List<Action>();
+        private static List<Action> idleActions = new List<Action>();
         enum Versions { ShapeManager = 221 }
 
         private static ExternalCommandData extCommandData;
@@ -91,7 +91,7 @@ namespace Dynamo.Applications
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             HandleDebug(commandData);
-            
+
             InitializeCore(commandData);
 
             try
@@ -115,8 +115,6 @@ namespace Dynamo.Applications
 
                 TryOpenWorkspaceInCommandData(extCommandData);
 
-                extCommandData.Application.Idling += OnApplicationIdle;
-
                 // Disable the Dynamo button to prevent a re-run
                 DynamoRevitApp.DynamoButton.Enabled = false;
             }
@@ -134,22 +132,6 @@ namespace Dynamo.Applications
             }
 
             return Result.Succeeded;
-        }
-        
-        private static void OnApplicationIdle(object sender, IdlingEventArgs e)
-        {
-            if (idleActions.Count == 0)
-                    return;
-
-            Action pendingAction = null;
-            lock (idleActions)
-            {
-                pendingAction = idleActions[0];
-                idleActions.RemoveAt(0);
-            }
-
-            if (pendingAction != null)
-                pendingAction();
         }
 
         private static void UpdateSystemPathForProcess()
@@ -239,7 +221,6 @@ namespace Dynamo.Applications
                     WatchHandler =
                         new RevitWatchHandler(revitDynamoModel.PreferenceSettings)
                 });
-
             return viewModel;
         }
 
@@ -413,7 +394,7 @@ namespace Dynamo.Applications
                 lock (idleActions)
                 {
                     idleActions.Add(a);
-                } 
+                }
             }
         }
     }

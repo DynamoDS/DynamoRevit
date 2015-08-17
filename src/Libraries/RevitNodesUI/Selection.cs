@@ -28,6 +28,9 @@ using RevitDynamoModel = Dynamo.Applications.Models.RevitDynamoModel;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using String = System.String;
 using UV = Autodesk.DesignScript.Geometry.UV;
+using RevitServices.EventHandler;
+using Autodesk.Revit.DB.Events;
+using Dynamo.Applications;
 
 namespace Dynamo.Nodes
 {
@@ -151,13 +154,9 @@ namespace Dynamo.Nodes
             SelectionObjectType selectionObjectType, string message, string prefix)
             : base(selectionType, selectionObjectType, message, prefix)
         {
-            DynamoRevit.AddIdleAction(
-                () =>
-                {
-                    RevitServicesUpdater.Instance.ElementsDeleted += Updater_ElementsDeleted;
-                    RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
-                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
-                });
+            RevitServicesUpdater.Instance.ElementsDeleted += Updater_ElementsDeleted;
+            RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
         #endregion
@@ -177,14 +176,11 @@ namespace Dynamo.Nodes
         {
             base.Dispose();
 
-            DynamoRevit.AddIdleAction(
-                () =>
-                {
-                    RevitServicesUpdater.Instance.ElementsDeleted -= Updater_ElementsDeleted;
-                    RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
-                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -= Controller_RevitDocumentChanged;
-                });
-        if (revitDynamoModel != null)
+            RevitServicesUpdater.Instance.ElementsDeleted -= Updater_ElementsDeleted;
+            RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= Controller_RevitDocumentChanged;
+
+            if (revitDynamoModel != null)
             {
                 var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
                 if (hwm != null)

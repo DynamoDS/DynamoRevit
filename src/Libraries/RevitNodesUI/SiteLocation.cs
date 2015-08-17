@@ -18,7 +18,8 @@ using Revit.GeometryConversion;
 using Revit.Elements;
 using RevitServices.Elements;
 using RevitServices.Persistence;
-using RevitServices.Threading;
+using Autodesk.Revit.DB.Events;
+using Dynamo.Applications;
 
 namespace DSRevitNodesUI
 {
@@ -54,28 +55,18 @@ namespace DSRevitNodesUI
             
             ArgumentLacing = LacingStrategy.Disabled;
 
-            DynamoRevit.AddIdleAction(
-                () =>
-                {
-                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += model_RevitDocumentChanged;
-                    RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
-
-                    Update();
-                });
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += model_RevitDocumentChanged;
+            RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
+            
+            DynamoRevitApp.AddIdleAction(() => Update());
         }
 
         #region public methods
 
         public override void Dispose()
         {
-            DynamoRevit.AddIdleAction(
-                () =>
-                {
-                    DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -=
-                        model_RevitDocumentChanged;
-                    RevitServicesUpdater.Instance.ElementsModified -=
-                        RevitServicesUpdater_ElementsModified;
-                });
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= model_RevitDocumentChanged;
+            RevitServicesUpdater.Instance.ElementsModified -= RevitServicesUpdater_ElementsModified;
             base.Dispose();
         }
 

@@ -15,7 +15,6 @@
     <AssemblyName>RevitNodesTests</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    
   </PropertyGroup>
   <PropertyGroup>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
@@ -111,6 +110,7 @@
     <Compile Include="Elements\WallTypeTests.cs" />
     <Compile Include="GeometryConversion\CurveUtilsTests.cs" />
     <Compile Include="GeometryConversion\ProtoToRevitCurveTests.cs" />
+    <Compile Include="GeometryConversion\RevitSolidToProtoTests.cs" />
     <Compile Include="GeometryConversion\RevitToProtoCurveTests.cs" />
     <Compile Include="GeometryConversion\BoundingBoxTests.cs" />
     <Compile Include="GeometryConversion\RevitToProtoFaceTests.cs" />
