@@ -147,7 +147,7 @@ namespace Revit.Elements
         /// <param name="familyName">The FamilyType's parent Family name.</param>
         /// <param name="typeName">The name of the FamilyType.</param>
         /// <returns></returns>
-        ///  /// <search>
+        /// <search>
         /// symbol
         /// </search>
         public static FamilyType ByFamilyNameAndTypeName(string familyName, string typeName)
@@ -193,7 +193,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="name">The name of the FamilyType</param>
         /// <returns></returns>
-        ///  /// <search>
+        /// <search>
         /// symbol
         /// </search>
         public static FamilyType ByName(string name)
