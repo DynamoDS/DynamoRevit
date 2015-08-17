@@ -369,13 +369,19 @@ namespace RevitSystemTests
 
             RunCurrentModel();
             var refPointNodeID = "a80c323f-7443-42fd-a38c-4a84623fdeb5";
-            AssertPreviewCount(refPointNodeID, 122);
+            AssertPreviewCount(refPointNodeID, 509);
 
             // get all Reference Points.
+            // There are 121 points and 388 lines
             for (int i = 0; i <= 120; i++)
             {
                 var point = GetPreviewValueAtIndex(refPointNodeID, i) as Point;
                 Assert.IsNotNull(point);
+            }
+            for (int i = 121; i < 509; i++)
+            {
+                var line = GetPreviewValueAtIndex(refPointNodeID, i) as Line;
+                Assert.IsNotNull(line);
             }
         }
 
