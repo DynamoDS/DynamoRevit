@@ -80,6 +80,7 @@ namespace Dynamo.Applications
      Regeneration(RegenerationOption.Manual)]
     public class DynamoRevit : IExternalCommand
     {
+        private static List<Action> idleActions = new List<Action>();
         enum Versions { ShapeManager = 221 }
 
         private static ExternalCommandData extCommandData;
@@ -213,22 +214,13 @@ namespace Dynamo.Applications
 
         private static DynamoViewModel InitializeCoreViewModel(RevitDynamoModel revitDynamoModel)
         {
-            var vizManager = new RevitVisualizationManager(revitDynamoModel);
-
             var viewModel = DynamoRevitViewModel.Start(
                 new DynamoViewModel.StartConfiguration()
                 {
                     DynamoModel = revitDynamoModel,
-                    VisualizationManager = vizManager,
                     WatchHandler =
-                        new RevitWatchHandler(vizManager, revitDynamoModel.PreferenceSettings)
+                        new RevitWatchHandler(revitDynamoModel.PreferenceSettings)
                 });
-
-            revitDynamoModel.ShutdownStarted += (drm) =>
-            {
-                DynamoRevitApp.AddIdleAction(DeleteKeeperElement);
-            };
-
             return viewModel;
         }
 
@@ -384,37 +376,28 @@ namespace Dynamo.Applications
             DynamoRevitApp.DynamoButton.Enabled = true;
         }
 
-        private static void DeleteKeeperElementOnce(object sender, IdlingEventArgs idlingEventArgs)
-        {
-            var uiApplication = DocumentManager.Instance.CurrentUIApplication;
-            uiApplication.Idling -= DeleteKeeperElementOnce;
-            DeleteKeeperElement();
-        }
+        #endregion
 
         /// <summary>
-        /// This method access Revit API, therefore it needs to be called only 
-        /// by idle thread (i.e. in an 'UIApplication.Idling' event handler).
+        /// Add an action to run when the application is in the idle state
         /// </summary>
-        private static void DeleteKeeperElement()
+        public static void AddIdleAction(Action a)
         {
-            var dbDoc = DocumentManager.Instance.CurrentDBDocument;
-            if (null == dbDoc || (dynamoViewModel == null))
-                return;
-
-            var vizManager = dynamoViewModel.VisualizationManager as RevitVisualizationManager;
-            if (vizManager != null)
+            // If we are running in test mode, invoke 
+            // the action immediately.
+            if (DynamoModel.IsTestMode)
             {
-                var keeperId = vizManager.KeeperId;
-                if (keeperId != ElementId.InvalidElementId)
+                a.Invoke();
+            }
+            else
+            {
+                lock (idleActions)
                 {
-                    TransactionManager.Instance.EnsureInTransaction(dbDoc);
-                    DocumentManager.Instance.CurrentUIDocument.Document.Delete(keeperId);
-                    TransactionManager.Instance.ForceCloseTransaction();
+                    idleActions.Add(a);
                 }
             }
         }
     }
-    #endregion
 
     internal class DynamoRevitLookUp : DynamoLookUp
     {

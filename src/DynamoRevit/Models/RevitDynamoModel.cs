@@ -651,14 +651,6 @@ namespace Dynamo.Applications.Models
             foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
                 ws.MarkNodesAsModifiedAndRequestRun(ws.Nodes);
-
-                foreach (var node in ws.Nodes)
-                {
-                    lock (node.RenderPackagesMutex)
-                    {
-                        node.RenderPackages.Clear();
-                    }
-                }
             }
 
             OnRevitDocumentChanged();
