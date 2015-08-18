@@ -128,7 +128,6 @@
     <Compile Include="RevitPathResolver.cs" />
     <Compile Include="ViewModel\DynamoRevitViewModel.cs" />
     <Compile Include="ViewModel\RevitWatchHandler.cs" />
-    <Compile Include="ViewModel\RevitVisualizationManager.cs" />
     <Compile Include="Migration\WorkspaceMigrationsRevit.cs" />
   </ItemGroup>
   <ItemGroup>

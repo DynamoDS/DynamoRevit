@@ -213,21 +213,13 @@ namespace Dynamo.Applications
 
         private static DynamoViewModel InitializeCoreViewModel(RevitDynamoModel revitDynamoModel)
         {
-            var vizManager = new RevitVisualizationManager(revitDynamoModel);
-
             var viewModel = DynamoRevitViewModel.Start(
                 new DynamoViewModel.StartConfiguration()
                 {
                     DynamoModel = revitDynamoModel,
-                    VisualizationManager = vizManager,
                     WatchHandler =
-                        new RevitWatchHandler(vizManager, revitDynamoModel.PreferenceSettings)
+                        new RevitWatchHandler(revitDynamoModel.PreferenceSettings)
                 });
-
-            revitDynamoModel.ShutdownStarted += (drm) =>
-            {
-                DynamoRevitApp.AddIdleAction(DeleteKeeperElement);
-            };
 
             return viewModel;
         }
@@ -382,36 +374,6 @@ namespace Dynamo.Applications
                 Analyze.Render.AssemblyHelper.ResolveAssemblies;
 
             DynamoRevitApp.DynamoButton.Enabled = true;
-        }
-
-        private static void DeleteKeeperElementOnce(object sender, IdlingEventArgs idlingEventArgs)
-        {
-            var uiApplication = DocumentManager.Instance.CurrentUIApplication;
-            uiApplication.Idling -= DeleteKeeperElementOnce;
-            DeleteKeeperElement();
-        }
-
-        /// <summary>
-        /// This method access Revit API, therefore it needs to be called only 
-        /// by idle thread (i.e. in an 'UIApplication.Idling' event handler).
-        /// </summary>
-        private static void DeleteKeeperElement()
-        {
-            var dbDoc = DocumentManager.Instance.CurrentDBDocument;
-            if (null == dbDoc || (dynamoViewModel == null))
-                return;
-
-            var vizManager = dynamoViewModel.VisualizationManager as RevitVisualizationManager;
-            if (vizManager != null)
-            {
-                var keeperId = vizManager.KeeperId;
-                if (keeperId != ElementId.InvalidElementId)
-                {
-                    TransactionManager.Instance.EnsureInTransaction(dbDoc);
-                    DocumentManager.Instance.CurrentUIDocument.Document.Delete(keeperId);
-                    TransactionManager.Instance.ForceCloseTransaction();
-                }
-            }
         }
 
         #endregion
