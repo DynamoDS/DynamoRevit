@@ -18,7 +18,7 @@ namespace RevitNodesTests.Elements
             var fam = Family.ByName("Cone");
             Assert.NotNull(fam);
             Assert.AreEqual("Cone",fam.Name);
-            Assert.AreEqual(1, fam.Symbols.Length);
+            Assert.AreEqual(1, fam.Types.Length);
         }
 
         [Test, Category("Failure")]

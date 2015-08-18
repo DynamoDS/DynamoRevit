@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,7 +17,7 @@ using RevitTestServices;
 using RTF.Framework;
 
 using FamilyInstance = Autodesk.Revit.DB.FamilyInstance;
-using FamilySymbol = Revit.Elements.FamilySymbol;
+using FamilyType = Revit.Elements.FamilyType;
 using Form = Revit.Elements.Form;
 using ModelCurve = Revit.Elements.ModelCurve;
 using Point = Autodesk.DesignScript.Geometry.Point;
@@ -50,7 +50,7 @@ namespace RevitNodesTests.Elements
                 Point.ByCoordinates(10, 0, 10),
                 Point.ByCoordinates(20, 0, 0)
             };
-            var fs = FamilySymbol.ByName("3PointAC");
+            var fs = FamilyType.ByName("3PointAC");
             var ac = AdaptiveComponent.ByPoints(pts, fs);
 
             var locs = ac.Locations;
@@ -81,9 +81,9 @@ namespace RevitNodesTests.Elements
                 Point.ByCoordinates(0, 0, 0),
                 Point.ByCoordinates(10, 0, 10)
             };
-            var fs = FamilySymbol.ByName("3PointAC");
+            var ft = FamilyType.ByName("3PointAC");
 
-            Assert.Throws(typeof (Exception), () => AdaptiveComponent.ByPoints(pts, fs));
+            Assert.Throws(typeof(Exception), () => AdaptiveComponent.ByPoints(pts, ft));
         }
 
         [Test]
@@ -104,9 +104,9 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\AdaptiveComponents.rfa")]
         public void ByPoints_NullPts()
         {
-            var fs = FamilySymbol.ByName("3PointAC");
+            var ft = FamilyType.ByName("3PointAC");
 
-            Assert.Throws(typeof(ArgumentNullException), () => AdaptiveComponent.ByPoints(null, fs));
+            Assert.Throws(typeof(ArgumentNullException), () => AdaptiveComponent.ByPoints(null, ft));
         }
 
         [Test]
@@ -131,7 +131,7 @@ namespace RevitNodesTests.Elements
             Assert.NotNull(modCurve);
 
             // obtain the family from the document
-            var fs = FamilySymbol.ByName("3PointAC");
+            var ft = FamilyType.ByName("3PointAC");
 
             // build the AC
             var parms = new double[]
@@ -139,7 +139,7 @@ namespace RevitNodesTests.Elements
                 0, 0.5, 1
             };
 
-            var ac = AdaptiveComponent.ByParametersOnCurveReference(parms, modCurve.ElementCurveReference, fs);
+            var ac = AdaptiveComponent.ByParametersOnCurveReference(parms, modCurve.ElementCurveReference, ft);
 
             // with unit conversion
             foreach (var pt in ac.Locations)
@@ -169,7 +169,7 @@ namespace RevitNodesTests.Elements
             Assert.IsTrue(faces.All(x => x != null));
             Assert.AreEqual(6, faces.Length);
 
-            var fs = FamilySymbol.ByName("3PointAC");
+            var ft = FamilyType.ByName("3PointAC");
 
             var uvs = new[]
             {
@@ -178,7 +178,7 @@ namespace RevitNodesTests.Elements
                 Autodesk.DesignScript.Geometry.UV.ByCoordinates(0.5, 0)
             };
 
-            var ac = AdaptiveComponent.ByParametersOnFace(uvs, faces.First(), fs);
+            var ac = AdaptiveComponent.ByParametersOnFace(uvs, faces.First(), ft);
 
             Assert.NotNull(ac);
         }

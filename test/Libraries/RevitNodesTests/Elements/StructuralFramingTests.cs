@@ -27,9 +27,9 @@ namespace RevitNodesTests.Elements
             var up = Vector.ByCoordinates(0, 0, 1);
 
             var structuralType = StructuralType.Beam;
-            var famSym = FamilySymbol.ByName("W12X26");
+            var famTyp = FamilyType.ByName("W12X26");
 
-            var structure = StructuralFraming.ByCurveLevelUpVectorAndType(line, level, up, structuralType, famSym);
+            var structure = StructuralFraming.ByCurveLevelUpVectorAndType(line, level, up, structuralType, famTyp);
 
             Assert.NotNull(structure);
             Assert.NotNull(structure.InternalElement);
@@ -49,11 +49,11 @@ namespace RevitNodesTests.Elements
             var up = Vector.ByCoordinates(0, 0, 1);
 
             var structuralType = StructuralType.Beam;
-            var famSym = FamilySymbol.ByName("W12X26");
+            var famTyp = FamilyType.ByName("W12X26");
 
-            Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.ByCurveLevelUpVectorAndType(null, level, up, structuralType, famSym));
-            Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.ByCurveLevelUpVectorAndType(line, null, up, structuralType, famSym));
-            Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.ByCurveLevelUpVectorAndType(line, level, null, structuralType, famSym));
+            Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.ByCurveLevelUpVectorAndType(null, level, up, structuralType, famTyp));
+            Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.ByCurveLevelUpVectorAndType(line, null, up, structuralType, famTyp));
+            Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.ByCurveLevelUpVectorAndType(line, level, null, structuralType, famTyp));
             Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.ByCurveLevelUpVectorAndType(line, level, up, structuralType, null));
         }
 
@@ -78,9 +78,9 @@ namespace RevitNodesTests.Elements
             var end = Point.ByCoordinates(5, 8, 3);
             var line = Line.ByStartPointEndPoint(start, end);
             var level = Level.ByElevation(3);
-            var famSym = FamilySymbol.ByName("W12X26");
+            var famTyp = FamilyType.ByName("W12X26");
 
-            var lineBeam = StructuralFraming.BeamByCurve(line, level, famSym);
+            var lineBeam = StructuralFraming.BeamByCurve(line, level, famTyp);
 
             Assert.NotNull(lineBeam);
             Assert.NotNull(lineBeam.InternalElement);
@@ -89,7 +89,7 @@ namespace RevitNodesTests.Elements
 
             var curve = Arc.ByCenterPointRadiusAngle(Point.Origin(), 20, 0, 90, Vector.ZAxis());
 
-            var arcBeam = StructuralFraming.BeamByCurve(curve, level, famSym);
+            var arcBeam = StructuralFraming.BeamByCurve(curve, level, famTyp);
 
             Assert.NotNull(arcBeam);
             Assert.NotNull(arcBeam.InternalElement);
@@ -104,12 +104,12 @@ namespace RevitNodesTests.Elements
             var end = Point.ByCoordinates(5, 8, 3);
             var line = Line.ByStartPointEndPoint(start, end);
             var level = Level.ByElevation(3);
-            var famSym = FamilySymbol.ByName("W12X26");
+            var famTyp = FamilyType.ByName("W12X26");
 
             Assert.Throws<System.ArgumentNullException>(
-                () => StructuralFraming.BeamByCurve(null, level, famSym));
+                () => StructuralFraming.BeamByCurve(null, level, famTyp));
             Assert.Throws<System.ArgumentNullException>(
-                () => StructuralFraming.BeamByCurve(line, null, famSym));
+                () => StructuralFraming.BeamByCurve(line, null, famTyp));
             Assert.Throws<System.ArgumentNullException>(
                 () => StructuralFraming.BeamByCurve(line, level, null));
         }
@@ -121,9 +121,9 @@ namespace RevitNodesTests.Elements
             var end = Point.ByCoordinates(5, 8, 3);
             var line = Line.ByStartPointEndPoint(start, end);
             var level = Level.ByElevation(3);
-            var famSym = FamilySymbol.ByName("W12X26");
+            var famTyp = FamilyType.ByName("W12X26");
 
-            var structure = StructuralFraming.BraceByCurve(line, level, famSym);
+            var structure = StructuralFraming.BraceByCurve(line, level, famTyp);
 
             Assert.NotNull(structure);
             Assert.NotNull(structure.InternalElement);
@@ -138,12 +138,12 @@ namespace RevitNodesTests.Elements
             var end = Point.ByCoordinates(5, 8, 3);
             var line = Line.ByStartPointEndPoint(start, end);
             var level = Level.ByElevation(3);
-            var famSym = FamilySymbol.ByName("W12X26");
+            var famTyp = FamilyType.ByName("W12X26");
 
             Assert.Throws<System.ArgumentNullException>(
-                () => StructuralFraming.BraceByCurve(null, level, famSym));
+                () => StructuralFraming.BraceByCurve(null, level, famTyp));
             Assert.Throws<System.ArgumentNullException>(
-                () => StructuralFraming.BraceByCurve(line, null, famSym));
+                () => StructuralFraming.BraceByCurve(line, null, famTyp));
             Assert.Throws<System.ArgumentNullException>(
                 () => StructuralFraming.BraceByCurve(line, level, null));
         }
@@ -156,9 +156,9 @@ namespace RevitNodesTests.Elements
             var end = Point.ByCoordinates(1, 4, 12);
             var line = Line.ByStartPointEndPoint(start, end);
             var level = Level.ByElevation(3);
-            var famSym = FamilySymbol.ByName("W12X26");
+            var famTyp = FamilyType.ByName("W12X26");
 
-            var structure = StructuralFraming.ColumnByCurve(line, level, famSym);
+            var structure = StructuralFraming.ColumnByCurve(line, level, famTyp);
 
             Assert.NotNull(structure);
             Assert.NotNull(structure.InternalElement);
@@ -174,12 +174,12 @@ namespace RevitNodesTests.Elements
             var end = Point.ByCoordinates(1, 4, 12);
             var line = Line.ByStartPointEndPoint(start, end);
             var level = Level.ByElevation(3);
-            var famSym = FamilySymbol.ByName("W12X26");
+            var famTyp = FamilyType.ByName("W12X26");
 
             Assert.Throws<System.ArgumentNullException>(
-                () => StructuralFraming.ColumnByCurve(null, level, famSym));
+                () => StructuralFraming.ColumnByCurve(null, level, famTyp));
             Assert.Throws<System.ArgumentNullException>(
-                () => StructuralFraming.ColumnByCurve(line, null, famSym));
+                () => StructuralFraming.ColumnByCurve(line, null, famTyp));
             Assert.Throws<System.ArgumentNullException>(
                 () => StructuralFraming.ColumnByCurve(line, level, null));
 
@@ -188,7 +188,7 @@ namespace RevitNodesTests.Elements
             start = Point.ByCoordinates(1, 4, 12);
             line = Line.ByStartPointEndPoint(start, end);
 
-            Assert.Throws<Exception>(()=> StructuralFraming.ColumnByCurve(line, level, famSym));
+            Assert.Throws<Exception>(() => StructuralFraming.ColumnByCurve(line, level, famTyp));
         }
     }
 }

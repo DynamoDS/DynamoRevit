@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 using DynamoServices;
@@ -66,15 +66,18 @@ namespace Revit.Elements
         #region Public properties
 
         /// <summary>
-        /// Obtain the FamilySymbols from this Family
+        /// Obtain the FamilyTypes from this Family
         /// </summary>
-        public FamilySymbol[] Symbols
+        /// <search>
+        /// symbols,symbol
+        /// </search>
+        public FamilyType[] Types
         {
             get
             {
-                return InternalFamily.Symbols
+                  return InternalFamily.Symbols
                     .Cast<Autodesk.Revit.DB.FamilySymbol>()
-                    .Select(x => FamilySymbol.FromExisting(x, true))
+                    .Select(x => FamilyType.FromExisting(x, true))
                     .ToArray();
             }
         }
@@ -112,7 +115,7 @@ namespace Revit.Elements
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(Document);
             fec.OfClass(typeof(Autodesk.Revit.DB.Family));
 
-            // obtain the family symbol with the provided name
+            // obtain the family type with the provided name
             var families = fec.Cast<Autodesk.Revit.DB.Family>();
 
             var family = families.FirstOrDefault(x => x.Name == name);

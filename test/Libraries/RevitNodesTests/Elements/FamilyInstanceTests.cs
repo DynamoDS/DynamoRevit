@@ -6,7 +6,7 @@ using RevitTestServices;
 using RTF.Framework;
 using System;
 using FamilyInstance = Revit.Elements.FamilyInstance;
-using FamilySymbol = Revit.Elements.FamilySymbol;
+using FamilyType = Revit.Elements.FamilyType;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using Vector = Autodesk.DesignScript.Geometry.Vector;
 
@@ -24,7 +24,7 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\MassWithBoxAndCone.rfa")]
         public void ByCoordinates_ProducesValidFamilyInstanceWithCorrectLocation()
         {
-            var famSym = FamilySymbol.ByName("Box");
+            var famSym = FamilyType.ByName("Box");
             var famInst = FamilyInstance.ByCoordinates(famSym, 0, 1, 2);
             Assert.NotNull(famInst);
 
@@ -44,7 +44,7 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\MassWithBoxAndCone.rfa")]
         public void ByPoint_ProducesValidFamilyInstanceWithCorrectLocation()
         {
-            var famSym = FamilySymbol.ByName("Box");
+            var famSym = FamilyType.ByName("Box");
             var pt = Point.ByCoordinates(0, 1, 2);
             var famInst = FamilyInstance.ByPoint(famSym, pt);
             Assert.NotNull(famInst);
@@ -73,7 +73,7 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\MassWithBoxAndCone.rfa")]
         public void ByPoint_NullPoint()
         {
-            var famSym = FamilySymbol.ByName("Box");
+            var famSym = FamilyType.ByName("Box");
             Assert.Throws(typeof(System.ArgumentNullException), () => FamilyInstance.ByPoint(famSym, null));
         }
 
@@ -89,7 +89,7 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\MassWithBoxAndCone.rfa")]
         public void Rotate_ZAxis()
         {
-            var famSym = FamilySymbol.ByName("Box");
+            var famSym = FamilyType.ByName("Box");
             var pt = Point.ByCoordinates(0, 1, 2);
             var famInst = FamilyInstance.ByPoint(famSym, pt);
             Assert.NotNull(famInst);
@@ -116,7 +116,7 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\MassWithBoxAndCone.rfa")]
         public void FacingOrientation()
         {
-            var famSym = FamilySymbol.ByName("Box");
+            var famSym = FamilyType.ByName("Box");
             var pt = Point.ByCoordinates(0, 1, 2);
             var famInst = FamilyInstance.ByPoint(famSym, pt);
             Assert.NotNull(famInst);
