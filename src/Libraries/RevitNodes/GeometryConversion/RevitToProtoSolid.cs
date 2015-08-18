@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-
+﻿using System;
+using System.Collections.Generic;
 using Autodesk.DesignScript.Runtime;
-
 using Face = Autodesk.Revit.DB.Face;
 using Solid = Autodesk.DesignScript.Geometry.Solid;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
@@ -20,9 +19,24 @@ namespace Revit.GeometryConversion
             {
                 srfs.AddRange(face.ToProtoType(false));
             }
-            var converted = Solid.ByJoinedSurfaces(srfs);
-            srfs.ForEach(x => x.Dispose());
-            srfs.Clear();
+
+            Solid converted = null;
+            try
+            {
+                converted = Solid.ByJoinedSurfaces(srfs);
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                srfs.ForEach(x => x.Dispose());
+                srfs.Clear();
+            }
+
+            if (converted == null)
+                return null;
 
             if (performHostUnitConversion)
                 UnitConverter.ConvertToDynamoUnits(ref converted);

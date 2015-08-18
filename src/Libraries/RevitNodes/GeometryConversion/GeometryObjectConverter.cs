@@ -28,15 +28,38 @@ namespace Revit.GeometryConversion
             if (geom == null) return null;
 
             dynamic dynGeom = geom;
+            dynamic protoGeom = null;
             try
             {
-                return Tag(Transform(InternalConvert(dynGeom), transform), reference);
+                protoGeom = InternalConvert(dynGeom);
+                return Tag(Transform(protoGeom, transform), reference);
             }
             catch (Exception)
             {
-                return null; 
+                return null;
             }
-
+            finally
+            {
+                // Dispose the temporary geometry that has been transformed.
+                if (protoGeom != null && transform != null)
+                {
+                    if (protoGeom is Autodesk.DesignScript.Geometry.Geometry)
+                    {
+                        protoGeom.Dispose();
+                    }
+                    else if (protoGeom is IEnumerable<Autodesk.DesignScript.Geometry.Geometry>)
+                    {
+                        var geoms = protoGeom as IEnumerable<Autodesk.DesignScript.Geometry.Geometry>;
+                        foreach (var g in geoms)
+                        {
+                            if (g != null)
+                            {
+                                g.Dispose();
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>

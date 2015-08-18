@@ -27,9 +27,9 @@ namespace RevitNodesTests.Elements.Views
             var target = Point.ByCoordinates(0, 1, 2);
             var name = "treeView";
 
-            var famSym = FamilySymbol.ByName("Kousa Dogwood - 10'");
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
             var pt = Point.ByCoordinates(0, 1, 2);
-            var famInst = FamilyInstance.ByPoint(famSym, pt);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
 
             object element = famInst.BoundingBox;
             var view = PerspectiveView.ByEyePointAndTarget(eye, target, element, name, false);
@@ -47,9 +47,9 @@ namespace RevitNodesTests.Elements.Views
             var target = Point.ByCoordinates(0, 1, 2);
             var name = "treeView";
 
-            var famSym = FamilySymbol.ByName("Kousa Dogwood - 10'");
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
             var pt = Point.ByCoordinates(0, 1, 2);
-            var famInst = FamilyInstance.ByPoint(famSym, pt);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
 
             object element = famInst;
             var view = PerspectiveView.ByEyePointAndTarget(eye, target, element, name, false);
@@ -95,9 +95,9 @@ namespace RevitNodesTests.Elements.Views
             var target = Point.ByCoordinates(0, 1, 2);
             var name = "treeView";
 
-            var famSym = FamilySymbol.ByName("Kousa Dogwood - 10'");
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
             var pt = Point.ByCoordinates(0, 1, 2);
-            var famInst = FamilyInstance.ByPoint(famSym, pt);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
 
             var view = PerspectiveView.ByEyePointTargetAndBoundingBox(eye, target, famInst.BoundingBox, name, false);
 
@@ -114,9 +114,9 @@ namespace RevitNodesTests.Elements.Views
             var target = Point.ByCoordinates(0, 1, 2);
             var name = "treeView";
 
-            var famSym = FamilySymbol.ByName("Kousa Dogwood - 10'");
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
             var pt = Point.ByCoordinates(0, 1, 2);
-            var famInst = FamilyInstance.ByPoint(famSym, pt);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
 
             Assert.Throws(typeof(ArgumentNullException), () => PerspectiveView.ByEyePointTargetAndBoundingBox(null, target, famInst.BoundingBox, name, false));
             Assert.Throws(typeof(ArgumentNullException), () => PerspectiveView.ByEyePointTargetAndBoundingBox(eye, null, famInst.BoundingBox, name, false));
@@ -132,9 +132,9 @@ namespace RevitNodesTests.Elements.Views
             var target = Point.ByCoordinates(0, 1, 2);
             var name = "treeView";
 
-            var famSym = FamilySymbol.ByName("Kousa Dogwood - 10'");
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
             var pt = Point.ByCoordinates(0, 1, 2);
-            var famInst = FamilyInstance.ByPoint(famSym, pt);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
 
             var view = PerspectiveView.ByEyePointTargetAndElement(eye, target, famInst, name, false);
 
@@ -151,9 +151,9 @@ namespace RevitNodesTests.Elements.Views
             var target = Point.ByCoordinates(0, 1, 2);
             var name = "treeView";
 
-            var famSym = FamilySymbol.ByName("Kousa Dogwood - 10'");
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
             var pt = Point.ByCoordinates(0, 1, 2);
-            var famInst = FamilyInstance.ByPoint(famSym, pt);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
 
             Assert.Throws(typeof(ArgumentNullException), () => PerspectiveView.ByEyePointTargetAndElement(null, target, famInst, name, false));
             Assert.Throws(typeof(ArgumentNullException), () => PerspectiveView.ByEyePointTargetAndElement(eye, null, famInst, name, false));
