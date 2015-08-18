@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-
+﻿using System;
+using System.Collections.Generic;
 using Autodesk.DesignScript.Runtime;
-
 using Face = Autodesk.Revit.DB.Face;
 using Solid = Autodesk.DesignScript.Geometry.Solid;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
