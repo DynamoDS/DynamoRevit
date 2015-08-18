@@ -46,7 +46,7 @@ namespace Dynamo.Applications.ViewModel
 
         protected override void OnShutdown()
         {
-            DynamoRevit.AddIdleAction(DeleteKeeperElement);
+            DynamoRevitApp.AddIdleAction(DeleteKeeperElement);
         }
 
         protected override void OnClear()
@@ -121,11 +121,7 @@ namespace Dynamo.Applications.ViewModel
         {
             if (method == null)
             {
-                var geometryElementType = typeof(GeometryElement);
-                var geometryElementTypeMethods =
-                    geometryElementType.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-
-                method = geometryElementTypeMethods.FirstOrDefault(x => x.Name == "SetForTransientDisplay");
+                method = GetTransientDisplayMethod();
 
                 if (method == null)
                     return;
@@ -249,6 +245,16 @@ namespace Dynamo.Applications.ViewModel
             TransactionManager.Instance.ForceCloseTransaction();
         }
 
+        internal static MethodInfo GetTransientDisplayMethod()
+        {
+            var geometryElementType = typeof(GeometryElement);
+            var geometryElementTypeMethods =
+                geometryElementType.GetMethods(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+
+            var method = geometryElementTypeMethods.FirstOrDefault(x => x.Name == "SetForTransientDisplay");
+
+            return method;
+        }
         #endregion
     }
 }
