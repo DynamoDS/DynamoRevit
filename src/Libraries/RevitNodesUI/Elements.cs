@@ -21,7 +21,7 @@ using Category = Revit.Elements.Category;
 using CurveElement = Autodesk.Revit.DB.CurveElement;
 using DividedSurface = Autodesk.Revit.DB.DividedSurface;
 using Element = Autodesk.Revit.DB.Element;
-using FamilySymbol = Revit.Elements.FamilySymbol;
+using FamilyType = Revit.Elements.FamilyType;
 using Level = Revit.Elements.Level;
 using ModelText = Autodesk.Revit.DB.ModelText;
 using ReferencePlane = Autodesk.Revit.DB.ReferencePlane;
@@ -121,7 +121,7 @@ namespace DSRevitNodesUI
             List<AssociativeNode> inputAstNodes)
         {
             var func =
-                new Func<FamilySymbol, IList<Revit.Elements.Element>>(ElementQueries.OfFamilyType);
+                new Func<FamilyType, IList<Revit.Elements.Element>>(ElementQueries.OfFamilyType);
 
             var functionCall = AstFactory.BuildFunctionCall(func, inputAstNodes);
             return new[]

@@ -11,24 +11,24 @@ using RTF.Framework;
 namespace RevitNodesTests.Elements
 {
     [TestFixture]
-    public class FamilySymbolTests : RevitNodeTestBase
+    public class FamilyTypeTests : RevitNodeTestBase
     {
         [Test]
         [TestModel(@".\MassWithBoxAndCone.rfa")]
         public void ByName_GoodArgs()
         {
-            var famSym = FamilySymbol.ByName("Box");
-            Assert.NotNull(famSym);
-            Assert.AreEqual("Box", famSym.Name);
-            Assert.AreEqual("Box", famSym.Family.Name);
+            var famTyp = FamilyType.ByName("Box");
+            Assert.NotNull(famTyp);
+            Assert.AreEqual("Box", famTyp.Name);
+            Assert.AreEqual("Box", famTyp.Family.Name);
         }
 
         [Test, Category("Failure")]
         [TestModel(@".\MassWithBoxAndCone.rfa")]
         public void ByName_BadArgs()
         {
-            Assert.Throws(typeof(Exception), () => FamilySymbol.ByName("Turtle.BoxTurtle") );
-            Assert.Throws(typeof(System.ArgumentNullException), () => FamilySymbol.ByName(null));
+            Assert.Throws(typeof(Exception), () => FamilyType.ByName("Turtle.BoxTurtle") );
+            Assert.Throws(typeof(System.ArgumentNullException), () => FamilyType.ByName(null));
         }
 
         [Test]
@@ -36,10 +36,10 @@ namespace RevitNodesTests.Elements
         public void ByFamilyAndName_GoodArgs()
         {
             var fam = Family.ByName("Box");
-            var famSym = FamilySymbol.ByFamilyAndName(fam, "Box");
-            Assert.NotNull(famSym);
-            Assert.AreEqual("Box", famSym.Name);
-            Assert.AreEqual("Box", famSym.Family.Name);
+            var famTyp = FamilyType.ByFamilyAndName(fam, "Box");
+            Assert.NotNull(famTyp);
+            Assert.AreEqual("Box", famTyp.Name);
+            Assert.AreEqual("Box", famTyp.Family.Name);
         }
 
         [Test]
@@ -47,9 +47,9 @@ namespace RevitNodesTests.Elements
         public void ByFamilyAndName_BadArgs()
         {
             var fam = Family.ByName("Box");
-            Assert.Throws(typeof(Exception), () => FamilySymbol.ByFamilyAndName(fam, "Turtle"));
-            Assert.Throws(typeof(System.ArgumentNullException), () => FamilySymbol.ByFamilyAndName(fam, null));
-            Assert.Throws(typeof(System.ArgumentNullException), () => FamilySymbol.ByFamilyAndName(null, "Turtle"));
+            Assert.Throws(typeof(Exception), () => FamilyType.ByFamilyAndName(fam, "Turtle"));
+            Assert.Throws(typeof(System.ArgumentNullException), () => FamilyType.ByFamilyAndName(fam, null));
+            Assert.Throws(typeof(System.ArgumentNullException), () => FamilyType.ByFamilyAndName(null, "Turtle"));
         }
     }
 }

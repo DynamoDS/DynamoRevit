@@ -18,7 +18,7 @@ using RevitTestServices;
 using RTF.Framework;
 
 using Element = Revit.Elements.Element;
-using FamilySymbol = Revit.Elements.FamilySymbol;
+using FamilyType = Revit.Elements.FamilyType;
 
 namespace RevitNodesTests.Elements
 {
@@ -54,7 +54,7 @@ namespace RevitNodesTests.Elements
         public void CanSuccessfullySetAndGetElement()
         {
             var wall = ElementSelector.ByElementId(184176, true);
-            var famSym = FamilySymbol.ByName("18\" x 18\"");
+            var famSym = FamilyType.ByName("18\" x 18\"");
 
             var name = "Column";
             wall.SetParameterByName(name, famSym);

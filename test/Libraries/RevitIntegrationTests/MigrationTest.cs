@@ -161,5 +161,11 @@ namespace RevitSystemTests
         {
             TestMigration(@".\Migration\TestMigration_Revit_View.dyn");
         }
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void TestMigration_Revit_FamilySymbolToFamilyType()
+        {
+            TestMigration(@".\Migration\TestMigration_Revit_FamilyType.dyn");
+        }
     }
 }

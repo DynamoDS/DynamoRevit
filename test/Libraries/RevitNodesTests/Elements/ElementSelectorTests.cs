@@ -11,7 +11,7 @@ using RevitTestServices;
 using RTF.Framework;
 
 using Family = Revit.Elements.Family;
-using FamilySymbol = Revit.Elements.FamilySymbol;
+using FamilyType = Revit.Elements.FamilyType;
 
 namespace RevitNodesTests.Elements
 {
@@ -79,8 +79,8 @@ namespace RevitNodesTests.Elements
             var famSymFromFact = Revit.Elements.ElementSelector.ByElementId(famSymEleId.IntegerValue, true);
 
             Assert.NotNull(famSymFromFact);
-            Assert.IsAssignableFrom(typeof(FamilySymbol), famSymFromFact);
-            Assert.AreEqual(name, (famSymFromFact as FamilySymbol).Name);
+            Assert.IsAssignableFrom(typeof(FamilyType), famSymFromFact);
+            Assert.AreEqual(name, (famSymFromFact as FamilyType).Name);
         }
 
         [Test]
@@ -104,8 +104,8 @@ namespace RevitNodesTests.Elements
             var famSymFromFact = Revit.Elements.ElementSelector.ByUniqueId(famSymUniqueId);
 
             Assert.NotNull(famSymFromFact);
-            Assert.IsAssignableFrom(typeof(FamilySymbol), famSymFromFact);
-            Assert.AreEqual(name, (famSymFromFact as FamilySymbol).Name);
+            Assert.IsAssignableFrom(typeof(FamilyType), famSymFromFact);
+            Assert.AreEqual(name, (famSymFromFact as FamilyType).Name);
         }
 
         [Test]
