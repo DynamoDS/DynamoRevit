@@ -91,7 +91,7 @@ namespace Revit.GeometryConversion
         private static IEnumerable<Autodesk.DesignScript.Geometry.Geometry> Transform(IEnumerable<Autodesk.DesignScript.Geometry.Geometry> geom, CoordinateSystem coordinateSystem)
         {
             if (coordinateSystem == null) return geom;
-            return geom.Select(x => Transform(x, coordinateSystem));
+            return geom.Select(x => Transform(x, coordinateSystem)).ToList();
         }
 
         private static Autodesk.DesignScript.Geometry.Geometry Transform(Autodesk.DesignScript.Geometry.Geometry geom, CoordinateSystem coordinateSystem)
