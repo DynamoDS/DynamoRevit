@@ -87,7 +87,7 @@ namespace Revit.Elements
             // Changing the underlying curve requires destroying the Grid
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            Autodesk.Revit.DB.Grid g = Document.Create.NewGrid(line);
+            Autodesk.Revit.DB.Grid g = Autodesk.Revit.DB.Grid.Create(Document, line);
             InternalSetGrid(g);
 
             TransactionManager.Instance.TransactionTaskDone();
@@ -104,7 +104,7 @@ namespace Revit.Elements
             // Changing the underlying curve requires destroying the Grid
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            Autodesk.Revit.DB.Grid g = Document.Create.NewGrid(arc);
+            Autodesk.Revit.DB.Grid g = Autodesk.Revit.DB.Grid.Create(Document, arc);
             InternalSetGrid(g);
 
             TransactionManager.Instance.TransactionTaskDone();

@@ -92,11 +92,11 @@ namespace Revit.Elements
 
             if (Document.IsFamilyDocument)
             {
-                level = Document.FamilyCreate.NewLevel(elevation);
+                level = Autodesk.Revit.DB.Level.Create(Document, elevation);
             }
             else
             {
-                level = Document.Create.NewLevel(elevation);
+                level = Autodesk.Revit.DB.Level.Create(Document, elevation);
             }
 
             InternalSetLevel(level);

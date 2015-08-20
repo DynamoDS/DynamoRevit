@@ -173,7 +173,7 @@ namespace Dynamo.Applications.ViewModel
             var point = item as Point;
             if (point != null)
             {
-                geoms.Add(DocumentManager.Instance.CurrentUIApplication.Application.Create.NewPoint(point.ToXyz()));
+                geoms.Add(Autodesk.Revit.DB.Point.Create(point.ToXyz()));
                 return;
             }
 
