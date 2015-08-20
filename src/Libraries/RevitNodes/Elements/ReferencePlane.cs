@@ -200,7 +200,7 @@ namespace Revit.Elements
         {
             get
             {
-                return InternalReferencePlane.Plane.ToPlane();
+                return InternalReferencePlane.GetPlane().ToPlane();
             }
         }
 
@@ -211,7 +211,7 @@ namespace Revit.Elements
         {
             get
             {
-                return new ElementPlaneReference(InternalReferencePlane.Reference);
+                return new ElementPlaneReference(InternalReferencePlane.GetReference());
             }
         }
 

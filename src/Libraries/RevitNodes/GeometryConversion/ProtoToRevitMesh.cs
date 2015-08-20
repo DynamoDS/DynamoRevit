@@ -47,8 +47,11 @@ namespace Revit.GeometryConversion
             }
 
             tsb.CloseConnectedFaceSet();
-
-            var result = tsb.Build(TessellatedShapeBuilderTarget.Mesh, TessellatedShapeBuilderFallback.Salvage, ElementId.InvalidElementId);
+            tsb.Target = TessellatedShapeBuilderTarget.Mesh;
+            tsb.Fallback = TessellatedShapeBuilderFallback.Salvage;
+            tsb.GraphicsStyleId = ElementId.InvalidElementId;
+            tsb.Build();
+            var result = tsb.GetBuildResult();
             return result.GetGeometricalObjects();
         }
 
@@ -83,7 +86,11 @@ namespace Revit.GeometryConversion
             }
 
             tsb.CloseConnectedFaceSet();
-            var result = tsb.Build(TessellatedShapeBuilderTarget.Mesh, TessellatedShapeBuilderFallback.Salvage, ElementId.InvalidElementId);
+            tsb.Target = TessellatedShapeBuilderTarget.Mesh;
+            tsb.Fallback = TessellatedShapeBuilderFallback.Salvage;
+            tsb.GraphicsStyleId = ElementId.InvalidElementId;
+            tsb.Build();
+            var result = tsb.GetBuildResult();
             return result.GetGeometricalObjects();
         }
     }

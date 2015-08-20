@@ -21,8 +21,8 @@ namespace Revit.GeometryConversion
         {
             edgeLoops = edgeLoops.ToList();
 
-            var x = face.get_Vector(0).ToVector(false);
-            var y = face.get_Vector(1).ToVector(false);
+            var x = face.XVector.ToVector(false);
+            var y = face.YVector.ToVector(false);
 
             // Construct planar surface larger than the biggest edge loop
             var or = edgeLoops.First().StartPoint; // don't use origin provided by revit, could be anywhere
