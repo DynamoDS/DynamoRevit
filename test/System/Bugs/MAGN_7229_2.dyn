@@ -1,0 +1,20 @@
+<Workspace Version="0.8.2.2231" X="0" Y="0" zoom="1" Name="Home" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="912fe63c-cc49-4f64-91be-94ce218230f7" type="Dynamo.Nodes.DSFunction" nickname="ReferencePoint.ByCoordinates" x="422.5" y="183" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.ReferencePoint.ByCoordinates@double,double,double">
+      <PortInfo index="0" default="True" />
+      <PortInfo index="1" default="True" />
+      <PortInfo index="2" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="c1de2d23-c704-4634-a45b-b817b88d6ed1" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="212" y="179" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="{30, 40};" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="c1de2d23-c704-4634-a45b-b817b88d6ed1" start_index="0" end="912fe63c-cc49-4f64-91be-94ce218230f7" end_index="2" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>
