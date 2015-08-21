@@ -16,6 +16,7 @@ using RevitServices.Transactions;
 using Color = DSCore.Color;
 using Area = DynamoUnits.Area;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
+using RevitServices.Elements;
 
 namespace Revit.Elements
 {
@@ -193,8 +194,9 @@ namespace Revit.Elements
         public virtual void Dispose()
         {
 
-            // Do not cleanup Revit elements if we are shutting down Dynamo.
-            if (DisposeLogic.IsShuttingDown)
+            // Do not cleanup Revit elements if we are shutting down Dynamo or
+            // closing homeworkspace.
+            if (DisposeLogic.IsShuttingDown || DisposeLogic.IsClosingHomeworkspace)
                 return;
 
             bool didRevitDelete = ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(Id);
