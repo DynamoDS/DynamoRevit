@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Interfaces;
@@ -17,6 +17,8 @@ namespace Revit.GeometryConversion
     public static class ProtoToRevitMesh
     {
         public static IList<GeometryObject> ToRevitType(this Autodesk.DesignScript.Geometry.Surface srf,
+            TessellatedShapeBuilderTarget target = TessellatedShapeBuilderTarget.Mesh,
+            TessellatedShapeBuilderFallback fallback = TessellatedShapeBuilderFallback.Salvage,
             bool performHostUnitConversion = true)
         {
             var rp = new DefaultRenderPackage();
@@ -38,31 +40,31 @@ namespace Revit.GeometryConversion
 
             for (int i = 0; i < v.Count; i += 9)
             {
-                var a = new XYZ(v[i],       v[i + 1],   v[ i + 2]);
-                var b = new XYZ(v[i + 3],   v[i + 4],   v[i + 5]);
-                var c = new XYZ(v[i + 6],   v[i + 7],   v[i + 8]);
+                var a = new XYZ(v[i], v[i + 1], v[i + 2]);
+                var b = new XYZ(v[i + 3], v[i + 4], v[i + 5]);
+                var c = new XYZ(v[i + 6], v[i + 7], v[i + 8]);
 
-                var face = new TessellatedFace(new List<XYZ>(){a,b,c}, MaterialsManager.Instance.DynamoMaterialId);
+                var face = new TessellatedFace(new List<XYZ>() { a, b, c }, MaterialsManager.Instance.DynamoMaterialId);
                 tsb.AddFace(face);
             }
 
             tsb.CloseConnectedFaceSet();
-            tsb.Target = TessellatedShapeBuilderTarget.Mesh;
-            tsb.Fallback = TessellatedShapeBuilderFallback.Salvage;
-            tsb.GraphicsStyleId = ElementId.InvalidElementId;
-            tsb.Build();
-            var result = tsb.GetBuildResult();
+
+            var result = tsb.Build(target, fallback, ElementId.InvalidElementId).GetBuildResult();
             return result.GetGeometricalObjects();
         }
 
         public static IList<GeometryObject> ToRevitType(
-            this Autodesk.DesignScript.Geometry.Solid solid, bool performHostUnitConversion = true)
+            this Autodesk.DesignScript.Geometry.Solid solid,
+             TessellatedShapeBuilderTarget target = TessellatedShapeBuilderTarget.Mesh,
+            TessellatedShapeBuilderFallback fallback = TessellatedShapeBuilderFallback.Salvage,
+            bool performHostUnitConversion = true)
         {
             var rp = new DefaultRenderPackage();
             if (performHostUnitConversion)
             {
                 var newSolid = solid.InHostUnits();
-                newSolid.Tessellate(rp,new TessellationParameters());
+                newSolid.Tessellate(rp, new TessellationParameters());
                 newSolid.Dispose();
             }
             else
@@ -86,11 +88,61 @@ namespace Revit.GeometryConversion
             }
 
             tsb.CloseConnectedFaceSet();
-            tsb.Target = TessellatedShapeBuilderTarget.Mesh;
-            tsb.Fallback = TessellatedShapeBuilderFallback.Salvage;
-            tsb.GraphicsStyleId = ElementId.InvalidElementId;
-            tsb.Build();
-            var result = tsb.GetBuildResult();
+            var result = tsb.Build(target, fallback, ElementId.InvalidElementId).GetBuildResult();
+            return result.GetGeometricalObjects();
+        }
+
+        public static IList<GeometryObject> ToRevitType(
+            this Autodesk.DesignScript.Geometry.Mesh mesh,
+             TessellatedShapeBuilderTarget target = TessellatedShapeBuilderTarget.Mesh,
+            TessellatedShapeBuilderFallback fallback = TessellatedShapeBuilderFallback.Salvage,
+            bool performHostUnitConversion = true)
+        {
+            var verts = mesh.VertexPositions;
+            var indicies = mesh.FaceIndices;
+
+            if (performHostUnitConversion)
+            {
+                var newverts = verts.Select(x => x.InHostUnits()).ToArray();
+                foreach (IDisposable point in verts)
+                {
+                    point.Dispose();
+                }
+                verts = newverts;
+                Array.Clear(newverts, 0, newverts.Length);
+            }
+
+            var currentVerts = new List<Autodesk.DesignScript.Geometry.Point>();
+            var tsb = new TessellatedShapeBuilder();
+            tsb.OpenConnectedFaceSet(false);
+
+            foreach (var f in indicies)
+            {
+
+                currentVerts.Clear();
+                var currentIndicies = new List<uint>() { f.A, f.B, f.C, f.D };
+                for (int i = 0; i < f.Count; i++)
+                {
+                    var currentindex = Convert.ToInt32(currentIndicies[i]);
+
+                    currentVerts.Add(verts[currentindex]);
+                }
+
+                //convert all the points to Revit XYZ vectors
+                var xyzs = currentVerts.Select(x => x.ToXyz()).ToList();
+
+                var face = new TessellatedFace(xyzs, MaterialsManager.Instance.DynamoMaterialId);
+                tsb.AddFace(face);
+            }
+
+            tsb.CloseConnectedFaceSet();
+            var result = tsb.Build(target, fallback, new ElementId(BuiltInCategory.OST_GenericModel)).GetBuildResult();
+
+            foreach (IDisposable vert in verts)
+            {
+                vert.Dispose();
+            }
+
             return result.GetGeometricalObjects();
         }
     }
