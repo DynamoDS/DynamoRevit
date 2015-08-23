@@ -88,7 +88,12 @@ namespace Revit.Elements
             //There was a oldDirectShape, rebind to that
             if (oldShape != null)
             {
-                InteralSetDirectShape(oldShape);
+                this.InteralSetDirectShape(oldShape);
+                //TODO(Mike) we should modify this constructor to take protogeometry types, then inside the initialization method check if it's the same geo before
+                //retessellating... this could save tremendous performance....
+                //this.InteralSetShape(geos);
+                this.InteralSetName(shapeName);
+                //InteralSetCategory(categoryID);
                 return;
             }
 
@@ -99,7 +104,7 @@ namespace Revit.Elements
 
             if (Document.IsFamilyDocument)
             {
-                //TODO (MIKE) is this possible?
+                
                 ds = NewDirectShape(geos,
                     Document, categoryID,
                     Guid.NewGuid().ToString(), shapeName);
@@ -117,6 +122,7 @@ namespace Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
 
             ElementBinder.SetElementForTrace(InternalElement);
+            
         }
 
         #endregion
@@ -134,7 +140,43 @@ namespace Revit.Elements
             this.InternalUniqueId = shape.UniqueId;
         }
 
-      
+        /// <summary>
+        /// Sets the internalDirectShape to point to some geometry
+        /// </summary>
+        /// <param name="shape"></param>
+        private void InteralSetShape(IList<Autodesk.Revit.DB.GeometryObject> shape)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+            this.InternalDirectShape.SetShape(shape);
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        /// <summary>
+        /// Sets the internalDirectShape to have a new name
+        /// </summary>
+        /// <param name="name"></param>
+        private void InteralSetName(string name)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+            if (name != this.InternalDirectShape.Name)
+            {
+                this.InternalDirectShape.SetName(name);
+            }
+            
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        /// <summary>
+        /// Sets the internalDirectShape to a new category
+        /// </summary>
+        /// <param name="category"></param>
+        private void InteralSetCategory(ElementId category)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+            this.InternalDirectShape.ChangeTypeId(category);
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+
         private static IList<Autodesk.Revit.DB.GeometryObject> Tessellate(Surface surf, int graphicsStyle, string name)
         {
              return surf.ToRevitType(TessellatedShapeBuilderTarget.Solid,TessellatedShapeBuilderFallback.Mesh);
@@ -223,7 +265,8 @@ namespace Revit.Elements
             {
                 throw new ArgumentNullException("category");
             }
-
+            //TODO(Mike) we should modify this constructor to take protogeometry types, then inside the initialization method check if it's the same geo before
+            //retessellating... this could save tremendous performance....
             return new DirectShape(surface.ToRevitType(TessellatedShapeBuilderTarget.AnyGeometry, TessellatedShapeBuilderFallback.Mesh), name, new ElementId(cat.Id));
         }
 
@@ -243,7 +286,8 @@ namespace Revit.Elements
             {
                 throw new ArgumentNullException("category");
             }
-
+           //TODO(Mike) we should modify this constructor to take protogeometry types, then inside the initialization method check if it's the same geo before
+            //retessellating... this could save tremendous performance....
             return new DirectShape(solid.ToRevitType(TessellatedShapeBuilderTarget.AnyGeometry, TessellatedShapeBuilderFallback.Mesh), name, new ElementId(cat.Id));
         }
 
@@ -263,7 +307,8 @@ namespace Revit.Elements
             {
                 throw new ArgumentNullException("category");
             }
-            
+            //TODO(Mike) we should modify this constructor to take protogeometry types, then inside the initialization method check if it's the same geo before
+            //retessellating... this could save tremendous performance....
             return new DirectShape(mesh.ToRevitType(TessellatedShapeBuilderTarget.Mesh, TessellatedShapeBuilderFallback.Salvage), name, new ElementId(cat.Id));
         }
 
