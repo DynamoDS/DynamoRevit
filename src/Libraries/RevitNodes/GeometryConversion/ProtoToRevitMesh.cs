@@ -136,7 +136,7 @@ namespace Revit.GeometryConversion
             }
 
             tsb.CloseConnectedFaceSet();
-            var result = tsb.Build(target, fallback, new ElementId(BuiltInCategory.OST_GenericModel)).GetBuildResult();
+            var result = tsb.Build(target, fallback,  ElementId.InvalidElementId).GetBuildResult();
 
             foreach (IDisposable vert in verts)
             {
