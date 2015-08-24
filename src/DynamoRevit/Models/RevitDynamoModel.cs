@@ -186,6 +186,8 @@ namespace Dynamo.Applications.Models
             }
         }
 
+        public NodeModel LastNodeUpdated {get; private set;}
+
         #endregion
 
         #region Constructors
@@ -223,6 +225,8 @@ namespace Dynamo.Applications.Models
             MigrationManager.MigrationTargets.Add(typeof(WorkspaceMigrationsRevit));
 
             SetupPython();
+
+            this.LastNodeUpdated = null;
         }
 
         private bool isFirstEvaluation = true;
@@ -762,13 +766,19 @@ namespace Dynamo.Applications.Models
 
             if (!updatedIds.Any())
                 return;
-
+        
             var nodes = ElementBinder.GetNodesFromElementIds(
                 updatedIds,
                 CurrentWorkspace,
                 EngineController);
-            foreach (var node in nodes)
+            foreach (var node in nodes )
             {
+            
+                if (this.LastNodeUpdated != null && this.LastNodeUpdated == node){
+                    this.LastNodeUpdated = null;
+                    continue;
+                }
+                LastNodeUpdated = node;
                 node.OnNodeModified(true);
             }
         }
