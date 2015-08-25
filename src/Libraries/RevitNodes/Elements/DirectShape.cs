@@ -55,14 +55,15 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Internal Constructor for an existing DirectShape.
+        ///  Internal Constructor for a new DirectShape
         /// </summary>
+        /// <param name="shapeReference"></param>
         /// <param name="tessellatedShape"></param>
         /// <param name="shapename"></param>
         /// <param name="cat"></param>
-        protected DirectShape(IList<Autodesk.Revit.DB.GeometryObject> tessellatedShape, string shapename, ElementId cat)
+        protected DirectShape(DesignScriptEntity shapeReference ,IList<Autodesk.Revit.DB.GeometryObject> tessellatedShape, string shapename, ElementId cat)
         {
-            SafeInit(() => InitDirectShape(tessellatedShape, shapename, cat));
+            SafeInit(() => InitDirectShape(shapeReference,tessellatedShape, shapename, cat));
         }
 
 
@@ -78,11 +79,12 @@ namespace Revit.Elements
         /// <summary>
         /// Initialize a DirectShape element
         /// </summary>
-        private void InitDirectShape(
+        private void InitDirectShape(DesignScriptEntity shapeReference,
             IList<Autodesk.Revit.DB.GeometryObject> tessellatedShape,
             string shapeName,
             ElementId categoryID)
         {
+
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldShape =
                 ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.DirectShape>(Document);
@@ -90,25 +92,35 @@ namespace Revit.Elements
             //There was a oldDirectShape, rebind to that
             if (oldShape != null)
             {
+                //set the directshape element
                 this.InteralSetDirectShape(oldShape);
-                //TODO(Mike) we should modify this constructor to take protogeometry types, then inside the initialization method check if it's the same geo before
-                //retessellating... this could save tremendous performance....
-                this.InteralSetShape(tessellatedShape);
-                this.InteralSetName(shapeName);
-                this.InteralSetCategory(categoryID);
-                return;
-            }
 
+                //if the cateogryID has changed, we cannot continue to rebind and instead
+                //will make a new directShape
+                if (categoryID == this.InternalElement.Category.Id)
+                {
+                    //set the shape geometry of the directshape, this method passes in the actual input geo
+                    //and checks if the elementID exists in the Tags dictionary on that geo - 
+                    //this check is used to determine if the geometry should be updated 
+                    this.InteralSetShape(shapeReference, tessellatedShape);
+                    this.InteralSetName(shapeName);
+                    return;
+                }
+
+            }
+           
             //Phase 2- There was no existing shape, create one
             TransactionManager.Instance.EnsureInTransaction(Document);
 
             Autodesk.Revit.DB.DirectShape ds;
-
+            //actually construct the directshape revit element
             ds = NewDirectShape(tessellatedShape,
                 Document, categoryID,
                 Guid.NewGuid().ToString(), shapeName);
 
             InteralSetDirectShape(ds);
+            //add the elementID to the tags dictionary on the real protogeometry input
+            shapeReference.Tags.AddTag(this.InternalElementId.ToString(), true);
             TransactionManager.Instance.TransactionTaskDone();
 
             ElementBinder.SetElementForTrace(InternalElement);
@@ -119,6 +131,28 @@ namespace Revit.Elements
 
         #region Helpers for private constructors
 
+        /// <summary>
+        /// Create a new DirectShape element from given list of Revit GeometryObjects, document, category ID data
+        /// </summary>
+        private static Autodesk.Revit.DB.DirectShape NewDirectShape(
+         IList<Autodesk.Revit.DB.GeometryObject> geos,
+          Document doc,
+            ElementId categoryId,
+          string appGuid,
+          string shapeName)
+        {
+            var ds = Autodesk.Revit.DB.DirectShape.CreateElement(
+              doc, categoryId, appGuid, shapeName);
+            
+            ds.SetShape(geos);
+            ds.Name = shapeName;
+
+            return ds;
+        }
+
+        #endregion
+
+        #region Private mutators
         /// <summary>
         /// SetInternalElement to a DirectShape element
         /// </summary>
@@ -133,12 +167,18 @@ namespace Revit.Elements
         /// <summary>
         /// Sets the internalDirectShape to point to some geometry
         /// </summary>
-        /// <param name="shape"></param>
-        private void InteralSetShape(IList<Autodesk.Revit.DB.GeometryObject> tessellatedShape)
+        /// <param name="shapeReference"></param>
+        /// <param name="tessellatedShape"></param>
+        private void InteralSetShape(DesignScriptEntity shapeReference, IList<Autodesk.Revit.DB.GeometryObject> tessellatedShape)
         {
+            if (shapeReference.Tags.LookupTag(this.InternalElementId.ToString()) != null)
+            {
+                return;
+            }
+
             TransactionManager.Instance.EnsureInTransaction(Document);
             this.InternalDirectShape.SetShape(tessellatedShape);
-            
+            shapeReference.Tags.AddTag(this.InternalElementId.ToString(), true);
             TransactionManager.Instance.TransactionTaskDone();
         }
 
@@ -156,62 +196,24 @@ namespace Revit.Elements
 
             TransactionManager.Instance.TransactionTaskDone();
         }
-
-        /// <summary>
-        /// Sets the internalDirectShape to a new category
-        /// </summary>
-        /// <param name="category"></param>
-        private void InteralSetCategory(ElementId category)
-        {
-            TransactionManager.Instance.EnsureInTransaction(Document);
-            this.InternalDirectShape.ChangeTypeId(category);
-            TransactionManager.Instance.TransactionTaskDone();
+        private void SetMaterials(IList<GeometryObject> geos , Material material)
+        {   
+            foreach (GeometryObject o in geos)
+            {
+                if (o is Autodesk.Revit.DB.Solid)
+                {
+                    Autodesk.Revit.DB.Solid solid = o as Autodesk.Revit.DB.Solid;
+                    foreach (Autodesk.Revit.DB.Face face in solid.Faces)
+                    {
+                       Document.Paint(this.InternalDirectShape.Id,face ,new ElementId(material.Id));
+                         
+                    }
+                }
+            }
         }
-
-        private static IList<Autodesk.Revit.DB.GeometryObject> Tessellate(Surface surf, int graphicsStyle, string name)
-        {
-            return surf.ToRevitType(TessellatedShapeBuilderTarget.Solid, TessellatedShapeBuilderFallback.Mesh);
-        }
-
-        private static IList<Autodesk.Revit.DB.GeometryObject> Tessellate(Autodesk.DesignScript.Geometry.Solid solid, int graphicsStyle, string name)
-        {
-            return solid.ToRevitType(TessellatedShapeBuilderTarget.Solid, TessellatedShapeBuilderFallback.Mesh);
-        }
-
-        //This method forked from: //https://github.com/jeremytammik/DirectObjLoader
-        /// <summary>
-        /// Create a new DirectShape element from given list of XYZ's and indicies
-        /// </summary>
-        private static Autodesk.Revit.DB.DirectShape NewDirectShape(
-         IList<Autodesk.Revit.DB.GeometryObject> geos,
-          Document doc,
-            ElementId categoryId,
-          string appGuid,
-          string shapeName)
-        {
-
-            var ds = Autodesk.Revit.DB.DirectShape.CreateElement(
-              doc, categoryId, appGuid, shapeName);
-
-            ds.SetShape(geos);
-            ds.Name = shapeName;
-
-            return ds;
-        }
-
-
-
-
-
-        #endregion
-
-        #region Private mutators
-
         #endregion
 
         #region Public properties
-
-
 
         /// <summary>
         /// Gets the location of the specific DirectShape 
@@ -233,34 +235,46 @@ namespace Revit.Elements
         #region Public static constructors
 
         /// <summary>
-        /// Create a Revit DirectShape given some geometry, and name for the shape, and a category.
+        /// Create a Revit DirectShape given some geometry, a name for the shape, and a category.
         /// The geometry will be tessellated before being placed in the Revit model
+        /// The category of a DirectShape cannot be changed after placing a DirectShape, so
+        /// a new DirectShape will be generated if the category input is changed
         /// </summary>
-        /// <param name="surface"></param>
-        /// <param name="name"></param>
-        /// <param name="cat"></param>
-        /// <returns></returns>
-        public static DirectShape BySurfaceNameCategory(Surface surface, string name, Category cat)
+        /// <param name="surface">a surface that will be tessellated and placed in the Revit model as a DirectShape</param>
+        /// <param name="name">a string name for the directshape</param>
+        /// <param name="category">must be a top level built-in category</param>
+        /// <returns>a DirectShape Element</returns>
+        public static DirectShape BySurfaceNameCategory(Surface surface, string name, Category category)
         {
             if (surface == null)
             {
                 throw new ArgumentNullException("geometry");
             }
-
+            
             if (name == null)
             {
                 throw new ArgumentNullException("name");
             }
 
-            if (cat == null)
+            if (category == null)
             {
                 throw new ArgumentNullException("category");
             }
             
-            return new DirectShape(surface.ToRevitType(TessellatedShapeBuilderTarget.AnyGeometry, TessellatedShapeBuilderFallback.Mesh), name, new ElementId(cat.Id));
+            return new DirectShape(surface,surface.ToRevitType(TessellatedShapeBuilderTarget.AnyGeometry, TessellatedShapeBuilderFallback.Mesh), name, new ElementId(category.Id));
         }
 
-        public static DirectShape BySolidNameCategory(Autodesk.DesignScript.Geometry.Solid solid, string name, Category cat)
+        // <summary>
+        /// Create a Revit DirectShape given some geometry, a name for the shape, and a category.
+        /// The geometry will be tessellated before being placed in the Revit model
+        /// The category of a DirectShape cannot be changed after placing a DirectShape, so
+        /// a new DirectShape will be generated if the category input is changed
+        /// </summary>
+        /// <param name="solid">a solid that will be tessellated and placed in the Revit model as a DirectShape</param>
+        /// <param name="name">a string name for the directshape</param>
+        /// <param name="category">must be a top level built-in category</param>
+        /// <returns>a DirectShape Element</returns>
+        public static DirectShape BySolidNameCategory(Autodesk.DesignScript.Geometry.Solid solid, string name, Category category,Material material)
         {
             if (solid == null)
             {
@@ -272,15 +286,24 @@ namespace Revit.Elements
                 throw new ArgumentNullException("name");
             }
 
-            if (cat == null)
+            if (category == null)
             {
                 throw new ArgumentNullException("category");
             }
-          
-            return new DirectShape(solid.ToRevitType(TessellatedShapeBuilderTarget.AnyGeometry, TessellatedShapeBuilderFallback.Mesh), name, new ElementId(cat.Id));
+            return new DirectShape(solid, solid.ToRevitType(TessellatedShapeBuilderTarget.AnyGeometry, TessellatedShapeBuilderFallback.Mesh,new ElementId(material.Id)), name, new ElementId(category.Id));
         }
 
-        public static DirectShape ByMeshNameCategory(Autodesk.DesignScript.Geometry.Mesh mesh, string name, Category cat)
+        // <summary>
+        /// Create a Revit DirectShape given some geometry, a name for the shape, and a category.
+        /// The geometry will be tessellated before being placed in the Revit model
+        /// The category of a DirectShape cannot be changed after placing a DirectShape, so
+        /// a new DirectShape will be generated if the category input is changed
+        /// </summary>
+        /// <param name="mesh">a mesh that will be placed in the Revit model as a DirectShape</param>
+        /// <param name="name">a string name for the directshape</param>
+        /// <param name="category">must be a top level built-in category</param>
+        /// <returns>a DirectShape Element</returns>
+        public static DirectShape ByMeshNameCategory(Autodesk.DesignScript.Geometry.Mesh mesh, string name, Category category)
         {
             if (mesh == null)
             {
@@ -292,12 +315,12 @@ namespace Revit.Elements
                 throw new ArgumentNullException("name");
             }
 
-            if (cat == null)
+            if (category == null)
             {
                 throw new ArgumentNullException("category");
             }
            
-            return new DirectShape(mesh.ToRevitType(TessellatedShapeBuilderTarget.Mesh, TessellatedShapeBuilderFallback.Salvage), name, new ElementId(cat.Id));
+            return new DirectShape(mesh,mesh.ToRevitType(TessellatedShapeBuilderTarget.Mesh, TessellatedShapeBuilderFallback.Salvage), name, new ElementId(category.Id));
         }
 
         #endregion
