@@ -310,8 +310,15 @@ namespace Revit.Elements
         {
             object result;
 
-            var param = InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>().FirstOrDefault(x => x.Definition.Name == parameterName);
-
+            var param =
+                // We don't use Element.GetOrderedParameters(), it only returns ordered parameters
+                // as show in the UI
+                InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
+                    // Element.Parameters returns a differently ordered list on every invocation.
+                    // We must sort it to get sensible results.
+                    .OrderBy(x => x.Id.IntegerValue) 
+                    .FirstOrDefault(x => x.Definition.Name == parameterName);         
+            
             if (param == null || !param.HasValue)
                 return string.Empty;
 
