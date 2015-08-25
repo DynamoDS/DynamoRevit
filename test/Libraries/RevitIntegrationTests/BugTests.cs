@@ -837,6 +837,33 @@ namespace RevitSystemTests
 
         [Test]
         [Category("RegressionTests")]
+        [TestModel(@".\Bugs\MAGN_7977.rfa")]
+        public void SelectedFaceIsTransformedCorrectly_MAGN_7977()
+        {
+            var model = ViewModel.Model;
+            string samplePath = Path.Combine(workingDirectory,
+                                                @".\Bugs\MAGN_7977.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(5, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(4, model.CurrentWorkspace.Connectors.Count());
+
+            AssertNoDummyNodes();
+
+            // evaluate  graph
+            RunCurrentModel();
+
+            // Check that it has returned the Surface from Import Instance node.
+            string nodeID = "4f522c79-76e5-40af-a137-1cd535d3061d";
+            var maxZ = (double)GetPreviewValue(nodeID);
+            maxZ.ShouldBeApproximately(10.0);
+        }
+
+        [Test]
+        [Category("RegressionTests")]
         [TestModel(@".\empty.rfa")]
         public void OpenNewFileNotCleanupOldElements()
         {
