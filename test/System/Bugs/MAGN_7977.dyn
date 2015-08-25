@@ -1,0 +1,28 @@
+<Workspace Version="0.8.3.2360" X="1131.67893624555" Y="391.713116046408" zoom="0.934982576194838" Name="Home" Description="" RunType="Manual" RunPeriod="100" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="NurbsCurve" resolvedName="Autodesk.DesignScript.Geometry.NurbsCurve" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Surface" resolvedName="Autodesk.DesignScript.Geometry.Surface" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.DSFaceSelection guid="65f2be95-eaae-441a-b08a-cde7872e5a53" type="Dynamo.Nodes.DSFaceSelection" nickname="Select Face" x="-1111.08654434522" y="-127.983203342408" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <instance id="4a297a65-eac5-465c-b300-afc52590cb99-00007785:0:INSTANCE:4a297a65-eac5-465c-b300-afc52590cb99-00007781:0:SURFACE" />
+    </Dynamo.Nodes.DSFaceSelection>
+    <Dynamo.Nodes.DSFunction guid="3c1329f4-4ec0-47a4-8c7e-2ca8c76bed63" type="Dynamo.Nodes.DSFunction" nickname="Geometry.BoundingBox" x="-676.716462582186" y="-125.783969205097" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Geometry.BoundingBox" />
+    <Dynamo.Nodes.DSFunction guid="11e32a07-a502-455f-b38c-d58d21e6cb94" type="Dynamo.Nodes.DSFunction" nickname="BoundingBox.MaxPoint" x="-422.480897982274" y="-127.343696595281" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.BoundingBox.MaxPoint" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="4c68ee4e-fc73-45b8-ac5f-de61534829dc" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-834" y="-123" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="a[0];" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="4f522c79-76e5-40af-a137-1cd535d3061d" type="Dynamo.Nodes.DSFunction" nickname="Point.Z" x="-186.962062064564" y="-128.903423985465" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Point.Z" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="65f2be95-eaae-441a-b08a-cde7872e5a53" start_index="0" end="4c68ee4e-fc73-45b8-ac5f-de61534829dc" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3c1329f4-4ec0-47a4-8c7e-2ca8c76bed63" start_index="0" end="11e32a07-a502-455f-b38c-d58d21e6cb94" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="11e32a07-a502-455f-b38c-d58d21e6cb94" start_index="0" end="4f522c79-76e5-40af-a137-1cd535d3061d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4c68ee4e-fc73-45b8-ac5f-de61534829dc" start_index="0" end="3c1329f4-4ec0-47a4-8c7e-2ca8c76bed63" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
