@@ -774,11 +774,11 @@ namespace Dynamo.Applications.Models
             foreach (var node in nodes )
             {
             
-                if (this.LastNodeUpdated != null && this.LastNodeUpdated == node){
-                    this.LastNodeUpdated = null;
-                    continue;
-                }
-                LastNodeUpdated = node;
+                //if (this.LastNodeUpdated != null && this.LastNodeUpdated == node){
+               //     this.LastNodeUpdated = null;
+                //    continue;
+              //  }
+               // LastNodeUpdated = node;
                 node.OnNodeModified(true);
             }
         }
