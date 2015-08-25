@@ -16,9 +16,11 @@ namespace Revit.GeometryConversion
     [SupressImportIntoVM]
     public static class ProtoToRevitMesh
     {
+
         public static IList<GeometryObject> ToRevitType(this Autodesk.DesignScript.Geometry.Surface srf,
             TessellatedShapeBuilderTarget target = TessellatedShapeBuilderTarget.Mesh,
             TessellatedShapeBuilderFallback fallback = TessellatedShapeBuilderFallback.Salvage,
+            ElementId MaterialId = null,
             bool performHostUnitConversion = true)
         {
             var rp = new DefaultRenderPackage();
@@ -44,7 +46,7 @@ namespace Revit.GeometryConversion
                 var b = new XYZ(v[i + 3], v[i + 4], v[i + 5]);
                 var c = new XYZ(v[i + 6], v[i + 7], v[i + 8]);
 
-                var face = new TessellatedFace(new List<XYZ>() { a, b, c }, MaterialsManager.Instance.DynamoMaterialId);
+                var face = new TessellatedFace(new List<XYZ>() { a, b, c },  MaterialId != null ? MaterialId : MaterialsManager.Instance.DynamoMaterialId);
                 tsb.AddFace(face);
             }
 
@@ -58,6 +60,7 @@ namespace Revit.GeometryConversion
             this Autodesk.DesignScript.Geometry.Solid solid,
              TessellatedShapeBuilderTarget target = TessellatedShapeBuilderTarget.Mesh,
             TessellatedShapeBuilderFallback fallback = TessellatedShapeBuilderFallback.Salvage,
+             ElementId MaterialId = null,
             bool performHostUnitConversion = true)
         {
             var rp = new DefaultRenderPackage();
@@ -83,7 +86,7 @@ namespace Revit.GeometryConversion
                 var b = new XYZ(v[i + 3], v[i + 4], v[i + 5]);
                 var c = new XYZ(v[i + 6], v[i + 7], v[i + 8]);
 
-                var face = new TessellatedFace(new List<XYZ>() { a, b, c }, MaterialsManager.Instance.DynamoMaterialId);
+                var face = new TessellatedFace(new List<XYZ>() { a, b, c }, MaterialId != null ? MaterialId : MaterialsManager.Instance.DynamoMaterialId);
                 tsb.AddFace(face);
             }
 
@@ -96,8 +99,10 @@ namespace Revit.GeometryConversion
             this Autodesk.DesignScript.Geometry.Mesh mesh,
              TessellatedShapeBuilderTarget target = TessellatedShapeBuilderTarget.Mesh,
             TessellatedShapeBuilderFallback fallback = TessellatedShapeBuilderFallback.Salvage,
+             ElementId MaterialId = null,
             bool performHostUnitConversion = true)
         {
+         
             var verts = mesh.VertexPositions;
             var indicies = mesh.FaceIndices;
 
@@ -131,7 +136,7 @@ namespace Revit.GeometryConversion
                 //convert all the points to Revit XYZ vectors
                 var xyzs = currentVerts.Select(x => x.ToXyz()).ToList();
 
-                var face = new TessellatedFace(xyzs, MaterialsManager.Instance.DynamoMaterialId);
+                var face = new TessellatedFace(xyzs, MaterialId != null ? MaterialId :MaterialsManager.Instance.DynamoMaterialId );
                 tsb.AddFace(face);
             }
 
