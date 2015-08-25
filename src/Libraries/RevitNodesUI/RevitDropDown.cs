@@ -4,18 +4,16 @@ using System.Globalization;
 using System.Linq;
 using System.Xml;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Events;
 using DSCore;
 using DSCoreNodesUI;
-
 using Dynamo.Applications;
 using Dynamo.DSEngine;
 using Dynamo.Models;
 using Dynamo.Utilities;
-
 using ProtoCore.AST.AssociativeAST;
-
 using Revit.Elements;
-
+using RevitServices.EventHandler;
 using RevitServices.Persistence;
 
 using Category = Revit.Elements.Category;
@@ -30,9 +28,10 @@ namespace DSRevitNodesUI
 {
     public abstract class RevitDropDownBase : DSDropDownBase
     {
+
         protected RevitDropDownBase(string value) : base(value)
         {
-           DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
         void Controller_RevitDocumentChanged(object sender, EventArgs e)
@@ -47,7 +46,7 @@ namespace DSRevitNodesUI
 
         public override void Dispose()
         {
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -= Controller_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= Controller_RevitDocumentChanged;
             base.Dispose();
         }
     }
@@ -103,8 +102,8 @@ namespace DSRevitNodesUI
             };
 
             var functionCall = AstFactory.BuildFunctionCall
-                <System.String, System.String, Revit.Elements.FamilySymbol>
-                (Revit.Elements.FamilySymbol.ByFamilyNameAndTypeName, args);
+                <System.String, System.String, Revit.Elements.FamilyType>
+                (Revit.Elements.FamilyType.ByFamilyNameAndTypeName, args);
 
             return new[] {AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
         }
@@ -301,7 +300,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FloorTypes : RevitDropDownBase
     {
-        private const string noFloorTypes = "No floor types available.";
+        
 
         public FloorTypes() : base("Floor Type") { }
 
@@ -314,7 +313,7 @@ namespace DSRevitNodesUI
 
             if (fec.ToElements().Count == 0)
             {
-                Items.Add(new DynamoDropDownItem(noFloorTypes, null));
+                Items.Add(new DynamoDropDownItem(Properties.Resources.NoFloorTypesAvailable, null));
                 SelectedIndex = 0;
                 return;
             }
@@ -330,7 +329,7 @@ namespace DSRevitNodesUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             if (Items.Count == 0 || 
-                Items[0].Name == noFloorTypes ||
+                Items[0].Name == Properties.Resources.NoFloorTypesAvailable ||
                 SelectedIndex == -1)
             {
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
@@ -410,7 +409,7 @@ namespace DSRevitNodesUI
     {
         public Categories()
         {
-            OutPortData[0].NickName = Properties.Resources.PortDataCategoriesName;
+            OutPortData[0].NickName = "Category";
             OutPortData[0].ToolTipString = Properties.Resources.PortDataCategoriesToolTip;
             OutPorts[0].SetPortData(OutPortData[0]);
         }
@@ -555,7 +554,7 @@ namespace DSRevitNodesUI
     public class StructuralFramingTypes : AllElementsInBuiltInCategory
     {
         public StructuralFramingTypes()
-            : base(BuiltInCategory.OST_StructuralFraming, "Framing Types", "No structural framing types available."){}
+            : base(BuiltInCategory.OST_StructuralFraming, "Framing Types", Properties.Resources.DropDownNoFramingType){}
     }
 
     [NodeName("Structural Column Types")]
@@ -565,7 +564,7 @@ namespace DSRevitNodesUI
     public class StructuralColumnTypes : AllElementsInBuiltInCategory
     {
         public StructuralColumnTypes()
-            : base(BuiltInCategory.OST_StructuralColumns, "Column Types", "No structural column types available."){}
+            : base(BuiltInCategory.OST_StructuralColumns, "Column Types", Properties.Resources.DropDownNoColumnType){}
     }
 
     [NodeName("Spacing Rule Layout")]

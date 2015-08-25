@@ -16,6 +16,7 @@ using RevitServices.Transactions;
 using Color = DSCore.Color;
 using Area = DynamoUnits.Area;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
+using RevitServices.Elements;
 
 namespace Revit.Elements
 {
@@ -193,8 +194,9 @@ namespace Revit.Elements
         public virtual void Dispose()
         {
 
-            // Do not cleanup Revit elements if we are shutting down Dynamo.
-            if (DisposeLogic.IsShuttingDown)
+            // Do not cleanup Revit elements if we are shutting down Dynamo or
+            // closing homeworkspace.
+            if (DisposeLogic.IsShuttingDown || DisposeLogic.IsClosingHomeworkspace)
                 return;
 
             bool didRevitDelete = ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(Id);
@@ -263,7 +265,7 @@ namespace Revit.Elements
         }
 
         [IsVisibleInDynamoLibrary(false)]
-        public void Tessellate(IRenderPackage package, double tol, int gridLines)
+        public void Tessellate(IRenderPackage package, TessellationParameters parameters)
         {
             // Do nothing. We implement this method only to prevent the GraphicDataProvider from
             // attempting to interrogate the public properties, some of which may require regeneration
@@ -297,7 +299,7 @@ namespace Revit.Elements
                 case ParameterType.MassDensity:
                     return UnitType.UT_MassDensity;
                 default:
-                    throw new Exception("ParameterType cannot be converted to UnitType");
+                    throw new Exception(Properties.Resources.UnitTypeConversionError);
             }
         }
 
@@ -349,7 +351,7 @@ namespace Revit.Elements
                         result = param.AsDouble();
                     break;
                 default:
-                    throw new Exception(string.Format("Parameter {0} has no storage type.", param));
+                    throw new Exception(string.Format(Properties.Resources.ParameterWithoutStorageType, param));
             }
 
             return result;
@@ -388,7 +390,7 @@ namespace Revit.Elements
             var param = InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>().FirstOrDefault(x => x.Definition.Name == parameterName);
 
             if (param == null)
-                throw new Exception("No parameter found by that name.");
+                throw new Exception(Properties.Resources.ParameterNotFound);
 
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
 
@@ -405,7 +407,7 @@ namespace Revit.Elements
         private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, double value)
         {
             if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
-                throw new Exception("The parameter's storage type is not a number.");
+                throw new Exception(Properties.Resources.ParameterStorageNotNumber);
 
             var valueToSet = GetConvertedParameterValue(param, value);
             
@@ -415,7 +417,7 @@ namespace Revit.Elements
         private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, Element value)
         {
             if (param.StorageType != StorageType.ElementId)
-                throw new Exception("The parameter's storage type is not an Element.");
+                throw new Exception(Properties.Resources.ParameterStorageNotElement);
 
             param.Set(value.InternalElementId);
         }
@@ -423,7 +425,7 @@ namespace Revit.Elements
         private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, int value)
         {
             if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
-                throw new Exception("The parameter's storage type is not a number.");
+                throw new Exception(Properties.Resources.ParameterStorageNotNumber);
 
             var valueToSet = GetConvertedParameterValue(param, value);
 
@@ -433,7 +435,7 @@ namespace Revit.Elements
         private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, string value)
         {
             if (param.StorageType != StorageType.String)
-                throw new Exception("The parameter's storage type is not a string.");
+                throw new Exception(Properties.Resources.ParameterStorageNotString);
 
             param.Set(value);
         }
@@ -441,7 +443,7 @@ namespace Revit.Elements
         private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, bool value)
         {
             if (param.StorageType != StorageType.Integer)
-                throw new Exception("The parameter's storage type is not an integer.");
+                throw new Exception(Properties.Resources.ParameterStorageNotInteger);
 
             param.Set(value == false ? 0 : 1);
         }
@@ -469,17 +471,19 @@ namespace Revit.Elements
 
             foreach (var geometryObject in InternalGeometry())
             {
-                try
+                var geoObj = geometryObject.Convert();
+                if (geoObj != null)
                 {
-                    var convert = geometryObject.Convert();
-                    if (convert != null)
-                    {
-                        converted.Add(convert);
-                    }
+                    converted.Add(geoObj);
                 }
-                catch (Exception)
+                else
                 {
-                    // we catch all geometry conversion exceptions
+                    var solid = geometryObject as Autodesk.Revit.DB.Solid;
+                    if (solid != null)
+                    {
+                        var geomObjs = solid.ConvertToMany();
+                        converted.AddRange(geomObjs.Where(x => { return x != null; }));
+                    }
                 }
             }
 

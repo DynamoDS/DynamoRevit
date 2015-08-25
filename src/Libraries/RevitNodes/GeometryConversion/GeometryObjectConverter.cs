@@ -28,13 +28,60 @@ namespace Revit.GeometryConversion
             if (geom == null) return null;
 
             dynamic dynGeom = geom;
+            dynamic protoGeom = null;
             try
             {
-                return Tag(Transform(InternalConvert(dynGeom), transform), reference);
+                protoGeom = InternalConvert(dynGeom);
+                return Tag(Transform(protoGeom, transform), reference);
             }
-            catch (RuntimeBinderException)
+            catch (Exception)
             {
-                return null; 
+                return null;
+            }
+            finally
+            {
+                // Dispose the temporary geometry that has been transformed.
+                if (protoGeom != null && transform != null)
+                {
+                    if (protoGeom is Autodesk.DesignScript.Geometry.Geometry)
+                    {
+                        protoGeom.Dispose();
+                    }
+                    else if (protoGeom is IEnumerable<Autodesk.DesignScript.Geometry.Geometry>)
+                    {
+                        var geoms = protoGeom as IEnumerable<Autodesk.DesignScript.Geometry.Geometry>;
+                        foreach (var g in geoms)
+                        {
+                            if (g != null)
+                            {
+                                g.Dispose();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the edges and faces from the solid and convert them
+        /// </summary>
+        /// <param name="solid"></param>
+        /// <param name="reference"></param>
+        /// <param name="transform"></param>
+        /// <returns></returns>
+        public static IEnumerable<object> ConvertToMany(this Autodesk.Revit.DB.Solid solid, Autodesk.Revit.DB.Reference reference = null,
+            Autodesk.DesignScript.Geometry.CoordinateSystem transform = null)
+        {
+            if (solid == null) return null;
+
+            try
+            {
+                var convertedGeoms = InternalConvertToMany(solid);
+                return convertedGeoms.Select(x => { return Tag(Transform(x, transform), reference); });
+            }
+            catch (Exception)
+            {
+                return null;
             }
 
         }
@@ -44,7 +91,7 @@ namespace Revit.GeometryConversion
         private static IEnumerable<Autodesk.DesignScript.Geometry.Geometry> Transform(IEnumerable<Autodesk.DesignScript.Geometry.Geometry> geom, CoordinateSystem coordinateSystem)
         {
             if (coordinateSystem == null) return geom;
-            return geom.Select(x => Transform(x, coordinateSystem));
+            return geom.Select(x => Transform(x, coordinateSystem)).ToList();
         }
 
         private static Autodesk.DesignScript.Geometry.Geometry Transform(Autodesk.DesignScript.Geometry.Geometry geom, CoordinateSystem coordinateSystem)
@@ -109,6 +156,22 @@ namespace Revit.GeometryConversion
         private static Autodesk.DesignScript.Geometry.Solid InternalConvert(Autodesk.Revit.DB.Solid geom)
         {
             return geom.ToProtoType();
+        }
+
+        private static IEnumerable<Autodesk.DesignScript.Geometry.Geometry> InternalConvertToMany(Autodesk.Revit.DB.Solid geom)
+        {
+            List<Autodesk.DesignScript.Geometry.Geometry> result = new List<Autodesk.DesignScript.Geometry.Geometry>();
+            var faces = geom.Faces;
+            foreach (Autodesk.Revit.DB.Face face in faces)
+            {
+                result.AddRange(face.ToProtoType());
+            }
+            var edges = geom.Edges;
+            foreach (Autodesk.Revit.DB.Edge edge in edges)
+            {
+                result.Add(edge.AsCurve().ToProtoType());
+            }
+            return result;
         }
 
         private static Autodesk.DesignScript.Geometry.Point InternalConvert(Autodesk.Revit.DB.Point geom)

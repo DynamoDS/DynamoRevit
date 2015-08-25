@@ -41,12 +41,18 @@ namespace Revit.GeometryObjects
                     var transf = familyInstance.GetTransform().ToCoordinateSystem();
                     return geob.Convert(elRef, transf);
                 }
+                var importInstance = ele as ImportInstance;
+                if (importInstance != null && RequiresTransform(importInstance))
+                {
+                    var transf = importInstance.GetTransform().ToCoordinateSystem();
+                    return geob.Convert(elRef, transf);
+                }
 
                 return geob.Convert(elRef);
             }
             catch(Exception ex)
             {
-                throw new Exception("Could not get a geometry object from the current document using the provided reference.");
+                throw new Exception(Properties.Resources.GeometryObjectReferenceFailure);
             }
         }
 
@@ -67,6 +73,18 @@ namespace Revit.GeometryObjects
         private static bool RequiresTransform(Autodesk.Revit.DB.FamilyInstance familyInstance)
         {
             var geom = familyInstance.get_Geometry(new Options());
+            return geom.OfType<Autodesk.Revit.DB.GeometryInstance>()
+                .Any(x => x.GetInstanceGeometry().Any());
+        }
+
+        /// <summary>
+        /// This is a workaround. Revit experts are positive about this.
+        /// </summary>
+        /// <param name="importInstance"></param>
+        /// <returns></returns>
+        private static bool RequiresTransform(Autodesk.Revit.DB.ImportInstance importInstance)
+        {
+            var geom = importInstance.get_Geometry(new Options());
             return geom.OfType<Autodesk.Revit.DB.GeometryInstance>()
                 .Any(x => x.GetInstanceGeometry().Any());
         }

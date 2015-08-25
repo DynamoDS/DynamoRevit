@@ -26,14 +26,14 @@ namespace RevitNodesTests.Elements.Views
 
             var famSymName = "E1 30x42 Horizontal";
             var famName = "E1 30 x 42 Horizontal";
-            var titleBlock = FamilySymbol.ByFamilyAndName(Family.ByName(famName), famSymName);
+            var titleBlock = FamilyType.ByFamilyAndName(Family.ByName(famName), famSymName);
 
-            var famSym = FamilySymbol.ByName("Kousa Dogwood - 10'");
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
             var pt = Point.ByCoordinates(0, 1, 2);
-            var famInst = FamilyInstance.ByPoint(famSym, pt);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
 
             var pt2 = Point.ByCoordinates(100, 100, 0);
-            var famInst2 = FamilyInstance.ByPoint(famSym, pt2);
+            var famInst2 = FamilyInstance.ByPoint(famTyp, pt2);
 
             var view = SectionView.ByBoundingBox(famInst.BoundingBox);
             var view2 = SectionView.ByBoundingBox(famInst2.BoundingBox);
@@ -55,14 +55,14 @@ namespace RevitNodesTests.Elements.Views
 
             var famSymName = "E1 30x42 Horizontal";
             var famName = "E1 30 x 42 Horizontal";
-            var titleBlock = FamilySymbol.ByFamilyAndName(Family.ByName(famName), famSymName);
+            var titleBlock = FamilyType.ByFamilyAndName(Family.ByName(famName), famSymName);
 
-            var famSym = FamilySymbol.ByName("Kousa Dogwood - 10'");
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
             var pt = Point.ByCoordinates(0, 1, 2);
-            var famInst = FamilyInstance.ByPoint(famSym, pt);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
 
             var pt2 = Point.ByCoordinates(100, 100, 0);
-            var famInst2 = FamilyInstance.ByPoint(famSym, pt2);
+            var famInst2 = FamilyInstance.ByPoint(famTyp, pt2);
 
             var view = SectionView.ByBoundingBox(famInst.BoundingBox);
             var view2 = SectionView.ByBoundingBox(famInst2.BoundingBox);
@@ -84,11 +84,11 @@ namespace RevitNodesTests.Elements.Views
 
             var famSymName = "E1 30x42 Horizontal";
             var famName = "E1 30 x 42 Horizontal";
-            var titleBlock = FamilySymbol.ByFamilyAndName(Family.ByName(famName), famSymName);
+            var titleBlock = FamilyType.ByFamilyAndName(Family.ByName(famName), famSymName);
 
-            var famSym = FamilySymbol.ByName("Kousa Dogwood - 10'");
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
             var pt = Point.ByCoordinates(0, 1, 2);
-            var famInst = FamilyInstance.ByPoint(famSym, pt);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
 
             var view = SectionView.ByBoundingBox(famInst.BoundingBox);
 
@@ -108,11 +108,11 @@ namespace RevitNodesTests.Elements.Views
 
             var famSymName = "E1 30x42 Horizontal";
             var famName = "E1 30 x 42 Horizontal";
-            var titleBlock = FamilySymbol.ByFamilyAndName(Family.ByName(famName), famSymName);
+            var titleBlock = FamilyType.ByFamilyAndName(Family.ByName(famName), famSymName);
 
-            var famSym = FamilySymbol.ByName("Kousa Dogwood - 10'");
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
             var pt = Point.ByCoordinates(0, 1, 2);
-            var famInst = FamilyInstance.ByPoint(famSym, pt);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
 
             var view = SectionView.ByBoundingBox(famInst.BoundingBox);
 

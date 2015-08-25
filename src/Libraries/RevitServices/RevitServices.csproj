@@ -78,10 +78,12 @@ limitations under the License.
     <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs">
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
+    <Compile Include="Elements\DisposeLogic.cs" />
     <Compile Include="Elements\ElementUtils.cs" />
     <Compile Include="Elements\ModelUpdater.cs" />
     <Compile Include="Elements\Updaters.cs" />
     <Compile Include="Materials\Materials.cs" />
+    <Compile Include="Events\EventHandlerProxy.cs" />
     <Compile Include="Persistence\DocumentManager.cs" />
     <Compile Include="Persistence\ElementBinder.cs" />
     <Compile Include="Persistence\ElementIDLifecycleManager.cs" />

@@ -7,7 +7,7 @@ using Dynamo.Applications.Properties;
 using Dynamo.Interfaces;
 using Dynamo.ViewModels;
 using Dynamo.Wpf.ViewModels.Core;
-
+using Dynamo.Wpf.ViewModels.Watch3D;
 using RevitServices.Persistence;
 
 namespace Dynamo.Applications.ViewModel
@@ -18,12 +18,20 @@ namespace Dynamo.Applications.ViewModel
             base(startConfiguration)
         {
             var model = (RevitDynamoModel)Model;
+
             model.RevitDocumentChanged += model_RevitDocumentChanged;
             model.RevitContextAvailable += model_RevitContextAvailable;
             model.RevitContextUnavailable += model_RevitContextUnavailable;
             model.RevitDocumentLost += model_RevitDocumentLost;
             model.RevitViewChanged += model_RevitViewChanged;
             model.InvalidRevitDocumentActivated += model_InvalidRevitDocumentActivated;
+
+            if (RevitWatch3DViewModel.GetTransientDisplayMethod() != null)
+            {
+                var watch3DParams = new Watch3DViewModelStartupParams(model, this, "Revit Background Preview");
+                watch3DParams.RenderPackageFactory = new DefaultRenderPackageFactory();
+                Watch3DViewModels.Add(RevitWatch3DViewModel.Start(watch3DParams));
+            }
         }
 
         public static DynamoRevitViewModel Start(StartConfiguration startConfiguration)
@@ -38,24 +46,20 @@ namespace Dynamo.Applications.ViewModel
                     throw new Exception("An instance of RevitDynamoViewModel is required to construct a DynamoRevitViewModel.");
             }
 
-            if (startConfiguration.VisualizationManager == null)
-                startConfiguration.VisualizationManager = new VisualizationManager(startConfiguration.DynamoModel);
-
             if (startConfiguration.WatchHandler == null)
-                startConfiguration.WatchHandler = new DefaultWatchHandler(startConfiguration.VisualizationManager,
-                    startConfiguration.DynamoModel.PreferenceSettings);
+                startConfiguration.WatchHandler = new DefaultWatchHandler(startConfiguration.DynamoModel.PreferenceSettings);
 
             return new DynamoRevitViewModel(startConfiguration);
         }
 
-        void model_InvalidRevitDocumentActivated()
+        private void model_InvalidRevitDocumentActivated()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Error;
             hsvm.CurrentNotificationMessage = Resources.DocumentPointingWarning;
         }
 
-        void model_RevitViewChanged(View view)
+        private void model_RevitViewChanged(View view)
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Moderate;
@@ -63,28 +67,28 @@ namespace Dynamo.Applications.ViewModel
                 String.Format(Resources.ActiveViewWarning, view.Name);
         }
 
-        void model_RevitDocumentLost()
+        private void model_RevitDocumentLost()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Error;
             hsvm.CurrentNotificationMessage = Resources.DocumentLostWarning;
         }
 
-        void model_RevitContextUnavailable()
+        private void model_RevitContextUnavailable()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Error;
             hsvm.CurrentNotificationMessage = Resources.RevitInvalidContextWarning;
         }
 
-        void model_RevitContextAvailable()
+        private void model_RevitContextAvailable()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Moderate;
             hsvm.CurrentNotificationMessage = Resources.RevitValidContextMessage;
         }
 
-        void model_RevitDocumentChanged(object sender, EventArgs e)
+        private void model_RevitDocumentChanged(object sender, EventArgs e)
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Moderate;
@@ -96,10 +100,10 @@ namespace Dynamo.Applications.ViewModel
         {
             var docPath = DocumentManager.Instance.CurrentUIDocument.Document.PathName;
             var message = String.IsNullOrEmpty(docPath)
-                ? "a new document."
-                : String.Format("document: {0}", docPath);
+                ? Resources.NewDocument
+                : Resources.Document + ": " + docPath;
             return String.Format(Resources.DocumentPointerMessage, message);
-        }
+        } 
 
         protected override void UnsubscribeAllEvents()
         {

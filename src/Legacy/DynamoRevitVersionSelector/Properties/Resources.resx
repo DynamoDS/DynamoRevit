@@ -133,4 +133,7 @@
   <data name="DynamoVersionTooltip" xml:space="preserve">
     <value>Launches Dynamo {0}, to launch a different version of Dynamo you may need to restart Revit</value>
   </data>
+  <data name="VisualProgramming" xml:space="preserve">
+    <value>Visual Programming</value>
+  </data>
 </root>

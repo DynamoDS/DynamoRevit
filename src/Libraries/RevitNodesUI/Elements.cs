@@ -2,28 +2,26 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
 using Autodesk.Revit.DB.Electrical;
+using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.DB.Structure;
-
+using Autodesk.Revit.UI.Events;
+using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Models;
-
 using ProtoCore.AST.AssociativeAST;
-
 using Revit.Elements;
 using Revit.Elements.InternalUtilities;
-
 using RevitServices.Elements;
+using RevitServices.EventHandler;
 using RevitServices.Persistence;
-
 using Category = Revit.Elements.Category;
 using CurveElement = Autodesk.Revit.DB.CurveElement;
 using DividedSurface = Autodesk.Revit.DB.DividedSurface;
 using Element = Autodesk.Revit.DB.Element;
-using FamilySymbol = Revit.Elements.FamilySymbol;
+using FamilyType = Revit.Elements.FamilyType;
 using Level = Revit.Elements.Level;
 using ModelText = Autodesk.Revit.DB.ModelText;
 using ReferencePlane = Autodesk.Revit.DB.ReferencePlane;
@@ -123,7 +121,7 @@ namespace DSRevitNodesUI
             List<AssociativeNode> inputAstNodes)
         {
             var func =
-                new Func<FamilySymbol, IList<Revit.Elements.Element>>(ElementQueries.OfFamilyType);
+                new Func<FamilyType, IList<Revit.Elements.Element>>(ElementQueries.OfFamilyType);
 
             var functionCall = AstFactory.BuildFunctionCall(func, inputAstNodes);
             return new[]
@@ -215,11 +213,8 @@ namespace DSRevitNodesUI
             OutPortData.Add(new PortData("elements", Properties.Resources.PortDataAllVisibleElementsToolTip));
             RegisterAllPorts();
 
-            DocumentManager.Instance.CurrentUIApplication.ViewActivated +=
-                RevitDynamoModel_RevitDocumentChanged;
-
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened +=
-                RevitDynamoModel_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
 
             RevitServicesUpdater.Instance.ElementsDeleted +=
                 RevitServicesUpdaterOnElementsDeleted;
@@ -234,11 +229,8 @@ namespace DSRevitNodesUI
         public override void Dispose()
         {
             base.Dispose();
-            DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
-                RevitDynamoModel_RevitDocumentChanged;
-
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -=
-                RevitDynamoModel_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.ViewActivated -= RevitDynamoModel_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= RevitDynamoModel_RevitDocumentChanged;
 
             RevitServicesUpdater.Instance.ElementsDeleted -=
                 RevitServicesUpdaterOnElementsDeleted;
@@ -250,20 +242,25 @@ namespace DSRevitNodesUI
 
         private void RevitServicesUpdaterOnElementsAdded(IEnumerable<string> updated)
         {
+            var filter = GetVisibleElementFilter();
+
             bool recalc = false;
             foreach (var id in updated)
             {
                 Element e;
                 if (doc.TryGetElement(id, out e))
                 {
-                    uniqueIds.Add(id);
-                    elementIds.Add(e.Id);
-                    recalc = true;
+                    if (filter.PassesFilter(e))
+                    {
+                        uniqueIds.Add(id);
+                        elementIds.Add(e.Id);
+                        recalc = true;
+                    }
                 }
             }
             if (recalc)
             {
-                OnNodeModified(forceExecute:true);
+                OnNodeModified(forceExecute: true);
             }
         }
 

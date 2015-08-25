@@ -37,7 +37,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(8, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(8, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(8, model.CurrentWorkspace.Connectors.Count());
             AssertNoDummyNodes();
 
@@ -64,7 +64,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(6, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(6, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(4, model.CurrentWorkspace.Connectors.Count());
             AssertNoDummyNodes();
 
@@ -104,7 +104,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             // check all the nodes and connectors are loaded
-            Assert.GreaterOrEqual(8, model.CurrentWorkspace.Nodes.Count);
+            Assert.GreaterOrEqual(8, model.CurrentWorkspace.Nodes.Count());
             Assert.GreaterOrEqual(10, model.CurrentWorkspace.Connectors.Count());
             AssertNoDummyNodes();
 
@@ -136,7 +136,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             // check all the nodes and connectors are loaded
-            Assert.GreaterOrEqual(7, model.CurrentWorkspace.Nodes.Count);
+            Assert.GreaterOrEqual(7, model.CurrentWorkspace.Nodes.Count());
             Assert.GreaterOrEqual(5, model.CurrentWorkspace.Connectors.Count());
             AssertNoDummyNodes();
 
@@ -174,7 +174,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(5, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(5, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count());
             AssertNoDummyNodes();
 
@@ -198,7 +198,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(16, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -225,7 +225,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(4, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(4, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count());
 
             AssertNoDummyNodes();
@@ -249,7 +249,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(8, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(8, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(9, model.CurrentWorkspace.Connectors.Count());
 
             AssertNoDummyNodes();
@@ -276,7 +276,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(20, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -306,7 +306,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(13, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -335,7 +335,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(23, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(23, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(32, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -364,18 +364,24 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(25, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
             var refPointNodeID = "a80c323f-7443-42fd-a38c-4a84623fdeb5";
-            AssertPreviewCount(refPointNodeID, 122);
+            AssertPreviewCount(refPointNodeID, 509);
 
             // get all Reference Points.
+            // There are 121 points and 388 lines
             for (int i = 0; i <= 120; i++)
             {
                 var point = GetPreviewValueAtIndex(refPointNodeID, i) as Point;
                 Assert.IsNotNull(point);
+            }
+            for (int i = 121; i < 509; i++)
+            {
+                var line = GetPreviewValueAtIndex(refPointNodeID, i) as Line;
+                Assert.IsNotNull(line);
             }
         }
 
@@ -397,7 +403,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(14, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -431,7 +437,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(19, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -464,7 +470,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(19, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -487,7 +493,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -507,7 +513,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(16, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -533,7 +539,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -562,7 +568,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(22, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(22, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(18, model.CurrentWorkspace.Connectors.Count());
 
             var workspace = model.CurrentWorkspace;
@@ -655,7 +661,7 @@ namespace RevitSystemTests
 
             Assert.AreEqual(2, ViewModel.Model.CustomNodeManager.LoadedCustomNodes.Count);
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(7, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(7, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
 
 
@@ -683,7 +689,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(40, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(40, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(42, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -719,7 +725,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(18, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -750,7 +756,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -777,7 +783,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(16, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(16, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(16, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -802,7 +808,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(16, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(16, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(16, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -833,7 +839,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(2, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -855,7 +861,7 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(6, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(6, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(5, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -877,7 +883,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -922,7 +928,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(23, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -952,7 +958,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(28, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(28, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(32, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -987,7 +993,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(20, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -1011,7 +1017,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(17, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -1038,7 +1044,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(13, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -1065,7 +1071,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(17, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -1094,7 +1100,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(11, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -1122,7 +1128,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(43, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(43, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(51, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
@@ -1155,7 +1161,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(42, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(42, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(49, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();

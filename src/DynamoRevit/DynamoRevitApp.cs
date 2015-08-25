@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.IO;
 using System.Reflection;
 using System.Resources;
@@ -9,19 +10,18 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
 using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-
+using Autodesk.Revit.UI.Events;
 using Dynamo.Applications.Properties;
-
 using RevitServices.Elements;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-
 using MessageBox = System.Windows.Forms.MessageBox;
+using Dynamo.Models;
+using RevitServices.EventHandler;
 
 namespace Dynamo.Applications
 {
@@ -34,8 +34,11 @@ namespace Dynamo.Applications
         private static readonly string assemblyName = Assembly.GetExecutingAssembly().Location;
         private static ResourceManager res;
         public static ControlledApplication ControlledApplication;
+        public static UIControlledApplication UIControlledApplication;
         public static List<IUpdater> Updaters = new List<IUpdater>();
         internal static PushButton DynamoButton;
+        private static readonly Queue<Action> idleActionQueue = new Queue<Action>(10);
+        private static EventHandlerProxy proxy;
 
         public Result OnStartup(UIControlledApplication application)
         {
@@ -49,16 +52,20 @@ namespace Dynamo.Applications
 
             try
             {
-                SubscribeAssemblyResolvingEvent();
-
+                UIControlledApplication = application;
                 ControlledApplication = application.ControlledApplication;
+
+                SubscribeAssemblyResolvingEvent();
+                SubscribeApplicationEvents();
 
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
                 ElementBinder.IsEnabled = true;
 
                 // Create new ribbon panel
-                RibbonPanel ribbonPanel =
-                    application.CreateRibbonPanel(Resources.App_Description);
+                var panels = application.GetRibbonPanels();
+                var ribbonPanel = panels.FirstOrDefault(p => p.Name.Contains(Resources.App_Description));
+                if(null == ribbonPanel)
+                    ribbonPanel = application.CreateRibbonPanel(Resources.App_Description);
 
                 var fvi = FileVersionInfo.GetVersionInfo(assemblyName);
                 var dynVersion = String.Format(Resources.App_Name, fvi.FileMajorPart, fvi.FileMinorPart);
@@ -98,8 +105,51 @@ namespace Dynamo.Applications
         public Result OnShutdown(UIControlledApplication application)
         {
             UnsubscribeAssemblyResolvingEvent();
+            UnsubscribeApplicationEvents();
 
             return Result.Succeeded;
+        }
+
+        private static void OnApplicationIdle(object sender, IdlingEventArgs e)
+        {
+            if (!idleActionQueue.Any())
+                return;
+
+            Action pendingAction = null;
+            lock (idleActionQueue)
+            {
+                pendingAction = idleActionQueue.Dequeue();
+            }
+
+            if (pendingAction != null)
+                pendingAction();
+        }
+
+
+        /// <summary>
+        /// Add an action to run when the application is in the idle state
+        /// </summary>
+        /// <param name="a"></param>
+        public static void AddIdleAction(Action a)
+        {
+            // If we are running in test mode, invoke 
+            // the action immediately.
+            if (DynamoModel.IsTestMode)
+            {
+                a.Invoke();
+            }
+            else
+            {
+                lock (idleActionQueue)
+                {
+                    idleActionQueue.Enqueue(a);
+                }
+            }
+        }
+
+        public static EventHandlerProxy EventHandlerProxy
+        {
+            get { return proxy; }
         }
 
         // should be handled by the ModelUpdater class. But there are some
@@ -124,6 +174,34 @@ namespace Dynamo.Applications
                 filter,
                 Element.GetChangeTypeAny());
             Updaters.Add(sunUpdater);
+        }
+
+        private void SubscribeApplicationEvents()
+        {
+            UIControlledApplication.Idling += OnApplicationIdle;
+
+            proxy = new EventHandlerProxy();
+
+            UIControlledApplication.ViewActivated += proxy.OnApplicationViewActivated;
+            UIControlledApplication.ViewActivating += proxy.OnApplicationViewActivating;
+
+            ControlledApplication.DocumentClosing += proxy.OnApplicationDocumentClosing;
+            ControlledApplication.DocumentClosed += proxy.OnApplicationDocumentClosed;
+            ControlledApplication.DocumentOpened += proxy.OnApplicationDocumentOpened;
+        }
+
+        private void UnsubscribeApplicationEvents()
+        {
+            UIControlledApplication.Idling -= OnApplicationIdle;
+
+            UIControlledApplication.ViewActivated -= proxy.OnApplicationViewActivated;
+            UIControlledApplication.ViewActivating -= proxy.OnApplicationViewActivating;
+
+            ControlledApplication.DocumentClosing -= proxy.OnApplicationDocumentClosing;
+            ControlledApplication.DocumentClosed -= proxy.OnApplicationDocumentClosed;
+            ControlledApplication.DocumentOpened -= proxy.OnApplicationDocumentOpened;
+
+            proxy = null;
         }
 
         private void SubscribeAssemblyResolvingEvent()

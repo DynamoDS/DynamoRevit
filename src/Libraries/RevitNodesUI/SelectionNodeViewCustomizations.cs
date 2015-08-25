@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Autodesk.Revit.DB;
+using Dynamo.Applications.Models;
 using Dynamo.Controls;
 using Dynamo.Nodes;
 using Dynamo.Wpf;
@@ -23,6 +24,7 @@ namespace Dynamo.Wpf.Nodes.Revit
         public void CustomizeView(ElementSelection<Element> model, NodeView nodeView)
         {
             base.CustomizeView(model, nodeView);
+            model.RevitDynamoModel = nodeView.ViewModel.DynamoViewModel.Model as RevitDynamoModel;
         }
     }
 
@@ -33,6 +35,7 @@ namespace Dynamo.Wpf.Nodes.Revit
         public void CustomizeView(ElementSelection<DividedSurface> model, NodeView nodeView)
         {
             base.CustomizeView(model, nodeView);
+            model.RevitDynamoModel = nodeView.ViewModel.DynamoViewModel.Model as RevitDynamoModel;
         }
     }
 
@@ -43,6 +46,7 @@ namespace Dynamo.Wpf.Nodes.Revit
         public void CustomizeView(ReferenceSelection model, NodeView nodeView)
         {
             base.CustomizeView(model, nodeView);
+            model.RevitDynamoModel = nodeView.ViewModel.DynamoViewModel.Model as RevitDynamoModel;
         }
     }
 

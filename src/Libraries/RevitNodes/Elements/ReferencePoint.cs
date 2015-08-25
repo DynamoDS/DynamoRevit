@@ -337,7 +337,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
             return ByPoint(Point.ByCoordinates(x, y, z));
         }
@@ -356,7 +356,7 @@ namespace Revit.Elements
 
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             return new ReferencePoint(pt.ToXyz());
@@ -373,7 +373,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             if (basePoint == null)
@@ -402,7 +402,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             if (elementCurveReference == null)
@@ -425,7 +425,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             if (elementCurveReference == null)
@@ -448,7 +448,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             if (elementFaceReference == null)
@@ -509,17 +509,14 @@ namespace Revit.Elements
         /// <summary>
         /// Tessellate Reference Point to render package for visualization.
         /// </summary>
-        /// <param name="package"></param>
-        /// <param name="tol"></param>
-        /// <param name="gridLines"></param>
-        void IGraphicItem.Tessellate(IRenderPackage package, double tol, int gridLines)
+        void IGraphicItem.Tessellate(IRenderPackage package, TessellationParameters parameters)
         {
             if (!IsAlive)
                 return;
 
             if (this.InternalElement.IsValidObject)
             {
-                package.PushPointVertex(X, Y, Z);
+                package.AddPointVertex(X, Y, Z);
             }
         }
 

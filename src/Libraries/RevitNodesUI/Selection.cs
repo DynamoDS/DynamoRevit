@@ -26,6 +26,9 @@ using RevitDynamoModel = Dynamo.Applications.Models.RevitDynamoModel;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using String = System.String;
 using UV = Autodesk.DesignScript.Geometry.UV;
+using RevitServices.EventHandler;
+using Autodesk.Revit.DB.Events;
+using Dynamo.Applications;
 
 namespace Dynamo.Nodes
 {
@@ -35,14 +38,65 @@ namespace Dynamo.Nodes
     public abstract class RevitSelection<TSelection, TResult> : SelectionBase<TSelection, TResult>
     {
         protected Document SelectionOwner { get; private set; }
-        protected RevitDynamoModel RevitDynamoModel { get; private set; }
+        private RevitDynamoModel revitDynamoModel;
 
         #region public properties
 
-        /* TODO: Now that nodes know nothing about their owners, we can't access RunEnabled.
+        public RevitDynamoModel RevitDynamoModel
+        {
+            get
+            {
+                return revitDynamoModel;
+            }
+            set
+            {
+                if (revitDynamoModel != null)
+                {
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (hwm != null)
+                    {
+                        hwm.RunSettings.PropertyChanged -= revMod_PropertyChanged;
+                    }
+                }
+
+                revitDynamoModel = value;
+
+                if (revitDynamoModel != null)
+                {
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (hwm != null)
+                    {
+                        hwm.RunSettings.PropertyChanged += revMod_PropertyChanged;
+                    }
+                }
+            }
+        }
+
         public override bool CanSelect
         {
-            get { return base.CanSelect && RevitDynamoModel.RunEnabled; }
+            get
+            {
+                if (revitDynamoModel != null)
+                {
+                    // Different document, disable selection button.
+                    if (!revitDynamoModel.IsInMatchingDocumentContext)
+                        return false;
+                    
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (hwm != null)
+                    {
+                        return base.CanSelect && hwm.RunSettings.RunEnabled;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return base.CanSelect;
+                }
+            }
             set { base.CanSelect = value; }
         }
 
@@ -50,9 +104,24 @@ namespace Dynamo.Nodes
         {
             get
             {
-                return RevitDynamoModel.RunEnabled
-                    ? base.SelectionSuggestion
-                    : "Selection is disabled when Dynamo run is disabled.";
+                if (revitDynamoModel != null)
+                {
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (hwm != null)
+                    {
+                        return hwm.RunSettings.RunEnabled
+                            ? base.SelectionSuggestion
+                            : DSRevitNodesUI.Properties.Resources.SelectionIsDisabledDescription;
+                    }
+                    else
+                    {
+                        return DSRevitNodesUI.Properties.Resources.SelectionIsDisabledDescription;
+                    }
+                }
+                else
+                {
+                    return base.SelectionSuggestion;
+                }
             }
         }
 
@@ -73,7 +142,6 @@ namespace Dynamo.Nodes
                 RaisePropertyChanged("SelectionSuggestion");
             }
         }
-        */
 
         #endregion
 
@@ -85,8 +153,8 @@ namespace Dynamo.Nodes
         {
             RevitServicesUpdater.Instance.ElementsDeleted += Updater_ElementsDeleted;
             RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
-            //revMod.PropertyChanged += revMod_PropertyChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
+          
         }
 
         #endregion
@@ -107,7 +175,16 @@ namespace Dynamo.Nodes
             base.Dispose();
             RevitServicesUpdater.Instance.ElementsDeleted -= Updater_ElementsDeleted;
             RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -= Controller_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= Controller_RevitDocumentChanged;
+
+            if (revitDynamoModel != null)
+            {
+                var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                if (hwm != null)
+                {
+                    hwm.RunSettings.PropertyChanged -= revMod_PropertyChanged;
+                }
+            }
         }
 
         public override void UpdateSelection(IEnumerable<TSelection> rawSelection)
@@ -212,7 +289,21 @@ namespace Dynamo.Nodes
 
         protected override string GetIdentifierFromModelObject(TSelection modelObject)
         {
-            return modelObject == null ? null : modelObject.UniqueId;
+            try
+            {
+                return modelObject == null ? null : modelObject.UniqueId;
+            }
+            catch (Autodesk.Revit.Exceptions.InvalidObjectException)
+            {
+                // This call is being made from SelectionBase.SerializeCore in 
+                // scenarios like dragging of a node (undo recorder needs the 
+                // node to be serialized prior to dragging). If the current 
+                // document is not the same as that of the selected modelObject,
+                // an exception will be thrown. Dynamo shouldn't be crashed in 
+                // cases like this, so handle this exception gracefully.
+                // 
+                return null;
+            }
         }
 
         protected override void Updater_ElementsDeleted(
@@ -221,6 +312,13 @@ namespace Dynamo.Nodes
             if (!SelectionResults.Any() || 
                 !document.Equals(SelectionOwner) ||
                 !deleted.Any())
+            {
+                return;
+            }
+
+            // If the deleting operations does not make any elements in SelectionResults
+            // invalid, then there is no need to update.
+            if (SelectionResults.Where(el => !el.IsValidObject).Count() == 0)
             {
                 return;
             }
@@ -372,7 +470,7 @@ namespace Dynamo.Nodes
             if (!SelectionResults.Any() ||
                 !document.Equals(SelectionOwner) ||
                 !deleted.Any() ||
-                !SelectionResults.Any(x=>deleted.Contains(x.ElementId))) return;
+                !SelectionResults.Any(x => deleted.Contains(x.ElementId))) return;
 
             // The new selections is everything in the current selection
             // that is not in the deleted collection as well

@@ -66,14 +66,17 @@ namespace Revit.Elements
         #region Public properties
 
         /// <summary>
-        /// Obtain the FamilySymbols from this Family
+        /// Obtain the FamilyTypes from this Family
         /// </summary>
-        public FamilySymbol[] Symbols
+        /// <search>
+        /// symbols,symbol
+        /// </search>
+        public FamilyType[] Types
         {
             get
             {
                 return InternalFamily.GetFamilySymbolIds().Select(x => Document.GetElement(x)).
-                    OfType<Autodesk.Revit.DB.FamilySymbol>().Select(x => FamilySymbol.FromExisting(x, true)).ToArray();
+                    OfType<Autodesk.Revit.DB.FamilySymbol>().Select(x => FamilyType.FromExisting(x, true)).ToArray();
             }
         }
 
@@ -110,14 +113,14 @@ namespace Revit.Elements
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(Document);
             fec.OfClass(typeof(Autodesk.Revit.DB.Family));
 
-            // obtain the family symbol with the provided name
+            // obtain the family type with the provided name
             var families = fec.Cast<Autodesk.Revit.DB.Family>();
 
             var family = families.FirstOrDefault(x => x.Name == name);
 
             if (family == null)
             {
-                throw new Exception("A FamilySymbol with the specified name does not exist in the document");
+                throw new Exception(Properties.Resources.FamilySymbolNotFound1);
             }
 
             TransactionManager.Instance.TransactionTaskDone();

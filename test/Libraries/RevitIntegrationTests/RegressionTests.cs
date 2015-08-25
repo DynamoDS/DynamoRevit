@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Dynamo.Models;
-using DynamoUtilities;
 using NUnit.Framework;
 using RevitServices.Elements;
 using RevitTestServices;
-using Dynamo.Applications;
 
 namespace RevitSystemTests
 {
@@ -53,7 +50,7 @@ namespace RevitSystemTests
 
                 //open the dyn file
                 ViewModel.OpenCommand.Execute(dynamoFilePath);
-                Assert.IsTrue(ViewModel.Model.CurrentWorkspace.Nodes.Count > 0);
+                Assert.IsTrue(ViewModel.Model.CurrentWorkspace.Nodes.Any());
                 AssertNoDummyNodes();
                 
                 //run the expression and assert that it does not
@@ -72,9 +69,6 @@ namespace RevitSystemTests
             }
             finally
             {
-                ViewModel.Model.ShutDown(false);
-                ViewModel = null;
-                RevitServicesUpdater.DisposeInstance();
                 TearDown();
             }
 

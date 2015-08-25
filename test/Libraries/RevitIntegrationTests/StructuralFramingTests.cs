@@ -13,7 +13,7 @@ using RevitTestServices;
 
 using RTF.Framework;
 
-using FamilySymbol = Revit.Elements.FamilySymbol;
+using FamilyType = Revit.Elements.FamilyType;
 using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 
 namespace RevitSystemTests
@@ -66,7 +66,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
             
-            var dynamoSymbol = typeSelector.GetValue(0, ViewModel.Model.EngineController).Data as FamilySymbol;
+            var dynamoSymbol = typeSelector.GetValue(0, ViewModel.Model.EngineController).Data as FamilyType;
             var revitSymbol = dynamoSymbol.InternalElement;
 
             Console.WriteLine("Family type is now set to {0}", revitSymbol);

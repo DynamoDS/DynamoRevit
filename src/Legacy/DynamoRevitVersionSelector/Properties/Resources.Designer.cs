@@ -105,5 +105,14 @@ namespace DynamoRevitVersionSelector.Properties {
                 return ResourceManager.GetString("RestartMessage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visual Programming.
+        /// </summary>
+        internal static string VisualProgramming {
+            get {
+                return ResourceManager.GetString("VisualProgramming", resourceCulture);
+            }
+        }
     }
 }

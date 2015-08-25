@@ -145,4 +145,10 @@
   <data name="RevitValidContextMessage" xml:space="preserve">
     <value>Dynamo is now available.</value>
   </data>
+  <data name="Document" xml:space="preserve">
+    <value>document</value>
+  </data>
+  <data name="NewDocument" xml:space="preserve">
+    <value>a new document.</value>
+  </data>
 </root>
