@@ -257,13 +257,15 @@ namespace Revit.Elements
         /// <param name="name"></param>
         private void InteralSetName(string name)
         {
-            TransactionManager.Instance.EnsureInTransaction(Document);
+          
             if (name != this.InternalDirectShape.Name)
             {
+                TransactionManager.Instance.EnsureInTransaction(Document);
                 this.InternalDirectShape.SetName(name);
+                TransactionManager.Instance.TransactionTaskDone();
             }
 
-            TransactionManager.Instance.TransactionTaskDone();
+            
         }
         #endregion
 
@@ -305,7 +307,7 @@ namespace Revit.Elements
         /// <param name="name">a string name for the directshape</param>
         /// <param name="category">must be a top level built-in category</param>
         /// <returns>a DirectShape Element</returns>
-        public static DirectShape BySolidNameCategory(Autodesk.DesignScript.Geometry.Geometry geometry, string name, Category category)
+        public static DirectShape ByGeometryNameCategory(Autodesk.DesignScript.Geometry.Geometry geometry, string name, Category category)
         {
             if (geometry is Autodesk.DesignScript.Geometry.Solid || geometry is Autodesk.DesignScript.Geometry.Surface)
             {

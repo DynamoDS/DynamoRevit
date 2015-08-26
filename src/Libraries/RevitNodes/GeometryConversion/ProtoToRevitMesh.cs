@@ -52,7 +52,7 @@ namespace Revit.GeometryConversion
 
             tsb.CloseConnectedFaceSet();
 
-            var result = tsb.Build(target, fallback, MaterialsManager.Instance.DynamoGStyleId);
+            var result = tsb.Build(target, fallback, ElementId.InvalidElementId);
             return result.GetGeometricalObjects();
         }
 
@@ -91,7 +91,7 @@ namespace Revit.GeometryConversion
             }
 
             tsb.CloseConnectedFaceSet();
-            var result = tsb.Build(target, fallback, MaterialsManager.Instance.DynamoGStyleId);
+            var result = tsb.Build(target, fallback, ElementId.InvalidElementId);
             return result.GetGeometricalObjects();
         }
 
@@ -105,17 +105,6 @@ namespace Revit.GeometryConversion
          
             var verts = mesh.VertexPositions;
             var indicies = mesh.FaceIndices;
-
-            if (performHostUnitConversion)
-            {
-                var newverts = verts.Select(x => x.InHostUnits()).ToArray();
-                foreach (IDisposable point in verts)
-                {
-                    point.Dispose();
-                }
-                verts = newverts;
-                Array.Clear(newverts, 0, newverts.Length);
-            }
 
             var currentVerts = new List<Autodesk.DesignScript.Geometry.Point>();
             var tsb = new TessellatedShapeBuilder();
@@ -133,8 +122,8 @@ namespace Revit.GeometryConversion
                     currentVerts.Add(verts[currentindex]);
                 }
 
-                //convert all the points to Revit XYZ vectors
-                var xyzs = currentVerts.Select(x => x.ToXyz()).ToList();
+                //convert all the points to Revit XYZ vectors and perform unit conversion here
+                var xyzs = currentVerts.Select(x => x.ToXyz(performHostUnitConversion)).ToList();
 
                 var face = new TessellatedFace(xyzs, MaterialId != null ? MaterialId :MaterialsManager.Instance.DynamoMaterialId );
                 tsb.AddFace(face);
@@ -142,7 +131,7 @@ namespace Revit.GeometryConversion
 
             tsb.CloseConnectedFaceSet();
           
-            var result = tsb.Build(target, fallback, MaterialsManager.Instance.DynamoGStyleId);
+            var result = tsb.Build(target, fallback, ElementId.InvalidElementId);
 
             foreach (IDisposable vert in verts)
             {
