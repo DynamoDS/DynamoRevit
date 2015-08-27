@@ -163,6 +163,9 @@ namespace Revit.Elements
 
         private void InternalSetLevel(Autodesk.Revit.DB.Level level)
         {
+            if (InternalFamilyInstance.LevelId.Compare(level.Id) == 0)
+                return;
+
             TransactionManager.Instance.EnsureInTransaction(Document);
 
             // http://thebuildingcoder.typepad.com/blog/2011/01/family-instance-missing-level-property.html
