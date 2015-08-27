@@ -1,0 +1,42 @@
+<Workspace Version="0.8.2.2222" X="1129.54427721337" Y="666.290563427983" zoom="0.817470404584941" Name="Home" Description="" RunType="Automatic" RunPeriod="100" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="NurbsCurve" resolvedName="Autodesk.DesignScript.Geometry.NurbsCurve" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Surface" resolvedName="Autodesk.DesignScript.Geometry.Surface" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="08d12e44-c725-42af-9e6a-0c24dd1b72b9" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-982.794605055616" y="-581.596633416337" isVisible="false" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="// Seating floor geometry&#xA;&#xA;pts1 = {Point.ByCoordinates(-20,-8,0),&#xA;Point.Origin(),&#xA;Point.ByCoordinates(20,-8,0)};&#xA;crv1 = NurbsCurve.ByPoints(pts1);&#xA;&#xA;height = 10;&#xA;pts2 = {Point.ByCoordinates(-30,27,height),&#xA;Point.ByCoordinates(30,27,height)};&#xA;crv2 = NurbsCurve.ByPoints(pts2);&#xA;&#xA;Surface.ByLoft({crv1,crv2});" ShouldFocus="false" />
+    <Dynamo.Nodes.DSModelElementSelection guid="651b3eaa-632b-4ae3-b44e-c85098863c5f" type="Dynamo.Nodes.DSModelElementSelection" nickname="Select Model Element" x="-897.476697190054" y="-116.948199638478" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <instance id="420921a0-cca8-448a-b105-f87757eb84b2-00007a72" />
+    </Dynamo.Nodes.DSModelElementSelection>
+    <Dynamo.Nodes.DSFunction guid="79534464-cf7c-4375-b383-6f05bcc80f97" type="Dynamo.Nodes.DSFunction" nickname="Element.Geometry" x="-584.612037238705" y="-110.378862946586" isVisible="false" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.Element.Geometry" />
+    <Dynamo.Nodes.DSFunction guid="f48e61a8-bb0e-4e0e-b646-1c272e531b53" type="Dynamo.Nodes.DSFunction" nickname="Element.Geometry" x="-305.888665546578" y="-376.62142769435" isVisible="false" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.Element.Geometry" />
+    <Dynamo.Nodes.DSFunction guid="874e025a-0c7e-4f01-9026-f5da12e0afd4" type="Dynamo.Nodes.DSFunction" nickname="ImportInstance.ByGeometry" x="-559.85181888444" y="-375.33305882645" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.ImportInstance.ByGeometry@Autodesk.DesignScript.Geometry.Geometry" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="7d28ba60-e656-4626-a61f-bcbf8c763b52" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-95.7458508731276" y="-375.272811712706" isVisible="false" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="a[0];" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="08d12e44-c725-42af-9e6a-0c24dd1b72b9" start_index="5" end="874e025a-0c7e-4f01-9026-f5da12e0afd4" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="651b3eaa-632b-4ae3-b44e-c85098863c5f" start_index="0" end="79534464-cf7c-4375-b383-6f05bcc80f97" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f48e61a8-bb0e-4e0e-b646-1c272e531b53" start_index="0" end="7d28ba60-e656-4626-a61f-bcbf8c763b52" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="874e025a-0c7e-4f01-9026-f5da12e0afd4" start_index="0" end="f48e61a8-bb0e-4e0e-b646-1c272e531b53" end_index="0" portType="0" />
+  </Connectors>
+  <Notes>
+    <Dynamo.Models.NoteModel guid="78ce4e37-e2f3-4cd3-bcf8-50d215b372b6" text="Element.Geometry does not return geometry whether the import instance is referenced directly or selected from the project." x="-342.999839638636" y="-127.977105477041" />
+  </Notes>
+  <Annotations>
+    <Dynamo.Models.AnnotationModel guid="46734994-5254-4755-ae29-26a0548d3ba2" annotationText="nothing" left="-594.612037238705" top="-140.378862946586" width="162" height="123" fontSize="14" InitialTop="-110.378862946586" InitialHeight="122.6" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="79534464-cf7c-4375-b383-6f05bcc80f97" />
+    </Dynamo.Models.AnnotationModel>
+    <Dynamo.Models.AnnotationModel guid="6b4f5c20-df25-4a63-ab9e-bd90b99f93b9" annotationText="nothing" left="-315.888665546578" top="-406.62142769435" width="162" height="123" fontSize="14" InitialTop="-376.62142769435" InitialHeight="122.6" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="f48e61a8-bb0e-4e0e-b646-1c272e531b53" />
+    </Dynamo.Models.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="33.8108068995954" eyeY="36.3501059520594" eyeZ="41.7528693004661" lookX="-33.8108068995954" lookY="-31.3501059520594" lookZ="-41.7528693004661" />
+  </Cameras>
+  <SessionTraceData>
+    <NodeTraceData NodeId="874e025a-0c7e-4f01-9026-f5da12e0afd4">
+    </NodeTraceData>
+  </SessionTraceData>
+</Workspace>
