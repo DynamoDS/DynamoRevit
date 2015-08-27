@@ -1,0 +1,58 @@
+<Workspace Version="0.8.3.2310" X="178.891882126882" Y="213.376479770745" zoom="0.679653671190359" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <DSRevitNodesUI.FamilyTypes guid="acfce39a-5655-436f-a85a-22188ca63163" type="DSRevitNodesUI.FamilyTypes" nickname="Family Types" x="82.8376678593406" y="-148.909898576634" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="46:Concrete-Rectangular-Column:12 x 18" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="ace1a861-3db5-48c6-9d30-92a486da5ccb" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-247.725635974743" y="9.05307083390392" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="Point.ByCoordinates(0..20..#11, 0, 0);" ShouldFocus="false" />
+    <DSRevitNodesUI.Levels guid="e46a3798-b9f8-4829-ace8-54682548c463" type="DSRevitNodesUI.Levels" nickname="Levels" x="121.709776078696" y="496.098203569609" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="0:Level 1" />
+    <Dynamo.Nodes.DSFunction guid="3d6f3854-d988-49ae-9a60-c5998a19c652" type="Dynamo.Nodes.DSFunction" nickname="FamilyInstance.ByPointAndLevel" x="488.108581662456" y="18.0495071594447" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.FamilyInstance.ByPointAndLevel@Revit.Elements.FamilyType,Autodesk.DesignScript.Geometry.Point,Revit.Elements.Level" />
+    <Dynamo.Nodes.DSFunction guid="2af2362b-38a7-4db7-976d-39f4e74c8e07" type="Dynamo.Nodes.DSFunction" nickname="FamilyInstance.SetRotation" x="779.630612789952" y="170.151429899075" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.FamilyInstance.SetRotation@double" />
+    <DSCoreNodesUI.Input.DoubleSlider guid="971b7986-59e2-4ad1-b087-0e9e4158506a" type="DSCoreNodesUI.Input.DoubleSlider" nickname="Number Slider" x="445.563716985355" y="383.816295820888" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <System.Double>0</System.Double>
+      <Range min="0" max="100" step="0.1" />
+    </DSCoreNodesUI.Input.DoubleSlider>
+    <Dynamo.Nodes.DSFunction guid="4fb84d7c-5a09-464a-98d8-0ec55d9b22ac" type="Dynamo.Nodes.DSFunction" nickname="List.Slice" x="210.574366589516" y="74.8650215133866" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.Slice@var[]..[],int,int,int">
+      <PortInfo index="3" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <DSCoreNodesUI.Input.IntegerSlider guid="25c56169-009c-44ad-93bb-7c04c072356d" type="DSCoreNodesUI.Input.IntegerSlider" nickname="Integer Slider" x="-199.198451278165" y="125.782359096583" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <System.Int32>1</System.Int32>
+      <Range min="1" max="100" step="1" />
+    </DSCoreNodesUI.Input.IntegerSlider>
+    <DSCoreNodesUI.Input.IntegerSlider guid="6bf782b6-61f6-4f97-8ce5-b9e98d0bc386" type="DSCoreNodesUI.Input.IntegerSlider" nickname="Integer Slider" x="-219.705572825788" y="335.225852079914" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <System.Int32>1</System.Int32>
+      <Range min="1" max="100" step="1" />
+    </DSCoreNodesUI.Input.IntegerSlider>
+    <DSCoreNodesUI.Input.IntegerSlider guid="71a6d7eb-7235-4651-a6c7-83362eeb724c" type="DSCoreNodesUI.Input.IntegerSlider" nickname="Integer Slider" x="-216.320541305852" y="229.75543970501" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <System.Int32>6</System.Int32>
+      <Range min="2" max="100" step="1" />
+    </DSCoreNodesUI.Input.IntegerSlider>
+    <Dynamo.Nodes.DSFunction guid="89a2213d-8125-4c02-870a-1c4cd79a411c" type="Dynamo.Nodes.DSFunction" nickname="FamilyInstance.Location" x="634.704241662555" y="-181.424564111632" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.FamilyInstance.Location" />
+    <Dynamo.Nodes.Watch guid="30fd9a71-dacb-45b2-8089-685191e4873e" type="Dynamo.Nodes.Watch" nickname="Watch" x="862.135315542923" y="-224.784522227047" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <Dynamo.Nodes.DSFunction guid="8c9dbf40-73d7-4788-84b2-ccf015fa47de" type="Dynamo.Nodes.DSFunction" nickname="FamilyInstance.Location" x="1080.4797260648" y="156.951300048954" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.FamilyInstance.Location" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="acfce39a-5655-436f-a85a-22188ca63163" start_index="0" end="3d6f3854-d988-49ae-9a60-c5998a19c652" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ace1a861-3db5-48c6-9d30-92a486da5ccb" start_index="0" end="4fb84d7c-5a09-464a-98d8-0ec55d9b22ac" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e46a3798-b9f8-4829-ace8-54682548c463" start_index="0" end="3d6f3854-d988-49ae-9a60-c5998a19c652" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3d6f3854-d988-49ae-9a60-c5998a19c652" start_index="0" end="89a2213d-8125-4c02-870a-1c4cd79a411c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3d6f3854-d988-49ae-9a60-c5998a19c652" start_index="0" end="2af2362b-38a7-4db7-976d-39f4e74c8e07" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2af2362b-38a7-4db7-976d-39f4e74c8e07" start_index="0" end="8c9dbf40-73d7-4788-84b2-ccf015fa47de" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="971b7986-59e2-4ad1-b087-0e9e4158506a" start_index="0" end="2af2362b-38a7-4db7-976d-39f4e74c8e07" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4fb84d7c-5a09-464a-98d8-0ec55d9b22ac" start_index="0" end="3d6f3854-d988-49ae-9a60-c5998a19c652" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="25c56169-009c-44ad-93bb-7c04c072356d" start_index="0" end="4fb84d7c-5a09-464a-98d8-0ec55d9b22ac" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="6bf782b6-61f6-4f97-8ce5-b9e98d0bc386" start_index="0" end="4fb84d7c-5a09-464a-98d8-0ec55d9b22ac" end_index="3" portType="0" />
+    <Dynamo.Models.ConnectorModel start="71a6d7eb-7235-4651-a6c7-83362eeb724c" start_index="0" end="4fb84d7c-5a09-464a-98d8-0ec55d9b22ac" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="89a2213d-8125-4c02-870a-1c4cd79a411c" start_index="0" end="30fd9a71-dacb-45b2-8089-685191e4873e" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="2921.83154296875" eyeY="1737.95764160156" eyeZ="1221.69494628906" lookX="-1958.82800292969" lookY="-1958.82800292969" lookZ="-1958.82800292969" />
+  </Cameras>
+  <SessionTraceData>
+    <NodeTraceData NodeId="3d6f3854-d988-49ae-9a60-c5998a19c652">
+    </NodeTraceData>
+  </SessionTraceData>
+</Workspace>

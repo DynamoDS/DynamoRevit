@@ -21,10 +21,12 @@ using RevitServices.Persistence;
 using System.Collections.Generic;
 using RevitServices.Transactions;
 using Revit.GeometryConversion;
-using Dynamo.Applications.Models;
 
 using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
 using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
+using Dynamo.Applications.Models;
+using System;
+using Revit.Elements.InternalUtilities;
 
 namespace RevitSystemTests
 {
@@ -608,6 +610,25 @@ namespace RevitSystemTests
 
         [Test]
         [Category("RegressionTests")]
+        [TestModel(@".\Bugs\StructuralFoundationTest.rvt")]
+        public void MAGN_4679()
+        {
+           string samplePath = Path.Combine(workingDirectory, @".\Bugs\StructuralFoundationTest.dyn");
+           string testPath = Path.GetFullPath(samplePath);
+
+           //open the test file
+           ViewModel.OpenCommand.Execute(testPath);
+           AssertNoDummyNodes();
+
+           RunCurrentModel();
+
+           var watchNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<Watch>();
+           Assert.NotNull(watchNode.CachedValue);
+           Assert.IsInstanceOf<Autodesk.DesignScript.Geometry.Point>(watchNode.CachedValue);
+        }
+
+        [Test]
+        [Category("RegressionTests")]
         [TestModel(@".\empty.rfa")]
         public void MAGN_6710()
         {
@@ -703,28 +724,57 @@ namespace RevitSystemTests
             //There should be no infinite loop, otherwise, there will be an error with this test case.
         }
 
-
-        [Test, Category("Failure")]//// Failure being tracked as MAGN-7656
+        [Test, Category("Failure")]// Failure being tracked as MAGN-7656
         [Category("RegressionTests")]
         [TestModel(@".\empty.rfa")]
         public void SelectionButtonShouldBeDisabledAfterOpeningNewDocument()
-        { 
+        {
             string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7251.dyn");
-             string testPath = Path.GetFullPath(filePath);
+            string testPath = Path.GetFullPath(filePath);
 
-             ViewModel.OpenCommand.Execute(testPath);
-             AssertNoDummyNodes();
-             RunCurrentModel();
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            RunCurrentModel();
 
-             var node = AllNodes.OfType<DSModelElementSelection>().ElementAt(0);
-             node.RevitDynamoModel = Model as RevitDynamoModel;
-             Assert.IsTrue(node.CanSelect);
+            var node = AllNodes.OfType<DSModelElementSelection>().ElementAt(0);
+            node.RevitDynamoModel = Model as RevitDynamoModel;
+            Assert.IsTrue(node.CanSelect);
 
-             string newRfaFilePath = Path.Combine(workingDirectory, "modelLines.rfa");
-             DocumentManager.Instance.CurrentUIApplication.OpenAndActivateDocument(newRfaFilePath);
-             node = AllNodes.OfType<DSModelElementSelection>().ElementAt(0);
-             Assert.IsFalse(node.CanSelect);
-         }
+            string newRfaFilePath = Path.Combine(workingDirectory, "modelLines.rfa");
+            DocumentManager.Instance.CurrentUIApplication.OpenAndActivateDocument(newRfaFilePath);
+            node = AllNodes.OfType<DSModelElementSelection>().ElementAt(0);
+            Assert.IsFalse(node.CanSelect);
+        }
+
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\Samples\DynamoSample.rvt")]
+        public void GetParameterValueByNameWorksForSheetNumber()
+        {
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_5870.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            RunCurrentModel();
+
+            Action<string> checkFunc = delegate(string guid)
+            {
+                List<object> objects = GetPreviewCollection(guid);
+
+                Assert.AreEqual(objects.Count, 5);
+                Assert.IsTrue(string.CompareOrdinal(objects[0] as string, "A102") == 0);
+                Assert.IsTrue(string.CompareOrdinal(objects[1] as string, "A104") == 0);
+                Assert.IsTrue(string.CompareOrdinal(objects[2] as string, "A103") == 0);
+                Assert.IsTrue(string.CompareOrdinal(objects[3] as string, "A105") == 0);
+                Assert.IsTrue(string.CompareOrdinal(objects[4] as string, "A101") == 0);
+            };
+
+            checkFunc("a45ab78b-b7cb-4317-a763-ac8c9a55753f");
+            checkFunc("8fad0166-bb08-48e0-a62c-dcfb6b11a9fe");
+            checkFunc("d4fd1c38-e3cb-484b-8187-66061476cd6a");
+            checkFunc("6defe7da-caf9-489e-991d-4665eb26e786");
+        }
 
         [Test]
         [Category("RegressionTests")]
@@ -835,6 +885,79 @@ namespace RevitSystemTests
             Assert.IsNotNull(geometryInstance);
         }
 
+
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void OpenNewFileNotCleanupOldElements()
+        {
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7229_1.dyn");
+            string testPath = Path.GetFullPath(filePath);
+            ViewModel.OpenCommand.Execute(testPath);
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(Autodesk.Revit.DB.ReferencePoint));
+            Assert.AreEqual(4, fec.ToElements().Count());
+
+            filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7229_2.dyn");
+            testPath = Path.GetFullPath(filePath);
+            ViewModel.OpenCommand.Execute(testPath);
+            fec.OfClass(typeof(Autodesk.Revit.DB.ReferencePoint));
+            Assert.AreEqual(6, fec.ToElements().Count());
+
+            Model.ClearCurrentWorkspace();
+            fec.OfClass(typeof(Autodesk.Revit.DB.ReferencePoint));
+            Assert.AreEqual(6, fec.ToElements().Count());
+        }
+
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\Bugs\EleBindingTest_MAGN-7937.rfa")]
+        public void EleBindingTest_MAGN_7937()
+        {
+
+            var model = ViewModel.Model;
+
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\EleBindingTest_MAGN-7937.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(2, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(1, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            string refPtNodeId = "23e2f77c-bd3f-4376-83aa-45dedde795b8";
+            var refPt = GetPreviewValue(refPtNodeId) as ReferencePoint;
+            Assert.IsNotNull(refPt);
+            refPt.Z.ShouldBeApproximately(7);
+
+            // Count all Reference points in Revit.
+            var refPoints = GetAllReferencePoints();
+            Assert.AreEqual(1, refPoints.Count);
+
+            // change slider value and re-evaluate graph
+            IntegerSlider slider = model.CurrentWorkspace.NodeFromWorkspace
+                ("bdcd9b06-989f-4bac-a94d-b84a432d33ea") as IntegerSlider;
+            slider.Value = 10;
+
+            RunCurrentModel();
+
+            var modifiedRefPt = GetPreviewValue(refPtNodeId) as ReferencePoint;
+            Assert.IsNotNull(modifiedRefPt);
+            modifiedRefPt.Z.ShouldBeApproximately(10);
+
+            // This is to validate there is no dulicate point in revit. 
+            // After slider update there should be only one ref point in revit.
+            var modifiedRefPoints1 = GetAllReferencePoints();
+            Assert.AreEqual(1, modifiedRefPoints1.Count);
+
+        }
+
         [Test]
         [Category("RegressionTests")]
         [TestModel(@".\Bugs\MAGN_7977.rfa")]
@@ -864,34 +987,89 @@ namespace RevitSystemTests
 
         [Test]
         [Category("RegressionTests")]
-        [TestModel(@".\empty.rfa")]
-        public void OpenNewFileNotCleanupOldElements()
+        [TestModel(@".\emptyS.rvt")]
+        public void Rotation_MAGN_8056()
         {
-            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7229_1.dyn");
+            var model = ViewModel.Model;
+
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_8056.dyn");
             string testPath = Path.GetFullPath(filePath);
+
             ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
 
-            var doc = DocumentManager.Instance.CurrentDBDocument;
-            var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            fec.OfClass(typeof(Autodesk.Revit.DB.ReferencePoint));
-            Assert.AreEqual(4, fec.ToElements().Count());
+            RunCurrentModel();
 
-            filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7229_2.dyn");
-            testPath = Path.GetFullPath(filePath);
-            ViewModel.OpenCommand.Execute(testPath);
-            fec.OfClass(typeof(Autodesk.Revit.DB.ReferencePoint));
-            Assert.AreEqual(6, fec.ToElements().Count());
+            string locationNodeId = "8c9dbf40-73d7-4788-84b2-ccf015fa47de";
+            var locations = GetPreviewCollection(locationNodeId);
+            var point = locations[0] as Point;
+            point.X.ShouldBeApproximately(2.0);
 
-            Model.ClearCurrentWorkspace();
-            fec.OfClass(typeof(Autodesk.Revit.DB.ReferencePoint));
-            Assert.AreEqual(6, fec.ToElements().Count());
+            string numberSliderNodeId = "971b7986-59e2-4ad1-b087-0e9e4158506a";
+            DoubleSlider slider = GetNode<DoubleSlider>(numberSliderNodeId) as DoubleSlider;
+            slider.Value = 10.0; // Set the new rotation
+
+            RunCurrentModel();
+            locations = GetPreviewCollection(locationNodeId);
+            point = locations[0] as Point;
+            point.X.ShouldBeApproximately(2.0);// The x coordination of the column should not change
+            point.Y.ShouldBeApproximately(0.0);// The x coordination of the column should not change
+            point.Z.ShouldBeApproximately(0.0);// The x coordination of the column should not change
+
+            //After updating the rotation angle, check that all family instances are rotated for 10.0 degrees
+            var objects = GetPreviewCollection("2af2362b-38a7-4db7-976d-39f4e74c8e07");
+            foreach(var obj in objects)
+            {
+                var instance = obj as Revit.Elements.FamilyInstance;
+                Assert.IsNotNull(instance);
+
+                double[] rotationAngles;
+                var familyInstance = instance.InternalElement as Autodesk.Revit.DB.FamilyInstance;
+                var transform = familyInstance.GetTransform();
+                TransformUtils.ExtractEularAnglesFromTransform(transform, out rotationAngles);
+                (10.0).ShouldBeApproximately(rotationAngles[0] * 180 / Math.PI);
+            }
         }
+
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void ElementGeometryIssue_MAGN_7978()
+        {
+
+            var model = ViewModel.Model;
+
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\ElementGeometryIssue_MAGN_7978.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(6, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(4, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Check that it has returned the Surface from Import Instance node.
+            string nodeID = "7d28ba60-e656-4626-a61f-bcbf8c763b52";
+            var surface = GetPreviewValue(nodeID) as Surface;
+            Assert.IsNotNull(surface);
+        }
+
 
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
         {
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
             fec.OfClass(typeof(Autodesk.Revit.DB.CurveElement));
             return fec.ToElements().Cast<Autodesk.Revit.DB.CurveElement>().ToList();
+        }
+
+        protected static IList<Autodesk.Revit.DB.ReferencePoint> GetAllReferencePoints()
+        {
+            var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(Autodesk.Revit.DB.ReferencePoint));
+            return fec.ToElements().Cast<Autodesk.Revit.DB.ReferencePoint>().ToList();
         }
     }
 }
