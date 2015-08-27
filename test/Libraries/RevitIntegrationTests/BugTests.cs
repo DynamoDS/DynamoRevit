@@ -25,6 +25,7 @@ using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
 using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 using Dynamo.Applications.Models;
 using System;
+using Revit.Elements.InternalUtilities;
 
 namespace RevitSystemTests
 {
@@ -908,6 +909,52 @@ namespace RevitSystemTests
             string nodeID = "4f522c79-76e5-40af-a137-1cd535d3061d";
             var maxZ = (double)GetPreviewValue(nodeID);
             maxZ.ShouldBeApproximately(10.0);
+        }
+
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\emptyS.rvt")]
+        public void Rotation_MAGN_8056()
+        {
+            var model = ViewModel.Model;
+
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_8056.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            RunCurrentModel();
+
+            string locationNodeId = "8c9dbf40-73d7-4788-84b2-ccf015fa47de";
+            var locations = GetPreviewCollection(locationNodeId);
+            var point = locations[0] as Point;
+            point.X.ShouldBeApproximately(2.0);
+
+            string numberSliderNodeId = "971b7986-59e2-4ad1-b087-0e9e4158506a";
+            DoubleSlider slider = GetNode<DoubleSlider>(numberSliderNodeId) as DoubleSlider;
+            slider.Value = 10.0; // Set the new rotation
+
+            RunCurrentModel();
+            locations = GetPreviewCollection(locationNodeId);
+            point = locations[0] as Point;
+            point.X.ShouldBeApproximately(2.0);// The x coordination of the column should not change
+            point.Y.ShouldBeApproximately(0.0);// The x coordination of the column should not change
+            point.Z.ShouldBeApproximately(0.0);// The x coordination of the column should not change
+
+            //After updating the rotation angle, check that all family instances are rotated for 10.0 degrees
+            var objects = GetPreviewCollection("2af2362b-38a7-4db7-976d-39f4e74c8e07");
+            foreach(var obj in objects)
+            {
+                var instance = obj as Revit.Elements.FamilyInstance;
+                Assert.IsNotNull(instance);
+
+                double[] rotationAngles;
+                var familyInstance = instance.InternalElement as Autodesk.Revit.DB.FamilyInstance;
+                var transform = familyInstance.GetTransform();
+                TransformUtils.ExtractEularAnglesFromTransform(transform, out rotationAngles);
+                (10.0).ShouldBeApproximately(rotationAngles[0] * 180 / Math.PI);
+            }
         }
 
         [Test]
