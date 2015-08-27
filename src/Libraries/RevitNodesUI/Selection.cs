@@ -29,6 +29,7 @@ using UV = Autodesk.DesignScript.Geometry.UV;
 using RevitServices.EventHandler;
 using Autodesk.Revit.DB.Events;
 using Dynamo.Applications;
+using DSRevitNodesUI.Properties;
 
 namespace Dynamo.Nodes
 {
@@ -705,6 +706,16 @@ namespace Dynamo.Nodes
             return
                 RevitElementSelectionHelper<DividedSurface>.GetFamilyInstancesFromDividedSurface(
                     selection);
+        }
+
+        public override string ToString()
+        {
+            if (Selection.Any() && !SelectionResults.Any())
+            {
+                return Resources.NoFamilyInstancesInDividedSurfaceWarning;
+            }
+
+            return base.ToString();
         }
     }
 
