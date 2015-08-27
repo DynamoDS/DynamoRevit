@@ -5,6 +5,8 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI.Selection;
 
 using Dynamo.Interfaces;
+using Dynamo.Logging;
+
 using RevitServices.Persistence;
 
 namespace Revit.Interactivity
