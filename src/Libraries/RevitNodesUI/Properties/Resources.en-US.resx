@@ -276,4 +276,7 @@
   <data name="NoFloorTypesAvailable" xml:space="preserve">
     <value>No floor types available.</value>
   </data>
+  <data name="NoFamilyInstancesInDividedSurfaceWarning" xml:space="preserve">
+    <value>No family instances found in the divided surface.</value>
+  </data>
 </root>
