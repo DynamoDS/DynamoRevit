@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamoUtilities">
+      <HintPath>$(DYNAMOAPI)\DynamoUtilities.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="HelixToolkit.Wpf.SharpDX">
       <HintPath>..\..\..\..\Dynamo\extern\Helix3D\NET40\HelixToolkit.Wpf.SharpDX.dll</HintPath>
       <Private>False</Private>
