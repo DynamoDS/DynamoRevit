@@ -206,7 +206,7 @@ namespace Revit.Elements
 
             if (tessellatedShape == null)
             {
-                throw new ArgumentException("can only create DirectShapes from Solids, Surfaces or Meshes");
+                throw new ArgumentException(Revit.Properties.Resources.DirectShapeInvalidArgument);
             }
             return tessellatedShape;
         }
@@ -314,7 +314,7 @@ namespace Revit.Elements
                 return new DirectShape(geometry, name, new ElementId(category.Id), MaterialsManager.Instance.DynamoMaterialId);
             }
 
-            throw new ArgumentException("can only create DirectShapes from Solids, Surfaces or Meshes");
+            throw new ArgumentException(Revit.Properties.Resources.DirectShapeInvalidArgument);
         }
 
         /// <summary>
@@ -352,7 +352,8 @@ namespace Revit.Elements
                 return new DirectShape(geometry, name, new ElementId(category.Id), new ElementId(material.Id));
             }
 
-            throw new ArgumentException("can only create DirectShapes from Solids, Surfaces or Meshes");
+            throw new ArgumentException(Revit.Properties.Resources.DirectShapeInvalidArgument);
+
         }
 
         /// <summary>
