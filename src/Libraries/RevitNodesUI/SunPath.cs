@@ -7,6 +7,7 @@ using Autodesk.Revit.UI.Events;
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Models;
+using Dynamo.Nodes;
 
 using ProtoCore.AST.AssociativeAST;
 
@@ -14,6 +15,7 @@ using Revit.Elements;
 using RevitServices.Elements;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
 {

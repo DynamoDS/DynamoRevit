@@ -11,6 +11,7 @@ using Autodesk.Revit.DB.Structure;
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Models;
+using Dynamo.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using Revit.Elements;
 using Revit.Elements.InternalUtilities;
@@ -26,6 +27,7 @@ using Level = Revit.Elements.Level;
 using ModelText = Autodesk.Revit.DB.ModelText;
 using ReferencePlane = Autodesk.Revit.DB.ReferencePlane;
 using ReferencePoint = Autodesk.Revit.DB.ReferencePoint;
+using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
 {
