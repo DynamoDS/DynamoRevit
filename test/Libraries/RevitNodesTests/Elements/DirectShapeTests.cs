@@ -8,26 +8,32 @@ using Autodesk.DesignScript.Geometry;
 using RevitServices.Persistence;
 using System.Linq;
 using System.Collections.Generic;
+using Autodesk.DesignScript.Runtime;
+using RevitServices.Transactions;
+using Revit.GeometryConversion;
+
 
 namespace RevitNodesTests.Elements
 {
     [TestFixture]
     class DirectShapeTests : RevitNodeTestBase
     {
-        //this test fails because the materialsManager is not initialzed without DynamoRevitModel
-        [Test,Category("Failure")]
-        [TestModel(@".\empty.rfa")]
-        public void ByGeoNameCategory_ValidInput()
+
+        private Point BoundingBoxCentroid(DirectShape ds)
         {
-            var sphere = Sphere.ByCenterPointRadius(Point.Origin());
-            
-            var ds = DirectShape.ByGeometryNameCategory(sphere,"a sphere", Category.ByName("OST_GenericModel"));
-            sphere.Dispose();
-            Assert.NotNull(ds);
-            Assert.AreEqual("a sphere", ds.Name);
-            ds.Centroid.DistanceTo(Point.Origin()).ShouldBeApproximately(0);
-           
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            DocumentManager.Regenerate();
+            var Revitbb = ds.InternalElement.get_BoundingBox(null);
+            TransactionManager.Instance.TransactionTaskDone();
+            var bb = Revitbb.ToProtoType();
+            var cube = bb.ToCuboid();
+            var point = cube.Centroid();
+            bb.Dispose();
+            cube.Dispose();
+
+            return point;
         }
+
 
         [Test]
         [TestModel(@".\empty.rfa")]
@@ -36,13 +42,13 @@ namespace RevitNodesTests.Elements
 
             var sphere = Sphere.ByCenterPointRadius(Point.Origin());
             var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
-            
-            var ds = DirectShape.ByGeometryNameCategoryMaterial(sphere, "a sphere", Category.ByName("OST_GenericModel"),Material.ByName(mat.Name));
+
+            var ds = DirectShape.ByGeometryCategoryMaterialName(sphere, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a sphere");
             
             Assert.NotNull(ds);
             Assert.AreEqual("a sphere", ds.Name);
             Assert.AreEqual(sphere.Tags.LookupTag(ds.InternalElement.Id.ToString()) as Autodesk.Revit.DB.ElementId,mat.Id);
-            ds.Centroid.DistanceTo(Point.Origin()).ShouldBeApproximately(0);
+            BoundingBoxCentroid(ds).DistanceTo(Point.Origin()).ShouldBeApproximately(0);
             sphere.Dispose();
         }
 
@@ -58,12 +64,12 @@ namespace RevitNodesTests.Elements
 
             var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
 
-            var ds = DirectShape.ByGeometryNameCategoryMaterial(surf, "a polysurface", Category.ByName("OST_GenericModel"), Material.ByName(mat.Name));
+            var ds = DirectShape.ByGeometryCategoryMaterialName(surf,Category.ByName("OST_GenericModel"), Material.ByName(mat.Name),"a polysurface");
 
             Assert.NotNull(ds);
             Assert.AreEqual("a polysurface", ds.Name);
             Assert.AreEqual(surf.Tags.LookupTag(ds.InternalElement.Id.ToString()) as Autodesk.Revit.DB.ElementId, mat.Id);
-            ds.Centroid.DistanceTo(Point.Origin()).ShouldBeApproximately(0);
+            BoundingBoxCentroid(ds).DistanceTo(Point.Origin()).ShouldBeApproximately(0);
             surf.Dispose();
             surfs.ForEach(x => x.Dispose());
             faces.ForEach(x => x.Dispose());
@@ -84,12 +90,12 @@ namespace RevitNodesTests.Elements
            var mesh= Mesh.ByPointsFaceIndices(new List<Point>() { p1, p2, p3 }, new List<IndexGroup>() { index1 });
             var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
 
-            var ds = DirectShape.ByMeshNameCategoryMaterial(mesh, "a mesh", Category.ByName("OST_GenericModel"), Material.ByName(mat.Name));
+            var ds = DirectShape.ByMeshCategoryMaterialName(mesh, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a mesh");
 
             Assert.NotNull(ds);
             Assert.AreEqual("a mesh", ds.Name);
             Assert.AreEqual(mesh.Tags.LookupTag(ds.InternalElement.Id.ToString()) as Autodesk.Revit.DB.ElementId, mat.Id);
-            ds.Centroid.DistanceTo(Point.Origin()).ShouldBeApproximately(0);
+            BoundingBoxCentroid(ds).DistanceTo(Point.Origin()).ShouldBeApproximately(0);
             mesh.Dispose();
         }
 
@@ -112,9 +118,9 @@ namespace RevitNodesTests.Elements
 
             var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
 
-            var ds = DirectShape.ByMeshNameCategoryMaterial(mesh, "a mesh", Category.ByName("OST_GenericModel"), Material.ByName(mat.Name));
-            var dsSurf = DirectShape.ByGeometryNameCategoryMaterial(surf, "a surf", Category.ByName("OST_GenericModel"), Material.ByName(mat.Name));
-            ds.Centroid.DistanceTo(dsSurf.Centroid).ShouldBeApproximately(0);
+            var ds = DirectShape.ByMeshCategoryMaterialName(mesh,  Category.ByName("OST_GenericModel"), Material.ByName(mat.Name),"a mesh");
+            var dsSurf = DirectShape.ByGeometryCategoryMaterialName(surf, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a surf");
+            BoundingBoxCentroid(ds).DistanceTo(BoundingBoxCentroid(dsSurf)).ShouldBeApproximately(0);
 
             Surface.ByPerimeterPoints((ds.Geometry().First() as Mesh).VertexPositions).Area.ShouldDifferByLessThanPercentage((dsSurf.Geometry().First() as Surface).Area, ApproximateAssertExtensions.Epsilon);
 
@@ -126,8 +132,9 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\Empty.rvt")]
         public void ByName_NonexistentName()
         {
+             var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
             var line = Line.ByStartPointEndPoint(Point.Origin(),Point.ByCoordinates(1.0,2.0,3.0));
-            Assert.Throws(typeof(ArgumentException), () => DirectShape.ByGeometryNameCategory(line,"noshape",Category.ByName("OST_GenericModel")));
+            Assert.Throws(typeof(ArgumentException), () => DirectShape.ByGeometryCategoryMaterialName(line,Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), name:"noshape"));
         }
     }
 }
