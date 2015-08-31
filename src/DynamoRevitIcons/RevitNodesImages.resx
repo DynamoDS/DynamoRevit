@@ -8397,7 +8397,7 @@
         Qu5fANEwzb9gCiZdIt0WDyRlq0enzmT+kKL4ArrLUF4gpd4MAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="Revit.Elements.DirectShape.ByGeometryCategoryMaterialName.Large" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Revit.Elements.DirectShape.ByGeometry.Large" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAWWElEQVR4Xu2dCVNVV7bH8xH6
@@ -8499,7 +8499,7 @@
         jf8DGy/dBqvCdUoAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="Revit.Elements.DirectShape.ByGeometryCategoryMaterialName.Small" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Revit.Elements.DirectShape.ByGeometry.Small" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAFe0lEQVRYR+VXe1OUZRTnI/gR
@@ -8529,7 +8529,7 @@
         /+nx8voLzNP36IMde80AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="Revit.Elements.DirectShape.ByMeshCategoryMaterialName.Large" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Revit.Elements.DirectShape.ByMesh.Large" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAMFUlEQVR4Xu2d3atcVxnG8yf0
@@ -8587,7 +8587,7 @@
         00eMGDFixIgRI76g2LLlM6cY7qAIXPK6AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="Revit.Elements.DirectShape.ByMeshCategoryMaterialName.Small" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Revit.Elements.DirectShape.ByMesh.Small" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAECklEQVRYR+WXXUuUURDH/Qh+

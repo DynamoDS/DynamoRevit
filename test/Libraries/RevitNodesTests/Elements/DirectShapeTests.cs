@@ -43,7 +43,7 @@ namespace RevitNodesTests.Elements
             var sphere = Sphere.ByCenterPointRadius(Point.Origin());
             var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
 
-            var ds = DirectShape.ByGeometryCategoryMaterialName(sphere, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a sphere");
+            var ds = DirectShape.ByGeometry(sphere, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a sphere");
             
             Assert.NotNull(ds);
             Assert.AreEqual("a sphere", ds.Name);
@@ -64,7 +64,7 @@ namespace RevitNodesTests.Elements
 
             var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
 
-            var ds = DirectShape.ByGeometryCategoryMaterialName(surf,Category.ByName("OST_GenericModel"), Material.ByName(mat.Name),"a polysurface");
+            var ds = DirectShape.ByGeometry(surf,Category.ByName("OST_GenericModel"), Material.ByName(mat.Name),"a polysurface");
 
             Assert.NotNull(ds);
             Assert.AreEqual("a polysurface", ds.Name);
@@ -90,7 +90,7 @@ namespace RevitNodesTests.Elements
            var mesh= Mesh.ByPointsFaceIndices(new List<Point>() { p1, p2, p3 }, new List<IndexGroup>() { index1 });
             var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
 
-            var ds = DirectShape.ByMeshCategoryMaterialName(mesh, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a mesh");
+            var ds = DirectShape.ByMesh(mesh, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a mesh");
 
             Assert.NotNull(ds);
             Assert.AreEqual("a mesh", ds.Name);
@@ -118,8 +118,8 @@ namespace RevitNodesTests.Elements
 
             var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
 
-            var ds = DirectShape.ByMeshCategoryMaterialName(mesh,  Category.ByName("OST_GenericModel"), Material.ByName(mat.Name),"a mesh");
-            var dsSurf = DirectShape.ByGeometryCategoryMaterialName(surf, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a surf");
+            var ds = DirectShape.ByMesh(mesh,  Category.ByName("OST_GenericModel"), Material.ByName(mat.Name),"a mesh");
+            var dsSurf = DirectShape.ByGeometry(surf, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a surf");
             BoundingBoxCentroid(ds).DistanceTo(BoundingBoxCentroid(dsSurf)).ShouldBeApproximately(0);
 
             Surface.ByPerimeterPoints((ds.Geometry().First() as Mesh).VertexPositions).Area.ShouldDifferByLessThanPercentage((dsSurf.Geometry().First() as Surface).Area, ApproximateAssertExtensions.Epsilon);
@@ -134,7 +134,7 @@ namespace RevitNodesTests.Elements
         {
              var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
             var line = Line.ByStartPointEndPoint(Point.Origin(),Point.ByCoordinates(1.0,2.0,3.0));
-            Assert.Throws(typeof(ArgumentException), () => DirectShape.ByGeometryCategoryMaterialName(line,Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), name:"noshape"));
+            Assert.Throws(typeof(ArgumentException), () => DirectShape.ByGeometry(line,Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), name:"noshape"));
         }
     }
 }

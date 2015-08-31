@@ -337,7 +337,7 @@ namespace Revit.Elements
         /// <param name="category">must be a top level built-in category</param>
         /// <param name="material">a material to apply to the faces of the DirectShape</param>
         /// <returns>a DirectShape Element</returns>
-        public static DirectShape ByGeometryCategoryMaterialName(Autodesk.DesignScript.Geometry.Geometry geometry,
+        public static DirectShape ByGeometry(Autodesk.DesignScript.Geometry.Geometry geometry,
             Category category,
             [DefaultArgumentAttribute(" DirectShape.DynamoPreviewMaterial")]Material material,
             string name = DEFAULT_NAME)
@@ -380,7 +380,7 @@ namespace Revit.Elements
         /// <param name="category">must be a top level built-in category</param>
         /// <param name="material">a material to apply to the faces of the DirectShape</param>
         /// <returns>a DirectShape Element</returns>
-        public static DirectShape ByMeshCategoryMaterialName(Autodesk.DesignScript.Geometry.Mesh mesh,
+        public static DirectShape ByMesh(Autodesk.DesignScript.Geometry.Mesh mesh,
             Category category,
             [DefaultArgumentAttribute(" DirectShape.DynamoPreviewMaterial")]Material material,
            string name = DEFAULT_NAME)
