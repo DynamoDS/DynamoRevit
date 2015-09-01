@@ -1,0 +1,42 @@
+<Workspace Version="0.8.3.2330" X="-19.125425" Y="8.28858749999991" zoom="0.70823125" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="a64345c7-0961-4c2c-b3a8-97b735f5b05e" type="Dynamo.Nodes.DSFunction" nickname="Sphere.ByCenterPointRadius" x="110.5" y="241.5" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Sphere.ByCenterPointRadius@Autodesk.DesignScript.Geometry.Point,double">
+      <PortInfo index="0" default="True" />
+      <PortInfo index="1" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="1ee7f6e2-ce28-48b8-8946-3205b99fda8d" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-137" y="99" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="Point.ByCoordinates(a,a,a);" ShouldFocus="false" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="22c11229-cbae-4d80-bd44-f2c139bf3227" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="205" y="358" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="&quot;sphere&quot;;" ShouldFocus="false" />
+    <DSRevitNodesUI.Categories guid="f551f675-ab96-4442-89e5-3fcfcaac6fe8" type="DSRevitNodesUI.Categories" nickname="Categories" x="170.5" y="53.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="338:Furniture" />
+    <Dynamo.Nodes.DSFunction guid="76e793d7-ba52-429e-9bed-8f1e9493d505" type="Dynamo.Nodes.DSFunction" nickname="DirectShape.Centroid" x="640.754414606811" y="167.160496659813" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.DirectShape.Centroid" />
+    <Dynamo.Nodes.DoubleInput guid="e1f9f94a-f705-40f2-8410-6931deca3648" type="Dynamo.Nodes.DoubleInput" nickname="Number" x="-272.789007827599" y="16.0798997502582" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <System.Double value="10" />
+    </Dynamo.Nodes.DoubleInput>
+    <Dynamo.Nodes.DSFunction guid="d0574f96-302e-4980-b5dc-6f1d3a0eac4f" type="Dynamo.Nodes.DSFunction" nickname="DirectShape.ByGeometryNameCategoryMaterial" x="436.019026271433" y="448.848151645384" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.DirectShape.ByGeometryNameCategoryMaterial@Autodesk.DesignScript.Geometry.Geometry,string,Revit.Elements.Category,Revit.Elements.Material" />
+    <Dynamo.Nodes.DSFunction guid="00e8928a-fdf9-4b31-b65c-91da326ef05a" type="Dynamo.Nodes.DSFunction" nickname="Material.ByName" x="291.998270338961" y="626.75614426785" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.Material.ByName@string" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="b532d067-6af1-4824-b86d-3cacc2d43895" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="57" y="635" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="&quot;Earth&quot;;" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="a64345c7-0961-4c2c-b3a8-97b735f5b05e" start_index="0" end="d0574f96-302e-4980-b5dc-6f1d3a0eac4f" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="1ee7f6e2-ce28-48b8-8946-3205b99fda8d" start_index="0" end="a64345c7-0961-4c2c-b3a8-97b735f5b05e" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="22c11229-cbae-4d80-bd44-f2c139bf3227" start_index="0" end="d0574f96-302e-4980-b5dc-6f1d3a0eac4f" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f551f675-ab96-4442-89e5-3fcfcaac6fe8" start_index="0" end="d0574f96-302e-4980-b5dc-6f1d3a0eac4f" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e1f9f94a-f705-40f2-8410-6931deca3648" start_index="0" end="1ee7f6e2-ce28-48b8-8946-3205b99fda8d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d0574f96-302e-4980-b5dc-6f1d3a0eac4f" start_index="0" end="76e793d7-ba52-429e-9bed-8f1e9493d505" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="00e8928a-fdf9-4b31-b65c-91da326ef05a" start_index="0" end="d0574f96-302e-4980-b5dc-6f1d3a0eac4f" end_index="3" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b532d067-6af1-4824-b86d-3cacc2d43895" start_index="0" end="00e8928a-fdf9-4b31-b65c-91da326ef05a" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" upX="0" upY="1" upZ="0" />
+  </Cameras>
+  <SessionTraceData>
+    <NodeTraceData NodeId="d0574f96-302e-4980-b5dc-6f1d3a0eac4f">
+      <CallsiteTraceData>PFNPQVAtRU5WOkVudmVsb3BlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOlNPQVAtRU5DPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1sbnM6U09BUC1FTlY9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpjbHI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc29hcC9lbmNvZGluZy9jbHIvMS4wIiBTT0FQLUVOVjplbmNvZGluZ1N0eWxlPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyI+DQo8U09BUC1FTlY6Qm9keT4NCjxhMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXIgaWQ9InJlZi0xIiB4bWxuczphMT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9jbHIvbnNhc3NlbS9Qcm90b0NvcmUvUHJvdG9Db3JlJTJDJTIwVmVyc2lvbiUzRDAuOC4zLjIzMzAlMkMlMjBDdWx0dXJlJTNEbmV1dHJhbCUyQyUyMFB1YmxpY0tleVRva2VuJTNEbnVsbCI+DQo8TnVtYmVyT2ZFbGVtZW50cz4xPC9OdW1iZXJPZkVsZW1lbnRzPg0KPEJhc2UtMF9IYXNEYXRhPnRydWU8L0Jhc2UtMF9IYXNEYXRhPg0KPEJhc2UtMF9EYXRhIGlkPSJyZWYtMyI+UEZOUFFWQXRSVTVXT2tWdWRtVnNiM0JsSUhodGJHNXpPbmh6YVQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0V0YVc1emRHRnVZMlVpSUhodGJHNXpPbmh6WkQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0VpSUhodGJHNXpPbE5QUVZBdFJVNURQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SWdlRzFzYm5NNlUwOUJVQzFGVGxZOUltaDBkSEE2THk5elkyaGxiV0Z6TG5odGJITnZZWEF1YjNKbkwzTnZZWEF2Wlc1MlpXeHZjR1V2SWlCNGJXeHVjenBqYkhJOUltaDBkSEE2THk5elkyaGxiV0Z6TG0xcFkzSnZjMjltZEM1amIyMHZjMjloY0M5bGJtTnZaR2x1Wnk5amJISXZNUzR3SWlCVFQwRlFMVVZPVmpwbGJtTnZaR2x1WjFOMGVXeGxQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SStEUW84VTA5QlVDMUZUbFk2UW05a2VUNE5DanhoTVRwVFpYSnBZV3hwZW1GaWJHVkpaQ0JwWkQwaWNtVm1MVEVpSUhodGJHNXpPbUV4UFNKb2RIUndPaTh2YzJOb1pXMWhjeTV0YVdOeWIzTnZablF1WTI5dEwyTnNjaTl1YzJGemMyVnRMMUpsZG1sMFUyVnlkbWxqWlhNdVVHVnljMmx6ZEdWdVkyVXZVbVYyYVhSVFpYSjJhV05sY3lVeVF5VXlNRlpsY25OcGIyNGxNMFF3TGpndU15NHlNemMySlRKREpUSXdRM1ZzZEhWeVpTVXpSRzVsZFhSeVlXd2xNa01sTWpCUWRXSnNhV05MWlhsVWIydGxiaVV6Ukc1MWJHd2lQZzBLUEhOMGNtbHVaMGxFSUdsa1BTSnlaV1l0TXlJK1pXSTVZbU13TUdNdE9ESmtPUzAwWXpneUxXSTBOVE10TVRoaVlqTTFZV1UzT0RCaExUQXdNRFJpTmpReVBDOXpkSEpwYm1kSlJENE5DanhwYm5SSlJENHpNRGc0TURJOEwybHVkRWxFUGcwS1BDOWhNVHBUWlhKcFlXeHBlbUZpYkdWSlpENE5Dand2VTA5QlVDMUZUbFk2UW05a2VUNE5Dand2VTA5QlVDMUZUbFk2Ulc1MlpXeHZjR1UrRFFvPTwvQmFzZS0wX0RhdGE+DQo8QmFzZS0wX0hhc05lc3RlZERhdGE+ZmFsc2U8L0Jhc2UtMF9IYXNOZXN0ZWREYXRhPg0KPC9hMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXI+DQo8L1NPQVAtRU5WOkJvZHk+DQo8L1NPQVAtRU5WOkVudmVsb3BlPg0K</CallsiteTraceData>
+    </NodeTraceData>
+  </SessionTraceData>
+</Workspace>
