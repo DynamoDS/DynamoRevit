@@ -63,7 +63,7 @@ namespace Revit.Elements
     [DynamoServices.RegisterForTrace]
     public class DirectShape : Element
     {
-        private const string DEFAULT_NAME = "directShape from ...";
+        private const string DEFAULT_NAME = "DirectShape";
 
         #region Static Fields
 
@@ -110,7 +110,7 @@ namespace Revit.Elements
         /// <summary>
         ///  Internal Constructor for a new DirectShape
         /// </summary>
-        protected DirectShape(DesignScriptEntity shapeReference ,string shapename, ElementId category, ElementId material)
+        protected DirectShape(DesignScriptEntity shapeReference ,string shapename, Category category, Material material)
         {
             SafeInit(() => InitDirectShape(shapeReference, shapename, category, material));
         }
@@ -120,7 +120,7 @@ namespace Revit.Elements
         /// </summary>
         private void InitDirectShape(Autodesk.Revit.DB.DirectShape shape)
         {
-            InteralSetDirectShape(shape);
+            InternalSetDirectShape(shape);
         }
 
         /// <summary>
@@ -128,8 +128,8 @@ namespace Revit.Elements
         /// </summary>
         private void InitDirectShape(DesignScriptEntity shapeReference,
             string shapeName,
-            ElementId categoryId,
-            ElementId materialId)
+            Category category,
+            Material material)
         {
             //Phase 1 - Check to see if a DirectShape exists in trace and should be rebound
             var oldShape =
@@ -139,11 +139,11 @@ namespace Revit.Elements
             if (oldShape != null)
             {
                 //set the directshape element
-                this.InteralSetDirectShape(oldShape.Item1);
+                this.InternalSetDirectShape(oldShape.Item1);
 
                 //if the cateogryID has changed, we cannot continue to rebind and instead
                 //will make a new directShape
-                if (categoryId == this.InternalElement.Category.Id)
+                if (category.Id == this.InternalElement.Category.Id.IntegerValue)
                 {
                     //set the shape geometry of the directshape, this method passes in the actual input geo
                     //and checks the directShapeState object at the elementId key in the input geo tags dictionary. 
@@ -153,8 +153,8 @@ namespace Revit.Elements
                     //we also check the material, if it's different than the currently assigned material
                     //then we need to rebuild the geo so that a new material is applied
                     //
-                    this.InteralSetShape(shapeReference,materialId,oldShape.Item2);
-                    this.InteralSetName(shapeReference,shapeName);
+                    this.IntenralSetShape(shapeReference,new ElementId(material.Id),oldShape.Item2);
+                    this.InternalSetName(shapeReference,shapeName,material,category);
                     return;
                 }
             }
@@ -165,17 +165,17 @@ namespace Revit.Elements
             Autodesk.Revit.DB.DirectShape ds;
 
             //generate the geometry correctly depending on the type of geo
-            var tessellatedShape = GenerateTessellatedGeo(shapeReference, materialId);
+            var tessellatedShape = GenerateTessellatedGeo(shapeReference, new ElementId(material.Id));
 
             //actually construct the directshape revit element
             ds = NewDirectShape(tessellatedShape,
-                Document, categoryId,
+                Document, new ElementId(category.Id),
                 DirectShape.DYNAMO_DIRECTSHAPE_APP_GUID.ToString(), shapeName);
 
-            InteralSetDirectShape(ds);
-            InteralSetName(shapeReference, shapeName);
+            InternalSetDirectShape(ds);
+            InternalSetName(shapeReference, shapeName,material,category);
             //generate a new syncId for trace
-            var traceData = new DirectShapeState(this, Guid.NewGuid().ToString(), materialId);
+            var traceData = new DirectShapeState(this, Guid.NewGuid().ToString(), new ElementId(material.Id));
 
             //add the elementID:tracedata to the tags dictionary on the real protogeometry input
             shapeReference.Tags.AddTag(this.InternalElementId.ToString(), traceData);
@@ -246,8 +246,7 @@ namespace Revit.Elements
         /// <summary>
         /// SetInternalElement to a DirectShape element
         /// </summary>
-        /// <param name="shape"></param>
-        private void InteralSetDirectShape(Autodesk.Revit.DB.DirectShape shape)
+        private void InternalSetDirectShape(Autodesk.Revit.DB.DirectShape shape)
         {
             this.InternalDirectShape = shape;
             this.InternalElementId = shape.Id;
@@ -259,9 +258,7 @@ namespace Revit.Elements
         /// this method also generates tessellated geometry from the protogeometry object
         /// and sets the material of the generated Revit faces
         /// </summary>
-        /// <param name="shapeReference"></param>
-        /// <param name="materialId"></param>
-        private void InteralSetShape(DesignScriptEntity shapeReference, ElementId materialId,string currentSyncId)
+        private void IntenralSetShape(DesignScriptEntity shapeReference, ElementId materialId,string currentSyncId)
         {
             //if the elementID for the current directShape revitElement exists on the input Geometry AND
             //the value stored at that key is equal to the materialId we're trying to set AND
@@ -306,12 +303,15 @@ namespace Revit.Elements
         /// Sets the internalDirectShape to have a new name
         /// if this method detects the default string it generates a more specific name
         /// </summary>
-        /// <param name="name"></param>
-        private void InteralSetName(DesignScriptEntity shapeReference,string name)
+        private void InternalSetName(DesignScriptEntity shapeReference,string name,Material material,Category category)
         {
             if (name == DEFAULT_NAME)
             {
-                name = name.Replace("...", shapeReference.ToString());
+              
+                name = string.Format("DirectShape" + "(Geometry = {0}, Category = {1}, Material ={2}.)",
+                    shapeReference.ToString(),
+                    category != null ? category.Name : "",
+                    material != null ? material.Name : "");
             }
 
             if (name != this.InternalDirectShape.Name)
@@ -327,16 +327,16 @@ namespace Revit.Elements
         #region Public static constructors
 
         /// <summary>
-        /// Create a Revit DirectShape given some geometry, a name for the shape, category, and material.
+        /// Create a Revit DirectShape given some geometry, a name for the shape, a Category, and Material.
         /// The geometry will be tessellated before being placed in the Revit model
-        /// The category of a DirectShape cannot be changed after placing a DirectShape, so
-        /// a new DirectShape will be generated if the category input is changed
+        /// The category of a DirectShape cannot be changed after creation, so
+        /// a new DirectShape will be generated if the category input is changed.
         /// </summary>
-        /// <param name="geometry">a solid or surface that will be tessellated and placed in the Revit model as a DirectShape</param>
-        /// <param name="name">a string name for the directshape</param>
-        /// <param name="category">must be a top level built-in category</param>
-        /// <param name="material">a material to apply to the faces of the DirectShape</param>
-        /// <returns>a DirectShape Element</returns>
+        /// <param name="geometry">A Solid or Surface that will be tessellated and placed in the Revit model as a DirectShape</param>
+        /// <param name="name">A string name for the DirectShape</param>
+        /// <param name="category">Must be a top level Built-in Category</param>
+        /// <param name="material">A Material to apply to the faces of the DirectShape</param>
+        /// <returns>A DirectShape Element</returns>
         public static DirectShape ByGeometry(Autodesk.DesignScript.Geometry.Geometry geometry,
             Category category,
             [DefaultArgumentAttribute(" DirectShape.DynamoPreviewMaterial")]Material material,
@@ -364,22 +364,23 @@ namespace Revit.Elements
 
             if (geometry is Autodesk.DesignScript.Geometry.Solid || geometry is Autodesk.DesignScript.Geometry.Surface)
             {
-                return new DirectShape(geometry, name, new ElementId(category.Id), new ElementId(material.Id));
+                return new DirectShape(geometry, name, category, material);
             }
 
             throw new ArgumentException(Revit.Properties.Resources.DirectShapeInvalidArgument);
         }
 
         /// <summary>
-        /// Create a Revit DirectShape given some mesh, a name for the shape, category, and material.
-        /// The category of a DirectShape cannot be changed after placing a DirectShape, so
+        /// Create a Revit DirectShape given some geometry, a name for the shape, a Category, and Material.
+        /// The geometry will be tessellated before being placed in the Revit model
+        /// The category of a DirectShape cannot be changed after creation, so
         /// a new DirectShape will be generated if the category input is changed.
         /// </summary>
-        /// <param name="mesh">a mesh that will be placed in the Revit model as a DirectShape</param>
-        /// <param name="name">a string name for the directshape</param>
-        /// <param name="category">must be a top level built-in category</param>
-        /// <param name="material">a material to apply to the faces of the DirectShape</param>
-        /// <returns>a DirectShape Element</returns>
+        /// <param name="mesh">A Mesh that will be tessellated and placed in the Revit model as a DirectShape</param>
+        /// <param name="name">A string name for the DirectShape</param>
+        /// <param name="category">Must be a top level Built-in Category</param>
+        /// <param name="material">A Material to apply to the faces of the DirectShape</param>
+        /// <returns>A DirectShape Element</returns>
         public static DirectShape ByMesh(Autodesk.DesignScript.Geometry.Mesh mesh,
             Category category,
             [DefaultArgumentAttribute(" DirectShape.DynamoPreviewMaterial")]Material material,
@@ -405,7 +406,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("material");
             }
 
-            return new DirectShape(mesh, name, new ElementId(category.Id), new ElementId(material.Id));
+            return new DirectShape(mesh, name, category, material);
         }
 
         #endregion
@@ -434,6 +435,9 @@ namespace Revit.Elements
 
         #endregion
 
+        /// <summary>
+        /// Please see InternalSetName method
+        /// </summary>
         public override string ToString()
         { 
             return InternalDirectShape.Name;
