@@ -162,7 +162,6 @@ namespace Dynamo.Applications.Models
                 return currentHashCode == dm.ActiveDocumentHashCode;
             }
         }
-
         #endregion
 
         #region Constructors
@@ -734,13 +733,14 @@ namespace Dynamo.Applications.Models
 
             if (!updatedIds.Any())
                 return;
-
+        
             var nodes = ElementBinder.GetNodesFromElementIds(
                 updatedIds,
                 CurrentWorkspace,
                 EngineController);
-            foreach (var node in nodes)
+            foreach (var node in nodes )
             {
+            
                 node.OnNodeModified(true);
             }
         }
