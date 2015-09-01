@@ -6,11 +6,20 @@ using RevitTestServices;
 
 using RTF.Framework;
 using System.Linq;
+using RevitServices.Materials;
 namespace RevitSystemTests
 {
     [TestFixture]
     class DirectShapeTests : RevitSystemTestBase
     {
+        [SetUp]
+        public override void Setup()
+        {
+            base.Setup();
+            //setup the material manager just for tests
+            var mgr = MaterialsManager.Instance;
+            mgr.InitializeForActiveDocumentOnIdle();
+        }
         
         [Test]
         [TestModel(@".\DirectShape\singleDirectShape.rvt")]
@@ -41,7 +50,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
             RunCurrentModel();
 
-            var pnt = GetPreviewValue("76e793d7-ba52-429e-9bed-8f1e9493d505") as Autodesk.DesignScript.Geometry.Point;
+            var pnt = GetPreviewValue("53eb0459-4cd3-4131-b7ce-c4e689c57248") as Autodesk.DesignScript.Geometry.Point;
             Assert.IsNotNull(pnt);
 
             Assert.IsTrue(IsFuzzyEqual(pnt.X, 10.0, 1.0e-6));
@@ -50,20 +59,20 @@ namespace RevitSystemTests
 
         }
 
-        [Test, Category("Failure")]
+        [Test,Category("Failure")]
         [TestModel(@".\DirectShape\singleDirectShape.rvt")]
         public void CanUpdateDirectShapeGeo()
         {
             var model = ViewModel.Model;
 
-            string samplePath = Path.Combine(workingDirectory, @".\DirectShape\UpdateGeo.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\DirectShape\getDirectShapeCentroid.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
 
-            var pnt = GetPreviewValue("76e793d7-ba52-429e-9bed-8f1e9493d505") as Autodesk.DesignScript.Geometry.Point;
+            var pnt = GetPreviewValue("53eb0459-4cd3-4131-b7ce-c4e689c57248") as Autodesk.DesignScript.Geometry.Point;
             Assert.IsNotNull(pnt);
 
             Assert.IsTrue(IsFuzzyEqual(pnt.X, 10.0, 1.0e-6));
@@ -72,12 +81,12 @@ namespace RevitSystemTests
 
             //now move the geo in Dynamo
 
-            var input = model.CurrentWorkspace.Nodes.Where(x => x.GUID.ToString() == "e1f9f94a-f705-40f2-8410-6931deca3648").First();
+            var input = model.CurrentWorkspace.Nodes.Where(x => x.GUID.ToString() == "06e1461a-2eb4-4069-a581-93914d500115").First();
             input.UpdateValue(new Dynamo.Models.UpdateValueParams("Value", "20.0"));
 
             Assert.AreEqual((input as Dynamo.Nodes.DoubleInput).Value, "20.0");
 
-            var pnt2 = GetPreviewValue("76e793d7-ba52-429e-9bed-8f1e9493d505") as Autodesk.DesignScript.Geometry.Point;
+            var pnt2 = GetPreviewValue("53eb0459-4cd3-4131-b7ce-c4e689c57248") as Autodesk.DesignScript.Geometry.Point;
             Assert.IsNotNull(pnt2);
 
             Assert.IsTrue(IsFuzzyEqual(pnt2.X, 20.0, 1.0e-6));
@@ -86,32 +95,32 @@ namespace RevitSystemTests
 
         }
 
-        [Test,Category("Failure")]
+        [Test]
         [TestModel(@".\DirectShape\singleDirectShape.rvt")]
         public void CanUpdateDirectShapeCategory()
         {
             var model = ViewModel.Model;
 
-            string samplePath = Path.Combine(workingDirectory, @".\DirectShape\UpdateCat.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\DirectShape\getDirectShapeCentroid.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
-            System.Threading.Thread.Sleep(100);
-            var cat = GetPreviewValue("ede05d2f-5fc4-4486-94dd-e2b2f230fe25") as Revit.Elements.Category;
+
+            var cat = GetPreviewValue("097a1c71-884d-413a-bd75-ff0001eeceb5") as Revit.Elements.Category;
             Assert.IsNotNull(cat);
 
             //now update the category in Dynamo
 
-            var input = GetNode<Dynamo.Models.NodeModel>("292eb358-fd48-4466-91ad-14bf303449f5");
-            input.UpdateValue(new Dynamo.Models.UpdateValueParams("value", "OST_GenericModel"));
+            var input = GetNode<Dynamo.Models.NodeModel>("9b4ad043-369e-49a1-bdd7-adab9777abc9");
+            Assert.DoesNotThrow(() => { input.UpdateValue(new Dynamo.Models.UpdateValueParams("Value", "OST_GenericModel")); });
             RunCurrentModel();
 
-            var cat2 = GetPreviewValue("ede05d2f-5fc4-4486-94dd-e2b2f230fe25") as Revit.Elements.Category;
+            var cat2 = GetPreviewValue("097a1c71-884d-413a-bd75-ff0001eeceb5") as Revit.Elements.Category;
             Assert.IsNotNull(cat2);
 
-            Assert.AreEqual("Generic Model", cat2.Name);
+            Assert.AreEqual("Generic Models", cat2.Name);
 
         }
     }
