@@ -8,8 +8,6 @@ using Autodesk.DesignScript.Geometry;
 using RevitServices.Persistence;
 using System.Linq;
 using System.Collections.Generic;
-using Autodesk.DesignScript.Runtime;
-using RevitServices.Threading;
 using RevitServices.Transactions;
 using Revit.GeometryConversion;
 using RevitServices.Materials;
