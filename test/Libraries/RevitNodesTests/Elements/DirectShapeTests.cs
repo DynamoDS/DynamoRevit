@@ -9,8 +9,10 @@ using RevitServices.Persistence;
 using System.Linq;
 using System.Collections.Generic;
 using Autodesk.DesignScript.Runtime;
+using RevitServices.Threading;
 using RevitServices.Transactions;
 using Revit.GeometryConversion;
+using RevitServices.Materials;
 
 
 namespace RevitNodesTests.Elements
@@ -18,6 +20,15 @@ namespace RevitNodesTests.Elements
     [TestFixture]
     class DirectShapeTests : RevitNodeTestBase
     {
+        [SetUp]
+        public override void Setup()
+        {
+            base.Setup();
+            //setup the material manager just for tests
+            var mgr = MaterialsManager.Instance;
+            mgr.InitializeForActiveDocumentOnIdle();
+        }
+
 
         private Point BoundingBoxCentroid(DirectShape ds)
         {
@@ -47,7 +58,7 @@ namespace RevitNodesTests.Elements
             
             Assert.NotNull(ds);
             Assert.AreEqual("a sphere", ds.Name);
-            Assert.AreEqual(sphere.Tags.LookupTag(ds.InternalElement.Id.ToString()) as Autodesk.Revit.DB.ElementId,mat.Id);
+            Assert.AreEqual((sphere.Tags.LookupTag(ds.InternalElement.Id.ToString()) as DirectShapeState).materialId, mat.Id.IntegerValue);
             BoundingBoxCentroid(ds).DistanceTo(Point.Origin()).ShouldBeApproximately(0);
             sphere.Dispose();
         }
@@ -68,7 +79,7 @@ namespace RevitNodesTests.Elements
 
             Assert.NotNull(ds);
             Assert.AreEqual("a polysurface", ds.Name);
-            Assert.AreEqual(surf.Tags.LookupTag(ds.InternalElement.Id.ToString()) as Autodesk.Revit.DB.ElementId, mat.Id);
+            Assert.AreEqual((surf.Tags.LookupTag(ds.InternalElement.Id.ToString())as DirectShapeState).materialId, mat.Id.IntegerValue);
             BoundingBoxCentroid(ds).DistanceTo(Point.Origin()).ShouldBeApproximately(0);
             surf.Dispose();
             surfs.ForEach(x => x.Dispose());
@@ -94,7 +105,7 @@ namespace RevitNodesTests.Elements
 
             Assert.NotNull(ds);
             Assert.AreEqual("a mesh", ds.Name);
-            Assert.AreEqual(mesh.Tags.LookupTag(ds.InternalElement.Id.ToString()) as Autodesk.Revit.DB.ElementId, mat.Id);
+            Assert.AreEqual((mesh.Tags.LookupTag(ds.InternalElement.Id.ToString()) as DirectShapeState).materialId, mat.Id.IntegerValue);
             BoundingBoxCentroid(ds).DistanceTo(Point.Origin()).ShouldBeApproximately(0);
             mesh.Dispose();
         }
@@ -104,8 +115,11 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\empty.rfa")]
         public void ByMeshAndBySurfaceBothLocatedSameMetric()
         {
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
 
             DocumentManager.Instance.CurrentDBDocument.SetUnits(new Autodesk.Revit.DB.Units(Autodesk.Revit.DB.UnitSystem.Metric));
+
+            TransactionManager.Instance.TransactionTaskDone();
 
             var p1 = Point.ByCoordinates(0.0, 0.0, 0.0);
             var p2 = Point.ByCoordinates(1.0, 1.0, 0);
@@ -122,7 +136,7 @@ namespace RevitNodesTests.Elements
             var dsSurf = DirectShape.ByGeometry(surf, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a surf");
             BoundingBoxCentroid(ds).DistanceTo(BoundingBoxCentroid(dsSurf)).ShouldBeApproximately(0);
 
-            Surface.ByPerimeterPoints((ds.Geometry().First() as Mesh).VertexPositions).Area.ShouldDifferByLessThanPercentage((dsSurf.Geometry().First() as Surface).Area, ApproximateAssertExtensions.Epsilon);
+            (ds.Geometry().First() as Surface).Area.ShouldDifferByLessThanPercentage((dsSurf.Geometry().First() as Surface).Area, ApproximateAssertExtensions.Epsilon);
 
             mesh.Dispose();
             surf.Dispose();
