@@ -32,7 +32,7 @@ namespace Revit.Elements
         public string syncId { get; set; }
         public int materialId { get; set; }
 
-        public new void GetObjectData(SerializationInfo info, StreamingContext context)
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);
            
