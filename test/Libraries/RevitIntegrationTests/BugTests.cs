@@ -983,6 +983,33 @@ namespace RevitSystemTests
             Assert.IsNotNull(surface);
         }
 
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rvt")]
+        public void OverrideColorInView_MAGN_7741()
+        {
+            var model = ViewModel.Model;
+
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_7741.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(5, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(7, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            string nodeID = "fd42a0e6-e256-48b6-b65b-7b2fac46af1f";
+            var curve = GetPreviewValue(nodeID) as ModelCurve;
+            Assert.IsNotNull(curve);
+
+            var settings = DocumentManager.Instance.CurrentUIDocument.ActiveView.
+                GetElementOverrides(curve.InternalElement.Id);
+            Assert.AreEqual(255, settings.ProjectionLineColor.Red);
+        }
 
 
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
