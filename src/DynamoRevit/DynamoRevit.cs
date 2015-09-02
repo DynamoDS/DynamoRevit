@@ -24,6 +24,7 @@ using Dynamo.Applications.ViewModel;
 using Dynamo.Controls;
 using Dynamo.Core;
 using Dynamo.Core.Threading;
+using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.Services;
 using Dynamo.UpdateManager;
@@ -88,6 +89,9 @@ namespace Dynamo.Applications
         private static RevitDynamoModel revitDynamoModel;
         private static bool handledCrash;
 
+        private static bool showUI = true;
+        private static bool automationMode = false;
+
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             HandleDebug(commandData);
@@ -97,6 +101,8 @@ namespace Dynamo.Applications
             try
             {
                 extCommandData = commandData;
+                showUI = ShowUI(extCommandData);
+                automationMode = IsAutomationMode(extCommandData);
 
                 // create core data models
                 revitDynamoModel = InitializeCoreModel(extCommandData);
@@ -110,7 +116,10 @@ namespace Dynamo.Applications
                 revitDynamoModel.HandlePostInitialization();
 
                 // show the window
-                InitializeCoreView().Show();
+                if (showUI)
+                {
+                    InitializeCoreView().Show();
+                }
 
                 TryOpenWorkspaceInCommandData(extCommandData);
 
@@ -205,6 +214,7 @@ namespace Dynamo.Applications
                     PathResolver = new RevitPathResolver(),
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
+                    StartInTestMode = automationMode,
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
                     ExternalCommandData = commandData,
                     UpdateManager = new DynUpdateManager(umConfig),
@@ -281,11 +291,47 @@ namespace Dynamo.Applications
             }
         }
 
+        private static bool ShowUI(ExternalCommandData commandData)
+        {
+            if (commandData.JournalData == null)
+            {
+                return true;
+            }
+
+            if (commandData.JournalData.ContainsKey("dynShowUI"))
+            {
+                return bool.Parse(commandData.JournalData["dynShowUI"]);
+            }
+
+            return true;
+        }
+
         private static void TryOpenWorkspaceInCommandData(ExternalCommandData commandData)
         {
+            if(commandData.JournalData == null)
+            {
+                return;
+            }
 
-            if (commandData.JournalData != null && commandData.JournalData.ContainsKey("dynPath"))
-                dynamoViewModel.Model.OpenFileFromPath(commandData.JournalData["dynPath"]);
+            if (commandData.JournalData.ContainsKey("dynPath"))
+            {
+                revitDynamoModel.OpenFileFromPath(commandData.JournalData["dynPath"]);
+            }  
+        }
+
+        private static bool IsAutomationMode(ExternalCommandData commandData)
+        {
+            if (commandData.JournalData == null)
+            {
+                return false;
+            }
+
+            if (commandData.JournalData.ContainsKey("dynAutomation"))
+            {
+                return bool.Parse(commandData.JournalData["dynAutomation"]);
+            }
+
+            return false;
         }
 
         private static string GetRevitContext(ExternalCommandData commandData)
@@ -392,6 +438,19 @@ namespace Dynamo.Applications
             //Get "InstallLocation" value as string for all the subkey that starts with "Dynamo"
             return regKey.GetSubKeyNames().Where(s => s.StartsWith("Dynamo")).Select(
                 (s) => regKey.OpenSubKey(s).GetValue("InstallLocation") as string);
+        }
+    }
+
+    internal class AutomationThread : ISchedulerThread
+    {
+        public void Initialize(IScheduler owningScheduler)
+        {
+
+        }
+
+        public void Shutdown()
+        {
+
         }
     }
 }
