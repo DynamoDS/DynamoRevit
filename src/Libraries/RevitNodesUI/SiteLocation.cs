@@ -7,6 +7,7 @@ using Autodesk.Revit.Creation;
 using Dynamo.Applications.Models;
 using Dynamo.Controls;
 using Dynamo.Models;
+using Dynamo.Nodes;
 
 using Dynamo.UI;
 using Dynamo.Wpf;
@@ -20,6 +21,7 @@ using RevitServices.Persistence;
 using RevitServices.EventHandler;
 using Autodesk.Revit.DB.Events;
 using Dynamo.Applications;
+using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
 {
