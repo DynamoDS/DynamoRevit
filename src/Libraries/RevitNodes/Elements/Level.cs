@@ -7,17 +7,57 @@ using DynamoServices;
 
 using DynamoUnits;
 
+
+using RevitServices.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+
 using Revit.Elements.InternalUtilities;
+using Autodesk.DesignScript.Runtime;
+using System.Runtime.Serialization;
 
 namespace Revit.Elements
 {
+
+    /// <summary>
+    /// This class acts as a representation of a directShape state, we can store it in trace
+    /// and on protogeometry types (in their tags dictionary) to keep track of the state of
+    /// a DirectShape wrapper type, it inherits from SerializeableId so that ElementLifeCycle
+    /// and DocumentEvents continue to function for DirectShapes.
+    /// </summary>
+    [SupressImportIntoVM]
+    [Serializable]
+    public class LevelTraceData : SerializableId
+    {
+        public string InputName { get; set; }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+
+            info.AddValue("inputName", InputName, typeof(string));
+        }
+
+        public LevelTraceData(Level lev, string inputName) :
+            base()
+        {
+            this.IntID = lev.InternalElement.Id.IntegerValue;
+            this.StringID = lev.UniqueId;
+            this.InputName = inputName;
+        }
+
+        public LevelTraceData(SerializationInfo info, StreamingContext context) :
+            base(info, context)
+        {
+            InputName = (string)info.GetValue("inputName", typeof(string));
+          
+        }
+    }
     /// <summary>
     /// A Revit Level
     /// </summary>
-    [RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class Level : Element
     {
         #region Internal properties
@@ -155,7 +195,7 @@ namespace Revit.Elements
             while (levels.Any(x => string.CompareOrdinal(x.Name, name) == 0))
             {
                 //Update the level name
-                ElementUtils.UpdateLevelName(ref name);
+                Revit.Elements.InternalUtilities.ElementUtils.UpdateLevelName(ref name);
             }
 
             TransactionManager.Instance.EnsureInTransaction(Document);
@@ -290,6 +330,33 @@ namespace Revit.Elements
         public override string ToString()
         {
             return string.Format("Level(Name={0}, Elevation={1})", Name, Elevation);
+        }
+
+        /// <summary>
+        /// Get the DirectShape Element, syncId, and materialId from Thread Local Storage
+        /// </summary>
+        /// <returns></returns>
+        protected Tuple<Autodesk.Revit.DB.Level, string> GetElementAndTraceData()
+        {
+            var id = ElementBinder.GetRawDataFromTrace();
+            if (id == null)
+                return null;
+
+            var traceData = id as LevelTraceData;
+            if (traceData == null)
+                return null;
+
+            var elementId = traceData.IntID;
+            var uuid = traceData.StringID;
+            var name = traceData.InputName;
+
+            Autodesk.Revit.DB.Level lev = null;
+
+            // if we can't get the ds, return null
+            if (!Document.TryGetElement(uuid, out lev))
+                return null;
+
+            return new Tuple<Autodesk.Revit.DB.Level, string>(lev,name);
         }
     }
 }
