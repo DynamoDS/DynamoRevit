@@ -21,10 +21,8 @@ namespace Revit.Elements
 {
 
     /// <summary>
-    /// This class acts as a representation of a directShape state, we can store it in trace
-    /// and on protogeometry types (in their tags dictionary) to keep track of the state of
-    /// a DirectShape wrapper type, it inherits from SerializeableId so that ElementLifeCycle
-    /// and DocumentEvents continue to function for DirectShapes.
+    /// This class acts as a representation of a Level constructor state, we can store it in trace
+    // it's used to keep track of what the user wanted to set the name of the level to
     /// </summary>
     [SupressImportIntoVM]
     [Serializable]
@@ -114,14 +112,14 @@ namespace Revit.Elements
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldEle =
-                ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Level>(Document);
+                GetElementAndTraceData();
 
             //There was an element, bind & mutate
             if (oldEle != null)
             {
-                InternalSetLevel(oldEle);
+                InternalSetLevel(oldEle.Item1);
                 InternalSetElevation(elevation);
-                InternalSetName(name);
+                InternalSetName(oldEle.Item2,name);
                 return;
             }
 
@@ -140,11 +138,11 @@ namespace Revit.Elements
             }
 
             InternalSetLevel(level);
-            InternalSetName(name);
-
+            InternalSetName(string.Empty,name);
+            var traceData = new LevelTraceData(this, name);
             TransactionManager.Instance.TransactionTaskDone();
 
-            ElementBinder.SetElementForTrace(this.InternalElement);
+            ElementBinder.SetRawDataForTrace(traceData);
 
         }
 
@@ -183,13 +181,17 @@ namespace Revit.Elements
         /// <summary>
         /// Mutate the name of the level
         /// </summary>
-        /// <param name="name"></param>
-        private void InternalSetName(string name)
+        /// <param name="name"> the name we want to set the level to have</param>
+        /// <param name="oldname"> the oldname we tried to set this level to in the past,
+        /// we retrieve this from trace</param>
+        private void InternalSetName(string oldname,string name)
         {
             if (String.IsNullOrEmpty(name) ||
-                string.CompareOrdinal(InternalLevel.Name, name) == 0)
+                string.CompareOrdinal(InternalLevel.Name, name) == 0 ||
+                string.CompareOrdinal(oldname,name) == 0)
                 return;
-
+            //make a copy of the string
+            var originalInputName = name;
             //Check to see whether there is an existing level with the same name
             var levels = ElementQueries.GetAllLevels();
             while (levels.Any(x => string.CompareOrdinal(x.Name, name) == 0))
@@ -200,6 +202,8 @@ namespace Revit.Elements
 
             TransactionManager.Instance.EnsureInTransaction(Document);
             this.InternalLevel.Name = name;
+            var updatedTraceData =new LevelTraceData(this, originalInputName);
+            ElementBinder.SetRawDataForTrace(updatedTraceData);
             TransactionManager.Instance.TransactionTaskDone();
         }
 
@@ -333,7 +337,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get the DirectShape Element, syncId, and materialId from Thread Local Storage
+        /// Get the Level Element, and input name from Thread Local Storage
         /// </summary>
         /// <returns></returns>
         protected Tuple<Autodesk.Revit.DB.Level, string> GetElementAndTraceData()
