@@ -706,9 +706,18 @@ namespace Dynamo.Nodes
         // Revit, this will cause the sub-elements to be modified.
         protected override IEnumerable<Element> ExtractSelectionResults(DividedSurface selection)
         {
-            return
-                RevitElementSelectionHelper<DividedSurface>.GetFamilyInstancesFromDividedSurface(
-                    selection);
+            IEnumerable<Element> result;
+            try
+            {
+                result = RevitElementSelectionHelper<DividedSurface>.GetFamilyInstancesFromDividedSurface(
+                            selection).ToList();
+            }
+            catch
+            {
+                result = new List<Element>();
+            }
+
+            return result;
         }
 
         public override string ToString()
