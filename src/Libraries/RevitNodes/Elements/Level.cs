@@ -111,15 +111,14 @@ namespace Revit.Elements
         private void InitLevel(double elevation, string name)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
-            var oldEle =
-                GetElementAndTraceData();
+            var oldEle = ElementBinder.GetElementAndTraceData<Autodesk.Revit.DB.Level, LevelTraceData>();
 
             //There was an element, bind & mutate
             if (oldEle != null)
             {
                 InternalSetLevel(oldEle.Item1);
                 InternalSetElevation(elevation);
-                InternalSetName(oldEle.Item2,name);
+                InternalSetName(oldEle.Item2.InputName,name);
                 return;
             }
 
@@ -336,31 +335,5 @@ namespace Revit.Elements
             return string.Format("Level(Name={0}, Elevation={1})", Name, Elevation);
         }
 
-        /// <summary>
-        /// Get the Level Element, and input name from Thread Local Storage
-        /// </summary>
-        /// <returns></returns>
-        protected Tuple<Autodesk.Revit.DB.Level, string> GetElementAndTraceData()
-        {
-            var id = ElementBinder.GetRawDataFromTrace();
-            if (id == null)
-                return null;
-
-            var traceData = id as LevelTraceData;
-            if (traceData == null)
-                return null;
-
-            var elementId = traceData.IntID;
-            var uuid = traceData.StringID;
-            var name = traceData.InputName;
-
-            Autodesk.Revit.DB.Level lev = null;
-
-            // if we can't get the ds, return null
-            if (!Document.TryGetElement(uuid, out lev))
-                return null;
-
-            return new Tuple<Autodesk.Revit.DB.Level, string>(lev,name);
-        }
     }
 }
