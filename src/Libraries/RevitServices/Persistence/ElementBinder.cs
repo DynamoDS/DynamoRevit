@@ -11,6 +11,8 @@ using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.Engine;
 
+using RevitServices.Elements;
+
 namespace RevitServices.Persistence
 {
     /// <summary>
@@ -349,8 +351,35 @@ namespace RevitServices.Persistence
         {
             return TraceUtils.GetTraceData(REVIT_TRACE_ID);
         }
-        
 
+        /// <summary>
+        /// Get the Element of type T and the raw traceData of type K from Thread Local Storage.
+        /// Requires that K inherits from SerializableId so the element can be retrieved from the Revit Document
+        /// </summary>
+        /// <returns></returns>
+        public static Tuple<T, K> GetElementAndTraceData<T, K>() 
+            where T : Autodesk.Revit.DB.Element
+            where K: SerializableId
+        {
+            var id = ElementBinder.GetRawDataFromTrace();
+            if (id == null)
+                return null;
+
+            var traceData = id as K;
+            if (traceData == null)
+                return null;
+
+            var elementId = traceData.IntID;
+            var uuid = traceData.StringID;
+
+            var element = default(T);
+            
+            // if we can't get the element, return null
+            if (!DocumentManager.Instance.CurrentDBDocument.TryGetElement(uuid,out element))
+                return null;
+
+            return new Tuple<T, K>(element,traceData);
+        }
         /// <summary>
         /// This function gets the nodes which are binding with the elements which have the
         /// given element IDs

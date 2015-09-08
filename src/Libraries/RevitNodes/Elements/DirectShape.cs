@@ -133,7 +133,7 @@ namespace Revit.Elements
         {
             //Phase 1 - Check to see if a DirectShape exists in trace and should be rebound
             var oldShape =
-                GetElementAndTraceData();
+                ElementBinder.GetElementAndTraceData<Autodesk.Revit.DB.DirectShape,DirectShapeState>();
 
             //There was a oldDirectShape, rebind to that
             if (oldShape != null)
@@ -153,7 +153,7 @@ namespace Revit.Elements
                     //we also check the material, if it's different than the currently assigned material
                     //then we need to rebuild the geo so that a new material is applied
                     //
-                    this.IntenralSetShape(shapeReference,new ElementId(material.Id),oldShape.Item2);
+                    this.IntenralSetShape(shapeReference,new ElementId(material.Id),oldShape.Item2.syncId);
                     this.InternalSetName(shapeReference,shapeName,material,category);
                     return;
                 }
@@ -442,34 +442,5 @@ namespace Revit.Elements
         { 
             return InternalDirectShape.Name;
         }
-
-        /// <summary>
-        /// Get the DirectShape Element, syncId, and materialId from Thread Local Storage
-        /// </summary>
-        /// <returns></returns>
-        protected Tuple<Autodesk.Revit.DB.DirectShape, string,int> GetElementAndTraceData()
-        {
-            var id = ElementBinder.GetRawDataFromTrace();
-            if (id == null)
-                return null;
-
-            var traceData = id as DirectShapeState;
-            if (traceData == null)
-                return null;
-
-            var elementId = traceData.IntID;
-            var uuid = traceData.StringID;
-            var materialId = traceData.materialId;
-            var syncLock = traceData.syncId;
-
-            Autodesk.Revit.DB.DirectShape ds = null;
-
-            // if we can't get the ds, return null
-            if (!Document.TryGetElement(uuid, out ds))
-                return null;
-
-            return new Tuple<Autodesk.Revit.DB.DirectShape, string,int>(ds, syncLock,materialId);
-        }
-
     }
 }
