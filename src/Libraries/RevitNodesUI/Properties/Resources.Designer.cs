@@ -178,6 +178,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No family instances found in the divided surface..
+        /// </summary>
+        internal static string NoFamilyInstancesInDividedSurfaceWarning {
+            get {
+                return ResourceManager.GetString("NoFamilyInstancesInDividedSurfaceWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No floor types available..
         /// </summary>
         internal static string NoFloorTypesAvailable {
