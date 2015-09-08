@@ -10,6 +10,7 @@ using RevitServices.Persistence;
 using RevitTestServices;
 
 using RTF.Framework;
+using System;
 
 namespace RevitSystemTests
 {
@@ -45,6 +46,36 @@ namespace RevitSystemTests
             levelColl.OfClass(typeof(Level));
             Assert.AreEqual(levelColl.ToElements().Count(), 11);
        }
+
+        [Test]
+        [TestModel(@".\Level\Level.rvt")]
+        public void SetAllLevelsToSameName()
+        {
+            var samplePath = Path.Combine(workingDirectory, @".\Level\SameNameLevels.dyn");
+            var testPath = Path.GetFullPath(samplePath);
+      
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            //ensure that the level count is the same
+            var levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            levelColl.OfClass(typeof(Level));
+            Assert.AreEqual(levelColl.ToElements().Count(), 6);
+
+            //change the name and run again
+            var stringNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<StringInput>();
+            stringNode.Value = "aNewName";
+
+           //assert that the scheduler is empty:
+            Assert.AreEqual(0, Model.Scheduler.Tasks.Count());
+
+            //ensure that the level count is the same
+            levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            levelColl.OfClass(typeof(Level));
+            Assert.AreEqual(levelColl.ToElements().Count(), 6);
+            
+        }
 
         [Test]
         [Category("IntegrationTests")]
