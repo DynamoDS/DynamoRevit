@@ -460,17 +460,4 @@ namespace Dynamo.Applications
                 (s) => regKey.OpenSubKey(s).GetValue("InstallLocation") as string);
         }
     }
-
-    internal class AutomationThread : ISchedulerThread
-    {
-        public void Initialize(IScheduler owningScheduler)
-        {
-
-        }
-
-        public void Shutdown()
-        {
-
-        }
-    }
 }
