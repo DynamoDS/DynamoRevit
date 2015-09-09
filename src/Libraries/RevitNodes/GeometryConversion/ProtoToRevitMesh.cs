@@ -5,10 +5,9 @@ using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Dynamo;
-using Dynamo.Engine;
 
 using RevitServices.Materials;
-using RevitServices.Persistence;
+using Autodesk.DesignScript.Geometry;
 
 namespace Revit.GeometryConversion
 {
@@ -94,6 +93,26 @@ namespace Revit.GeometryConversion
             var result = tsb.Build(target, fallback, ElementId.InvalidElementId);
             return result.GetGeometricalObjects();
         }
+       
+        //this method checks intersections between non contigous edges of a quad for self intersection
+        private static bool QuadSelfIntersects(List<Autodesk.DesignScript.Geometry.Point> quadVerts)
+        {
+            var AB = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(quadVerts[0], quadVerts[1]);
+            var BC = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(quadVerts[1], quadVerts[2]);
+            var CD = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(quadVerts[2], quadVerts[3]);
+            var DA = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(quadVerts[3], quadVerts[0]);
+
+            if (AB.DoesIntersect(CD))
+            {
+                return true;
+            }
+
+            if (BC.DoesIntersect(DA))
+            {
+                return true;
+            }
+            return false;
+        }
 
         public static IList<GeometryObject> ToRevitType(
             this Autodesk.DesignScript.Geometry.Mesh mesh,
@@ -104,15 +123,15 @@ namespace Revit.GeometryConversion
         {
          
             var verts = mesh.VertexPositions;
-            var indicies = mesh.FaceIndices;
+            var indicies = mesh.FaceIndices.ToList();
 
             var currentVerts = new List<Autodesk.DesignScript.Geometry.Point>();
             var tsb = new TessellatedShapeBuilder();
             tsb.OpenConnectedFaceSet(false);
 
-            foreach (var f in indicies)
+            for(int faceindex = 0; faceindex<indicies.Count();faceindex++)
             {
-
+                var f = indicies[faceindex];
                 currentVerts.Clear();
                 var currentIndicies = new List<uint>() { f.A, f.B, f.C, f.D };
                 for (int i = 0; i < f.Count; i++)
@@ -121,7 +140,27 @@ namespace Revit.GeometryConversion
 
                     currentVerts.Add(verts[currentindex]);
                 }
+                if (f.Count > 3)
+                {
+                    //test if the face is a planar...
+                    var BACNormal = Vector.ByTwoPoints(currentVerts[1], currentVerts[0]).Cross(Vector.ByTwoPoints(currentVerts[1], currentVerts[2])).Normalized();
+                    var DACNormal = Vector.ByTwoPoints(currentVerts[3], currentVerts[0]).Cross(Vector.ByTwoPoints(currentVerts[3], currentVerts[2])).Normalized();
 
+                    //if the two triangle normals are not parallel then we have a non planar quad
+                    //and we'll skip adding this face and instead add two new faces to list to process
+                    //these new faces are two triangles representing the quad
+                    if (Math.Abs(BACNormal.Dot(DACNormal) - 1) > 0.000001 ||
+                        //or if there are any self intersections between non 
+                        //contigous polygon edges we also triangulate, this finds a twisted quad
+                        QuadSelfIntersects(currentVerts)
+                        )
+                    {
+                        indicies.Add(IndexGroup.ByIndices(f.B, f.C, f.A));
+                        indicies.Add(IndexGroup.ByIndices(f.A, f.C, f.D));
+                        continue;
+                    }
+                }
+              
                 //convert all the points to Revit XYZ vectors and perform unit conversion here
                 var xyzs = currentVerts.Select(x => x.ToXyz(performHostUnitConversion)).ToList();
 
