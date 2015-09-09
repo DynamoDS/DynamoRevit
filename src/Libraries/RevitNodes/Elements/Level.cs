@@ -111,7 +111,7 @@ namespace Revit.Elements
         private void InitLevel(double elevation, string name)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
-            var oldEle = ElementBinder.GetElementAndTraceData<Autodesk.Revit.DB.Level, LevelTraceData>();
+            var oldEle = ElementBinder.GetElementAndTraceData<Autodesk.Revit.DB.Level, LevelTraceData>(Document);
 
             //There was an element, bind & mutate
             if (oldEle != null)

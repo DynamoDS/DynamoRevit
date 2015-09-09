@@ -133,7 +133,7 @@ namespace Revit.Elements
         {
             //Phase 1 - Check to see if a DirectShape exists in trace and should be rebound
             var oldShape =
-                ElementBinder.GetElementAndTraceData<Autodesk.Revit.DB.DirectShape,DirectShapeState>();
+                ElementBinder.GetElementAndTraceData<Autodesk.Revit.DB.DirectShape,DirectShapeState>(Document);
 
             //There was a oldDirectShape, rebind to that
             if (oldShape != null)
