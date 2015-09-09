@@ -16,16 +16,39 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 using Dynamo.Applications.Properties;
+using Dynamo.Core.Threading;
 using RevitServices.Elements;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using MessageBox = System.Windows.Forms.MessageBox;
 using Dynamo.Models;
 using RevitServices.EventHandler;
+using RevitServices.Threading;
 
 namespace Dynamo.Applications
 {
-    
+    /// <summary>
+    /// A SchedulerFactory that creates one DynamoScheduler to be shared between
+    /// different workspaces.
+    /// </summary>
+    public class RevitSchedulerFactory : ISchedulerFactory
+    {
+        private readonly DynamoScheduler scheduler;
+
+        public RevitSchedulerFactory(RevitSchedulerThread revitThread, bool isTestMode)
+        {
+            this.scheduler = new DynamoScheduler(revitThread, isTestMode);
+        }
+
+        /// <summary>
+        /// Get the Scheduler for this session
+        /// </summary>
+        /// <returns></returns>
+        public DynamoScheduler Build()
+        {
+            return scheduler;
+        }
+    }
 
     [Transaction(Autodesk.Revit.Attributes.TransactionMode.Automatic),
      Regeneration(RegenerationOption.Manual)]

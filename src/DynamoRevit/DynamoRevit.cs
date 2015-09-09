@@ -64,7 +64,7 @@ namespace RevitServices.Threading
         internal static void ExecuteOnIdleAsync(Action p,
             AsyncTaskCompletedHandler completionHandler = null)
         {
-            var scheduler = DynamoRevit.RevitDynamoModel.Scheduler;
+            var scheduler = DynamoRevit.RevitDynamoModel.SchedulerFactory.Build();
             var task = new DelegateBasedAsyncTask(scheduler, p);
             if (completionHandler != null)
                 task.Completed += completionHandler;
@@ -205,7 +205,7 @@ namespace Dynamo.Applications
                     GeometryFactoryPath = GetGeometryFactoryPath(corePath),
                     PathResolver = new RevitPathResolver(),
                     Context = GetRevitContext(commandData),
-                    SchedulerThread = new RevitSchedulerThread(commandData.Application),
+                    SchedulerFactory = new RevitSchedulerFactory(new RevitSchedulerThread(commandData.Application), false),
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
                     ExternalCommandData = commandData,
                     UpdateManager = new DynUpdateManager(umConfig),

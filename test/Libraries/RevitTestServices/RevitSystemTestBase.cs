@@ -213,7 +213,7 @@ namespace RevitTestServices
                         DynamoCorePath = testConfig.DynamoCorePath,
                         PathResolver = revitTestPathResolver,
                         Context = "Revit 2014",
-                        SchedulerThread = new TestSchedulerThread(),
+                        SchedulerFactory = new SingleThreadedSchedulerFactory(new TestSchedulerThread(), true),
                         PackageManagerAddress = "https://www.dynamopackages.com",
                         ExternalCommandData = RevitTestExecutive.CommandData
                     });

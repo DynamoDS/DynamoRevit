@@ -11,6 +11,7 @@ using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 using DSIronPython;
+using Dynamo.Core.Threading;
 using Dynamo.Engine;
 using Dynamo.Interfaces;
 using Dynamo.Models;
@@ -47,7 +48,7 @@ namespace Dynamo.Applications.Models
             public IPreferences Preferences { get; set; }
             public bool StartInTestMode { get; set; }
             public IUpdateManager UpdateManager { get; set; }
-            public ISchedulerThread SchedulerThread { get; set; }
+            public ISchedulerFactory SchedulerFactory { get; set; }
             public string GeometryFactoryPath { get; set; }
             public IAuthProvider AuthProvider { get; set; }
             public string PackageManagerAddress { get; set; }
