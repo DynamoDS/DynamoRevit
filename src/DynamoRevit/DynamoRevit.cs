@@ -23,6 +23,7 @@ using Dynamo.Applications.ViewModel;
 using Dynamo.Controls;
 using Dynamo.Core;
 using Dynamo.Core.Threading;
+using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.Services;
 using Dynamo.UpdateManager;
@@ -88,6 +89,29 @@ namespace Dynamo.Applications
         private static RevitDynamoModel revitDynamoModel;
         private static bool handledCrash;
 
+        // These fields are used to store information that
+        // is pulled from the journal file.
+        private static bool shouldShowUi = true;
+        private static bool isAutomationMode;
+
+        /// <summary>
+        /// The journal file can use this key to specify whether
+        /// the Dynamo UI should be visible at run time.
+        /// </summary>
+        private const string JournalShowUiKey = "dynShowUI";
+
+        /// <summary>
+        /// If the journal file specifies automation mode, 
+        /// Dynamo will run on the main thread without the idle loop.
+        /// </summary>
+        private const string JounralAutomationModeKey = "dynAutomation";
+
+        /// <summary>
+        /// The journal file can specify a Dynamo workspace to 
+        /// be opened (and executed) at run time.
+        /// </summary>
+        private const string JournalDynPathKey = "dynPath";
+
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             HandleDebug(commandData);
@@ -97,6 +121,8 @@ namespace Dynamo.Applications
             try
             {
                 extCommandData = commandData;
+                shouldShowUi = CheckJournalForUiDisplay(extCommandData);
+                isAutomationMode = CheckJournalForAutomationMode(extCommandData);
 
                 // create core data models
                 revitDynamoModel = InitializeCoreModel(extCommandData);
@@ -111,7 +137,10 @@ namespace Dynamo.Applications
                 revitDynamoModel.HandlePostInitialization();
 
                 // show the window
-                InitializeCoreView().Show();
+                if (shouldShowUi)
+                {
+                    InitializeCoreView().Show();
+                }
 
                 TryOpenWorkspaceInCommandData(extCommandData);
 
@@ -205,7 +234,8 @@ namespace Dynamo.Applications
                     GeometryFactoryPath = GetGeometryFactoryPath(corePath),
                     PathResolver = new RevitPathResolver(),
                     Context = GetRevitContext(commandData),
-                    SchedulerFactory = new RevitSchedulerFactory(new RevitSchedulerThread(commandData.Application), false),
+                    SchedulerFactory = new RevitSchedulerFactory(new RevitSchedulerThread(commandData.Application), isAutomationMode),
+                    StartInTestMode = isAutomationMode,
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
                     ExternalCommandData = commandData,
                     UpdateManager = new DynUpdateManager(umConfig),
@@ -281,11 +311,51 @@ namespace Dynamo.Applications
             }
         }
 
+        private static bool CheckJournalForUiDisplay(ExternalCommandData commandData)
+        {
+            var result = true;
+
+            if (commandData.JournalData == null)
+            {
+                return result;
+            }
+
+            if (commandData.JournalData.ContainsKey(JournalShowUiKey))
+            {
+                bool.TryParse(commandData.JournalData[JournalShowUiKey], out result);
+            }
+
+            return result;
+        }
+
+        private static bool CheckJournalForAutomationMode(ExternalCommandData commandData)
+        {
+            var result = false;
+
+            if (commandData.JournalData == null)
+            {
+                return result;
+            }
+
+            if (commandData.JournalData.ContainsKey(JounralAutomationModeKey))
+            {
+                result = bool.TryParse(commandData.JournalData[JounralAutomationModeKey], out result);
+            }
+
+            return result;
+        }
+
         private static void TryOpenWorkspaceInCommandData(ExternalCommandData commandData)
         {
+            if(commandData.JournalData == null)
+            {
+                return;
+            }
 
-            if (commandData.JournalData != null && commandData.JournalData.ContainsKey("dynPath"))
-                dynamoViewModel.Model.OpenFileFromPath(commandData.JournalData["dynPath"]);
+            if (commandData.JournalData.ContainsKey(JournalDynPathKey))
+            {
+                revitDynamoModel.OpenFileFromPath(commandData.JournalData[JournalDynPathKey]);
+            }  
         }
 
         private static string GetRevitContext(ExternalCommandData commandData)
