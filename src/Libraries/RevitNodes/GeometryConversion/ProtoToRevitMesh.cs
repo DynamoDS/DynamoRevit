@@ -5,7 +5,7 @@ using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Dynamo;
-using Dynamo.DSEngine;
+using Dynamo.Engine;
 
 using RevitServices.Materials;
 using RevitServices.Persistence;
@@ -35,7 +35,7 @@ namespace Revit.GeometryConversion
                 srf.Tessellate(rp, new TessellationParameters());
             }
 
-            var tsb = new TessellatedShapeBuilder();
+            var tsb = new TessellatedShapeBuilder() { Fallback = fallback, Target = target, GraphicsStyleId = ElementId.InvalidElementId };
             tsb.OpenConnectedFaceSet(false);
 
             var v = rp.MeshVertices.ToList();
@@ -51,8 +51,8 @@ namespace Revit.GeometryConversion
             }
 
             tsb.CloseConnectedFaceSet();
-
-            var result = tsb.Build(target, fallback, ElementId.InvalidElementId).GetBuildResult();
+            tsb.Build();
+            var result = tsb.GetBuildResult();
             return result.GetGeometricalObjects();
         }
 
@@ -75,7 +75,7 @@ namespace Revit.GeometryConversion
                 solid.Tessellate(rp, new TessellationParameters());
             }
 
-            var tsb = new TessellatedShapeBuilder();
+            var tsb = new TessellatedShapeBuilder() { Fallback=fallback, Target = target, GraphicsStyleId=ElementId.InvalidElementId };
             tsb.OpenConnectedFaceSet(false);
 
             var v = rp.MeshVertices.ToList();
@@ -91,7 +91,8 @@ namespace Revit.GeometryConversion
             }
 
             tsb.CloseConnectedFaceSet();
-            var result = tsb.Build(target, fallback, ElementId.InvalidElementId).GetBuildResult();
+            tsb.Build();
+            var result = tsb.GetBuildResult(); 
             return result.GetGeometricalObjects();
         }
 
@@ -107,7 +108,7 @@ namespace Revit.GeometryConversion
             var indicies = mesh.FaceIndices;
 
             var currentVerts = new List<Autodesk.DesignScript.Geometry.Point>();
-            var tsb = new TessellatedShapeBuilder();
+            var tsb = new TessellatedShapeBuilder() { Fallback = fallback, Target = target, GraphicsStyleId = ElementId.InvalidElementId };
             tsb.OpenConnectedFaceSet(false);
 
             foreach (var f in indicies)
@@ -130,7 +131,9 @@ namespace Revit.GeometryConversion
             }
 
             tsb.CloseConnectedFaceSet();
-            var result = tsb.Build(target, fallback,  ElementId.InvalidElementId).GetBuildResult();
+
+            tsb.Build();
+            var result = tsb.GetBuildResult();
 
             foreach (IDisposable vert in verts)
             {
