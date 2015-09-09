@@ -1,4 +1,5 @@
 ﻿using DSRevitNodesUI;
+using Dynamo.Models;
 
 namespace Dynamo.Wpf.Nodes.Revit
 {
@@ -7,9 +8,12 @@ namespace Dynamo.Wpf.Nodes.Revit
         public void CustomizeView(FamilyInstanceParameters model, Dynamo.Controls.NodeView nodeView)
         {
             base.CustomizeView(model, nodeView);
-            
+
             // this is not a recommended workaround
-            model.EngineController = nodeView.ViewModel.DynamoViewModel.EngineController;
+            var ws = nodeView.ViewModel.DynamoViewModel.CurrentSpace as IHomeWorkspaceModel;
+            if (ws == null) return;
+
+            model.EngineController = ws.EngineController;
         }
     }
 }

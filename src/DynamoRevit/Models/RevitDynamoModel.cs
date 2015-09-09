@@ -496,17 +496,6 @@ namespace Dynamo.Applications.Models
             ElementIDLifecycleManager<int>.DisposeInstance();
         }
 
-        /// <summary>
-        /// This event handler is called if 'markNodesAsDirty' in a 
-        /// prior call to RevitDynamoModel.ResetEngine was set to 'true'.
-        /// </summary>
-        /// <param name="markNodesAsDirty"></param>
-        private void OnResetMarkNodesAsDirty(bool markNodesAsDirty)
-        {
-            foreach (var workspace in Workspaces.OfType<HomeWorkspaceModel>())
-                workspace.ResetEngine(EngineController, markNodesAsDirty);
-        }
-
         public void SetRunEnabledBasedOnContext(View newView)
         {
             DocumentManager.Instance.HandleDocumentActivation(newView);
@@ -608,7 +597,7 @@ namespace Dynamo.Applications.Models
             if (DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument == null)
             {
                 DocumentManager.Instance.CurrentUIDocument = null;
-                foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = false;
                 }
@@ -653,7 +642,7 @@ namespace Dynamo.Applications.Models
                 OnRevitDocumentChanged();
 
                 InitializeMaterials();
-                foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = true;
                 }
