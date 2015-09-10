@@ -2,6 +2,8 @@
 using NUnit.Framework;
 
 using RevitTestServices;
+using RTF.Framework;
+using System.IO;
 
 namespace RevitNodesTests.Elements
 {
@@ -18,5 +20,14 @@ namespace RevitNodesTests.Elements
             Assert.IsTrue(doc.IsFamilyDocument);
         }
 
+        [Test]
+        [TestModel(@".\empty.rvt")]
+        public void Document_FilePath_ValidDoc_IsValid()
+        {
+            var doc = Document.Current;
+            var fileName = Document.Current.FilePath;
+            var fileInfo = new FileInfo(fileName);
+            Assert.AreEqual("Empty.rvt", fileInfo.Name);
+        }
     }
 }
