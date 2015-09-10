@@ -47,6 +47,14 @@ namespace Revit.Application
         }
 
         /// <summary>
+        /// The full path of the Document.
+        /// </summary>
+        public string FilePath
+        {
+            get { return InternalDocument.PathName ?? string.Empty; }
+        }
+
+        /// <summary>
         /// Get the current document
         /// </summary>
         /// <returns></returns>
@@ -54,7 +62,6 @@ namespace Revit.Application
         {
             get { return new Document(DocumentManager.Instance.CurrentDBDocument); }
         }
-
 
         /// <summary>
         /// Extracts Latitude and Longitude from Revit
