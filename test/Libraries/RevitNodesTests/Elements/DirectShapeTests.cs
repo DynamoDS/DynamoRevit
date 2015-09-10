@@ -188,6 +188,33 @@ namespace RevitNodesTests.Elements
 
         [Test]
         [TestModel(@".\empty.rfa")]
+        public void ByMeshNameCategoryMaterial_TriWith4PointsPlanarForms()
+        {
+
+            var p1 = Point.ByCoordinates(0.0, 0.0, 0.0);
+            var p2 = Point.ByCoordinates(2.5, 0.0, 0.0);
+            var p3 = Point.ByCoordinates(5.0, 0.0, 0.0);
+            var p4 = Point.ByCoordinates(0.0, 5.0, 0.0);
+
+            var index1 = IndexGroup.ByIndices(0, 1, 2, 3);
+
+            var mesh = Mesh.ByPointsFaceIndices(new List<Point>() { p1, p2, p3, p4 }, new List<IndexGroup>() { index1 });
+            var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
+
+            var ds = DirectShape.ByMesh(mesh, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a mesh");
+
+            Assert.NotNull(ds);
+            Assert.AreEqual("a mesh", ds.Name);
+            Assert.AreEqual((mesh.Tags.LookupTag(ds.InternalElement.Id.ToString()) as DirectShapeState).materialId, mat.Id.IntegerValue);
+            //make sure a mesh comes back into Dynamo - for some reason we cannot query the mesh api for quad face even though Revit does not
+            //draw it as two triangles, the mesh reports it has two tris.
+            Assert.AreEqual(1, ds.Geometry().Count());
+
+            mesh.Dispose();
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
         public void ByMeshNameCategoryMaterial_QuadNonPlanar()
         {
 
