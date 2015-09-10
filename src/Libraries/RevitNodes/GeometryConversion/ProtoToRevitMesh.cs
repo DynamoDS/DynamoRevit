@@ -93,8 +93,8 @@ namespace Revit.GeometryConversion
             var result = tsb.Build(target, fallback, ElementId.InvalidElementId);
             return result.GetGeometricalObjects();
         }
-       
-        //this method checks intersections between non contigous edges of a quad for self intersection
+
+        //this method checks intersections between non contiguous edges of a quad for self intersection
         private static bool QuadSelfIntersects(List<Autodesk.DesignScript.Geometry.Point> quadVerts)
         {
             var AB = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(quadVerts[0], quadVerts[1]);
@@ -142,7 +142,7 @@ namespace Revit.GeometryConversion
                 }
                 if (f.Count > 3)
                 {
-                    //test if the face is a planar...
+                    //test if the face is a planar by comparing the cross products (normals) of two tri edges
                     var CABnormal = Vector.ByTwoPoints(currentVerts[2], currentVerts[0]).Cross(Vector.ByTwoPoints(currentVerts[2], currentVerts[1])).Normalized();
                     var DACNormal = Vector.ByTwoPoints(currentVerts[3], currentVerts[0]).Cross(Vector.ByTwoPoints(currentVerts[3], currentVerts[2])).Normalized();
 
@@ -151,7 +151,7 @@ namespace Revit.GeometryConversion
                     //these new faces are two triangles representing the quad
                     if (Math.Abs(CABnormal.Dot(DACNormal) - 1) > 0.000001 ||
                         //or if there are any self intersections between non 
-                        //contigous polygon edges we also triangulate, this finds a twisted quad
+                        //contiguous polygon edges we also triangulate, this finds a twisted quad which is planar
                         QuadSelfIntersects(currentVerts)
                         )
                     {
