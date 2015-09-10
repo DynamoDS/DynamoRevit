@@ -357,28 +357,28 @@ namespace RevitServices.Persistence
         /// Requires that K inherits from SerializableId so the element can be retrieved from the Revit Document
         /// </summary>
         /// <returns></returns>
-        public static Tuple<T, K> GetElementAndTraceData<T, K>(Document document) 
-            where T : Autodesk.Revit.DB.Element
-            where K: SerializableId
+        public static Tuple<TElement, TId> GetElementAndTraceData<TElement, TId>(Document document)
+            where TElement : Autodesk.Revit.DB.Element
+            where TId: SerializableId
         {
             var id = ElementBinder.GetRawDataFromTrace();
             if (id == null)
                 return null;
 
-            var traceData = id as K;
+            var traceData = id as TId;
             if (traceData == null)
                 return null;
 
             var elementId = traceData.IntID;
             var uuid = traceData.StringID;
 
-            var element = default(T);
+            var element = default(TElement);
             
             // if we can't get the element, return null
             if (!document.TryGetElement(uuid,out element))
                 return null;
 
-            return new Tuple<T, K>(element,traceData);
+            return new Tuple<TElement, TId>(element, traceData);
         }
         /// <summary>
         /// This function gets the nodes which are binding with the elements which have the

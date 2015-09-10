@@ -153,7 +153,7 @@ namespace Revit.Elements
                     //we also check the material, if it's different than the currently assigned material
                     //then we need to rebuild the geo so that a new material is applied
                     //
-                    this.IntenralSetShape(shapeReference,new ElementId(material.Id),oldShape.Item2.syncId);
+                    this.InternalSetShape(shapeReference,new ElementId(material.Id),oldShape.Item2.syncId);
                     this.InternalSetName(shapeReference,shapeName,material,category);
                     return;
                 }
@@ -258,7 +258,7 @@ namespace Revit.Elements
         /// this method also generates tessellated geometry from the protogeometry object
         /// and sets the material of the generated Revit faces
         /// </summary>
-        private void IntenralSetShape(DesignScriptEntity shapeReference, ElementId materialId,string currentSyncId)
+        private void InternalSetShape(DesignScriptEntity shapeReference, ElementId materialId,string currentSyncId)
         {
             //if the elementID for the current directShape revitElement exists on the input Geometry AND
             //the value stored at that key is equal to the materialId we're trying to set AND
