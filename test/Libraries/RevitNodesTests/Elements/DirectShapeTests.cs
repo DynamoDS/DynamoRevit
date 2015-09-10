@@ -43,6 +43,14 @@ namespace RevitNodesTests.Elements
             return point;
         }
 
+        private int CheckNumTriangles(DirectShape ds)
+        {
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            DocumentManager.Regenerate();
+            var Revitgeo = ds.InternalElement.get_Geometry(new Autodesk.Revit.DB.Options());
+            TransactionManager.Instance.TransactionTaskDone();
+            return (Revitgeo.First() as Autodesk.Revit.DB.Mesh).NumTriangles;
+        }
 
         [Test]
         [TestModel(@".\empty.rfa")]
@@ -147,6 +155,87 @@ namespace RevitNodesTests.Elements
              var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
             var line = Line.ByStartPointEndPoint(Point.Origin(),Point.ByCoordinates(1.0,2.0,3.0));
             Assert.Throws(typeof(ArgumentException), () => DirectShape.ByGeometry(line,Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), name:"noshape"));
+        }
+
+
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void ByMeshNameCategoryMaterial_QuadPlanar()
+        {
+
+            var p1 = Point.ByCoordinates(0.0, 0.0, 0.0);
+            var p2 = Point.ByCoordinates(5.0, 0.0, 0.0);
+            var p3 = Point.ByCoordinates(5.0, 5.0, 0.0);
+            var p4 = Point.ByCoordinates(0.0, 5.0, 0.0);
+
+            var index1 = IndexGroup.ByIndices(0, 1, 2, 3);
+
+            var mesh = Mesh.ByPointsFaceIndices(new List<Point>() { p1, p2, p3,p4 }, new List<IndexGroup>() { index1 });
+            var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
+
+            var ds = DirectShape.ByMesh(mesh, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a mesh");
+
+            Assert.NotNull(ds);
+            Assert.AreEqual("a mesh", ds.Name);
+            Assert.AreEqual((mesh.Tags.LookupTag(ds.InternalElement.Id.ToString()) as DirectShapeState).materialId, mat.Id.IntegerValue);
+            //make sure a mesh comes back into Dynamo - for some reason we cannot query the mesh api for quad face even though Revit does not
+            //draw it as two triangles, the mesh reports it has two tris.
+            Assert.AreEqual(1, ds.Geometry().Count());
+
+            mesh.Dispose();
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void ByMeshNameCategoryMaterial_QuadNonPlanar()
+        {
+
+            var p1 = Point.ByCoordinates(0.0, 0.0, 0.0);
+            var p2 = Point.ByCoordinates(5.0, 0.0, 0.0);
+            var p3 = Point.ByCoordinates(5.0, 5.0, 0.0);
+            var p4 = Point.ByCoordinates(0.0, 5.0, 3.0);
+
+            var index1 = IndexGroup.ByIndices(0, 1, 2, 3);
+
+            var mesh = Mesh.ByPointsFaceIndices(new List<Point>() { p1, p2, p3, p4 }, new List<IndexGroup>() { index1 });
+            var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
+
+            var ds = DirectShape.ByMesh(mesh, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a mesh");
+
+            Assert.NotNull(ds);
+            Assert.AreEqual("a mesh", ds.Name);
+            Assert.AreEqual((mesh.Tags.LookupTag(ds.InternalElement.Id.ToString()) as DirectShapeState).materialId, mat.Id.IntegerValue);
+            //make sure there are two tris in Revit and a mesh comes back into Dynamo
+            Assert.AreEqual(2, CheckNumTriangles(ds));
+            Assert.AreEqual(1, ds.Geometry().Count());
+            mesh.Dispose();
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void ByMeshNameCategoryMaterial_QuadNonPlanarTwisted()
+        {
+
+            var p1 = Point.ByCoordinates(0.0, 0.0, 0.0);
+            var p2 = Point.ByCoordinates(-5.0, 0.0, 0.0);
+            var p3 = Point.ByCoordinates(5.0, 5.0, 0.0);
+            var p4 = Point.ByCoordinates(0.0, 5.0, 0.0);
+
+            var index1 = IndexGroup.ByIndices(0, 1, 2, 3);
+
+            var mesh = Mesh.ByPointsFaceIndices(new List<Point>() { p1, p2, p3, p4 }, new List<IndexGroup>() { index1 });
+            var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
+
+            var ds = DirectShape.ByMesh(mesh, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a mesh");
+
+            Assert.NotNull(ds);
+            Assert.AreEqual("a mesh", ds.Name);
+            Assert.AreEqual((mesh.Tags.LookupTag(ds.InternalElement.Id.ToString()) as DirectShapeState).materialId, mat.Id.IntegerValue);
+            //make sure there are two tris in Revit and a mesh comes back into Dynamo
+            Assert.AreEqual(2, CheckNumTriangles(ds));
+            Assert.AreEqual(1, ds.Geometry().Count());
+            mesh.Dispose();
         }
     }
 }
