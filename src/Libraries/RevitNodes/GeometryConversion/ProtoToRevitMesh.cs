@@ -45,7 +45,7 @@ namespace Revit.GeometryConversion
                 var b = new XYZ(v[i + 3], v[i + 4], v[i + 5]);
                 var c = new XYZ(v[i + 6], v[i + 7], v[i + 8]);
 
-                var face = new TessellatedFace(new List<XYZ>() { a, b, c },  MaterialId != null ? MaterialId : MaterialsManager.Instance.DynamoMaterialId);
+                var face = new TessellatedFace(new List<XYZ>() { a, b, c }, MaterialId != null ? MaterialId : MaterialsManager.Instance.DynamoMaterialId);
                 tsb.AddFace(face);
             }
 
@@ -95,26 +95,6 @@ namespace Revit.GeometryConversion
             return result.GetGeometricalObjects();
         }
 
-        //this method checks intersections between non contiguous edges of a quad for self intersection
-        private static bool QuadSelfIntersects(List<Autodesk.DesignScript.Geometry.Point> quadVerts)
-        {
-            var AB = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(quadVerts[0], quadVerts[1]);
-            var BC = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(quadVerts[1], quadVerts[2]);
-            var CD = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(quadVerts[2], quadVerts[3]);
-            var DA = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(quadVerts[3], quadVerts[0]);
-
-            if (AB.DoesIntersect(CD))
-            {
-                return true;
-            }
-
-            if (BC.DoesIntersect(DA))
-            {
-                return true;
-            }
-            return false;
-        }
-
         public static IList<GeometryObject> ToRevitType(
             this Autodesk.DesignScript.Geometry.Mesh mesh,
              TessellatedShapeBuilderTarget target = TessellatedShapeBuilderTarget.Mesh,
@@ -122,50 +102,37 @@ namespace Revit.GeometryConversion
              ElementId MaterialId = null,
             bool performHostUnitConversion = true)
         {
-         
+
             var verts = mesh.VertexPositions;
-            var indicies = mesh.FaceIndices.ToList();
+            var indices = mesh.FaceIndices.ToList();
 
             var currentVerts = new List<Autodesk.DesignScript.Geometry.Point>();
             var tsb = new TessellatedShapeBuilder() { Fallback = fallback, Target = target, GraphicsStyleId = ElementId.InvalidElementId };
             tsb.OpenConnectedFaceSet(false);
 
-            for(int faceindex = 0; faceindex<indicies.Count();faceindex++)
+            for (int faceindex = 0; faceindex < indices.Count(); faceindex++)
             {
-                var f = indicies[faceindex];
+                var f = indices[faceindex];
                 currentVerts.Clear();
-                var currentIndicies = new List<uint>() { f.A, f.B, f.C, f.D };
-                for (int i = 0; i < f.Count; i++)
-                {
-                    var currentindex = Convert.ToInt32(currentIndicies[i]);
+                var currentIndices = new List<uint>() { f.A, f.B, f.C, f.D };
 
-                    currentVerts.Add(verts[currentindex]);
-                }
+                //if this is a quad face triangulate it and skip the rest of this loop
                 if (f.Count > 3)
                 {
-                    //test if the face is a planar by comparing the cross products (normals) of two tri edges
-                    var CABnormal = Vector.ByTwoPoints(currentVerts[2], currentVerts[0]).Cross(Vector.ByTwoPoints(currentVerts[2], currentVerts[1])).Normalized();
-                    var DACNormal = Vector.ByTwoPoints(currentVerts[3], currentVerts[0]).Cross(Vector.ByTwoPoints(currentVerts[3], currentVerts[2])).Normalized();
-
-                    //if the two triangle normals are not parallel then we have a non planar quad
-                    //and we'll skip adding this face and instead add two new faces to list to process
-                    //these new faces are two triangles representing the quad
-                    if (Math.Abs(CABnormal.Dot(DACNormal) - 1) > 0.000001 ||
-                        //or if there are any self intersections between non 
-                        //contiguous polygon edges we also triangulate, this finds a twisted quad which is planar
-                        QuadSelfIntersects(currentVerts)
-                        )
-                    {
-                        indicies.Add(IndexGroup.ByIndices(f.B, f.C, f.A));
-                        indicies.Add(IndexGroup.ByIndices(f.A, f.C, f.D));
-                        continue;
-                    }
+                    indices.Add(IndexGroup.ByIndices(f.B, f.C, f.A));
+                    indices.Add(IndexGroup.ByIndices(f.A, f.C, f.D));
+                    continue;
                 }
-              
+
+                for (int i = 0; i < f.Count; i++)
+                {
+                    var currentindex = Convert.ToInt32(currentIndices[i]);
+                    currentVerts.Add(verts[currentindex]);
+                }
                 //convert all the points to Revit XYZ vectors and perform unit conversion here
                 var xyzs = currentVerts.Select(x => x.ToXyz(performHostUnitConversion)).ToList();
 
-                var face = new TessellatedFace(xyzs, MaterialId != null ? MaterialId :MaterialsManager.Instance.DynamoMaterialId );
+                var face = new TessellatedFace(xyzs, MaterialId != null ? MaterialId : MaterialsManager.Instance.DynamoMaterialId);
                 tsb.AddFace(face);
             }
 
