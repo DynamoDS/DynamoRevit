@@ -142,7 +142,7 @@ namespace Dynamo.Applications
                     InitializeCoreView().Show();
                 }
 
-                TryOpenWorkspaceInCommandData(extCommandData);
+                TryOpenAndExecuteWorkspace(extCommandData);
 
                 // Disable the Dynamo button to prevent a re-run
                 DynamoRevitApp.DynamoButton.Enabled = false;
@@ -345,7 +345,7 @@ namespace Dynamo.Applications
             return result;
         }
 
-        private static void TryOpenWorkspaceInCommandData(ExternalCommandData commandData)
+        private static void TryOpenAndExecuteWorkspace(ExternalCommandData commandData)
         {
             if(commandData.JournalData == null)
             {
@@ -354,7 +354,14 @@ namespace Dynamo.Applications
 
             if (commandData.JournalData.ContainsKey(JournalDynPathKey))
             {
+                Debugger.Launch();
+
                 revitDynamoModel.OpenFileFromPath(commandData.JournalData[JournalDynPathKey]);
+                var hs = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                if(hs != null && hs.RunSettings.RunType == RunType.Manual)
+                {
+                    hs.Run();
+                }
             }  
         }
 
