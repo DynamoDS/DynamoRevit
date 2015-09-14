@@ -27,7 +27,7 @@ namespace RevitNodesTests.Elements
             var doc = Document.Current;
             var fileName = Document.Current.FilePath;
             var fileInfo = new FileInfo(fileName);
-            Assert.AreEqual("Empty.rvt", fileInfo.Name);
+            Assert.AreEqual("empty.rvt", fileInfo.Name);
         }
     }
 }
