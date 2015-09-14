@@ -62,6 +62,8 @@ namespace Dynamo.Applications.Models
         /// </summary>
         private bool updateCurrentUIDoc;
 
+        private bool isFirstEvaluation = true;
+
         private readonly ExternalCommandData externalCommandData;
 
         #region Events
@@ -122,12 +124,27 @@ namespace Dynamo.Applications.Models
                 DisposeLogic.IsClosingHomeworkspace = true;
         }
 
+        protected override void OnWorkspaceAdded(WorkspaceModel workspace)
+        {
+            base.OnWorkspaceAdded(workspace);
+
+            var ws = workspace as HomeWorkspaceModel;
+            if (ws != null)
+            {
+                ws.PostTraceReconciliationComplete += PostTraceReconciliation;
+            }
+        }
+
         protected override void OnWorkspaceRemoved(WorkspaceModel workspace)
         {
             base.OnWorkspaceRemoved(workspace);
 
-            if (workspace is HomeWorkspaceModel)
+            var ws = workspace as HomeWorkspaceModel;
+            if (ws != null)
+            {
                 DisposeLogic.IsClosingHomeworkspace = false;
+                ws.PostTraceReconciliationComplete -= PostTraceReconciliation;
+            }
         }
 
         #endregion
@@ -198,16 +215,21 @@ namespace Dynamo.Applications.Models
             MigrationManager.MigrationTargets.Add(typeof(WorkspaceMigrationsRevit));
 
             SetupPython();
-        }
 
-        private bool isFirstEvaluation = true;
+            foreach (var ws in this.Workspaces.OfType<HomeWorkspaceModel>())
+            {
+                ws.PostTraceReconciliationComplete += PostTraceReconciliation;
+            }
+        }
 
         #endregion
 
         #region trace reconciliation
 
-        public override void PostTraceReconciliation(Dictionary<Guid, List<ISerializable>> orphanedSerializables)
+        public void PostTraceReconciliation(PostTraceReconciliationCompleteEventArgs args)
         {
+            var orphanedSerializables = args.OrphanedSerializables;
+
             var orphanedIds =
                 orphanedSerializables
                 .SelectMany(kvp=>kvp.Value)
@@ -701,13 +723,17 @@ namespace Dynamo.Applications.Models
             if (!deleted.Any())
                 return;
 
-            var nodes = ElementBinder.GetNodesFromElementIds(
-                deleted,
-                CurrentWorkspace,
-                EngineController);
-            foreach (var node in nodes)
+            foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
-                node.OnNodeModified(forceExecute: true);
+                var nodes = ElementBinder.GetNodesFromElementIds(
+                    deleted,
+                    ws,
+                    ws.EngineController);
+
+                foreach (var node in nodes)
+                {
+                    node.OnNodeModified(forceExecute: true);
+                }
             }
         }
 
@@ -723,15 +749,18 @@ namespace Dynamo.Applications.Models
 
             if (!updatedIds.Any())
                 return;
-        
-            var nodes = ElementBinder.GetNodesFromElementIds(
-                updatedIds,
-                CurrentWorkspace,
-                EngineController);
-            foreach (var node in nodes )
+
+            foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
-            
-                node.OnNodeModified(true);
+                var nodes = ElementBinder.GetNodesFromElementIds(
+                    updatedIds,
+                    ws,
+                    ws.EngineController);
+
+                foreach (var node in nodes)
+                {
+                    node.OnNodeModified(true);
+                }
             }
         }
 

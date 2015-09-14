@@ -49,7 +49,7 @@ namespace RevitSystemTests
 
         private int GetClassIndex(string className)
         {
-            var engineController = ViewModel.Model.EngineController;
+            var engineController = ViewModel.Model.GetCurrentEngineController();
             return engineController.LiveRunnerCore.ClassTable.IndexOf(className);
         } 
     }

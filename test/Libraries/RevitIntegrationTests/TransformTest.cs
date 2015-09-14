@@ -51,7 +51,7 @@ namespace RevitSystemTests
 
             // Check node output
             NodeModel node = model.CurrentWorkspace.NodeFromWorkspace("58d488dd-b668-467f-b3ac-d46b5a97fabe");
-            RuntimeMirror mirror = ViewModel.Model.EngineController.GetMirror(node.AstIdentifierBase);
+            RuntimeMirror mirror = ViewModel.Model.GetCurrentEngineController().GetMirror(node.AstIdentifierBase);
             Assert.IsNotNull(mirror);
 
             var point = mirror.GetData().Data as Point;
@@ -89,7 +89,7 @@ namespace RevitSystemTests
 
             // Check node output
             NodeModel node = model.CurrentWorkspace.NodeFromWorkspace("7fdb538d-22a3-412c-b646-d0fb23ca2dc6");
-            RuntimeMirror mirror = ViewModel.Model.EngineController.GetMirror(node.AstIdentifierBase);
+            RuntimeMirror mirror = ViewModel.Model.GetCurrentEngineController().GetMirror(node.AstIdentifierBase);
             Assert.IsNotNull(mirror);
 
             var point = mirror.GetData().Data as Point;
@@ -127,7 +127,7 @@ namespace RevitSystemTests
 
             // Check node output
             NodeModel node = model.CurrentWorkspace.NodeFromWorkspace("783ce70c-789d-4c2a-ad40-c16d6d933fd4");
-            RuntimeMirror mirror = ViewModel.Model.EngineController.GetMirror(node.AstIdentifierBase);
+            RuntimeMirror mirror = ViewModel.Model.GetCurrentEngineController().GetMirror(node.AstIdentifierBase);
             Assert.IsNotNull(mirror);
 
             var point = mirror.GetData().Data as Point;
