@@ -354,8 +354,6 @@ namespace Dynamo.Applications
 
             if (commandData.JournalData.ContainsKey(JournalDynPathKey))
             {
-                Debugger.Launch();
-
                 revitDynamoModel.OpenFileFromPath(commandData.JournalData[JournalDynPathKey]);
                 var hs = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
                 if(hs != null && hs.RunSettings.RunType == RunType.Manual)
