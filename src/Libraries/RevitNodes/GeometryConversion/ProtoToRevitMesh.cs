@@ -104,7 +104,8 @@ namespace Revit.GeometryConversion
         {
 
             var verts = mesh.VertexPositions;
-            var indices = mesh.FaceIndices.ToList();
+            var indices = mesh.FaceIndices;
+            var finalIndices = new List<IndexGroup>();
 
             var currentVerts = new List<Autodesk.DesignScript.Geometry.Point>();
             var tsb = new TessellatedShapeBuilder() { Fallback = fallback, Target = target, GraphicsStyleId = ElementId.InvalidElementId };
@@ -113,16 +114,23 @@ namespace Revit.GeometryConversion
             for (int faceindex = 0; faceindex < indices.Count(); faceindex++)
             {
                 var f = indices[faceindex];
-                currentVerts.Clear();
-                var currentIndices = new List<uint>() { f.A, f.B, f.C, f.D };
-
-                //if this is a quad face triangulate it and skip the rest of this loop
+                //if this is a quad face triangulate it
                 if (f.Count > 3)
                 {
-                    indices.Add(IndexGroup.ByIndices(f.B, f.C, f.A));
-                    indices.Add(IndexGroup.ByIndices(f.A, f.C, f.D));
-                    continue;
+                    finalIndices.Add(IndexGroup.ByIndices(f.B, f.C, f.A));
+                    finalIndices.Add(IndexGroup.ByIndices(f.A, f.C, f.D));
                 }
+                else
+                {
+                    finalIndices.Add(f);
+                }
+            }
+
+            for (int faceindex = 0; faceindex < finalIndices.Count(); faceindex++)
+            {
+                var f = finalIndices[faceindex];
+                currentVerts.Clear();
+                var currentIndices = new List<uint>() { f.A, f.B, f.C, f.D };
 
                 for (int i = 0; i < f.Count; i++)
                 {
