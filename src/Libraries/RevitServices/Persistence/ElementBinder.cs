@@ -340,6 +340,7 @@ namespace RevitServices.Persistence
         /// <param name="data"></param>
         public static void SetRawDataForTrace(ISerializable data)
         {
+            if (!IsEnabled) return;
             TraceUtils.SetTraceData(REVIT_TRACE_ID, data);
         }
 
