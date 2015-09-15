@@ -64,10 +64,10 @@ namespace Revit.Elements.Views
         #region Public static constructors
 
         /// <summary>
-        /// Create a Revit Structural Plan at a given Level
+        /// Create a Structural Plan View at the given Level.
         /// </summary>
-        /// <param name="level"></param>
-        /// <returns></returns>
+        /// <param name="level">The Level on which the StructuralPlanView is based.</param>
+        /// <returns>A StructuralPlanView if successful.</returns>
         public static StructuralPlanView ByLevel(Level level)
         {
             if (level == null)
