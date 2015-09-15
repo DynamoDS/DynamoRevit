@@ -108,6 +108,7 @@
     <Compile Include="Elements\Views\Packing\CygonRectanglePacker.cs" />
     <Compile Include="Elements\Views\AxonometricView.cs" />
     <Compile Include="Elements\Views\CeilingPlanView.cs" />
+    <Compile Include="Elements\Views\StructuralPlanView.cs" />
     <Compile Include="Elements\Views\PerspectiveView.cs" />
     <Compile Include="Elements\Form.cs" />
     <Compile Include="Elements\SketchPlane.cs" />
