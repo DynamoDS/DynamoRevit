@@ -134,7 +134,9 @@ namespace RevitNodesTests.Elements
             var dsSurf = DirectShape.ByGeometry(surf, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a surf");
             BoundingBoxCentroid(ds).DistanceTo(BoundingBoxCentroid(dsSurf)).ShouldBeApproximately(0);
 
-            (ds.Geometry().First() as Surface).Area.ShouldDifferByLessThanPercentage((dsSurf.Geometry().First() as Surface).Area, ApproximateAssertExtensions.Epsilon);
+            Surface.ByPerimeterPoints((ds.Geometry().First() as Mesh).VertexPositions).Area.ShouldDifferByLessThanPercentage(
+                (dsSurf.Geometry().First() as Surface).Area, ApproximateAssertExtensions.Epsilon);
+
 
             mesh.Dispose();
             surf.Dispose();
