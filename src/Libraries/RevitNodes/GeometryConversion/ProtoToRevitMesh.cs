@@ -104,9 +104,7 @@ namespace Revit.GeometryConversion
 
             var verts = mesh.VertexPositions;
             var indices = mesh.FaceIndices;
-            var finalIndices = new List<IndexGroup>();
 
-            var currentVerts = new List<Autodesk.DesignScript.Geometry.Point>();
             var tsb = new TessellatedShapeBuilder();
             tsb.OpenConnectedFaceSet(false);
 
@@ -116,31 +114,17 @@ namespace Revit.GeometryConversion
                 //if this is a quad face triangulate it
                 if (f.Count > 3)
                 {
-                    finalIndices.Add(IndexGroup.ByIndices(f.B, f.C, f.A));
-                    finalIndices.Add(IndexGroup.ByIndices(f.A, f.C, f.D));
+                    //and add two triangles to the tessellated shape builder
+                    var tri1 = IndexGroup.ByIndices(f.B, f.C, f.A);
+                    var tri2 = IndexGroup.ByIndices(f.A, f.C, f.D);
+
+                    AddProtoFaceToTSB(tsb, tri1, verts, performHostUnitConversion, MaterialId);
+                    AddProtoFaceToTSB(tsb, tri2, verts, performHostUnitConversion, MaterialId);
                 }
                 else
                 {
-                    finalIndices.Add(f);
+                    AddProtoFaceToTSB(tsb, f, verts, performHostUnitConversion, MaterialId);
                 }
-            }
-
-            for (int faceindex = 0; faceindex < finalIndices.Count(); faceindex++)
-            {
-                var f = finalIndices[faceindex];
-                currentVerts.Clear();
-                var currentIndices = new List<uint>() { f.A, f.B, f.C, f.D };
-
-                for (int i = 0; i < f.Count; i++)
-                {
-                    var currentindex = Convert.ToInt32(currentIndices[i]);
-                    currentVerts.Add(verts[currentindex]);
-                }
-                //convert all the points to Revit XYZ vectors and perform unit conversion here
-                var xyzs = currentVerts.Select(x => x.ToXyz(performHostUnitConversion)).ToList();
-
-                var face = new TessellatedFace(xyzs, MaterialId != null ? MaterialId : MaterialsManager.Instance.DynamoMaterialId);
-                tsb.AddFace(face);
             }
 
             tsb.CloseConnectedFaceSet();
@@ -153,6 +137,29 @@ namespace Revit.GeometryConversion
             }
 
             return result.GetGeometricalObjects();
+        }
+
+        //this method converts a proto indexGroup and verts to a tessellated face, and adds it
+        //to the tessellated shape builder that is passed in.
+        //the verts array should be the entire vert array extracted from a proto mesh.
+        private static void AddProtoFaceToTSB(TessellatedShapeBuilder tsb,
+            IndexGroup f,
+            Autodesk.DesignScript.Geometry.Point[] meshVerts,
+            bool performHostUnitConversion,
+            ElementId materialId)
+        {
+            var xyzs = new List<Autodesk.Revit.DB.XYZ>();
+            var currentIndices = new List<uint>() { f.A, f.B, f.C, f.D };
+
+            for (int i = 0; i < f.Count; i++)
+            {
+                var currentindex = Convert.ToInt32(currentIndices[i]);
+                //convert all the points to Revit XYZ vectors and perform unit conversion here
+                xyzs.Add(meshVerts[currentindex].ToXyz(performHostUnitConversion));
+            }
+
+            var face = new TessellatedFace(xyzs, materialId != null ? materialId : MaterialsManager.Instance.DynamoMaterialId);
+            tsb.AddFace(face);
         }
     }
 }
