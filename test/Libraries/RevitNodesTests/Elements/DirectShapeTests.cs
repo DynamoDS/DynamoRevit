@@ -43,6 +43,25 @@ namespace RevitNodesTests.Elements
             return point;
         }
 
+        private int CheckNumTriangles(DirectShape ds)
+        {
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            DocumentManager.Regenerate();
+            var Revitgeo = ds.InternalElement.get_Geometry(new Autodesk.Revit.DB.Options());
+            TransactionManager.Instance.TransactionTaskDone();
+            return (Revitgeo.First() as Autodesk.Revit.DB.Mesh).NumTriangles;
+        }
+
+        private static DirectShape CreateDirectShapeFromQuadPoints(Point p1, Point p2, Point p3, Point p4)
+        {
+            var index = IndexGroup.ByIndices(0, 1, 2, 3);
+            var mesh = Mesh.ByPointsFaceIndices(new List<Point>() { p1, p2, p3, p4 }, new List<IndexGroup>() { index });
+            var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
+            var ds = DirectShape.ByMesh(mesh, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a mesh");
+            mesh.Dispose();
+            return ds;
+        }
+
 
         [Test]
         [TestModel(@".\empty.rfa")]
@@ -90,7 +109,7 @@ namespace RevitNodesTests.Elements
         public void ByMeshNameCategoryMaterial_ValidInput()
         {
 
-           var p1 = Point.ByCoordinates(0.0,0.0,0.0);
+            var p1 = Point.ByCoordinates(0.0,0.0,0.0);
             var p2 = Point.ByCoordinates(1.0,1.0,0);
             var p3 = Point.ByCoordinates(2.0,0,0);
 
@@ -149,6 +168,81 @@ namespace RevitNodesTests.Elements
              var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
             var line = Line.ByStartPointEndPoint(Point.Origin(),Point.ByCoordinates(1.0,2.0,3.0));
             Assert.Throws(typeof(ArgumentException), () => DirectShape.ByGeometry(line,Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), name:"noshape"));
+        }
+
+       
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void ByMeshNameCategoryMaterial_QuadPlanar()
+        {
+            var p1 = Point.ByCoordinates(0.0, 0.0, 0.0);
+            var p2 = Point.ByCoordinates(5.0, 0.0, 0.0);
+            var p3 = Point.ByCoordinates(5.0, 5.0, 0.0);
+            var p4 = Point.ByCoordinates(0.0, 5.0, 0.0);
+
+            var ds =CreateDirectShapeFromQuadPoints(p1, p2, p3, p4);
+
+            Assert.NotNull(ds);
+            Assert.AreEqual("a mesh", ds.Name);
+            //make sure there are two tris in Revit and a mesh comes back into Dynamo
+            Assert.AreEqual(2, CheckNumTriangles(ds));
+            Assert.AreEqual(1, ds.Geometry().Count());
+        }
+
+       
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void ByMeshNameCategoryMaterial_TriWith4PointsPlanarForms()
+        {
+            var p1 = Point.ByCoordinates(0.0, 0.0, 0.0);
+            var p2 = Point.ByCoordinates(2.5, 0.0, 0.0);
+            var p3 = Point.ByCoordinates(5.0, 0.0, 0.0);
+            var p4 = Point.ByCoordinates(0.0, 5.0, 0.0);
+
+            var ds = CreateDirectShapeFromQuadPoints(p1, p2, p3, p4);
+
+            Assert.NotNull(ds);
+            Assert.AreEqual("a mesh", ds.Name);
+            //make sure there is one tri in Revit and a mesh comes back into Dynamo
+            Assert.AreEqual(1, CheckNumTriangles(ds));
+            Assert.AreEqual(1, ds.Geometry().Count());
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void ByMeshNameCategoryMaterial_QuadNonPlanar()
+        {
+            var p1 = Point.ByCoordinates(0.0, 0.0, 0.0);
+            var p2 = Point.ByCoordinates(5.0, 0.0, 0.0);
+            var p3 = Point.ByCoordinates(5.0, 5.0, 0.0);
+            var p4 = Point.ByCoordinates(0.0, 5.0, 3.0);
+
+            var ds = CreateDirectShapeFromQuadPoints(p1, p2, p3, p4);
+
+            Assert.NotNull(ds);
+            Assert.AreEqual("a mesh", ds.Name);
+            //make sure there are two tris in Revit and a mesh comes back into Dynamo
+            Assert.AreEqual(2, CheckNumTriangles(ds));
+            Assert.AreEqual(1, ds.Geometry().Count());
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void ByMeshNameCategoryMaterial_QuadNonPlanarTwisted()
+        {
+            var p1 = Point.ByCoordinates(0.0, 0.0, 0.0);
+            var p2 = Point.ByCoordinates(-5.0, 0.0, 0.0);
+            var p3 = Point.ByCoordinates(5.0, 5.0, 0.0);
+            var p4 = Point.ByCoordinates(0.0, 5.0, 0.0);
+
+            var ds = CreateDirectShapeFromQuadPoints(p1, p2, p3, p4);
+
+            Assert.NotNull(ds);
+            Assert.AreEqual("a mesh", ds.Name);
+            //make sure there are two tris in Revit and a mesh comes back into Dynamo
+            Assert.AreEqual(2, CheckNumTriangles(ds));
+            Assert.AreEqual(1, ds.Geometry().Count());
         }
     }
 }
