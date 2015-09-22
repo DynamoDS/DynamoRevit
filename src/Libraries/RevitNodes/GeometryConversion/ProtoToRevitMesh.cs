@@ -108,7 +108,7 @@ namespace Revit.GeometryConversion
             var tsb = new TessellatedShapeBuilder();
             tsb.OpenConnectedFaceSet(false);
 
-            for (int faceindex = 0; faceindex < indices.Count(); faceindex++)
+            for (int faceindex = 0, count = indices.Count(); faceindex < count; faceindex++)
             {
                 var f = indices[faceindex];
                 //if this is a quad face triangulate it
@@ -118,12 +118,12 @@ namespace Revit.GeometryConversion
                     var tri1 = IndexGroup.ByIndices(f.B, f.C, f.A);
                     var tri2 = IndexGroup.ByIndices(f.A, f.C, f.D);
 
-                    AddProtoFaceToTSB(tsb, tri1, verts, performHostUnitConversion, MaterialId);
-                    AddProtoFaceToTSB(tsb, tri2, verts, performHostUnitConversion, MaterialId);
+                    AddFace(tsb, tri1, verts, performHostUnitConversion, MaterialId);
+                    AddFace(tsb, tri2, verts, performHostUnitConversion, MaterialId);
                 }
                 else
                 {
-                    AddProtoFaceToTSB(tsb, f, verts, performHostUnitConversion, MaterialId);
+                    AddFace(tsb, f, verts, performHostUnitConversion, MaterialId);
                 }
             }
 
@@ -139,10 +139,17 @@ namespace Revit.GeometryConversion
             return result.GetGeometricalObjects();
         }
 
-        //this method converts a proto indexGroup and verts to a tessellated face, and adds it
-        //to the tessellated shape builder that is passed in.
-        //the verts array should be the entire vert array extracted from a proto mesh.
-        private static void AddProtoFaceToTSB(TessellatedShapeBuilder tsb,
+        /// <summary>
+        /// this method converts a ProtoGeometry IndexGroup and Points to a Revit tessellated face, and adds it
+        //  to the TessellatedShape Builder that is passed in.
+        /// </summary>
+        /// <param name="tsb">a Revit TessellatedShapeBuilder which we wish to add a face to </param>
+        /// <param name="f"> a ProtoGeometry indexGroup defining a Mesh face</param>
+        /// <param name="meshVerts">a vertex array of Points which should be the 
+        /// entire vertex array extracted from a ProtoGeometry Mesh.</param>
+        /// <param name="performHostUnitConversion">a Bool which enables host unit conversion scaling</param>
+        /// <param name="materialId">an ElementId represnting the Material we want to apply to this face</param>
+        private static void AddFace(TessellatedShapeBuilder tsb,
             IndexGroup f,
             Autodesk.DesignScript.Geometry.Point[] meshVerts,
             bool performHostUnitConversion,
