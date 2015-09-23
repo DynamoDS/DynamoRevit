@@ -12,7 +12,7 @@ using RTF.Framework;
 namespace RevitNodesTests.Elements.Views
 {
     [TestFixture]
-    class CeilingPlanViewTests : RevitNodeTestBase
+    class StructuralPlanViewTests : RevitNodeTestBase
     {
         [Test]
         [TestModel(@".\Empty.rvt")]
