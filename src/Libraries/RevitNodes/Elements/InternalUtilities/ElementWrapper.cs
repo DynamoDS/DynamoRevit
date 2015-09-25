@@ -164,18 +164,16 @@ namespace Revit.Elements
 
         public static Element Wrap(Autodesk.Revit.DB.ViewPlan view, bool isRevitOwned)
         {
-            if (view.ViewType == ViewType.CeilingPlan)
+            switch (view.ViewType)
             {
-                return CeilingPlanView.FromExisting(view, isRevitOwned);
-            }
-            else if (view.ViewType == ViewType.FloorPlan)
-            {
-                return FloorPlanView.FromExisting(view, isRevitOwned);
-            }
-            else
-            {
-                // unknown type of plan view, just wrap as unknown
-                return UnknownElement.FromExisting(view, true);
+                case ViewType.CeilingPlan:
+                    return CeilingPlanView.FromExisting(view, isRevitOwned);
+                case ViewType.FloorPlan:
+                    return CeilingPlanView.FromExisting(view, isRevitOwned);
+                case ViewType.EngineeringPlan:
+                    return StructuralPlanView.FromExisting(view, isRevitOwned);
+                default:
+                    return UnknownElement.FromExisting(view, true);
             }
         }
 
