@@ -29,6 +29,7 @@ using UV = Autodesk.DesignScript.Geometry.UV;
 using RevitServices.EventHandler;
 using Autodesk.Revit.DB.Events;
 using Dynamo.Applications;
+using DSRevitNodesUI.Properties;
 
 namespace Dynamo.Nodes
 {
@@ -702,9 +703,28 @@ namespace Dynamo.Nodes
         // Revit, this will cause the sub-elements to be modified.
         protected override IEnumerable<Element> ExtractSelectionResults(DividedSurface selection)
         {
-            return
-                RevitElementSelectionHelper<DividedSurface>.GetFamilyInstancesFromDividedSurface(
-                    selection);
+            IEnumerable<Element> result;
+            try
+            {
+                result = RevitElementSelectionHelper<DividedSurface>.GetFamilyInstancesFromDividedSurface(
+                            selection).ToList();
+            }
+            catch
+            {
+                result = new List<Element>();
+            }
+
+            return result;
+        }
+
+        public override string ToString()
+        {
+            if (Selection.Any() && !SelectionResults.Any())
+            {
+                return Resources.NoFamilyInstancesInDividedSurfaceWarning;
+            }
+
+            return base.ToString();
         }
     }
 

@@ -86,6 +86,7 @@
     <Compile Include="Elements\Category.cs" />
     <Compile Include="Elements\CurtainGrid.cs" />
     <Compile Include="Elements\CurtainPanel.cs" />
+    <Compile Include="Elements\DirectShape.cs" />
     <Compile Include="Elements\Element.cs" />
     <Compile Include="Elements\AbstractFamilyInstance.cs" />
     <Compile Include="Elements\CurveByPoints.cs" />
@@ -147,7 +148,7 @@
     <Compile Include="Elements\AdaptiveComponent.cs" />
     <Compile Include="Elements\DividedPath.cs" />
     <Compile Include="Elements\DividedSurface.cs" />
-    <Compile Include="Elements\FamilySymbol.cs" />
+    <Compile Include="Elements\FamilyType.cs" />
     <Compile Include="Elements\FreeForm.cs" />
     <Compile Include="Elements\Material.cs" />
     <Compile Include="Elements\ModelCurve.cs" />
@@ -206,6 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="RevitNodes_DynamoCustomization.xml" />
+    <Content Include="RevitNodes.Migrations.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -227,7 +229,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy /Y "$(ProjectDir)*_DynamoCustomization.xml" "$(OutputPath)"</PreBuildEvent>
+    <PreBuildEvent>copy /Y "$(ProjectDir)*_DynamoCustomization.xml" "$(OutputPath)"
+    copy /Y "$(ProjectDir)*.Migrations.xml" "$(OutputPath)"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

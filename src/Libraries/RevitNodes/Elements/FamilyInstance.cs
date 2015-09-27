@@ -155,6 +155,9 @@ namespace Revit.Elements
 
         private void InternalSetLevel(Autodesk.Revit.DB.Level level)
         {
+            if (InternalFamilyInstance.LevelId.Compare(level.Id) == 0)
+                return;
+
             TransactionManager.Instance.EnsureInTransaction(Document);
 
             // http://thebuildingcoder.typepad.com/blog/2011/01/family-instance-missing-level-property.html
@@ -177,13 +180,16 @@ namespace Revit.Elements
 
         #region Public properties
         /// <summary>
-        /// Gets family symbol of the specific family instance
+        /// Gets family type of the specific family instance
         /// </summary>
-        public new FamilySymbol Symbol
+        /// <search>
+        /// symbol
+        /// </search>
+        public new FamilyType Type
         {
             // NOTE: Because AbstractFamilyInstance is not visible in the library
             //       we redefine this method on FamilyInstance
-            get { return base.Symbol; }
+            get { return base.Type; }
         }
         /// <summary>
         /// Gets the location of the specific family instance 
@@ -211,16 +217,16 @@ namespace Revit.Elements
         #region Public static constructors
 
         /// <summary>
-        /// Place a Revit FamilyInstance given the FamilySymbol (also known as the FamilyType) and it's coordinates in world space
+        /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) and its coordinates in world space
         /// </summary>
-        /// <param name="familySymbol"></param>
+        /// <param name="familyType"></param>
         /// <param name="point"></param>
         /// <returns></returns>
-        public static FamilyInstance ByPoint(FamilySymbol familySymbol, Point point)
+        public static FamilyInstance ByPoint(FamilyType familyType, Point point)
         {
-            if (familySymbol == null)
+            if (familyType == null)
             {
-                throw new ArgumentNullException("familySymbol");
+                throw new ArgumentNullException("familyType");
             } 
             
             if (point == null)
@@ -228,61 +234,64 @@ namespace Revit.Elements
                 throw new ArgumentNullException("point");
             }
 
-            return new FamilyInstance(familySymbol.InternalFamilySymbol, point.ToXyz());
+            return new FamilyInstance(familyType.InternalFamilySymbol, point.ToXyz());
         }
 
         /// <summary>
-        /// Place a Revit FamilyInstance given the FamilySymbol (also known as the FamilyType) and it's coordinates in world space
+        /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) and its coordinates in world space
         /// </summary>
-        /// <param name="familySymbol"></param>
+        /// <param name="familyType"></param>
         /// <param name="x">X coordinate in meters</param>
         /// <param name="y">Y coordinate in meters</param>
         /// <param name="z">Z coordinate in meters</param>
         /// <returns></returns>
-        public static FamilyInstance ByCoordinates(FamilySymbol familySymbol, double x = 0, double y = 0, double z = 0)
+        public static FamilyInstance ByCoordinates(FamilyType familyType, double x = 0, double y = 0, double z = 0)
         {
-            if (familySymbol == null)
+            if (familyType == null)
             {
-                throw new ArgumentNullException("familySymbol");
+                throw new ArgumentNullException("familyType");
             }
 
             var pt = Point.ByCoordinates(x, y, z);
 
-            return ByPoint(familySymbol, pt);
+            return ByPoint(familyType, pt);
         }
 
         /// <summary>
-        /// Place a Revit FamilyInstance given the FamilySymbol (also known as the FamilyType), it's coordinates in world space, and the Level
+        /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API), it's coordinates in world space, and the Level
         /// </summary>
-        /// <param name="familySymbol"></param>
+        /// <param name="familyType"></param>
         /// <param name="point">Point in meters</param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public static FamilyInstance ByPointAndLevel(FamilySymbol familySymbol, Point point, Level level)
+        public static FamilyInstance ByPointAndLevel(FamilyType familyType, Point point, Level level)
         {
-            if (familySymbol == null)
+            if (familyType == null)
             {
-                throw new ArgumentNullException("familySymbol");
+                throw new ArgumentNullException("familyType");
             }
 
-            return new FamilyInstance(familySymbol.InternalFamilySymbol, point.ToXyz(), level.InternalLevel);
+            return new FamilyInstance(familyType.InternalFamilySymbol, point.ToXyz(), level.InternalLevel);
         }
 
         /// <summary>
         /// Obtain a collection of FamilyInstances from the Revit Document and use them in the Dynamo graph
         /// </summary>
-        /// <param name="familySymbol"></param>
+        /// <param name="familyType"></param>
         /// <returns></returns>
-        public static FamilyInstance[] ByFamilySymbol(FamilySymbol familySymbol)
+        /// <search>
+        /// byfamilysymbol,ByFamilySymbol
+        /// </search>
+        public static FamilyInstance[] ByFamilyType(FamilyType familyType)
         {
-            if (familySymbol == null)
+            if (familyType == null)
             {
-                throw new ArgumentNullException("familySymbol");
+                throw new ArgumentNullException("familyType");
             }
 
             return DocumentManager.Instance
                 .ElementsOfType<Autodesk.Revit.DB.FamilyInstance>()
-                .Where(x => x.Symbol.Id == familySymbol.InternalFamilySymbol.Id)
+                .Where(x => x.Symbol.Id == familyType.InternalFamilySymbol.Id)
                 .Select(x => FromExisting(x, true))
                 .ToArray();
         }

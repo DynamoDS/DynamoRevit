@@ -16,6 +16,7 @@ using RevitServices.Transactions;
 using Color = DSCore.Color;
 using Area = DynamoUnits.Area;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
+using RevitServices.Elements;
 
 namespace Revit.Elements
 {
@@ -193,8 +194,9 @@ namespace Revit.Elements
         public virtual void Dispose()
         {
 
-            // Do not cleanup Revit elements if we are shutting down Dynamo.
-            if (DisposeLogic.IsShuttingDown)
+            // Do not cleanup Revit elements if we are shutting down Dynamo or
+            // closing homeworkspace.
+            if (DisposeLogic.IsShuttingDown || DisposeLogic.IsClosingHomeworkspace)
                 return;
 
             bool didRevitDelete = ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(Id);
@@ -310,8 +312,15 @@ namespace Revit.Elements
         {
             object result;
 
-            var param = InternalElement.GetOrderedParameters().FirstOrDefault(x => x.Definition.Name == parameterName);
-
+            var param =
+                // We don't use Element.GetOrderedParameters(), it only returns ordered parameters
+                // as show in the UI
+                InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
+                    // Element.Parameters returns a differently ordered list on every invocation.
+                    // We must sort it to get sensible results.
+                    .OrderBy(x => x.Id.IntegerValue) 
+                    .FirstOrDefault(x => x.Definition.Name == parameterName);         
+            
             if (param == null || !param.HasValue)
                 return string.Empty;
 
@@ -363,8 +372,10 @@ namespace Revit.Elements
             patternCollector.OfClass(typeof(FillPatternElement));
             FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
 
-            ogs.SetProjectionFillColor(new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue));
+            var overrideColor = new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue);
+            ogs.SetProjectionFillColor(overrideColor);
             ogs.SetProjectionFillPatternId(solidFill.Id);
+            ogs.SetProjectionLineColor(overrideColor);
             view.SetElementOverrides(InternalElementId, ogs);
 
             TransactionManager.Instance.TransactionTaskDone();
@@ -462,17 +473,19 @@ namespace Revit.Elements
 
             foreach (var geometryObject in InternalGeometry())
             {
-                try
+                var geoObj = geometryObject.Convert();
+                if (geoObj != null)
                 {
-                    var convert = geometryObject.Convert();
-                    if (convert != null)
-                    {
-                        converted.Add(convert);
-                    }
+                    converted.Add(geoObj);
                 }
-                catch (Exception)
+                else
                 {
-                    // we catch all geometry conversion exceptions
+                    var solid = geometryObject as Autodesk.Revit.DB.Solid;
+                    if (solid != null)
+                    {
+                        var geomObjs = solid.ConvertToMany();
+                        converted.AddRange(geomObjs.Where(x => { return x != null; }));
+                    }
                 }
             }
 

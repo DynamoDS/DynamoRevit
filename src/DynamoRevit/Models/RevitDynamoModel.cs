@@ -12,7 +12,7 @@ using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 using DSIronPython;
-using Dynamo.DSEngine;
+using Dynamo.Engine;
 using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.UpdateManager;
@@ -136,6 +136,22 @@ namespace Dynamo.Applications.Models
             if (handler != null) handler();
         }
 
+        protected override void OnWorkspaceRemoveStarted(WorkspaceModel workspace)
+        {
+            base.OnWorkspaceRemoveStarted(workspace);
+
+            if (workspace is HomeWorkspaceModel)
+                DisposeLogic.IsClosingHomeworkspace = true;
+        }
+
+        protected override void OnWorkspaceRemoved(WorkspaceModel workspace)
+        {
+            base.OnWorkspaceRemoved(workspace);
+
+            if (workspace is HomeWorkspaceModel)
+                DisposeLogic.IsClosingHomeworkspace = false;
+        }
+
         #endregion
 
         #region Properties/Fields
@@ -169,7 +185,6 @@ namespace Dynamo.Applications.Models
                 return currentHashCode == dm.ActiveDocumentHashCode;
             }
         }
-
         #endregion
 
         #region Constructors
@@ -191,6 +206,8 @@ namespace Dynamo.Applications.Models
         private RevitDynamoModel(IRevitStartConfiguration configuration) :
             base(configuration)
         {
+            DisposeLogic.IsShuttingDown = false;
+
             externalCommandData = configuration.ExternalCommandData;
 
             RevitServicesUpdater.Initialize(DynamoRevitApp.ControlledApplication, DynamoRevitApp.Updaters);
@@ -679,14 +696,6 @@ namespace Dynamo.Applications.Models
             foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
                 ws.MarkNodesAsModifiedAndRequestRun(ws.Nodes);
-                
-                foreach (var node in ws.Nodes)
-                {
-                    lock (node.RenderPackagesMutex)
-                    {
-                        node.RenderPackages.Clear();
-                    }
-                }
             }
 
             OnRevitDocumentChanged();
@@ -752,13 +761,14 @@ namespace Dynamo.Applications.Models
 
             if (!updatedIds.Any())
                 return;
-
+        
             var nodes = ElementBinder.GetNodesFromElementIds(
                 updatedIds,
                 CurrentWorkspace,
                 EngineController);
-            foreach (var node in nodes)
+            foreach (var node in nodes )
             {
+            
                 node.OnNodeModified(true);
             }
         }

@@ -8,8 +8,9 @@ using Autodesk.Revit.DB.Events;
 using DSCore;
 using DSCoreNodesUI;
 using Dynamo.Applications;
-using Dynamo.DSEngine;
+using Dynamo.Engine;
 using Dynamo.Models;
+using Dynamo.Nodes;
 using Dynamo.Utilities;
 using ProtoCore.AST.AssociativeAST;
 using Revit.Elements;
@@ -23,6 +24,7 @@ using FamilyInstance = Autodesk.Revit.DB.FamilyInstance;
 using FamilySymbol = Autodesk.Revit.DB.FamilySymbol;
 using Level = Autodesk.Revit.DB.Level;
 using Parameter = Autodesk.Revit.DB.Parameter;
+using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
 {
@@ -102,8 +104,8 @@ namespace DSRevitNodesUI
             };
 
             var functionCall = AstFactory.BuildFunctionCall
-                <System.String, System.String, Revit.Elements.FamilySymbol>
-                (Revit.Elements.FamilySymbol.ByFamilyNameAndTypeName, args);
+                <System.String, System.String, Revit.Elements.FamilyType>
+                (Revit.Elements.FamilyType.ByFamilyNameAndTypeName, args);
 
             return new[] {AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
         }

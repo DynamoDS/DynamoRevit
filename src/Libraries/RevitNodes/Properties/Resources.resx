@@ -303,4 +303,7 @@
   <data name="WallTypeNotFound" xml:space="preserve">
     <value>There is no WallType of the given name in the current Document.</value>
   </data>
+  <data name="DirectShapeInvalidArgument" xml:space="preserve">
+    <value>Can only create DirectShapes from Solids, Surfaces or Meshes.</value>
+  </data>
 </root>
