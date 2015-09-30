@@ -40,7 +40,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="HelixToolkit.Wpf.SharpDX">
-      <HintPath>..\..\..\..\Dynamo\extern\Helix3D\NET40\HelixToolkit.Wpf.SharpDX.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\HelixToolkit.Wpf.SharpDX.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
