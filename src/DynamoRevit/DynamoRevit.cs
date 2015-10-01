@@ -124,11 +124,11 @@ namespace Dynamo.Applications
                 shouldShowUi = CheckJournalForUiDisplay(extCommandData);
                 isAutomationMode = CheckJournalForAutomationMode(extCommandData);
 
+                UpdateSystemPathForProcess();
+
                 // create core data models
                 revitDynamoModel = InitializeCoreModel(extCommandData);
                 dynamoViewModel = InitializeCoreViewModel(revitDynamoModel);
-
-                UpdateSystemPathForProcess();
 
                 revitDynamoModel.Logger.Log("SYSTEM", string.Format("Environment Path:{0}", Environment.GetEnvironmentVariable("PATH")));
 
@@ -162,6 +162,10 @@ namespace Dynamo.Applications
             return Result.Succeeded;
         }
 
+        /// <summary>
+        /// Add the main exec path to the system PATH
+        /// This is required to pickup certain dlls.
+        /// </summary>
         private static void UpdateSystemPathForProcess()
         {
             var assemblyLocation = Assembly.GetExecutingAssembly().Location;
@@ -169,8 +173,7 @@ namespace Dynamo.Applications
             var parentDirectory = Directory.GetParent(assemblyDirectory);
             var corePath = parentDirectory.FullName;
 
-            // Add the main exec path to the system PATH
-            // This is required to pickup certain dlls.
+            
             var path =
                     Environment.GetEnvironmentVariable(
                         "Path",
