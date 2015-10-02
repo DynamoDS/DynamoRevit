@@ -1011,6 +1011,54 @@ namespace RevitSystemTests
             Assert.AreEqual(255, settings.ProjectionLineColor.Red);
         }
 
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\Bugs\MAGN_8367.rvt")]
+        public void UpdatedGraphIsNotRunAgain_MAGN_8367()
+        {
+            var model = ViewModel.Model;
+
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_8367.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(6, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(7, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            string selectNodeID = "982d28d8-a6ea-45d0-ac23-9f7c0f88c312";
+            var selectNode = GetNode<DSModelElementSelection>(selectNodeID) as DSModelElementSelection;
+            string codeBlockNodeID = "d36ae6dc-ae6e-4ad8-b616-af73464e5f57";
+            var codeBlockNode = GetNode<CodeBlockNodeModel>(codeBlockNodeID) as CodeBlockNodeModel;
+            string colorNodeID = "11192cef-552f-43bb-b5ab-42f809e285e0";
+            var colorNode = GetNode<DSFunction>(colorNodeID) as DSFunction;
+
+            // Change the selected element
+            selectNode.UpdateSelection(new[] { ElementSelector.
+                ByUniqueId("2049bcda-4652-4dce-8114-728cd33b120b-00000f4f").InternalElement });
+            // Change the color to (0, 255, 255)
+            colorNode.InPorts[1].Disconnect(colorNode.InPorts[1].Connectors[0]);
+            RunCurrentModel();
+
+            // Change the selected element back to the first element
+            selectNode.UpdateSelection(new[] { ElementSelector.
+                ByUniqueId("350f68bb-624c-405f-b93f-f7e6ff82778b-00000910").InternalElement });
+            // Change the color again to (0, 0, 255)
+            colorNode.InPorts[2].Disconnect(colorNode.InPorts[2].Connectors[0]);
+            RunCurrentModel();
+
+            // Now check the overriden color of element with ID of 2320 to be (0, 0, 255)
+            var settings = DocumentManager.Instance.CurrentUIDocument.ActiveView.
+                GetElementOverrides(ElementSelector.
+                ByUniqueId("350f68bb-624c-405f-b93f-f7e6ff82778b-00000910").InternalElement.Id);
+            Assert.AreEqual(0, settings.ProjectionLineColor.Red);
+            Assert.AreEqual(0, settings.ProjectionLineColor.Green);
+            Assert.AreEqual(255, settings.ProjectionLineColor.Blue);
+        }
 
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
         {
