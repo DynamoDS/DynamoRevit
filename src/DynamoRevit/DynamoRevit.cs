@@ -242,6 +242,7 @@ namespace Dynamo.Applications
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
                     ExternalCommandData = commandData,
                     UpdateManager = new DynUpdateManager(umConfig),
+                    ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
                 });
         }
 

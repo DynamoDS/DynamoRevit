@@ -215,7 +215,8 @@ namespace RevitTestServices
                         Context = "Revit 2014",
                         SchedulerThread = new TestSchedulerThread(),
                         PackageManagerAddress = "https://www.dynamopackages.com",
-                        ExternalCommandData = RevitTestExecutive.CommandData
+                        ExternalCommandData = RevitTestExecutive.CommandData,
+                        ProcessMode = TaskProcessMode.Synchronous
                     });
 
                 Model = DynamoRevit.RevitDynamoModel;
