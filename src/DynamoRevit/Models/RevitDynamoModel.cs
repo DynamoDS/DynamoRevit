@@ -17,6 +17,7 @@ using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.UpdateManager;
 using Dynamo.Utilities;
+using Dynamo.Core.Threading;
 using DynamoServices;
 using Greg;
 using ProtoCore;
@@ -54,6 +55,7 @@ namespace Dynamo.Applications.Models
             public string PackageManagerAddress { get; set; }
             public ExternalCommandData ExternalCommandData { get; set; }
             public IEnumerable<Dynamo.Extensions.IExtension> Extensions { get; set; }
+            public TaskProcessMode ProcessMode { get; set; }
         }
 
         /// <summary>
@@ -191,7 +193,7 @@ namespace Dynamo.Applications.Models
 
         public new static RevitDynamoModel Start()
         {
-            return Start(new RevitStartConfiguration());
+            return Start(new RevitStartConfiguration() { ProcessMode = TaskProcessMode.Asynchronous } );
         }
 
         public new static RevitDynamoModel Start(IRevitStartConfiguration configuration)
