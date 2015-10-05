@@ -102,6 +102,7 @@
     <Compile Include="DisplayTests.cs" />
     <Compile Include="RevitLibraryTests.cs" />
     <Compile Include="ImportInstanceTests.cs" />
+    <Compile Include="RevitWatch3DViewModelTests.cs" />
     <Compile Include="SiteLocationTests.cs" />
     <Compile Include="RenderingAsAServiceTests.cs" />
     <Compile Include="DividedCurveTests.cs" />
