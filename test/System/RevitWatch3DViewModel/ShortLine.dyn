@@ -1,0 +1,16 @@
+<Workspace Version="0.9.0.2777" X="-141" Y="-277" zoom="1" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Line" resolvedName="Autodesk.DesignScript.Geometry.Line" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="9a42b0b5-e39e-49d7-9b5b-6ee9cb930eb9" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="687" y="315" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="a=Point.Origin();&#xA;b=Point.ByCoordinates(0.03125,0,0);&#xA;Line.ByStartPointEndPoint(a,b);" ShouldFocus="false" />
+  </Elements>
+  <Connectors />
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-0.0996227588715346" eyeY="1.25665941425362" eyeZ="1.30740941938051" lookX="3.13059240296738" lookY="-6.15186148357261" lookZ="-6.80972394157793" upX="0.189631150472033" upY="0.891006524188369" upZ="-0.412489273344674" />
+  </Cameras>
+</Workspace>
