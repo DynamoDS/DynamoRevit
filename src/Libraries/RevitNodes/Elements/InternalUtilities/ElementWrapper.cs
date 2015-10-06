@@ -169,7 +169,7 @@ namespace Revit.Elements
                 case ViewType.CeilingPlan:
                     return CeilingPlanView.FromExisting(view, isRevitOwned);
                 case ViewType.FloorPlan:
-                    return CeilingPlanView.FromExisting(view, isRevitOwned);
+                    return FloorPlanView.FromExisting(view, isRevitOwned);
                 case ViewType.EngineeringPlan:
                     return StructuralPlanView.FromExisting(view, isRevitOwned);
                 default:
