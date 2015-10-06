@@ -104,6 +104,8 @@ namespace Dynamo.Applications.ViewModel
 
         private void Draw()
         {
+            if (!Active) return;
+
             var graphicItems = model.CurrentWorkspace.Nodes
                 .Where(n => n.IsVisible)
                 .SelectMany(n => n.GeneratedGraphicItems(engineManager.EngineController));
@@ -221,7 +223,10 @@ namespace Dynamo.Applications.ViewModel
             {
                 var xyz0 = new XYZ(verts[i] * conv, verts[i + 1] * conv, verts[i + 2] * conv);
                 var xyz1 = new XYZ(verts[i + 3] * conv, verts[i + 4] * conv, verts[i + 5] * conv);
-
+                if (xyz0.DistanceTo(xyz1) < DocumentManager.Instance.CurrentUIApplication.Application.ShortCurveTolerance)
+                {
+                    continue;
+                }
                 result.Add(Line.CreateBound(xyz0, xyz1));
             }
 
