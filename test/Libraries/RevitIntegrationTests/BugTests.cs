@@ -885,6 +885,32 @@ namespace RevitSystemTests
         }
 
         [Test]
+        [TestModel(@".\Bugs\MAGN_8407.rvt")]
+        public void GetParameterValueByName_MAGN_8407()
+        {
+            var model = ViewModel.Model;
+            string dynfilePath = Path.Combine(workingDirectory,
+                                                @".\Bugs\MAGN_8407.dyn");
+            string testPath = Path.GetFullPath(dynfilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(4, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count());
+
+            AssertNoDummyNodes();
+
+            // run
+            RunCurrentModel();
+
+            // Check that it has returned a category
+            string nodeID = "fa304227-cea5-4490-8081-6e6b25fadf82";
+            var cat = GetPreviewValue(nodeID) as Category;
+            Assert.IsTrue(string.CompareOrdinal(cat.Name, "Walls") == 0);
+        }
+
+        [Test]
         [Category("RegressionTests")]
         [TestModel(@".\Bugs\MAGN_7977.rfa")]
         public void SelectedFaceIsTransformedCorrectly_MAGN_7977()
