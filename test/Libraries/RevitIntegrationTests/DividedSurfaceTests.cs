@@ -66,7 +66,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            Assert.Greater(ViewModel.Model.EngineController.LiveRunnerRuntimeCore.RuntimeStatus.WarningCount, 0);
+            Assert.Greater(ViewModel.Model.GetCurrentEngineController().LiveRunnerRuntimeCore.RuntimeStatus.WarningCount, 0);
 
 
         }

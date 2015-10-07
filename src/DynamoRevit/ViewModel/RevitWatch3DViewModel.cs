@@ -106,7 +106,7 @@ namespace Dynamo.Applications.ViewModel
         {
             var graphicItems = model.CurrentWorkspace.Nodes
                 .Where(n => n.IsVisible)
-                .SelectMany(n => n.GeneratedGraphicItems(engineManager.EngineController));
+                .SelectMany(n => n.GeneratedGraphicItems(EngineController));
 
             var geoms = new List<GeometryObject>();
             foreach (var item in graphicItems)

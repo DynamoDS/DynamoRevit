@@ -11,6 +11,7 @@ using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 using DSIronPython;
+using Dynamo.Core.Threading;
 using Dynamo.Engine;
 using Dynamo.Interfaces;
 using Dynamo.Models;
@@ -48,7 +49,7 @@ namespace Dynamo.Applications.Models
             public IPreferences Preferences { get; set; }
             public bool StartInTestMode { get; set; }
             public IUpdateManager UpdateManager { get; set; }
-            public ISchedulerThread SchedulerThread { get; set; }
+            public ISchedulerFactory SchedulerFactory { get; set; }
             public string GeometryFactoryPath { get; set; }
             public IAuthProvider AuthProvider { get; set; }
             public string PackageManagerAddress { get; set; }
@@ -62,6 +63,8 @@ namespace Dynamo.Applications.Models
         ///     Application.DocumentClosed events.
         /// </summary>
         private bool updateCurrentUIDoc;
+
+        private bool isFirstEvaluation = true;
 
         private readonly ExternalCommandData externalCommandData;
 
@@ -123,12 +126,27 @@ namespace Dynamo.Applications.Models
                 DisposeLogic.IsClosingHomeworkspace = true;
         }
 
+        protected override void OnWorkspaceAdded(WorkspaceModel workspace)
+        {
+            base.OnWorkspaceAdded(workspace);
+
+            var ws = workspace as HomeWorkspaceModel;
+            if (ws != null)
+            {
+                ws.PostTraceReconciliationComplete += PostTraceReconciliation;
+            }
+        }
+
         protected override void OnWorkspaceRemoved(WorkspaceModel workspace)
         {
             base.OnWorkspaceRemoved(workspace);
 
-            if (workspace is HomeWorkspaceModel)
+            var ws = workspace as HomeWorkspaceModel;
+            if (ws != null)
+            {
                 DisposeLogic.IsClosingHomeworkspace = false;
+                ws.PostTraceReconciliationComplete -= PostTraceReconciliation;
+            }
         }
 
         #endregion
@@ -199,16 +217,21 @@ namespace Dynamo.Applications.Models
             MigrationManager.MigrationTargets.Add(typeof(WorkspaceMigrationsRevit));
 
             SetupPython();
-        }
 
-        private bool isFirstEvaluation = true;
+            foreach (var ws in this.Workspaces.OfType<HomeWorkspaceModel>())
+            {
+                ws.PostTraceReconciliationComplete += PostTraceReconciliation;
+            }
+        }
 
         #endregion
 
         #region trace reconciliation
 
-        public override void PostTraceReconciliation(Dictionary<Guid, List<ISerializable>> orphanedSerializables)
+        public void PostTraceReconciliation(PostTraceReconciliationCompleteEventArgs args)
         {
+            var orphanedSerializables = args.OrphanedSerializables;
+
             var orphanedIds =
                 orphanedSerializables
                 .SelectMany(kvp=>kvp.Value)
@@ -498,17 +521,6 @@ namespace Dynamo.Applications.Models
             ElementIDLifecycleManager<int>.DisposeInstance();
         }
 
-        /// <summary>
-        /// This event handler is called if 'markNodesAsDirty' in a 
-        /// prior call to RevitDynamoModel.ResetEngine was set to 'true'.
-        /// </summary>
-        /// <param name="markNodesAsDirty"></param>
-        private void OnResetMarkNodesAsDirty(bool markNodesAsDirty)
-        {
-            foreach (var workspace in Workspaces.OfType<HomeWorkspaceModel>())
-                workspace.ResetEngine(EngineController, markNodesAsDirty);
-        }
-
         public void SetRunEnabledBasedOnContext(View newView)
         {
             DocumentManager.Instance.HandleDocumentActivation(newView);
@@ -610,7 +622,7 @@ namespace Dynamo.Applications.Models
             if (DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument == null)
             {
                 DocumentManager.Instance.CurrentUIDocument = null;
-                foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = false;
                 }
@@ -655,7 +667,7 @@ namespace Dynamo.Applications.Models
                 OnRevitDocumentChanged();
 
                 InitializeMaterials();
-                foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
                 {
                     ws.RunSettings.RunEnabled = true;
                 }
@@ -713,13 +725,17 @@ namespace Dynamo.Applications.Models
             if (!deleted.Any())
                 return;
 
-            var nodes = ElementBinder.GetNodesFromElementIds(
-                deleted,
-                CurrentWorkspace,
-                EngineController);
-            foreach (var node in nodes)
+            foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
-                node.OnNodeModified(forceExecute: true);
+                var nodes = ElementBinder.GetNodesFromElementIds(
+                    deleted,
+                    ws,
+                    ws.EngineController);
+
+                foreach (var node in nodes)
+                {
+                    node.OnNodeModified(forceExecute: true);
+                }
             }
         }
 
@@ -735,15 +751,18 @@ namespace Dynamo.Applications.Models
 
             if (!updatedIds.Any())
                 return;
-        
-            var nodes = ElementBinder.GetNodesFromElementIds(
-                updatedIds,
-                CurrentWorkspace,
-                EngineController);
-            foreach (var node in nodes )
+
+            foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
-            
-                node.OnNodeModified(true);
+                var nodes = ElementBinder.GetNodesFromElementIds(
+                    updatedIds,
+                    ws,
+                    ws.EngineController);
+
+                foreach (var node in nodes)
+                {
+                    node.OnNodeModified(true);
+                }
             }
         }
 
