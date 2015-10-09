@@ -461,7 +461,7 @@ namespace Revit.Elements
          return result.ToArray();
       }
        /// <summary>
-       /// Gets family instance from curtainPanel
+       /// Gets family instance from curtain Panel
        /// </summary>
        /// <returns></returns>
       public FamilyInstance AsFamilyInstance()
