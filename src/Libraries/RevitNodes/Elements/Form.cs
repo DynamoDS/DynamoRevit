@@ -142,7 +142,7 @@ namespace Revit.Elements
             return ByLoftCrossSectionsInternal(curves, isSolid);
         }
         /// <summary>
-        ///  Creates a Form by lofting a nested list of curves
+        /// Creates a Form by lofting a nested list of curves
         /// </summary>
         /// <param name="curves"></param>
         /// <param name="isSolid"></param>

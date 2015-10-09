@@ -79,7 +79,7 @@ namespace Revit.Elements
 
       private PolyCurve[] boundsCache = null;
        /// <summary>
-       ///  Gets curtain panel boundaries
+       /// Gets curtain panel boundaries
        /// </summary>
       public PolyCurve[] Boundaries
       {
