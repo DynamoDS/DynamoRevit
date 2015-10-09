@@ -153,9 +153,9 @@ namespace Revit.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Curtain Panel is not rectangular.
         /// </summary>
-        internal static string CurtainPannelIsNotRectangular {
+        internal static string CurtainPanelIsNotRectangular {
             get {
-                return ResourceManager.GetString("CurtainPannelIsNotRectangular", resourceCulture);
+                return ResourceManager.GetString("CurtainPanelIsNotRectangular", resourceCulture);
             }
         }
         
