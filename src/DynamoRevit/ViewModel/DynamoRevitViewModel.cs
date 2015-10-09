@@ -30,8 +30,7 @@ namespace Dynamo.Applications.ViewModel
 
             var watch3DParams = new Watch3DViewModelStartupParams(model);
             var watch3DVm = new RevitWatch3DViewModel(watch3DParams);
-            watch3DVm.Setup(this, new DefaultRenderPackageFactory());
-            Watch3DViewModels.Add(watch3DVm);
+            RegisterWatch3DViewModel(watch3DVm, new DefaultRenderPackageFactory());
         }
 
         public static DynamoRevitViewModel Start(StartConfiguration startConfiguration)
