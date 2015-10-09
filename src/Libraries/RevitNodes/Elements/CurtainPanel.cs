@@ -79,7 +79,7 @@ namespace Revit.Elements
 
       private PolyCurve[] boundsCache = null;
        /// <summary>
-       ///  Gets curtain panel boundaries
+       /// Gets curtain panel boundaries
        /// </summary>
       public PolyCurve[] Boundaries
       {
@@ -263,7 +263,7 @@ namespace Revit.Elements
             for (; enumCurveLoops.MoveNext();)
             {
                if (num > 0)
-                  throw new Exception(Properties.Resources.CurtainPannelIsNotRectangular);
+                  throw new Exception(Properties.Resources.CurtainPanelIsNotRectangular);
                num++;
                var cLoop = new CurveLoop();
                var crvArr = (CurveArray) enumCurveLoops.Current;
@@ -274,9 +274,9 @@ namespace Revit.Elements
                   cLoop.Append(crv);
                }
                if (!cLoop.HasPlane())
-                   throw new Exception(Properties.Resources.CurtainPannelIsNotRectangular);
+                   throw new Exception(Properties.Resources.CurtainPanelIsNotRectangular);
                if (!cLoop.IsRectangular(cLoop.GetPlane()))
-                   throw new Exception(Properties.Resources.CurtainPannelIsNotRectangular);
+                   throw new Exception(Properties.Resources.CurtainPanelIsNotRectangular);
                result = cLoop.GetRectangularWidth(cLoop.GetPlane());
             }
             return result * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
@@ -295,7 +295,7 @@ namespace Revit.Elements
             for (; enumCurveLoops.MoveNext();)
             {
                if (num > 0)
-                   throw new Exception(Properties.Resources.CurtainPannelIsNotRectangular);
+                   throw new Exception(Properties.Resources.CurtainPanelIsNotRectangular);
                num++;
                var cLoop = new CurveLoop();
                var crvArr = (CurveArray) enumCurveLoops.Current;
@@ -306,9 +306,9 @@ namespace Revit.Elements
                   cLoop.Append(crv);
                }
                if (!cLoop.HasPlane())
-                   throw new Exception(Properties.Resources.CurtainPannelIsNotRectangular);
+                   throw new Exception(Properties.Resources.CurtainPanelIsNotRectangular);
                if (!cLoop.IsRectangular(cLoop.GetPlane()))
-                   throw new Exception(Properties.Resources.CurtainPannelIsNotRectangular);
+                   throw new Exception(Properties.Resources.CurtainPanelIsNotRectangular);
                result = cLoop.GetRectangularHeight(cLoop.GetPlane());
             }
             return result * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
