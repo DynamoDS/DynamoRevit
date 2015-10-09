@@ -141,7 +141,7 @@
   <data name="CurtainPanelShouldRepresentRevitPanel" xml:space="preserve">
     <value>Curtain Panel should represent Revit panel</value>
   </data>
-  <data name="CurtainPannelIsNotRectangular" xml:space="preserve">
+  <data name="CurtainPanelIsNotRectangular" xml:space="preserve">
     <value>Curtain Panel is not rectangular</value>
   </data>
   <data name="NumberOfDivisionsMustBeGreaterThan2" xml:space="preserve">
