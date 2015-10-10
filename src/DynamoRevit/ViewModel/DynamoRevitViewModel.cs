@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Autodesk.Revit.DB;
 
 using Dynamo.Applications.Models;
@@ -28,8 +27,10 @@ namespace Dynamo.Applications.ViewModel
 
             if (RevitWatch3DViewModel.GetTransientDisplayMethod() != null)
             {
-                var watch3DParams = new Watch3DViewModelStartupParams(model, this, "Revit Background Preview");
-                watch3DParams.RenderPackageFactory = new DefaultRenderPackageFactory();
+                var watch3DParams = new Watch3DViewModelStartupParams(model, this, "Revit Background Preview")
+                {
+                    RenderPackageFactory = new DefaultRenderPackageFactory()
+                };
                 Watch3DViewModels.Add(RevitWatch3DViewModel.Start(watch3DParams));
             }
         }

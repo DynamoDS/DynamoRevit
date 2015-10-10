@@ -1,0 +1,28 @@
+<Workspace Version="0.9.0.2815" X="-476.506171271727" Y="42.2743145927621" zoom="0.915987660325295" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Line" resolvedName="Autodesk.DesignScript.Geometry.Line" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="9a42b0b5-e39e-49d7-9b5b-6ee9cb930eb9" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="765.646589211361" y="104.440375642053" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="a=Point.Origin();&#xA;b=Point.ByCoordinates(0.00065104,0,0);&#xA;Line.ByStartPointEndPoint(a,b);" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="81b98a9f-0f9f-4bb0-b2b4-a12aab7ad875" type="Dynamo.Nodes.DSFunction" nickname="Circle.ByCenterPointRadius" x="1266.45947497588" y="243.129393815657" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Circle.ByCenterPointRadius@Autodesk.DesignScript.Geometry.Point,double">
+      <PortInfo index="0" default="True" />
+      <PortInfo index="1" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="af813ee4-a997-4046-8cf4-8148c459d8bc" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1021" y="302" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="0.0001;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="e0aaaf1f-cb41-4ce9-9fac-ce4bf94ff1bf" type="Dynamo.Nodes.DSFunction" nickname="Curve.Length" x="1538.17530591001" y="241.666143706437" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Curve.Length" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="9a42b0b5-e39e-49d7-9b5b-6ee9cb930eb9" start_index="0" end="81b98a9f-0f9f-4bb0-b2b4-a12aab7ad875" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="81b98a9f-0f9f-4bb0-b2b4-a12aab7ad875" start_index="0" end="e0aaaf1f-cb41-4ce9-9fac-ce4bf94ff1bf" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="af813ee4-a997-4046-8cf4-8148c459d8bc" start_index="0" end="81b98a9f-0f9f-4bb0-b2b4-a12aab7ad875" end_index="1" portType="0" />
+  </Connectors>
+  <Notes>
+    <Dynamo.Models.NoteModel guid="ab7c868d-4600-43f9-91b4-9a69d2b3fac4" text="1/128&quot; -&gt; decimal feet = 0.00065104" x="1255.28155740884" y="116.963055071274" />
+  </Notes>
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-0.909339333423456" eyeY="3.4923017094419" eyeZ="3.55283335674459" lookX="6.04304616294816" lookY="-8.94001844272133" lookZ="-6.21650781473631" upX="0.384717778962334" upY="0.833885828075745" upZ="-0.395760859914489" />
+  </Cameras>
+</Workspace>
