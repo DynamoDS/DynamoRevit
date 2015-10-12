@@ -11,9 +11,9 @@ namespace Revit.Elements
 {
     public abstract class CurveElement : Element, IGraphicItem
     {
-        private const byte DefR = 101;
-        private const byte DefG = 86;
-        private const byte DefB = 130;
+        private const byte DefR = 0;
+        private const byte DefG = 0;
+        private const byte DefB = 0;
         private const byte DefA = 255;
 
         public override Autodesk.Revit.DB.Element InternalElement
