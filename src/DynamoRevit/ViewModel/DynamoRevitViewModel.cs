@@ -25,14 +25,11 @@ namespace Dynamo.Applications.ViewModel
             model.RevitViewChanged += model_RevitViewChanged;
             model.InvalidRevitDocumentActivated += model_InvalidRevitDocumentActivated;
 
-            if (RevitWatch3DViewModel.GetTransientDisplayMethod() != null)
-            {
-                var watch3DParams = new Watch3DViewModelStartupParams(model, this, "Revit Background Preview")
-                {
-                    RenderPackageFactory = new DefaultRenderPackageFactory()
-                };
-                Watch3DViewModels.Add(RevitWatch3DViewModel.Start(watch3DParams));
-            }
+            if (RevitWatch3DViewModel.GetTransientDisplayMethod() == null) return;
+
+            var watch3DParams = new Watch3DViewModelStartupParams(model);
+            var watch3DVm = new RevitWatch3DViewModel(watch3DParams);
+            RegisterWatch3DViewModel(watch3DVm, new DefaultRenderPackageFactory());
         }
 
         public static DynamoRevitViewModel Start(StartConfiguration startConfiguration)
@@ -44,7 +41,15 @@ namespace Dynamo.Applications.ViewModel
             else
             {
                 if (startConfiguration.DynamoModel.GetType() != typeof(RevitDynamoModel))
-                    throw new Exception("An instance of RevitDynamoViewModel is required to construct a DynamoRevitViewModel.");
+                    throw new Exception("An instance of RevitDynamoModel is required to construct a DynamoRevitViewModel.");
+            }
+
+            if (startConfiguration.Watch3DViewModel == null)
+            {
+                startConfiguration.Watch3DViewModel =
+                    HelixWatch3DViewModel.TryCreateHelixWatch3DViewModel(
+                        new Watch3DViewModelStartupParams(startConfiguration.DynamoModel),
+                        startConfiguration.DynamoModel.Logger);
             }
 
             if (startConfiguration.WatchHandler == null)
