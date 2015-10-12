@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -7,7 +6,6 @@ using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Interfaces;
 using Autodesk.Revit.DB;
 using Dynamo.Models;
-using Dynamo.Utilities;
 using Dynamo.Wpf.ViewModels.Watch3D;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
@@ -16,31 +14,21 @@ using RevitServices.Transactions;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
 using Line = Autodesk.Revit.DB.Line;
 using Point = Autodesk.DesignScript.Geometry.Point;
+using Resources = Dynamo.Applications.Properties.Resources;
 using Solid = Autodesk.DesignScript.Geometry.Solid;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace Dynamo.Applications.ViewModel
 {
-    public class RevitWatch3DViewModel : Watch3DViewModelBase
+    public class RevitWatch3DViewModel : DefaultWatch3DViewModel
     {
         private ElementId keeperId = ElementId.InvalidElementId;
         private ElementId directShapeId = ElementId.InvalidElementId;
         private MethodInfo method;
 
-        private RevitWatch3DViewModel(Watch3DViewModelStartupParams parameters) : base(parameters)
+        public RevitWatch3DViewModel(Watch3DViewModelStartupParams parameters) : base(parameters)
         {
-            
-        }
-
-        public static RevitWatch3DViewModel Start(Watch3DViewModelStartupParams parameters)
-        {
-            var vm = new RevitWatch3DViewModel(parameters);
-            vm.OnStartup();
-            return vm;
-        }
-
-        protected override void OnStartup()
-        {
+            Name = Resources.BackgroundPreviewName;
             Draw();
         }
 
