@@ -217,7 +217,7 @@ namespace RevitTestServices
                         SchedulerThread = new TestSchedulerThread(),
                         PackageManagerAddress = "https://www.dynamopackages.com",
                         ExternalCommandData = RevitTestExecutive.CommandData,
-                        ProcessMode = TaskProcessMode.Synchronous
+                        ProcessMode = RevitTaskProcessMode
                     });
 
                 Model = DynamoRevit.RevitDynamoModel;
@@ -242,6 +242,14 @@ namespace RevitTestServices
             catch (Exception ex)
             {
                 Console.WriteLine(ex.StackTrace);
+            }
+        }
+
+        protected virtual TaskProcessMode RevitTaskProcessMode
+        {
+            get
+            {
+                return TaskProcessMode.Synchronous;
             }
         }
 
