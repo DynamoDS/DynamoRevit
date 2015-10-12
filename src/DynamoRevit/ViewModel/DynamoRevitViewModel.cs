@@ -41,7 +41,7 @@ namespace Dynamo.Applications.ViewModel
             else
             {
                 if (startConfiguration.DynamoModel.GetType() != typeof(RevitDynamoModel))
-                    throw new Exception("An instance of RevitDynamoViewModel is required to construct a DynamoRevitViewModel.");
+                    throw new Exception("An instance of RevitDynamoModel is required to construct a DynamoRevitViewModel.");
             }
 
             if (startConfiguration.Watch3DViewModel == null)
