@@ -8,9 +8,9 @@ namespace Revit.Elements
 {
     public class Category
     {
-        #region private constructors
+        #region internal constructors
 
-        private Category(Autodesk.Revit.DB.Category category)
+        internal Category(Autodesk.Revit.DB.Category category)
         {
             internalCategory = category;
         }

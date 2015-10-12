@@ -11,6 +11,7 @@ using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
+using Dynamo.Applications.ViewModel;
 using Dynamo.Core.Threading;
 using Dynamo.Interfaces;
 using Dynamo.Models;
@@ -216,16 +217,22 @@ namespace RevitTestServices
                         SchedulerThread = new TestSchedulerThread(),
                         PackageManagerAddress = "https://www.dynamopackages.com",
                         ExternalCommandData = RevitTestExecutive.CommandData,
-                        ProcessMode = TaskProcessMode.Synchronous
+                        ProcessMode = RevitTaskProcessMode
                     });
 
                 Model = DynamoRevit.RevitDynamoModel;
 
-                this.ViewModel = DynamoViewModel.Start(
+                this.ViewModel = DynamoRevitViewModel.Start(
                     new DynamoViewModel.StartConfiguration()
                     {
                         DynamoModel = DynamoRevit.RevitDynamoModel,
                     });
+
+                var vm3D = ViewModel.Watch3DViewModels.FirstOrDefault(vm => vm is RevitWatch3DViewModel);
+                if (vm3D != null)
+                {
+                    vm3D.Active = false;
+                }
 
                 // Because the test framework does not work in the idle thread. 
                 // We need to trick Dynamo into believing that it's in the idle
@@ -235,6 +242,14 @@ namespace RevitTestServices
             catch (Exception ex)
             {
                 Console.WriteLine(ex.StackTrace);
+            }
+        }
+
+        protected virtual TaskProcessMode RevitTaskProcessMode
+        {
+            get
+            {
+                return TaskProcessMode.Synchronous;
             }
         }
 

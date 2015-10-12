@@ -92,6 +92,8 @@ namespace Dynamo.Applications.ViewModel
 
         private void Draw()
         {
+            if (!Active) return;
+
             var graphicItems = model.CurrentWorkspace.Nodes
                 .Where(n => n.IsVisible)
                 .SelectMany(n => n.GeneratedGraphicItems(engineManager.EngineController));
@@ -198,20 +200,18 @@ namespace Dynamo.Applications.ViewModel
             curve.Tessellate(pkg, renderPackageFactory.TessellationParameters);
 
             // get necessary info to enumerate and convert the lines
-            var lineCount = pkg.LineVertexCount * 3 - 3;
+            //var lineCount = pkg.LineVertexCount * 3 - 3;
             var verts = pkg.LineStripVertices.ToList();
 
             // we scale the tesselation rather than the curve
             var conv = UnitConverter.DynamoToHostFactor(UnitType.UT_Length);
 
-            // add the revit Lines to geometry collection
-            for (var i = 0; i < lineCount; i += 3)
+            var scaledXYZs = new List<XYZ>();
+            for (var i = 0; i < verts.Count; i+= 3)
             {
-                var xyz0 = new XYZ(verts[i] * conv, verts[i + 1] * conv, verts[i + 2] * conv);
-                var xyz1 = new XYZ(verts[i + 3] * conv, verts[i + 4] * conv, verts[i + 5] * conv);
-
-                result.Add(Line.CreateBound(xyz0, xyz1));
+                scaledXYZs.Add(new XYZ(verts[i] * conv, verts[i + 1] * conv, verts[i + 2] * conv));
             }
+            result.Add(PolyLine.Create(scaledXYZs));
 
             return result;
         }
