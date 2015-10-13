@@ -53,9 +53,8 @@ namespace Dynamo.Applications
         public Result OnStartup(UIControlledApplication application)
         {
             uiApplication = application;
-            // now we have a default path, but let's look at
-            // the load path file to see what was last selected
             var revitVersion = application.ControlledApplication.VersionNumber;
+            //Get the default selection data
             var selectorData = VersionSelectorData.ReadFromRegistry(revitVersion);
             
             var revitFolder =
@@ -377,18 +376,25 @@ namespace Dynamo.Applications
         public static VersionSelectorData ReadFromRegistry(string revitVersion)
         {
             var data = new VersionSelectorData() { RevitVersion = revitVersion };
-            var regKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
-            regKey = regKey.OpenSubKey(RegKey64);
-            
-            var key = string.Format(@"Dynamo {0}.{1}", data.ThisDynamoVersion.Major, data.ThisDynamoVersion.Minor);
-            regKey = regKey.OpenSubKey(key);
-            var version = regKey.GetValue(data.RevitVersion);
-            
-            Version selectedVersion = null;
-            if (Version.TryParse(version as string, out selectedVersion))
-                data.SelectedVersion = selectedVersion;
-            else
-                data.SelectedVersion = data.ThisDynamoVersion;
+            data.SelectedVersion = data.ThisDynamoVersion; //Default initialization
+
+            try
+            {
+                var regKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+                regKey = regKey.OpenSubKey(RegKey64);
+
+                var key = string.Format(@"Dynamo {0}.{1}", data.ThisDynamoVersion.Major, data.ThisDynamoVersion.Minor);
+                regKey = regKey.OpenSubKey(key);
+                if (regKey == null)
+                    return data;
+
+                var version = regKey.GetValue(data.RevitVersion);
+
+                Version selectedVersion = null;
+                if (Version.TryParse(version as string, out selectedVersion))
+                    data.SelectedVersion = selectedVersion;
+            }
+            catch (SystemException) { }
 
             return data;
         }
@@ -398,12 +404,17 @@ namespace Dynamo.Applications
         /// </summary>
         public void WriteToRegistry()
         {
-            var regKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
-            regKey = regKey.OpenSubKey(RegKey64);
-            
-            var key = string.Format(@"Dynamo {0}.{1}", ThisDynamoVersion.Major, ThisDynamoVersion.Minor);
-            regKey = regKey.OpenSubKey(key, true);
-            regKey.SetValue(RevitVersion, SelectedVersion.ToString(), RegistryValueKind.String);
+            try
+            {
+                var regKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+                regKey = regKey.OpenSubKey(RegKey64);
+
+                var key = string.Format(@"Dynamo {0}.{1}", ThisDynamoVersion.Major, ThisDynamoVersion.Minor);
+                regKey = regKey.OpenSubKey(key, true);
+                if(null != regKey)
+                    regKey.SetValue(RevitVersion, SelectedVersion.ToString(), RegistryValueKind.String);
+            }
+            catch (SystemException) { }
         }
 
         /// <summary>
