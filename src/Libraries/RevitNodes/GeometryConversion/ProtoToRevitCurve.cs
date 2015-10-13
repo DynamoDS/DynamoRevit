@@ -100,7 +100,7 @@ namespace Revit.GeometryConversion
             {
                 using (var converted = NurbsUtils.ElevateBezierDegree(crv, 3))
                 {
-                    return Autodesk.Revit.DB.NurbSpline.Create(converted.ControlPoints().ToXyzs(false),
+                    return CreateNurbSpline(converted.ControlPoints().ToXyzs(false),
                             converted.Weights(),
                             converted.Knots(),
                             converted.Degree,
@@ -123,7 +123,7 @@ namespace Revit.GeometryConversion
                 using (var resampledCrv = NurbsCurve.ByPointsTangents(pts, tstart.Normalized(), tend.Normalized()))
                 {
 
-                    return Autodesk.Revit.DB.NurbSpline.Create(resampledCrv.ControlPoints().ToXyzs(false),
+                    return CreateNurbSpline(resampledCrv.ControlPoints().ToXyzs(false),
                             resampledCrv.Weights(),
                             resampledCrv.Knots(),
                             resampledCrv.Degree,
@@ -133,13 +133,20 @@ namespace Revit.GeometryConversion
             }
 
             // general implementation
-            return Autodesk.Revit.DB.NurbSpline.Create(crv.ControlPoints().ToXyzs(false),
+            return CreateNurbSpline(crv.ControlPoints().ToXyzs(false),
                 crv.Weights(),
                 crv.Knots(),
                 crv.Degree,
                 crv.IsClosed,
                 crv.IsRational);
 
+        }
+        private static Autodesk.Revit.DB.Curve CreateNurbSpline(IList<XYZ> controlPoints, IList<double> weights, IList<double> knots, int degree, bool closed, bool rational)
+        {
+            if (rational)
+                return NurbSpline.CreateCurve(degree, knots, controlPoints, weights);
+
+            return NurbSpline.CreateCurve(degree, knots, controlPoints);
         }
 
         private static Autodesk.Revit.DB.Arc Convert(Autodesk.DesignScript.Geometry.Arc arc)
