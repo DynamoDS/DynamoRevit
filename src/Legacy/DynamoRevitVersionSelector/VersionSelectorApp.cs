@@ -14,6 +14,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
 using DynamoRevitVersionSelector.Properties;
+using Microsoft.Win32;
 
 namespace Dynamo.Applications
 {
@@ -54,18 +55,9 @@ namespace Dynamo.Applications
             uiApplication = application;
             // now we have a default path, but let's look at
             // the load path file to see what was last selected
-            var cachedPath = String.Empty;
             var revitVersion = application.ControlledApplication.VersionNumber;
-            var fileLoc = Utils.GetVersionSaveFileLocation(revitVersion);
-
-            if (File.Exists(fileLoc))
-            {
-                using (var sr = new StreamReader(fileLoc))
-                {
-                    cachedPath = sr.ReadToEnd().TrimEnd('\r', '\n');
-                }
-            }
-
+            var selectorData = VersionSelectorData.ReadFromRegistry(revitVersion);
+            
             var revitFolder =
                 new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
 
@@ -74,17 +66,21 @@ namespace Dynamo.Applications
 
             Products = new List<DynamoProduct>();
             int index = -1;
+            var selectedVersion = selectorData.SelectedVersion.ToString(2);
             foreach (var p in dynamoProducts)
             {
                 var path = VersionLoader.GetDynamoRevitPath(p, revitVersion);
                 if (!File.Exists(path))
                     continue;
 
-                if (path.Equals(cachedPath))
+                if (p.VersionInfo.ToString(2) == selectedVersion)
                     index = Products.Count;
 
                 Products.Add(p);
             }
+
+            if (index == -1)
+                index = Products.Count - 1;
 
             // If there are multiple versions installed, then create
             // a couple of push buttons in a panel to allow selection of a version.
@@ -99,10 +95,8 @@ namespace Dynamo.Applications
                     splitButton.CurrentButton = splitButton.GetItems().ElementAt(index);
             }
 
-            string loadPath = GetDynamoRevitPath(Products.Last(), revitVersion);
-            if (File.Exists(cachedPath))
-                loadPath = cachedPath;
-            
+            string loadPath = GetDynamoRevitPath(Products.ElementAt(index), revitVersion);
+
             if (String.IsNullOrEmpty(loadPath))
                 return Result.Failed;
 
@@ -126,7 +120,8 @@ namespace Dynamo.Applications
                 var revitVersion = commandData.Application.Application.VersionNumber;
                 var p = Products[index];
                 var path = GetDynamoRevitPath(p, revitVersion);
-                Utils.WriteToFile(path, revitVersion);
+                var data = new VersionSelectorData() { RevitVersion = revitVersion, SelectedVersion = p.VersionInfo };
+                data.WriteToRegistry();
 
                 splitButton.Enabled = false; //Disable the split button, no more needed.
                 splitButton.Visible = false; //Hide it from the UI
@@ -358,45 +353,72 @@ namespace Dynamo.Applications
         }
     }
 
-    internal class Utils
+    /// <summary>
+    /// VersionSelectorData: A class to keep the selected version data to be stored in registry.
+    /// </summary>
+    internal class VersionSelectorData
     {
-        internal static void WriteToFile(string loadPath, string versionName)
-        {
-            var path = GetVersionSaveFileLocation(versionName);
-
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-
-            using (var tw = new StreamWriter(path))
-            {
-                tw.WriteLine(loadPath);
-            }
+        const string RegKey64 = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\";
+        
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public VersionSelectorData()
+        { 
+            ThisDynamoVersion = Assembly.GetExecutingAssembly().GetName().Version;
         }
 
         /// <summary>
-        /// Return PreferenceSettings Default XML File Path if possible
+        /// Reads the version selection data for specific revit version from 
+        /// registry and returns a new VersionSelectorData.
         /// </summary>
-        internal static string GetVersionSaveFileLocation(string versionName)
+        /// <param name="revitVersion">Revit version</param>
+        /// <returns>VersionSelectorData</returns>
+        public static VersionSelectorData ReadFromRegistry(string revitVersion)
         {
-            try
-            {
-                string appDataFolder = System.Environment.GetFolderPath(
-                    System.Environment.SpecialFolder.ApplicationData);
+            var data = new VersionSelectorData() { RevitVersion = revitVersion };
+            var regKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+            regKey = regKey.OpenSubKey(RegKey64);
+            
+            var key = string.Format(@"Dynamo {0}.{1}", data.ThisDynamoVersion.Major, data.ThisDynamoVersion.Minor);
+            regKey = regKey.OpenSubKey(key);
+            var version = regKey.GetValue(data.RevitVersion);
+            
+            Version selectedVersion = null;
+            if (Version.TryParse(version as string, out selectedVersion))
+                data.SelectedVersion = selectedVersion;
+            else
+                data.SelectedVersion = data.ThisDynamoVersion;
 
-                return (Path.Combine(appDataFolder, "Dynamo", string.Format("DynamoDllForLoad_{0}.txt", versionName)));
-            }
-            catch (Exception)
-            {
-                return string.Empty;
-            }
+            return data;
         }
 
-        internal static void ShowRestartMessage(string version)
+        /// <summary>
+        /// Saves this data to Registry
+        /// </summary>
+        public void WriteToRegistry()
         {
-            MessageBox.Show(string.Format(Resources.RestartMessage, version),
-                Resources.DynamoVersions, MessageBoxButton.OK);
+            var regKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+            regKey = regKey.OpenSubKey(RegKey64);
+            
+            var key = string.Format(@"Dynamo {0}.{1}", ThisDynamoVersion.Major, ThisDynamoVersion.Minor);
+            regKey = regKey.OpenSubKey(key, true);
+            regKey.SetValue(RevitVersion, SelectedVersion.ToString(), RegistryValueKind.String);
         }
+
+        /// <summary>
+        /// Gets the version of this Dynamo
+        /// </summary>
+        public Version ThisDynamoVersion { get; private set; }
+
+        /// <summary>
+        /// Revit version string
+        /// </summary>
+        public string RevitVersion { get; set; }
+
+        /// <summary>
+        /// Gets the version of Dynamo that was selected to run.
+        /// </summary>
+        public Version SelectedVersion { get; set; }
     }
 }
