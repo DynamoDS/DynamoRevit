@@ -106,7 +106,7 @@ namespace Revit.GeometryConversion
             var verts = mesh.VertexPositions;
             var indices = mesh.FaceIndices;
 
-            var tsb = new TessellatedShapeBuilder();
+            var tsb = new TessellatedShapeBuilder() { Fallback = fallback, Target = target, GraphicsStyleId = ElementId.InvalidElementId };
             tsb.OpenConnectedFaceSet(false);
 
             for (int faceindex = 0, count = indices.Count(); faceindex < count; faceindex++)
