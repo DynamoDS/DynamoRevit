@@ -151,4 +151,7 @@
   <data name="NewDocument" xml:space="preserve">
     <value>a new document.</value>
   </data>
+  <data name="BackgroundPreviewName" xml:space="preserve">
+    <value>Revit Background Preview</value>
+  </data>
 </root>
