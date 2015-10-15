@@ -36,7 +36,7 @@ namespace Dynamo.Applications
         public static ControlledApplication ControlledApplication;
         public static UIControlledApplication UIControlledApplication;
         public static List<IUpdater> Updaters = new List<IUpdater>();
-        internal static PushButton DynamoButton;
+        private static PushButton DynamoButton;
         private static readonly Queue<Action> idleActionQueue = new Queue<Action>(10);
         private static EventHandlerProxy proxy;
 
@@ -249,6 +249,12 @@ namespace Dynamo.Applications
             {
                 throw new Exception(string.Format("The location of the assembly, {0} could not be resolved for loading.", assemblyPath), ex);
             }
+        }
+
+        public static bool DynamoButtonEnabled
+        {
+            get { return DynamoButton.Enabled; }
+            set { DynamoButton.Enabled = value; }
         }
     }
 }
