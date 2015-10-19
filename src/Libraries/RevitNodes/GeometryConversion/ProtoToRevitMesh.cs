@@ -4,9 +4,10 @@ using System.Linq;
 using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+using Dynamo;
+
 using RevitServices.Materials;
 using Autodesk.DesignScript.Geometry;
-using Dynamo.Visualization;
 
 namespace Revit.GeometryConversion
 {
