@@ -5,7 +5,6 @@ using Dynamo.Applications.Models;
 using Dynamo.Applications.Properties;
 using Dynamo.Interfaces;
 using Dynamo.ViewModels;
-using Dynamo.Visualization;
 using Dynamo.Wpf.ViewModels.Core;
 using Dynamo.Wpf.ViewModels.Watch3D;
 using RevitServices.Persistence;
