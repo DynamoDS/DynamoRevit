@@ -25,6 +25,7 @@ using Dynamo.Controls;
 using Dynamo.Core;
 using Dynamo.Core.Threading;
 using Dynamo.Interfaces;
+using Dynamo.Logging;
 using Dynamo.Models;
 using Dynamo.Services;
 using Dynamo.UpdateManager;
