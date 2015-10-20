@@ -83,15 +83,26 @@ namespace Dynamo.Applications
             }
         }
 
-        void executed(object sender, ExecutedEventArgs e)
+        /// <summary>
+        /// Executes Dynamo command to show the Dynamo UI
+        /// </summary>
+        /// <param name="journalData">Journal data passed for the command</param>
+        /// <param name="application">Active session of Revit UI application</param>
+        /// <returns></returns>
+        public Result ExecuteDynamoCommand(IDictionary<string,string> journalData, UIApplication application)
         {
-            var data = new DynamoRevitCommandData() 
-            { 
-                JournalData = e.GetJournalData(), 
-                Application = new UIApplication(e.ActiveDocument.Application) 
+            var data = new DynamoRevitCommandData()
+            {
+                JournalData = journalData,
+                Application = application
             };
             var cmd = new DynamoRevit();
-            cmd.ExecuteCommand(data);
+            return cmd.ExecuteCommand(data);
+        }
+
+        void executed(object sender, ExecutedEventArgs e)
+        {
+            ExecuteDynamoCommand(e.GetJournalData(), new UIApplication(e.ActiveDocument.Application));
         }
 
         void beforeExecuted(object sender, BeforeExecutedEventArgs e)
