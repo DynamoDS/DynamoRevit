@@ -112,7 +112,7 @@ namespace Dynamo.Applications
 
         void canExecute(object sender, CanExecuteEventArgs e)
         {
-            e.CanExecute = DynamoButtonEnabled;
+            e.CanExecute = DynamoButtonEnabled && e.ActiveDocument != null;
         }
 
         public Result OnShutdown(UIControlledApplication application)
