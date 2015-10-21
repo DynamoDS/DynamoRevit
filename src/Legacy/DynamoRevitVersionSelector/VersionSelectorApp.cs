@@ -120,11 +120,9 @@ namespace Dynamo.Applications
         private DynamoProduct? PromptVersionSelectorDialog(IEnumerable<DynamoProduct> products)
         {
             // Creates a Revit task dialog to communicate information to the user.
-            TaskDialog mainDialog = new TaskDialog("Dynamo Versions");
-            mainDialog.MainInstruction = "Dynamo Version Selection";
-            mainDialog.MainContent =
-                    "Multiple version of Dynamo installation found on this system."
-                    + "Please select the Dynamo version you wish to run.";
+            TaskDialog mainDialog = new TaskDialog(Resources.DynamoVersions);
+            mainDialog.MainInstruction = Resources.DynamoVersionSelection;
+            mainDialog.MainContent = Resources.VersionSelectionContent;
 
             // Add commmandLink options to task dialog
             int id = (int)TaskDialogCommandLinkId.CommandLink1;
@@ -136,7 +134,7 @@ namespace Dynamo.Applications
             foreach (var item in products)
             {
                 var versionText = String.Format(Resources.DynamoVersionText, item.VersionInfo.ToString(3));
-                mainDialog.AddCommandLink((TaskDialogCommandLinkId)id, versionText);
+                mainDialog.AddCommandLink((TaskDialogCommandLinkId)id, versionText, item.InstallLocation);
                 if (item.VersionInfo.ToString(2) == selectedVersion)
                     defaultResult = (TaskDialogResult)id;
 
