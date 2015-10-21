@@ -1,26 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Soap;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 using DSIronPython;
-using Dynamo.Engine;
 using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.UpdateManager;
 using Dynamo.Utilities;
 using Dynamo.Core.Threading;
-using DynamoServices;
 using Greg;
-using ProtoCore;
 using Revit.Elements;
 using RevitServices.Elements;
 
@@ -200,7 +193,7 @@ namespace Dynamo.Applications.Models
         {
             // where necessary, assign defaults
             if (string.IsNullOrEmpty(configuration.Context))
-                configuration.Context = Core.Context.REVIT_2015;
+                configuration.Context = Configuration.Context.REVIT_2015;
 
             return new RevitDynamoModel(configuration);
         }
@@ -544,7 +537,7 @@ namespace Dynamo.Applications.Models
             var view = newView as View3D;
 
             if (view != null && view.IsPerspective
-                && Context != Core.Context.VASARI_2014)
+                && Context != Configuration.Context.VASARI_2014)
             {
                 OnRevitContextUnavailable();
 
