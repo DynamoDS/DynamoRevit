@@ -98,18 +98,7 @@ namespace RevitNodesTests.GeometryConversion
             var nurbsCurve = NurbsCurve.ByPoints(points, 3);
             var revitCurve = nurbsCurve.ToRevitType(false);
 
-            Assert.IsAssignableFrom<Autodesk.Revit.DB.NurbSpline>(revitCurve);
-
-            var revitSpline = (Autodesk.Revit.DB.NurbSpline)revitCurve;
-            Assert.AreEqual(3, revitSpline.Degree);
-            var tessPts = revitSpline.Tessellate().Select(x => x.ToPoint(false));
-
-            //assert the tesselation is very close to original curve
-            foreach (var pt in tessPts)
-            {
-                var closestPt = nurbsCurve.ClosestPointTo(pt);
-                Assert.Less(closestPt.DistanceTo(pt), 1e-6);
-            }
+            Assert.IsAssignableFrom<Autodesk.Revit.DB.Line>(revitCurve);
 
             revitCurve.GetEndPoint(0).ShouldBeApproximately(nurbsCurve.StartPoint);
             revitCurve.GetEndPoint(1).ShouldBeApproximately(nurbsCurve.EndPoint);
@@ -127,18 +116,7 @@ namespace RevitNodesTests.GeometryConversion
             var nurbsCurve = NurbsCurve.ByPoints(points, 2);
             var revitCurve = nurbsCurve.ToRevitType(false);
 
-            Assert.IsAssignableFrom<Autodesk.Revit.DB.NurbSpline>(revitCurve);
-
-            var revitSpline = (Autodesk.Revit.DB.NurbSpline)revitCurve;
-            Assert.AreEqual(3, revitSpline.Degree);
-            var tessPts = revitSpline.Tessellate().Select(x => x.ToPoint(false));
-
-            //assert the tesselation is very close to original curve
-            foreach (var pt in tessPts)
-            {
-                var closestPt = nurbsCurve.ClosestPointTo(pt);
-                Assert.Less(closestPt.DistanceTo(pt), 1e-6);
-            }
+            Assert.IsAssignableFrom<Autodesk.Revit.DB.Line>(revitCurve);
 
             revitCurve.GetEndPoint(0).ShouldBeApproximately(nurbsCurve.StartPoint);
             revitCurve.GetEndPoint(1).ShouldBeApproximately(nurbsCurve.EndPoint);
