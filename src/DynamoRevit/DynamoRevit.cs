@@ -188,7 +188,7 @@ namespace Dynamo.Applications
                 TryOpenWorkspaceInCommandData(extCommandData);
 
                 // Disable the Dynamo button to prevent a re-run
-                DynamoRevitApp.DynamoButton.Enabled = false;
+                DynamoRevitApp.DynamoButtonEnabled = false;
             }
             catch (Exception ex)
             {
@@ -198,7 +198,7 @@ namespace Dynamo.Applications
 
                 MessageBox.Show(ex.ToString());
 
-                DynamoRevitApp.DynamoButton.Enabled = true;
+                DynamoRevitApp.DynamoButtonEnabled = true;
 
                 return Result.Failed;
             }
@@ -467,7 +467,7 @@ namespace Dynamo.Applications
             finally
             {
                 args.Handled = true;
-                DynamoRevitApp.DynamoButton.Enabled = true;
+                DynamoRevitApp.DynamoButtonEnabled = true;
             }
         }
 
@@ -490,7 +490,7 @@ namespace Dynamo.Applications
             AppDomain.CurrentDomain.AssemblyResolve -=
                 Analyze.Render.AssemblyHelper.ResolveAssemblies;
 
-            DynamoRevitApp.DynamoButton.Enabled = true;
+            DynamoRevitApp.DynamoButtonEnabled = true;
         }
 
         #endregion

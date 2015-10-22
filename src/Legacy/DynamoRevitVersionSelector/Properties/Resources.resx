@@ -136,4 +136,11 @@
   <data name="VisualProgramming" xml:space="preserve">
     <value>Visual Programming</value>
   </data>
+  <data name="DynamoVersionSelection" xml:space="preserve">
+    <value>Dynamo Version Selection</value>
+  </data>
+  <data name="VersionSelectionContent" xml:space="preserve">
+    <value>Multiple version of Dynamo installation found on this system.
+Please select the Dynamo version you wish to run.</value>
+  </data>
 </root>
