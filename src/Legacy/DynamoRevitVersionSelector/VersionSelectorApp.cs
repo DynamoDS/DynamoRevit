@@ -38,7 +38,7 @@ namespace Dynamo.Applications
     {
         private static UIControlledApplication uiApplication;
         private AddInCommandBinding dynamoCommand;
-        internal static List<DynamoProduct> Products { get; private set; }
+        internal List<DynamoProduct> Products { get; private set; }
 
         internal static string GetDynamoRevitPath(DynamoProduct product, string revitVersion)
         {
@@ -97,7 +97,7 @@ namespace Dynamo.Applications
 
         void executed(object sender, ExecutedEventArgs e)
         {
-            var product = PromptVersionSelectorDialog(Products);
+            var product = PromptVersionSelectorDialog();
             if(product.HasValue)
                 LaunchDynamoCommand(product.Value, e);
         }
@@ -115,9 +115,8 @@ namespace Dynamo.Applications
         /// <summary>
         /// Prompts for version selection task dialog
         /// </summary>
-        /// <param name="products">List of available Dynamo products</param>
         /// <returns>DynamoProduct to launch or null</returns>
-        private DynamoProduct? PromptVersionSelectorDialog(IEnumerable<DynamoProduct> products)
+        private DynamoProduct? PromptVersionSelectorDialog()
         {
             // Creates a Revit task dialog to communicate information to the user.
             TaskDialog mainDialog = new TaskDialog(Resources.DynamoVersions);
@@ -131,7 +130,7 @@ namespace Dynamo.Applications
             var selectorData = VersionSelectorData.ReadFromRegistry(revitVersion);
             var selectedVersion = selectorData.SelectedVersion.ToString(2);
             TaskDialogResult defaultResult = TaskDialogResult.CommandLink1;
-            foreach (var item in products)
+            foreach (var item in Products)
             {
                 var versionText = String.Format(Resources.DynamoVersionText, item.VersionInfo.ToString(3));
                 mainDialog.AddCommandLink((TaskDialogCommandLinkId)id, versionText, item.InstallLocation);
