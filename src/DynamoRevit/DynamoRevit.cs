@@ -77,6 +77,43 @@ namespace RevitServices.Threading
 
 namespace Dynamo.Applications
 {
+    /// <summary>
+    /// Defines DynamoRevitCommandData class modeled after ExternalCommandData
+    /// </summary>
+    public class DynamoRevitCommandData
+    {
+        public DynamoRevitCommandData(ExternalCommandData externalCommandData)
+        {
+            Application = externalCommandData.Application;
+            JournalData = externalCommandData.JournalData;
+        }
+
+        public DynamoRevitCommandData()
+        {
+        }
+
+        // Summary:
+        //     Retrieves an object that represents the current Application for external
+        //     command.
+        public UIApplication Application { get; set; }
+
+        //
+        // Summary:
+        //     A data map that can be used to read and write data to the Autodesk Revit
+        //     journal file.
+        //
+        // Remarks:
+        //     The data map is a string to string map that can be used to store data in
+        //     the Revit journal file at the end of execution of the external command. If
+        //     the command is then executed from the journal file during playback this data
+        //     is then passed to the external command in this Data property so the external
+        //     command can execute with this passed data in a UI-less mode, hence providing
+        //     non interactive journal playback for automated testing purposes. For more
+        //     information on Revit's journaling features contact the Autodesk Developer
+        //     Network.
+        public IDictionary<string, string> JournalData { get; set; }
+    }
+
     [Transaction(TransactionMode.Manual),
      Regeneration(RegenerationOption.Manual)]
     public class DynamoRevit : IExternalCommand
@@ -84,7 +121,7 @@ namespace Dynamo.Applications
         private static List<Action> idleActions = new List<Action>();
         enum Versions { ShapeManager = 221 }
 
-        private static ExternalCommandData extCommandData;
+        private static DynamoRevitCommandData extCommandData;
         private static DynamoViewModel dynamoViewModel;
         private static RevitDynamoModel revitDynamoModel;
         private static bool handledCrash;
@@ -113,6 +150,11 @@ namespace Dynamo.Applications
         private const string JournalDynPathKey = "dynPath";
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            return ExecuteCommand(new DynamoRevitCommandData(commandData));
+        }
+
+        public Result ExecuteCommand(DynamoRevitCommandData commandData)
         {
             HandleDebug(commandData);
 
@@ -145,7 +187,7 @@ namespace Dynamo.Applications
                 TryOpenWorkspaceInCommandData(extCommandData);
 
                 // Disable the Dynamo button to prevent a re-run
-                DynamoRevitApp.DynamoButton.Enabled = false;
+                DynamoRevitApp.DynamoButtonEnabled = false;
             }
             catch (Exception ex)
             {
@@ -155,7 +197,7 @@ namespace Dynamo.Applications
 
                 MessageBox.Show(ex.ToString());
 
-                DynamoRevitApp.DynamoButton.Enabled = true;
+                DynamoRevitApp.DynamoButtonEnabled = true;
 
                 return Result.Failed;
             }
@@ -221,7 +263,7 @@ namespace Dynamo.Applications
                 new object[] { corePath, Versions.ShapeManager }) as string);
         }
 
-        private static RevitDynamoModel InitializeCoreModel(ExternalCommandData commandData)
+        private static RevitDynamoModel InitializeCoreModel(DynamoRevitCommandData commandData)
         {
             var assemblyLocation = Assembly.GetExecutingAssembly().Location;
             var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
@@ -273,7 +315,7 @@ namespace Dynamo.Applications
         }
 
         private static bool initializedCore;
-        private static void InitializeCore(ExternalCommandData commandData)
+        private static void InitializeCore(DynamoRevitCommandData commandData)
         {
             if (initializedCore) return;
 
@@ -296,7 +338,7 @@ namespace Dynamo.Applications
                 Analyze.Render.AssemblyHelper.ResolveAssemblies;
         }
 
-        private static void InitializeDocumentManager(ExternalCommandData commandData)
+        private static void InitializeDocumentManager(DynamoRevitCommandData commandData)
         {
             if (DocumentManager.Instance.CurrentUIApplication == null)
                 DocumentManager.Instance.CurrentUIApplication = commandData.Application;
@@ -306,7 +348,7 @@ namespace Dynamo.Applications
 
         #region Helpers
 
-        private void HandleDebug(ExternalCommandData commandData)
+        private void HandleDebug(DynamoRevitCommandData commandData)
         {
             if (commandData.JournalData != null && commandData.JournalData.ContainsKey("debug"))
             {
@@ -315,7 +357,7 @@ namespace Dynamo.Applications
             }
         }
 
-        private static bool CheckJournalForUiDisplay(ExternalCommandData commandData)
+        private static bool CheckJournalForUiDisplay(DynamoRevitCommandData commandData)
         {
             var result = true;
 
@@ -332,7 +374,7 @@ namespace Dynamo.Applications
             return result;
         }
 
-        private static bool CheckJournalForAutomationMode(ExternalCommandData commandData)
+        private static bool CheckJournalForAutomationMode(DynamoRevitCommandData commandData)
         {
             var result = false;
 
@@ -349,7 +391,7 @@ namespace Dynamo.Applications
             return result;
         }
 
-        private static void TryOpenWorkspaceInCommandData(ExternalCommandData commandData)
+        private static void TryOpenWorkspaceInCommandData(DynamoRevitCommandData commandData)
         {
             if(commandData.JournalData == null)
             {
@@ -362,7 +404,7 @@ namespace Dynamo.Applications
             }  
         }
 
-        private static string GetRevitContext(ExternalCommandData commandData)
+        private static string GetRevitContext(DynamoRevitCommandData commandData)
         {
             var r = new Regex(@"\b(Autodesk |Structure |MEP |Architecture )\b");
             string context = r.Replace(commandData.Application.Application.VersionName, "");
@@ -424,7 +466,7 @@ namespace Dynamo.Applications
             finally
             {
                 args.Handled = true;
-                DynamoRevitApp.DynamoButton.Enabled = true;
+                DynamoRevitApp.DynamoButtonEnabled = true;
             }
         }
 
@@ -447,7 +489,7 @@ namespace Dynamo.Applications
             AppDomain.CurrentDomain.AssemblyResolve -=
                 Analyze.Render.AssemblyHelper.ResolveAssemblies;
 
-            DynamoRevitApp.DynamoButton.Enabled = true;
+            DynamoRevitApp.DynamoButtonEnabled = true;
         }
 
         #endregion

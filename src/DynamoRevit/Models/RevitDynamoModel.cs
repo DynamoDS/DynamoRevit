@@ -37,7 +37,7 @@ namespace Dynamo.Applications.Models
     {
         public interface IRevitStartConfiguration : IStartConfiguration
         {
-            ExternalCommandData ExternalCommandData { get; set; }
+            DynamoRevitCommandData ExternalCommandData { get; set; }
         }
 
         public struct RevitStartConfiguration : IRevitStartConfiguration
@@ -52,7 +52,7 @@ namespace Dynamo.Applications.Models
             public string GeometryFactoryPath { get; set; }
             public IAuthProvider AuthProvider { get; set; }
             public string PackageManagerAddress { get; set; }
-            public ExternalCommandData ExternalCommandData { get; set; }
+            public DynamoRevitCommandData ExternalCommandData { get; set; }
             public IEnumerable<Dynamo.Extensions.IExtension> Extensions { get; set; }
             public TaskProcessMode ProcessMode { get; set; }
         }
@@ -63,7 +63,7 @@ namespace Dynamo.Applications.Models
         /// </summary>
         private bool updateCurrentUIDoc;
 
-        private readonly ExternalCommandData externalCommandData;
+        private readonly DynamoRevitCommandData externalCommandData;
 
         #region Events
 
@@ -358,7 +358,7 @@ namespace Dynamo.Applications.Models
         }
 
         private bool hasRegisteredApplicationEvents;
-        private void SubscribeApplicationEvents(ExternalCommandData commandData)
+        private void SubscribeApplicationEvents(DynamoRevitCommandData commandData)
         {
             if (hasRegisteredApplicationEvents)
             {
@@ -374,7 +374,7 @@ namespace Dynamo.Applications.Models
             hasRegisteredApplicationEvents = true;
         }
 
-        private void UnsubscribeApplicationEvents(ExternalCommandData commandData)
+        private void UnsubscribeApplicationEvents(DynamoRevitCommandData commandData)
         {
             if (!hasRegisteredApplicationEvents)
             {
