@@ -1,7 +1,7 @@
 ﻿using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
-using Dynamo.Core.Threading;
-using Dynamo.Interfaces;
+using Dynamo.Scheduler.DynamoScheduler;
+using Dynamo.Scheduler.SchedulerThread;
 
 namespace RevitServices.Threading
 {
