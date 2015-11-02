@@ -10,9 +10,9 @@ using Autodesk.Revit.UI.Events;
 using DSIronPython;
 using Dynamo.Interfaces;
 using Dynamo.Models;
+using Dynamo.Scheduler;
 using Dynamo.UpdateManager;
 using Dynamo.Utilities;
-using Dynamo.Core.Threading;
 using Greg;
 using Revit.Elements;
 using RevitServices.Elements;
@@ -47,7 +47,7 @@ namespace Dynamo.Applications.Models
             public IAuthProvider AuthProvider { get; set; }
             public string PackageManagerAddress { get; set; }
             public DynamoRevitCommandData ExternalCommandData { get; set; }
-            public IEnumerable<Dynamo.Extensions.IExtension> Extensions { get; set; }
+            public IEnumerable<Extensions.IExtension> Extensions { get; set; }
             public TaskProcessMode ProcessMode { get; set; }
         }
 
