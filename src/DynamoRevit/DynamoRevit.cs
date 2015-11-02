@@ -1,3 +1,5 @@
+using Dynamo.Scheduler;
+
 using Greg.AuthProviders;
 
 using System;
@@ -21,7 +23,6 @@ using Dynamo.Applications.Models;
 using Dynamo.Applications.ViewModel;
 using Dynamo.Controls;
 using Dynamo.Core;
-using Dynamo.Core.Threading;
 using Dynamo.Logging;
 using Dynamo.Models;
 using Dynamo.UpdateManager;
@@ -33,7 +34,6 @@ using RevitServices.Threading;
 using MessageBox = System.Windows.Forms.MessageBox;
 using DynUpdateManager = Dynamo.UpdateManager.UpdateManager;
 using Microsoft.Win32;
-using Dynamo.Scheduler.DynamoScheduler;
 
 
 namespace RevitServices.Threading

@@ -11,7 +11,7 @@ using Autodesk.Revit.UI.Events;
 using DSIronPython;
 using Dynamo.Interfaces;
 using Dynamo.Models;
-using Dynamo.Scheduler.DynamoScheduler;
+using Dynamo.Scheduler;
 using Dynamo.UpdateManager;
 using Dynamo.Utilities;
 using Greg;
@@ -25,7 +25,6 @@ using RevitServices.Transactions;
 using Category = Revit.Elements.Category;
 using Element = Autodesk.Revit.DB.Element;
 using View = Autodesk.Revit.DB.View;
-using Dynamo.Scheduler.SchedulerThread;
 
 namespace Dynamo.Applications.Models
 {
