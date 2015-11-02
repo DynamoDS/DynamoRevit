@@ -10,8 +10,7 @@ using Autodesk.Revit.UI.Events;
 using DSIronPython;
 using Dynamo.Interfaces;
 using Dynamo.Models;
-using Dynamo.Scheduler.DynamoScheduler;
-using Dynamo.Scheduler.SchedulerThread;
+using Dynamo.Scheduler;
 using Dynamo.UpdateManager;
 using Dynamo.Utilities;
 using Greg;
@@ -48,7 +47,7 @@ namespace Dynamo.Applications.Models
             public IAuthProvider AuthProvider { get; set; }
             public string PackageManagerAddress { get; set; }
             public DynamoRevitCommandData ExternalCommandData { get; set; }
-            public IEnumerable<Dynamo.Extensions.IExtension> Extensions { get; set; }
+            public IEnumerable<Extensions.IExtension> Extensions { get; set; }
             public TaskProcessMode ProcessMode { get; set; }
         }
 

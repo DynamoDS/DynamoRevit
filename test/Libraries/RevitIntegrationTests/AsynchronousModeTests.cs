@@ -2,7 +2,7 @@
 using System.Linq;
 using Autodesk.Revit.DB;
 
-using Dynamo.Scheduler.DynamoScheduler;
+using Dynamo.Scheduler;
 
 using NUnit.Framework;
 using RevitServices.Persistence;

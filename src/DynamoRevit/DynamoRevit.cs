@@ -1,5 +1,4 @@
-
-using Dynamo.Scheduler.DynamoScheduler;
+using Dynamo.Scheduler;
 
 using Greg.AuthProviders;
 
@@ -18,23 +17,18 @@ using System.Windows.Threading;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using Autodesk.Revit.UI.Events;
 
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Applications.ViewModel;
 using Dynamo.Controls;
 using Dynamo.Core;
-using Dynamo.Core.Threading;
-using Dynamo.Interfaces;
 using Dynamo.Logging;
 using Dynamo.Models;
-using Dynamo.Services;
 using Dynamo.UpdateManager;
 using Dynamo.ViewModels;
 
 using RevitServices.Persistence;
-using RevitServices.Transactions;
 using RevitServices.Threading;
 
 using MessageBox = System.Windows.Forms.MessageBox;
