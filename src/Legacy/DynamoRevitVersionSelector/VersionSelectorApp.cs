@@ -8,12 +8,12 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
-
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-
+using Autodesk.Revit.UI.Events;
 using DynamoRevitVersionSelector.Properties;
+using Microsoft.Win32;
 
 namespace Dynamo.Applications
 {
@@ -37,9 +37,8 @@ namespace Dynamo.Applications
     public class VersionLoader : IExternalApplication
     {
         private static UIControlledApplication uiApplication;
-        private static SplitButton splitButton;
-        private static RibbonPanel ribbonPanel;
-        internal static List<DynamoProduct> Products { get; private set; }
+        private AddInCommandBinding dynamoCommand;
+        internal List<DynamoProduct> Products { get; private set; }
 
         internal static string GetDynamoRevitPath(DynamoProduct product, string revitVersion)
         {
@@ -52,19 +51,7 @@ namespace Dynamo.Applications
         public Result OnStartup(UIControlledApplication application)
         {
             uiApplication = application;
-            // now we have a default path, but let's look at
-            // the load path file to see what was last selected
-            var cachedPath = String.Empty;
             var revitVersion = application.ControlledApplication.VersionNumber;
-            var fileLoc = Utils.GetVersionSaveFileLocation(revitVersion);
-
-            if (File.Exists(fileLoc))
-            {
-                using (var sr = new StreamReader(fileLoc))
-                {
-                    cachedPath = sr.ReadToEnd().TrimEnd('\r', '\n');
-                }
-            }
 
             var revitFolder =
                 new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
@@ -73,41 +60,33 @@ namespace Dynamo.Applications
             var dynamoProducts = FindDynamoInstallations(debugPath);
 
             Products = new List<DynamoProduct>();
-            int index = -1;
             foreach (var p in dynamoProducts)
             {
                 var path = VersionLoader.GetDynamoRevitPath(p, revitVersion);
                 if (!File.Exists(path))
                     continue;
 
-                if (path.Equals(cachedPath))
-                    index = Products.Count;
-
                 Products.Add(p);
             }
 
-            // If there are multiple versions installed, then create
-            // a couple of push buttons in a panel to allow selection of a version.
-            // If only one version is installed, no multi-selection is required.
+            // If there are multiple versions installed, then do the command 
+            // binding to prompt for version selector task dialog for user to 
+            // select specific Dynamo version.
             if (Products.Count > 1)
             {
-                ribbonPanel = application.CreateRibbonPanel(Resources.DynamoVersions);
-
-                splitButton = AddSplitButtonGroup(ribbonPanel);
-                
-                if(index != -1)
-                    splitButton.CurrentButton = splitButton.GetItems().ElementAt(index);
+                var dynamoCmdId = RevitCommandId.LookupCommandId("ID_VISUAL_PROGRAMMING_DYNAMO");
+                dynamoCommand = application.CreateAddInCommandBinding(dynamoCmdId);
+                dynamoCommand.CanExecute += canExecute;
+                dynamoCommand.BeforeExecuted += beforeExecuted;
+                dynamoCommand.Executed += executed;
             }
-
-            string loadPath = GetDynamoRevitPath(Products.Last(), revitVersion);
-            if (File.Exists(cachedPath))
-                loadPath = cachedPath;
-            
-            if (String.IsNullOrEmpty(loadPath))
-                return Result.Failed;
-
-            if (Products.Count == 1) //If only one product is installed load the Revit App directly
+            else //If only one product is installed load the Revit App directly
             {
+                string loadPath = GetDynamoRevitPath(Products.ElementAt(0), revitVersion);
+
+                if (String.IsNullOrEmpty(loadPath))
+                    return Result.Failed;
+
                 var ass = Assembly.LoadFrom(loadPath);
                 var revitApp = ass.CreateInstance("Dynamo.Applications.DynamoRevitApp");
                 revitApp.GetType().GetMethod("OnStartup").Invoke(revitApp, new object[] { application });
@@ -116,101 +95,122 @@ namespace Dynamo.Applications
             return Result.Succeeded;
         }
 
-        public static bool LaunchDynamoCommand(int index, ExternalCommandData commandData)
+        void executed(object sender, ExecutedEventArgs e)
         {
-            if (index >= Products.Count)
-                return false; //Index out of range
-
-            try
-            {
-                var revitVersion = commandData.Application.Application.VersionNumber;
-                var p = Products[index];
-                var path = GetDynamoRevitPath(p, revitVersion);
-                Utils.WriteToFile(path, revitVersion);
-
-                splitButton.Enabled = false; //Disable the split button, no more needed.
-                splitButton.Visible = false; //Hide it from the UI
-                //For older than 0.8.2, hide the Dynamo Versions ribbon panel
-                //Otherwise rename it to "Visual Programming", so that DynamoRevit
-                //will add it's button to this panel.
-                if (p.VersionInfo < new Version(0, 8, 2))
-                {
-                    ribbonPanel.Visible = false; //Hide the panel
-                }
-                else
-                {
-                    ribbonPanel.Name = Resources.VisualProgramming;//Same as used in App Description for DynamoRevitApp
-                    ribbonPanel.Title = Resources.VisualProgramming;
-                }
-
-                //Initialize application
-                var ass = Assembly.LoadFrom(path);
-                var revitApp = ass.CreateInstance("Dynamo.Applications.DynamoRevitApp");
-                revitApp.GetType()
-                    .GetMethod("OnStartup")
-                    .Invoke(revitApp, new object[] { uiApplication });
-
-                //Invoke command
-                string message = string.Empty;
-                var revitCmd = ass.CreateInstance("Dynamo.Applications.DynamoRevit");
-                revitCmd.GetType()
-                    .GetMethod("Execute")
-                    .Invoke(revitCmd, new object[] { commandData, message, null });
-
-                uiApplication = null; //release application, no more needed.
-                return true;
-            }
-            catch (Exception)
-            {
-                splitButton.Enabled = true; //Ensure that the split button is enabled.
-                splitButton.Visible = true; //Also the split button is visible
-                ribbonPanel.Visible = true; //As well as the panel is visible
-                throw;
-            }
+            var product = PromptVersionSelectorDialog();
+            if(product.HasValue)
+                LaunchDynamoCommand(product.Value, e);
         }
 
-        private SplitButton AddSplitButtonGroup(RibbonPanel panel)
+        void beforeExecuted(object sender, BeforeExecutedEventArgs e)
         {
-            var versionData = new SplitButtonData("versions", Resources.DynamoVersions);
-            var button = panel.AddItem(versionData) as SplitButton;
+            e.UsingCommandData = true;
+        }
 
-            Bitmap dynamoIcon = Resources.dynamo_32x32;
+        void canExecute(object sender, CanExecuteEventArgs e)
+        {
+            e.CanExecute = e.ActiveDocument != null;
+        }
 
-            BitmapSource bitmapSource =
-                Imaging.CreateBitmapSourceFromHBitmap(
-                    dynamoIcon.GetHbitmap(),
-                    IntPtr.Zero,
-                    Int32Rect.Empty,
-                    BitmapSizeOptions.FromEmptyOptions());
+        /// <summary>
+        /// Prompts for version selection task dialog
+        /// </summary>
+        /// <returns>DynamoProduct to launch or null</returns>
+        private DynamoProduct? PromptVersionSelectorDialog()
+        {
+            // Creates a Revit task dialog to communicate information to the user.
+            TaskDialog mainDialog = new TaskDialog(Resources.DynamoVersions);
+            mainDialog.MainInstruction = Resources.DynamoVersionSelection;
+            mainDialog.MainContent = Resources.VersionSelectionContent;
 
-            PushButton item = null;
-            int i = 0;
-            foreach (var p in Products)
+            // Add commmandLink options to task dialog
+            int id = (int)TaskDialogCommandLinkId.CommandLink1;
+            var revitVersion = uiApplication.ControlledApplication.VersionNumber;
+            //Get the default selection data
+            var selectorData = VersionSelectorData.ReadFromRegistry(revitVersion);
+            var selectedVersion = selectorData.SelectedVersion.ToString(2);
+            TaskDialogResult defaultResult = TaskDialogResult.CommandLink1;
+            foreach (var item in Products)
             {
-                var name = p.VersionString;
-                var versionInfo = p.VersionInfo;
-                var text = versionInfo.ToString(3);
-                
-                var itemData = new PushButtonData(
-                                name,
-                                String.Format(Resources.DynamoVersionText, text),
-                                Assembly.GetExecutingAssembly().Location,
-                                String.Format("Dynamo.Applications.Command{0}", i++));
+                var versionText = String.Format(Resources.DynamoVersionText, item.VersionInfo.ToString(3));
+                mainDialog.AddCommandLink((TaskDialogCommandLinkId)id, versionText, item.InstallLocation);
+                if (item.VersionInfo.ToString(2) == selectedVersion)
+                    defaultResult = (TaskDialogResult)id;
 
-                itemData.Image = bitmapSource;
-                itemData.LargeImage = bitmapSource;
-                itemData.ToolTip = string.Format(Resources.DynamoVersionTooltip, text);
-                item = button.AddPushButton(itemData);
+                id++;
             }
 
-            button.IsSynchronizedWithCurrentItem = true;
-            button.CurrentButton = item;
-            return button;
+            // Set common buttons and default button. If no CommonButton or CommandLink is added,
+            // task dialog will show a Close button by default
+            mainDialog.CommonButtons = TaskDialogCommonButtons.Close;
+            mainDialog.DefaultButton = defaultResult;
+
+            TaskDialogResult tResult = mainDialog.Show();
+            if (tResult == TaskDialogResult.Close)
+                return null;
+
+            var index = (int)tResult - (int)TaskDialogCommandLinkId.CommandLink1;
+            return Products[index];
+        }
+
+        /// <summary>
+        /// Launches specific version of Dynamo command
+        /// </summary>
+        /// <param name="product">DynamoProduct to launch</param>
+        /// <param name="e">Command executed event argument</param>
+        /// <returns>true for success</returns>
+        private bool LaunchDynamoCommand(DynamoProduct product, ExecutedEventArgs e)
+        {
+            if (uiApplication == null)
+                throw new InvalidOperationException();
+
+            var revitVersion = uiApplication.ControlledApplication.VersionNumber;
+            var path = GetDynamoRevitPath(product, revitVersion);
+            var data = new VersionSelectorData() { RevitVersion = revitVersion, SelectedVersion = product.VersionInfo };
+            data.WriteToRegistry();
+
+            //Initialize application
+            var ass = Assembly.LoadFrom(path);
+            var revitApp = ass.CreateInstance("Dynamo.Applications.DynamoRevitApp");
+            if (null == revitApp)
+                return false;
+
+            //Remove the command binding, because now DynamoRevitApp will 
+            //do the command binding for DynamoRevit command.
+            RemoveCommandBinding();
+
+            var type = revitApp.GetType();
+            var result = type.GetMethod("OnStartup").Invoke(revitApp, new object[] { uiApplication });
+            if ((Result)result != Result.Succeeded)
+                return false;
+
+            //Invoke command
+            string message = string.Empty;
+            result = type.GetMethod("ExecuteDynamoCommand")
+                .Invoke(revitApp, new object[] { e.GetJournalData(), new UIApplication(e.ActiveDocument.Application) });
+            if ((Result)result != Result.Succeeded)
+                return false;
+
+            uiApplication = null; //release application, no more needed.
+            return true;
         }
 
         public Result OnShutdown(UIControlledApplication application)
         {
+            RemoveCommandBinding();
             return Result.Succeeded;
+        }
+
+        private void RemoveCommandBinding()
+        {
+            if (null == dynamoCommand)
+                return;
+
+            uiApplication.RemoveAddInCommandBinding(dynamoCommand.RevitCommandId);
+            dynamoCommand.BeforeExecuted -= beforeExecuted;
+            dynamoCommand.CanExecute -= canExecute;
+            dynamoCommand.Executed -= executed;
+            dynamoCommand = null;
         }
 
         private static IEnumerable<DynamoProduct> FindDynamoInstallations(string debugPath)
@@ -241,162 +241,84 @@ namespace Dynamo.Applications
 
     }
 
-    [Transaction(TransactionMode.Automatic)]
-    [Regeneration(RegenerationOption.Manual)]
-    public class Command0 : IExternalCommand
+    /// <summary>
+    /// VersionSelectorData: A class to keep the selected version data to be stored in registry.
+    /// </summary>
+    internal class VersionSelectorData
     {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            if (!VersionLoader.LaunchDynamoCommand(0, commandData))
-                return Result.Failed;
-
-            return Result.Succeeded;
-        }
-    }
-
-    [Transaction(TransactionMode.Automatic)]
-    [Regeneration(RegenerationOption.Manual)]
-    public class Command1 : IExternalCommand
-    {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            if (!VersionLoader.LaunchDynamoCommand(1, commandData))
-                return Result.Failed;
-
-            return Result.Succeeded;
-        }
-    }
-
-    [Transaction(TransactionMode.Automatic)]
-    [Regeneration(RegenerationOption.Manual)]
-    public class Command2 : IExternalCommand
-    {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            if (!VersionLoader.LaunchDynamoCommand(2, commandData))
-                return Result.Failed;
-
-            return Result.Succeeded;
-        }
-    }
-
-    [Transaction(TransactionMode.Automatic)]
-    [Regeneration(RegenerationOption.Manual)]
-    public class Command3 : IExternalCommand
-    {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            if (!VersionLoader.LaunchDynamoCommand(3, commandData))
-                return Result.Failed;
-
-            return Result.Succeeded;
-        }
-    }
-
-    [Transaction(TransactionMode.Automatic)]
-    [Regeneration(RegenerationOption.Manual)]
-    public class Command4 : IExternalCommand
-    {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            if (!VersionLoader.LaunchDynamoCommand(4, commandData))
-                return Result.Failed;
-
-            return Result.Succeeded;
-        }
-    }
-
-    [Transaction(TransactionMode.Automatic)]
-    [Regeneration(RegenerationOption.Manual)]
-    public class Command5 : IExternalCommand
-    {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            if (!VersionLoader.LaunchDynamoCommand(5, commandData))
-                return Result.Failed;
-
-            return Result.Succeeded;
-        }
-    }
-
-    [Transaction(TransactionMode.Automatic)]
-    [Regeneration(RegenerationOption.Manual)]
-    public class Command6 : IExternalCommand
-    {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            if (!VersionLoader.LaunchDynamoCommand(6, commandData))
-                return Result.Failed;
-
-            return Result.Succeeded;
-        }
-    }
-
-    [Transaction(TransactionMode.Automatic)]
-    [Regeneration(RegenerationOption.Manual)]
-    public class Command7 : IExternalCommand
-    {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            if (!VersionLoader.LaunchDynamoCommand(7, commandData))
-                return Result.Failed;
-
-            return Result.Succeeded;
-        }
-    }
-
-    [Transaction(TransactionMode.Automatic)]
-    [Regeneration(RegenerationOption.Manual)]
-    public class Command8 : IExternalCommand
-    {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            if (!VersionLoader.LaunchDynamoCommand(8, commandData))
-                return Result.Failed;
-
-            return Result.Succeeded;
-        }
-    }
-
-    internal class Utils
-    {
-        internal static void WriteToFile(string loadPath, string versionName)
-        {
-            var path = GetVersionSaveFileLocation(versionName);
-
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-
-            using (var tw = new StreamWriter(path))
-            {
-                tw.WriteLine(loadPath);
-            }
+        const string RegKey64 = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\";
+        
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public VersionSelectorData()
+        { 
+            ThisDynamoVersion = Assembly.GetExecutingAssembly().GetName().Version;
         }
 
         /// <summary>
-        /// Return PreferenceSettings Default XML File Path if possible
+        /// Reads the version selection data for specific revit version from 
+        /// registry and returns a new VersionSelectorData.
         /// </summary>
-        internal static string GetVersionSaveFileLocation(string versionName)
+        /// <param name="revitVersion">Revit version</param>
+        /// <returns>VersionSelectorData</returns>
+        public static VersionSelectorData ReadFromRegistry(string revitVersion)
+        {
+            var data = new VersionSelectorData() { RevitVersion = revitVersion };
+            data.SelectedVersion = data.ThisDynamoVersion; //Default initialization
+
+            try
+            {
+                var regKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+                regKey = regKey.OpenSubKey(RegKey64);
+
+                var key = string.Format(@"Dynamo {0}.{1}", data.ThisDynamoVersion.Major, data.ThisDynamoVersion.Minor);
+                regKey = regKey.OpenSubKey(key);
+                if (regKey == null)
+                    return data;
+
+                var version = regKey.GetValue(data.RevitVersion);
+
+                Version selectedVersion = null;
+                if (Version.TryParse(version as string, out selectedVersion))
+                    data.SelectedVersion = selectedVersion;
+            }
+            catch (SystemException) { }
+
+            return data;
+        }
+
+        /// <summary>
+        /// Saves this data to Registry
+        /// </summary>
+        public void WriteToRegistry()
         {
             try
             {
-                string appDataFolder = System.Environment.GetFolderPath(
-                    System.Environment.SpecialFolder.ApplicationData);
+                var regKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+                regKey = regKey.OpenSubKey(RegKey64);
 
-                return (Path.Combine(appDataFolder, "Dynamo", string.Format("DynamoDllForLoad_{0}.txt", versionName)));
+                var key = string.Format(@"Dynamo {0}.{1}", ThisDynamoVersion.Major, ThisDynamoVersion.Minor);
+                regKey = regKey.OpenSubKey(key, true);
+                if(null != regKey)
+                    regKey.SetValue(RevitVersion, SelectedVersion.ToString(), RegistryValueKind.String);
             }
-            catch (Exception)
-            {
-                return string.Empty;
-            }
+            catch (SystemException) { }
         }
 
-        internal static void ShowRestartMessage(string version)
-        {
-            MessageBox.Show(string.Format(Resources.RestartMessage, version),
-                Resources.DynamoVersions, MessageBoxButton.OK);
-        }
+        /// <summary>
+        /// Gets the version of this Dynamo
+        /// </summary>
+        public Version ThisDynamoVersion { get; private set; }
+
+        /// <summary>
+        /// Revit version string
+        /// </summary>
+        public string RevitVersion { get; set; }
+
+        /// <summary>
+        /// Gets the version of Dynamo that was selected to run.
+        /// </summary>
+        public Version SelectedVersion { get; set; }
     }
 }

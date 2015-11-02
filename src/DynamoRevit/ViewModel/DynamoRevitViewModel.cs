@@ -1,13 +1,13 @@
 ﻿using System;
-
 using Autodesk.Revit.DB;
 
 using Dynamo.Applications.Models;
 using Dynamo.Applications.Properties;
 using Dynamo.Interfaces;
 using Dynamo.ViewModels;
+using Dynamo.Visualization;
 using Dynamo.Wpf.ViewModels.Core;
-
+using Dynamo.Wpf.ViewModels.Watch3D;
 using RevitServices.Persistence;
 
 namespace Dynamo.Applications.ViewModel
@@ -18,12 +18,19 @@ namespace Dynamo.Applications.ViewModel
             base(startConfiguration)
         {
             var model = (RevitDynamoModel)Model;
+
             model.RevitDocumentChanged += model_RevitDocumentChanged;
             model.RevitContextAvailable += model_RevitContextAvailable;
             model.RevitContextUnavailable += model_RevitContextUnavailable;
             model.RevitDocumentLost += model_RevitDocumentLost;
             model.RevitViewChanged += model_RevitViewChanged;
             model.InvalidRevitDocumentActivated += model_InvalidRevitDocumentActivated;
+
+            if (RevitWatch3DViewModel.GetTransientDisplayMethod() == null) return;
+
+            var watch3DParams = new Watch3DViewModelStartupParams(model);
+            var watch3DVm = new RevitWatch3DViewModel(watch3DParams);
+            RegisterWatch3DViewModel(watch3DVm, new DefaultRenderPackageFactory());
         }
 
         public static DynamoRevitViewModel Start(StartConfiguration startConfiguration)
@@ -35,27 +42,31 @@ namespace Dynamo.Applications.ViewModel
             else
             {
                 if (startConfiguration.DynamoModel.GetType() != typeof(RevitDynamoModel))
-                    throw new Exception("An instance of RevitDynamoViewModel is required to construct a DynamoRevitViewModel.");
+                    throw new Exception("An instance of RevitDynamoModel is required to construct a DynamoRevitViewModel.");
             }
 
-            if (startConfiguration.VisualizationManager == null)
-                startConfiguration.VisualizationManager = new VisualizationManager(startConfiguration.DynamoModel);
+            if (startConfiguration.Watch3DViewModel == null)
+            {
+                startConfiguration.Watch3DViewModel =
+                    HelixWatch3DViewModel.TryCreateHelixWatch3DViewModel(
+                        new Watch3DViewModelStartupParams(startConfiguration.DynamoModel),
+                        startConfiguration.DynamoModel.Logger);
+            }
 
             if (startConfiguration.WatchHandler == null)
-                startConfiguration.WatchHandler = new DefaultWatchHandler(startConfiguration.VisualizationManager,
-                    startConfiguration.DynamoModel.PreferenceSettings);
+                startConfiguration.WatchHandler = new DefaultWatchHandler(startConfiguration.DynamoModel.PreferenceSettings);
 
             return new DynamoRevitViewModel(startConfiguration);
         }
 
-        void model_InvalidRevitDocumentActivated()
+        private void model_InvalidRevitDocumentActivated()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Error;
             hsvm.CurrentNotificationMessage = Resources.DocumentPointingWarning;
         }
 
-        void model_RevitViewChanged(View view)
+        private void model_RevitViewChanged(View view)
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Moderate;
@@ -63,28 +74,28 @@ namespace Dynamo.Applications.ViewModel
                 String.Format(Resources.ActiveViewWarning, view.Name);
         }
 
-        void model_RevitDocumentLost()
+        private void model_RevitDocumentLost()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Error;
             hsvm.CurrentNotificationMessage = Resources.DocumentLostWarning;
         }
 
-        void model_RevitContextUnavailable()
+        private void model_RevitContextUnavailable()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Error;
             hsvm.CurrentNotificationMessage = Resources.RevitInvalidContextWarning;
         }
 
-        void model_RevitContextAvailable()
+        private void model_RevitContextAvailable()
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Moderate;
             hsvm.CurrentNotificationMessage = Resources.RevitValidContextMessage;
         }
 
-        void model_RevitDocumentChanged(object sender, EventArgs e)
+        private void model_RevitDocumentChanged(object sender, EventArgs e)
         {
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Moderate;

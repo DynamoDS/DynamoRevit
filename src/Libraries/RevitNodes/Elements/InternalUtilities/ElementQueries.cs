@@ -10,7 +10,7 @@ namespace Revit.Elements.InternalUtilities
     [IsVisibleInDynamoLibrary(false)]
     public static class ElementQueries
     {
-        public static IList<Element> OfFamilyType(FamilySymbol familyType)
+        public static IList<Element> OfFamilyType(FamilyType familyType)
         {
             if (familyType == null) return null;
 

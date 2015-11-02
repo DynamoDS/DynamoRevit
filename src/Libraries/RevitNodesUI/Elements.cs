@@ -10,7 +10,9 @@ using Autodesk.Revit.DB.Structure;
 
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
+using Dynamo.Migration;
 using Dynamo.Models;
+using Dynamo.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using Revit.Elements;
 using Revit.Elements.InternalUtilities;
@@ -21,11 +23,12 @@ using Category = Revit.Elements.Category;
 using CurveElement = Autodesk.Revit.DB.CurveElement;
 using DividedSurface = Autodesk.Revit.DB.DividedSurface;
 using Element = Autodesk.Revit.DB.Element;
-using FamilySymbol = Revit.Elements.FamilySymbol;
+using FamilyType = Revit.Elements.FamilyType;
 using Level = Revit.Elements.Level;
 using ModelText = Autodesk.Revit.DB.ModelText;
 using ReferencePlane = Autodesk.Revit.DB.ReferencePlane;
 using ReferencePoint = Autodesk.Revit.DB.ReferencePoint;
+using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
 {
@@ -121,7 +124,7 @@ namespace DSRevitNodesUI
             List<AssociativeNode> inputAstNodes)
         {
             var func =
-                new Func<FamilySymbol, IList<Revit.Elements.Element>>(ElementQueries.OfFamilyType);
+                new Func<FamilyType, IList<Revit.Elements.Element>>(ElementQueries.OfFamilyType);
 
             var functionCall = AstFactory.BuildFunctionCall(func, inputAstNodes);
             return new[]

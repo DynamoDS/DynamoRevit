@@ -22,9 +22,9 @@ namespace RevitNodesTests.Elements.Views
         [TestModel(@".\Empty.rvt")]
         public void ByBoundingBox_ValidArgs()
         {
-            var famSym = FamilySymbol.ByName("Kousa Dogwood - 10'");
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
             var pt = Point.ByCoordinates(0, 1, 2);
-            var famInst = FamilyInstance.ByPoint(famSym, pt);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
 
             var view = SectionView.ByBoundingBox(famInst.BoundingBox);
             Assert.NotNull(view);

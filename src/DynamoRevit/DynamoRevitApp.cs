@@ -36,9 +36,10 @@ namespace Dynamo.Applications
         public static ControlledApplication ControlledApplication;
         public static UIControlledApplication UIControlledApplication;
         public static List<IUpdater> Updaters = new List<IUpdater>();
-        internal static PushButton DynamoButton;
+
         private static readonly Queue<Action> idleActionQueue = new Queue<Action>(10);
         private static EventHandlerProxy proxy;
+        private AddInCommandBinding dynamoCommand;
 
         public Result OnStartup(UIControlledApplication application)
         {
@@ -61,36 +62,13 @@ namespace Dynamo.Applications
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
                 ElementBinder.IsEnabled = true;
 
-                // Create new ribbon panel
-                var panels = application.GetRibbonPanels();
-                var ribbonPanel = panels.FirstOrDefault(p => p.Name.Contains(Resources.App_Description));
-                if(null == ribbonPanel)
-                    ribbonPanel = application.CreateRibbonPanel(Resources.App_Description);
-
-                var fvi = FileVersionInfo.GetVersionInfo(assemblyName);
-                var dynVersion = String.Format(Resources.App_Name, fvi.FileMajorPart, fvi.FileMinorPart);
-
-                DynamoButton =
-                    (PushButton)
-                        ribbonPanel.AddItem(
-                            new PushButtonData(
-                                dynVersion,
-                                dynVersion,
-                                assemblyName,
-                                "Dynamo.Applications.DynamoRevit"));
-
-                Bitmap dynamoIcon = Resources.logo_square_32x32;
-
-                BitmapSource bitmapSource =
-                    Imaging.CreateBitmapSourceFromHBitmap(
-                        dynamoIcon.GetHbitmap(),
-                        IntPtr.Zero,
-                        Int32Rect.Empty,
-                        BitmapSizeOptions.FromEmptyOptions());
-
-                DynamoButton.LargeImage = bitmapSource;
-                DynamoButton.Image = bitmapSource;
-
+                var dynamoCmdId = RevitCommandId.LookupCommandId("ID_VISUAL_PROGRAMMING_DYNAMO");
+                dynamoCommand = application.CreateAddInCommandBinding(dynamoCmdId);
+                dynamoCommand.CanExecute += canExecute;
+                dynamoCommand.BeforeExecuted += beforeExecuted;
+                dynamoCommand.Executed += executed;
+                DynamoButtonEnabled = true; //initialize
+            
                 RegisterAdditionalUpdaters(application);
 
                 RevitServicesUpdater.Initialize(DynamoRevitApp.Updaters);
@@ -105,8 +83,48 @@ namespace Dynamo.Applications
             }
         }
 
+        /// <summary>
+        /// Executes Dynamo command to show the Dynamo UI
+        /// </summary>
+        /// <param name="journalData">Journal data passed for the command</param>
+        /// <param name="application">Active session of Revit UI application</param>
+        /// <returns></returns>
+        public Result ExecuteDynamoCommand(IDictionary<string,string> journalData, UIApplication application)
+        {
+            var data = new DynamoRevitCommandData()
+            {
+                JournalData = journalData,
+                Application = application
+            };
+            var cmd = new DynamoRevit();
+            return cmd.ExecuteCommand(data);
+        }
+
+        void executed(object sender, ExecutedEventArgs e)
+        {
+            ExecuteDynamoCommand(e.GetJournalData(), new UIApplication(e.ActiveDocument.Application));
+        }
+
+        void beforeExecuted(object sender, BeforeExecutedEventArgs e)
+        {
+            e.UsingCommandData = true;
+        }
+
+        void canExecute(object sender, CanExecuteEventArgs e)
+        {
+            e.CanExecute = DynamoButtonEnabled && e.ActiveDocument != null;
+        }
+
         public Result OnShutdown(UIControlledApplication application)
         {
+            if(dynamoCommand != null)
+            {
+                dynamoCommand.BeforeExecuted -= beforeExecuted;
+                dynamoCommand.CanExecute -= canExecute;
+                dynamoCommand.Executed -= executed;
+                dynamoCommand = null;
+            }
+
             UnsubscribeAssemblyResolvingEvent();
             UnsubscribeApplicationEvents();
             UnsubscribeDocumentChangedEvent();
@@ -264,6 +282,12 @@ namespace Dynamo.Applications
         private void UnsubscribeDocumentChangedEvent()
         {
             ControlledApplication.DocumentChanged -= RevitServicesUpdater.Instance.ApplicationDocumentChanged;
+        }
+
+        public static bool DynamoButtonEnabled
+        {
+            get;
+            set;
         }
     }
 }

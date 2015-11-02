@@ -17,6 +17,7 @@ using Color = DSCore.Color;
 using Area = DynamoUnits.Area;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
+using RevitServices.Elements;
 
 namespace Revit.Elements
 {
@@ -197,8 +198,9 @@ namespace Revit.Elements
         public virtual void Dispose()
         {
 
-            // Do not cleanup Revit elements if we are shutting down Dynamo.
-            if (DisposeLogic.IsShuttingDown)
+            // Do not cleanup Revit elements if we are shutting down Dynamo or
+            // closing homeworkspace.
+            if (DisposeLogic.IsShuttingDown || DisposeLogic.IsClosingHomeworkspace)
                 return;
 
             bool didRevitDelete = ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(Id);
@@ -314,22 +316,46 @@ namespace Revit.Elements
         {
             object result;
 
-            var param = InternalElement.GetOrderedParameters().FirstOrDefault(x => x.Definition.Name == parameterName);
-
+            var param =
+                // We don't use Element.GetOrderedParameters(), it only returns ordered parameters
+                // as show in the UI
+                InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
+                    // Element.Parameters returns a differently ordered list on every invocation.
+                    // We must sort it to get sensible results.
+                    .OrderBy(x => x.Id.IntegerValue) 
+                    .FirstOrDefault(x => x.Definition.Name == parameterName);         
+            
             if (param == null || !param.HasValue)
                 return string.Empty;
 
             switch (param.StorageType)
             {
                 case StorageType.ElementId:
-                    int id = param.AsElementId().IntegerValue;
-                    // When the element is obtained here, to convert it to our element wrapper, it
-                    // need to be figured out whether this element is created by us. Here the existing
-                    // element wrappers will be checked. If there is one, its property to specify
-                    // whether it is created by us will be followed. If there is none, it means the
-                    // element is not created by us.
-                    var ele = ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(id) as Element;
-                    result = ElementSelector.ByElementId(id, ele == null ? true : ele.IsRevitOwned);
+                    int valueId = param.AsElementId().IntegerValue;
+                    if (valueId > 0)
+                    {
+                        // When the element is obtained here, to convert it to our element wrapper, it
+                        // need to be figured out whether this element is created by us. Here the existing
+                        // element wrappers will be checked. If there is one, its property to specify
+                        // whether it is created by us will be followed. If there is none, it means the
+                        // element is not created by us.
+                        var elem = ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(valueId) as Element;
+                        result = ElementSelector.ByElementId(valueId, elem == null ? true : elem.IsRevitOwned);
+                    }
+                    else
+                    {
+                        int paramId = param.Id.IntegerValue;
+                        if (paramId == (int)BuiltInParameter.ELEM_CATEGORY_PARAM || paramId == (int)BuiltInParameter.ELEM_CATEGORY_PARAM_MT)
+                        {
+                            var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
+                            result = new Category(categories.get_Item((BuiltInCategory)valueId));
+                        }
+                        else
+                        {
+                            // For other cases, return a localized string
+                            result = param.AsValueString();
+                        }
+                    }
                     break;
                 case StorageType.String:
                     result = param.AsString();
@@ -367,8 +393,10 @@ namespace Revit.Elements
             patternCollector.OfClass(typeof(FillPatternElement));
             FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
 
-            ogs.SetProjectionFillColor(new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue));
+            var overrideColor = new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue);
+            ogs.SetProjectionFillColor(overrideColor);
             ogs.SetProjectionFillPatternId(solidFill.Id);
+            ogs.SetProjectionLineColor(overrideColor);
             view.SetElementOverrides(InternalElementId, ogs);
 
             TransactionManager.Instance.TransactionTaskDone();
@@ -466,17 +494,19 @@ namespace Revit.Elements
 
             foreach (var geometryObject in InternalGeometry())
             {
-                try
+                var geoObj = geometryObject.Convert();
+                if (geoObj != null)
                 {
-                    var convert = geometryObject.Convert();
-                    if (convert != null)
-                    {
-                        converted.Add(convert);
-                    }
+                    converted.Add(geoObj);
                 }
-                catch (Exception)
+                else
                 {
-                    // we catch all geometry conversion exceptions
+                    var solid = geometryObject as Autodesk.Revit.DB.Solid;
+                    if (solid != null)
+                    {
+                        var geomObjs = solid.ConvertToMany();
+                        converted.AddRange(geomObjs.Where(x => { return x != null; }));
+                    }
                 }
             }
 

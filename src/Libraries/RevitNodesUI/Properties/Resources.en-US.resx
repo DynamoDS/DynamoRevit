@@ -154,7 +154,7 @@
     <comment>Description for Floor Types</comment>
   </data>
   <data name="GetFamilyParameterDescription" xml:space="preserve">
-    <value>Given a Family Instance or Symbol, allows the user to select a parameter as a string.</value>
+    <value>Given a Family Instance or Type allows the user to select a parameter as a string.</value>
     <comment>Description for Get Family Parameter</comment>
   </data>
   <data name="LevelsDescription" xml:space="preserve">
@@ -250,7 +250,7 @@
     <value>The Family Type.</value>
   </data>
   <data name="PortDataFamilySymbolToolTip" xml:space="preserve">
-    <value>Family Symbol or Instance</value>
+    <value>Family Type or Instance</value>
   </data>
   <data name="PortDataLocationToolTip" xml:space="preserve">
     <value>The location of the current Revit project.</value>
@@ -278,5 +278,8 @@
   </data>
   <data name="NoWallTypesAvailable" xml:space="preserve">
     <value>No wall types available.</value>
+  </data>
+  <data name="NoFamilyInstancesInDividedSurfaceWarning" xml:space="preserve">
+    <value>No family instances found in the divided surface.</value>
   </data>
 </root>

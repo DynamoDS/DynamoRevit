@@ -2,23 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
-using System.IO;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Soap;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 using DSIronPython;
-using Dynamo.DSEngine;
 using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.UpdateManager;
 using Dynamo.Utilities;
-using DynamoServices;
+using Dynamo.Core.Threading;
 using Greg;
-using ProtoCore;
 using Revit.Elements;
 using RevitServices.Elements;
 
@@ -36,7 +32,7 @@ namespace Dynamo.Applications.Models
     {
         public interface IRevitStartConfiguration : IStartConfiguration
         {
-            ExternalCommandData ExternalCommandData { get; set; }
+            DynamoRevitCommandData ExternalCommandData { get; set; }
         }
 
         public struct RevitStartConfiguration : IRevitStartConfiguration
@@ -51,8 +47,9 @@ namespace Dynamo.Applications.Models
             public string GeometryFactoryPath { get; set; }
             public IAuthProvider AuthProvider { get; set; }
             public string PackageManagerAddress { get; set; }
-            public ExternalCommandData ExternalCommandData { get; set; }
+            public DynamoRevitCommandData ExternalCommandData { get; set; }
             public IEnumerable<Dynamo.Extensions.IExtension> Extensions { get; set; }
+            public TaskProcessMode ProcessMode { get; set; }
         }
 
         /// <summary>
@@ -61,7 +58,7 @@ namespace Dynamo.Applications.Models
         /// </summary>
         private bool updateCurrentUIDoc;
 
-        private readonly ExternalCommandData externalCommandData;
+        private readonly DynamoRevitCommandData externalCommandData;
 
         #region Events
 
@@ -113,6 +110,22 @@ namespace Dynamo.Applications.Models
             if (handler != null) handler();
         }
 
+        protected override void OnWorkspaceRemoveStarted(WorkspaceModel workspace)
+        {
+            base.OnWorkspaceRemoveStarted(workspace);
+
+            if (workspace is HomeWorkspaceModel)
+                DisposeLogic.IsClosingHomeworkspace = true;
+        }
+
+        protected override void OnWorkspaceRemoved(WorkspaceModel workspace)
+        {
+            base.OnWorkspaceRemoved(workspace);
+
+            if (workspace is HomeWorkspaceModel)
+                DisposeLogic.IsClosingHomeworkspace = false;
+        }
+
         #endregion
 
         #region Properties/Fields
@@ -146,21 +159,20 @@ namespace Dynamo.Applications.Models
                 return currentHashCode == dm.ActiveDocumentHashCode;
             }
         }
-
         #endregion
 
         #region Constructors
 
         public new static RevitDynamoModel Start()
         {
-            return Start(new RevitStartConfiguration());
+            return Start(new RevitStartConfiguration() { ProcessMode = TaskProcessMode.Asynchronous } );
         }
 
         public new static RevitDynamoModel Start(IRevitStartConfiguration configuration)
         {
             // where necessary, assign defaults
             if (string.IsNullOrEmpty(configuration.Context))
-                configuration.Context = Core.Context.REVIT_2015;
+                configuration.Context = Configuration.Context.REVIT_2015;
 
             return new RevitDynamoModel(configuration);
         }
@@ -168,6 +180,8 @@ namespace Dynamo.Applications.Models
         private RevitDynamoModel(IRevitStartConfiguration configuration) :
             base(configuration)
         {
+            DisposeLogic.IsShuttingDown = false;
+
             externalCommandData = configuration.ExternalCommandData;
 
             SubscribeRevitServicesUpdaterEvents();
@@ -339,7 +353,7 @@ namespace Dynamo.Applications.Models
         }
 
         private bool hasRegisteredApplicationEvents;
-        private void SubscribeApplicationEvents(ExternalCommandData commandData)
+        private void SubscribeApplicationEvents(DynamoRevitCommandData commandData)
         {
             if (hasRegisteredApplicationEvents)
             {
@@ -355,7 +369,7 @@ namespace Dynamo.Applications.Models
             hasRegisteredApplicationEvents = true;
         }
 
-        private void UnsubscribeApplicationEvents(ExternalCommandData commandData)
+        private void UnsubscribeApplicationEvents(DynamoRevitCommandData commandData)
         {
             if (!hasRegisteredApplicationEvents)
             {
@@ -497,7 +511,7 @@ namespace Dynamo.Applications.Models
             var view = newView as View3D;
 
             if (view != null && view.IsPerspective
-                && Context != Core.Context.VASARI_2014)
+                && Context != Configuration.Context.VASARI_2014)
             {
                 OnRevitContextUnavailable();
 
@@ -651,14 +665,6 @@ namespace Dynamo.Applications.Models
             foreach (var ws in Workspaces.OfType<HomeWorkspaceModel>())
             {
                 ws.MarkNodesAsModifiedAndRequestRun(ws.Nodes);
-
-                foreach (var node in ws.Nodes)
-                {
-                    lock (node.RenderPackagesMutex)
-                    {
-                        node.RenderPackages.Clear();
-                    }
-                }
             }
 
             OnRevitDocumentChanged();
@@ -724,13 +730,14 @@ namespace Dynamo.Applications.Models
 
             if (!updatedIds.Any())
                 return;
-
+        
             var nodes = ElementBinder.GetNodesFromElementIds(
                 updatedIds,
                 CurrentWorkspace,
                 EngineController);
-            foreach (var node in nodes)
+            foreach (var node in nodes )
             {
+            
                 node.OnNodeModified(true);
             }
         }

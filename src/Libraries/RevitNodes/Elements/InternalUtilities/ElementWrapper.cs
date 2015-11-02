@@ -49,6 +49,11 @@ namespace Revit.Elements
             return FamilyInstance.FromExisting(ele, isRevitOwned);
         }
 
+        public static DirectShape Wrap(Autodesk.Revit.DB.DirectShape ele, bool isRevitOwned)
+        {
+            return DirectShape.FromExisting(ele, isRevitOwned);
+        }
+
         public static DividedPath Wrap(Autodesk.Revit.DB.DividedPath ele, bool isRevitOwned)
         {
             return DividedPath.FromExisting(ele, isRevitOwned);
@@ -64,9 +69,9 @@ namespace Revit.Elements
             return Family.FromExisting(ele, isRevitOwned);
         }
 
-        public static FamilySymbol Wrap(Autodesk.Revit.DB.FamilySymbol ele, bool isRevitOwned)
+        public static FamilyType Wrap(Autodesk.Revit.DB.FamilySymbol ele, bool isRevitOwned)
         {
-            return FamilySymbol.FromExisting(ele, isRevitOwned);
+            return FamilyType.FromExisting(ele, isRevitOwned);
         }
 
         public static Floor Wrap(Autodesk.Revit.DB.Floor ele, bool isRevitOwned)
@@ -159,18 +164,16 @@ namespace Revit.Elements
 
         public static Element Wrap(Autodesk.Revit.DB.ViewPlan view, bool isRevitOwned)
         {
-            if (view.ViewType == ViewType.CeilingPlan)
+            switch (view.ViewType)
             {
-                return CeilingPlanView.FromExisting(view, isRevitOwned);
-            }
-            else if (view.ViewType == ViewType.FloorPlan)
-            {
-                return FloorPlanView.FromExisting(view, isRevitOwned);
-            }
-            else
-            {
-                // unknown type of plan view, just wrap as unknown
-                return UnknownElement.FromExisting(view, true);
+                case ViewType.CeilingPlan:
+                    return CeilingPlanView.FromExisting(view, isRevitOwned);
+                case ViewType.FloorPlan:
+                    return FloorPlanView.FromExisting(view, isRevitOwned);
+                case ViewType.EngineeringPlan:
+                    return StructuralPlanView.FromExisting(view, isRevitOwned);
+                default:
+                    return UnknownElement.FromExisting(view, true);
             }
         }
 

@@ -66,11 +66,11 @@ namespace Revit.Elements
 
         #region Public properties
 
-        public FamilySymbol Symbol
+        public FamilyType Type
         {
             get
             {
-                return FamilySymbol.FromExisting(this.InternalFamilyInstance.Symbol, true);
+                return FamilyType.FromExisting(this.InternalFamilyInstance.Symbol, true);
             }
         }
 

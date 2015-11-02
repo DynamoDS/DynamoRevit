@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-using DSCoreNodesUI;
+using Dynamo.Nodes;
 
 using NUnit.Framework;
 
@@ -160,6 +160,12 @@ namespace RevitSystemTests
         public void TestMigration_Revit_View()
         {
             TestMigration(@".\Migration\TestMigration_Revit_View.dyn");
+        }
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void TestMigration_Revit_FamilySymbolToFamilyType()
+        {
+            TestMigration(@".\Migration\TestMigration_Revit_FamilyType.dyn");
         }
     }
 }
