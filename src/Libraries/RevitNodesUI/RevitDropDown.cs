@@ -600,9 +600,12 @@ namespace DSRevitNodesUI
 
         public override void PopulateItems()
         {
+            Items.Clear();
+            //find all views in the project
             var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             var views = fec.OfClass(typeof(View)).ToElements();
-
+            
+            //there must always be at least 1 view in a Revit document, so we can exclude the empty list check
             foreach (var v in views)
             {
                 Items.Add(new DynamoDropDownItem(v.Name, v));
