@@ -9,6 +9,8 @@ using DSCore;
 using DSCoreNodesUI;
 using Dynamo.Applications;
 using Dynamo.Engine;
+using Dynamo.Graph;
+using Dynamo.Graph.Nodes;
 using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.Utilities;
