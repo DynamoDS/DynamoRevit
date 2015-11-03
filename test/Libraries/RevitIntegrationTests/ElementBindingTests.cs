@@ -8,7 +8,8 @@ using RevitTestServices;
 
 using RTF.Framework;
 using Autodesk.Revit.DB;
-
+using DSCoreNodesUI.Input;
+using Dynamo.Graph.Nodes.ZeroTouch;
 using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.Tests;

@@ -28,8 +28,11 @@ using String = System.String;
 using UV = Autodesk.DesignScript.Geometry.UV;
 using RevitServices.EventHandler;
 using Autodesk.Revit.DB.Events;
+using DSCoreNodesUI;
 using Dynamo.Applications;
 using DSRevitNodesUI.Properties;
+using Dynamo.Graph.Nodes;
+using Dynamo.Graph.Workspaces;
 
 namespace Dynamo.Nodes
 {
