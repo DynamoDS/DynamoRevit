@@ -1,3 +1,5 @@
+using Dynamo.Scheduler;
+
 using Greg.AuthProviders;
 
 using System;
@@ -24,7 +26,6 @@ using Dynamo.Core;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Logging;
 using Dynamo.Models;
-using Dynamo.Scheduler;
 using Dynamo.UpdateManager;
 using Dynamo.ViewModels;
 

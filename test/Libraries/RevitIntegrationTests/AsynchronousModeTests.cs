@@ -1,11 +1,13 @@
 ﻿using System.IO;
 using System.Linq;
 using Autodesk.Revit.DB;
+
+using Dynamo.Scheduler;
+
 using NUnit.Framework;
 using RevitServices.Persistence;
 using RevitTestServices;
 using RTF.Framework;
-using Dynamo.Scheduler;
 
 namespace RevitSystemTests
 {
