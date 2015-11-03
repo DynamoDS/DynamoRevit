@@ -77,6 +77,93 @@ namespace RevitSystemTests
         }
 
         [Test]
+        [TestModel(@".\AdaptiveComponent\AdaptiveComponentsByPointsInBatch.rfa")]
+        public void CreateAdaptiveComponentsByPointsInBatch()
+        {
+            var model = ViewModel.Model;
+
+            string testFilePath = Path.Combine(workingDirectory, @".\AdaptiveComponent\AdaptiveComponentsByPointsInBatch.dyn");
+            string testPath = Path.GetFullPath(testFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // Check all the nodes and connectors are loaded
+            Assert.AreEqual(4, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Check the number of the created adaptive components is correct
+            var adapID = "17138c91-24be-4ad7-96ef-7dbb9a6793ad";
+            AssertPreviewCount(adapID, 6);
+            for (int i = 0; i < 6; i++)
+            {
+                var adapValue = GetPreviewValueAtIndex(adapID, i) as AdaptiveComponent;
+                Assert.IsNotNull(adapValue);
+            }
+        }
+
+        [Test]
+        [TestModel(@".\AdaptiveComponent\AdaptiveComponentsByFaceInBatch.rfa")]
+        public void CreateAdaptiveComponentsByFaceInBatch()
+        {
+            var model = ViewModel.Model;
+
+            string testFilePath = Path.Combine(workingDirectory, @".\AdaptiveComponent\AdaptiveComponentsByFaceInBatch.dyn");
+            string testPath = Path.GetFullPath(testFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // Check all the nodes and connectors are loaded
+            Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(10, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Check the number of the created adaptive components is correct
+            var adapID = "1745f4d3-df8d-4b53-95d8-59b4762cfd1d";
+            AssertPreviewCount(adapID, 2);
+            for (int i = 0; i < 2; i++)
+            {
+                var adapValue = GetPreviewValueAtIndex(adapID, i) as AdaptiveComponent;
+                Assert.IsNotNull(adapValue);
+            }
+        }
+
+        [Test]
+        [TestModel(@".\AdaptiveComponent\AdaptiveComponentsByCurveInBatch.rfa")]
+        public void CreateAdaptiveComponentsByCurveInBatch()
+        {
+            var model = ViewModel.Model;
+
+            string testFilePath = Path.Combine(workingDirectory, @".\AdaptiveComponent\AdaptiveComponentsByCurveInBatch.dyn");
+            string testPath = Path.GetFullPath(testFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // Check all the nodes and connectors are loaded
+            Assert.AreEqual(5, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(4, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Check the number of the created adaptive components is correct
+            var adapID = "0a9173c2-3101-4619-a959-0f1f99470c99";
+            AssertPreviewCount(adapID, 4);
+            for (int i = 0; i < 4; i++)
+            {
+                var adapValue = GetPreviewValueAtIndex(adapID, i) as AdaptiveComponent;
+                Assert.IsNotNull(adapValue);
+            }
+        }
+
+        [Test]
         [TestModel(@".\AdaptiveComponent\AdaptiveComponent.rfa")]
         public void AdaptiveComponent()
         {

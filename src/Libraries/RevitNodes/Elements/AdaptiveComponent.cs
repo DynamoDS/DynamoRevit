@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
+using Autodesk.Revit.Creation;
 using Autodesk.Revit.DB;
-
 using Revit.GeometryConversion;
 using Revit.GeometryReferences;
-
+using RevitServices.Elements;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using Point = Autodesk.DesignScript.Geometry.Point;
@@ -555,6 +555,139 @@ namespace Revit.Elements
             }
 
             return new AdaptiveComponent(parameters, ElementCurveReference.TryGetCurveReference(curve).InternalReference, familyType);
+        }
+
+        /// <summary>
+        /// Create a list of adaptive components from two-dimensional array of points
+        /// </summary>
+        /// <param name="points">a two-dimensional array of points</param>
+        /// <param name="familyType">a family type to use to create the adaptive components</param>
+        /// <returns></returns>
+        public static AdaptiveComponent[] BatchByPoints(Point[][] points, FamilyType familyType)
+        {
+            if (points == null)
+            {
+                throw new ArgumentNullException("points");
+            }
+
+            if (familyType == null)
+            {
+                throw new ArgumentNullException("familtType");
+            }
+
+            // If there are old elements stored in the trace, delete them first
+            ElementBinder.CleanupTrace(Document);
+
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            // Prepare the creation data for batch processing
+            int numOfComponents = points.Length;
+            List<FamilyInstanceCreationData> creationDatas = new List<FamilyInstanceCreationData>(numOfComponents);
+            for (int i = 0; i < numOfComponents; ++i)
+            {
+                int numOfPoints = points[i].Length;
+                List<XYZ> aPoints = new List<XYZ>(numOfPoints);
+                for (int j = 0; j < numOfPoints; ++j)
+                {
+                    aPoints.Add(new XYZ(points[i][j].X, points[i][j].Y, points[i][j].Z));
+                }
+
+                var creationData = DocumentManager.Instance.CurrentUIApplication.Application.Create.
+                    NewFamilyInstanceCreationData(familyType.InternalFamilySymbol, aPoints);
+
+                if (creationData != null)
+                {
+                    creationDatas.Add(creationData);
+                }
+            }
+
+            // Create elements based on the creation data in a batch
+            List<Autodesk.Revit.DB.FamilyInstance> instances = new List<Autodesk.Revit.DB.FamilyInstance>();
+            List<AdaptiveComponent> components = new List<AdaptiveComponent>();
+            ICollection<ElementId> elements;
+            if (creationDatas.Count > 0)
+            {
+                if (Document.IsFamilyDocument)
+                {
+                    elements = DocumentManager.Instance.CurrentDBDocument.FamilyCreate.NewFamilyInstances2(creationDatas);
+                }
+                else
+                {
+                    elements = DocumentManager.Instance.CurrentDBDocument.Create.NewFamilyInstances2(creationDatas);
+                }
+
+                foreach (var id in elements)
+                {
+                    Autodesk.Revit.DB.FamilyInstance instance;
+                    if (ElementUtils.TryGetElement<Autodesk.Revit.DB.FamilyInstance>(
+                        DocumentManager.Instance.CurrentDBDocument, id, out instance))
+                    {
+                        instances.Add(instance);
+                        components.Add(new AdaptiveComponent(instance));
+                    }
+                }
+            }
+
+            TransactionManager.Instance.TransactionTaskDone();
+            ElementBinder.SetElementsForTrace(instances);
+
+            return components.ToArray();
+        }
+
+        /// <summary>
+        /// Create a list of adaptive components from two-dimensional array of uv points on a face.
+        /// </summary>
+        /// <param name="uvs">a two-dimensional array of UV pairs</param>
+        /// <param name="surface">a surface on which to place the adaptive component</param>
+        /// <param name="familyType"></param>
+        /// <returns></returns>
+        public static AdaptiveComponent[] BatchByParametersOnFace(Autodesk.DesignScript.Geometry.UV[][] uvs, Surface surface, FamilyType familyType)
+        {
+            if (uvs == null)
+            {
+                throw new ArgumentNullException("uvs");
+            }
+
+            if (surface == null)
+            {
+                throw new ArgumentNullException("surface");
+            }
+
+            if (familyType == null)
+            {
+                throw new ArgumentNullException("familyType");
+            }
+
+            var points = uvs.Select(x => x.Select(y => surface.PointAtParameter(y.U, y.V)).ToArray()).ToArray();
+            return BatchByPoints(points, familyType);
+        }
+
+        /// <summary>
+        /// Create a list of adaptive components from two-dimensional array of parameters on a curve.
+        /// </summary>
+        /// <param name="parameters">a two-dimensional parameters on the curve</param>
+        /// <param name="curve">a curve to reference</param>
+        /// <param name="familyType">a family type to construct</param>
+        /// <returns></returns>
+        public static AdaptiveComponent[] BatchByParametersOnCurveReference(double[][] parameters, Autodesk.DesignScript.Geometry.Curve curve, FamilyType familyType)
+        {
+            if (parameters == null)
+            {
+                throw new ArgumentNullException("parameters");
+            }
+
+            if (curve == null)
+            {
+                throw new ArgumentNullException("curve");
+            }
+
+            if (familyType == null)
+            {
+                throw new ArgumentNullException("familyType");
+            }
+
+            var points = parameters.Select(x => x.Select(y => curve.PointAtParameter(y)).ToArray()).ToArray();
+            return BatchByPoints(points, familyType);
         }
 
         #endregion
