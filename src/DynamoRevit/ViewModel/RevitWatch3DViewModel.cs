@@ -5,6 +5,7 @@ using System.Reflection;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Interfaces;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using Dynamo.Models;
 using Dynamo.Wpf.ViewModels.Watch3D;
 using Revit.GeometryConversion;

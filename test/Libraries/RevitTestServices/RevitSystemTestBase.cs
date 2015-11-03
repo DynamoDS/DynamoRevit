@@ -12,6 +12,8 @@ using Autodesk.Revit.UI.Events;
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Applications.ViewModel;
+using Dynamo.Graph.Nodes;
+using Dynamo.Graph.Workspaces;
 using Dynamo.Models;
 using Dynamo.Scheduler;
 using Dynamo.ViewModels;
