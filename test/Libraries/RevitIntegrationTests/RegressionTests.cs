@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Dynamo.Graph.Nodes;
 using Dynamo.Models;
 using NUnit.Framework;
 using RevitServices.Elements;

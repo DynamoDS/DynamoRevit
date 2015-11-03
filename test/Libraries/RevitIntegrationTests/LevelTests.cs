@@ -11,6 +11,7 @@ using RevitTestServices;
 
 using RTF.Framework;
 using System;
+using DSCoreNodesUI.Input;
 
 namespace RevitSystemTests
 {

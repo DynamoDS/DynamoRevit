@@ -1,4 +1,4 @@
-﻿using Dynamo.Models;
+﻿using Dynamo.Graph.Nodes;
 
 namespace Dynamo.Applications.Models
 {
