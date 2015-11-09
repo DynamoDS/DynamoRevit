@@ -26,14 +26,14 @@ using Dynamo.Core;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Logging;
 using Dynamo.Models;
-using Dynamo.UpdateManager;
+using Dynamo.Updates;
 using Dynamo.ViewModels;
 
 using RevitServices.Persistence;
 using RevitServices.Threading;
 
 using MessageBox = System.Windows.Forms.MessageBox;
-using DynUpdateManager = Dynamo.UpdateManager.UpdateManager;
+using DynUpdateManager = Dynamo.Updates.UpdateManager;
 using Microsoft.Win32;
 
 
