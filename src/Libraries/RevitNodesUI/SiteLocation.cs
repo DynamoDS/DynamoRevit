@@ -21,6 +21,7 @@ using RevitServices.Persistence;
 using RevitServices.EventHandler;
 using Autodesk.Revit.DB.Events;
 using Dynamo.Applications;
+using Dynamo.Graph.Nodes;
 using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI

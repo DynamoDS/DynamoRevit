@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows.Media;
 using Autodesk.DesignScript.Interfaces;
 using Dynamo.Controls;
+using Dynamo.Graph.Nodes;
 using Dynamo.Models;
 using Dynamo.UI;
 using Dynamo.Wpf.Rendering;
