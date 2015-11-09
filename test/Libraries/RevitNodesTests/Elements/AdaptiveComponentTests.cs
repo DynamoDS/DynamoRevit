@@ -40,28 +40,30 @@ namespace RevitNodesTests.Elements
             return pts;
         }
 
-        [Test]
         [TestModel(@".\AdaptiveComponents.rfa")]
         public void ByPoints_PointArray_ProducesValidAdaptiveComponentAndLocations()
         {
-            var pts = new Point[]
+            var pts = new Point[][]
             {
-                Point.ByCoordinates(0, 0, 0),
-                Point.ByCoordinates(10, 0, 10),
-                Point.ByCoordinates(20, 0, 0)
+                new Point[]
+                {
+                    Point.ByCoordinates(0, 0, 0),
+                    Point.ByCoordinates(10, 0, 10),
+                    Point.ByCoordinates(20, 0, 0)
+                }
             };
             var fs = FamilyType.ByName("3PointAC");
             var ac = AdaptiveComponent.ByPoints(pts, fs);
 
-            var locs = ac.Locations;
+            var locs = ac.First().Locations;
 
-            var pairs = locs.Zip(pts, (point, point1) => new Tuple<Point, Point>(point, point1));
+            var pairs = locs.Zip(pts.First(), (point, point1) => new Tuple<Point, Point>(point, point1));
 
             // compares after unit conversion
             foreach (var pair in pairs)
                 pair.Item1.ShouldBeApproximately(pair.Item2);
 
-            var unconvertedPairs = pts.Zip(GetInternalPoints((FamilyInstance) ac.InternalElement), 
+            var unconvertedPairs = pts.First().Zip(GetInternalPoints((FamilyInstance) ac.First().InternalElement), 
                 (point, point1) => new Tuple<Point, XYZ>(point, point1));
 
             foreach (var pair in unconvertedPairs)
@@ -76,10 +78,13 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\AdaptiveComponents.rfa")]
         public void ByPoints_ShouldThrowExceptionWithNonMatchingNumberOfPoints()
         {
-            var pts = new Point[]
+            var pts = new Point[][]
             {
-                Point.ByCoordinates(0, 0, 0),
-                Point.ByCoordinates(10, 0, 10)
+                new Point[]
+                {
+                    Point.ByCoordinates(0, 0, 0),
+                    Point.ByCoordinates(10, 0, 10)
+                }
             };
             var ft = FamilyType.ByName("3PointAC");
 
@@ -90,11 +95,14 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\AdaptiveComponents.rfa")]
         public void ByPoints_NullFamilySymbol()
         {
-            var pts = new Point[]
+            var pts = new Point[][]
             {
-                Point.ByCoordinates(0, 0, 0),
-                Point.ByCoordinates(10, 0, 10),
-                Point.ByCoordinates(20, 0, 0)
+                new Point[]
+                {
+                    Point.ByCoordinates(0, 0, 0),
+                    Point.ByCoordinates(10, 0, 10),
+                    Point.ByCoordinates(20, 0, 0)
+                }
             };
 
             Assert.Throws(typeof(ArgumentNullException), () => AdaptiveComponent.ByPoints(pts, null));
@@ -134,19 +142,19 @@ namespace RevitNodesTests.Elements
             var ft = FamilyType.ByName("3PointAC");
 
             // build the AC
-            var parms = new double[]
+            var parms = new double[][]
             {
-                0, 0.5, 1
+                new double[]{0, 0.5, 1}
             };
 
-            var ac = AdaptiveComponent.ByParametersOnCurveReference(parms, modCurve.ElementCurveReference, ft);
+            var ac = AdaptiveComponent.ByParametersOnCurveReference(parms, modCurve, ft);
 
             // with unit conversion
-            foreach (var pt in ac.Locations)
+            foreach (var pt in ac.First().Locations)
                 spline.DistanceTo(pt).ShouldBeApproximately(0);
 
             // without unit conversion
-            var unconvertedPoints = GetInternalPoints((FamilyInstance)ac.InternalElement);
+            var unconvertedPoints = GetInternalPoints((FamilyInstance)ac.First().InternalElement);
 
             foreach (var pt in unconvertedPoints)
             {
@@ -172,11 +180,11 @@ namespace RevitNodesTests.Elements
             var ft = FamilyType.ByName("3PointAC");
 
             var uvs = new[]
-            {
+            {new[]{
                 Autodesk.DesignScript.Geometry.UV.ByCoordinates(0, 0),
                 Autodesk.DesignScript.Geometry.UV.ByCoordinates(0.5, 0.5),
                 Autodesk.DesignScript.Geometry.UV.ByCoordinates(0.5, 0)
-            };
+            }};
 
             var ac = AdaptiveComponent.ByParametersOnFace(uvs, faces.First(), ft);
 
