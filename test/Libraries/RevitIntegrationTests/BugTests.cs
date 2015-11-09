@@ -25,6 +25,9 @@ using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
 using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
 using Dynamo.Applications.Models;
 using System;
+using DSCoreNodesUI;
+using Dynamo.Graph.Nodes;
+using Dynamo.Graph.Nodes.ZeroTouch;
 using Revit.Elements.InternalUtilities;
 
 namespace RevitSystemTests
