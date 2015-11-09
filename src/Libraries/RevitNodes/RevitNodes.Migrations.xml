@@ -44,4 +44,16 @@
     <oldName>Revit.Elements.StructuralFraming.Symbol</oldName>
     <newName>Revit.Elements.StructuralFraming.Type</newName>
   </priorNameHint>
+  <priorNameHint>
+    <oldName>Revit.Elements.AdaptiveComponent.ByPoints@Autodesk.DesignScript.Geometry.Point[],Revit.Elements.FamilySymbol</oldName>
+    <newName>Revit.Elements.AdaptiveComponent.ByPoints@Autodesk.DesignScript.Geometry.Point[][],Revit.Elements.FamilySymbol</newName>
+  </priorNameHint>
+  <priorNameHint>
+    <oldName>Revit.Elements.AdaptiveComponent.ByParametersOnFace@Autodesk.DesignScript.Geometry.UV[],Autodesk.DesignScript.Geometry.Surface,Revit.Elements.FamilySymbol</oldName>
+    <newName>Revit.Elements.AdaptiveComponent.ByParametersOnFace@Autodesk.DesignScript.Geometry.UV[][],Autodesk.DesignScript.Geometry.Surface,Revit.Elements.FamilySymbol</newName>
+  </priorNameHint>
+  <priorNameHint>
+    <oldName>Revit.Elements.AdaptiveComponent.ByParametersOnCurveReference@double[],Autodesk.DesignScript.Geometry.Curve,Revit.Elements.FamilySymbol</oldName>
+    <newName>Revit.Elements.AdaptiveComponent.ByParametersOnCurveReference@double[][],Autodesk.DesignScript.Geometry.Curve,Revit.Elements.FamilySymbol</newName>
+  </priorNameHint>
 </migrations>

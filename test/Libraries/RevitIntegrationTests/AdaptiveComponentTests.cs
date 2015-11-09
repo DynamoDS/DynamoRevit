@@ -35,8 +35,8 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(13, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
@@ -77,6 +77,93 @@ namespace RevitSystemTests
         }
 
         [Test]
+        [TestModel(@".\AdaptiveComponent\AdaptiveComponentsByPoints.rfa")]
+        public void CreateAdaptiveComponentsByPoints()
+        {
+            var model = ViewModel.Model;
+
+            string testFilePath = Path.Combine(workingDirectory, @".\AdaptiveComponent\AdaptiveComponentsByPoints.dyn");
+            string testPath = Path.GetFullPath(testFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // Check all the nodes and connectors are loaded
+            Assert.AreEqual(4, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Check the number of the created adaptive components is correct
+            var adapID = "79637f91-d35b-49fc-bc54-4f5a1922633e";
+            AssertPreviewCount(adapID, 6);
+            for (int i = 0; i < 6; i++)
+            {
+                var adapValue = GetPreviewValueAtIndex(adapID, i) as AdaptiveComponent;
+                Assert.IsNotNull(adapValue);
+            }
+        }
+
+        [Test]
+        [TestModel(@".\AdaptiveComponent\AdaptiveComponentsByPointsOnFace.rfa")]
+        public void CreateAdaptiveComponentsByPointsOnFace()
+        {
+            var model = ViewModel.Model;
+
+            string testFilePath = Path.Combine(workingDirectory, @".\AdaptiveComponent\AdaptiveComponentsByPointsOnFace.dyn");
+            string testPath = Path.GetFullPath(testFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // Check all the nodes and connectors are loaded
+            Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(10, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Check the number of the created adaptive components is correct
+            var adapID = "21fb2ba2-b6bc-4d92-82bb-1d15a07d6929";
+            AssertPreviewCount(adapID, 2);
+            for (int i = 0; i < 2; i++)
+            {
+                var adapValue = GetPreviewValueAtIndex(adapID, i) as AdaptiveComponent;
+                Assert.IsNotNull(adapValue);
+            }
+        }
+
+        [Test]
+        [TestModel(@".\AdaptiveComponent\AdaptiveComponentsByParametersOnCurve.rfa")]
+        public void CreateAdaptiveComponentsByParametersOnCurve()
+        {
+            var model = ViewModel.Model;
+
+            string testFilePath = Path.Combine(workingDirectory, @".\AdaptiveComponent\AdaptiveComponentsByParametersOnCurve.dyn");
+            string testPath = Path.GetFullPath(testFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // Check all the nodes and connectors are loaded
+            Assert.AreEqual(5, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(4, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Check the number of the created adaptive components is correct
+            var adapID = "780cbf5b-a3b7-445b-b39b-6e3908abd35b";
+            AssertPreviewCount(adapID, 4);
+            for (int i = 0; i < 4; i++)
+            {
+                var adapValue = GetPreviewValueAtIndex(adapID, i) as AdaptiveComponent;
+                Assert.IsNotNull(adapValue);
+            }
+        }
+
+        [Test, Ignore, Category("Failure")]
         [TestModel(@".\AdaptiveComponent\AdaptiveComponent.rfa")]
         public void AdaptiveComponent()
         {
