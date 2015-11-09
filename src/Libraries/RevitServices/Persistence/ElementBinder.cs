@@ -359,25 +359,6 @@ namespace RevitServices.Persistence
         }
 
         /// <summary>
-        /// Delete all the elements whose IDs are stored in the current trace in the TLS 
-        /// </summary>
-        /// <param name="document"></param>
-        public static void CleanupTrace(Document document)
-        {
-            var uuids = GetElementUUIDsFromTrace(document);
-            if (uuids != null)
-            {
-                foreach (var uuid in uuids)
-                {
-                    if (uuid != null)
-                    {
-                        DocumentManager.Instance.DeleteElement(uuid);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Raw method for setting data into the trace cache, the user of this method is reponsible for handling
         /// the interpretation of the data
         /// </summary>
