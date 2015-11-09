@@ -6,7 +6,9 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
 using DSCoreNodesUI;
-
+using DSCoreNodesUI.Input;
+using Dynamo.Graph;
+using Dynamo.Graph.Nodes;
 using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.Search.SearchElements;

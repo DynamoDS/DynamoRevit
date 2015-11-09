@@ -25,6 +25,7 @@ using Dynamo.Controls;
 using Dynamo.Core;
 using Dynamo.Logging;
 using Dynamo.Models;
+using Dynamo.Graph.Workspaces;
 using Dynamo.Updates;
 using Dynamo.ViewModels;
 
@@ -34,7 +35,6 @@ using RevitServices.Threading;
 using MessageBox = System.Windows.Forms.MessageBox;
 using DynUpdateManager = Dynamo.Updates.UpdateManager;
 using Microsoft.Win32;
-
 
 namespace RevitServices.Threading
 {

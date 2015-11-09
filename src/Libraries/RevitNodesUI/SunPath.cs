@@ -5,6 +5,7 @@ using System.Linq;
 using Autodesk.Revit.UI.Events;
 
 using Dynamo.Applications.Models;
+using Dynamo.Graph.Nodes;
 using Dynamo.Models;
 using Dynamo.Nodes;
 

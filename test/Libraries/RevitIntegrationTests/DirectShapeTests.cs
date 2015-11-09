@@ -6,6 +6,8 @@ using RevitTestServices;
 
 using RTF.Framework;
 using System.Linq;
+using Dynamo.Graph;
+using Dynamo.Graph.Nodes;
 using RevitServices.Materials;
 namespace RevitSystemTests
 {
@@ -82,9 +84,9 @@ namespace RevitSystemTests
             //now move the geo in Dynamo
 
             var input = model.CurrentWorkspace.Nodes.Where(x => x.GUID.ToString() == "06e1461a-2eb4-4069-a581-93914d500115").First();
-            input.UpdateValue(new Dynamo.Models.UpdateValueParams("Value", "20.0"));
+            input.UpdateValue(new UpdateValueParams("Value", "20.0"));
 
-            Assert.AreEqual((input as Dynamo.Nodes.DoubleInput).Value, "20.0");
+            Assert.AreEqual((input as DSCoreNodesUI.Input.DoubleInput).Value, "20.0");
 
             var pnt2 = GetPreviewValue("53eb0459-4cd3-4131-b7ce-c4e689c57248") as Autodesk.DesignScript.Geometry.Point;
             Assert.IsNotNull(pnt2);
@@ -113,8 +115,8 @@ namespace RevitSystemTests
 
             //now update the category in Dynamo
 
-            var input = GetNode<Dynamo.Models.NodeModel>("9b4ad043-369e-49a1-bdd7-adab9777abc9");
-            Assert.DoesNotThrow(() => { input.UpdateValue(new Dynamo.Models.UpdateValueParams("Value", "OST_GenericModel")); });
+            var input = GetNode<NodeModel>("9b4ad043-369e-49a1-bdd7-adab9777abc9");
+            Assert.DoesNotThrow(() => { input.UpdateValue(new UpdateValueParams("Value", "OST_GenericModel")); });
             RunCurrentModel();
 
             var cat2 = GetPreviewValue("097a1c71-884d-413a-bd75-ff0001eeceb5") as Revit.Elements.Category;
