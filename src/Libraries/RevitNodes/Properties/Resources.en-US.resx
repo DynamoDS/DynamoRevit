@@ -306,4 +306,10 @@
   <data name="DirectShapeInvalidArgument" xml:space="preserve">
     <value>Can only create DirectShapes from Solids, Surfaces or Meshes.</value>
   </data>
+  <data name="MultipleCurvesIntroducedAfterConversion" xml:space="preserve">
+    <value>There are multiple curves converted from the input curve element.</value>
+  </data>
+  <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
+    <value>There are multiple surfaces converted from the input face.</value>
+  </data>
 </root>
