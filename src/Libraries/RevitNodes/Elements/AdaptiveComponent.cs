@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.Creation;
@@ -65,12 +66,11 @@ namespace Revit.Elements
             if (placePointIds.Count() != pnts.Count())
                 throw new Exception(Properties.Resources.InputPointParamsMismatch);
 
-            int i = 0;
-            foreach (var id in placePointIds)
+            int count = placePointIds.Count;
+            for (int i = 0; i < count; i++ )
             {
-                var point = (Autodesk.Revit.DB.ReferencePoint)Document.GetElement(id);
+                var point = (Autodesk.Revit.DB.ReferencePoint)Document.GetElement(placePointIds[i]);
                 point.Position = pnts[i];
-                i++;
             }
         }
 
@@ -151,9 +151,13 @@ namespace Revit.Elements
             if (surface == null)
             {
                 var surfaces = result as List<Surface>;
-                if (surfaces != null && surfaces.Count() > 0)
+                if (surfaces != null && surfaces.Count() == 1)
                 {
                     surface = surfaces[0];
+                }
+                else if (surfaces.Count() > 1)
+                {
+                    throw new ArgumentException(Revit.Properties.Resources.MultipleSurfacesIntroducedAfterConversion);
                 }
             }
             if (surface == null)
@@ -190,9 +194,13 @@ namespace Revit.Elements
             if (surface == null)
             {
                 var surfaces = result as List<Surface>;
-                if (surfaces != null && surfaces.Count() > 0)
+                if (surfaces != null && surfaces.Count() == 1)
                 {
                     surface = surfaces[0];
+                }
+                else if (surfaces.Count() > 1)
+                {
+                    throw new ArgumentException(Revit.Properties.Resources.MultipleSurfacesIntroducedAfterConversion);
                 }
             }
             if (surface == null)
@@ -246,9 +254,14 @@ namespace Revit.Elements
             }
 
             var curves = revitCurve.Curves;
-            if (curves == null || curves.Length < 1)
+            if (curves == null || curves.Length == 0)
             {
                 throw new ArgumentException("revitCurve");
+            }
+
+            if (curves.Length > 1)
+            {
+                throw new ArgumentException(Revit.Properties.Resources.MultipleCurvesIntroducedAfterConversion);
             }
 
             return InternalByPoints(parameters.Select(x => x.Select(y => curves[0].PointAtParameter(y)).ToArray()).ToArray(), familyType);
@@ -279,9 +292,13 @@ namespace Revit.Elements
             if (curve == null)
             {
                 var curves = result as List<Autodesk.DesignScript.Geometry.Curve>;
-                if (curves != null && curves.Count() > 0)
+                if (curves != null && curves.Count() == 1)
                 {
                     curve = curves[0];
+                }
+                else if (curves.Count() > 1)
+                {
+                    throw new ArgumentException(Revit.Properties.Resources.MultipleCurvesIntroducedAfterConversion);
                 }
             }
             if (curve == null)
@@ -387,8 +404,8 @@ namespace Revit.Elements
             var oldInstances = ElementBinder.GetElementsFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
             int countToBeCreated = points.Count();
             int countOfOldInstances = 0;
-            if (oldInstances != null) oldInstances.Count();
-            int reusableCount = countToBeCreated > countOfOldInstances ? countOfOldInstances : countToBeCreated;
+            if (oldInstances != null) countOfOldInstances = oldInstances.Count();
+            int reusableCount = Math.Min(countToBeCreated, countOfOldInstances);
 
             TransactionManager.Instance.EnsureInTransaction(Document);
 
