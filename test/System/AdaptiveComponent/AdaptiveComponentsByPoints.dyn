@@ -1,0 +1,25 @@
+<Workspace Version="0.9.1.3091" X="30.3880580851129" Y="20.6584780033369" zoom="1.14435986229648" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Math" resolvedName="DSCore.Math" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="420264d9-323c-412a-a942-926234e31a3f" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="23.1564935307299" y="256.104444271206" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="data = 0..10..2;&#xA;pts1 = Point.ByCoordinates(data, 3, 0);&#xA;pts2 = Point.ByCoordinates(data, -3, 0);&#xA;pts3 = Point.ByCoordinates(data, 0, 6+5*Math.Sin(data));&#xA;pts = {pts1, pts2, pts3};" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="3c41654c-580f-4595-80be-8a3a6ac56073" type="Dynamo.Nodes.DSFunction" nickname="List.Transpose" x="641.37410489298" y="286.963513235208" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.Transpose@var[]..[]" />
+    <DSRevitNodesUI.FamilyTypes guid="5cd51754-1633-48d9-8b03-394dab8bcf52" type="DSRevitNodesUI.FamilyTypes" nickname="Family Types" x="178.856286757995" y="478.78779553443" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="4:three_points_simple_component:three_points_simple_component" />
+    <Dynamo.Nodes.DSFunction guid="79637f91-d35b-49fc-bc54-4f5a1922633e" type="Dynamo.Nodes.DSFunction" nickname="AdaptiveComponent.ByPoints" x="845.604593072082" y="380.042633524611" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.AdaptiveComponent.ByPoints@Autodesk.DesignScript.Geometry.Point[][],Revit.Elements.FamilyType" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="420264d9-323c-412a-a942-926234e31a3f" start_index="4" end="3c41654c-580f-4595-80be-8a3a6ac56073" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3c41654c-580f-4595-80be-8a3a6ac56073" start_index="0" end="79637f91-d35b-49fc-bc54-4f5a1922633e" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5cd51754-1633-48d9-8b03-394dab8bcf52" start_index="0" end="79637f91-d35b-49fc-bc54-4f5a1922633e" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17.6824913024902" eyeY="19.3129215240479" eyeZ="50.7115821838379" lookX="12.6824913024902" lookY="-8.31292057037354" lookZ="-58.7115821838379" upX="-0.0165661238133907" upY="0.996917307376862" upZ="0.0766902416944504" />
+  </Cameras>
+  <SessionTraceData>
+  </SessionTraceData>
+</Workspace>

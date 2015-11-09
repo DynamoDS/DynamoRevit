@@ -251,7 +251,7 @@ namespace RevitServices.Persistence
         /// Set a list of elements for trace
         /// </summary>
         /// <param name="elements"></param>
-        public static void SetElementsForTrace(List<Element> elements)
+        public static void SetElementsForTrace(IEnumerable<Element> elements)
         {
             if (!IsEnabled) return;
 
@@ -304,8 +304,36 @@ namespace RevitServices.Persistence
                 return null;
         }
 
+        /// <summary>
+        /// Get a list of elements associated with the current operation from trace
+        /// </summary>
+        /// <param name="elements"></param>
+        public static IEnumerable<T> GetElementsFromTrace<T>(Document document)
+            where T : Autodesk.Revit.DB.Element
+        {
+            if (!IsEnabled)
+            {
+                return null;
+            }
 
+            var uuids = GetElementUUIDsFromTrace(document);
+            if (uuids == null)
+            {
+                return null;
+            }
 
+            List<T> elements = new List<T>(uuids.Count);
+            foreach (var uuid in uuids)
+            {
+                T ret;
+                if (Elements.ElementUtils.TryGetElement(document, uuid.UUID, out ret))
+                {
+                    elements.Add(ret);
+                }
+            }
+
+            return elements;
+        }
 
         /// <summary>
         /// Delete a possibly outdated Revit Element and set new element for trace.  
@@ -329,9 +357,6 @@ namespace RevitServices.Persistence
 
             SetElementForTrace(newElement);
         }
-
-
-
 
         /// <summary>
         /// Raw method for setting data into the trace cache, the user of this method is reponsible for handling
