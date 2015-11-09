@@ -142,20 +142,20 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Curtain Panel should represent Revit panel.
-        /// </summary>
-        internal static string CurtainPanelShouldRepresentRevitPanel {
-            get {
-                return ResourceManager.GetString("CurtainPanelShouldRepresentRevitPanel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Curtain Panel is not rectangular.
         /// </summary>
         internal static string CurtainPanelIsNotRectangular {
             get {
                 return ResourceManager.GetString("CurtainPanelIsNotRectangular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curtain Panel should represent Revit panel.
+        /// </summary>
+        internal static string CurtainPanelShouldRepresentRevitPanel {
+            get {
+                return ResourceManager.GetString("CurtainPanelShouldRepresentRevitPanel", resourceCulture);
             }
         }
         
@@ -444,6 +444,24 @@ namespace Revit.Properties {
         internal static string MullionParseError {
             get {
                 return ResourceManager.GetString("MullionParseError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are multiple curves converted from the input curve element..
+        /// </summary>
+        internal static string MultipleCurvesIntroducedAfterConversion {
+            get {
+                return ResourceManager.GetString("MultipleCurvesIntroducedAfterConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are multiple surfaces converted from the input face..
+        /// </summary>
+        internal static string MultipleSurfacesIntroducedAfterConversion {
+            get {
+                return ResourceManager.GetString("MultipleSurfacesIntroducedAfterConversion", resourceCulture);
             }
         }
         
