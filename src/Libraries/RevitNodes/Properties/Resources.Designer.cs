@@ -448,6 +448,24 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are multiple curves converted from the input curve element..
+        /// </summary>
+        internal static string MultipleCurvesIntroducedAfterConversion {
+            get {
+                return ResourceManager.GetString("MultipleCurvesIntroducedAfterConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are multiple surfaces converted from the input face..
+        /// </summary>
+        internal static string MultipleSurfacesIntroducedAfterConversion {
+            get {
+                return ResourceManager.GetString("MultipleSurfacesIntroducedAfterConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The FamilyInstance is not an adaptive component..
         /// </summary>
         internal static string NotAdaptiveComponentError {
