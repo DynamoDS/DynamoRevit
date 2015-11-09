@@ -23,6 +23,7 @@ using Dynamo.Applications.Models;
 using Dynamo.Applications.ViewModel;
 using Dynamo.Controls;
 using Dynamo.Core;
+using Dynamo.Graph.Workspaces;
 using Dynamo.Logging;
 using Dynamo.Models;
 using Dynamo.UpdateManager;
