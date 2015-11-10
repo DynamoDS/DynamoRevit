@@ -135,13 +135,15 @@ namespace DSRevitNodesUI
 
         void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName != "IsUpdated")
+            if (e.PropertyName != "CachedValue")
                 return;
 
             if (InPorts.Any(x => x.Connectors.Count == 0))
                 return;
 
             element = GetInputElement();
+
+            PopulateItems();
         }
 
         private static string getStorageTypeString(StorageType st)
@@ -160,26 +162,36 @@ namespace DSRevitNodesUI
             }
         }
 
+        /// <summary>
+        /// Reads the internal element to get all the family 
+        /// or instance parameters, and adds them to the Items collection.
+        /// 
+        /// Items are sorted alphabetically by name. 
+        /// If the SelectedIndex is already set, it is set to zero.
+        /// </summary>
         public override void PopulateItems() //(IEnumerable set, bool readOnly)
         {
             //only update the collection on evaluate
             //if the item coming in is different
             if (element == null || element.Id.Equals(this.storedId))
                 return;
-            else
-            {
-                this.storedId = element.Id;
-                this.Items.Clear();
-            }
 
-            FamilySymbol fs = element as FamilySymbol;
-            FamilyInstance fi = element as FamilyInstance;
+            storedId = element.Id;
+            Items.Clear();
+
+            var fs = element as FamilySymbol;
+            var fi = element as FamilyInstance;
             if(null != fs)
                 AddFamilySymbolParameters(fs);
             if(null != fi)
                 AddFamilyInstanceParameters(fi);
 
             Items = Items.OrderBy(x => x.Name).ToObservableCollection<DynamoDropDownItem>();
+
+            if (SelectedIndex == -1)
+            {
+                SelectedIndex = 0;
+            }
         }
 
         private void AddFamilySymbolParameters(FamilySymbol fs)
