@@ -383,8 +383,11 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             // ElementsAtLevel
+            // See http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-9069
+            // The number of elements at level is different here in 2016 and 2017, due
+            // to a fault in the 2017 API.
             var allElementAtLevelNodeID = "da009f85-80e6-4541-b8fd-165ea7f23449";
-            AssertPreviewCount(allElementAtLevelNodeID, 81);
+            AssertPreviewCount(allElementAtLevelNodeID, 73);
 
             var wall = GetPreviewValueAtIndex(allElementAtLevelNodeID, 0) as Revit.Elements.Wall;
             Assert.IsNotNull(wall);
