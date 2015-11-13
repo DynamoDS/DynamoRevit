@@ -101,6 +101,7 @@
     <Compile Include="AsynchronousModeTests.cs" />
     <Compile Include="DirectShapeTests.cs" />
     <Compile Include="DisplayTests.cs" />
+    <Compile Include="GetFamilyParametersTests.cs" />
     <Compile Include="RevitLibraryTests.cs" />
     <Compile Include="ImportInstanceTests.cs" />
     <Compile Include="RevitWatch3DViewModelTests.cs" />
