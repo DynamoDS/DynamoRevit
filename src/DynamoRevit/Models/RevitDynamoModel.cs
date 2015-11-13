@@ -10,6 +10,7 @@ using Autodesk.Revit.UI.Events;
 using DSIronPython;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Interfaces;
+using Dynamo.Logging;
 using Dynamo.Models;
 using Dynamo.Scheduler;
 using Dynamo.Updates;
@@ -239,7 +240,7 @@ namespace Dynamo.Applications.Models
 
             if (IsTestMode)
             {
-                DeleteOrphanedElements(orphanedIds);
+                DeleteOrphanedElements(orphanedIds, Logger);
             }
             else
             {
@@ -247,12 +248,12 @@ namespace Dynamo.Applications.Models
                 IdlePromise.ExecuteOnIdleAsync(
                     () =>
                     {
-                        DeleteOrphanedElements(orphanedIds);
+                        DeleteOrphanedElements(orphanedIds, Logger);
                     });
             }
         }
 
-        private static void DeleteOrphanedElements(IEnumerable<int> orphanedIds)
+        private static void DeleteOrphanedElements(IEnumerable<int> orphanedIds, ILogger logger)
         {
             var toDelete = new List<ElementId>();
             foreach (var id in orphanedIds)
@@ -268,9 +269,17 @@ namespace Dynamo.Applications.Models
 
             using (var trans = new Transaction(DocumentManager.Instance.CurrentDBDocument))
             {
-                trans.Start("Dynamo element reconciliation.");
-                DocumentManager.Instance.CurrentDBDocument.Delete(toDelete);
-                trans.Commit();
+                try
+                {
+                    trans.Start("Dynamo element reconciliation.");
+                    DocumentManager.Instance.CurrentDBDocument.Delete(toDelete);
+                    trans.Commit();
+                }
+                catch (Exception ex)
+                {
+                    logger.Log(ex);
+                    trans.RollBack();
+                }
             }
         }
 
