@@ -419,6 +419,7 @@ namespace Revit.Elements
                 {
                     var fi = oldInstances.ElementAt(i);
                     var comp = new AdaptiveComponent(fi);
+                    components.Add(comp);
 
                     //Update the family symbol
                     if (familyType.InternalFamilySymbol.Id != fi.Symbol.Id)
@@ -427,7 +428,6 @@ namespace Revit.Elements
                     }
 
                     UpdatePlacementPoints(fi, points[i].ToXyzs());
-                    components.Add(comp);
                     instances.Add(fi);
                 }
 
