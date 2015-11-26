@@ -12,6 +12,8 @@ using RTF.Framework;
 using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
 
 using Revit.Elements;
+using Dynamo.Graph.Nodes;
+using RevitServices.Persistence;
 
 namespace RevitSystemTests
 {
@@ -195,6 +197,38 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertPreviewCount(adaptiveComponentNodeId, 3);
 
+        }
+
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\AdaptiveComponent\AdaptiveComponentsByPoints.rfa")]
+        public void CreateAdaptiveComponentsByInvalidPoints()
+        {
+            // Regresion test case for http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-9099
+            var model = ViewModel.Model;
+
+            string testFilePath = Path.Combine(workingDirectory, @".\AdaptiveComponent\AdaptiveComponentsByPoints.dyn");
+            string testPath = Path.GetFullPath(testFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            var adaptiveComponentCount = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.FamilyInstance>().Count();
+            Assert.AreEqual(6, adaptiveComponentCount);
+
+            var codeblocknode = ViewModel.Model.CurrentWorkspace.Nodes.OfType<CodeBlockNodeModel>().FirstOrDefault();
+            Assert.IsNotNull(codeblocknode);
+
+            var adaptiveNode = ViewModel.Model.CurrentWorkspace.NodeFromWorkspace("79637f91-d35b-49fc-bc54-4f5a1922633e");
+            Assert.NotNull(adaptiveNode);
+
+            // Now provide invalid points to AdaptiveComponet.ByPoints nodes.
+            // All previously created components should be deleted.
+            MakeConnector(codeblocknode, adaptiveNode, 4, 0);
+            RunCurrentModel();
+
+            adaptiveComponentCount = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.FamilyInstance>().Count();
+            Assert.AreEqual(0, adaptiveComponentCount);
         }
     }
 }
