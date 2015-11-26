@@ -206,11 +206,16 @@ namespace Dynamo.Applications.Models
 
         public override void PostTraceReconciliation(Dictionary<Guid, List<ISerializable>> orphanedSerializables)
         {
-            var orphanedIds =
+            var orphanedIds = new List<int>();
+            var serializables =
                 orphanedSerializables
-                .SelectMany(kvp=>kvp.Value)
-                .Cast<SerializableId>()
-                .Select(sid => sid.IntID).ToList();
+                .SelectMany(kvp => kvp.Value)
+                .Where(x => x is ISerializable);
+
+            orphanedIds.AddRange(serializables.Where(x => x is SerializableId).
+                Cast<SerializableId>().Select(sid => sid.IntID));
+            orphanedIds.AddRange(serializables.Where(x => x is MultipleSerializableId).
+                Cast<MultipleSerializableId>().SelectMany(sid => sid.IntIDs));
 
             if (!orphanedIds.Any())
                 return;
