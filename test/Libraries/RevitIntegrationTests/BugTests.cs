@@ -1014,6 +1014,27 @@ namespace RevitSystemTests
 
         [Test]
         [Category("RegressionTests")]
+        [TestModel(@".\Bugs\MAGN_9132.rfa")]
+        public void TraceDataForBatchProcessing_MAGN_9132()
+        {
+            var model = ViewModel.Model;
+
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_9132.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(4, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+            AssertPreviewCount("79637f91-d35b-49fc-bc54-4f5a1922633e", 11);
+        }
+
+        [Test]
+        [Category("RegressionTests")]
         [TestModel(@".\empty.rvt")]
         public void OverrideColorInView_MAGN_7741()
         {
