@@ -70,7 +70,7 @@ namespace Dynamo.Applications.ViewModel
 
         protected override void OnEvaluationCompleted(object sender, EvaluationCompletedEventArgs e)
         {
-            Draw();
+            if (e.EvaluationTookPlace) Draw();
         }
 
         protected override void OnNodePropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -84,20 +84,28 @@ namespace Dynamo.Applications.ViewModel
             switch (e.PropertyName)
             {
                 case "IsVisible":
-                    Draw();
+                    Draw(node);
                     break;
             }
         }
         
         #region private methods
 
-        private void Draw()
+        private void Draw(NodeModel node = null)
         {
             if (!Active) return;
+            IEnumerable<IGraphicItem> graphicItems;
 
-            var graphicItems = model.CurrentWorkspace.Nodes
+            if (node != null)
+            {
+                graphicItems = node.GeneratedGraphicItems(engineManager.EngineController);
+            }
+            else
+            {
+                graphicItems = model.CurrentWorkspace.Nodes
                 .Where(n => n.IsVisible)
                 .SelectMany(n => n.GeneratedGraphicItems(engineManager.EngineController));
+            }
 
             var geoms = new List<GeometryObject>();
             foreach (var item in graphicItems)
