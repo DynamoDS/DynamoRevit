@@ -191,18 +191,23 @@ namespace Revit.Elements
         protected string InternalUniqueId;
 
         /// <summary>
+        /// Set the element's freeze state. If the node is set to freeze
+        /// all the elements for that node will be set to freeze.
+        /// </summary>
+        public bool IsFrozen = false;
+
+        /// <summary>
         /// Default implementation of dispose that removes the element from the
         /// document
         /// </summary>
         [IsVisibleInDynamoLibrary(false)]
         public virtual void Dispose()
         {
-
             // Do not cleanup Revit elements if we are shutting down Dynamo or
-            // closing homeworkspace.
-            if (DisposeLogic.IsShuttingDown || DisposeLogic.IsClosingHomeworkspace)
+            // closing homeworkspace or the element itself is frozen.
+            if (DisposeLogic.IsShuttingDown || DisposeLogic.IsClosingHomeworkspace || IsFrozen)
                 return;
-
+            
             bool didRevitDelete = ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(Id);
 
             var elementManager = ElementIDLifecycleManager<int>.GetInstance();

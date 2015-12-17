@@ -9,6 +9,7 @@ using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 using DSIronPython;
+using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Interfaces;
 using Dynamo.Logging;
@@ -126,6 +127,32 @@ namespace Dynamo.Applications.Models
 
             if (workspace is HomeWorkspaceModel)
                 DisposeLogic.IsClosingHomeworkspace = false;
+
+            //Unsubscribe the event
+            foreach (var node in workspace.Nodes.ToList())
+            {
+                node.PropertyChanged -= node_PropertyChanged;
+            }
+        }
+
+        protected override void OnWorkspaceAdded(WorkspaceModel workspace)
+        {
+            base.OnWorkspaceAdded(workspace);
+
+            foreach (var node in workspace.Nodes.ToList())
+            {
+                node.PropertyChanged += node_PropertyChanged;
+            }
+        }
+
+        private void node_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case "IsFrozen":
+                    ElementBinder.SetElementFreezeState(CurrentWorkspace, sender as NodeModel, EngineController);
+                    break;
+            }
         }
 
         #endregion

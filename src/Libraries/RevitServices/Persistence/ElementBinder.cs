@@ -485,6 +485,68 @@ namespace RevitServices.Persistence
 
             return nodes.AsEnumerable();
         }
+
+        /// <summary>
+        /// Sets the freeze state of the elements associated with that node.
+        /// </summary>
+        /// <param name="workspace">The workspace.</param>
+        /// <param name="node">The node.</param>
+        /// <param name="engine">The engine.</param>
+        public static void SetElementFreezeState(WorkspaceModel workspace, NodeModel node, EngineController engine)
+        {
+            RuntimeCore runtimeCore = null;
+            if (engine != null && (engine.LiveRunnerCore != null))
+                runtimeCore = engine.LiveRunnerRuntimeCore;
+
+            if (runtimeCore == null || node == null)
+                return;
+
+            // Selecting all nodes that are either a DSFunction,
+            // a DSVarArgFunction or a CodeBlockNodeModel into a list.
+            var nodeGuids = workspace.Nodes.Where((n) =>
+            {
+                return (n is DSFunction
+                        || (n is DSVarArgFunction)
+                        || (n is CodeBlockNodeModel));
+            }).Where((n) => n.GUID == node.GUID).Select((x) => x.GUID);
+
+            var nodeTraceDataList = runtimeCore.RuntimeData.GetCallsitesForNodes(nodeGuids, runtimeCore.DSExecutable);
+            foreach (Guid guid in nodeTraceDataList.Keys)
+            {
+                foreach (CallSite cs in nodeTraceDataList[guid])
+                {
+                    foreach (CallSite.SingleRunTraceData srtd in cs.TraceData)
+                    {
+                        List<ISerializable> traceData = srtd.RecursiveGetNestedData();
+
+                        foreach (ISerializable thingy in traceData)
+                        {
+                            SerializableId sid = thingy as SerializableId;
+
+                            if (sid != null)
+                            {
+                                //Get the Autodesk.Revit.Element.
+                                Element el;
+                                DocumentManager.Instance.CurrentDBDocument.TryGetElement(new ElementId(sid.IntID),
+                                    out el);
+
+                                //Get the Revit Element wrapper.
+                                if (el != null)
+                                {
+                                    dynamic elem =
+                                        ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(el.Id.IntegerValue);
+                                    if (elem != null)
+                                    {
+                                        elem.IsFrozen = node.IsFrozen;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }
