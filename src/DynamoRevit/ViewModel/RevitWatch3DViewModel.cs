@@ -70,7 +70,7 @@ namespace Dynamo.Applications.ViewModel
 
         protected override void OnEvaluationCompleted(object sender, EvaluationCompletedEventArgs e)
         {
-            if (e.EvaluationTookPlace) Draw();
+            Draw();
         }
 
         protected override void OnNodePropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -98,7 +98,10 @@ namespace Dynamo.Applications.ViewModel
 
             if (node != null)
             {
-                graphicItems = node.GeneratedGraphicItems(engineManager.EngineController);
+                if (node.IsVisible)
+                {
+                    graphicItems = node.GeneratedGraphicItems(engineManager.EngineController);
+                }
             }
             else
             {
