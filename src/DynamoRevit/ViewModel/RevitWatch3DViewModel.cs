@@ -84,20 +84,31 @@ namespace Dynamo.Applications.ViewModel
             switch (e.PropertyName)
             {
                 case "IsVisible":
-                    Draw();
+                    Draw(node);
                     break;
             }
         }
         
         #region private methods
 
-        private void Draw()
+        private void Draw(NodeModel node = null)
         {
             if (!Active) return;
+            IEnumerable<IGraphicItem> graphicItems;
 
-            var graphicItems = model.CurrentWorkspace.Nodes
-                .Where(n => n.IsVisible)
-                .SelectMany(n => n.GeneratedGraphicItems(engineManager.EngineController));
+            if (node != null)
+            {
+                if (node.IsVisible)
+                {
+                    graphicItems = node.GeneratedGraphicItems(engineManager.EngineController);
+                }
+            }
+            else
+            {
+                graphicItems = model.CurrentWorkspace.Nodes
+                 .Where(n => n.IsVisible)
+                 .SelectMany(n => n.GeneratedGraphicItems(engineManager.EngineController));
+            }
 
             var geoms = new List<GeometryObject>();
             foreach (var item in graphicItems)
