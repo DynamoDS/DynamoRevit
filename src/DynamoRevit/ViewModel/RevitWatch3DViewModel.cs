@@ -94,7 +94,7 @@ namespace Dynamo.Applications.ViewModel
         private void Draw(NodeModel node = null)
         {
             if (!Active) return;
-            IEnumerable<IGraphicItem> graphicItems;
+            IEnumerable<IGraphicItem> graphicItems = new List<IGraphicItem>();
 
             if (node != null)
             {
