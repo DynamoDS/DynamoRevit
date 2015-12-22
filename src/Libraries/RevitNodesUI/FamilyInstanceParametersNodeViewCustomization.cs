@@ -1,4 +1,5 @@
-﻿using DSRevitNodesUI;
+﻿using CoreNodeModelsWpf.Nodes;
+using DSRevitNodesUI;
 
 namespace Dynamo.Wpf.Nodes.Revit
 {
