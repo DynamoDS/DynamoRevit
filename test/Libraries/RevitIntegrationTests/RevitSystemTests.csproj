@@ -152,8 +152,8 @@
       <HintPath>$(DYNAMOTESTAPI)\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DSCoreNodesUI">
-      <HintPath>$(DYNAMOTESTAPI)\nodes\DSCoreNodesUI.dll</HintPath>
+    <Reference Include="CoreNodeModels">
+      <HintPath>$(DYNAMOTESTAPI)\nodes\CoreNodeModels.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">

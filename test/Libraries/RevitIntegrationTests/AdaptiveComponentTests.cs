@@ -9,7 +9,7 @@ using RevitTestServices;
 
 using RTF.Framework;
 
-using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
+using DoubleSlider = CoreNodeModels.Input.DoubleSlider;
 
 using Revit.Elements;
 using Dynamo.Graph.Nodes;
