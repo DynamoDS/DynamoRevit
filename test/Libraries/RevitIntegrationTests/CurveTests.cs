@@ -6,7 +6,7 @@ using Autodesk.Revit.DB;
 
 using Dynamo.Nodes;
 using Autodesk.DesignScript.Geometry;
-using DSCoreNodesUI.Input;
+using CoreNodeModels.Input;
 using NUnit.Framework;
 
 using RevitServices.Persistence;
@@ -71,9 +71,9 @@ namespace RevitSystemTests
             Assert.IsTrue(mc.IsReferenceLine);
 
             //now flip the switch for creating a reference curve
-            var boolNode = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is DSCoreNodesUI.Input.BoolSelector).First();
+            var boolNode = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is CoreNodeModels.Input.BoolSelector).First();
 
-            ((DSCoreNodesUI.Input.BasicInteractive<bool>)boolNode).Value = false;
+            ((CoreNodeModels.Input.BasicInteractive<bool>)boolNode).Value = false;
 
             RunCurrentModel();
 

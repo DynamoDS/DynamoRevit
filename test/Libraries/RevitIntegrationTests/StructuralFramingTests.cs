@@ -14,7 +14,7 @@ using RevitTestServices;
 using RTF.Framework;
 
 using FamilyType = Revit.Elements.FamilyType;
-using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
+using IntegerSlider = CoreNodeModels.Input.IntegerSlider;
 
 namespace RevitSystemTests
 {
