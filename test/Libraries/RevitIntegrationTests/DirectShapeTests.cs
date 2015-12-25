@@ -86,7 +86,7 @@ namespace RevitSystemTests
             var input = model.CurrentWorkspace.Nodes.Where(x => x.GUID.ToString() == "06e1461a-2eb4-4069-a581-93914d500115").First();
             input.UpdateValue(new UpdateValueParams("Value", "20.0"));
 
-            Assert.AreEqual((input as DSCoreNodesUI.Input.DoubleInput).Value, "20.0");
+            Assert.AreEqual((input as CoreNodeModels.Input.DoubleInput).Value, "20.0");
 
             var pnt2 = GetPreviewValue("53eb0459-4cd3-4131-b7ce-c4e689c57248") as Autodesk.DesignScript.Geometry.Point;
             Assert.IsNotNull(pnt2);

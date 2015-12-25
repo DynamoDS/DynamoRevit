@@ -28,7 +28,7 @@ using String = System.String;
 using UV = Autodesk.DesignScript.Geometry.UV;
 using RevitServices.EventHandler;
 using Autodesk.Revit.DB.Events;
-using DSCoreNodesUI;
+using CoreNodeModels;
 using Dynamo.Applications;
 using DSRevitNodesUI.Properties;
 using Dynamo.Graph.Nodes;
