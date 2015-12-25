@@ -21,11 +21,11 @@ using System.Collections.Generic;
 using RevitServices.Transactions;
 using Revit.GeometryConversion;
 
-using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
-using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
+using DoubleSlider = CoreNodeModels.Input.DoubleSlider;
+using IntegerSlider = CoreNodeModels.Input.IntegerSlider;
 using Dynamo.Applications.Models;
 using System;
-using DSCoreNodesUI;
+using CoreNodeModels;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Nodes.ZeroTouch;
 using Revit.Elements.InternalUtilities;
