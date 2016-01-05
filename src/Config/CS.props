@@ -4,7 +4,7 @@
     <Import Project="$(SolutionDir)Config/user_local.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
 	<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
 	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2017</RevitVersionNumber>
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
@@ -27,7 +27,7 @@
     <UICulture>en-US</UICulture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
 	<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
 	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2017</RevitVersionNumber>
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
