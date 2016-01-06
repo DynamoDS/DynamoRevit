@@ -66,8 +66,19 @@ namespace RevitServices.Materials
             TransactionManager.Instance.EnsureInTransaction(
                 DocumentManager.Instance.CurrentDBDocument);
 
-            var glass = materials["Glass"];
-            var dynamoMaterial = glass.Duplicate("Dynamo");
+            Material glass;
+            Material dynamoMaterial;
+            if (materials.TryGetValue("Glass", out glass))
+            {
+                dynamoMaterial = glass.Duplicate("Dynamo");
+            }
+            else
+            {
+                var dynamoMaterialId = Material.Create(DocumentManager.Instance.CurrentDBDocument, "Dynamo");
+                dynamoMaterial = DocumentManager.Instance.CurrentDBDocument.GetElement(dynamoMaterialId) as Material;
+                dynamoMaterial.Transparency = 90;
+                dynamoMaterial.UseRenderAppearanceForShading = true;
+            }
             dynamoMaterial.Color = new Color(255, 128, 0);
             DynamoMaterialId = dynamoMaterial.Id;
 
