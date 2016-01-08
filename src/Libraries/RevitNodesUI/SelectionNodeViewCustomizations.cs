@@ -8,6 +8,7 @@ using Dynamo.Controls;
 using Dynamo.Nodes;
 using Dynamo.Wpf;
 using Dynamo.Wpf.Nodes;
+using CoreNodeModelsWpf.Nodes;
 
 namespace Dynamo.Wpf.Nodes.Revit
 {
