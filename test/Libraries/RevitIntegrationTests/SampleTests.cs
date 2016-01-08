@@ -4,7 +4,7 @@ using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
 
-using DSCoreNodesUI.Input;
+using CoreNodeModels.Input;
 using Dynamo.Selection;
 using Dynamo.Tests;
 
@@ -16,8 +16,8 @@ using RevitTestServices;
 
 using RTF.Framework;
 
-using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
-using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
+using DoubleSlider = CoreNodeModels.Input.DoubleSlider;
+using IntegerSlider = CoreNodeModels.Input.IntegerSlider;
 
 namespace RevitSystemTests
 {
