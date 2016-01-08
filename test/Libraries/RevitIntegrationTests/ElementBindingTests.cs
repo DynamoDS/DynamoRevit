@@ -8,7 +8,7 @@ using RevitTestServices;
 
 using RTF.Framework;
 using Autodesk.Revit.DB;
-using DSCoreNodesUI.Input;
+using CoreNodeModels.Input;
 using Dynamo.Graph.Nodes.ZeroTouch;
 using Dynamo.Models;
 using Dynamo.Nodes;
@@ -17,8 +17,8 @@ using Dynamo.Tests;
 using RevitServices.Persistence;
 
 using Transaction = Autodesk.Revit.DB.Transaction;
-using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
-using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
+using DoubleSlider = CoreNodeModels.Input.DoubleSlider;
+using IntegerSlider = CoreNodeModels.Input.IntegerSlider;
 using Utils = RevitServices.Elements.ElementUtils;
 
 namespace RevitSystemTests
