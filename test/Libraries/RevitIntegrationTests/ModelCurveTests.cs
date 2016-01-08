@@ -5,7 +5,7 @@ using Dynamo.Nodes;
 
 using NUnit.Framework;
 using Autodesk.Revit.DB;
-using DSCoreNodesUI.Input;
+using CoreNodeModels.Input;
 using RevitServices.Persistence;
 
 using RevitTestServices;

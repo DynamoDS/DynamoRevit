@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 
 using Autodesk.Revit.DB;
-using DSCoreNodesUI.Input;
+using CoreNodeModels.Input;
 using Dynamo.Nodes;
 
 using NUnit.Framework;
