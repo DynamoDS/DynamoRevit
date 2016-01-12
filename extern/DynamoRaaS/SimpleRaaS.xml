@@ -9,6 +9,29 @@
             Provides static access to the lazily initialized RaaS client and job monitor
             </summary>
         </member>
+        <member name="T:SimpleRaaS.DismissableMessageBox">
+            <summary>
+            Interaction logic for DismissableMessageBox.xaml
+            </summary>
+        </member>
+        <member name="M:SimpleRaaS.DismissableMessageBox.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Analyze.Daylighting.CloudDaylightingJob.ByViewNameDivisionsGridBoundary(System.String,System.Int32,System.Int32,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point,Analyze.Render.RenderingEnvironment)">
+            <summary>
+            Set the parameters of a daylighting analysis job to be run in the cloud.  \n\nDirect the output of this node with Cloud Render to submit the job.
+            </summary>
+            <param name="viewName">The name of the Revit 3D view</param>
+            <param name="xDivisions">The number of divisions in X direction of sensor grid (> 150)</param>
+            <param name="yDivisions">The number of divisions in Y direction of sensor grid (> 150)</param>
+            <param name="bottomLeft">Of sensor area in meters</param>
+            <param name="bottomRight">Of sensor area in meters</param>
+            <param name="topLeft">Of sensor area in meters</param>
+            <param name="environment">Environment data for analysis</param>
+            <returns></returns>
+        </member>
         <member name="M:Analyze.Render.CloudRenderingJob.ByViewNameWidthHeight(System.String,System.Int32,System.Int32,Analyze.Render.RenderType,Analyze.Render.RenderQuality)">
             <summary>
             Set the parameters of a render job to be run in the cloud.  \n\nUse this node with CloudRender to submit the job.
@@ -33,60 +56,12 @@
             <param name="timezoneOffset">Integer offset from UTC time zone between -12, 12</param>
             <returns></returns>
         </member>
-        <member name="M:Analyze.Render.RenderingEnvironment.BySkyModelLocationDate(Analyze.Render.SkyModel,System.Double,System.Double,Analyze.Render.DateTime)">
-            <summary>
-            Describe the characteristics of the environment in which the rendering should take place
-            </summary>
-            <param name="skymodelType">A SkyModel describing the characteristics of the sky</param>
-            <param name="gpsX">GPS coordinate in X direction</param>
-            <param name="gpsY">GPS coordinate in Y direction</param>
-            <param name="dateTime">The time at which to evaluate (the UTC offset must correspond to the GPS coordinate)</param>
-            <returns></returns>
-        </member>
-        <member name="M:Analyze.Render.SkyModel.ByTypeConstants(Analyze.Render.SkyModelType,System.Double,System.Double,System.Double)">
-            <summary>
-            Create a SkyModel for Rendering
-            </summary>
-            <param name="skymodelType">The type of skymodel to use. If left null, uses Perez.</param>
-            <param name="diffHorizIrrad">Diffuse horizontal irradiance of the sky in W/m^2</param>
-            <param name="dirNormIrrad">Direct normal irradiance of the sky in W/m^2</param>
-            <param name="globalHorizIrrad">Global horizontal irradiance of the sky in W/m^2</param>
-            <returns></returns>
-        </member>
-        <member name="M:Analyze.Daylighting.CloudDaylightingJob.ByViewNameDivisionsGridBoundary(System.String,System.Int32,System.Int32,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point,Analyze.Render.RenderingEnvironment)">
-            <summary>
-            Set the parameters of a daylighting analysis job to be run in the cloud.  \n\nDirect the output of this node with Cloud Render to submit the job.
-            </summary>
-            <param name="viewName">The name of the Revit 3D view</param>
-            <param name="xDivisions">The number of divisions in X direction of sensor grid (> 150)</param>
-            <param name="yDivisions">The number of divisions in Y direction of sensor grid (> 150)</param>
-            <param name="bottomLeft">Of sensor area in meters</param>
-            <param name="bottomRight">Of sensor area in meters</param>
-            <param name="topLeft">Of sensor area in meters</param>
-            <param name="environment">Environment data for analysis</param>
-            <returns></returns>
-        </member>
         <member name="M:Analyze.Daylighting.DaylightingResults.Parse(System.String)">
             <summary>
             Open and parse an SDF daylighting data file
             </summary>
             <param name="path">A path to a valid SDF file on disk</param>
             <returns></returns>
-        </member>
-        <member name="P:Analyze.Daylighting.DaylightingResults.XResolution">
-            <summary>
-            The resolution of the DaylightingData grid in the x direction
-            </summary>
-        </member>
-        <member name="P:Analyze.Daylighting.DaylightingResults.YResolution">
-            <summary>
-            The resolution of the DaylightingData grid in the y direction
-            </summary>
-        </member>
-        <member name="P:Analyze.Daylighting.DaylightingResults.Resolution">
-            <summary>
-            The resolution of the DaylightingData grid in the form [x,y]
-            </summary>
         </member>
         <member name="M:Analyze.Daylighting.DaylightingResults.IlluminanceValues">
             <summary>
@@ -120,6 +95,21 @@
             <param name="clamp"></param>
             <returns></returns>
         </member>
+        <member name="P:Analyze.Daylighting.DaylightingResults.XResolution">
+            <summary>
+            The resolution of the DaylightingData grid in the x direction
+            </summary>
+        </member>
+        <member name="P:Analyze.Daylighting.DaylightingResults.YResolution">
+            <summary>
+            The resolution of the DaylightingData grid in the y direction
+            </summary>
+        </member>
+        <member name="P:Analyze.Daylighting.DaylightingResults.Resolution">
+            <summary>
+            The resolution of the DaylightingData grid in the form [x,y]
+            </summary>
+        </member>
         <member name="M:Analyze.Daylighting.Illuminance.ByRGB(System.Double,System.Double,System.Double)">
             <summary>
             Construct an Illuminance data point.  Illuminance is the integrated 
@@ -145,15 +135,25 @@
             <param name="luxValue">An illuminance value in lux</param>
             <returns>The transformed illuminance value in foot-candles</returns>
         </member>
-        <member name="T:SimpleRaaS.DismissableMessageBox">
+        <member name="M:Analyze.Render.RenderingEnvironment.BySkyModelLocationDate(Analyze.Render.SkyModel,System.Double,System.Double,Analyze.Render.DateTime)">
             <summary>
-            Interaction logic for DismissableMessageBox.xaml
+            Describe the characteristics of the environment in which the rendering should take place
             </summary>
+            <param name="skymodelType">A SkyModel describing the characteristics of the sky</param>
+            <param name="gpsX">GPS coordinate in X direction</param>
+            <param name="gpsY">GPS coordinate in Y direction</param>
+            <param name="dateTime">The time at which to evaluate (the UTC offset must correspond to the GPS coordinate)</param>
+            <returns></returns>
         </member>
-        <member name="M:SimpleRaaS.DismissableMessageBox.InitializeComponent">
+        <member name="M:Analyze.Render.SkyModel.ByTypeConstants(Analyze.Render.SkyModelType,System.Double,System.Double,System.Double)">
             <summary>
-            InitializeComponent
+            Create a SkyModel for Rendering
             </summary>
+            <param name="skymodelType">The type of skymodel to use. If left null, uses Perez.</param>
+            <param name="diffHorizIrrad">Diffuse horizontal irradiance of the sky in W/m^2</param>
+            <param name="dirNormIrrad">Direct normal irradiance of the sky in W/m^2</param>
+            <param name="globalHorizIrrad">Global horizontal irradiance of the sky in W/m^2</param>
+            <returns></returns>
         </member>
     </members>
 </doc>
