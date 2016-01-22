@@ -47,6 +47,34 @@ namespace RevitServices.Persistence
             StringID = (string) info.GetValue("stringID", typeof (string));
             IntID = (int)info.GetValue("intID", typeof(int));
         }
+
+        public override bool Equals(object other)
+        {
+            var sID = other as SerializableId;
+            if (sID == null)
+            {
+                return false;
+            }
+
+            if (this.IntID.Equals(sID.IntID) && this.StringID.Equals(sID.StringID))
+            {
+                return true;
+            }
+            return false;
+
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked // Overflow is fine, just wrap
+            {
+                int hash = 17;
+
+                hash = hash * 23 + StringID.GetHashCode();
+                hash = hash * 23 + IntID.ToString().GetHashCode();
+                return hash;
+            }
+        }
     }
 
 
@@ -114,6 +142,35 @@ namespace RevitServices.Persistence
         {
             StringIDs = new List<String>();
             IntIDs = new List<int>();
+        }
+
+        public override bool Equals(object other)
+        {
+            var mult = other as MultipleSerializableId;
+            if (mult == null)
+            {
+                return false;
+            }
+
+            if (this.IntIDs.SequenceEqual(mult.IntIDs) && this.StringIDs.SequenceEqual(mult.StringIDs))
+            {
+                return true;
+            }
+            return false;
+
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked // Overflow is fine, just wrap
+            {
+                int hash = 17;
+                //concat the strings and int ids into one string and get hashcode
+                //a multiserializableID with same IDs in different order will return not equal  
+                hash = hash * 23 + StringIDs.Aggregate((i, j) => i + " " + j).GetHashCode();
+                hash = hash * 23 + IntIDs.Select(x=>x.ToString()).Aggregate((i, j) => i + " " + j).GetHashCode();
+                return hash;
+            }
         }
     }
 
