@@ -272,6 +272,61 @@ namespace RevitServicesTests
             Assert.IsTrue(readback.StringIDs[1].Equals("{A79294BF-6D27-4B86-BEE9-D6921C11D495}"));
         }
 
+        [Test]
+        [Category("UnitTests")]
+        public void TwoInstancesOfMultSerializableIdAreEqual()
+        {
+            var elementIDs = new MultipleSerializableId
+            {
+                IntIDs = { 42, 20 },
+                StringIDs = { "{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}", "{A79294BF-6D27-4B86-BEE9-D6921C11D495}" }
+            };
+
+            var elementIDs2 = new MultipleSerializableId
+            {
+                IntIDs = { 42, 20 },
+                StringIDs = { "{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}", "{A79294BF-6D27-4B86-BEE9-D6921C11D495}" }
+            };
+
+            //Raw write
+            ElementBinder.SetRawDataForTrace(elementIDs);
+            elementIDs = null;
+
+            //Readback
+            var readback = (MultipleSerializableId)ElementBinder.GetRawDataFromTrace();
+
+            //verify that the id extracted from trace is equal to the new instance
+            Assert.IsTrue(readback.Equals(elementIDs2));
+
+        }
+
+        [Test]
+        [Category("UnitTests")]
+        public void TwoInstancesOfSerializableIdAreEqual()
+        {
+            var elementID = new SerializableId
+            {
+                IntID = 42,
+            StringID = "{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}"
+            };
+
+            var elementID2 = new SerializableId
+            {
+                IntID = 42,
+                StringID = "{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}"
+            };
+
+            //Raw write
+            ElementBinder.SetRawDataForTrace(elementID);
+            elementID = null;
+
+            //Readback
+            var readback = (SerializableId)ElementBinder.GetRawDataFromTrace();
+
+            //verify that the id extracted from trace is equal to the new instance
+            Assert.IsTrue(readback.Equals(elementID2));
+
+        }
 
     }
 }
