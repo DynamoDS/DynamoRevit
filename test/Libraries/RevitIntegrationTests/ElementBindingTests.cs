@@ -20,6 +20,7 @@ using Transaction = Autodesk.Revit.DB.Transaction;
 using DoubleSlider = CoreNodeModels.Input.DoubleSlider;
 using IntegerSlider = CoreNodeModels.Input.IntegerSlider;
 using Utils = RevitServices.Elements.ElementUtils;
+using Dynamo.Graph.Nodes;
 
 namespace RevitSystemTests
 {
@@ -690,6 +691,19 @@ namespace RevitSystemTests
             var refPts = Utils.AllElementsOfType<ReferencePoint>(doc);
             Assert.AreEqual(refPts.Count(), 0);
         }
+
+        [Test, TestModel(@".\ElementBinding\DynamoSample.rvt")]
+        public void Rebinding_ReboundAdaptiveComponentsAreNotDeleted()
+        {
+            var model = OpenElementBindingWorkspace("RebindingBatchedACs.dyn");
+            RunCurrentModel();
+            NodeModel adaptiveCompNode = model.CurrentWorkspace.Nodes.Where(x => x.NickName == "AdaptiveComponent.ByPoints").First();
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var familyInstances = Utils.AllElementsOfType<FamilyInstance>(doc);
+            Assert.AreEqual(9,adaptiveCompNode.GetValue(0, model.EngineController).GetElements().Select(x=>x.Data).ToList().Count);
+        }
+
 
         private DynamoModel OpenElementBindingWorkspace(string name)
         {
