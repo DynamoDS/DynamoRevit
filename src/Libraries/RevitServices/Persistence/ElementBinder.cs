@@ -56,24 +56,13 @@ namespace RevitServices.Persistence
                 return false;
             }
 
-            if (this.IntID.Equals(sID.IntID) && this.StringID.Equals(sID.StringID))
-            {
-                return true;
-            }
-            return false;
+            return (IntID.Equals(sID.IntID) && StringID.Equals(sID.StringID));
 
         }
 
         public override int GetHashCode()
         {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hash = 17;
-
-                hash = hash * 23 + StringID.GetHashCode();
-                hash = hash * 23 + IntID.ToString().GetHashCode();
-                return hash;
-            }
+            return StringID.GetHashCode() ^ IntID.GetHashCode();
         }
     }
 
@@ -152,27 +141,20 @@ namespace RevitServices.Persistence
                 return false;
             }
 
-            if (this.IntIDs.SequenceEqual(mult.IntIDs) && this.StringIDs.SequenceEqual(mult.StringIDs))
-            {
-                return true;
-            }
-            return false;
+            return this.IntIDs.SequenceEqual(mult.IntIDs) && this.StringIDs.SequenceEqual(mult.StringIDs);
+            
 
         }
 
         public override int GetHashCode()
         {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hash = 17;
-                //concat the strings and int ids into one string and get hashcode
-                //a multiserializableID with same IDs in different order will return not equal  
-                hash = hash * 23 + StringIDs.Aggregate((i, j) => i + " " + j).GetHashCode();
-                hash = hash * 23 + IntIDs.Select(x=>x.ToString()).Aggregate((i, j) => i + " " + j).GetHashCode();
-                return hash;
-            }
+            //concat the strings and int ids into one string and get hashcode and xor
+            //a multiserializableID with same IDs in different order will return not equal  
+            return StringIDs.Aggregate((i, j) => i + " " + j).GetHashCode() ^
+             IntIDs.Select(x => x.ToString()).Aggregate((i, j) => i + " " + j).GetHashCode();
+
+         }
         }
-    }
 
 
     /// <summary>
