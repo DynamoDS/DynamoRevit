@@ -62,7 +62,7 @@ namespace RevitServices.Persistence
 
         public override int GetHashCode()
         {
-            return StringID.GetHashCode() ^ IntID.GetHashCode();
+            return (StringID == null ? 0 : StringID.GetHashCode()) ^ (IntID.GetHashCode());
         }
     }
 
@@ -148,10 +148,11 @@ namespace RevitServices.Persistence
 
         public override int GetHashCode()
         {
+
             //concat the strings and int ids into one string and get hashcode and xor
             //a multiserializableID with same IDs in different order will return not equal  
-            return StringIDs.Aggregate((i, j) => i + " " + j).GetHashCode() ^
-             IntIDs.Select(x => x.ToString()).Aggregate((i, j) => i + " " + j).GetHashCode();
+            return (StringIDs == null ? 0 : StringIDs.Aggregate((i, j) => i + " " + j).GetHashCode()) ^
+             (IntIDs == null ? 0: IntIDs.Select(x => x.ToString()).Aggregate((i, j) => i + " " + j).GetHashCode());
 
          }
         }
