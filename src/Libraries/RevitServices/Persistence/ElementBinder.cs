@@ -47,6 +47,23 @@ namespace RevitServices.Persistence
             StringID = (string) info.GetValue("stringID", typeof (string));
             IntID = (int)info.GetValue("intID", typeof(int));
         }
+
+        public override bool Equals(object other)
+        {
+            var sID = other as SerializableId;
+            if (sID == null)
+            {
+                return false;
+            }
+
+            return (IntID.Equals(sID.IntID) && StringID.Equals(sID.StringID));
+
+        }
+
+        public override int GetHashCode()
+        {
+            return (StringID == null ? 0 : StringID.GetHashCode()) ^ (IntID.GetHashCode());
+        }
     }
 
 
@@ -115,7 +132,30 @@ namespace RevitServices.Persistence
             StringIDs = new List<String>();
             IntIDs = new List<int>();
         }
-    }
+
+        public override bool Equals(object other)
+        {
+            var mult = other as MultipleSerializableId;
+            if (mult == null)
+            {
+                return false;
+            }
+
+            return this.IntIDs.SequenceEqual(mult.IntIDs) && this.StringIDs.SequenceEqual(mult.StringIDs);
+            
+
+        }
+
+        public override int GetHashCode()
+        {
+
+            //concat the strings and int ids into one string and get hashcode and xor
+            //a multiserializableID with same IDs in different order will return not equal  
+            return (StringIDs == null ? 0 : StringIDs.Aggregate((i, j) => i + " " + j).GetHashCode()) ^
+             (IntIDs == null ? 0: IntIDs.Select(x => x.ToString()).Aggregate((i, j) => i + " " + j).GetHashCode());
+
+         }
+        }
 
 
     /// <summary>
