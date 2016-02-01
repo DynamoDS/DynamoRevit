@@ -233,16 +233,16 @@ namespace Dynamo.Applications.Models
 
         public override void PostTraceReconciliation(Dictionary<Guid, List<ISerializable>> orphanedSerializables)
         {
-            var orphanedIds = new List<int>();
+            var orphanedIds = new List<string>();
             var serializables =
                 orphanedSerializables
                 .SelectMany(kvp => kvp.Value)
                 .Where(x => x is ISerializable);
 
             orphanedIds.AddRange(serializables.Where(x => x is SerializableId).
-                Cast<SerializableId>().Select(sid => sid.IntID));
+                Cast<SerializableId>().Select(sid => sid.StringID));
             orphanedIds.AddRange(serializables.Where(x => x is MultipleSerializableId).
-                Cast<MultipleSerializableId>().SelectMany(sid => sid.IntIDs));
+                Cast<MultipleSerializableId>().SelectMany(sid => sid.StringIDs));
 
             if (!orphanedIds.Any())
                 return;
@@ -262,14 +262,14 @@ namespace Dynamo.Applications.Models
             }
         }
 
-        private static void DeleteOrphanedElements(IEnumerable<int> orphanedIds, ILogger logger)
+        private static void DeleteOrphanedElements(IEnumerable<string> orphanedIds, ILogger logger)
         {
             var toDelete = new List<ElementId>();
             foreach (var id in orphanedIds)
             {
                 // Check whether the element is valid before attempting to delete.
                 Element el;
-                if (DocumentManager.Instance.CurrentDBDocument.TryGetElement(new ElementId(id), out el))
+                if (DocumentManager.Instance.CurrentDBDocument.TryGetElement(id, out el))
                     toDelete.Add(el.Id);
             }
 
