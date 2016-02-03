@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -27,6 +27,8 @@ using RevitServices.Transactions;
 using Category = Revit.Elements.Category;
 using Element = Autodesk.Revit.DB.Element;
 using View = Autodesk.Revit.DB.View;
+using ProtoCore;
+using Dynamo.Graph.Nodes.ZeroTouch;
 
 namespace Dynamo.Applications.Models
 {
@@ -254,17 +256,84 @@ namespace Dynamo.Applications.Models
 
         #region trace reconciliation
 
+        /// <summary>
+        /// This method reconciles the current state of the host with the current trace data, in revit's case
+        /// deleting elements which have been orphaned and exist in trace but were not re-created
+        /// </summary>
+        /// <param name="orphanedSerializables"></param>
         public override void PostTraceReconciliation(Dictionary<Guid, List<ISerializable>> orphanedSerializables)
         {
-            var orphanedIds =
+            // because of multiSerialzableIDs some extra logic is 
+            // required to detect if one multiSerializableID is a subset of another, if thats the case we should not delete it.
+
+            //get all the currentTraceData again
+            RuntimeCore runtimeCore = null;
+            if (this.EngineController != null && (this.EngineController.LiveRunnerCore != null))
+                runtimeCore = this.EngineController.LiveRunnerRuntimeCore;
+
+            if (runtimeCore == null)
+                return;
+
+            //list of UUIDs we will remove from the list of orphans
+            var toRemove = new List<String>();
+
+            //foreach orphaned ID check 2 cases:
+            //1. an orphaned MultID is totally subset in one of the latest MultIDs
+            //2. the latest IDS are subset in a MultID in the orphan list
+            //in either of these cases we must remove the IDs from the orphan list so they are not deleted by accident
+            foreach (var orphan in orphanedSerializables)
+            {
+                //if there are no multiSeriializables in the orphan then we can skip this orphan
+                if (orphan.Value.OfType<MultipleSerializableId>().Count() == 0)
+                {
+                    continue;
+                }
+                // Selecting all nodes that are either a DSFunction,
+                // a DSVarArgFunction or a CodeBlockNodeModel into a list.
+                var nodeGuids = this.Workspaces.Where(x => x.Guid == orphan.Key).First().Nodes.Where((n) =>
+                {
+                    return (n is DSFunction
+                            || (n is DSVarArgFunction)
+                            || (n is CodeBlockNodeModel));
+                }).Select((n) => n.GUID);
+
+                //this is a list of all trace data for all nodes in the workspace of this orphan
+                var nodeTraceDataList = runtimeCore.RuntimeData.GetCallsitesForNodes(nodeGuids, runtimeCore.DSExecutable);
+               
+                //check each callsite's traceData against the orphans
+                foreach (var kvp in nodeTraceDataList)
+                {
+                    foreach (var cs in kvp.Value)
+                    {
+                        var currentSerializables = cs.TraceData.SelectMany(td => td.RecursiveGetNestedData());
+                        var currentStringIds = currentSerializables.OfType<MultipleSerializableId>().SelectMany(x => x.StringIDs).ToList();
+                        //if the orphaned serializable exists in the currentTraceData as as subset in a MultiSerializableID
+                        toRemove.AddRange(orphan.Value.OfType<MultipleSerializableId>().Where(x => currentSerializables.OfType<MultipleSerializableId>().Any(y => x.isSubset(y))).SelectMany(x=>x.StringIDs).ToList());
+                        //Or if one of the callsites traceData is subset in an orphan
+                        toRemove.AddRange(currentStringIds.Intersect(orphan.Value.OfType<MultipleSerializableId>().SelectMany(y => y.StringIDs)).ToList());
+                        //then remove it from the orphanList so we do not delete it later
+
+                    }
+                }
+            }
+           
+            var orphanedIds = new List<string>();
+            var serializables =
                 orphanedSerializables
-                .SelectMany(kvp=>kvp.Value)
-                .Cast<SerializableId>()
-                .Select(sid => sid.IntID).ToList();
+                .SelectMany(kvp => kvp.Value)
+                .Where(x => x is ISerializable);
+
+            orphanedIds.AddRange(serializables.Where(x => x is SerializableId).
+                Cast<SerializableId>().Select(sid => sid.StringID));
+            orphanedIds.AddRange(serializables.Where(x => x is MultipleSerializableId).
+                Cast<MultipleSerializableId>().SelectMany(sid => sid.StringIDs));
+
+            toRemove.ForEach(x => orphanedIds.Remove(x));
+            //the orphansIdsList is now free of elements that are subsets of newly created elements or Items that contain newly created elements
 
             if (!orphanedIds.Any())
                 return;
-
+            
             if (IsTestMode)
             {
                 DeleteOrphanedElements(orphanedIds, Logger);
@@ -280,14 +349,14 @@ namespace Dynamo.Applications.Models
             }
         }
 
-        private static void DeleteOrphanedElements(IEnumerable<int> orphanedIds, ILogger logger)
+        private static void DeleteOrphanedElements(IEnumerable<string> orphanedIds, ILogger logger)
         {
             var toDelete = new List<ElementId>();
             foreach (var id in orphanedIds)
             {
                 // Check whether the element is valid before attempting to delete.
                 Element el;
-                if (DocumentManager.Instance.CurrentDBDocument.TryGetElement(new ElementId(id), out el))
+                if (DocumentManager.Instance.CurrentDBDocument.TryGetElement(id, out el))
                     toDelete.Add(el.Id);
             }
 
