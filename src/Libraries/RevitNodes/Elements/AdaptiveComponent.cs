@@ -436,6 +436,7 @@ namespace Revit.Elements
                 {
                     var fi = oldInstances.ElementAt(i);
                     Document.Delete(fi.Id);
+
                 }
 
                 // Create new adaptive components
