@@ -251,8 +251,13 @@ namespace Dynamo.Applications.Models
             if (runtimeCore == null)
                 return;
 
+            //list of UUIDs we will remove from the list of orphans
             var toRemove = new List<String>();
 
+            //foreach orphaned ID check 2 cases:
+            //1. an orphaned MultID is totally subset in one of the latest MultIDs
+            //2. the latest IDS are subset in a MultID in the orphan list
+            //in either of these cases we must remove the IDs from the orphan list so they are not deleted by accident
             foreach (var orphan in orphanedSerializables)
             {
                 // Selecting all nodes that are either a DSFunction,
@@ -268,19 +273,19 @@ namespace Dynamo.Applications.Models
                 var nodeTraceDataList = runtimeCore.RuntimeData.GetCallsitesForNodes(nodeGuids, runtimeCore.DSExecutable);
                
                 //check each callsite's traceData against the orphans
-                //if the orphaned serializable exists in the currentTraceData as as subset in a MultiSerializableID
-                //then remove it from the orphanList so we do not delete it later
                 foreach (var kvp in nodeTraceDataList)
                 {
                     foreach (var cs in kvp.Value)
                     {
                         var currentSerializables = cs.TraceData.SelectMany(td => td.RecursiveGetNestedData());
                         var currentStringIds = currentSerializables.OfType<MultipleSerializableId>().SelectMany(x => x.StringIDs).ToList();
-
+                        //if the orphaned serializable exists in the currentTraceData as as subset in a MultiSerializableID
                         toRemove.AddRange(orphan.Value.OfType<MultipleSerializableId>().Where(x => currentSerializables.OfType<MultipleSerializableId>().Any(y => x.isSubset(y))).SelectMany(x=>x.StringIDs).ToList());
+                        //Or if one of the callsites traceData is subset in an orphan
                         toRemove.AddRange(currentStringIds.Intersect(orphan.Value.OfType<MultipleSerializableId>().SelectMany(y => y.StringIDs)).ToList());
-                    }
+                        //then remove it from the orphanList so we do not delete it later
 
+                    }
                 }
             }
            
@@ -296,8 +301,7 @@ namespace Dynamo.Applications.Models
                 Cast<MultipleSerializableId>().SelectMany(sid => sid.StringIDs));
 
             toRemove.ForEach(x => orphanedIds.Remove(x));
-            //the orphansList is now free of elements that are subsets of newly created element
-
+            //the orphansIdsList is now free of elements that are subsets of newly created elements or Items that contain newly created elements
 
             if (!orphanedIds.Any())
                 return;
