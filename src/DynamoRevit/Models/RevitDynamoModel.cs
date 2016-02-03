@@ -283,6 +283,11 @@ namespace Dynamo.Applications.Models
             //in either of these cases we must remove the IDs from the orphan list so they are not deleted by accident
             foreach (var orphan in orphanedSerializables)
             {
+                //if there are no multiSeriializables in the orphan then we can skip this orphan
+                if (orphan.Value.OfType<MultipleSerializableId>().Count() == 0)
+                {
+                    continue;
+                }
                 // Selecting all nodes that are either a DSFunction,
                 // a DSVarArgFunction or a CodeBlockNodeModel into a list.
                 var nodeGuids = this.Workspaces.Where(x => x.Guid == orphan.Key).First().Nodes.Where((n) =>
