@@ -102,7 +102,7 @@ namespace RevitServices.Persistence
             {
                 StringIDs.Add(element.UniqueId);
                 IntIDs.Add(element.Id.IntegerValue);
-            }            
+            }
         }
 
         /// <summary>
@@ -118,15 +118,15 @@ namespace RevitServices.Persistence
 
             for (int i = 0; i < numberOfElements; i++)
             {
-                string stringID = (string) info.GetValue("stringID-" + i, typeof (string));
-                int intID = (int) info.GetValue("intID-" + i, typeof (int));
+                string stringID = (string)info.GetValue("stringID-" + i, typeof(string));
+                int intID = (int)info.GetValue("intID-" + i, typeof(int));
 
                 StringIDs.Add(stringID);
                 IntIDs.Add(intID);
             }
 
         }
-        
+
         private void InitializeDataMembers()
         {
             StringIDs = new List<String>();
@@ -142,7 +142,7 @@ namespace RevitServices.Persistence
             }
 
             return this.IntIDs.SequenceEqual(mult.IntIDs) && this.StringIDs.SequenceEqual(mult.StringIDs);
-            
+
 
         }
 
@@ -152,16 +152,25 @@ namespace RevitServices.Persistence
             //concat the strings and int ids into one string and get hashcode and xor
             //a multiserializableID with same IDs in different order will return not equal  
             return (StringIDs == null ? 0 : StringIDs.Aggregate((i, j) => i + " " + j).GetHashCode()) ^
-             (IntIDs == null ? 0: IntIDs.Select(x => x.ToString()).Aggregate((i, j) => i + " " + j).GetHashCode());
+             (IntIDs == null ? 0 : IntIDs.Select(x => x.ToString()).Aggregate((i, j) => i + " " + j).GetHashCode());
 
-         }
         }
 
+        /// <summary>
+        /// this method tests if this multiSerializableId is contained in another
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public virtual bool isSubset(MultipleSerializableId other)
+        {
+            return !this.StringIDs.Except(other.StringIDs).Any();
+        }
 
-    /// <summary>
-    /// Class for handling unique ids in a typesafe ammner
-    /// </summary>
-    public class ElementUUID
+    }
+        /// <summary>
+        /// Class for handling unique ids in a typesafe ammner
+        /// </summary>
+        public class ElementUUID
     {
         public String UUID { get; set; }
 
