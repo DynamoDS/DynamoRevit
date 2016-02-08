@@ -92,7 +92,7 @@ namespace Revit.Elements
         /// </summary>
         public DateTime StartDateTime
         {
-            get { return InternalSunAndShadowSettings.StartDateAndTime; }
+            get { return TranslateTime(InternalSunAndShadowSettings.StartDateAndTime); }
 
         }
         
@@ -101,7 +101,7 @@ namespace Revit.Elements
         /// </summary>
         public DateTime EndDateTime
         {
-            get { return InternalSunAndShadowSettings.EndDateAndTime; }
+            get { return TranslateTime(InternalSunAndShadowSettings.EndDateAndTime); }
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Revit.Elements
         /// </summary>
         public DateTime CurrentDateTime
         {
-            get { return InternalSunAndShadowSettings.ActiveFrameTime; }
+            get { return TranslateTime(InternalSunAndShadowSettings.ActiveFrameTime); }
         }
 
         public override string ToString()
@@ -121,6 +121,25 @@ namespace Revit.Elements
                 InternalSunAndShadowSettings.Azimuth.ToDegrees()
                 );
         }
-        
+
+        /// <summary>
+        /// Fix for: http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-8993
+        /// 
+        /// StartDateAndTime, EndDateAndTime and ActiveFrameTime should return local datetime,
+        /// that is set in Revit project configuration.
+        /// But it returns customized datetime + user timezone offset, which is incorrect.
+        /// Althought in documentation it's said, 
+        /// that "The output value will be in Coordinated Universal Time (UTC), 
+        /// but input may be in local time as well."
+        /// There is no means to return local time.
+        /// </summary>
+        internal static DateTime TranslateTime(DateTime utc)
+        {
+            // Get user local hours offset.
+            var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow).Hours;
+
+            // Remove user local offset. Just leave pure revit datetime.
+            return utc.AddHours(offset);
+        }
     }
 }
