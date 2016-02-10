@@ -124,6 +124,11 @@ namespace Revit.Elements
             // Get user local hours offset.
             var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow).Hours;
 
+            if (TimeZoneInfo.Local.IsDaylightSavingTime(DateTime.UtcNow))
+            {
+                offset--;
+            }
+
             // Remove user local offset. Just leave pure revit datetime.
             return utc.AddHours(offset);
         }
