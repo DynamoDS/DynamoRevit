@@ -85,15 +85,15 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        ///     Gets the Start Date and Time of the solar study.
+        ///     Gets the Start Date and Time of the solar study given in the local time of the solar study location.  
         /// </summary>
         public DateTime StartDateTime
         {
             get { return TranslateTime(InternalSunAndShadowSettings.StartDateAndTime); }
         }
-        
+
         /// <summary>
-        ///     Gets the End Date and Time of the solar study.
+        ///     Gets the End Date and Time of the solar study given in the local time of the solar study location.  
         /// </summary>
         public DateTime EndDateTime
         {
@@ -101,7 +101,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        ///     Gets the Date and Time for the current frame of the solar study.
+        ///     Gets the Date and Time for the current frame of the solar study given in the local time of the solar study location.  
         /// </summary>
         public DateTime CurrentDateTime
         {
