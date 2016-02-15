@@ -85,28 +85,52 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        ///     Gets the Start Date and Time of the solar study.
+        ///     Gets the Start Date and Time of the solar study given in the local time of the solar study location.  
         /// </summary>
         public DateTime StartDateTime
         {
-            get { return InternalSunAndShadowSettings.StartDateAndTime; }
+            get { return TranslateTime(InternalSunAndShadowSettings.StartDateAndTime); }
         }
-        
+
         /// <summary>
-        ///     Gets the End Date and Time of the solar study.
+        ///     Gets the End Date and Time of the solar study given in the local time of the solar study location.  
         /// </summary>
         public DateTime EndDateTime
         {
-            get { return InternalSunAndShadowSettings.EndDateAndTime; }
+            get { return TranslateTime(InternalSunAndShadowSettings.EndDateAndTime); }
         }
 
         /// <summary>
-        ///     Gets the Date and Time for the current frame of the solar study.
+        ///     Gets the Date and Time for the current frame of the solar study given in the local time of the solar study location.  
         /// </summary>
         public DateTime CurrentDateTime
         {
-            get { return InternalSunAndShadowSettings.ActiveFrameTime; }
+            get { return TranslateTime(InternalSunAndShadowSettings.ActiveFrameTime); }
         }
 
+        /// <summary>
+        /// Fix for: http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-8993
+        /// 
+        /// StartDateAndTime, EndDateAndTime and ActiveFrameTime should return local datetime,
+        /// that is set in Revit project configuration.
+        /// But it returns customized datetime + user timezone offset, which is incorrect.
+        /// Althought in documentation it's said, 
+        /// that "The output value will be in Coordinated Universal Time (UTC), 
+        /// but input may be in local time as well."
+        /// There is no means to return local time.
+        /// </summary>
+        internal static DateTime TranslateTime(DateTime utc)
+        {
+            // Get user local hours offset.
+            var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow).Hours;
+
+            if (TimeZoneInfo.Local.IsDaylightSavingTime(DateTime.UtcNow))
+            {
+                offset--;
+            }
+
+            // Remove user local offset. Just leave pure revit datetime.
+            return utc.AddHours(offset);
+        }
     }
 }
