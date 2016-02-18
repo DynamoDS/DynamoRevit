@@ -71,7 +71,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             // Check for number of Family Instance Creation
-            var allElements = "e83c14bb-864f-4730-900f-0905dac6dcad";
+            var allElements = "272d86db-a124-48dd-9c41-6a3b17200e10";
             AssertPreviewCount(allElements, 10);
 
         }
