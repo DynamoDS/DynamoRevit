@@ -439,8 +439,8 @@ namespace Revit.Elements
         /// Please see InternalSetName method
         /// </summary>
         public override string ToString()
-        { 
-            return InternalDirectShape.Name;
+        {
+            return InternalDirectShape.IsValidObject ? InternalDirectShape.Name : String.Empty;
         }
     }
 }
