@@ -45,6 +45,9 @@
       <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GeoTimeZone">
+      <HintPath>..\..\packages\GeoTimeZone.1.1.0\lib\portable-net40+sl50+win+wp80\GeoTimeZone.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="RevitAPI">
       <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
