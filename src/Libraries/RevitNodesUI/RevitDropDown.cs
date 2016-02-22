@@ -448,9 +448,19 @@ namespace DSRevitNodesUI
                     continue;
                 }
 
-                if(category != null && category.Parent == null)
+                if(category != null)
                 {
-                    Items.Add(new DynamoDropDownItem(category.Name, categoryId));
+                    string name;
+                    if(category.Parent == null)
+                    {
+                        name = category.Name;
+                    }
+                    else
+                    {
+                        name = category.Parent.Name + " - " + category.Name;
+                    }
+
+                    Items.Add(new DynamoDropDownItem(name, categoryId));
                 }
             }
 
