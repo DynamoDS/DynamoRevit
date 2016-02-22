@@ -68,10 +68,29 @@ namespace Revit.Elements
                 throw new ArgumentNullException("name");
             }
 
+            // Find category using localized name
             Settings documentSettings = DocumentManager.Instance.CurrentDBDocument.Settings;
             var groups = documentSettings.Categories;
-            var builtInCat = (BuiltInCategory)Enum.Parse(typeof(BuiltInCategory), name);
-            var category = groups.get_Item(builtInCat);
+
+            Autodesk.Revit.DB.Category category = null;
+
+            if (groups.Contains(name))
+            {
+                category = groups.get_Item(name);
+            }
+
+            if(category == null)
+            {
+                // Fall back
+                // Use category enum name with or without OST_ prefix
+                var fullName = name.Length > 3 && name.Substring(0, 4) == "OST_" ? name : "OST_" + name;
+                var names = Enum.GetNames(typeof(BuiltInCategory));
+                if(System.Array.Exists(names, entry => entry == fullName))
+                {
+                    var builtInCat = (BuiltInCategory)Enum.Parse(typeof(BuiltInCategory), fullName);
+                    category = groups.get_Item(builtInCat);
+                }
+            }
 
             if (category == null)
             {
