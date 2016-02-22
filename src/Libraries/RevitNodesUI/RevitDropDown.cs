@@ -434,9 +434,25 @@ namespace DSRevitNodesUI
         public override void PopulateItems()
         {
             Items.Clear();
-            foreach (var constant in Enum.GetValues(typeof(BuiltInCategory)))
+            var document = DocumentManager.Instance.CurrentDBDocument;
+
+            foreach (BuiltInCategory categoryId in Enum.GetValues(typeof(BuiltInCategory)))
             {
-                Items.Add(new DynamoDropDownItem(constant.ToString().Substring(4), constant));
+                Autodesk.Revit.DB.Category category;
+                
+                try 
+                {
+                    category = Autodesk.Revit.DB.Category.GetCategory(document, categoryId);
+                }
+                catch
+                {
+                    continue;
+                }
+
+                if(category != null && category.Parent == null)
+                {
+                    Items.Add(new DynamoDropDownItem(category.Name, categoryId));
+                }
             }
 
             Items = Items.OrderBy(x => x.Name).ToObservableCollection();
@@ -444,15 +460,45 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
+            var document = DocumentManager.Instance.CurrentDBDocument;
+            BuiltInCategory categoryId = (BuiltInCategory) Items[SelectedIndex].Item;
+            Autodesk.Revit.DB.Category category = Autodesk.Revit.DB.Category.GetCategory(document, categoryId);
+
             var args = new List<AssociativeNode>
             {
-                AstFactory.BuildStringNode(((BuiltInCategory) Items[SelectedIndex].Item).ToString())
+                AstFactory.BuildStringNode(category.Name.ToString())
             };
 
             var func = new Func<string, Category>(Revit.Elements.Category.ByName);
             var functionCall = AstFactory.BuildFunctionCall(func, args);
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+        }
+        
+        protected override void DeserializeCore(XmlElement nodeElement, SaveContext context)
+        {
+            base.DeserializeCore(nodeElement, context);
+
+            if (SelectedIndex == -1)
+            {
+                var doc = DocumentManager.Instance.CurrentDBDocument;
+
+                var attrib = nodeElement.Attributes["index"];
+                if (attrib == null)
+                    return;
+
+                var index = attrib.Value;
+                var splits = index.Split(':');
+                if (splits.Count() > 1)
+                {
+                    var name = XmlUnescape(index.Substring(index.IndexOf(':') + 1));
+                    var newName = Revit.Elements.Category.ByName(name).Name;
+                    var item = Items.FirstOrDefault(i => i.Name == newName);
+                    SelectedIndex = item != null ?
+                        Items.IndexOf(item) :
+                        -1;
+                }
+            }
         }
     }
 
