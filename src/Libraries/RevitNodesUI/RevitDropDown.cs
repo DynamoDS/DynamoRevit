@@ -446,21 +446,13 @@ namespace DSRevitNodesUI
                 }
                 catch
                 {
+                    // We get here for internal/deprecated categories
                     continue;
                 }
 
-                if(category != null)
+                if (category != null)
                 {
-                    string name;
-                    if(category.Parent == null)
-                    {
-                        name = category.Name;
-                    }
-                    else
-                    {
-                        name = category.Parent.Name + " - " + category.Name;
-                    }
-
+                    string name = getFullName(category);
                     Items.Add(new DynamoDropDownItem(name, categoryId));
                 }
             }
@@ -473,10 +465,11 @@ namespace DSRevitNodesUI
             var document = DocumentManager.Instance.CurrentDBDocument;
             BuiltInCategory categoryId = (BuiltInCategory) Items[SelectedIndex].Item;
             Autodesk.Revit.DB.Category category = Autodesk.Revit.DB.Category.GetCategory(document, categoryId);
+            string name = getFullName(category);
 
             var args = new List<AssociativeNode>
             {
-                AstFactory.BuildStringNode(category.Name.ToString())
+                AstFactory.BuildStringNode(name)
             };
 
             var func = new Func<string, Category>(Revit.Elements.Category.ByName);
@@ -484,31 +477,64 @@ namespace DSRevitNodesUI
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
         }
-        
-        protected override void DeserializeCore(XmlElement nodeElement, SaveContext context)
+
+        protected override int ParseSelectedIndex(string index, IList<DynamoDropDownItem> items)
         {
-            base.DeserializeCore(nodeElement, context);
+            int selectedIndex = -1;
 
-            if (SelectedIndex == -1)
+            var splits = index.Split(':');
+            if (splits.Count() > 1)
             {
-                var doc = DocumentManager.Instance.CurrentDBDocument;
+                var name = XmlUnescape(index.Substring(index.IndexOf(':') + 1));
 
-                var attrib = nodeElement.Attributes["index"];
-                if (attrib == null)
-                    return;
+                // Lookup by built in category enum name (without the OST_ prefix)
+                var item = items.FirstOrDefault(i => ((BuiltInCategory)i.Item).ToString().Substring(4) == name);
+                selectedIndex = item != null ?
+                    items.IndexOf(item) :
+                    -1;
+            }
 
-                var index = attrib.Value;
-                var splits = index.Split(':');
-                if (splits.Count() > 1)
+
+            return selectedIndex;
+        }
+
+        protected override string SaveSelectedIndex(int index, IList<DynamoDropDownItem> items)
+        {
+            // If nothing is selected or there are no
+            // items in the collection, than return -1
+            if (index == -1 || items.Count == 0)
+            {
+                return "-1";
+            }
+
+            // Save the enum name for the category (without the OST_ prefix)
+            var item = items[index];
+            BuiltInCategory categoryId = (BuiltInCategory)item.Item;
+            return string.Format("{0}:{1}", index, XmlEscape(categoryId.ToString().Substring(4)));
+        }
+
+        private static string getFullName(Autodesk.Revit.DB.Category category)
+        {
+            string name = string.Empty;
+
+            if(category != null)
+            {
+                var parent = category.Parent;
+                if (parent == null)
                 {
-                    var name = XmlUnescape(index.Substring(index.IndexOf(':') + 1));
-                    var newName = Revit.Elements.Category.ByName(name).Name;
-                    var item = Items.FirstOrDefault(i => i.Name == newName);
-                    SelectedIndex = item != null ?
-                        Items.IndexOf(item) :
-                        -1;
+                    // Top level category
+                    // For example "Cable Trays"
+                    name = category.Name.ToString();
+                }
+                else
+                {
+                    // Sub-category
+                    // For example "Cable Tray - Center Lines"
+                    name = parent.Name.ToString() + " - " + category.Name.ToString();
                 }
             }
+
+            return name;
         }
     }
 
