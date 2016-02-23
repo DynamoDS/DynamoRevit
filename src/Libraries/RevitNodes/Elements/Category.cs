@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
@@ -26,13 +27,21 @@ namespace Revit.Elements
         #region public properties
 
         /// <summary>
-        /// The name of the Category.
+        /// The name of the Category.   
         /// </summary>
         public string Name
         {
             get
             {
-                return internalCategory.Name;
+                var parent = internalCategory.Parent;
+                if(parent == null)
+                {
+                    return internalCategory.Name;
+                }
+                else
+                {
+                    return internalCategory.Parent.Name + " - " + internalCategory.Name;
+                }
             }
         }
 
@@ -73,13 +82,28 @@ namespace Revit.Elements
             var groups = documentSettings.Categories;
 
             Autodesk.Revit.DB.Category category = null;
-
-            if (groups.Contains(name))
+            var splits = name.Split('-');
+            if(splits.Count() > 1)
+            {
+                var parentName = splits[0].TrimEnd(' ');
+                if(groups.Contains(parentName))
+                {
+                    var parentCategory = groups.get_Item(parentName);
+                    if(parentCategory != null)
+                    {
+                        var subName = splits[1].TrimStart(' ');
+                        if(parentCategory.SubCategories.Contains(subName))
+                        {
+                            category = parentCategory.SubCategories.get_Item(subName);
+                        }
+                    }
+                }
+            }
+            else if (groups.Contains(name))
             {
                 category = groups.get_Item(name);
             }
-
-            if(category == null)
+            else
             {
                 // Fall back
                 // Use category enum name with or without OST_ prefix
@@ -104,7 +128,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return internalCategory != null ? internalCategory.Name : string.Empty;
+            return internalCategory != null ? Name : string.Empty;
         }
     }
 }
