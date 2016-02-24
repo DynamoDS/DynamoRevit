@@ -6,6 +6,7 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using Autodesk.RevitAddIns;
 using DynamoInstallDetective;
+using System.Collections.Generic;
 
 namespace DynamoAddinGenerator
 {
@@ -109,9 +110,29 @@ namespace DynamoAddinGenerator
             {
                 Console.WriteLine("Generating addins in {0}", prod.AddinsFolder);
 
+                //Iterate in reverse order to find the first dynamo that is supported for
+                //this revit product
+                var subfolder = prod.VersionString.Insert(5, "_");
+                var dynRevitProducts = DynamoInstallDetective.Utilities.FindProductInstallations("Dynamo Revit", subfolder + "/DynamoRevitDS.dll");
+                if (null == dynRevitProducts)
+                {
+                    Console.WriteLine("Dynamo Revit Not Installed!");
+                }
+                foreach (KeyValuePair<string, Tuple<int, int, int, int>> dynRevitProd in dynRevitProducts)
+                {
+                    var path = Path.Combine(dynRevitProd.Key, subfolder, "DynamoRevitVersionSelector.dll");
+                    if (File.Exists(path))
+                    {
+                        var addinData = DynamoAddinData.Create(prod, dynRevitProd.Key, dynamoUninstallPath);
+                        if (null != addinData)
+                            GenerateDynamoAddin(addinData);
+                    }
+                }
+                /*
                 var addinData = DynamoAddinData.Create(prod, dynamos, dynamoUninstallPath);
                 if (null != addinData)
                     GenerateDynamoAddin(addinData);    
+                */
             }
         }
         

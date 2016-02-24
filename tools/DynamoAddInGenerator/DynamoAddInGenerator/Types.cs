@@ -106,11 +106,13 @@ namespace DynamoAddinGenerator
         /// <param name="dynamoUninstallPath">dynamo path being uninstalled, can be 
         /// null or empty string</param>
         /// <returns>DynamoAddinData</returns>
-        public static DynamoAddinData Create(IRevitProduct revit, DynamoProducts dynamos, string dynamoUninstallPath)
+        public static DynamoAddinData Create(IRevitProduct revit, string dynRevitDirectory, string dynamoUninstallPath)
+        //IRevitProduct revit, DynamoProducts dynamos, string dynamoUninstallPath)
         {
+            return new DynamoAddinData(revit, new DynamoInstall(dynRevitDirectory));
             //Iterate in reverse order to find the first dynamo that is supported for
             //this revit product
-            var dynProducts = dynamos.Products.Reverse();
+            /*var dynProducts = dynamos.Products.Reverse();
             var subfolder = revit.VersionString.Insert(5, "_");
             var dynRevitProducts = DynamoInstallDetective.Utilities.FindProductInstallations("Dynamo Revit", subfolder+"/DynamoRevitDS.dll");
             if (null == dynRevitProducts)
@@ -126,19 +128,10 @@ namespace DynamoAddinGenerator
                 if (File.Exists(path))
                 {
                     return new DynamoAddinData(revit, new DynamoInstall(dynRevitProd.Key));
-                    /*
-                    foreach (var dynProd in dynProducts)
-                    {
-                        //If the current product is being uninstalled, don't generate addin data
-                        if (DynamoInstall.PathEquals(dynProd.InstallLocation, dynamoUninstallPath))
-                            continue;
-                        return new DynamoAddinData(revit, new DynamoInstall(dynProd.InstallLocation));
-                    }
-                    */
                 }
             }
             Console.WriteLine("Something went wrong :/");
-            return null;
+            return null;*/
         }
     }
 
