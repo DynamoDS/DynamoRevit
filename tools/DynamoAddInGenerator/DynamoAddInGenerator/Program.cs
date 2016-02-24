@@ -23,14 +23,11 @@ namespace DynamoAddinGenerator
                 else if (Directory.Exists(s))
                     debugPath = s;
             }
-            //Console.WriteLine(debugPath);
             if (uninstall && string.IsNullOrEmpty(debugPath))
             {
                 //just use the executing assembly location
-                var assemblyPath = Assembly.GetExecutingAssembly().Location;
-                
-                debugPath = Path.GetDirectoryName(assemblyPath);
-                
+                var assemblyPath = Assembly.GetExecutingAssembly().Location;         
+                debugPath = Path.GetDirectoryName(assemblyPath);              
             }
 
             var allProducts = RevitProductUtility.GetAllInstalledRevitProducts();
@@ -53,7 +50,6 @@ namespace DynamoAddinGenerator
 
             GenerateAddins(prodCollection, dynamos, uninstall ? debugPath : string.Empty);
 
-            //Console.ReadLine();
         }
 
         /// <summary>
@@ -108,28 +104,14 @@ namespace DynamoAddinGenerator
         /// on this system.</param>
         /// <param name="dynamoUninstallPath">Path of Dynamo being uninstalled</param>
         internal static void GenerateAddins(IRevitProductCollection products, DynamoProducts dynamos, string dynamoUninstallPath = "")
-            //IRevitProductCollection products, 
-           // string dynamoRevitInstalledPath, 
-           // string uninstallPath = "")
         {
             foreach (var prod in products.Products)
             {
-                /*
-                if (DynamoInstall.PathEquals(dynamoRevitInstalledPath, uninstallPath))
-                    continue;
-
-                Console.WriteLine("Generating addins in {0}", prod.AddinsFolder);
-
-                var addinData = DynamoAddinData.Create(prod, debugPath);
-                if (null != addinData)
-                    GenerateDynamoAddin(addinData);
-                */
                 Console.WriteLine("Generating addins in {0}", prod.AddinsFolder);
 
                 var addinData = DynamoAddinData.Create(prod, dynamos, dynamoUninstallPath);
                 if (null != addinData)
-                    GenerateDynamoAddin(addinData);
-                
+                    GenerateDynamoAddin(addinData);    
             }
         }
         
