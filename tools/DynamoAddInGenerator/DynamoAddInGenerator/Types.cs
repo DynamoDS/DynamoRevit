@@ -125,6 +125,8 @@ namespace DynamoAddinGenerator
                 var path = Path.Combine(dynRevitProd.Key, subfolder, "DynamoRevitVersionSelector.dll");
                 if (File.Exists(path))
                 {
+                    return new DynamoAddinData(revit, new DynamoInstall(dynRevitProd.Key));
+                    /*
                     foreach (var dynProd in dynProducts)
                     {
                         //If the current product is being uninstalled, don't generate addin data
@@ -132,6 +134,7 @@ namespace DynamoAddinGenerator
                             continue;
                         return new DynamoAddinData(revit, new DynamoInstall(dynProd.InstallLocation));
                     }
+                    */
                 }
             }
             Console.WriteLine("Something went wrong :/");
