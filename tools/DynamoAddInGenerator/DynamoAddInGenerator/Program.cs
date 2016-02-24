@@ -49,7 +49,8 @@ namespace DynamoAddinGenerator
 
             DeleteExistingAddins(prodCollection);
 
-            GenerateAddins(prodCollection, dynamos, uninstall ? debugPath : string.Empty);
+            if(!uninstall)
+                GenerateAddins(prodCollection);
 
         }
 
@@ -104,14 +105,12 @@ namespace DynamoAddinGenerator
         /// <param name="dynamos">DynamoProducts, a collection of installed Dynamo
         /// on this system.</param>
         /// <param name="dynamoUninstallPath">Path of Dynamo being uninstalled</param>
-        internal static void GenerateAddins(IRevitProductCollection products, DynamoProducts dynamos, string dynamoUninstallPath = "")
+        internal static void GenerateAddins(IRevitProductCollection products)
         {
             foreach (var prod in products.Products)
             {
                 Console.WriteLine("Generating addins in {0}", prod.AddinsFolder);
 
-                //Iterate in reverse order to find the first dynamo that is supported for
-                //this revit product
                 var subfolder = prod.VersionString.Insert(5, "_");
                 var dynRevitProducts = DynamoInstallDetective.Utilities.FindProductInstallations("Dynamo Revit", subfolder + "/DynamoRevitDS.dll");
                 if (null == dynRevitProducts)
@@ -123,16 +122,11 @@ namespace DynamoAddinGenerator
                     var path = Path.Combine(dynRevitProd.Key, subfolder, "DynamoRevitVersionSelector.dll");
                     if (File.Exists(path))
                     {
-                        var addinData = DynamoAddinData.Create(prod, dynRevitProd.Key, dynamoUninstallPath);
+                        var addinData = DynamoAddinData.Create(prod, dynRevitProd.Key);
                         if (null != addinData)
                             GenerateDynamoAddin(addinData);
                     }
                 }
-                /*
-                var addinData = DynamoAddinData.Create(prod, dynamos, dynamoUninstallPath);
-                if (null != addinData)
-                    GenerateDynamoAddin(addinData);    
-                */
             }
         }
         

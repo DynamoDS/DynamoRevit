@@ -102,36 +102,13 @@ namespace DynamoAddinGenerator
         /// based on latest Dynamo installed on the system.
         /// </summary>
         /// <param name="revit">Revit Product for which addin to be generated </param>
-        /// <param name="dynamos">Dynamo products installed on the system</param>
+        /// <param name="dynRevitDirectory">Current Dynamo Revit Directory</param>
         /// <param name="dynamoUninstallPath">dynamo path being uninstalled, can be 
         /// null or empty string</param>
         /// <returns>DynamoAddinData</returns>
-        public static DynamoAddinData Create(IRevitProduct revit, string dynRevitDirectory, string dynamoUninstallPath)
-        //IRevitProduct revit, DynamoProducts dynamos, string dynamoUninstallPath)
+        public static DynamoAddinData Create(IRevitProduct revit, string dynRevitDirectory)
         {
             return new DynamoAddinData(revit, new DynamoInstall(dynRevitDirectory));
-            //Iterate in reverse order to find the first dynamo that is supported for
-            //this revit product
-            /*var dynProducts = dynamos.Products.Reverse();
-            var subfolder = revit.VersionString.Insert(5, "_");
-            var dynRevitProducts = DynamoInstallDetective.Utilities.FindProductInstallations("Dynamo Revit", subfolder+"/DynamoRevitDS.dll");
-            if (null == dynRevitProducts)
-            {
-                Console.WriteLine("Dynamo Revit Not Installed!");
-                return null;
-            }
-            foreach (KeyValuePair<string, Tuple<int, int, int, int>> dynRevitProd in dynRevitProducts)
-            {
-                var dynRevitVersion = (dynRevitProd.Value.Item1.ToString() + "." + dynRevitProd.Value.Item2.ToString());
-
-                var path = Path.Combine(dynRevitProd.Key, subfolder, "DynamoRevitVersionSelector.dll");
-                if (File.Exists(path))
-                {
-                    return new DynamoAddinData(revit, new DynamoInstall(dynRevitProd.Key));
-                }
-            }
-            Console.WriteLine("Something went wrong :/");
-            return null;*/
         }
     }
 
