@@ -63,5 +63,27 @@ namespace RevitSystemTests
                 t.Commit();
             }
         }
+
+        [Test, TestModel(@".\BostonWinter.rvt")]
+        public void SunSettings_WinterTime()
+        {
+            OpenAndRunDynamoDefinition(@".\SunSettings\SunSettings.dyn");
+            var startDateTime = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == "6e9db4f7-7a5c-4b98-8a35-9dc8468b1da9");
+            var endDateTime = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == "1755c546-86bf-46d8-8912-f3cf8215c7ee");
+
+            Assert.IsNotNull(startDateTime);
+            Assert.IsNotNull(endDateTime);
+        }
+
+        [Test, TestModel(@".\BostonSummer.rvt")]
+        public void SunSettings_SummerTime()
+        {
+            OpenAndRunDynamoDefinition(@".\SunSettings\SunSettings.dyn");
+            var startDateTime = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == "6e9db4f7-7a5c-4b98-8a35-9dc8468b1da9");
+            var endDateTime = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == "1755c546-86bf-46d8-8912-f3cf8215c7ee");
+
+            Assert.IsNotNull(startDateTime);
+            Assert.IsNotNull(endDateTime);
+        }
     }
 }
