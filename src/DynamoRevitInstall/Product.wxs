@@ -23,11 +23,11 @@
     <!--==============================================================================================================================-->
     <!-- $(var.base)\src\DynamoAddInGenerator\bin\Release\DynamoAddinGenerator.exe -->
     <CustomAction Id="GenerateRevitAddin.SetProperty" Property="GenerateRevitAddin"
-                  Value="&quot;$(var.base)\tools\install\Extra\DynamoAddinGenerator.exe&quot; &quot;[ProgramFiles64Folder]$(var.ProductName) $(var.Major).$(var.Minor)&quot;" />
+                  Value="&quot;$(var.base)\tools\DynamoAddInGenerator\DynamoAddInGenerator\bin\Release\DynamoAddinGenerator.exe&quot; &quot;[ProgramFiles64Folder]$(var.ProductName) $(var.Major).$(var.Minor)&quot;" />
     <CustomAction Id="GenerateRevitAddin" Return="ignore" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Impersonate="no" />
 
     <CustomAction Id="RemoveRevitAddin.SetProperty" Property="RemoveRevitAddin"
-                  Value="&quot;$(var.base)\tools\install\Extra\DynamoAddinGenerator.exe&quot; /uninstall &quot;[ProgramFiles64Folder]$(var.ProductName) $(var.Major).$(var.Minor)&quot;" />
+                  Value="&quot;$(var.base)\tools\DynamoAddInGenerator\DynamoAddInGenerator\bin\Release\DynamoAddinGenerator.exe&quot; /uninstall &quot;[ProgramFiles64Folder]$(var.ProductName) $(var.Major).$(var.Minor)&quot;" />
     <CustomAction Id="RemoveRevitAddin" Return="ignore" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Impersonate="no" />
 
     <InstallExecuteSequence>
