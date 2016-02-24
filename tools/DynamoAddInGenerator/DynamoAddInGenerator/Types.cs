@@ -103,8 +103,6 @@ namespace DynamoAddinGenerator
         /// </summary>
         /// <param name="revit">Revit Product for which addin to be generated </param>
         /// <param name="dynRevitDirectory">Current Dynamo Revit Directory</param>
-        /// <param name="dynamoUninstallPath">dynamo path being uninstalled, can be 
-        /// null or empty string</param>
         /// <returns>DynamoAddinData</returns>
         public static DynamoAddinData Create(IRevitProduct revit, string dynRevitDirectory)
         {

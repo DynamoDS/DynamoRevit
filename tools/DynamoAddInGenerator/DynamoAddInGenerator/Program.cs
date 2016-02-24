@@ -102,9 +102,6 @@ namespace DynamoAddinGenerator
         /// versions of Revit.
         /// </summary>
         /// <param name="products">A collection of revit installs.</param>
-        /// <param name="dynamos">DynamoProducts, a collection of installed Dynamo
-        /// on this system.</param>
-        /// <param name="dynamoUninstallPath">Path of Dynamo being uninstalled</param>
         internal static void GenerateAddins(IRevitProductCollection products)
         {
             foreach (var prod in products.Products)
