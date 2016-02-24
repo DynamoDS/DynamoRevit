@@ -118,7 +118,7 @@ namespace Revit.Elements
 
             if (category == null)
             {
-                throw new Exception(Properties.Resources.InvalidCategory);
+                throw new ArgumentException(Properties.Resources.InvalidCategory);
             }
 
             return new Category(category);
