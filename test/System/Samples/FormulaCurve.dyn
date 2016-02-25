@@ -28,7 +28,7 @@
     </Dynamo.Nodes.DoubleSlider>
     <Dynamo.Nodes.DSFunction type="Dynamo.Nodes.DSFunction" guid="f711cca7-941e-44d8-b784-be6e8f2e4b23" nickname="Point.ByCoordinates" x="949" y="200" isVisible="true" isUpstreamVisible="true" lacing="Longest" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double" />
     <Dynamo.Nodes.DSFunction type="Dynamo.Nodes.DSFunction" guid="ed70cbe7-3279-4a64-be32-5ff1408983e8" nickname="Geometry.Scale" x="1187" y="200" isVisible="true" isUpstreamVisible="true" lacing="Longest" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Geometry.Scale@double" />
-    <Dynamo.Nodes.DSFunction type="Dynamo.Nodes.DSFunction" guid="66594b87-5a42-438a-b5da-1a4a778f6baa" nickname="NurbsCurve.ByPoints" x="1469" y="200" isVisible="true" isUpstreamVisible="true" lacing="Longest" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.NurbsCurve.ByPoints@Autodesk.DesignScript.Geometry.Point[]" />
+    <Dynamo.Nodes.DSFunction type="Dynamo.Nodes.DSFunction" guid="66594b87-5a42-438a-b5da-1a4a778f6baa" nickname="NurbsCurve.ByPoints" x="1469" y="200" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.NurbsCurve.ByPoints@Autodesk.DesignScript.Geometry.Point[]" />
     <Dynamo.Nodes.Watch3D type="Dynamo.Nodes.Watch3D" guid="5102c8fc-ccf5-48f3-b05b-75206d844a7e" nickname="Watch 3D" x="1744" y="254" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
       <view width="229" height="378">
         <camera pos_x="9.63734561517462" pos_y="14.5612010442481" pos_z="6.16532736712495" look_x="-9.63734561517462" look_y="-14.5612010442481" look_z="-6.16632736712495" />
