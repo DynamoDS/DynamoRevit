@@ -45,6 +45,17 @@
     <NoWarn>618</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Install|AnyCPU'">
+    <DebugSymbols>false</DebugSymbols>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <WarningLevel>3</WarningLevel>
+    <NoWarn>618</NoWarn>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoRaaSHelper">
       <HintPath>$(DynamoExternPath)\DynamoRaaS\DynamoRaaSHelper.dll</HintPath>

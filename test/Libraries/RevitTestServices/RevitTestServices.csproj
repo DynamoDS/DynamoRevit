@@ -34,6 +34,15 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Install|AnyCPU'">
+    <OutputPath>bin\Install\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoShapeManager">
       <HintPath>$(DYNAMOAPI)\DynamoShapeManager.dll</HintPath>
@@ -114,11 +123,10 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
     <ItemGroup>
-      <DllConfig Include="$(ProjectDir)TestServices.dll.config"/>
+      <DllConfig Include="$(ProjectDir)TestServices.dll.config" />
     </ItemGroup>
     <Copy SourceFiles="@(DllConfig)" DestinationFolder="$(TestOutputPath)" />
   </Target>
-
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

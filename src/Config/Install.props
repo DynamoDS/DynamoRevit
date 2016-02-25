@@ -3,8 +3,12 @@
   <ImportGroup Label="PropertySheets" Condition=" Exists('$(SolutionDir)Config/user_local.props') ">
     <Import Project="$(SolutionDir)Config/user_local.props" />
   </ImportGroup>
+  <PropertyGroup>
+	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
+	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(OutputPath)</TestOutputPath>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
     <InstallOutputPath Condition=" '$(InstallOutputPath)' == '' ">$(MSBuildProjectDirectory)\bin\$(Platform)\$(Configuration)</InstallOutputPath>
     <DYNAMO_BASE_PATH  Condition=" '$(DYNAMO_BASE_PATH)' == '' ">$(OutputPath)..\..\..\..\..</DYNAMO_BASE_PATH>
     <DYNAMO_HARVEST_PATH Condition=" '$(DYNAMO_HARVEST_PATH)' == '' ">$(MSBuildProjectDirectory)\harvest\$(REVIT_VERSION)</DYNAMO_HARVEST_PATH>
@@ -21,7 +25,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
     <InstallOutputPath Condition=" '$(InstallOutputPath)' == '' ">$(MSBuildProjectDirectory)\bin\$(Platform)\$(Configuration)</InstallOutputPath>
     <DYNAMO_BASE_PATH  Condition=" '$(DYNAMO_BASE_PATH)' == '' ">$(OutputPath)..\..\..\..\..</DYNAMO_BASE_PATH>
     <DYNAMO_HARVEST_PATH Condition=" '$(DYNAMO_HARVEST_PATH)' == '' ">$(MSBuildProjectDirectory)\harvest\$(REVIT_VERSION)</DYNAMO_HARVEST_PATH>
