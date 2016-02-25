@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -192,40 +193,152 @@ namespace Dynamo.Applications.ViewModel
             var surf = item as Surface;
             if (surf != null)
             {
-                geoms.AddRange(surf.ToRevitType());
+                geoms.AddRange(Tessellate(surf));
                 return;
             }
 
             var solid = item as Solid;
             if (solid != null)
             {
-                geoms.AddRange(solid.ToRevitType());
+                geoms.AddRange(Tessellate(solid));
             }
         }
 
+        /// <summary>
+        /// Tessellate the curve:
+        /// 1). If there are more than 2 points, create a polyline out of the points;
+        /// 2). If there are exactly 2 points, create a line;
+        /// 3). If there's exception thrown during the tessellation process, attempt to create 
+        /// a line from start and end points. If that fails, a point will be created instead.
+        /// </summary>
+        /// <param name="curve"></param>
+        /// <returns></returns>
         private IEnumerable<GeometryObject> Tessellate(Curve curve)
         {
             var result = new List<GeometryObject>();
-
-            // use the ASM tesselation of the curve
-            var pkg = renderPackageFactory.CreateRenderPackage();
-            curve.Tessellate(pkg, renderPackageFactory.TessellationParameters);
-
-            // get necessary info to enumerate and convert the lines
-            //var lineCount = pkg.LineVertexCount * 3 - 3;
-            var verts = pkg.LineStripVertices.ToList();
-
-            // we scale the tesselation rather than the curve
-            var conv = UnitConverter.DynamoToHostFactor(UnitType.UT_Length);
-
-            var scaledXYZs = new List<XYZ>();
-            for (var i = 0; i < verts.Count; i+= 3)
+            try
             {
-                scaledXYZs.Add(new XYZ(verts[i] * conv, verts[i + 1] * conv, verts[i + 2] * conv));
+                // we scale the tesselation rather than the curve
+                var conv = UnitConverter.DynamoToHostFactor(UnitType.UT_Length);
+
+                // use the ASM tesselation of the curve
+                var pkg = renderPackageFactory.CreateRenderPackage();
+                curve.Tessellate(pkg, renderPackageFactory.TessellationParameters);
+
+                // get necessary info to enumerate and convert the lines
+                //var lineCount = pkg.LineVertexCount * 3 - 3;
+                var verts = pkg.LineStripVertices.ToList();
+
+                if (verts.Count > 2)
+                {
+                    var scaledXYZs = new List<XYZ>();
+                    for (var i = 0; i < verts.Count; i += 3)
+                    {
+                        scaledXYZs.Add(new XYZ(verts[i] * conv, verts[i + 1] * conv, verts[i + 2] * conv));
+                    }
+                    result.Add(PolyLine.Create(scaledXYZs));
+                }
+                else if (verts.Count == 2)
+                {
+                    result.Add(Line.CreateBound(curve.StartPoint.ToXyz(), curve.EndPoint.ToXyz()));
+                }
             }
-            result.Add(PolyLine.Create(scaledXYZs));
+            catch (Exception)
+            {
+                // Add a red bounding box geometry to identify that some errors occur
+                var bbox = curve.BoundingBox;
+                result.AddRange(ProtoToRevitMesh.CreateBoundingBoxMeshForErrors(bbox.MinPoint, bbox.MaxPoint));
+
+                try
+                {
+                    result.Add(Line.CreateBound(curve.StartPoint.ToXyz(), curve.EndPoint.ToXyz()));
+                }
+                catch (Exception)
+                {
+                    try
+                    {
+                        result.Add(Autodesk.Revit.DB.Point.Create(curve.StartPoint.ToXyz()));
+                    }
+                    catch (ArgumentException)
+                    {
+                        //if either the X, Y or Z of the point is infinite, no need to add it for preview
+                    }
+                }
+            }
 
             return result;
+        }
+
+        /// <summary>
+        /// Tessellate the surface by calling the ToRevitType function.
+        /// If it fails, each edge of the surface will be tessellated instead by calling
+        /// the correspoinding Tessellate method.
+        /// </summary>
+        /// <param name="surface"></param>
+        /// <returns></returns>
+        private List<GeometryObject> Tessellate(Surface surface)
+        {
+            List<GeometryObject> rtGeoms = new List<GeometryObject>();
+
+            try
+            {
+                rtGeoms.AddRange(surface.ToRevitType());
+            }
+            catch (Exception)
+            {
+                // Add a red bounding box geometry to identify that some errors occur
+                var bbox = surface.BoundingBox;
+                rtGeoms.AddRange(ProtoToRevitMesh.CreateBoundingBoxMeshForErrors(bbox.MinPoint, bbox.MaxPoint));
+
+                foreach (var edge in surface.Edges)
+                {
+                    if (edge != null)
+                    {
+                        var curveGeometry = edge.CurveGeometry;
+                        rtGeoms.AddRange(Tessellate(curveGeometry));
+                        curveGeometry.Dispose();
+                        edge.Dispose();
+                    }
+                }
+            }
+
+            return rtGeoms;
+        }
+
+        /// <summary>
+        /// Tessellate the solid by calling the ToRevitType function.
+        /// If it fails, the surface geometry of each face of the solid will be tessellated
+        /// instead by calling the correspoinding Tessellate method.
+        /// </summary>
+        /// <param name="solid"></param>
+        /// <returns></returns>
+        private List<GeometryObject> Tessellate(Solid solid)
+        {
+            List<GeometryObject> rtGeoms = new List<GeometryObject>();
+
+            try
+            {
+                rtGeoms.AddRange(solid.ToRevitType());
+            }
+            catch(Exception)
+            {
+                // Add a red bounding box geometry to identify that some errors occur
+                var bbox = solid.BoundingBox;
+                rtGeoms.AddRange(ProtoToRevitMesh.CreateBoundingBoxMeshForErrors(bbox.MinPoint, bbox.MaxPoint));
+
+                foreach (var face in solid.Faces)
+                {
+                    if (face != null)
+                    {
+                        var surfaceGeometry = face.SurfaceGeometry();
+                        rtGeoms.AddRange(Tessellate(surfaceGeometry));
+                        surfaceGeometry.Dispose();
+                        face.Dispose();
+                    }
+                }
+            }
+
+            return rtGeoms;
         }
 
         /// <summary>
