@@ -8,7 +8,7 @@
     <Dynamo.Nodes.DoubleInput type="Dynamo.Nodes.DoubleInput" guid="69f1c316-432f-49df-a941-ac965d0b9e2f" nickname="Number" x="488.259518259518" y="396.510101010101" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
       <System.Double value="0..100..3" />
     </Dynamo.Nodes.DoubleInput>
-    <Dynamo.Nodes.TopographyFromPoints type="Dynamo.Nodes.TopographyFromPoints" guid="a0b02f6c-a144-4267-b62c-31983661aefa" nickname="Topography From Points" x="1866.41414141413" y="396.482323232323" isVisible="true" isUpstreamVisible="true" lacing="Longest">
+    <Dynamo.Nodes.TopographyFromPoints type="Dynamo.Nodes.TopographyFromPoints" guid="a0b02f6c-a144-4267-b62c-31983661aefa" nickname="Topography From Points" x="1866.41414141413" y="396.482323232323" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
       <Run>
         <Element>db96aba6-f5bc-4081-9b66-33fd78e85289-0002cf4f</Element>
       </Run>
