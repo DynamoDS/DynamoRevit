@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
 
-  <Product Id="6F1B7397-5DED-400D-90BE-135E05091DB3"
-           Name="Dynamo Revit 0.8.0"
+  <Product Id="6F1B7397-5DED-400D-90BE-135E05091DB4"
+           Name="$(var.ProductName) $(var.Major).$(var.Minor).$(var.Rev)"
            Language="1033"
-           Version="0.8.0"
+           Version="$(var.Major).$(var.Minor).$(var.Rev)"
            Manufacturer="Dynamo"
-           UpgradeCode="2baac14c-bcc4-423b-baec-7b3acecd6d12">
+           UpgradeCode="2baac14c-bcc4-423b-baec-7b3acecd6d13">
 
     <Package InstallerVersion="200"
              Compressed="yes"
@@ -19,17 +20,36 @@
 
     <MediaTemplate EmbedCab="yes" />
 
+    <!--==============================================================================================================================-->
+    <!-- $(var.base)\src\DynamoAddInGenerator\bin\Release\DynamoAddinGenerator.exe -->
+    <CustomAction Id="GenerateRevitAddin.SetProperty" Property="GenerateRevitAddin"
+                  Value="&quot;$(var.base)\tools\DynamoAddInGenerator\DynamoAddInGenerator\bin\Release\DynamoAddinGenerator.exe&quot; &quot;[ProgramFiles64Folder]Dynamo $(var.Major).$(var.Minor)&quot;" />
+    <CustomAction Id="GenerateRevitAddin" Return="ignore" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Impersonate="no" />
+
+    <CustomAction Id="RemoveRevitAddin.SetProperty" Property="RemoveRevitAddin"
+                  Value="&quot;$(var.base)\tools\DynamoAddInGenerator\DynamoAddInGenerator\bin\Release\DynamoAddinGenerator.exe&quot; /uninstall &quot;[ProgramFiles64Folder]Dynamo $(var.Major).$(var.Minor)&quot;" />
+    <CustomAction Id="RemoveRevitAddin" Return="ignore" BinaryKey="WixCA" DllEntry="CAQuietExec" Execute="deferred" Impersonate="no" />
+
+    <InstallExecuteSequence>
+      <Custom Action="GenerateRevitAddin.SetProperty" Before="GenerateRevitAddin">NOT Installed</Custom>
+      <Custom Action="GenerateRevitAddin" Before="InstallFinalize">NOT Installed</Custom>
+      <Custom Action="RemoveRevitAddin.SetProperty" Before="RemoveRevitAddin">Installed</Custom>
+      <Custom Action="RemoveRevitAddin" After="InstallInitialize">Installed</Custom>
+    </InstallExecuteSequence>
+
+    <!--==============================================================================================================================-->
+
     <Property Id='ARPNOMODIFY'>1</Property>
 
     <Property Id="DYNAMOLOCATION">
-      <RegistrySearch Id='DynamoRegistry_07' Type='raw' Win64='yes'
-        Root='HKLM' Key='SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Dynamo [ProductVersion]' Name='InstallLocation' />
+      <RegistrySearch Id='DynamoRegistry' Type='raw' Win64='yes'
+        Root='HKLM' Key='SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Dynamo $(var.Major).$(var.Minor)' Name='InstallLocation' />
     </Property>
 
     <Condition Message="DynamoCore.msi version [ProductVersion] is not installed on this system.">
       <![CDATA[DYNAMOLOCATION]]>
     </Condition>
-    
+
 
     <!--<UIRef Id="WixUI_FeatureTree"/>
     <WixVariable Id="WixUILicenseRtf" Value="$(env.DYNAMO_BASE)\doc\distrib\License.rtf"/>-->
@@ -65,12 +85,13 @@
     </Property>
 
     <Property Id='DYNAMOREVIT_INSTALLDIR'></Property>
-    <SetProperty Id="DYNAMOREVIT_INSTALLDIR" Value="[DYNAMOLOCATION]" After="LaunchConditions"></SetProperty>
+    <SetProperty Id="DYNAMOREVIT_INSTALLDIR" Value="[ProgramFiles64Folder]\$(var.ProductName) $(var.Major).$(var.Minor)" After="LaunchConditions"></SetProperty>
 
     <Feature Id="DYNAMOREVIT_CORE_FEATURE"
              Title="Dynamo for Revit"
              Level="1">
       <ComponentGroupRef Id="RELEASE"/>
+      <ComponentRef Id="ProductRegistry" />
       <Feature Id="DYNAMO_CORE_SAMPLES"
              Title="Sample Content"
              Level="1" >
@@ -99,6 +120,7 @@
   </Product>
 
   <Fragment>
+    <!-- Define the directory structure -->
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramMenuFolder">
       </Directory>
@@ -115,21 +137,34 @@
           </Directory>
         </Directory>
         <Directory Id="DYNAMO_PROGDATA" Name="Dynamo">
-          <Directory Id="PROGDATA_07" Name="0.7"/>
+          <Directory Id="PROGDATA" Name="$(var.Major).$(var.Minor)"/>
         </Directory>
       </Directory>
     </Directory>
 
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="ProductRegistry" Win64="yes">
+        <RegistryKey Root="HKLM"
+                     Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(var.ProductName) $(var.Major).$(var.Minor)"
+                     ForceDeleteOnUninstall="yes">
+          <RegistryValue Name="InstallLocation" Value="[DYNAMOREVIT_INSTALLDIR]" Type="string" />
+          <RegistryValue Name="UninstallString" Value="MsiExec.exe" Type="string" />
+          <RegistryValue Name="UninstallParam" Value="/X[ProductCode] /quiet" Type="string" />
+          <RegistryValue Name="Version" Value="$(var.FullVersion)" Type="string" />
+          <RegistryValue Name="RevVersion" Value="$(var.Rev)" Type="integer" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
 
     <!-- Install the Addin files-->
     <ComponentGroup Id="REVIT_2014" Directory="ADDINS_2014">
-      <Component Id="DynamoForRevit2015.addin" Guid="976a5fd6-0a53-4530-b9c8-1004fc7a6200">
-        <File Id="DynamoForRevit2015.addin" Name="Dynamo.addin" Source="$(var.base)\tools\install\Extra\DynamoForRevit2014.addin"/>
+      <Component Id="DynamoForRevit2014.addin" Guid="976a5fd6-0a53-4530-b9c8-1004fc7a6200">
+        <File Id="DynamoForRevit2014.addin" Name="Dynamo.addin" Source="$(var.base)\tools\install\Extra\DynamoForRevit2014.addin"/>
       </Component>
     </ComponentGroup>
     <ComponentGroup Id="REVIT_2015" Directory="ADDINS_2015">
-      <Component Id="DynamoForRevit2014.addin" Guid="fde9dc0b-4b8c-46d3-9950-42c9f66b5e60">
-        <File Id="DynamoForRevit2014.addin" Name="Dynamo.addin" Source="$(var.base)\tools\install\Extra\DynamoForRevit2015.addin"></File>
+      <Component Id="DynamoForRevit2015.addin" Guid="fde9dc0b-4b8c-46d3-9950-42c9f66b5e60">
+        <File Id="DynamoForRevit2015.addin" Name="Dynamo.addin" Source="$(var.base)\tools\install\Extra\DynamoForRevit2015.addin"></File>
       </Component>
     </ComponentGroup>
   </Fragment>
