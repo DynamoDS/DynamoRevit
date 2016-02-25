@@ -433,7 +433,7 @@ namespace DSRevitNodesUI
         public override void PopulateItems()
         {
             Items.Clear();
-            var document = DocumentManager.Instance.CurrentDBDocument;
+            var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
 
             foreach (BuiltInCategory categoryId in Enum.GetValues(typeof(BuiltInCategory)))
             {
@@ -441,7 +441,7 @@ namespace DSRevitNodesUI
                 
                 try 
                 {
-                    category = Autodesk.Revit.DB.Category.GetCategory(document, categoryId);
+                    category = categories.get_Item(categoryId);
                 }
                 catch
                 {
@@ -461,9 +461,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            var document = DocumentManager.Instance.CurrentDBDocument;
-            BuiltInCategory categoryId = (BuiltInCategory) Items[SelectedIndex].Item;
-            Autodesk.Revit.DB.Category category = Autodesk.Revit.DB.Category.GetCategory(document, categoryId);
+            var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
+            BuiltInCategory categoryId = (BuiltInCategory)Items[SelectedIndex].Item;
+            Autodesk.Revit.DB.Category category = categories.get_Item(categoryId);
             string name = getFullName(category);
 
             var args = new List<AssociativeNode>
