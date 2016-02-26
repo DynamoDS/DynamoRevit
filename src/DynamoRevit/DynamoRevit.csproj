@@ -53,12 +53,6 @@
       <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Greg">
-      <HintPath>..\..\extern\greg\Greg.dll</HintPath>
-    </Reference>
-    <Reference Include="GregRevitAuth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\extern\greg\GregRevitAuth.dll</HintPath>
     <Reference Include="Greg, Version=1.0.5892.24316, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Greg.1.0.5892.24316\lib\net45\Greg.dll</HintPath>
       <Private>True</Private>
