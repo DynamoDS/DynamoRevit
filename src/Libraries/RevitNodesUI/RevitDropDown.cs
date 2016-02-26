@@ -433,9 +433,27 @@ namespace DSRevitNodesUI
         public override void PopulateItems()
         {
             Items.Clear();
-            foreach (var constant in Enum.GetValues(typeof(BuiltInCategory)))
+            var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
+
+            foreach (BuiltInCategory categoryId in Enum.GetValues(typeof(BuiltInCategory)))
             {
-                Items.Add(new DynamoDropDownItem(constant.ToString().Substring(4), constant));
+                Autodesk.Revit.DB.Category category;
+                
+                try 
+                {
+                    category = categories.get_Item(categoryId);
+                }
+                catch
+                {
+                    // We get here for internal/deprecated categories
+                    continue;
+                }
+
+                if (category != null)
+                {
+                    string name = getFullName(category);
+                    Items.Add(new DynamoDropDownItem(name, categoryId));
+                }
             }
 
             Items = Items.OrderBy(x => x.Name).ToObservableCollection();
@@ -443,15 +461,79 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
+            var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
+            BuiltInCategory categoryId = (BuiltInCategory)Items[SelectedIndex].Item;
+            Autodesk.Revit.DB.Category category = categories.get_Item(categoryId);
+            string name = getFullName(category);
+
             var args = new List<AssociativeNode>
             {
-                AstFactory.BuildStringNode(((BuiltInCategory) Items[SelectedIndex].Item).ToString())
+                AstFactory.BuildStringNode(name)
             };
 
             var func = new Func<string, Category>(Revit.Elements.Category.ByName);
             var functionCall = AstFactory.BuildFunctionCall(func, args);
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+        }
+
+        protected override int ParseSelectedIndex(string index, IList<DynamoDropDownItem> items)
+        {
+            int selectedIndex = -1;
+
+            var splits = index.Split(':');
+            if (splits.Count() > 1)
+            {
+                var name = XmlUnescape(index.Substring(index.IndexOf(':') + 1));
+
+                // Lookup by built in category enum name (without the OST_ prefix)
+                var item = items.FirstOrDefault(i => ((BuiltInCategory)i.Item).ToString().Substring(4) == name);
+                selectedIndex = item != null ?
+                    items.IndexOf(item) :
+                    -1;
+            }
+
+
+            return selectedIndex;
+        }
+
+        protected override string SaveSelectedIndex(int index, IList<DynamoDropDownItem> items)
+        {
+            // If nothing is selected or there are no
+            // items in the collection, than return -1
+            if (index == -1 || items.Count == 0)
+            {
+                return "-1";
+            }
+
+            // Save the enum name for the category (without the OST_ prefix)
+            var item = items[index];
+            BuiltInCategory categoryId = (BuiltInCategory)item.Item;
+            return string.Format("{0}:{1}", index, XmlEscape(categoryId.ToString().Substring(4)));
+        }
+
+        private static string getFullName(Autodesk.Revit.DB.Category category)
+        {
+            string name = string.Empty;
+
+            if(category != null)
+            {
+                var parent = category.Parent;
+                if (parent == null)
+                {
+                    // Top level category
+                    // For example "Cable Trays"
+                    name = category.Name.ToString();
+                }
+                else
+                {
+                    // Sub-category
+                    // For example "Cable Tray - Center Lines"
+                    name = parent.Name.ToString() + " - " + category.Name.ToString();
+                }
+            }
+
+            return name;
         }
     }
 
