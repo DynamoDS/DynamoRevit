@@ -20,6 +20,7 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
@@ -53,8 +54,8 @@
       <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Greg, Version=1.0.5892.24316, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Greg.1.0.5892.24316\lib\net45\Greg.dll</HintPath>
+    <Reference Include="Greg, Version=1.0.5892.25330, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Greg.1.0.5892.25330\lib\net45\Greg.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GregRevitAuth, Version=1.0.5892.24479, Culture=neutral, processorArchitecture=MSIL">
@@ -95,7 +96,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RevitAPI">
