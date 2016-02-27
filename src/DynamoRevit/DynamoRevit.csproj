@@ -55,10 +55,10 @@
     </Reference>
     <Reference Include="Greg, Version=1.0.5892.25330, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Greg.1.0.5892.25330\lib\net45\Greg.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="GregRevitAuth, Version=1.0.5890.23118, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GregRevitAuth.1.0.5890.23118\lib\net40\GregRevitAuth.dll</HintPath>
+    <Reference Include="GregRevitAuth, Version=1.0.5892.24479, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GregRevitAuth.1.0.5892.24479\lib\net45\GregRevitAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
