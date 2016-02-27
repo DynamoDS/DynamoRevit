@@ -16,7 +16,6 @@
     <RootNamespace>AssemblyInfoGenerator</RootNamespace>
     <AssemblyName>AssemblyInfoGenerator</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

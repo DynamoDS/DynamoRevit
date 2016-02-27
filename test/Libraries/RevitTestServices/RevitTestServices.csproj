@@ -114,11 +114,10 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
     <ItemGroup>
-      <DllConfig Include="$(ProjectDir)TestServices.dll.config"/>
+      <DllConfig Include="$(ProjectDir)TestServices.dll.config" />
     </ItemGroup>
     <Copy SourceFiles="@(DllConfig)" DestinationFolder="$(TestOutputPath)" />
   </Target>
-
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
