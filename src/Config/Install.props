@@ -4,13 +4,13 @@
     <Import Project="$(SolutionDir)Config/user_local.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
     <InstallOutputPath Condition=" '$(InstallOutputPath)' == '' ">$(MSBuildProjectDirectory)\bin\$(Platform)\$(Configuration)</InstallOutputPath>
-    <DYNAMO_BASE_PATH  Condition=" '$(DYNAMO_BASE_PATH)' == '' ">$(OutputPath)..\..\..\..\..</DYNAMO_BASE_PATH>
-    <DYNAMO_HARVEST_PATH Condition=" '$(DYNAMO_HARVEST_PATH)' == '' ">$(MSBuildProjectDirectory)\harvest\$(REVIT_VERSION)</DYNAMO_HARVEST_PATH>
-	<DYNAMO_RELEASE_PATH Condition=" '$(DYNAMO_RELEASE_PATH)' == '' ">$(MSBuildProjectDirectory)\harvest</DYNAMO_RELEASE_PATH>
-    <DYNAMO_MIGRATION_NODES_PATH Condition=" '$(DYNAMO_MIGRATION_NODES_PATH)' == '' ">$(DYNAMO_BASE_PATH)\doc\distrib\migration_nodes</DYNAMO_MIGRATION_NODES_PATH>
-    <DYNAMO_SAMPLES_PATH Condition=" '$(DYNAMO_SAMPLES_PATH)' == '' ">$(DYNAMO_BASE_PATH)\doc\distrib\Samples</DYNAMO_SAMPLES_PATH>
+    <DYNAMO_REVIT_BASE_PATH  Condition=" '$(DYNAMO_REVIT_BASE_PATH)' == '' ">$(SolutionDir)..</DYNAMO_REVIT_BASE_PATH>
+    <DYNAMO_REVIT_HARVEST_PATH Condition=" '$(DYNAMO_REVIT_HARVEST_PATH)' == '' ">$(MSBuildProjectDirectory)\harvest\$(REVIT_VERSION)</DYNAMO_REVIT_HARVEST_PATH>
+    <DYNAMO_REVIT_RELEASE_PATH Condition=" '$(DYNAMO_REVIT_RELEASE_PATH)' == '' ">$(MSBuildProjectDirectory)\harvest</DYNAMO_REVIT_RELEASE_PATH>
+    <DYNAMO_REVIT_MIGRATION_NODES_PATH Condition=" '$(DYNAMO_REVIT_MIGRATION_NODES_PATH)' == '' ">$(DYNAMO_REVIT_BASE_PATH)\doc\distrib\migration_nodes</DYNAMO_REVIT_MIGRATION_NODES_PATH>
+    <DYNAMO_REVIT_SAMPLES_PATH Condition=" '$(DYNAMO_REVIT_SAMPLES_PATH)' == '' ">$(DYNAMO_REVIT_BASE_PATH)\doc\distrib\Samples</DYNAMO_REVIT_SAMPLES_PATH>
     <DYNAMO_REVIT_SIGN_TOOLS Condition=" '$(DYNAMO_REVIT_SIGN_TOOLS)' == '' ">$(MSBuildProjectDirectory)\sign</DYNAMO_REVIT_SIGN_TOOLS>
     <BaseIntermediateOutputPath>$(InstallOutputPath)\int\</BaseIntermediateOutputPath>
     <DebugSymbols>true</DebugSymbols>
@@ -21,13 +21,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
     <InstallOutputPath Condition=" '$(InstallOutputPath)' == '' ">$(MSBuildProjectDirectory)\bin\$(Platform)\$(Configuration)</InstallOutputPath>
-    <DYNAMO_BASE_PATH  Condition=" '$(DYNAMO_BASE_PATH)' == '' ">$(OutputPath)..\..\..\..\..</DYNAMO_BASE_PATH>
-    <DYNAMO_HARVEST_PATH Condition=" '$(DYNAMO_HARVEST_PATH)' == '' ">$(MSBuildProjectDirectory)\harvest\$(REVIT_VERSION)</DYNAMO_HARVEST_PATH>
-	<DYNAMO_RELEASE_PATH Condition=" '$(DYNAMO_RELEASE_PATH)' == '' ">$(MSBuildProjectDirectory)\harvest</DYNAMO_RELEASE_PATH>
-    <DYNAMO_MIGRATION_NODES_PATH Condition=" '$(DYNAMO_MIGRATION_NODES_PATH)' == '' ">$(DYNAMO_BASE_PATH)\doc\distrib\migration_nodes</DYNAMO_MIGRATION_NODES_PATH>
-    <DYNAMO_SAMPLES_PATH Condition=" '$(DYNAMO_SAMPLES_PATH)' == '' ">$(DYNAMO_BASE_PATH)\doc\distrib\Samples</DYNAMO_SAMPLES_PATH>
+    <DYNAMO_REVIT_BASE_PATH  Condition=" '$(DYNAMO_REVIT_BASE_PATH)' == '' ">$(SolutionDir)..</DYNAMO_REVIT_BASE_PATH>
+    <DYNAMO_REVIT_HARVEST_PATH Condition=" '$(DYNAMO_REVIT_HARVEST_PATH)' == '' ">$(MSBuildProjectDirectory)\harvest\$(REVIT_VERSION)</DYNAMO_REVIT_HARVEST_PATH>
+    <DYNAMO_REVIT_RELEASE_PATH Condition=" '$(DYNAMO_REVIT_RELEASE_PATH)' == '' ">$(MSBuildProjectDirectory)\harvest</DYNAMO_REVIT_RELEASE_PATH>
+    <DYNAMO_REVIT_MIGRATION_NODES_PATH Condition=" '$(DYNAMO_REVIT_MIGRATION_NODES_PATH)' == '' ">$(DYNAMO_REVIT_BASE_PATH)\doc\distrib\migration_nodes</DYNAMO_REVIT_MIGRATION_NODES_PATH>
+    <DYNAMO_REVIT_SAMPLES_PATH Condition=" '$(DYNAMO_REVIT_SAMPLES_PATH)' == '' ">$(DYNAMO_REVIT_BASE_PATH)\doc\distrib\Samples</DYNAMO_REVIT_SAMPLES_PATH>
     <DYNAMO_REVIT_SIGN_TOOLS Condition=" '$(DYNAMO_REVIT_SIGN_TOOLS)' == '' ">$(MSBuildProjectDirectory)\sign</DYNAMO_REVIT_SIGN_TOOLS>
     <BaseIntermediateOutputPath>$(InstallOutputPath)\int\</BaseIntermediateOutputPath>
     <DebugType>pdbonly</DebugType>
