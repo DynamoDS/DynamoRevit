@@ -40,6 +40,16 @@
     <NoWarn>1591</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Install|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>$(OutputPath)\$(UICulture)\RevitNodes.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>1591</NoWarn>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoServices">
       <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>

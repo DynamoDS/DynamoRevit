@@ -5,18 +5,11 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-	<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2015</RevitVersionNumber>
-	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
-	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
     <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
-	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
-	<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
-	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOTESTAPI>
-	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</TestOutputPath>
+    <DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
     <REVITAPI  Condition=" '$(REVITAPI)' == '' ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
-    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Vasari Beta 3</REVITAPI>
     <BaseIntermediateOutputPath>$(OutputPath)\int\</BaseIntermediateOutputPath>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -28,18 +21,26 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-	<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2015</RevitVersionNumber>
-	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
-	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
     <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
-	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
-	<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
-	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOTESTAPI>
-	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</TestOutputPath>
+    <DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
     <REVITAPI  Condition=" '$(REVITAPI)' == '' ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
-    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Vasari Beta 3</REVITAPI>
+    <BaseIntermediateOutputPath>$(OutputPath)\int\</BaseIntermediateOutputPath>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UICulture>en-US</UICulture>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Install|AnyCPU' ">
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
+    <DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
+    <REVITAPI  Condition=" '$(REVITAPI)' == '' ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
     <BaseIntermediateOutputPath>$(OutputPath)\int\</BaseIntermediateOutputPath>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
