@@ -48,7 +48,7 @@
   <Import Project="$(WixTargetsPath)" />
   
   <Target Name="BeforeBuild"> 
-    <GetAssemblyIdentity AssemblyFiles="$(DYNAMO_REVIT_BASE_PATH)\bin\AnyCPU\Install\$(REVIT_VERSION)\DynamoRevitDS.dll">
+    <GetAssemblyIdentity AssemblyFiles="$(DYNAMO_REVIT_BASE_PATH)\bin\AnyCPU\$(Configuration)\$(REVIT_VERSION)\DynamoRevitDS.dll">
       <Output TaskParameter="Assemblies" ItemName="Assembly" />
     </GetAssemblyIdentity>
     <CreateProperty Value="%(Assembly.Version)">
@@ -83,7 +83,7 @@
 		-e				: Copies subdirectories
 		-XD <Directory>	: Exclude the specified directory
 	  -->
-      robocopy $(DYNAMO_REVIT_BASE_PATH)\bin\AnyCPU\Install\ $(DYNAMO_REVIT_RELEASE_PATH) -XF %2aTests.dll %2a.pdb -e -XD int
+      robocopy $(DYNAMO_REVIT_BASE_PATH)\bin\AnyCPU\$(Configuration)\ $(DYNAMO_REVIT_RELEASE_PATH) -XF %2aTests.dll %2a.pdb -e -XD int
       <!--
 	    -cg <Name>	: Component Group Name
 		-gg			: Generate GUIDs now
