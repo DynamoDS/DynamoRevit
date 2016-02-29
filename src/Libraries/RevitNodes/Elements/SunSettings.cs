@@ -86,7 +86,6 @@ namespace Revit.Elements
 
         /// <summary>
         ///     Gets the Start Date and Time of the solar study given in the local time of the solar study location.  
-        ///     Some regions may have a Daylight Savings (-1 hour) Time inaccuracy.
         /// </summary>
         public DateTime StartDateTime
         {
@@ -95,7 +94,6 @@ namespace Revit.Elements
 
         /// <summary>
         ///     Gets the End Date and Time of the solar study given in the local time of the solar study location.  
-        ///     Some regions may have a Daylight Savings (-1 hour) Time inaccuracy.
         /// </summary>
         public DateTime EndDateTime
         {
@@ -104,7 +102,6 @@ namespace Revit.Elements
 
         /// <summary>
         ///     Gets the Date and Time for the current frame of the solar study given in the local time of the solar study location.  
-        ///     Some regions may have a Daylight Savings (-1 hour) Time inaccuracy.
         /// </summary>
         public DateTime CurrentDateTime
         {
