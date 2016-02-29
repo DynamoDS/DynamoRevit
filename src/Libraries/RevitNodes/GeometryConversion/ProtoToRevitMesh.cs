@@ -137,6 +137,73 @@ namespace Revit.GeometryConversion
 
             return result.GetGeometricalObjects();
         }
+        
+        /// <summary>
+        /// This is to create a bounding box mesh for geometries which have errors during the tessellating process
+        /// </summary>
+        /// <param name="minPoint"></param>
+        /// <param name="maxPoint"></param>
+        /// <param name="performHostUnitConversion"></param>
+        /// <returns></returns>
+        public static IList<GeometryObject> CreateBoundingBoxMeshForErrors(Autodesk.DesignScript.Geometry.Point minPoint,
+            Autodesk.DesignScript.Geometry.Point maxPoint, bool performHostUnitConversion = true)
+        {
+            double x0 = minPoint.X;
+            double y0 = minPoint.Y;
+            double z0 = minPoint.Z;
+            double x1 = maxPoint.X;
+            double y1 = maxPoint.Y;
+            double z1 = maxPoint.Z;
+
+            x0 -= 1.0;
+            y0 -= 1.0;
+            z0 -= 1.0;
+            x1 += 1.0;
+            y1 += 1.0;
+            z1 += 1.0;
+
+            var tsb = new TessellatedShapeBuilder();
+            tsb.OpenConnectedFaceSet(false);
+
+            var p0 = new XYZ(x0, y0, z0);
+            var p1 = new XYZ(x1, y0, z0);
+            var p2 = new XYZ(x1, y1, z0);
+            var p3 = new XYZ(x0, y1, z0);
+            var p4 = new XYZ(x0, y0, z1);
+            var p5 = new XYZ(x1, y0, z1);
+            var p6 = new XYZ(x1, y1, z1);
+            var p7 = new XYZ(x0, y1, z1);
+
+            var f1 = new TessellatedFace(new List<XYZ>() { p0, p1, p2 }, MaterialsManager.Instance.DynamoErrorMaterialId);
+            tsb.AddFace(f1);
+            var f2 = new TessellatedFace(new List<XYZ>() { p2, p3, p0 }, MaterialsManager.Instance.DynamoErrorMaterialId);
+            tsb.AddFace(f2);
+            var f3 = new TessellatedFace(new List<XYZ>() { p0, p1, p5 }, MaterialsManager.Instance.DynamoErrorMaterialId);
+            tsb.AddFace(f3);
+            var f4 = new TessellatedFace(new List<XYZ>() { p5, p4, p0 }, MaterialsManager.Instance.DynamoErrorMaterialId);
+            tsb.AddFace(f4);
+            var f5 = new TessellatedFace(new List<XYZ>() { p1, p2, p6 }, MaterialsManager.Instance.DynamoErrorMaterialId);
+            tsb.AddFace(f5);
+            var f6 = new TessellatedFace(new List<XYZ>() { p6, p5, p1 }, MaterialsManager.Instance.DynamoErrorMaterialId);
+            tsb.AddFace(f6);
+            var f7 = new TessellatedFace(new List<XYZ>() { p2, p3, p7 }, MaterialsManager.Instance.DynamoErrorMaterialId);
+            tsb.AddFace(f7);
+            var f8 = new TessellatedFace(new List<XYZ>() { p7, p6, p2 }, MaterialsManager.Instance.DynamoErrorMaterialId);
+            tsb.AddFace(f8);
+            var f9 = new TessellatedFace(new List<XYZ>() { p3, p0, p4 }, MaterialsManager.Instance.DynamoErrorMaterialId);
+            tsb.AddFace(f9);
+            var f10 = new TessellatedFace(new List<XYZ>() { p4, p7, p3 }, MaterialsManager.Instance.DynamoErrorMaterialId);
+            tsb.AddFace(f10);
+            var f11 = new TessellatedFace(new List<XYZ>() { p4, p5, p6 }, MaterialsManager.Instance.DynamoErrorMaterialId);
+            tsb.AddFace(f11);
+            var f12 = new TessellatedFace(new List<XYZ>() { p6, p7, p4 }, MaterialsManager.Instance.DynamoErrorMaterialId);
+            tsb.AddFace(f12);
+
+            tsb.CloseConnectedFaceSet();
+            var result = tsb.Build(TessellatedShapeBuilderTarget.Mesh, TessellatedShapeBuilderFallback.Salvage, 
+                ElementId.InvalidElementId);
+            return result.GetGeometricalObjects();
+        }
 
         /// <summary>
         /// this method converts a ProtoGeometry IndexGroup and Points to a Revit tessellated face, and adds it
