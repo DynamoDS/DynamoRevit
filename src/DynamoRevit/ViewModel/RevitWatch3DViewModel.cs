@@ -257,7 +257,7 @@ namespace Dynamo.Applications.ViewModel
                 {
                     try
                     {
-                        result.Add(Autodesk.Revit.DB.Point.Create(curve.StartPoint.ToXyz()));
+                        result.Add(DocumentManager.Instance.CurrentUIApplication.Application.Create.NewPoint(curve.StartPoint.ToXyz()));
                     }
                     catch (ArgumentException)
                     {
