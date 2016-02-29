@@ -11,6 +11,7 @@ namespace RevitServices.Materials
         private static MaterialsManager instance;
 
         public ElementId DynamoMaterialId { get; private set; }
+        public ElementId DynamoErrorMaterialId { get; private set; }
         public ElementId DynamoGStyleId { get; private set; }
 
         public static MaterialsManager Instance
@@ -38,6 +39,7 @@ namespace RevitServices.Materials
         public void InitializeForActiveDocumentOnIdle()
         {
             FindOrCreateDynamoMaterial();
+            FindOrCreateDynamoErrorMaterial();
             FindDynamoGraphicsStyle();
         }
 
@@ -81,6 +83,35 @@ namespace RevitServices.Materials
             }
             dynamoMaterial.Color = new Color(255, 128, 0);
             DynamoMaterialId = dynamoMaterial.Id;
+
+            TransactionManager.Instance.ForceCloseTransaction();
+        }
+
+        private void FindOrCreateDynamoErrorMaterial()
+        {
+            Dictionary<string, Material> materials
+            = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+              .OfClass(typeof(Material))
+              .Cast<Material>()
+              .ToDictionary<Material, string>(
+                e => e.Name);
+
+            // First try to get or create the DynamoError material
+            if (materials.ContainsKey("DynamoError"))
+            {
+                DynamoMaterialId = materials["DynamoError"].Id;
+                return;
+            }
+
+            TransactionManager.Instance.EnsureInTransaction(
+                DocumentManager.Instance.CurrentDBDocument);
+
+            var dynamoErrorMaterialId = Material.Create(DocumentManager.Instance.CurrentDBDocument, "DynamoError");
+            var dynamoErrorMaterial = DocumentManager.Instance.CurrentDBDocument.GetElement(dynamoErrorMaterialId) as Material;
+            dynamoErrorMaterial.Transparency = 95;
+            dynamoErrorMaterial.UseRenderAppearanceForShading = true;
+            dynamoErrorMaterial.Color = new Color(255, 0, 0);
+            DynamoErrorMaterialId = dynamoErrorMaterial.Id;
 
             TransactionManager.Instance.ForceCloseTransaction();
         }
