@@ -57,7 +57,7 @@ namespace Dynamo.Applications
                 new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
 
             var debugPath = revitFolder.Parent.FullName;
-            var dynamoProducts = FindDynamoInstallations(debugPath);
+            var dynamoProducts = FindDynamoRevitInstallations(debugPath, revitVersion);
 
             Products = new List<DynamoProduct>();
             foreach (var p in dynamoProducts)
@@ -213,21 +213,25 @@ namespace Dynamo.Applications
             dynamoCommand = null;
         }
 
-        private static IEnumerable<DynamoProduct> FindDynamoInstallations(string debugPath)
+        private static IEnumerable<DynamoProduct> FindDynamoRevitInstallations(string debugPath, string revitVersion)
         {
             var assembly = Assembly.LoadFrom(Path.Combine(debugPath, "DynamoInstallDetective.dll"));
             var type = assembly.GetType("DynamoInstallDetective.Utilities");
 
             var installationsMethod = type.GetMethod(
-                "FindDynamoInstallations",
+                "LocateDynamoInstallations",
                 BindingFlags.Public | BindingFlags.Static);
 
             if (installationsMethod == null)
             {
-                throw new MissingMethodException("Method 'DynamoInstallDetective.Utilities.FindDynamoInstallations' not found");
+                throw new MissingMethodException("Method 'DynamoInstallDetective.Utilities.LocateDynamoInstallations' not found");
             }
 
-            var methodParams = new object[] { debugPath };
+            Func<string, string> fileLocator =
+                p => Path.Combine(p, string.Format("Revit_{0}", revitVersion), "DynamoRevitDS.dll");
+
+            var methodParams = new object[] { debugPath, fileLocator };
+
             var installs = installationsMethod.Invoke(null, methodParams) as IEnumerable;
             if(null == installs)
                 return null;
