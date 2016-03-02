@@ -209,16 +209,10 @@ namespace Dynamo.Applications
         /// </summary>
         private static void UpdateSystemPathForProcess()
         {
-            var assemblyLocation = Assembly.GetExecutingAssembly().Location;
-            var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-            var parentDirectory = Directory.GetParent(assemblyDirectory);
-            var corePath = parentDirectory.FullName;
-
-            
             var path =
                     Environment.GetEnvironmentVariable(
                         "Path",
-                        EnvironmentVariableTarget.Process) + ";" + corePath;
+                        EnvironmentVariableTarget.Process) + ";" + DynamoRevitApp.DynamoCorePath;
             Environment.SetEnvironmentVariable("Path", path, EnvironmentVariableTarget.Process);
         }
 
@@ -263,10 +257,7 @@ namespace Dynamo.Applications
 
         private static RevitDynamoModel InitializeCoreModel(DynamoRevitCommandData commandData)
         {
-            var assemblyLocation = Assembly.GetExecutingAssembly().Location;
-            var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-            var parentDirectory = Directory.GetParent(assemblyDirectory);
-            var corePath = parentDirectory.FullName;
+            var corePath = DynamoRevitApp.DynamoCorePath;
 
             var umConfig = UpdateManagerConfiguration.GetSettings(new DynamoRevitLookUp());
             Debug.Assert(umConfig.DynamoLookUp != null);
