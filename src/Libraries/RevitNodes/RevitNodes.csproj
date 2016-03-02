@@ -125,6 +125,7 @@
     <Compile Include="GeometryConversion\GeometryDebugging.cs" />
     <Compile Include="GeometryConversion\CurveUtils.cs" />
     <Compile Include="GeometryConversion\HermiteToNurbs.cs" />
+    <Compile Include="GeometryConversion\ProtoToRevitFace.cs" />
     <Compile Include="GeometryConversion\ProtoToRevitMesh.cs" />
     <Compile Include="GeometryConversion\NurbsUtils.cs" />
     <Compile Include="GeometryConversion\PolygonContainment.cs" />
@@ -176,6 +177,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
+    <Compile Include="Topology Generation\EdgeLikeEntity.cs" />
+    <Compile Include="Topology Generation\FaceLikeEntity.cs" />
+    <Compile Include="Topology Generation\Interfaces.cs" />
+    <Compile Include="Topology Generation\Tessellate.cs" />
     <Compile Include="Transaction\Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
