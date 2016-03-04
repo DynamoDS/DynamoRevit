@@ -461,17 +461,18 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
+            //Some of the legacy categories which were not working before will now be out of index.
+            if (SelectedIndex < 0 || SelectedIndex >= Items.Count)
+                return new[] { AstFactory.BuildNullNode() };
+
             BuiltInCategory categoryId = (BuiltInCategory)Items[SelectedIndex].Item;
-            Autodesk.Revit.DB.Category category = categories.get_Item(categoryId);
-            string name = getFullName(category);
 
             var args = new List<AssociativeNode>
             {
-                AstFactory.BuildStringNode(name)
+                AstFactory.BuildIntNode((int)categoryId)
             };
 
-            var func = new Func<string, Category>(Revit.Elements.Category.ByName);
+            var func = new Func<int, Category>(Revit.Elements.Category.ById);
             var functionCall = AstFactory.BuildFunctionCall(func, args);
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
