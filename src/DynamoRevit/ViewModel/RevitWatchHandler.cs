@@ -69,7 +69,8 @@ namespace Dynamo.Applications
                 ? new WatchViewModel("null", tag, RequestSelectGeometry)
                 : ProcessThing(value, runtimeCore, tag, showRawData, callback);
         }
-    
+
+
         public event Action<string> RequestSelectGeometry;
     }
 }
