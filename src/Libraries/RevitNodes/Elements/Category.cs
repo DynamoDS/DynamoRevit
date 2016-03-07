@@ -134,9 +134,9 @@ namespace Revit.Elements
         {
             try
             {
-                var document = DocumentManager.Instance.CurrentDBDocument;
+                var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
                 BuiltInCategory categoryId = (BuiltInCategory)id;
-                Autodesk.Revit.DB.Category category = Autodesk.Revit.DB.Category.GetCategory(document, categoryId);
+                Autodesk.Revit.DB.Category category = categories.get_Item(categoryId);
                 if(null == category)
                     throw new ArgumentException(Properties.Resources.InvalidCategory);
 
