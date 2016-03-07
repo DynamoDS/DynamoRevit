@@ -21,12 +21,12 @@ namespace Revit.GeometryConversion
        /// </summary>
        /// <param name="protoFace">a protogeometry face to extract a surface from</param>
        /// <returns> a tuple of the surfacGeo and a bool representing if the converted face's normal is flipped relative to the orignal face, and a list of trimming edges</returns>
-       public static Tuple<Autodesk.Revit.DB.BRepBuilderSurfaceGeometry,bool,List<Autodesk.DesignScript.Geometry.Edge>> ProtoFaceToBrepBuilderNurbsSurface(Autodesk.DesignScript.Geometry.Face protoFace)
+       public static Tuple<Autodesk.Revit.DB.BRepBuilderSurfaceGeometry,bool,List<Autodesk.DesignScript.Geometry.CoEdge>> ProtoFaceToBrepBuilderNurbsSurface(Autodesk.DesignScript.Geometry.Face protoFace)
        {
            var surf = protoFace.SurfaceGeometry();
            var nsurf = surf.ToNurbsSurface();
            //we need to perserve the intial curves before transforming to nurbsSurface because this conversion loses trimming loops sometimes... :(
-           var edges = protoFace.Edges.ToList();
+           var edges = protoFace.Loops[0].CoEdges.ToList();
 
            bool flipped = false;
  
@@ -320,26 +320,84 @@ namespace Revit.GeometryConversion
            //a new brep builder for solids
            var brb = new BRepBuilder(BRepType.Solid);
 
-           var addedEdges = new Dictionary<Unfold.Topology.EdgeLikeEntity, BRepBuilderGeometryId>(new Unfold.Interfaces.SpatialEqualityComparer<Unfold.Topology.EdgeLikeEntity>());
-           var EdgeIDtoEdgeDict = new Dictionary<BRepBuilderGeometryId,Autodesk.DesignScript.Geometry.Curve>();
-           var coEdgeDict = new Dictionary<Unfold.Topology.EdgeLikeEntity, List<Autodesk.DesignScript.Geometry.Curve>>(new Unfold.Interfaces.SpatialEqualityComparer<Unfold.Topology.EdgeLikeEntity>());
+//           var addedEdges = new Dictionary<Unfold.Topology.EdgeLikeEntity, BRepBuilderGeometryId>(new Unfold.Interfaces.SpatialEqualityComparer<Unfold.Topology.EdgeLikeEntity>());
+//          var EdgeIDtoEdgeDict = new Dictionary<BRepBuilderGeometryId,Autodesk.DesignScript.Geometry.Curve>();
+//           var coEdgeDict = new Dictionary<Unfold.Topology.EdgeLikeEntity, List<Autodesk.DesignScript.Geometry.Curve>>(new Unfold.Interfaces.SpatialEqualityComparer<Unfold.Topology.EdgeLikeEntity>());
+
 
            //this data structures are just for debugging
 
-           var addedCoEdges = new List<List<Autodesk.DesignScript.Geometry.Curve>>();
+//           var addedCoEdges = new List<List<Autodesk.DesignScript.Geometry.Curve>>();
+
            Autodesk.Revit.DB.Solid converted = null;
 
-
-
-
+           var edgeDict = new Dictionary<Autodesk.DesignScript.Geometry.Edge, BRepBuilderGeometryId>();
            if (performHostUnitConversion)
            {
+               // Add check
                var newSol = sol.InHostUnits();
                var faces = newSol.Faces.ToList();
 
+
                //foreach face in solid
-              foreach(Autodesk.DesignScript.Geometry.Face protoFace in faces)
-              {
+               foreach (Autodesk.DesignScript.Geometry.Face protoFace in faces)
+               {
+                   var geom = protoFace.SurfaceGeometry();
+
+                   var ngeom = geom.ToNurbsSurface();
+                   bool flipped = false;
+
+                   if (geom.NormalAtParameter(.5, .5).Dot(ngeom.NormalAtParameter(.5, .5)) < 0)
+                   {
+                       flipped = true;
+                   }
+
+
+                   var bbface = BRepBuilderSurfaceGeometry.CreateNURBSSurface(ngeom.DegreeU, ngeom.DegreeV,
+                       ngeom.UKnots(), ngeom.VKnots(), ngeom.ControlPoints().SelectMany(x => x.Select(y => y.ToXyz())).ToList(),
+                       ngeom.Weights().SelectMany(x => x).ToList(),
+                       false,
+                       new BoundingBoxUV());
+
+                   geom.Dispose();
+
+                   var faceId = brb.AddFace(bbface, flipped);
+
+                   foreach (var loop in protoFace.Loops)
+                   {
+                       var loopId = brb.AddLoop(faceId);
+
+                       foreach (var coedge in loop.CoEdges)
+                       {
+                           var edge = coedge.Edge;
+                           BRepBuilderGeometryId edgeId;
+                           if (edgeDict.ContainsKey(edge))
+                           {
+                               edgeId = edgeDict[edge];
+                           }
+                           else
+                           {
+                               var curve = edge.CurveGeometry;
+
+                               var projectedGeom = ngeom.ProjectInputOnto(curve, ngeom.NormalAtParameter(.5, .5).Reverse());
+                               var newCurve = projectedGeom.First() as Autodesk.DesignScript.Geometry.Curve;
+
+                               edgeId = brb.AddEdge(BRepBuilderEdgeGeometry.Create(edge.CurveGeometry.ToRevitType()));
+                               edgeDict[edge] = edgeId;
+                           }
+
+                           brb.AddCoEdge(loopId, edgeId, coedge.Reversed);
+                       }
+
+                       brb.FinishLoop(loopId);
+                   }
+
+                   brb.FinishFace(faceId);
+                   ngeom.Dispose();
+               }
+               edgeDict.ToList().ForEach(x => x.Key.Dispose());
+
+                  /*
                   //convert the surface present in the face to a nurbsSurface and
                   //construct a nurbsSurface BrepBuilderGeo type from it
                 var surfGeoData = ProtoToRevitFace.ProtoFaceToBrepBuilderNurbsSurface(protoFace);
@@ -442,12 +500,14 @@ namespace Revit.GeometryConversion
                 brb.FinishLoop(addedloop);
                 brb.FinishFace(addeFace);
               }
+ */ 
+               //clean up everything
                //clean up everything
                faces.ForEach(x => x.Dispose());
                newSol.Dispose();
-               addedEdges.ToList().ForEach(x => x.Key.Dispose());
-               coEdgeDict.ToList().ForEach(x => x.Key.Dispose());
-               addedCoEdges.SelectMany(x => x).ToList().ForEach(x=>x.Dispose());
+//               addedEdges.ToList().ForEach(x => x.Key.Dispose());
+//               coEdgeDict.ToList().ForEach(x => x.Key.Dispose());
+//               addedCoEdges.SelectMany(x => x).ToList().ForEach(x=>x.Dispose());
 
                var outcome = brb.Finish();
                converted = brb.GetResult();
@@ -472,13 +532,13 @@ namespace Revit.GeometryConversion
        {
            //a new brep builder for surfaces
            var brb = new BRepBuilder(BRepType.OpenShell);
-           var addedEdges = new Dictionary<Unfold.Topology.EdgeLikeEntity, BRepBuilderGeometryId>(new Unfold.Interfaces.SpatialEqualityComparer<Unfold.Topology.EdgeLikeEntity>());
-           var EdgeIDtoEdgeDict = new Dictionary<BRepBuilderGeometryId, Autodesk.DesignScript.Geometry.Curve>();
-           var coEdgeDict = new Dictionary<Unfold.Topology.EdgeLikeEntity, List<Autodesk.DesignScript.Geometry.Curve>>(new Unfold.Interfaces.SpatialEqualityComparer<Unfold.Topology.EdgeLikeEntity>());
-           var addedCoEdges = new List<List<Autodesk.DesignScript.Geometry.Curve>>();
+//           var addedEdges = new Dictionary<Unfold.Topology.EdgeLikeEntity, BRepBuilderGeometryId>(new Unfold.Interfaces.SpatialEqualityComparer<Unfold.Topology.EdgeLikeEntity>());
+//           var EdgeIDtoEdgeDict = new Dictionary<BRepBuilderGeometryId, Autodesk.DesignScript.Geometry.Curve>();
+//           var coEdgeDict = new Dictionary<Unfold.Topology.EdgeLikeEntity, List<Autodesk.DesignScript.Geometry.Curve>>(new Unfold.Interfaces.SpatialEqualityComparer<Unfold.Topology.EdgeLikeEntity>());
+//           var addedCoEdges = new List<List<Autodesk.DesignScript.Geometry.Curve>>();
            Autodesk.Revit.DB.Solid converted = null;
 
-           
+           var edgeDict = new Dictionary<Autodesk.DesignScript.Geometry.Edge, BRepBuilderGeometryId>();
 
            if (performHostUnitConversion)
            {
@@ -488,6 +548,56 @@ namespace Revit.GeometryConversion
                //foreach face in solid
                foreach (Autodesk.DesignScript.Geometry.Face protoFace in faces)
                {
+                   var geom = protoFace.SurfaceGeometry();
+                   var ngeom = surf.ToNurbsSurface();
+                   //we need to perserve the intial curves before transforming to nurbsSurface because this conversion loses trimming loops sometimes... :(
+                   bool flipped = false;
+
+                   if(geom.NormalAtParameter(.5, .5).Dot(ngeom.NormalAtParameter(.5, .5)) < 0)
+//                   if (!geom.NormalAtParameter(.5, .5).IsAlmostEqualTo(ngeom.NormalAtParameter(.5, .5)))
+                   {
+                       flipped = true;
+                   }
+
+                   var bbface = BRepBuilderSurfaceGeometry.CreateNURBSSurface(ngeom.DegreeU, ngeom.DegreeV,
+                       ngeom.UKnots(), ngeom.VKnots(), ngeom.ControlPoints().SelectMany(x => x.Select(y => y.ToXyz())).ToList(),
+                       ngeom.Weights().SelectMany(x => x).ToList(),
+                       false,
+                       new BoundingBoxUV());
+
+                   geom.Dispose();
+                   ngeom.Dispose();
+
+                   var faceId = brb.AddFace(bbface, flipped);
+
+                   foreach (var loop in protoFace.Loops)
+                   {
+                       var loopId = brb.AddLoop(faceId);
+
+                       foreach (var coedge in loop.CoEdges)
+                       {
+                           var edge = coedge.Edge;
+                           BRepBuilderGeometryId edgeId;
+                           if (edgeDict.ContainsKey(edge))
+                           {
+                               edgeId = edgeDict[edge];
+                           }
+                           else
+                           {
+                               edgeId = brb.AddEdge(BRepBuilderEdgeGeometry.Create(edge.CurveGeometry.ToRevitType()));
+                               edgeDict[edge] = edgeId;
+                           }
+
+                           brb.AddCoEdge(loopId, edgeId, coedge.Reversed);
+                       }
+
+                       brb.FinishLoop(loopId);
+                   }
+
+                   brb.FinishFace(faceId);
+
+                   
+                   /*
                    //convert the surface present in the face to a nurbsSurface and
                    //construct a nurbsSurface BrepBuilderGeo type from it
                    var surfGeoData = ProtoToRevitFace.ProtoFaceToBrepBuilderNurbsSurface(protoFace);
@@ -606,13 +716,15 @@ namespace Revit.GeometryConversion
                       brb.FinishLoop(addedloop);
                   }
                    brb.FinishFace(addeFace);
+                    */
                }
                //clean up everything
+               edgeDict.ToList().ForEach(x => x.Key.Dispose());
                faces.ForEach(x => x.Dispose());
                newSol.Dispose();
-               addedEdges.ToList().ForEach(x => x.Key.Dispose());
-               coEdgeDict.ToList().ForEach(x => x.Key.Dispose());
-               addedCoEdges.SelectMany(x => x).ToList().ForEach(x => x.Dispose());
+//               addedEdges.ToList().ForEach(x => x.Key.Dispose());
+//               coEdgeDict.ToList().ForEach(x => x.Key.Dispose());
+//               addedCoEdges.SelectMany(x => x).ToList().ForEach(x => x.Dispose());
 
                var outcome = brb.Finish();
                converted = brb.GetResult();

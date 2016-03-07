@@ -32,7 +32,7 @@ namespace Dynamo.Applications
         {
             var id = element.Id;
 
-            var node = new WatchViewModel(element.ToString(preferences.NumberFormat, CultureInfo.InvariantCulture), tag);
+            var node = new WatchViewModel(element.ToString(preferences.NumberFormat, CultureInfo.InvariantCulture), tag, RequestSelectGeometry);
 
             node.Clicked += () =>
             {
@@ -66,8 +66,10 @@ namespace Dynamo.Applications
         public WatchViewModel Process(dynamic value, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
             return Object.ReferenceEquals(value, null)
-                ? new WatchViewModel("null", tag)
+                ? new WatchViewModel("null", tag, RequestSelectGeometry)
                 : ProcessThing(value, runtimeCore, tag, showRawData, callback);
         }
+    
+        public event Action<string> RequestSelectGeometry;
     }
 }
