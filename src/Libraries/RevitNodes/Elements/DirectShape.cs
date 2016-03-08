@@ -220,13 +220,27 @@ namespace Revit.Elements
             }
             else if (shapeReference is Autodesk.DesignScript.Geometry.Surface)
             {
-//                tessellatedShape = (shapeReference as Autodesk.DesignScript.Geometry.Surface).ToRevitType(TessellatedShapeBuilderTarget.AnyGeometry, TessellatedShapeBuilderFallback.Mesh, MaterialId: materialId);
-                tessellatedShape = new List<GeometryObject>() { ProtoToRevitSolid.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Surface) };
+                var geometry = ProtoToRevitSolid.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Surface);
+                if(geometry != null)
+                {
+                    tessellatedShape = new List<GeometryObject>() { geometry };
+                }
+                else
+                {
+                    tessellatedShape = (shapeReference as Autodesk.DesignScript.Geometry.Surface).ToRevitType(TessellatedShapeBuilderTarget.AnyGeometry, TessellatedShapeBuilderFallback.Mesh, MaterialId: materialId);
+                }
             }
             else if (shapeReference is Autodesk.DesignScript.Geometry.Solid)
             {
-//                tessellatedShape = (shapeReference as Autodesk.DesignScript.Geometry.Solid).ToRevitType(TessellatedShapeBuilderTarget.AnyGeometry, TessellatedShapeBuilderFallback.Mesh, MaterialId: materialId);
-                tessellatedShape = new List<GeometryObject>() { ProtoToRevitSolid.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Solid) };
+                var geometry = ProtoToRevitSolid.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Solid);
+                if(geometry != null)
+                {
+                    tessellatedShape = new List<GeometryObject>() { geometry };
+                }
+                else
+                {
+                    tessellatedShape = (shapeReference as Autodesk.DesignScript.Geometry.Solid).ToRevitType(TessellatedShapeBuilderTarget.AnyGeometry, TessellatedShapeBuilderFallback.Mesh, MaterialId: materialId);
+                }
             }
 
             if (tessellatedShape == null)
