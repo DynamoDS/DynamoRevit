@@ -69,11 +69,7 @@ namespace Revit.GeometryConversion
                faces = topology.Faces.ToList();
            }
 
-           //a new brep builder for solids
            var brb = new BRepBuilder(type);
-
-           Autodesk.Revit.DB.Solid converted = null;
-
            var edgeDict = new Dictionary<Edge, BRepBuilderGeometryId>();
 
            //foreach face in solid
@@ -138,13 +134,14 @@ namespace Revit.GeometryConversion
 
                brb.FinishFace(faceId);
            }
-           edgeDict.ToList().ForEach(x => x.Key.Dispose());
 
            //clean up everything
+           edgeDict.ToList().ForEach(x => x.Key.Dispose());
            faces.ForEach(x => x.Dispose());
 
+           // Get result
            var outcome = brb.Finish();
-           converted = brb.GetResult();
+           var converted = brb.GetResult();
 
            if (converted == null)
            {
