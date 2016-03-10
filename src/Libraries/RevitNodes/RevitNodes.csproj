@@ -125,7 +125,7 @@
     <Compile Include="GeometryConversion\GeometryDebugging.cs" />
     <Compile Include="GeometryConversion\CurveUtils.cs" />
     <Compile Include="GeometryConversion\HermiteToNurbs.cs" />
-    <Compile Include="GeometryConversion\ProtoToRevitFace.cs" />
+    <Compile Include="GeometryConversion\DynamoToRevitBRep.cs" />
     <Compile Include="GeometryConversion\ProtoToRevitMesh.cs" />
     <Compile Include="GeometryConversion\NurbsUtils.cs" />
     <Compile Include="GeometryConversion\PolygonContainment.cs" />

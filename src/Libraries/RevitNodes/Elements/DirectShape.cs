@@ -220,7 +220,17 @@ namespace Revit.Elements
             }
             else if (shapeReference is Autodesk.DesignScript.Geometry.Surface)
             {
-                var geometry = ProtoToRevitSolid.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Surface);
+                // Defer to tessellated shape if BRep shape for some reason fails
+                GeometryObject geometry = null; 
+                try
+                {
+                    geometry = DynamoToRevitBRep.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Surface);
+                }
+                catch
+                {
+
+                }
+
                 if(geometry != null)
                 {
                     tessellatedShape = new List<GeometryObject>() { geometry };
@@ -232,7 +242,17 @@ namespace Revit.Elements
             }
             else if (shapeReference is Autodesk.DesignScript.Geometry.Solid)
             {
-                var geometry = ProtoToRevitSolid.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Solid);
+                // Defer to tessellated shape if BRep shape for some reason fails
+                GeometryObject geometry = null; 
+                try
+                {
+                    geometry = DynamoToRevitBRep.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Solid);
+                }
+                catch
+                {
+
+                }
+
                 if(geometry != null)
                 {
                     tessellatedShape = new List<GeometryObject>() { geometry };
