@@ -27,8 +27,8 @@ namespace DynamoAddinGenerator
             if (uninstall && string.IsNullOrEmpty(debugPath))
             {
                 //just use the executing assembly location
-                var assemblyPath = Assembly.GetExecutingAssembly().Location;         
-                debugPath = Path.GetDirectoryName(assemblyPath);              
+                var assemblyPath = Assembly.GetExecutingAssembly().Location;
+                debugPath = Path.GetDirectoryName(assemblyPath);
             }
 
             var allProducts = RevitProductUtility.GetAllInstalledRevitProducts();
@@ -49,7 +49,7 @@ namespace DynamoAddinGenerator
 
             DeleteExistingAddins(prodCollection);
 
-            if(!uninstall)
+            if (!uninstall)
                 GenerateAddins(prodCollection);
 
         }
@@ -61,11 +61,12 @@ namespace DynamoAddinGenerator
         /// </summary>
         internal static void DeleteExistingAddins(IRevitProductCollection products)
         {
+            Console.WriteLine("Deleting all exisitng addins...");
             foreach (var product in products.Products)
             {
                 try
                 {
-                    Console.WriteLine("Deleting addins in {0}", product.AddinsFolder);
+                    Console.WriteLine("Checking addins in {0}", product.AddinsFolder);
 
                     var dynamoAddin = Path.Combine(product.AddinsFolder, "Dynamo.addin");
                     if (File.Exists(dynamoAddin))
@@ -104,12 +105,13 @@ namespace DynamoAddinGenerator
         /// <param name="products">A collection of revit installs.</param>
         internal static void GenerateAddins(IRevitProductCollection products)
         {
+            Console.WriteLine("Generating addins...");
             foreach (var prod in products.Products)
             {
-                Console.WriteLine("Generating addins in {0}", prod.AddinsFolder);
-
                 var subfolder = prod.VersionString.Insert(5, "_");
-                var dynRevitProducts = DynamoInstallDetective.Utilities.FindProductInstallations("Dynamo Revit", subfolder + "/DynamoRevitDS.dll");
+                Func<string, string> fileLocator =
+                    p => Path.Combine(p, subfolder, "DynamoRevitDS.dll");
+                var dynRevitProducts = Utilities.LocateDynamoInstallations(null, fileLocator);
                 if (null == dynRevitProducts)
                 {
                     Console.WriteLine("Dynamo Revit Not Installed!");
@@ -126,8 +128,8 @@ namespace DynamoAddinGenerator
                 }
             }
         }
-        
-        
+
+
         /// <summary>
         /// Generate a Dynamo.addin file.
         /// </summary>
