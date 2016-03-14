@@ -244,6 +244,77 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(2, CheckNumTriangles(ds));
             Assert.AreEqual(1, ds.Geometry().Count());
         }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void ByBrepNameCategoryMaterial_Cubiod()
+        {
+            var p1 = Point.ByCoordinates(0.0, 0.0, 0.0);
+            var p2 = Point.ByCoordinates(10.0, 10.0, 10.0);
+            var p3 = Point.ByCoordinates(2.5, 2.5, 0.0);
+            var p4 = Point.ByCoordinates(7.5, 7.5, 10.0);
+
+            // Create a cube
+            var c1 = Cuboid.ByCorners(p1, p2);
+            // Create another smaller cube
+            var c2 = Cuboid.ByCorners(p3, p4);
+            // Combine the cubes
+            var c3 = c1.Difference(c2);
+
+            c1.Dispose();
+            c2.Dispose();
+
+            var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
+            var ds = DirectShape.ByGeometry(c3, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a cube with a square hole");
+            c3.Dispose();
+
+            Assert.NotNull(ds);
+
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            DocumentManager.Regenerate();
+            var Revitgeo = ds.InternalElement.get_Geometry(new Autodesk.Revit.DB.Options());
+            TransactionManager.Instance.TransactionTaskDone();
+            var geo = Revitgeo.First() as Autodesk.Revit.DB.Solid;
+
+            Assert.NotNull(geo);
+            // Check number of faces
+            Assert.AreEqual(10, geo.Faces.Size);
+            // Check number of Edges
+            Assert.AreEqual(24, geo.Edges.Size);
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void ByBrepNameCategoryMaterial_Surface()
+        {
+            var p1 = Point.ByCoordinates(0.0,   0.0, 0.0);
+            var p2 = Point.ByCoordinates(0.0,  10.0, 0.0);
+            var p3 = Point.ByCoordinates(5.0,  10.0, 0.0);
+            var p4 = Point.ByCoordinates(5.0,   5.0, 0.0);
+            var p5 = Point.ByCoordinates(10.0,  5.0, 0.0);
+            var p6 = Point.ByCoordinates(10.0,  0.0, 0.0);
+
+            // Create a L-Shaped surface
+            var s1 = Surface.ByPerimeterPoints(new List<Point>() { p1, p2, p3, p4, p5, p6 });
+
+            var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
+            var ds = DirectShape.ByGeometry(s1, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a l-shaped surface");
+            s1.Dispose();
+
+            Assert.NotNull(ds);
+
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            DocumentManager.Regenerate();
+            var Revitgeo = ds.InternalElement.get_Geometry(new Autodesk.Revit.DB.Options());
+            TransactionManager.Instance.TransactionTaskDone();
+            var geo = Revitgeo.First() as Autodesk.Revit.DB.Solid;
+
+            Assert.NotNull(geo);
+            // Check number of faces
+            Assert.AreEqual(1, geo.Faces.Size);
+            // Check number of Edges
+            Assert.AreEqual(6, geo.Edges.Size);
+        }
     }
 }
        
