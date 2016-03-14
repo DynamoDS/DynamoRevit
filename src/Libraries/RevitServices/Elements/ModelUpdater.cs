@@ -167,6 +167,12 @@ namespace RevitServices.Elements
         void RevitServicesUpdater_Updated(object sender, UpdaterArgs args)
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;
+
+            // Are we loaded yet?
+            if (doc == null)
+                // No
+                return;
+
             var added = args.Added.Select(x => doc.GetElement(x).UniqueId);
             var addedIds = args.Added;
             var modified = args.Modified.Select(x => doc.GetElement(x).UniqueId).ToList();
