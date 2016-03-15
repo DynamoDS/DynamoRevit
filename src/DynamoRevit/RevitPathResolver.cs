@@ -10,8 +10,10 @@ namespace Dynamo.Applications
         private readonly List<string> preloadLibraryPaths;
         private readonly List<string> additionalNodeDirectories;
         private readonly List<string> additionalResolutionPaths;
+        private readonly string userDataRootFolder;
+        private readonly string commonDataRootFolder;
 
-        internal RevitPathResolver()
+        internal RevitPathResolver(string userDataFolder, string commonDataFolder)
         {
             // The executing assembly will be in Revit_20xx folder,
             // so we have to walk up one level.
@@ -55,6 +57,9 @@ namespace Dynamo.Applications
 
             // Add the Revit_20xx folder for assembly resolution
             additionalResolutionPaths = new List<string> { currentAssemblyDir };
+
+            this.userDataRootFolder = userDataFolder;
+            this.commonDataRootFolder = commonDataFolder;
         }
 
         public IEnumerable<string> AdditionalNodeDirectories
@@ -74,12 +79,12 @@ namespace Dynamo.Applications
 
         public string UserDataRootFolder
         {
-            get { return string.Empty; }
+            get { return userDataRootFolder; }
         }
 
         public string CommonDataRootFolder
         {
-            get { return string.Empty; }
+            get { return commonDataRootFolder; }
         }
     }
 }
