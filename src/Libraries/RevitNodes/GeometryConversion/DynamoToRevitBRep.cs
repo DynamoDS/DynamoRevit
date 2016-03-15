@@ -94,7 +94,7 @@ namespace Revit.GeometryConversion
                            ngeom.UKnots(), ngeom.VKnots(), ngeom.ControlPoints().SelectMany(x => x.Select(y => y.ToXyz())).ToList(),
                            ngeom.Weights().SelectMany(x => x).ToList(),
                            false,
-                           new BoundingBoxUV());
+                           null);
 
                        // Add face
                        var faceId = brb.AddFace(bbface, flipped);
