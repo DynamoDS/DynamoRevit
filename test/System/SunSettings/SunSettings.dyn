@@ -12,6 +12,8 @@
     <Dynamo.Nodes.DSFunction type="Dynamo.Nodes.DSFunction" guid="0e8df0af-399b-41ea-9fca-d0afabb714fa" nickname="SunSettings.Azimuth" x="829" y="270" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.SunSettings.Azimuth" />
     <Dynamo.Nodes.Watch type="Dynamo.Nodes.Watch" guid="cd7f760f-cb5b-4a0b-9a6e-e985241ad041" nickname="Watch" x="1087.15351816652" y="319.774449979141" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
     <Dynamo.Nodes.Watch type="Dynamo.Nodes.Watch" guid="a0914cec-61ad-4acb-a68e-6599a718bc4f" nickname="Watch" x="1111.15724367814" y="163.675642570395" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="6e9db4f7-7a5c-4b98-8a35-9dc8468b1da9" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="SunSettings.StartDateTime" x="195.396428270441" y="277.705741263117" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="RevitNodes.dll" function="Revit.Elements.SunSettings.StartDateTime" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="1755c546-86bf-46d8-8912-f3cf8215c7ee" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="SunSettings.EndDateTime" x="202.203979159526" y="403.645432711188" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="RevitNodes.dll" function="Revit.Elements.SunSettings.EndDateTime" />
   </Elements>
   <Connectors>
     <Dynamo.Models.ConnectorModel start="2fedd9e0-4f32-474d-bf2f-63caf8f9e0e7" start_index="0" end="8f4e78d9-7b94-4f7a-860a-560d81106576" end_index="0" portType="0" />
@@ -23,6 +25,8 @@
     <Dynamo.Models.ConnectorModel start="31432b4a-f6e5-4c7e-8c52-4eb421146ff8" start_index="0" end="bc07d4f7-17ef-4dce-9aa9-2885e6633e4d" end_index="2" portType="0" />
     <Dynamo.Models.ConnectorModel start="d216e2d0-457f-4c06-aa42-152f92fff6e6" start_index="0" end="a0914cec-61ad-4acb-a68e-6599a718bc4f" end_index="0" portType="0" />
     <Dynamo.Models.ConnectorModel start="0e8df0af-399b-41ea-9fca-d0afabb714fa" start_index="0" end="cd7f760f-cb5b-4a0b-9a6e-e985241ad041" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d216e2d0-457f-4c06-aa42-152f92fff6e6" start_index="0" end="a0914cec-61ad-4acb-a68e-6599a718bc4f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0e8df0af-399b-41ea-9fca-d0afabb714fa" start_index="0" end="cd7f760f-cb5b-4a0b-9a6e-e985241ad041" end_index="0" portType="0" />
   </Connectors>
   <Notes />
   <SessionTraceData>

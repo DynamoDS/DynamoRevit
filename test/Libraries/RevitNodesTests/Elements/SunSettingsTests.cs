@@ -45,7 +45,7 @@ namespace RevitNodesTests.Elements
         {
             Assert.AreEqual(
                 SunSettings.TranslateTime(
-                DocumentManager.Instance.CurrentDBDocument.ActiveView.SunAndShadowSettings.StartDateAndTime),
+                DocumentManager.Instance.CurrentDBDocument.ActiveView.SunAndShadowSettings.StartDateAndTime, System.TimeZoneInfo.Local),
                 SunSettings.Current().StartDateTime);
         }
 
@@ -54,7 +54,7 @@ namespace RevitNodesTests.Elements
         {
             Assert.AreEqual(
                 SunSettings.TranslateTime(
-                DocumentManager.Instance.CurrentDBDocument.ActiveView.SunAndShadowSettings.EndDateAndTime),
+                DocumentManager.Instance.CurrentDBDocument.ActiveView.SunAndShadowSettings.EndDateAndTime, System.TimeZoneInfo.Local),
                 SunSettings.Current().EndDateTime);
         }
 
@@ -63,7 +63,7 @@ namespace RevitNodesTests.Elements
         {
             Assert.AreEqual(
                 SunSettings.TranslateTime(
-                DocumentManager.Instance.CurrentDBDocument.ActiveView.SunAndShadowSettings.ActiveFrameTime),
+                DocumentManager.Instance.CurrentDBDocument.ActiveView.SunAndShadowSettings.ActiveFrameTime, System.TimeZoneInfo.Local),
                 SunSettings.Current().CurrentDateTime);
         }
     }

@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+
+using GeoTimeZone;
+
+using NodaTime.TimeZones;
 
 using Revit.GeometryConversion;
 
@@ -92,16 +97,32 @@ namespace Revit.Elements
         /// </summary>
         public DateTime StartDateTime
         {
-            get { return TranslateTime(InternalSunAndShadowSettings.StartDateAndTime); }
+            get
+            {
+                string timeZoneName = TimeZoneLookup.GetTimeZone(
+                    InternalSunAndShadowSettings.Latitude.ToDegrees(),
+                    InternalSunAndShadowSettings.Longitude.ToDegrees()).Result;
+                var timeZone = OlsonTimeZoneToTimeZoneInfo(timeZoneName);
+
+                return TranslateTime(InternalSunAndShadowSettings.StartDateAndTime, timeZone);
+            }
 
         }
-        
+
         /// <summary>
         ///     Gets the End Date and Time of the solar study given in the local time of the solar study location.
         /// </summary>
         public DateTime EndDateTime
         {
-            get { return TranslateTime(InternalSunAndShadowSettings.EndDateAndTime); }
+            get
+            {
+                string timeZoneName = TimeZoneLookup.GetTimeZone(
+                    InternalSunAndShadowSettings.Latitude.ToDegrees(),
+                    InternalSunAndShadowSettings.Longitude.ToDegrees()).Result;
+                var timeZone = OlsonTimeZoneToTimeZoneInfo(timeZoneName);
+
+                return TranslateTime(InternalSunAndShadowSettings.EndDateAndTime, timeZone);
+            }
         }
 
         /// <summary>
@@ -109,7 +130,15 @@ namespace Revit.Elements
         /// </summary>
         public DateTime CurrentDateTime
         {
-            get { return TranslateTime(InternalSunAndShadowSettings.ActiveFrameTime); }
+            get
+            {
+                string timeZoneName = TimeZoneLookup.GetTimeZone(
+                    InternalSunAndShadowSettings.Latitude.ToDegrees(),
+                    InternalSunAndShadowSettings.Longitude.ToDegrees()).Result;
+                var timeZone = OlsonTimeZoneToTimeZoneInfo(timeZoneName);
+
+                return TranslateTime(InternalSunAndShadowSettings.ActiveFrameTime, timeZone);
+            }
         }
 
         public override string ToString()
@@ -133,13 +162,36 @@ namespace Revit.Elements
         /// but input may be in local time as well."
         /// There is no means to return local time.
         /// </summary>
-        internal static DateTime TranslateTime(DateTime utc)
+        internal static DateTime TranslateTime(DateTime utc, TimeZoneInfo timeZone)
         {
             // Get local hours offset for the given time.
             var offset = TimeZoneInfo.Local.GetUtcOffset(utc).Hours;
 
+            // If it's summer time, we should add one more hour.
+            // For some reasons Revit API doesn't do it.
+            if (timeZone != null && timeZone.IsDaylightSavingTime(utc))
+            {
+                offset++;
+            }
+
             // Remove user local offset. Just leave pure revit datetime.
             return utc.AddHours(offset);
+        }
+
+        /// <summary>
+        /// Converts an Olson time zone ID to a Windows time zone ID.
+        /// </summary>
+        /// <param name="olsonTimeZoneId">An Olson time zone ID. See http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/zone_tzid.html. </param>
+        /// <returns>
+        /// The TimeZoneInfo corresponding to the Olson time zone ID, 
+        /// or null if you passed in an invalid Olson time zone ID.
+        /// </returns>
+        private static TimeZoneInfo OlsonTimeZoneToTimeZoneInfo(string olsonTimeZoneId)
+        {
+            var mappings = TzdbDateTimeZoneSource.Default.WindowsMapping.MapZones;
+            var map = mappings.FirstOrDefault(x =>
+                x.TzdbIds.Any(z => z.Equals(olsonTimeZoneId, StringComparison.OrdinalIgnoreCase)));
+            return map == null ? null : TimeZoneInfo.FindSystemTimeZoneById(map.WindowsId);
         }
     }
 }
