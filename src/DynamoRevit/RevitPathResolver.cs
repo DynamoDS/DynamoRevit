@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using Dynamo.Interfaces;
+using System;
 
 namespace Dynamo.Applications
 {
@@ -74,12 +75,22 @@ namespace Dynamo.Applications
 
         public string UserDataRootFolder
         {
-            get { return string.Empty; }
+            get
+            {
+                return Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                    "Dynamo", "Dynamo Revit");
+            }
         }
 
         public string CommonDataRootFolder
         {
-            get { return string.Empty; }
+            get
+            {
+                return Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+                    "Dynamo", "Dynamo Revit");
+            }
         }
     }
 }
