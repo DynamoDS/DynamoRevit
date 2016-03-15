@@ -2,7 +2,6 @@
 using System.IO;
 using System.Reflection;
 using Dynamo.Interfaces;
-using System;
 
 namespace Dynamo.Applications
 {
