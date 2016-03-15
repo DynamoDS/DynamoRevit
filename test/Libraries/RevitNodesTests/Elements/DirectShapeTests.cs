@@ -247,7 +247,7 @@ namespace RevitNodesTests.Elements
 
         [Test]
         [TestModel(@".\empty.rfa")]
-        public void ByBrepNameCategoryMaterial_Cubiod()
+        public void ByBrepNameCategoryMaterial_Cuboid()
         {
             var p1 = Point.ByCoordinates(0.0, 0.0, 0.0);
             var p2 = Point.ByCoordinates(10.0, 10.0, 10.0);
