@@ -58,20 +58,7 @@ namespace Revit.GeometryConversion
        bool performHostUnitConversion,
        BRepType type)
        {
-           List<Face> faces = null;
-
-           if (performHostUnitConversion)
-           {
-               using(var newTopology = topology.InHostUnits())
-               {
-                   faces = newTopology.Faces.ToList();
-               }
-           }
-           else
-           {
-               faces = topology.Faces.ToList();
-           }
-
+           var faces = topology.Faces.ToList();
            var brb = new BRepBuilder(type);
            var edge2EdgeId = new Dictionary<Edge, BRepBuilderGeometryId>();
 
@@ -91,7 +78,7 @@ namespace Revit.GeometryConversion
 
                        // Create Revit nurbs surface
                        var bbface = BRepBuilderSurfaceGeometry.CreateNURBSSurface(ngeom.DegreeU, ngeom.DegreeV,
-                           ngeom.UKnots(), ngeom.VKnots(), ngeom.ControlPoints().SelectMany(x => x.Select(y => y.ToXyz())).ToList(),
+                           ngeom.UKnots(), ngeom.VKnots(), ngeom.ControlPoints().SelectMany(x => x.Select(y => y.ToXyz(performHostUnitConversion))).ToList(),
                            ngeom.Weights().SelectMany(x => x).ToList(),
                            false,
                            null);
@@ -122,7 +109,7 @@ namespace Revit.GeometryConversion
                                    // But there are cases when edges ends up slightly outside one of the surfaces and Revit fails.
                                    //
                                    // This is something that we can be improve going forward.
-                                   edgeId = brb.AddEdge(BRepBuilderEdgeGeometry.Create(curve.ToRevitType()));
+                                   edgeId = brb.AddEdge(BRepBuilderEdgeGeometry.Create(curve.ToRevitType(performHostUnitConversion)));
                                    edge2EdgeId[edge] = edgeId;
                                }
                                brb.AddCoEdge(loopId, edgeId, coedge.Reversed);
