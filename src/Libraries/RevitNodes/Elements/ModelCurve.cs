@@ -79,9 +79,12 @@ namespace Revit.Elements
             if (mc != null)
             {
                 InternalSetCurveElement(mc);
-                if (!InternalSetSketchPlaneFromCurve(crv))
+                if (InternalSetSketchPlaneFromCurve(crv))
                 {
-                    InternalSetCurve(crv);
+                    if (!CurveUtils.CurvesAreSimilar(mc.GeometryCurve, crv))
+                    {
+                        InternalSetCurve(crv);
+                    }  
                     return;
                 }
             }
