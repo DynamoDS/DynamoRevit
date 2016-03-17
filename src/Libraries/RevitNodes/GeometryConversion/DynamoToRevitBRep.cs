@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Autodesk.Revit.DB;
 using Autodesk.DesignScript.Runtime;
+using CoEdge = Autodesk.DesignScript.Geometry.CoEdge;
 using Edge = Autodesk.DesignScript.Geometry.Edge;
 using Face = Autodesk.DesignScript.Geometry.Face;
 using ProtoPt = Autodesk.DesignScript.Geometry.Point;
@@ -15,7 +16,7 @@ namespace Revit.GeometryConversion
    public static class DynamoToRevitBRep
    {
        /// <summary>
-       /// this method attmempts to construct a BRep from a closed solid.
+       /// this method attempts to construct a BRep from a closed solid.
        /// </summary>
        /// <param name="sol"></param>
        /// <param name="performHostUnitConversion"></param>
@@ -35,7 +36,7 @@ namespace Revit.GeometryConversion
        }
 
        /// <summary>
-       /// this method attmempts to construct a BRep from a surface.
+       /// this method attempts to construct a BRep from a surface.
        /// </summary>
        /// <param name="surf"></param>
        /// <param name="performHostUnitConversion"></param>
