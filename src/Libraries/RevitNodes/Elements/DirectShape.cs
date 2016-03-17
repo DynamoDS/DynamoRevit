@@ -220,17 +220,47 @@ namespace Revit.Elements
             }
             else if (shapeReference is Autodesk.DesignScript.Geometry.Surface)
             {
-                tessellatedShape = (shapeReference as Autodesk.DesignScript.Geometry.Surface).ToRevitType(
-                    TessellatedShapeBuilderTarget.AnyGeometry,
-                    TessellatedShapeBuilderFallback.Mesh,
-                    MaterialId: materialId);
+                // Defer to tessellated shape if BRep shape for some reason fails
+                GeometryObject geometry = null; 
+                try
+                {
+                    geometry = DynamoToRevitBRep.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Surface);
+                }
+                catch
+                {
+
+                }
+
+                if(geometry != null)
+                {
+                    tessellatedShape = new List<GeometryObject>() { geometry };
+                }
+                else
+                {
+                    tessellatedShape = (shapeReference as Autodesk.DesignScript.Geometry.Surface).ToRevitType(TessellatedShapeBuilderTarget.AnyGeometry, TessellatedShapeBuilderFallback.Mesh, MaterialId: materialId);
+                }
             }
             else if (shapeReference is Autodesk.DesignScript.Geometry.Solid)
             {
-                tessellatedShape = (shapeReference as Autodesk.DesignScript.Geometry.Solid).ToRevitType(
-                    TessellatedShapeBuilderTarget.AnyGeometry,
-                    TessellatedShapeBuilderFallback.Mesh,
-                    MaterialId: materialId);
+                // Defer to tessellated shape if BRep shape for some reason fails
+                GeometryObject geometry = null; 
+                try
+                {
+                    geometry = DynamoToRevitBRep.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Solid);
+                }
+                catch
+                {
+
+                }
+
+                if(geometry != null)
+                {
+                    tessellatedShape = new List<GeometryObject>() { geometry };
+                }
+                else
+                {
+                    tessellatedShape = (shapeReference as Autodesk.DesignScript.Geometry.Solid).ToRevitType(TessellatedShapeBuilderTarget.AnyGeometry, TessellatedShapeBuilderFallback.Mesh, MaterialId: materialId);
+                }
             }
 
             if (tessellatedShape == null)
