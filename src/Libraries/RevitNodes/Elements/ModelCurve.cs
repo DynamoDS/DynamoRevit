@@ -128,7 +128,7 @@ namespace Revit.Elements
 
         #endregion
 
-        #region Private mutators
+        private readonly double tolerance = 0.01;
 
         /// <summary>
         /// Set the plane and the curve internally.
@@ -146,7 +146,7 @@ namespace Revit.Elements
             Autodesk.Revit.DB.SketchPlane sp = null;
 
             // Planes are different.
-            if (Math.Abs(angleBetweenPlanes) > CurveUtils.Tolerance || distanceBetweenOrigins > CurveUtils.Tolerance)
+            if (angleBetweenPlanes > tolerance || distanceBetweenOrigins > tolerance)
             {
                 sp = GetSketchPlaneFromCurve(newCurve);
                 InternalCurveElement.SetSketchPlaneAndCurve(sp, newCurve);
@@ -169,8 +169,6 @@ namespace Revit.Elements
 
             TransactionManager.Instance.TransactionTaskDone();
         }
-
-        #endregion
 
         #region Public constructor
 
