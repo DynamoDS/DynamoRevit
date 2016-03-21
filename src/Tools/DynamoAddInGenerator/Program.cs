@@ -20,10 +20,15 @@ namespace DynamoAddinGenerator
             foreach (string s in args)
             {
                 if (s == @"/uninstall")
+                {
                     uninstall = true;
+                }
                 else if (Directory.Exists(s))
+                {
                     debugPath = s;
+                }
             }
+
             if (uninstall && string.IsNullOrEmpty(debugPath))
             {
                 //just use the executing assembly location
@@ -49,9 +54,14 @@ namespace DynamoAddinGenerator
 
             DeleteExistingAddins(prodCollection);
 
-            if (!uninstall)
+            if (uninstall)
+            {
+                GenerateAddins(prodCollection, debugPath);
+            }
+            else
+            {
                 GenerateAddins(prodCollection);
-
+            }
         }
 
         /// <summary>
@@ -103,7 +113,7 @@ namespace DynamoAddinGenerator
         /// versions of Revit.
         /// </summary>
         /// <param name="products">A collection of revit installs.</param>
-        internal static void GenerateAddins(IRevitProductCollection products)
+        internal static void GenerateAddins(IRevitProductCollection products, string excludePath = null)
         {
             Console.WriteLine("Generating addins...");
             foreach (var prod in products.Products)
@@ -118,7 +128,12 @@ namespace DynamoAddinGenerator
                 }
                 foreach (KeyValuePair<string, Tuple<int, int, int, int>> dynRevitProd in dynRevitProducts)
                 {
+                    if (dynRevitProd.Key == excludePath)
+                    {
+                        continue;
+                    }
                     var path = Path.Combine(dynRevitProd.Key, subfolder, "DynamoRevitVersionSelector.dll");
+                    Console.WriteLine(path);
                     if (File.Exists(path))
                     {
                         var addinData = DynamoAddinData.Create(prod, dynRevitProd.Key);
