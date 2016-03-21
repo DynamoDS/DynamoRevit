@@ -43,6 +43,7 @@ namespace Dynamo.Applications.Models
         {
             public string Context { get; set; }
             public string DynamoCorePath { get; set; }
+            public string DynamoHostPath { get; set; }
             public IPathResolver PathResolver { get; set; }
             public IPreferences Preferences { get; set; }
             public bool StartInTestMode { get; set; }
