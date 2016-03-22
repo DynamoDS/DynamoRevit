@@ -256,15 +256,26 @@ namespace Dynamo.Applications
         private static RevitDynamoModel InitializeCoreModel(DynamoRevitCommandData commandData)
         {
             var corePath = DynamoRevitApp.DynamoCorePath;
+            var dynamoRevitExePath = Assembly.GetExecutingAssembly().Location;
+            var dynamoRevitRoot = Path.GetDirectoryName(dynamoRevitExePath);// ...\Revit_xxxx\ folder
 
             var umConfig = UpdateManagerConfiguration.GetSettings(new DynamoRevitLookUp());
             Debug.Assert(umConfig.DynamoLookUp != null);
 
+            var userDataFolder = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "Dynamo", "Dynamo Revit");
+            var commonDataFolder = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+                "Dynamo", "Dynamo Revit");
+
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
                 {
+                    DynamoCorePath = corePath,
+                    DynamoHostPath = dynamoRevitRoot,
                     GeometryFactoryPath = GetGeometryFactoryPath(corePath),
-                    PathResolver = new RevitPathResolver(),
+                    PathResolver = new RevitPathResolver(userDataFolder, commonDataFolder),
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
                     StartInTestMode = isAutomationMode,
