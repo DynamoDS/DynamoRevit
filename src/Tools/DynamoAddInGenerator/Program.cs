@@ -20,15 +20,20 @@ namespace DynamoAddinGenerator
             foreach (string s in args)
             {
                 if (s == @"/uninstall")
+                {
                     uninstall = true;
+                }
                 else if (Directory.Exists(s))
+                {
                     debugPath = s;
+                }
             }
+
             if (uninstall && string.IsNullOrEmpty(debugPath))
             {
                 //just use the executing assembly location
-                var assemblyPath = Assembly.GetExecutingAssembly().Location;         
-                debugPath = Path.GetDirectoryName(assemblyPath);              
+                var assemblyPath = Assembly.GetExecutingAssembly().Location;
+                debugPath = Path.GetDirectoryName(assemblyPath);
             }
 
             var allProducts = RevitProductUtility.GetAllInstalledRevitProducts();
@@ -49,9 +54,14 @@ namespace DynamoAddinGenerator
 
             DeleteExistingAddins(prodCollection);
 
-            if(!uninstall)
+            if (uninstall)
+            {
+                GenerateAddins(prodCollection, debugPath);
+            }
+            else
+            {
                 GenerateAddins(prodCollection);
-
+            }
         }
 
         /// <summary>
@@ -59,6 +69,7 @@ namespace DynamoAddinGenerator
         /// This method will delete addins like Dynamo.addin and 
         /// DynamoVersionSelector.addin
         /// </summary>
+        /// <param name="products">A collection of revit installs.</param>
         internal static void DeleteExistingAddins(IRevitProductCollection products)
         {
             Console.WriteLine("Deleting all exisitng addins...");
@@ -103,7 +114,8 @@ namespace DynamoAddinGenerator
         /// versions of Revit.
         /// </summary>
         /// <param name="products">A collection of revit installs.</param>
-        internal static void GenerateAddins(IRevitProductCollection products)
+        /// <param name="excludePath">The path that will not be used to search for Dynamo Revit installations</param>
+        internal static void GenerateAddins(IRevitProductCollection products, string excludePath = null)
         {
             Console.WriteLine("Generating addins...");
             foreach (var prod in products.Products)
@@ -118,7 +130,12 @@ namespace DynamoAddinGenerator
                 }
                 foreach (KeyValuePair<string, Tuple<int, int, int, int>> dynRevitProd in dynRevitProducts)
                 {
+                    if (dynRevitProd.Key == excludePath)
+                    {
+                        continue;
+                    }
                     var path = Path.Combine(dynRevitProd.Key, subfolder, "DynamoRevitVersionSelector.dll");
+                    Console.WriteLine(path);
                     if (File.Exists(path))
                     {
                         var addinData = DynamoAddinData.Create(prod, dynRevitProd.Key);
@@ -128,8 +145,8 @@ namespace DynamoAddinGenerator
                 }
             }
         }
-        
-        
+
+
         /// <summary>
         /// Generate a Dynamo.addin file.
         /// </summary>
