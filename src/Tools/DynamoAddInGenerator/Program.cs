@@ -69,6 +69,7 @@ namespace DynamoAddinGenerator
         /// This method will delete addins like Dynamo.addin and 
         /// DynamoVersionSelector.addin
         /// </summary>
+        /// <param name="products">A collection of revit installs.</param>
         internal static void DeleteExistingAddins(IRevitProductCollection products)
         {
             Console.WriteLine("Deleting all exisitng addins...");
@@ -113,6 +114,7 @@ namespace DynamoAddinGenerator
         /// versions of Revit.
         /// </summary>
         /// <param name="products">A collection of revit installs.</param>
+        /// <param name="excludePath">The path that will not be used to search for Dynamo Revit installations</param>
         internal static void GenerateAddins(IRevitProductCollection products, string excludePath = null)
         {
             Console.WriteLine("Generating addins...");
