@@ -26,15 +26,12 @@ namespace Revit.GeometryConversion
             {
                 throw new ArgumentNullException("revitCurve");
             }
-
             dynamic dyCrv = revitCurve;
             Autodesk.DesignScript.Geometry.Curve converted = RevitToProtoCurve.Convert(dyCrv);
-
             if (converted == null)
             {
                 throw new Exception("An unexpected failure occurred when attempting to convert the curve");
             }
-
             if (performHostUnitConversion)
                 UnitConverter.ConvertToDynamoUnits(ref converted);
 
@@ -191,35 +188,14 @@ namespace Revit.GeometryConversion
                         (crv.XDirection*crv.RadiusX).ToVector(false),
                         (crv.YDirection*crv.RadiusY).ToVector(false));
             }
-
-            // We need to define the major and minor axis as the curve 
-            // will be trimmed starting from the major axis (not the xaxis)
-            var major = Math.Max(crv.RadiusX, crv.RadiusY);
-            var minor = Math.Min(crv.RadiusX, crv.RadiusY);
-
-            Vector majorAxis;
-            Vector minorAxis;
-
             double startParam;
 
             var span = Math.Abs( crv.GetEndParameter(0) - crv.GetEndParameter(1)).ToDegrees();
 
-            if (crv.RadiusX > crv.RadiusY)
+            startParam = crv.GetEndParameter(0).ToDegrees();
+            using(var pl = Plane.ByOriginXAxisYAxis(crv.Center.ToPoint(false),crv.XDirection.ToVector(),crv.YDirection.ToVector()))
             {
-                majorAxis = crv.XDirection.ToVector();
-                minorAxis = crv.YDirection.ToVector();
-                startParam = crv.GetEndParameter(0).ToDegrees();
-            }
-            else
-            {
-                majorAxis = crv.YDirection.ToVector().Reverse();
-                minorAxis = crv.XDirection.ToVector();
-                startParam = crv.GetEndParameter(0).ToDegrees() + 90;
-            }
-
-            using (var pl = Plane.ByOriginXAxisYAxis(crv.Center.ToPoint(false), majorAxis, minorAxis))
-            {
-                return EllipseArc.ByPlaneRadiiStartAngleSweepAngle(pl, major, minor, startParam, span);
+                return EllipseArc.ByPlaneRadiiAngles(pl, crv.RadiusX, crv.RadiusY, startParam, span);
             }
         }
 
