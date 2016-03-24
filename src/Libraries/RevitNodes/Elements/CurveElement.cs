@@ -64,7 +64,7 @@ namespace Revit.Elements
         /// <param name="c"></param>
         protected void InternalSetCurve(Curve c)
         {
-            if (!CurveUtils.CurvesAreSimilar(InternalCurveElement.GeometryCurve, c))
+            if (CurveUtils.CurvesAreSimilar(InternalCurveElement.GeometryCurve, c))
                 return;
 
             if (!InternalCurveElement.GeometryCurve.IsBound && c.IsBound)
