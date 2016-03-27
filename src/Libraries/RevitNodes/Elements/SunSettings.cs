@@ -88,7 +88,7 @@ namespace Revit.Elements
 
 
         /// <summary>
-        ///     Gets the Start Date and Time of the solar study.
+        ///     Gets the Start Date and Time of the solar study given in the local time of the solar study location.
         /// </summary>
         public DateTime StartDateTime
         {
@@ -97,7 +97,7 @@ namespace Revit.Elements
         }
         
         /// <summary>
-        ///     Gets the End Date and Time of the solar study.
+        ///     Gets the End Date and Time of the solar study given in the local time of the solar study location.
         /// </summary>
         public DateTime EndDateTime
         {
@@ -105,7 +105,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        ///     Gets the Date and Time for the current frame of the solar study.
+        ///     Gets the Date and Time for the current frame of the solar study given in the local time of the solar study location.
         /// </summary>
         public DateTime CurrentDateTime
         {
@@ -137,6 +137,11 @@ namespace Revit.Elements
         {
             // Get user local hours offset.
             var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow).Hours;
+
+            if (TimeZoneInfo.Local.IsDaylightSavingTime(DateTime.UtcNow))
+            {
+                offset--;
+            }
 
             // Remove user local offset. Just leave pure revit datetime.
             return utc.AddHours(offset);
