@@ -107,7 +107,7 @@ namespace Revit.GeometryConversion
             var baseCS = CoordinateSystem.ByOriginVectors(o, x, y.Reverse());
 
             // Construct the radius
-            var rad = Math.Cos(ang)*height;
+            var rad = Math.Tan(ang) * height;
             var cone = Cone.ByCoordinateSystemHeightRadius(baseCS, height, rad);
 
             // PB: this is iffy code - we need to extract the surface that's not touching the origin
