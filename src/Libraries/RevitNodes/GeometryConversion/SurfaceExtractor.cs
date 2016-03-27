@@ -108,7 +108,7 @@ namespace Revit.GeometryConversion
 
             // Construct the radius
             var rad = Math.Tan(ang) * height;
-            var cone = Cone.ByCoordinateSystemHeightRadius(baseCS, height, rad);
+            var cone = Cone.ByPointsRadius(baseCS.Origin,baseCS.Origin.Translate(baseCS.ZAxis.Scale(height)) as Point , rad);
 
             // PB: this is iffy code - we need to extract the surface that's not touching the origin
             //return cone.Faces.Select(f => f.SurfaceGeometry()).First(s => s.DistanceTo(o) > 1e-5);
