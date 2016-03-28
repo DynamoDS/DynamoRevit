@@ -35,8 +35,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ProtoInterface">
-      <HintPath>..\..\..\..\Dynamo\extern\ProtoGeometry\ProtoInterface.dll</HintPath>
+    <Reference Include="DynamoServices">
+      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
