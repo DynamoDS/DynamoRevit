@@ -39,7 +39,7 @@
       <HintPath>$(DYNAMOAPI)\DynamoInstallDetective.dll</HintPath>
     </Reference>
     <Reference Include="RevitAddinUtility">
-      <HintPath>$(REVITAPI)\RevitAddinUtility.dll</HintPath>
+      <HintPath>$(ProjectDir)\RevitAddinUtility.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
