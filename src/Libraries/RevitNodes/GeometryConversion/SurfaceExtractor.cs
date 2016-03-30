@@ -107,14 +107,14 @@ namespace Revit.GeometryConversion
             var baseCS = CoordinateSystem.ByOriginVectors(o, x, y.Reverse());
 
             // Construct the radius
-            var rad = Math.Cos(ang)*height;
-            var cone = Cone.ByCoordinateSystemHeightRadius(baseCS, height, rad);
+            var rad = Math.Tan(ang) * height;
+            var cone = Cone.ByPointsRadius(baseCS.Origin,baseCS.Origin.Translate(baseCS.ZAxis.Scale(height)) as Point , rad);
 
             // PB: this is iffy code - we need to extract the surface that's not touching the origin
             //return cone.Faces.Select(f => f.SurfaceGeometry()).First(s => s.DistanceTo(o) > 1e-5);
 
             // the flat face of the cone is currently the second face in the Faces enumeration
-            return cone.Faces[1].SurfaceGeometry(); 
+            return cone.Faces[0].SurfaceGeometry(); 
         }
 
         public static Surface ExtractSurface(Autodesk.Revit.DB.HermiteFace face, IEnumerable<PolyCurve> edgeLoops)
