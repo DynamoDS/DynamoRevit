@@ -789,13 +789,6 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             AssertNoDummyNodes();
             RunCurrentModel();
-
-            filePath = Path.Combine(workingDirectory, @".\Samples\MAGN_7679.dyn");
-            testPath = Path.GetFullPath(filePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-            AssertNoDummyNodes();
-            RunCurrentModel();
         }
 
         [Test]
