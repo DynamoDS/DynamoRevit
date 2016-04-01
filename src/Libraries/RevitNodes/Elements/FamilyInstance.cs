@@ -14,6 +14,7 @@ using Revit.Elements.InternalUtilities;
 
 using Point = Autodesk.DesignScript.Geometry.Point;
 using Vector = Autodesk.DesignScript.Geometry.Vector;
+using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace Revit.Elements
 {
@@ -52,6 +53,15 @@ namespace Revit.Elements
             SafeInit(() => InitFamilyInstance(fs, pos));
         }
 
+        internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Face face, Line pos)
+        {
+            SafeInit(() => InitFamilyInstance(fs, face, pos));
+        }
+
+        internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Face face, XYZ location, XYZ referenceDirection)
+        {
+            SafeInit(() => InitFamilyInstance(fs, face, location, referenceDirection));
+        }
         #endregion
 
         #region Helpers for private constructors
@@ -157,6 +167,86 @@ namespace Revit.Elements
             ElementBinder.SetElementForTrace(InternalElement);
         }
 
+        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Face face, Line pos)
+        {
+            //Phase 1 - Check to see if the object exists and should be rebound
+            var oldFam =
+                ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
+
+            //There was a point, rebind to that, and adjust its position
+            if (oldFam != null)
+            {
+                InternalSetFamilyInstance(oldFam);
+                InternalSetFamilySymbol(fs);
+                //InternalSetPosition(pos);
+                return;
+            }
+
+            //Phase 2- There was no existing point, create one
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            //If the symbol is not active, then activate it
+            if (!fs.IsActive)
+                fs.Activate();
+
+            Autodesk.Revit.DB.FamilyInstance fi;
+
+            if (Document.IsFamilyDocument)
+            {
+                fi = Document.FamilyCreate.NewFamilyInstance(face, pos, fs);
+            }
+            else
+            {
+                fi = Document.Create.NewFamilyInstance(face, pos, fs);
+            }
+
+            InternalSetFamilyInstance(fi);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            ElementBinder.SetElementForTrace(InternalElement);
+        }
+
+        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Face face, XYZ location,
+            XYZ referenceDirection)
+        {
+            //Phase 1 - Check to see if the object exists and should be rebound
+            var oldFam =
+                ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
+
+            //There was a point, rebind to that, and adjust its position
+            if (oldFam != null)
+            {
+                InternalSetFamilyInstance(oldFam);
+                InternalSetFamilySymbol(fs);
+                InternalSetPosition(location);
+                return;
+            }
+
+            //Phase 2- There was no existing point, create one
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            //If the symbol is not active, then activate it
+            if (!fs.IsActive)
+                fs.Activate();
+
+            Autodesk.Revit.DB.FamilyInstance fi;
+
+            if (Document.IsFamilyDocument)
+            {
+                fi = Document.FamilyCreate.NewFamilyInstance(face,  location, referenceDirection, fs);
+            }
+            else
+            {
+                fi = Document.Create.NewFamilyInstance(face, location, referenceDirection, fs);
+            }
+
+            InternalSetFamilyInstance(fi);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            ElementBinder.SetElementForTrace(InternalElement);
+        }
         #endregion
 
         #region Private mutators
@@ -243,6 +333,65 @@ namespace Revit.Elements
             }
 
             return new FamilyInstance(familyType.InternalFamilySymbol, point.ToXyz());
+        }
+
+        /// <summary>
+        /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) 
+        /// on a face of another element using a line on that face for its position
+        /// </summary>
+        /// <param name="familyType"></param>
+        /// <param name="surface">A face of a geometry object</param>
+        /// <param name="line">A line on the face defining where the symbol is to be placed</param>
+        /// <returns></returns>
+        public static FamilyInstance ByFace(FamilyType familyType, Surface surface, Autodesk.DesignScript.Geometry.Line line)
+        {
+            if (familyType == null)
+            {
+                throw new ArgumentNullException("familyType");
+            }
+            if (surface == null)
+            {
+                throw new ArgumentNullException("surface");
+            }
+            if (line == null)
+            {
+                throw new ArgumentNullException("line");
+            }
+            var face = (Face)surface.ToRevitType().FirstOrDefault();
+            return new FamilyInstance(familyType.InternalFamilySymbol, face, (Line)line.ToRevitType());
+        }
+
+        /// <summary>
+        /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) 
+        /// using a location, reference direction
+        /// </summary>
+        /// <param name="familyType"></param>
+        /// <param name="surface">A face of a geometry object</param>
+        /// <param name="location">Point on the face where the instance is to be placed</param>
+        /// <param name="referenceDirection">A vector that defines the direction of the family instance. Note that this direction
+        /// defines the rotation of the instance on the face, and thus cannot be parallel to the face normal</param>
+        /// <returns></returns>
+        public static FamilyInstance ByFace(FamilyType familyType, Surface surface, Point location, 
+            Vector referenceDirection)
+        {
+            if (familyType == null)
+            {
+                throw new ArgumentNullException("familyType");
+            }
+            if (surface == null)
+            {
+                throw new ArgumentNullException("surface");
+            }
+            if (location == null)
+            {
+                throw new ArgumentNullException("location");
+            }
+            if (referenceDirection == null)
+            {
+                throw new ArgumentNullException("referenceDirection");
+            }
+            var face = (Face)surface.ToRevitType().FirstOrDefault();
+            return new FamilyInstance(familyType.InternalFamilySymbol, face, location.ToXyz(), referenceDirection.ToXyz());
         }
 
         /// <summary>
