@@ -1,6 +1,7 @@
 ﻿using System;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Interfaces;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 
 using DynamoServices;
@@ -20,7 +21,7 @@ namespace Revit.Elements
     /// A Revit Reference Point
     /// </summary>
     [RegisterForTrace]
-    [ShortName("refPt")]
+    [PreferredShortName("refPt")]
     public class ReferencePoint : Element, IGraphicItem
     {
         #region Internal properties
