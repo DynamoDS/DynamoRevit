@@ -41,11 +41,6 @@ namespace DSRevitNodesUI
         void Controller_RevitDocumentChanged(object sender, EventArgs e)
         {
             PopulateItems();
-
-            if (Items.Any())
-            {
-                SelectedIndex = 0;
-            }
         }
 
         public override void Dispose()
