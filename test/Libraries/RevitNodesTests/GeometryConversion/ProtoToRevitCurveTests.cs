@@ -162,7 +162,7 @@ namespace RevitNodesTests.GeometryConversion
             var o = Point.ByCoordinates(1, 2, 3);
             var n = Vector.ByCoordinates(2, 3, 4, true);
             var pl = Autodesk.DesignScript.Geometry.Plane.ByOriginNormal(o, n);
-            var ellipseArc = EllipseArc.ByPlaneRadiiStartAngleSweepAngle(pl, 10, 5, 45, 90);
+            var ellipseArc = EllipseArc.ByPlaneRadiiAngles(pl, 10, 5, 45, 90);
 
             var revitCurve = ellipseArc.ToRevitType(false);
 
