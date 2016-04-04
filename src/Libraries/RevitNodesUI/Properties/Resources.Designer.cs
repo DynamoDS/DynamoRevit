@@ -351,9 +351,9 @@ namespace DSRevitNodesUI.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select multiple faces from the Revit document..
         /// </summary>
-        internal static string SelectFacesDesciption {
+        internal static string SelectFacesDescription {
             get {
-                return ResourceManager.GetString("SelectFacesDesciption", resourceCulture);
+                return ResourceManager.GetString("SelectFacesDescription", resourceCulture);
             }
         }
         
