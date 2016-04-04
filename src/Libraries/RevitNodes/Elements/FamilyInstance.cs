@@ -391,6 +391,15 @@ namespace Revit.Elements
                 throw new ArgumentNullException("referenceDirection");
             }
             var face = (Face)surface.ToRevitType().FirstOrDefault();
+            //var doc = DocumentManager.Instance.CurrentDBDocument;
+            //var elRef =
+            //    Reference.ParseFromStableRepresentation(doc, referenceString);
+
+            //var ele =
+            //    DocumentManager.Instance
+            //        .CurrentDBDocument.GetElement(elRef);
+
+            //var geob = ele.GetGeometryObjectFromReference(elRef);
             return new FamilyInstance(familyType.InternalFamilySymbol, face, location.ToXyz(), referenceDirection.ToXyz());
         }
 
