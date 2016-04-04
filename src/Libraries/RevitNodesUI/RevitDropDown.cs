@@ -41,11 +41,6 @@ namespace DSRevitNodesUI
         void Controller_RevitDocumentChanged(object sender, EventArgs e)
         {
             PopulateItems();
-
-            if (Items.Any())
-            {
-                SelectedIndex = 0;
-            }
         }
 
         public override void Dispose()
@@ -65,7 +60,7 @@ namespace DSRevitNodesUI
 
         public FamilyTypes() : base("Family Type") { }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
 
@@ -76,7 +71,7 @@ namespace DSRevitNodesUI
             {
                 Items.Add(new DynamoDropDownItem(NO_FAMILY_TYPES, null));
                 SelectedIndex = 0;
-                return;
+                return SelectionState.Done;
             }
 
             foreach (Family family in fec.ToElements())
@@ -88,6 +83,7 @@ namespace DSRevitNodesUI
             }
 
             Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
@@ -168,12 +164,12 @@ namespace DSRevitNodesUI
         /// Items are sorted alphabetically by name. 
         /// If the SelectedIndex is already set, it is set to zero.
         /// </summary>
-        public override void PopulateItems() //(IEnumerable set, bool readOnly)
+        protected override SelectionState PopulateItemsCore(string currentSelection) //(IEnumerable set, bool readOnly)
         {
             //only update the collection on evaluate
             //if the item coming in is different
             if (element == null || element.Id.Equals(this.storedId))
-                return;
+                return SelectionState.Restore;
 
             storedId = element.Id;
             Items.Clear();
@@ -190,7 +186,9 @@ namespace DSRevitNodesUI
             if (SelectedIndex == -1)
             {
                 SelectedIndex = 0;
+                return SelectionState.Done;
             }
+            return SelectionState.Restore;
         }
 
         private void AddFamilySymbolParameters(FamilySymbol fs)
@@ -320,7 +318,7 @@ namespace DSRevitNodesUI
 
         public FloorTypes() : base("Floor Type") { }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
 
@@ -331,7 +329,7 @@ namespace DSRevitNodesUI
             {
                 Items.Add(new DynamoDropDownItem(Properties.Resources.NoFloorTypesAvailable, null));
                 SelectedIndex = 0;
-                return;
+                return SelectionState.Done;
             }
 
             foreach (var ft in fec.ToElements())
@@ -340,6 +338,7 @@ namespace DSRevitNodesUI
             }
 
             Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
@@ -374,7 +373,7 @@ namespace DSRevitNodesUI
 
         public WallTypes() : base("Wall Type") { }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
 
@@ -385,7 +384,7 @@ namespace DSRevitNodesUI
             {
                 Items.Add(new DynamoDropDownItem(noWallTypes, null));
                 SelectedIndex = 0;
-                return;
+                return SelectionState.Done;
             }
 
             foreach (var wt in fec.ToElements())
@@ -394,6 +393,7 @@ namespace DSRevitNodesUI
             }
 
             Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
@@ -430,7 +430,7 @@ namespace DSRevitNodesUI
             OutPorts[0].SetPortData(OutPortData[0]);
         }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
             var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
@@ -457,6 +457,7 @@ namespace DSRevitNodesUI
             }
 
             Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
@@ -548,7 +549,7 @@ namespace DSRevitNodesUI
 
         public Levels() : base("Levels") { }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
 
@@ -560,12 +561,13 @@ namespace DSRevitNodesUI
             {
                 Items.Add(new DynamoDropDownItem(noLevels, null));
                 SelectedIndex = 0;
-                return;
+                return SelectionState.Done;
             }
 
             levelColl.ToElements().ToList().ForEach(x => Items.Add(new DynamoDropDownItem(x.Name, x)));
 
             Items = Items.OrderBy(x => x.Name).ToObservableCollection<DynamoDropDownItem>();
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
@@ -602,7 +604,7 @@ namespace DSRevitNodesUI
             PopulateItems();
         }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
 
@@ -616,13 +618,14 @@ namespace DSRevitNodesUI
             {
                 Items.Add(new DynamoDropDownItem(noTypesMessage, null));
                 SelectedIndex = 0;
-                return;
+                return SelectionState.Done;
             }
 
             foreach (var e in collector.ToElements())
                 Items.Add(new DynamoDropDownItem(e.Name, e));
 
             Items = Items.OrderBy(x => x.Name).ToObservableCollection<DynamoDropDownItem>();
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
@@ -696,7 +699,7 @@ namespace DSRevitNodesUI
     {
         public Views() : base("Views") { }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
             //find all views in the project
@@ -707,6 +710,7 @@ namespace DSRevitNodesUI
             {
                 Items.Add(new DynamoDropDownItem(v.Name, v));
             }
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
