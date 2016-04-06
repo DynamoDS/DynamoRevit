@@ -877,7 +877,9 @@ namespace Dynamo.Applications.Models
 
         protected override void OpenFileImpl(OpenFileCommand command)
         {
-            IdlePromise.ExecuteOnIdleAsync(() => base.OpenFileImpl(command));
+            // MAGN-9824 changed file open to be executed right away instead of queue up.
+            // This is to make sure DynamoRevit is consistent with DynamoStudio on file open.
+            base.OpenFileImpl(command);
         }
 
         #endregion
