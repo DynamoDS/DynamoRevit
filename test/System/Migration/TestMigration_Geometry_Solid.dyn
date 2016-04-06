@@ -36,12 +36,6 @@
       <PortInfo index="0" default="True" />
       <PortInfo index="1" default="True" />
     </Dynamo.Nodes.SolidSphere>
-    <Dynamo.Nodes.SolidTorus type="Dynamo.Nodes.SolidTorus" guid="738497b0-51a0-4475-a0d9-f0d7b656382a" nickname="Torus" x="0.461032266772008" y="1242.61735544698" isVisible="true" isUpstreamVisible="true" lacing="Longest">
-      <PortInfo index="0" default="True" />
-      <PortInfo index="1" default="True" />
-      <PortInfo index="2" default="True" />
-      <PortInfo index="3" default="True" />
-    </Dynamo.Nodes.SolidTorus>
   </Elements>
   <Connectors />
   <Notes />
