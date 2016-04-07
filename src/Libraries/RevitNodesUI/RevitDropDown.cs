@@ -686,7 +686,7 @@ namespace DSRevitNodesUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             AssociativeNode node;
-            if (SelectedIndex == -1)
+            if(SelectedIndex < 0 || SelectedIndex >= Items.Count)
             {
                 node = AstFactory.BuildNullNode();
             }
