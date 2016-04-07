@@ -20,7 +20,7 @@ namespace Revit.GeometryObjects
         /// </summary>
         /// <param name="referenceString"></param>
         /// <returns></returns>
-        public static object ByReferenceStableRepresentation(ref string referenceString)
+        public static object ByReferenceStableRepresentation(string referenceString)
         {
             try
             {

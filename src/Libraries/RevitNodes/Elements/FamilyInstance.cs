@@ -11,7 +11,7 @@ using RevitServices.Persistence;
 using RevitServices.Transactions;
 using DynamoUnits;
 using Revit.Elements.InternalUtilities;
-
+using Revit.GeometryReferences;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using Vector = Autodesk.DesignScript.Geometry.Vector;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
@@ -53,14 +53,14 @@ namespace Revit.Elements
             SafeInit(() => InitFamilyInstance(fs, pos));
         }
 
-        internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Face face, Line pos)
+        internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Reference reference, Line pos)
         {
-            SafeInit(() => InitFamilyInstance(fs, face, pos));
+            SafeInit(() => InitFamilyInstance(fs, reference, pos));
         }
 
-        internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Face face, XYZ location, XYZ referenceDirection)
+        internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Reference reference, XYZ location, XYZ referenceDirection)
         {
-            SafeInit(() => InitFamilyInstance(fs, face, location, referenceDirection));
+            SafeInit(() => InitFamilyInstance(fs, reference, location, referenceDirection));
         }
         #endregion
 
@@ -167,7 +167,7 @@ namespace Revit.Elements
             ElementBinder.SetElementForTrace(InternalElement);
         }
 
-        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Face face, Line pos)
+        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Reference reference, Line pos)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldFam =
@@ -193,11 +193,11 @@ namespace Revit.Elements
 
             if (Document.IsFamilyDocument)
             {
-                fi = Document.FamilyCreate.NewFamilyInstance(face, pos, fs);
+                fi = Document.FamilyCreate.NewFamilyInstance(reference, pos, fs);
             }
             else
             {
-                fi = Document.Create.NewFamilyInstance(face, pos, fs);
+                fi = Document.Create.NewFamilyInstance(reference, pos, fs);
             }
 
             InternalSetFamilyInstance(fi);
@@ -207,7 +207,7 @@ namespace Revit.Elements
             ElementBinder.SetElementForTrace(InternalElement);
         }
 
-        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Face face, XYZ location,
+        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Reference reference, XYZ location,
             XYZ referenceDirection)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
@@ -234,11 +234,11 @@ namespace Revit.Elements
 
             if (Document.IsFamilyDocument)
             {
-                fi = Document.FamilyCreate.NewFamilyInstance(face,  location, referenceDirection, fs);
+                fi = Document.FamilyCreate.NewFamilyInstance(reference,  location, referenceDirection, fs);
             }
             else
             {
-                fi = Document.Create.NewFamilyInstance(face, location, referenceDirection, fs);
+                fi = Document.Create.NewFamilyInstance(reference, location, referenceDirection, fs);
             }
 
             InternalSetFamilyInstance(fi);
@@ -337,11 +337,11 @@ namespace Revit.Elements
 
         /// <summary>
         /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) 
-        /// on a face of another element using a line on that face for its position
+        /// on a reference of another element using a line on that reference for its position
         /// </summary>
         /// <param name="familyType"></param>
-        /// <param name="surface">A face of a geometry object</param>
-        /// <param name="line">A line on the face defining where the symbol is to be placed</param>
+        /// <param name="surface">A reference of a geometry object</param>
+        /// <param name="line">A line on the reference defining where the symbol is to be placed</param>
         /// <returns></returns>
         public static FamilyInstance ByFace(FamilyType familyType, Surface surface, Autodesk.DesignScript.Geometry.Line line)
         {
@@ -357,8 +357,9 @@ namespace Revit.Elements
             {
                 throw new ArgumentNullException("line");
             }
-            var face = (Face)surface.ToRevitType().FirstOrDefault();
-            return new FamilyInstance(familyType.InternalFamilySymbol, face, (Line)line.ToRevitType());
+            var reference = ElementFaceReference.TryGetFaceReference(surface);
+
+            return new FamilyInstance(familyType.InternalFamilySymbol, reference.InternalReference, (Line) line.ToRevitType());
         }
 
         /// <summary>
@@ -366,10 +367,10 @@ namespace Revit.Elements
         /// using a location, reference direction
         /// </summary>
         /// <param name="familyType"></param>
-        /// <param name="surface">A face of a geometry object</param>
-        /// <param name="location">Point on the face where the instance is to be placed</param>
+        /// <param name="surface">A reference of a geometry object</param>
+        /// <param name="location">Point on the reference where the instance is to be placed</param>
         /// <param name="referenceDirection">A vector that defines the direction of the family instance. Note that this direction
-        /// defines the rotation of the instance on the face, and thus cannot be parallel to the face normal</param>
+        /// defines the rotation of the instance on the reference, and thus cannot be parallel to the reference normal</param>
         /// <returns></returns>
         public static FamilyInstance ByFace(FamilyType familyType, Surface surface, Point location, 
             Vector referenceDirection)
@@ -390,17 +391,10 @@ namespace Revit.Elements
             {
                 throw new ArgumentNullException("referenceDirection");
             }
-            var face = (Face)surface.ToRevitType().FirstOrDefault();
-            //var doc = DocumentManager.Instance.CurrentDBDocument;
-            //var elRef =
-            //    Reference.ParseFromStableRepresentation(doc, referenceString);
+            var reference = ElementFaceReference.TryGetFaceReference(surface);
 
-            //var ele =
-            //    DocumentManager.Instance
-            //        .CurrentDBDocument.GetElement(elRef);
-
-            //var geob = ele.GetGeometryObjectFromReference(elRef);
-            return new FamilyInstance(familyType.InternalFamilySymbol, face, location.ToXyz(), referenceDirection.ToXyz());
+            return new FamilyInstance(familyType.InternalFamilySymbol, reference.InternalReference, 
+                location.ToXyz(), referenceDirection.ToXyz());
         }
 
         /// <summary>

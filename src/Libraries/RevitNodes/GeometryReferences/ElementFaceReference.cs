@@ -76,11 +76,11 @@ namespace Revit.GeometryReferences
                 string.Format(Properties.Resources.FaceReferenceExtractionDetail, curveObject));
         }
 
-        private static ElementFaceReference TryGetFaceReference(Autodesk.DesignScript.Geometry.Surface curveObject, string nodeTypeString = "This node")
+        private static ElementFaceReference TryGetFaceReference(Autodesk.DesignScript.Geometry.Surface surfaceObject, string nodeTypeString = "This node")
         {
             // If a Reference has been added to this object, we can use that
             // to build the Element.
-            object tagObj = curveObject.Tags.LookupTag(DefaultTag);
+            object tagObj = surfaceObject.Tags.LookupTag(DefaultTag);
             if (tagObj != null)
             {
                 var tagRef = (Reference)tagObj;

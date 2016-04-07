@@ -385,9 +385,7 @@ namespace Dynamo.Nodes
             List<AssociativeNode> inputAstNodes)
         {
             AssociativeNode node;
-            //Func<string, object> func = GeometryObjectSelector.ByReferenceStableRepresentation;
-            delegate void RefAction (ref string obj);
-            RefAction func = GeometryObjectSelector.ByReferenceStableRepresentation;
+            Func<string, object> func = GeometryObjectSelector.ByReferenceStableRepresentation;
 
             var results = SelectionResults.ToList();
 
