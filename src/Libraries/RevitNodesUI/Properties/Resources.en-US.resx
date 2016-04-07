@@ -222,7 +222,7 @@
     <comment>Description for Views</comment>
   </data>
   <data name="WallTypesDescription" xml:space="preserve">
-    <value>All floor types available in the document.</value>
+    <value>All wall types available in the document.</value>
     <comment>Description for Wall Types</comment>
   </data>
   <data name="PortDataALevelToolTip" xml:space="preserve">
