@@ -177,7 +177,7 @@
     <value>Select a face.</value>
     <comment>Description for Select Face</comment>
   </data>
-  <data name="SelectFacesDesciption" xml:space="preserve">
+   <data name="SelectFacesDescription" xml:space="preserve">
     <value>Select multiple faces from the Revit document.</value>
     <comment>Description for Select Faces</comment>
   </data>
