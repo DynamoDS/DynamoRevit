@@ -789,6 +789,13 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             AssertNoDummyNodes();
             RunCurrentModel();
+
+            filePath = Path.Combine(workingDirectory, @".\Samples\Revit_Color.dyn");
+            testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            RunCurrentModel();
         }
 
         [Test]
