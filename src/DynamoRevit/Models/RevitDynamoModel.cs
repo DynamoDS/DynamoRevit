@@ -44,6 +44,7 @@ namespace Dynamo.Applications.Models
         {
             public string Context { get; set; }
             public string DynamoCorePath { get; set; }
+            public string DynamoHostPath { get; set; }
             public IPathResolver PathResolver { get; set; }
             public IPreferences Preferences { get; set; }
             public bool StartInTestMode { get; set; }
@@ -852,7 +853,9 @@ namespace Dynamo.Applications.Models
 
         protected override void OpenFileImpl(OpenFileCommand command)
         {
-            DynamoRevitApp.AddIdleAction(() => base.OpenFileImpl(command));
+            // MAGN-9824 changed file open to be executed right away instead of queue up.
+            // This is to make sure DynamoRevit is consistent with DynamoStudio on file open.
+            base.OpenFileImpl(command);
         }
 
     }

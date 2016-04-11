@@ -63,9 +63,8 @@
       <HintPath>$(DYNAMOTESTAPI)\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="ProtoInterface, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(DYNAMOTESTAPI)\ProtoInterface.dll</HintPath>
+    <Reference Include="DynamoServices">
+      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
@@ -102,6 +101,7 @@
     <Compile Include="DirectShapeTests.cs" />
     <Compile Include="DisplayTests.cs" />
     <Compile Include="GetFamilyParametersTests.cs" />
+    <Compile Include="RevitDropDownTests.cs" />
     <Compile Include="RevitLibraryTests.cs" />
     <Compile Include="ImportInstanceTests.cs" />
     <Compile Include="RevitWatch3DViewModelTests.cs" />

@@ -177,7 +177,7 @@
     <value>Select a face.</value>
     <comment>Description for Select Face</comment>
   </data>
-  <data name="SelectFacesDesciption" xml:space="preserve">
+  <data name="SelectFacesDescription" xml:space="preserve">
     <value>Select multiple faces from the Revit document.</value>
     <comment>Description for Select Faces</comment>
   </data>
@@ -222,7 +222,7 @@
     <comment>Description for Views</comment>
   </data>
   <data name="WallTypesDescription" xml:space="preserve">
-    <value>All floor types available in the document.</value>
+    <value>All wall types available in the document.</value>
     <comment>Description for Wall Types</comment>
   </data>
   <data name="PortDataALevelToolTip" xml:space="preserve">
