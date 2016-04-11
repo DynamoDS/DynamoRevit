@@ -1,16 +1,3 @@
-#DynamoRevit
-===========
-
-Dynamo libraries and ExternalApplication implementation for Revit.
-
-Branches:
-- Revit2015 : Built on Revit2015 API, works only for Revit2015
-- Revit2016 : Built on Revit2016 API, works only for Revit2016
-- Revit2017 : Built on Revit2017 API, works only for Revit2017
-<<<<<<< HEAD
-=======
-
-
 ### Building DynamoRevit
 
 #### Background Info
@@ -61,4 +48,3 @@ you want to point the addin button thats loaded into Revit to the VersionSelecto
 1>c:\Users\bykovsm\AppData\Local\Temp\AssemblySharedInfo.tt(1,6): error CS1520: Compiling transformation: Method must have a return type```  	then you need to get rid of any white space in the last line of *DynamoRevit/src/AssemblyInfoGenerator/transform_all.tt*
 
 * if you see missing classes or namespaces from the Revit or Dynamo APIS see here: [CS.props](https://github.com/DynamoDS/DynamoRevit/blob/Revit2015/src/Config/CS.props) contains environment variable **_DYNAMOAPI_** and **_REVITAPI_** to define path for Dynamo and Revit libraries respectively.  These environment variables can be overwritten by providing correct path for Dynamo and Revit libraries in [user_locals.props](https://github.com/DynamoDS/DynamoRevit/blob/Revit2015/src/Config/user_local.props)
->>>>>>> fa94981... updated readme
