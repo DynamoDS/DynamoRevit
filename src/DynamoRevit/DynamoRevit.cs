@@ -535,5 +535,27 @@ namespace Dynamo.Applications
             return regKey.GetSubKeyNames().Where(s => s.StartsWith("Dynamo")).Select(
                 (s) => regKey.OpenSubKey(s).GetValue("InstallLocation") as string);
         }
+
+        public override IEnumerable<string> GetDynamoUserDataLocations()
+        {
+            var appDatafolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+            var paths = new List<string>();
+            //Pre 1.0 Dynamo Studio user data was stored at %appdata%\Dynamo\
+            var dynamoFolder = Path.Combine(appDatafolder, "Dynamo");
+            if (Directory.Exists(dynamoFolder))
+            {
+                paths.AddRange(Directory.EnumerateDirectories(dynamoFolder));
+            }
+            
+            //From 1.0 onwards Dynamo Studio user data is stored at %appdata%\Dynamo\Dynamo Revit\
+            var revitFolder = Path.Combine(dynamoFolder, "Dynamo Revit");
+            if (Directory.Exists(revitFolder))
+            {
+                paths.AddRange(Directory.EnumerateDirectories(revitFolder));
+            }
+
+            return paths;
+        }
     }
 }
