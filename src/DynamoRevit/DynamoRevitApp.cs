@@ -82,7 +82,7 @@ namespace Dynamo.Applications
             return installs.Cast<KeyValuePair<string, Tuple<int, int, int, int>>>()
                 .Where(p => p.Value.Item1 == version.Major && p.Value.Item2 == version.Minor)
                 .Select(p=>p.Key)
-                .FirstOrDefault();
+                .LastOrDefault();
         }
 
         /// <summary>
