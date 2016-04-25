@@ -123,6 +123,9 @@ namespace Dynamo.Applications
 
             try
             {
+                if (false == TryResolveDynamoCore())
+                    return Result.Failed;
+
                 UIControlledApplication = application;
                 ControlledApplication = application.ControlledApplication;
 
@@ -332,6 +335,27 @@ namespace Dynamo.Applications
         {
             get { return DynamoButton.Enabled; }
             set { DynamoButton.Enabled = value; }
+        }
+
+        private bool TryResolveDynamoCore()
+        {
+            if (string.IsNullOrEmpty(DynamoCorePath))
+            {
+                var fvi = FileVersionInfo.GetVersionInfo(assemblyName);
+
+                if (MessageBoxResult.OK ==
+                    System.Windows.MessageBox.Show(
+                        string.Format(Resources.DynamoCoreNotFoundDialogMessage,
+                            fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart),
+                        Resources.DynamoCoreNotFoundDialogTitle,
+                        MessageBoxButton.OKCancel,
+                        MessageBoxImage.Error))
+                {
+                    System.Diagnostics.Process.Start("http://dynamobim.org/download/");
+                }
+                return false;
+            }
+            return true;
         }
     }
 }
