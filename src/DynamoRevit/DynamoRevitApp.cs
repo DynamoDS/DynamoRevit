@@ -80,7 +80,7 @@ namespace Dynamo.Applications
             return installs.Cast<KeyValuePair<string, Tuple<int, int, int, int>>>()
                 .Where(p => p.Value.Item1 == version.Major && p.Value.Item2 == version.Minor)
                 .Select(p=>p.Key)
-                .FirstOrDefault();
+                .LastOrDefault();
         }
 
         /// <summary>
@@ -122,6 +122,9 @@ namespace Dynamo.Applications
 
             try
             {
+                if (false == TryResolveDynamoCore())
+                    return Result.Failed;
+
                 UIControlledApplication = application;
                 ControlledApplication = application.ControlledApplication;
 
@@ -363,6 +366,27 @@ namespace Dynamo.Applications
         {
             get;
             set;
+        }
+
+        private bool TryResolveDynamoCore()
+        {
+            if (string.IsNullOrEmpty(DynamoCorePath))
+            {
+                var fvi = FileVersionInfo.GetVersionInfo(assemblyName);
+
+                if (MessageBoxResult.OK ==
+                    System.Windows.MessageBox.Show(
+                        string.Format(Resources.DynamoCoreNotFoundDialogMessage,
+                            fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart),
+                        Resources.DynamoCoreNotFoundDialogTitle,
+                        MessageBoxButton.OKCancel,
+                        MessageBoxImage.Error))
+                {
+                    System.Diagnostics.Process.Start("http://dynamobim.org/download/");
+                }
+                return false;
+            }
+            return true;
         }
     }
 }
