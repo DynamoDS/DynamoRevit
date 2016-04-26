@@ -167,7 +167,7 @@ namespace Revit.Elements
             ElementBinder.SetElementForTrace(InternalElement);
         }
 
-        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Reference reference, Line pos)
+        private void InitFamilyInstance(FamilySymbol fs, Reference reference, Line pos)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldFam =
@@ -178,7 +178,8 @@ namespace Revit.Elements
             {
                 InternalSetFamilyInstance(oldFam);
                 InternalSetFamilySymbol(fs);
-                //InternalSetPosition(pos);
+                InternalSetFace(reference);
+                InternalSetPosition(pos);
                 return;
             }
 
@@ -207,7 +208,7 @@ namespace Revit.Elements
             ElementBinder.SetElementForTrace(InternalElement);
         }
 
-        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Reference reference, XYZ location,
+        private void InitFamilyInstance(FamilySymbol fs, Reference reference, XYZ location,
             XYZ referenceDirection)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
@@ -219,6 +220,7 @@ namespace Revit.Elements
             {
                 InternalSetFamilyInstance(oldFam);
                 InternalSetFamilySymbol(fs);
+                InternalSetFace(reference);
                 InternalSetPosition(location);
                 return;
             }
@@ -270,6 +272,29 @@ namespace Revit.Elements
 
             var lp = InternalFamilyInstance.Location as LocationPoint;
             lp.Point = fi;
+
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        private void InternalSetPosition(Line pos)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            //var lp = InternalFamilyInstance.get_Parameter(BuiltInParameter.CURVE_IS_REFERENCE_LINE).Set(pos.Reference.ElementId);
+            var lp = InternalFamilyInstance.Location as LocationCurve;
+            lp.Curve = pos;
+
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        private void InternalSetFace(Reference face)
+        {
+            if (InternalFamilyInstance.HostFace == face)
+                return;
+
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            InternalFamilyInstance.get_Parameter(BuiltInParameter.FAMILY_WORK_PLANE_BASED).Set(face.ElementId);
 
             TransactionManager.Instance.TransactionTaskDone();
         }
