@@ -1,0 +1,6 @@
+*.nupkg
+lib
+build
+content
+tools
+!NuGet.exe
