@@ -3,6 +3,14 @@
   <ImportGroup Label="PropertySheets" Condition=" Exists('$(SolutionDir)Config/user_local.props') ">
     <Import Project="$(SolutionDir)Config/user_local.props" />
   </ImportGroup>
+    <PropertyGroup>
+	<DynamoCorePath Condition = "!Exists('$(DynamoCorePath)')">$(SolutionDir)\packages\DynamoVisualProgramming.Core.1.0.0-beta3\lib\net45</DynamoCorePath>
+	<DynamoZeroTouchPath Condition = "!Exists('$(DynamoZeroTouchPath)')">$(SolutionDir)\packages\DynamoVisualProgramming.ZeroTouchLibrary.1.0.0-beta3\lib\net45</DynamoZeroTouchPath>
+	<DynamoWpfUIPath Condition = "!Exists('$(DynamoWpfUIPath)')">$(SolutionDir)\packages\DynamoVisualProgramming.WpfUILibrary.1.0.0-beta4\lib\net45</DynamoWpfUIPath>
+	<DynamoWpfUINodesPath Condition = "!Exists('$(DynamoWpfUINodesPath)')">$(DynamoWpfUIPath)</DynamoWpfUINodesPath>
+	<DynamoServicesPath Condition = "!Exists('$(DynamoServicesPath)')">$(SolutionDir)\packages\DynamoVisualProgramming.DynamoServices.1.0.0-beta3\lib\net45</DynamoServicesPath>
+	<DynamoTestPackagePath Condition = "!Exists('$(DynamoTestPackagePath)')">$(SolutionDir)\packages\DynamoVisualProgramming.Tests.1.0.0-beta4\lib\net45</DynamoTestPackagePath>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
 	<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -10,9 +18,7 @@
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
 	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
     <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
-	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
 	<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
-	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOTESTAPI>
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</TestOutputPath>
     <REVITAPI  Condition=" '$(REVITAPI)' == '' ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
@@ -33,9 +39,7 @@
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
 	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
     <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
-	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
 	<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
-	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOTESTAPI>
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</TestOutputPath>
     <REVITAPI  Condition=" '$(REVITAPI)' == '' ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>

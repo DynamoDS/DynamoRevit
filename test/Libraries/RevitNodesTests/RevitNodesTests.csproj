@@ -44,11 +44,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ProtoGeometry">
-      <HintPath>$(DYNAMOAPI)\ProtoGeometry.dll</HintPath>
+      <HintPath>$(DynamoZeroTouchPath)\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices">
-      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
+      <HintPath>$(DynamoServicesPath)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
@@ -122,7 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DynamoCore">
-      <HintPath>$(DYNAMOAPI)\DynamoCore.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Analysis">
@@ -140,7 +140,7 @@
       <Private>False</Private>
     </ProjectReference>
     <Reference Include="TestServices">
-      <HintPath>$(DYNAMOTESTAPI)\TestServices.dll</HintPath>
+      <HintPath>$(DynamoTestPackagePath)\TestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="..\RevitTestServices\RevitTestServices.csproj">

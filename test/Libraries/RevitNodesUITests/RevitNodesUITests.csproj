@@ -60,12 +60,12 @@
   <ItemGroup>
     <Reference Include="DynamoCore">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(DYNAMOAPI)\DynamoCore.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
 	<Reference Include="ProtoCore">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(DYNAMOAPI)\ProtoCore.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="..\..\..\..\src\Libraries\Revit\RevitNodesUI\RevitNodesUI.csproj">

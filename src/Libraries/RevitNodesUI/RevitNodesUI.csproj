@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoUtilities">
-      <HintPath>$(DYNAMOAPI)\DynamoUtilities.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="HelixToolkit.Wpf.SharpDX">
@@ -46,11 +46,11 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ProtoGeometry">
-      <HintPath>$(DYNAMOAPI)\ProtoGeometry.dll</HintPath>
+      <HintPath>$(DynamoZeroTouchPath)\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices">
-      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
+      <HintPath>$(DynamoServicesPath)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
@@ -96,23 +96,23 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DynamoCoreWpf">
-      <HintPath>$(DYNAMOAPI)\DynamoCoreWpf.dll</HintPath>
+      <HintPath>$(DynamoWpfUIPath)\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ProtoCore">
-      <HintPath>$(DYNAMOAPI)\ProtoCore.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModelsWpf">
-      <HintPath>$(DYNAMOAPI)\nodes\CoreNodeModelsWpf.dll</HintPath>
+      <HintPath>$(DynamoWpfUINodesPath)\CoreNodeModelsWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModels">
-      <HintPath>$(DYNAMOAPI)\nodes\CoreNodeModels.dll</HintPath>
+      <HintPath>$(DynamoWpfUINodesPath)\CoreNodeModels.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore">
-      <HintPath>$(DYNAMOAPI)\DynamoCore.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DSCoreNodes">
@@ -120,7 +120,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">
-      <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
+      <HintPath>$(DynamoZeroTouchPath)\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">
