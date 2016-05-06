@@ -8,13 +8,13 @@
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
     <projectUrl>https://github.com/DynamoDS/DynamoRevit</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Contains the core binaries from DynamoRevit 2017. It contains the following files:
+    <description>Contains the core binaries from DynamoRevit 2016. It contains the following files:
 		1)RevitNodes.dll
 		2)DynamoRevitDS.dll
 		3)RevitServices.dll
 		4)DSRevitNodesUI.dll
 	</description>
-    <summary>This package contains the core binaries from DynamoRevit 2017.</summary>
+    <summary>This package contains the core binaries from DynamoRevit 2016.</summary>
     <copyright>Copyright Autodesk 2016</copyright>
     <iconUrl>https://raw.githubusercontent.com/DynamoDS/Dynamo/master/doc/distrib/Images/logo_square_32x32.png</iconUrl>
  </metadata>
