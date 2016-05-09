@@ -6,7 +6,7 @@
 	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">$(SolutionDir)..\..\Dynamo\bin\$(Platform)\$(Configuration)</DYNAMOTESTAPI>
 	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\..\Dynamo\bin\AnyCPU\$(Configuration)\$(REVIT_VERSION)</OutputPath>
     <DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">$(SolutionDir)..\..\Dynamo\bin\$(Platform)\$(Configuration)</DYNAMOAPI>
-	<DYNAMOAPI  Condition="!Exists('$(DYNAMOAPI)')">C:\Program Files\Dynamo 1.0</DYNAMOAPI>
+	<DYNAMOAPI  Condition="!Exists('$(DYNAMOAPI)')">C:\Program Files\Dynamo\Dynamo Core\1.0</DYNAMOAPI>
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(OutputPath)</TestOutputPath>
 	<DynamoCorePath Condition = "'$(DynamoCorePath)'== ''">$(DYNAMOAPI)</DynamoCorePath>
 	<DynamoZeroTouchPath Condition = "'$(DynamoZeroTouchPath)' == ''">$(DYNAMOAPI)</DynamoZeroTouchPath>
