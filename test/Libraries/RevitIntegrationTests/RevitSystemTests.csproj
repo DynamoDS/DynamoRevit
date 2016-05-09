@@ -60,11 +60,11 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="ProtoGeometry, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(DynamoZeroTouchPath)\ProtoGeometry.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices">
-      <HintPath>$(DynamoServicesPath)\DynamoServices.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
@@ -82,11 +82,11 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
     <Reference Include="SystemTestServices">
-      <HintPath>$(DynamoTestPackagePath)\SystemTestServices.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\SystemTestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TestServices">
-      <HintPath>$(DynamoTestPackagePath)\TestServices.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\TestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -157,7 +157,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">
-      <HintPath>$(DynamoZeroTouchPath)\DynamoUnits.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="$(SolutionDir)Libraries\RevitNodesUI\RevitNodesUI.csproj">
