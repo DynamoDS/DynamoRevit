@@ -111,6 +111,23 @@ namespace Dynamo.Applications
         private static readonly Queue<Action> idleActionQueue = new Queue<Action>(10);
         private static EventHandlerProxy proxy;
 
+
+        public static Assembly CheckAppDomainForMismatchedReferences(Assembly assembly)
+        {
+          var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies().Select(x=>x.GetName()).ToList();
+            foreach(var currentAssembly in assembly.GetReferencedAssemblies().Concat(new AssemblyName[] { assembly.GetName() }))
+            {
+                foreach (var loadedAssembly in loadedAssemblies)
+                {
+                    if((currentAssembly.Name == loadedAssembly.Name) && (currentAssembly.Version > loadedAssembly.Version))
+                    {
+                        throw new Exception("Incompatible Addin Loaded");
+                    }
+                }
+            }
+            return assembly;
+        }
+
         public Result OnStartup(UIControlledApplication application)
         {
             // Revit2015+ has disabled hardware acceleration for WPF to
@@ -283,6 +300,12 @@ namespace Dynamo.Applications
         private void SubscribeAssemblyResolvingEvent()
         {
             AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
+            AppDomain.CurrentDomain.AssemblyLoad += AssemblyLoad;
+        }
+
+        private void AssemblyLoad(object sender, AssemblyLoadEventArgs args)
+        {
+            DynamoRevitApp.CheckAppDomainForMismatchedReferences(args.LoadedAssembly);
         }
 
         private void UnsubscribeAssemblyResolvingEvent()
