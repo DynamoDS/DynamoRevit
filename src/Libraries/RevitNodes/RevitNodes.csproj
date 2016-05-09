@@ -180,11 +180,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Analysis">
-      <HintPath>$(DYNAMOAPI)\Analysis.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\Analysis.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DSCoreNodes">
-      <HintPath>$(DYNAMOAPI)\DSCoreNodes.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\DSCoreNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">

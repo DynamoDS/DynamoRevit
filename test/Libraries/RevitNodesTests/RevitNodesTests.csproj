@@ -126,7 +126,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Analysis">
-      <HintPath>$(DYNAMOAPI)\Analysis.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\Analysis.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj">
