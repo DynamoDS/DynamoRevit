@@ -4,12 +4,15 @@
     <Import Project="$(SolutionDir)Config/user_local.props" />
   </ImportGroup>
     <PropertyGroup>
-	<DynamoCorePath Condition = "!Exists('$(DynamoCorePath)')">$(SolutionDir)\packages\DynamoVisualProgramming.Core.1.0.0-beta3\lib\net45</DynamoCorePath>
-	<DynamoZeroTouchPath Condition = "!Exists('$(DynamoZeroTouchPath)')">$(SolutionDir)\packages\DynamoVisualProgramming.ZeroTouchLibrary.1.0.0-beta3\lib\net45</DynamoZeroTouchPath>
+	<DynamoCorePath Condition = "!Exists('$(DynamoCorePath)')">$(SolutionDir)\packages\DynamoVisualProgramming.Core.1.0.0\lib\net45</DynamoCorePath>
+	<DynamoZeroTouchPath Condition = "!Exists('$(DynamoZeroTouchPath)')">$(SolutionDir)\packages\DynamoVisualProgramming.ZeroTouchLibrary.1.0.0\lib\net45</DynamoZeroTouchPath>
 	<DynamoWpfUIPath Condition = "!Exists('$(DynamoWpfUIPath)')">$(SolutionDir)\packages\DynamoVisualProgramming.WpfUILibrary.1.0.0-beta4\lib\net45</DynamoWpfUIPath>
 	<DynamoWpfUINodesPath Condition = "!Exists('$(DynamoWpfUINodesPath)')">$(DynamoWpfUIPath)</DynamoWpfUINodesPath>
-	<DynamoServicesPath Condition = "!Exists('$(DynamoServicesPath)')">$(SolutionDir)\packages\DynamoVisualProgramming.DynamoServices.1.0.0-beta3\lib\net45</DynamoServicesPath>
+	<DynamoServicesPath Condition = "!Exists('$(DynamoServicesPath)')">$(SolutionDir)\packages\DynamoVisualProgramming.DynamoServices.1.0.0\lib\net45</DynamoServicesPath>
 	<DynamoTestPackagePath Condition = "!Exists('$(DynamoTestPackagePath)')">$(SolutionDir)\packages\DynamoVisualProgramming.Tests.1.0.0-beta4\lib\net45</DynamoTestPackagePath>
+	<PrismPackagePath Condition = "'$(PrismPackagePath)'==''">$(SolutionDir)\packages\Prism.4.1.0.0\lib\NET40</PrismPackagePath>
+	<HelixToolkitPackagePath Condition = "'$(HelixToolkitPackagePath)'=='' ">$(SolutionDir)\packages\HelixToolkit.Wpf.SharpDX.2015.1.629\lib\net45</HelixToolkitPackagePath>
+	<IronPythonPackagePath Condition = "'$(IronPythonPackagePath)'=='' ">$(SolutionDir)\packages\IronPython.2.7.2\lib\Net40</IronPythonPackagePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
