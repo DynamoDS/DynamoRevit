@@ -133,6 +133,26 @@ namespace Dynamo.Applications.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Revit is not able to find an installation of Dynamo Core version {0}.{1}.{2}.
+        ///
+        ///Would you like to download and reinstall DynamoCore.msi from http://dynamobim.org now?.
+        /// </summary>
+        internal static string DynamoCoreNotFoundDialogMessage {
+            get {
+                return ResourceManager.GetString("DynamoCoreNotFoundDialogMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamo Core component could not be found.
+        /// </summary>
+        internal static string DynamoCoreNotFoundDialogTitle {
+            get {
+                return ResourceManager.GetString("DynamoCoreNotFoundDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap logo_square_32x32 {
