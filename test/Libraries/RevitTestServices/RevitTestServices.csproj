@@ -103,11 +103,11 @@
     </ProjectReference>
     <Reference Include="System.XML" />
     <Reference Include="TestServices">
-      <HintPath>$(DYNAMOTESTAPI)\TestServices.dll</HintPath>
+      <HintPath>$(DynamoTestPackagePath)\TestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SystemTestServices">
-      <HintPath>$(DYNAMOTESTAPI)\SystemTestServices.dll</HintPath>
+      <HintPath>$(DynamoTestPackagePath)\SystemTestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

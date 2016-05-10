@@ -140,7 +140,7 @@
       <Private>False</Private>
     </ProjectReference>
     <Reference Include="TestServices">
-      <HintPath>$(DYNAMOTESTAPI)\TestServices.dll</HintPath>
+      <HintPath>$(DynamoTestPackagePath)\TestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="..\RevitTestServices\RevitTestServices.csproj">
