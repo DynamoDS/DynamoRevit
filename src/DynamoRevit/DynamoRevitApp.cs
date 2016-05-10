@@ -288,7 +288,7 @@ namespace Dynamo.Applications
 
         private void AssemblyLoad(object sender, AssemblyLoadEventArgs args)
         {
-           DynamoRevitApp.AppDomainHasMismatchedReferences(args.LoadedAssembly);
+            DynamoRevitApp.AppDomainHasMismatchedReferences(args.LoadedAssembly, new string[] { "SSONET", "SSONETUI", "RevitAPI" });
          
         }
 
@@ -349,20 +349,24 @@ namespace Dynamo.Applications
         /// TODO(potentially use an additional appdomain to work around this).
         /// </summary>
         /// <param name="assembly"></param>
+        /// <param name="assemblyNamesToIgnore"></param>
         /// <returns></returns>
-        public static bool AppDomainHasMismatchedReferences(Assembly assembly)
+        public static bool AppDomainHasMismatchedReferences(Assembly assembly, String[] assemblyNamesToIgnore)
         {
-            //get all assemblies that are currently loaded into the appdomain - ignore those with duplicate names.
-            var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies().Select(x=>x.GetName())
-     .GroupBy(assm => assm.Name)
-     .ToDictionary(g => g.Key, g => g.First());
+            //get all assemblies that are currently loaded into the appdomain.
+            var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).ToList();
+            // ignore some assemblies(revit assemblies) that we know work and have changed their version number format or do not align
+            // with semantic versioning.
+            loadedAssemblies.RemoveAll(x => assemblyNamesToIgnore.Contains(x.Name));
+            //build dict- ignore those with duplicate names.
+            var loadedAssemblyDict = loadedAssemblies.GroupBy(assm => assm.Name).ToDictionary(g => g.Key, g => g.First());
 
             foreach (var currentAssembly in assembly.GetReferencedAssemblies().Concat(new AssemblyName[] { assembly.GetName() }))
             {
-                if (loadedAssemblies.ContainsKey(currentAssembly.Name))
+                if (loadedAssemblyDict.ContainsKey(currentAssembly.Name))
                 {
                     //if the dll is already loadead, then check that our required version is not greater than the currently loaded one.
-                    var loadedAssembly = loadedAssemblies[currentAssembly.Name];
+                    var loadedAssembly = loadedAssemblyDict[currentAssembly.Name];
                     if (currentAssembly.Version.Major > loadedAssembly.Version.Major)
                     {
                         MessageBox.Show( string.Format(Resources.MismatchedAssemblyVersion ,assembly.FullName,currentAssembly.FullName));
