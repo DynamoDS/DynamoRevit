@@ -143,6 +143,15 @@ namespace Dynamo.Applications.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to While loading assembly {0}, Dynamo detected that the dependency {1} was already loaded with an incompatiable version. It is likely that another Revit Addin has loadead this assembly, please try uninstalling other Addins, and starting Dynamo again. Dynamo may be unstable in this state..
+        /// </summary>
+        internal static string MismatchedAssemblyVersion {
+            get {
+                return ResourceManager.GetString("MismatchedAssemblyVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to a new document..
         /// </summary>
         internal static string NewDocument {
