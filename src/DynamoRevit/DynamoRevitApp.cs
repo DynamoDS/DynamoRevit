@@ -128,7 +128,7 @@ namespace Dynamo.Applications
                 UIControlledApplication = application;
                 ControlledApplication = application.ControlledApplication;
 
-                SubscribeAssemblyResolvingEvent();
+                SubscribeAssemblyEvents();
                 SubscribeApplicationEvents();
 
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
@@ -197,7 +197,7 @@ namespace Dynamo.Applications
                 dynamoCommand = null;
             }
 
-            UnsubscribeAssemblyResolvingEvent();
+            UnsubscribeAssemblyEvents();
             UnsubscribeApplicationEvents();
             UnsubscribeDocumentChangedEvent();
             RevitServicesUpdater.DisposeInstance();
@@ -299,14 +299,21 @@ namespace Dynamo.Applications
             proxy = null;
         }
 
-        private void SubscribeAssemblyResolvingEvent()
+        private void SubscribeAssemblyEvents()
         {
             AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
         }
 
-        private void UnsubscribeAssemblyResolvingEvent()
+        private void AssemblyLoad(object sender, AssemblyLoadEventArgs args)
+        {
+           DynamoRevitApp.AppDomainHasMismatchedReferences(args.LoadedAssembly);
+         
+        }
+
+        private void UnsubscribeAssemblyEvents()
         {
             AppDomain.CurrentDomain.AssemblyResolve -= ResolveAssembly;
+            AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
         }
 
         /// <summary>
@@ -350,6 +357,38 @@ namespace Dynamo.Applications
             {
                 throw new Exception(string.Format("The location of the assembly, {0} could not be resolved for loading.", assemblyPath), ex);
             }
+        }
+
+        /// <summary>
+        /// Handler when an assembly is loaded into Revit's appdomain - we need to make sure
+        /// that another addin has not loadead another version of a .dll that we require.
+        /// If this happens Dynamo will most likely crash. We should alert the user they
+        /// have an incompatible addin installed.
+        /// TODO(potentially use an additional appdomain to work around this).
+        /// </summary>
+        /// <param name="assembly"></param>
+        /// <returns></returns>
+        public static bool AppDomainHasMismatchedReferences(Assembly assembly)
+        {
+            //get all assemblies that are currently loaded into the appdomain - ignore those with duplicate names.
+            var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies().Select(x=>x.GetName())
+     .GroupBy(assm => assm.Name)
+     .ToDictionary(g => g.Key, g => g.First());
+
+            foreach (var currentAssembly in assembly.GetReferencedAssemblies().Concat(new AssemblyName[] { assembly.GetName() }))
+            {
+                if (loadedAssemblies.ContainsKey(currentAssembly.Name))
+                {
+                    //if the dll is already loadead, then check that our required version is not greater than the currently loaded one.
+                    var loadedAssembly = loadedAssemblies[currentAssembly.Name];
+                    if (currentAssembly.Version.Major > loadedAssembly.Version.Major)
+                    {
+                        MessageBox.Show( string.Format(Resources.MismatchedAssemblyVersion ,assembly.FullName,currentAssembly.FullName));
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         private void SubscribeDocumentChangedEvent()
