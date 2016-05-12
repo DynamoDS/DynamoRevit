@@ -220,6 +220,10 @@ namespace RevitServices.Elements
 
         public void ApplicationDocumentChanged(object sender, DocumentChangedEventArgs args)
         {
+            //skip processing element modification for nodes modified due to Dynamo script transaction.
+            if (args.GetTransactionNames().Contains(RevitServices.Transactions.TransactionWrapper.TransactionName))
+                return;
+
             var doc = args.GetDocument();
             var added = args.GetAddedElementIds().Select(x => doc.GetElement(x).UniqueId);
             var addedIds = args.GetAddedElementIds();
