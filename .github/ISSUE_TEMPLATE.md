@@ -1,4 +1,4 @@
-If this issue is **not** a bug report or improvement request, please check the [Dynamo forum](http://dynamobim.org/forums/forum/dyn/), and start a thread there to discuss your issue.
+If this issue is **not** a bug report or improvement request, please check the [Dynamo forum](https://forum.dynamobim.com/), and start a thread there to discuss your issue.
 
 ## Dynamo version
 
