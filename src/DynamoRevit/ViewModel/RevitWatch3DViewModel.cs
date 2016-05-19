@@ -28,6 +28,8 @@ namespace Dynamo.Applications.ViewModel
         private ElementId directShapeId = ElementId.InvalidElementId;
         private MethodInfo method;
 
+        public override string PreferenceWatchName { get { return "IsRevitBackgroundPreviewActive"; } }
+
         public RevitWatch3DViewModel(Watch3DViewModelStartupParams parameters) : base(parameters)
         {
             Name = Resources.BackgroundPreviewName;
