@@ -307,6 +307,7 @@ namespace Dynamo.Applications
 
         private void AssemblyLoad(object sender, AssemblyLoadEventArgs args)
         {
+            //TODO here - lookup the saved assemblies from settings to ignore and add them to the list
             DynamoRevitApp.AppDomainHasMismatchedReferences(args.LoadedAssembly, new string[] { "SSONET", "SSONETUI", "RevitAPI" });
          
         }
@@ -388,74 +389,16 @@ namespace Dynamo.Applications
                     var loadedAssembly = loadedAssemblyDict[currentAssembly.Name];
                     if (currentAssembly.Version.Major > loadedAssembly.Version.Major)
                     {
-                        //TODO wrap in using or make a class out of this
-                        var window =  new System.Windows.Forms.Form();
-                        window.Icon = Icon.FromHandle(Properties.Resources.logo_square_32x32.GetHicon());
-                        window.Text = "Dependency Error";
-                        // no smaller than design time size
-                        window.MinimumSize = new System.Drawing.Size(window.Width, window.Height);
-                        window.Font = System.Drawing.SystemFonts.MessageBoxFont;
-                        // no larger than screen size
-                        window.MaximumSize = new System.Drawing.Size((int)System.Windows.SystemParameters.PrimaryScreenWidth, (int)System.Windows.SystemParameters.PrimaryScreenHeight);
-
-                        window.AutoSize = true;
-                        window.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-
-                        var table = new System.Windows.Forms.TableLayoutPanel();
-                        table.AutoSize = true;
-                        table.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                
-                        window.Controls.Add(table);
-
-
-
-                        var shortMessage = new System.Windows.Forms.TextBox();
-                        shortMessage.ReadOnly = true;
-                        shortMessage.BorderStyle = 0;
-                        shortMessage.BackColor = window.BackColor;
-                        shortMessage.TabStop = false;
-                        shortMessage.Multiline = true;
-                        shortMessage.WordWrap = true;
-                        shortMessage.Text = Properties.Resources.MismatchedAssemblyVersionShortMessage;
-                        shortMessage.Width = 400;
-                        SizeF MessageSize = shortMessage.CreateGraphics()
-                                .MeasureString(shortMessage.Text,
-                                                shortMessage.Font,
-                                                shortMessage.Width,
-                                                new StringFormat(0));
-                        shortMessage.Height = (int)MessageSize.Height;
-
-
-                        table.Controls.Add(shortMessage,0,0);
-
-                        var okButton = new System.Windows.Forms.Button();
-                        okButton.Text = "OK";
-                        okButton.AutoSize = true;
-                        okButton.MinimumSize = new System.Drawing.Size(100, 50);
-                        okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-
-                        table.Controls.Add(okButton,1,1);
-
-                        var longMessage = new System.Windows.Forms.TextBox();
-                        longMessage.ReadOnly = true;
-                        longMessage.WordWrap = true;
-                        longMessage.Text = string.Format(Resources.MismatchedAssemblyVersion, assembly.FullName, currentAssembly.FullName);
-                        longMessage.Visible = false;
-
-
-
-                        table.Controls.Add(longMessage,0,2);
-
-                        var detailsButton = new System.Windows.Forms.Button();
-                        detailsButton.AutoSize = true;
-                        detailsButton.Text = "Show Details";
-                        detailsButton.Click += (o, e) => { longMessage.Visible = !longMessage.Visible; };
-
-                        table.Controls.Add(detailsButton,0,1);
-
+                        
+                        var window = new AssemblyLoadWarning(new AssemblyName(assembly.FullName),currentAssembly);
                         window.ShowDialog();
-                        window.Dispose();
-                       // MessageBox.Show( string.Format(Resources.MismatchedAssemblyVersion ,assembly.FullName,currentAssembly.FullName));
+                        if(window.DialogResult == true)
+                        {
+                          //write the result into the settings file for this currentAssembly(the one that is already loaded by something else)
+                          //and check this at the start of the method
+                        }
+
+                        // MessageBox.Show( string.Format(Resources.MismatchedAssemblyVersion ,assembly.FullName,currentAssembly.FullName));
                         return true;
                     }
                 }

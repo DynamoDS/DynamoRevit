@@ -160,4 +160,7 @@
   <data name="MismatchedAssemblyVersionShortMessage" xml:space="preserve">
     <value>Dynamo has detected a conflict with a dependencey and may be unstable. If any issues are detected, please uninstall addins or packages and contact the provider.</value>
   </data>
+  <data name="MismatchedAssemblyVersionTitle" xml:space="preserve">
+    <value>Error Loading A Dependencey</value>
+  </data>
 </root>
