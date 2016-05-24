@@ -172,6 +172,15 @@ namespace Dynamo.Applications.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dynamo has detected a conflict with a dependencey and may be unstable. If any issues are detected, please uninstall addins or packages and contact the provider..
+        /// </summary>
+        internal static string MismatchedAssemblyVersionShortMessage {
+            get {
+                return ResourceManager.GetString("MismatchedAssemblyVersionShortMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to a new document..
         /// </summary>
         internal static string NewDocument {
