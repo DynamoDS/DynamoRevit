@@ -4,14 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Dynamo.Applications"
-             xmlns:ui="clr-namespace:Dynamo.UI;assembly=DynamoCoreWpf"
-             xmlns:p="clr-namespace:Dynamo.Applications.Properties;assembly=DynamoRevit"
+        xmlns:ui="clr-namespace:Dynamo.UI;assembly=DynamoCoreWpf"
+             xmlns:p="clr-namespace:Dynamo.Applications.Properties"
              WindowStartupLocation="CenterOwner"
-               Title="Error Loading A Dependencey"
-
+             ResizeMode="NoResize"
+             SizeToContent="Height"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+
+        Title="{x:Static p:Resources.MismatchedAssemblyVersionTitle}"
     Style="{DynamicResource DynamoWindowStyle}">
+
 
     <Window.Resources>
         <ResourceDictionary>
@@ -20,23 +24,24 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    
-    <Grid Background="#444444">
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition MinHeight="50" />
-                        <RowDefinition MinHeight="50" />
-                        <RowDefinition MinHeight="500" />
-                        <RowDefinition MinHeight="500" />
-                    </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" ></Label>
-                    <Label Grid.Row="1" Grid.Column="0">Short Error Message</Label>
-            <Button  Style="{DynamicResource ResourceKey=STextButton}" Grid.Row="1" Grid.Column="0">Short Error Message</Button>
-                </Grid>
-        </Grid>
+    <StackPanel>
+
+        <StackPanel>
+            <TextBox Style="{DynamicResource ResourceKey =SDarkTextBox }" Name="ShortErrorMessage" IsReadOnly="True" TextWrapping="Wrap" Visibility="Visible" Grid.Row="0" Grid.Column="0" 
+                       Text="{x:Static p:Resources.MismatchedAssemblyVersionShortMessage}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Button Margin="20,20,20,20"  Style="{DynamicResource ResourceKey=STextButton}"  Click="ShowDetails_ButtonClick" >Show Details</Button>
+            <Button Margin="100,20,20,20" HorizontalAlignment="Right"  Style="{DynamicResource ResourceKey=STextButton}" Click="OKButton_Click">OK</Button>
+        </StackPanel>
+
+        <StackPanel>
+
+            <TextBox Style="{DynamicResource ResourceKey =SDarkTextBox }" FontSize="10" IsReadOnly="True" Name="Details" TextWrapping="Wrap" Background="WhiteSmoke"  Visibility="Collapsed"></TextBox>
+            <CheckBox Margin="20,20,20,20" IsChecked="{Binding Path=doNotShowNextTime, Mode=TwoWay}">Do Not Show Again</CheckBox>
+        </StackPanel>
+    </StackPanel>
+
 </Window>
