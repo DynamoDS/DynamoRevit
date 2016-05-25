@@ -152,11 +152,23 @@ namespace Dynamo.Applications
             return ExecuteCommand(new DynamoRevitCommandData(commandData));
         }
 
+        private void AssemblyLoad(object sender, AssemblyLoadEventArgs args)
+        {
+            //TODO move this logic for ignoring into whatever extension of method actually uses these warnings
+            //the host probably still requires someway to force supress some warnings... so maybe keep this.
+            //though they could just implement their own method for this to collect whatever kind of warnings
+            Dynamo.Applications.StartupUtils.AppDomainHasMismatchedReferences(args.LoadedAssembly, new string[] { "SSONET", "SSONETUI", "RevitAPI" });
+
+        }
+      
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
         {
             HandleDebug(commandData);
 
             InitializeCore(commandData);
+            //subscribe to the assembly load
+            AppDomain.CurrentDomain.AssemblyLoad += AssemblyLoad;
+
 
             try
             {
@@ -274,6 +286,7 @@ namespace Dynamo.Applications
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
                 {
+                    PreloadWarnings = //TODO get warnings here passed in from the VersionSelector Button
                     DynamoCorePath = corePath,
                     DynamoHostPath = dynamoRevitRoot,
                     GeometryFactoryPath = GetGeometryFactoryPath(corePath),
