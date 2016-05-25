@@ -287,16 +287,9 @@ namespace Dynamo.Applications
         private void SubscribeAssemblyEvents()
         {
             AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
-            AppDomain.CurrentDomain.AssemblyLoad += AssemblyLoad;
         }
 
-        private void AssemblyLoad(object sender, AssemblyLoadEventArgs args)
-        {
-            //TODO here - lookup the saved assemblies from settings to ignore and add them to the list
-            DynamoRevitApp.AppDomainHasMismatchedReferences(args.LoadedAssembly, new string[] { "SSONET", "SSONETUI", "RevitAPI" });
-         
-        }
-
+      
         private void UnsubscribeAssemblyEvents()
         {
             AppDomain.CurrentDomain.AssemblyResolve -= ResolveAssembly;
@@ -345,53 +338,7 @@ namespace Dynamo.Applications
                 throw new Exception(string.Format("The location of the assembly, {0} could not be resolved for loading.", assemblyPath), ex);
             }
         }
-
-        /// <summary>
-        /// Handler when an assembly is loaded into Revit's appdomain - we need to make sure
-        /// that another addin has not loadead another version of a .dll that we require.
-        /// If this happens Dynamo will most likely crash. We should alert the user they
-        /// have an incompatible addin installed.
-        /// TODO(potentially use an additional appdomain to work around this).
-        /// </summary>
-        /// <param name="assembly"></param>
-        /// <param name="assemblyNamesToIgnore"></param>
-        /// <returns></returns>
-        public static bool AppDomainHasMismatchedReferences(Assembly assembly, String[] assemblyNamesToIgnore)
-        {
-            //get all assemblies that are currently loaded into the appdomain.
-            var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies().Select(x => x.GetName()).ToList();
-            // ignore some assemblies(revit assemblies) that we know work and have changed their version number format or do not align
-            // with semantic versioning.
-            loadedAssemblies.RemoveAll(x => assemblyNamesToIgnore.Contains(x.Name));
-            //build dict- ignore those with duplicate names.
-            var loadedAssemblyDict = loadedAssemblies.GroupBy(assm => assm.Name).ToDictionary(g => g.Key, g => g.First());
-
-            foreach (var currentAssembly in assembly.GetReferencedAssemblies().Concat(new AssemblyName[] { assembly.GetName() }))
-            {
-                if (loadedAssemblyDict.ContainsKey(currentAssembly.Name))
-                {
-                    //if the dll is already loadead, then check that our required version is not greater than the currently loaded one.
-                    var loadedAssembly = loadedAssemblyDict[currentAssembly.Name];
-                    if (currentAssembly.Version.Major > loadedAssembly.Version.Major)
-                    {
-                        
-                        var window = new AssemblyLoadWarning(new AssemblyName(assembly.FullName),currentAssembly);
-                        window.ShowDialog();
-                        if(window.DialogResult == true)
-                        {
-                          //write the result into the settings file for this currentAssembly(the one that is already loaded by something else)
-                          //and check this at the start of the method
-                        }
-
-                        // MessageBox.Show( string.Format(Resources.MismatchedAssemblyVersion ,assembly.FullName,currentAssembly.FullName));
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-      
+        
         private void SubscribeDocumentChangedEvent()
         {
             ControlledApplication.DocumentChanged += RevitServicesUpdater.Instance.ApplicationDocumentChanged;
