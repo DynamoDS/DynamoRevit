@@ -125,6 +125,8 @@ namespace Dynamo.Applications
         private static RevitDynamoModel revitDynamoModel;
         private static bool handledCrash;
 
+        private static List<Exception> preLoadExceptions = new List<Exception>();
+
         // These fields are used to store information that
         // is pulled from the journal file.
         private static bool shouldShowUi = true;
@@ -158,8 +160,7 @@ namespace Dynamo.Applications
             //TODO move this logic for ignoring into whatever extension of method actually uses these warnings
             //the host probably still requires someway to force supress some warnings... so maybe keep this.
             //though they could just implement their own method for this to collect whatever kind of warnings
-            Dynamo.Applications.StartupUtils.AppDomainHasMismatchedReferences(args.LoadedAssembly, new string[] { "SSONET", "SSONETUI", "RevitAPI" });
-
+            preLoadExceptions.Add(Dynamo.Applications.StartupUtils.AppDomainHasMismatchedReferences(args.LoadedAssembly, new string[] { /*"SSONET", "SSONETUI", "RevitAPI"*/ }));
         }
       
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
@@ -199,6 +200,9 @@ namespace Dynamo.Applications
 
                 // Disable the Dynamo button to prevent a re-run
                 DynamoRevitApp.DynamoButtonEnabled = false;
+
+                //unsubscribe to the assembly load
+                AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
             }
             catch (Exception ex)
             {
@@ -287,7 +291,7 @@ namespace Dynamo.Applications
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
                 {
-                    PreloadWarnings = //TODO get warnings here passed in from the VersionSelector Button
+                    PreloadWarnings = new DynamoModel.HostPreLoadData { Exceptions = preLoadExceptions },
                     DynamoCorePath = corePath,
                     DynamoHostPath = dynamoRevitRoot,
                     GeometryFactoryPath = GetGeometryFactoryPath(corePath),

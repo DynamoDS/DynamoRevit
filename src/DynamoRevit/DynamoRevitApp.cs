@@ -293,7 +293,7 @@ namespace Dynamo.Applications
         private void UnsubscribeAssemblyEvents()
         {
             AppDomain.CurrentDomain.AssemblyResolve -= ResolveAssembly;
-            AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
+            //AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
         }
 
         /// <summary>
