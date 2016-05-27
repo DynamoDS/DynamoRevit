@@ -10,9 +10,9 @@ namespace RevitServices.Materials
     {
         private static MaterialsManager instance;
 
-        public ElementId DynamoMaterialId { get; private set; }
-        public ElementId DynamoErrorMaterialId { get; private set; }
-        public ElementId DynamoGStyleId { get; private set; }
+        public ElementId DynamoMaterialId { get; private set; } 
+        public ElementId DynamoErrorMaterialId { get; private set; } 
+        public ElementId DynamoGStyleId { get; private set; } 
 
         public static MaterialsManager Instance
         {
@@ -28,7 +28,9 @@ namespace RevitServices.Materials
 
         private MaterialsManager()
         {
-            
+            DynamoMaterialId = ElementId.InvalidElementId;
+            DynamoErrorMaterialId = ElementId.InvalidElementId;
+            DynamoGStyleId = ElementId.InvalidElementId;
         }
 
         /// <summary>
@@ -51,28 +53,27 @@ namespace RevitServices.Materials
 
         private void FindOrCreateDynamoMaterial()
         {
-            Dictionary<string, Material> materials
-            = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
-              .OfClass(typeof(Material))
-              .Cast<Material>()
-              .ToDictionary<Material, string>(
-                e => e.Name);
+            var materials = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(Material))
+                .Cast<Material>();
 
             // First try to get or create the Dynamo material
-            if (materials.ContainsKey("Dynamo"))
+            var material = materials.FirstOrDefault(x => x.Name == "Dynamo");
+            if (material != null)
             {
-                DynamoMaterialId = materials["Dynamo"].Id;
+                DynamoMaterialId = material.Id;
                 return;
             }
+
 
             TransactionManager.Instance.EnsureInTransaction(
                 DocumentManager.Instance.CurrentDBDocument);
 
-            Material glass;
+            Material glassMaterial = materials.FirstOrDefault(x => x.Name == "Glass");
             Material dynamoMaterial;
-            if (materials.TryGetValue("Glass", out glass))
+            if(glassMaterial != null)
             {
-                dynamoMaterial = glass.Duplicate("Dynamo");
+                dynamoMaterial = glassMaterial.Duplicate("Dynamo");
             }
             else
             {
@@ -89,17 +90,16 @@ namespace RevitServices.Materials
 
         private void FindOrCreateDynamoErrorMaterial()
         {
-            Dictionary<string, Material> materials
-            = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
-              .OfClass(typeof(Material))
-              .Cast<Material>()
-              .ToDictionary<Material, string>(
-                e => e.Name);
+            var materials = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+               .OfClass(typeof(Material))
+               .Cast<Material>();
 
-            // First try to get or create the DynamoError material
-            if (materials.ContainsKey("DynamoError"))
+
+            // First try to get or create the Dynamo material
+            var material = materials.FirstOrDefault(x => x.Name == "DynamoError");
+            if (material != null)
             {
-                DynamoMaterialId = materials["DynamoError"].Id;
+                DynamoErrorMaterialId = material.Id;
                 return;
             }
 
@@ -118,18 +118,15 @@ namespace RevitServices.Materials
 
         private void FindDynamoGraphicsStyle()
         {
-            var styles = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            styles.OfClass(typeof(GraphicsStyle));
-
-            var gStyle = styles.ToElements().FirstOrDefault(x => x.Name == "Generic Models");
-
-            if (gStyle != null)
+            var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
+            var genericModelCategory = categories.get_Item(BuiltInCategory.OST_GenericModel);
+            if(genericModelCategory != null)
             {
-                DynamoGStyleId = gStyle.Id;
-            }
-            else
-            {
-                DynamoGStyleId = ElementId.InvalidElementId;
+                var gStyle = genericModelCategory.GetGraphicsStyle(GraphicsStyleType.Projection);
+                if(gStyle != null)
+                {
+                    DynamoGStyleId = gStyle.Id;
+                }
             }
         }
     }
