@@ -10,9 +10,9 @@ namespace RevitServices.Materials
     {
         private static MaterialsManager instance;
 
-        public ElementId DynamoMaterialId { get; private set; } = ElementId.InvalidElementId;
-        public ElementId DynamoErrorMaterialId { get; private set; } = ElementId.InvalidElementId;
-        public ElementId DynamoGStyleId { get; private set; } = ElementId.InvalidElementId;
+        public ElementId DynamoMaterialId { get; private set; } 
+        public ElementId DynamoErrorMaterialId { get; private set; } 
+        public ElementId DynamoGStyleId { get; private set; } 
 
         public static MaterialsManager Instance
         {
@@ -28,7 +28,9 @@ namespace RevitServices.Materials
 
         private MaterialsManager()
         {
-            
+            DynamoMaterialId = ElementId.InvalidElementId;
+            DynamoErrorMaterialId = ElementId.InvalidElementId;
+            DynamoGStyleId = ElementId.InvalidElementId;
         }
 
         /// <summary>
