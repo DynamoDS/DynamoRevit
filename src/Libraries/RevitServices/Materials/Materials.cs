@@ -116,7 +116,8 @@ namespace RevitServices.Materials
 
         private void FindDynamoGraphicsStyle()
         {
-            var genericModelCategory = Category.GetCategory(DocumentManager.Instance.CurrentDBDocument, BuiltInCategory.OST_GenericModel);
+            var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
+            var genericModelCategory = categories.get_Item(BuiltInCategory.OST_GenericModel);
             if(genericModelCategory != null)
             {
                 var gStyle = genericModelCategory.GetGraphicsStyle(GraphicsStyleType.Projection);
