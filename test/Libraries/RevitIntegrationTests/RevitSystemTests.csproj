@@ -101,6 +101,7 @@
     <Compile Include="DirectShapeTests.cs" />
     <Compile Include="DisplayTests.cs" />
     <Compile Include="GetFamilyParametersTests.cs" />
+    <Compile Include="MaterialsManagerTests.cs" />
     <Compile Include="RevitDropDownTests.cs" />
     <Compile Include="RevitLibraryTests.cs" />
     <Compile Include="ImportInstanceTests.cs" />
