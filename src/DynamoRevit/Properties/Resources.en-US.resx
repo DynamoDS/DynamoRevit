@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -154,13 +154,12 @@
   <data name="BackgroundPreviewName" xml:space="preserve">
     <value>Revit Background Preview</value>
   </data>
-  <data name="MismatchedAssemblyVersion" xml:space="preserve">
-    <value>While loading assembly {0}, Dynamo detected that the dependency {1} was already loaded with an incompatiable version. It is likely that another Revit Addin has loadead this assembly, please try uninstalling other Addins, and starting Dynamo again. Dynamo may be unstable in this state.</value>
+  <data name="DynamoCoreNotFoundDialogMessage" xml:space="preserve">
+    <value>Revit is not able to find an installation of Dynamo Core version {0}.{1}.{2}.
+
+Would you like to download and reinstall DynamoCore.msi from http://dynamobim.org now?</value>
   </data>
-  <data name="MismatchedAssemblyVersionShortMessage" xml:space="preserve">
-    <value>Dynamo has detected a conflict with a dependencey and may be unstable. If any issues are detected, please uninstall addins or packages and contact the provider.</value>
-  </data>
-  <data name="MismatchedAssemblyVersionTitle" xml:space="preserve">
-    <value>Error Loading A Dependencey</value>
+  <data name="DynamoCoreNotFoundDialogTitle" xml:space="preserve">
+    <value>Dynamo Core component could not be found</value>
   </data>
 </root>
