@@ -40,7 +40,7 @@ namespace Dynamo.Applications.Models
             DynamoRevitCommandData ExternalCommandData { get; set; }
         }
 
-        public struct RevitStartConfiguration : IRevitStartConfiguration,IPreLoadStartConfig
+        public struct RevitStartConfiguration : IRevitStartConfiguration
         {
             public string Context { get; set; }
             public string DynamoCorePath { get; set; }
@@ -55,9 +55,7 @@ namespace Dynamo.Applications.Models
             public string PackageManagerAddress { get; set; }
             public DynamoRevitCommandData ExternalCommandData { get; set; }
             public IEnumerable<Dynamo.Extensions.IExtension> Extensions { get; set; }
-            public TaskProcessMode ProcessMode { get; set; }
-            public IPreLoadData PreloadWarnings { get; set; }
-           
+            public TaskProcessMode ProcessMode { get; set; }           
         }
 
         /// <summary>

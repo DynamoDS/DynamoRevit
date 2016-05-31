@@ -163,33 +163,6 @@ namespace Dynamo.Applications.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to While loading assembly {0}, Dynamo detected that the dependency {1} was already loaded with an incompatiable version. It is likely that another Revit Addin has loadead this assembly, please try uninstalling other Addins, and starting Dynamo again. Dynamo may be unstable in this state..
-        /// </summary>
-        public static string MismatchedAssemblyVersion {
-            get {
-                return ResourceManager.GetString("MismatchedAssemblyVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dynamo has detected a conflict with a dependencey and may be unstable. If any issues are detected, please uninstall addins or packages and contact the provider..
-        /// </summary>
-        public static string MismatchedAssemblyVersionShortMessage {
-            get {
-                return ResourceManager.GetString("MismatchedAssemblyVersionShortMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error Loading A Dependencey.
-        /// </summary>
-        public static string MismatchedAssemblyVersionTitle {
-            get {
-                return ResourceManager.GetString("MismatchedAssemblyVersionTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to a new document..
         /// </summary>
         public static string NewDocument {

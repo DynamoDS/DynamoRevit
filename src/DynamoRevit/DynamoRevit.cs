@@ -156,10 +156,8 @@ namespace Dynamo.Applications
 
         private void AssemblyLoad(object sender, AssemblyLoadEventArgs args)
         {
-            //TODO move this logic for ignoring into whatever extension of method actually uses these warnings
-            //the host probably still requires someway to force supress some warnings... so maybe keep this.
-            //though they could just implement their own method for this to collect whatever kind of warnings
-            preLoadExceptions.Add(Dynamo.Applications.StartupUtils.AppDomainHasMismatchedReferences(args.LoadedAssembly, new string[] { /*"SSONET", "SSONETUI", "RevitAPI"*/ }));
+            //push any exceptions generated before DynamoLoad to this list
+            preLoadExceptions.AddRange(StartupUtils.AppDomainHasMismatchedReferences(args.LoadedAssembly, new string[] { /*"SSONET", "SSONETUI", "RevitAPI"*/ }));
         }
       
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
@@ -194,6 +192,14 @@ namespace Dynamo.Applications
                 {
                     InitializeCoreView().Show();
                 }
+
+                //foreach preloaded exception send a notification to the Dynamo Logger
+                //these are messages we want the user to notice.
+                preLoadExceptions.ForEach(x => revitDynamoModel.Logger.LogNotification
+                (revitDynamoModel.GetType().ToString(),
+                x.GetType().ToString(),
+                DynamoApplications.Properties.Resources.MismatchedAssemblyVersionShortMessage,
+                x.Message));
 
                 TryOpenWorkspaceInCommandData(extCommandData);
 
@@ -290,7 +296,6 @@ namespace Dynamo.Applications
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
                 {
-                    PreloadWarnings = new DynamoModel.HostPreLoadData { Exceptions = preLoadExceptions },
                     DynamoCorePath = corePath,
                     DynamoHostPath = dynamoRevitRoot,
                     GeometryFactoryPath = GetGeometryFactoryPath(corePath),

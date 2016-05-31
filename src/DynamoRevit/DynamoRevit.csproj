@@ -122,9 +122,6 @@
     <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs">
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
-    <Compile Include="AssemblyLoadWarning.xaml.cs">
-      <DependentUpon>AssemblyLoadWarning.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DynamoRevitApp.cs" />
     <Compile Include="Models\RevitDynamoModel.cs" />
     <Compile Include="Models\RevitNodeModel.cs" />
@@ -196,12 +193,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="AssemblyLoadWarning.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
