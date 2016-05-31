@@ -201,6 +201,7 @@ namespace Dynamo.Applications
                 DynamoApplications.Properties.Resources.MismatchedAssemblyVersionShortMessage,
                 x.Message));
 
+
                 TryOpenWorkspaceInCommandData(extCommandData);
 
                 // Disable the Dynamo button to prevent a re-run
