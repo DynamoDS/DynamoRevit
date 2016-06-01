@@ -226,7 +226,7 @@ namespace RevitServices.Transactions
         internal Transaction Transaction { get; set; }
         private readonly WarningHandler handler;
         internal readonly TransactionHandle Handle;
-        public static readonly string TransactionName = "Dynamo Script";
+        public static readonly string TransactionName = "Dynamo-51297CB5 Script";
 
         internal TransactionWrapper()
         {
