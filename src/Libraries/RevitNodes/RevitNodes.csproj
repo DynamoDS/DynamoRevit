@@ -90,6 +90,7 @@
     <Compile Include="Elements\InternalUtilities\ElementUtils.cs" />
     <Compile Include="Elements\InternalUtilities\TransformUtils.cs" />
     <Compile Include="Elements\Mullion.cs" />
+    <Compile Include="Elements\Room.cs" />
     <Compile Include="Elements\SunSettings.cs" />
     <Compile Include="Elements\UnknownElement.cs" />
     <Compile Include="Elements\FloorType.cs" />
