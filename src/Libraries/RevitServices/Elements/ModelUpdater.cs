@@ -19,6 +19,7 @@ using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
 using RevitServices.Persistence;
+using RevitServices.Transactions;
 
 namespace RevitServices.Elements
 {
@@ -221,7 +222,7 @@ namespace RevitServices.Elements
         public void ApplicationDocumentChanged(object sender, DocumentChangedEventArgs args)
         {
             //skip processing element modification for nodes modified due to Dynamo script transaction.
-            if (args.GetTransactionNames().Contains(RevitServices.Transactions.TransactionWrapper.TransactionName))
+            if (args.GetTransactionNames().All(x => string.Equals(x, TransactionWrapper.TransactionName)))
                 return;
 
             var doc = args.GetDocument();
