@@ -47,7 +47,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoApplications">
-      <HintPath>..\..\..\Dynamo\bin\AnyCPU\Debug\DynamoApplications.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DynamoApplications.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DynamoRaaSHelper">
       <HintPath>$(DynamoExternPath)\DynamoRaaS\DynamoRaaSHelper.dll</HintPath>
