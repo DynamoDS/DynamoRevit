@@ -35,39 +35,26 @@ namespace Revit.Elements
             get { return InternalRevitElement; }
         }
 
-        
-
-
-        private void InitElement(Autodesk.Revit.DB.Architecture.Room element)
-        {
-            InternalSetElement(element);
-        }
-
-        #endregion
-
-        #region Private mutators
-
-        /// <summary>
-        /// Set the internal Element, ElementId, and UniqueId
-        /// </summary>
-        /// <param name="wall"></param>
-        private void InternalSetElement(Autodesk.Revit.DB.Architecture.Room element)
-        {
-            InternalRevitElement = element;
-            InternalElementId = element.Id;
-            InternalUniqueId = element.UniqueId;
-        }
-
         #endregion
 
         #region Private constructors
 
+        /// <summary>
+        /// Create from existing element
+        /// </summary>
+        /// <param name="Room"></param>
         internal Room(Autodesk.Revit.DB.Architecture.Room Room)
         {
             SafeInit(() => InitElement(Room));
         }
 
-
+        /// <summary>
+        /// Create a new Room by Level and location
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="location"></param>
+        /// <param name="name"></param>
+        /// <param name="number"></param>
         private Room(Autodesk.Revit.DB.Level level, Autodesk.Revit.DB.XYZ location, string name, string number)
         {
             SafeInit(() => Init(level, location, name, number));
@@ -77,33 +64,43 @@ namespace Revit.Elements
 
         #region Helpers for private constructors
 
-        private void Init(
-            Autodesk.Revit.DB.Level level, Autodesk.Revit.DB.XYZ location, string name, string number)
+        /// <summary>
+        /// Set internal element
+        /// </summary>
+        private void InitElement(Autodesk.Revit.DB.Architecture.Room element)
         {
-            Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+            InternalSetElement(element);
+        }
 
+        private void Init(Autodesk.Revit.DB.Level level, Autodesk.Revit.DB.XYZ location, string name, string number)
+        {
+            // Get document and open transaction
+            Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(document);
 
+            // Get existing room element if possible
             var RoomElem = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Architecture.Room>(document);
 
-
             if (RoomElem == null)
+            {
+                // Create new Room element
                 RoomElem = document.Create.NewRoom(level, new Autodesk.Revit.DB.UV(location.X, location.Y));
-
+            }
             else
             {
-               
+                // Update Location only
                 Autodesk.Revit.DB.LocationPoint point = (Autodesk.Revit.DB.LocationPoint)RoomElem.Location;
-                 point.Point = location;
+                point.Point = location;
             }
 
-            if (name != "") RoomElem.Name = name;
-            if (number != "") RoomElem.Number = number;
+            // Apply name and number if set
+            if (name != "") { RoomElem.Name = name; }
+            if (number != "") { RoomElem.Number = number; }
 
             InternalSetElement(RoomElem);
 
+            // Commit transaction
             TransactionManager.Instance.TransactionTaskDone();
-
 
             if (RoomElem != null)
             {
@@ -118,6 +115,19 @@ namespace Revit.Elements
 
         #endregion
 
+        #region Private mutators
+
+        /// <summary>
+        /// Set the internal Element, ElementId, and UniqueId
+        /// </summary>
+        private void InternalSetElement(Autodesk.Revit.DB.Architecture.Room element)
+        {
+            InternalRevitElement = element;
+            InternalElementId = element.Id;
+            InternalUniqueId = element.UniqueId;
+        }
+
+        #endregion
 
         #region Public static constructors
 
@@ -134,12 +144,16 @@ namespace Revit.Elements
             return new Room((Autodesk.Revit.DB.Level)level.InternalElement, location.ToRevitType(true), name, number);
         }
 
+        #endregion
+
+        #region Properties
+
         /// <summary>
         /// Get room name
         /// </summary>
         public string GetName
         {
-            get{ return this.InternalRevitElement.Name; }           
+            get { return this.InternalRevitElement.Name; }
         }
 
         /// <summary>
@@ -188,16 +202,19 @@ namespace Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
         }
 
-
-
         #endregion
+
+        #region Internal static constructors
 
         internal static Room FromExisting(Autodesk.Revit.DB.Architecture.Room instance, bool isRevitOwned)
         {
-            return new Room(instance) { IsRevitOwned = isRevitOwned };
+            return new Room(instance)
+            {
+                IsRevitOwned = isRevitOwned
+            };
         }
 
-
+        #endregion
     }
 
 }
