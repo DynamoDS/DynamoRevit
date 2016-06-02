@@ -158,7 +158,7 @@ namespace Dynamo.Applications
         private void AssemblyLoad(object sender, AssemblyLoadEventArgs args)
         {
             //push any exceptions generated before DynamoLoad to this list
-            preLoadExceptions.AddRange(StartupUtils.AppDomainHasMismatchedReferences(args.LoadedAssembly, new string[] { /*"SSONET", "SSONETUI", "RevitAPI"*/ }));
+            preLoadExceptions.AddRange(StartupUtils.CheckAssemblyForVersionMismatches(args.LoadedAssembly));
         }
       
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
