@@ -129,7 +129,7 @@ namespace Dynamo.Applications
                 UIControlledApplication = application;
                 ControlledApplication = application.ControlledApplication;
 
-                SubscribeAssemblyResolvingEvent();
+                SubscribeAssemblyEvents();
                 SubscribeApplicationEvents();
 
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
@@ -181,7 +181,7 @@ namespace Dynamo.Applications
 
         public Result OnShutdown(UIControlledApplication application)
         {
-            UnsubscribeAssemblyResolvingEvent();
+            UnsubscribeAssemblyEvents();
             UnsubscribeApplicationEvents();
             UnsubscribeDocumentChangedEvent();
             RevitServicesUpdater.DisposeInstance();
@@ -283,14 +283,16 @@ namespace Dynamo.Applications
             proxy = null;
         }
 
-        private void SubscribeAssemblyResolvingEvent()
+        private void SubscribeAssemblyEvents()
         {
             AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
         }
 
-        private void UnsubscribeAssemblyResolvingEvent()
+      
+        private void UnsubscribeAssemblyEvents()
         {
             AppDomain.CurrentDomain.AssemblyResolve -= ResolveAssembly;
+            //AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
         }
 
         /// <summary>
@@ -335,7 +337,7 @@ namespace Dynamo.Applications
                 throw new Exception(string.Format("The location of the assembly, {0} could not be resolved for loading.", assemblyPath), ex);
             }
         }
-
+        
         private void SubscribeDocumentChangedEvent()
         {
             ControlledApplication.DocumentChanged += RevitServicesUpdater.Instance.ApplicationDocumentChanged;
