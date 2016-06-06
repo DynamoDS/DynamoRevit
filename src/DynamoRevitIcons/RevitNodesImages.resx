@@ -8445,6 +8445,40 @@
         EMxI6GAAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="Revit.Application.Document.FilePath.Large" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAADuElEQVR4Xu2dYUrjUBSFXYJL
+        cAkuoX8H5keX0CXMCqQ7cAkuwRVIHVQQBCsIFimoFRH85RIy98hLSO/cJre8l6T0nQ8+CmPbwDn6mr7c
+        MAeEEEIIIYQQorm4uBiLsxbPxcPwEpISCXYqFg5Pw0tISiRYbwHwVMTzPR6HQ5AmQlhW2LFOwyFIEwhK
+        BZdKFuABQangUskCPCAoFVxxdXVV3N7eRjmfz8++vr5GIj8LmtAFXF5eFp+fn4UEl9KjcDii0QXc399b
+        Acb4Gg5FLHQBLy8vVogx/gmHIhb1ArD2GwHGyuWniXoBDw8PVoAxnofDkE3UC1itVlaIMU7CYcgmygI6
+        WH6+RW7gtVEW8PT0ZIUY41k4BGmiLODj48MKMcZxOARpAgXc3NxYAcbIc38vKOD5+dkKMUZeO/CCArj1
+        MCCLxWJsBBjjLLw1IYR0wcnJyVScBbnf3ycS+Egsan6HH5E+kMDx218voAg/In3AAgaGBQxMbAHyxe9I
+        HDUZnkosEhSAWdPqEugG+WVuEz0VADlXZNFjAbCczvaYx/5TzwVsYx6fHSxgYFjAwFgFiNie2OTahXkJ
+        aq0AjEI+Pj5G+/b2hlnUqbjfl0IlUKuAJr/F6gNSF9DBMMB+zyJJmNsWAKtTSl1AB8MA+z2LJGFOVLge
+        zQI6GAbY/51ZCfNQnNfCbfNVNJegDoYB8plFklCtD9z/DE+vqBfQwTAA95HaKAu4u7uzAoyRs0geygI6
+        WH64d+QBBeDc3wgwVs4ieUABHdwGNQ9vT9pAAcvl0goxRt6H4OX6+npmBBgr70PwslgsUhfA26C24f39
+        fSKhoYRUcjCM7DnyjRrbH/hmzbW+byT0YxFb2thXwuNWS87f378mYrGFP58p8jgSubxJ4Och/NKtRlYk
+        xGkI1uvP+8tj+bq8T3ER+MAFwHxL2JECYJ4l7FABML8Nvx0rAOZ1A/oOFgCzuvI2VAE4fZ01mMcp6lAF
+        kMAABbyKeE2b/AvwEMKygo41jzMiFjAwRgHYD8K/WZ6Ja0sDglLBpTLbAtpEQdWuKYJSwaWSBTRYDWgh
+        KBVcKrMp4FSF67EaUUFQKrhUZlMALsZgba+v9U2u3R+AoFRwqcyjgFgQlAoulSzAA4JSwaWSBXhAUCq4
+        VLIADwhKBZdKFuABQangUskCPCAoFVwqWYAHBKWCSyUL8ICgVHCpZAEeEJQKLpUswAOCUsGlkgV4QFAq
+        uFSyAA8ISgWXShbgQYLCkK011RAr/38EQgghhBBCiMHBwT+29SQqwHjM3QAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="Revit.Application.Document.FilePath.Small" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABU0lEQVRYR+2WsW2DQBiFGYER
+        GMEj0EZK4RE8QiZAbMAIGcETIJQCiS5USDRYCBoqj3B+L/rPupBDcpS7cwqe9MkG/db3jLnD0R6dsixj
+        kGrkdLiIWBmcQW6QyKifQLAusMbvVaGAonEc1bIsNq4y6icsUNe1Tax5l1E/YYGu62xizUFG/YQF5nm2
+        iclFxvwFBWKI0g38fntbsixLwBWElzMQp0DxVU6FzVYBLlWDAtx3T+Bus3qwwJpcxv4eo8AnqISEorZt
+        1TAMP5im6YIb1s1VgCwGZ0N+L/DU5do0jU2sKWTMX/q+t4k1fp+YDH7rHCIbbzISNrgvCnCUw698vL6c
+        QGXAYz8bGuRcKd+WH2Q5UAY8ZhH3T9RfFuB7tzfqgwUo5zlykjE3kQLcI3LhICKzgEklH3UTCLlTsoTm
+        CEm4ArZAshfYCyQg3eA5f/H+aaLoBtbzliaXB3P3AAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="Revit.Elements.AdaptiveComponent.ByParametersOnCurveReference.double2-Curve-FamilyType.Large" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
