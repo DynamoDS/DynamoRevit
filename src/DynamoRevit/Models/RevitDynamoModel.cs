@@ -427,14 +427,12 @@ namespace Dynamo.Applications.Models
 
         private void SubscribeRevitServicesUpdaterEvents()
         {
-            RevitServicesUpdater.Instance.ElementsDeleted += RevitServicesUpdater_ElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdater_ElementsUpdated;
         }
 
         private void UnsubscribeRevitServicesUpdaterEvents()
         {
-            RevitServicesUpdater.Instance.ElementsDeleted -= RevitServicesUpdater_ElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified -= RevitServicesUpdater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsUpdated -= RevitServicesUpdater_ElementsUpdated;
         }
 
         private void SubscribeTransactionManagerEvents()
@@ -809,44 +807,37 @@ namespace Dynamo.Applications.Models
             }
         }
 
-        private void RevitServicesUpdater_ElementsDeleted(
-            Document document, IEnumerable<ElementId> deleted)
+        void RevitServicesUpdater_ElementsUpdated(object sender, ElementUpdateEventArgs e)
         {
-            if (!deleted.Any())
+            //Element addition is not handled by this class.
+            if (e.Operation == ElementUpdateEventArgs.UpdateType.Added)
                 return;
 
+            if (!e.Elements.Any())
+                return;
+
+            bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
+
             var nodes = ElementBinder.GetNodesFromElementIds(
-                deleted,
+                e.Elements,
                 CurrentWorkspace,
                 EngineController);
             foreach (var node in nodes)
             {
+                //Don't re-execute the element construction node, if 
+                //this element is modified due to a Dynamo transaction.
+                if (dynamoTransaction && IsConstructorNode(node)) continue;
+
                 node.OnNodeModified(forceExecute: true);
             }
         }
 
-        private void RevitServicesUpdater_ElementsModified(IEnumerable<string> updated)
+        private bool IsConstructorNode(NodeModel node)
         {
-            var updatedIds = updated.Select(
-                x =>
-                {
-                    Element ret;
-                    DocumentManager.Instance.CurrentDBDocument.TryGetElement(x, out ret);
-                    return ret;
-                }).Select(x => x.Id);
+            var func = node as DSFunction;
+            if (func == null) return false;
 
-            if (!updatedIds.Any())
-                return;
-        
-            var nodes = ElementBinder.GetNodesFromElementIds(
-                updatedIds,
-                CurrentWorkspace,
-                EngineController);
-            foreach (var node in nodes )
-            {
-            
-                node.OnNodeModified(true);
-            }
+            return func.Controller.Definition.Type == Engine.FunctionType.Constructor;
         }
 
         #endregion

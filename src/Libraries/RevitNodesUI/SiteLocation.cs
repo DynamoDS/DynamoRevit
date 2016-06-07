@@ -59,7 +59,7 @@ namespace DSRevitNodesUI
             ArgumentLacing = LacingStrategy.Disabled;
 
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += model_RevitDocumentChanged;
-            RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdater_ElementsUpdated;
             
             DynamoRevitApp.AddIdleAction(() => Update());
         }
@@ -69,7 +69,7 @@ namespace DSRevitNodesUI
         public override void Dispose()
         {
             DynamoRevitApp.EventHandlerProxy.DocumentOpened -= model_RevitDocumentChanged;
-            RevitServicesUpdater.Instance.ElementsModified -= RevitServicesUpdater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsUpdated -= RevitServicesUpdater_ElementsUpdated;
             base.Dispose();
         }
 
@@ -106,11 +106,14 @@ namespace DSRevitNodesUI
 
         #region private methods
 
-        private void RevitServicesUpdater_ElementsModified(IEnumerable<string> updated)
+        private void RevitServicesUpdater_ElementsUpdated(object sender, ElementUpdateEventArgs e)
         {
+            if (e.Operation != ElementUpdateEventArgs.UpdateType.Modified)
+                return;
+
             var locUuid = DocumentManager.Instance.CurrentDBDocument.SiteLocation.UniqueId;
 
-            if (updated.Contains(locUuid))
+            if (e.GetUniqueIds().Contains(locUuid))
             {
                 Update();
             }
