@@ -16,7 +16,11 @@ using ProtoCore.AST.AssociativeAST;
 namespace DSRevitNodesUI
 {
 
-
+    /// <summary>
+    /// Generic UI Dropdown node baseclass for Revit Elements.
+    /// This class populates a dropdown with all Revit elements of the specified type.
+    /// It uses a filtered element collector filtering by class.
+    /// </summary>
     public abstract class CustomRevitElementDropDown : RevitDropDownBase
     {
         /// <summary>
@@ -62,6 +66,7 @@ namespace DSRevitNodesUI
                     return;
                 }
 
+                // if the elementtype is a RebarHookType add an initial "None" value which does not come from the collector
                 if (this.ElementType.FullName == "Autodesk.Revit.DB.Structure.RebarHookType") Items.Add(new CoreNodeModels.DynamoDropDownItem("None", null));
 
                 // Walk through all elements in the collector and add them to the dropdown
@@ -80,7 +85,7 @@ namespace DSRevitNodesUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             // If there are no elements in the dropdown or the selected Index is invalid return a Null node.
-            if (Items.Count == 0 || 
+            if (Items.Count == 0 ||
             Items[0].Name == noTypes ||
             SelectedIndex == -1 || Items[SelectedIndex].Name == "None")
             {
@@ -102,7 +107,10 @@ namespace DSRevitNodesUI
         }
     }
 
-
+    /// <summary>
+    /// Generic UI Dropdown node baseclass for Enumerations.
+    /// This class populates a dropdown with all enumeration values of the specified type.
+    /// </summary>
     public abstract class CustomGenericEnumerationDropDown : RevitDropDownBase
     {
         /// <summary>
