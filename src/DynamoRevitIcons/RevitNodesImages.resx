@@ -8907,4 +8907,34 @@
         4BpxbHvk3zwcHP4CZBiVjbuktRYAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="Revit.Elements.Views.StructuralPlanView.ByLevel.Large" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAC1UlEQVR4Xu2dwVHjQBBFHQIh
+        EAIhOJQNgRDIgBC46sbdF4ewIfjoo8sRsH+WNtVMCQlDa2asea/ql8sjuZv+X8hVkgo2AAAAAAAAAAAA
+        0Cjn8/leOklv6JMezaJlUaOnrDF618ksWhY1IoAvZBYtixrlAbzYWo86SNUD2Nqm7tDse++FLS+LGhGA
+        odkJoCaanQBqotkJoCaafX0BDMPwID2lV1tqFs2+ygBO0lt6taVm0eyrDCCZ/1+21CyanQBqotkJoCaa
+        nQBqotkJoCaanQBqotkJoCaanQBqotkJoCaanQBqotkJoCaanQBqotkJoCaavX4Au93uw7BoWctm0fwE
+        EI36bqV7ezuJ5ieASNQz3Qi69J8NQfPzHRCJeu5d/9m5NDsBRKKeBOAMIIAx1KhYAFI6J0dq8ka/tvsA
+        XqSxGh86Ho/rezRRg/kAojV5o1/bfQCzOhwO3gcC+IbmAkhH/djnRtVDAKO/+r/Q3CnoLtt/Uqs/BdlS
+        s2j2v94LW14WNVo6gFt6MMv7sLflZVGjpQO4pUcTvQ/rCOCWyHwggNJkPhBAaTIfCKA0mQ/FAnjOGhPA
+        u4oFUP4CVKN4HyQCKI33QSKA0ngfJAIojfdBIoDSeB8kAiiN90FaRwDDMLxK6WLcqy01i/dBWk0At3Q5
+        mgBq4n2QCKA03geJAErjfZDqBGDvw5RudF80tv2bKnIzR30++WDLy5IaZY1b1OztTO1zJ/1JsqWrsV4X
+        FQsg/Y0437hJ2Y/7JdrHH0jPtnwV7vNJxQJ4kD49jtGgZo/qbP8fmRdRo1sizIuo0S0R5kXU6JYI8yJq
+        dEuEeRE1uiXCvIga3RJhXkSNbokwL6JGt0SYF1GjWyLMi6jRLZl56Tn/rVO6RpSeAJyTr0EA15CZFyEC
+        uIYRA38rArgGGRZ9QfHHl7W7RIal/wY1dl5PepT8d8KkrCQAAAAAAAAAAMAEm80/2UQCqAtZTPEAAAAA
+        SUVORK5CYII=
+</value>
+  </data>
+  <data name="Revit.Elements.Views.StructuralPlanView.ByLevel.Small" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABAElEQVRYR+2U0QmDMBRFHaGj
+        dARH6AgdoSO4ib9u4QgF/8QPwQXECey7cg3FGs2zz0IhBy716UtyDKlJJLJkGIZMUp6UO5fx89YMEctM
+        83IZP2zMWJoxS7D0sydQFMX+Nq5gKTDyUkUU+C+BqqpaWaj05HyBrutyWSj1JEhA+jLJg6VOAM0sP4AA
+        J1+LW5A1dmx6Vtc15v2pAHbLPWua5mklcPRDtDmvI7hRiUaglxx6yy00AqMkZWmGmYCcgZyXKiwFjn6I
+        VGcAEpr0HI7xF4n7O87IvWCBqyTVhsMxHvXHLsm9MIFviQKzABZbpMUv285DFsEZwtuu5ca2SIQkyQsz
+        R8rDoX6pWAAAAABJRU5ErkJggg==
+</value>
+  </data>
 </root>
