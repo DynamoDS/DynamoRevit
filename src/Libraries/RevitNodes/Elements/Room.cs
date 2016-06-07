@@ -94,23 +94,22 @@ namespace Revit.Elements
             }
 
             // Apply name and number if set
-            if (name != "") { RoomElem.Name = name; }
-            if (number != "") { RoomElem.Number = number; }
+            if (name != string.Empty)
+            { 
+                RoomElem.Name = name;
+            }
+
+            if (number != string.Empty)
+            { 
+                RoomElem.Number = number;
+            }
 
             InternalSetElement(RoomElem);
 
             // Commit transaction
             TransactionManager.Instance.TransactionTaskDone();
 
-            if (RoomElem != null)
-            {
-                ElementBinder.CleanupAndSetElementForTrace(document, this.InternalElement);
-            }
-            else
-            {
-                ElementBinder.SetElementForTrace(this.InternalElement);
-            }
-
+            ElementBinder.SetElementForTrace(this.InternalElement);
         }
 
         #endregion      
@@ -139,7 +138,7 @@ namespace Revit.Elements
         /// <param name="name">Room name</param>
         /// <param name="number">Room number</param>
         /// <returns></returns>
-        public static Room Create(Elements.Level level, Autodesk.DesignScript.Geometry.Point location, string name = "", string number = "")
+        public static Room ByLocation(Elements.Level level, Autodesk.DesignScript.Geometry.Point location, string name = "", string number = "")
         {
             return new Room((Autodesk.Revit.DB.Level)level.InternalElement, location.ToRevitType(true), name, number);
         }
