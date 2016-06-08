@@ -30,6 +30,19 @@ using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
 {
+    public class DropDownItemEqualityComparer : IEqualityComparer<DynamoDropDownItem>
+    {
+        public bool Equals(DynamoDropDownItem x, DynamoDropDownItem y)
+        {
+            return string.Equals(x.Name, y.Name);
+        }
+
+        public int GetHashCode(DynamoDropDownItem obj)
+        {
+            return obj.Name.GetHashCode();
+        }
+    }
+
     public abstract class RevitDropDownBase : DSDropDownBase
     {
 
@@ -190,7 +203,7 @@ namespace DSRevitNodesUI
             
             AddElementParams(element);
 
-            Items = Items.OrderBy(x => x.Name).ToObservableCollection<DynamoDropDownItem>();
+            Items = Items.OrderBy(x => x.Name).Distinct(new DropDownItemEqualityComparer()).ToObservableCollection<DynamoDropDownItem>();
 
             return SelectionState.Restore;
         }
