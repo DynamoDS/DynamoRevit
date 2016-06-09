@@ -499,6 +499,7 @@ namespace Revit.Elements
             return InternalFamilyInstance.Name;
         }
 
+
         /// <summary>
         /// Get FamilyInstance Host Element
         /// </summary>
@@ -535,6 +536,7 @@ namespace Revit.Elements
             }
         }
 
+        
 
         /// <summary>
         /// Set the Euler angle of the family instance around its local Z-axis.
