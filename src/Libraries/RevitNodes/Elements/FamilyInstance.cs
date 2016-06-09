@@ -324,12 +324,50 @@ namespace Revit.Elements
 
         #endregion
 
+        #region Public Methods
+
         public override string ToString()
         {
             return InternalFamilyInstance.Name;
         }
 
-       #region Public Methods
+        /// <summary>
+        /// Get FamilyInstance Host Element
+        /// </summary>
+        public Element GetHost
+        {
+            get
+            {
+                if (this.InternalFamilyInstance.Host != null)
+                    return ElementWrapper.Wrap(this.InternalFamilyInstance.Host, true);
+                else
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Get Family
+        /// </summary>
+        public Family GetFamily 
+        { 
+            get 
+            { 
+                return Family.FromExisting(this.InternalFamilyInstance.Symbol.Family, true);
+            }
+        }
+
+        /// <summary>
+        /// Get Type
+        /// </summary>
+        public FamilyType GetType
+        { 
+            get
+            { 
+                return FamilyType.FromExisting(this.InternalFamilyInstance.Symbol, true);
+            }
+        }
+
+        
 
         /// <summary>
         /// Sets the Euler angle of the family instance around its local Z-axis.
