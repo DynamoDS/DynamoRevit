@@ -73,7 +73,6 @@
     </Compile>
     <Compile Include="Elements.cs" />
     <Compile Include="FamilyInstanceParametersNodeViewCustomization.cs" />
-    <Compile Include="GenericClasses.cs" />
     <Compile Include="LocationControl.xaml.cs">
       <DependentUpon>LocationControl.xaml</DependentUpon>
     </Compile>
@@ -87,7 +86,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
-    <Compile Include="RevitTypes.cs" />
     <Compile Include="SelectionNodeViewCustomizations.cs" />
     <Compile Include="SiteLocation.cs" />
     <Compile Include="RevitDropDown.cs" />
