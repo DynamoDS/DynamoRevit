@@ -167,6 +167,12 @@ namespace Dynamo.Applications.Models
             {
                 node.PropertyChanged += node_PropertyChanged;
             }
+
+            var dm = DocumentManager.Instance;
+            if (dm.CurrentDBDocument != null)
+            {
+                SetRunEnabledBasedOnContext(dm.CurrentUIDocument.ActiveView, false);
+            }
         }
 
         private void node_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -563,7 +569,7 @@ namespace Dynamo.Applications.Models
         /// <param name="e"></param>
         internal void OnApplicationViewActivating(object sender, ViewActivatingEventArgs e)
         {
-            SetRunEnabledBasedOnContext(e.NewActiveView);
+            SetRunEnabledBasedOnContext(e.NewActiveView, true);
         }
 
         /// <summary>
@@ -637,7 +643,7 @@ namespace Dynamo.Applications.Models
                 workspace.ResetEngine(EngineController, markNodesAsDirty);
         }
 
-        public void SetRunEnabledBasedOnContext(View newView)
+        public void SetRunEnabledBasedOnContext(View newView, bool doContextAvailable)
         {
             DocumentManager.Instance.HandleDocumentActivation(newView);
 
@@ -658,6 +664,11 @@ namespace Dynamo.Applications.Models
             {
                 Logger.Log(
                     string.Format("Active view is now {0}", newView.Name));
+
+                if(doContextAvailable)
+                {
+                    OnRevitContextAvailable();
+                }
 
                 // If there is a current document, then set the run enabled
                 // state based on whether the view just activated is 
@@ -762,7 +773,7 @@ namespace Dynamo.Applications.Models
             var uiDoc = DocumentManager.Instance.CurrentUIDocument;
             if (uiDoc != null)
             {
-                SetRunEnabledBasedOnContext(uiDoc.ActiveView);
+                SetRunEnabledBasedOnContext(uiDoc.ActiveView, false);
             }
         }
 
