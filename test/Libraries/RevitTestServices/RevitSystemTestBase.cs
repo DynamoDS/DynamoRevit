@@ -284,7 +284,7 @@ namespace RevitTestServices
 
         private void CurrentUIApplication_ViewActivating(object sender, ViewActivatingEventArgs e)
         {
-            ((RevitDynamoModel)this.ViewModel.Model).SetRunEnabledBasedOnContext(e.NewActiveView, true);
+            ((RevitDynamoModel)this.ViewModel.Model).SetRunEnabledBasedOnContext(e.NewActiveView);
         }
 
         /// <summary>
