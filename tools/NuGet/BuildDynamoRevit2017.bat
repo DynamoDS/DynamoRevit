@@ -1,7 +1,7 @@
-SET base=..\..\..\Dynamo\bin\AnyCPU\Debug\Revit_2015\
+SET base=..\..\..\Dynamo\bin\AnyCPU\Debug\Revit_2017\
 SET framework=net45
 
-SET zt=DynamoVisualProgramming.DynamoRevitSDK_2015
+SET zt=DynamoVisualProgramming.DynamoRevit2017
 
 rmdir /s /q .\%zt%\build
 rmdir /s /q .\%zt%\content
@@ -20,4 +20,4 @@ copy %base%\DynamoRevitDS.dll .\%zt%\lib\%framework%\DynamoRevitDS.dll
 copy %base%\RevitServices.dll .\%zt%\lib\%framework%\RevitServices.dll
 copy %base%\nodes\DSRevitNodesUI.dll .\%zt%\lib\%framework%\DSRevitNodesUI.dll
 
-nuget pack .\%zt%\DynamoRevitSDK_2015.nuspec
+nuget pack .\%zt%\DynamoRevit2017.nuspec
