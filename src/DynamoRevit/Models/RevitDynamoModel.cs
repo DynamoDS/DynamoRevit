@@ -619,7 +619,7 @@ namespace Dynamo.Applications.Models
 
         /// <summary>
         /// Check if the Revit context is available based on 'newView' and
-        /// set the Runnsettings.RunEnabled flag on each HomeWorkspaceModel accordingly.
+        /// set the Runsettings.RunEnabled flag on each HomeWorkspaceModel accordingly.
         /// The Revit context is unavailable for perspective views only.
         /// Raise the RevitContextAvailable event if the context is about to be available and 
         /// 'raiseRevitContextAvailableEvent' is 'true'
