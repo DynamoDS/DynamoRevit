@@ -146,6 +146,12 @@ namespace Dynamo.Applications.Models
             {
                 node.PropertyChanged += node_PropertyChanged;
             }
+
+            var dm = DocumentManager.Instance;
+            if (dm.CurrentDBDocument != null)
+            {
+                SetRunEnabledBasedOnContext(dm.CurrentUIDocument.ActiveView);
+            }
         }
 
         private void node_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -540,7 +546,7 @@ namespace Dynamo.Applications.Models
         /// <param name="e"></param>
         internal void OnApplicationViewActivating(object sender, ViewActivatingEventArgs e)
         {
-            SetRunEnabledBasedOnContext(e.NewActiveView);
+            SetRunEnabledBasedOnContext(e.NewActiveView, true);
         }
 
         /// <summary>
@@ -611,7 +617,17 @@ namespace Dynamo.Applications.Models
                 workspace.ResetEngine(EngineController, markNodesAsDirty);
         }
 
-        public void SetRunEnabledBasedOnContext(View newView)
+        /// <summary>
+        /// Check if the Revit context is available based on 'newView' and
+        /// set the Runsettings.RunEnabled flag on each HomeWorkspaceModel accordingly.
+        /// The Revit context is unavailable for perspective views only.
+        /// Raise the RevitContextAvailable event if the context is about to be available and 
+        /// 'raiseRevitContextAvailableEvent' is 'true'
+        /// Raise the RevitContextUnavilable event if the the context is about to be unavailable.
+        /// /// </summary>
+        /// <param name="newView"></param>
+        /// <param name="raiseRevitContextAvailableEvent"></param>
+        public void SetRunEnabledBasedOnContext(View newView, bool raiseRevitContextAvailableEvent = false)
         {
             DocumentManager.Instance.HandleDocumentActivation(newView);
 
@@ -620,7 +636,22 @@ namespace Dynamo.Applications.Models
             if (view != null && view.IsPerspective
                 && Context != Configuration.Context.VASARI_2014)
             {
-                OnRevitContextUnavailable();
+                // Pick up current state
+                bool currentState = false;
+                foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                {
+                    if (ws.RunSettings.RunEnabled)
+                    {
+                        currentState = true;
+                        break;
+                    }
+                }
+
+                // Only notify if we are changing state e.g. the Revit context becomes unavailable
+                if (currentState)
+                {
+                    OnRevitContextUnavailable();
+                }
 
                 foreach (
                     var ws in Workspaces.OfType<HomeWorkspaceModel>())
@@ -632,6 +663,26 @@ namespace Dynamo.Applications.Models
             {
                 Logger.Log(
                     string.Format("Active view is now {0}", newView.Name));
+
+                if(raiseRevitContextAvailableEvent)
+                {
+                    // Pick up current state
+                    bool currentState = true;
+                    foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                    {
+                        if(!ws.RunSettings.RunEnabled)
+                        {
+                            currentState = false;
+                            break;
+                        }
+                    }
+
+                    // Only notify if we are changing state e.g. the Revit context becomes available
+                    if (!currentState)
+                    {
+                        OnRevitContextAvailable();
+                    }
+                }
 
                 // If there is a current document, then set the run enabled
                 // state based on whether the view just activated is 
