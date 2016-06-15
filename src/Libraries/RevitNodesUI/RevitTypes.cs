@@ -19,27 +19,27 @@ using Dynamo.Graph.Nodes;
 namespace DSRevitNodesUI
 {
 
-    [NodeName("Phase Selector")]
-    [NodeCategory("Revit.Phase")]
-    [NodeDescription("Phase Selector")]
+    [NodeName("Select Phase")]
+    [NodeCategory("Revit.Elements.Phase")]
+    [NodeDescription("PhaseSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class RevitPhases : CustomRevitElementDropDown
     {
         public RevitPhases() : base("Phase", typeof(Autodesk.Revit.DB.Phase)) { }
     }
 
-    [NodeName("Revision Selector")]
-    [NodeCategory("Revit.Revision")]
-    [NodeDescription("Revision Selector")]
+    [NodeName("Select Revision")]
+    [NodeCategory("Revit.Elements.Revision")]
+    [NodeDescription("RevisionSelectorDescription",typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class RevitRevisions : CustomRevitElementDropDown
     {
         public RevitRevisions() : base("Revision", typeof(Autodesk.Revit.DB.Revision)) { }
     }
 
-    [NodeName("Filled Region Type Selector")]
-    [NodeCategory("Revit.FilledRegionType")]
-    [NodeDescription("Filled Region Type Selector")]
+    [NodeName("Select Filled Region Type")]
+    [NodeCategory("Revit.Elements.FilledRegionType")]
+    [NodeDescription("FilledRegionTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class FilledRegionTypes : CustomRevitElementDropDown
     {
@@ -48,18 +48,18 @@ namespace DSRevitNodesUI
 
 
 
-    [NodeName("Revision Numbering")]
-    [NodeCategory("Revit.Revision")]
-    [NodeDescription("Revision Numbering")]
+    [NodeName("Select Revision Numbering")]
+    [NodeCategory("Revit.Elements.Revision")]
+    [NodeDescription("RevisionNumberingSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class RevisionNumbering : CustomGenericEnumerationDropDown
     {
         public RevisionNumbering() : base("Revision Numbering", typeof(Autodesk.Revit.DB.RevisionNumbering)) { }
     }
 
-    [NodeName("Revision Number Type")]
-    [NodeCategory("Revit.Revision")]
-    [NodeDescription("Revision Number Type")]
+    [NodeName("Select Revision Number Type")]
+    [NodeCategory("Revit.Elements.Revision")]
+    [NodeDescription("RevisionNumberTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class RevisionNumberType : CustomGenericEnumerationDropDown
     {
@@ -67,36 +67,36 @@ namespace DSRevitNodesUI
     }
 
 
-    [NodeName("Parameter Type")]
-    [NodeCategory("Revit.Parameter")]
-    [NodeDescription("Parameter Type")]
+    [NodeName("Select Parameter Type")]
+    [NodeCategory("Revit.Elements.Parameter")]
+    [NodeDescription("ParameterTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class ParameterType : CustomGenericEnumerationDropDown
     {
         public ParameterType() : base("Parameter Type", typeof(Autodesk.Revit.DB.ParameterType)) { }
     }
 
-    [NodeName("BuiltIn Parameter Group")]
-    [NodeCategory("Revit.Parameter")]
-    [NodeDescription("BuiltIn Parameter Group")]
+    [NodeName("Select BuiltIn Parameter Group")]
+    [NodeCategory("Revit.Elements.Parameter")]
+    [NodeDescription("BuiltInParameterGroupSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class BuiltInParameterGroup : CustomGenericEnumerationDropDown
     {
         public BuiltInParameterGroup() : base("BuiltIn Parameter Group", typeof(Autodesk.Revit.DB.BuiltInParameterGroup)) { }
     }
 
-    [NodeName("Revision Visibility")]
-    [NodeCategory("Revit.Revision")]
-    [NodeDescription("Revision Visibility")]
+    [NodeName("Select Revision Visibility")]
+    [NodeCategory("Revit.Elements.Revision")]
+    [NodeDescription("RevisionVisibilitySelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class RevisionVisibility : CustomGenericEnumerationDropDown
     {
         public RevisionVisibility() : base("Revision Visibility", typeof(Autodesk.Revit.DB.RevisionVisibility)) { }
     }
 
-    [NodeName("Direct Shape Room Bounding Option")]
-    [NodeCategory("Revit.DirectShape")]
-    [NodeDescription("Direct Shape Room Bounding Option")]
+    [NodeName("Select Direct Shape Room Bounding Option")]
+    [NodeCategory("Revit.Elements.DirectShape")]
+    [NodeDescription("DirectShapeRoomBoundingOptionSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class DirectShapeRoomBoundingOption : CustomGenericEnumerationDropDown
     {
@@ -104,18 +104,18 @@ namespace DSRevitNodesUI
     }
 
 
-    [NodeName("Horizontal Text Alignment Style")]
-    [NodeCategory("Revit.Rebar")]
-    [NodeDescription("Horizontal Text Alignment Style")]
+    [NodeName("Select Horizontal Text Alignment")]
+    [NodeCategory("Revit.Elements.Text")]
+    [NodeDescription("HorizontalTextAlignmentStyleSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class HorizontalAlignment : CustomGenericEnumerationDropDown
     {
         public HorizontalAlignment() : base("Horizontal Alignment", typeof(Autodesk.Revit.DB.HorizontalAlignmentStyle)) { }
     }
 
-    [NodeName("Vertical Text Alignment Style")]
-    [NodeCategory("Revit.Rebar")]
-    [NodeDescription("Vertical Text Alignment Style")]
+    [NodeName("Select Vertical Text Alignment")]
+    [NodeCategory("Revit.Elements.Text")]
+    [NodeDescription("VerticalTextAlignmentStyleSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class VerticalAlignment : CustomGenericEnumerationDropDown
     {

@@ -759,14 +759,14 @@ namespace Dynamo.Nodes
     }
 
     [NodeName("Select Edges"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
-NodeDescription("SelectEdgesDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+     NodeDescription("SelectEdgesDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class SelectEdges : ReferenceSelection
     {
         public SelectEdges()
             : base(
                 SelectionType.Many,
                 SelectionObjectType.Edge,
-                "Select edges.",
-                "Edges") { }
+                DSRevitNodesUI.Properties.Resources.SelectEdgesDescription,
+                DSRevitNodesUI.Properties.Resources.SelectEdgesPrefix) { }
     }
 }
