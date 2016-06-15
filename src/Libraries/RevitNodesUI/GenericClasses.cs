@@ -28,7 +28,7 @@ namespace DSRevitNodesUI
         /// </summary>
         /// <param name="name">Name of the Node</param>
         /// <param name="elementType">Type of Revit Element to display</param>
-        public CustomRevitElementDropDown(string name, Type elementType) : base(name) { this.ElementType = elementType; PopulateItems(); }
+        public CustomRevitElementDropDown(string name, Type elementType) : base(name) { this.ElementType = elementType; PopulateDropDownItems(); }
 
         /// <summary>
         /// Type of Element
@@ -41,13 +41,13 @@ namespace DSRevitNodesUI
 
         protected override CoreNodeModels.DSDropDownBase.SelectionState PopulateItemsCore(string currentSelection)
         {
-            PopulateItems();
+            PopulateDropDownItems();
             return SelectionState.Done;
         }
         /// <summary>
         /// Populate the Dropdown menu
         /// </summary>
-        public void PopulateItems()
+        public void PopulateDropDownItems()
         {
             if (this.ElementType != null)
             {
@@ -120,7 +120,7 @@ namespace DSRevitNodesUI
         /// </summary>
         /// <param name="name">Node Name</param>
         /// <param name="enumerationType">Type of Enumeration to Display</param>
-        public CustomGenericEnumerationDropDown(string name, Type enumerationType) : base(name) { this.EnumerationType = enumerationType; PopulateItems(); }
+        public CustomGenericEnumerationDropDown(string name, Type enumerationType) : base(name) { this.EnumerationType = enumerationType; PopulateDropDownItems(); }
 
         /// <summary>
         /// Type of Enumeration
@@ -133,14 +133,14 @@ namespace DSRevitNodesUI
 
         protected override CoreNodeModels.DSDropDownBase.SelectionState PopulateItemsCore(string currentSelection)
         {
-            PopulateItems();
+            PopulateDropDownItems();
             return SelectionState.Done;
         }
 
         /// <summary>
         /// Populate Items in Dropdown menu
         /// </summary>
-        public void PopulateItems()
+        public void PopulateDropDownItems()
         {
             if (this.EnumerationType != null)
             {
