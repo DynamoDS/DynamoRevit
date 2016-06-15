@@ -31,14 +31,13 @@ namespace DSRevitNodesUI
         public CustomRevitElementDropDown(string name, Type elementType) : base(name) { this.ElementType = elementType; PopulateItems(); }
 
         /// <summary>
-        /// Constant message for missing Types
-        /// </summary>
-        private const string noTypes = "No Types available.";
-
-        /// <summary>
         /// Type of Element
         /// </summary>
-        public Type ElementType;
+        private Type ElementType
+        {
+            get;
+            set;
+        }
 
         protected override CoreNodeModels.DSDropDownBase.SelectionState PopulateItemsCore(string currentSelection)
         {
@@ -55,19 +54,25 @@ namespace DSRevitNodesUI
                 // Clear the Items
                 Items.Clear();
 
+                // If the active doc is null, throw an exception
+                if (DocumentManager.Instance.CurrentDBDocument == null)
+                {
+                    throw new Exception(Properties.Resources.NoActiveDocumentFound);
+                }
+
                 // Set up a new element collector using the Type field
                 var fec = new RVT.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument).OfClass(ElementType);
 
                 // If there is nothing in the collector add the missing Type message to the Dropdown menu.
                 if (fec.ToElements().Count == 0)
                 {
-                    Items.Add(new CoreNodeModels.DynamoDropDownItem(noTypes, null));
+                    Items.Add(new CoreNodeModels.DynamoDropDownItem(Properties.Resources.NoTypesFound, null));
                     SelectedIndex = 0;
                     return;
                 }
 
                 // if the elementtype is a RebarHookType add an initial "None" value which does not come from the collector
-                if (this.ElementType.FullName == "Autodesk.Revit.DB.Structure.RebarHookType") Items.Add(new CoreNodeModels.DynamoDropDownItem("None", null));
+                if (this.ElementType.FullName == "Autodesk.Revit.DB.Structure.RebarHookType") Items.Add(new CoreNodeModels.DynamoDropDownItem(Properties.Resources.None, null));
 
                 // Walk through all elements in the collector and add them to the dropdown
                 foreach (var ft in fec.ToElements())
@@ -85,19 +90,16 @@ namespace DSRevitNodesUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             // If there are no elements in the dropdown or the selected Index is invalid return a Null node.
-            if (Items.Count == 0 || 
-            Items[0].Name == noTypes ||
-            SelectedIndex == -1 || Items[SelectedIndex].Name == "None")
+            if (Items.Count == 0 ||
+            Items[0].Name == Properties.Resources.NoTypesFound ||
+            SelectedIndex == -1 || Items[SelectedIndex].Name == Properties.Resources.None)
             {
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
             }
 
-            // Assume we are going to cast a Revit Element
-            Type genericElementType = typeof(Autodesk.Revit.DB.Element);
-
             // Cast the selected object to a Revit Element and get its Id
             Autodesk.Revit.DB.ElementId Id = ((Autodesk.Revit.DB.Element)Items[SelectedIndex].Item).Id;
-
+            
             // Select the element using the elementIds Integer Value
             var node = AstFactory.BuildFunctionCall("Revit.Elements.ElementSelector", "ByElementId",
                 new List<AssociativeNode> { AstFactory.BuildIntNode(Id.IntegerValue) });
@@ -123,7 +125,11 @@ namespace DSRevitNodesUI
         /// <summary>
         /// Type of Enumeration
         /// </summary>
-        public Type EnumerationType;
+        private Type EnumerationType
+        {
+            get;
+            set;
+        }
 
         protected override CoreNodeModels.DSDropDownBase.SelectionState PopulateItemsCore(string currentSelection)
         {
@@ -156,10 +162,13 @@ namespace DSRevitNodesUI
         /// </summary>
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            // If there the dropdown is still empty try to populate it again
+            // If the dropdown is still empty try to populate it again          
             if (Items.Count == 0 || Items.Count == -1)
             {
-                PopulateItems();
+                if (this.EnumerationType != null && Enum.GetNames(this.EnumerationType).Length > 0)
+                {
+                    PopulateItems();
+                }
             }
 
             // get the selected items name
