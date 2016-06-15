@@ -150,7 +150,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get room name
         /// </summary>
-        public string GetName
+        public string Name
         {
             get { return this.InternalRevitElement.Name; }
         }
@@ -158,7 +158,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get room number
         /// </summary>
-        public string GetNumber
+        public string Number
         {
             get { return this.InternalRevitElement.Number; }
         }
@@ -166,7 +166,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get room area
         /// </summary>
-        public double GetArea
+        public double Area
         {
             get { return this.InternalRevitElement.Area; }
         }
@@ -174,7 +174,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get room height
         /// </summary>
-        public double GetHeight
+        public double Height
         {
             get { return this.InternalRevitElement.UnboundedHeight; }
         }
