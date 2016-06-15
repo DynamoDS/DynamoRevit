@@ -334,7 +334,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get FamilyInstance Host Element
         /// </summary>
-        public Element GetHost
+        public Element Host
         {
             get
             {
@@ -348,26 +348,14 @@ namespace Revit.Elements
         /// <summary>
         /// Get Family
         /// </summary>
-        public Family GetFamily 
+        public Family Family 
         { 
             get 
             { 
                 return Family.FromExisting(this.InternalFamilyInstance.Symbol.Family, true);
             }
         }
-
-        /// <summary>
-        /// Get Type
-        /// </summary>
-        public FamilyType GetType
-        { 
-            get
-            { 
-                return FamilyType.FromExisting(this.InternalFamilyInstance.Symbol, true);
-            }
-        }
-
-        
+       
 
         /// <summary>
         /// Sets the Euler angle of the family instance around its local Z-axis.

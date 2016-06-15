@@ -167,7 +167,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Element Category
         /// </summary>
-        public Category GetCategory
+        public Category Category
         {
             get { return new Category(this.InternalElement.Category); }
         }
@@ -762,7 +762,7 @@ namespace Revit.Elements
         /// Get an exsiting element's location
         /// </summary>
         /// <returns>Location Geometry</returns>
-        public Geometry GetLocation()
+        public Geometry Location()
         {
             if (this.InternalElement.Location.GetType() == typeof(Autodesk.Revit.DB.LocationPoint))
             {
