@@ -363,11 +363,21 @@ namespace Dynamo.Applications.ViewModel
         /// </summary>
         private void DeleteKeeperElement()
         {
+            // Only try to delete the keeper element when we have been initialized (e.g. we have a valid keeperId).
+            // Check for this condition before trying to access the current Revit document because there
+            // are cases when we get here uninitialized with a document that is gone already. 
+            if (keeperId == ElementId.InvalidElementId)
+            {
+                return;
+            }
+   
+            // Never access the current document with an invalid keeperId
+            // See comment at the beginning of this method.
             var dbDoc = DocumentManager.Instance.CurrentDBDocument;
             if (null == dbDoc)
+            {
                 return;
-
-            if (keeperId == ElementId.InvalidElementId) return;
+            }
 
             TransactionManager.Instance.EnsureInTransaction(dbDoc);
             DocumentManager.Instance.CurrentUIDocument.Document.Delete(keeperId);
