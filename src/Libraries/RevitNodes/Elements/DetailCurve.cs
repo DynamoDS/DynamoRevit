@@ -116,7 +116,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Geometry Curve
         /// </summary>
-        public Autodesk.DesignScript.Geometry.Curve GetCurve
+        public Autodesk.DesignScript.Geometry.Curve Curve
         {
             get
             { 
