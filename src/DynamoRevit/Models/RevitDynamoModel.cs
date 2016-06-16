@@ -606,6 +606,14 @@ namespace Dynamo.Applications.Models
             ElementIDLifecycleManager<int>.DisposeInstance();
         }
 
+        protected override void PostShutdownCore(bool shutdownHost)
+        {
+            base.PostShutdownCore(shutdownHost);
+            
+            // Always reset current UI document on shutdown
+            DocumentManager.Instance.CurrentUIDocument = null;
+        }
+
         /// <summary>
         /// This event handler is called if 'markNodesAsDirty' in a 
         /// prior call to RevitDynamoModel.ResetEngine was set to 'true'.
