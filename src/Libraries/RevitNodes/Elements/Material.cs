@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-
+using System.Collections.Generic;
 using DynamoServices;
 
 using RevitServices.Persistence;
@@ -98,6 +98,189 @@ namespace Revit.Elements
                 IsRevitOwned = true
             };
         }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Get Material Name
+        /// </summary>
+        /// <returns></returns>
+        public string Name
+        {
+            get { return this.InternalMaterial.Name; }
+        }
+
+        /// <summary>
+        /// Get Shininess
+        /// </summary>
+        public int Shininess
+        {
+            get { return this.InternalMaterial.Shininess; }
+        }
+
+        /// <summary>
+        /// Get Smoothness
+        /// </summary>
+        public int Smoothness
+        {
+            get { return this.InternalMaterial.Smoothness; }
+        }
+
+        /// <summary>
+        /// Get Transparency
+        /// </summary>
+        public int Transparency
+        {
+            get { return this.InternalMaterial.Transparency; }
+        }
+
+        /// <summary>
+        /// Get SurfacePatternColor
+        /// </summary>
+        public DSCore.Color SurfacePatternColor
+        {
+            get
+            {
+                return DSCore.Color.ByARGB(255,
+                    this.InternalMaterial.SurfacePatternColor.Red,
+                    this.InternalMaterial.SurfacePatternColor.Green,
+                    this.InternalMaterial.SurfacePatternColor.Blue);
+            }
+        }
+
+        /// <summary>
+        /// Get Material Class
+        /// </summary>
+        public string MaterialClass
+        {
+            get { return this.InternalMaterial.MaterialClass; }
+        }
+
+        /// <summary>
+        /// Get Material category
+        /// </summary>
+        public string MaterialCategory
+        {
+            get { return this.InternalMaterial.MaterialCategory; }
+        }
+
+        /// <summary>
+        /// Get cut pattern color
+        /// </summary>
+        public DSCore.Color CutPatternColor
+        {
+            get {
+                return DSCore.Color.ByARGB(255, 
+                    this.InternalMaterial.CutPatternColor.Red, 
+                    this.InternalMaterial.CutPatternColor.Green, 
+                    this.InternalMaterial.CutPatternColor.Blue);
+            }
+        }
+
+        /// <summary>
+        /// Get color
+        /// </summary>
+        public DSCore.Color Color
+        {
+            get
+            {
+                return DSCore.Color.ByARGB(255,
+                    this.InternalMaterial.Color.Red,
+                    this.InternalMaterial.Color.Green,
+                    this.InternalMaterial.Color.Blue);
+            }
+        }
+
+        /// <summary>
+        /// Get cut pattern id
+        /// </summary>
+        public Autodesk.Revit.DB.ElementId CutPatternId
+        {
+            get
+            {
+                return this.InternalMaterial.CutPatternId;
+            }
+        }
+
+        /// <summary>
+        /// Get all apperance parameters
+        /// </summary>
+        public List<Parameter> AppearanceParameters
+        {
+            get
+            {
+                // Get the active Document
+                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+                List<Parameter> appearances = new List<Parameter>();
+                if (this.InternalMaterial.AppearanceAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
+                {
+                    Autodesk.Revit.DB.AppearanceAssetElement appearance = (Autodesk.Revit.DB.AppearanceAssetElement)document.GetElement(this.InternalMaterial.AppearanceAssetId);
+
+                    foreach (Autodesk.Revit.DB.Parameter parameter in appearance.Parameters)
+                    {
+                        Parameter p = new Parameter(parameter);
+                        if (!appearances.Contains(p)) appearances.Add(p);
+                    }
+                }
+
+                return appearances;
+            }
+        }
+
+        /// <summary>
+        /// Get all thermal parameters
+        /// </summary>
+        public List<Parameter> ThermalParameters
+        {
+            get
+            {
+                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+                List<Parameter> thermals = new List<Parameter>();
+                if (this.InternalMaterial.ThermalAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
+                {
+                    Autodesk.Revit.DB.PropertySetElement thermal = (Autodesk.Revit.DB.PropertySetElement)document.GetElement(this.InternalMaterial.ThermalAssetId);
+
+                    foreach (Autodesk.Revit.DB.Parameter parameter in thermal.Parameters)
+                    {
+                        Parameter p = new Parameter(parameter);
+                        if (!thermals.Contains(p)) thermals.Add(p);
+                    }
+                }
+
+                return thermals;
+            }
+        }
+
+        /// <summary>
+        /// Get all structural parameters
+        /// </summary>
+        public List<Parameter> StructuralParameters
+        {
+            get
+            {
+                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+                List<Parameter> structurals = new List<Parameter>();
+                if (this.InternalMaterial.StructuralAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
+                {
+                    Autodesk.Revit.DB.PropertySetElement structural = (Autodesk.Revit.DB.PropertySetElement)document.GetElement(this.InternalMaterial.StructuralAssetId);
+
+                    foreach (Autodesk.Revit.DB.Parameter parameter in structural.Parameters)
+                    {
+                        Parameter p = new Parameter(parameter);
+                        if (!structurals.Contains(p)) structurals.Add(p);
+                    }
+                }
+
+                return structurals;
+            }
+        }
+
+
 
         #endregion
 
