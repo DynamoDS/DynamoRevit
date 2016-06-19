@@ -38,11 +38,20 @@ namespace DSRevitNodesUI
         protected ElementsQueryBase()
         {
             var u = RevitServicesUpdater.Instance;
-            u.ElementsAdded += Updater_ElementsAdded;
-            u.ElementsModified += Updater_ElementsModified;
-            u.ElementsDeleted += Updater_ElementsDeleted;
+            u.ElementsUpdated += OnElementsUpdated;
 
             ShouldDisplayPreviewCore = false;
+        }
+
+        void OnElementsUpdated(object sender, ElementUpdateEventArgs e)
+        {
+            if (!e.Elements.Any()) return;
+
+#if DEBUG
+            Debug.WriteLine("There are {0} elements {1}", e.Elements.Count(), e.Operation.ToString());
+            DebugElements(e.Elements);
+#endif
+            OnNodeModified(forceExecute: true);
         }
 
         public override void Dispose()
@@ -50,50 +59,7 @@ namespace DSRevitNodesUI
             base.Dispose();
 
             var u = RevitServicesUpdater.Instance;
-            u.ElementsModified -= Updater_ElementsModified;
-            u.ElementsDeleted -= Updater_ElementsDeleted;
-        }
-
-        protected virtual void Updater_ElementsAdded(IEnumerable<string> updated)
-        {
-            if (!updated.Any()) return;
-
-#if DEBUG
-            Debug.WriteLine("There are {0} updated elements", updated.Count());
-            DebugElements(updated);
-#endif
-            OnNodeModified(forceExecute:true);
-        }
-
-
-        protected virtual void Updater_ElementsModified(IEnumerable<string> updated)
-        {
-            if (!updated.Any()) return;
-#if DEBUG
-            Debug.WriteLine("There are {0} modified elements", updated.Count());
-            DebugElements(updated);
-#endif
-            OnNodeModified(forceExecute:true);
-
-        }
-
-        protected virtual void Updater_ElementsDeleted(Document document, IEnumerable<ElementId> deleted)
-        {
-            if (!deleted.Any()) return;
-#if DEBUG
-            Debug.WriteLine("There are {0} deleted elements", deleted.Count());
-            DebugElements(deleted);
-#endif
-            OnNodeModified(forceExecute:true);
-
-        }
-
-        private static void DebugElements(IEnumerable<string> updated)
-        {
-            var els = updated.Select(
-                id => DocumentManager.Instance.CurrentDBDocument.GetElement(id));
-            foreach (var el in els.Where(el => el != null))
-                Debug.WriteLine(string.Format("\t{0}", el.Name));
+            u.ElementsUpdated -= OnElementsUpdated;
         }
 
         private static void DebugElements(IEnumerable<ElementId> updated)
@@ -220,13 +186,7 @@ namespace DSRevitNodesUI
             DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
 
-            RevitServicesUpdater.Instance.ElementsDeleted +=
-                RevitServicesUpdaterOnElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified +=
-                RevitServicesUpdaterOnElementsModified;
-            RevitServicesUpdater.Instance.ElementsAdded +=
-                RevitServicesUpdaterOnElementsAdded;
-
+            RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdaterOnElementsUpdated;
             RevitDynamoModel_RevitDocumentChanged(null, null);
         }
 
@@ -235,14 +195,27 @@ namespace DSRevitNodesUI
             DynamoRevitApp.EventHandlerProxy.ViewActivated -= RevitDynamoModel_RevitDocumentChanged;
             DynamoRevitApp.EventHandlerProxy.DocumentOpened -= RevitDynamoModel_RevitDocumentChanged;
 
-            RevitServicesUpdater.Instance.ElementsDeleted -=
-                RevitServicesUpdaterOnElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified -=
-                RevitServicesUpdaterOnElementsModified;
-            RevitServicesUpdater.Instance.ElementsAdded -=
-                RevitServicesUpdaterOnElementsAdded;
+            RevitServicesUpdater.Instance.ElementsUpdated -= RevitServicesUpdaterOnElementsUpdated;
 
             base.Dispose();
+        }
+
+        void RevitServicesUpdaterOnElementsUpdated(object sender, ElementUpdateEventArgs e)
+        {
+            switch (e.Operation)
+            {
+                case ElementUpdateEventArgs.UpdateType.Added:
+                    RevitServicesUpdaterOnElementsAdded(e.GetUniqueIds());
+                    break;
+                case ElementUpdateEventArgs.UpdateType.Modified:
+                    RevitServicesUpdaterOnElementsModified(e.GetUniqueIds());
+                    break;
+                case ElementUpdateEventArgs.UpdateType.Deleted:
+                    RevitServicesUpdaterOnElementsDeleted(e.RevitDocument, e.Elements);
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void RevitServicesUpdaterOnElementsAdded(IEnumerable<string> updated)
