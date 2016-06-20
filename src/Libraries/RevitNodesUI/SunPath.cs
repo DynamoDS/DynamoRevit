@@ -42,11 +42,11 @@ namespace DSRevitNodesUI
         public override void Dispose()
         {
             RevitServicesUpdater.Instance.ElementsUpdated -= Updater_ElementsUpdated;
-            base.Dispose();
-
-            RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
+            
             DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
                 CurrentUIApplication_ViewActivated;
+
+            base.Dispose();
         }
 
         private void CurrentUIApplication_ViewActivated(object sender, ViewActivatedEventArgs e)
