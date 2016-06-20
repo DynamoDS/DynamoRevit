@@ -7,12 +7,14 @@ using System.Xml;
 
 namespace BuildingElementTypeGenerator
 {
-    internal class MethodData
+
+    internal class MethodData : IComparable
     {
         public List<string> ParamNames { get; set; }
         public List<string> ParamDescriptions { get; set; }
         public string Summary { get; set; }
         public List<string> ParamTypes { get; set; }
+        public string TypeName { get; set; }
 
         public string MethodName
         {
@@ -23,7 +25,7 @@ namespace BuildingElementTypeGenerator
                 {
                     // Document is available to every element
                     if (p == "Document") continue;
-                    methodName += p;
+                    methodName += p.First().ToString().ToUpper() + string.Join("", p.Skip(1)); ;
                 }
                 return methodName;
             }
@@ -35,6 +37,17 @@ namespace BuildingElementTypeGenerator
             ParamNames = new List<string>();
             ParamDescriptions = new List<string>();
             Summary = summary;
+        }
+
+        public int CompareTo(object obj)
+        {
+            var methodData = obj as MethodData;
+            if (obj == null)
+            {
+                return -1;
+            }
+
+            return methodData.TypeName.CompareTo(TypeName);
         }
     }
 
@@ -76,7 +89,7 @@ namespace BuildingElementTypeGenerator
                 Console.ReadKey();
             }
 
-            var memberData = new Dictionary<string, List<MethodData>>();
+            var methodDatas = new List<MethodData>();
 
             foreach (XmlElement member in members)
             {
@@ -112,24 +125,24 @@ namespace BuildingElementTypeGenerator
                     var cleanTypeName = p.Replace("}", "s");
                     methodData.ParamTypes.Add(TypeMap.ContainsKey(cleanTypeName) ? TypeMap[p] : cleanTypeName);
                 }
+                methodData.TypeName = typeName;
 
-                if (!memberData.ContainsKey(typeName))
-                {
-                    memberData.Add(typeName, new List<MethodData> {methodData});
-                }
-                else
-                {
-                    memberData[typeName].Add(methodData);
-                }
-                
+                methodDatas.Add(methodData);
             }
 
-            Console.WriteLine("There are {0} available types", memberData.Count);
+            var methodDataGroups = from methodData in methodDatas
+                group methodData by methodData.TypeName
+                into newGroup
+                orderby newGroup.Key
+                select newGroup;
 
-            foreach (var kvp in memberData)
+            Console.WriteLine("There are {0} available types", methodDataGroups.Count());
+
+            foreach (var group in methodDataGroups)
             {
-                Debug.WriteLine(kvp.Key);
-                foreach (var methodData in kvp.Value)
+                Debug.WriteLine(group.Key);
+
+                foreach (var methodData in group)
                 {
                     Debug.WriteLine("\t" + methodData.MethodName + " : " + methodData.Summary);
                 }
