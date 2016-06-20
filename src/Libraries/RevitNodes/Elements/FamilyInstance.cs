@@ -329,28 +329,24 @@ namespace Revit.Elements
             return InternalFamilyInstance.Name;
         }
 
-       #region Public Methods
+        #region Public methods
 
         /// <summary>
-        /// Sets the Euler angle of the family instance around its local Z-axis.
+        /// Set the Euler angle of the family instance around its local Z-axis.
         /// </summary>        
         /// <param name="degree">The Euler angle around Z-axis.</param>
         /// <returns>The result family instance.</returns>
         public FamilyInstance SetRotation(double degree)
         {
             if (this == null)
+            {
                 throw new ArgumentNullException("familyInstance");
+            }
 
-            TransactionManager.Instance.EnsureInTransaction(Document);
-
-            Document.Regenerate();
-
-            // Rotate the element.
-            var oldTransform = InternalFamilyInstance.GetTransform();
+            var oldTransform = InternalGetTransform();
             double[] oldRotationAngles;
             TransformUtils.ExtractEularAnglesFromTransform(oldTransform, out oldRotationAngles);
-
-            Double newRotationAngle = degree * Math.PI / 180;
+            double newRotationAngle = degree * Math.PI / 180;
 
             if (!oldRotationAngles[0].AlmostEquals(newRotationAngle, 1.0e-6))
             {
@@ -364,6 +360,23 @@ namespace Revit.Elements
             return this;
         }
 
-       #endregion
+        #endregion
+
+        #region Private helper methods
+
+        /// <summary>
+        /// Get the transform of the internal family instance
+        /// </summary>
+        /// <returns>The internal transform</returns>
+        private Transform InternalGetTransform()
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            Document.Regenerate();
+
+            return InternalFamilyInstance.GetTransform();
+        }
+
+        #endregion
     }
 }
