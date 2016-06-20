@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Autodesk.Revit.UI.Events;
-
+using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Graph.Nodes;
 using Dynamo.Models;
@@ -33,7 +33,7 @@ namespace DSRevitNodesUI
             
             RegisterAllPorts();
             
-            RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
             DocumentManager.Instance.CurrentUIApplication.ViewActivated += CurrentUIApplication_ViewActivated;
 
             CurrentUIApplicationOnViewActivated();
@@ -41,11 +41,12 @@ namespace DSRevitNodesUI
 
         public override void Dispose()
         {
-            base.Dispose();
-
-            RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsUpdated -= Updater_ElementsUpdated;
+            
             DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
                 CurrentUIApplication_ViewActivated;
+
+            base.Dispose();
         }
 
         private void CurrentUIApplication_ViewActivated(object sender, ViewActivatedEventArgs e)
@@ -60,9 +61,11 @@ namespace DSRevitNodesUI
             OnNodeModified(forceExecute:true);
         }
 
-        private void Updater_ElementsModified(IEnumerable<string> updated)
+        private void Updater_ElementsUpdated(object sender, ElementUpdateEventArgs e)
         {
-            if (updated.Contains(settingsID))
+            if (e.Operation != ElementUpdateEventArgs.UpdateType.Modified) return;
+
+            if (e.GetUniqueIds().Contains(settingsID))
             {
                 OnNodeModified(forceExecute:true);
             }
