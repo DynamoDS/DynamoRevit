@@ -790,7 +790,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
             RunCurrentModel();
 
-            filePath = Path.Combine(workingDirectory, @".\Samples\MAGN_7679.dyn");
+            filePath = Path.Combine(workingDirectory, @".\Samples\Revit_Color.dyn");
             testPath = Path.GetFullPath(filePath);
 
             ViewModel.OpenCommand.Execute(testPath);

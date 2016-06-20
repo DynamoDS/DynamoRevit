@@ -26,6 +26,9 @@ IF EXIST "%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\11.0\TextTra
 IF EXIST "%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\12.0\TextTransform.exe" (
     set TEXTTRANSFORMPATH="%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\12.0\TextTransform.exe"
 )
+IF EXIST "%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\14.0\TextTransform.exe" (
+    set TEXTTRANSFORMPATH="%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\14.0\TextTransform.exe"
+)
 
 :: transform all the templates
 for /f %%d in (t4list.txt) do (

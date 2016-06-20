@@ -223,6 +223,24 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unexpected failure occurred when attempting to convert the solid into a Revit BRep.
+        /// </summary>
+        internal static string DynamoSolidToRevitBRepFailure {
+            get {
+                return ResourceManager.GetString("DynamoSolidToRevitBRepFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unexpected failure occurred when attempting to convert the surface into a Revit BRep.
+        /// </summary>
+        internal static string DynamoSurfaceToRevitBRepFailure {
+            get {
+                return ResourceManager.GetString("DynamoSurfaceToRevitBRepFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You supplied an {0}, but we could not extract a ElementFaceReference from it!.
         /// </summary>
         internal static string FaceReferenceExtractionDetail {

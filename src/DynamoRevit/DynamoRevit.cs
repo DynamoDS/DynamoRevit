@@ -124,6 +124,8 @@ namespace Dynamo.Applications
         private static RevitDynamoModel revitDynamoModel;
         private static bool handledCrash;
 
+        private static List<Exception> preLoadExceptions = new List<Exception>();
+
         // These fields are used to store information that
         // is pulled from the journal file.
         private static bool shouldShowUi = true;
@@ -152,11 +154,20 @@ namespace Dynamo.Applications
             return ExecuteCommand(new DynamoRevitCommandData(commandData));
         }
 
+        private void AssemblyLoad(object sender, AssemblyLoadEventArgs args)
+        {
+            //push any exceptions generated before DynamoLoad to this list
+            preLoadExceptions.AddRange(StartupUtils.CheckAssemblyForVersionMismatches(args.LoadedAssembly));
+        }
+      
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
         {
             HandleDebug(commandData);
 
             InitializeCore(commandData);
+            //subscribe to the assembly load
+            AppDomain.CurrentDomain.AssemblyLoad += AssemblyLoad;
+
 
             try
             {
@@ -182,10 +193,21 @@ namespace Dynamo.Applications
                     InitializeCoreView().Show();
                 }
 
+                //foreach preloaded exception send a notification to the Dynamo Logger
+                //these are messages we want the user to notice.
+                preLoadExceptions.ForEach(x => revitDynamoModel.Logger.LogNotification
+                (revitDynamoModel.GetType().ToString(),
+                x.GetType().ToString(),
+                DynamoApplications.Properties.Resources.MismatchedAssemblyVersionShortMessage,
+                x.Message));
+
                 TryOpenWorkspaceInCommandData(extCommandData);
 
                 // Disable the Dynamo button to prevent a re-run
                 DynamoRevitApp.DynamoButtonEnabled = false;
+
+                //unsubscribe to the assembly load
+                AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
             }
             catch (Exception ex)
             {
@@ -209,16 +231,10 @@ namespace Dynamo.Applications
         /// </summary>
         private static void UpdateSystemPathForProcess()
         {
-            var assemblyLocation = Assembly.GetExecutingAssembly().Location;
-            var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-            var parentDirectory = Directory.GetParent(assemblyDirectory);
-            var corePath = parentDirectory.FullName;
-
-            
             var path =
                     Environment.GetEnvironmentVariable(
                         "Path",
-                        EnvironmentVariableTarget.Process) + ";" + corePath;
+                        EnvironmentVariableTarget.Process) + ";" + DynamoRevitApp.DynamoCorePath;
             Environment.SetEnvironmentVariable("Path", path, EnvironmentVariableTarget.Process);
         }
 
@@ -263,19 +279,27 @@ namespace Dynamo.Applications
 
         private static RevitDynamoModel InitializeCoreModel(DynamoRevitCommandData commandData)
         {
-            var assemblyLocation = Assembly.GetExecutingAssembly().Location;
-            var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-            var parentDirectory = Directory.GetParent(assemblyDirectory);
-            var corePath = parentDirectory.FullName;
+            var corePath = DynamoRevitApp.DynamoCorePath;
+            var dynamoRevitExePath = Assembly.GetExecutingAssembly().Location;
+            var dynamoRevitRoot = Path.GetDirectoryName(dynamoRevitExePath);// ...\Revit_xxxx\ folder
 
             var umConfig = UpdateManagerConfiguration.GetSettings(new DynamoRevitLookUp());
             Debug.Assert(umConfig.DynamoLookUp != null);
 
+            var userDataFolder = Path.Combine(Environment.GetFolderPath(
+                Environment.SpecialFolder.ApplicationData), 
+                "Dynamo", "Dynamo Revit");
+            var commonDataFolder = Path.Combine(Environment.GetFolderPath(
+                Environment.SpecialFolder.CommonApplicationData), 
+                "Dynamo", "Dynamo Revit");
+
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
                 {
+                    DynamoCorePath = corePath,
+                    DynamoHostPath = dynamoRevitRoot,
                     GeometryFactoryPath = GetGeometryFactoryPath(corePath),
-                    PathResolver = new RevitPathResolver(),
+                    PathResolver = new RevitPathResolver(userDataFolder, commonDataFolder),
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
                     StartInTestMode = isAutomationMode,
@@ -526,6 +550,28 @@ namespace Dynamo.Applications
             //Get "InstallLocation" value as string for all the subkey that starts with "Dynamo"
             return regKey.GetSubKeyNames().Where(s => s.StartsWith("Dynamo")).Select(
                 (s) => regKey.OpenSubKey(s).GetValue("InstallLocation") as string);
+        }
+
+        public override IEnumerable<string> GetDynamoUserDataLocations()
+        {
+            var appDatafolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+            var paths = new List<string>();
+            //Pre 1.0 Dynamo Studio user data was stored at %appdata%\Dynamo\
+            var dynamoFolder = Path.Combine(appDatafolder, "Dynamo");
+            if (Directory.Exists(dynamoFolder))
+            {
+                paths.AddRange(Directory.EnumerateDirectories(dynamoFolder));
+            }
+            
+            //From 1.0 onwards Dynamo Studio user data is stored at %appdata%\Dynamo\Dynamo Revit\
+            var revitFolder = Path.Combine(dynamoFolder, "Dynamo Revit");
+            if (Directory.Exists(revitFolder))
+            {
+                paths.AddRange(Directory.EnumerateDirectories(revitFolder));
+            }
+
+            return paths;
         }
     }
 }

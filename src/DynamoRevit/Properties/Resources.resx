@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -153,5 +153,13 @@
   </data>
   <data name="BackgroundPreviewName" xml:space="preserve">
     <value>Revit Background Preview</value>
+  </data>
+  <data name="DynamoCoreNotFoundDialogMessage" xml:space="preserve">
+    <value>Revit is not able to find an installation of Dynamo Core version {0}.{1}.{2}.
+
+Would you like to download and reinstall DynamoCore.msi from http://dynamobim.org now?</value>
+  </data>
+  <data name="DynamoCoreNotFoundDialogTitle" xml:space="preserve">
+    <value>Dynamo Core component could not be found</value>
   </data>
 </root>

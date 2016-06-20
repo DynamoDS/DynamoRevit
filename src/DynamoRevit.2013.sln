@@ -59,6 +59,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoRevitIcons", "DynamoRevitIcons\DynamoRevitIcons.csproj", "{A31E274C-524A-40CA-85FF-595D3DB53777}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingElementTypeGenerator", "BuildingElementTypeGenerator\BuildingElementTypeGenerator.csproj", "{4682DC01-85D2-45A8-BDB4-C09A7BA59963}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{821DE75A-8C7C-4747-B838-BA0354B15592}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoAddinGenerator", "Tools\DynamoAddinGenerator\DynamoAddinGenerator.csproj", "{92A46535-D870-4E1A-AED0-7492789E9C4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -118,6 +121,10 @@ Global
 		{4682DC01-85D2-45A8-BDB4-C09A7BA59963}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4682DC01-85D2-45A8-BDB4-C09A7BA59963}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4682DC01-85D2-45A8-BDB4-C09A7BA59963}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92A46535-D870-4E1A-AED0-7492789E9C4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92A46535-D870-4E1A-AED0-7492789E9C4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92A46535-D870-4E1A-AED0-7492789E9C4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92A46535-D870-4E1A-AED0-7492789E9C4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -134,5 +141,6 @@ Global
 		{53D05530-CF64-4883-8F86-B2B819934F83} = {398542E6-659A-48C8-86EB-33164D227C90}
 		{589F14D7-2937-479C-834A-D44197CB1930} = {0E492D35-2310-4849-9694-A2A53C09F21B}
 		{9ADADC68-36A3-4A21-9B54-298154A88720} = {0E492D35-2310-4849-9694-A2A53C09F21B}
+		{92A46535-D870-4E1A-AED0-7492789E9C4A} = {821DE75A-8C7C-4747-B838-BA0354B15592}
 	EndGlobalSection
 EndGlobal

@@ -198,7 +198,7 @@ namespace Dynamo.Nodes
             XmlElement oldNode = data.MigratedNodes.ElementAt(0);
             var newNode = MigrationManager.CreateFunctionNodeFrom(oldNode);
             MigrationManager.SetFunctionSignature(newNode, "ProtoGeometry.dll",
-                "Curve.ParameterTrim", "Autodesk.DesignScript.Geometry.Curve.ParameterTrim@double,double");
+                "Curve.TrimByParameter", "Autodesk.DesignScript.Geometry.Curve.TrimByParameter@double,double");
             migrationData.AppendNode(newNode);
             string newNodeId = MigrationManager.GetGuidFromXmlElement(newNode);
 

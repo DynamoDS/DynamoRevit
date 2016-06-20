@@ -213,10 +213,11 @@ namespace Revit.GeometryConversion
         private static Autodesk.Revit.DB.Ellipse Convert(Autodesk.DesignScript.Geometry.EllipseArc crv)
         {
             var center = crv.CenterPoint.ToXyz(false);
-            var x = crv.MajorAxis.ToXyz(false).Normalize();
-            var y = crv.MinorAxis.ToXyz(false).Normalize();
-            var xw = crv.MajorAxis.Length;
-            var yw = crv.MinorAxis.Length;
+            var x = crv.Plane.XAxis.ToXyz(false).Normalize();
+            var y = crv.Plane.YAxis.ToXyz(false).Normalize();
+            var xw = (crv.Plane.XAxis.IsParallel(crv.MajorAxis) )? crv.MajorAxis.Length:crv.MinorAxis.Length;
+            var yw = (crv.Plane.XAxis.IsParallel(crv.MajorAxis))? crv.MinorAxis.Length: crv.MajorAxis.Length; 
+
             var sa = crv.StartAngle.ToRadians();
             var ea = sa + crv.SweepAngle.ToRadians();
 

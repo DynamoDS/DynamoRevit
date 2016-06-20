@@ -5,6 +5,7 @@ using Autodesk.Revit.DB;
 using NUnit.Framework;
 using System;
 using RevitServices.Elements;
+using RevitServices.Materials;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
@@ -326,6 +327,35 @@ namespace RevitServicesTests
             //verify that the id extracted from trace is equal to the new instance
             Assert.IsTrue(readback.Equals(elementID2));
 
+        }
+
+        [Test]
+        [Category("UnitTests")]
+        public void MaterialManagerCheckDefaultValues()
+        {
+            Assert.NotNull(MaterialsManager.Instance.DynamoMaterialId);
+            Assert.NotNull(MaterialsManager.Instance.DynamoErrorMaterialId);
+            Assert.NotNull(MaterialsManager.Instance.DynamoGStyleId);
+
+            Assert.AreEqual(MaterialsManager.Instance.DynamoMaterialId, ElementId.InvalidElementId);
+            Assert.AreEqual(MaterialsManager.Instance.DynamoErrorMaterialId, ElementId.InvalidElementId);
+            Assert.AreEqual(MaterialsManager.Instance.DynamoGStyleId, ElementId.InvalidElementId);
+        }
+
+        [Test]
+        [Category("UnitTests")]
+        public void MaterialManagerCheckValues()
+        {
+            var mgr = MaterialsManager.Instance;
+            mgr.InitializeForActiveDocumentOnIdle();
+
+            Assert.NotNull(MaterialsManager.Instance.DynamoMaterialId);
+            Assert.NotNull(MaterialsManager.Instance.DynamoErrorMaterialId);
+            Assert.NotNull(MaterialsManager.Instance.DynamoGStyleId);
+
+            Assert.AreNotEqual(MaterialsManager.Instance.DynamoMaterialId, ElementId.InvalidElementId);
+            Assert.AreNotEqual(MaterialsManager.Instance.DynamoErrorMaterialId, ElementId.InvalidElementId);
+            Assert.AreNotEqual(MaterialsManager.Instance.DynamoGStyleId, ElementId.InvalidElementId);
         }
 
     }
