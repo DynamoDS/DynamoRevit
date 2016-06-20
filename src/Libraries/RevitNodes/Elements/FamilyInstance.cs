@@ -330,28 +330,30 @@ namespace Revit.Elements
         /// <returns>The result family instance.</returns>
         public FamilyInstance SetRotation(double degree)
         {
-           if (this == null)
-              throw new ArgumentNullException("familyInstance");
+            if (this == null)
+                throw new ArgumentNullException("familyInstance");
 
-           TransactionManager.Instance.EnsureInTransaction(Document);
+            TransactionManager.Instance.EnsureInTransaction(Document);
 
-           // Rotate the element.
-           var oldTransform = InternalFamilyInstance.GetTransform();
-           double[] oldRotationAngles;
-           TransformUtils.ExtractEularAnglesFromTransform(oldTransform, out oldRotationAngles);
+            Document.Regenerate();
 
-           Double newRotationAngle = degree * Math.PI / 180;
+            // Rotate the element.
+            var oldTransform = InternalFamilyInstance.GetTransform();
+            double[] oldRotationAngles;
+            TransformUtils.ExtractEularAnglesFromTransform(oldTransform, out oldRotationAngles);
 
-           if (!oldRotationAngles[0].AlmostEquals(newRotationAngle, 1.0e-6))
-           {
-              double rotateAngle = newRotationAngle - oldRotationAngles[0];
-              var axis = Line.CreateUnbound(oldTransform.Origin, oldTransform.BasisZ);
-              ElementTransformUtils.RotateElement(Document, new ElementId(Id), axis, -rotateAngle);
-           }
+            Double newRotationAngle = degree * Math.PI / 180;
 
-           TransactionManager.Instance.TransactionTaskDone();
+            if (!oldRotationAngles[0].AlmostEquals(newRotationAngle, 1.0e-6))
+            {
+                double rotateAngle = newRotationAngle - oldRotationAngles[0];
+                var axis = Line.CreateUnbound(oldTransform.Origin, oldTransform.BasisZ);
+                ElementTransformUtils.RotateElement(Document, new ElementId(Id), axis, -rotateAngle);
+            }
 
-           return this;
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
         }
 
        #endregion
