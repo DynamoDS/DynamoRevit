@@ -112,12 +112,7 @@ namespace Dynamo.Applications
 
         private Result loadDependentComponents()
         {
-            var dynamoRevitRootDirectory = Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
-            var versionNumber = ControlledApplication.VersionNumber;
-
-            var dynamoRevitAditionsPath = Path.Combine(dynamoRevitRootDirectory,
-                string.Format("Revit_{0}", versionNumber), "DynamoRevitAdditions.dll");
-
+            var dynamoRevitAditionsPath = Path.Combine(Path.GetDirectoryName(assemblyName), "DynamoRevitAdditions.dll");
             if (File.Exists(dynamoRevitAditionsPath))
             {
                 try

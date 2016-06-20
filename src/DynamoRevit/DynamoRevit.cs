@@ -116,38 +116,38 @@ namespace Dynamo.Applications
     /// <summary>
     /// Defines startup parameters for DynamoRevitModel
     /// </summary>
-    public class DynamoRevitJournalKeys
+    public class JournalKeys
     {
         /// <summary>
         /// The journal file can use this key to specify whether
         /// the Dynamo UI should be visible at run time.
         /// </summary>
-        public const string JournalShowUiKey = "dynShowUI";
+        public const string ShowUiKey = "dynShowUI";
 
         /// <summary>
         /// If the journal file specifies automation mode, 
         /// Dynamo will run on the main thread without the idle loop.
         /// </summary>
-        public const string JournalAutomationModeKey = "dynAutomation";
+        public const string AutomationModeKey = "dynAutomation";
 
         /// <summary>
         /// The journal file can specify a Dynamo workspace to be opened 
         /// (and executed if we are in automation mode) at run time.
         /// </summary>
-        public const string JournalDynPathKey = "dynPath";
+        public const string DynPathKey = "dynPath";
 
         /// <summary>
         /// The journal file can specify if the Dynamo workspace opened 
-        /// from JournalDynPathKey will be executed or not. 
+        /// from DynPathKey will be executed or not. 
         /// If we are in automation mode the workspace will be executed regardless of this key.
         /// </summary>
-        public const string JournalDynPathExecuteKey = "dynPathExecute";
+        public const string DynPathExecuteKey = "dynPathExecute";
 
         /// <summary>
         /// The journal file can specify if the Dynamo workspace opened
-        /// from JournalDynPathKey will be forced in manual mode.
+        /// from DynPathKey will be forced in manual mode.
         /// </summary>
-        public const string JournalForceManualRun = "dynForceManualRun";
+        public const string ForceManualRunKey = "dynForceManualRun";
     }
 
 
@@ -453,9 +453,9 @@ namespace Dynamo.Applications
                 return result;
             }
 
-            if (commandData.JournalData.ContainsKey(DynamoRevitJournalKeys.JournalForceManualRun))
+            if (commandData.JournalData.ContainsKey(JournalKeys.ForceManualRunKey))
             {
-                bool.TryParse(commandData.JournalData[DynamoRevitJournalKeys.JournalForceManualRun], out result);
+                bool.TryParse(commandData.JournalData[JournalKeys.ForceManualRunKey], out result);
             }
 
             return result;
@@ -470,9 +470,9 @@ namespace Dynamo.Applications
                 return result;
             }
 
-            if (commandData.JournalData.ContainsKey(DynamoRevitJournalKeys.JournalShowUiKey))
+            if (commandData.JournalData.ContainsKey(JournalKeys.ShowUiKey))
             {
-                bool.TryParse(commandData.JournalData[DynamoRevitJournalKeys.JournalShowUiKey], out result);
+                bool.TryParse(commandData.JournalData[JournalKeys.ShowUiKey], out result);
             }
 
             return result;
@@ -487,9 +487,9 @@ namespace Dynamo.Applications
                 return result;
             }
 
-            if (commandData.JournalData.ContainsKey(DynamoRevitJournalKeys.JournalAutomationModeKey))
+            if (commandData.JournalData.ContainsKey(JournalKeys.AutomationModeKey))
             {
-                result = bool.TryParse(commandData.JournalData[DynamoRevitJournalKeys.JournalAutomationModeKey], out result);
+                result = bool.TryParse(commandData.JournalData[JournalKeys.AutomationModeKey], out result);
             }
 
             return result;
@@ -502,27 +502,27 @@ namespace Dynamo.Applications
                 return;
             }
 
-            if (commandData.JournalData.ContainsKey(DynamoRevitJournalKeys.JournalDynPathKey))
+            if (commandData.JournalData.ContainsKey(JournalKeys.DynPathKey))
             {
                 bool isAutomationMode = CheckJournalForAutomationMode(commandData);
                 bool forceManualRun = CheckJournalForForceManualRun(commandData);                
 
                 if (ModelState == RevitDynamoModelState.StartedUIless)
                 {
-                    revitDynamoModel.OpenFileFromPath(commandData.JournalData[DynamoRevitJournalKeys.JournalDynPathKey], forceManualRun);
+                    revitDynamoModel.OpenFileFromPath(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun);
                 }
                 else
                 {
-                    dynamoViewModel.ExecuteCommand(new DynamoModel.OpenFileCommand(commandData.JournalData[DynamoRevitJournalKeys.JournalDynPathKey], forceManualRun));
+                    dynamoViewModel.ExecuteCommand(new DynamoModel.OpenFileCommand(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun));
                     dynamoViewModel.ShowStartPage = false;
                 }
 
                 //If we are in automation mode the model will run anyway (on the main thread 
-                //without the idle loop) regardless of the JournalDynPathExecuteKey.
-                if (!isAutomationMode && commandData.JournalData.ContainsKey(DynamoRevitJournalKeys.JournalDynPathExecuteKey))
+                //without the idle loop) regardless of the DynPathExecuteKey.
+                if (!isAutomationMode && commandData.JournalData.ContainsKey(JournalKeys.DynPathExecuteKey))
                 {
                     bool executePath = false;
-                    bool.TryParse(commandData.JournalData[DynamoRevitJournalKeys.JournalDynPathExecuteKey], out executePath);
+                    bool.TryParse(commandData.JournalData[JournalKeys.DynPathExecuteKey], out executePath);
                     if (executePath)
                     {
                         HomeWorkspaceModel modelToRun = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
