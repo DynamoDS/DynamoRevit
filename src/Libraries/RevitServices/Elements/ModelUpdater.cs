@@ -15,11 +15,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
 using RevitServices.Persistence;
-using RevitServices.Transactions;
 
 namespace RevitServices.Elements
 {
@@ -29,36 +27,50 @@ namespace RevitServices.Elements
 
         private readonly HashSet<IUpdater> registeredUpdaters;
 
+        [Obsolete("Use ElementsUpdated event")]
         public event ElementUpdateDelegate ElementsAdded;
+        [Obsolete("Use ElementsUpdated event")]
         public event ElementUpdateDelegateElementId ElementAddedForID;
+        [Obsolete("Use ElementsUpdated event")]
         public event ElementUpdateDelegate ElementsModified;
+        [Obsolete("Use ElementsUpdated event")]
         public event ElementDeleteDelegate ElementsDeleted;
 
+        public event EventHandler<ElementUpdateEventArgs> ElementsUpdated;
         #region Event Invokers
 
-        protected virtual void OnElementsAdded(IEnumerable<string> updated)
+        protected virtual void OnElementsAdded(ElementUpdateEventArgs e)
         {
             var handler = ElementsAdded;
-            if (handler != null) handler(updated);
+            if (handler != null) handler(e.GetUniqueIds());
         }
 
-        protected virtual void OnElementsAdded(Document doc, IEnumerable<ElementId> updated)
+        protected virtual void OnElementIdsAdded(ElementUpdateEventArgs e)
         {
             var handler = ElementAddedForID;
-            if (handler != null) handler(doc, updated);
+            if (handler != null) handler(e.RevitDocument, e.Elements);
+            
+            var updateHandler = ElementsUpdated;
+            if (updateHandler != null) updateHandler(this, e);
         }
 
 
-        protected virtual void OnElementsModified(IEnumerable<string> updated)
+        protected virtual void OnElementsModified(ElementUpdateEventArgs e)
         {
             var handler = ElementsModified;
-            if (handler != null) handler(updated);
+            if (handler != null) handler(e.GetUniqueIds());
+            
+            var updateHandler = ElementsUpdated;
+            if (updateHandler != null) updateHandler(this, e);
         }
 
-        protected virtual void OnElementsDeleted(Document document, IEnumerable<ElementId> deleted)
+        protected virtual void OnElementsDeleted(ElementUpdateEventArgs e)
         {
             var handler = ElementsDeleted;
-            if (handler != null) handler(document, deleted);
+            if (handler != null) handler(e.RevitDocument, e.Elements);
+            
+            var updateHandler = ElementsUpdated;
+            if (updateHandler != null) updateHandler(this, e);
         }
 
         #endregion
@@ -174,11 +186,10 @@ namespace RevitServices.Elements
                 // No
                 return;
 
-            var added = args.Added.Select(x => doc.GetElement(x).UniqueId);
             var addedIds = args.Added;
-            var modified = args.Modified.Select(x => doc.GetElement(x).UniqueId).ToList();
+            var modified = args.Modified;
             var deleted = args.Deleted;
-            ProcessUpdates(doc, modified, deleted, added, addedIds);
+            ProcessUpdates(doc, modified, deleted, addedIds, Enumerable.Empty<string>());
         }
 
         private void Dispose()
@@ -206,32 +217,30 @@ namespace RevitServices.Elements
         public void RollBack(Document doc, ICollection<ElementId> deleted)
         {
             var empty = new List<string>();
-            ProcessUpdates(doc, empty, deleted, empty, new List<ElementId>());
+            ProcessUpdates(doc, Enumerable.Empty<ElementId>(), deleted, Enumerable.Empty<ElementId>(), empty);
         }
 
-        private void ProcessUpdates(Document doc, IEnumerable<string> modified, 
-            IEnumerable<ElementId> deleted, IEnumerable<string> added, 
-            IEnumerable<ElementId> addedIds )
+        private void ProcessUpdates(Document doc, IEnumerable<ElementId> modified, 
+            IEnumerable<ElementId> deleted, IEnumerable<ElementId> added, 
+            IEnumerable<string> transactions)
         {
-            OnElementsDeleted(doc, deleted.Distinct());
-            OnElementsModified(modified.Distinct());
-            OnElementsAdded(added.Distinct());
-            OnElementsAdded(doc, addedIds);
+            var transactionList = transactions as IList<string> ?? transactions.ToList();
+            OnElementsDeleted(new ElementUpdateEventArgs(doc, deleted.Distinct(), transactionList, ElementUpdateEventArgs.UpdateType.Deleted));
+            OnElementsModified(new ElementUpdateEventArgs(doc, modified.Distinct(), transactionList, ElementUpdateEventArgs.UpdateType.Modified));
+
+            var addedElements = added.Distinct().ToList();
+            OnElementsAdded(new ElementUpdateEventArgs(doc, addedElements, transactionList, ElementUpdateEventArgs.UpdateType.Added));
+            OnElementIdsAdded(new ElementUpdateEventArgs(doc, addedElements, transactionList, ElementUpdateEventArgs.UpdateType.Added));
         }
 
         public void ApplicationDocumentChanged(object sender, DocumentChangedEventArgs args)
         {
-            //skip processing element modification for nodes modified due to Dynamo script transaction.
-            if (args.GetTransactionNames().All(x => string.Equals(x, TransactionWrapper.TransactionName)))
-                return;
-
             var doc = args.GetDocument();
-            var added = args.GetAddedElementIds().Select(x => doc.GetElement(x).UniqueId);
             var addedIds = args.GetAddedElementIds();
-            var modified = args.GetModifiedElementIds().Select(x => doc.GetElement(x).UniqueId).ToList();
+            var modified = args.GetModifiedElementIds();
             var deleted = args.GetDeletedElementIds();
 
-            ProcessUpdates(doc, modified, deleted, added, addedIds);
+            ProcessUpdates(doc, modified, deleted, addedIds, args.GetTransactionNames());
         }
 
         /// <summary>
@@ -241,9 +250,75 @@ namespace RevitServices.Elements
         public void UnRegisterAllChangeHooks()
         {
             ElementsAdded = null;
+            ElementAddedForID = null;
             ElementsModified = null;
             ElementsDeleted = null;
+            ElementsUpdated = null;
         }
+    }
+
+    /// <summary>
+    /// Contains context data for an element update event.
+    /// </summary>
+    public class ElementUpdateEventArgs : EventArgs
+    {
+        public enum UpdateType
+        {
+            Added,
+            Modified,
+            Deleted,
+        }
+
+        /// <summary>
+        /// Constructor for ElementUpdateEventArgs
+        /// </summary>
+        /// <param name="doc">Revit Document involved in the event.</param>
+        /// <param name="elements">List of elements involved in the event.</param>
+        /// <param name="transactions">Name of transactions involved in the event.</param>
+        /// <param name="operation">Type of operation such as Added, Modified or Deleted.</param>
+        public ElementUpdateEventArgs(Document doc, IEnumerable<ElementId> elements, 
+            IEnumerable<string> transactions, UpdateType operation)
+        {
+            RevitDocument = doc;
+            Elements = elements;
+            Transactions = transactions;
+            Operation = operation;
+        }
+
+        /// <summary>
+        /// Returns unique ids for the elements involved in the event.
+        /// </summary>
+        /// <returns>List of unique id strings</returns>
+        public IEnumerable<string> GetUniqueIds()
+        {
+            if (Elements == null || RevitDocument == null) yield break;
+
+            foreach (var id in Elements)
+            {
+                var e = RevitDocument.GetElement(id);
+                if (e != null) yield return e.UniqueId;
+            }
+        }
+
+        /// <summary>
+        /// List of elements involved in the event.
+        /// </summary>
+        public IEnumerable<ElementId> Elements { get; private set; }
+
+        /// <summary>
+        /// The Revit document involved in the event.
+        /// </summary>
+        public Document RevitDocument { get; private set; }
+
+        /// <summary>
+        /// The name of transactions involved in the event.
+        /// </summary>
+        public IEnumerable<string> Transactions { get; private set; }
+
+        /// <summary>
+        /// Gets update operation type.
+        /// </summary>
+        public UpdateType Operation { get; private set; }
     }
 
     /// <summary>
@@ -258,7 +333,7 @@ namespace RevitServices.Elements
     /// Recoemnt using the UUID version instead
     /// </summary>
     /// <param name="updated">All modified elements that have been registered with this callback.</param>
-    public delegate void ElementUpdateDelegateElementId(Document document, IEnumerable<ElementId> deleted);
+    public delegate void ElementUpdateDelegateElementId(Document document, IEnumerable<ElementId> updated);
 
 
     /// <summary>
