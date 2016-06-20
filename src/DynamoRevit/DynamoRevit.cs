@@ -23,6 +23,7 @@ using Dynamo.Applications.Models;
 using Dynamo.Applications.ViewModel;
 using Dynamo.Controls;
 using Dynamo.Core;
+using Dynamo.Graph.Workspaces;
 using Dynamo.Logging;
 using Dynamo.Models;
 using Dynamo.Updates;
@@ -112,42 +113,85 @@ namespace Dynamo.Applications
         public IDictionary<string, string> JournalData { get; set; }
     }
 
-    [Transaction(TransactionMode.Manual),
-     Regeneration(RegenerationOption.Manual)]
-    public class DynamoRevit : IExternalCommand
+    /// <summary>
+    /// Defines startup parameters for DynamoRevitModel
+    /// </summary>
+    public class JournalKeys
     {
-        private static List<Action> idleActions = new List<Action>();
-        enum Versions { ShapeManager = 222 }
-
-        private static DynamoRevitCommandData extCommandData;
-        private static DynamoViewModel dynamoViewModel;
-        private static RevitDynamoModel revitDynamoModel;
-        private static bool handledCrash;
-
-        private static List<Exception> preLoadExceptions = new List<Exception>();
-
-        // These fields are used to store information that
-        // is pulled from the journal file.
-        private static bool shouldShowUi = true;
-        private static bool isAutomationMode;
-
         /// <summary>
         /// The journal file can use this key to specify whether
         /// the Dynamo UI should be visible at run time.
         /// </summary>
-        private const string JournalShowUiKey = "dynShowUI";
+        public const string ShowUiKey = "dynShowUI";
 
         /// <summary>
         /// If the journal file specifies automation mode, 
         /// Dynamo will run on the main thread without the idle loop.
         /// </summary>
-        private const string JounralAutomationModeKey = "dynAutomation";
+        public const string AutomationModeKey = "dynAutomation";
 
         /// <summary>
-        /// The journal file can specify a Dynamo workspace to 
-        /// be opened (and executed) at run time.
+        /// The journal file can specify a Dynamo workspace to be opened 
+        /// (and executed if we are in automation mode) at run time.
         /// </summary>
-        private const string JournalDynPathKey = "dynPath";
+        public const string DynPathKey = "dynPath";
+
+        /// <summary>
+        /// The journal file can specify if the Dynamo workspace opened 
+        /// from DynPathKey will be executed or not. 
+        /// If we are in automation mode the workspace will be executed regardless of this key.
+        /// </summary>
+        public const string DynPathExecuteKey = "dynPathExecute";
+
+        /// <summary>
+        /// The journal file can specify if the Dynamo workspace opened
+        /// from DynPathKey will be forced in manual mode.
+        /// </summary>
+        public const string ForceManualRunKey = "dynForceManualRun";
+    }
+
+
+    [Transaction(TransactionMode.Manual),
+     Regeneration(RegenerationOption.Manual)]
+    public class DynamoRevit : IExternalCommand
+    {
+        enum Versions { ShapeManager = 222 };
+
+        /// <summary>
+        /// Based on the RevitDynamoModelState a dependent component can take certain 
+        /// decisions regarding its UI and functionality.
+        /// In order to be able to run a specified graph , revitDynamoModel needs to be 
+        /// at least in StartedUIless state. 
+        /// </summary>
+        public enum RevitDynamoModelState { NotStarted, StartedUIless, StartedUI };
+
+        private static List<Action> idleActions;
+        private static DynamoRevitCommandData extCommandData;
+        private static DynamoViewModel dynamoViewModel;
+        private static RevitDynamoModel revitDynamoModel;
+        private static bool handledCrash;
+        private static List<Exception> preLoadExceptions;
+
+        /// <summary>
+        /// The modelState tels us if the RevitDynamoModel was started and if has the
+        /// the Dynamo UI attached to it or not 
+        /// </summary>
+        public static RevitDynamoModelState ModelState
+        {
+            get;
+            private set;
+        }
+
+        static DynamoRevit()
+        {
+            idleActions = new List<Action>();
+            extCommandData = null;
+            dynamoViewModel = null;
+            revitDynamoModel = null;
+            handledCrash = false;
+            ModelState = RevitDynamoModelState.NotStarted;
+            preLoadExceptions = new List<Exception>();
+        }
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -159,38 +203,60 @@ namespace Dynamo.Applications
             //push any exceptions generated before DynamoLoad to this list
             preLoadExceptions.AddRange(StartupUtils.CheckAssemblyForVersionMismatches(args.LoadedAssembly));
         }
-      
+
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
         {
+            if (ModelState == RevitDynamoModelState.StartedUIless)
+            {
+                if (CheckJournalForUiDisplay(commandData))
+                {
+                    //When we move from UIless to UI we prefer to start with a fresh revitDynamoModel
+                    //in order to benefit from a startup sequence similar to Dynamo Revit UI launch.                    
+                    revitDynamoModel.ShutDown(false);
+                    ModelState = RevitDynamoModelState.NotStarted;
+                }
+                else
+                {
+                    TryOpenAndExecuteWorkspaceInCommandData(commandData);
+                    return Result.Succeeded;
+                }
+            }
+
+            if(ModelState == RevitDynamoModelState.StartedUI)
+            {
+                revitDynamoModel.Logger.LogError("Dynamo UI already started");
+                return Result.Failed;
+            }
+
             HandleDebug(commandData);
 
             InitializeCore(commandData);
             //subscribe to the assembly load
             AppDomain.CurrentDomain.AssemblyLoad += AssemblyLoad;
 
-
             try
             {
                 extCommandData = commandData;
-                shouldShowUi = CheckJournalForUiDisplay(extCommandData);
-                isAutomationMode = CheckJournalForAutomationMode(extCommandData);
 
                 UpdateSystemPathForProcess();
 
                 // create core data models
                 revitDynamoModel = InitializeCoreModel(extCommandData);
                 revitDynamoModel.UpdateManager.RegisterExternalApplicationProcessId(Process.GetCurrentProcess().Id);
-                dynamoViewModel = InitializeCoreViewModel(revitDynamoModel);
-
                 revitDynamoModel.Logger.Log("SYSTEM", string.Format("Environment Path:{0}", Environment.GetEnvironmentVariable("PATH")));
 
                 // handle initialization steps after RevitDynamoModel is created.
                 revitDynamoModel.HandlePostInitialization();
+                ModelState = RevitDynamoModelState.StartedUIless;
 
                 // show the window
-                if (shouldShowUi)
+                if (CheckJournalForUiDisplay(extCommandData))
                 {
+                    dynamoViewModel = InitializeCoreViewModel(revitDynamoModel);
                     InitializeCoreView().Show();
+                    ModelState = RevitDynamoModelState.StartedUI;
+                    // Disable the Dynamo button to prevent a re-run
+                    DynamoRevitApp.DynamoButtonEnabled = false;
                 }
 
                 //foreach preloaded exception send a notification to the Dynamo Logger
@@ -201,10 +267,7 @@ namespace Dynamo.Applications
                 DynamoApplications.Properties.Resources.MismatchedAssemblyVersionShortMessage,
                 x.Message));
 
-                TryOpenWorkspaceInCommandData(extCommandData);
-
-                // Disable the Dynamo button to prevent a re-run
-                DynamoRevitApp.DynamoButtonEnabled = false;
+                TryOpenAndExecuteWorkspaceInCommandData(extCommandData);
 
                 //unsubscribe to the assembly load
                 AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
@@ -293,6 +356,8 @@ namespace Dynamo.Applications
                 Environment.SpecialFolder.CommonApplicationData), 
                 "Dynamo", "Dynamo Revit");
 
+            bool isAutomationMode = CheckJournalForAutomationMode(extCommandData);
+
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
                 {
@@ -370,13 +435,30 @@ namespace Dynamo.Applications
 
         #region Helpers
 
-        private void HandleDebug(DynamoRevitCommandData commandData)
+        private static void HandleDebug(DynamoRevitCommandData commandData)
         {
             if (commandData.JournalData != null && commandData.JournalData.ContainsKey("debug"))
             {
                 if (Boolean.Parse(commandData.JournalData["debug"]))
                     Debugger.Launch();
             }
+        }
+
+        private static bool CheckJournalForForceManualRun(DynamoRevitCommandData commandData)
+        {
+            var result = false;
+
+            if (commandData.JournalData == null)
+            {
+                return result;
+            }
+
+            if (commandData.JournalData.ContainsKey(JournalKeys.ForceManualRunKey))
+            {
+                bool.TryParse(commandData.JournalData[JournalKeys.ForceManualRunKey], out result);
+            }
+
+            return result;
         }
 
         private static bool CheckJournalForUiDisplay(DynamoRevitCommandData commandData)
@@ -388,9 +470,9 @@ namespace Dynamo.Applications
                 return result;
             }
 
-            if (commandData.JournalData.ContainsKey(JournalShowUiKey))
+            if (commandData.JournalData.ContainsKey(JournalKeys.ShowUiKey))
             {
-                bool.TryParse(commandData.JournalData[JournalShowUiKey], out result);
+                bool.TryParse(commandData.JournalData[JournalKeys.ShowUiKey], out result);
             }
 
             return result;
@@ -405,25 +487,54 @@ namespace Dynamo.Applications
                 return result;
             }
 
-            if (commandData.JournalData.ContainsKey(JounralAutomationModeKey))
+            if (commandData.JournalData.ContainsKey(JournalKeys.AutomationModeKey))
             {
-                result = bool.TryParse(commandData.JournalData[JounralAutomationModeKey], out result);
+                result = bool.TryParse(commandData.JournalData[JournalKeys.AutomationModeKey], out result);
             }
 
             return result;
         }
 
-        private static void TryOpenWorkspaceInCommandData(DynamoRevitCommandData commandData)
+        private static void TryOpenAndExecuteWorkspaceInCommandData(DynamoRevitCommandData commandData)
         {
-            if(commandData.JournalData == null)
+            if (commandData.JournalData == null)
             {
                 return;
             }
 
-            if (commandData.JournalData.ContainsKey(JournalDynPathKey))
+            if (commandData.JournalData.ContainsKey(JournalKeys.DynPathKey))
             {
-                revitDynamoModel.OpenFileFromPath(commandData.JournalData[JournalDynPathKey]);
-            }  
+                bool isAutomationMode = CheckJournalForAutomationMode(commandData);
+                bool forceManualRun = CheckJournalForForceManualRun(commandData);                
+
+                if (ModelState == RevitDynamoModelState.StartedUIless)
+                {
+                    revitDynamoModel.OpenFileFromPath(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun);
+                }
+                else
+                {
+                    dynamoViewModel.ExecuteCommand(new DynamoModel.OpenFileCommand(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun));
+                    dynamoViewModel.ShowStartPage = false;
+                }
+
+                //If we are in automation mode the model will run anyway (on the main thread 
+                //without the idle loop) regardless of the DynPathExecuteKey.
+                if (!isAutomationMode && commandData.JournalData.ContainsKey(JournalKeys.DynPathExecuteKey))
+                {
+                    bool executePath = false;
+                    bool.TryParse(commandData.JournalData[JournalKeys.DynPathExecuteKey], out executePath);
+                    if (executePath)
+                    {
+                        HomeWorkspaceModel modelToRun = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                        if (modelToRun != null)
+                        {
+                            modelToRun.Run();
+                            return;
+                        }
+                    }
+                }
+
+            }
         }
 
         private static string GetRevitContext(DynamoRevitCommandData commandData)
@@ -512,6 +623,9 @@ namespace Dynamo.Applications
                 Analyze.Render.AssemblyHelper.ResolveAssemblies;
 
             DynamoRevitApp.DynamoButtonEnabled = true;
+
+            //the model is shutdown when DynamoView is closed
+            ModelState = RevitDynamoModelState.NotStarted;
         }
 
         #endregion

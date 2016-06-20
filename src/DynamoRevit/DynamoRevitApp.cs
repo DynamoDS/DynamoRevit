@@ -110,6 +110,34 @@ namespace Dynamo.Applications
         private static EventHandlerProxy proxy;
         private AddInCommandBinding dynamoCommand;
 
+        private Result loadDependentComponents()
+        {
+            var dynamoRevitAditionsPath = Path.Combine(Path.GetDirectoryName(assemblyName), "DynamoRevitAdditions.dll");
+            if (File.Exists(dynamoRevitAditionsPath))
+            {
+                try
+                {
+                    var dynamoRevitAditionsAss = Assembly.LoadFrom(dynamoRevitAditionsPath);
+                    if (dynamoRevitAditionsAss != null)
+                    {
+                        var dynamoRevitAditionsLoader = dynamoRevitAditionsAss.CreateInstance("DynamoRevitAdditions.LoadManager");
+                        if (dynamoRevitAditionsLoader != null)
+                        {
+                            dynamoRevitAditionsLoader.GetType().GetMethod("Initialize").Invoke(dynamoRevitAditionsLoader, null);
+                            return Result.Succeeded;
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    return Result.Failed;
+                }
+
+            }
+
+            return Result.Failed;
+        }
+
         public Result OnStartup(UIControlledApplication application)
         {
             // Revit2015+ has disabled hardware acceleration for WPF to
@@ -146,6 +174,8 @@ namespace Dynamo.Applications
                 RevitServicesUpdater.Initialize(DynamoRevitApp.Updaters);
                 SubscribeDocumentChangedEvent();
 
+                loadDependentComponents();
+
                 return Result.Succeeded;
             }
             catch (Exception ex)
@@ -168,6 +198,7 @@ namespace Dynamo.Applications
                 JournalData = journalData,
                 Application = application
             };
+
             var cmd = new DynamoRevit();
             return cmd.ExecuteCommand(data);
         }
@@ -304,7 +335,6 @@ namespace Dynamo.Applications
             AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
         }
 
-      
         private void UnsubscribeAssemblyEvents()
         {
             AppDomain.CurrentDomain.AssemblyResolve -= ResolveAssembly;
@@ -353,7 +383,7 @@ namespace Dynamo.Applications
                 throw new Exception(string.Format("The location of the assembly, {0} could not be resolved for loading.", assemblyPath), ex);
             }
         }
-        
+
         private void SubscribeDocumentChangedEvent()
         {
             ControlledApplication.DocumentChanged += RevitServicesUpdater.Instance.ApplicationDocumentChanged;
