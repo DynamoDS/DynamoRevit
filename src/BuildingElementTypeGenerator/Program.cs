@@ -24,7 +24,7 @@ namespace BuildingElementTypeGenerator
                 foreach (var p in ParamNames)
                 {
                     // Document is available to every element
-                    if (p == "Document") continue;
+                    if (p.ToLowerInvariant() == "document") continue;
                     methodName += p.First().ToString().ToUpper() + string.Join("", p.Skip(1)); ;
                 }
                 return methodName;
