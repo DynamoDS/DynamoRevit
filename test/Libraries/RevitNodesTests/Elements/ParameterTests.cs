@@ -24,7 +24,7 @@ namespace RevitNodesTests.Elements
 
             Parameter.CreateProjectParameter("MyParameter", "MyGroup", Autodesk.Revit.DB.ParameterType.Text.ToString(), Autodesk.Revit.DB.BuiltInParameterGroup.PG_DATA.ToString(), false, categories);
 
-            Autodesk.Revit.DB.FilteredElementCollector collector = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance).OfClass(typeof(WallType));
+            Autodesk.Revit.DB.FilteredElementCollector collector = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument).OfClass(typeof(WallType));
             var element = collector.FirstElement(); 
             Assert.IsNotNull(element.LookupParameter("MyParameter"));
         }
@@ -40,7 +40,7 @@ namespace RevitNodesTests.Elements
 
             Parameter.CreateSharedParameter("MySharedParameter", "MySharedGroup", Autodesk.Revit.DB.ParameterType.Text.ToString(), Autodesk.Revit.DB.BuiltInParameterGroup.PG_DATA.ToString(), false, categories);
 
-            Autodesk.Revit.DB.FilteredElementCollector collector = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance).OfClass(typeof(WallType));
+            Autodesk.Revit.DB.FilteredElementCollector collector = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument).OfClass(typeof(WallType));
             var element = collector.FirstElement();          
             Assert.IsNotNull(element.LookupParameter("MySharedParameter"));
         }
@@ -52,7 +52,7 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\empty.rfa")]
         public void SetParameterValue_ValidArgs()
         {
-            Autodesk.Revit.DB.FilteredElementCollector collector = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance).OfClass(typeof(WallType));
+            Autodesk.Revit.DB.FilteredElementCollector collector = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument).OfClass(typeof(WallType));
             var element = collector.FirstElement();
 
             var parameter = element.LookupParameter("Description");
