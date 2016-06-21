@@ -315,4 +315,7 @@
   <data name="InvalidFilterType" xml:space="preserve">
     <value>FilterType is not valid.</value>
   </data>
+  <data name="NoSharedParameterFileFound" xml:space="preserve">
+    <value>No shared parameter file found.</value>
+  </data>
 </root>

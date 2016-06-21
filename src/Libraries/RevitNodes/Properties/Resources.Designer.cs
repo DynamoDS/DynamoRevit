@@ -475,6 +475,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No shared parameter file found..
+        /// </summary>
+        internal static string NoSharedParameterFileFound {
+            get {
+                return ResourceManager.GetString("NoSharedParameterFileFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The FamilyInstance is not an adaptive component..
         /// </summary>
         internal static string NotAdaptiveComponentError {
