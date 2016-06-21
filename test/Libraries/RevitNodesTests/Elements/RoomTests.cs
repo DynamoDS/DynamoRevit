@@ -36,7 +36,7 @@ namespace RevitNodesTests.Elements
         /// </summary>
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
-        public void Create_ValidArgs()
+        public void CheckWrapper()
         {
             Level lvl = Level.ByElevation(100);
             Assert.IsNotNull(lvl);
