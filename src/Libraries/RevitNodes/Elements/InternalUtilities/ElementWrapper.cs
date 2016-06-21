@@ -212,6 +212,16 @@ namespace Revit.Elements
            return Mullion.FromExisting(ele, isRevitOwned);
         }
 
+        public static Revision Wrap(Autodesk.Revit.DB.Revision ele, bool isRevitOwned)
+        {
+            return Revision.FromExisting(ele, isRevitOwned);
+        }
+
+        public static RevisionCloud Wrap(Autodesk.Revit.DB.RevisionCloud ele, bool isRevitOwned)
+        {
+            return RevisionCloud.FromExisting(ele, isRevitOwned);
+        }
+
         #endregion
 
     }
