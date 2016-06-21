@@ -312,4 +312,7 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
+  <data name="NoSharedParameterFileFound" xml:space="preserve">
+    <value>No shared parameter file found.</value>
+  </data>
 </root>
