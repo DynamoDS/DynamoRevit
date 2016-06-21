@@ -212,6 +212,11 @@ namespace Revit.Elements
            return Mullion.FromExisting(ele, isRevitOwned);
         }
 
+        public static DetailCurve Wrap(Autodesk.Revit.DB.DetailCurve ele, bool isRevitOwned)
+        {
+            return DetailCurve.FromExisting(ele, isRevitOwned);
+        }
+
         #endregion
 
     }
