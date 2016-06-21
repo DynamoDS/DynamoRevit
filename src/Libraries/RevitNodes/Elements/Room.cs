@@ -21,6 +21,7 @@ namespace Revit.Elements
         /// <summary>
         /// Internal reference to the Revit Element
         /// </summary>
+        [SupressImportIntoVM]
         internal Autodesk.Revit.DB.Architecture.Room InternalRevitElement
         {
             get;
@@ -94,13 +95,13 @@ namespace Revit.Elements
             }
 
             // Apply name and number if set
-            if (name != string.Empty)
-            {
+            if (!string.IsNullOrEmpty(name))
+            { 
                 RoomElem.Name = name;
             }
 
-            if (number != string.Empty)
-            {
+            if (!string.IsNullOrEmpty(number))
+            { 
                 RoomElem.Number = number;
             }
 
