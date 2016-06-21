@@ -215,6 +215,11 @@ namespace Revit.Elements
         public static Revit.Filter.ParameterFilterElement Wrap(Autodesk.Revit.DB.ParameterFilterElement ele, bool isRevitOwned)
         {
             return Revit.Filter.ParameterFilterElement.FromExisting(ele, isRevitOwned);
+	}
+
+        public static DetailCurve Wrap(Autodesk.Revit.DB.DetailCurve ele, bool isRevitOwned)
+        {
+            return DetailCurve.FromExisting(ele, isRevitOwned);
         }
 
         #endregion
