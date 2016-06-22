@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Linq;
-
 using Autodesk.DesignScript.Geometry;
-
 using Revit.Elements;
 using NUnit.Framework;
-
 using RevitTestServices;
-
 using RTF.Framework;
 
 namespace RevitNodesTests.Elements
@@ -26,7 +22,7 @@ namespace RevitNodesTests.Elements
             Assert.NotNull(line);
 
             var detailCurve = DetailCurve.ByCurve(Revit.Application.Document.Current.ActiveView,line);
-            Assert.NotNull(line);
+            Assert.NotNull(detailCurve);
 
             var curveRef = detailCurve.ElementCurveReference;
             Assert.NotNull(curveRef);
@@ -46,7 +42,7 @@ namespace RevitNodesTests.Elements
             var nurbsCurve = NurbsCurve.ByPoints(points, 3);
 
             var detailCurve = DetailCurve.ByCurve(Revit.Application.Document.Current.ActiveView,nurbsCurve);
-            Assert.NotNull(nurbsCurve);
+            Assert.NotNull(detailCurve);
 
             detailCurve.Curve.Length.ShouldBeApproximately(9);
             detailCurve.Curve.StartPoint.ShouldBeApproximately(Point.Origin());

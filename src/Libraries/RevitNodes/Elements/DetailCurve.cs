@@ -5,8 +5,6 @@ using Autodesk.DesignScript.Runtime;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-using System.Collections.Generic;
-using RVT = Autodesk.Revit.DB;
 
 namespace Revit.Elements
 {
@@ -51,7 +49,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Create a new detail curve from curve
+        /// Init a new detail curve from curve
         /// </summary>
         /// <param name="view"></param>
         /// <param name="curve"></param>
@@ -82,7 +80,7 @@ namespace Revit.Elements
 
             InternalSetCurveElement(element);
 
-            // Commit transaction
+            // Set transaction task done & element for trace
             TransactionManager.Instance.TransactionTaskDone();
             ElementBinder.SetElementForTrace(this.InternalElement);
         }
@@ -106,7 +104,7 @@ namespace Revit.Elements
 
             Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
 
-            return new DetailCurve(revitView, curve.ToRevitType(true));
+            return new DetailCurve(revitView, curve.ToRevitType());
         }
 
         #endregion
@@ -120,7 +118,7 @@ namespace Revit.Elements
         {
             get
             { 
-                return this.InternalCurveElement.GeometryCurve.ToProtoType(true);
+                return this.InternalCurveElement.GeometryCurve.ToProtoType();
             }
         }
 
@@ -131,7 +129,7 @@ namespace Revit.Elements
         {
             Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(document);
-            this.InternalCurveElement.SetGeometryCurve(curve.ToRevitType(true),true);
+            this.InternalCurveElement.SetGeometryCurve(curve.ToRevitType(),true);
             TransactionManager.Instance.TransactionTaskDone();
         }
 
