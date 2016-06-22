@@ -312,4 +312,7 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
+  <data name="ViewDoesNotSupportAnnotations" xml:space="preserve">
+    <value>View does not support annotations.</value>
+  </data>
 </root>

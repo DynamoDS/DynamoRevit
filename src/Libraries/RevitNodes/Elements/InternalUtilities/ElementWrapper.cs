@@ -212,6 +212,16 @@ namespace Revit.Elements
            return Mullion.FromExisting(ele, isRevitOwned);
         }
 
+        public static FilledRegionType Wrap(Autodesk.Revit.DB.FilledRegionType ele, bool isRevitOwned)
+        {
+            return FilledRegionType.FromExisting(ele, isRevitOwned);
+        }
+
+        public static FilledRegion Wrap(Autodesk.Revit.DB.FilledRegion ele, bool isRevitOwned)
+        {
+            return FilledRegion.FromExisting(ele, isRevitOwned);
+        }
+
         #endregion
 
     }
