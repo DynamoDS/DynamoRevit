@@ -21,6 +21,7 @@ namespace Revit.Elements
         /// <summary>
         /// Internal reference to the Revit Element
         /// </summary>
+        [SupressImportIntoVM]
         internal Autodesk.Revit.DB.FilledRegionType InternalRevitElement
         {
             get;
