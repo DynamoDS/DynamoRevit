@@ -1,6 +1,8 @@
 ﻿using Autodesk.Revit.DB;
 using RevitServices.Transactions;
 using System.Collections.Generic;
+using RevitServices.Persistence;
+using System.Linq;
 
 namespace Revit.Elements
 {
@@ -37,13 +39,50 @@ namespace Revit.Elements
         {
             get
             {
-                switch (InternalParameter.StorageType)
+                switch (this.InternalParameter.StorageType)
                 {
-                    case Autodesk.Revit.DB.StorageType.Double: return InternalParameter.AsDouble();
-                    case Autodesk.Revit.DB.StorageType.Integer: return InternalParameter.AsInteger();
-                    case Autodesk.Revit.DB.StorageType.ElementId: return InternalParameter.AsElementId();
-                    case Autodesk.Revit.DB.StorageType.None: return null;
-                    default: return InternalParameter.AsString();
+                    case Autodesk.Revit.DB.StorageType.ElementId:
+                        int valueId = this.InternalParameter.AsElementId().IntegerValue;
+                        if (valueId > 0)
+                        {
+                            // When the element is obtained here, to convert it to our element wrapper, it
+                            // need to be figured out whether this element is created by us. Here the existing
+                            // element wrappers will be checked. If there is one, its property to specify
+                            // whether it is created by us will be followed. If there is none, it means the
+                            // element is not created by us.
+                            var elem = ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(valueId) as Element;
+                            return ElementSelector.ByElementId(valueId, elem == null ? true : elem.IsRevitOwned);
+                        }
+                        else
+                        {
+                            int paramId = this.InternalParameter.Id.IntegerValue;
+                            if (paramId == (int)BuiltInParameter.ELEM_CATEGORY_PARAM || paramId == (int)BuiltInParameter.ELEM_CATEGORY_PARAM_MT)
+                            {
+                                var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
+                                return new Category(categories.get_Item((BuiltInCategory)valueId));
+                            }
+                            else
+                            {
+                                // For other cases, return a localized string
+                                return this.InternalParameter.AsValueString();
+                            }
+                        }
+
+                    case Autodesk.Revit.DB.StorageType.String:
+                        return this.InternalParameter.AsString();
+
+                    case Autodesk.Revit.DB.StorageType.Integer:
+                        return this.InternalParameter.AsInteger();
+
+                    case Autodesk.Revit.DB.StorageType.Double:
+                        var paramType = this.InternalParameter.Definition.ParameterType;
+                        if (Element.IsConvertableParameterType(paramType))
+                            return this.InternalParameter.AsDouble() * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(Element.ParameterTypeToUnitType(paramType));
+                        else 
+                            return this.InternalParameter.AsDouble();
+
+                    default:
+                        throw new System.Exception(string.Format(Properties.Resources.ParameterWithoutStorageType, this.InternalParameter));
                 }
 
             }
@@ -92,9 +131,9 @@ namespace Revit.Elements
         /// <summary>
         /// Get the parameter's element Id
         /// </summary>
-        public ElementId GetParameterId
+        public int Id
         {
-            get { return InternalParameter.Id; }
+            get { return InternalParameter.Id.IntegerValue; }
         }
 
         /// <summary>
@@ -114,11 +153,18 @@ namespace Revit.Elements
         /// <returns>Parameter</returns>
         public static Elements.Parameter ParameterByName(Elements.Element element, string name)
         {
-            foreach (Elements.Parameter param in element.Parameters)
-                if (param.Name == name)
-                    return param;
+            var param = element.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
+                .OrderBy(x => x.Id.IntegerValue)
+                .FirstOrDefault(x => x.Definition.Name == name);
 
-            return null;
+            if (param == null)
+            {
+                return null;
+            }
+            else
+            {
+                return new Parameter(param);
+            }
         }
 
         /// <summary>
@@ -390,6 +436,8 @@ namespace Revit.Elements
         }
 
         #endregion
+
+
 
     }
 }
