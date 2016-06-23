@@ -62,27 +62,16 @@ namespace Dynamo.Applications
             var dynamoRoot = GetDynamoRoot(dynamoRevitRootDirectory);
             
             var assembly = Assembly.LoadFrom(Path.Combine(dynamoRevitRootDirectory, "DynamoInstallDetective.dll"));
-            var type = assembly.GetType("DynamoInstallDetective.Utilities");
+            var type = assembly.GetType("DynamoInstallDetective.DynamoProducts");
 
-            var installationsMethod = type.GetMethod(
-                "FindDynamoInstallations",
-                BindingFlags.Public | BindingFlags.Static);
-
-            if (installationsMethod == null)
+            var methodToInvoke = type.GetMethod("GetDynamoPath", BindingFlags.Public | BindingFlags.Static);
+            if (methodToInvoke == null)
             {
-                throw new MissingMethodException("Method 'DynamoInstallDetective.Utilities.FindDynamoInstallations' not found");
+                throw new MissingMethodException("Method 'DynamoInstallDetective.DynamoProducts.GetDynamoPath' not found");
             }
 
-            var methodParams = new object[] { dynamoRoot };
-
-            var installs = installationsMethod.Invoke(null, methodParams) as IEnumerable;
-            if (null == installs)
-                return string.Empty;
-
-            return installs.Cast<KeyValuePair<string, Tuple<int, int, int, int>>>()
-                .Where(p => p.Value.Item1 == version.Major && p.Value.Item2 == version.Minor)
-                .Select(p=>p.Key)
-                .LastOrDefault();
+            var methodParams = new object[] { version, dynamoRoot };
+            return methodToInvoke.Invoke(null, methodParams) as string;
         }
 
         /// <summary>
@@ -359,11 +348,11 @@ namespace Dynamo.Applications
             if (string.IsNullOrEmpty(DynamoCorePath))
             {
                 var fvi = FileVersionInfo.GetVersionInfo(assemblyName);
+                var shortversion = fvi.FileMajorPart + "." + fvi.FileMinorPart;
 
                 if (MessageBoxResult.OK ==
                     System.Windows.MessageBox.Show(
-                        string.Format(Resources.DynamoCoreNotFoundDialogMessage,
-                            fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart),
+                        string.Format(Resources.DynamoCoreNotFoundDialogMessage, shortversion),
                         Resources.DynamoCoreNotFoundDialogTitle,
                         MessageBoxButton.OKCancel,
                         MessageBoxImage.Error))
