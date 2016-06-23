@@ -224,8 +224,8 @@ namespace Dynamo.Applications
 
             if(ModelState == RevitDynamoModelState.StartedUI)
             {
-                revitDynamoModel.Logger.LogError("Dynamo UI already started");
-                return Result.Failed;
+                TryOpenAndExecuteWorkspaceInCommandData(commandData);
+                return Result.Succeeded;
             }
 
             HandleDebug(commandData);
