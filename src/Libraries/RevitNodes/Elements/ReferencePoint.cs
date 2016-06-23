@@ -294,7 +294,7 @@ namespace Revit.Elements
             get
             {
                 var cs = InternalReferencePoint.GetCoordinateSystem();
-                var xy = new Autodesk.Revit.DB.Plane(cs.BasisX, cs.BasisY);
+                var xy = Autodesk.Revit.DB.Plane.CreateByNormalAndOrigin(cs.BasisX, cs.BasisY);
                 return xy.ToPlane();
             }
         }
@@ -306,7 +306,7 @@ namespace Revit.Elements
             get
             {
                 var cs = InternalReferencePoint.GetCoordinateSystem();
-                var yz = new Autodesk.Revit.DB.Plane(cs.BasisY, cs.BasisZ);
+                var yz = Autodesk.Revit.DB.Plane.CreateByNormalAndOrigin(cs.BasisY, cs.BasisZ);
                 return yz.ToPlane();
             }
         }
@@ -318,7 +318,7 @@ namespace Revit.Elements
             get
             {
                 var cs = InternalReferencePoint.GetCoordinateSystem();
-                var xz = new Autodesk.Revit.DB.Plane(cs.BasisX, cs.BasisZ);
+                var xz = Autodesk.Revit.DB.Plane.CreateByNormalAndOrigin(cs.BasisX, cs.BasisZ);
                 return xz.ToPlane();
             }
         }

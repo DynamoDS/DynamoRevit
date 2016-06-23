@@ -73,7 +73,7 @@ namespace Revit.GeometryConversion
                     norm = norm.Normalize();
                 }
 
-                return new Plane(norm, p0);
+                return Plane.CreateByNormalAndOrigin(norm, p0);
 
             }
 

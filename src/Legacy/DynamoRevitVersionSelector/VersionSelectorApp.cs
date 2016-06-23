@@ -32,7 +32,7 @@ namespace Dynamo.Applications
         }
     }
 
-    [Transaction(TransactionMode.Automatic)]
+    [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
     public class VersionLoader : IExternalApplication
     {

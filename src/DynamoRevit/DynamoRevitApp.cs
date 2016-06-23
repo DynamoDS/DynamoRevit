@@ -28,7 +28,7 @@ namespace Dynamo.Applications
 {
     
 
-    [Transaction(Autodesk.Revit.Attributes.TransactionMode.Automatic),
+    [Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual),
      Regeneration(RegenerationOption.Manual)]
     public class DynamoRevitApp : IExternalApplication
     {

@@ -680,7 +680,7 @@ namespace RevitSystemTests
                 var revitLine3 = line3.ToRevitType(false);
                 var revitLine4 = line4.ToRevitType(false);
 
-                plane = new Autodesk.Revit.DB.Plane(new Autodesk.Revit.DB.XYZ(0, 0, 1), new Autodesk.Revit.DB.XYZ(0, 0, 0));
+                plane = Autodesk.Revit.DB.Plane.CreateByNormalAndOrigin(new Autodesk.Revit.DB.XYZ(0, 0, 1), new Autodesk.Revit.DB.XYZ(0, 0, 0));
                 sp = Autodesk.Revit.DB.SketchPlane.Create(document, plane);
 
                 var modelCurv1 = document.Create.NewModelCurve(revitLine1, sp);

@@ -31,7 +31,7 @@ namespace RevitNodesTests.GeometryConversion
                 1, Math.Sqrt(2)/2, 1, 1
             };
 
-            var revitSpline = Autodesk.Revit.DB.NurbSpline.Create(pts, wts);
+            var revitSpline = Autodesk.Revit.DB.NurbSpline.CreateCurve(pts, wts) as Autodesk.Revit.DB.NurbSpline;
 
             var protoCurve = revitSpline.ToProtoType();
 
@@ -73,7 +73,7 @@ namespace RevitNodesTests.GeometryConversion
                 1, Math.Sqrt(2)/2, 1, 1
             };
 
-            var revitSpline = Autodesk.Revit.DB.NurbSpline.Create(pts, wts);
+            var revitSpline = Autodesk.Revit.DB.NurbSpline.CreateCurve(pts, wts) as Autodesk.Revit.DB.NurbSpline;
 
             var protoCurve = revitSpline.ToProtoType(false);
 
@@ -216,7 +216,7 @@ namespace RevitNodesTests.GeometryConversion
             var sp = Math.PI/4;
             var ep = 3 * Math.PI / 4;
 
-            var re = Autodesk.Revit.DB.Ellipse.Create(c, rx, ry, x, y, sp, ep);
+            var re = Autodesk.Revit.DB.Ellipse.CreateCurve(c, rx, ry, x, y, sp, ep) as Autodesk.Revit.DB.Ellipse;
             re.MakeBound(sp, ep);
 
             var pc = re.ToProtoType(false);
@@ -257,7 +257,7 @@ namespace RevitNodesTests.GeometryConversion
             var sp = 0;
             var ep = Math.PI * 2;
 
-            var re = Autodesk.Revit.DB.Ellipse.Create(c, rx, ry, x, y, sp, ep);
+            var re = Autodesk.Revit.DB.Ellipse.CreateCurve(c, rx, ry, x, y, sp, ep) as Autodesk.Revit.DB.Ellipse;
             re.MakeBound(sp, ep);
 
             var pc = re.ToProtoType(false);

@@ -6,7 +6,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
 	<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2017</RevitVersionNumber>
+	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2018</RevitVersionNumber>
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
 	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
     <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
@@ -29,7 +29,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
 	<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2017</RevitVersionNumber>
+	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2018</RevitVersionNumber>
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
 	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
     <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>

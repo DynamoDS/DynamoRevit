@@ -191,9 +191,9 @@ namespace Revit.Elements
           string appGuid,
           string shapeName)
         {
-            var ds = Autodesk.Revit.DB.DirectShape.CreateElement(
-              doc, categoryId, appGuid, Guid.NewGuid().ToString());
-
+            var ds = Autodesk.Revit.DB.DirectShape.CreateElement(doc, categoryId);
+            ds.ApplicationId = appGuid;
+            ds.ApplicationDataId = Guid.NewGuid().ToString();
             ds.SetShape(geos);
             ds.Name = shapeName;
 

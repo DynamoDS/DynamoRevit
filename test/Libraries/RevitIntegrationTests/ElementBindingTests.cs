@@ -185,7 +185,7 @@ namespace RevitSystemTests
                     weights.Add(1.0);
                     weights.Add(1.0);
                     weights.Add(1.0);
-                    var spline = NurbSpline.Create(ctrlPnts, weights);
+                    var spline = NurbSpline.CreateCurve(ctrlPnts, weights);
                     var wallLocation = wall.Location as LocationCurve;
                     wallLocation.Curve = spline;
                 }

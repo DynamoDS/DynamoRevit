@@ -282,7 +282,7 @@ namespace Revit.Elements
                     projPoints.Add(proj);
                 }
 
-                return Autodesk.Revit.DB.NurbSpline.Create(projPoints, ns.Weights.Cast<double>().ToList(), ns.Knots.Cast<double>().ToList(), ns.Degree, ns.isClosed, ns.isRational);
+                return Autodesk.Revit.DB.NurbSpline.CreateCurve(ns.Degree, ns.Knots.Cast<double>().ToList(), projPoints, ns.Weights.Cast<double>().ToList());
             }
 
             return c;
