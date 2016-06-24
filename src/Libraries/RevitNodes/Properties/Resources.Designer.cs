@@ -529,6 +529,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid parameter group..
+        /// </summary>
+        internal static string ParameterGroupNotFound {
+            get {
+                return ResourceManager.GetString("ParameterGroupNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No parameter found by that name..
         /// </summary>
         internal static string ParameterNotFound {
@@ -570,6 +579,15 @@ namespace Revit.Properties {
         internal static string ParameterStorageNotString {
             get {
                 return ResourceManager.GetString("ParameterStorageNotString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid parameter type..
+        /// </summary>
+        internal static string ParameterTypeNotFound {
+            get {
+                return ResourceManager.GetString("ParameterTypeNotFound", resourceCulture);
             }
         }
         

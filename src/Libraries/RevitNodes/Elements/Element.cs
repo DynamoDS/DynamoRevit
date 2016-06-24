@@ -319,7 +319,6 @@ namespace Revit.Elements
         /// <returns></returns>
         public object GetParameterValueByName(string parameterName)
         {
-            object result;
 
             var param =
                 // We don't use Element.GetOrderedParameters(), it only returns ordered parameters
@@ -333,54 +332,7 @@ namespace Revit.Elements
             if (param == null || !param.HasValue)
                 return string.Empty;
 
-            switch (param.StorageType)
-            {
-                case StorageType.ElementId:
-                    int valueId = param.AsElementId().IntegerValue;
-                    if (valueId > 0)
-                    {
-                        // When the element is obtained here, to convert it to our element wrapper, it
-                        // need to be figured out whether this element is created by us. Here the existing
-                        // element wrappers will be checked. If there is one, its property to specify
-                        // whether it is created by us will be followed. If there is none, it means the
-                        // element is not created by us.
-                        var elem = ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(valueId) as Element;
-                        result = ElementSelector.ByElementId(valueId, elem == null ? true : elem.IsRevitOwned);
-                    }
-                    else
-                    {
-                        int paramId = param.Id.IntegerValue;
-                        if (paramId == (int)BuiltInParameter.ELEM_CATEGORY_PARAM || paramId == (int)BuiltInParameter.ELEM_CATEGORY_PARAM_MT)
-                        {
-                            var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
-                            result = new Category(categories.get_Item((BuiltInCategory)valueId));
-                        }
-                        else
-                        {
-                            // For other cases, return a localized string
-                            result = param.AsValueString();
-                        }
-                    }
-                    break;
-                case StorageType.String:
-                    result = param.AsString();
-                    break;
-                case StorageType.Integer:
-                    result = param.AsInteger();
-                    break;
-                case StorageType.Double:
-                    var paramType = param.Definition.ParameterType;
-                    if (IsConvertableParameterType(paramType))
-                        result = param.AsDouble() * UnitConverter.HostToDynamoFactor(
-                            ParameterTypeToUnitType(paramType));
-                    else
-                        result = param.AsDouble();
-                    break;
-                default:
-                    throw new Exception(string.Format(Properties.Resources.ParameterWithoutStorageType, param));
-            }
-
-            return result;
+            return Revit.Elements.InternalUtilities.ElementUtils.GetParameterValue(param);
         }
 
         /// <summary>
