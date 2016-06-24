@@ -315,4 +315,10 @@
   <data name="NoSharedParameterFileFound" xml:space="preserve">
     <value>No shared parameter file found.</value>
   </data>
+  <data name="ParameterGroupNotFound" xml:space="preserve">
+    <value>Invalid parameter group.</value>
+  </data>
+  <data name="ParameterTypeNotFound" xml:space="preserve">
+    <value>Invalid parameter type.</value>
+  </data>
 </root>

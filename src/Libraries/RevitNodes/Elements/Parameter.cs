@@ -37,55 +37,7 @@ namespace Revit.Elements
         /// </summary>
         public object Value
         {
-            get
-            {
-                switch (this.InternalParameter.StorageType)
-                {
-                    case Autodesk.Revit.DB.StorageType.ElementId:
-                        int valueId = this.InternalParameter.AsElementId().IntegerValue;
-                        if (valueId > 0)
-                        {
-                            // When the element is obtained here, to convert it to our element wrapper, it
-                            // need to be figured out whether this element is created by us. Here the existing
-                            // element wrappers will be checked. If there is one, its property to specify
-                            // whether it is created by us will be followed. If there is none, it means the
-                            // element is not created by us.
-                            var elem = ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(valueId) as Element;
-                            return ElementSelector.ByElementId(valueId, elem == null ? true : elem.IsRevitOwned);
-                        }
-                        else
-                        {
-                            int paramId = this.InternalParameter.Id.IntegerValue;
-                            if (paramId == (int)BuiltInParameter.ELEM_CATEGORY_PARAM || paramId == (int)BuiltInParameter.ELEM_CATEGORY_PARAM_MT)
-                            {
-                                var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
-                                return new Category(categories.get_Item((BuiltInCategory)valueId));
-                            }
-                            else
-                            {
-                                // For other cases, return a localized string
-                                return this.InternalParameter.AsValueString();
-                            }
-                        }
-
-                    case Autodesk.Revit.DB.StorageType.String:
-                        return this.InternalParameter.AsString();
-
-                    case Autodesk.Revit.DB.StorageType.Integer:
-                        return this.InternalParameter.AsInteger();
-
-                    case Autodesk.Revit.DB.StorageType.Double:
-                        var paramType = this.InternalParameter.Definition.ParameterType;
-                        if (Element.IsConvertableParameterType(paramType))
-                            return this.InternalParameter.AsDouble() * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(Element.ParameterTypeToUnitType(paramType));
-                        else 
-                            return this.InternalParameter.AsDouble();
-
-                    default:
-                        throw new System.Exception(string.Format(Properties.Resources.ParameterWithoutStorageType, this.InternalParameter));
-                }
-
-            }
+            get { return Revit.Elements.InternalUtilities.ElementUtils.GetParameterValue(this.InternalParameter); }
         }
 
         /// <summary>
@@ -279,11 +231,13 @@ namespace Revit.Elements
         {
             // parse parameter type
             Autodesk.Revit.DB.ParameterType parameterType = Autodesk.Revit.DB.ParameterType.Text;
-            System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(type, out parameterType);
+            if (!System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(type, out parameterType))
+                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
             // parse parameter group
             Autodesk.Revit.DB.BuiltInParameterGroup parameterGroup = Autodesk.Revit.DB.BuiltInParameterGroup.PG_DATA;
-            System.Enum.TryParse<Autodesk.Revit.DB.BuiltInParameterGroup>(group, out parameterGroup);
+            if (!System.Enum.TryParse<Autodesk.Revit.DB.BuiltInParameterGroup>(group, out parameterGroup))
+                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
             // get document and open transaction
             Document document = Application.Document.Current.InternalDocument;
@@ -299,28 +253,7 @@ namespace Revit.Elements
                     throw new System.Exception(Properties.Resources.NoSharedParameterFileFound);
 
                 // Apply selected parameter categories
-                CategorySet categories = document.Application.Create.NewCategorySet();
-                if (categories == null)
-                {
-                    // Walk thru all categories and add them if they allow bound parameters
-                    foreach (Autodesk.Revit.DB.Category cat in document.Settings.Categories)
-                    {
-                        if (cat.AllowsBoundParameters)
-                        {
-                            categories.Insert(cat);
-                        }
-                    }
-                }
-                else
-                {
-                    foreach (Category category in categoryList)
-                    {
-                        if (category.InternalCategory.AllowsBoundParameters)
-                        {
-                            categories.Insert(category.InternalCategory);
-                        }
-                    }
-                }
+                CategorySet categories = ToCategorySet(categoryList);
 
                 // Create new parameter group if it does not exist yet
                 DefinitionGroup groupDef = document.Application.OpenSharedParameterFile().Groups.get_Item(groupName);
@@ -367,11 +300,13 @@ namespace Revit.Elements
         {
             // parse parameter type
             Autodesk.Revit.DB.ParameterType parameterType = Autodesk.Revit.DB.ParameterType.Text;
-            System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(type, out parameterType);
+            if (!System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(type, out parameterType))
+                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
             // parse parameter group
             Autodesk.Revit.DB.BuiltInParameterGroup parameterGroup = Autodesk.Revit.DB.BuiltInParameterGroup.PG_DATA;
-            System.Enum.TryParse<Autodesk.Revit.DB.BuiltInParameterGroup>(group, out parameterGroup);
+            if (!System.Enum.TryParse<Autodesk.Revit.DB.BuiltInParameterGroup>(group, out parameterGroup))
+                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
             // get document and open transaction
             Document document = Application.Document.Current.InternalDocument;
@@ -386,28 +321,7 @@ namespace Revit.Elements
                 document.Application.SharedParametersFilename = tempSharedParameterFile;
 
                 // Apply selected parameter categories
-                CategorySet categories = document.Application.Create.NewCategorySet();
-                if (categories == null)
-                {
-                    // Walk thru all categories and add them if they allow bound parameters
-                    foreach (Autodesk.Revit.DB.Category cat in document.Settings.Categories)
-                    {
-                        if (cat.AllowsBoundParameters)
-                        {
-                            categories.Insert(cat);
-                        }
-                    }
-                }
-                else
-                {
-                    foreach (Category category in categoryList)
-                    {
-                        if (category.InternalCategory.AllowsBoundParameters)
-                        {
-                            categories.Insert(category.InternalCategory);
-                        }
-                    }
-                }
+                CategorySet categories = ToCategorySet(categoryList);
 
                 // create a new shared parameter, since the file is empty everything has to be created from scratch
                 ExternalDefinition def = document.Application.OpenSharedParameterFile().Groups.Create(groupName).Definitions.Create(new ExternalDefinitionCreationOptions(parameterName, parameterType)) as ExternalDefinition;
@@ -437,7 +351,42 @@ namespace Revit.Elements
 
         #endregion
 
+        /// <summary>
+        /// Transform List of categories to CategorySet
+        /// </summary>
+        /// <param name="categoryList"></param>
+        /// <returns></returns>
+        internal static CategorySet ToCategorySet(System.Collections.Generic.List<Category> categoryList)
+        {
+            Document document = Application.Document.Current.InternalDocument;
 
+            // Apply selected parameter categories
+            CategorySet categories = document.Application.Create.NewCategorySet();
+
+            if (categoryList == null)
+            {
+                // Walk thru all categories and add them if they allow bound parameters
+                foreach (Autodesk.Revit.DB.Category cat in document.Settings.Categories)
+                {
+                    if (cat.AllowsBoundParameters)
+                    {
+                        categories.Insert(cat);
+                    }
+                }
+            }
+            else
+            {
+                foreach (Category category in categoryList)
+                {
+                    if (category.InternalCategory.AllowsBoundParameters)
+                    {
+                        categories.Insert(category.InternalCategory);
+                    }
+                }
+            }
+
+            return categories;
+        }
 
     }
 }
