@@ -135,5 +135,62 @@ namespace Revit.Elements.Views
         {
             return GetType().Name + "(Name = " + InternalView.ViewName + " )";
         }
+
+        #region Filter
+
+        /// <summary>
+        /// Add Filter to View
+        /// </summary>
+        /// <param name="view">View</param>
+        /// <param name="parameterFilter">Parameter filter</param>
+        public void AddFilter(Revit.Filter.ParameterFilterElement parameterFilter)
+        {
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            this.InternalView.AddFilter(parameterFilter.InternalElement.Id);
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        /// <summary>
+        /// Get View Filters
+        /// </summary>
+        /// <returns></returns>
+        public List<Revit.Filter.ParameterFilterElement> Filters
+        {
+            get
+            {
+                List<Revit.Filter.ParameterFilterElement> filters = new List<Filter.ParameterFilterElement>();
+                foreach (ElementId id in this.InternalView.GetFilters())
+                {
+                    Element element = Revit.Elements.ElementSelector.ByElementId(id.IntegerValue);
+                    filters.Add((Revit.Filter.ParameterFilterElement)element);
+                }
+                return filters;
+            }
+        }
+
+        /// <summary>
+        /// Set Filter overrides
+        /// </summary>
+        /// <param name="view">View</param>
+        /// <param name="parameterFilter">Parameter filter</param>
+        /// <param name="overrides">overrides settings</param>
+        public void SetFilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter, Revit.Filter.OverrideGraphicSettings overrides)
+        {
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            this.InternalView.SetFilterOverrides(parameterFilter.InternalElement.Id, overrides.InternalOverrideGraphicSettings);
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        /// <summary>
+        /// Get Filter overrides
+        /// </summary>
+        /// <returns></returns>
+        public Revit.Filter.OverrideGraphicSettings FilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter)
+        {
+            OverrideGraphicSettings overrides = this.InternalView.GetFilterOverrides(parameterFilter.InternalElement.Id);
+            return new Revit.Filter.OverrideGraphicSettings(overrides);
+        }
+
+        #endregion
     }
 }
