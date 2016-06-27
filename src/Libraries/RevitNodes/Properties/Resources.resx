@@ -312,4 +312,13 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
+  <data name="ElementCannotBeAnnotatedError" xml:space="preserve">
+    <value>Element cannot be annotated</value>
+  </data>
+  <data name="ViewDoesNotSupportAnnotations" xml:space="preserve">
+    <value>View does not support annotations.</value>
+  </data>
+  <data name="NotEnoughDataError" xml:space="preserve">
+    <value>You need at least two elements for a dimension.</value>
+  </data>
 </root>
