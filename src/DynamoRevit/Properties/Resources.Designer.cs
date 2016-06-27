@@ -133,9 +133,9 @@ namespace Dynamo.Applications.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Revit is not able to find an installation of Dynamo Core version {0}.{1}.{2}.
+        ///   Looks up a localized string similar to Dynamo Add-In is not able to find an installation of Dynamo Core version {0} or higher.
         ///
-        ///Would you like to download and reinstall DynamoCore.msi from http://dynamobim.org now?.
+        ///Would you like to download the latest version of DynamoCore.msi from http://dynamobim.org now?.
         /// </summary>
         public static string DynamoCoreNotFoundDialogMessage {
             get {
