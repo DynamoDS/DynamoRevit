@@ -312,4 +312,7 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
+  <data name="InvalidFilterType" xml:space="preserve">
+    <value>FilterType is not valid.</value>
+  </data>
 </root>
