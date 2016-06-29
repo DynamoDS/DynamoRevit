@@ -96,6 +96,8 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(10, geo.Faces.Size);
             // Check number of Edges
             Assert.AreEqual(24, geo.Edges.Size);
+            // Check that material is set
+            Assert.AreNotEqual(-1, geo.Faces.get_Item(0).MaterialElementId.IntegerValue);
 
             // Check bounding box to make sure we got unit conversion right
             ds.BoundingBox.MaxPoint.ShouldBeApproximately(10.0, 10.0, 10.0);
@@ -130,6 +132,8 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(1, geo.Faces.Size);
             // Check number of Edges
             Assert.AreEqual(6, geo.Edges.Size);
+            // Check that material is set
+            Assert.AreNotEqual(-1, geo.Faces.get_Item(0).MaterialElementId.IntegerValue);
 
             // Check bounding box to make sure we got unit conversion right
             ds.BoundingBox.MaxPoint.ShouldBeApproximately(10.0, 10.0, 0.0);
