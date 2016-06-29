@@ -55,7 +55,7 @@ namespace Dynamo.Applications.Models
             public string PackageManagerAddress { get; set; }
             public DynamoRevitCommandData ExternalCommandData { get; set; }
             public IEnumerable<Dynamo.Extensions.IExtension> Extensions { get; set; }
-            public TaskProcessMode ProcessMode { get; set; }
+            public TaskProcessMode ProcessMode { get; set; }           
         }
 
         /// <summary>
@@ -145,6 +145,12 @@ namespace Dynamo.Applications.Models
             foreach (var node in workspace.Nodes.ToList())
             {
                 node.PropertyChanged += node_PropertyChanged;
+            }
+
+            var dm = DocumentManager.Instance;
+            if (dm.CurrentDBDocument != null)
+            {
+                SetRunEnabledBasedOnContext(dm.CurrentUIDocument.ActiveView);
             }
         }
 
@@ -427,14 +433,12 @@ namespace Dynamo.Applications.Models
 
         private void SubscribeRevitServicesUpdaterEvents()
         {
-            RevitServicesUpdater.Instance.ElementsDeleted += RevitServicesUpdater_ElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified += RevitServicesUpdater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdater_ElementsUpdated;
         }
 
         private void UnsubscribeRevitServicesUpdaterEvents()
         {
-            RevitServicesUpdater.Instance.ElementsDeleted -= RevitServicesUpdater_ElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified -= RevitServicesUpdater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsUpdated -= RevitServicesUpdater_ElementsUpdated;
         }
 
         private void SubscribeTransactionManagerEvents()
@@ -540,7 +544,7 @@ namespace Dynamo.Applications.Models
         /// <param name="e"></param>
         internal void OnApplicationViewActivating(object sender, ViewActivatingEventArgs e)
         {
-            SetRunEnabledBasedOnContext(e.NewActiveView);
+            SetRunEnabledBasedOnContext(e.NewActiveView, true);
         }
 
         /// <summary>
@@ -600,6 +604,14 @@ namespace Dynamo.Applications.Models
             ElementIDLifecycleManager<int>.DisposeInstance();
         }
 
+        protected override void PostShutdownCore(bool shutdownHost)
+        {
+            base.PostShutdownCore(shutdownHost);
+            
+            // Always reset current UI document on shutdown
+            DocumentManager.Instance.CurrentUIDocument = null;
+        }
+
         /// <summary>
         /// This event handler is called if 'markNodesAsDirty' in a 
         /// prior call to RevitDynamoModel.ResetEngine was set to 'true'.
@@ -611,7 +623,17 @@ namespace Dynamo.Applications.Models
                 workspace.ResetEngine(EngineController, markNodesAsDirty);
         }
 
-        public void SetRunEnabledBasedOnContext(View newView)
+        /// <summary>
+        /// Check if the Revit context is available based on 'newView' and
+        /// set the Runsettings.RunEnabled flag on each HomeWorkspaceModel accordingly.
+        /// The Revit context is unavailable for perspective views only.
+        /// Raise the RevitContextAvailable event if the context is about to be available and 
+        /// 'raiseRevitContextAvailableEvent' is 'true'
+        /// Raise the RevitContextUnavilable event if the the context is about to be unavailable.
+        /// /// </summary>
+        /// <param name="newView"></param>
+        /// <param name="raiseRevitContextAvailableEvent"></param>
+        public void SetRunEnabledBasedOnContext(View newView, bool raiseRevitContextAvailableEvent = false)
         {
             DocumentManager.Instance.HandleDocumentActivation(newView);
 
@@ -620,7 +642,22 @@ namespace Dynamo.Applications.Models
             if (view != null && view.IsPerspective
                 && Context != Configuration.Context.VASARI_2014)
             {
-                OnRevitContextUnavailable();
+                // Pick up current state
+                bool currentState = false;
+                foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                {
+                    if (ws.RunSettings.RunEnabled)
+                    {
+                        currentState = true;
+                        break;
+                    }
+                }
+
+                // Only notify if we are changing state e.g. the Revit context becomes unavailable
+                if (currentState)
+                {
+                    OnRevitContextUnavailable();
+                }
 
                 foreach (
                     var ws in Workspaces.OfType<HomeWorkspaceModel>())
@@ -632,6 +669,26 @@ namespace Dynamo.Applications.Models
             {
                 Logger.Log(
                     string.Format("Active view is now {0}", newView.Name));
+
+                if(raiseRevitContextAvailableEvent)
+                {
+                    // Pick up current state
+                    bool currentState = true;
+                    foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
+                    {
+                        if(!ws.RunSettings.RunEnabled)
+                        {
+                            currentState = false;
+                            break;
+                        }
+                    }
+
+                    // Only notify if we are changing state e.g. the Revit context becomes available
+                    if (!currentState)
+                    {
+                        OnRevitContextAvailable();
+                    }
+                }
 
                 // If there is a current document, then set the run enabled
                 // state based on whether the view just activated is 
@@ -809,44 +866,37 @@ namespace Dynamo.Applications.Models
             }
         }
 
-        private void RevitServicesUpdater_ElementsDeleted(
-            Document document, IEnumerable<ElementId> deleted)
+        void RevitServicesUpdater_ElementsUpdated(object sender, ElementUpdateEventArgs e)
         {
-            if (!deleted.Any())
+            //Element addition is not handled by this class.
+            if (e.Operation == ElementUpdateEventArgs.UpdateType.Added)
                 return;
 
+            if (!e.Elements.Any())
+                return;
+
+            bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
+
             var nodes = ElementBinder.GetNodesFromElementIds(
-                deleted,
+                e.Elements,
                 CurrentWorkspace,
                 EngineController);
             foreach (var node in nodes)
             {
+                //Don't re-execute the element construction node, if 
+                //this element is modified due to a Dynamo transaction.
+                if (dynamoTransaction && IsConstructorNode(node)) continue;
+
                 node.OnNodeModified(forceExecute: true);
             }
         }
 
-        private void RevitServicesUpdater_ElementsModified(IEnumerable<string> updated)
+        private bool IsConstructorNode(NodeModel node)
         {
-            var updatedIds = updated.Select(
-                x =>
-                {
-                    Element ret;
-                    DocumentManager.Instance.CurrentDBDocument.TryGetElement(x, out ret);
-                    return ret;
-                }).Select(x => x.Id);
+            var func = node as DSFunction;
+            if (func == null) return false;
 
-            if (!updatedIds.Any())
-                return;
-        
-            var nodes = ElementBinder.GetNodesFromElementIds(
-                updatedIds,
-                CurrentWorkspace,
-                EngineController);
-            foreach (var node in nodes )
-            {
-            
-                node.OnNodeModified(true);
-            }
+            return func.Controller.Definition.Type == Engine.FunctionType.Constructor;
         }
 
         #endregion

@@ -60,27 +60,16 @@ namespace Dynamo.Applications
             var dynamoRoot = GetDynamoRoot(dynamoRevitRootDirectory);
             
             var assembly = Assembly.LoadFrom(Path.Combine(dynamoRevitRootDirectory, "DynamoInstallDetective.dll"));
-            var type = assembly.GetType("DynamoInstallDetective.Utilities");
+            var type = assembly.GetType("DynamoInstallDetective.DynamoProducts");
 
-            var installationsMethod = type.GetMethod(
-                "FindDynamoInstallations",
-                BindingFlags.Public | BindingFlags.Static);
-
-            if (installationsMethod == null)
+            var methodToInvoke = type.GetMethod("GetDynamoPath", BindingFlags.Public | BindingFlags.Static);
+            if (methodToInvoke == null)
             {
-                throw new MissingMethodException("Method 'DynamoInstallDetective.Utilities.FindDynamoInstallations' not found");
+                throw new MissingMethodException("Method 'DynamoInstallDetective.DynamoProducts.GetDynamoPath' not found");
             }
 
-            var methodParams = new object[] { dynamoRoot };
-
-            var installs = installationsMethod.Invoke(null, methodParams) as IEnumerable;
-            if (null == installs)
-                return string.Empty;
-
-            return installs.Cast<KeyValuePair<string, Tuple<int, int, int, int>>>()
-                .Where(p => p.Value.Item1 == version.Major && p.Value.Item2 == version.Minor)
-                .Select(p=>p.Key)
-                .FirstOrDefault();
+            var methodParams = new object[] { version, dynamoRoot };
+            return methodToInvoke.Invoke(null, methodParams) as string;
         }
 
         /// <summary>
@@ -110,6 +99,34 @@ namespace Dynamo.Applications
         private static EventHandlerProxy proxy;
         private AddInCommandBinding dynamoCommand;
 
+        private Result loadDependentComponents()
+        {
+            var dynamoRevitAditionsPath = Path.Combine(Path.GetDirectoryName(assemblyName), "DynamoRevitAdditions.dll");
+            if (File.Exists(dynamoRevitAditionsPath))
+            {
+                try
+                {
+                    var dynamoRevitAditionsAss = Assembly.LoadFrom(dynamoRevitAditionsPath);
+                    if (dynamoRevitAditionsAss != null)
+                    {
+                        var dynamoRevitAditionsLoader = dynamoRevitAditionsAss.CreateInstance("DynamoRevitAdditions.LoadManager");
+                        if (dynamoRevitAditionsLoader != null)
+                        {
+                            dynamoRevitAditionsLoader.GetType().GetMethod("Initialize").Invoke(dynamoRevitAditionsLoader, null);
+                            return Result.Succeeded;
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+                    return Result.Failed;
+                }
+
+            }
+
+            return Result.Failed;
+        }
+
         public Result OnStartup(UIControlledApplication application)
         {
             // Revit2015+ has disabled hardware acceleration for WPF to
@@ -122,10 +139,13 @@ namespace Dynamo.Applications
 
             try
             {
+                if (false == TryResolveDynamoCore())
+                    return Result.Failed;
+
                 UIControlledApplication = application;
                 ControlledApplication = application.ControlledApplication;
 
-                SubscribeAssemblyResolvingEvent();
+                SubscribeAssemblyEvents();
                 SubscribeApplicationEvents();
 
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
@@ -142,6 +162,8 @@ namespace Dynamo.Applications
 
                 RevitServicesUpdater.Initialize(DynamoRevitApp.Updaters);
                 SubscribeDocumentChangedEvent();
+
+                loadDependentComponents();
 
                 return Result.Succeeded;
             }
@@ -165,6 +187,7 @@ namespace Dynamo.Applications
                 JournalData = journalData,
                 Application = application
             };
+
             var cmd = new DynamoRevit();
             return cmd.ExecuteCommand(data);
         }
@@ -194,7 +217,7 @@ namespace Dynamo.Applications
                 dynamoCommand = null;
             }
 
-            UnsubscribeAssemblyResolvingEvent();
+            UnsubscribeAssemblyEvents();
             UnsubscribeApplicationEvents();
             UnsubscribeDocumentChangedEvent();
             RevitServicesUpdater.DisposeInstance();
@@ -296,14 +319,15 @@ namespace Dynamo.Applications
             proxy = null;
         }
 
-        private void SubscribeAssemblyResolvingEvent()
+        private void SubscribeAssemblyEvents()
         {
             AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
         }
 
-        private void UnsubscribeAssemblyResolvingEvent()
+        private void UnsubscribeAssemblyEvents()
         {
             AppDomain.CurrentDomain.AssemblyResolve -= ResolveAssembly;
+            //AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
         }
 
         /// <summary>
@@ -363,6 +387,27 @@ namespace Dynamo.Applications
         {
             get;
             set;
+        }
+
+        private bool TryResolveDynamoCore()
+        {
+            if (string.IsNullOrEmpty(DynamoCorePath))
+            {
+                var fvi = FileVersionInfo.GetVersionInfo(assemblyName);
+                var shortversion = fvi.FileMajorPart + "." + fvi.FileMinorPart;
+
+                if (MessageBoxResult.OK ==
+                    System.Windows.MessageBox.Show(
+                        string.Format(Resources.DynamoCoreNotFoundDialogMessage, shortversion),
+                        Resources.DynamoCoreNotFoundDialogTitle,
+                        MessageBoxButton.OKCancel,
+                        MessageBoxImage.Error))
+                {
+                    System.Diagnostics.Process.Start("http://dynamobim.org/download/");
+                }
+                return false;
+            }
+            return true;
         }
     }
 }
