@@ -213,8 +213,7 @@ namespace Dynamo.Applications
             catch (Exception ex)
             {
                 // notify instrumentation
-                InstrumentationLogger.LogException(ex);
-                StabilityTracking.GetInstance().NotifyCrash();
+                Dynamo.Logging.Analytics.TrackException(ex, true);
 
                 MessageBox.Show(ex.ToString());
 
@@ -474,8 +473,7 @@ namespace Dynamo.Applications
 
             try
             {
-                InstrumentationLogger.LogException(args.Exception);
-                StabilityTracking.GetInstance().NotifyCrash();
+                Dynamo.Logging.Analytics.TrackException(args.Exception, true);
 
                 revitDynamoModel.Logger.LogError("Dynamo Unhandled Exception");
                 revitDynamoModel.Logger.LogError(exceptionMessage);
