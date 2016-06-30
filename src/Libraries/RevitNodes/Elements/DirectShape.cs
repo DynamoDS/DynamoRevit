@@ -1,20 +1,12 @@
-﻿using System;
-
+﻿using Autodesk.DesignScript.Geometry;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-
-using DynamoServices;
-
 using Revit.GeometryConversion;
-
+using RevitServices.Materials;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-using RevitServices.Elements;
-
-using Point = Autodesk.DesignScript.Geometry.Point;
-using Autodesk.DesignScript.Geometry;
+using System;
 using System.Collections.Generic;
-using RevitServices.Materials;
-using Autodesk.DesignScript.Runtime;
 using System.Runtime.Serialization;
 
 namespace Revit.Elements
@@ -35,12 +27,12 @@ namespace Revit.Elements
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             base.GetObjectData(info, context);
-           
+
             info.AddValue("syncId", syncId, typeof(string));
-            info.AddValue("materialId", materialId, typeof(int));   
+            info.AddValue("materialId", materialId, typeof(int));
         }
 
-        public DirectShapeState(DirectShape ds,string syncId,ElementId materialId ):
+        public DirectShapeState(DirectShape ds, string syncId, ElementId materialId) :
             base()
         {
             this.IntID = ds.InternalElement.Id.IntegerValue;
@@ -49,8 +41,8 @@ namespace Revit.Elements
             this.materialId = materialId.IntegerValue;
         }
 
-        public DirectShapeState(SerializationInfo info, StreamingContext context):
-            base(info,context)
+        public DirectShapeState(SerializationInfo info, StreamingContext context) :
+            base(info, context)
         {
             syncId = (string)info.GetValue("syncId", typeof(string));
             materialId = (int)info.GetValue("materialId", typeof(int));
@@ -74,7 +66,7 @@ namespace Revit.Elements
         #region Public Static Properties
 
         [IsVisibleInDynamoLibrary(false)]
-        public static Material DynamoPreviewMaterial{get;private set;}
+        public static Material DynamoPreviewMaterial { get; private set; }
 
         #endregion 
 
@@ -110,7 +102,7 @@ namespace Revit.Elements
         /// <summary>
         ///  Internal Constructor for a new DirectShape
         /// </summary>
-        protected DirectShape(DesignScriptEntity shapeReference ,string shapename, Category category, Material material)
+        protected DirectShape(DesignScriptEntity shapeReference, string shapename, Category category, Material material)
         {
             SafeInit(() => InitDirectShape(shapeReference, shapename, category, material));
         }
@@ -133,7 +125,7 @@ namespace Revit.Elements
         {
             //Phase 1 - Check to see if a DirectShape exists in trace and should be rebound
             var oldShape =
-                ElementBinder.GetElementAndTraceData<Autodesk.Revit.DB.DirectShape,DirectShapeState>(Document);
+                ElementBinder.GetElementAndTraceData<Autodesk.Revit.DB.DirectShape, DirectShapeState>(Document);
 
             //There was a oldDirectShape, rebind to that
             if (oldShape != null)
@@ -153,12 +145,12 @@ namespace Revit.Elements
                     //we also check the material, if it's different than the currently assigned material
                     //then we need to rebuild the geo so that a new material is applied
                     //
-                    this.InternalSetShape(shapeReference,new ElementId(material.Id),oldShape.Item2.syncId);
-                    this.InternalSetName(shapeReference,shapeName,material,category);
+                    this.InternalSetShape(shapeReference, new ElementId(material.Id), oldShape.Item2.syncId);
+                    this.InternalSetName(shapeReference, shapeName, material, category);
                     return;
                 }
             }
-           
+
             //Phase 2- There was no existing shape, create one
             TransactionManager.Instance.EnsureInTransaction(Document);
 
@@ -173,7 +165,7 @@ namespace Revit.Elements
                 DirectShape.DYNAMO_DIRECTSHAPE_APP_GUID.ToString(), shapeName);
 
             InternalSetDirectShape(ds);
-            InternalSetName(shapeReference, shapeName,material,category);
+            InternalSetName(shapeReference, shapeName, material, category);
             //generate a new syncId for trace
             var traceData = new DirectShapeState(this, Guid.NewGuid().ToString(), new ElementId(material.Id));
 
@@ -182,7 +174,7 @@ namespace Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
 
             ElementBinder.SetRawDataForTrace(traceData);
-            
+
         }
 
         #endregion
@@ -200,8 +192,8 @@ namespace Revit.Elements
           string shapeName)
         {
             var ds = Autodesk.Revit.DB.DirectShape.CreateElement(
-              doc, categoryId, appGuid,Guid.NewGuid().ToString());
-            
+              doc, categoryId, appGuid, Guid.NewGuid().ToString());
+
             ds.SetShape(geos);
             ds.Name = shapeName;
 
@@ -221,17 +213,17 @@ namespace Revit.Elements
             else if (shapeReference is Autodesk.DesignScript.Geometry.Surface)
             {
                 // Defer to tessellated shape if BRep shape for some reason fails
-                GeometryObject geometry = null; 
+                GeometryObject geometry = null;
                 try
                 {
-                    geometry = DynamoToRevitBRep.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Surface);
+                    geometry = DynamoToRevitBRep.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Surface, true, materialId);
                 }
                 catch
                 {
 
                 }
 
-                if(geometry != null)
+                if (geometry != null)
                 {
                     tessellatedShape = new List<GeometryObject>() { geometry };
                 }
@@ -243,17 +235,17 @@ namespace Revit.Elements
             else if (shapeReference is Autodesk.DesignScript.Geometry.Solid)
             {
                 // Defer to tessellated shape if BRep shape for some reason fails
-                GeometryObject geometry = null; 
+                GeometryObject geometry = null;
                 try
                 {
-                    geometry = DynamoToRevitBRep.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Solid);
+                    geometry = DynamoToRevitBRep.ToRevitType(shapeReference as Autodesk.DesignScript.Geometry.Solid, true, materialId);
                 }
                 catch
                 {
 
                 }
 
-                if(geometry != null)
+                if (geometry != null)
                 {
                     tessellatedShape = new List<GeometryObject>() { geometry };
                 }
@@ -288,7 +280,7 @@ namespace Revit.Elements
         /// this method also generates tessellated geometry from the protogeometry object
         /// and sets the material of the generated Revit faces
         /// </summary>
-        private void InternalSetShape(DesignScriptEntity shapeReference, ElementId materialId,string currentSyncId)
+        private void InternalSetShape(DesignScriptEntity shapeReference, ElementId materialId, string currentSyncId)
         {
             //if the elementID for the current directShape revitElement exists on the input Geometry AND
             //the value stored at that key is equal to the materialId we're trying to set AND
@@ -313,9 +305,9 @@ namespace Revit.Elements
             var updatedTraceData = new DirectShapeState(this, Guid.NewGuid().ToString(), materialId);
             ElementBinder.SetRawDataForTrace(updatedTraceData);
             //place new values in the tags dict
-            if (shapeReference.Tags.LookupTag(this.InternalElementId.ToString())== null)
+            if (shapeReference.Tags.LookupTag(this.InternalElementId.ToString()) == null)
             {
-                shapeReference.Tags.AddTag(this.InternalElementId.ToString(),updatedTraceData );
+                shapeReference.Tags.AddTag(this.InternalElementId.ToString(), updatedTraceData);
             }
             else
             {
@@ -333,11 +325,11 @@ namespace Revit.Elements
         /// Sets the internalDirectShape to have a new name
         /// if this method detects the default string it generates a more specific name
         /// </summary>
-        private void InternalSetName(DesignScriptEntity shapeReference,string name,Material material,Category category)
+        private void InternalSetName(DesignScriptEntity shapeReference, string name, Material material, Category category)
         {
             if (name == DEFAULT_NAME)
             {
-              
+
                 name = string.Format("DirectShape" + "(Geometry = {0}, Category = {1}, Material ={2}.)",
                     shapeReference.ToString(),
                     category != null ? category.Name : "",
