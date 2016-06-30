@@ -188,5 +188,14 @@ namespace Dynamo.Applications.Properties {
                 return ResourceManager.GetString("RevitValidContextMessage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WPF Render Mode: .
+        /// </summary>
+        public static string WPFRenderMode {
+            get {
+                return ResourceManager.GetString("WPFRenderMode", resourceCulture);
+            }
+        }
     }
 }

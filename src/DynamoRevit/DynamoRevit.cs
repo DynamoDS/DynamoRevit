@@ -20,6 +20,7 @@ using Autodesk.Revit.UI;
 
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
+using Dynamo.Applications.Properties;
 using Dynamo.Applications.ViewModel;
 using Dynamo.Controls;
 using Dynamo.Core;
@@ -258,7 +259,7 @@ namespace Dynamo.Applications
                     var save = RenderOptions.ProcessRenderMode;
                     InitializeCoreView().Show();
                     RenderOptions.ProcessRenderMode = save;
-                    revitDynamoModel.Logger.Log("WPF Render Mode: " + RenderOptions.ProcessRenderMode.ToString());
+                    revitDynamoModel.Logger.Log(Dynamo.Applications.Properties.Resources.WPFRenderMode + RenderOptions.ProcessRenderMode.ToString());
 
                     ModelState = RevitDynamoModelState.StartedUI;
                     // Disable the Dynamo button to prevent a re-run
