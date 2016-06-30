@@ -162,4 +162,7 @@ Would you like to download the latest version of DynamoCore.msi from http://dyna
   <data name="DynamoCoreNotFoundDialogTitle" xml:space="preserve">
     <value>Dynamo Core component could not be found</value>
   </data>
+  <data name="WPFRenderMode" xml:space="preserve">
+    <value>WPF Render Mode: </value>
+  </data>
 </root>
