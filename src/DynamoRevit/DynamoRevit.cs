@@ -35,7 +35,7 @@ using RevitServices.Threading;
 using MessageBox = System.Windows.Forms.MessageBox;
 using DynUpdateManager = Dynamo.Updates.UpdateManager;
 using Microsoft.Win32;
-
+using System.Windows.Media;
 
 namespace RevitServices.Threading
 {
@@ -253,7 +253,13 @@ namespace Dynamo.Applications
                 if (CheckJournalForUiDisplay(extCommandData))
                 {
                     dynamoViewModel = InitializeCoreViewModel(revitDynamoModel);
+
+                    // Let the host (e.g. Revit) control the rendering mode
+                    var save = RenderOptions.ProcessRenderMode;
                     InitializeCoreView().Show();
+                    RenderOptions.ProcessRenderMode = save;
+                    revitDynamoModel.Logger.Log("WPF Render Mode: " + RenderOptions.ProcessRenderMode.ToString());
+
                     ModelState = RevitDynamoModelState.StartedUI;
                     // Disable the Dynamo button to prevent a re-run
                     DynamoRevitApp.DynamoButtonEnabled = false;
