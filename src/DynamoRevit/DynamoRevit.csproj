@@ -142,7 +142,6 @@
     <Compile Include="ViewModel\DynamoRevitViewModel.cs" />
     <Compile Include="ViewModel\RevitWatchHandler.cs" />
     <Compile Include="ViewModel\RevitWatch3DViewModel.cs" />
-    <Compile Include="Migration\WorkspaceMigrationsRevit.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
