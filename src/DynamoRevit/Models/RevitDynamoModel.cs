@@ -229,8 +229,6 @@ namespace Dynamo.Applications.Models
             SubscribeDocumentManagerEvents();
             SubscribeTransactionManagerEvents();
 
-            MigrationManager.MigrationTargets.Add(typeof(WorkspaceMigrationsRevit));
-
             SetupPython();
         }
 
