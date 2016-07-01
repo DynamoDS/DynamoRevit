@@ -178,7 +178,6 @@ namespace Revit.Elements
             {
                 InternalSetFamilyInstance(oldFam);
                 InternalSetFamilySymbol(fs);
-                InternalSetFace(reference);
                 InternalSetPosition(pos);
                 return;
             }
@@ -220,7 +219,6 @@ namespace Revit.Elements
             {
                 InternalSetFamilyInstance(oldFam);
                 InternalSetFamilySymbol(fs);
-                InternalSetFace(reference);
                 InternalSetPosition(location);
                 return;
             }
@@ -276,26 +274,15 @@ namespace Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
         }
 
-        private void InternalSetPosition(Line pos)
+        private void InternalSetPosition(Curve pos)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            //var lp = InternalFamilyInstance.get_Parameter(BuiltInParameter.CURVE_IS_REFERENCE_LINE).Set(pos.Reference.ElementId);
             var lp = InternalFamilyInstance.Location as LocationCurve;
+
+            if (lp == null || lp.Curve == pos) return;
+
             lp.Curve = pos;
-
-            TransactionManager.Instance.TransactionTaskDone();
-        }
-
-        private void InternalSetFace(Reference face)
-        {
-            if (InternalFamilyInstance.HostFace == face)
-                return;
-
-            TransactionManager.Instance.EnsureInTransaction(Document);
-
-            InternalFamilyInstance.get_Parameter(BuiltInParameter.FAMILY_WORK_PLANE_BASED).Set(face.ElementId);
-
             TransactionManager.Instance.TransactionTaskDone();
         }
 
@@ -361,52 +348,56 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) 
-        /// on a reference of another element using a line on that reference for its position
+        /// Place a Revit family instance of the given the FamilyType (also known as the FamilySymbol in the Revit API) 
+        /// on a surface derived from a backing Revit face as reference and a line as reference for its position.
+        /// 
+        /// Note: The FamilyPlacementType must be CurveBased and the input surface must be created from a Revit Face for this to work
         /// </summary>
         /// <param name="familyType"></param>
-        /// <param name="surface">A reference of a geometry object</param>
-        /// <param name="line">A line on the reference defining where the symbol is to be placed</param>
-        /// <returns></returns>
-        public static FamilyInstance ByFace(FamilyType familyType, Surface surface, Autodesk.DesignScript.Geometry.Line line)
+        /// <param name="face">Surface geometry derived from a Revit face as reference element</param>
+        /// <param name="line">A line on the face defining where the symbol is to be placed</param>
+        /// <returns>FamilyInstance</returns>
+        public static FamilyInstance ByFace(FamilyType familyType, Surface face, Autodesk.DesignScript.Geometry.Line line)
         {
             if (familyType == null)
             {
                 throw new ArgumentNullException("familyType");
             }
-            if (surface == null)
+            if (face == null)
             {
-                throw new ArgumentNullException("surface");
+                throw new ArgumentNullException("face");
             }
             if (line == null)
             {
                 throw new ArgumentNullException("line");
             }
-            var reference = ElementFaceReference.TryGetFaceReference(surface);
+            var reference = ElementFaceReference.TryGetFaceReference(face);
 
             return new FamilyInstance(familyType.InternalFamilySymbol, reference.InternalReference, (Line) line.ToRevitType());
         }
 
         /// <summary>
-        /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) 
-        /// using a location, reference direction
+        /// Place a Revit family instance given the FamilyType (also known as the FamilySymbol in the Revit API) 
+        /// on a surface derived from a backing Revit face as reference, a reference direction and a point location where to place the family.
+        /// 
+        /// Note: The FamilyType should be workplane based. This will not work if the input surface is not created from a Revit Face
         /// </summary>
         /// <param name="familyType"></param>
-        /// <param name="surface">A reference of a geometry object</param>
-        /// <param name="location">Point on the reference where the instance is to be placed</param>
-        /// <param name="referenceDirection">A vector that defines the direction of the family instance. Note that this direction
-        /// defines the rotation of the instance on the reference, and thus cannot be parallel to the reference normal</param>
-        /// <returns></returns>
-        public static FamilyInstance ByFace(FamilyType familyType, Surface surface, Point location, 
+        /// <param name="face">Surface geometry derived from a Revit face as reference element</param>
+        /// <param name="location">Point on the face where the instance is to be placed</param>
+        /// <param name="referenceDirection">A vector that defines the direction of placement of the family instance. 
+        /// Note that this direction defines the rotation of the instance on the reference, and thus cannot be perpendicular to the face</param>
+        /// <returns>FamilyInstance</returns>
+        public static FamilyInstance ByFace(FamilyType familyType, Surface face, Point location, 
             Vector referenceDirection)
         {
             if (familyType == null)
             {
                 throw new ArgumentNullException("familyType");
             }
-            if (surface == null)
+            if (face == null)
             {
-                throw new ArgumentNullException("surface");
+                throw new ArgumentNullException("face");
             }
             if (location == null)
             {
@@ -416,7 +407,7 @@ namespace Revit.Elements
             {
                 throw new ArgumentNullException("referenceDirection");
             }
-            var reference = ElementFaceReference.TryGetFaceReference(surface);
+            var reference = ElementFaceReference.TryGetFaceReference(face);
 
             return new FamilyInstance(familyType.InternalFamilySymbol, reference.InternalReference, 
                 location.ToXyz(), referenceDirection.ToXyz());

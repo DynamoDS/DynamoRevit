@@ -41,13 +41,13 @@ namespace Revit.GeometryReferences
 
         public const string DefaultTag = "RevitFaceReference";
 
-        internal static ElementFaceReference TryGetFaceReference(object curveObject, string nodeTypeString = "This node")
+        internal static ElementFaceReference TryGetFaceReference(object geometryObject, string nodeTypeString = "This node")
         {
-            var curve = (dynamic) curveObject;
+            var geometry = (dynamic) geometryObject;
 
             try
             {
-                return TryGetFaceReference(curve);
+                return TryGetFaceReference(geometry);
             }
             catch (RuntimeBinderException)
             {
@@ -64,16 +64,16 @@ namespace Revit.GeometryReferences
             return curveObject;
         }
 
-        private static ElementFaceReference TryGetFaceReference(Revit.Elements.Element curveObject, string nodeTypeString = "This node")
+        private static ElementFaceReference TryGetFaceReference(Revit.Elements.Element geometryObject, string nodeTypeString = "This node")
         {
-            var cs = curveObject.InternalGeometry().OfType<Autodesk.Revit.DB.Face>();
+            var cs = geometryObject.InternalGeometry().OfType<Autodesk.Revit.DB.Face>();
             if (cs.Any()) return new ElementFaceReference(cs.First());
 
-            var ss = curveObject.InternalGeometry().OfType<Autodesk.Revit.DB.Solid>();
+            var ss = geometryObject.InternalGeometry().OfType<Autodesk.Revit.DB.Solid>();
             if (ss.Any()) return new ElementFaceReference(ss.First().Faces.Cast<Autodesk.Revit.DB.Face>().First());
 
             throw new ArgumentException(string.Format(Properties.Resources.FaceReferenceExtractionFailure, nodeTypeString) +
-                string.Format(Properties.Resources.FaceReferenceExtractionDetail, curveObject));
+                string.Format(Properties.Resources.FaceReferenceExtractionDetail, geometryObject));
         }
 
         private static ElementFaceReference TryGetFaceReference(Autodesk.DesignScript.Geometry.Surface surfaceObject, string nodeTypeString = "This node")
