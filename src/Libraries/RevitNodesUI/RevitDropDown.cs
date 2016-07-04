@@ -265,9 +265,14 @@ namespace DSRevitNodesUI
             
             var identifier = inputNode.GetAstIdentifierForOutputIndex(index).Name;
 
-            if (EngineController == null) return null;
-            var data = this.EngineController.GetMirror(identifier).GetData();
-
+            var data = inputNode.CachedValue; //This may not represent the correct value for multiple output ports.
+            //If EngineController is set, find the real mirrordata. In headless 
+            //mode it may not be set, because it is set from NodeView customization.
+            if (EngineController != null) 
+            {
+                data = this.EngineController.GetMirror(identifier).GetData();
+            }
+            if (data == null) return null;
 
             object family = data.IsCollection ? 
                 data.GetElements().FirstOrDefault() : 
