@@ -162,6 +162,8 @@ namespace RevitSystemTests
             excludes.Add("Input");
             excludes.Add("Output");
 
+            if (ViewModel == null) return Enumerable.Empty<NodeModelSearchElement>();
+
             return
                 ViewModel.Model.SearchModel.SearchEntries.OfType<NodeModelSearchElement>()
                     .Where(x => !excludes.Contains(x.Name));
