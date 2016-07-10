@@ -124,5 +124,26 @@ namespace RevitNodesTests.Elements
             var dir = famInst.FacingOrientation;
             dir.IsAlmostEqualTo(Vector.ByCoordinates(0.0, 0.0, 1.0));
         }
+
+        [Test]
+        [TestModel(@".\WallFamily.rvt")]
+        public void ByFace_ProducesValidFamilyInstanceWithCorrectLocation()
+        {
+            var familytype1 = FamilyType.ByName("WallFamily");
+            var plane1 = Autodesk.DesignScript.Geometry.Plane.XY();
+            var rectangle1 = Autodesk.DesignScript.Geometry.Rectangle.ByWidthLength(plane1, 1000, 1000);
+            var surface1 = Autodesk.DesignScript.Geometry.Surface.ByPatch(rectangle1);
+            var importinstance1 = Revit.Elements.ImportInstance.ByGeometry(surface1);
+            var t2 = importinstance1.Geometry();
+            var s = t2[0] as Autodesk.DesignScript.Geometry.Surface;
+            var point1 = Point.ByCoordinates(0, 0, 0);
+            var vector1 = Vector.YAxis();
+            var famInst = FamilyInstance.ByFace(familytype1, s, point1, vector1);
+
+            Assert.NotNull(famInst);
+
+            var position = famInst.Location;
+            position.ShouldBeApproximately(point1);
+        }
     }
 }
