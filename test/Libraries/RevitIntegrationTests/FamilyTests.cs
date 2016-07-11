@@ -1,16 +1,19 @@
 ﻿using System.IO;
-
+using Autodesk.DesignScript.Geometry;
+using Autodesk.Revit.DB;
 using NUnit.Framework;
-
 using RevitTestServices;
 
 using RTF.Framework;
+using FamilyInstance = Revit.Elements.FamilyInstance;
 
 namespace RevitSystemTests
 {
     [TestFixture]
     class FamilyTests : RevitSystemTestBase
-    {   
+    {
+        public const double Epsilon = 1e-6;
+
         [Test]
         [TestModel(@".\Family\GetFamilyInstancesByType.rvt")]
         public void GetFamilyInstancesByType()
@@ -61,9 +64,9 @@ namespace RevitSystemTests
             var pnt = GetPreviewValue("79dde258-ddce-49b7-9700-da21b2d5a9ae") as Autodesk.DesignScript.Geometry.Point;
             Assert.IsNotNull(pnt);
 
-            Assert.IsTrue(IsFuzzyEqual(pnt.X, -31.453185696, 1.0e-6));
-            Assert.IsTrue(IsFuzzyEqual(pnt.Y, -115.515869423, 1.0e-6));
-            Assert.IsTrue(IsFuzzyEqual(pnt.Z, 26.806669948, 1.0e-6));
+            Assert.IsTrue(IsFuzzyEqual(pnt.X, -31.453185696, Epsilon));
+            Assert.IsTrue(IsFuzzyEqual(pnt.Y, -115.515869423, Epsilon));
+            Assert.IsTrue(IsFuzzyEqual(pnt.Z, 26.806669948, Epsilon));
         }
 
         [Test]
@@ -96,7 +99,34 @@ namespace RevitSystemTests
            var transform = famInst.GetTransform();
            double[] rotationAngles;
            Revit.Elements.InternalUtilities.TransformUtils.ExtractEularAnglesFromTransform(transform, out rotationAngles);
-           Assert.AreEqual(30.0, rotationAngles[0] * 180 / System.Math.PI, 1.0e-6);
+           Assert.AreEqual(30.0, rotationAngles[0] * 180 / System.Math.PI, Epsilon);
+        }
+
+        [Test]
+        [TestModel(@".\Family\FamilyInstancePlacementByFace.rvt")]
+        public void ByFace_ProducesValidFamilyInstanceWithCorrectLocation()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Family\FamilyInstancePlacementByFace.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            var famInst = GetPreviewValue("e8dbd9fa-c0fd-4a5c-9cd8-2616f98285c8") as FamilyInstance;
+            Assert.IsNotNull(famInst);
+
+            var pnt = GetPreviewValue("31171a34-edd6-4c81-b821-2ad0bae36aab") as Autodesk.DesignScript.Geometry.Point;
+            Assert.IsNotNull(pnt);
+
+            var pos = famInst.Location;
+
+            Assert.AreEqual(pnt.X, pos.X, Epsilon, "X property does not match");
+            Assert.AreEqual(pnt.Y, pos.Y, Epsilon, "Y property does not match");
+            Assert.AreEqual(pnt.Z, pos.Z, Epsilon, "Z property does not match");
+
+            var elId = new Autodesk.Revit.DB.ElementId(259536);
+            var internalFamInst = famInst.InternalElement as Autodesk.Revit.DB.FamilyInstance;
+            Assert.AreEqual(elId, internalFamInst.HostFace.ElementId);
         }
     }
 }
