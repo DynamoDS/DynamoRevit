@@ -173,9 +173,8 @@ namespace Revit.Elements
             var oldFam =
                 ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
 
-            //There was a point, rebind to that, and adjust its position
-            
-            if (oldFam != null && oldFam.HostFace == reference)
+            //There was an existing family instance, rebind to that, and adjust its position
+            if (oldFam != null && oldFam.HostFace.ElementId == reference.ElementId)
             {
                 InternalSetFamilyInstance(oldFam);
                 InternalSetFamilySymbol(fs);
@@ -215,8 +214,8 @@ namespace Revit.Elements
             var oldFam =
                 ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
 
-            //There was a point, rebind to that, and adjust its position
-            if (oldFam != null && oldFam.HostFace == reference)
+            //There was an existing family instance, rebind to that, and adjust its position
+            if (oldFam != null && oldFam.HostFace.ElementId == reference.ElementId)
             {
                 InternalSetFamilyInstance(oldFam);
                 InternalSetFamilySymbol(fs);
