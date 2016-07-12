@@ -153,6 +153,7 @@ namespace Dynamo.Applications
 
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
         {
+            var startupTimer = Stopwatch.StartNew();
             HandleDebug(commandData);
             
             InitializeCore(commandData);
@@ -184,11 +185,12 @@ namespace Dynamo.Applications
 
                 // Disable the Dynamo button to prevent a re-run
                 DynamoRevitApp.DynamoButtonEnabled = false;
+                Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed);
             }
             catch (Exception ex)
             {
                 // notify instrumentation
-                Dynamo.Logging.Analytics.TrackException(ex, true);
+                Analytics.TrackException(ex, true);
 
                 MessageBox.Show(ex.ToString());
 
