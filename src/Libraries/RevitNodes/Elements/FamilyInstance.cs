@@ -175,7 +175,7 @@ namespace Revit.Elements
 
             //There was a point, rebind to that, and adjust its position
             
-            if (oldFam != null /*&& oldFam.HostFace == reference*/)
+            if (oldFam != null && oldFam.HostFace == reference)
             {
                 InternalSetFamilyInstance(oldFam);
                 InternalSetFamilySymbol(fs);
@@ -216,7 +216,7 @@ namespace Revit.Elements
                 ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
 
             //There was a point, rebind to that, and adjust its position
-            if (oldFam != null /*&& oldFam.HostFace == reference*/)
+            if (oldFam != null && oldFam.HostFace == reference)
             {
                 InternalSetFamilyInstance(oldFam);
                 InternalSetFamilySymbol(fs);
