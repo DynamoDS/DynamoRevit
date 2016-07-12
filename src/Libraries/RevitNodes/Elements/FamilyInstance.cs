@@ -352,7 +352,7 @@ namespace Revit.Elements
         /// Place a Revit family instance of the given the FamilyType (also known as the FamilySymbol in the Revit API) 
         /// on a surface derived from a backing Revit face as reference and a line as reference for its position.
         /// 
-        /// Note: The FamilyPlacementType must be CurveBased and the input surface must be created from a Revit Face for this to work
+        /// Note: The FamilyPlacementType must be CurveBased and the input surface must be created from a Revit Face 
         /// </summary>
         /// <param name="familyType"></param>
         /// <param name="face">Surface geometry derived from a Revit face as reference element</param>
@@ -381,7 +381,7 @@ namespace Revit.Elements
         /// Place a Revit family instance given the FamilyType (also known as the FamilySymbol in the Revit API) 
         /// on a surface derived from a backing Revit face as reference, a reference direction and a point location where to place the family.
         /// 
-        /// Note: The FamilyType should be workplane based. This will not work if the input surface is not created from a Revit Face
+        /// Note: The FamilyType should be workplane based and the input surface must be created from a Revit Face
         /// </summary>
         /// <param name="familyType"></param>
         /// <param name="face">Surface geometry derived from a Revit face as reference element</param>
