@@ -19,7 +19,7 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\emptyAnnotativeView.rvt")]
         public void Create_ValidArgs()
         {
-            var note = TextNote.ByLocation(Revit.Application.Document.Current.ActiveView, Point.ByCoordinates(0, 0, 0), "Hello World", "");
+            var note = TextNote.ByLocation(Revit.Application.Document.Current.ActiveView, Point.ByCoordinates(0, 0, 0), "Hello World", "Left", null);
             Assert.NotNull(note);
 
             Assert.AreEqual(note.Text, "Hello World");          
