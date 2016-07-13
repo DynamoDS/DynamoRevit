@@ -3,6 +3,8 @@ using RevitServices.Transactions;
 using System.Collections.Generic;
 using RevitServices.Persistence;
 using System.Linq;
+using Autodesk.DesignScript.Runtime;
+using System.Linq;
 
 namespace Revit.Elements
 {
@@ -227,7 +229,7 @@ namespace Revit.Elements
         /// <param name="group">Parameter Group</param>
         /// <param name="instance">Is instance parameter, otherwise its a type parameter</param>
         /// <param name="categoryList">List of categories this parameter applies to</param>
-        public static void CreateSharedParameter(string parameterName, string groupName, string type, string group, bool instance, System.Collections.Generic.List<Category> categoryList = null)
+        public static void CreateSharedParameter(string parameterName, string groupName, string type, string group, bool instance, [DefaultArgumentAttribute("null")]System.Collections.Generic.IEnumerable<Category> categoryList)
         {
             // parse parameter type
             Autodesk.Revit.DB.ParameterType parameterType = Autodesk.Revit.DB.ParameterType.Text;
@@ -296,7 +298,7 @@ namespace Revit.Elements
         /// <param name="group">Parameter Group</param>
         /// <param name="instance">Is instance parameter, otherwise its a type parameter</param>
         /// <param name="categoryList">List of categories this parameter applies to</param>
-        public static void CreateProjectParameter(string parameterName, string groupName, string type, string group, bool instance, System.Collections.Generic.List<Category> categoryList = null)
+        public static void CreateProjectParameter(string parameterName, string groupName, string type, string group, bool instance, [DefaultArgumentAttribute("null")]System.Collections.Generic.IEnumerable<Category> categoryList)
         {
             // parse parameter type
             Autodesk.Revit.DB.ParameterType parameterType = Autodesk.Revit.DB.ParameterType.Text;
@@ -356,7 +358,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="categoryList"></param>
         /// <returns></returns>
-        internal static CategorySet ToCategorySet(System.Collections.Generic.List<Category> categoryList)
+        internal static CategorySet ToCategorySet(System.Collections.Generic.IEnumerable<Category> categoryList)
         {
             Document document = Application.Document.Current.InternalDocument;
 
