@@ -6,7 +6,7 @@ using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace Revit.Filter
 {
@@ -70,7 +70,7 @@ namespace Revit.Filter
         /// <param name="name"></param>
         /// <param name="ids"></param>
         /// <param name="rules"></param>
-        private ParameterFilterElement(string name, List<ElementId> ids, List<Autodesk.Revit.DB.FilterRule> rules)
+        private ParameterFilterElement(string name, IEnumerable<ElementId> ids, IEnumerable<Autodesk.Revit.DB.FilterRule> rules)
         {
             SafeInit(() => Init(name, ids, rules));
         }
@@ -94,7 +94,7 @@ namespace Revit.Filter
         /// <param name="name"></param>
         /// <param name="ids"></param>
         /// <param name="rules"></param>
-        private void Init(string name, List<ElementId> ids, List<Autodesk.Revit.DB.FilterRule> rules )
+        private void Init(string name, IEnumerable<ElementId> ids, IEnumerable<Autodesk.Revit.DB.FilterRule> rules)
         {
             Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(document);
@@ -103,13 +103,13 @@ namespace Revit.Filter
 
             if (elem == null)
             {
-                elem = Autodesk.Revit.DB.ParameterFilterElement.Create(document, name, ids, rules);
+                elem = Autodesk.Revit.DB.ParameterFilterElement.Create(document, name, ids.ToList(), rules.ToList());
             }
             else
             {
                 elem.Name = name;
-                elem.SetCategories(ids);
-                elem.SetRules(rules);
+                elem.SetCategories(ids.ToList());
+                elem.SetRules(rules.ToList());
             }
 
             InternalSetElement(elem);
@@ -129,7 +129,7 @@ namespace Revit.Filter
         /// <param name="categories">Categories the filter applies to</param>
         /// <param name="rules">Filter rules</param>
         /// <returns></returns>
-        public static ParameterFilterElement ByRules(string name, List<Revit.Elements.Category> categories, List<FilterRule> rules)
+        public static ParameterFilterElement ByRules(string name, IEnumerable<Revit.Elements.Category> categories, IEnumerable<FilterRule> rules)
         {
             List<Autodesk.Revit.DB.FilterRule> ruleSet = new List<Autodesk.Revit.DB.FilterRule>();
             foreach (FilterRule rule in rules)

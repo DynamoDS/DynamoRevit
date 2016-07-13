@@ -154,7 +154,7 @@ namespace Revit.Elements.Views
         /// Get View Filters
         /// </summary>
         /// <returns></returns>
-        public List<Revit.Filter.ParameterFilterElement> Filters
+        public IEnumerable<Revit.Filter.ParameterFilterElement> Filters
         {
             get
             {
