@@ -53,7 +53,7 @@ namespace RevitNodesTests.Elements
         {
 
             
-            Revit.Filter.OverrideGraphicSettings overrides = Revit.Filter.OverrideGraphicSettings.ByProperties();
+            Revit.Filter.OverrideGraphicSettings overrides = Revit.Filter.OverrideGraphicSettings.ByProperties(null,null,null,null,null,null,null,null);
 
             Parameter p = new Parameter(Revit.Application.Document.Current.ActiveView.InternalView.LookupParameter("Comment"));
 
