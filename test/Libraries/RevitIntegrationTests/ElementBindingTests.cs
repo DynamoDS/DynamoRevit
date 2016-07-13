@@ -704,6 +704,36 @@ namespace RevitSystemTests
             Assert.AreEqual(9,adaptiveCompNode.GetValue(0, model.EngineController).GetElements().Select(x=>x.Data).ToList().Count);
         }
 
+        [Test]
+        [TestModel(@".\Family\FamilyInstancePlacementByFace_2016.rvt")]
+        public void ByFace_UpdateLocation_ProducesValidFamilyInstanceWithCorrectLocation()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Family\FamilyInstancePlacementByFace_2016.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            var initialNumber = GetAllFamilyInstances(false).Count;
+
+            // The current Revit file already has a family placed at UV param location 0.50
+            // We update placement location of family instance to 0.75 param location
+            var cbn = GetNode<CodeBlockNodeModel>("a7e21de3-bff4-4d1d-b23d-3fb2db980d57");
+
+            var command = new Dynamo.Models.DynamoModel.UpdateModelValueCommand(
+                Guid.Empty, cbn.GUID, "Code", "0.75");
+            this.Model.ExecuteCommand(command);
+
+            RunCurrentModel();
+
+            var finalNumber = GetAllFamilyInstances(false).Count;
+            var famInst = GetPreviewValue("56cf69ec-d4ca-4add-810d-aee64d003c76") as Revit.Elements.FamilyInstance;
+            Assert.IsNotNull(famInst);
+
+            // Assert that there is no change in the total number of family instances in the document
+            // as the original should have been updated and no new one should be created
+            Assert.AreEqual(initialNumber, finalNumber);
+        }
+
 
         private DynamoModel OpenElementBindingWorkspace(string name)
         {
