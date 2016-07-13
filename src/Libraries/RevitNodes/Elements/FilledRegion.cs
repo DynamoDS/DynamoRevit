@@ -6,6 +6,7 @@ using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Revit.Elements
 {
@@ -92,7 +93,7 @@ namespace Revit.Elements
         /// <param name="view"></param>
         /// <param name="typeId"></param>
         /// <param name="boundary"></param>
-        private void Init(View view, ElementId typeId, List<CurveLoop> boundary)
+        private void Init(View view, ElementId typeId, IEnumerable<CurveLoop> boundary)
         {
             // Get document and start transaction
             Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
@@ -105,13 +106,13 @@ namespace Revit.Elements
             if (region == null)
             { 
                 // Create new region
-                region = Autodesk.Revit.DB.FilledRegion.Create(document, typeId, view.Id, boundary); 
+                region = Autodesk.Revit.DB.FilledRegion.Create(document, typeId, view.Id, boundary.ToList()); 
             }
             else
             {
                 // Delete and replace region because there are no properties to update the filled region
                 document.Delete(region.Id);
-                region = Autodesk.Revit.DB.FilledRegion.Create(document, typeId, view.Id, boundary);
+                region = Autodesk.Revit.DB.FilledRegion.Create(document, typeId, view.Id, boundary.ToList());
             }
 
 
@@ -132,7 +133,7 @@ namespace Revit.Elements
         /// <param name="boundary">Boundary curves</param>
         /// <param name="regionType">Region Type</param>
         /// <returns></returns>
-        public static FilledRegion ByCurves(Revit.Elements.Views.View view, List<Autodesk.DesignScript.Geometry.Curve> boundary, FilledRegionType regionType)
+        public static FilledRegion ByCurves(Revit.Elements.Views.View view, IEnumerable<Autodesk.DesignScript.Geometry.Curve> boundary, FilledRegionType regionType)
         {
             Autodesk.Revit.DB.FilledRegionType type = regionType.InternalRevitElement;
 
