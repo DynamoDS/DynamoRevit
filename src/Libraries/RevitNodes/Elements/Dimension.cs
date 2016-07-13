@@ -7,6 +7,7 @@ using RevitServices.Persistence;
 using RevitServices.Transactions;
 using System.Collections.Generic;
 using RVT = Autodesk.Revit.DB;
+using System.Linq;
 
 namespace Revit.Elements
 {
@@ -156,13 +157,15 @@ namespace Revit.Elements
         /// Construct a Revit Dimension from at least two elements
         /// </summary>
         /// <param name="view">View to place dimension in</param>
-        /// <param name="elements">Elements to dimension</param>
+        /// <param name="referenceElements">Elements to dimension</param>
         /// <param name="line">location of the dimension</param>
         /// <param name="suffix">Suffix</param>
         /// <param name="prefix">Prefix</param>
         /// <returns>Dimension</returns>
-        public static Dimension ByElements(Revit.Elements.Views.View view, List<Revit.Elements.Element> elements, Autodesk.DesignScript.Geometry.Line line = null, string suffix = "", string prefix = "")
+        public static Dimension ByElements(Revit.Elements.Views.View view, IEnumerable<Revit.Elements.Element> referenceElements, [DefaultArgument("null")]Autodesk.DesignScript.Geometry.Line line, string suffix = "", string prefix = "")
         {
+            var elements = referenceElements.ToList();
+
             if (elements.Count < 2) throw new Exception(Properties.Resources.NotEnoughDataError);
 
             Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
@@ -206,7 +209,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Dimension Value
         /// </summary>
-        public List<double> Value 
+        public IEnumerable<double> Value 
         {
             get
             {
@@ -228,7 +231,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Prefix
         /// </summary>
-        public List<string> Prefix
+        public IEnumerable<string> Prefix
         {
             get
             {
@@ -250,9 +253,11 @@ namespace Revit.Elements
         /// <summary>
         /// Set Prefix
         /// </summary>
-        /// <param name="value">Prefix</param>
-        public void SetPrefix(List<string> value)
+        /// <param name="values">Prefix</param>
+        public void SetPrefix(IEnumerable<string> values)
         {
+            var value = values.ToList();
+
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
 
             if (this.InternalRevitElement.NumberOfSegments == 0)
@@ -274,7 +279,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Suffix
         /// </summary>
-        public List<string> Suffix
+        public IEnumerable<string> Suffix
         {
             get {
                 List<string> data = new List<string>();
@@ -295,9 +300,11 @@ namespace Revit.Elements
         /// <summary>
         /// Set Suffix
         /// </summary>
-        /// <param name="value">Suffix</param>
-        public void SetSuffix(List<string> value)
+        /// <param name="values">Suffix</param>
+        public void SetSuffix(IEnumerable<string> values)
         {
+            var value = values.ToList();
+
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
 
             if (this.InternalRevitElement.NumberOfSegments == 0)
@@ -319,7 +326,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Value override
         /// </summary>
-        public List<string> ValueOverride
+        public IEnumerable<string> ValueOverride
         {
             get
             {
@@ -341,9 +348,11 @@ namespace Revit.Elements
         /// <summary>
         /// Set Value override
         /// </summary>
-        /// <param name="value">Value override</param>
-        public void SetValueOverride(List<string> value)
+        /// <param name="values">Value override</param>
+        public void SetValueOverride(IEnumerable<string> values)
         {
+            var value = values.ToList();
+
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
 
             if (this.InternalRevitElement.NumberOfSegments == 0)
