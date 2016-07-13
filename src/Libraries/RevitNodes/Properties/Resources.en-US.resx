@@ -312,4 +312,10 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
+  <data name="InvalidLocation" xml:space="preserve">
+    <value>Element location not extractable</value>
+  </data>
+  <data name="InvalidLocationUpdate" xml:space="preserve">
+    <value>Element does not have a location that can be updated</value>
+  </data>
 </root>

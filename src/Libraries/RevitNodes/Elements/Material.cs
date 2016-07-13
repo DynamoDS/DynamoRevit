@@ -207,12 +207,12 @@ namespace Revit.Elements
         /// <summary>
         /// Get all apperance parameters
         /// </summary>
-        public List<Parameter> AppearanceParameters
+        public IEnumerable<Parameter> AppearanceParameters
         {
             get
             {
                 // Get the active Document
-                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+                var document = DocumentManager.Instance.CurrentDBDocument;
 
                 List<Parameter> appearances = new List<Parameter>();
                 if (this.InternalMaterial.AppearanceAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
@@ -233,7 +233,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get all thermal parameters
         /// </summary>
-        public List<Parameter> ThermalParameters
+        public IEnumerable<Parameter> ThermalParameters
         {
             get
             {
@@ -258,7 +258,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get all structural parameters
         /// </summary>
-        public List<Parameter> StructuralParameters
+        public IEnumerable<Parameter> StructuralParameters
         {
             get
             {

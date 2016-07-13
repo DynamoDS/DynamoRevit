@@ -728,31 +728,21 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
 
-            if (this.InternalElement.Location.GetType() == typeof(Autodesk.Revit.DB.LocationPoint))
+            if (this.InternalElement.Location.GetType() == typeof(Autodesk.Revit.DB.LocationPoint) && typeof(Autodesk.DesignScript.Geometry.Point).IsAssignableFrom(geometry.GetType()))
             {
-                if (geometry.GetType() == typeof(Autodesk.DesignScript.Geometry.Point))
-                {
-                    Autodesk.DesignScript.Geometry.Point point = (Autodesk.DesignScript.Geometry.Point)geometry;
-                    Autodesk.Revit.DB.LocationPoint pt = (Autodesk.Revit.DB.LocationPoint)this.InternalElement.Location;
-                    pt.Point = point.ToRevitType(true);
-                }
-                else
-                    throw new Exception("Point element required");
+                Autodesk.DesignScript.Geometry.Point point = geometry as Autodesk.DesignScript.Geometry.Point;
+                Autodesk.Revit.DB.LocationPoint pt = (Autodesk.Revit.DB.LocationPoint)this.InternalElement.Location;
+                pt.Point = point.ToRevitType(true);
             }
-            else if (this.InternalElement.Location.GetType() == typeof(Autodesk.Revit.DB.LocationCurve) && geometry is Curve)
+            else if (this.InternalElement.Location.GetType() == typeof(Autodesk.Revit.DB.LocationCurve) && typeof(Curve).IsAssignableFrom(geometry.GetType()))
             {
-                if (geometry.GetType() == typeof(Curve))
-                {
-                    Curve dynamoCurve = geometry as Curve;
-                    Autodesk.Revit.DB.LocationCurve curve = (Autodesk.Revit.DB.LocationCurve)this.InternalElement.Location;
-                    curve.Curve = dynamoCurve.ToRevitType(true);
-                }
-                else
-                    throw new Exception("Curve element required");
+                Curve dynamoCurve = geometry as Curve;
+                Autodesk.Revit.DB.LocationCurve curve = (Autodesk.Revit.DB.LocationCurve)this.InternalElement.Location;
+                curve.Curve = dynamoCurve.ToRevitType(true);
             }
             else
             {
-                throw new Exception("Element does not have a location that can be updated");
+                throw new Exception(Properties.Resources.InvalidLocationUpdate);
             }
 
             TransactionManager.Instance.TransactionTaskDone();
@@ -766,17 +756,31 @@ namespace Revit.Elements
         {
             if (this.InternalElement.Location.GetType() == typeof(Autodesk.Revit.DB.LocationPoint))
             {
-                Autodesk.Revit.DB.LocationPoint pt = (Autodesk.Revit.DB.LocationPoint)this.InternalElement.Location;
-                return pt.Point.ToPoint(true);
+                Autodesk.Revit.DB.LocationPoint pt = this.InternalElement.Location as Autodesk.Revit.DB.LocationPoint;
+                if (pt != null)
+                {
+                    return pt.Point.ToPoint(true);
+                }
+                else
+                {
+                    throw new Exception(Properties.Resources.InvalidLocation);
+                }
             }
             else if (this.InternalElement.Location.GetType() == typeof(Autodesk.Revit.DB.LocationCurve))
             {
-                Autodesk.Revit.DB.LocationCurve curve = (Autodesk.Revit.DB.LocationCurve)this.InternalElement.Location;
-                return curve.Curve.ToProtoType(true);
+                Autodesk.Revit.DB.LocationCurve curve = this.InternalElement.Location as Autodesk.Revit.DB.LocationCurve;
+                if (curve != null)
+                {
+                    return curve.Curve.ToProtoType(true);
+                }
+                else
+                {
+                    throw new Exception(Properties.Resources.InvalidLocation);
+                }
             }
             else
             {
-                throw new Exception("Element location not extractable");
+                throw new Exception(Properties.Resources.InvalidLocation);
             }
         }
 
