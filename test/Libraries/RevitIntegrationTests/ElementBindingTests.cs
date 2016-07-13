@@ -705,10 +705,10 @@ namespace RevitSystemTests
         }
 
         [Test]
-        [TestModel(@".\Family\FamilyInstancePlacementByFace_2016.rvt")]
+        [TestModel(@".\ElementBinding\FamilyInstancePlacementByFace.rvt")]
         public void ByFace_UpdateLocation_ProducesValidFamilyInstanceWithCorrectLocation()
         {
-            string samplePath = Path.Combine(workingDirectory, @".\Family\FamilyInstancePlacementByFace_2016.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\ElementBinding\FamilyInstancePlacementByFace.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
