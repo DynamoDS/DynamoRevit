@@ -63,6 +63,16 @@ namespace Revit.Filter
         #region Public static constructors
 
         /// <summary>
+        /// Prefix for reflection call of Create Rule
+        /// </summary>
+        const string CreatePrefix = "Create";
+
+        /// <summary>
+        /// Suffix for reflection call of Create Rule 
+        /// </summary>
+        const string RuleSuffix = "Rule";
+
+        /// <summary>
         /// Create a new Filter Rule
         /// </summary>
         /// <param name="type">Filter Rule Type</param>
@@ -82,7 +92,7 @@ namespace Revit.Filter
             ElementId parameterId = parameter.InternalParameter.Id;
 
             // assemble the method name to construct a new filter using the FilterType
-            string methodname = "Create" + type.ToString() + "Rule";
+            string methodname = string.Format("{0}{1}{2}", new object[] { CreatePrefix , type, RuleSuffix});
     
             // all of the following FilterType construcotrs are handled the same
             if (
