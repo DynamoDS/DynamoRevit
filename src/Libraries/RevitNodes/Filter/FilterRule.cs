@@ -79,15 +79,8 @@ namespace Revit.Filter
         /// <param name="value">Value to check</param>
         /// <param name="parameter">Parameter to filter</param>
         /// <returns></returns>
-        public static FilterRule ByRuleType(string typename, object value, Elements.Parameter parameter)
+        public static FilterRule ByRuleType(FilterType type, object value, Elements.Parameter parameter)
         {
-
-            FilterType type = FilterType.Contains;
-
-            if (!Enum.TryParse<FilterType>(typename, out type))
-            {
-                throw new Exception(Properties.Resources.InvalidFilterType);
-            }
 
             ElementId parameterId = parameter.InternalParameter.Id;
 
