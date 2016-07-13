@@ -6,7 +6,7 @@ using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace Revit.Elements
 {
@@ -90,7 +90,7 @@ namespace Revit.Elements
         /// <param name="view"></param>
         /// <param name="curves"></param>
         /// <param name="id"></param>
-        private void Init(Autodesk.Revit.DB.View view,List<Autodesk.Revit.DB.Curve> curves,Autodesk.Revit.DB.ElementId id)
+        private void Init(Autodesk.Revit.DB.View view, IEnumerable<Autodesk.Revit.DB.Curve> curves, Autodesk.Revit.DB.ElementId id)
         {
             // get document and open transaction
             Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
@@ -102,14 +102,14 @@ namespace Revit.Elements
 
             if (element == null)
             {
-                element = Autodesk.Revit.DB.RevisionCloud.Create(document, view, id, curves);
+                element = Autodesk.Revit.DB.RevisionCloud.Create(document, view, id, curves.ToList());
             }
             else
             {
                 // there is no way of updateing the properties.
                 // So the cloud is being recreated.
                 document.Delete(element.Id);
-                element = Autodesk.Revit.DB.RevisionCloud.Create(document, view, id, curves);
+                element = Autodesk.Revit.DB.RevisionCloud.Create(document, view, id, curves.ToList());
             }
             
 
@@ -132,7 +132,7 @@ namespace Revit.Elements
         /// <param name="curves">Cloud outline</param>
         /// <param name="revision">Revit revision</param>
         /// <returns></returns>
-        public static RevisionCloud ByCurve(Revit.Elements.Views.View view,  List<Autodesk.DesignScript.Geometry.Curve> curves, Revit.Elements.Element revision)
+        public static RevisionCloud ByCurve(Revit.Elements.Views.View view, IEnumerable<Autodesk.DesignScript.Geometry.Curve> curves, Revit.Elements.Element revision)
         {
             Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
 
@@ -171,7 +171,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Revision cloud's curves
         /// </summary>
-        public List<Autodesk.DesignScript.Geometry.Curve> Curves
+        public IEnumerable<Autodesk.DesignScript.Geometry.Curve> Curves
         { 
             get
             {
