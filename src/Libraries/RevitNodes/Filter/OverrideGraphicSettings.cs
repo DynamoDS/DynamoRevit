@@ -52,16 +52,16 @@ namespace Revit.Filter
         /// <param name="projectionLinePattern">Projection line pattern</param>
         /// <returns>OverrideGraphicSettings</returns>
         public static OverrideGraphicSettings ByProperties(
-            DSCore.Color cutFillColor = null,
-            DSCore.Color projectionFillColor = null,
-            DSCore.Color cutLineColor = null,
-            DSCore.Color projectionLineColor = null,
+            [DefaultArgumentAttribute("null")]DSCore.Color cutFillColor,
+            [DefaultArgumentAttribute("null")]DSCore.Color projectionFillColor,
+            [DefaultArgumentAttribute("null")]DSCore.Color cutLineColor,
+            [DefaultArgumentAttribute("null")]DSCore.Color projectionLineColor,
+            [DefaultArgumentAttribute("null")]FillPatternElement cutFillPattern,
+            [DefaultArgumentAttribute("null")]FillPatternElement projectionFillPattern,
+            [DefaultArgumentAttribute("null")]LinePatternElement cutLinePattern,
+            [DefaultArgumentAttribute("null")]LinePatternElement projectionLinePattern,
             int cutLineWeight = -1,
-            int projectionLineWeight = -1,
-            FillPatternElement cutFillPattern = null,
-            FillPatternElement projectionFillPattern = null,
-            LinePatternElement cutLinePattern = null,
-            LinePatternElement projectionLinePattern = null
+            int projectionLineWeight = -1
             )
         {
             Autodesk.Revit.DB.OverrideGraphicSettings filterSettings = new Autodesk.Revit.DB.OverrideGraphicSettings();
