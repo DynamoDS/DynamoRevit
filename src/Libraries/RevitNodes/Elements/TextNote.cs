@@ -152,7 +152,7 @@ namespace Revit.Elements
         /// <param name="rotation">Rotationin degrees</param>
         /// <param name="type">Revit TextNote Type</param>
         /// <returns></returns>
-        public static TextNote ByLocation(Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location, string text, string alignment, bool keepRotatedTextReadable = true, double rotation = 0, TextNoteType type = null)
+        public static TextNote ByLocation(Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location, string text, string alignment, [DefaultArgument("null")]TextNoteType type, bool keepRotatedTextReadable = true, double rotation = 0)
         {
             RVT.HorizontalTextAlignment revitAlign = HorizontalTextAlignment.Left;
             Enum.TryParse<RVT.HorizontalTextAlignment>(alignment, out revitAlign);

@@ -149,7 +149,7 @@ namespace Revit.Elements
         /// <param name="horizontalAlignment">Horizontal Alignment</param>
         /// <param name="verticalAlignment">Vertical Alignment</param>
         /// <returns></returns>
-        public static Tag ByElement(Revit.Elements.Views.View view, Element element, bool horizontal, bool addLeader, Autodesk.DesignScript.Geometry.Point offset = null, bool isOffset = true, string horizontalAlignment = "Center", string verticalAlignment = "Middle")
+        public static Tag ByElement(Revit.Elements.Views.View view, Element element, bool horizontal, bool addLeader, [DefaultArgument("null")]Autodesk.DesignScript.Geometry.Point offset, bool isOffset = true, string horizontalAlignment = "Center", string verticalAlignment = "Middle")
         {
             if (offset == null) offset = Autodesk.DesignScript.Geometry.Point.ByCoordinates(0, 0, 0);
 

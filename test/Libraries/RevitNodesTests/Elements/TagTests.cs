@@ -25,7 +25,7 @@ namespace RevitNodesTests.Elements
             var modelCurve = ModelCurve.ByCurve(line);
             Assert.NotNull(line);
 
-            var tag = Tag.ByElement(Revit.Application.Document.Current.ActiveView, modelCurve, true, false);
+            var tag = Tag.ByElement(Revit.Application.Document.Current.ActiveView, modelCurve, true, false, null);
             Assert.NotNull(tag);
           
         }
