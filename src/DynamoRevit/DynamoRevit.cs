@@ -207,6 +207,7 @@ namespace Dynamo.Applications
 
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
         {
+            var startupTimer = Stopwatch.StartNew();
             if (ModelState == RevitDynamoModelState.StartedUIless)
             {
                 if (CheckJournalForUiDisplay(commandData))
@@ -278,11 +279,12 @@ namespace Dynamo.Applications
 
                 //unsubscribe to the assembly load
                 AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
+                Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed, ModelState.ToString());
             }
             catch (Exception ex)
             {
                 // notify instrumentation
-                Dynamo.Logging.Analytics.TrackException(ex, true);
+                Analytics.TrackException(ex, true);
 
                 MessageBox.Show(ex.ToString());
 
