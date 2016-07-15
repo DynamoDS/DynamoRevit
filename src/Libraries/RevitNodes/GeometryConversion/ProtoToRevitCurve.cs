@@ -176,7 +176,7 @@ namespace Revit.GeometryConversion
             // obtain the y axis in the plane - perp to x and z
             var y = n2.CrossProduct(x);
 
-            var plane = new Autodesk.Revit.DB.Plane(x, y, center);
+            var plane = Autodesk.Revit.DB.Plane.CreateByOriginAndBasis(center, x, y);
             return Autodesk.Revit.DB.Arc.Create(plane, circ.Radius, 0, 2 * System.Math.PI);
         }
 
@@ -205,7 +205,7 @@ namespace Revit.GeometryConversion
             var xw = crv.MajorAxis.Length;
             var yw = crv.MinorAxis.Length;
 
-            var e = Autodesk.Revit.DB.Ellipse.Create(center, xw, yw, x, y, 0, 2*Math.PI);
+            var e = Autodesk.Revit.DB.Ellipse.CreateCurve(center, xw, yw, x, y, 0, 2*Math.PI) as Autodesk.Revit.DB.Ellipse;
             e.MakeBound(0, 2* Math.PI );
             return e;
         }
@@ -221,7 +221,7 @@ namespace Revit.GeometryConversion
             var sa = crv.StartAngle.ToRadians();
             var ea = sa + crv.SweepAngle.ToRadians();
 
-            var e = Autodesk.Revit.DB.Ellipse.Create(center, xw, yw, x, y, sa, ea);
+            var e = Autodesk.Revit.DB.Ellipse.CreateCurve(center, xw, yw, x, y, sa, ea) as Autodesk.Revit.DB.Ellipse;
             e.MakeBound(sa, ea);
             return e;
         }

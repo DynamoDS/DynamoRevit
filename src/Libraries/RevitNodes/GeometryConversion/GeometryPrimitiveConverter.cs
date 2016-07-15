@@ -70,7 +70,7 @@ namespace Revit.GeometryConversion
 
         public static Autodesk.Revit.DB.Plane ToPlane(this Autodesk.DesignScript.Geometry.Plane plane, bool convertUnits = true)
         {
-            return new Autodesk.Revit.DB.Plane(plane.Normal.ToXyz(), plane.Origin.ToXyz(convertUnits));
+            return Autodesk.Revit.DB.Plane.CreateByNormalAndOrigin(plane.Normal.ToXyz(), plane.Origin.ToXyz(convertUnits));
         }
 
         public static List<XYZ> ToXyzs(this List<Autodesk.DesignScript.Geometry.Point> list, bool convertUnits = true)
