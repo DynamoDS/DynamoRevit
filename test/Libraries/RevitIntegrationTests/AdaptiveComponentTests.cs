@@ -108,6 +108,53 @@ namespace RevitSystemTests
         }
 
         [Test]
+        [TestModel(@".\AdaptiveComponent\AdaptiveComponentsByPoints.rfa")]
+        public void CreateAdaptiveComponentsByPointsFrozen()
+        {
+            var model = ViewModel.Model;
+
+            string testFilePath = Path.Combine(workingDirectory, @".\AdaptiveComponent\AdaptiveComponentsByPoints.dyn");
+            string testPath = Path.GetFullPath(testFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // Check all the nodes and connectors are loaded
+            Assert.AreEqual(4, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Check the number of the created adaptive components is correct
+            var adapID = "79637f91-d35b-49fc-bc54-4f5a1922633e";
+            AssertPreviewCount(adapID, 6);
+            for (int i = 0; i < 6; i++)
+            {
+                var adapValue = GetPreviewValueAtIndex(adapID, i) as AdaptiveComponent;
+                Assert.IsNotNull(adapValue);
+            }
+
+            //delete the adaptive components
+            for (int i = 0; i < 6; i++)
+            {
+                var adapValue = GetPreviewValueAtIndex(adapID, i) as AdaptiveComponent;
+                adapValue.Dispose();
+            }
+
+            //now freeze adaptive component node
+            var adaptnode = model.CurrentWorkspace.NodeFromWorkspace(adapID);
+            adaptnode.IsFrozen = true;
+
+            //rereun the graph;
+            RunCurrentModel();
+
+            //assert no adaptive components in the model
+            Assert.AreEqual(0, GetAllFamilyInstances(true).Count);
+
+        }
+
+        [Test]
         [TestModel(@".\AdaptiveComponent\AdaptiveComponentsByPointsOnFace.rfa")]
         public void CreateAdaptiveComponentsByPointsOnFace()
         {
