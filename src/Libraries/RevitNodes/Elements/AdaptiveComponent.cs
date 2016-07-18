@@ -161,6 +161,7 @@ namespace Revit.Elements
             }
 
             TransactionManager.Instance.TransactionTaskDone();
+            ElementBinder.SetElementForTrace(InternalElement);
 
         }
 
@@ -208,6 +209,7 @@ namespace Revit.Elements
             }
 
             TransactionManager.Instance.TransactionTaskDone();
+            ElementBinder.SetElementForTrace(InternalElement);
         }
 
         /// <summary>
