@@ -21,7 +21,6 @@ namespace Revit.Elements
         /// <summary>
         /// Internal reference to the Revit Element
         /// </summary>
-        [SupressImportIntoVM]
         internal Autodesk.Revit.DB.Architecture.Room InternalRevitElement
         {
             get;
@@ -31,6 +30,7 @@ namespace Revit.Elements
         /// <summary>
         /// Reference to the Element
         /// </summary>
+        [SupressImportIntoVM]
         public override Autodesk.Revit.DB.Element InternalElement
         {
             get { return InternalRevitElement; }
@@ -89,9 +89,16 @@ namespace Revit.Elements
             }
             else
             {
-                // Update Location only
-                Autodesk.Revit.DB.LocationPoint point = (Autodesk.Revit.DB.LocationPoint)RoomElem.Location;
-                point.Point = location;
+                if (RoomElem.LevelId.Equals(level.Id))
+                {
+                    // Update Location only
+                    Autodesk.Revit.DB.LocationPoint point = (Autodesk.Revit.DB.LocationPoint)RoomElem.Location;
+                    point.Point = location;
+                }
+                else
+                {
+                    RoomElem = document.Create.NewRoom(level, new Autodesk.Revit.DB.UV(location.X, location.Y));
+                }
             }
 
             // Apply name and number if set
