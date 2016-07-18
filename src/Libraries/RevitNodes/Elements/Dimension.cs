@@ -32,6 +32,7 @@ namespace Revit.Elements
         /// <summary>
         /// Reference to the Element
         /// </summary>
+        [SupressImportIntoVM]
         public override Autodesk.Revit.DB.Element InternalElement
         {
             get { return InternalRevitElement; }
