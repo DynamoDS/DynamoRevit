@@ -21,7 +21,6 @@ namespace Revit.Elements
         /// <summary>
         /// Internal reference to the Revit Element
         /// </summary>
-        [SupressImportIntoVM]
         internal Autodesk.Revit.DB.FilledRegion InternalRevitElement
         {
             get;
@@ -31,6 +30,7 @@ namespace Revit.Elements
         /// <summary>
         /// Reference to the Element
         /// </summary>
+        [SupressImportIntoVM]
         public override Autodesk.Revit.DB.Element InternalElement
         {
             get { return InternalRevitElement; }
