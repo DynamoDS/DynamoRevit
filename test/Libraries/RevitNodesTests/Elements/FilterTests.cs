@@ -22,7 +22,7 @@ namespace RevitNodesTests.Elements
 
             Parameter p = new Parameter(Revit.Application.Document.Current.ActiveView.InternalView.LookupParameter("Comment"));
 
-            var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.FilterType.BeginsWith.ToString(), "my", p);
+            var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.FilterType.BeginsWith, "my", p);
             Assert.NotNull(filterRule);
  
         }
@@ -35,7 +35,7 @@ namespace RevitNodesTests.Elements
 
             Parameter p = new Parameter(Revit.Application.Document.Current.ActiveView.InternalView.LookupParameter("Comment"));
 
-            var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.FilterType.BeginsWith.ToString(), "my", p);
+            var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.FilterType.BeginsWith, "my", p);
 
             var filter = Revit.Filter.ParameterFilterElement.ByRules("myFilter", 
                 new System.Collections.Generic.List<Category>(){ Category.ByName("Walls")},
@@ -57,7 +57,7 @@ namespace RevitNodesTests.Elements
 
             Parameter p = new Parameter(Revit.Application.Document.Current.ActiveView.InternalView.LookupParameter("Comment"));
 
-            var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.FilterType.BeginsWith.ToString(), "my", p);
+            var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.FilterType.BeginsWith, "my", p);
 
             var filter = Revit.Filter.ParameterFilterElement.ByRules("myFilter",
                 new System.Collections.Generic.List<Category>() { Category.ByName("Walls") },
