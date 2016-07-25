@@ -421,6 +421,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FilterType is not valid..
+        /// </summary>
+        internal static string InvalidFilterType {
+            get {
+                return ResourceManager.GetString("InvalidFilterType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The height must be greater than 0 and less that 30000 ft.  You provided a height of {0} ft..
         /// </summary>
         internal static string InvalidWallHeight {
