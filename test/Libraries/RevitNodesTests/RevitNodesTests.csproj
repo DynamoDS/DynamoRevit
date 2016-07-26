@@ -39,6 +39,11 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DSCoreNodes, Version=1.0.1.1523, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(DYNAMOAPI)/DSCoreNodes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>$(NunitPath)\nunit.framework.dll</HintPath>
       <Private>False</Private>
@@ -79,6 +84,7 @@
     <Compile Include="Elements\DividedSurfaceTests.cs" />
     <Compile Include="Elements\DocumentTests.cs" />
     <Compile Include="Elements\ElementTests.cs" />
+    <Compile Include="Elements\FilterTests.cs" />
     <Compile Include="Elements\FloorTests.cs" />
     <Compile Include="Elements\FloorTypeTests.cs" />
     <Compile Include="Elements\GridTests.cs" />
