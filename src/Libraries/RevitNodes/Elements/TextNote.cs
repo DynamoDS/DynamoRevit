@@ -48,7 +48,7 @@ namespace Revit.Elements
         /// <param name="alignment"></param>
         /// <param name="text"></param>
         /// <param name="keepRotatedTextreadable"></param>
-        /// <param name="rotation"></param>
+        /// <param name="rotation">in degrees</param>
         /// <param name="typeId"></param>
         private TextNote(RVT.View view, RVT.XYZ origin, RVT.HorizontalTextAlignment alignment, string text, bool keepRotatedTextreadable, double rotation, ElementId typeId)
         {
@@ -98,7 +98,7 @@ namespace Revit.Elements
         /// <param name="alignment"></param>
         /// <param name="text"></param>
         /// <param name="keepRotatedTextreadable"></param>
-        /// <param name="rotation"></param>
+        /// <param name="rotation">in degrees</param>
         /// <param name="typeId"></param>
         private void Init(RVT.View view, RVT.XYZ origin, RVT.HorizontalTextAlignment alignment, string text, bool keepRotatedTextreadable, double rotation, ElementId typeId)
         {
@@ -120,12 +120,37 @@ namespace Revit.Elements
             }
             else
             {
-                element.HorizontalAlignment = alignment;
-                element.KeepRotatedTextReadable = keepRotatedTextreadable;
-                element.Text = text;
-                LocationPoint point = (LocationPoint)element.Location;
-                point.Point = origin;
-                point.Rotate(Line.CreateUnbound(XYZ.Zero, XYZ.BasisZ), rotation.ToRadians());
+                if (element.HorizontalAlignment != alignment)
+                {
+                    element.HorizontalAlignment = alignment;
+                }
+
+                if (element.KeepRotatedTextReadable != keepRotatedTextreadable)
+                {
+                    element.KeepRotatedTextReadable = keepRotatedTextreadable;
+                }
+
+                if (element.Text != text)
+                {
+                    element.Text = text;
+                }
+
+                if (element.Location is LocationPoint)
+                {
+                    LocationPoint point = (LocationPoint)element.Location;
+
+                    if (!point.Point.Equals(origin))
+                    {
+                        point.Point = origin;
+                    }
+
+                    if (point.Rotation != rotation.ToRadians())
+                    {
+                        point.Rotate(Line.CreateUnbound(XYZ.Zero, XYZ.BasisZ), rotation.ToRadians());
+                    }
+                }
+
+                
             }
 
             RVT.TextNoteType type = (RVT.TextNoteType)document.GetElement(typeId);
@@ -149,10 +174,10 @@ namespace Revit.Elements
         /// <param name="text">Text</param>
         /// <param name="alignment">Text alignment</param>
         /// <param name="keepRotatedTextReadable">Keep text horizontal</param>
-        /// <param name="rotation">Rotationin degrees</param>
+        /// <param name="rotation">Rotation in degrees</param>
         /// <param name="type">Revit TextNote Type</param>
         /// <returns></returns>
-        public static TextNote ByLocation(Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location, string text, string alignment, [DefaultArgument("null")]TextNoteType type, bool keepRotatedTextReadable = true, double rotation = 0)
+        public static TextNote ByLocation(Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location, string text, string alignment, [DefaultArgument("Revit.Elements.TextNoteType.Default()")]TextNoteType type, bool keepRotatedTextReadable = true, double rotation = 0)
         {
             RVT.HorizontalTextAlignment revitAlign = HorizontalTextAlignment.Left;
             Enum.TryParse<RVT.HorizontalTextAlignment>(alignment, out revitAlign);
@@ -162,16 +187,7 @@ namespace Revit.Elements
             if (!view.IsAnnotationView())
                 throw new Exception(Properties.Resources.ViewDoesNotSupportAnnotations);
 
-            ElementId typeId = ElementId.InvalidElementId;
-
-            if (type == null)
-            {
-                FilteredElementCollector textTypes = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument).OfClass(typeof(TextNoteType));
-                typeId = textTypes.FirstElementId();
-            }
-            else typeId = type.InternalElement.Id;
-
-            return new TextNote(revitView, location.ToRevitType(true), revitAlign, text, keepRotatedTextReadable, rotation, typeId);
+            return new TextNote(revitView, location.ToRevitType(true), revitAlign, text, keepRotatedTextReadable, rotation, type.InternalElement.Id);
         }
 
 
@@ -193,9 +209,12 @@ namespace Revit.Elements
         /// <param name="value"></param>
         public void SetText(string value)
         {
-            TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
-            this.InternalTextNote.Text = value;
-            TransactionManager.Instance.TransactionTaskDone();
+            if (value != Text)
+            {
+                TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+                this.InternalTextNote.Text = value;
+                TransactionManager.Instance.TransactionTaskDone();
+            }
         }
 
         /// <summary>
@@ -204,9 +223,12 @@ namespace Revit.Elements
         /// <param name="value"></param>
         public void SetKeepRotatedTextReadable(bool value)
         {
-            TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
-            this.InternalTextNote.KeepRotatedTextReadable = value;
-            TransactionManager.Instance.TransactionTaskDone();
+            if (value != this.InternalTextNote.KeepRotatedTextReadable)
+            {
+                TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+                this.InternalTextNote.KeepRotatedTextReadable = value;
+                TransactionManager.Instance.TransactionTaskDone();
+            }
         }
 
         /// <summary>
@@ -215,11 +237,14 @@ namespace Revit.Elements
         /// <param name="value"></param>
         public void SetHorizontalAlignment(string value)
         {
-            RVT.HorizontalTextAlignment alignment = HorizontalTextAlignment.Left;
-            Enum.TryParse<RVT.HorizontalTextAlignment>(value, out alignment);
-            TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
-            this.InternalTextNote.HorizontalAlignment = alignment;
-            TransactionManager.Instance.TransactionTaskDone();
+            if (value != HorizontalAlignment)
+            {
+                RVT.HorizontalTextAlignment alignment = HorizontalTextAlignment.Left;
+                Enum.TryParse<RVT.HorizontalTextAlignment>(value, out alignment);
+                TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+                this.InternalTextNote.HorizontalAlignment = alignment;
+                TransactionManager.Instance.TransactionTaskDone();
+            }
         }
 
         /// <summary>
