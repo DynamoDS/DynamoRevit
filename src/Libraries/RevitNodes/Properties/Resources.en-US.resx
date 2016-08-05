@@ -315,4 +315,7 @@
   <data name="InvalidFilterType" xml:space="preserve">
     <value>FilterType is not valid.</value>
   </data>
+  <data name="CannotGetBaseOrSurveyPoint" xml:space="preserve">
+    <value>Cannot get base or survey point from document.</value>
+  </data>
 </root>
