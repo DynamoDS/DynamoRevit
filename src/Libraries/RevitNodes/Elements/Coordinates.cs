@@ -15,7 +15,7 @@ namespace Revit.Elements
 {
 
     /// <summary>
-    /// Rebar Nodes for Coordinates
+    /// Nodes exposing Revit Document Base and Survey Point
     /// </summary>
     public static class Coordinates
     {
@@ -23,8 +23,7 @@ namespace Revit.Elements
         /// Get Base or SurveyPoint
         /// </summary>
         /// <param name="surveypoint"></param>
-        /// <returns></returns>
-        [IsVisibleInDynamoLibrary(false)]
+        /// <returns></returns>  
         private static Point GetBaseOrSurveyPoint(bool surveypoint)
         {
             // Get Base or Survey point category
@@ -38,7 +37,12 @@ namespace Revit.Elements
             
             // Get the first element (should only be one)
             RVT.BasePoint element = (RVT.BasePoint)collector.ToElements().FirstOrDefault();
-            
+
+            if (element == null)
+            {
+                throw new Exception(Properties.Resources.CannotGetBaseOrSurveyPoint);
+            }
+
             // Get the elements bounding box
             RVT.BoundingBoxXYZ box = element.get_BoundingBox(null);
             
@@ -57,9 +61,14 @@ namespace Revit.Elements
             Autodesk.Revit.DB.FilteredElementCollector collector = new RVT.FilteredElementCollector(doc).OfCategory(RVT.BuiltInCategory.OST_ProjectBasePoint);            
             RVT.BasePoint element = (RVT.BasePoint)collector.ToElements().FirstOrDefault();
 
+            if (element == null)
+            {
+                throw new Exception(Properties.Resources.CannotGetBaseOrSurveyPoint);
+            }
+
             // Return the rotation parameter as double
             RVT.Parameter param = element.get_Parameter(RVT.BuiltInParameter.BASEPOINT_ANGLETON_PARAM);
-            return param.AsDouble();
+            return param.AsDouble().ToDegrees();
         }
 
         /// <summary>
