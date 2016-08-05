@@ -98,6 +98,17 @@ namespace Revit.Elements
             };
         }
 
+
+        /// <summary>
+        /// Return a default TextNoteType
+        /// </summary>
+        /// <returns></returns>
+        public static TextNoteType Default()
+        {
+            Autodesk.Revit.DB.FilteredElementCollector collector = new Autodesk.Revit.DB.FilteredElementCollector(typeof(Autodesk.Revit.DB.TextNoteType));
+            return FromExisting((Autodesk.Revit.DB.TextNoteType)collector.FirstOrDefault(), true);
+        }
+
         #endregion
 
         #region Internal static constructors
@@ -115,6 +126,7 @@ namespace Revit.Elements
                 IsRevitOwned = isRevitOwned
             };
         }
+
 
         #endregion
 

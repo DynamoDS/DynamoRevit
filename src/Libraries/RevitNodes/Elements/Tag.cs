@@ -54,9 +54,9 @@ namespace Revit.Elements
             Autodesk.Revit.DB.TagOrientation orientation,
             Autodesk.Revit.DB.TagMode mode,
             bool addLeader,
-            Autodesk.Revit.DB.XYZ point)
+            Autodesk.Revit.DB.XYZ vector)
         {
-            SafeInit(() => Init(view, host, orientation, mode, addLeader, point));
+            SafeInit(() => Init(view, host, orientation, mode, addLeader, vector));
         }
 
         #endregion
@@ -95,14 +95,14 @@ namespace Revit.Elements
         /// <param name="orientation"></param>
         /// <param name="mode"></param>
         /// <param name="addLeader"></param>
-        /// <param name="point"></param>
+        /// <param name="vector"></param>
         private void Init(
             Autodesk.Revit.DB.View view,
             Autodesk.Revit.DB.Element host,
             Autodesk.Revit.DB.TagOrientation orientation,
             Autodesk.Revit.DB.TagMode mode,
             bool addLeader,
-            Autodesk.Revit.DB.XYZ point)
+            Autodesk.Revit.DB.XYZ vector)
         {
 
             Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
@@ -115,14 +115,25 @@ namespace Revit.Elements
             if (tagElem == null || view.Id != tagElem.OwnerViewId ||
                 (tagElem.TaggedElementId.HostElementId != host.Id && tagElem.TaggedElementId.LinkedElementId != host.Id))
             {
-                tagElem = document.Create.NewTag(view, host, addLeader, mode, orientation, point);
+                tagElem = document.Create.NewTag(view, host, addLeader, mode, orientation, vector);
             }
             else
             {
                 // apply properties
-                tagElem.TagOrientation = orientation;
-                tagElem.HasLeader = addLeader;
-                tagElem.TagHeadPosition = point;
+                if (tagElem.TagOrientation != orientation)
+                {
+                    tagElem.TagOrientation = orientation;
+                }
+
+                if (tagElem.HasLeader != addLeader)
+                {
+                    tagElem.HasLeader = addLeader;
+                }
+
+                if (!tagElem.TagHeadPosition.Equals(vector))
+                {
+                    tagElem.TagHeadPosition = vector;
+                }
             }
 
             double rotation = (orientation == TagOrientation.Horizontal) ? 0 : 90;
@@ -149,10 +160,8 @@ namespace Revit.Elements
         /// <param name="horizontalAlignment">Horizontal Alignment</param>
         /// <param name="verticalAlignment">Vertical Alignment</param>
         /// <returns></returns>
-        public static Tag ByElement(Revit.Elements.Views.View view, Element element, bool horizontal, bool addLeader, [DefaultArgument("null")]Autodesk.DesignScript.Geometry.Point offset, bool isOffset = true, string horizontalAlignment = "Center", string verticalAlignment = "Middle")
-        {
-            if (offset == null) offset = Autodesk.DesignScript.Geometry.Point.ByCoordinates(0, 0, 0);
-
+        public static Tag ByElement(Revit.Elements.Views.View view, Element element, bool horizontal, bool addLeader, [DefaultArgument("Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0,0,0)")]Autodesk.DesignScript.Geometry.Vector offset, bool isOffset = true, string horizontalAlignment = "Center", string verticalAlignment = "Middle")
+        {   
             Autodesk.Revit.DB.HorizontalAlignmentStyle alignHorizontal = Autodesk.Revit.DB.HorizontalAlignmentStyle.Center;
             Enum.TryParse<Autodesk.Revit.DB.HorizontalAlignmentStyle>(horizontalAlignment, out alignHorizontal);
 
