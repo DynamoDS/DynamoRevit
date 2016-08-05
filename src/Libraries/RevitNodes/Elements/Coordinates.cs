@@ -23,7 +23,7 @@ namespace Revit.Elements
         /// Get Base or SurveyPoint
         /// </summary>
         /// <param name="surveypoint"></param>
-        /// <returns></returns>
+        /// <returns></returns>  
         private static Point GetBaseOrSurveyPoint(bool surveypoint)
         {
             // Get Base or Survey point category
