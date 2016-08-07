@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoInstallDetective">
-      <HintPath>$(DYNAMOAPI)\DynamoInstallDetective.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\DynamoInstallDetective.dll</HintPath>
     </Reference>
     <Reference Include="RevitAddinUtility">
       <HintPath>$(ProjectDir)\RevitAddinUtility.dll</HintPath>

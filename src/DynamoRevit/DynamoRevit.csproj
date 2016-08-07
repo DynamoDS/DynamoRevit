@@ -54,7 +54,7 @@
       <HintPath>$(DynamoExternPath)\DynamoRaaS\DynamoRaaSHelper.dll</HintPath>
     </Reference>
     <Reference Include="DynamoServices">
-      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
+      <HintPath>$(DynamoServicesPath)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Greg, Version=1.0.5900.25656, Culture=neutral, processorArchitecture=MSIL">
@@ -72,12 +72,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>$(DYNAMOAPI)\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>$(PrismPackagePath)\Microsoft.Practices.Prism.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(DYNAMOAPI)\Microsoft.Scripting.dll</HintPath>
+      <HintPath>$(IronPythonPackagePath)\Microsoft.Scripting.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -91,7 +91,7 @@
     </Reference>
     <Reference Include="ProtoGeometry">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(DYNAMOAPI)\ProtoGeometry.dll</HintPath>
+      <HintPath>$(DynamoZeroTouchPath)\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -156,23 +156,23 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ProtoCore">
-      <HintPath>$(DYNAMOAPI)\ProtoCore.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DSIronPython">
-      <HintPath>$(DYNAMOAPI)\DSIronPython.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\DSIronPython.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCoreWpf">
-      <HintPath>$(DYNAMOAPI)\DynamoCoreWpf.dll</HintPath>
+      <HintPath>$(DynamoWpfUIPath)\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore">
-      <HintPath>$(DYNAMOAPI)\DynamoCore.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUtilities">
-      <HintPath>$(DYNAMOAPI)\DynamoUtilities.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\DynamoUtilities.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

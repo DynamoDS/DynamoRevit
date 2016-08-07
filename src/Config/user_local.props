@@ -3,9 +3,15 @@
   <PropertyGroup>
     <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2017</RevitVersionNumber>
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
-	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">$(SolutionDir)..\..\Dynamo\bin\$(Platform)\$(Configuration)</DYNAMOTESTAPI>
 	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\..\Dynamo\bin\AnyCPU\$(Configuration)\$(REVIT_VERSION)</OutputPath>
     <DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">$(SolutionDir)..\..\Dynamo\bin\$(Platform)\$(Configuration)</DYNAMOAPI>
+	<DynamoTestPackagePath Condition = "'$(DynamoTestPackagePath)' == ''">$(DYNAMOAPI)</DynamoTestPackagePath>
+	<DYNAMOAPI  Condition="!Exists('$(DYNAMOAPI)')">C:\Program Files\Dynamo\Dynamo Core\1.0</DYNAMOAPI>
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(OutputPath)</TestOutputPath>
-  </PropertyGroup>
+	<DynamoCorePath Condition = "'$(DynamoCorePath)'== ''">$(DYNAMOAPI)</DynamoCorePath>
+	<DynamoZeroTouchPath Condition = "'$(DynamoZeroTouchPath)' == ''">$(DYNAMOAPI)</DynamoZeroTouchPath>
+	<DynamoWpfUIPath Condition = "'$(DynamoWpfUIPath)' == ''">$(DYNAMOAPI)</DynamoWpfUIPath>
+	<DynamoWpfUINodesPath Condition = "'$(DynamoWpfUINodesPath)' == ''">$(DYNAMOAPI)\nodes</DynamoWpfUINodesPath>
+	<DynamoServicesPath Condition = "'$(DynamoServicesPath)' == ''">$(DYNAMOAPI)</DynamoServicesPath>
+	</PropertyGroup>
 </Project>

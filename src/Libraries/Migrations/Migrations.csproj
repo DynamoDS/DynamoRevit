@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoServices">
-      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
+      <HintPath>$(DynamoServicesPath)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -45,7 +45,7 @@
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>$(DYNAMOAPI)\Microsoft.Practices.Prism.dll</HintPath>
+      <HintPath>$(PrismPackagePath)\Microsoft.Practices.Prism.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -62,13 +62,16 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DynamoCore">
-      <HintPath>$(DYNAMOAPI)\DynamoCore.dll</HintPath>
+      <HintPath>$(DynamoCorePath)\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">
-      <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
+      <HintPath>$(DynamoZeroTouchPath)\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
