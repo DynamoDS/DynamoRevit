@@ -22,7 +22,7 @@ namespace Dynamo.Applications.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Dynamo.Applications.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Dynamo.Applications.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Dynamo.Applications.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Dynamo.Applications.Properties {
         /// <summary>
         ///   Looks up a localized string similar to The active view is now {0}..
         /// </summary>
-        internal static string ActiveViewWarning {
+        public static string ActiveViewWarning {
             get {
                 return ResourceManager.GetString("ActiveViewWarning", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Dynamo.Applications.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Visual Programming.
         /// </summary>
-        internal static string App_Description {
+        public static string App_Description {
             get {
                 return ResourceManager.GetString("App_Description", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Dynamo.Applications.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Dynamo {0}.{1}.
         /// </summary>
-        internal static string App_Name {
+        public static string App_Name {
             get {
                 return ResourceManager.GetString("App_Name", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Dynamo.Applications.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Revit Background Preview.
         /// </summary>
-        internal static string BackgroundPreviewName {
+        public static string BackgroundPreviewName {
             get {
                 return ResourceManager.GetString("BackgroundPreviewName", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Dynamo.Applications.Properties {
         /// <summary>
         ///   Looks up a localized string similar to document.
         /// </summary>
-        internal static string Document {
+        public static string Document {
             get {
                 return ResourceManager.GetString("Document", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Dynamo.Applications.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Dynamo no longer has an active document. Please open a document..
         /// </summary>
-        internal static string DocumentLostWarning {
+        public static string DocumentLostWarning {
             get {
                 return ResourceManager.GetString("DocumentLostWarning", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace Dynamo.Applications.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Dynamo is now running on {0}..
         /// </summary>
-        internal static string DocumentPointerMessage {
+        public static string DocumentPointerMessage {
             get {
                 return ResourceManager.GetString("DocumentPointerMessage", resourceCulture);
             }
@@ -126,18 +126,18 @@ namespace Dynamo.Applications.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Dynamo is not pointing at the current document..
         /// </summary>
-        internal static string DocumentPointingWarning {
+        public static string DocumentPointingWarning {
             get {
                 return ResourceManager.GetString("DocumentPointingWarning", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Revit is not able to find an installation of Dynamo Core version {0}.{1}.{2}.
+        ///   Looks up a localized string similar to Dynamo Add-In is not able to find an installation of Dynamo Core version {0} or higher.
         ///
-        ///Would you like to download and reinstall DynamoCore.msi from http://dynamobim.org now?.
+        ///Would you like to download the latest version of DynamoCore.msi from http://dynamobim.org now?.
         /// </summary>
-        internal static string DynamoCoreNotFoundDialogMessage {
+        public static string DynamoCoreNotFoundDialogMessage {
             get {
                 return ResourceManager.GetString("DynamoCoreNotFoundDialogMessage", resourceCulture);
             }
@@ -146,7 +146,7 @@ namespace Dynamo.Applications.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Dynamo Core component could not be found.
         /// </summary>
-        internal static string DynamoCoreNotFoundDialogTitle {
+        public static string DynamoCoreNotFoundDialogTitle {
             get {
                 return ResourceManager.GetString("DynamoCoreNotFoundDialogTitle", resourceCulture);
             }
@@ -155,7 +155,7 @@ namespace Dynamo.Applications.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo_square_32x32 {
+        public static System.Drawing.Bitmap logo_square_32x32 {
             get {
                 object obj = ResourceManager.GetObject("logo_square_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -165,7 +165,7 @@ namespace Dynamo.Applications.Properties {
         /// <summary>
         ///   Looks up a localized string similar to a new document..
         /// </summary>
-        internal static string NewDocument {
+        public static string NewDocument {
             get {
                 return ResourceManager.GetString("NewDocument", resourceCulture);
             }
@@ -174,7 +174,7 @@ namespace Dynamo.Applications.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Dynamo is not available in the current context..
         /// </summary>
-        internal static string RevitInvalidContextWarning {
+        public static string RevitInvalidContextWarning {
             get {
                 return ResourceManager.GetString("RevitInvalidContextWarning", resourceCulture);
             }
@@ -183,7 +183,7 @@ namespace Dynamo.Applications.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Dynamo is now available..
         /// </summary>
-        internal static string RevitValidContextMessage {
+        public static string RevitValidContextMessage {
             get {
                 return ResourceManager.GetString("RevitValidContextMessage", resourceCulture);
             }

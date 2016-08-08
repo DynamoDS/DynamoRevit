@@ -988,6 +988,28 @@ namespace RevitSystemTests
 
         [Test]
         [Category("RegressionTests")]
+        [TestModel(@".\emptyS.rvt")]
+        public void Rotation_MAGN_10069()
+        {
+            var model = ViewModel.Model;
+
+            string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_10069.dyn");
+            string testPath = Path.GetFullPath(filePath); 
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            RunCurrentModel();
+
+            string locationNodeId = "8c9dbf40-73d7-4788-84b2-ccf015fa47de";
+            var locations = GetPreviewCollection(locationNodeId);
+            var point = locations[0] as Point;
+            point.X.ShouldBeApproximately(7.0);
+            point.Y.ShouldBeApproximately(0.0);
+        }
+
+        [Test]
+        [Category("RegressionTests")]
         [TestModel(@".\empty.rfa")]
         public void ElementGeometryIssue_MAGN_7978()
         {
