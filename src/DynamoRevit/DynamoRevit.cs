@@ -125,6 +125,8 @@ namespace Dynamo.Applications
         private static RevitDynamoModel revitDynamoModel;
         private static bool handledCrash;
 
+        private static List<Exception> preLoadExceptions = new List<Exception>();
+
         // These fields are used to store information that
         // is pulled from the journal file.
         private static bool shouldShowUi = true;
@@ -153,11 +155,21 @@ namespace Dynamo.Applications
             return ExecuteCommand(new DynamoRevitCommandData(commandData));
         }
 
+        private void AssemblyLoad(object sender, AssemblyLoadEventArgs args)
+        {
+            //push any exceptions generated before DynamoLoad to this list
+            preLoadExceptions.AddRange(StartupUtils.CheckAssemblyForVersionMismatches(args.LoadedAssembly));
+        }
+      
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
         {
+            var startupTimer = Stopwatch.StartNew();
             HandleDebug(commandData);
 
             InitializeCore(commandData);
+            //subscribe to the assembly load
+            AppDomain.CurrentDomain.AssemblyLoad += AssemblyLoad;
+
 
             try
             {
@@ -183,16 +195,27 @@ namespace Dynamo.Applications
                     InitializeCoreView().Show();
                 }
 
+                //foreach preloaded exception send a notification to the Dynamo Logger
+                //these are messages we want the user to notice.
+                preLoadExceptions.ForEach(x => revitDynamoModel.Logger.LogNotification
+                (revitDynamoModel.GetType().ToString(),
+                x.GetType().ToString(),
+                DynamoApplications.Properties.Resources.MismatchedAssemblyVersionShortMessage,
+                x.Message));
+
                 TryOpenAndExecuteWorkspace(extCommandData);
 
                 // Disable the Dynamo button to prevent a re-run
                 DynamoRevitApp.DynamoButtonEnabled = false;
+
+                //unsubscribe to the assembly load
+                AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
+                Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed);
             }
             catch (Exception ex)
             {
                 // notify instrumentation
-                InstrumentationLogger.LogException(ex);
-                StabilityTracking.GetInstance().NotifyCrash();
+                Analytics.TrackException(ex, true);
 
                 MessageBox.Show(ex.ToString());
 
@@ -452,8 +475,7 @@ namespace Dynamo.Applications
 
             try
             {
-                InstrumentationLogger.LogException(args.Exception);
-                StabilityTracking.GetInstance().NotifyCrash();
+                Dynamo.Logging.Analytics.TrackException(args.Exception, true);
 
                 revitDynamoModel.Logger.LogError("Dynamo Unhandled Exception");
                 revitDynamoModel.Logger.LogError(exceptionMessage);

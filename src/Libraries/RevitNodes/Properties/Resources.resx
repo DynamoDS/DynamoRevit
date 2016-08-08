@@ -312,6 +312,7 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
+<<<<<<< HEAD
   <data name="ElementCannotBeAnnotatedError" xml:space="preserve">
     <value>Element cannot be annotated</value>
   </data>
@@ -320,5 +321,9 @@
   </data>
   <data name="NotEnoughDataError" xml:space="preserve">
     <value>You need at least two elements for a dimension.</value>
+=======
+  <data name="InvalidFilterType" xml:space="preserve">
+    <value>FilterType is not valid.</value>
+>>>>>>> upstream/Revit2016
   </data>
 </root>

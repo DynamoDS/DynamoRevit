@@ -46,6 +46,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamoApplications">
+      <HintPath>$(DYNAMOAPI)\DynamoApplications.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DynamoRaaSHelper">
       <HintPath>$(DynamoExternPath)\DynamoRaaS\DynamoRaaSHelper.dll</HintPath>
     </Reference>
@@ -138,11 +142,10 @@
     <Compile Include="ViewModel\DynamoRevitViewModel.cs" />
     <Compile Include="ViewModel\RevitWatchHandler.cs" />
     <Compile Include="ViewModel\RevitWatch3DViewModel.cs" />
-    <Compile Include="Migration\WorkspaceMigrationsRevit.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>

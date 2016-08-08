@@ -142,19 +142,16 @@ namespace RevitNodesTests.Elements
             var ft = FamilyType.ByName("3PointAC");
 
             // build the AC
-            var parms = new double[][]
-            {
-                new double[]{0, 0.5, 1}
-            };
+            var parms = new double[]{0, 0.5, 1};
 
             var ac = AdaptiveComponent.ByParametersOnCurveReference(parms, modCurve, ft);
 
             // with unit conversion
-            foreach (var pt in ac.First().Locations)
+            foreach (var pt in ac.Locations)
                 spline.DistanceTo(pt).ShouldBeApproximately(0);
 
             // without unit conversion
-            var unconvertedPoints = GetInternalPoints((FamilyInstance)ac.First().InternalElement);
+            var unconvertedPoints = GetInternalPoints((FamilyInstance)ac.InternalElement);
 
             foreach (var pt in unconvertedPoints)
             {
@@ -180,11 +177,11 @@ namespace RevitNodesTests.Elements
             var ft = FamilyType.ByName("3PointAC");
 
             var uvs = new[]
-            {new[]{
+            {
                 Autodesk.DesignScript.Geometry.UV.ByCoordinates(0, 0),
                 Autodesk.DesignScript.Geometry.UV.ByCoordinates(0.5, 0.5),
                 Autodesk.DesignScript.Geometry.UV.ByCoordinates(0.5, 0)
-            }};
+            };
 
             var ac = AdaptiveComponent.ByParametersOnFace(uvs, faces.First(), ft);
 
