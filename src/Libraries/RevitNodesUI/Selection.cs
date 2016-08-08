@@ -158,8 +158,7 @@ namespace Dynamo.Nodes
             SelectionObjectType selectionObjectType, string message, string prefix)
             : base(selectionType, selectionObjectType, message, prefix)
         {
-            RevitServicesUpdater.Instance.ElementsDeleted += Updater_ElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
@@ -180,8 +179,7 @@ namespace Dynamo.Nodes
         {
             base.Dispose();
 
-            RevitServicesUpdater.Instance.ElementsDeleted -= Updater_ElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsUpdated -= Updater_ElementsUpdated;
             DynamoRevitApp.EventHandlerProxy.DocumentOpened -= Controller_RevitDocumentChanged;
 
             if (revitDynamoModel != null)
@@ -203,6 +201,22 @@ namespace Dynamo.Nodes
         #endregion
 
         #region protected methods
+        private void Updater_ElementsUpdated(object sender, ElementUpdateEventArgs e)
+        {
+            switch (e.Operation)
+            {
+                case ElementUpdateEventArgs.UpdateType.Added:
+                    break;
+                case ElementUpdateEventArgs.UpdateType.Modified:
+                    Updater_ElementsModified(e.GetUniqueIds());
+                    break;
+                case ElementUpdateEventArgs.UpdateType.Deleted:
+                    Updater_ElementsDeleted(e.RevitDocument, e.Elements);
+                    break;
+                default:
+                    break;
+            }
+        }
 
         protected virtual void Updater_ElementsDeleted(
             Document document, IEnumerable<ElementId> deleted) { }
