@@ -225,6 +225,11 @@ namespace Revit.Elements
         public static RevisionCloud Wrap(Autodesk.Revit.DB.RevisionCloud ele, bool isRevitOwned)
         {
             return RevisionCloud.FromExisting(ele, isRevitOwned);
+	}
+
+        public static Revit.Filter.ParameterFilterElement Wrap(Autodesk.Revit.DB.ParameterFilterElement ele, bool isRevitOwned)
+        {
+            return Revit.Filter.ParameterFilterElement.FromExisting(ele, isRevitOwned);
         }
 
         #endregion
