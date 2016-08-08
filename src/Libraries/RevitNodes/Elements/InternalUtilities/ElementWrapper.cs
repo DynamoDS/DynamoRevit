@@ -217,7 +217,7 @@ namespace Revit.Elements
         {
             return Revit.Filter.ParameterFilterElement.FromExisting(ele, isRevitOwned);
 		}
-		
+
         public static Room Wrap(Autodesk.Revit.DB.Architecture.Room ele, bool isRevitOwned)
         {
             return Room.FromExisting(ele, isRevitOwned);

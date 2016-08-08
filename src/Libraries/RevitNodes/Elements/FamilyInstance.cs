@@ -499,7 +499,6 @@ namespace Revit.Elements
             return InternalFamilyInstance.Name;
         }
 
-
         /// <summary>
         /// Get FamilyInstance Host Element
         /// </summary>
