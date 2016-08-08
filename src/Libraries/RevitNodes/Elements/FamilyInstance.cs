@@ -500,7 +500,6 @@ namespace Revit.Elements
         }
 
 
-        #region Public methods
 
         /// <summary>
         /// Get FamilyInstance Host Element
@@ -515,6 +514,7 @@ namespace Revit.Elements
                     return null;
             }
         }
+
 
         /// <summary>
         /// Get Family
