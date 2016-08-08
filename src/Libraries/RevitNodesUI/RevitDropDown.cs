@@ -30,6 +30,19 @@ using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
 {
+    public class DropDownItemEqualityComparer : IEqualityComparer<DynamoDropDownItem>
+    {
+        public bool Equals(DynamoDropDownItem x, DynamoDropDownItem y)
+        {
+            return string.Equals(x.Name, y.Name);
+        }
+
+        public int GetHashCode(DynamoDropDownItem obj)
+        {
+            return obj.Name.GetHashCode();
+        }
+    }
+
     public abstract class RevitDropDownBase : DSDropDownBase
     {
 
@@ -67,14 +80,15 @@ namespace DSRevitNodesUI
             var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
 
             fec.OfClass(typeof(Family));
-            if (fec.ToElements().Count == 0)
+            var elements = fec.ToElements();
+            if (!elements.Any())
             {
                 Items.Add(new DynamoDropDownItem(NO_FAMILY_TYPES, null));
                 SelectedIndex = 0;
                 return SelectionState.Done;
             }
 
-            foreach (Family family in fec.ToElements())
+            foreach (Family family in elements)
             {
                 foreach (var id in family.GetFamilySymbolIds())
                 {
@@ -135,9 +149,21 @@ namespace DSRevitNodesUI
                 return;
 
             if (InPorts.Any(x => x.Connectors.Count == 0))
+            {
+                Items.Clear(); //The input is not connected, so clear the list.
                 return;
+            }
 
+            var oldElement = element;
             element = GetInputElement();
+            if(element == null)
+            {
+                Items.Clear();
+                return;
+            }
+
+            if (oldElement != null && oldElement.Id == element.Id)
+                return;
 
             PopulateItems();
         }
@@ -174,48 +200,51 @@ namespace DSRevitNodesUI
 
             storedId = element.Id;
             Items.Clear();
+            
+            AddElementParams(element);
 
-            var fs = element as FamilySymbol;
-            var fi = element as FamilyInstance;
-            if(null != fs)
-                AddFamilySymbolParameters(fs);
-            if(null != fi)
-                AddFamilyInstanceParameters(fi);
+            Items = Items.OrderBy(x => x.Name).Distinct(new DropDownItemEqualityComparer()).ToObservableCollection<DynamoDropDownItem>();
 
-            Items = Items.OrderBy(x => x.Name).ToObservableCollection<DynamoDropDownItem>();
-
-            if (SelectedIndex == -1)
-            {
-                SelectedIndex = 0;
-                return SelectionState.Done;
-            }
             return SelectionState.Restore;
         }
 
-        private void AddFamilySymbolParameters(FamilySymbol fs)
+        private void AddElementParams(Element e)
         {
-            foreach (Parameter p in fs.Parameters)
+            foreach (Parameter p in e.Parameters)
             {
-                if (p.IsReadOnly || p.StorageType == StorageType.None)
-                    continue;
-                Items.Add(
-                    new DynamoDropDownItem(
-                        string.Format("{0}(Type)({1})", p.Definition.Name, getStorageTypeString(p.StorageType)), p.Definition.Name));
+                if (!(p.StorageType == StorageType.None))
+                {
+                    AddDropDownItem(p);
+                }
+            }
+            // if element can have type assigned it's safe to assume that it's an instance
+            // and add type parameters to the list
+            if (e.CanHaveTypeAssigned())
+            {
+                ElementType et = DocumentManager.Instance.CurrentDBDocument.GetElement(e.GetTypeId()) as ElementType;
+                if (et != null)
+                {
+                    AddTypeParams(et);
+                }
             }
         }
 
-        private void AddFamilyInstanceParameters(FamilyInstance fi)
+        private void AddTypeParams(ElementType et)
         {
-            foreach (Parameter p in fi.Parameters)
+            foreach (Parameter p in et.Parameters)
             {
-                if (p.IsReadOnly || p.StorageType == StorageType.None)
+                if (p.StorageType == StorageType.None)
                     continue;
-                Items.Add(
-                    new DynamoDropDownItem(
-                        string.Format("{0}({1})", p.Definition.Name, getStorageTypeString(p.StorageType)), p.Definition.Name));
-            }
 
-            AddFamilySymbolParameters(fi.Symbol);
+                AddDropDownItem(p);
+            }
+        }
+
+        private void AddDropDownItem(Parameter p)
+        {
+            Items.Add(
+                new DynamoDropDownItem(
+                    string.Format("{0}(Type)({1})", p.Definition.Name, getStorageTypeString(p.StorageType)), p.Definition.Name));
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
@@ -237,9 +266,14 @@ namespace DSRevitNodesUI
             
             var identifier = inputNode.GetAstIdentifierForOutputIndex(index).Name;
 
-            if (EngineController == null) return null;
-            var data = this.EngineController.GetMirror(identifier).GetData();
-
+            var data = inputNode.CachedValue; //This may not represent the correct value for multiple output ports.
+            //If EngineController is set, find the real mirrordata. In headless 
+            //mode it may not be set, because it is set from NodeView customization.
+            if (EngineController != null) 
+            {
+                data = this.EngineController.GetMirror(identifier).GetData();
+            }
+            if (data == null) return null;
 
             object family = data.IsCollection ? 
                 data.GetElements().FirstOrDefault() : 
@@ -325,20 +359,15 @@ namespace DSRevitNodesUI
 
             var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             fec.OfClass(typeof(Autodesk.Revit.DB.FloorType));
-
-            if (fec.ToElements().Count == 0)
+            var elements = fec.ToElements();
+            if (!elements.Any())
             {
                 Items.Add(new DynamoDropDownItem(Properties.Resources.NoFloorTypesAvailable, null));
                 SelectedIndex = 0;
                 return SelectionState.Done;
             }
 
-            foreach (var ft in fec.ToElements())
-            {
-                Items.Add(new DynamoDropDownItem(ft.Name, ft));
-            }
-
-            Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
             return SelectionState.Restore;
         }
 
@@ -381,19 +410,15 @@ namespace DSRevitNodesUI
             var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
 
             fec.OfClass(typeof(Autodesk.Revit.DB.WallType));
-            if (fec.ToElements().Count == 0)
+            var elements = fec.ToElements();
+            if (!elements.Any())
             {
                 Items.Add(new DynamoDropDownItem(Properties.Resources.NoWallTypesAvailable, null));
                 SelectedIndex = 0;
                 return SelectionState.Done;
             }
 
-            foreach (var wt in fec.ToElements())
-            {
-                Items.Add(new DynamoDropDownItem(wt.Name, wt));
-            }
-
-            Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
             return SelectionState.Restore;
         }
 
@@ -557,17 +582,15 @@ namespace DSRevitNodesUI
             //find all levels in the project
             var levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             levelColl.OfClass(typeof(Level));
-
-            if (levelColl.ToElements().Count == 0)
+            var elements = levelColl.ToElements();
+            if (!elements.Any())
             {
                 Items.Add(new DynamoDropDownItem(noLevels, null));
                 SelectedIndex = 0;
                 return SelectionState.Done;
             }
 
-            levelColl.ToElements().ToList().ForEach(x => Items.Add(new DynamoDropDownItem(x.Name, x)));
-
-            Items = Items.OrderBy(x => x.Name).ToObservableCollection<DynamoDropDownItem>();
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
             return SelectionState.Restore;
         }
 
@@ -614,18 +637,15 @@ namespace DSRevitNodesUI
 
             var catFilter = new ElementCategoryFilter(category);
             collector.OfClass(typeof(FamilySymbol)).WherePasses(catFilter);
-
-            if (collector.ToElements().Count == 0)
+            var elements = collector.ToElements();
+            if (!elements.Any())
             {
                 Items.Add(new DynamoDropDownItem(noTypesMessage, null));
                 SelectedIndex = 0;
                 return SelectionState.Done;
             }
 
-            foreach (var e in collector.ToElements())
-                Items.Add(new DynamoDropDownItem(e.Name, e));
-
-            Items = Items.OrderBy(x => x.Name).ToObservableCollection<DynamoDropDownItem>();
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
             return SelectionState.Restore;
         }
 

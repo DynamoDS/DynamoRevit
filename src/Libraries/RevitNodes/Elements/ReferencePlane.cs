@@ -265,6 +265,21 @@ namespace Revit.Elements
                                         Document.ActiveView);
         }
 
+        /// <summary>
+        /// Create reference plane by 3 points
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static ReferencePlane ByPoints(Point a, Point b, Point c)
+        {
+            return new ReferencePlane(a.ToXyz(),
+                            b.ToXyz(),
+                            c.ToXyz(),
+                            Document.ActiveView);
+        }
+
         #endregion
 
         #region Internal static constructors

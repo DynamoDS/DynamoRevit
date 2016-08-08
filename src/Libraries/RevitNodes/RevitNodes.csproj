@@ -117,6 +117,9 @@
     <Compile Include="Elements\Views\SectionView.cs" />
     <Compile Include="Elements\Views\Packing\OutOfSpaceException.cs" />
     <Compile Include="Elements\Views\Packing\RectanglePacker.cs" />
+    <Compile Include="Filter\FilterRule.cs" />
+    <Compile Include="Filter\OverrideGraphicSettings.cs" />
+    <Compile Include="Filter\ParameterFilterElement.cs" />
     <Compile Include="GeometryConversion\EdgeLoopPartition.cs" />
     <Compile Include="GeometryConversion\EnumerableExtensions.cs" />
     <Compile Include="GeometryConversion\GeometryDebugging.cs" />

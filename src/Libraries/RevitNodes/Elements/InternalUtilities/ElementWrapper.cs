@@ -212,6 +212,7 @@ namespace Revit.Elements
            return Mullion.FromExisting(ele, isRevitOwned);
         }
 
+
         public static FilledRegionType Wrap(Autodesk.Revit.DB.FilledRegionType ele, bool isRevitOwned)
         {
             return FilledRegionType.FromExisting(ele, isRevitOwned);
@@ -220,6 +221,11 @@ namespace Revit.Elements
         public static FilledRegion Wrap(Autodesk.Revit.DB.FilledRegion ele, bool isRevitOwned)
         {
             return FilledRegion.FromExisting(ele, isRevitOwned);
+	}
+
+        public static Revit.Filter.ParameterFilterElement Wrap(Autodesk.Revit.DB.ParameterFilterElement ele, bool isRevitOwned)
+        {
+            return Revit.Filter.ParameterFilterElement.FromExisting(ele, isRevitOwned);
         }
 
         #endregion
