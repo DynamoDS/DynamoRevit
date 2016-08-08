@@ -21,20 +21,16 @@ namespace RevitNodesTests.Elements
 
 
         [Test]
-        [TestModel(@".\MassWithBoxAndCone.rfa")]
+        [TestModel(@".\InPlaceMass.rfa")]
         public void ByFace()
         {
-            // obtain the element id for the box family
-            var name = "Box";
+            var mass =  Revit.Elements.ElementSelector.ByElementId(205302);
 
-            // look up the loaded family
-            var family = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Family>()
-                                                      .FirstOrDefault(x => x.Name == name);
-            Assert.NotNull(family);
+            Assert.NotNull(mass);
             
             Face face = null;
 
-            foreach (Solid solid in family.get_Geometry(new Options(){ }))
+            foreach (Solid solid in mass.InternalElement.get_Geometry(new Options() { }))
             {
                 face = solid.Faces.get_Item(0);
             }
@@ -44,7 +40,7 @@ namespace RevitNodesTests.Elements
             var faceRef = Revit.GeometryReferences.ElementFaceReference.FromExisting(face);
             Assert.IsNotNull(faceRef);
 
-            var wallType = Revit.Elements.WallType.ByName( "Curtain Wall 1" );
+            var wallType = Revit.Elements.WallType.ByName( "Generic 8\"" );
             Assert.IsNotNull(wallType);
 
             var wall = Revit.Elements.FaceWall.ByFace(Autodesk.Revit.DB.WallLocationLine.CoreCenterline, wallType,faceRef);
