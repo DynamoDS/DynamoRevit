@@ -1,22 +1,37 @@
-<Workspace Version="0.6.3.7993" X="274.0375" Y="-217.03" zoom="0.8425" Description="" Category="" Name="Home">
+<Workspace Version="1.0.1.1922" X="311.839109975143" Y="-2.03610503956372" zoom="0.496186487382813" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="False">
+  <NamespaceResolutionMap />
   <Elements>
-    <Dynamo.Nodes.SpatialFieldManager type="Dynamo.Nodes.SpatialFieldManager" guid="782f6d97-2c9c-484c-9b29-5df6a273dc7a" nickname="Analysis Display Manager" x="246.543026706231" y="548.700296735905" isVisible="true" isUpstreamVisible="true" lacing="Longest">
-      <Run />
-    </Dynamo.Nodes.SpatialFieldManager>
-    <Dynamo.Nodes.AnalysisResultsDisplayStyleColor type="Dynamo.Nodes.AnalysisResultsDisplayStyleColor" guid="fa9e0410-1f94-4d44-a15d-de76a1bd7d50" nickname="Analysis Display Style" x="246.543026706231" y="686.78140454995" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
-    <Dynamo.Nodes.SpatialFieldCurve type="Dynamo.Nodes.SpatialFieldCurve" guid="93fc2ede-0d81-4e54-8c5d-b3b2edf0b70a" nickname="Display Analysis Curve" x="246.543026706231" y="824.862512363996" isVisible="true" isUpstreamVisible="true" lacing="Longest">
-      <Run />
-    </Dynamo.Nodes.SpatialFieldCurve>
-    <Dynamo.Nodes.SpatialFieldPoints type="Dynamo.Nodes.SpatialFieldPoints" guid="746b25ee-43d7-4f7c-a290-946c6e17db33" nickname="Display Analysis Points" x="246.543026706231" y="962.943620178041" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
-      <Run />
-    </Dynamo.Nodes.SpatialFieldPoints>
-    <Dynamo.Nodes.SpatialFieldFace type="Dynamo.Nodes.SpatialFieldFace" guid="7e1f20ea-5108-4f09-b50c-7b7dc518f436" nickname="Display Analysis Surface" x="582.448071216617" y="553.448071216617" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
-      <Run />
-    </Dynamo.Nodes.SpatialFieldFace>
-    <Dynamo.Nodes.SpatialFieldVectors type="Dynamo.Nodes.SpatialFieldVectors" guid="8575fdde-8eba-4eca-ae9f-3ce808773fa6" nickname="Display Analysis Vectors" x="583.635014836795" y="773.032640949555" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
-      <Run />
-    </Dynamo.Nodes.SpatialFieldVectors>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e044c6cb-3907-4eaa-8e8b-c0381aa9103e" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Document.Current" x="96.543026706231" y="962.943620178041" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Application.Document.Current" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="88f8775e-03a2-4724-820d-54dcca0671aa" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Document.ActiveView" x="96.543026706231" y="1062.94362017804" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Application.Document.ActiveView" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="746b25ee-43d7-4f7c-a290-946c6e17db33" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="PointAnalysisDisplay.ByViewPointsAndValues" x="246.543026706231" y="962.943620178041" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.AnalysisDisplay.PointAnalysisDisplay.ByViewPointsAndValues@Revit.Elements.Views.View,Autodesk.DesignScript.Geometry.Point[],double[],string,string,var">
+      <PortInfo index="3" default="True" />
+      <PortInfo index="4" default="True" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="7e1f20ea-5108-4f09-b50c-7b7dc518f436" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="FaceAnalysisDisplay.ByViewFacePointsAndValues" x="582.448071216617" y="553.448071216617" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.AnalysisDisplay.FaceAnalysisDisplay.ByViewFacePointsAndValues@Revit.Elements.Views.View,Autodesk.DesignScript.Geometry.Surface,Autodesk.DesignScript.Geometry.UV[],double[],string,string,var">
+      <PortInfo index="4" default="True" />
+      <PortInfo index="5" default="True" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="31b1230c-32d7-484d-9385-ca7efe89b5f8" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Document.Current" x="432.448071216617" y="553.448071216617" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Application.Document.Current" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="4c68226a-0dd1-41eb-b358-869ab1ad14d9" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Document.ActiveView" x="432.448071216617" y="653.448071216617" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Application.Document.ActiveView" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="8575fdde-8eba-4eca-ae9f-3ce808773fa6" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="VectorAnalysisDisplay.ByViewPointsAndVectorValues" x="583.635014836795" y="773.032640949555" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.AnalysisDisplay.VectorAnalysisDisplay.ByViewPointsAndVectorValues@Revit.Elements.Views.View,Autodesk.DesignScript.Geometry.Point[],Autodesk.DesignScript.Geometry.Vector[],string,string,var">
+      <PortInfo index="3" default="True" />
+      <PortInfo index="4" default="True" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="cbc6fcc7-e6cb-4879-b2b7-3c7ed8dbb60e" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Document.Current" x="433.635014836795" y="773.032640949555" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Application.Document.Current" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="c1ff1fdf-8da8-4dad-b2ee-5dbdfbf56932" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Document.ActiveView" x="433.635014836795" y="873.032640949555" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Application.Document.ActiveView" />
   </Elements>
-  <Connectors />
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="e044c6cb-3907-4eaa-8e8b-c0381aa9103e" start_index="0" end="88f8775e-03a2-4724-820d-54dcca0671aa" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="88f8775e-03a2-4724-820d-54dcca0671aa" start_index="0" end="746b25ee-43d7-4f7c-a290-946c6e17db33" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="31b1230c-32d7-484d-9385-ca7efe89b5f8" start_index="0" end="4c68226a-0dd1-41eb-b358-869ab1ad14d9" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4c68226a-0dd1-41eb-b358-869ab1ad14d9" start_index="0" end="7e1f20ea-5108-4f09-b50c-7b7dc518f436" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="cbc6fcc7-e6cb-4879-b2b7-3c7ed8dbb60e" start_index="0" end="c1ff1fdf-8da8-4dad-b2ee-5dbdfbf56932" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c1ff1fdf-8da8-4dad-b2ee-5dbdfbf56932" start_index="0" end="8575fdde-8eba-4eca-ae9f-3ce808773fa6" end_index="0" portType="0" />
+  </Connectors>
   <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
 </Workspace>

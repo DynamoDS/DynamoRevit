@@ -212,6 +212,7 @@ namespace Revit.Elements
            return Mullion.FromExisting(ele, isRevitOwned);
         }
 
+<<<<<<< HEAD
         public static Revision Wrap(Autodesk.Revit.DB.Revision ele, bool isRevitOwned)
         {
             return Revision.FromExisting(ele, isRevitOwned);
@@ -220,6 +221,11 @@ namespace Revit.Elements
         public static RevisionCloud Wrap(Autodesk.Revit.DB.RevisionCloud ele, bool isRevitOwned)
         {
             return RevisionCloud.FromExisting(ele, isRevitOwned);
+=======
+        public static Revit.Filter.ParameterFilterElement Wrap(Autodesk.Revit.DB.ParameterFilterElement ele, bool isRevitOwned)
+        {
+            return Revit.Filter.ParameterFilterElement.FromExisting(ele, isRevitOwned);
+>>>>>>> upstream/Revit2016
         }
 
         #endregion

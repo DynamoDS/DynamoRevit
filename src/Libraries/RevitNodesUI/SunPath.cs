@@ -33,7 +33,7 @@ namespace DSRevitNodesUI
 
             RegisterAllPorts();
 
-            RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
             DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
 
             DynamoRevitApp.AddIdleAction(() => CurrentUIApplicationOnViewActivated());
@@ -41,7 +41,7 @@ namespace DSRevitNodesUI
 
         public override void Dispose()
         {
-            RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
+            RevitServicesUpdater.Instance.ElementsUpdated -= Updater_ElementsUpdated;
             DynamoRevitApp.EventHandlerProxy.ViewActivated -= CurrentUIApplication_ViewActivated;
 
             base.Dispose();
@@ -59,9 +59,11 @@ namespace DSRevitNodesUI
             OnNodeModified(forceExecute:true);
         }
 
-        private void Updater_ElementsModified(IEnumerable<string> updated)
+        private void Updater_ElementsUpdated(object sender, ElementUpdateEventArgs e)
         {
-            if (updated.Contains(settingsID))
+            if (e.Operation != ElementUpdateEventArgs.UpdateType.Modified) return;
+
+            if (e.GetUniqueIds().Contains(settingsID))
             {
                 OnNodeModified(forceExecute:true);
             }
