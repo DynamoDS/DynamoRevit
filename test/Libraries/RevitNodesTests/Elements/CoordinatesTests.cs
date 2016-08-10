@@ -22,7 +22,7 @@ namespace RevitNodesTests.Elements
 
         [Test]
         [TestModel(@".\Empty.rvt")]
-        public void BasePoint_Valid()
+        public void SurveyPoint_Valid()
         {
             var spoint = Coordinates.SurveyPoint();
             Assert.IsNotNull(spoint);
@@ -31,7 +31,7 @@ namespace RevitNodesTests.Elements
 
         [Test]
         [TestModel(@".\Empty.rvt")]
-        public void BasePoint_Valid()
+        public void ProjectRotationPoint_Valid()
         {
             var rot = Coordinates.ProjectRotation();
             Assert.IsNotNull(rot);
