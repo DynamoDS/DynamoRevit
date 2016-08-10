@@ -318,5 +318,7 @@
   <data name="DynamoSolidToRevitBRepFailure" xml:space="preserve">
     <value>An unexpected failure occurred when attempting to convert the solid into a Revit BRep</value>
   </data>
-
+  <data name="CannotGetBaseOrSurveyPoint" xml:space="preserve">
+    <value>Cannot get base or survey point from document.</value>
+  </data>
 </root>
