@@ -171,14 +171,12 @@ namespace DSRevitNodesUI
                 }
             }
 
-            // get the selected items name
-            var stringNode = AstFactory.BuildStringNode((string)Items[SelectedIndex].Name);
+            // Parse string to enum value using the Revit.Elements.ParseEnum node
+            var node = AstFactory.BuildFunctionCall("Revit.Elements.ParseEnum", "ByString",
+                 new List<AssociativeNode> { AstFactory.BuildStringNode((string)Items[SelectedIndex].Name), AstFactory.BuildStringNode(this.EnumerationType.FullName) });
 
-            // assign the selected name to an actual enumeration value
-            var assign = AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), stringNode);
-
-            // return the enumeration value
-            return new List<AssociativeNode> { assign };
+            // Return the selected element
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
         }
     }
 }
