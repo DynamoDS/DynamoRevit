@@ -91,6 +91,10 @@
     <Compile Include="Elements\InternalUtilities\TransformUtils.cs" />
     <Compile Include="Elements\Mullion.cs" />
     <Compile Include="Elements\SunSettings.cs" />
+    <Compile Include="Elements\Tag.cs" />
+    <Compile Include="Elements\TextElement.cs" />
+    <Compile Include="Elements\TextNote.cs" />
+    <Compile Include="Elements\TextNoteType.cs" />
     <Compile Include="Elements\UnknownElement.cs" />
     <Compile Include="Elements\FloorType.cs" />
     <Compile Include="Elements\ImportInstance.cs" />
