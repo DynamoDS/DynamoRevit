@@ -104,6 +104,8 @@
     <Compile Include="Elements\SunSettingsTests.cs" />
     <Compile Include="Elements\SketchPlaneTests.cs" />
     <Compile Include="Elements\StructuralFramingTests.cs" />
+    <Compile Include="Elements\TagTests.cs" />
+    <Compile Include="Elements\TextNoteTests.cs" />
     <Compile Include="Elements\TopographyTests.cs" />
     <Compile Include="Elements\Views\AxonometricViewTests.cs" />
     <Compile Include="Elements\Views\CeilingPlanViewTests.cs" />
