@@ -25,7 +25,7 @@ namespace RevitNodesTests.Elements
             var modelCurve = ModelCurve.ByCurve(line);
             Assert.NotNull(line);
 
-            var tag = Tag.ByElement(Revit.Application.Document.Current.ActiveView, modelCurve, true, false, null);
+            var tag = Tag.ByElement(Revit.Application.Document.Current.ActiveView, modelCurve, true, false, Autodesk.Revit.DB.HorizontalAlignmentStyle.Center, Autodesk.Revit.DB.VerticalAlignmentStyle.Middle, Vector.ByCoordinates(0,0,0));
             Assert.NotNull(tag);
           
         }

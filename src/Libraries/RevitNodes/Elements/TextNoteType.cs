@@ -105,7 +105,7 @@ namespace Revit.Elements
         /// <returns></returns>
         public static TextNoteType Default()
         {
-            Autodesk.Revit.DB.FilteredElementCollector collector = new Autodesk.Revit.DB.FilteredElementCollector(typeof(Autodesk.Revit.DB.TextNoteType));
+            Autodesk.Revit.DB.FilteredElementCollector collector = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument).OfClass(typeof(Autodesk.Revit.DB.TextNoteType));
             return FromExisting((Autodesk.Revit.DB.TextNoteType)collector.FirstOrDefault(), true);
         }
 
