@@ -69,7 +69,7 @@ namespace Revit.Elements
       }
 
       /// <summary>
-      ///get all mullions of curtain wall, system or slope galzing roof
+      ///get all mullions of curtain wall, system or slope glazing roof
       /// </summary>
       /// <param name="hostingElement"></param>
       public static Mullion[] ByElement(Element hostingElement)
