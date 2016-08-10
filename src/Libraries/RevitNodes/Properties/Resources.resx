@@ -318,5 +318,7 @@
   <data name="DynamoSolidToRevitBRepFailure" xml:space="preserve">
     <value>An unexpected failure occurred when attempting to convert the solid into a Revit BRep</value>
   </data>
-
+  <data name="ViewDoesNotSupportAnnotations" xml:space="preserve">
+    <value>View does not support annotations.</value>
+  </data>
 </root>
