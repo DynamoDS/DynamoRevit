@@ -133,7 +133,7 @@ namespace Revit.Elements
             if (bold == true) fontWeight = FontWeights.Bold;
             if (italic == true) fontStyle = FontStyles.Italic;
 
-            FormattedText formattedText = new FormattedText(
+            System.Windows.Media.FormattedText formattedText = new System.Windows.Media.FormattedText(
                 text,
                 System.Globalization.CultureInfo.GetCultureInfo("en-us"),
                 FlowDirection.LeftToRight,
