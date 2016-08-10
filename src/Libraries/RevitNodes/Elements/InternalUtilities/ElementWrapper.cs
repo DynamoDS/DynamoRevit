@@ -212,6 +212,21 @@ namespace Revit.Elements
            return Mullion.FromExisting(ele, isRevitOwned);
         }
 
+        public static TextNote Wrap(Autodesk.Revit.DB.TextNote ele, bool isRevitOwned)
+        {
+            return TextNote.FromExisting(ele, isRevitOwned);
+        }
+
+        public static Tag Wrap(Autodesk.Revit.DB.IndependentTag ele, bool isRevitOwned)
+        {
+            return Tag.FromExisting(ele, isRevitOwned);
+        }
+
+        public static TextNoteType Wrap(Autodesk.Revit.DB.TextNoteType ele, bool isRevitOwned)
+        {
+            return TextNoteType.FromExisting(ele, isRevitOwned);
+        }
+
         #endregion
 
     }
