@@ -34,6 +34,23 @@ namespace RevitNodesTests.Elements
         }
 
 
+        [Test]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
+        public void ByCircle_ValidArgs()
+        {
+            Autodesk.Revit.DB.FilteredElementCollector collector = new Autodesk.Revit.DB.FilteredElementCollector(Revit.Application.Document.Current.InternalDocument).OfClass(typeof(Autodesk.Revit.DB.FilledRegionType));
+            FilledRegionType type = FilledRegionType.FromExisting((Autodesk.Revit.DB.FilledRegionType)collector.FirstOrDefault(), true);
+
+            Assert.NotNull(type);
+
+            Circle c = Circle.ByCenterPointRadius(Point.ByCoordinates(0, 0, 0), 10);
+            Assert.NotNull(c);
+
+            var reg = FilledRegion.ByCurves(Revit.Application.Document.Current.ActiveView, c.ApproximateWithArcAndLineSegments(), type);
+            Assert.NotNull(reg);
+
+        }
+
 
 
     }
