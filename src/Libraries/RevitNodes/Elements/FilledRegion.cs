@@ -139,12 +139,21 @@ namespace Revit.Elements
 
             CurveLoop loop = new CurveLoop();
             foreach (Autodesk.DesignScript.Geometry.Curve curve in boundary)
+            {
                 loop.Append(curve.ToRevitType());
+            }
+
+            if (loop.IsOpen())
+            {
+                throw new Exception(Properties.Resources.CurveLoopNotClosed);
+            }
 
             Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
 
             if (!view.IsAnnotationView())
+            {
                 throw new Exception(Properties.Resources.ViewDoesNotSupportAnnotations);
+            }
 
             return new FilledRegion(revitView, type.Id, new List<CurveLoop>() { loop });
         }

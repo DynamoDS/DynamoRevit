@@ -66,6 +66,34 @@ namespace Revit.Elements
 
         #endregion
 
+        #region Public properties
+
+        /// <summary>
+        /// Get Name
+        /// </summary>
+        public string Name
+        {
+            get { return this.InternalRevitElement.Name; }
+        }
+
+        /// <summary>
+        /// Get Color
+        /// </summary>
+        public DSCore.Color Color
+        {
+            get { return DSCore.Color.ByARGB(255, this.InternalRevitElement.Color.Red,this.InternalRevitElement.Color.Green, this.InternalRevitElement.Color.Blue); }
+        }
+
+        /// <summary>
+        /// Get FillPatternId
+        /// </summary>
+        public ElementId FillPatternId
+        {
+            get { return this.InternalRevitElement.FillPatternId; }
+        }
+
+        #endregion
+
         #region Helpers for private constructors
 
         /// <summary>

@@ -318,4 +318,7 @@
   <data name="InvalidFilterType" xml:space="preserve">
     <value>FilterType is not valid.</value>
   </data>
+  <data name="CurveLoopNotClosed" xml:space="preserve">
+    <value>Curves do not form a closed loop.</value>
+  </data>
 </root>
