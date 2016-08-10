@@ -321,4 +321,7 @@
   <data name="InvalidFilterType" xml:space="preserve">
     <value>FilterType is not valid.</value>
   </data>
+  <data name="ViewDoesNotSupportAnnotations" xml:space="preserve">
+    <value>View does not support annotations.</value>
+  </data>
 </root>
