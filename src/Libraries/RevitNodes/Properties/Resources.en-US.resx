@@ -312,6 +312,9 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
+  <data name="CannotGetBaseOrSurveyPoint" xml:space="preserve">
+    <value>Cannot get base or survey point from document.</value>
+  </data>
   <data name="InvalidFilterType" xml:space="preserve">
     <value>FilterType is not valid.</value>
   </data>
