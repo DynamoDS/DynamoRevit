@@ -97,6 +97,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot get base or survey point from document..
+        /// </summary>
+        internal static string CannotGetBaseOrSurveyPoint {
+            get {
+                return ResourceManager.GetString("CannotGetBaseOrSurveyPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find cell for panel.
         /// </summary>
         internal static string CellForPanelNotFound {
