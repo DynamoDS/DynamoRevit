@@ -312,4 +312,7 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
+  <data name="InvalidShapeEditor" xml:space="preserve">
+    <value>Floor Shape cannot be edited.</value>
+  </data>
 </root>
