@@ -464,6 +464,15 @@ namespace Revit.Properties {
                 return ResourceManager.GetString("InvalidHost", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Floor Shape cannot be edited..
+        /// </summary>
+        internal static string InvalidShapeEditor {
+            get {
+                return ResourceManager.GetString("InvalidShapeEditor", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to The height must be greater than 0 and less that 30000 ft.  You provided a height of {0} ft..

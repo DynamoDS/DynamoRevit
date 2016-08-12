@@ -353,5 +353,7 @@
   </data>
   <data name="TypeNotFound" xml:space="preserve">
     <value>Type not found in document.</value>
+  <data name="InvalidShapeEditor" xml:space="preserve">
+    <value>Floor Shape cannot be edited.</value>
   </data>
 </root>
