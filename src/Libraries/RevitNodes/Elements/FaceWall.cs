@@ -126,7 +126,7 @@ namespace Revit.Elements
                     Reference refr = reference as Reference;
                     return new FaceWall(location, wallType.InternalWallType, refr);
                 }
-                catch (Exception) { throw new Exception("The selected face cannot be used to create a wall. Please use a mass face instead."); }
+                catch (Exception) { throw new Exception(Properties.Resources.InvalidFace); }
             }
             return null;
         }

@@ -474,12 +474,11 @@ namespace Revit.Properties {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Floor Shape cannot be edited..
+        ///   Looks up a localized string similar to The selected face cannot be used to create a wall. Please use a mass face instead..
         /// </summary>
-        internal static string InvalidShapeEditor {
+        internal static string InvalidFace {
             get {
-                return ResourceManager.GetString("InvalidShapeEditor", resourceCulture);
+                return ResourceManager.GetString("InvalidFace", resourceCulture);
             }
         }
         
