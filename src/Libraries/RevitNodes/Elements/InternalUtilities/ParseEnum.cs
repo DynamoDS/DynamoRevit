@@ -30,7 +30,14 @@ namespace Revit.Elements
 
             if (type != null)
             {
-                return Enum.Parse(type, value);
+                if (Enum.IsDefined(type, value))
+                {
+                    return Enum.Parse(type, value);
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {
