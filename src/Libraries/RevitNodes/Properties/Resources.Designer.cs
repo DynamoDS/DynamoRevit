@@ -97,6 +97,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot get base or survey point from document..
+        /// </summary>
+        internal static string CannotGetBaseOrSurveyPoint {
+            get {
+                return ResourceManager.GetString("CannotGetBaseOrSurveyPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find cell for panel.
         /// </summary>
         internal static string CellForPanelNotFound {
@@ -642,6 +651,15 @@ namespace Revit.Properties {
         internal static string View_ExportAsImage_Path_Invalid {
             get {
                 return ResourceManager.GetString("View_ExportAsImage_Path_Invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View does not support annotations..
+        /// </summary>
+        internal static string ViewDoesNotSupportAnnotations {
+            get {
+                return ResourceManager.GetString("ViewDoesNotSupportAnnotations", resourceCulture);
             }
         }
         
