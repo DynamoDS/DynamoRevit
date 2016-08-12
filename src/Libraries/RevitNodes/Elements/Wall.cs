@@ -209,6 +209,18 @@ namespace Revit.Elements
             return ByCurveAndHeight(c, height, startLevel, wallType);
         }
 
+        /// <summary>
+        /// Create Wall by Face reference
+        /// </summary>
+        /// <param name="location"></param>
+        /// <param name="wallType"></param>
+        /// <param name="surface"></param>
+        /// <returns></returns>
+        public static FaceWall ByFace(WallLocationLine location, WallType wallType, Autodesk.DesignScript.Geometry.Surface surface)
+        {
+            return FaceWall.ByFace(location, wallType, surface);
+        }
+
         #endregion
 
         #region Internal static constructors
