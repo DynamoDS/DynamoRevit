@@ -114,14 +114,19 @@ namespace Revit.Elements
         #endregion
 
         #region Public static constructors
-
+        
+        [Autodesk.DesignScript.Runtime.IsVisibleInDynamoLibrary(false)]
         public static FaceWall ByFace(WallLocationLine location, WallType wallType, Autodesk.DesignScript.Geometry.Surface surface)
         {
             object reference = surface.Tags.LookupTag("RevitFaceReference");
             if (reference != null && reference.GetType() == typeof(Reference))
             {
-                Reference refr = reference as Reference;
-                return new FaceWall(location, wallType.InternalWallType, refr);
+                try
+                {
+                    Reference refr = reference as Reference;
+                    return new FaceWall(location, wallType.InternalWallType, refr);
+                }
+                catch (Exception) { throw new Exception("The selected face cannot be used to create a wall. Please use a mass face instead."); }
             }
             return null;
         }
