@@ -115,9 +115,15 @@ namespace Revit.Elements
 
         #region Public static constructors
 
-        public static FaceWall ByFace(WallLocationLine location, WallType wallType, Revit.GeometryReferences.ElementFaceReference face)
+        public static FaceWall ByFace(WallLocationLine location, WallType wallType, Autodesk.DesignScript.Geometry.Surface surface)
         {
-            return new FaceWall(location, wallType.InternalWallType, face.InternalReference);
+            object reference = surface.Tags.LookupTag("RevitFaceReference");
+            if (reference != null && reference.GetType() == typeof(Reference))
+            {
+                Reference refr = reference as Reference;
+                return new FaceWall(location, wallType.InternalWallType, refr);
+            }
+            return null;
         }
 
         #endregion
