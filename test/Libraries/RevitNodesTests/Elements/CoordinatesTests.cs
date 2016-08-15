@@ -17,7 +17,7 @@ namespace RevitNodesTests.Elements
         {
             var basepoint = Coordinates.BasePoint();
             Assert.IsNotNull(basepoint);
-            Assert.IsTrue(basepoint.Equals(Autodesk.DesignScript.Geometry.Point.Origin()));
+            basepoint.ShouldBeApproximately(Autodesk.DesignScript.Geometry.Point.Origin());
         }
 
         [Test]
@@ -26,7 +26,7 @@ namespace RevitNodesTests.Elements
         {
             var spoint = Coordinates.SurveyPoint();
             Assert.IsNotNull(spoint);
-            Assert.IsTrue(spoint.Equals(Autodesk.DesignScript.Geometry.Point.Origin()));
+            spoint.ShouldBeApproximately(Autodesk.DesignScript.Geometry.Point.Origin());
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace RevitNodesTests.Elements
         {
             var rot = Coordinates.ProjectRotation();
             Assert.IsNotNull(rot);
-            Assert.IsTrue(rot == 0.0);
+            rot.ShouldBeApproximately(0.0);
         }
 
 
