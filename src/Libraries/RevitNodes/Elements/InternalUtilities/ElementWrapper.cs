@@ -225,11 +225,17 @@ namespace Revit.Elements
         public static TextNoteType Wrap(Autodesk.Revit.DB.TextNoteType ele, bool isRevitOwned)
         {
             return TextNoteType.FromExisting(ele, isRevitOwned);
-	}
+		}
 
         public static Revit.Filter.ParameterFilterElement Wrap(Autodesk.Revit.DB.ParameterFilterElement ele, bool isRevitOwned)
         {
             return Revit.Filter.ParameterFilterElement.FromExisting(ele, isRevitOwned);
+		}
+
+
+        public static Room Wrap(Autodesk.Revit.DB.Architecture.Room ele, bool isRevitOwned)
+        {
+            return Room.FromExisting(ele, isRevitOwned);
         }
 
         #endregion
