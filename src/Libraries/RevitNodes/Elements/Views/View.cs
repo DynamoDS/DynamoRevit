@@ -24,6 +24,26 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
+        /// Check if this type of view supports annotative elements
+        /// </summary>
+        /// <returns></returns>
+        internal bool IsAnnotationView()
+        {
+            switch (this.InternalView.ViewType)
+            {
+                case Autodesk.Revit.DB.ViewType.FloorPlan:
+                case Autodesk.Revit.DB.ViewType.EngineeringPlan:
+                case Autodesk.Revit.DB.ViewType.Detail:
+                case Autodesk.Revit.DB.ViewType.Section:
+                case Autodesk.Revit.DB.ViewType.Elevation:
+                case Autodesk.Revit.DB.ViewType.CeilingPlan:
+                    return true;
+
+                default: return false;
+            }
+        }
+        
+        /// <summary>
         /// Export the view as an image to the given path - defaults to png, but you can override 
         /// the file type but supplying a path with the appropriate extension
         /// </summary>
