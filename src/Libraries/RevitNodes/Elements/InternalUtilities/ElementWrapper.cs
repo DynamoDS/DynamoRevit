@@ -212,6 +212,13 @@ namespace Revit.Elements
            return Mullion.FromExisting(ele, isRevitOwned);
         }
 
+        public static CurtainSystem Wrap(Autodesk.Revit.DB.CurtainSystem ele, bool isRevitOwned)
+        {
+            return CurtainSystem.FromExisting(ele, isRevitOwned);
+        }
+
+
+
         #endregion
 
     }
