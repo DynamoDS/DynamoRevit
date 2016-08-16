@@ -238,8 +238,6 @@ namespace Revit.Elements
             }
         }
 
-
-
         #endregion
 
         #region Internal static constructors
