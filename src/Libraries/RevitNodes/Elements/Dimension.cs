@@ -93,7 +93,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Init by By Elements
+        /// Init by Elements
         /// </summary>
         /// <param name="view"></param>
         /// <param name="line"></param>
