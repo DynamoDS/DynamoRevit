@@ -360,7 +360,7 @@ namespace Revit.Elements
       }
 
       /// <summary>
-      ///get all panels of curtain wall, system or slope galzing roof
+      ///get all panels of curtain wall, system or slope glazing roof
       /// </summary>
       /// <param name="hostingElement"></param>
       public static CurtainPanel[] ByElement(Element hostingElement)
