@@ -31,7 +31,7 @@ namespace RevitSystemTests
 
             var tagelement = GetPreviewValue("73d7876d-c04a-418c-8f86-2e36c44d9833");
 
-            Assert.IsInstanceOfType(typeof(Revit.Elements.Tag), tagelement.GetType());
+            Assert.AreEqual(typeof(Revit.Elements.Tag), tagelement.GetType());
 
         }
 

@@ -31,7 +31,7 @@ namespace RevitSystemTests
 
             var textelement = GetPreviewValue("078437f0-b5a8-4690-9506-c3221513f1da");
 
-            Assert.IsInstanceOfType(typeof(Revit.Elements.TextNote), textelement.GetType());
+            Assert.AreEqual(typeof(Revit.Elements.TextNote), textelement.GetType());
 
             Revit.Elements.TextNote note = (Revit.Elements.TextNote)textelement;
 
