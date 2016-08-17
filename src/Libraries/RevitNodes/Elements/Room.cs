@@ -136,6 +136,35 @@ namespace Revit.Elements
 
         #endregion
 
+        #region Private Helpers
+
+        private IEnumerable<IEnumerable<Autodesk.DesignScript.Geometry.Curve>> GetBoundaries(Autodesk.Revit.DB.SpatialElementBoundaryLocation position)
+        {
+            Autodesk.Revit.DB.SpatialElementBoundaryOptions options = new Autodesk.Revit.DB.SpatialElementBoundaryOptions()
+            {
+                SpatialElementBoundaryLocation = position,
+                StoreFreeBoundaryFaces = true
+            };
+
+            List<List<Autodesk.DesignScript.Geometry.Curve>> boundaries = new List<List<Autodesk.DesignScript.Geometry.Curve>>();
+
+            foreach (List<Autodesk.Revit.DB.BoundarySegment> segments in this.InternalRevitElement.GetBoundarySegments(options))
+            {
+                List<Autodesk.DesignScript.Geometry.Curve> boundary = new List<Autodesk.DesignScript.Geometry.Curve>();
+
+                foreach (Autodesk.Revit.DB.BoundarySegment segment in segments)
+                {
+                    boundary.Add(segment.GetCurve().ToProtoType());
+                }
+
+                boundaries.Add(boundary);
+            }
+
+            return boundaries;
+        }
+
+        #endregion
+
         #region Public static constructors
 
         /// <summary>
@@ -185,6 +214,75 @@ namespace Revit.Elements
         public double Height
         {
             get { return this.InternalRevitElement.UnboundedHeight; }
+        }
+
+        /// <summary>
+        /// Centerline boundary
+        /// </summary>
+        public IEnumerable<IEnumerable<Autodesk.DesignScript.Geometry.Curve>> CenterBoundary
+        {
+            get
+            {
+                return GetBoundaries(Autodesk.Revit.DB.SpatialElementBoundaryLocation.Center);
+            }
+        }
+
+        /// <summary>
+        /// Core boundary
+        /// </summary>
+        public IEnumerable<IEnumerable<Autodesk.DesignScript.Geometry.Curve>> CoreBoundary
+        {
+            get
+            {
+                return GetBoundaries(Autodesk.Revit.DB.SpatialElementBoundaryLocation.CoreBoundary);
+            }
+        }
+
+        /// <summary>
+        /// Finish boundary
+        /// </summary>
+        public IEnumerable<IEnumerable<Autodesk.DesignScript.Geometry.Curve>> FinishBoundary
+        {
+            get
+            {
+                return GetBoundaries(Autodesk.Revit.DB.SpatialElementBoundaryLocation.Finish);
+            }
+        }
+
+        /// <summary>
+        /// Core center boundary
+        /// </summary>
+        public IEnumerable<IEnumerable<Autodesk.DesignScript.Geometry.Curve>> CoreCenterBoundary
+        {
+            get
+            {
+                return GetBoundaries(Autodesk.Revit.DB.SpatialElementBoundaryLocation.CoreCenter);
+            }
+        }
+
+        /// <summary>
+        /// Get Room Location
+        /// </summary>
+        public Autodesk.DesignScript.Geometry.Point Location
+        {
+            get
+            {
+                if (this.InternalRevitElement.Location is Autodesk.Revit.DB.LocationPoint)
+                {
+                    Autodesk.Revit.DB.LocationPoint loc = this.InternalRevitElement.Location as Autodesk.Revit.DB.LocationPoint;
+                    return loc.Point.ToPoint();
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Check if a point is inside of a room
+        /// </summary>
+        public bool IsInsideRoom(Autodesk.DesignScript.Geometry.Point point)
+        {
+            return this.InternalRevitElement.IsPointInRoom(point.ToRevitType());
         }
 
         /// <summary>
