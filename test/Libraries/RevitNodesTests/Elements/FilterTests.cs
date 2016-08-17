@@ -15,13 +15,11 @@ namespace RevitNodesTests.Elements
     [TestFixture]
     public class FilterTests : RevitNodeTestBase
     {
-
         [Test]
-        [TestModel(@".\element.rvt")]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
         public void CreateFilterRule_ValidArgs()
         {
-
-            Element wall = ElementSelector.ByType<Autodesk.Revit.DB.Wall>(true).First();
+            Element wall = Revit.Elements.ElementSelector.ByElementId(205280, true);
             Parameter p = new Parameter(wall.InternalElement.LookupParameter("Comments"));
 
             var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.FilterType.BeginsWith, "my", p);
@@ -31,11 +29,11 @@ namespace RevitNodesTests.Elements
 
 
         [Test]
-        [TestModel(@".\element.rvt")]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
         public void CreateParameterFilterElement_ValidArgs()
         {
 
-            Element wall = ElementSelector.ByType<Autodesk.Revit.DB.FamilyInstance>(true).First();
+            Element wall = Revit.Elements.ElementSelector.ByElementId(205280, true);
             Parameter p = new Parameter(wall.InternalElement.LookupParameter("Comments"));
 
             var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.FilterType.BeginsWith, "my", p);
@@ -51,14 +49,14 @@ namespace RevitNodesTests.Elements
 
 
         [Test]
-        [TestModel(@".\element.rvt")]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
         public void CreateOverrideGraphicSettings_ValidArgs()
         {
 
 
             Revit.Filter.OverrideGraphicSettings overrides = Revit.Filter.OverrideGraphicSettings.ByProperties(null, null, null, null, null, null, null, null);
 
-            Element wall = ElementSelector.ByType<Autodesk.Revit.DB.FamilyInstance>(true).First();
+            Element wall = Revit.Elements.ElementSelector.ByElementId(205280, true);
             Parameter p = new Parameter(wall.InternalElement.LookupParameter("Comments"));
 
             var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.FilterType.BeginsWith, "my", p);
