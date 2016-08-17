@@ -243,6 +243,64 @@ namespace RevitSystemTests
 
         [Test]
         [TestModel(@".\empty.rfa")]
+        public void CreateInDynamoCloseGraphReopenGraphRerun()
+        {
+            //Create a reference point at (0.0, 0.0, 0.0);
+            string dynFilePath = Path.Combine(workingDirectory, @".\ElementBinding\CreateOneReferencePoint.dyn");
+            string testPath = Path.GetFullPath(dynFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            //Close the current graph
+            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+
+            //Open the same graph 
+            ViewModel.OpenCommand.Execute(testPath);
+
+            //Run the graph once again
+            RunCurrentModel();
+
+            var points = GetAllReferencePointElements(true);
+            Assert.AreEqual(2, points.Count);
+            var pnt = points[0] as ReferencePoint;
+            Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void CreateInDynamoSaveCloseGraphReopenGraphRerun()
+        {
+            //Create a reference point at (0.0, 0.0, 0.0);
+            string dynFilePath = Path.Combine(workingDirectory, @".\ElementBinding\CreateOneReferencePoint.dyn");
+            string testPath = Path.GetFullPath(dynFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            //Save the current graph
+            string tempPath = Path.Combine(Path.GetTempPath(), "CreateOneReferencePoint.dyn");
+            ViewModel.SaveAsCommand.Execute(tempPath);
+
+            //Close the current graph
+            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+
+            //Open the saved graph 
+            ViewModel.OpenCommand.Execute(tempPath);
+
+            //Run the graph once again
+            RunCurrentModel();
+
+            var points = GetAllReferencePointElements(true);
+            Assert.AreEqual(1, points.Count);
+            var pnt = points[0] as ReferencePoint;
+            Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
         public void CreateInDynamoDeleteInRevit()
         {
             //This test case is to test that elements can be created via Dynamo.
