@@ -25,10 +25,10 @@ namespace RevitNodesTests.Elements
             Level lvl = Level.ByElevation(0);
             Assert.IsNotNull(lvl);
 
-            var room = Revit.Elements.Room.ByLocation(lvl, Point.ByCoordinates(0, 0, 0), "myRoom", "myNumber");
-
+            var room = Revit.Elements.Room.ByLocation(lvl,Point.ByCoordinates(0, 0, 0),"myRoom", "myNumber");
+            
             Assert.NotNull(room);
-            Assert.AreEqual(room.InternalRevitElement.Name, "myRoom");
+            Assert.AreEqual(room.InternalRevitElement.Name, "myRoom");      
         }
 
         /// <summary>
