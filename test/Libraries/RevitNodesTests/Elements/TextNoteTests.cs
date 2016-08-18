@@ -22,7 +22,7 @@ namespace RevitNodesTests.Elements
             var note = TextNote.ByLocation(Revit.Application.Document.Current.ActiveView, Point.ByCoordinates(0, 0, 0), "Hello World", Autodesk.Revit.DB.HorizontalTextAlignment.Center, TextNoteType.Default());
             Assert.NotNull(note);
 
-            Assert.AreEqual(note.Text, "Hello World");          
+            Assert.AreEqual(note.Text, "Hello World\r");          
         }
         
 
