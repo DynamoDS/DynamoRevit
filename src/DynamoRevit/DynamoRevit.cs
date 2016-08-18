@@ -11,7 +11,6 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Threading;
 
@@ -21,7 +20,6 @@ using Autodesk.Revit.UI;
 
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
-using Dynamo.Applications.Properties;
 using Dynamo.Applications.ViewModel;
 using Dynamo.Controls;
 using Dynamo.Core;
@@ -39,8 +37,6 @@ using DynUpdateManager = Dynamo.Updates.UpdateManager;
 using Microsoft.Win32;
 using System.Windows.Media;
 using DynamoInstallDetective;
-using DynamoShapeManager;
-using Application = System.Windows.Forms.Application;
 
 namespace RevitServices.Threading
 {
