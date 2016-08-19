@@ -266,6 +266,8 @@ namespace RevitSystemTests
             Assert.AreEqual(2, points.Count);
             var pnt = points[0] as ReferencePoint;
             Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
+            pnt = points[1] as ReferencePoint;
+            Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
         }
 
         [Test]
