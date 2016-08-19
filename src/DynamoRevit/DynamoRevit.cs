@@ -35,7 +35,6 @@ using RevitServices.Threading;
 using MessageBox = System.Windows.Forms.MessageBox;
 using DynUpdateManager = Dynamo.Updates.UpdateManager;
 using Microsoft.Win32;
-using System.Windows.Media;
 using DynamoInstallDetective;
 
 namespace RevitServices.Threading
