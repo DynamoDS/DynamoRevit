@@ -13,6 +13,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Interop;
 using System.Windows.Threading;
+
+using Autodesk.Revit.Attributes;		
+using Autodesk.Revit.DB;		
+using Autodesk.Revit.UI;
+
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Applications.ViewModel;
@@ -265,14 +270,9 @@ namespace Dynamo.Applications
             var commonDataFolder = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
                 "Dynamo", "Dynamo Revit");
-
-<<<<<<< HEAD
-=======
-            bool isAutomationMode = CheckJournalForAutomationMode(extCommandData);
-
+            
             PreloadAsmFromRevit();
 
->>>>>>> c6f41fb... Preload ASM for Revit (#1196)
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
                 {
