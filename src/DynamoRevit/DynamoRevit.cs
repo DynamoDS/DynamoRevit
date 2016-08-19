@@ -13,11 +13,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Interop;
 using System.Windows.Threading;
-
-using Autodesk.Revit.Attributes;
-using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Applications.ViewModel;
@@ -35,6 +30,7 @@ using RevitServices.Threading;
 using MessageBox = System.Windows.Forms.MessageBox;
 using DynUpdateManager = Dynamo.Updates.UpdateManager;
 using Microsoft.Win32;
+using DynamoInstallDetective;
 
 namespace RevitServices.Threading
 {
@@ -270,6 +266,13 @@ namespace Dynamo.Applications
                 Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
                 "Dynamo", "Dynamo Revit");
 
+<<<<<<< HEAD
+=======
+            bool isAutomationMode = CheckJournalForAutomationMode(extCommandData);
+
+            PreloadAsmFromRevit();
+
+>>>>>>> c6f41fb... Preload ASM for Revit (#1196)
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
                 {
@@ -285,6 +288,20 @@ namespace Dynamo.Applications
                     UpdateManager = new DynUpdateManager(umConfig),
                     ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
                 });
+        }
+
+        private static void PreloadAsmFromRevit()
+        {
+            var asmLocation = AppDomain.CurrentDomain.BaseDirectory;
+
+            var lookup = new InstalledProductLookUp("Revit", "ASMAHL*.dll");
+            var product = lookup.GetProductFromInstallPath(asmLocation);
+
+            var dynCorePath = DynamoRevitApp.DynamoCorePath;
+            var libGFolderName = string.Format("libg_{0}", product.VersionInfo.Item1);
+            var preloaderLocation = Path.Combine(dynCorePath, libGFolderName);
+
+            DynamoShapeManager.Utilities.PreloadAsmFromPath(preloaderLocation, asmLocation);
         }
 
         private static DynamoViewModel InitializeCoreViewModel(RevitDynamoModel revitDynamoModel)
