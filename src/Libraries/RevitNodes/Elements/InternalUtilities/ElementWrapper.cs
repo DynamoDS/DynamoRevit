@@ -212,6 +212,11 @@ namespace Revit.Elements
            return Mullion.FromExisting(ele, isRevitOwned);
         }
 
+        public static Dimension Wrap(Autodesk.Revit.DB.Dimension ele, bool isRevitOwned)
+        {
+            return Dimension.FromExisting(ele, isRevitOwned);
+        }
+
         public static TextNote Wrap(Autodesk.Revit.DB.TextNote ele, bool isRevitOwned)
         {
             return TextNote.FromExisting(ele, isRevitOwned);
@@ -225,12 +230,12 @@ namespace Revit.Elements
         public static TextNoteType Wrap(Autodesk.Revit.DB.TextNoteType ele, bool isRevitOwned)
         {
             return TextNoteType.FromExisting(ele, isRevitOwned);
-		}
+	}
 
         public static Revit.Filter.ParameterFilterElement Wrap(Autodesk.Revit.DB.ParameterFilterElement ele, bool isRevitOwned)
         {
             return Revit.Filter.ParameterFilterElement.FromExisting(ele, isRevitOwned);
-		}
+	}
 
 
         public static Room Wrap(Autodesk.Revit.DB.Architecture.Room ele, bool isRevitOwned)
