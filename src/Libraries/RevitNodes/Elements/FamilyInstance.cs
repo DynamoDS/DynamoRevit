@@ -318,7 +318,8 @@ namespace Revit.Elements
         {
             get
             {
-                return GeometryPrimitiveConverter.ToVector(InternalFamilyInstance.FacingOrientation);
+                return InternalFamilyInstance.IsValidObject ? 
+                    InternalFamilyInstance.FacingOrientation.ToVector() : null;
             }
         }
 
@@ -494,7 +495,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return InternalFamilyInstance.Name;
+            return InternalFamilyInstance.IsValidObject ? InternalFamilyInstance.Name : "empty";
         }
 
         #region Public methods
@@ -542,7 +543,7 @@ namespace Revit.Elements
 
             Document.Regenerate();
 
-            return InternalFamilyInstance.GetTransform();
+            return InternalFamilyInstance.IsValidObject ? InternalFamilyInstance.GetTransform() : null;
         }
 
         #endregion
