@@ -16,7 +16,7 @@ namespace RevitNodesTests.Elements
     public class RoomTests : RevitNodeTestBase
     {
         /// <summary>
-        /// Testing to create a room by location and query its name
+        /// Testing to create a room by location and query its name and type
         /// </summary>
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
@@ -24,37 +24,30 @@ namespace RevitNodesTests.Elements
         {
             Level lvl = Level.ByElevation(0);
             Assert.IsNotNull(lvl);
+            CreateDefaultBoundary();
 
-            var room = Revit.Elements.Room.ByLocation(lvl, Point.ByCoordinates(0, 0, 0), "myRoom", "myNumber");
-
+            var room = Revit.Elements.Room.ByLocation(lvl,Point.ByCoordinates(0, 0, 0),"myRoom", "myNumber");
+            
             Assert.NotNull(room);
-            Assert.AreEqual(room.InternalRevitElement.Name, "myRoom");
+            Assert.AreEqual("myRoom myNumber",room.InternalRevitElement.Name);
+            Assert.AreEqual(typeof(Revit.Elements.Room), room.GetType());
         }
+
 
         /// <summary>
-        /// Test Room Wrapper
+        /// Create a default boundary for rooms
         /// </summary>
-        [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
-        public void CheckWrapper()
-        {
-            Level lvl = Level.ByElevation(100);
-            Assert.IsNotNull(lvl);
+        private void CreateDefaultBoundary()
+        { 
+            Autodesk.Revit.DB.CurveArray curves = new Autodesk.Revit.DB.CurveArray();
+            curves.Append(Autodesk.Revit.DB.Line.CreateBound(new Autodesk.Revit.DB.XYZ(-100,100,0), new Autodesk.Revit.DB.XYZ(100,100,0)));
+            curves.Append(Autodesk.Revit.DB.Line.CreateBound(new Autodesk.Revit.DB.XYZ(100,100,0), new Autodesk.Revit.DB.XYZ(100,-100,0)));
+            curves.Append(Autodesk.Revit.DB.Line.CreateBound(new Autodesk.Revit.DB.XYZ(100,-100,0), new Autodesk.Revit.DB.XYZ(-100,-100,0)));
+            curves.Append(Autodesk.Revit.DB.Line.CreateBound(new Autodesk.Revit.DB.XYZ(-100,-100,0), new Autodesk.Revit.DB.XYZ(-100,100,0)));
 
-            // Create a new room
-            var room = Revit.Elements.Room.ByLocation(lvl, Point.ByCoordinates(100, 100, 0), "mySecondRoom", "mySecondNumber");
-
-            Assert.NotNull(room);
-
-            // Get the room using the Element Selector
-            Element element = ElementSelector.ByElementId(room.InternalRevitElement.Id.IntegerValue);
-
-            Assert.NotNull(element);
-
-            // Check if the selected element is actually wrapped as a Revit.Element.Room
-            Assert.IsInstanceOf(typeof(Revit.Elements.Room), element);
+            var plane = Autodesk.Revit.DB.SketchPlane.Create(Revit.Application.Document.Current.InternalDocument, new Autodesk.Revit.DB.Plane(Autodesk.Revit.DB.XYZ.BasisZ, Autodesk.Revit.DB.XYZ.Zero));
+            Revit.Application.Document.Current.InternalDocument.Create.NewRoomBoundaryLines(plane,curves, Revit.Application.Document.Current.ActiveView.InternalView);
         }
-
 
     }
 }

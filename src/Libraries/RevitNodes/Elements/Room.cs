@@ -35,7 +35,7 @@ namespace Revit.Elements
         {
             get { return InternalRevitElement; }
         }
-
+       
         #endregion
 
         #region Private constructors
@@ -120,7 +120,7 @@ namespace Revit.Elements
             ElementBinder.SetElementForTrace(this.InternalElement);
         }
 
-        #endregion
+        #endregion      
 
         #region Private mutators
 
@@ -160,7 +160,7 @@ namespace Revit.Elements
         /// </summary>
         public string Name
         {
-            get { return this.InternalRevitElement.Name; }
+            get{ return this.InternalRevitElement.Name; }           
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace Revit.Elements
         internal static Room FromExisting(Autodesk.Revit.DB.Architecture.Room instance, bool isRevitOwned)
         {
             return new Room(instance)
-            {
+            { 
                 IsRevitOwned = isRevitOwned
             };
         }
