@@ -289,6 +289,13 @@ namespace Dynamo.Applications
                 MessageBox.Show(ex.ToString());
 
                 DynamoRevitApp.DynamoButtonEnabled = true;
+                
+                //If for some reason Dynamo has crashed while startup make sure the Dynamo Model is properly shutdown.
+                if (revitDynamoModel != null)
+                {
+                    revitDynamoModel.ShutDown(false);
+                    revitDynamoModel = null;
+                }
 
                 return Result.Failed;
             }
