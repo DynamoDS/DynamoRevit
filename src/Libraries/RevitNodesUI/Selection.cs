@@ -209,8 +209,11 @@ namespace Dynamo.Nodes
                 case ElementUpdateEventArgs.UpdateType.Added:
                     break;
                 case ElementUpdateEventArgs.UpdateType.Modified:
-                    if(!e.Transactions.Contains(TransactionWrapper.TransactionName))
+                    bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
+                    if (!dynamoTransaction)
+                    {
                         Updater_ElementsModified(e.GetUniqueIds());
+                    }
                     break;
                 case ElementUpdateEventArgs.UpdateType.Deleted:
                     Updater_ElementsDeleted(e.RevitDocument, e.Elements);
