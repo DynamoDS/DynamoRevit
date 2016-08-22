@@ -149,6 +149,12 @@ namespace Dynamo.Applications
         /// from DynPathKey will be forced in manual mode.
         /// </summary>
         public const string ForceManualRunKey = "dynForceManualRun";
+
+        /// <summary>
+        /// The journal file can specify if the existing UIless RevitDynamoModel
+        /// needs to be shutdown before performing any action.
+        /// </summary>
+        public const string ModelShutDownKey = "dynModelShutDown";
     }
 
 
@@ -210,10 +216,16 @@ namespace Dynamo.Applications
             var startupTimer = Stopwatch.StartNew();
             if (ModelState == RevitDynamoModelState.StartedUIless)
             {
-                if (CheckJournalForUiDisplay(commandData))
+                if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, true) ||
+                    CheckJournalForKey(commandData, JournalKeys.ModelShutDownKey))
                 {
                     //When we move from UIless to UI we prefer to start with a fresh revitDynamoModel
-                    //in order to benefit from a startup sequence similar to Dynamo Revit UI launch.                    
+                    //in order to benefit from a startup sequence similar to Dynamo Revit UI launch.       
+                    //Also there might be other situations which demand a new revitDynamoModel.            
+                    //In order to be able to address them we process ModelShutDownKey.
+                    //An example of this situation is when you have a revitDynamoModel already started and you switch 
+                    //the document in Revit. Since revitDynamoModel is well connected to the previous document we need to
+                    //shut it down and start a new one in order to able to run a graph in the new document.
                     revitDynamoModel.ShutDown(false);
                     ModelState = RevitDynamoModelState.NotStarted;
                 }
@@ -252,7 +264,7 @@ namespace Dynamo.Applications
                 ModelState = RevitDynamoModelState.StartedUIless;
 
                 // show the window
-                if (CheckJournalForUiDisplay(extCommandData))
+                if (CheckJournalForKey(extCommandData, JournalKeys.ShowUiKey, true))
                 {
                     dynamoViewModel = InitializeCoreViewModel(revitDynamoModel);
 
@@ -364,7 +376,7 @@ namespace Dynamo.Applications
                 Environment.SpecialFolder.CommonApplicationData), 
                 "Dynamo", "Dynamo Revit");
 
-            bool isAutomationMode = CheckJournalForAutomationMode(extCommandData);
+            bool isAutomationMode = CheckJournalForKey(extCommandData,JournalKeys.AutomationModeKey);
 
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
@@ -452,52 +464,18 @@ namespace Dynamo.Applications
             }
         }
 
-        private static bool CheckJournalForForceManualRun(DynamoRevitCommandData commandData)
+        private static bool CheckJournalForKey(DynamoRevitCommandData commandData, string key, bool defaultReturn = false)
         {
-            var result = false;
+            var result = defaultReturn;
 
             if (commandData.JournalData == null)
             {
                 return result;
             }
 
-            if (commandData.JournalData.ContainsKey(JournalKeys.ForceManualRunKey))
+            if (commandData.JournalData.ContainsKey(key))
             {
-                bool.TryParse(commandData.JournalData[JournalKeys.ForceManualRunKey], out result);
-            }
-
-            return result;
-        }
-
-        private static bool CheckJournalForUiDisplay(DynamoRevitCommandData commandData)
-        {
-            var result = true;
-
-            if (commandData.JournalData == null)
-            {
-                return result;
-            }
-
-            if (commandData.JournalData.ContainsKey(JournalKeys.ShowUiKey))
-            {
-                bool.TryParse(commandData.JournalData[JournalKeys.ShowUiKey], out result);
-            }
-
-            return result;
-        }
-
-        private static bool CheckJournalForAutomationMode(DynamoRevitCommandData commandData)
-        {
-            var result = false;
-
-            if (commandData.JournalData == null)
-            {
-                return result;
-            }
-
-            if (commandData.JournalData.ContainsKey(JournalKeys.AutomationModeKey))
-            {
-                result = bool.TryParse(commandData.JournalData[JournalKeys.AutomationModeKey], out result);
+                bool.TryParse(commandData.JournalData[key], out result);
             }
 
             return result;
@@ -512,8 +490,8 @@ namespace Dynamo.Applications
 
             if (commandData.JournalData.ContainsKey(JournalKeys.DynPathKey))
             {
-                bool isAutomationMode = CheckJournalForAutomationMode(commandData);
-                bool forceManualRun = CheckJournalForForceManualRun(commandData);                
+                bool isAutomationMode = CheckJournalForKey(commandData, JournalKeys.AutomationModeKey);
+                bool forceManualRun = CheckJournalForKey(commandData, JournalKeys.ForceManualRunKey);                
 
                 if (ModelState == RevitDynamoModelState.StartedUIless)
                 {
