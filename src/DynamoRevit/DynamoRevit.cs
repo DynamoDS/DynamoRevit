@@ -515,7 +515,7 @@ namespace Dynamo.Applications
                 }
                 else
                 {
-                    dynamoViewModel.ExecuteCommand(new DynamoModel.OpenFileCommand(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun));
+                    dynamoViewModel.OpenIfSavedCommand.Execute(new Dynamo.Models.DynamoModel.OpenFileCommand(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun));
                     dynamoViewModel.ShowStartPage = false;
                 }
 
