@@ -28,7 +28,7 @@ namespace RevitNodesTests.Elements
             var wall = Wall.ByCurveAndHeight(line, 300, Level.ByElevation(100), wt);
             Assert.NotNull(wall);
 
-            var tag = Tag.ByElement(Revit.Application.Document.Current.ActiveView, wall, true, false, Autodesk.Revit.DB.HorizontalAlignmentStyle.Center, Autodesk.Revit.DB.VerticalAlignmentStyle.Middle, Vector.ByCoordinates(0, 0, 0));
+            var tag = Tag.ByElement(Revit.Application.Document.Current.ActiveView, wall, true, false, Point.ByCoordinates(0, 0, 0), true, Autodesk.Revit.DB.HorizontalAlignmentStyle.Center.ToString(), Autodesk.Revit.DB.VerticalAlignmentStyle.Middle.ToString());
             Assert.NotNull(tag);
           
         }
