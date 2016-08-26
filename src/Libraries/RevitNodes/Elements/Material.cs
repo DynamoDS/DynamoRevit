@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Collections.Generic;
 using DynamoServices;
-using Revit.Elements.Extensions;
 
 using RevitServices.Persistence;
 
@@ -108,7 +107,7 @@ namespace Revit.Elements
         /// Get Material Name
         /// </summary>
         /// <returns></returns>
-        public string GetName
+        public string Name
         {
             get { return this.InternalMaterial.Name; }
         }
@@ -116,7 +115,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Shininess
         /// </summary>
-        public int GetShininess
+        public int Shininess
         {
             get { return this.InternalMaterial.Shininess; }
         }
@@ -124,7 +123,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Smoothness
         /// </summary>
-        public int GetSmoothness
+        public int Smoothness
         {
             get { return this.InternalMaterial.Smoothness; }
         }
@@ -132,7 +131,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Transparency
         /// </summary>
-        public int GetTransparency
+        public int Transparency
         {
             get { return this.InternalMaterial.Transparency; }
         }
@@ -140,15 +139,15 @@ namespace Revit.Elements
         /// <summary>
         /// Get SurfacePatternColor
         /// </summary>
-        public DSCore.Color GetSurfacePatternColor
+        public DSCore.Color SurfacePatternColor
         {
-            get { return this.InternalMaterial.SurfacePatternColor.ToDSColor(); }
+            get { return ToDSColor(this.InternalMaterial.SurfacePatternColor); }
         }
 
         /// <summary>
         /// Get Material Class
         /// </summary>
-        public string GetMaterialClass
+        public string MaterialClass
         {
             get { return this.InternalMaterial.MaterialClass; }
         }
@@ -156,7 +155,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Material category
         /// </summary>
-        public string GetMaterialCategory
+        public string MaterialCategory
         {
             get { return this.InternalMaterial.MaterialCategory; }
         }
@@ -164,23 +163,23 @@ namespace Revit.Elements
         /// <summary>
         /// Get cut pattern color
         /// </summary>
-        public DSCore.Color GetCutPatternColor
+        public DSCore.Color CutPatternColor
         {
-            get { return this.InternalMaterial.CutPatternColor.ToDSColor(); }
+            get { return ToDSColor(this.InternalMaterial.CutPatternColor); }
         }
 
         /// <summary>
         /// Get color
         /// </summary>
-        public DSCore.Color GetColor
+        public DSCore.Color Color
         {
-            get { return this.InternalMaterial.Color.ToDSColor(); }
+            get { return ToDSColor(this.InternalMaterial.Color); }
         }
 
         /// <summary>
         /// Get cut pattern id
         /// </summary>
-        public Autodesk.Revit.DB.ElementId GetCutPatternId
+        public Autodesk.Revit.DB.ElementId CutPatternId
         {
             get
             {
@@ -191,7 +190,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get all apperance parameters
         /// </summary>
-        public List<Parameter> GetAppearanceParameters
+        public IEnumerable<Parameter> AppearanceParameters
         {
             get
             {
@@ -217,7 +216,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get all thermal parameters
         /// </summary>
-        public List<Parameter> GetThermalParameters
+        public IEnumerable<Parameter> ThermalParameters
         {
             get
             {
@@ -242,7 +241,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get all structural parameters
         /// </summary>
-        public List<Parameter> GetStructuralParameters
+        public IEnumerable<Parameter> StructuralParameters
         {
             get
             {
@@ -265,6 +264,20 @@ namespace Revit.Elements
         }
 
 
+
+        #endregion
+
+        #region Private Helpers
+
+        /// <summary>
+        /// Convert Revit to DS Color
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        private DSCore.Color ToDSColor(Autodesk.Revit.DB.Color color)
+        {
+            return DSCore.Color.ByARGB(255, color.Red, color.Green, color.Blue);
+        }
 
         #endregion
 
