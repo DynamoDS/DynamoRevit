@@ -321,6 +321,9 @@
   <data name="NotEnoughDataError" xml:space="preserve">
     <value>You need at least two elements for a dimension.</value>
   </data>
+  <data name="CurveLoopNotClosed" xml:space="preserve">
+    <value>Curves do not form a closed loop.</value>
+  </data>
   <data name="CannotGetBaseOrSurveyPoint" xml:space="preserve">
     <value>Cannot get base or survey point from document.</value>
   </data>

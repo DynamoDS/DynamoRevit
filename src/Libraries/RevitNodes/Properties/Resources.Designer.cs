@@ -169,6 +169,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curves do not form a closed loop..
+        /// </summary>
+        internal static string CurveLoopNotClosed {
+            get {
+                return ResourceManager.GetString("CurveLoopNotClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot create Curve By Points with less than two points..
         /// </summary>
         internal static string CurveNeedsTwoPoints {
