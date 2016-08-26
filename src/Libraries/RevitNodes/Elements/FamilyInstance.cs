@@ -171,7 +171,7 @@ namespace Revit.Elements
             TransactionManager.Instance.EnsureInTransaction(Document);
 
             var lp = InternalFamilyInstance.Location as LocationPoint;
-            lp.Point = fi;
+            if (lp != null && !lp.Point.IsAlmostEqualTo(fi)) lp.Point = fi;
 
             TransactionManager.Instance.TransactionTaskDone();
         }

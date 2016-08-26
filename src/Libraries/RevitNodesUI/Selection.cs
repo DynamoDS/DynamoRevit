@@ -208,7 +208,8 @@ namespace Dynamo.Nodes
                     break;
                 case ElementUpdateEventArgs.UpdateType.Modified:
                     bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
-                    if (!dynamoTransaction)
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (!dynamoTransaction || (hwm != null && hwm.RunSettings.RunType == RunType.Manual))
                     {
                         Updater_ElementsModified(e.GetUniqueIds());
                     }
