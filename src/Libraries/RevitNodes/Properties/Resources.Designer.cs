@@ -709,7 +709,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View does not support annotations..
+        ///   Looks up a localized string similar to This type of view does not support annotations..
         /// </summary>
         internal static string ViewDoesNotSupportAnnotations {
             get {

@@ -260,6 +260,11 @@ namespace Revit.Elements
         public static Room Wrap(Autodesk.Revit.DB.Architecture.Room ele, bool isRevitOwned)
         {
             return Room.FromExisting(ele, isRevitOwned);
+		}
+
+        public static DetailCurve Wrap(Autodesk.Revit.DB.DetailCurve ele, bool isRevitOwned)
+        {
+            return DetailCurve.FromExisting(ele, isRevitOwned);
         }
 
         #endregion
