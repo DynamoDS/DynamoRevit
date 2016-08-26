@@ -171,7 +171,18 @@ namespace Revit.Elements
             TransactionManager.Instance.EnsureInTransaction(Document);
 
             var lp = InternalFamilyInstance.Location as LocationPoint;
-            lp.Point = fi;
+            if (lp != null && !lp.Point.IsAlmostEqualTo(fi)) lp.Point = fi;
+
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        private void InternalSetPosition(Curve pos)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            var lp = InternalFamilyInstance.Location as LocationCurve;
+
+            if (lp != null && lp.Curve != pos) lp.Curve = pos;
 
             TransactionManager.Instance.TransactionTaskDone();
         }
