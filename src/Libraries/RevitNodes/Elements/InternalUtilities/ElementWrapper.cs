@@ -267,6 +267,7 @@ namespace Revit.Elements
             return DetailCurve.FromExisting(ele, isRevitOwned);
         }
 
+
         #endregion
 
     }

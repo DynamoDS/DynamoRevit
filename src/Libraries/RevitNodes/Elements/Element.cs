@@ -165,6 +165,14 @@ namespace Revit.Elements
         private ElementId internalId;
 
         /// <summary>
+        /// Get Element Category
+        /// </summary>
+        public Category GetCategory
+        {
+            get { return new Category(this.InternalElement.Category); }
+        }
+
+        /// <summary>
         /// The element id for this element
         /// </summary>
         protected ElementId InternalElementId
@@ -344,7 +352,7 @@ namespace Revit.Elements
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
 
             var view = DocumentManager.Instance.CurrentUIDocument.ActiveView;
-            var ogs = new OverrideGraphicSettings();
+            var ogs = new Autodesk.Revit.DB.OverrideGraphicSettings();
 
             var patternCollector = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             patternCollector.OfClass(typeof(FillPatternElement));
@@ -662,5 +670,108 @@ namespace Revit.Elements
             }
         }
 
+        #region Location extraction & manipulation
+
+        /// <summary>
+        /// Update an existing element's location
+        /// </summary>
+        /// <param name="geometry">New Location Point or Curve</param>
+        public void SetLocation(Geometry geometry)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+
+            if (this.InternalElement.Location.GetType() == typeof(Autodesk.Revit.DB.LocationPoint))
+            {
+                if (geometry.GetType() == typeof(Autodesk.DesignScript.Geometry.Point))
+                {
+                    Autodesk.DesignScript.Geometry.Point point = (Autodesk.DesignScript.Geometry.Point)geometry;
+                    Autodesk.Revit.DB.LocationPoint pt = (Autodesk.Revit.DB.LocationPoint)this.InternalElement.Location;
+                    pt.Point = point.ToRevitType(true);
+                }
+                else
+                    throw new Exception("Point element required");
+            }
+            else if (this.InternalElement.Location.GetType() == typeof(Autodesk.Revit.DB.LocationCurve) && geometry is Curve)
+            {
+                if (geometry.GetType() == typeof(Curve))
+                {
+                    Curve dynamoCurve = geometry as Curve;
+                    Autodesk.Revit.DB.LocationCurve curve = (Autodesk.Revit.DB.LocationCurve)this.InternalElement.Location;
+                    curve.Curve = dynamoCurve.ToRevitType(true);
+                }
+                else
+                    throw new Exception("Curve element required");
+            }
+            else
+            {
+                throw new Exception("Element does not have a location that can be updated");
+            }
+
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        /// <summary>
+        /// Get an exsiting element's location
+        /// </summary>
+        /// <returns>Location Geometry</returns>
+        public Geometry GetLocation()
+        {
+            if (this.InternalElement.Location.GetType() == typeof(Autodesk.Revit.DB.LocationPoint))
+            {
+                Autodesk.Revit.DB.LocationPoint pt = (Autodesk.Revit.DB.LocationPoint)this.InternalElement.Location;
+                return pt.Point.ToPoint(true);
+            }
+            else if (this.InternalElement.Location.GetType() == typeof(Autodesk.Revit.DB.LocationCurve))
+            {
+                Autodesk.Revit.DB.LocationCurve curve = (Autodesk.Revit.DB.LocationCurve)this.InternalElement.Location;
+                return curve.Curve.ToProtoType(true);
+            }
+            else
+            {
+                throw new Exception("Element location not extractable");
+            }
+        }
+
+        /// <summary>
+        /// Move Revit Element by Vector
+        /// </summary>
+        /// <param name="vector">Translation Vector</param>
+        public void MoveByVector(Vector vector)
+        {
+            if (!this.InternalElement.Location.Move(vector.ToXyz(true)))
+            {
+                throw new Exception("Element could not be moved");
+            }
+        }
+
+
+        #endregion
+
+        #region Material
+
+        /// <summary>
+        /// Get Material Names from a Revit Element
+        /// </summary>
+        /// <param name="paintMaterials">Paint Materials</param>
+        /// <returns>List of Names</returns>
+        public List<Material> GetMaterials(bool paintMaterials = false)
+        {
+            // Get the active Document
+            Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+            List<Material> materialnames = new List<Material>();
+
+            foreach (Autodesk.Revit.DB.ElementId id in this.InternalElement.GetMaterialIds(paintMaterials))
+            {
+                Autodesk.Revit.DB.Material material = (Autodesk.Revit.DB.Material)document.GetElement(id);
+                Material mat = Material.FromExisting(material, true);
+
+                if (!materialnames.Contains(mat)) materialnames.Add(mat);
+            }
+
+            return materialnames;
+        }
+
+        #endregion
     }
 }
