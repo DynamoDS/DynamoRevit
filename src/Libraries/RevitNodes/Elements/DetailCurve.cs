@@ -66,11 +66,11 @@ namespace Revit.Elements
             {
                 if (document.IsFamilyDocument)
                 {
-                    document.FamilyCreate.NewDetailCurve(view, curve);
+                    element = document.FamilyCreate.NewDetailCurve(view, curve);
                 }
                 else
                 {
-                    document.Create.NewDetailCurve(view, curve);
+                    element = document.Create.NewDetailCurve(view, curve);
                 }                
             }
             else

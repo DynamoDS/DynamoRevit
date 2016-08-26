@@ -31,24 +31,6 @@ namespace RevitNodesTests.Elements
             curve.Length.ShouldBeApproximately(100);
         }
 
-        [Test]
-        [TestModel(@".\emptyAnnotativeView.rfa")]
-        public void ByCurve_Curve_AcceptsStraightDegree3NurbsCurve()
-        {
-            var points =
-                Enumerable.Range(0, 10)
-                    .Select(x => Autodesk.DesignScript.Geometry.Point.ByCoordinates(x, 0));
-
-            var nurbsCurve = NurbsCurve.ByPoints(points, 3);
-
-            var detailCurve = DetailCurve.ByCurve(Revit.Application.Document.Current.ActiveView,nurbsCurve);
-            Assert.NotNull(detailCurve);
-
-            detailCurve.Curve.Length.ShouldBeApproximately(9);
-            detailCurve.Curve.StartPoint.ShouldBeApproximately(Point.Origin());
-            detailCurve.Curve.EndPoint.ShouldBeApproximately(Point.ByCoordinates(9,0,0));
-
-        }
 
 
     }
