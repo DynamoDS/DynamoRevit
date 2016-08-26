@@ -176,17 +176,6 @@ namespace Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
         }
 
-        private void InternalSetPosition(Curve pos)
-        {
-            TransactionManager.Instance.EnsureInTransaction(Document);
-
-            var lp = InternalFamilyInstance.Location as LocationCurve;
-
-            if (lp != null && lp.Curve != pos) lp.Curve = pos;
-
-            TransactionManager.Instance.TransactionTaskDone();
-        }
-
         #endregion
 
         #region Public properties
