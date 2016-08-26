@@ -35,6 +35,7 @@ using Dynamo.Applications;
 using DSRevitNodesUI.Properties;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
+using RevitServices.Transactions;
 
 namespace Dynamo.Nodes
 {
@@ -208,7 +209,12 @@ namespace Dynamo.Nodes
                 case ElementUpdateEventArgs.UpdateType.Added:
                     break;
                 case ElementUpdateEventArgs.UpdateType.Modified:
-                    Updater_ElementsModified(e.GetUniqueIds());
+                    bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (!dynamoTransaction || (hwm != null && hwm.RunSettings.RunType == RunType.Manual))
+                    {
+                        Updater_ElementsModified(e.GetUniqueIds());
+                    }
                     break;
                 case ElementUpdateEventArgs.UpdateType.Deleted:
                     Updater_ElementsDeleted(e.RevitDocument, e.Elements);
@@ -514,7 +520,7 @@ namespace Dynamo.Nodes
             // If this modification is being parsed as part of a document
             // update that also contains a deletion, then we need to try to 
             // get the elements first to see if they are valid. 
-            var validIds = SelectionResults.Select(doc.GetElement).Where(x=>x != null).Select(x=>x.UniqueId);
+            var validIds = SelectionResults.Select(doc.GetElement).Where(x => x != null).Select(x => x.UniqueId);
 
             // If none of the updated elements are included in the 
             // list of valid ids in the selection, then return.
@@ -522,10 +528,10 @@ namespace Dynamo.Nodes
             {
                 return;
             }
-                
+
             // We want this modification to trigger a graph reevaluation
             // and we want the AST for this node to be regenerated.
-            OnNodeModified(forceExecute:true);
+            OnNodeModified(forceExecute: true);
         }
 
         protected override IEnumerable<Reference> ExtractSelectionResults(Reference selection)
