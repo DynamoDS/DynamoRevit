@@ -130,8 +130,15 @@ namespace Revit.Elements
             System.Windows.FontStyle fontStyle = FontStyles.Normal;
             FontWeight fontWeight = FontWeights.Medium;
 
-            if (bold == true) fontWeight = FontWeights.Bold;
-            if (italic == true) fontStyle = FontStyles.Italic;
+            if (bold == true)
+            { 
+                fontWeight = FontWeights.Bold;
+            }
+
+            if (italic == true)
+            { 
+                fontStyle = FontStyles.Italic;
+            }
 
             System.Windows.Media.FormattedText formattedText = new System.Windows.Media.FormattedText(
                 text,
