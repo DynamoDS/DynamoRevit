@@ -73,6 +73,55 @@ namespace RevitSystemTests
             var selectNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<DSModelElementSelection>();
             var watchNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<Watch>();
 
+            // Create a reference point in Revit
+            Autodesk.Revit.DB.ReferencePoint p1;
+            using (var trans = new Transaction(DocumentManager.Instance.CurrentUIDocument.Document))
+            {
+                trans.Start("Create reference point for testing.");
+
+                p1 = DocumentManager.Instance.CurrentUIDocument.Document.FamilyCreate.NewReferencePoint(new XYZ(0, 0, 0));
+
+
+                trans.Commit();
+            }
+            // select the reference point using the selection node
+            selectNode.UpdateSelection(new[] { p1 });
+            
+            RunCurrentModel();
+
+            Assert.AreEqual(0, watchNode.CachedValue);
+
+            // Update the reference point position in Revit
+            using (var trans = new Transaction(DocumentManager.Instance.CurrentUIDocument.Document))
+            {
+                trans.Start("Updating reference point for testing.");
+
+                p1.Position = new XYZ(10, 0, 0);
+
+                trans.Commit();
+            }
+
+            // Verify that the selection node updates
+            Assert.AreEqual(true, selectNode.NeedsForceExecution);
+
+            RunCurrentModel();
+
+            Assert.AreEqual(10, watchNode.CachedValue); //Actual value depends on units
+        }
+
+        [Test, Category("SmokeTests"), TestModel(@".\empty.rfa")]
+        public void NodeModificationSelectionNoSync()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Selection\SelectAndUpdate.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            var selectNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<DSModelElementSelection>();
+            var watchNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<Watch>();
+
+            // Create a reference point in Dynamo
             var refPt = ReferencePoint.ByCoordinates(0, 0, 0);
             selectNode.UpdateSelection(new[] { refPt.InternalElement });
 
@@ -80,15 +129,17 @@ namespace RevitSystemTests
 
             Assert.AreEqual(0, watchNode.CachedValue);
 
+            // Update the reference point position in Dynamo
             refPt.X = 10;
 
             TransactionManager.Instance.ForceCloseTransaction();
 
-            Assert.AreEqual(true, selectNode.NeedsForceExecution);
+            // Verify that the selection node does not update
+            Assert.AreEqual(false, selectNode.NeedsForceExecution);
 
             RunCurrentModel();
 
-            Assert.AreNotEqual(0, watchNode.CachedValue); //Actual value depends on units
+            Assert.AreEqual(0, watchNode.CachedValue); //Actual value depends on units
         }
 
         [Test, Category("SmokeTests"), TestModel(@".\Selection\Selection.rfa")]
