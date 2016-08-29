@@ -31,7 +31,7 @@ namespace RevitNodesTests.Elements
 
         [Test]
         [TestModel(@".\Empty.rvt")]
-        public void ProjectRotationPoint_Valid()
+        public void ProjectRoatationPoint_Valid()
         {
             var rot = Coordinates.ProjectRotation();
             Assert.IsNotNull(rot);

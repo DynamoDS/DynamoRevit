@@ -61,11 +61,29 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a built-in parameter group..
+        /// </summary>
+        internal static string BuiltInParameterGroupSelectorDescription {
+            get {
+                return ResourceManager.GetString("BuiltInParameterGroupSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All built-in categories..
         /// </summary>
         internal static string CategoriesDescription {
             get {
                 return ResourceManager.GetString("CategoriesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Direct Shape Room Bounding Option..
+        /// </summary>
+        internal static string DirectShapeRoomBoundingOptionSelectorDescription {
+            get {
+                return ResourceManager.GetString("DirectShapeRoomBoundingOptionSelectorDescription", resourceCulture);
             }
         }
         
@@ -151,6 +169,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select an existing Filled Region Type from the active document..
+        /// </summary>
+        internal static string FilledRegionTypeSelectorDescription {
+            get {
+                return ResourceManager.GetString("FilledRegionTypeSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All floor types available in the document..
         /// </summary>
         internal static string FloorTypesDescription {
@@ -169,11 +196,29 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the horizontal text alignment style..
+        /// </summary>
+        internal static string HorizontalTextAlignmentStyleSelectorDescription {
+            get {
+                return ResourceManager.GetString("HorizontalTextAlignmentStyleSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a level in the active document.
         /// </summary>
         internal static string LevelsDescription {
             get {
                 return ResourceManager.GetString("LevelsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No active Revit document found..
+        /// </summary>
+        internal static string NoActiveDocumentFound {
+            get {
+                return ResourceManager.GetString("NoActiveDocumentFound", resourceCulture);
             }
         }
         
@@ -196,11 +241,47 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string None {
+            get {
+                return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No types found..
+        /// </summary>
+        internal static string NoTypesFound {
+            get {
+                return ResourceManager.GetString("NoTypesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No wall types available..
         /// </summary>
         internal static string NoWallTypesAvailable {
             get {
                 return ResourceManager.GetString("NoWallTypesAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a parameter type..
+        /// </summary>
+        internal static string ParameterTypeSelectorDescription {
+            get {
+                return ResourceManager.GetString("ParameterTypeSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an existing Revit Phase from the active document..
+        /// </summary>
+        internal static string PhaseSelectorDescription {
+            get {
+                return ResourceManager.GetString("PhaseSelectorDescription", resourceCulture);
             }
         }
         
@@ -313,6 +394,42 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select an way to number the revisions..
+        /// </summary>
+        internal static string RevisionNumberingSelectorDescription {
+            get {
+                return ResourceManager.GetString("RevisionNumberingSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a revision number type..
+        /// </summary>
+        internal static string RevisionNumberTypeSelectorDescription {
+            get {
+                return ResourceManager.GetString("RevisionNumberTypeSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an existing Revit Revision from the active document..
+        /// </summary>
+        internal static string RevisionSelectorDescription {
+            get {
+                return ResourceManager.GetString("RevisionSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the revision visilibity type..
+        /// </summary>
+        internal static string RevisionVisibilitySelectorDescription {
+            get {
+                return ResourceManager.GetString("RevisionVisibilitySelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select analysis results from the document..
         /// </summary>
         internal static string SelectAnalysisResultsDescription {
@@ -336,6 +453,24 @@ namespace DSRevitNodesUI.Properties {
         internal static string SelectEdgeDescription {
             get {
                 return ResourceManager.GetString("SelectEdgeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select multiple edges..
+        /// </summary>
+        internal static string SelectEdgesDescription {
+            get {
+                return ResourceManager.GetString("SelectEdgesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edges.
+        /// </summary>
+        internal static string SelectEdgesPrefix {
+            get {
+                return ResourceManager.GetString("SelectEdgesPrefix", resourceCulture);
             }
         }
         
@@ -457,6 +592,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the vertical text alignment style..
+        /// </summary>
+        internal static string VerticalTextAlignmentStyleSelectorDescription {
+            get {
+                return ResourceManager.GetString("VerticalTextAlignmentStyleSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All views available in the current document..
         /// </summary>
         internal static string ViewsDescription {
@@ -466,7 +610,7 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All floor types available in the document..
+        ///   Looks up a localized string similar to All wall types available in the document..
         /// </summary>
         internal static string WallTypesDescription {
             get {
