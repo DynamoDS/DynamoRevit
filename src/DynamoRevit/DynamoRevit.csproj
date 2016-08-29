@@ -184,22 +184,6 @@
       <HintPath>$(DYNAMOAPI)\DynamoInstallDetective.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoShapeManager">
-      <HintPath>$(DYNAMOAPI)\DynamoShapeManager.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoInstallDetective">
-      <HintPath>$(DYNAMOAPI)\DynamoInstallDetective.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoShapeManager">
-      <HintPath>$(DYNAMOAPI)\DynamoShapeManager.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoInstallDetective">
-      <HintPath>$(DYNAMOAPI)\DynamoInstallDetective.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ionic.Zip.xml" />
