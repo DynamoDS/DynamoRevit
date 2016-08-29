@@ -45,7 +45,7 @@ namespace RevitNodesTests.Elements
             curves.Append(Autodesk.Revit.DB.Line.CreateBound(new Autodesk.Revit.DB.XYZ(100,-100,0), new Autodesk.Revit.DB.XYZ(-100,-100,0)));
             curves.Append(Autodesk.Revit.DB.Line.CreateBound(new Autodesk.Revit.DB.XYZ(-100,-100,0), new Autodesk.Revit.DB.XYZ(-100,100,0)));
 
-            var plane = Autodesk.Revit.DB.SketchPlane.Create(Revit.Application.Document.Current.InternalDocument, new Autodesk.Revit.DB.Plane(Autodesk.Revit.DB.XYZ.BasisZ, Autodesk.Revit.DB.XYZ.Zero));
+            var plane = Autodesk.Revit.DB.SketchPlane.Create(Revit.Application.Document.Current.InternalDocument, Autodesk.Revit.DB.Plane.CreateByNormalAndOrigin(Autodesk.Revit.DB.XYZ.BasisZ, Autodesk.Revit.DB.XYZ.Zero));
             Revit.Application.Document.Current.InternalDocument.Create.NewRoomBoundaryLines(plane,curves, Revit.Application.Document.Current.ActiveView.InternalView);
         }
 
