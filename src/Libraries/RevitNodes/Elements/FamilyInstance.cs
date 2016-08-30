@@ -500,7 +500,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get FamilyInstance Host Element
+        /// Gets the host of this fmaily instance (if any). Eg. returns the wall of a window or door family instance.
         /// </summary>
         public Element GetHost
         {
@@ -509,12 +509,12 @@ namespace Revit.Elements
                 if (this.InternalFamilyInstance.Host != null)
                     return ElementWrapper.Wrap(this.InternalFamilyInstance.Host, true);
                 else
-                    return null;
+                    throw new Exception(Properties.Resources.InvalidHost);
             }
         }
 
         /// <summary>
-        /// Get Family
+        /// Gets the family of this family instance
         /// </summary>
         public Family GetFamily 
         { 
@@ -525,7 +525,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get Type
+        /// Gets the family type of this family instance
         /// </summary>
         public FamilyType GetType
         { 

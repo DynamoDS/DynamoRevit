@@ -179,11 +179,11 @@ namespace Revit.Elements
         /// <summary>
         /// Get cut pattern id
         /// </summary>
-        public Autodesk.Revit.DB.ElementId CutPatternId
+        public int CutPatternId
         {
             get
             {
-                return this.InternalMaterial.CutPatternId;
+                return this.InternalMaterial.CutPatternId.IntegerValue;
             }
         }
 
@@ -200,12 +200,14 @@ namespace Revit.Elements
                 List<Parameter> appearances = new List<Parameter>();
                 if (this.InternalMaterial.AppearanceAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
                 {
-                    Autodesk.Revit.DB.AppearanceAssetElement appearance = (Autodesk.Revit.DB.AppearanceAssetElement)document.GetElement(this.InternalMaterial.AppearanceAssetId);
-
-                    foreach (Autodesk.Revit.DB.Parameter parameter in appearance.Parameters)
+                    Autodesk.Revit.DB.AppearanceAssetElement appearance = document.GetElement(this.InternalMaterial.AppearanceAssetId) as Autodesk.Revit.DB.AppearanceAssetElement;
+                    if (appearance != null)
                     {
-                        Parameter p = new Parameter(parameter);
-                        if (!appearances.Contains(p)) appearances.Add(p);
+                        foreach (var parameter in appearance.Parameters)
+                        {
+                            Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
+                            if (!appearances.Contains(p)) appearances.Add(p);
+                        }
                     }
                 }
 
@@ -225,12 +227,14 @@ namespace Revit.Elements
                 List<Parameter> thermals = new List<Parameter>();
                 if (this.InternalMaterial.ThermalAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
                 {
-                    Autodesk.Revit.DB.PropertySetElement thermal = (Autodesk.Revit.DB.PropertySetElement)document.GetElement(this.InternalMaterial.ThermalAssetId);
-
-                    foreach (Autodesk.Revit.DB.Parameter parameter in thermal.Parameters)
+                    Autodesk.Revit.DB.PropertySetElement thermal = document.GetElement(this.InternalMaterial.ThermalAssetId) as Autodesk.Revit.DB.PropertySetElement;
+                    if (thermal != null)
                     {
-                        Parameter p = new Parameter(parameter);
-                        if (!thermals.Contains(p)) thermals.Add(p);
+                        foreach (var parameter in thermal.Parameters)
+                        {
+                            Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
+                            if (!thermals.Contains(p)) thermals.Add(p);
+                        }
                     }
                 }
 
@@ -250,12 +254,14 @@ namespace Revit.Elements
                 List<Parameter> structurals = new List<Parameter>();
                 if (this.InternalMaterial.StructuralAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
                 {
-                    Autodesk.Revit.DB.PropertySetElement structural = (Autodesk.Revit.DB.PropertySetElement)document.GetElement(this.InternalMaterial.StructuralAssetId);
-
-                    foreach (Autodesk.Revit.DB.Parameter parameter in structural.Parameters)
+                    Autodesk.Revit.DB.PropertySetElement structural = document.GetElement(this.InternalMaterial.StructuralAssetId) as Autodesk.Revit.DB.PropertySetElement;
+                    if (structural != null)
                     {
-                        Parameter p = new Parameter(parameter);
-                        if (!structurals.Contains(p)) structurals.Add(p);
+                        foreach (var parameter in structural.Parameters)
+                        {
+                            Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
+                            if (!structurals.Contains(p)) structurals.Add(p);
+                        }
                     }
                 }
 

@@ -102,9 +102,23 @@ namespace Revit.Elements
                 throw new Exception(Properties.Resources.ViewDoesNotSupportAnnotations);
             }
 
+            if (!curve.IsPlanar)
+            {
+                throw new Exception(Properties.Resources.CurveIsNotPlanar);
+            }
+
+            if (curve is Autodesk.DesignScript.Geometry.PolyCurve)
+            {
+                throw new Exception(Properties.Resources.PolyCurvesConversionError);
+            }
+
+            // Pull Curve onto the XY plane to place it correctly on the view.
+            Autodesk.DesignScript.Geometry.Plane XYplane = Autodesk.DesignScript.Geometry.Plane.XY();
+            Autodesk.DesignScript.Geometry.Curve flattenedCurve = curve.PullOntoPlane(XYplane);
+
             Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
 
-            return new DetailCurve(revitView, curve.ToRevitType());
+            return new DetailCurve(revitView, flattenedCurve.ToRevitType());
         }
 
         #endregion

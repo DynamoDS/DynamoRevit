@@ -5,6 +5,7 @@ using RevitServices.Persistence;
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
 using System.Linq;
+using Revit.GeometryConversion;
 
 namespace Revit.Elements
 {
@@ -122,6 +123,22 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Convert Parameter value if necessary
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private static double ConvertValue(ParameterType type, double value)
+        {
+            if (Element.IsConvertableParameterType(type))
+            {
+                return value * UnitConverter.DynamoToHostFactor(Element.ParameterTypeToUnitType(type));
+            }
+
+            return value;
+        }
+
+        /// <summary>
         /// Set the value of the parameter
         /// </summary>
         public static void SetValue(Parameter parameter, object value)
@@ -131,18 +148,20 @@ namespace Revit.Elements
                 // get document and open transaction
                 Document document = Application.Document.Current.InternalDocument;
                 TransactionManager.Instance.EnsureInTransaction(document);
+                ParameterType type = parameter.InternalParameter.Definition.ParameterType;
 
+ 
                 // apply value according to the parameters storage type
                 switch (parameter.InternalParameter.StorageType)
                 {
                     case Autodesk.Revit.DB.StorageType.Double:
                         if (value is double || value is int)
-                            parameter.InternalParameter.Set((double)value);
+                            parameter.InternalParameter.Set(ConvertValue(type,(double)value));
                         else if (value is string)
                         {
                             double val = 0;
                             if (double.TryParse((string)value, out val))
-                                parameter.InternalParameter.Set(val);
+                                parameter.InternalParameter.Set(ConvertValue(type, val));
                         }
                         break;
 
@@ -166,8 +185,11 @@ namespace Revit.Elements
                             if (int.TryParse((string)value, out val))
                                 parameter.InternalParameter.Set(new ElementId((int)val));
                         }
-                        else if (value is ElementId)
-                            parameter.InternalParameter.Set((ElementId)value);
+                        else if (value is Element)
+                        {
+                            Element element = value as Element;
+                            parameter.InternalParameter.Set(element.InternalElement.Id);
+                        }
                         break;
 
                     case Autodesk.Revit.DB.StorageType.String:
@@ -211,7 +233,7 @@ namespace Revit.Elements
         #region Shared Parameters
 
         /// <summary>
-        /// Get shared parameter file path
+        /// Gets the path to the shared parameter file of this document
         /// </summary>
         /// <returns></returns>
         public static string SharedParameterFile()
@@ -221,23 +243,36 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Create Shared Parameter
+        /// Create a new Shared Parameter in the current Revit document for all applicable categories
         /// </summary>
         /// <param name="parameterName">Name</param>
         /// <param name="groupName">Group of the parameter for shared parameters</param>
         /// <param name="type">Parameter Type</param>
         /// <param name="group">Parameter Group</param>
         /// <param name="instance">Is instance parameter, otherwise its a type parameter</param>
-        /// <param name="categoryList">List of categories this parameter applies to</param>
-        public static void CreateSharedParameter(string parameterName, string groupName, string type, string group, bool instance, [DefaultArgumentAttribute("null")]System.Collections.Generic.IEnumerable<Category> categoryList)
+        public static void CreateSharedParameter(string parameterName, string groupName, string type, string group, bool instance)
+        {
+            CreateSharedParameter(parameterName, groupName, type, group, instance, null); 
+        }
+
+        /// <summary>
+        /// Create a new Shared Parameter in the current Revit document
+        /// </summary>
+        /// <param name="parameterName">Name</param>
+        /// <param name="groupName">Group of the parameter for shared parameters</param>
+        /// <param name="type">Parameter Type</param>
+        /// <param name="group">Parameter Group</param>
+        /// <param name="instance">Is instance parameter, otherwise its a type parameter</param>
+        /// <param name="categoryList">List of categories this parameter applies to, If no category is supplied, all possible categories are selected</param>
+        public static void CreateSharedParameter(string parameterName, string groupName, string type, string group, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
         {
             // parse parameter type
-            Autodesk.Revit.DB.ParameterType parameterType = Autodesk.Revit.DB.ParameterType.Text;
+            var parameterType = Autodesk.Revit.DB.ParameterType.Text;
             if (!System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(type, out parameterType))
                 throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
             // parse parameter group
-            Autodesk.Revit.DB.BuiltInParameterGroup parameterGroup = Autodesk.Revit.DB.BuiltInParameterGroup.PG_DATA;
+            var parameterGroup = Autodesk.Revit.DB.BuiltInParameterGroup.PG_DATA;
             if (!System.Enum.TryParse<Autodesk.Revit.DB.BuiltInParameterGroup>(group, out parameterGroup))
                 throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
@@ -258,19 +293,29 @@ namespace Revit.Elements
                 CategorySet categories = ToCategorySet(categoryList);
 
                 // Create new parameter group if it does not exist yet
-                DefinitionGroup groupDef = document.Application.OpenSharedParameterFile().Groups.get_Item(groupName);
+                DefinitionGroup groupDef = 
+                    document.Application.OpenSharedParameterFile()
+                    .Groups.get_Item(groupName);
+
                 if (groupDef == null)
                 {
-                    groupDef = document.Application.OpenSharedParameterFile().Groups.Create(groupName);
+                    groupDef = 
+                        document.Application.OpenSharedParameterFile()
+                        .Groups.Create(groupName);
                 }
 
                 // If the parameter definition does not exist yet, create it
                 if (groupDef.Definitions.get_Item(parameterName) == null)
                 {
-                    ExternalDefinition def = groupDef.Definitions.Create(new ExternalDefinitionCreationOptions(parameterName, parameterType)) as ExternalDefinition;
+                    ExternalDefinition def = 
+                        groupDef.Definitions.Create
+                        (new ExternalDefinitionCreationOptions(parameterName, parameterType)) as ExternalDefinition;
 
                     // Apply instance or type binding
-                    Binding bin = (instance) ? (Binding)document.Application.Create.NewInstanceBinding(categories) : (Binding)document.Application.Create.NewTypeBinding(categories);
+                    Binding bin = (instance) ? 
+                        (Binding)document.Application.Create.NewInstanceBinding(categories) : 
+                        (Binding)document.Application.Create.NewTypeBinding(categories);
+
                     document.ParameterBindings.Insert(def, bin, parameterGroup);
                 }
 
@@ -290,23 +335,36 @@ namespace Revit.Elements
         #region Project Parameters
 
         /// <summary>
-        /// Create Project Parameter
+        /// Create a new Project Parameter in this current Revit document for all applicable categories
         /// </summary>
         /// <param name="parameterName">Name</param>
         /// <param name="groupName">Group of the parameter for shared parameters</param>
         /// <param name="type">Parameter Type</param>
         /// <param name="group">Parameter Group</param>
         /// <param name="instance">Is instance parameter, otherwise its a type parameter</param>
-        /// <param name="categoryList">List of categories this parameter applies to</param>
-        public static void CreateProjectParameter(string parameterName, string groupName, string type, string group, bool instance, [DefaultArgumentAttribute("null")]System.Collections.Generic.IEnumerable<Category> categoryList)
+        public static void CreateProjectParameterForAllCategories(string parameterName, string groupName, string type, string group, bool instance)
+        {
+            CreateProjectParameter(parameterName, groupName, type, group, instance, null);
+        }
+
+        /// <summary>
+        /// Create a new Project Parameter in this current Revit document
+        /// </summary>
+        /// <param name="parameterName">Name</param>
+        /// <param name="groupName">Group of the parameter for shared parameters</param>
+        /// <param name="type">Parameter Type</param>
+        /// <param name="group">Parameter Group</param>
+        /// <param name="instance">Is instance parameter, otherwise its a type parameter</param>
+        /// <param name="categoryList">List of categories this parameter applies to. If no category is supplied, all possible categories are selected</param>
+        public static void CreateProjectParameter(string parameterName, string groupName, string type, string group, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
         {
             // parse parameter type
-            Autodesk.Revit.DB.ParameterType parameterType = Autodesk.Revit.DB.ParameterType.Text;
+            var parameterType = Autodesk.Revit.DB.ParameterType.Text;
             if (!System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(type, out parameterType))
                 throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
             // parse parameter group
-            Autodesk.Revit.DB.BuiltInParameterGroup parameterGroup = Autodesk.Revit.DB.BuiltInParameterGroup.PG_DATA;
+            var parameterGroup = Autodesk.Revit.DB.BuiltInParameterGroup.PG_DATA;
             if (!System.Enum.TryParse<Autodesk.Revit.DB.BuiltInParameterGroup>(group, out parameterGroup))
                 throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
@@ -326,10 +384,15 @@ namespace Revit.Elements
                 CategorySet categories = ToCategorySet(categoryList);
 
                 // create a new shared parameter, since the file is empty everything has to be created from scratch
-                ExternalDefinition def = document.Application.OpenSharedParameterFile().Groups.Create(groupName).Definitions.Create(new ExternalDefinitionCreationOptions(parameterName, parameterType)) as ExternalDefinition;
+                ExternalDefinition def = 
+                    document.Application.OpenSharedParameterFile()
+                    .Groups.Create(groupName).Definitions.Create(
+                    new ExternalDefinitionCreationOptions(parameterName, parameterType)) as ExternalDefinition;
 
                 // Create an instance or type binding
-                Binding bin = (instance) ? (Binding)document.Application.Create.NewInstanceBinding(categories) : (Binding)document.Application.Create.NewTypeBinding(categories);
+                Binding bin = (instance) ? 
+                    (Binding)document.Application.Create.NewInstanceBinding(categories) : 
+                    (Binding)document.Application.Create.NewTypeBinding(categories);
 
                 // Apply parameter bindings
                 document.ParameterBindings.Insert(def, bin, parameterGroup);
@@ -354,7 +417,7 @@ namespace Revit.Elements
         #endregion
 
         /// <summary>
-        /// Transform List of categories to CategorySet
+        /// Transform List of categories into a CategorySet
         /// </summary>
         /// <param name="categoryList"></param>
         /// <returns></returns>

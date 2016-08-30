@@ -21,7 +21,6 @@ namespace Revit.Elements
         /// <summary>
         /// Internal reference to the Revit Element
         /// </summary>
-        [SupressImportIntoVM]
         internal Autodesk.Revit.DB.RevisionCloud InternalRevitElement
         {
             get;
@@ -31,6 +30,7 @@ namespace Revit.Elements
         /// <summary>
         /// Reference to the Element
         /// </summary>
+        [SupressImportIntoVM]
         public override Autodesk.Revit.DB.Element InternalElement
         {
             get { return InternalRevitElement; }
@@ -99,19 +99,10 @@ namespace Revit.Elements
             // get existing element if possible
             var element = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.RevisionCloud>(document);
 
+            if (null != element)
+                DocumentManager.Instance.DeleteElement(new ElementUUID(element.UniqueId));
 
-            if (element == null)
-            {
-                element = Autodesk.Revit.DB.RevisionCloud.Create(document, view, id, curves.ToList());
-            }
-            else
-            {
-                // there is no way of updateing the properties.
-                // So the cloud is being recreated.
-                document.Delete(element.Id);
-                element = Autodesk.Revit.DB.RevisionCloud.Create(document, view, id, curves.ToList());
-            }
-            
+            element = Autodesk.Revit.DB.RevisionCloud.Create(document, view, id, curves.ToList());
 
             InternalSetElement(element);
 
@@ -188,7 +179,7 @@ namespace Revit.Elements
         #region Internal static constructors
 
         /// <summary>
-        /// Create a Rebar from an existing reference
+        /// Create Rebar from existing reference
         /// </summary>
         /// <param name="rebar"></param>
         /// <param name="isRevitOwned"></param>

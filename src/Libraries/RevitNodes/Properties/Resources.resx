@@ -339,4 +339,16 @@
   <data name="ParameterTypeNotFound" xml:space="preserve">
     <value>Invalid parameter type.</value>
   </data>
+  <data name="CurveIsNotPlanar" xml:space="preserve">
+    <value>Curve ist not planar. Please supply a planar curve.</value>
+  </data>
+  <data name="CurveRequired" xml:space="preserve">
+    <value>Please supply a curve geometry.</value>
+  </data>
+  <data name="InvalidHost" xml:space="preserve">
+    <value>Element does not have a host.</value>
+  </data>
+  <data name="PointRequired" xml:space="preserve">
+    <value>Please supply a point geometry.</value>
+  </data>
 </root>

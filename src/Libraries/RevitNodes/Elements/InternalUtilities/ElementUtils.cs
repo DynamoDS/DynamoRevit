@@ -21,6 +21,7 @@ namespace Revit.Elements.InternalUtilities
         /// from "abc" to "abc(1)".
         /// </summary>
         /// <param name="name"></param>
+        [IsVisibleInDynamoLibrary(false)]
         public static void UpdateLevelName(ref string name)
         {
             if (name.EndsWith(")"))
@@ -58,6 +59,7 @@ namespace Revit.Elements.InternalUtilities
         /// </summary>
         /// <param name="param">Revit parameter</param>
         /// <returns></returns>
+        [IsVisibleInDynamoLibrary(false)]
         public static object GetParameterValue(Autodesk.Revit.DB.Parameter param)
         {
             object result;

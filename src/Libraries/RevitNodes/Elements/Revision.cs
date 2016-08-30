@@ -113,13 +113,40 @@ namespace Revit.Elements
             }
             
             // Apply properties
-            RevisionElem.Visibility = visibility;
-            RevisionElem.Description = description;
-            RevisionElem.RevisionDate = revDate;
-            RevisionElem.Issued = issued;
-            RevisionElem.IssuedBy = issuedBy;
-            RevisionElem.IssuedTo = issuedTo;
-            RevisionElem.NumberType = numberType;
+            if (RevisionElem.Visibility != visibility)
+            {
+                RevisionElem.Visibility = visibility;
+            }
+
+            if (RevisionElem.Description != description)
+            {
+                RevisionElem.Description = description;
+            }
+
+            if (RevisionElem.RevisionDate != revDate)
+            {
+                RevisionElem.RevisionDate = revDate;
+            }
+
+            if (RevisionElem.Issued != issued)
+            {
+                RevisionElem.Issued = issued;
+            }
+
+            if (RevisionElem.IssuedBy != issuedBy)
+            {
+                RevisionElem.IssuedBy = issuedBy;
+            }
+
+            if (RevisionElem.IssuedTo != issuedTo)
+            {
+                RevisionElem.IssuedTo = issuedTo;
+            }
+
+            if (RevisionElem.NumberType != numberType)
+            {
+                RevisionElem.NumberType = numberType;
+            }
 
             InternalSetElement(RevisionElem);
 

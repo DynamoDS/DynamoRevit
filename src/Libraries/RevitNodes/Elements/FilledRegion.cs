@@ -102,19 +102,10 @@ namespace Revit.Elements
             // Get existing element
             var region = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FilledRegion>(document);
 
+            if (null != region)
+                DocumentManager.Instance.DeleteElement(new ElementUUID(region.UniqueId));
 
-            if (region == null)
-            { 
-                // Create new region
-                region = Autodesk.Revit.DB.FilledRegion.Create(document, typeId, view.Id, boundary.ToList()); 
-            }
-            else
-            {
-                // Delete and replace region because there are no properties to update the filled region
-                document.Delete(region.Id);
-                region = Autodesk.Revit.DB.FilledRegion.Create(document, typeId, view.Id, boundary.ToList());
-            }
-
+            region = Autodesk.Revit.DB.FilledRegion.Create(document, typeId, view.Id, boundary.ToList()); 
 
             InternalSetElement(region);
 
