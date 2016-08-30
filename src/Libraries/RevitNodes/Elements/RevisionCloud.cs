@@ -179,14 +179,14 @@ namespace Revit.Elements
         #region Internal static constructors
 
         /// <summary>
-        /// Create Rebar from existing reference
+        /// Create RevisionCloud from existing reference
         /// </summary>
-        /// <param name="rebar"></param>
+        /// <param name="revisionCloud"></param>
         /// <param name="isRevitOwned"></param>
         /// <returns></returns>
-        internal static RevisionCloud FromExisting(Autodesk.Revit.DB.RevisionCloud RevisionCloud, bool isRevitOwned)
+        internal static RevisionCloud FromExisting(Autodesk.Revit.DB.RevisionCloud revisionCloud, bool isRevitOwned)
         {
-            return new RevisionCloud(RevisionCloud)
+            return new RevisionCloud(revisionCloud)
             {
                 IsRevitOwned = isRevitOwned
             };

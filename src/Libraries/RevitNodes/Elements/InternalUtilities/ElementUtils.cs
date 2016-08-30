@@ -9,7 +9,7 @@ using RevitServices.Persistence;
 
 namespace Revit.Elements.InternalUtilities
 {
-    [IsVisibleInDynamoLibrary(false)]
+    [SupressImportIntoVM]
     public class ElementUtils
     {
         /// <summary>
@@ -21,7 +21,7 @@ namespace Revit.Elements.InternalUtilities
         /// from "abc" to "abc(1)".
         /// </summary>
         /// <param name="name"></param>
-        [IsVisibleInDynamoLibrary(false)]
+        [SupressImportIntoVM]
         public static void UpdateLevelName(ref string name)
         {
             if (name.EndsWith(")"))
@@ -59,7 +59,7 @@ namespace Revit.Elements.InternalUtilities
         /// </summary>
         /// <param name="param">Revit parameter</param>
         /// <returns></returns>
-        [IsVisibleInDynamoLibrary(false)]
+        [SupressImportIntoVM]
         public static object GetParameterValue(Autodesk.Revit.DB.Parameter param)
         {
             object result;
