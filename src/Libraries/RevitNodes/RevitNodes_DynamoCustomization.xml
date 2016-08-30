@@ -16,6 +16,9 @@
     <namespace name="Revit.Elements">
       <category>Revit.Elements</category>
     </namespace>
+    <namespace name="Revit.Filter">
+      <category>Revit.Filter</category>
+    </namespace>
     <namespace name="Revit.Geometry">
       <category>Revit.Geometry</category>
     </namespace>
