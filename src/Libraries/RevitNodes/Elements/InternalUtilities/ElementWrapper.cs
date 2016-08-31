@@ -152,14 +152,14 @@ namespace Revit.Elements
 
         public static View3D Wrap(Autodesk.Revit.DB.View3D view, bool isRevitOwned)
         {
-            if (view.IsPerspective)
+            if (!view.IsTemplate)
             {
-                return PerspectiveView.FromExisting(view, isRevitOwned);
+                if (view.IsPerspective)
+                    return PerspectiveView.FromExisting(view, isRevitOwned);
+                else
+                    return AxonometricView.FromExisting(view, isRevitOwned);
             }
-            else
-            {
-                return AxonometricView.FromExisting(view, isRevitOwned);
-            }
+            return null;
         }
 
         public static Element Wrap(Autodesk.Revit.DB.ViewPlan view, bool isRevitOwned)
