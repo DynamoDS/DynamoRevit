@@ -424,8 +424,8 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(35, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(18, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(38, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(20, model.CurrentWorkspace.Connectors.Count());
             
             AssertNoDummyNodes();
 
@@ -442,7 +442,7 @@ namespace RevitSystemTests
             var floor = GetPreviewValueAtIndex(allElementAtLevelNodeID, 2) as Revit.Elements.Floor;
             Assert.IsNotNull(floor);
 
-            // ElementsOfCategory & Categories, as output of Categories 
+            // ElementsOfCategories & Adaptive Points, as output of Categories 
             // passed to ElementsOFCategory
             var elementsOfCategoryNodeID = "24f225e1-8883-48c3-a8ba-773b2734336c";
             AssertPreviewCount(elementsOfCategoryNodeID, 22);
@@ -451,6 +451,11 @@ namespace RevitSystemTests
                 var refPt = GetPreviewValueAtIndex(elementsOfCategoryNodeID, i) as ReferencePoint;
                 Assert.IsNotNull(refPt);
             }
+
+            // ElementsOfCategories & Views, as output of Categories 
+            // passed to ElementsOFCategory
+            var elementsOfViewNodeID = "2569434a-b34f-4512-a4fe-f065c7a10175";
+            AssertPreviewCount(elementsOfViewNodeID, 33);
 
             // ElementsOfFamilyType & Family Type, as FamilyType output passed to 
             // ElementsOfFamilyTypes node.
