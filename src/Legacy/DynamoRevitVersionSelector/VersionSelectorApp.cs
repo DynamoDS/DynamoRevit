@@ -131,7 +131,7 @@ namespace Dynamo.Applications
                 LaunchDynamoCommand(product.Value, e);
         }
 
-        void executedPlaylist(object sender, ExecutedEventArgs e)
+        private void executedPlaylist(object sender, ExecutedEventArgs e)
         {
             if (PlaylistProducts.Count == 0)
                 return;
