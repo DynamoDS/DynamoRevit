@@ -373,7 +373,14 @@ namespace Dynamo.Applications
             var dynamoRevitExePath = Assembly.GetExecutingAssembly().Location;
             var dynamoRevitRoot = Path.GetDirectoryName(dynamoRevitExePath);// ...\Revit_xxxx\ folder
 
+            // get Dynamo Revit Version
+            var revitFilePath = Directory.GetFiles(dynamoRevitRoot, "*DynamoRevitDS.dll").FirstOrDefault();
+            var revitVersion = String.IsNullOrEmpty(revitFilePath) ? null : Version.Parse(FileVersionInfo.GetVersionInfo(revitFilePath).FileVersion);
+            
             var umConfig = UpdateManagerConfiguration.GetSettings(new DynamoRevitLookUp());
+            var RevitUpdateManager = new DynUpdateManager(umConfig);
+            RevitUpdateManager.DynamoRevitVersion = revitVersion; // update RevitUpdateManager with the current DynamoRevit Version
+
             Debug.Assert(umConfig.DynamoLookUp != null);
 
             var userDataFolder = Path.Combine(Environment.GetFolderPath(
