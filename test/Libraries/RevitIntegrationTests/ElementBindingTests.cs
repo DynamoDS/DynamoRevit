@@ -794,6 +794,26 @@ namespace RevitSystemTests
             Assert.AreEqual(initialNumber, finalNumber);
         }
 
+        [Test]
+        [TestModel(@".\ElementBinding\MultipleCustomInstance.rvt")]
+        public void MultipleCustomNodeInstance()
+        {
+            string dynPath = Path.Combine(workingDirectory, @".\ElementBinding\PlaceMultipleRevitCustomNodes.dyn");
+
+            ViewModel.OpenCommand.Execute(dynPath);
+            RunCurrentModel();
+
+            var walls = GetAllWalls();
+            Assert.AreEqual(8, walls.Count());
+
+            var cbn = GetNode<CodeBlockNodeModel>("a4705f1f-1cfb-43eb-ba35-a797d5703d37");
+            var command = new Dynamo.Models.DynamoModel.UpdateModelValueCommand(Guid.Empty, cbn.GUID, "Code", "100;100;");
+            this.Model.ExecuteCommand(command);
+
+            walls = GetAllWalls();
+            Assert.AreEqual(8, walls.Count());
+        }
+
 
         private DynamoModel OpenElementBindingWorkspace(string name)
         {
