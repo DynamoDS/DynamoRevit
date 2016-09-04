@@ -79,7 +79,7 @@ namespace Dynamo.Applications
                 Products.Add(p);
 
                 if (p.VersionInfo.Major >= MinDynamoMajorVersionForPlaylist
-                    && p.VersionInfo.Major >= MinDynamoMinorVersionForPlaylist)
+                    && p.VersionInfo.Minor >= MinDynamoMinorVersionForPlaylist)
                 {
                     if (Convert.ToInt64(revitVersion) >= MinRevitVersionForPlaylist)
                     {
