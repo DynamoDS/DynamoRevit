@@ -45,7 +45,7 @@ namespace Dynamo.Applications
 
         //Minimum version requirements needed by Playlist feature for Dynamo and Revit.
         private const int MinDynamoMajorVersionForPlaylist = 1;
-        private const int MinDynamoMinorVersionForPlaylist = 1;
+        private const int MinDynamoMinorVersionForPlaylist = 2;
         private const int MinRevitVersionForPlaylist = 2017;
 
 
@@ -79,7 +79,7 @@ namespace Dynamo.Applications
                 Products.Add(p);
 
                 if (p.VersionInfo.Major >= MinDynamoMajorVersionForPlaylist
-                    && p.VersionInfo.Major >= MinDynamoMinorVersionForPlaylist)
+                    && p.VersionInfo.Minor >= MinDynamoMinorVersionForPlaylist)
                 {
                     if (Convert.ToInt64(revitVersion) >= MinRevitVersionForPlaylist)
                     {
