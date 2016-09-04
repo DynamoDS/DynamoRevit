@@ -36,9 +36,18 @@ namespace Dynamo.Applications
     [Regeneration(RegenerationOption.Manual)]
     public class VersionLoader : IExternalApplication
     {
-        private static UIControlledApplication uiApplication;
+        private static UIControlledApplication uiControlledApplication;
         private AddInCommandBinding dynamoCommand;
+        private AddInCommandBinding dynamoPlayerCommand;
         internal List<DynamoProduct> Products { get; private set; }
+        //PlaylistProducts represent a subset of available Dynamo Products who are supporting Playlist feature.        
+        private List<DynamoProduct> PlaylistProducts { get; set; }
+
+        //Minimum version requirements needed by Playlist feature for Dynamo and Revit.
+        private const int MinDynamoMajorVersionForPlaylist = 1;
+        private const int MinDynamoMinorVersionForPlaylist = 1;
+        private const int MinRevitVersionForPlaylist = 2017;
+
 
         internal static string GetDynamoRevitPath(DynamoProduct product, string revitVersion)
         {
@@ -50,7 +59,7 @@ namespace Dynamo.Applications
 
         public Result OnStartup(UIControlledApplication application)
         {
-            uiApplication = application;
+            uiControlledApplication = application;
             var revitVersion = application.ControlledApplication.VersionNumber;
 
             var revitFolder =
@@ -60,6 +69,7 @@ namespace Dynamo.Applications
             var dynamoProducts = FindDynamoRevitInstallations(debugPath, revitVersion);
 
             Products = new List<DynamoProduct>();
+            PlaylistProducts = new List<DynamoProduct>();
             foreach (var p in dynamoProducts)
             {
                 var path = VersionLoader.GetDynamoRevitPath(p, revitVersion);
@@ -67,7 +77,21 @@ namespace Dynamo.Applications
                     continue;
 
                 Products.Add(p);
+
+                if (p.VersionInfo.Major >= MinDynamoMajorVersionForPlaylist
+                    && p.VersionInfo.Major >= MinDynamoMinorVersionForPlaylist)
+                {
+                    if (Convert.ToInt64(revitVersion) >= MinRevitVersionForPlaylist)
+                    {
+                        PlaylistProducts.Add(p);
+                    }
+                }
             }
+
+            if (Products.Count == 0)
+                return Result.Failed;
+
+            Result preliminaryLoadResult = Result.Succeeded;
 
             // If there are multiple versions installed, then do the command 
             // binding to prompt for version selector task dialog for user to 
@@ -79,27 +103,50 @@ namespace Dynamo.Applications
                 dynamoCommand.CanExecute += canExecute;
                 dynamoCommand.BeforeExecuted += beforeExecuted;
                 dynamoCommand.Executed += executed;
+
+                if (PlaylistProducts.Count >= 1)
+                {
+                    var dynamoPlayerCmdId = RevitCommandId.LookupCommandId("ID_PLAYLIST_DYNAMO");
+                    if (dynamoPlayerCmdId != null)
+                    {
+                        dynamoPlayerCommand = application.CreateAddInCommandBinding(dynamoPlayerCmdId);
+                        dynamoPlayerCommand.CanExecute += canExecute;
+                        dynamoPlayerCommand.BeforeExecuted += beforeExecuted;
+                        dynamoPlayerCommand.Executed += executedPlaylist;
+                    }
+                }
             }
             else //If only one product is installed load the Revit App directly
             {
-                string loadPath = GetDynamoRevitPath(Products.ElementAt(0), revitVersion);
-
-                if (String.IsNullOrEmpty(loadPath))
-                    return Result.Failed;
-
-                var ass = Assembly.LoadFrom(loadPath);
-                var revitApp = ass.CreateInstance("Dynamo.Applications.DynamoRevitApp");
-                revitApp.GetType().GetMethod("OnStartup").Invoke(revitApp, new object[] { application });
+                preliminaryLoadResult = loadProduct(Products.First(), revitVersion);
             }
 
-            return Result.Succeeded;
+            return preliminaryLoadResult;
         }
 
         void executed(object sender, ExecutedEventArgs e)
         {
-            var product = PromptVersionSelectorDialog();
+            var product = PromptVersionSelectorDialog(Products);
             if(product.HasValue)
                 LaunchDynamoCommand(product.Value, e);
+        }
+
+        private void executedPlaylist(object sender, ExecutedEventArgs e)
+        {
+            if (PlaylistProducts.Count == 0)
+                return;
+
+            DynamoProduct productToLaunch = PlaylistProducts.First();
+            if (PlaylistProducts.Count > 1)
+            {
+                var product = PromptVersionSelectorDialog(PlaylistProducts);
+                if (product.HasValue)
+                {
+                    productToLaunch = product.Value;
+                }
+            }
+
+            LaunchDynamoCommand(productToLaunch, e, true);
         }
 
         void beforeExecuted(object sender, BeforeExecutedEventArgs e)
@@ -112,11 +159,26 @@ namespace Dynamo.Applications
             e.CanExecute = e.ActiveDocument != null;
         }
 
+        private Result loadProduct(DynamoProduct product, string revitVersion)
+        {
+            string loadPath = GetDynamoRevitPath(product, revitVersion);
+
+            if (String.IsNullOrEmpty(loadPath))
+                return Result.Failed;
+
+            var ass = Assembly.LoadFrom(loadPath);
+            var revitApp = ass.CreateInstance("Dynamo.Applications.DynamoRevitApp");
+            revitApp.GetType().GetMethod("OnStartup").Invoke(revitApp, new object[] { uiControlledApplication });
+
+            return Result.Succeeded;
+        }
+
         /// <summary>
         /// Prompts for version selection task dialog
         /// </summary>
+        /// <param name="availableProducts">Choice list of Dynamo Products available for selection</param>
         /// <returns>DynamoProduct to launch or null</returns>
-        private DynamoProduct? PromptVersionSelectorDialog()
+        private DynamoProduct? PromptVersionSelectorDialog(List<DynamoProduct> availableProducts)
         {
             // Creates a Revit task dialog to communicate information to the user.
             TaskDialog mainDialog = new TaskDialog(Resources.DynamoVersions);
@@ -125,12 +187,12 @@ namespace Dynamo.Applications
 
             // Add commmandLink options to task dialog
             int id = (int)TaskDialogCommandLinkId.CommandLink1;
-            var revitVersion = uiApplication.ControlledApplication.VersionNumber;
+            var revitVersion = uiControlledApplication.ControlledApplication.VersionNumber;
             //Get the default selection data
             var selectorData = VersionSelectorData.ReadFromRegistry(revitVersion);
             var selectedVersion = selectorData.SelectedVersion.ToString(2);
             TaskDialogResult defaultResult = TaskDialogResult.CommandLink1;
-            foreach (var item in Products)
+            foreach (var item in availableProducts)
             {
                 var versionText = String.Format(Resources.DynamoVersionText, item.VersionInfo.ToString(3));
                 mainDialog.AddCommandLink((TaskDialogCommandLinkId)id, versionText, item.InstallLocation);
@@ -150,21 +212,23 @@ namespace Dynamo.Applications
                 return null;
 
             var index = (int)tResult - (int)TaskDialogCommandLinkId.CommandLink1;
-            return Products[index];
+            return availableProducts[index];
         }
+
 
         /// <summary>
         /// Launches specific version of Dynamo command
         /// </summary>
         /// <param name="product">DynamoProduct to launch</param>
         /// <param name="e">Command executed event argument</param>
+        /// <param name="playlist">Launch the Playlist app or just Dynamo</param>
         /// <returns>true for success</returns>
-        private bool LaunchDynamoCommand(DynamoProduct product, ExecutedEventArgs e)
+        private bool LaunchDynamoCommand(DynamoProduct product, ExecutedEventArgs e,bool playlist = false)
         {
-            if (uiApplication == null)
+            if (uiControlledApplication == null)
                 throw new InvalidOperationException();
 
-            var revitVersion = uiApplication.ControlledApplication.VersionNumber;
+            var revitVersion = uiControlledApplication.ControlledApplication.VersionNumber;
             var path = GetDynamoRevitPath(product, revitVersion);
             var data = new VersionSelectorData() { RevitVersion = revitVersion, SelectedVersion = product.VersionInfo };
             data.WriteToRegistry();
@@ -174,24 +238,36 @@ namespace Dynamo.Applications
             var revitApp = ass.CreateInstance("Dynamo.Applications.DynamoRevitApp");
             if (null == revitApp)
                 return false;
-
+            
             //Remove the command binding, because now DynamoRevitApp will 
             //do the command binding for DynamoRevit command.
             RemoveCommandBinding();
 
             var type = revitApp.GetType();
-            var result = type.GetMethod("OnStartup").Invoke(revitApp, new object[] { uiApplication });
+            var result = type.GetMethod("OnStartup").Invoke(revitApp, new object[] { uiControlledApplication });
             if ((Result)result != Result.Succeeded)
                 return false;
 
-            //Invoke command
-            string message = string.Empty;
-            result = type.GetMethod("ExecuteDynamoCommand")
-                .Invoke(revitApp, new object[] { e.GetJournalData(), new UIApplication(e.ActiveDocument.Application) });
-            if ((Result)result != Result.Succeeded)
-                return false;
+            UIApplication uiApp = new UIApplication(e.ActiveDocument.Application);
 
-            uiApplication = null; //release application, no more needed.
+            if (!playlist)
+            {
+                //Invoke command
+                string message = string.Empty;
+                result = type.GetMethod("ExecuteDynamoCommand").Invoke(revitApp, new object[] { e.GetJournalData(), uiApp });
+                if ((Result)result != Result.Succeeded)
+                    return false;
+            }
+            else
+            {
+                //Dependent components have done a re-binding of Playlist command in order to be executed in their context.
+                //In order to lunch the Playlist we just need to post the command to the Revit application.
+                var dynamoPlayerCmdId = RevitCommandId.LookupCommandId("ID_PLAYLIST_DYNAMO");
+                if (dynamoPlayerCmdId != null)
+                    uiApp.PostCommand(dynamoPlayerCmdId);
+            }
+
+            uiControlledApplication = null; //release application, no more needed.
             return true;
         }
 
@@ -203,14 +279,24 @@ namespace Dynamo.Applications
 
         private void RemoveCommandBinding()
         {
-            if (null == dynamoCommand)
-                return;
+            if (null != dynamoCommand)
+            {
+                uiControlledApplication.RemoveAddInCommandBinding(dynamoCommand.RevitCommandId);
+                dynamoCommand.BeforeExecuted -= beforeExecuted;
+                dynamoCommand.CanExecute -= canExecute;
+                dynamoCommand.Executed -= executed;
+                dynamoCommand = null;
+            }
 
-            uiApplication.RemoveAddInCommandBinding(dynamoCommand.RevitCommandId);
-            dynamoCommand.BeforeExecuted -= beforeExecuted;
-            dynamoCommand.CanExecute -= canExecute;
-            dynamoCommand.Executed -= executed;
-            dynamoCommand = null;
+            if (null != dynamoPlayerCommand)
+            {
+                uiControlledApplication.RemoveAddInCommandBinding(dynamoPlayerCommand.RevitCommandId);
+                dynamoPlayerCommand.BeforeExecuted -= beforeExecuted;
+                dynamoPlayerCommand.CanExecute -= canExecute;
+                dynamoPlayerCommand.Executed -= executedPlaylist;
+                dynamoPlayerCommand = null;
+            }                
+
         }
 
         private static IEnumerable<DynamoProduct> FindDynamoRevitInstallations(string debugPath, string revitVersion)
