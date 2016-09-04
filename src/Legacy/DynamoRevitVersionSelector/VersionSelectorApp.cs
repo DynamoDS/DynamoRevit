@@ -40,7 +40,14 @@ namespace Dynamo.Applications
         private AddInCommandBinding dynamoCommand;
         private AddInCommandBinding dynamoPlayerCommand;
         internal List<DynamoProduct> Products { get; private set; }
-        internal List<DynamoProduct> PlaylistProducts { get; private set; }
+        //PlaylistProducts represent a subset of available Dynamo Products who are supporting Playlist feature.        
+        private List<DynamoProduct> PlaylistProducts { get; set; }
+
+        //Minimum version requirements needed by Playlist feature for Dynamo and Revit.
+        private const int MinDynamoMajorVersionForPlaylist = 1;
+        private const int MinDynamoMinorVersionForPlaylist = 2;
+        private const int MinRevitVersionForPlaylist = 2018;
+
 
         internal static string GetDynamoRevitPath(DynamoProduct product, string revitVersion)
         {
@@ -71,9 +78,10 @@ namespace Dynamo.Applications
 
                 Products.Add(p);
 
-                if (p.VersionInfo.Build >= 1 && p.VersionInfo.Major >= 1)
+                if (p.VersionInfo.Major >= MinDynamoMajorVersionForPlaylist
+                    && p.VersionInfo.Major >= MinDynamoMinorVersionForPlaylist)
                 {
-                    if (Convert.ToInt64(revitVersion) >= 2017)
+                    if (Convert.ToInt64(revitVersion) >= MinRevitVersionForPlaylist)
                     {
                         PlaylistProducts.Add(p);
                     }
@@ -123,7 +131,7 @@ namespace Dynamo.Applications
                 LaunchDynamoCommand(product.Value, e);
         }
 
-        void executedPlaylist(object sender, ExecutedEventArgs e)
+        private void executedPlaylist(object sender, ExecutedEventArgs e)
         {
             if (PlaylistProducts.Count == 0)
                 return;
@@ -168,6 +176,7 @@ namespace Dynamo.Applications
         /// <summary>
         /// Prompts for version selection task dialog
         /// </summary>
+        /// <param name="availableProducts">Choice list of Dynamo Products available for selection</param>
         /// <returns>DynamoProduct to launch or null</returns>
         private DynamoProduct? PromptVersionSelectorDialog(List<DynamoProduct> availableProducts)
         {
@@ -251,7 +260,8 @@ namespace Dynamo.Applications
             }
             else
             {
-                //search it again since it was re-binded in dependent components
+                //Dependent components have done a re-binding of Playlist command in order to be executed in their context.
+                //In order to lunch the Playlist we just need to post the command to the Revit application.
                 var dynamoPlayerCmdId = RevitCommandId.LookupCommandId("ID_PLAYLIST_DYNAMO");
                 if (dynamoPlayerCmdId != null)
                     uiApp.PostCommand(dynamoPlayerCmdId);
