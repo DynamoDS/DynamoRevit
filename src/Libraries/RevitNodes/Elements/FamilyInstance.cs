@@ -380,13 +380,12 @@ namespace Revit.Elements
         /// Place a Revit family instance given the FamilyType (also known as the FamilySymbol in the Revit API) 
         /// on a surface derived from a backing Revit face as reference, a reference direction and a point location where to place the family.
         /// 
-        /// Note: The FamilyType should be workplane based and the input surface must be created from a Revit Face
+        /// Note: The FamilyType should be workplane based and the input surface must be created from a Revit Face. The reference direction defines the rotation of the instance on the reference, and thus cannot be perpendicular to the face.
         /// </summary>
         /// <param name="familyType"></param>
         /// <param name="face">Surface geometry derived from a Revit face as reference element</param>
         /// <param name="location">Point on the face where the instance is to be placed</param>
-        /// <param name="referenceDirection">A vector that defines the direction of placement of the family instance. 
-        /// Note that this direction defines the rotation of the instance on the reference, and thus cannot be perpendicular to the face</param>
+        /// <param name="referenceDirection">A vector that defines the direction of placement of the family instance</param>
         /// <returns>FamilyInstance</returns>
         public static FamilyInstance ByFace(FamilyType familyType, Surface face, Point location, 
             Vector referenceDirection)
