@@ -228,7 +228,7 @@ namespace Revit.Elements
                     throw new System.Exception(Properties.Resources.NoSharedParameterFileFound);
 
                 // Apply selected parameter categories
-                CategorySet categories = ToCategorySet(categoryList);
+                CategorySet categories = (categoryList == null) ? AllCategories() : ToCategorySet(categoryList);
 
                 // Create new parameter group if it does not exist yet
                 DefinitionGroup groupDef = 
@@ -319,7 +319,7 @@ namespace Revit.Elements
                 document.Application.SharedParametersFilename = tempSharedParameterFile;
 
                 // Apply selected parameter categories
-                CategorySet categories = ToCategorySet(categoryList);
+                CategorySet categories = (categoryList == null) ? AllCategories() : ToCategorySet(categoryList);
 
                 // create a new shared parameter, since the file is empty everything has to be created from scratch
                 ExternalDefinition def = 
@@ -355,7 +355,32 @@ namespace Revit.Elements
         #endregion
 
         /// <summary>
-        /// Transform List of categories into a CategorySet
+        /// Get a CategorySet for all categories
+        /// </summary>
+        /// <returns></returns>
+        internal static CategorySet AllCategories()
+        {
+            Document document = Application.Document.Current.InternalDocument;
+
+            // Apply selected parameter categories
+            CategorySet categories = document.Application.Create.NewCategorySet();
+
+
+            // Walk thru all categories and add them if they allow bound parameters
+            foreach (Autodesk.Revit.DB.Category cat in document.Settings.Categories)
+            {
+                if (cat.AllowsBoundParameters)
+                {
+                    categories.Insert(cat);
+                }
+            }
+
+
+            return categories;
+        }
+
+        /// <summary>
+        /// Convert a list of categories to a category set
         /// </summary>
         /// <param name="categoryList"></param>
         /// <returns></returns>
@@ -366,27 +391,15 @@ namespace Revit.Elements
             // Apply selected parameter categories
             CategorySet categories = document.Application.Create.NewCategorySet();
 
-            if (categoryList == null)
+
+            foreach (Category category in categoryList)
             {
-                // Walk thru all categories and add them if they allow bound parameters
-                foreach (Autodesk.Revit.DB.Category cat in document.Settings.Categories)
+                if (category.InternalCategory.AllowsBoundParameters)
                 {
-                    if (cat.AllowsBoundParameters)
-                    {
-                        categories.Insert(cat);
-                    }
+                    categories.Insert(category.InternalCategory);
                 }
             }
-            else
-            {
-                foreach (Category category in categoryList)
-                {
-                    if (category.InternalCategory.AllowsBoundParameters)
-                    {
-                        categories.Insert(category.InternalCategory);
-                    }
-                }
-            }
+
 
             return categories;
         }
