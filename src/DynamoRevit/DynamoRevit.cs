@@ -35,7 +35,7 @@ using RevitServices.Threading;
 using MessageBox = System.Windows.Forms.MessageBox;
 using DynUpdateManager = Dynamo.Updates.UpdateManager;
 using Microsoft.Win32;
-
+using DynamoInstallDetective;
 
 namespace RevitServices.Threading
 {
@@ -220,6 +220,13 @@ namespace Dynamo.Applications
                 MessageBox.Show(ex.ToString());
 
                 DynamoRevitApp.DynamoButtonEnabled = true;
+                
+                //If for some reason Dynamo has crashed while startup make sure the Dynamo Model is properly shutdown.
+                if (revitDynamoModel != null)
+                {
+                    revitDynamoModel.ShutDown(false);
+                    revitDynamoModel = null;
+                }
 
                 return Result.Failed;
             }
@@ -295,6 +302,8 @@ namespace Dynamo.Applications
                 Environment.SpecialFolder.CommonApplicationData), 
                 "Dynamo", "Dynamo Revit");
 
+            PreloadAsmFromRevit();
+
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
                 {
@@ -310,6 +319,20 @@ namespace Dynamo.Applications
                     UpdateManager = new DynUpdateManager(umConfig),
                     ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
                 });
+        }
+
+        private static void PreloadAsmFromRevit()
+        {
+            var asmLocation = AppDomain.CurrentDomain.BaseDirectory;
+
+            var lookup = new InstalledProductLookUp("Revit", "ASMAHL*.dll");
+            var product = lookup.GetProductFromInstallPath(asmLocation);
+
+            var dynCorePath = DynamoRevitApp.DynamoCorePath;
+            var libGFolderName = string.Format("libg_{0}", product.VersionInfo.Item1);
+            var preloaderLocation = Path.Combine(dynCorePath, libGFolderName);
+
+            DynamoShapeManager.Utilities.PreloadAsmFromPath(preloaderLocation, asmLocation);
         }
 
         private static DynamoViewModel InitializeCoreViewModel(RevitDynamoModel revitDynamoModel)

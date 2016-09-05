@@ -232,6 +232,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Element cannot be annotated.
+        /// </summary>
+        internal static string ElementCannotBeAnnotatedError {
+            get {
+                return ResourceManager.GetString("ElementCannotBeAnnotatedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You supplied an {0}, but we could not extract a ElementFaceReference from it!.
         /// </summary>
         internal static string FaceReferenceExtractionDetail {
@@ -489,6 +498,15 @@ namespace Revit.Properties {
         internal static string NotAdaptiveComponentError {
             get {
                 return ResourceManager.GetString("NotAdaptiveComponentError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need at least two elements for a dimension..
+        /// </summary>
+        internal static string NotEnoughDataError {
+            get {
+                return ResourceManager.GetString("NotEnoughDataError", resourceCulture);
             }
         }
         
