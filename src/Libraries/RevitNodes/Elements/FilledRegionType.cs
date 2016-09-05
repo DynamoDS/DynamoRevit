@@ -6,6 +6,7 @@ using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Revit.Elements
 {
@@ -63,6 +64,31 @@ namespace Revit.Elements
             SafeInit(() => InitElement(FilledRegion));
         }
 
+
+        #endregion
+
+        #region Public static constructors
+
+        /// <summary>
+        /// Select a FilledRegionType from the current document by name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static FilledRegionType ByName(string name)
+        {
+            var type = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.FilledRegionType>()
+                .FirstOrDefault(x => x.Name == name);
+
+            if (type == null)
+            {
+                throw new Exception(String.Format(Properties.Resources.TypeNotFound, name));
+            }
+
+            return new FilledRegionType(type)
+            {
+                IsRevitOwned = true
+            };
+        }
 
         #endregion
 
