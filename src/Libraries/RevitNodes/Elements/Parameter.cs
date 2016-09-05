@@ -108,9 +108,9 @@ namespace Revit.Elements
         /// <returns>Parameter</returns>
         public static Elements.Parameter ParameterByName(Elements.Element element, string name)
         {
-            var param = element.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
-                .OrderBy(x => x.Id.IntegerValue)
-                .FirstOrDefault(x => x.Definition.Name == name);
+            var param = element.Parameters.Cast<Parameter>()
+                .OrderBy(x => x.InternalParameter.Id.IntegerValue)
+                .FirstOrDefault(x => x.InternalParameter.Definition.Name == name);
 
             if (param == null)
             {
@@ -118,7 +118,7 @@ namespace Revit.Elements
             }
             else
             {
-                return new Parameter(param);
+                return param;
             }
         }
 
