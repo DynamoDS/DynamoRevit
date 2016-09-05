@@ -507,6 +507,9 @@ namespace Revit.Elements
             get
             {
                 if (this.InternalFamilyInstance.Host != null)
+
+                    // TODO: This might need to change since its not clear if the Host element is revit owned or not.
+                    // Currently there is no way of figuring this out, therefore the assumption is true (Revit owned)
                     return ElementWrapper.Wrap(this.InternalFamilyInstance.Host, true);
                 else
                     throw new Exception(Properties.Resources.InvalidHost);

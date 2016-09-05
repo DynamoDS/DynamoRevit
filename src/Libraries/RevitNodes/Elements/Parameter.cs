@@ -122,21 +122,6 @@ namespace Revit.Elements
             }
         }
 
-        /// <summary>
-        /// Convert Parameter value if necessary
-        /// </summary>
-        /// <param name="type"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        private static double ConvertValue(ParameterType type, double value)
-        {
-            if (Element.IsConvertableParameterType(type))
-            {
-                return value * UnitConverter.DynamoToHostFactor(Element.ParameterTypeToUnitType(type));
-            }
-
-            return value;
-        }
 
         /// <summary>
         /// Set the value of the parameter
@@ -148,55 +133,8 @@ namespace Revit.Elements
                 // get document and open transaction
                 Document document = Application.Document.Current.InternalDocument;
                 TransactionManager.Instance.EnsureInTransaction(document);
-                ParameterType type = parameter.InternalParameter.Definition.ParameterType;
-
- 
-                // apply value according to the parameters storage type
-                switch (parameter.InternalParameter.StorageType)
-                {
-                    case Autodesk.Revit.DB.StorageType.Double:
-                        if (value is double || value is int)
-                            parameter.InternalParameter.Set(ConvertValue(type,(double)value));
-                        else if (value is string)
-                        {
-                            double val = 0;
-                            if (double.TryParse((string)value, out val))
-                                parameter.InternalParameter.Set(ConvertValue(type, val));
-                        }
-                        break;
-
-                    case Autodesk.Revit.DB.StorageType.Integer:
-                        if (value is double || value is int)
-                            parameter.InternalParameter.Set((int)value);
-                        else if (value is string)
-                        {
-                            int val = 0;
-                            if (int.TryParse((string)value, out val))
-                                parameter.InternalParameter.Set(val);
-                        }
-                        break;
-
-                    case Autodesk.Revit.DB.StorageType.ElementId:
-                        if (value is double || value is int)
-                            parameter.InternalParameter.Set(new ElementId((int)value));
-                        else if (value is string)
-                        {
-                            int val = 0;
-                            if (int.TryParse((string)value, out val))
-                                parameter.InternalParameter.Set(new ElementId((int)val));
-                        }
-                        else if (value is Element)
-                        {
-                            Element element = value as Element;
-                            parameter.InternalParameter.Set(element.InternalElement.Id);
-                        }
-                        break;
-
-                    case Autodesk.Revit.DB.StorageType.String:
-                        parameter.InternalParameter.Set(value.ToString());
-                        break;
-                }
-
+                var val = value as dynamic;
+                Revit.Elements.InternalUtilities.ElementUtils.SetParameterValue(parameter.InternalParameter, val);
                 TransactionManager.Instance.TransactionTaskDone();
             }
         }

@@ -297,28 +297,7 @@ namespace Revit.Elements
                 paramType == ParameterType.MassDensity;
         }
 
-        internal static UnitType ParameterTypeToUnitType(ParameterType parameterType)
-        {
-            switch (parameterType)
-            {
-                case ParameterType.Length:
-                    return UnitType.UT_Length;
-                case ParameterType.Area:
-                    return UnitType.UT_Area;
-                case ParameterType.Volume:
-                    return UnitType.UT_Volume;
-                case ParameterType.Angle:
-                    return UnitType.UT_Angle;
-                case ParameterType.Slope:
-                    return UnitType.UT_Slope;
-                case ParameterType.Currency:
-                    return UnitType.UT_Currency;
-                case ParameterType.MassDensity:
-                    return UnitType.UT_MassDensity;
-                default:
-                    throw new Exception(Properties.Resources.UnitTypeConversionError);
-            }
-        }
+
 
         /// <summary>
         /// Get the value of one of the element's parameters.
@@ -383,72 +362,14 @@ namespace Revit.Elements
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
 
             var dynval = value as dynamic;
-            SetParameterValue(param, dynval);
+            Revit.Elements.InternalUtilities.ElementUtils.SetParameterValue(param, dynval);
 
             TransactionManager.Instance.TransactionTaskDone();
 
             return this;
         }
 
-        #region dynamic parameter setting methods
 
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, double value)
-        {
-            if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
-                throw new Exception(Properties.Resources.ParameterStorageNotNumber);
-
-            var valueToSet = GetConvertedParameterValue(param, value);
-            
-            param.Set(valueToSet);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, Element value)
-        {
-            if (param.StorageType != StorageType.ElementId)
-                throw new Exception(Properties.Resources.ParameterStorageNotElement);
-
-            param.Set(value.InternalElementId);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, int value)
-        {
-            if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
-                throw new Exception(Properties.Resources.ParameterStorageNotNumber);
-
-            var valueToSet = GetConvertedParameterValue(param, value);
-
-            param.Set(valueToSet);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, string value)
-        {
-            if (param.StorageType != StorageType.String)
-                throw new Exception(Properties.Resources.ParameterStorageNotString);
-
-            param.Set(value);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, bool value)
-        {
-            if (param.StorageType != StorageType.Integer)
-                throw new Exception(Properties.Resources.ParameterStorageNotInteger);
-
-            param.Set(value == false ? 0 : 1);
-        }
-
-        private static double GetConvertedParameterValue(Autodesk.Revit.DB.Parameter param, double value)
-        {
-            var paramType = param.Definition.ParameterType;
-
-            if (IsConvertableParameterType(paramType))
-            {
-                return value * UnitConverter.DynamoToHostFactor(ParameterTypeToUnitType(paramType));
-            }
-
-            return value;
-        }
-
-        #endregion
 
         /// <summary>
         /// Get all of the Geometry associated with this object
