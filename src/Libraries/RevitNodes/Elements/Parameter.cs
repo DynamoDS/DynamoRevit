@@ -188,7 +188,7 @@ namespace Revit.Elements
         /// <param name="type">Parameter Type</param>
         /// <param name="group">Parameter Group</param>
         /// <param name="instance">Is instance parameter, otherwise its a type parameter</param>
-        public static void CreateSharedParameter(string parameterName, string groupName, string type, string group, bool instance)
+        public static void CreateSharedParameterForAllCategories(string parameterName, string groupName, string type, string group, bool instance)
         {
             CreateSharedParameter(parameterName, groupName, type, group, instance, null); 
         }
