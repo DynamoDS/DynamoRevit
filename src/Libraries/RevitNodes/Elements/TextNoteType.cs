@@ -89,7 +89,7 @@ namespace Revit.Elements
 
             if (type == null)
             {
-                throw new Exception(String.Format(Properties.Resources.ModelTextTypeNotFound, name));
+                throw new Exception(String.Format(Properties.Resources.TypeNotFound, name));
             }
 
             return new TextNoteType(type)

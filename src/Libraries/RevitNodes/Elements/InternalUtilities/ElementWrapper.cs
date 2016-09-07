@@ -212,6 +212,21 @@ namespace Revit.Elements
            return Mullion.FromExisting(ele, isRevitOwned);
         }
 
+        public static Dimension Wrap(Autodesk.Revit.DB.Dimension ele, bool isRevitOwned)
+        {
+            return Dimension.FromExisting(ele, isRevitOwned);
+        }
+
+        public static FilledRegionType Wrap(Autodesk.Revit.DB.FilledRegionType ele, bool isRevitOwned)
+        {
+            return FilledRegionType.FromExisting(ele, isRevitOwned);
+        }
+
+        public static FilledRegion Wrap(Autodesk.Revit.DB.FilledRegion ele, bool isRevitOwned)
+        {
+            return FilledRegion.FromExisting(ele, isRevitOwned);
+	}
+
         public static TextNote Wrap(Autodesk.Revit.DB.TextNote ele, bool isRevitOwned)
         {
             return TextNote.FromExisting(ele, isRevitOwned);
@@ -225,22 +240,34 @@ namespace Revit.Elements
         public static TextNoteType Wrap(Autodesk.Revit.DB.TextNoteType ele, bool isRevitOwned)
         {
             return TextNoteType.FromExisting(ele, isRevitOwned);
+		}
+
+        public static Revision Wrap(Autodesk.Revit.DB.Revision ele, bool isRevitOwned)
+        {
+            return Revision.FromExisting(ele, isRevitOwned);
+        }
+
+        public static RevisionCloud Wrap(Autodesk.Revit.DB.RevisionCloud ele, bool isRevitOwned)
+        {
+            return RevisionCloud.FromExisting(ele, isRevitOwned);
 	}
 
         public static Revit.Filter.ParameterFilterElement Wrap(Autodesk.Revit.DB.ParameterFilterElement ele, bool isRevitOwned)
         {
             return Revit.Filter.ParameterFilterElement.FromExisting(ele, isRevitOwned);
-        }
+    	}
 
         public static Room Wrap(Autodesk.Revit.DB.Architecture.Room ele, bool isRevitOwned)
         {
             return Room.FromExisting(ele, isRevitOwned);
         }
 
-        public static Dimension Wrap(Autodesk.Revit.DB.Dimension ele, bool isRevitOwned)
+        public static DetailCurve Wrap(Autodesk.Revit.DB.DetailCurve ele, bool isRevitOwned)
         {
-            return Dimension.FromExisting(ele, isRevitOwned);
+            return DetailCurve.FromExisting(ele, isRevitOwned);
+
         }
+
 
         #endregion
 

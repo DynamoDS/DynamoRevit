@@ -177,7 +177,7 @@
     <value>Select a face.</value>
     <comment>Description for Select Face</comment>
   </data>
-   <data name="SelectFacesDescription" xml:space="preserve">
+  <data name="SelectFacesDescription" xml:space="preserve">
     <value>Select multiple faces from the Revit document.</value>
     <comment>Description for Select Faces</comment>
   </data>
@@ -282,7 +282,7 @@
   <data name="NoFamilyInstancesInDividedSurfaceWarning" xml:space="preserve">
     <value>No family instances found in the divided surface.</value>
   </data>
-    <data name="BuiltInParameterGroupSelectorDescription" xml:space="preserve">
+  <data name="BuiltInParameterGroupSelectorDescription" xml:space="preserve">
     <value>Select a built-in parameter group.</value>
     <comment>Description for BuiltIn Parameter Group</comment>
   </data>
@@ -345,5 +345,8 @@
   <data name="VerticalTextAlignmentStyleSelectorDescription" xml:space="preserve">
     <value>Select the vertical text alignment style.</value>
     <comment>Description for Vertical Text Alignment Style</comment>
+  </data>
+  <data name="FilterTypeSelectorDescription" xml:space="preserve">
+    <value>Filter Types for Revit Filters</value>
   </data>
 </root>
