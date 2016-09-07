@@ -13,18 +13,19 @@ using RTF.Framework;
 namespace RevitNodesTests.Elements
 {
     [TestFixture]
-    public class TextNoteTests : RevitNodeTestBase
+    public class RevisionTests : RevitNodeTestBase
     {
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
         public void Create_ValidArgs()
         {
-            var note = TextNote.ByLocation(Revit.Application.Document.Current.ActiveView, Point.ByCoordinates(0, 0, 0), "Hello World", "Center", TextNoteType.Default());
-            Assert.NotNull(note);
+            Revision rev1 = Revision.ByName("myName", "01.01.1970", "myDesc", false, "me", "to");
+            Assert.NotNull(rev1);
 
-            Assert.AreEqual(note.Text, "Hello World");          
+            Assert.IsInstanceOf(typeof(Revit.Elements.Revision), rev1);
+
+            Assert.AreEqual(rev1.InternalRevitElement.RevisionDate, "01.01.1970");
         }
-        
 
 
 
