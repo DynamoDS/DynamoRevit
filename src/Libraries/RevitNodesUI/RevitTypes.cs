@@ -46,7 +46,14 @@ namespace DSRevitNodesUI
         public FilledRegionTypes() : base("FilledRegionType", typeof(Autodesk.Revit.DB.FilledRegionType)) { }
     }
 
-
+    [NodeName("Select Rule Type")]
+    [NodeCategory("Revit.Filter.RuleType")]
+    [NodeDescription("FilterTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class RuleTypes : CustomGenericEnumerationDropDown
+    {
+        public RuleTypes() : base("RuleType", typeof(Revit.Filter.FilterRule.RuleType)) { }
+    }
 
     [NodeName("Select Revision Numbering")]
     [NodeCategory("Revit.Elements.Revision")]
