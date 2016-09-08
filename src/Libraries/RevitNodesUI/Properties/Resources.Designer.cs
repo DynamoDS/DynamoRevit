@@ -178,6 +178,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter Types for Revit Filters.
+        /// </summary>
+        internal static string FilterTypeSelectorDescription {
+            get {
+                return ResourceManager.GetString("FilterTypeSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All floor types available in the document..
         /// </summary>
         internal static string FloorTypesDescription {
