@@ -177,15 +177,20 @@ namespace Revit.Elements
         /// <param name="rotation">Rotation in degrees</param>
         /// <param name="type">Revit TextNote Type</param>
         /// <returns></returns>
-        public static TextNote ByLocation(Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location, string text, RVT.HorizontalTextAlignment alignment, [DefaultArgument("Revit.Elements.TextNoteType.Default()")]TextNoteType type, bool keepRotatedTextReadable = true, double rotation = 0)
+        public static TextNote ByLocation(Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location, string text, string alignment, [DefaultArgument("Revit.Elements.TextNoteType.Default()")]TextNoteType type, bool keepRotatedTextReadable = true, double rotation = 0)
         {
+            RVT.HorizontalTextAlignment horizontalTextAlignmentStyle = HorizontalTextAlignment.Center;
+            if (!Enum.TryParse<RVT.HorizontalTextAlignment>(alignment, out horizontalTextAlignmentStyle))
+            {
+                horizontalTextAlignmentStyle = HorizontalTextAlignment.Center;
+            }
 
             Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
 
             if (!view.IsAnnotationView())
                 throw new Exception(Properties.Resources.ViewDoesNotSupportAnnotations);
 
-            return new TextNote(revitView, location.ToRevitType(true), alignment, text, keepRotatedTextReadable, rotation, type.InternalElement.Id);
+            return new TextNote(revitView, location.ToRevitType(true), horizontalTextAlignmentStyle, text, keepRotatedTextReadable, rotation, type.InternalElement.Id);
         }
 
 
