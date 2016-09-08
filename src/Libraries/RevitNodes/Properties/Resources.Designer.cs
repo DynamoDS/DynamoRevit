@@ -169,6 +169,24 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curve ist not planar. Please supply a planar curve..
+        /// </summary>
+        internal static string CurveIsNotPlanar {
+            get {
+                return ResourceManager.GetString("CurveIsNotPlanar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curves do not form a closed loop..
+        /// </summary>
+        internal static string CurveLoopNotClosed {
+            get {
+                return ResourceManager.GetString("CurveLoopNotClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot create Curve By Points with less than two points..
         /// </summary>
         internal static string CurveNeedsTwoPoints {
@@ -210,6 +228,15 @@ namespace Revit.Properties {
         internal static string CurveReferenceHint {
             get {
                 return ResourceManager.GetString("CurveReferenceHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please supply a curve geometry..
+        /// </summary>
+        internal static string CurveRequired {
+            get {
+                return ResourceManager.GetString("CurveRequired", resourceCulture);
             }
         }
         
@@ -448,6 +475,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Element does not have a host..
+        /// </summary>
+        internal static string InvalidHost {
+            get {
+                return ResourceManager.GetString("InvalidHost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The height must be greater than 0 and less that 30000 ft.  You provided a height of {0} ft..
         /// </summary>
         internal static string InvalidWallHeight {
@@ -511,6 +547,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No shared parameter file found..
+        /// </summary>
+        internal static string NoSharedParameterFileFound {
+            get {
+                return ResourceManager.GetString("NoSharedParameterFileFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The FamilyInstance is not an adaptive component..
         /// </summary>
         internal static string NotAdaptiveComponentError {
@@ -565,6 +610,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid parameter group..
+        /// </summary>
+        internal static string ParameterGroupNotFound {
+            get {
+                return ResourceManager.GetString("ParameterGroupNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No parameter found by that name..
         /// </summary>
         internal static string ParameterNotFound {
@@ -610,11 +664,29 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid parameter type..
+        /// </summary>
+        internal static string ParameterTypeNotFound {
+            get {
+                return ResourceManager.GetString("ParameterTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parameter {0} has no storage type..
         /// </summary>
         internal static string ParameterWithoutStorageType {
             get {
                 return ResourceManager.GetString("ParameterWithoutStorageType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please supply a point geometry..
+        /// </summary>
+        internal static string PointRequired {
+            get {
+                return ResourceManager.GetString("PointRequired", resourceCulture);
             }
         }
         
@@ -669,6 +741,15 @@ namespace Revit.Properties {
         internal static string TopographyNeedsThreePoints {
             get {
                 return ResourceManager.GetString("TopographyNeedsThreePoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type not found in document..
+        /// </summary>
+        internal static string TypeNotFound {
+            get {
+                return ResourceManager.GetString("TypeNotFound", resourceCulture);
             }
         }
         

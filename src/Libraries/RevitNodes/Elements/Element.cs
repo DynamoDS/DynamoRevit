@@ -165,6 +165,14 @@ namespace Revit.Elements
         private ElementId internalId;
 
         /// <summary>
+        /// Get Element Category
+        /// </summary>
+        public Category GetCategory
+        {
+            get { return new Category(this.InternalElement.Category); }
+        }
+
+        /// <summary>
         /// The element id for this element
         /// </summary>
         protected ElementId InternalElementId
@@ -289,28 +297,7 @@ namespace Revit.Elements
                 paramType == ParameterType.MassDensity;
         }
 
-        internal static UnitType ParameterTypeToUnitType(ParameterType parameterType)
-        {
-            switch (parameterType)
-            {
-                case ParameterType.Length:
-                    return UnitType.UT_Length;
-                case ParameterType.Area:
-                    return UnitType.UT_Area;
-                case ParameterType.Volume:
-                    return UnitType.UT_Volume;
-                case ParameterType.Angle:
-                    return UnitType.UT_Angle;
-                case ParameterType.Slope:
-                    return UnitType.UT_Slope;
-                case ParameterType.Currency:
-                    return UnitType.UT_Currency;
-                case ParameterType.MassDensity:
-                    return UnitType.UT_MassDensity;
-                default:
-                    throw new Exception(Properties.Resources.UnitTypeConversionError);
-            }
-        }
+
 
         /// <summary>
         /// Get the value of one of the element's parameters.
@@ -319,7 +306,6 @@ namespace Revit.Elements
         /// <returns></returns>
         public object GetParameterValueByName(string parameterName)
         {
-            object result;
 
             var param =
                 // We don't use Element.GetOrderedParameters(), it only returns ordered parameters
@@ -333,54 +319,7 @@ namespace Revit.Elements
             if (param == null || !param.HasValue)
                 return string.Empty;
 
-            switch (param.StorageType)
-            {
-                case StorageType.ElementId:
-                    int valueId = param.AsElementId().IntegerValue;
-                    if (valueId > 0)
-                    {
-                        // When the element is obtained here, to convert it to our element wrapper, it
-                        // need to be figured out whether this element is created by us. Here the existing
-                        // element wrappers will be checked. If there is one, its property to specify
-                        // whether it is created by us will be followed. If there is none, it means the
-                        // element is not created by us.
-                        var elem = ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(valueId) as Element;
-                        result = ElementSelector.ByElementId(valueId, elem == null ? true : elem.IsRevitOwned);
-                    }
-                    else
-                    {
-                        int paramId = param.Id.IntegerValue;
-                        if (paramId == (int)BuiltInParameter.ELEM_CATEGORY_PARAM || paramId == (int)BuiltInParameter.ELEM_CATEGORY_PARAM_MT)
-                        {
-                            var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
-                            result = new Category(categories.get_Item((BuiltInCategory)valueId));
-                        }
-                        else
-                        {
-                            // For other cases, return a localized string
-                            result = param.AsValueString();
-                        }
-                    }
-                    break;
-                case StorageType.String:
-                    result = param.AsString();
-                    break;
-                case StorageType.Integer:
-                    result = param.AsInteger();
-                    break;
-                case StorageType.Double:
-                    var paramType = param.Definition.ParameterType;
-                    if (IsConvertableParameterType(paramType))
-                        result = param.AsDouble() * UnitConverter.HostToDynamoFactor(
-                            ParameterTypeToUnitType(paramType));
-                    else
-                        result = param.AsDouble();
-                    break;
-                default:
-                    throw new Exception(string.Format(Properties.Resources.ParameterWithoutStorageType, param));
-            }
-
-            return result;
+            return Revit.Elements.InternalUtilities.ElementUtils.GetParameterValue(param);
         }
 
         /// <summary>
@@ -392,7 +331,7 @@ namespace Revit.Elements
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
 
             var view = DocumentManager.Instance.CurrentUIDocument.ActiveView;
-            var ogs = new OverrideGraphicSettings();
+            var ogs = new Autodesk.Revit.DB.OverrideGraphicSettings();
 
             var patternCollector = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             patternCollector.OfClass(typeof(FillPatternElement));
@@ -423,72 +362,14 @@ namespace Revit.Elements
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
 
             var dynval = value as dynamic;
-            SetParameterValue(param, dynval);
+            Revit.Elements.InternalUtilities.ElementUtils.SetParameterValue(param, dynval);
 
             TransactionManager.Instance.TransactionTaskDone();
 
             return this;
         }
 
-        #region dynamic parameter setting methods
 
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, double value)
-        {
-            if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
-                throw new Exception(Properties.Resources.ParameterStorageNotNumber);
-
-            var valueToSet = GetConvertedParameterValue(param, value);
-            
-            param.Set(valueToSet);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, Element value)
-        {
-            if (param.StorageType != StorageType.ElementId)
-                throw new Exception(Properties.Resources.ParameterStorageNotElement);
-
-            param.Set(value.InternalElementId);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, int value)
-        {
-            if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
-                throw new Exception(Properties.Resources.ParameterStorageNotNumber);
-
-            var valueToSet = GetConvertedParameterValue(param, value);
-
-            param.Set(valueToSet);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, string value)
-        {
-            if (param.StorageType != StorageType.String)
-                throw new Exception(Properties.Resources.ParameterStorageNotString);
-
-            param.Set(value);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, bool value)
-        {
-            if (param.StorageType != StorageType.Integer)
-                throw new Exception(Properties.Resources.ParameterStorageNotInteger);
-
-            param.Set(value == false ? 0 : 1);
-        }
-
-        private static double GetConvertedParameterValue(Autodesk.Revit.DB.Parameter param, double value)
-        {
-            var paramType = param.Definition.ParameterType;
-
-            if (IsConvertableParameterType(paramType))
-            {
-                return value * UnitConverter.DynamoToHostFactor(ParameterTypeToUnitType(paramType));
-            }
-
-            return value;
-        }
-
-        #endregion
 
         /// <summary>
         /// Get all of the Geometry associated with this object
@@ -710,5 +591,108 @@ namespace Revit.Elements
             }
         }
 
+        #region Location extraction & manipulation
+
+        /// <summary>
+        /// Update an existing element's location
+        /// </summary>
+        /// <param name="geometry">New Location Point or Curve</param>
+        public void SetLocation(Geometry geometry)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+
+            if (this.InternalElement.Location is Autodesk.Revit.DB.LocationPoint)
+            {
+                if (geometry is Autodesk.DesignScript.Geometry.Point)
+                {
+                    Autodesk.DesignScript.Geometry.Point point = geometry as Autodesk.DesignScript.Geometry.Point;
+                    Autodesk.Revit.DB.LocationPoint pt = this.InternalElement.Location as Autodesk.Revit.DB.LocationPoint;
+                    pt.Point = point.ToRevitType(true);
+                }
+                else
+                    throw new Exception(Properties.Resources.PointRequired);
+            }
+            else if (this.InternalElement.Location is Autodesk.Revit.DB.LocationCurve && geometry is Curve)
+            {
+                if (geometry is Curve)
+                {
+                    Curve dynamoCurve = geometry as Curve;
+                    Autodesk.Revit.DB.LocationCurve curve = this.InternalElement.Location as Autodesk.Revit.DB.LocationCurve;
+                    curve.Curve = dynamoCurve.ToRevitType(true);
+                }
+                else
+                    throw new Exception(Properties.Resources.CurveRequired);
+            }
+            else
+            {
+                throw new Exception(Properties.Resources.InvalidElementLocation);
+            }
+
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        /// <summary>
+        /// Get an exsiting element's location
+        /// </summary>
+        /// <returns>Location Geometry</returns>
+        public Geometry GetLocation()
+        {
+            if (this.InternalElement.Location is Autodesk.Revit.DB.LocationPoint)
+            {
+                Autodesk.Revit.DB.LocationPoint pt = this.InternalElement.Location as Autodesk.Revit.DB.LocationPoint;
+                return pt.Point.ToPoint(true);
+            }
+            else if (this.InternalElement.Location is Autodesk.Revit.DB.LocationCurve)
+            {
+                Autodesk.Revit.DB.LocationCurve curve = this.InternalElement.Location as Autodesk.Revit.DB.LocationCurve;
+                return curve.Curve.ToProtoType(true);
+            }
+            else
+            {
+                throw new Exception(Properties.Resources.InvalidElementLocation);
+            }
+        }
+
+        /// <summary>
+        /// Move Revit Element by Vector
+        /// </summary>
+        /// <param name="vector">Translation Vector</param>
+        public void MoveByVector(Vector vector)
+        {
+            if (!this.InternalElement.Location.Move(vector.ToXyz(true)))
+            {
+                throw new Exception(Properties.Resources.InvalidElementLocation);
+            }
+        }
+
+
+        #endregion
+
+        #region Material
+
+        /// <summary>
+        /// Get Material Names from a Revit Element
+        /// </summary>
+        /// <param name="paintMaterials">Paint Materials</param>
+        /// <returns>List of Names</returns>
+        public IEnumerable<Material> GetMaterials(bool paintMaterials = false)
+        {
+            // Get the active Document
+            Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+            List<Material> materialnames = new List<Material>();
+
+            foreach (Autodesk.Revit.DB.ElementId id in this.InternalElement.GetMaterialIds(paintMaterials))
+            {
+                Autodesk.Revit.DB.Material material = (Autodesk.Revit.DB.Material)document.GetElement(id);
+                Material mat = Material.FromExisting(material, true);
+
+                if (!materialnames.Contains(mat)) materialnames.Add(mat);
+            }
+
+            return materialnames;
+        }
+
+        #endregion
     }
 }
