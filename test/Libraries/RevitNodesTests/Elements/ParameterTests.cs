@@ -17,7 +17,7 @@ namespace RevitNodesTests.Elements
         /// Create a Project parameter and test if it exists
         /// </summary>
         [Test]
-        [TestModel(@".\element.rvt")]
+        [TestModel(@".\elementSharedParameters.rvt")]
         public void CreateProjectParameter_ValidArgs()
         {
             List<Category> categories = new List<Category>() { Category.ByName("Walls") };
@@ -33,7 +33,7 @@ namespace RevitNodesTests.Elements
         /// Create a Shared parameter and test if it exists
         /// </summary>
         [Test]
-        [TestModel(@".\element.rvt")]
+        [TestModel(@".\elementSharedParameters.rvt")]
         public void CreateSharedParameter_ValidArgs()
         {
             List<Category> categories = new List<Category>() { Category.ByName("Walls") };
