@@ -378,9 +378,9 @@ namespace Dynamo.Applications
             var revitVersion = String.IsNullOrEmpty(revitFilePath) ? null : Version.Parse(FileVersionInfo.GetVersionInfo(revitFilePath).FileVersion);
             
             var umConfig = UpdateManagerConfiguration.GetSettings(new DynamoRevitLookUp());
-            var RevitUpdateManager = new DynUpdateManager(umConfig);
-            RevitUpdateManager.HostVersion = revitVersion; // update RevitUpdateManager with the current DynamoRevit Version
-            RevitUpdateManager.HostName = "Dynamo Revit";
+            var revitUpdateManager = new DynUpdateManager(umConfig);
+            revitUpdateManager.HostVersion = revitVersion; // update RevitUpdateManager with the current DynamoRevit Version
+            revitUpdateManager.HostName = "Dynamo Revit";
 
             Debug.Assert(umConfig.DynamoLookUp != null);
 
@@ -407,7 +407,7 @@ namespace Dynamo.Applications
                     StartInTestMode = isAutomationMode,
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
                     ExternalCommandData = commandData,
-                    UpdateManager = RevitUpdateManager,
+                    UpdateManager = revitUpdateManager,
                     ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
                 });
         }
