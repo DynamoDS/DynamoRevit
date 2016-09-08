@@ -42,7 +42,7 @@ namespace Revit.Elements.Views
                 default: return false;
             }
         }
-        
+
         /// <summary>
         /// Export the view as an image to the given path - defaults to png, but you can override 
         /// the file type but supplying a path with the appropriate extension

@@ -491,12 +491,53 @@ namespace Revit.Elements
 
         #endregion
 
+        #region Public Methods
+
         public override string ToString()
         {
             return InternalFamilyInstance.IsValidObject ? InternalFamilyInstance.Name : "empty";
         }
 
-        #region Public methods
+        /// <summary>
+        /// Gets the host of this fmaily instance (if any). Eg. returns the wall of a window or door family instance.
+        /// </summary>
+        public Element GetHost
+        {
+            get
+            {
+                if (this.InternalFamilyInstance.Host != null)
+
+                    // TODO: This might need to change since its not clear if the Host element is revit owned or not.
+                    // Currently there is no way of figuring this out, therefore the assumption is true (Revit owned)
+                    return ElementWrapper.Wrap(this.InternalFamilyInstance.Host, true);
+                else
+                    throw new Exception(Properties.Resources.InvalidHost);
+            }
+        }
+
+        /// <summary>
+        /// Gets the family of this family instance
+        /// </summary>
+        public Family GetFamily 
+        { 
+            get 
+            { 
+                return Family.FromExisting(this.InternalFamilyInstance.Symbol.Family, true);
+            }
+        }
+
+        /// <summary>
+        /// Gets the family type of this family instance
+        /// </summary>
+        public FamilyType GetType
+        { 
+            get
+            { 
+                return FamilyType.FromExisting(this.InternalFamilyInstance.Symbol, true);
+            }
+        }
+
+        
 
         /// <summary>
         /// Set the Euler angle of the family instance around its local Z-axis.
