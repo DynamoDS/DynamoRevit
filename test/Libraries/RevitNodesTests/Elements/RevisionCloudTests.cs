@@ -35,7 +35,7 @@ namespace RevitNodesTests.Elements
             var curveGeo = revCloud.Curves;
             Assert.NotNull(curveGeo);
 
-            Assert.AreEqual(revCloud.InternalRevitElement.RevisionId.IntegerValue, rev1.InternalElement.Id);
+            Assert.AreEqual(revCloud.InternalRevitElement.RevisionId.IntegerValue, rev1.InternalElement.Id.IntegerValue);
         }
 
 
