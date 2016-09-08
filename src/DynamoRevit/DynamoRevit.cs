@@ -362,7 +362,7 @@ namespace Dynamo.Applications
 
             var utilities = assembly.GetType("DynamoShapeManager.Utilities");
             var getGeometryFactoryPath = utilities.GetMethod("GetGeometryFactoryPath");
-
+            
             return (getGeometryFactoryPath.Invoke(null,
                 new object[] { corePath, Versions.ShapeManager }) as string);
         }
@@ -373,7 +373,14 @@ namespace Dynamo.Applications
             var dynamoRevitExePath = Assembly.GetExecutingAssembly().Location;
             var dynamoRevitRoot = Path.GetDirectoryName(dynamoRevitExePath);// ...\Revit_xxxx\ folder
 
+            // get Dynamo Revit Version
+            var revitFilePath = Directory.GetFiles(dynamoRevitRoot, "*DynamoRevitDS.dll").FirstOrDefault();
+            var revitVersion = String.IsNullOrEmpty(revitFilePath) ? null : Version.Parse(FileVersionInfo.GetVersionInfo(revitFilePath).FileVersion);
+            
             var umConfig = UpdateManagerConfiguration.GetSettings(new DynamoRevitLookUp());
+            var RevitUpdateManager = new DynUpdateManager(umConfig);
+            RevitUpdateManager.DynamoRevitVersion = revitVersion; // update RevitUpdateManager with the current DynamoRevit Version
+
             Debug.Assert(umConfig.DynamoLookUp != null);
 
             var userDataFolder = Path.Combine(Environment.GetFolderPath(
@@ -399,7 +406,7 @@ namespace Dynamo.Applications
                     StartInTestMode = isAutomationMode,
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
                     ExternalCommandData = commandData,
-                    UpdateManager = new DynUpdateManager(umConfig),
+                    UpdateManager = RevitUpdateManager,
                     ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
                 });
         }
@@ -695,5 +702,6 @@ namespace Dynamo.Applications
 
             return paths;
         }
+
     }
 }
