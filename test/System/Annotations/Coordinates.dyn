@@ -1,0 +1,18 @@
+<Workspace Version="1.1.1.2204" X="-165.96389230045" Y="-643.169568661287" zoom="1.15174351754829" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Line" resolvedName="Autodesk.DesignScript.Geometry.Line" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="81ad46c7-29f2-4913-a1f5-832a39b62bcd" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Coordinates.BasePoint" x="395.603279516273" y="621.725870356795" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Coordinates.BasePoint" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="77ce2b6f-5d4a-4f45-85b8-bc2c1bac9134" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Coordinates.ProjectRotation" x="400.439080539004" y="772.391129231835" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Coordinates.ProjectRotation" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ad5bb1c3-00eb-472c-92a8-d9dafe805939" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Coordinates.SurveyPoint" x="403.038634101513" y="926.045212909609" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Coordinates.SurveyPoint" />
+  </Elements>
+  <Connectors />
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

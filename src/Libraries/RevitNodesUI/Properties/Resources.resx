@@ -346,4 +346,7 @@
     <value>Select the vertical text alignment style.</value>
     <comment>Description for Vertical Text Alignment Style</comment>
   </data>
+  <data name="FilterTypeSelectorDescription" xml:space="preserve">
+    <value>Filter Types for Revit Filters</value>
+  </data>
 </root>
