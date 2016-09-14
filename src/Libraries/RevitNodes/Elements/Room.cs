@@ -140,17 +140,17 @@ namespace Revit.Elements
 
         private IEnumerable<IEnumerable<Autodesk.DesignScript.Geometry.Curve>> GetBoundaries(Autodesk.Revit.DB.SpatialElementBoundaryLocation position)
         {
-            Autodesk.Revit.DB.SpatialElementBoundaryOptions options = new Autodesk.Revit.DB.SpatialElementBoundaryOptions()
+            var options = new Autodesk.Revit.DB.SpatialElementBoundaryOptions()
             {
                 SpatialElementBoundaryLocation = position,
                 StoreFreeBoundaryFaces = true
             };
 
-            List<List<Autodesk.DesignScript.Geometry.Curve>> boundaries = new List<List<Autodesk.DesignScript.Geometry.Curve>>();
+            var boundaries = new List<List<Autodesk.DesignScript.Geometry.Curve>>();
 
-            foreach (List<Autodesk.Revit.DB.BoundarySegment> segments in this.InternalRevitElement.GetBoundarySegments(options))
+            foreach (var segments in this.InternalRevitElement.GetBoundarySegments(options))
             {
-                List<Autodesk.DesignScript.Geometry.Curve> boundary = new List<Autodesk.DesignScript.Geometry.Curve>();
+                var boundary = new List<Autodesk.DesignScript.Geometry.Curve>();
 
                 foreach (Autodesk.Revit.DB.BoundarySegment segment in segments)
                 {
@@ -269,7 +269,7 @@ namespace Revit.Elements
             {
                 if (this.InternalRevitElement.Location is Autodesk.Revit.DB.LocationPoint)
                 {
-                    Autodesk.Revit.DB.LocationPoint loc = this.InternalRevitElement.Location as Autodesk.Revit.DB.LocationPoint;
+                    var loc = this.InternalRevitElement.Location as Autodesk.Revit.DB.LocationPoint;
                     return loc.Point.ToPoint();
                 }
 
