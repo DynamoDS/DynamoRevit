@@ -373,7 +373,14 @@ namespace Dynamo.Applications
             var dynamoRevitExePath = Assembly.GetExecutingAssembly().Location;
             var dynamoRevitRoot = Path.GetDirectoryName(dynamoRevitExePath);// ...\Revit_xxxx\ folder
 
+            // get Dynamo Revit Version
+            var revitVersion = Assembly.GetExecutingAssembly().GetName().Version;
+
             var umConfig = UpdateManagerConfiguration.GetSettings(new DynamoRevitLookUp());
+            var revitUpdateManager = new DynUpdateManager(umConfig);
+            revitUpdateManager.HostVersion = revitVersion; // update RevitUpdateManager with the current DynamoRevit Version
+            revitUpdateManager.HostName = "Dynamo Revit";
+
             Debug.Assert(umConfig.DynamoLookUp != null);
 
             var userDataFolder = Path.Combine(Environment.GetFolderPath(
@@ -399,7 +406,7 @@ namespace Dynamo.Applications
                     StartInTestMode = isAutomationMode,
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
                     ExternalCommandData = commandData,
-                    UpdateManager = new DynUpdateManager(umConfig),
+                    UpdateManager = revitUpdateManager,
                     ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
                 });
         }
