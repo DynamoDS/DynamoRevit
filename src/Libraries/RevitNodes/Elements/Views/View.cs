@@ -37,6 +37,7 @@ namespace Revit.Elements.Views
                 case Autodesk.Revit.DB.ViewType.Section:
                 case Autodesk.Revit.DB.ViewType.Elevation:
                 case Autodesk.Revit.DB.ViewType.CeilingPlan:
+                case Autodesk.Revit.DB.ViewType.DraftingView:
                     return true;
 
                 default: return false;
