@@ -243,6 +243,66 @@ namespace RevitSystemTests
 
         [Test]
         [TestModel(@".\empty.rfa")]
+        public void CreateInDynamoCloseGraphReopenGraphRerun()
+        {
+            //Create a reference point at (0.0, 0.0, 0.0);
+            string dynFilePath = Path.Combine(workingDirectory, @".\ElementBinding\CreateOneReferencePoint.dyn");
+            string testPath = Path.GetFullPath(dynFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            //Close the current graph
+            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+
+            //Open the same graph 
+            ViewModel.OpenCommand.Execute(testPath);
+
+            //Run the graph once again
+            RunCurrentModel();
+
+            var points = GetAllReferencePointElements(true);
+            Assert.AreEqual(2, points.Count);
+            var pnt = points[0] as ReferencePoint;
+            Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
+            pnt = points[1] as ReferencePoint;
+            Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void CreateInDynamoSaveCloseGraphReopenGraphRerun()
+        {
+            //Create a reference point at (0.0, 0.0, 0.0);
+            string dynFilePath = Path.Combine(workingDirectory, @".\ElementBinding\CreateOneReferencePoint.dyn");
+            string testPath = Path.GetFullPath(dynFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            //Save the current graph
+            string tempPath = Path.Combine(Path.GetTempPath(), "CreateOneReferencePoint.dyn");
+            ViewModel.SaveAsCommand.Execute(tempPath);
+
+            //Close the current graph
+            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+
+            //Open the saved graph 
+            ViewModel.OpenCommand.Execute(tempPath);
+
+            //Run the graph once again
+            RunCurrentModel();
+
+            var points = GetAllReferencePointElements(true);
+            Assert.AreEqual(1, points.Count);
+            var pnt = points[0] as ReferencePoint;
+            Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
         public void CreateInDynamoDeleteInRevit()
         {
             //This test case is to test that elements can be created via Dynamo.
@@ -732,6 +792,26 @@ namespace RevitSystemTests
             // Assert that there is no change in the total number of family instances in the document
             // as the original should have been updated and no new one should be created
             Assert.AreEqual(initialNumber, finalNumber);
+        }
+
+        [Test]
+        [TestModel(@".\ElementBinding\MultipleCustomInstance.rvt")]
+        public void MultipleCustomNodeInstance()
+        {
+            string dynPath = Path.Combine(workingDirectory, @".\ElementBinding\PlaceMultipleRevitCustomNodes.dyn");
+
+            ViewModel.OpenCommand.Execute(dynPath);
+            RunCurrentModel();
+
+            var walls = GetAllWalls();
+            Assert.AreEqual(8, walls.Count());
+
+            var cbn = GetNode<CodeBlockNodeModel>("a4705f1f-1cfb-43eb-ba35-a797d5703d37");
+            var command = new Dynamo.Models.DynamoModel.UpdateModelValueCommand(Guid.Empty, cbn.GUID, "Code", "100;100;");
+            this.Model.ExecuteCommand(command);
+
+            walls = GetAllWalls();
+            Assert.AreEqual(8, walls.Count());
         }
 
 

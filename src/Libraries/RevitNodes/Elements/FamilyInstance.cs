@@ -269,7 +269,7 @@ namespace Revit.Elements
             TransactionManager.Instance.EnsureInTransaction(Document);
 
             var lp = InternalFamilyInstance.Location as LocationPoint;
-            lp.Point = fi;
+            if (lp != null && !lp.Point.IsAlmostEqualTo(fi)) lp.Point = fi;
 
             TransactionManager.Instance.TransactionTaskDone();
         }
@@ -280,9 +280,8 @@ namespace Revit.Elements
 
             var lp = InternalFamilyInstance.Location as LocationCurve;
 
-            if (lp == null || lp.Curve == pos) return;
+            if (lp != null && lp.Curve != pos) lp.Curve = pos;
 
-            lp.Curve = pos;
             TransactionManager.Instance.TransactionTaskDone();
         }
 
@@ -318,7 +317,8 @@ namespace Revit.Elements
         {
             get
             {
-                return GeometryPrimitiveConverter.ToVector(InternalFamilyInstance.FacingOrientation);
+                return InternalFamilyInstance.IsValidObject ? 
+                    InternalFamilyInstance.FacingOrientation.ToVector() : null;
             }
         }
 
@@ -380,13 +380,12 @@ namespace Revit.Elements
         /// Place a Revit family instance given the FamilyType (also known as the FamilySymbol in the Revit API) 
         /// on a surface derived from a backing Revit face as reference, a reference direction and a point location where to place the family.
         /// 
-        /// Note: The FamilyType should be workplane based and the input surface must be created from a Revit Face
+        /// Note: The FamilyType should be workplane based and the input surface must be created from a Revit Face. The reference direction defines the rotation of the instance on the reference, and thus cannot be perpendicular to the face.
         /// </summary>
         /// <param name="familyType"></param>
         /// <param name="face">Surface geometry derived from a Revit face as reference element</param>
         /// <param name="location">Point on the face where the instance is to be placed</param>
-        /// <param name="referenceDirection">A vector that defines the direction of placement of the family instance. 
-        /// Note that this direction defines the rotation of the instance on the reference, and thus cannot be perpendicular to the face</param>
+        /// <param name="referenceDirection">A vector that defines the direction of placement of the family instance</param>
         /// <returns>FamilyInstance</returns>
         public static FamilyInstance ByFace(FamilyType familyType, Surface face, Point location, 
             Vector referenceDirection)
@@ -492,12 +491,53 @@ namespace Revit.Elements
 
         #endregion
 
+        #region Public Methods
+
         public override string ToString()
         {
-            return InternalFamilyInstance.Name;
+            return InternalFamilyInstance.IsValidObject ? InternalFamilyInstance.Name : "empty";
         }
 
-        #region Public methods
+        /// <summary>
+        /// Gets the host of this fmaily instance (if any). Eg. returns the wall of a window or door family instance.
+        /// </summary>
+        public Element GetHost
+        {
+            get
+            {
+                if (this.InternalFamilyInstance.Host != null)
+
+                    // TODO: This might need to change since its not clear if the Host element is revit owned or not.
+                    // Currently there is no way of figuring this out, therefore the assumption is true (Revit owned)
+                    return ElementWrapper.Wrap(this.InternalFamilyInstance.Host, true);
+                else
+                    throw new Exception(Properties.Resources.InvalidHost);
+            }
+        }
+
+        /// <summary>
+        /// Gets the family of this family instance
+        /// </summary>
+        public Family GetFamily 
+        { 
+            get 
+            { 
+                return Family.FromExisting(this.InternalFamilyInstance.Symbol.Family, true);
+            }
+        }
+
+        /// <summary>
+        /// Gets the family type of this family instance
+        /// </summary>
+        public FamilyType GetType
+        { 
+            get
+            { 
+                return FamilyType.FromExisting(this.InternalFamilyInstance.Symbol, true);
+            }
+        }
+
+        
 
         /// <summary>
         /// Set the Euler angle of the family instance around its local Z-axis.
@@ -542,7 +582,7 @@ namespace Revit.Elements
 
             Document.Regenerate();
 
-            return InternalFamilyInstance.GetTransform();
+            return InternalFamilyInstance.IsValidObject ? InternalFamilyInstance.GetTransform() : null;
         }
 
         #endregion

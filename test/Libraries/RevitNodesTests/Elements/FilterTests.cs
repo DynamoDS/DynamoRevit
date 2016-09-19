@@ -15,28 +15,30 @@ namespace RevitNodesTests.Elements
     [TestFixture]
     public class FilterTests : RevitNodeTestBase
     {
+
         [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
+        [TestModel(@".\element.rvt")]
         public void CreateFilterRule_ValidArgs()
         {
-            Element wall = Revit.Elements.ElementSelector.ByElementId(205280, true);
+
+            Element wall = ElementSelector.ByType<Autodesk.Revit.DB.Wall>(true).First();
             Parameter p = new Parameter(wall.InternalElement.LookupParameter("Comments"));
 
-            var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.FilterType.BeginsWith, "my", p);
+            var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.RuleType.BeginsWith.ToString(), "my", p);
             Assert.NotNull(filterRule);
 
         }
 
 
         [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
+        [TestModel(@".\element.rvt")]
         public void CreateParameterFilterElement_ValidArgs()
         {
 
-            Element wall = Revit.Elements.ElementSelector.ByElementId(205280, true);
+            Element wall = ElementSelector.ByType<Autodesk.Revit.DB.FamilyInstance>(true).First();
             Parameter p = new Parameter(wall.InternalElement.LookupParameter("Comments"));
 
-            var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.FilterType.BeginsWith, "my", p);
+            var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.RuleType.BeginsWith.ToString(), "my", p);
 
             var filter = Revit.Filter.ParameterFilterElement.ByRules("myFilter",
                 new System.Collections.Generic.List<Category>() { Category.ByName("Walls") },
@@ -49,17 +51,17 @@ namespace RevitNodesTests.Elements
 
 
         [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
+        [TestModel(@".\element.rvt")]
         public void CreateOverrideGraphicSettings_ValidArgs()
         {
 
 
             Revit.Filter.OverrideGraphicSettings overrides = Revit.Filter.OverrideGraphicSettings.ByProperties(null, null, null, null, null, null, null, null);
 
-            Element wall = Revit.Elements.ElementSelector.ByElementId(205280, true);
+            Element wall = ElementSelector.ByType<Autodesk.Revit.DB.FamilyInstance>(true).First();
             Parameter p = new Parameter(wall.InternalElement.LookupParameter("Comments"));
 
-            var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.FilterType.BeginsWith, "my", p);
+            var filterRule = Revit.Filter.FilterRule.ByRuleType(Revit.Filter.FilterRule.RuleType.BeginsWith.ToString(), "my", p);
 
             var filter = Revit.Filter.ParameterFilterElement.ByRules("myFilter",
                 new System.Collections.Generic.List<Category>() { Category.ByName("Walls") },

@@ -169,6 +169,24 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curve ist not planar. Please supply a planar curve..
+        /// </summary>
+        internal static string CurveIsNotPlanar {
+            get {
+                return ResourceManager.GetString("CurveIsNotPlanar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curves do not form a closed loop..
+        /// </summary>
+        internal static string CurveLoopNotClosed {
+            get {
+                return ResourceManager.GetString("CurveLoopNotClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot create Curve By Points with less than two points..
         /// </summary>
         internal static string CurveNeedsTwoPoints {
@@ -214,6 +232,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please supply a curve geometry..
+        /// </summary>
+        internal static string CurveRequired {
+            get {
+                return ResourceManager.GetString("CurveRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can only create DirectShapes from Solids, Surfaces or Meshes..
         /// </summary>
         internal static string DirectShapeInvalidArgument {
@@ -228,6 +255,15 @@ namespace Revit.Properties {
         internal static string Dynamo_AVF_Data_Name {
             get {
                 return ResourceManager.GetString("Dynamo_AVF_Data_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Element cannot be annotated.
+        /// </summary>
+        internal static string ElementCannotBeAnnotatedError {
+            get {
+                return ResourceManager.GetString("ElementCannotBeAnnotatedError", resourceCulture);
             }
         }
         
@@ -421,6 +457,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Element does not have a host..
+        /// </summary>
+        internal static string InvalidHost {
+            get {
+                return ResourceManager.GetString("InvalidHost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The height must be greater than 0 and less that 30000 ft.  You provided a height of {0} ft..
         /// </summary>
         internal static string InvalidWallHeight {
@@ -484,11 +529,29 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No shared parameter file found..
+        /// </summary>
+        internal static string NoSharedParameterFileFound {
+            get {
+                return ResourceManager.GetString("NoSharedParameterFileFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The FamilyInstance is not an adaptive component..
         /// </summary>
         internal static string NotAdaptiveComponentError {
             get {
                 return ResourceManager.GetString("NotAdaptiveComponentError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need at least two elements for a dimension..
+        /// </summary>
+        internal static string NotEnoughDataError {
+            get {
+                return ResourceManager.GetString("NotEnoughDataError", resourceCulture);
             }
         }
         
@@ -525,6 +588,15 @@ namespace Revit.Properties {
         internal static string OpenInputPolyCurveError {
             get {
                 return ResourceManager.GetString("OpenInputPolyCurveError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid parameter group..
+        /// </summary>
+        internal static string ParameterGroupNotFound {
+            get {
+                return ResourceManager.GetString("ParameterGroupNotFound", resourceCulture);
             }
         }
         
@@ -574,11 +646,29 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid parameter type..
+        /// </summary>
+        internal static string ParameterTypeNotFound {
+            get {
+                return ResourceManager.GetString("ParameterTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parameter {0} has no storage type..
         /// </summary>
         internal static string ParameterWithoutStorageType {
             get {
                 return ResourceManager.GetString("ParameterWithoutStorageType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please supply a point geometry..
+        /// </summary>
+        internal static string PointRequired {
+            get {
+                return ResourceManager.GetString("PointRequired", resourceCulture);
             }
         }
         
@@ -633,6 +723,15 @@ namespace Revit.Properties {
         internal static string TopographyNeedsThreePoints {
             get {
                 return ResourceManager.GetString("TopographyNeedsThreePoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type not found in document..
+        /// </summary>
+        internal static string TypeNotFound {
+            get {
+                return ResourceManager.GetString("TypeNotFound", resourceCulture);
             }
         }
         
