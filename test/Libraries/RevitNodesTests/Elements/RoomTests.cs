@@ -56,5 +56,44 @@ namespace RevitNodesTests.Elements
         }
 
 
+        [Test]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
+        public void CheckBoundaryAndLocationProperty()
+        {
+            var level = Level.ByElevation(0);
+            var wallType = WallType.ByName("Generic - 8\"");
+
+            var line1 = Line.ByStartPointEndPoint(Point.ByCoordinates(0, 0, 0), Point.ByCoordinates(0, 1000, 0));
+            var line2 = Line.ByStartPointEndPoint(Point.ByCoordinates(0, 1000, 0), Point.ByCoordinates(1000, 1000, 0));
+            var line3 = Line.ByStartPointEndPoint(Point.ByCoordinates(1000, 1000, 0), Point.ByCoordinates(1000, 0, 0));
+            var line4 = Line.ByStartPointEndPoint(Point.ByCoordinates(1000, 0, 0), Point.ByCoordinates(0, 0, 0));
+            var wall1 = Wall.ByCurveAndHeight(line1, 500, level, wallType);
+            var wall2 = Wall.ByCurveAndHeight(line2, 500, level, wallType);
+            var wall3 = Wall.ByCurveAndHeight(line3, 500, level, wallType);
+            var wall4 = Wall.ByCurveAndHeight(line4, 500, level, wallType);
+
+            Point pt = Point.ByCoordinates(500, 500, 0);
+
+            // Create a new room
+            var room = Revit.Elements.Room.ByLocation(level, pt, "myRoom", "myNumber");
+
+            Assert.NotNull(room);
+
+            Assert.IsTrue(room.Location.DistanceTo(pt) < 0.001);
+
+            var curves = room.CenterBoundary;
+
+            Assert.IsNotNull(curves);
+            Assert.IsTrue(curves.First().Count() == 4);
+
+            double length = curves.First().First().Length;
+
+            foreach (var curve in curves.First())
+            {
+                length.ShouldBeApproximately(curve.Length);
+            }
+
+        }
+
     }
 }
