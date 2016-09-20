@@ -86,7 +86,14 @@ namespace Revit.Elements
         private void InitElement(Autodesk.Revit.DB.TextNote element)
         {
             LocationPoint location = element.Location as LocationPoint;
-            InternalSetType(element.Text, element.TextNoteType, location.Point, element.HorizontalAlignment, location.Rotation.ToDegrees());
+            XYZ position = element.Coord;
+            double rotation = 0;
+            if (location != null)
+            {
+                position = location.Point;
+                rotation = location.Rotation.ToDegrees();
+            }
+            InternalSetType(element.Text, element.TextNoteType, position, element.HorizontalAlignment, rotation);
             InternalSetElement(element);
         }
 
@@ -135,18 +142,28 @@ namespace Revit.Elements
                     element.Text = text;
                 }
 
-                if (element.Location is LocationPoint)
+                if (element.Location == null)
                 {
-                    LocationPoint point = (LocationPoint)element.Location;
-
-                    if (!point.Point.Equals(origin))
+                    if (!element.Coord.Equals(origin))
                     {
-                        point.Point = origin;
+                        element.Coord = origin;
                     }
-
-                    if (point.Rotation != rotation.ToRadians())
+                }
+                else
+                {
+                    if (element.Location is LocationPoint)
                     {
-                        point.Rotate(Line.CreateUnbound(XYZ.Zero, XYZ.BasisZ), rotation.ToRadians());
+                        LocationPoint point = (LocationPoint)element.Location;
+
+                        if (!point.Point.Equals(origin))
+                        {
+                            point.Point = origin;
+                        }
+
+                        if (point.Rotation != rotation.ToRadians())
+                        {
+                            point.Rotate(Line.CreateUnbound(XYZ.Zero, XYZ.BasisZ), rotation.ToRadians());
+                        }
                     }
                 }
 
