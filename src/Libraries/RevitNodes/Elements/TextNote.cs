@@ -85,14 +85,19 @@ namespace Revit.Elements
         /// <param name="element"></param>
         private void InitElement(Autodesk.Revit.DB.TextNote element)
         {
-            LocationPoint location = element.Location as LocationPoint;
+            // use the default coordinates for an unrotated text
             XYZ position = element.Coord;
             double rotation = 0;
-            if (location != null)
+
+            // If an element location is present, use this location instead because it
+            // holds the elements rotation
+            if (element.Location != null && element.Location is LocationPoint)
             {
+                LocationPoint location = element.Location as LocationPoint;
                 position = location.Point;
                 rotation = location.Rotation.ToDegrees();
             }
+
             InternalSetType(element.Text, element.TextNoteType, position, element.HorizontalAlignment, rotation);
             InternalSetElement(element);
         }
@@ -142,25 +147,29 @@ namespace Revit.Elements
                     element.Text = text;
                 }
 
+                // if the element location is null, try to use the Coord property
+                // Coord holds a point only without rotation.
                 if (element.Location == null)
                 {
-                    if (!element.Coord.Equals(origin))
+                    if (!element.Coord.IsAlmostEqualTo(origin))
                     {
                         element.Coord = origin;
                     }
                 }
                 else
                 {
+                    // If a location point is set we can use this and extract
+                    // its location and rotation
                     if (element.Location is LocationPoint)
                     {
                         LocationPoint point = (LocationPoint)element.Location;
 
-                        if (!point.Point.Equals(origin))
+                        if (!point.Point.IsAlmostEqualTo(origin))
                         {
                             point.Point = origin;
                         }
 
-                        if (point.Rotation != rotation.ToRadians())
+                        if (Math.Abs(point.Rotation - rotation.ToRadians()) <= System.Double.Epsilon)
                         {
                             point.Rotate(Line.CreateUnbound(XYZ.Zero, XYZ.BasisZ), rotation.ToRadians());
                         }
