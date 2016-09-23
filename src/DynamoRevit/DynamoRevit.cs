@@ -291,7 +291,7 @@ namespace Dynamo.Applications
 
             foreach (var assembly in assemblyList)
             {
-                var assemblyPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "", assembly);
+                var assemblyPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, assembly);
                 if(File.Exists(assemblyPath))
                     Assembly.LoadFrom(assemblyPath);
             }
