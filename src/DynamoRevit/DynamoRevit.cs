@@ -1,7 +1,3 @@
-using Dynamo.Scheduler;
-
-using Greg.AuthProviders;
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,12 +8,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Interop;
+using System.Windows.Media;
 using System.Windows.Threading;
-
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Applications.ViewModel;
@@ -26,17 +21,16 @@ using Dynamo.Core;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Logging;
 using Dynamo.Models;
+using Dynamo.Scheduler;
 using Dynamo.Updates;
 using Dynamo.ViewModels;
-
+using DynamoInstallDetective;
+using Greg.AuthProviders;
+using Microsoft.Win32;
 using RevitServices.Persistence;
 using RevitServices.Threading;
-
-using MessageBox = System.Windows.Forms.MessageBox;
 using DynUpdateManager = Dynamo.Updates.UpdateManager;
-using Microsoft.Win32;
-using System.Windows.Media;
-using DynamoInstallDetective;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace RevitServices.Threading
 {
@@ -367,8 +361,27 @@ namespace Dynamo.Applications
                 new object[] { corePath, Versions.ShapeManager }) as string);
         }
 
+        private static void PreloadDynamoCoreDlls()
+        {
+            // Assume Revit Install folder as look for root. Assembly name is compromised.
+            var assemblyList = new[]
+            {
+                "SDA\\bin\\ICSharpCode.AvalonEdit.dll"
+            };
+
+            foreach (var assembly in assemblyList)
+            {
+                var assemblyPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "", assembly);
+                if(File.Exists(assemblyPath))
+                    Assembly.LoadFrom(assemblyPath);
+            }
+        }
+
         private static RevitDynamoModel InitializeCoreModel(DynamoRevitCommandData commandData)
         {
+            // Temporary fix to pre-load DLLs that were also referenced in Revit folder. 
+            // To do: Need to align with Revit when provided a chance.
+            PreloadDynamoCoreDlls();
             var corePath = DynamoRevitApp.DynamoCorePath;
             var dynamoRevitExePath = Assembly.GetExecutingAssembly().Location;
             var dynamoRevitRoot = Path.GetDirectoryName(dynamoRevitExePath);// ...\Revit_xxxx\ folder
