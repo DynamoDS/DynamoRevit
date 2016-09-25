@@ -47,12 +47,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoApplications">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoApplications.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DynamoApplications.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore, Version=1.1.0.2177, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoCore.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoRaaSHelper">
@@ -62,9 +62,8 @@
       <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Greg, Version=1.0.5959.26179, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\Greg.dll</HintPath>
+    <Reference Include="Greg, Version=1.0.5900.25656, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Greg.1.0.5900.25656\lib\net45\Greg.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GregRevitAuth, Version=1.0.5907.17451, Culture=neutral, processorArchitecture=MSIL">
@@ -167,11 +166,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DSIronPython">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DSIronPython.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DSIronPython.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCoreWpf">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoCoreWpf.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUtilities">
