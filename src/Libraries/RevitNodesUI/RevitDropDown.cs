@@ -744,6 +744,8 @@ namespace DSRevitNodesUI
             {
                 Items.Add(new DynamoDropDownItem(v.Name, v));
             }
+            Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+            SelectedIndex = 0;
             return SelectionState.Restore;
         }
 
