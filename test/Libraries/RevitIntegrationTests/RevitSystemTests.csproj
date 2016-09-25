@@ -44,7 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoCoreWpf">
-      <HintPath>$(DYNAMOAPI)\DynamoCoreWpf.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">
@@ -164,7 +164,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModels">
-      <HintPath>$(DYNAMOAPI)\nodes\CoreNodeModels.dll</HintPath>
+      <HintPath>$(DYNAMOTESTAPI)\nodes\CoreNodeModels.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">
