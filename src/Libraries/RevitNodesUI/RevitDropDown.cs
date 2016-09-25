@@ -735,15 +735,21 @@ namespace DSRevitNodesUI
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
+
             //find all views in the project
-            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-            var views = fec.OfClass(typeof(View)).ToElements();
+            //exclude <RevisionSchedule> (revision tables on sheets) from list
+            var views = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(View))
+                .Where(x => !x.Name.Contains('<'))
+                .ToList();
             
             //there must always be at least 1 view in a Revit document, so we can exclude the empty list check
             foreach (var v in views)
             {
                 Items.Add(new DynamoDropDownItem(v.Name, v));
             }
+            Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+
             return SelectionState.Restore;
         }
 
