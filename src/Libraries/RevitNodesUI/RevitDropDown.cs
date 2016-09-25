@@ -748,9 +748,8 @@ namespace DSRevitNodesUI
                 Items.Add(new DynamoDropDownItem(v.Name, v));
             }
             Items = Items.OrderBy(x => x.Name).ToObservableCollection();
-            SelectedIndex = 0;
 
-            return SelectionState.Done;
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
