@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoServices">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoServices.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -62,11 +62,11 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DynamoCore">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoCore.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoUnits.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

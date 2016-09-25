@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoUtilities">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoUtilities.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="HelixToolkit.Wpf.SharpDX">
@@ -46,11 +46,11 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ProtoGeometry">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\ProtoGeometry.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoServices.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
@@ -98,31 +98,31 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DynamoCoreWpf">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoCoreWpf.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ProtoCore">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\ProtoCore.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModelsWpf">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\nodes\CoreNodeModelsWpf.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\nodes\CoreNodeModelsWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModels">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\nodes\CoreNodeModels.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\nodes\CoreNodeModels.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoCore.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DSCoreNodes">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DSCoreNodes.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DSCoreNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DynamoUnits.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">

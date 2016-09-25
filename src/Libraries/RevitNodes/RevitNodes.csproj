@@ -196,11 +196,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Analysis">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\Analysis.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\Analysis.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DSCoreNodes">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\Dynamo\Dynamo Core\1.2\DSCoreNodes.dll</HintPath>
+      <HintPath>$(DYNAMOAPI)\DSCoreNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">
