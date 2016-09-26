@@ -162,7 +162,6 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Add Filter to View
         /// </summary>
-        /// <param name="view">View</param>
         /// <param name="parameterFilter">Parameter filter</param>
         public void AddFilter(Revit.Filter.ParameterFilterElement parameterFilter)
         {
@@ -192,7 +191,6 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Set Filter overrides
         /// </summary>
-        /// <param name="view">View</param>
         /// <param name="parameterFilter">Parameter filter</param>
         /// <param name="overrides">overrides settings</param>
         public void SetFilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter, Revit.Filter.OverrideGraphicSettings overrides)
@@ -210,6 +208,31 @@ namespace Revit.Elements.Views
         {
             OverrideGraphicSettings overrides = this.InternalView.GetFilterOverrides(parameterFilter.InternalElement.Id);
             return new Revit.Filter.OverrideGraphicSettings(overrides);
+        }
+
+        #endregion
+
+        #region Scale
+
+        /// <summary>
+        /// Set View Scale
+        /// </summary>
+        /// <param name="scale">View scale is the ration of true model size to paper size.</param>
+        /// <returns name="View">View</returns>
+        public Element SetScale(int scale=100)
+        {
+            if (Autodesk.Revit.DB.View.IsValidViewScale(scale))
+            {
+                RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+                this.InternalView.Scale = scale;
+                RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+
+                return this.InternalView.ToDSType(true);
+            }
+            else
+            {
+                throw new ArgumentNullException("scale");
+            }
         }
 
         #endregion
