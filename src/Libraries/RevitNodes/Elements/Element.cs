@@ -175,7 +175,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Element Type
         /// </summary>
-        public Element GetElementType
+        public Element ElementType
         {
             get
             {
