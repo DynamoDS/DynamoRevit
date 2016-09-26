@@ -113,6 +113,7 @@
     <Compile Include="Elements\InternalUtilities\ElementWrapper.cs" />
     <Compile Include="Elements\Topography.cs" />
     <Compile Include="Elements\Views\PlanView.cs" />
+    <Compile Include="Elements\Views\ScheduleView.cs" />
     <Compile Include="Elements\Views\View.cs" />
     <Compile Include="Elements\Views\Packing\CygonRectanglePacker.cs" />
     <Compile Include="Elements\Views\AxonometricView.cs" />
@@ -188,6 +189,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
+    <Compile Include="Schedule\SchedulableField.cs" />
+    <Compile Include="Schedule\ScheduleField.cs" />
     <Compile Include="Transaction\Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +238,7 @@
       <Name>RevitServices</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>copy /Y "$(ProjectDir)*_DynamoCustomization.xml" "$(OutputPath)"
