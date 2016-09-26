@@ -223,9 +223,12 @@ namespace Revit.Elements.Views
         {
             if (Autodesk.Revit.DB.View.IsValidViewScale(scale))
             {
-                RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
-                this.InternalView.Scale = scale;
-                RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+                if (this.InternalView.Scale != scale)
+                {
+                    RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+                    this.InternalView.Scale = scale;
+                    RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+                }
 
                 return this.InternalView.ToDSType(true);
             }
