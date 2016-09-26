@@ -173,6 +173,21 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Get Element Type
+        /// </summary>
+        public Element GetElementType
+        {
+            get
+            {
+                // Get the active Document
+                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+                return document.GetElement(this.InternalElement.GetTypeId()).ToDSType(true);
+            }
+
+        }
+
+        /// <summary>
         /// The element id for this element
         /// </summary>
         protected ElementId InternalElementId
