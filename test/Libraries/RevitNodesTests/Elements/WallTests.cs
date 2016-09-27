@@ -72,6 +72,20 @@ namespace RevitNodesTests.Elements
             Assert.Throws(typeof(ArgumentNullException), () => Wall.ByCurveAndLevels(line, level0, null, wallType));
             Assert.Throws(typeof(ArgumentNullException), () => Wall.ByCurveAndLevels(line, level0, level1, null));
         }
+
+        [Test]
+        [TestModel(@".\InPlaceMass.rvt")]
+        public void ByFace_ShouldCreateFaceWall()
+        {
+            Element elem = ElementSelector.ByElementId(205302);
+            var refr = elem.ElementFaceReferences[0].InternalReference;
+            var wallType = WallType.ByName( "Curtain Wall 1" );
+            FaceWall wall = FaceWall.ByFace(Autodesk.Revit.DB.WallLocationLine.CoreCenterline, wallType, refr );
+
+            Assert.NotNull(wall);
+            Assert.AreEqual(wall.GetType(), typeof(FaceWall));
+        }
     }
 }
 
+;
