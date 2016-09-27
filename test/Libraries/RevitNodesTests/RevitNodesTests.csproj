@@ -39,6 +39,11 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DSCoreNodes, Version=1.0.1.1523, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(DYNAMOAPI)/DSCoreNodes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>$(NunitPath)\nunit.framework.dll</HintPath>
       <Private>False</Private>
@@ -74,12 +79,16 @@
     <Compile Include="Elements\AdaptiveComponentTests.cs" />
     <Compile Include="Elements\CategoryTests.cs" />
     <Compile Include="Elements\CurveByPointsTests.cs" />
+    <Compile Include="Elements\DimensionTests.cs" />
+    <Compile Include="Elements\DetailCurveTests.cs" />
     <Compile Include="Elements\DirectShapeTests.cs" />
     <Compile Include="Elements\DividedPathTests.cs" />
     <Compile Include="Elements\DividedSurfaceTests.cs" />
     <Compile Include="Elements\DocumentTests.cs" />
     <Compile Include="Elements\ElementTests.cs" />
+    <Compile Include="Elements\FilterTests.cs" />
     <Compile Include="Elements\FloorTests.cs" />
+    <Compile Include="Elements\CoordinatesTests.cs" />
     <Compile Include="Elements\FloorTypeTests.cs" />
     <Compile Include="Elements\GridTests.cs" />
     <Compile Include="Elements\ImportInstanceTests.cs" />
@@ -95,9 +104,14 @@
     <Compile Include="Elements\FormTests.cs" />
     <Compile Include="Elements\ModelCurveTests.cs" />
     <Compile Include="Elements\ReferencePointTests.cs" />
+    <Compile Include="Elements\ParseEnumTests.cs" />
+    <Compile Include="Elements\RoomTests.cs" />
+    <Compile Include="Elements\RevisionTests.cs" />
     <Compile Include="Elements\SunSettingsTests.cs" />
     <Compile Include="Elements\SketchPlaneTests.cs" />
     <Compile Include="Elements\StructuralFramingTests.cs" />
+    <Compile Include="Elements\TagTests.cs" />
+    <Compile Include="Elements\TextNoteTests.cs" />
     <Compile Include="Elements\TopographyTests.cs" />
     <Compile Include="Elements\Views\AxonometricViewTests.cs" />
     <Compile Include="Elements\Views\CeilingPlanViewTests.cs" />
@@ -107,8 +121,10 @@
     <Compile Include="Elements\Views\SectionViewTests.cs" />
     <Compile Include="Elements\Views\SheetTests.cs" />
     <Compile Include="Elements\Views\ViewTests.cs" />
+    <Compile Include="Elements\ParameterTests.cs" />
     <Compile Include="Elements\WallTests.cs" />
     <Compile Include="Elements\WallTypeTests.cs" />
+    <Compile Include="Elements\FilledRegionTests.cs" />
     <Compile Include="GeometryConversion\CurveUtilsTests.cs" />
     <Compile Include="GeometryConversion\ProtoToRevitCurveTests.cs" />
     <Compile Include="GeometryConversion\RevitSolidToProtoTests.cs" />
@@ -119,6 +135,7 @@
     <Compile Include="GeometryConversion\RevitToProtoSolidTests.cs" />
     <Compile Include="GeometrySanityCheck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Elements\RevisionCloudTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DynamoCore">

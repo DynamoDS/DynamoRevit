@@ -1,7 +1,3 @@
-using Dynamo.Scheduler;
-
-using Greg.AuthProviders;
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,12 +8,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Interop;
+using System.Windows.Media;
 using System.Windows.Threading;
-
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Applications.ViewModel;
@@ -26,16 +21,16 @@ using Dynamo.Core;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Logging;
 using Dynamo.Models;
+using Dynamo.Scheduler;
 using Dynamo.Updates;
 using Dynamo.ViewModels;
-
+using DynamoInstallDetective;
+using Greg.AuthProviders;
+using Microsoft.Win32;
 using RevitServices.Persistence;
 using RevitServices.Threading;
-
-using MessageBox = System.Windows.Forms.MessageBox;
 using DynUpdateManager = Dynamo.Updates.UpdateManager;
-using Microsoft.Win32;
-
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace RevitServices.Threading
 {
@@ -163,6 +158,7 @@ namespace Dynamo.Applications
       
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
         {
+            var startupTimer = Stopwatch.StartNew();
             HandleDebug(commandData);
 
             InitializeCore(commandData);
@@ -209,16 +205,23 @@ namespace Dynamo.Applications
 
                 //unsubscribe to the assembly load
                 AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
+                Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed);
             }
             catch (Exception ex)
             {
                 // notify instrumentation
-                InstrumentationLogger.LogException(ex);
-                StabilityTracking.GetInstance().NotifyCrash();
+                Analytics.TrackException(ex, true);
 
                 MessageBox.Show(ex.ToString());
 
                 DynamoRevitApp.DynamoButtonEnabled = true;
+                
+                //If for some reason Dynamo has crashed while startup make sure the Dynamo Model is properly shutdown.
+                if (revitDynamoModel != null)
+                {
+                    revitDynamoModel.ShutDown(false);
+                    revitDynamoModel = null;
+                }
 
                 return Result.Failed;
             }
@@ -278,13 +281,39 @@ namespace Dynamo.Applications
                 new object[] { corePath, Versions.ShapeManager }) as string);
         }
 
+        private static void PreloadDynamoCoreDlls()
+        {
+            // Assume Revit Install folder as look for root. Assembly name is compromised.
+            var assemblyList = new[]
+            {
+                "SDA\\bin\\ICSharpCode.AvalonEdit.dll"
+            };
+
+            foreach (var assembly in assemblyList)
+            {
+                var assemblyPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, assembly);
+                if(File.Exists(assemblyPath))
+                    Assembly.LoadFrom(assemblyPath);
+            }
+        }
+
         private static RevitDynamoModel InitializeCoreModel(DynamoRevitCommandData commandData)
         {
+            // Temporary fix to pre-load DLLs that were also referenced in Revit folder. 
+            // To do: Need to align with Revit when provided a chance.
+            PreloadDynamoCoreDlls();
             var corePath = DynamoRevitApp.DynamoCorePath;
             var dynamoRevitExePath = Assembly.GetExecutingAssembly().Location;
             var dynamoRevitRoot = Path.GetDirectoryName(dynamoRevitExePath);// ...\Revit_xxxx\ folder
 
+            // get Dynamo Revit Version
+            var revitVersion = Assembly.GetExecutingAssembly().GetName().Version;
+
             var umConfig = UpdateManagerConfiguration.GetSettings(new DynamoRevitLookUp());
+            var revitUpdateManager = new DynUpdateManager(umConfig);
+            revitUpdateManager.HostVersion = revitVersion; // update RevitUpdateManager with the current DynamoRevit Version
+            revitUpdateManager.HostName = "Dynamo Revit";
+
             Debug.Assert(umConfig.DynamoLookUp != null);
 
             var userDataFolder = Path.Combine(
@@ -293,6 +322,8 @@ namespace Dynamo.Applications
             var commonDataFolder = Path.Combine(Environment.GetFolderPath(
                 Environment.SpecialFolder.CommonApplicationData), 
                 "Dynamo", "Dynamo Revit");
+
+            PreloadAsmFromRevit();
 
             return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
@@ -306,9 +337,23 @@ namespace Dynamo.Applications
                     StartInTestMode = isAutomationMode,
                     AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
                     ExternalCommandData = commandData,
-                    UpdateManager = new DynUpdateManager(umConfig),
+                    UpdateManager = revitUpdateManager,
                     ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
                 });
+        }
+
+        private static void PreloadAsmFromRevit()
+        {
+            var asmLocation = AppDomain.CurrentDomain.BaseDirectory;
+
+            var lookup = new InstalledProductLookUp("Revit", "ASMAHL*.dll");
+            var product = lookup.GetProductFromInstallPath(asmLocation);
+
+            var dynCorePath = DynamoRevitApp.DynamoCorePath;
+            var libGFolderName = string.Format("libg_{0}", product.VersionInfo.Item1);
+            var preloaderLocation = Path.Combine(dynCorePath, libGFolderName);
+
+            DynamoShapeManager.Utilities.PreloadAsmFromPath(preloaderLocation, asmLocation);
         }
 
         private static DynamoViewModel InitializeCoreViewModel(RevitDynamoModel revitDynamoModel)
@@ -474,8 +519,7 @@ namespace Dynamo.Applications
 
             try
             {
-                InstrumentationLogger.LogException(args.Exception);
-                StabilityTracking.GetInstance().NotifyCrash();
+                Dynamo.Logging.Analytics.TrackException(args.Exception, true);
 
                 revitDynamoModel.Logger.LogError("Dynamo Unhandled Exception");
                 revitDynamoModel.Logger.LogError(exceptionMessage);
