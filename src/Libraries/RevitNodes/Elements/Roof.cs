@@ -105,12 +105,12 @@ namespace Revit.Elements
             Autodesk.Revit.DB.RoofBase roof = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.RoofBase>(Document);
             if (roof == null)
             {
-                ModelCurveArray footprint = null;
+                ModelCurveArray footprint = new ModelCurveArray();
                 roof = Document.Create.NewFootPrintRoof(curves, level, roofType, out footprint);
             }
             else
             {
-                ModelCurveArray footprint = null;
+                ModelCurveArray footprint = new ModelCurveArray();
                 roof = Document.Create.NewFootPrintRoof(curves, level, roofType, out footprint);
             }
 
@@ -172,7 +172,7 @@ namespace Revit.Elements
         /// <param name="extrusionStart"></param>
         /// <param name="extrusionEnd"></param>
         /// <returns></returns>
-        public static Roof ByOutlineExtrusionTypeAndLevel(PolyCurve outline, RoofType roofType, Level level, ReferencePlane plane, double extrusionStart, double extrusionEnd)
+        public static Roof ByOutlineExtrusionTypeAndLevel(PolyCurve outline, RoofType roofType, Level level, ReferencePlane plane, double extrusionStart = 0, double extrusionEnd = 200)
         {
 
             if (!outline.IsClosed)
