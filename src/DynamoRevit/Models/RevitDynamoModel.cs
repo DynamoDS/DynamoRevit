@@ -229,8 +229,6 @@ namespace Dynamo.Applications.Models
             SubscribeDocumentManagerEvents();
             SubscribeTransactionManagerEvents();
 
-            MigrationManager.MigrationTargets.Add(typeof(WorkspaceMigrationsRevit));
-
             SetupPython();
         }
 
@@ -667,8 +665,11 @@ namespace Dynamo.Applications.Models
             }
             else
             {
-                Logger.Log(
-                    string.Format("Active view is now {0}", newView.Name));
+                if (newView != null)
+                {
+                    Logger.Log(
+                        string.Format("Active view is now {0}", newView.Name));
+                }
 
                 if(raiseRevitContextAvailableEvent)
                 {
@@ -695,12 +696,13 @@ namespace Dynamo.Applications.Models
                 // the same document.
                 if (DocumentManager.Instance.CurrentUIDocument != null)
                 {
-                    var newEnabled =
+                    var newEnabled = newView != null &&
                         newView.Document.Equals(DocumentManager.Instance.CurrentDBDocument);
 
                     if (!newEnabled)
                     {
                         OnInvalidRevitDocumentActivated();
+                        Logger.Log("The RunButton is disabled because Dynamo is not bound to the current active document.");
                     }
 
                     foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())

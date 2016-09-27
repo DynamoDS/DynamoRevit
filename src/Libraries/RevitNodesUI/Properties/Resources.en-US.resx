@@ -177,7 +177,7 @@
     <value>Select a face.</value>
     <comment>Description for Select Face</comment>
   </data>
-   <data name="SelectFacesDescription" xml:space="preserve">
+  <data name="SelectFacesDescription" xml:space="preserve">
     <value>Select multiple faces from the Revit document.</value>
     <comment>Description for Select Faces</comment>
   </data>
@@ -281,5 +281,72 @@
   </data>
   <data name="NoFamilyInstancesInDividedSurfaceWarning" xml:space="preserve">
     <value>No family instances found in the divided surface.</value>
+  </data>
+  <data name="BuiltInParameterGroupSelectorDescription" xml:space="preserve">
+    <value>Select a built-in parameter group.</value>
+    <comment>Description for BuiltIn Parameter Group</comment>
+  </data>
+  <data name="DirectShapeRoomBoundingOptionSelectorDescription" xml:space="preserve">
+    <value>Select a Direct Shape Room Bounding Option.</value>
+    <comment>Description for Direct Shape Room Bounding Option</comment>
+  </data>
+  <data name="FilledRegionTypeSelectorDescription" xml:space="preserve">
+    <value>Select an existing Filled Region Type from the active document.</value>
+    <comment>Description for Filled Region Type Selector</comment>
+  </data>
+  <data name="HorizontalTextAlignmentStyleSelectorDescription" xml:space="preserve">
+    <value>Select the horizontal text alignment style.</value>
+    <comment>Description for Horizontal Text Alignment Style</comment>
+  </data>
+  <data name="NoActiveDocumentFound" xml:space="preserve">
+    <value>No active Revit document found.</value>
+    <comment>Description for missing document</comment>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+    <comment>Description for null value</comment>
+  </data>
+  <data name="NoTypesFound" xml:space="preserve">
+    <value>No types found.</value>
+    <comment>Description for missing types</comment>
+  </data>
+  <data name="ParameterTypeSelectorDescription" xml:space="preserve">
+    <value>Select a parameter type.</value>
+    <comment>Description for Parameter Type</comment>
+  </data>
+  <data name="PhaseSelectorDescription" xml:space="preserve">
+    <value>Select an existing Revit Phase from the active document.</value>
+    <comment>Description for Phase Selector</comment>
+  </data>
+  <data name="RevisionNumberingSelectorDescription" xml:space="preserve">
+    <value>Select an way to number the revisions.</value>
+    <comment>Description for Revision Numbering Style</comment>
+  </data>
+  <data name="RevisionNumberTypeSelectorDescription" xml:space="preserve">
+    <value>Select a revision number type.</value>
+    <comment>Description for Revision Number Type</comment>
+  </data>
+  <data name="RevisionSelectorDescription" xml:space="preserve">
+    <value>Select an existing Revit Revision from the active document.</value>
+    <comment>Description for Revision Selector</comment>
+  </data>
+  <data name="RevisionVisibilitySelectorDescription" xml:space="preserve">
+    <value>Select the revision visilibity type.</value>
+    <comment>Description for Revision Visibility Type</comment>
+  </data>
+  <data name="SelectEdgesDescription" xml:space="preserve">
+    <value>Select multiple edges.</value>
+    <comment>Description for multiple edge selector</comment>
+  </data>
+  <data name="SelectEdgesPrefix" xml:space="preserve">
+    <value>Edges</value>
+    <comment>Prefix for edge selector</comment>
+  </data>
+  <data name="VerticalTextAlignmentStyleSelectorDescription" xml:space="preserve">
+    <value>Select the vertical text alignment style.</value>
+    <comment>Description for Vertical Text Alignment Style</comment>
+  </data>
+  <data name="FilterTypeSelectorDescription" xml:space="preserve">
+    <value>Filter Types for Revit Filters</value>
   </data>
 </root>
