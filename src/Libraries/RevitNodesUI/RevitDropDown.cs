@@ -445,7 +445,7 @@ namespace DSRevitNodesUI
 
     [NodeName("Performance Adviser Rules")]
     [NodeCategory(BuiltinNodeCategories.REVIT)]
-    [NodeDescription("WallTypesDescription", typeof(Properties.Resources))]
+    [NodeDescription("PerformanceAdviserDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class PerformanceAdviserRules : RevitDropDownBase
     {
