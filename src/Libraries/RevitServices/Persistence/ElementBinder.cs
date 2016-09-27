@@ -574,25 +574,35 @@ namespace RevitServices.Persistence
 
                             if (sid != null)
                             {
-                                //Get the Autodesk.Revit.Element.
-                                Element el;
-                                DocumentManager.Instance.CurrentDBDocument.TryGetElement(new ElementId(sid.IntID),
-                                    out el);
+                                setEachElementFreezeState(node.IsFrozen, sid.IntID);
 
-                                //Get the Revit Element wrapper.
-                                if (el != null)
-                                {
-                                    dynamic elem =
-                                        ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(el.Id.IntegerValue);
-                                    if (elem != null)
-                                    {
-                                        elem.IsFrozen = node.IsFrozen;
-                                    }
-                                }
+                            }
 
+                            else if (thingy is MultipleSerializableId)
+                            {
+                                (thingy as MultipleSerializableId).IntIDs.ForEach(x => setEachElementFreezeState(node.IsFrozen, x));
                             }
                         }
                     }
+                }
+            }
+        }
+
+        private static void setEachElementFreezeState(bool frozen, int elementId)
+        {
+            //Get the Autodesk.Revit.Element.
+            Element el;
+            DocumentManager.Instance.CurrentDBDocument.TryGetElement(new ElementId(elementId),
+                out el);
+
+            //Get the Revit Element wrapper.
+            if (el != null)
+            {
+                dynamic elem =
+                    ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(el.Id.IntegerValue);
+                if (elem != null)
+                {
+                    elem.IsFrozen = frozen;
                 }
             }
         }
