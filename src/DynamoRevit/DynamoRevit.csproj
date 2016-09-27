@@ -78,6 +78,7 @@
     <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(DYNAMOAPI)\Microsoft.Scripting.dll</HintPath>
+	  <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -142,7 +143,6 @@
     <Compile Include="ViewModel\DynamoRevitViewModel.cs" />
     <Compile Include="ViewModel\RevitWatchHandler.cs" />
     <Compile Include="ViewModel\RevitWatch3DViewModel.cs" />
-    <Compile Include="Migration\WorkspaceMigrationsRevit.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -174,7 +174,15 @@
     </Reference>
     <Reference Include="DynamoUtilities">
       <HintPath>$(DYNAMOAPI)\DynamoUtilities.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
+    </Reference>
+	<Reference Include="DynamoShapeManager">
+      <HintPath>$(DYNAMOAPI)\DynamoShapeManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoInstallDetective">
+      <HintPath>$(DYNAMOAPI)\DynamoInstallDetective.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
