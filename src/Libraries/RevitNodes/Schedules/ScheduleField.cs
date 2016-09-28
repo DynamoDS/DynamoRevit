@@ -1,8 +1,8 @@
 ﻿
-namespace Revit.Schedule
+namespace Revit.Schedules
 {
     /// <summary>
-    /// Revit Schedule Field
+    ///     Revit Schedule Field
     /// </summary>
     public class ScheduleField
     {
@@ -10,7 +10,7 @@ namespace Revit.Schedule
         #region Internal Properties
 
         /// <summary>
-        /// Internal reference to the Revit Element
+        ///     Internal reference to the Revit Element
         /// </summary>
         internal Autodesk.Revit.DB.ScheduleField InternalScheduleField
         {
@@ -18,7 +18,7 @@ namespace Revit.Schedule
         }
 
         /// <summary>
-        /// Reference to the Element
+        ///     Internal constructor. Used by the public static constructor to construct an instance of the ScheduleField class.
         /// </summary>
         /// <param name="internalScheduleField"></param>
         internal ScheduleField(Autodesk.Revit.DB.ScheduleField internalScheduleField)

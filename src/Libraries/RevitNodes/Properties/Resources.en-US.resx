@@ -138,11 +138,11 @@
   <data name="CurtainPanelIsNotPlanar" xml:space="preserve">
     <value>Curtain Panel is not planar</value>
   </data>
-  <data name="CurtainPanelIsNotRectangular" xml:space="preserve">
-    <value>Curtain Panel is not rectangular</value>
-  </data>
   <data name="CurtainPanelShouldRepresentRevitPanel" xml:space="preserve">
     <value>Curtain Panel should represent Revit panel</value>
+  </data>
+  <data name="CurtainPanelIsNotRectangular" xml:space="preserve">
+    <value>Curtain Panel is not rectangular</value>
   </data>
   <data name="NumberOfDivisionsMustBeGreaterThan2" xml:space="preserve">
     <value>The number of divisions must be greater than 2!</value>
@@ -312,6 +312,12 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
+  <data name="DynamoSurfaceToRevitBRepFailure" xml:space="preserve">
+    <value>An unexpected failure occurred when attempting to convert the surface into a Revit BRep</value>
+  </data>
+  <data name="DynamoSolidToRevitBRepFailure" xml:space="preserve">
+    <value>An unexpected failure occurred when attempting to convert the solid into a Revit BRep</value>
+  </data>
   <data name="ElementCannotBeAnnotatedError" xml:space="preserve">
     <value>Element cannot be annotated</value>
   </data>
@@ -353,5 +359,11 @@
   </data>
   <data name="TypeNotFound" xml:space="preserve">
     <value>Type not found in document.</value>
+  </data>
+  <data name="CategoryArgumentException" xml:space="preserve">
+    <value>You must supply a Category.</value>
+  </data>
+  <data name="NameArgumentException" xml:space="preserve">
+    <value>You must supply a Name.</value>
   </data>
 </root>

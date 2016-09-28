@@ -9,7 +9,7 @@ using System.Linq;
 namespace Revit.Elements.Views
 {
     /// <summary>
-    /// Base class for Revit Plan views
+    ///     Base class for Revit Plan views
     /// </summary>
     [RegisterForTrace]
     public class ScheduleView : View
@@ -17,7 +17,7 @@ namespace Revit.Elements.Views
         #region Internal properties
 
         /// <summary>
-        /// An internal handle on the Revit element
+        ///     An internal handle on the Revit element
         /// </summary>
         internal Autodesk.Revit.DB.ViewSchedule InternalViewSchedule
         {
@@ -26,7 +26,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Reference to the Element
+        ///     Reference to the Element
         /// </summary>
         public override Autodesk.Revit.DB.Element InternalElement
         {
@@ -38,7 +38,7 @@ namespace Revit.Elements.Views
         #region Private constructors
 
         /// <summary>
-        /// Private constructor
+        ///     Private constructor
         /// </summary>
         private ScheduleView(Autodesk.Revit.DB.ViewSchedule view)
         {
@@ -46,7 +46,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Private constructor
+        ///     Private constructor
         /// </summary>
         private ScheduleView(Category category, string name, ScheduleType type)
         {
@@ -58,7 +58,7 @@ namespace Revit.Elements.Views
         #region Helpers for private constructors
 
         /// <summary>
-        /// Initialize a ScheduleView element
+        ///     Initialize a ScheduleView element
         /// </summary>
         private void InitScheduleView(Autodesk.Revit.DB.ViewSchedule view)
         {
@@ -73,10 +73,10 @@ namespace Revit.Elements.Views
         /// <param name="type"></param>
         private void InitScheduleView(Category category, string name, ScheduleType type)
         {
-            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            var doc = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(doc);
 
-            Autodesk.Revit.DB.ViewSchedule vs = CreateViewSchedule(category, name, type);
+            var vs = CreateViewSchedule(category, name, type);
 
             InternalSetScheduleView(vs);
 
@@ -90,7 +90,7 @@ namespace Revit.Elements.Views
         #region Private mutators
 
         /// <summary>
-        /// Set the InternalViewSchedule property and the associated element id and unique id
+        ///     Set the InternalViewSchedule property and the associated element id and unique id
         /// </summary>
         /// <param name="view"></param>
         private void InternalSetScheduleView(Autodesk.Revit.DB.ViewSchedule view)
@@ -106,7 +106,7 @@ namespace Revit.Elements.Views
 
         private static Autodesk.Revit.DB.ViewSchedule CreateViewSchedule(Category category, string name, ScheduleType type)
         {
-            Autodesk.Revit.DB.Document doc = DocumentManager.Instance.CurrentDBDocument;
+            var doc = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(doc);
 
             Autodesk.Revit.DB.ViewSchedule viewSchedule = null;
@@ -136,42 +136,48 @@ namespace Revit.Elements.Views
         /// <returns name="scheduleView">Schedule</returns>
         public static ScheduleView CreateSchedule(Category category, string name, string scheduleType)
         {
-            if (category == null || name == null)
+            if (category == null)
             {
-                throw new System.ArgumentNullException("Category or Name");
+                throw new System.ArgumentNullException(Properties.Resources.CategoryArgumentException);
+            }
+            if (name == null)
+            {
+                throw new System.ArgumentNullException(Properties.Resources.NameArgumentException);
             }
 
             ScheduleType t = (ScheduleType)System.Enum.Parse(typeof(ScheduleType), scheduleType);
             return new ScheduleView(category, name, t);
         }
 
-        ///// <summary>
-        /////     Remove Schedule Field from Schedule.
-        ///// </summary>
-        ///// <param name="field"></param>
-        ///// <returns name="View">View Schedule</returns>
-        //public ScheduleView RemoveField(Revit.Schedule.ScheduleField field)
-        //{
-        //    if (this.Fields.Any(x => x.Name == field.Name))
-        //    {
-        //        TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-        //        this.InternalViewSchedule.Definition.RemoveField(field.InternalScheduleField.FieldId);
-        //        TransactionManager.Instance.TransactionTaskDone();
-        //    }
+        /// <summary>
+        ///     Remove Schedule Field from Schedule.
+        /// </summary>
+        /// <param name="field"></param>
+        /// <returns name="View">View Schedule</returns>
+        public ScheduleView RemoveField(Revit.Schedules.ScheduleField field)
+        {
+            if (this.Fields.Any(x => x.Name == field.Name))
+            {
+                var doc = DocumentManager.Instance.CurrentDBDocument;
+                TransactionManager.Instance.EnsureInTransaction(doc);
+                this.InternalViewSchedule.Definition.RemoveField(field.InternalScheduleField.FieldId);
+                TransactionManager.Instance.TransactionTaskDone();
+            }
 
-        //    return this;
-        //}
+            return this;
+        }
 
         /// <summary>
         ///     Add Field.
         /// </summary>
         /// <param name="field"></param>
         /// <returns></returns>
-        public ScheduleView AddField(Revit.Schedule.SchedulableField field)
+        public ScheduleView AddField(Revit.Schedules.SchedulableField field)
         {
             if (!this.Fields.Any(x => x.Name == field.Name))
             {
-                TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+                var doc = DocumentManager.Instance.CurrentDBDocument;
+                TransactionManager.Instance.EnsureInTransaction(doc);
                 this.InternalViewSchedule.Definition.AddField(field.InternalSchedulableField);
                 TransactionManager.Instance.TransactionTaskDone();
             }
@@ -182,41 +188,25 @@ namespace Revit.Elements.Views
         /// <summary>
         ///     Schedule Fields.
         /// </summary>
-        public List<Revit.Schedule.ScheduleField> Fields
+        public List<Revit.Schedules.ScheduleField> Fields
         {
             get
             {
                 IList<Autodesk.Revit.DB.ScheduleFieldId> fieldIds = this.InternalViewSchedule.Definition.GetFieldOrder();
-                List<Revit.Schedule.ScheduleField> fields = new List<Schedule.ScheduleField>();
-                if (fieldIds.Count > 0)
-                {
-                    foreach (Autodesk.Revit.DB.ScheduleFieldId id in fieldIds)
-                    {
-                        fields.Add(new Revit.Schedule.ScheduleField(this.InternalViewSchedule.Definition.GetField(id)));
-                    }
-                }
-                return fields;
+                return fieldIds.Select(id => new Revit.Schedules.ScheduleField(this.InternalViewSchedule.Definition.GetField(id))).ToList();
             }
+            
         }
 
         /// <summary>
         ///     Schedulable Fields.
         /// </summary>
-        public List<Revit.Schedule.SchedulableField> SchedulableFields
+        public List<Revit.Schedules.SchedulableField> SchedulableFields
         {
             get
             {
                 IList<Autodesk.Revit.DB.SchedulableField> fields = this.InternalViewSchedule.Definition.GetSchedulableFields();
-                List<Revit.Schedule.SchedulableField> fields1 = new List<Schedule.SchedulableField>();
-                if (fields.Count > 0)
-                {
-                    foreach (Autodesk.Revit.DB.SchedulableField sf in fields)
-                    {
-                        fields1.Add(new Revit.Schedule.SchedulableField(sf));
-                    }
-                }
-
-                return fields1;
+                return fields.Select(x => new Revit.Schedules.SchedulableField(x)).ToList();
             }
         }
 
@@ -225,7 +215,7 @@ namespace Revit.Elements.Views
         #region Helpers
 
         /// <summary>
-        /// ScheduleType Enumeration
+        ///     ScheduleType Enumeration
         /// </summary>
         [IsVisibleInDynamoLibrary(false)]
         public enum ScheduleType
@@ -238,7 +228,7 @@ namespace Revit.Elements.Views
         #region Internal static constructors
 
         /// <summary>
-        /// Create a View from a user selected Element.
+        ///     Create a View from a user selected Element.
         /// </summary>
         /// <param name="view"></param>
         /// <param name="isRevitOwned"></param>
