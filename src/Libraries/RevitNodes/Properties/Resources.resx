@@ -333,17 +333,8 @@
   <data name="NotEnoughDataError" xml:space="preserve">
     <value>You need at least two elements for a dimension.</value>
   </data>
-  <data name="NotEnoughDataError" xml:space="preserve">
-    <value>You need at least two elements for a dimension.</value>
-  </data>
   <data name="CurveLoopNotClosed" xml:space="preserve">
     <value>Curves do not form a closed loop.</value>
-  </data>
-  <data name="CannotGetBaseOrSurveyPoint" xml:space="preserve">
-    <value>Cannot get base or survey point from document.</value>
-  </data>
-  <data name="InvalidFilterType" xml:space="preserve">
-    <value>FilterType is not valid.</value>
   </data>
   <data name="NoSharedParameterFileFound" xml:space="preserve">
     <value>No shared parameter file found.</value>
@@ -368,5 +359,11 @@
   </data>
   <data name="TypeNotFound" xml:space="preserve">
     <value>Type not found in document.</value>
+  </data>
+  <data name="CategoryArgumentException" xml:space="preserve">
+    <value>You must supply a Category.</value>
+  </data>
+  <data name="NameArgumentException" xml:space="preserve">
+    <value>You must supply a Name.</value>
   </data>
 </root>

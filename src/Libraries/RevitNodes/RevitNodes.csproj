@@ -189,8 +189,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
-    <Compile Include="Schedule\SchedulableField.cs" />
-    <Compile Include="Schedule\ScheduleField.cs" />
+    <Compile Include="Schedules\SchedulableField.cs" />
+    <Compile Include="Schedules\ScheduleField.cs" />
     <Compile Include="Transaction\Transaction.cs" />
   </ItemGroup>
   <ItemGroup>

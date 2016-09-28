@@ -1,10 +1,10 @@
 ﻿
 using RevitServices.Persistence;
 
-namespace Revit.Schedule
+namespace Revit.Schedules
 {
     /// <summary>
-    /// Revit Schedule Field
+    ///     Revit Schedule Field
     /// </summary>
     public class SchedulableField
     {
@@ -12,7 +12,7 @@ namespace Revit.Schedule
         #region Internal Properties
 
         /// <summary>
-        /// Internal reference to the Revit Element
+        ///     Internal reference to the Revit Element
         /// </summary>
         internal Autodesk.Revit.DB.SchedulableField InternalSchedulableField
         {
@@ -20,7 +20,7 @@ namespace Revit.Schedule
         }
 
         /// <summary>
-        /// Reference to the Element
+        ///     Internal constructor. Used by the public static constructor to construct an instance of the SchedulableField class.
         /// </summary>
         /// <param name="internalSchedulableField"></param>
         internal SchedulableField(Autodesk.Revit.DB.SchedulableField internalSchedulableField)
@@ -39,7 +39,8 @@ namespace Revit.Schedule
         {
             get
             {
-                return this.InternalSchedulableField.GetName(DocumentManager.Instance.CurrentDBDocument);
+                var doc = DocumentManager.Instance.CurrentDBDocument;
+                return this.InternalSchedulableField.GetName(doc);
             }
         }
 
