@@ -160,14 +160,17 @@ namespace Revit.Elements.Views
         #region Filter
 
         /// <summary>
-        /// Add Filter to View
+        ///     Add Filter to View
         /// </summary>
         /// <param name="parameterFilter">Parameter filter</param>
         public void AddFilter(Revit.Filter.ParameterFilterElement parameterFilter)
         {
-            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
-            this.InternalView.AddFilter(parameterFilter.InternalElement.Id);
-            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+            if (!this.InternalView.IsFilterApplied(parameterFilter.InternalElement.Id))
+            {
+                RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+                this.InternalView.AddFilter(parameterFilter.InternalElement.Id);
+                RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+            }
         }
 
         /// <summary>
