@@ -160,20 +160,25 @@ namespace Revit.Elements.Views
         #region Filter
 
         /// <summary>
-        /// Add Filter to View
+        ///     Filters without first disabling or modifying the View Template.
         /// </summary>
         /// <param name="parameterFilter">Parameter filter</param>
-        public void AddFilter(Revit.Filter.ParameterFilterElement parameterFilter)
+        /// <returns name="view">View</returns>
+        public Element AddFilter(Revit.Filter.ParameterFilterElement parameterFilter)
         {
-            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
-            this.InternalView.AddFilter(parameterFilter.InternalElement.Id);
-            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+            if (!this.InternalView.IsFilterApplied(parameterFilter.InternalElement.Id))
+            {
+                RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+                this.InternalView.AddFilter(parameterFilter.InternalElement.Id);
+                RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+            }
+            return this.InternalView.ToDSType(true);
         }
 
         /// <summary>
-        /// Get View Filters
+        ///     Get View Filters
         /// </summary>
-        /// <returns></returns>
+        /// <returns name="filter">View Filters</returns>
         public IEnumerable<Revit.Filter.ParameterFilterElement> Filters
         {
             get
@@ -189,21 +194,26 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Set Filter overrides
+        ///     Set Filter overrides. If View doesn't have specified Filter, it will be first added to the View and then its settings will be overriden.
+        ///     This behavior will persist even if View has a View Template applied which normally would prevent user from adding Filters without first
+        ///     disabling or modifying the View Template.
         /// </summary>
         /// <param name="parameterFilter">Parameter filter</param>
         /// <param name="overrides">overrides settings</param>
-        public void SetFilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter, Revit.Filter.OverrideGraphicSettings overrides)
+        /// <returns name="view">View</returns>
+        public Element SetFilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter, Revit.Filter.OverrideGraphicSettings overrides)
         {
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
             this.InternalView.SetFilterOverrides(parameterFilter.InternalElement.Id, overrides.InternalOverrideGraphicSettings);
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+
+            return this.InternalView.ToDSType(true);
         }
 
         /// <summary>
-        /// Get Filter overrides
+        ///     Get Filter overrides
         /// </summary>
-        /// <returns></returns>
+        /// <returns name="overrides">Filter overrides</returns>
         public Revit.Filter.OverrideGraphicSettings FilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter)
         {
             OverrideGraphicSettings overrides = this.InternalView.GetFilterOverrides(parameterFilter.InternalElement.Id);
@@ -215,10 +225,10 @@ namespace Revit.Elements.Views
         #region Scale
 
         /// <summary>
-        /// Set View Scale
+        ///     Set View Scale
         /// </summary>
         /// <param name="scale">View scale is the ration of true model size to paper size.</param>
-        /// <returns name="View">View</returns>
+        /// <returns name="view">View</returns>
         public Element SetScale(int scale=100)
         {
             if (Autodesk.Revit.DB.View.IsValidViewScale(scale))
