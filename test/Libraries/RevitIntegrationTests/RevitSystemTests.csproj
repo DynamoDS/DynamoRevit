@@ -98,6 +98,7 @@
     <Compile Include="AdaptiveComponentTests.cs" />
     <Compile Include="AnalysisDisplayTests.cs" />
     <Compile Include="AsynchronousModeTests.cs" />
+    <Compile Include="WallTests.cs" />
     <Compile Include="RoomTests.cs" />
     <Compile Include="RevisionTests.cs" />
     <Compile Include="LocationTests.cs" />

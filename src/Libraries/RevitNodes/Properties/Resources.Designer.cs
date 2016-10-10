@@ -453,9 +453,10 @@ namespace Revit.Properties {
         internal static string InvalidFace {
             get {
                 return ResourceManager.GetString("InvalidFace", resourceCulture);
-		}
-	}
-
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FilterType is not valid..
         /// </summary>
         internal static string InvalidFilterType {

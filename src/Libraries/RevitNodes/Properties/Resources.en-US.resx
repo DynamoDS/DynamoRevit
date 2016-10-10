@@ -312,10 +312,9 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
-<<<<<<< HEAD
   <data name="InvalidFace" xml:space="preserve">
     <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
-=======
+  </data>
   <data name="ElementCannotBeAnnotatedError" xml:space="preserve">
     <value>Element cannot be annotated</value>
   </data>
@@ -357,6 +356,5 @@
   </data>
   <data name="TypeNotFound" xml:space="preserve">
     <value>Type not found in document.</value>
->>>>>>> DynamoDS/Revit2016
   </data>
 </root>
