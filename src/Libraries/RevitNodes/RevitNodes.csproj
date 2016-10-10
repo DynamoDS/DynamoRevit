@@ -91,6 +91,7 @@
     <Compile Include="Elements\CurveElement.cs" />
     <Compile Include="Elements\FilledRegion.cs" />
     <Compile Include="Elements\FilledRegionType.cs" />
+    <Compile Include="Elements\GlobalParameter.cs" />
     <Compile Include="Elements\InternalUtilities\ElementQueries.cs" />
     <Compile Include="Elements\InternalUtilities\ElementUtils.cs" />
     <Compile Include="Elements\InternalUtilities\TransformUtils.cs" />
