@@ -79,7 +79,7 @@ namespace RevitNodesTests.Elements
         {
             Element elem = ElementSelector.ByElementId(205302);
             var refr = elem.ElementFaceReferences[0].InternalReference;
-            var wallType = WallType.ByName( "Curtain Wall 1" );
+            var wallType = WallType.ByName( "Generic - 5\"" );
             FaceWall wall = FaceWall.ByFace(Autodesk.Revit.DB.WallLocationLine.CoreCenterline, wallType, refr );
 
             Assert.NotNull(wall);
