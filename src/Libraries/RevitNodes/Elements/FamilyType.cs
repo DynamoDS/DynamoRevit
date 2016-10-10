@@ -65,6 +65,29 @@ namespace Revit.Elements
             InternalSetFamilySymbol(symbol);
         }
 
+        /// <summary>
+        /// Get Solid from Element helper method
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        private static Solid GetSolidFromElement(Autodesk.Revit.DB.Element element)
+        {
+            GeometryElement geo = element.get_Geometry(new Options() { ComputeReferences = true });
+
+            // Get geometry instance from geometry element
+            var enumerator = geo.GetEnumerator();
+            enumerator.MoveNext();
+            GeometryInstance i = (GeometryInstance)enumerator.Current;
+
+            // Get solid from geometry instance
+            var geom2 = i.GetInstanceGeometry();
+            var enumarator2 = geom2.GetEnumerator();
+            enumarator2.MoveNext();
+
+            return (Solid)enumarator2.Current;
+        }
+
+
         #endregion
 
         #region Private mutators
@@ -227,51 +250,17 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get Solid from Element helper method
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        private static Solid GetSolidFromElement(Autodesk.Revit.DB.Element element)
-        {
-            GeometryElement geo = element.get_Geometry(new Options() { ComputeReferences = true });
-            var enumerator = geo.GetEnumerator();
-            enumerator.MoveNext();
-            GeometryInstance i = (GeometryInstance)enumerator.Current;
-            var geom2 = i.GetInstanceGeometry();
-            var enumarator2 = geom2.GetEnumerator();
-            enumarator2.MoveNext();
-            return (Solid)enumarator2.Current;
-        }
-
-        /// <summary>
-        /// Set Family Parameter Helper method
-        /// </summary>
-        /// <param name="element"></param>
-        /// <param name="parameter"></param>
-        /// <param name="value"></param>
-        private static void SetFamilyParameter(Autodesk.Revit.DB.Element element, BuiltInParameter parameter, object value)
-        {
-            Autodesk.Revit.DB.Parameter p = element.get_Parameter(parameter);
-            if (p != null && !p.IsReadOnly)
-            {
-                if (value.GetType() == typeof(ElementId)) { p.Set((ElementId)value); }
-                if (value.GetType() == typeof(double)) { p.Set((double)value); }
-                if (value.GetType() == typeof(int)) { p.Set((int)value); }
-                if (value.GetType() == typeof(string)) { p.Set((string)value); }
-            }
-        }
-        /// <summary>
-        /// Create new Family Instance from Geometry
+        /// Create new Family Instance from Geometry (via SAT import)
         /// </summary>
         /// <param name="geometry"></param>
         /// <param name="name"></param>
         /// <param name="category"></param>
         /// <param name="templatePath"></param>
         /// <param name="isVoid"></param>
-        /// <param name="subcategory"></param>
         /// <param name="material"></param>
+        /// <param name="subcategory"></param>
         /// <returns></returns>
-        public static FamilyType ByGeometry(Autodesk.DesignScript.Geometry.Geometry geometry, string name, Category category, string templatePath, bool isVoid = false, string subcategory = "", string material = "")
+        public static FamilyType ByGeometry(Autodesk.DesignScript.Geometry.Geometry geometry, string name, Category category, string templatePath, Material material, bool isVoid = false, string subcategory = "")
         {
             Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.ForceCloseTransaction();
@@ -333,20 +322,33 @@ namespace Revit.Elements
             // if the geometry should be void set parameters accordingly
             if (isVoid)
             {
-                SetFamilyParameter(freeFormElement, BuiltInParameter.ELEMENT_IS_CUTTING, 1);
-                SetFamilyParameter(freeFormElement, BuiltInParameter.FAMILY_ALLOW_CUT_WITH_VOIDS, 1);
+                var elementIsCuttingParameter = freeFormElement.get_Parameter(BuiltInParameter.ELEMENT_IS_CUTTING);
+                if (elementIsCuttingParameter != null && !elementIsCuttingParameter.IsReadOnly)
+                {
+                    Revit.Elements.InternalUtilities.ElementUtils.SetParameterValue(elementIsCuttingParameter, 1);
+                }
+
+                var cutWithVoidsParameter = freeFormElement.get_Parameter(BuiltInParameter.FAMILY_ALLOW_CUT_WITH_VOIDS);
+                if (cutWithVoidsParameter != null && !cutWithVoidsParameter.IsReadOnly)
+                {
+                    Revit.Elements.InternalUtilities.ElementUtils.SetParameterValue(cutWithVoidsParameter, 1);
+                }
             }
             else
             {
                 // Apply material if supplied
-                if (material != string.Empty)
+                if (material != null)
                 {
-                    Autodesk.Revit.DB.FilteredElementCollector materialCollector = new Autodesk.Revit.DB.FilteredElementCollector(familyDocument).OfClass(typeof(Autodesk.Revit.DB.Material));
+                    var materialCollector = new Autodesk.Revit.DB.FilteredElementCollector(familyDocument).OfClass(typeof(Autodesk.Revit.DB.Material));
                     foreach (Autodesk.Revit.DB.Material mat in materialCollector)
                     {
-                        if (mat.Name == material)
+                        if (mat.Name == material.Name)
                         {
-                            SetFamilyParameter(freeFormElement, BuiltInParameter.MATERIAL_ID_PARAM, mat.Id);
+                            var materialParam = freeFormElement.get_Parameter(BuiltInParameter.MATERIAL_ID_PARAM);
+                            if (materialParam != null && !materialParam.IsReadOnly)
+                            {
+                                Revit.Elements.InternalUtilities.ElementUtils.SetParameterValue(materialParam, material);
+                            }
                         }
                     }
                 }
@@ -354,9 +356,9 @@ namespace Revit.Elements
                 // Apply Subcategory if supplied
                 if (subcategory != string.Empty)
                 {
-                    var current_fam_cat = familyDocument.OwnerFamily.FamilyCategory;
-                    var new_subcat = familyDocument.Settings.Categories.NewSubcategory(current_fam_cat, subcategory);
-                    freeFormElement.Subcategory = new_subcat;
+                    var currentFamilyCategory = familyDocument.OwnerFamily.FamilyCategory;
+                    var newSubCategory = familyDocument.Settings.Categories.NewSubcategory(currentFamilyCategory, subcategory);
+                    freeFormElement.Subcategory = newSubCategory;
                 }
             }
 
@@ -383,13 +385,6 @@ namespace Revit.Elements
             {
                 IsRevitOwned = true
             };
-
-            // place instance in  correct location
-            //Autodesk.Revit.DB.FamilyInstance instance = document.Create.NewFamilyInstance(new XYZ(0, 0, 0), symbol1, Autodesk.Revit.DB.Structure.StructuralType.NonStructural);
-            //ElementTransformUtils.MoveElement(document, instance.Id, vector.Reverse().ToXyz());
-
-            //TransactionManager.Instance.ForceCloseTransaction();
-            //return new FamilyInstance(instance);
         }
 
 

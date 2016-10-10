@@ -51,5 +51,21 @@ namespace RevitNodesTests.Elements
             Assert.Throws(typeof(System.ArgumentNullException), () => FamilyType.ByFamilyAndName(fam, null));
             Assert.Throws(typeof(System.ArgumentNullException), () => FamilyType.ByFamilyAndName(null, "Turtle"));
         }
+
+        [Test]
+        [TestModel(@".\empty.rvt")]
+        public void ByGeometry_GoodArgs()
+        {
+            var cube = Autodesk.DesignScript.Geometry.Cuboid.ByCorners(
+                Autodesk.DesignScript.Geometry.Point.ByCoordinates(0,0,0),
+                Autodesk.DesignScript.Geometry.Point.ByCoordinates(100,100,100));
+
+            string path = System.Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            path += @"\Autodesk\RVT 2016\Family Templates\English\Metric Generic Model.rft";
+
+            var type = FamilyType.ByGeometry(cube, "MyCube", Category.ByName("Mass"), path, Material.ByName("Poche"));
+            Assert.NotNull(type);
+            Assert.IsTrue(typeof(FamilyType) == type.GetType());
+        }
     }
 }
