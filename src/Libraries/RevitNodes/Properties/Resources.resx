@@ -357,4 +357,7 @@
   <data name="TypeNotFound" xml:space="preserve">
     <value>Type not found in document.</value>
   </data>
+  <data name="RoofTypeNotFound" xml:space="preserve">
+    <value>Roof type not found.</value>
+  </data>
 </root>

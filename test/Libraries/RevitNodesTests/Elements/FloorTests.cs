@@ -125,22 +125,20 @@ namespace RevitNodesTests.Elements
                 Line.ByStartPointEndPoint(Point.ByCoordinates(0, 100, 0), Point.ByCoordinates(0, 0, 0))
             };
 
-            var floorType = FloorType.ByName("6\" Foundation Slab");
+            var floorType = FloorType.ByName("Generic - 12\"");
 
             var floor = Floor.ByOutlineTypeAndLevel(outline, floorType, level);
 
             Assert.NotNull(floor);
+            
 
             floor.AddPoint(Point.ByCoordinates(50, 50, 0));
             Assert.IsTrue(floor.Points.ToList().Count == 5);
 
-            floor.MovePoint(Point.ByCoordinates(50, 50, 0), 200);
+            double elev = floor.Points.First().Z;
+            floor.MovePoint(floor.Points.First(), 10);
 
-            double maxElev = 0;
-            foreach (Point p in floor.Points)
-                if (p.Z > maxElev) maxElev = p.Z;
-
-            Assert.IsTrue(maxElev == 200);
+            floor.Points.First().Z.ShouldBeApproximately(elev + 10);
 
         }
     }
