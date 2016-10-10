@@ -475,6 +475,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Floor Shape cannot be edited..
+        /// </summary>
+        internal static string InvalidShapeEditor {
+            get {
+                return ResourceManager.GetString("InvalidShapeEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The height must be greater than 0 and less that 30000 ft.  You provided a height of {0} ft..
         /// </summary>
         internal static string InvalidWallHeight {
@@ -705,6 +714,15 @@ namespace Revit.Properties {
         internal static string ReferencePointCreationFailure {
             get {
                 return ResourceManager.GetString("ReferencePointCreationFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roof type not found..
+        /// </summary>
+        internal static string RoofTypeNotFound {
+            get {
+                return ResourceManager.GetString("RoofTypeNotFound", resourceCulture);
             }
         }
         
