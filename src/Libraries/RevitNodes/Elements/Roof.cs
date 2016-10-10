@@ -8,6 +8,7 @@ using RevitServices.Transactions;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
 using Pt = Autodesk.DesignScript.Geometry.Point;
 using System.Collections.Generic;
+using Autodesk.DesignScript.Runtime;
 
 namespace Revit.Elements
 {
@@ -29,6 +30,7 @@ namespace Revit.Elements
         /// <summary>
         /// Reference to the Element
         /// </summary>
+        [SupressImportIntoVM]
         public override Autodesk.Revit.DB.Element InternalElement
         {
             get { return InternalRoof; }
@@ -148,16 +150,17 @@ namespace Revit.Elements
         /// <param name="RoofType"></param>
         /// <param name="level"></param>
         /// <returns>The Roof</returns>
-        public static Roof ByOutlineTypeAndLevel(PolyCurve outline, RoofType roofType, Level level)
+        public static Roof ByOutlineTypeAndLevel(Curve[] outline, RoofType roofType, Level level)
         {
+            var polycurve = PolyCurve.ByJoinedCurves(outline);
 
-            if (!outline.IsClosed)
+            if (!polycurve.IsClosed)
             {
                 throw new ArgumentException(Properties.Resources.OpenInputPolyCurveError);
             }
 
             var ca = new CurveArray();
-            outline.Curves().ForEach(x => ca.Append(x.ToRevitType()));
+            polycurve.Curves().ForEach(x => ca.Append(x.ToRevitType()));
 
             return new Roof(ca, level.InternalLevel,roofType.InternalRoofType);
         }
@@ -172,7 +175,7 @@ namespace Revit.Elements
         /// <param name="extrusionStart"></param>
         /// <param name="extrusionEnd"></param>
         /// <returns></returns>
-        public static Roof ByOutlineExtrusionTypeAndLevel(PolyCurve outline, RoofType roofType, Level level, ReferencePlane plane, double extrusionStart = 0, double extrusionEnd = 200)
+        public static Roof ByOutlineExtrusionTypeAndLevel(PolyCurve outline, RoofType roofType, Level level, ReferencePlane plane, double extrusionStart, double extrusionEnd)
         {
 
             if (!outline.IsClosed)
