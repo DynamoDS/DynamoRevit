@@ -303,5 +303,23 @@ namespace RevitSystemTests
             // as the original should have been updated and no new one should be created
             Assert.AreEqual(initialNumber, finalNumber);
         }
+
+
+        [Test]
+        [TestModel(@".\empty.rvt")]
+        public void CreateFamilyTypeByGeometry()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Family\CreateFamilyTypeByGeometry.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            var famInst = GetPreviewValue("df1bc5da-b9de-4fb2-8c9b-9aa7c8997834");
+            Assert.IsNotNull(famInst);
+            Assert.IsTrue(typeof(Revit.Elements.FamilyType) == famInst.GetType());
+            
+        }
     }
 }
