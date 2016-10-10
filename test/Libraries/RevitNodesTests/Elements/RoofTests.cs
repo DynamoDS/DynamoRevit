@@ -34,7 +34,7 @@ namespace RevitNodesTests.Elements
                 Line.ByStartPointEndPoint(Point.ByCoordinates(0, 100, 0), Point.ByCoordinates(0, 0, 0))
             };
 
-            var roofType = RoofType.ByName("Generic - 12\"");
+            var roofType = RoofType.ByName("Generic - 9\"");
 
             var roof = Roof.ByOutlineTypeAndLevel(outline, roofType, level);
 
@@ -57,7 +57,7 @@ namespace RevitNodesTests.Elements
                 Line.ByStartPointEndPoint(Point.ByCoordinates(0, 100, 0), Point.ByCoordinates(0, 0, 0))
             };
 
-            var roofType = RoofType.ByName("6\" Foundation Slab");
+            var roofType = RoofType.ByName("Generic - 9\"");
 
             var roof = Roof.ByOutlineTypeAndLevel(outline, roofType, level);
 
