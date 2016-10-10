@@ -123,23 +123,12 @@ namespace Revit.Elements
             return new PerformanceAdviserRule(new PerformanceAdviserRuleId(new Guid(guid)));
         }
 
+        [SupressImportIntoVM]
         public override string ToString()
         {
             PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
             return string.Format("{0} : {1}", adviser.GetRuleName(this.InternalId), adviser.GetRuleDescription(this.InternalId));
         }
-
-        public static PerformanceAdviserRule CreateClashDetectionRule(Element element)
-        {
-            Type t = element.InternalElement.GetType();
-
-            ClashDetectionRule clash = new ClashDetectionRule(t);
-            PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
-            adviser.AddRule(clash.Id, clash);
-            return new PerformanceAdviserRule(clash.Id);
-
-        }
-
         
     }
 }
