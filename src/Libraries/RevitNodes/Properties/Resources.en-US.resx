@@ -363,6 +363,9 @@
   <data name="CategoryArgumentException" xml:space="preserve">
     <value>You must supply a Category.</value>
   </data>
+  <data name="DocumentDoesNotSupportGlobalParams" xml:space="preserve">
+    <value>Document does not support global parameters.</value>
+  </data>
   <data name="NameArgumentException" xml:space="preserve">
     <value>You must supply a Name.</value>
   </data>
@@ -380,5 +383,7 @@
   </data>
   <data name="ViewExportImageError" xml:space="preserve">
     <value>There was an error exporting the image.</value>
+  <data name="NameAlreadyInUse" xml:space="preserve">
+    <value>Name already in use.</value>
   </data>
 </root>
