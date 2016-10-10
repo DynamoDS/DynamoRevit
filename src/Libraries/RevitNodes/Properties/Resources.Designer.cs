@@ -174,9 +174,10 @@ namespace Revit.Properties {
         internal static string CurtainSystemTypeNotFound {
             get {
                 return ResourceManager.GetString("CurtainSystemTypeNotFound", resourceCulture);
-		}
-	}
-
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Curve ist not planar. Please supply a planar curve..
         /// </summary>
         internal static string CurveIsNotPlanar {

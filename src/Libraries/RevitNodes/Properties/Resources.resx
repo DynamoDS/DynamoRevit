@@ -312,10 +312,9 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
-<<<<<<< HEAD
   <data name="CurtainSystemTypeNotFound" xml:space="preserve">
     <value>Curtain System Type not found.</value>
-=======
+  </data>
   <data name="ElementCannotBeAnnotatedError" xml:space="preserve">
     <value>Element cannot be annotated</value>
   </data>
@@ -357,6 +356,5 @@
   </data>
   <data name="TypeNotFound" xml:space="preserve">
     <value>Type not found in document.</value>
->>>>>>> DynamoDS/Revit2016
   </data>
 </root>
