@@ -250,6 +250,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Document does not support global parameters..
+        /// </summary>
+        internal static string DocumentDoesNotSupportGlobalParams {
+            get {
+                return ResourceManager.GetString("DocumentDoesNotSupportGlobalParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dynamo Data.
         /// </summary>
         internal static string Dynamo_AVF_Data_Name {
@@ -273,9 +282,9 @@ namespace Revit.Properties {
         internal static string DynamoSurfaceToRevitBRepFailure {
             get {
                 return ResourceManager.GetString("DynamoSurfaceToRevitBRepFailure", resourceCulture);
-		}
-	}
-
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Element cannot be annotated.
         /// </summary>
@@ -543,6 +552,15 @@ namespace Revit.Properties {
         internal static string MultipleSurfacesIntroducedAfterConversion {
             get {
                 return ResourceManager.GetString("MultipleSurfacesIntroducedAfterConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name already in use..
+        /// </summary>
+        internal static string NameAlreadyInUse {
+            get {
+                return ResourceManager.GetString("NameAlreadyInUse", resourceCulture);
             }
         }
         
