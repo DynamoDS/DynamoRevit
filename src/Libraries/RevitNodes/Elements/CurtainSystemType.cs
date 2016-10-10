@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using RevitServices.Persistence;
+using Autodesk.DesignScript.Runtime;
 
 namespace Revit.Elements
 {
@@ -22,6 +23,7 @@ namespace Revit.Elements
         /// <summary>
         /// Reference to the Element
         /// </summary>
+        [SupressImportIntoVM]
         public override Autodesk.Revit.DB.Element InternalElement
         {
             get { return InternalCurtainSystemType; }

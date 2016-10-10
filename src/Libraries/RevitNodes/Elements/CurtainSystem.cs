@@ -7,6 +7,7 @@ using RevitServices.Persistence;
 using RevitServices.Transactions;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
 using System.Collections.Generic;
+using Autodesk.DesignScript.Runtime;
 
 namespace Revit.Elements
 {
@@ -28,6 +29,7 @@ namespace Revit.Elements
         /// <summary>
         /// Reference to the Element
         /// </summary>
+        [SupressImportIntoVM]
         public override Autodesk.Revit.DB.Element InternalElement
         {
             get { return InternalCurtainSystem; }

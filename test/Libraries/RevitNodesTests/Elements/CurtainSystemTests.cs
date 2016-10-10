@@ -18,7 +18,7 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\InPlaceMass.rvt")]
         public void Create_Valid()
         {
-            CurtainSystemType type = CurtainSystemType.ByName("");
+            CurtainSystemType type = CurtainSystemType.ByName("5' x 10'");
             Assert.NotNull(type);
 
             var mass =  Revit.Elements.ElementSelector.ByElementId(205302);
