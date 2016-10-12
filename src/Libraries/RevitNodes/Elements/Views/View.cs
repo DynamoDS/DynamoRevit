@@ -161,6 +161,7 @@ namespace Revit.Elements.Views
 
         /// <summary>
         ///     Add a Filter to a View. The Filter will be added even if View has a View Template applied, which normally would prevent user from adding
+        ///     Add Filter to View. Filter will be added even if View has a View Template applied, which normally would prevent user from adding
         ///     Filters without first disabling or modifying the View Template.
         /// </summary>
         /// <param name="parameterFilter">Parameter filter</param>
