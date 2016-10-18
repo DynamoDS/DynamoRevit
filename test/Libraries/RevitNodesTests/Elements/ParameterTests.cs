@@ -36,11 +36,21 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\elementSharedParameters.rvt")]
         public void CreateSharedParameter_ValidArgs()
         {
+            // shared parameter file workaround
+            string tempfile = System.IO.Path.GetTempFileName().Replace(".tmp",".txt");
+            System.IO.Stream stream = System.IO.File.OpenWrite(tempfile);
+            stream.WriteByte(new Byte());
+            stream.Close();
+            DocumentManager.Instance.CurrentDBDocument.Application.SharedParametersFilename = tempfile;
+            var def = DocumentManager.Instance.CurrentDBDocument.Application.OpenSharedParameterFile();
+            var groups = def.Groups;
+            groups.Create("MyGroup");            
+
             List<Category> categories = new List<Category>() { Category.ByName("Walls") };
-            //DocumentManager.Instance.CurrentDBDocument
+
             Parameter.CreateSharedParameter("MySharedParameter", "MySharedGroup", Autodesk.Revit.DB.ParameterType.Text.ToString(), Autodesk.Revit.DB.BuiltInParameterGroup.PG_DATA.ToString(), true, categories);
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument).OfClass(typeof(Autodesk.Revit.DB.Wall));
-            var wall = fec.FirstElement();    
+            var wall = fec.FirstElement();
             Assert.IsNotNull(wall.LookupParameter("MySharedParameter"));
         }
 
