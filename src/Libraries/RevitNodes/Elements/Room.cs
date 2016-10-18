@@ -218,6 +218,9 @@ namespace Revit.Elements
             get { return this.InternalRevitElement.UnboundedHeight * UnitConverter.HostToDynamoFactor(UnitType.UT_Length); }
         }
 
+        /// <summary>
+        /// Get room volume
+        /// </summary>
         public double Volume
         {
             get { return this.InternalRevitElement.Volume * UnitConverter.HostToDynamoFactor(UnitType.UT_Length)
