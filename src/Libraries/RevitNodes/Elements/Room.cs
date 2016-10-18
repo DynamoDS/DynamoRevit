@@ -6,6 +6,7 @@ using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using System.Collections.Generic;
+using Autodesk.Revit.DB;
 
 
 namespace Revit.Elements
@@ -189,7 +190,7 @@ namespace Revit.Elements
         /// </summary>
         public string Name
         {
-            get{ return this.InternalRevitElement.Name; }           
+            get{ return this.InternalRevitElement.get_Parameter(Autodesk.Revit.DB.BuiltInParameter.ROOM_NAME).AsString();  }           
         }
 
         /// <summary>
@@ -205,7 +206,8 @@ namespace Revit.Elements
         /// </summary>
         public double Area
         {
-            get { return this.InternalRevitElement.Area; }
+            get { return this.InternalRevitElement.Area * UnitConverter.HostToDynamoFactor(UnitType.UT_Length)
+                    * UnitConverter.HostToDynamoFactor(UnitType.UT_Length); }
         }
 
         /// <summary>
@@ -213,7 +215,13 @@ namespace Revit.Elements
         /// </summary>
         public double Height
         {
-            get { return this.InternalRevitElement.UnboundedHeight; }
+            get { return this.InternalRevitElement.UnboundedHeight * UnitConverter.HostToDynamoFactor(UnitType.UT_Length); }
+        }
+
+        public double Volume
+        {
+            get { return this.InternalRevitElement.Volume * UnitConverter.HostToDynamoFactor(UnitType.UT_Length)
+                    * UnitConverter.HostToDynamoFactor(UnitType.UT_Length) * UnitConverter.HostToDynamoFactor(UnitType.UT_Length); }
         }
 
         /// <summary>
