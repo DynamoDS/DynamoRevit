@@ -160,8 +160,21 @@ namespace Revit.Elements
         /// <param name="horizontalAlignment">Horizontal Alignment</param>
         /// <param name="verticalAlignment">Vertical Alignment</param>
         /// <returns></returns>
-        public static Tag ByElement(Revit.Elements.Views.View view, Element element, bool horizontal, bool addLeader, Autodesk.Revit.DB.HorizontalAlignmentStyle horizontalAlignment, Autodesk.Revit.DB.VerticalAlignmentStyle verticalAlignment, [DefaultArgument("Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0,0,0)")]Autodesk.DesignScript.Geometry.Vector offset, bool isOffset = true)
-        {   
+        public static Tag ByElement(Revit.Elements.Views.View view, Element element, bool horizontal, bool addLeader, string horizontalAlignment, string verticalAlignment, [DefaultArgument("Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0,0,0)")]Autodesk.DesignScript.Geometry.Vector offset, bool isOffset = true)
+        {
+            Autodesk.Revit.DB.HorizontalAlignmentStyle horizontalAlignmentStyle = HorizontalAlignmentStyle.Center;
+            if (!Enum.TryParse<Autodesk.Revit.DB.HorizontalAlignmentStyle>(horizontalAlignment, out horizontalAlignmentStyle))
+            {
+                horizontalAlignmentStyle = HorizontalAlignmentStyle.Center;
+            }
+
+            Autodesk.Revit.DB.VerticalAlignmentStyle verticalAlignmentStyle = VerticalAlignmentStyle.Middle;
+            if (!Enum.TryParse<Autodesk.Revit.DB.VerticalAlignmentStyle>(verticalAlignment, out verticalAlignmentStyle))
+            {
+                verticalAlignmentStyle = VerticalAlignmentStyle.Middle;
+            }
+
+
 
             Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
             Autodesk.Revit.DB.XYZ point = offset.ToRevitType(true);
@@ -179,14 +192,14 @@ namespace Revit.Elements
                 {
                     double Y, X = 0;
 
-                    switch (verticalAlignment)
+                    switch (verticalAlignmentStyle)
                     {
                         case VerticalAlignmentStyle.Bottom: Y = box.Min.Y; break;
                         case VerticalAlignmentStyle.Top: Y = box.Max.Y; break;
                         default: Y = box.Min.Y + ((box.Max.Y - box.Min.Y) / 2); break;
                     }
 
-                    switch (horizontalAlignment)
+                    switch (horizontalAlignmentStyle)
                     {
                         case HorizontalAlignmentStyle.Left: X = box.Min.X; break;
                         case HorizontalAlignmentStyle.Right: X = box.Max.X; break;
