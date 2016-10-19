@@ -37,12 +37,13 @@ namespace Revit.Elements.Views
                 case Autodesk.Revit.DB.ViewType.Section:
                 case Autodesk.Revit.DB.ViewType.Elevation:
                 case Autodesk.Revit.DB.ViewType.CeilingPlan:
+                case Autodesk.Revit.DB.ViewType.DraftingView:
                     return true;
 
                 default: return false;
             }
         }
-        
+
         /// <summary>
         /// Export the view as an image to the given path - defaults to png, but you can override 
         /// the file type but supplying a path with the appropriate extension

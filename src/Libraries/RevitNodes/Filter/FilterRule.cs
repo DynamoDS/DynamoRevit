@@ -39,10 +39,10 @@ namespace Revit.Filter
         #region Helpers
 
         /// <summary>
-        /// FilterType Enumeration
+        /// RuleType Enumeration
         /// </summary>
         [IsVisibleInDynamoLibrary(false)]
-        public enum FilterType
+        public enum RuleType
         {
             BeginsWith,
             Contains,
@@ -79,22 +79,28 @@ namespace Revit.Filter
         /// <param name="value">Value to check</param>
         /// <param name="parameter">Parameter to filter</param>
         /// <returns></returns>
-        public static FilterRule ByRuleType(FilterType type, object value, Elements.Parameter parameter)
+        public static FilterRule ByRuleType(string type, object value, Elements.Parameter parameter)
         {
+            RuleType ruletype = RuleType.Equals;
+            if (!Enum.TryParse<RuleType>(type, out ruletype))
+            {
+                ruletype = RuleType.Equals;
+            }
+
 
             ElementId parameterId = parameter.InternalParameter.Id;
 
             // assemble the method name to construct a new filter using the FilterType
             string methodname = string.Format("{0}{1}{2}", new object[] { CreatePrefix , type, RuleSuffix});
     
-            // all of the following FilterType construcotrs are handled the same
+            // all of the following FilterType constructors are handled the same
             if (
-                type == FilterType.Equals ||
-                type == FilterType.NotEquals ||
-                type == FilterType.Greater ||
-                type == FilterType.Less ||
-                type == FilterType.GeaterOrEqual ||
-                type == FilterType.LessOrEqual
+                ruletype == RuleType.Equals ||
+                ruletype == RuleType.NotEquals ||
+                ruletype == RuleType.Greater ||
+                ruletype == RuleType.Less ||
+                ruletype == RuleType.GeaterOrEqual ||
+                ruletype == RuleType.LessOrEqual
                 )
             {
                 if (value.GetType() == typeof(int))

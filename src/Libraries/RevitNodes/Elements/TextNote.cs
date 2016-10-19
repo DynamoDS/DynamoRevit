@@ -85,8 +85,20 @@ namespace Revit.Elements
         /// <param name="element"></param>
         private void InitElement(Autodesk.Revit.DB.TextNote element)
         {
-            LocationPoint location = element.Location as LocationPoint;
-            InternalSetType(element.Text, element.TextNoteType, location.Point, element.HorizontalAlignment, location.Rotation.ToDegrees());
+            // use the default coordinates for an unrotated text
+            XYZ position = element.Coord;
+            double rotation = 0;
+
+            // If an element location is present, use this location instead because it
+            // holds the elements rotation
+            if (element.Location != null && element.Location is LocationPoint)
+            {
+                LocationPoint location = element.Location as LocationPoint;
+                position = location.Point;
+                rotation = location.Rotation.ToDegrees();
+            }
+
+            InternalSetType(element.Text, element.TextNoteType, position, element.HorizontalAlignment, rotation);
             InternalSetElement(element);
         }
 
@@ -135,18 +147,32 @@ namespace Revit.Elements
                     element.Text = text;
                 }
 
-                if (element.Location is LocationPoint)
+                // if the element location is null, try to use the Coord property
+                // Coord holds a point only without rotation.
+                if (element.Location == null)
                 {
-                    LocationPoint point = (LocationPoint)element.Location;
-
-                    if (!point.Point.Equals(origin))
+                    if (!element.Coord.IsAlmostEqualTo(origin))
                     {
-                        point.Point = origin;
+                        element.Coord = origin;
                     }
-
-                    if (point.Rotation != rotation.ToRadians())
+                }
+                else
+                {
+                    // If a location point is set we can use this and extract
+                    // its location and rotation
+                    if (element.Location is LocationPoint)
                     {
-                        point.Rotate(Line.CreateUnbound(XYZ.Zero, XYZ.BasisZ), rotation.ToRadians());
+                        LocationPoint point = (LocationPoint)element.Location;
+
+                        if (!point.Point.IsAlmostEqualTo(origin))
+                        {
+                            point.Point = origin;
+                        }
+
+                        if (Math.Abs(point.Rotation - rotation.ToRadians()) <= System.Double.Epsilon)
+                        {
+                            point.Rotate(Line.CreateUnbound(XYZ.Zero, XYZ.BasisZ), rotation.ToRadians());
+                        }
                     }
                 }
 
@@ -177,15 +203,20 @@ namespace Revit.Elements
         /// <param name="rotation">Rotation in degrees</param>
         /// <param name="type">Revit TextNote Type</param>
         /// <returns></returns>
-        public static TextNote ByLocation(Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location, string text, RVT.HorizontalTextAlignment alignment, [DefaultArgument("Revit.Elements.TextNoteType.Default()")]TextNoteType type, bool keepRotatedTextReadable = true, double rotation = 0)
+        public static TextNote ByLocation(Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location, string text, string alignment, [DefaultArgument("Revit.Elements.TextNoteType.Default()")]TextNoteType type, bool keepRotatedTextReadable = true, double rotation = 0)
         {
+            RVT.HorizontalTextAlignment horizontalTextAlignmentStyle = HorizontalTextAlignment.Center;
+            if (!Enum.TryParse<RVT.HorizontalTextAlignment>(alignment, out horizontalTextAlignmentStyle))
+            {
+                horizontalTextAlignmentStyle = HorizontalTextAlignment.Center;
+            }
 
             Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
 
             if (!view.IsAnnotationView())
                 throw new Exception(Properties.Resources.ViewDoesNotSupportAnnotations);
 
-            return new TextNote(revitView, location.ToRevitType(true), alignment, text, keepRotatedTextReadable, rotation, type.InternalElement.Id);
+            return new TextNote(revitView, location.ToRevitType(true), horizontalTextAlignmentStyle, text, keepRotatedTextReadable, rotation, type.InternalElement.Id);
         }
 
 
