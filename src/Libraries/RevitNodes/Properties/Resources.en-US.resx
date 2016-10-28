@@ -366,4 +366,7 @@
   <data name="NameArgumentException" xml:space="preserve">
     <value>You must supply a Name.</value>
   </data>
+  <data name="ScheduleTypeArgumentException" xml:space="preserve">
+    <value>Invalid Schedule Type.</value>
+  </data>
 </root>
