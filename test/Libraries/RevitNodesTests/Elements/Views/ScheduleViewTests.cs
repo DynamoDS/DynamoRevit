@@ -5,6 +5,7 @@ using Revit.Elements.Views;
 using RevitServices.Persistence;
 using RevitTestServices;
 using RTF.Framework;
+using System.IO;
 
 namespace RevitNodesTests.Elements.Views
 {
@@ -40,7 +41,38 @@ namespace RevitNodesTests.Elements.Views
 
             // should always return at least one field
             var fields = view.SchedulableFields;
-            Assert.NotNull(fields);
+            Assert.Greater(fields.Count, 0);
+        }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void ExportViewSchedule_ValidArgs()
+        {
+            var view = ScheduleView.CreateSchedule(Category.ByName("OST_GenericModel"), "KeySchedule_Test", ScheduleView.ScheduleType.KeySchedule.ToString());
+            Assert.NotNull(view);
+
+            var path = Path.GetTempFileName();
+            path = Path.ChangeExtension(path, ".tsv");
+
+            var options = new Revit.Schedules.ScheduleExportOptions(new Autodesk.Revit.DB.ViewScheduleExportOptions());
+            Assert.NotNull(options);
+
+            var exportView = view.Export(path, options);
+            var pathInfo = new FileInfo(path);
+            Assert.Greater(pathInfo.Length, 0);
+        }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void ExportViewSchedule_NullArgs()
+        {
+            var view = ScheduleView.CreateSchedule(Category.ByName("OST_GenericModel"), "KeySchedule_Test", ScheduleView.ScheduleType.KeySchedule.ToString());
+            Assert.NotNull(view);
+
+            var options = new Revit.Schedules.ScheduleExportOptions(new Autodesk.Revit.DB.ViewScheduleExportOptions());
+            Assert.NotNull(options);
+
+            Assert.Throws(typeof(ArgumentNullException), () => view.Export(null, options));
         }
     }
 }

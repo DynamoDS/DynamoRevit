@@ -1,10 +1,11 @@
 ﻿using RevitServices.Persistence;
 using Autodesk.DesignScript.Runtime;
-using View = Revit.Elements.Views.View;
 using RevitServices.Transactions;
 using DynamoServices;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using Revit.Schedules;
 
 namespace Revit.Elements.Views
 {
@@ -76,7 +77,13 @@ namespace Revit.Elements.Views
             var doc = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(doc);
 
-            var vs = CreateViewSchedule(category, name, type);
+            // Get existing view if possible
+            var vs = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.ViewSchedule>(doc);
+
+            if (vs == null)
+            {
+                vs = CreateViewSchedule(category, name, type);
+            }
 
             InternalSetScheduleView(vs);
 
@@ -114,6 +121,14 @@ namespace Revit.Elements.Views
             {
                 case ScheduleType.KeySchedule:
                     viewSchedule = Autodesk.Revit.DB.ViewSchedule.CreateKeySchedule(doc, new Autodesk.Revit.DB.ElementId(category.Id));
+                    viewSchedule.Name = name;
+                    break;
+                case ScheduleType.RegularSchedule:
+                    viewSchedule = Autodesk.Revit.DB.ViewSchedule.CreateSchedule(doc, new Autodesk.Revit.DB.ElementId(category.Id));
+                    viewSchedule.Name = name;
+                    break;
+                case ScheduleType.MaterialTakeoff:
+                    viewSchedule = Autodesk.Revit.DB.ViewSchedule.CreateMaterialTakeoff(doc, new Autodesk.Revit.DB.ElementId(category.Id));
                     viewSchedule.Name = name;
                     break;
             }
@@ -156,17 +171,22 @@ namespace Revit.Elements.Views
         /// <summary>
         ///     Remove Schedule Field from Schedule.
         /// </summary>
-        /// <param name="field"></param>
+        /// <param name="fields"></param>
         /// <returns name="View">View Schedule</returns>
-        public ScheduleView RemoveField(Revit.Schedules.ScheduleField field)
+        public ScheduleView RemoveField(List<Revit.Schedules.ScheduleField> fields)
         {
-            if (this.Fields.Any(x => x.Name == field.Name))
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            TransactionManager.Instance.EnsureInTransaction(doc);
+
+            foreach (Revit.Schedules.ScheduleField field in fields)
             {
-                var doc = DocumentManager.Instance.CurrentDBDocument;
-                TransactionManager.Instance.EnsureInTransaction(doc);
-                this.InternalViewSchedule.Definition.RemoveField(field.InternalScheduleField.FieldId);
-                TransactionManager.Instance.TransactionTaskDone();
+                if (this.Fields.Any(x => x.Name == field.Name))
+                {
+                    this.InternalViewSchedule.Definition.RemoveField(field.InternalScheduleField.FieldId);
+                }
             }
+
+            TransactionManager.Instance.TransactionTaskDone();
 
             return this;
         }
@@ -174,16 +194,64 @@ namespace Revit.Elements.Views
         /// <summary>
         ///     Add Field.
         /// </summary>
-        /// <param name="field"></param>
+        /// <param name="fields"></param>
         /// <returns></returns>
-        public ScheduleView AddField(Revit.Schedules.SchedulableField field)
+        public ScheduleView AddFields(List<Revit.Schedules.SchedulableField> fields)
         {
-            if (!this.Fields.Any(x => x.Name == field.Name))
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            TransactionManager.Instance.EnsureInTransaction(doc);
+
+            foreach (Revit.Schedules.SchedulableField field in fields)
             {
-                var doc = DocumentManager.Instance.CurrentDBDocument;
-                TransactionManager.Instance.EnsureInTransaction(doc);
-                this.InternalViewSchedule.Definition.AddField(field.InternalSchedulableField);
-                TransactionManager.Instance.TransactionTaskDone();
+                if (!this.Fields.Any(x => x.Name == field.Name))
+                {
+                    this.InternalViewSchedule.Definition.AddField(field.InternalSchedulableField);
+                }
+            }
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        /// <summary>
+        ///     Export View Schedule to CSV, TSV etc.
+        /// </summary>
+        /// <param name="path">A valid file path with file extension.</param>
+        /// <param name="exportOptions">Export Options. If null, default will be used.</param>
+        /// <returns></returns>
+        public ScheduleView Export(
+            string path, 
+            [DefaultArgumentAttribute("null")] ScheduleExportOptions exportOptions)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                throw new ArgumentException(Properties.Resources.View_ExportAsImage_Path_Invalid, "path");
+            }
+
+            // define export options
+            ScheduleExportOptions options;
+            if (exportOptions == null)
+            {
+                options = new ScheduleExportOptions(new Autodesk.Revit.DB.ViewScheduleExportOptions(){
+                    Title = false,
+                    HeadersFootersBlanks = false});
+            }
+            else
+            {
+                options = exportOptions;
+            }
+
+            // run export
+            string folder = System.IO.Path.GetDirectoryName(path);
+            string name = System.IO.Path.GetFileName(path);
+            try
+            {
+                this.InternalViewSchedule.Export(folder, name, options.InternalScheduleExportOptions);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(Properties.Resources.ScheduleExportError, ex);
             }
 
             return this;
@@ -224,7 +292,9 @@ namespace Revit.Elements.Views
         [IsVisibleInDynamoLibrary(false)]
         public enum ScheduleType
         {
-            KeySchedule
+            KeySchedule,
+            RegularSchedule,
+            MaterialTakeoff
         }
 
         #endregion

@@ -353,4 +353,7 @@
     <value>Select a Schedule Type.</value>
     <comment>Description Schedule Types</comment>
   </data>
+  <data name="ExportTextQualifierDescription" xml:space="preserve">
+    <value>How to qualify text fields. Default is DoubleQuote.</value>
+  </data>
 </root>

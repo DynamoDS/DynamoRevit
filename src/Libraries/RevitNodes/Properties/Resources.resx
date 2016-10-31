@@ -369,4 +369,7 @@
   <data name="ScheduleTypeArgumentException" xml:space="preserve">
     <value>Invalid Schedule Type.</value>
   </data>
+  <data name="ScheduleExportError" xml:space="preserve">
+    <value>There was an error exporting this schedule.</value>
+  </data>
 </root>
