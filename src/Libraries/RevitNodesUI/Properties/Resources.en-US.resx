@@ -356,4 +356,7 @@
   <data name="ExportTextQualifierDescription" xml:space="preserve">
     <value>How to qualify text fields. Default is DoubleQuote.</value>
   </data>
+  <data name="ExportColumnHeadersDescription" xml:space="preserve">
+    <value>How to export column headers. Default is MultipleRows.</value>
+  </data>
 </root>

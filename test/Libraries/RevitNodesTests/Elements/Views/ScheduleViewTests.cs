@@ -72,7 +72,11 @@ namespace RevitNodesTests.Elements.Views
             var options = new Revit.Schedules.ScheduleExportOptions(new Autodesk.Revit.DB.ViewScheduleExportOptions());
             Assert.NotNull(options);
 
+            var path = Path.GetTempFileName();
+            path = Path.ChangeExtension(path, ".tsv");
+
             Assert.Throws(typeof(ArgumentNullException), () => view.Export(null, options));
+            Assert.Throws(typeof(ArgumentNullException), () => view.Export(path, null));
         }
     }
 }

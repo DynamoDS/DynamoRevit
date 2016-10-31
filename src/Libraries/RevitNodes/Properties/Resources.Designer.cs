@@ -295,6 +295,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Schedule Export Options..
+        /// </summary>
+        internal static string ExportOptionsArgumentException {
+            get {
+                return ResourceManager.GetString("ExportOptionsArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You supplied an {0}, but we could not extract a ElementFaceReference from it!.
         /// </summary>
         internal static string FaceReferenceExtractionDetail {

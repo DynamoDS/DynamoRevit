@@ -222,24 +222,15 @@ namespace Revit.Elements.Views
         /// <returns></returns>
         public ScheduleView Export(
             string path, 
-            [DefaultArgumentAttribute("null")] ScheduleExportOptions exportOptions)
+            ScheduleExportOptions exportOptions)
         {
             if (string.IsNullOrEmpty(path))
             {
                 throw new ArgumentException(Properties.Resources.View_ExportAsImage_Path_Invalid, "path");
             }
-
-            // define export options
-            ScheduleExportOptions options;
             if (exportOptions == null)
             {
-                options = new ScheduleExportOptions(new Autodesk.Revit.DB.ViewScheduleExportOptions(){
-                    Title = false,
-                    HeadersFootersBlanks = false});
-            }
-            else
-            {
-                options = exportOptions;
+                throw new ArgumentException(Properties.Resources.ExportOptionsArgumentException);
             }
 
             // run export
@@ -247,7 +238,7 @@ namespace Revit.Elements.Views
             string name = System.IO.Path.GetFileName(path);
             try
             {
-                this.InternalViewSchedule.Export(folder, name, options.InternalScheduleExportOptions);
+                this.InternalViewSchedule.Export(folder, name, exportOptions.InternalScheduleExportOptions);
             }
             catch (Exception ex)
             {
