@@ -189,6 +189,7 @@
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
     <Compile Include="Schedules\SchedulableField.cs" />
+    <Compile Include="Schedules\ScheduleExportOptions.cs" />
     <Compile Include="Schedules\ScheduleField.cs" />
     <Compile Include="Transaction\Transaction.cs" />
   </ItemGroup>
