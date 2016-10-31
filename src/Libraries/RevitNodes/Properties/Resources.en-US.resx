@@ -360,7 +360,10 @@
   <data name="TypeNotFound" xml:space="preserve">
     <value>Type not found in document.</value>
   </data>
-  <data name="ViewDoesNotSupportAnnotations" xml:space="preserve">
-    <value>View does not support annotations.</value>
+  <data name="DocumentDoesNotSupportGlobalParams" xml:space="preserve">
+    <value>Document does not support global parameters.</value>
+  </data>
+  <data name="NameAlreadyInUse" xml:space="preserve">
+    <value>Name already in use.</value>
   </data>
 </root>
