@@ -106,6 +106,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must supply a Category..
+        /// </summary>
+        internal static string CategoryArgumentException {
+            get {
+                return ResourceManager.GetString("CategoryArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find cell for panel.
         /// </summary>
         internal static string CellForPanelNotFound {
@@ -255,6 +264,24 @@ namespace Revit.Properties {
         internal static string Dynamo_AVF_Data_Name {
             get {
                 return ResourceManager.GetString("Dynamo_AVF_Data_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unexpected failure occurred when attempting to convert the solid into a Revit BRep.
+        /// </summary>
+        internal static string DynamoSolidToRevitBRepFailure {
+            get {
+                return ResourceManager.GetString("DynamoSolidToRevitBRepFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unexpected failure occurred when attempting to convert the surface into a Revit BRep.
+        /// </summary>
+        internal static string DynamoSurfaceToRevitBRepFailure {
+            get {
+                return ResourceManager.GetString("DynamoSurfaceToRevitBRepFailure", resourceCulture);
             }
         }
         
@@ -525,6 +552,15 @@ namespace Revit.Properties {
         internal static string MultipleSurfacesIntroducedAfterConversion {
             get {
                 return ResourceManager.GetString("MultipleSurfacesIntroducedAfterConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must supply a Name..
+        /// </summary>
+        internal static string NameArgumentException {
+            get {
+                return ResourceManager.GetString("NameArgumentException", resourceCulture);
             }
         }
         
