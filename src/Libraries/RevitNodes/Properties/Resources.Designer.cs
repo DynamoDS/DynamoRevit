@@ -745,6 +745,24 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was an error exporting this schedule..
+        /// </summary>
+        internal static string ScheduleExportError {
+            get {
+                return ResourceManager.GetString("ScheduleExportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Schedule Type..
+        /// </summary>
+        internal static string ScheduleTypeArgumentException {
+            get {
+                return ResourceManager.GetString("ScheduleTypeArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Revit face with the corresponding tag could not be found..
         /// </summary>
         internal static string Tag_Lookup_Error {
