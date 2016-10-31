@@ -372,4 +372,7 @@
   <data name="ScheduleExportError" xml:space="preserve">
     <value>There was an error exporting this schedule.</value>
   </data>
+  <data name="ExportOptionsArgumentException" xml:space="preserve">
+    <value>Invalid Schedule Export Options.</value>
+  </data>
 </root>
