@@ -106,6 +106,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must supply a Category..
+        /// </summary>
+        internal static string CategoryArgumentException {
+            get {
+                return ResourceManager.GetString("CategoryArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find cell for panel.
         /// </summary>
         internal static string CellForPanelNotFound {
@@ -273,9 +282,9 @@ namespace Revit.Properties {
         internal static string DynamoSurfaceToRevitBRepFailure {
             get {
                 return ResourceManager.GetString("DynamoSurfaceToRevitBRepFailure", resourceCulture);
-		}
-	}
-
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Element cannot be annotated.
         /// </summary>
@@ -547,6 +556,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must supply a Name..
+        /// </summary>
+        internal static string NameArgumentException {
+            get {
+                return ResourceManager.GetString("NameArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No shared parameter file found..
         /// </summary>
         internal static string NoSharedParameterFileFound {
@@ -723,6 +741,15 @@ namespace Revit.Properties {
         internal static string SamplePointsMismatchError {
             get {
                 return ResourceManager.GetString("SamplePointsMismatchError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Schedule Type..
+        /// </summary>
+        internal static string ScheduleTypeArgumentException {
+            get {
+                return ResourceManager.GetString("ScheduleTypeArgumentException", resourceCulture);
             }
         }
         

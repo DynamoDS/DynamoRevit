@@ -118,6 +118,7 @@
     <Compile Include="Elements\Views\DraftingViewTests.cs" />
     <Compile Include="Elements\Views\FloorPlanViewTests.cs" />
     <Compile Include="Elements\Views\PerspectiveViewTests.cs" />
+    <Compile Include="Elements\Views\ScheduleViewTests.cs" />
     <Compile Include="Elements\Views\SectionViewTests.cs" />
     <Compile Include="Elements\Views\SheetTests.cs" />
     <Compile Include="Elements\Views\ViewTests.cs" />
