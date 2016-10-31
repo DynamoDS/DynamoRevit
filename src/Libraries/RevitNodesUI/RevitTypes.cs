@@ -129,4 +129,13 @@ namespace DSRevitNodesUI
         public VerticalAlignment() : base("Vertical Alignment", typeof(Autodesk.Revit.DB.VerticalAlignmentStyle)) { }
     }
 
+    [NodeName("Schedule Type")]
+    [NodeCategory("Revit.Views.ScheduleView")]
+    [NodeDescription("ScheduleTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class ScheduleTypes : CustomGenericEnumerationDropDown
+    {
+        public ScheduleTypes() : base("ScheduleType", typeof(Revit.Elements.Views.ScheduleView.ScheduleType)) { }
+    }
+
 }
