@@ -359,4 +359,7 @@
   <data name="ExportColumnHeadersDescription" xml:space="preserve">
     <value>How to export column headers. Default is MultipleRows.</value>
   </data>
+  <data name="ViewDetailLevelDescription" xml:space="preserve">
+    <value>View Detail Level</value>
+  </data>
 </root>

@@ -355,4 +355,7 @@
   <data name="ExportTextQualifierDescription" xml:space="preserve">
     <value>How to qualify text fields. Default is DoubleQuote.</value>
   </data>
+  <data name="ViewDetailLevelDescription" xml:space="preserve">
+    <value>View Detail Level</value>
+  </data>
 </root>
