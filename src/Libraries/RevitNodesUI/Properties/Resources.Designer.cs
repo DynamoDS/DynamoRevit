@@ -628,6 +628,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View Detail Level.
+        /// </summary>
+        internal static string ViewDetailLevelDescription {
+            get {
+                return ResourceManager.GetString("ViewDetailLevelDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All views available in the current document..
         /// </summary>
         internal static string ViewsDescription {
