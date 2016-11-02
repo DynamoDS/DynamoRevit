@@ -198,13 +198,15 @@ namespace Revit.Elements.Views
         ///     This behavior will persist even if View has a View Template applied which normally would prevent user from adding Filters without first
         ///     disabling or modifying the View Template.
         /// </summary>
-        /// <param name="parameterFilter">Parameter filter</param>
-        /// <param name="overrides">overrides settings</param>
+        /// <param name="parameterFilter">Parameter Filter</param>
+        /// <param name="overrides">Graphic Overrides Settings</param>
+        /// <param name="hide">If True given Filter will be hidden.</param>
         /// <returns name="view">View</returns>
-        public Revit.Elements.Views.View SetFilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter, Revit.Filter.OverrideGraphicSettings overrides)
+        public Revit.Elements.Views.View SetFilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter, Revit.Filter.OverrideGraphicSettings overrides, bool hide = false)
         {
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
             this.InternalView.SetFilterOverrides(parameterFilter.InternalElement.Id, overrides.InternalOverrideGraphicSettings);
+            if (hide) this.InternalView.SetFilterVisibility(parameterFilter.InternalElement.Id, hide);
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
 
             return this;
