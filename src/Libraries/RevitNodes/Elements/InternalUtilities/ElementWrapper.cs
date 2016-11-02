@@ -182,6 +182,11 @@ namespace Revit.Elements
             return SectionView.FromExisting(view, isRevitOwned);
         }
 
+        public static ScheduleView Wrap(Autodesk.Revit.DB.ViewSchedule view, bool isRevitOwned)
+        {
+            return ScheduleView.FromExisting(view, isRevitOwned);
+        }
+
         public static Sheet Wrap(Autodesk.Revit.DB.ViewSheet view, bool isRevitOwned)
         {
             return Sheet.FromExisting(view, isRevitOwned);
