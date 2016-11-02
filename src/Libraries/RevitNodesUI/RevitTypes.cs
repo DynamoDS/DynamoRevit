@@ -110,6 +110,14 @@ namespace DSRevitNodesUI
         public DirectShapeRoomBoundingOption() : base("Direct Shape Room Bounding Option", typeof(Autodesk.Revit.DB.DirectShapeRoomBoundingOption)) { }
     }
 
+    [NodeName("Detail Level")]
+    [NodeCategory("Revit.Filter.OverrideGraphicSettings")]
+    [NodeDescription("ViewDetailLevelDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class DetailLevel : CustomGenericEnumerationDropDown
+    {
+        public DetailLevel() : base("Detail Level", typeof(Autodesk.Revit.DB.ViewDetailLevel)) { }
+    }
 
     [NodeName("Select Horizontal Text Alignment")]
     [NodeCategory("Revit.Elements.Text")]

@@ -1,16 +1,10 @@
-﻿using System;
-using Autodesk.Revit.DB;
-using DynamoServices;
+﻿using Autodesk.Revit.DB;
 using Autodesk.DesignScript.Runtime;
-using Revit.GeometryConversion;
-using RevitServices.Persistence;
-using RevitServices.Transactions;
-using System.Collections.Generic;
 
 namespace Revit.Filter
 {
     /// <summary>
-    /// Override Graphic Settings
+    ///     Override Graphic Settings
     /// </summary>
     public class OverrideGraphicSettings
     {
@@ -18,7 +12,7 @@ namespace Revit.Filter
         #region Internal Properties
 
         /// <summary>
-        /// Internal reference to the Revit Element
+        ///     Internal reference to the Revit Element
         /// </summary>
         internal Autodesk.Revit.DB.OverrideGraphicSettings InternalOverrideGraphicSettings
         { 
@@ -26,7 +20,7 @@ namespace Revit.Filter
         }
 
         /// <summary>
-        /// Reference to the Element
+        ///     Reference to the Element
         /// </summary>
         internal OverrideGraphicSettings(Autodesk.Revit.DB.OverrideGraphicSettings internalOverrideGraphicSettings)
         {
@@ -38,7 +32,7 @@ namespace Revit.Filter
         #region Public static constructors
 
         /// <summary>
-        /// Create a OverrideGraphicSettings element
+        ///     Create a OverrideGraphicSettings Element.
         /// </summary>
         /// <param name="cutFillColor">Fill color</param>
         /// <param name="projectionFillColor">Projection color</param>
@@ -50,7 +44,10 @@ namespace Revit.Filter
         /// <param name="projectionFillPattern">Projection fill pattern</param>
         /// <param name="cutLinePattern">Cut line pattern</param>
         /// <param name="projectionLinePattern">Projection line pattern</param>
-        /// <returns>OverrideGraphicSettings</returns>
+        /// <param name="transparency">Transparency as integer between 1-100.</param>
+        /// <param name="detailLevel">Detail Level setting, ex: Coarse, Fine etc.</param>
+        /// <param name="halftone">Halftone. True = halftone.</param>
+        /// <returns name="overrides">Override Graphic Settings</returns>
         public static OverrideGraphicSettings ByProperties(
             [DefaultArgumentAttribute("null")]DSCore.Color cutFillColor,
             [DefaultArgumentAttribute("null")]DSCore.Color projectionFillColor,
@@ -61,7 +58,10 @@ namespace Revit.Filter
             [DefaultArgumentAttribute("null")]LinePatternElement cutLinePattern,
             [DefaultArgumentAttribute("null")]LinePatternElement projectionLinePattern,
             int cutLineWeight = -1,
-            int projectionLineWeight = -1
+            int projectionLineWeight = -1,
+            int transparency = -1,
+            string detailLevel = "Undefined",
+            bool halftone = false
             )
         {
             Autodesk.Revit.DB.OverrideGraphicSettings filterSettings = new Autodesk.Revit.DB.OverrideGraphicSettings();
@@ -82,6 +82,11 @@ namespace Revit.Filter
             if (cutLinePattern != null) filterSettings.SetCutLinePatternId(cutLinePattern.Id);
             if (projectionLinePattern != null) filterSettings.SetProjectionLinePatternId(projectionLinePattern.Id);
 
+            // Apply transparency, detail level and halftone
+            if (transparency != -1) filterSettings.SetSurfaceTransparency(transparency);
+            if (halftone) filterSettings.SetHalftone(halftone);
+            filterSettings.SetDetailLevel((Autodesk.Revit.DB.ViewDetailLevel)System.Enum.Parse(typeof(Autodesk.Revit.DB.ViewDetailLevel), detailLevel));
+
             return new OverrideGraphicSettings(filterSettings);
         }
 
@@ -90,7 +95,7 @@ namespace Revit.Filter
         #region Helpers
 
         /// <summary>
-        /// Revit Color to DS Color
+        ///     Revit Color to DS Color
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>
