@@ -7,13 +7,12 @@ using Autodesk.Revit.DB;
 namespace Revit.Elements.Views
 {
     /// <summary>
-    /// An abstract Revit View - All view types inherit from this type
+    ///     An abstract Revit View - All view types inherit from this type
     /// </summary>
-    //[SupressImportIntoVM]
     public abstract class View : Element
     {
         /// <summary>
-        /// Obtain the reference Element as a View
+        ///     Obtain the reference Element as a View
         /// </summary>
         internal Autodesk.Revit.DB.View InternalView
         {
@@ -24,7 +23,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Check if this type of view supports annotative elements
+        ///     Check if this type of view supports annotative elements
         /// </summary>
         /// <returns></returns>
         internal bool IsAnnotationView()
@@ -45,8 +44,8 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Export the view as an image to the given path - defaults to png, but you can override 
-        /// the file type but supplying a path with the appropriate extension
+        ///     Export the view as an image to the given path - defaults to png, but you can override 
+        ///     the file type but supplying a path with the appropriate extension
         /// </summary>
         /// <param name="path">A valid path for the image</param>
         /// <returns>The image</returns>
@@ -125,7 +124,7 @@ namespace Revit.Elements.Views
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error exporting the image.", ex);
+                throw new Exception(Properties.Resources.ViewExportImageError, ex);
             }
 
             return bmp;
@@ -165,7 +164,7 @@ namespace Revit.Elements.Views
         /// </summary>
         /// <param name="parameterFilter">Parameter filter</param>
         /// <returns name="view">View</returns>
-        public Element AddFilter(Revit.Filter.ParameterFilterElement parameterFilter)
+        public Revit.Elements.Views.View AddFilter(Revit.Filter.ParameterFilterElement parameterFilter)
         {
             if (!this.InternalView.IsFilterApplied(parameterFilter.InternalElement.Id))
             {
@@ -173,7 +172,7 @@ namespace Revit.Elements.Views
                 this.InternalView.AddFilter(parameterFilter.InternalElement.Id);
                 RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
             }
-            return this.InternalView.ToDSType(true);
+            return this;
         }
 
         /// <summary>
@@ -202,13 +201,36 @@ namespace Revit.Elements.Views
         /// <param name="parameterFilter">Parameter filter</param>
         /// <param name="overrides">overrides settings</param>
         /// <returns name="view">View</returns>
-        public Element SetFilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter, Revit.Filter.OverrideGraphicSettings overrides)
+        public Revit.Elements.Views.View SetFilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter, Revit.Filter.OverrideGraphicSettings overrides)
         {
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
             this.InternalView.SetFilterOverrides(parameterFilter.InternalElement.Id, overrides.InternalOverrideGraphicSettings);
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
 
-            return this.InternalView.ToDSType(true);
+            return this;
+        }
+
+        /// <summary>
+        ///     Set Category Overrides.
+        /// </summary>
+        /// <param name="category">Category</param>
+        /// <param name="overrides">Graphics Overrides Settings.</param>
+        /// <param name="hide">If True givent Category will be hidden.</param>
+        /// <returns name="view">View</returns>
+        public Revit.Elements.Views.View SetCategoryOverrides(Category category, Revit.Filter.OverrideGraphicSettings overrides, bool hide = false)
+        {
+            Autodesk.Revit.DB.ElementId catId = new ElementId(category.Id);
+            if (!this.InternalView.IsCategoryOverridable(catId))
+            {
+                throw new ArgumentException(Properties.Resources.CategoryVisibilityOverrideError);
+            }
+
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            this.InternalView.SetCategoryOverrides(catId, overrides.InternalOverrideGraphicSettings);
+            this.InternalView.SetCategoryHidden(catId, hide); // Revit 2017 specific method
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
         }
 
         /// <summary>
@@ -230,7 +252,7 @@ namespace Revit.Elements.Views
         /// </summary>
         /// <param name="scale">View scale is the ration of true model size to paper size.</param>
         /// <returns name="view">View</returns>
-        public Element SetScale(int scale=100)
+        public Revit.Elements.Views.View SetScale(int scale=100)
         {
             if (Autodesk.Revit.DB.View.IsValidViewScale(scale))
             {
@@ -241,7 +263,7 @@ namespace Revit.Elements.Views
                     RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
                 }
 
-                return this.InternalView.ToDSType(true);
+                return this;
             }
             else
             {

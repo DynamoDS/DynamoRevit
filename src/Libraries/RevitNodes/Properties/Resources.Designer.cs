@@ -115,6 +115,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specified View Template is not valid for this View..
+        /// </summary>
+        internal static string CategoryVisibilityOverrideError {
+            get {
+                return ResourceManager.GetString("CategoryVisibilityOverrideError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find cell for panel.
         /// </summary>
         internal static string CellForPanelNotFound {
@@ -822,6 +831,15 @@ namespace Revit.Properties {
         internal static string ViewDoesNotSupportAnnotations {
             get {
                 return ResourceManager.GetString("ViewDoesNotSupportAnnotations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error exporting the image..
+        /// </summary>
+        internal static string ViewExportImageError {
+            get {
+                return ResourceManager.GetString("ViewExportImageError", resourceCulture);
             }
         }
         

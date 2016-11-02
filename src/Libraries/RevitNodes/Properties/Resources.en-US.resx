@@ -375,4 +375,10 @@
   <data name="ExportOptionsArgumentException" xml:space="preserve">
     <value>Invalid Schedule Export Options.</value>
   </data>
+  <data name="CategoryVisibilityOverrideError" xml:space="preserve">
+    <value>Specified View Template is not valid for this View.</value>
+  </data>
+  <data name="ViewExportImageError" xml:space="preserve">
+    <value>There was an error exporting the image.</value>
+  </data>
 </root>
