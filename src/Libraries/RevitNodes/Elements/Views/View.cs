@@ -206,7 +206,7 @@ namespace Revit.Elements.Views
         {
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
             this.InternalView.SetFilterOverrides(parameterFilter.InternalElement.Id, overrides.InternalOverrideGraphicSettings);
-            if (hide) this.InternalView.SetFilterVisibility(parameterFilter.InternalElement.Id, hide);
+            this.InternalView.SetFilterVisibility(parameterFilter.InternalElement.Id, hide);
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
 
             return this;
