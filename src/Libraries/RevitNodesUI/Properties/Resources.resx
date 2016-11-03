@@ -358,4 +358,10 @@
   <data name="ViewDetailLevelDescription" xml:space="preserve">
     <value>View Detail Level</value>
   </data>
+  <data name="FillPatternsDescription" xml:space="preserve">
+    <value>All available fill patterns.</value>
+  </data>
+  <data name="LinePatternsDescription" xml:space="preserve">
+    <value>All available line patterns.</value>
+  </data>
 </root>
