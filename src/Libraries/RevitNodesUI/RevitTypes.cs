@@ -163,4 +163,22 @@ namespace DSRevitNodesUI
     {
         public ExportTextQualifier() : base("TextQualifier", typeof(Revit.Schedules.ScheduleExportOptions.ExportTextQualifier)) { }
     }
+
+    [NodeName("Fill Patterns")]
+    [NodeCategory("Revit.Filter.OverrideGraphicSettings")]
+    [NodeDescription("FillPatternsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class FillPatterns : CustomRevitElementDropDown
+    {
+        public FillPatterns() : base("FillPattern", typeof(Autodesk.Revit.DB.FillPatternElement)) { }
+    }
+
+    [NodeName("Line Patterns")]
+    [NodeCategory("Revit.Filter.OverrideGraphicSettings")]
+    [NodeDescription("LinePatternsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class LinePatterns : CustomRevitElementDropDown
+    {
+        public LinePatterns() : base("LinePattern", typeof(Autodesk.Revit.DB.LinePatternElement)) { }
+    }
 }

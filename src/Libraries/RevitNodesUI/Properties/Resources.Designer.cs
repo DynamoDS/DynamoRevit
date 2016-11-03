@@ -196,6 +196,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All available fill patterns..
+        /// </summary>
+        internal static string FillPatternsDescription {
+            get {
+                return ResourceManager.GetString("FillPatternsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter Types for Revit Filters.
         /// </summary>
         internal static string FilterTypeSelectorDescription {
@@ -237,6 +246,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string LevelsDescription {
             get {
                 return ResourceManager.GetString("LevelsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All available line patterns..
+        /// </summary>
+        internal static string LinePatternsDescription {
+            get {
+                return ResourceManager.GetString("LinePatternsDescription", resourceCulture);
             }
         }
         

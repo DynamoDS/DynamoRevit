@@ -53,10 +53,10 @@ namespace Revit.Filter
             [DefaultArgumentAttribute("null")]DSCore.Color projectionFillColor,
             [DefaultArgumentAttribute("null")]DSCore.Color cutLineColor,
             [DefaultArgumentAttribute("null")]DSCore.Color projectionLineColor,
-            [DefaultArgumentAttribute("null")]FillPatternElement cutFillPattern,
-            [DefaultArgumentAttribute("null")]FillPatternElement projectionFillPattern,
-            [DefaultArgumentAttribute("null")]LinePatternElement cutLinePattern,
-            [DefaultArgumentAttribute("null")]LinePatternElement projectionLinePattern,
+            [DefaultArgumentAttribute("null")]Revit.Elements.Element cutFillPattern,
+            [DefaultArgumentAttribute("null")]Revit.Elements.Element projectionFillPattern,
+            [DefaultArgumentAttribute("null")]Revit.Elements.Element cutLinePattern,
+            [DefaultArgumentAttribute("null")]Revit.Elements.Element projectionLinePattern,
             int cutLineWeight = -1,
             int projectionLineWeight = -1,
             int transparency = -1,
@@ -77,10 +77,10 @@ namespace Revit.Filter
             if (projectionLineWeight != -1) filterSettings.SetProjectionLineWeight(projectionLineWeight);
 
             // Apply Patterns          
-            if (cutFillPattern != null) filterSettings.SetCutFillPatternId(cutFillPattern.Id);
-            if (projectionFillPattern != null) filterSettings.SetProjectionFillPatternId(projectionFillPattern.Id);
-            if (cutLinePattern != null) filterSettings.SetCutLinePatternId(cutLinePattern.Id);
-            if (projectionLinePattern != null) filterSettings.SetProjectionLinePatternId(projectionLinePattern.Id);
+            if (cutFillPattern != null) filterSettings.SetCutFillPatternId(new ElementId(cutFillPattern.Id));
+            if (projectionFillPattern != null) filterSettings.SetProjectionFillPatternId(new ElementId(projectionFillPattern.Id));
+            if (cutLinePattern != null) filterSettings.SetCutLinePatternId(new ElementId(cutLinePattern.Id));
+            if (projectionLinePattern != null) filterSettings.SetProjectionLinePatternId(new ElementId(projectionLinePattern.Id));
 
             // Apply transparency, detail level and halftone
             if (transparency != -1) filterSettings.SetSurfaceTransparency(transparency);
