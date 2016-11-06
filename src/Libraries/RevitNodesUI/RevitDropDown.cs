@@ -479,7 +479,10 @@ namespace DSRevitNodesUI
                 if (category != null)
                 {
                     string name = getFullName(category);
-                    Items.Add(new DynamoDropDownItem(name, categoryId));
+                    if (name != "Cameras")
+                    {
+                        Items.Add(new DynamoDropDownItem(name, categoryId));
+                    }
                 }
             }
 
