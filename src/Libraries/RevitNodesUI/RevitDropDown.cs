@@ -139,8 +139,8 @@ namespace DSRevitNodesUI
         public FamilyInstanceParameters()
             : base("Parameter") 
         {
-            this.AddPort(PortType.Input, new PortData("f", Properties.Resources.PortDataFamilySymbolToolTip), 0);
-            this.PropertyChanged += OnPropertyChanged;
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("f", Properties.Resources.PortDataFamilySymbolToolTip)));
+            PropertyChanged += OnPropertyChanged;
         }
 
         void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -451,9 +451,10 @@ namespace DSRevitNodesUI
     {
         public Categories()
         {
-            OutPortData[0].NickName = "Category";
-            OutPortData[0].ToolTipString = Properties.Resources.PortDataCategoriesToolTip;
-            OutPorts[0].SetPortData(OutPortData[0]);
+            var existing = OutPorts[0];
+            OutPorts[0] = new PortModel(PortType.Output, this, 
+                new PortData("Category", Properties.Resources.PortDataCategoriesToolTip, existing.DefaultValue));
+            OutPorts[0].GUID = existing.GUID;
         }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
