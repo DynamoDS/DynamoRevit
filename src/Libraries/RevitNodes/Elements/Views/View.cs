@@ -213,6 +213,33 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
+        ///     Get Filter overrides
+        /// </summary>
+        /// <returns name="overrides">Filter overrides</returns>
+        public Revit.Filter.OverrideGraphicSettings FilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter)
+        {
+            OverrideGraphicSettings overrides = this.InternalView.GetFilterOverrides(parameterFilter.InternalElement.Id);
+            return new Revit.Filter.OverrideGraphicSettings(overrides);
+        }
+
+        #endregion
+
+        #region View Templates
+
+        /// <summary>
+        ///     Checks if View is a View Template.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsViewTemplate()
+        {
+            return this.InternalView.IsTemplate;
+        }
+
+        #endregion
+
+        #region Graphic Overrides
+
+        /// <summary>
         ///     Set Category Overrides.
         /// </summary>
         /// <param name="category">Category</param>
@@ -233,16 +260,6 @@ namespace Revit.Elements.Views
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
 
             return this;
-        }
-
-        /// <summary>
-        ///     Get Filter overrides
-        /// </summary>
-        /// <returns name="overrides">Filter overrides</returns>
-        public Revit.Filter.OverrideGraphicSettings FilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter)
-        {
-            OverrideGraphicSettings overrides = this.InternalView.GetFilterOverrides(parameterFilter.InternalElement.Id);
-            return new Revit.Filter.OverrideGraphicSettings(overrides);
         }
 
         #endregion
