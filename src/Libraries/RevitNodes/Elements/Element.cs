@@ -94,7 +94,7 @@ namespace Revit.Elements
         internal bool IsRevitOwned = false;
 
         /// <summary>
-        /// Obtain all of the Parameters from an Element. Shazam!
+        /// Obtain all of the Parameters from an Element
         /// </summary>
         public Parameter[] Parameters
         {
