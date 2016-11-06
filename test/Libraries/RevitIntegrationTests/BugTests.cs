@@ -1113,14 +1113,14 @@ namespace RevitSystemTests
             selectNode.UpdateSelection(new[] { ElementSelector.
                 ByUniqueId("2049bcda-4652-4dce-8114-728cd33b120b-00000f4f").InternalElement });
             // Change the color to (0, 255, 255)
-            colorNode.InPorts[1].Disconnect(colorNode.InPorts[1].Connectors[0]);
+            colorNode.InPorts[1].Connectors.Remove(colorNode.InPorts[1].Connectors[0]);
             RunCurrentModel();
 
             // Change the selected element back to the first element
             selectNode.UpdateSelection(new[] { ElementSelector.
                 ByUniqueId("350f68bb-624c-405f-b93f-f7e6ff82778b-00000910").InternalElement });
             // Change the color again to (0, 0, 255)
-            colorNode.InPorts[2].Disconnect(colorNode.InPorts[2].Connectors[0]);
+            colorNode.InPorts[2].Connectors.Remove(colorNode.InPorts[2].Connectors[0]);
             RunCurrentModel();
 
             // Now check the overriden color of element with ID of 2320 to be (0, 0, 255)
