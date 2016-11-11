@@ -10,7 +10,7 @@ using Revit.Schedules;
 namespace Revit.Elements.Views
 {
     /// <summary>
-    ///     Base class for Revit Plan views
+    /// Base class for Revit Plan views
     /// </summary>
     [RegisterForTrace]
     public class ScheduleView : View
@@ -18,7 +18,7 @@ namespace Revit.Elements.Views
         #region Internal properties
 
         /// <summary>
-        ///     An internal handle on the Revit element
+        /// An internal handle on the Revit element
         /// </summary>
         internal Autodesk.Revit.DB.ViewSchedule InternalViewSchedule
         {
@@ -27,7 +27,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        ///     Reference to the Element
+        /// Reference to the Element
         /// </summary>
         public override Autodesk.Revit.DB.Element InternalElement
         {
@@ -39,7 +39,7 @@ namespace Revit.Elements.Views
         #region Private constructors
 
         /// <summary>
-        ///     Private constructor
+        /// Private constructor
         /// </summary>
         private ScheduleView(Autodesk.Revit.DB.ViewSchedule view)
         {
@@ -47,7 +47,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        ///     Private constructor
+        /// Private constructor
         /// </summary>
         private ScheduleView(Category category, string name, ScheduleType type)
         {
@@ -59,7 +59,7 @@ namespace Revit.Elements.Views
         #region Helpers for private constructors
 
         /// <summary>
-        ///     Initialize a ScheduleView element
+        /// Initialize a ScheduleView element
         /// </summary>
         private void InitScheduleView(Autodesk.Revit.DB.ViewSchedule view)
         {
@@ -67,7 +67,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        ///     Initialize a ViewSchedule Element.
+        /// Initialize a ViewSchedule Element.
         /// </summary>
         /// <param name="category"></param>
         /// <param name="name"></param>
@@ -97,7 +97,7 @@ namespace Revit.Elements.Views
         #region Private mutators
 
         /// <summary>
-        ///     Set the InternalViewSchedule property and the associated element id and unique id
+        /// Set the InternalViewSchedule property and the associated element id and unique id
         /// </summary>
         /// <param name="view"></param>
         private void InternalSetScheduleView(Autodesk.Revit.DB.ViewSchedule view)
@@ -143,7 +143,7 @@ namespace Revit.Elements.Views
         #region Public static constructors
 
         /// <summary>
-        ///     Create Schedule by Category, Type and Name.
+        /// Create Schedule by Category, Type and Name.
         /// </summary>
         /// <param name="category"></param>
         /// <param name="name"></param>
@@ -169,16 +169,16 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        ///     Remove Schedule Field from Schedule.
+        /// Remove Schedule Field from Schedule.
         /// </summary>
         /// <param name="fields"></param>
         /// <returns name="View">View Schedule</returns>
-        public ScheduleView RemoveField(List<Revit.Schedules.ScheduleField> fields)
+        public ScheduleView RemoveFields(List<Revit.Schedules.ScheduleField> fields)
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(doc);
 
-            foreach (Revit.Schedules.ScheduleField field in fields)
+            foreach (var field in fields)
             {
                 if (this.Fields.Any(x => x.Name == field.Name))
                 {
@@ -192,7 +192,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        ///     Add Field.
+        /// Add Field.
         /// </summary>
         /// <param name="fields"></param>
         /// <returns></returns>
@@ -201,7 +201,7 @@ namespace Revit.Elements.Views
             var doc = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(doc);
 
-            foreach (Revit.Schedules.SchedulableField field in fields)
+            foreach (var field in fields)
             {
                 if (!this.Fields.Any(x => x.Name == field.Name))
                 {
@@ -215,7 +215,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        ///     Export View Schedule to CSV, TSV etc.
+        /// Export View Schedule to CSV, TSV etc.
         /// </summary>
         /// <param name="path">A valid file path with file extension.</param>
         /// <param name="exportOptions">Export Options. If null, default will be used.</param>
@@ -249,7 +249,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        ///     Schedule Fields.
+        /// Schedule Fields.
         /// </summary>
         public List<Revit.Schedules.ScheduleField> Fields
         {
@@ -262,7 +262,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        ///     Schedulable Fields.
+        /// Schedulable Fields.
         /// </summary>
         public List<Revit.Schedules.SchedulableField> SchedulableFields
         {
@@ -278,7 +278,7 @@ namespace Revit.Elements.Views
         #region Helpers
 
         /// <summary>
-        ///     ScheduleType Enumeration
+        /// ScheduleType Enumeration
         /// </summary>
         [IsVisibleInDynamoLibrary(false)]
         public enum ScheduleType
@@ -293,7 +293,7 @@ namespace Revit.Elements.Views
         #region Internal static constructors
 
         /// <summary>
-        ///     Create a View from a user selected Element.
+        /// Create a View from a user selected Element.
         /// </summary>
         /// <param name="view"></param>
         /// <param name="isRevitOwned"></param>

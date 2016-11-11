@@ -344,7 +344,31 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        ///     Override Elements Graphics Settings in Active View.
+        /// Override the element's color in the active view.
+        /// </summary>
+        /// <param name="color">The color to apply to a solid fill on the element.</param>
+        public Element OverrideColorInView(Color color)
+        {
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            var view = DocumentManager.Instance.CurrentUIDocument.ActiveView;
+            var ogs = new Autodesk.Revit.DB.OverrideGraphicSettings();
+
+            var patternCollector = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
+            patternCollector.OfClass(typeof(FillPatternElement));
+            FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
+
+            var overrideColor = new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue);
+            ogs.SetProjectionFillColor(overrideColor);
+            ogs.SetProjectionFillPatternId(solidFill.Id);
+            ogs.SetProjectionLineColor(overrideColor);
+            view.SetElementOverrides(InternalElementId, ogs);
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Override Elements Graphics Settings in Active View.
         /// </summary>
         /// <param name="overrides">Override Graphics Settings.</param>
         /// <param name="hide">If True given Element will be hidden.</param>

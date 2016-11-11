@@ -4,7 +4,7 @@ using Autodesk.DesignScript.Runtime;
 namespace Revit.Filter
 {
     /// <summary>
-    ///     Override Graphic Settings
+    /// Override Graphic Settings
     /// </summary>
     public class OverrideGraphicSettings
     {
@@ -12,7 +12,7 @@ namespace Revit.Filter
         #region Internal Properties
 
         /// <summary>
-        ///     Internal reference to the Revit Element
+        /// Internal reference to the Revit Element
         /// </summary>
         internal Autodesk.Revit.DB.OverrideGraphicSettings InternalOverrideGraphicSettings
         { 
@@ -20,7 +20,7 @@ namespace Revit.Filter
         }
 
         /// <summary>
-        ///     Reference to the Element
+        /// Reference to the Element
         /// </summary>
         internal OverrideGraphicSettings(Autodesk.Revit.DB.OverrideGraphicSettings internalOverrideGraphicSettings)
         {
@@ -32,7 +32,7 @@ namespace Revit.Filter
         #region Public static constructors
 
         /// <summary>
-        ///     Create a OverrideGraphicSettings Element.
+        /// Create a OverrideGraphicSettings Element.
         /// </summary>
         /// <param name="cutFillColor">Fill color</param>
         /// <param name="projectionFillColor">Projection color</param>
@@ -95,7 +95,7 @@ namespace Revit.Filter
         #region Helpers
 
         /// <summary>
-        ///     Revit Color to DS Color
+        /// Revit Color to DS Color
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>
@@ -105,9 +105,5 @@ namespace Revit.Filter
         }
 
         #endregion
-
     }
-
-
-
 }
