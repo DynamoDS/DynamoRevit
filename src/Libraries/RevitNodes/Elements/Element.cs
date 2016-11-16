@@ -354,8 +354,8 @@ namespace Revit.Elements
             var ogs = new Autodesk.Revit.DB.OverrideGraphicSettings();
 
             var patternCollector = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-            patternCollector.OfClass(typeof(FillPatternElement));
-            FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
+            patternCollector.OfClass(typeof(Autodesk.Revit.DB.FillPatternElement));
+            Autodesk.Revit.DB.FillPatternElement solidFill = patternCollector.ToElements().Cast<Autodesk.Revit.DB.FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
 
             var overrideColor = new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue);
             ogs.SetProjectionFillColor(overrideColor);
