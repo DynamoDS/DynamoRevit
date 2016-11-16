@@ -165,7 +165,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("Fill Patterns")]
-    [NodeCategory("Revit.Filter.OverrideGraphicSettings")]
+    [NodeCategory("Revit.Elements.FillPatternElement")]
     [NodeDescription("FillPatternsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class FillPatterns : CustomRevitElementDropDown
@@ -174,7 +174,7 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("Line Patterns")]
-    [NodeCategory("Revit.Filter.OverrideGraphicSettings")]
+    [NodeCategory("Revit.Elements.LinePatternElement")]
     [NodeDescription("LinePatternsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class LinePatterns : CustomRevitElementDropDown
