@@ -205,6 +205,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string FillPatternTargetDescription {
+            get {
+                return ResourceManager.GetString("FillPatternTargetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter Types for Revit Filters.
         /// </summary>
         internal static string FilterTypeSelectorDescription {

@@ -368,4 +368,8 @@
   <data name="LinePatternsDescription" xml:space="preserve">
     <value>All available line patterns.</value>
   </data>
+  <data name="FillPatternTargetDescription" xml:space="preserve">
+    <value>The type of the fill pattern.</value>
+    <comment>Description for Fill Pattern Target</comment>
+  </data>
 </root>
