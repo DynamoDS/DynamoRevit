@@ -74,11 +74,12 @@ namespace Revit.Elements
         #endregion
 
         /// <summary>
-        /// Fill Pattern Element by name.
+        /// Fill Pattern Element by Name and Target Type.
         /// </summary>
-        /// <param name="name">Name of the fill pattern.</param>
+        /// <param name="name">Name of the Fill Pattern.</param>
+        /// <param name="fillPatternTarget">Target Fill pattern. Fill Patterns can be either "Drafting" or "Modeling". Default is "Drafting".</param>
         /// <returns name="FillPattern">Filled Pattern Element.</returns>
-        public static FillPatternElement GetByName(string name)
+        public static FillPatternElement GetByName(string name, string fillPatternTarget = "Drafting")
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -87,7 +88,8 @@ namespace Revit.Elements
             else
             {
                 var doc = DocumentManager.Instance.CurrentDBDocument;
-                return new FillPatternElement(Autodesk.Revit.DB.FillPatternElement.GetFillPatternElementByName(doc, Autodesk.Revit.DB.FillPatternTarget.Drafting, name));
+                Autodesk.Revit.DB.FillPatternTarget t = (Autodesk.Revit.DB.FillPatternTarget)System.Enum.Parse(typeof(Autodesk.Revit.DB.FillPatternTarget), fillPatternTarget);
+                return new FillPatternElement(Autodesk.Revit.DB.FillPatternElement.GetFillPatternElementByName(doc, t, name));
             }
         }
 
