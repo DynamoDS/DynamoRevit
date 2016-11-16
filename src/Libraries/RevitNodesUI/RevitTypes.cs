@@ -173,6 +173,15 @@ namespace DSRevitNodesUI
         public FillPatterns() : base("FillPattern", typeof(Autodesk.Revit.DB.FillPatternElement)) { }
     }
 
+    [NodeName("Fill Pattern Targets")]
+    [NodeCategory("Revit.Elements.FillPatternElement")]
+    [NodeDescription("FillPatternTargetDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class FillPatternTargets : CustomGenericEnumerationDropDown
+    {
+        public FillPatternTargets() : base("FillPatternTarget", typeof(Autodesk.Revit.DB.FillPatternTarget)) { }
+    }
+
     [NodeName("Line Patterns")]
     [NodeCategory("Revit.Elements.LinePatternElement")]
     [NodeDescription("LinePatternsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
