@@ -286,6 +286,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Performance Adviser rules..
+        /// </summary>
+        internal static string PerformanceAdviserDescription {
+            get {
+                return ResourceManager.GetString("PerformanceAdviserDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select an existing Revit Phase from the active document..
         /// </summary>
         internal static string PhaseSelectorDescription {

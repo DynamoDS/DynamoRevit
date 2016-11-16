@@ -443,6 +443,63 @@ namespace DSRevitNodesUI
         }
     }
 
+    [NodeName("Performance Adviser Rules")]
+    [NodeCategory(BuiltinNodeCategories.REVIT)]
+    [NodeDescription("PerformanceAdviserDescription", typeof(Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class PerformanceAdviserRules : RevitDropDownBase
+    {
+
+
+        public PerformanceAdviserRules() : base("Performance Adviser Rules") { }
+
+        protected override SelectionState PopulateItemsCore(string currentSelection)
+        {
+            Items.Clear();
+
+            PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
+            IList<PerformanceAdviserRuleId> ruleIds = adviser.GetAllRuleIds();
+            string ruleInfo = string.Empty;
+
+            List<PerformanceAdviserRule> elements = new List<PerformanceAdviserRule>();
+            foreach (PerformanceAdviserRuleId ruleId in ruleIds)
+            {
+                elements.Add(new PerformanceAdviserRule(ruleId));
+            }
+
+            if (!elements.Any())
+            {
+                Items.Add(new DynamoDropDownItem(Properties.Resources.NoWallTypesAvailable, null));
+                SelectedIndex = 0;
+                return SelectionState.Done;
+            }
+
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
+        }
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            if (Items.Count == 0 ||
+                Items[0].Name == Properties.Resources.NoWallTypesAvailable ||
+                SelectedIndex == -1)
+            {
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+            }
+
+            var args = new List<AssociativeNode>
+            {
+                AstFactory.BuildStringNode(((PerformanceAdviserRule) Items[SelectedIndex].Item).RuleId.ToString())
+            };
+            var functionCall = AstFactory.BuildFunctionCall("Revit.Elements.PerformanceAdviserRule",
+                                                            "ById",
+                                                            args);
+
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+        }
+    }
+
+
     [NodeName("Categories")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("CategoriesDescription", typeof(Properties.Resources))]
