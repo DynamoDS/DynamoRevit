@@ -160,6 +160,24 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to How to export column headers. Default is MultipleRows..
+        /// </summary>
+        internal static string ExportColumnHeadersDescription {
+            get {
+                return ResourceManager.GetString("ExportColumnHeadersDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to qualify text fields. Default is DoubleQuote..
+        /// </summary>
+        internal static string ExportTextQualifierDescription {
+            get {
+                return ResourceManager.GetString("ExportTextQualifierDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All family types available in the document..
         /// </summary>
         internal static string FamilyTypesDescription {
@@ -174,6 +192,24 @@ namespace DSRevitNodesUI.Properties {
         internal static string FilledRegionTypeSelectorDescription {
             get {
                 return ResourceManager.GetString("FilledRegionTypeSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All available fill patterns..
+        /// </summary>
+        internal static string FillPatternsDescription {
+            get {
+                return ResourceManager.GetString("FillPatternsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string FillPatternTargetDescription {
+            get {
+                return ResourceManager.GetString("FillPatternTargetDescription", resourceCulture);
             }
         }
         
@@ -219,6 +255,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string LevelsDescription {
             get {
                 return ResourceManager.GetString("LevelsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All available line patterns..
+        /// </summary>
+        internal static string LinePatternsDescription {
+            get {
+                return ResourceManager.GetString("LinePatternsDescription", resourceCulture);
             }
         }
         
@@ -606,6 +651,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string VerticalTextAlignmentStyleSelectorDescription {
             get {
                 return ResourceManager.GetString("VerticalTextAlignmentStyleSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Detail Level.
+        /// </summary>
+        internal static string ViewDetailLevelDescription {
+            get {
+                return ResourceManager.GetString("ViewDetailLevelDescription", resourceCulture);
             }
         }
         
