@@ -115,6 +115,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specified View Template is not valid for this View..
+        /// </summary>
+        internal static string CategoryVisibilityOverrideError {
+            get {
+                return ResourceManager.GetString("CategoryVisibilityOverrideError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find cell for panel.
         /// </summary>
         internal static string CellForPanelNotFound {
@@ -291,6 +300,15 @@ namespace Revit.Properties {
         internal static string ElementCannotBeAnnotatedError {
             get {
                 return ResourceManager.GetString("ElementCannotBeAnnotatedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Schedule Export Options..
+        /// </summary>
+        internal static string ExportOptionsArgumentException {
+            get {
+                return ResourceManager.GetString("ExportOptionsArgumentException", resourceCulture);
             }
         }
         
@@ -745,6 +763,24 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was an error exporting this schedule..
+        /// </summary>
+        internal static string ScheduleExportError {
+            get {
+                return ResourceManager.GetString("ScheduleExportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Schedule Type..
+        /// </summary>
+        internal static string ScheduleTypeArgumentException {
+            get {
+                return ResourceManager.GetString("ScheduleTypeArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Revit face with the corresponding tag could not be found..
         /// </summary>
         internal static string Tag_Lookup_Error {
@@ -795,6 +831,15 @@ namespace Revit.Properties {
         internal static string ViewDoesNotSupportAnnotations {
             get {
                 return ResourceManager.GetString("ViewDoesNotSupportAnnotations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error exporting the image..
+        /// </summary>
+        internal static string ViewExportImageError {
+            get {
+                return ResourceManager.GetString("ViewExportImageError", resourceCulture);
             }
         }
         

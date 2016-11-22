@@ -230,7 +230,17 @@ namespace Revit.Elements
         public static FilledRegion Wrap(Autodesk.Revit.DB.FilledRegion ele, bool isRevitOwned)
         {
             return FilledRegion.FromExisting(ele, isRevitOwned);
-		}
+	    }
+
+        public static FillPatternElement Wrap(Autodesk.Revit.DB.FillPatternElement ele, bool isRevitOwned)
+        {
+            return FillPatternElement.FromExisting(ele, isRevitOwned);
+        }
+
+        public static LinePatternElement Wrap(Autodesk.Revit.DB.LinePatternElement ele, bool isRevitOwned)
+        {
+            return LinePatternElement.FromExisting(ele, isRevitOwned);
+        }
 
         public static TextNote Wrap(Autodesk.Revit.DB.TextNote ele, bool isRevitOwned)
         {
@@ -255,21 +265,22 @@ namespace Revit.Elements
         public static RevisionCloud Wrap(Autodesk.Revit.DB.RevisionCloud ele, bool isRevitOwned)
         {
             return RevisionCloud.FromExisting(ele, isRevitOwned);
-		}
+	}
 
         public static Revit.Filter.ParameterFilterElement Wrap(Autodesk.Revit.DB.ParameterFilterElement ele, bool isRevitOwned)
         {
             return Revit.Filter.ParameterFilterElement.FromExisting(ele, isRevitOwned);
-		}
+    	}
 
         public static Room Wrap(Autodesk.Revit.DB.Architecture.Room ele, bool isRevitOwned)
         {
             return Room.FromExisting(ele, isRevitOwned);
-		}
+        }
 
         public static DetailCurve Wrap(Autodesk.Revit.DB.DetailCurve ele, bool isRevitOwned)
         {
             return DetailCurve.FromExisting(ele, isRevitOwned);
+
         }
 
 

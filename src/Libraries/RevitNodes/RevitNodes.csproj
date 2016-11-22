@@ -129,7 +129,9 @@
     <Compile Include="Elements\Views\SectionView.cs" />
     <Compile Include="Elements\Views\Packing\OutOfSpaceException.cs" />
     <Compile Include="Elements\Views\Packing\RectanglePacker.cs" />
+    <Compile Include="Elements\FillPatternElement.cs" />
     <Compile Include="Filter\FilterRule.cs" />
+    <Compile Include="Elements\LinePatternElement.cs" />
     <Compile Include="Filter\OverrideGraphicSettings.cs" />
     <Compile Include="Filter\ParameterFilterElement.cs" />
     <Compile Include="GeometryConversion\EdgeLoopPartition.cs" />
@@ -189,6 +191,7 @@
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
     <Compile Include="Schedules\SchedulableField.cs" />
+    <Compile Include="Schedules\ScheduleExportOptions.cs" />
     <Compile Include="Schedules\ScheduleField.cs" />
     <Compile Include="Transaction\Transaction.cs" />
   </ItemGroup>
