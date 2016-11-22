@@ -23,6 +23,7 @@ using RevitServices.Transactions;
 using RevitTestServices;
 
 using RTF.Framework;
+using Watch3DNodeModels;
 
 namespace RevitSystemTests
 {
@@ -134,6 +135,18 @@ namespace RevitSystemTests
             fec.OfClass(typeof(ReferencePoint));
             Assert.AreEqual(1, fec.ToElements().Count());
 
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void Watch3DAutoExecution()
+        {
+            string testPath = Path.Combine(workingDirectory, @".\ReferencePoint\Watch3DFirstRun.dyn");
+            ViewModel.OpenCommand.Execute(testPath);
+
+            var watch3d = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<Watch3D>();
+
+            Assert.IsTrue(watch3d.WasExecuted);
         }
 
         [Test, TestCaseSource("SetupCopyPastes")]
