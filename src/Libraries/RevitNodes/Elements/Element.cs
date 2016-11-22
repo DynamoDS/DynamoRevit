@@ -350,21 +350,38 @@ namespace Revit.Elements
         public Element OverrideColorInView(Color color)
         {
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-
             var view = DocumentManager.Instance.CurrentUIDocument.ActiveView;
             var ogs = new Autodesk.Revit.DB.OverrideGraphicSettings();
 
             var patternCollector = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-            patternCollector.OfClass(typeof(FillPatternElement));
-            FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
+            patternCollector.OfClass(typeof(Autodesk.Revit.DB.FillPatternElement));
+            Autodesk.Revit.DB.FillPatternElement solidFill = patternCollector.ToElements().Cast<Autodesk.Revit.DB.FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
 
             var overrideColor = new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue);
             ogs.SetProjectionFillColor(overrideColor);
             ogs.SetProjectionFillPatternId(solidFill.Id);
             ogs.SetProjectionLineColor(overrideColor);
             view.SetElementOverrides(InternalElementId, ogs);
-
             TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Override Elements Graphics Settings in Active View.
+        /// </summary>
+        /// <param name="overrides">Override Graphics Settings.</param>
+        /// <param name="hide">If True given Element will be hidden.</param>
+        /// <returns></returns>
+        public Element OverrideInView(Revit.Filter.OverrideGraphicSettings overrides, bool hide = false)
+        {
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            var view = DocumentManager.Instance.CurrentUIDocument.ActiveView;
+            view.SetElementOverrides(InternalElementId, overrides.InternalOverrideGraphicSettings);
+            if (hide) view.HideElements(new List<ElementId>() { InternalElementId });
+            else view.UnhideElements(new List<ElementId>() { InternalElementId });
+            TransactionManager.Instance.TransactionTaskDone();
+
             return this;
         }
 
