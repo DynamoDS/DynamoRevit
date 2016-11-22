@@ -256,7 +256,12 @@ namespace Revit.Elements.Views
 
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
             this.InternalView.SetCategoryOverrides(catId, overrides.InternalOverrideGraphicSettings);
-            this.InternalView.SetCategoryHidden(catId, hide); // Revit 2017 specific method
+            if (hide)
+            {
+                var docCollector = new FilteredElementCollector(Document).OfCategoryId(category.InternalCategory.Id);
+                var elementsToHide = docCollector.ToElementIds();
+                this.InternalView.HideElementsTemporary(elementsToHide);
+            }
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
 
             return this;
