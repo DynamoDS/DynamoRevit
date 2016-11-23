@@ -21,7 +21,7 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\Empty.rvt")]
         public void GetByName_NullArgs()
         {
-            Assert.Throws(typeof(ArgumentNullException), () => LinePatternElement.GetByName(null));
+            Assert.Throws(typeof(ArgumentException),() => LinePatternElement.GetByName(null));
         }
     }
 }
