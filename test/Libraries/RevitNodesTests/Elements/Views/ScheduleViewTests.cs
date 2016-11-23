@@ -73,8 +73,8 @@ namespace RevitNodesTests.Elements.Views
             var path = Path.GetTempFileName();
             path = Path.ChangeExtension(path, ".tsv");
 
-            Assert.Throws(typeof(ArgumentNullException), () => view.Export(null, options));
-            Assert.Throws(typeof(ArgumentNullException), () => view.Export(path, null));
+            Assert.Throws(typeof(ArgumentException), () => view.Export(null, options));
+            Assert.Throws(typeof(ArgumentException), () => view.Export(path, null));
         }
 
         [Test]
@@ -90,7 +90,7 @@ namespace RevitNodesTests.Elements.Views
             // remove all fields
             view.RemoveFields(fields);
             var currentFields = view.Fields;
-            Assert.Equals(currentFields.Count, 0);
+            Assert.AreEqual(currentFields.Count, 0);
         }
 
         [Test]
@@ -102,7 +102,7 @@ namespace RevitNodesTests.Elements.Views
             // remove all fields
             var fields = view.Fields;
             view.RemoveFields(fields);
-            Assert.Equals(view.Fields.Count, 0);
+            Assert.AreEqual(view.Fields.Count, 0);
 
             // get a list of schedulable fields and add Key Name field back
             var schedulableFields = view.SchedulableFields;
