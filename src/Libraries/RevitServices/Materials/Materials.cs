@@ -10,8 +10,9 @@ namespace RevitServices.Materials
     {
         private static MaterialsManager instance;
 
-        public ElementId DynamoMaterialId { get; private set; }
-        public ElementId DynamoGStyleId { get; private set; }
+        public ElementId DynamoMaterialId { get; private set; } 
+        public ElementId DynamoErrorMaterialId { get; private set; } 
+        public ElementId DynamoGStyleId { get; private set; } 
 
         public static MaterialsManager Instance
         {
@@ -27,7 +28,9 @@ namespace RevitServices.Materials
 
         private MaterialsManager()
         {
-            
+            DynamoMaterialId = ElementId.InvalidElementId;
+            DynamoErrorMaterialId = ElementId.InvalidElementId;
+            DynamoGStyleId = ElementId.InvalidElementId;
         }
 
         /// <summary>
@@ -38,6 +41,7 @@ namespace RevitServices.Materials
         public void InitializeForActiveDocumentOnIdle()
         {
             FindOrCreateDynamoMaterial();
+            FindOrCreateDynamoErrorMaterial();
             FindDynamoGraphicsStyle();
         }
 
@@ -49,45 +53,79 @@ namespace RevitServices.Materials
 
         private void FindOrCreateDynamoMaterial()
         {
-            Dictionary<string, Material> materials
-            = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
-              .OfClass(typeof(Material))
-              .Cast<Material>()
-              .ToDictionary<Material, string>(
-                e => e.Name);
+            var materials = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(Material))
+                .Cast<Material>();
 
             // First try to get or create the Dynamo material
-            if (materials.ContainsKey("Dynamo"))
+            var material = materials.FirstOrDefault(x => x.Name == "Dynamo");
+            if (material != null)
             {
-                DynamoMaterialId = materials["Dynamo"].Id;
+                DynamoMaterialId = material.Id;
                 return;
             }
+
 
             TransactionManager.Instance.EnsureInTransaction(
                 DocumentManager.Instance.CurrentDBDocument);
 
-            var glass = materials["Glass"];
-            var dynamoMaterial = glass.Duplicate("Dynamo");
+            Material glassMaterial = materials.FirstOrDefault(x => x.Name == "Glass");
+            Material dynamoMaterial;
+            if(glassMaterial != null)
+            {
+                dynamoMaterial = glassMaterial.Duplicate("Dynamo");
+            }
+            else
+            {
+                var dynamoMaterialId = Material.Create(DocumentManager.Instance.CurrentDBDocument, "Dynamo");
+                dynamoMaterial = DocumentManager.Instance.CurrentDBDocument.GetElement(dynamoMaterialId) as Material;
+                dynamoMaterial.Transparency = 90;
+                dynamoMaterial.UseRenderAppearanceForShading = true;
+            }
             dynamoMaterial.Color = new Color(255, 128, 0);
             DynamoMaterialId = dynamoMaterial.Id;
 
             TransactionManager.Instance.ForceCloseTransaction();
         }
 
+        private void FindOrCreateDynamoErrorMaterial()
+        {
+            var materials = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+               .OfClass(typeof(Material))
+               .Cast<Material>();
+
+
+            // First try to get or create the Dynamo material
+            var material = materials.FirstOrDefault(x => x.Name == "DynamoError");
+            if (material != null)
+            {
+                DynamoErrorMaterialId = material.Id;
+                return;
+            }
+
+            TransactionManager.Instance.EnsureInTransaction(
+                DocumentManager.Instance.CurrentDBDocument);
+
+            var dynamoErrorMaterialId = Material.Create(DocumentManager.Instance.CurrentDBDocument, "DynamoError");
+            var dynamoErrorMaterial = DocumentManager.Instance.CurrentDBDocument.GetElement(dynamoErrorMaterialId) as Material;
+            dynamoErrorMaterial.Transparency = 95;
+            dynamoErrorMaterial.UseRenderAppearanceForShading = true;
+            dynamoErrorMaterial.Color = new Color(255, 0, 0);
+            DynamoErrorMaterialId = dynamoErrorMaterial.Id;
+
+            TransactionManager.Instance.ForceCloseTransaction();
+        }
+
         private void FindDynamoGraphicsStyle()
         {
-            var styles = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            styles.OfClass(typeof(GraphicsStyle));
-
-            var gStyle = styles.ToElements().FirstOrDefault(x => x.Name == "Generic Models");
-
-            if (gStyle != null)
+            var genericModelCategory = Category.GetCategory(DocumentManager.Instance.CurrentDBDocument, BuiltInCategory.OST_GenericModel);
+            if(genericModelCategory != null)
             {
-                DynamoGStyleId = gStyle.Id;
-            }
-            else
-            {
-                DynamoGStyleId = ElementId.InvalidElementId;
+                var gStyle = genericModelCategory.GetGraphicsStyle(GraphicsStyleType.Projection);
+                if(gStyle != null)
+                {
+                    DynamoGStyleId = gStyle.Id;
+                }
             }
         }
     }

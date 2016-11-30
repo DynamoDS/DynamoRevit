@@ -1,0 +1,21 @@
+<Workspace Version="0.8.2.2231" X="0" Y="0" zoom="1" Name="Home" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="b222afb4-bb3e-4ed5-81bd-2d63f70567f8" type="Dynamo.Nodes.DSFunction" nickname="ReferencePoint.ByCoordinates" x="321.5" y="161" isVisible="true" isUpstreamVisible="true" lacing="CrossProduct" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.ReferencePoint.ByCoordinates@double,double,double">
+      <PortInfo index="0" default="True" />
+      <PortInfo index="1" default="True" />
+      <PortInfo index="2" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="6010c124-9abf-4bfc-8a2d-a8d5f4a59bce" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="104" y="173" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="{10, 20};" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="6010c124-9abf-4bfc-8a2d-a8d5f4a59bce" start_index="0" end="b222afb4-bb3e-4ed5-81bd-2d63f70567f8" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="6010c124-9abf-4bfc-8a2d-a8d5f4a59bce" start_index="0" end="b222afb4-bb3e-4ed5-81bd-2d63f70567f8" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

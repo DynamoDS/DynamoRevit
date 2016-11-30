@@ -1,6 +1,7 @@
 ﻿using System;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Interfaces;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 
 using DynamoServices;
@@ -20,7 +21,7 @@ namespace Revit.Elements
     /// A Revit Reference Point
     /// </summary>
     [RegisterForTrace]
-    [ShortName("refPt")]
+    [PreferredShortName("refPt")]
     public class ReferencePoint : Element, IGraphicItem
     {
         #region Internal properties
@@ -202,7 +203,8 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalReferencePoint.Position = xyz;
+            if(!InternalReferencePoint.Position.IsAlmostEqualTo(xyz))
+                InternalReferencePoint.Position = xyz;
 
             TransactionManager.Instance.TransactionTaskDone();
         }
@@ -221,7 +223,7 @@ namespace Revit.Elements
             PointOnCurveMeasurementType measurementType, PointOnCurveMeasureFrom measureFrom)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
-
+            
             var plc = new PointLocationOnCurve(measurementType, parameter, measureFrom);
             var edgePoint = Document.Application.Create.NewPointOnEdge(curveReference, plc);
             InternalReferencePoint.SetPointElementReference(edgePoint);
@@ -239,7 +241,9 @@ namespace Revit.Elements
         #endregion
 
         #region Public properties
-
+        /// <summary>
+        /// Gets 'X' coordinate of the specified ReferencePoint
+        /// </summary>
         public double X
         {
             get
@@ -249,7 +253,9 @@ namespace Revit.Elements
             set { InternalSetPosition(new XYZ(value, Y, Z)); }
         }
 
-
+        /// <summary>
+        /// Gets 'Y' coordinate of the specified ReferencePoint
+        /// </summary>
         public double Y
         {
             get
@@ -259,7 +265,9 @@ namespace Revit.Elements
             set { InternalSetPosition(new XYZ(X, value, Z)); }
         }
 
-
+        /// <summary>
+        /// Gets 'Z' coordinate of the specified ReferencePoint
+        /// </summary>
         public double Z
         {
             get
@@ -268,7 +276,9 @@ namespace Revit.Elements
             }
             set { InternalSetPosition(new XYZ(X, Y, value)); }
         }
-
+        /// <summary>
+        /// Gets point geometry from the specified ReferencePoint
+        /// </summary>
         public Point Point
         {
             get
@@ -276,7 +286,9 @@ namespace Revit.Elements
                 return InternalReferencePoint.Position.ToPoint();
             }
         }
-
+        /// <summary>
+        /// Gets XY plane of the specified ReferencePoint
+        /// </summary>
         public Plane XYPlane
         {
             get
@@ -286,7 +298,9 @@ namespace Revit.Elements
                 return xy.ToPlane();
             }
         }
-
+        /// <summary>
+        /// Gets YZ plane of the specified ReferencePoint
+        /// </summary>
         public Plane YZPlane
         {
             get
@@ -296,7 +310,9 @@ namespace Revit.Elements
                 return yz.ToPlane();
             }
         }
-
+        /// <summary>
+        /// Gets XZ plane of the specified ReferencePoint
+        /// </summary>
         public Plane XZPlane
         {
             get
@@ -322,7 +338,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
             return ByPoint(Point.ByCoordinates(x, y, z));
         }
@@ -341,7 +357,7 @@ namespace Revit.Elements
 
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             return new ReferencePoint(pt.ToXyz());
@@ -358,7 +374,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             if (basePoint == null)
@@ -387,7 +403,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             if (elementCurveReference == null)
@@ -395,8 +411,8 @@ namespace Revit.Elements
                 throw new ArgumentNullException("elementCurveReference");
             }
 
-            return new ReferencePoint(ElementCurveReference.TryGetCurveReference(elementCurveReference).InternalReference, 
-                UnitConverter.DynamoToHostFactor * length, PointOnCurveMeasurementType.SegmentLength, PointOnCurveMeasureFrom.Beginning);
+            return new ReferencePoint(ElementCurveReference.TryGetCurveReference(elementCurveReference).InternalReference,
+                UnitConverter.DynamoToHostFactor(UnitType.UT_Length) * length, PointOnCurveMeasurementType.SegmentLength, PointOnCurveMeasureFrom.Beginning);
         }
 
         /// <summary>
@@ -410,7 +426,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             if (elementCurveReference == null)
@@ -433,7 +449,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ReferencePoint Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ReferencePointCreationFailure);
             }
 
             if (elementFaceReference == null)
@@ -494,17 +510,14 @@ namespace Revit.Elements
         /// <summary>
         /// Tessellate Reference Point to render package for visualization.
         /// </summary>
-        /// <param name="package"></param>
-        /// <param name="tol"></param>
-        /// <param name="gridLines"></param>
-        void IGraphicItem.Tessellate(IRenderPackage package, double tol, int gridLines)
+        void IGraphicItem.Tessellate(IRenderPackage package, TessellationParameters parameters)
         {
             if (!IsAlive)
                 return;
 
             if (this.InternalElement.IsValidObject)
             {
-                package.PushPointVertex(X, Y, Z);
+                package.AddPointVertex(X, Y, Z);
             }
         }
 

@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using RevitTestServices;
+
 namespace RevitSystemTests
 {
     [TestFixture]
-    public class RevitLibraryTests : SystemTest
+    public class RevitLibraryTests : RevitSystemTestBase
     {
         [Test]
         public void TestNonBrowsableClasses()

@@ -5,17 +5,22 @@ using System.Linq;
 using Autodesk.Revit.DB;
 
 using Dynamo.Nodes;
-
+using Autodesk.DesignScript.Geometry;
+using CoreNodeModels.Input;
 using NUnit.Framework;
 
 using RevitServices.Persistence;
 
+using RevitTestServices;
+
 using RTF.Framework;
+
+//using Revit.Elements;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class CurveTests : SystemTest
+    class CurveTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\empty.rfa")]
@@ -50,10 +55,10 @@ namespace RevitSystemTests
             if (!ptSelectNodes.Any())
                 Assert.Fail("Could not find point selection nodes in dynamo graph.");
 
-            ((DSModelElementSelection)ptSelectNodes.ElementAt(0)).UpdateSelection(new []{p1});;
-            ((DSModelElementSelection)ptSelectNodes.ElementAt(1)).UpdateSelection(new []{p2});
-            ((DSModelElementSelection)ptSelectNodes.ElementAt(2)).UpdateSelection(new []{p3});
-            ((DSModelElementSelection)ptSelectNodes.ElementAt(3)).UpdateSelection(new []{p4});
+            ((DSModelElementSelection)ptSelectNodes.ElementAt(0)).UpdateSelection(new[] { p1 }); ;
+            ((DSModelElementSelection)ptSelectNodes.ElementAt(1)).UpdateSelection(new[] { p2 });
+            ((DSModelElementSelection)ptSelectNodes.ElementAt(2)).UpdateSelection(new[] { p3 });
+            ((DSModelElementSelection)ptSelectNodes.ElementAt(3)).UpdateSelection(new[] { p4 });
 
             RunCurrentModel();
 
@@ -66,9 +71,9 @@ namespace RevitSystemTests
             Assert.IsTrue(mc.IsReferenceLine);
 
             //now flip the switch for creating a reference curve
-            var boolNode = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is DSCoreNodesUI.BoolSelector).First();
+            var boolNode = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is CoreNodeModels.Input.BoolSelector).First();
 
-            ((DSCoreNodesUI.BasicInteractive<bool>)boolNode).Value = false;
+            ((CoreNodeModels.Input.BasicInteractive<bool>)boolNode).Value = false;
 
             RunCurrentModel();
 
@@ -88,6 +93,21 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
+
+            AssertNoDummyNodes();
+
+            var model = ViewModel.Model;
+            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(31, model.CurrentWorkspace.Connectors.Count());
+
+            //check PolyCurve.ByThickeningCurve
+            var polyCurveId = "8f42e859-9f88-4b4f-b1d8-d3a2841b8d14";
+            AssertPreviewCount(polyCurveId, 4);
+            for (int i = 0; i < 4; i++)
+            {
+                var polyCurve = GetPreviewValueAtIndex(polyCurveId, i) as PolyCurve;
+                Assert.IsNotNull(polyCurve);
+            }
         }
 
         [Test]
@@ -105,6 +125,11 @@ namespace RevitSystemTests
             fec.OfClass(typeof(CurveElement));
 
             Assert.AreEqual(fec.ToElements().Count(), 1);
+
+            //check Arc.ByThreePoints
+            var arcID = "e52e6a42-7cf7-41f6-b8df-2b882992167d";
+            var arc = GetPreviewValue(arcID) as Autodesk.DesignScript.Geometry.Arc;
+            Assert.IsNotNull(arc);
         }
 
         [Test]
@@ -116,6 +141,21 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
+            AssertNoDummyNodes();
+            var model = ViewModel.Model;
+            Assert.AreEqual(33, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(40, model.CurrentWorkspace.Connectors.Count());
+
+            //check curve.Offset
+            var curve1ID = "d8269a9d-173a-486a-8d49-66f92725d2cf";
+            var curve2ID = "ac34ea91-2520-40dc-9b50-d0132e023786";
+            var curve3ID = "30d479f1-c437-4d26-aca4-d10f507722e2";
+            var curve1 = GetPreviewValue(curve1ID) as Autodesk.DesignScript.Geometry.Curve;
+            var curve2 = GetPreviewValue(curve2ID) as Autodesk.DesignScript.Geometry.Curve;
+            var curve3 = GetPreviewValue(curve3ID) as Autodesk.DesignScript.Geometry.Curve;
+            Assert.IsNotNull(curve1);
+            Assert.IsNotNull(curve2);
+            Assert.IsNotNull(curve3);
         }
 
         [Test]
@@ -129,7 +169,21 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
+            AssertNoDummyNodes();
+            var model = ViewModel.Model;
+            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(29, model.CurrentWorkspace.Connectors.Count());
+
+            //check ThickenCurve
+            var curveId = "8f42e859-9f88-4b4f-b1d8-d3a2841b8d14";
+            AssertPreviewCount(curveId, 4);
+            for (int i = 0; i < 4; i++)
+            {
+                var curve = GetPreviewValueAtIndex(curveId, i) as PolyCurve;
+                Assert.IsNotNull(curve);
+            }
         }
+
 
         [Test]
         [TestModel(@".\empty.rfa")]
@@ -171,17 +225,13 @@ namespace RevitSystemTests
         public void ClosedCurve()
         {
             var model = ViewModel.Model;
-
             string samplePath = Path.Combine(workingDirectory, @".\Curve\ClosedCurve.dyn");
             string testPath = Path.GetFullPath(samplePath);
-
             model.Open(testPath);
            
             RunCurrentModel();
             
-
             var extrudeNode = ViewModel.Model.CurrentWorkspace.Nodes.First(x => x is CreateExtrusionGeometry);
-
             var result = (Solid)VisualizationManager.GetDrawablesFromNode(extrudeNode).Values.First();
             double volumeMin = 3850;
             double volumeMax = 4050;
@@ -189,7 +239,6 @@ namespace RevitSystemTests
             Assert.Greater(actualVolume, volumeMin);
             Assert.Less(actualVolume, volumeMax);
         }
-
          * */
 
         [Test, Category("Failure")]
@@ -221,6 +270,15 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
+
+            AssertNoDummyNodes();
+            var model = ViewModel.Model;
+            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(13, model.CurrentWorkspace.Connectors.Count());
+            var ellipseArcID = "00ba9f14-ed23-4c27-b25e-4dc45c0cc801";
+            var ellipseArc = GetPreviewValue(ellipseArcID) as EllipseArc;
+            Assert.IsNotNull(ellipseArc);
+
         }
     }
 }

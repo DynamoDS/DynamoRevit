@@ -1,19 +1,61 @@
 ﻿using System;
 using System.Linq;
 
+using Autodesk.Revit.DB;
+
 using DynamoServices;
 
+using DynamoUnits;
+
+
+using RevitServices.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+
 using Revit.Elements.InternalUtilities;
+using Autodesk.DesignScript.Runtime;
+using System.Runtime.Serialization;
 
 namespace Revit.Elements
 {
+
+    /// <summary>
+    /// This class acts as a representation of a Level constructor state, we can store it in trace
+    // it's used to keep track of what the user wanted to set the name of the level to
+    /// </summary>
+    [SupressImportIntoVM]
+    [Serializable]
+    public class LevelTraceData : SerializableId
+    {
+        public string InputName { get; set; }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
+
+            info.AddValue("inputName", InputName, typeof(string));
+        }
+
+        public LevelTraceData(Level lev, string inputName) :
+            base()
+        {
+            this.IntID = lev.InternalElement.Id.IntegerValue;
+            this.StringID = lev.UniqueId;
+            this.InputName = inputName;
+        }
+
+        public LevelTraceData(SerializationInfo info, StreamingContext context) :
+            base(info, context)
+        {
+            InputName = (string)info.GetValue("inputName", typeof(string));
+          
+        }
+    }
     /// <summary>
     /// A Revit Level
     /// </summary>
-    [RegisterForTrace]
+    [DynamoServices.RegisterForTrace]
     public class Level : Element
     {
         #region Internal properties
@@ -69,15 +111,14 @@ namespace Revit.Elements
         private void InitLevel(double elevation, string name)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
-            var oldEle =
-                ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Level>(Document);
+            var oldEle = ElementBinder.GetElementAndTraceData<Autodesk.Revit.DB.Level, LevelTraceData>(Document);
 
             //There was an element, bind & mutate
             if (oldEle != null)
             {
-                InternalSetLevel(oldEle);
+                InternalSetLevel(oldEle.Item1);
                 InternalSetElevation(elevation);
-                InternalSetName(name);
+                InternalSetName(oldEle.Item2.InputName,name);
                 return;
             }
 
@@ -96,11 +137,11 @@ namespace Revit.Elements
             }
 
             InternalSetLevel(level);
-            InternalSetName(name);
-
+            InternalSetName(string.Empty,name);
+            var traceData = new LevelTraceData(this, name);
             TransactionManager.Instance.TransactionTaskDone();
 
-            ElementBinder.SetElementForTrace(this.InternalElement);
+            ElementBinder.SetRawDataForTrace(traceData);
 
         }
 
@@ -131,30 +172,37 @@ namespace Revit.Elements
         private void InternalSetElevation(double elevation)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
-            this.InternalLevel.Elevation = elevation;
+            if(!InternalLevel.Elevation.AlmostEquals(elevation, 1.0e-6))
+                InternalLevel.Elevation = elevation;
             TransactionManager.Instance.TransactionTaskDone();
         }
 
         /// <summary>
         /// Mutate the name of the level
         /// </summary>
-        /// <param name="name"></param>
-        private void InternalSetName(string name)
+        /// <param name="name"> the name we want to set the level to have</param>
+        /// <param name="oldname"> the oldname we tried to set this level to in the past,
+        /// we retrieve this from trace</param>
+        private void InternalSetName(string oldname,string name)
         {
             if (String.IsNullOrEmpty(name) ||
-                string.CompareOrdinal(InternalLevel.Name, name) == 0)
+                string.CompareOrdinal(InternalLevel.Name, name) == 0 ||
+                string.CompareOrdinal(oldname,name) == 0)
                 return;
-
+            //make a copy of the string
+            var originalInputName = name;
             //Check to see whether there is an existing level with the same name
             var levels = ElementQueries.GetAllLevels();
             while (levels.Any(x => string.CompareOrdinal(x.Name, name) == 0))
             {
                 //Update the level name
-                ElementUtils.UpdateLevelName(ref name);
+                Revit.Elements.InternalUtilities.ElementUtils.UpdateLevelName(ref name);
             }
 
             TransactionManager.Instance.EnsureInTransaction(Document);
             this.InternalLevel.Name = name;
+            var updatedTraceData =new LevelTraceData(this, originalInputName);
+            ElementBinder.SetRawDataForTrace(updatedTraceData);
             TransactionManager.Instance.TransactionTaskDone();
         }
 
@@ -167,7 +215,7 @@ namespace Revit.Elements
         /// </summary>
         public double Elevation
         {
-            get { return InternalLevel.Elevation*UnitConverter.HostToDynamoFactor; }
+            get { return InternalLevel.Elevation*UnitConverter.HostToDynamoFactor(UnitType.UT_Length); }
         }
 
         /// <summary>
@@ -177,7 +225,7 @@ namespace Revit.Elements
         {
             get
             {
-                return InternalLevel.ProjectElevation * UnitConverter.HostToDynamoFactor;
+                return InternalLevel.ProjectElevation * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
             }
         }
 
@@ -209,7 +257,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("name");
             }
 
-            return new Level(elevation * UnitConverter.DynamoToHostFactor, name);
+            return new Level(elevation * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), name);
         }
 
         /// <summary>
@@ -220,7 +268,7 @@ namespace Revit.Elements
         /// <returns></returns>
         public static Level ByElevation(double elevation)
         {
-            return new Level(elevation * UnitConverter.DynamoToHostFactor, null);
+            return new Level(elevation * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), null);
         }
 
         /// <summary>
@@ -236,7 +284,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("level");
             }
 
-            return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor, null);
+            return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), null);
         }
 
         /// <summary>
@@ -259,7 +307,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("name");
             }
 
-            return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor, name);
+            return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), name);
         }
 
         #endregion
@@ -286,5 +334,6 @@ namespace Revit.Elements
         {
             return string.Format("Level(Name={0}, Elevation={1})", Name, Elevation);
         }
+
     }
 }

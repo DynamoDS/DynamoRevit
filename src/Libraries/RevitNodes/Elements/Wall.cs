@@ -1,4 +1,7 @@
 ﻿using System;
+
+using Autodesk.Revit.DB;
+
 using DynamoServices;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
@@ -98,7 +101,8 @@ namespace Revit.Elements
                 if ((wallLocation.Curve is Autodesk.Revit.DB.Line == curve is Autodesk.Revit.DB.Line) ||
                     (wallLocation.Curve is Autodesk.Revit.DB.Arc == curve is Autodesk.Revit.DB.Arc))
                 {
-                    wallLocation.Curve = curve;
+                    if(!CurveUtils.CurvesAreSimilar(wallLocation.Curve, curve))
+                        wallLocation.Curve = curve;
 
                     Autodesk.Revit.DB.Parameter baseLevelParameter =
                        wallElem.get_Parameter(Autodesk.Revit.DB.BuiltInParameter.WALL_BASE_CONSTRAINT);
@@ -170,13 +174,11 @@ namespace Revit.Elements
                 throw new ArgumentNullException("wallType");
             }
 
-            height = height*UnitConverter.DynamoToHostFactor;
+            height = height * UnitConverter.DynamoToHostFactor(UnitType.UT_Length);
 
             if (height < 1e-6 || height > 30000)
             {
-                throw new ArgumentException(
-                    "The height must be greater than 0 and less that 30000 ft.  You provided a height of "
-                        + height + " ft.");
+                throw new ArgumentException(string.Format(Properties.Resources.InvalidWallHeight, height));
             }
 
             return new Wall(curve.ToRevitType(), wallType.InternalWallType, level.InternalLevel, height, 0.0, false, false);

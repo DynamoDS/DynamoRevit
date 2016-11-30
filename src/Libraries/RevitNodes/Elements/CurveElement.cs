@@ -5,11 +5,16 @@ using Autodesk.Revit.DB;
 using Revit.GeometryConversion;
 using Revit.GeometryReferences;
 using RevitServices.Persistence;
-
+using Autodesk.DesignScript.Runtime;
 namespace Revit.Elements
 {
     public abstract class CurveElement : Element, IGraphicItem
     {
+        private const byte DefR = 0;
+        private const byte DefG = 0;
+        private const byte DefB = 0;
+        private const byte DefA = 255;
+
         public override Autodesk.Revit.DB.Element InternalElement
         {
             get { return InternalCurveElement; }
@@ -56,9 +61,12 @@ namespace Revit.Elements
         /// Set the geometry curve used by the ModelCurve
         /// </summary>
         /// <param name="c"></param>
-        protected void InternalSetCurve(Autodesk.Revit.DB.Curve c)
+        protected void InternalSetCurve(Curve c)
         {
-            if (!this.InternalCurveElement.GeometryCurve.IsBound && c.IsBound)
+            if (CurveUtils.CurvesAreSimilar(InternalCurveElement.GeometryCurve, c))
+                return;
+
+            if (!InternalCurveElement.GeometryCurve.IsBound && c.IsBound)
             {
                 c = c.Clone();
                 c.MakeUnbound();
@@ -115,12 +123,31 @@ namespace Revit.Elements
 
         #endregion
 
-        public new void Tessellate(IRenderPackage package, double tol, int gridLines)
+        [IsVisibleInDynamoLibrary(false)]
+        public new void Tessellate(IRenderPackage package, TessellationParameters parameters)
         {
             //Ensure that the object is still alive
             if (!IsAlive) return;
 
-            this.Curve.Tessellate(package, tol);
-        }
+            this.Curve.Tessellate(package, parameters);
+
+            if (package.LineVertexCount > 0)
+            {
+                package.ApplyLineVertexColors(CreateColorByteArrayOfSize(package.LineVertexCount, DefR, DefG, DefB, DefA));
+            }
+       }
+
+       private static byte[] CreateColorByteArrayOfSize(int size, byte red, byte green, byte blue, byte alpha)
+       {
+           var arr = new byte[size * 4];
+           for (var i = 0; i < arr.Length; i += 4)
+           {
+               arr[i] = red;
+               arr[i + 1] = green;
+               arr[i + 2] = blue;
+               arr[i + 3] = alpha;
+           }
+           return arr;
+       }
     }
 }

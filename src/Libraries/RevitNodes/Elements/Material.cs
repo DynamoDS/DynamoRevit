@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-
+using System.Collections.Generic;
 using DynamoServices;
 
 using RevitServices.Persistence;
@@ -90,13 +90,199 @@ namespace Revit.Elements
 
             if (mat == null)
             {
-                throw new Exception("A Material with the given name does not exist in the current Document");
+                throw new Exception(Properties.Resources.MaterialNotFound);
             }
 
             return new Material(mat)
             {
                 IsRevitOwned = true
             };
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Get Material Name
+        /// </summary>
+        /// <returns></returns>
+        public string Name
+        {
+            get { return this.InternalMaterial.Name; }
+        }
+
+        /// <summary>
+        /// Get Shininess
+        /// </summary>
+        public int Shininess
+        {
+            get { return this.InternalMaterial.Shininess; }
+        }
+
+        /// <summary>
+        /// Get Smoothness
+        /// </summary>
+        public int Smoothness
+        {
+            get { return this.InternalMaterial.Smoothness; }
+        }
+
+        /// <summary>
+        /// Get Transparency
+        /// </summary>
+        public int Transparency
+        {
+            get { return this.InternalMaterial.Transparency; }
+        }
+
+        /// <summary>
+        /// Get SurfacePatternColor
+        /// </summary>
+        public DSCore.Color SurfacePatternColor
+        {
+            get { return ToDSColor(this.InternalMaterial.SurfacePatternColor); }
+        }
+
+        /// <summary>
+        /// Get Material Class
+        /// </summary>
+        public string MaterialClass
+        {
+            get { return this.InternalMaterial.MaterialClass; }
+        }
+
+        /// <summary>
+        /// Get Material category
+        /// </summary>
+        public string MaterialCategory
+        {
+            get { return this.InternalMaterial.MaterialCategory; }
+        }
+
+        /// <summary>
+        /// Get cut pattern color
+        /// </summary>
+        public DSCore.Color CutPatternColor
+        {
+            get { return ToDSColor(this.InternalMaterial.CutPatternColor); }
+        }
+
+        /// <summary>
+        /// Get color
+        /// </summary>
+        public DSCore.Color Color
+        {
+            get { return ToDSColor(this.InternalMaterial.Color); }
+        }
+
+        /// <summary>
+        /// Get cut pattern id
+        /// </summary>
+        public int CutPatternId
+        {
+            get
+            {
+                return this.InternalMaterial.CutPatternId.IntegerValue;
+            }
+        }
+
+        /// <summary>
+        /// Get all apperance parameters
+        /// </summary>
+        public IEnumerable<Parameter> AppearanceParameters
+        {
+            get
+            {
+                // Get the active Document
+                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+                List<Parameter> appearances = new List<Parameter>();
+                if (this.InternalMaterial.AppearanceAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
+                {
+                    Autodesk.Revit.DB.AppearanceAssetElement appearance = document.GetElement(this.InternalMaterial.AppearanceAssetId) as Autodesk.Revit.DB.AppearanceAssetElement;
+                    if (appearance != null)
+                    {
+                        foreach (var parameter in appearance.Parameters)
+                        {
+                            Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
+                            if (!appearances.Contains(p)) appearances.Add(p);
+                        }
+                    }
+                }
+
+                return appearances;
+            }
+        }
+
+        /// <summary>
+        /// Get all thermal parameters
+        /// </summary>
+        public IEnumerable<Parameter> ThermalParameters
+        {
+            get
+            {
+                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+                List<Parameter> thermals = new List<Parameter>();
+                if (this.InternalMaterial.ThermalAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
+                {
+                    Autodesk.Revit.DB.PropertySetElement thermal = document.GetElement(this.InternalMaterial.ThermalAssetId) as Autodesk.Revit.DB.PropertySetElement;
+                    if (thermal != null)
+                    {
+                        foreach (var parameter in thermal.Parameters)
+                        {
+                            Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
+                            if (!thermals.Contains(p)) thermals.Add(p);
+                        }
+                    }
+                }
+
+                return thermals;
+            }
+        }
+
+        /// <summary>
+        /// Get all structural parameters
+        /// </summary>
+        public IEnumerable<Parameter> StructuralParameters
+        {
+            get
+            {
+                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+                List<Parameter> structurals = new List<Parameter>();
+                if (this.InternalMaterial.StructuralAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
+                {
+                    Autodesk.Revit.DB.PropertySetElement structural = document.GetElement(this.InternalMaterial.StructuralAssetId) as Autodesk.Revit.DB.PropertySetElement;
+                    if (structural != null)
+                    {
+                        foreach (var parameter in structural.Parameters)
+                        {
+                            Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
+                            if (!structurals.Contains(p)) structurals.Add(p);
+                        }
+                    }
+                }
+
+                return structurals;
+            }
+        }
+
+
+
+        #endregion
+
+        #region Private Helpers
+
+        /// <summary>
+        /// Convert Revit to DS Color
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        private DSCore.Color ToDSColor(Autodesk.Revit.DB.Color color)
+        {
+            return DSCore.Color.ByARGB(255, color.Red, color.Green, color.Blue);
         }
 
         #endregion

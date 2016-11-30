@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,14 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActiveViewWarning" xml:space="preserve">
+    <value>The active view is now {0}.</value>
+  </data>
   <data name="App_Description" xml:space="preserve">
     <value>Visual Programming</value>
   </data>
   <data name="App_Name" xml:space="preserve">
-    <value>Dynamo 0.7</value>
+    <value>Dynamo {0}.{1}</value>
+  </data>
+  <data name="DocumentLostWarning" xml:space="preserve">
+    <value>Dynamo no longer has an active document. Please open a document.</value>
+  </data>
+  <data name="DocumentPointerMessage" xml:space="preserve">
+    <value>Dynamo is now running on {0}.</value>
+  </data>
+  <data name="DocumentPointingWarning" xml:space="preserve">
+    <value>Dynamo is not pointing at the current document.</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="logo_square_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo_square_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RevitInvalidContextWarning" xml:space="preserve">
+    <value>Dynamo is not available in the current context.</value>
+  </data>
+  <data name="RevitValidContextMessage" xml:space="preserve">
+    <value>Dynamo is now available.</value>
+  </data>
+  <data name="Document" xml:space="preserve">
+    <value>document</value>
+  </data>
+  <data name="NewDocument" xml:space="preserve">
+    <value>a new document.</value>
+  </data>
+  <data name="BackgroundPreviewName" xml:space="preserve">
+    <value>Revit Background Preview</value>
+  </data>
+  <data name="DynamoCoreNotFoundDialogMessage" xml:space="preserve">
+    <value>Dynamo Add-In is not able to find an installation of Dynamo Core version {0} or higher.
+
+Would you like to download the latest version of DynamoCore.msi from http://dynamobim.org now?</value>
+  </data>
+  <data name="DynamoCoreNotFoundDialogTitle" xml:space="preserve">
+    <value>Dynamo Core component could not be found</value>
   </data>
 </root>

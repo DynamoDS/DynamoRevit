@@ -55,12 +55,12 @@ namespace RevitNodesTests.Elements
             mt.Depth.ShouldBeApproximately(depth);
 
             // with unit conversion
-            InternalDepth(mt).ShouldBeApproximately(depth * UnitConverter.DynamoToHostFactor);
+            InternalDepth(mt).ShouldBeApproximately(depth * UnitConverter.DynamoToHostFactor(UnitType.UT_Length));
 
             var expectedInternalLoc =
                 origin.InHostUnits()
-                    .Add(Vector.XAxis().Scale(x*UnitConverter.DynamoToHostFactor))
-                    .Add(Vector.YAxis().Scale(y*UnitConverter.DynamoToHostFactor));
+                    .Add(Vector.XAxis().Scale(x * UnitConverter.DynamoToHostFactor(UnitType.UT_Length)))
+                    .Add(Vector.YAxis().Scale(y * UnitConverter.DynamoToHostFactor(UnitType.UT_Length)));
             InternalLocation(mt).ShouldBeApproximately(expectedInternalLoc);
 
         }

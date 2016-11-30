@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-using Analysis.DataTypes;
+﻿using Analysis;
 
 using Autodesk.DesignScript.Geometry;
 
@@ -8,8 +6,6 @@ using NUnit.Framework;
 
 using Revit.AnalysisDisplay;
 using Revit.Application;
-
-using RevitNodesTests;
 
 using RevitTestServices;
 
@@ -87,13 +83,12 @@ namespace RevitNodesTests.AnalysisDisplay
                 Vector.ByCoordinates(0, 19, 4)
             };
 
-            var data = VectorAnalysisData.ByPointsAndResults(
+            var data = VectorData.ByPointsAndValues(
                 samplePoints,
-                new List<string>() { "Test vector data." },
-                new List<IList<Vector>>() { sampleValues });
+                sampleValues);
 
             var doc = Document.Current;
-            var grid = VectorAnalysisDisplay.ByViewAndVectorAnalysisData(doc.ActiveView, new []{data});
+            var grid = VectorAnalysisDisplay.ByViewAndVectorAnalysisData(doc.ActiveView, data);
 
             Assert.NotNull(grid);
         }
@@ -116,16 +111,14 @@ namespace RevitNodesTests.AnalysisDisplay
                 Vector.ByCoordinates(0, 19, 4)
             };
 
-            var data = VectorAnalysisData.ByPointsAndResults(
+            var data = VectorData.ByPointsAndValues(
                 samplePoints,
-                new List<string>() { "Test vector data." },
-                new List<IList<Vector>>() { sampleValues });
+                sampleValues);
 
             var doc = Document.Current;
 
-            Assert.Throws(typeof(System.ArgumentNullException), () => VectorAnalysisDisplay.ByViewAndVectorAnalysisData(null, new []{data}));
+            Assert.Throws(typeof(System.ArgumentNullException), () => VectorAnalysisDisplay.ByViewAndVectorAnalysisData(null, data));
             Assert.Throws(typeof(System.ArgumentNullException), () => VectorAnalysisDisplay.ByViewAndVectorAnalysisData(doc.ActiveView, null));
-            Assert.Throws(typeof(System.Exception), () => VectorAnalysisDisplay.ByViewAndVectorAnalysisData(doc.ActiveView, new VectorAnalysisData[]{}));
         }
 
     }

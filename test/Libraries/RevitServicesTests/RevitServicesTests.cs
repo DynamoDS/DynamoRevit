@@ -5,6 +5,7 @@ using Autodesk.Revit.DB;
 using NUnit.Framework;
 using System;
 using RevitServices.Elements;
+using RevitServices.Materials;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
@@ -16,6 +17,15 @@ namespace RevitServicesTests
         Document Document
         {
             get { return DocumentManager.Instance.CurrentUIDocument.Document; }
+        }
+
+        [SetUp]
+        public void Setup()
+        {
+            DocumentManager.Instance.CurrentUIApplication =
+                RTF.Applications.RevitTestExecutive.CommandData.Application;
+            DocumentManager.Instance.CurrentUIDocument =
+                RTF.Applications.RevitTestExecutive.CommandData.Application.ActiveUIDocument;
         }
 
         [Test]
@@ -156,7 +166,6 @@ namespace RevitServicesTests
             Assert.Inconclusive("TODO: find an example that would cause revit to emit failures");
         }
 
-
         [Test]
         [Category("UnitTests")]
         public void TestRoundTripElementSerialisation()
@@ -204,7 +213,6 @@ namespace RevitServicesTests
             Assert.IsTrue(elementId.IntID == 42);
             Assert.IsTrue(elementId.StringID == "{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}");
         }
-
 
         [Test]
         [Category("UnitTests")]
@@ -265,6 +273,90 @@ namespace RevitServicesTests
             Assert.IsTrue(readback.StringIDs[1].Equals("{A79294BF-6D27-4B86-BEE9-D6921C11D495}"));
         }
 
+        [Test]
+        [Category("UnitTests")]
+        public void TwoInstancesOfMultSerializableIdAreEqual()
+        {
+            var elementIDs = new MultipleSerializableId
+            {
+                IntIDs = { 42, 20 },
+                StringIDs = { "{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}", "{A79294BF-6D27-4B86-BEE9-D6921C11D495}" }
+            };
+
+            var elementIDs2 = new MultipleSerializableId
+            {
+                IntIDs = { 42, 20 },
+                StringIDs = { "{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}", "{A79294BF-6D27-4B86-BEE9-D6921C11D495}" }
+            };
+
+            //Raw write
+            ElementBinder.SetRawDataForTrace(elementIDs);
+            elementIDs = null;
+
+            //Readback
+            var readback = (MultipleSerializableId)ElementBinder.GetRawDataFromTrace();
+
+            //verify that the id extracted from trace is equal to the new instance
+            Assert.IsTrue(readback.Equals(elementIDs2));
+
+        }
+
+        [Test]
+        [Category("UnitTests")]
+        public void TwoInstancesOfSerializableIdAreEqual()
+        {
+            var elementID = new SerializableId
+            {
+                IntID = 42,
+            StringID = "{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}"
+            };
+
+            var elementID2 = new SerializableId
+            {
+                IntID = 42,
+                StringID = "{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}"
+            };
+
+            //Raw write
+            ElementBinder.SetRawDataForTrace(elementID);
+            elementID = null;
+
+            //Readback
+            var readback = (SerializableId)ElementBinder.GetRawDataFromTrace();
+
+            //verify that the id extracted from trace is equal to the new instance
+            Assert.IsTrue(readback.Equals(elementID2));
+
+        }
+
+        [Test]
+        [Category("UnitTests")]
+        public void MaterialManagerCheckDefaultValues()
+        {
+            Assert.NotNull(MaterialsManager.Instance.DynamoMaterialId);
+            Assert.NotNull(MaterialsManager.Instance.DynamoErrorMaterialId);
+            Assert.NotNull(MaterialsManager.Instance.DynamoGStyleId);
+
+            Assert.AreEqual(MaterialsManager.Instance.DynamoMaterialId, ElementId.InvalidElementId);
+            Assert.AreEqual(MaterialsManager.Instance.DynamoErrorMaterialId, ElementId.InvalidElementId);
+            Assert.AreEqual(MaterialsManager.Instance.DynamoGStyleId, ElementId.InvalidElementId);
+        }
+
+        [Test]
+        [Category("UnitTests")]
+        public void MaterialManagerCheckValues()
+        {
+            var mgr = MaterialsManager.Instance;
+            mgr.InitializeForActiveDocumentOnIdle();
+
+            Assert.NotNull(MaterialsManager.Instance.DynamoMaterialId);
+            Assert.NotNull(MaterialsManager.Instance.DynamoErrorMaterialId);
+            Assert.NotNull(MaterialsManager.Instance.DynamoGStyleId);
+
+            Assert.AreNotEqual(MaterialsManager.Instance.DynamoMaterialId, ElementId.InvalidElementId);
+            Assert.AreNotEqual(MaterialsManager.Instance.DynamoErrorMaterialId, ElementId.InvalidElementId);
+            Assert.AreNotEqual(MaterialsManager.Instance.DynamoGStyleId, ElementId.InvalidElementId);
+        }
 
     }
 }

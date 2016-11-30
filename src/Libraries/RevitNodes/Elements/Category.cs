@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
@@ -8,9 +9,9 @@ namespace Revit.Elements
 {
     public class Category
     {
-        #region private constructors
+        #region internal constructors
 
-        private Category(Autodesk.Revit.DB.Category category)
+        internal Category(Autodesk.Revit.DB.Category category)
         {
             internalCategory = category;
         }
@@ -26,13 +27,21 @@ namespace Revit.Elements
         #region public properties
 
         /// <summary>
-        /// The name of the Category.
+        /// The name of the Category.   
         /// </summary>
         public string Name
         {
             get
             {
-                return internalCategory.Name;
+                var parent = internalCategory.Parent;
+                if(parent == null)
+                {
+                    return internalCategory.Name;
+                }
+                else
+                {
+                    return internalCategory.Parent.Name + " - " + internalCategory.Name;
+                }
             }
         }
 
@@ -57,7 +66,7 @@ namespace Revit.Elements
         #region public static constructors
 
         /// <summary>
-        /// Get a Revit category by by the built in category name.
+        /// Gets a Revit category by the built-in category name.
         /// </summary>
         /// <param name="name">The built in category name.</param>
         /// <returns></returns>
@@ -68,24 +77,82 @@ namespace Revit.Elements
                 throw new ArgumentNullException("name");
             }
 
+            // Find category using localized name
             Settings documentSettings = DocumentManager.Instance.CurrentDBDocument.Settings;
             var groups = documentSettings.Categories;
-            var builtInCat = (BuiltInCategory)Enum.Parse(typeof(BuiltInCategory), name);
-            var category = groups.get_Item(builtInCat);
+
+            Autodesk.Revit.DB.Category category = null;
+            var splits = name.Split('-');
+            if(splits.Count() > 1)
+            {
+                var parentName = splits[0].TrimEnd(' ');
+                if(groups.Contains(parentName))
+                {
+                    var parentCategory = groups.get_Item(parentName);
+                    if(parentCategory != null)
+                    {
+                        var subName = splits[1].TrimStart(' ');
+                        if(parentCategory.SubCategories.Contains(subName))
+                        {
+                            category = parentCategory.SubCategories.get_Item(subName);
+                        }
+                    }
+                }
+            }
+            else if (groups.Contains(name))
+            {
+                category = groups.get_Item(name);
+            }
+            else
+            {
+                // Fall back
+                // Use category enum name with or without OST_ prefix
+                var fullName = name.Length > 3 && name.Substring(0, 4) == "OST_" ? name : "OST_" + name;
+                var names = Enum.GetNames(typeof(BuiltInCategory));
+                if(System.Array.Exists(names, entry => entry == fullName))
+                {
+                    var builtInCat = (BuiltInCategory)Enum.Parse(typeof(BuiltInCategory), fullName);
+                    category = groups.get_Item(builtInCat);
+                }
+            }
 
             if (category == null)
             {
-                throw new Exception("The selected category is not valid in this document.");
+                throw new ArgumentException(Properties.Resources.InvalidCategory);
             }
 
             return new Category(category);
+        }
+
+        /// <summary>
+        /// Gets Revit Built-in category from current document based on category Id
+        /// </summary>
+        /// <param name="id">Category Id as Integer value</param>
+        /// <returns>Category if present in current document.</returns>
+        [IsVisibleInDynamoLibrary(false)]
+        public static Category ById(int id)
+        {
+            try
+            {
+                var document = DocumentManager.Instance.CurrentDBDocument;
+                BuiltInCategory categoryId = (BuiltInCategory)id;
+                Autodesk.Revit.DB.Category category = Autodesk.Revit.DB.Category.GetCategory(document, categoryId);
+                if(null == category)
+                    throw new ArgumentException(Properties.Resources.InvalidCategory);
+
+                return new Category(category);
+            }
+            catch
+            {
+                throw new ArgumentException(Properties.Resources.InvalidCategory);
+            }
         }
 
         #endregion
 
         public override string ToString()
         {
-            return internalCategory != null ? internalCategory.Name : string.Empty;
+            return internalCategory != null ? Name : string.Empty;
         }
     }
 }

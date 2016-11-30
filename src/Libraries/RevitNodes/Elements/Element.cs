@@ -16,6 +16,8 @@ using RevitServices.Transactions;
 using Color = DSCore.Color;
 using Area = DynamoUnits.Area;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
+using Surface = Autodesk.DesignScript.Geometry.Surface;
+using RevitServices.Elements;
 
 namespace Revit.Elements
 {
@@ -31,6 +33,8 @@ namespace Revit.Elements
         /// <param name="init"></param>
         protected void SafeInit(Action init)
         {
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+
             var elementManager = ElementIDLifecycleManager<int>.GetInstance();
             var element = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Element>(Document);
             int count = 0;
@@ -90,7 +94,7 @@ namespace Revit.Elements
         internal bool IsRevitOwned = false;
 
         /// <summary>
-        /// Obtain all of the Parameters from an Element
+        /// Obtain all of the Parameters from an Element. Shazam!
         /// </summary>
         public Parameter[] Parameters
         {
@@ -159,7 +163,36 @@ namespace Revit.Elements
         }
 
         private ElementId internalId;
-        
+
+        /// <summary>
+        /// Get Element Category
+        /// </summary>
+        public Category GetCategory
+        {
+            get { return new Category(this.InternalElement.Category); }
+        }
+
+        /// <summary>
+        /// Returns the FamilyType for this Element. Returns null if the Element cannot have a FamilyType assigned.
+        /// </summary>
+        /// <returns name="ElementType">Element Type or Null.</returns>
+        public Element ElementType
+        {
+            get
+            {
+                var typeId = this.InternalElement.GetTypeId();
+                if (typeId == ElementId.InvalidElementId)
+                {
+                    return null;
+                }
+                else
+                {
+                    var doc = DocumentManager.Instance.CurrentDBDocument;
+                    return doc.GetElement(typeId).ToDSType(true);
+                }
+            }
+        }
+
         /// <summary>
         /// The element id for this element
         /// </summary>
@@ -171,7 +204,8 @@ namespace Revit.Elements
                     return InternalElement != null ? InternalElement.Id : null;
                 return internalId;
             }
-            set { 
+            set
+            {
                 internalId = value;
 
                 var elementManager = ElementIDLifecycleManager<int>.GetInstance();
@@ -186,17 +220,23 @@ namespace Revit.Elements
         protected string InternalUniqueId;
 
         /// <summary>
+        /// Set the element's freeze state. If the node is set to freeze
+        /// all the elements for that node will be set to freeze.
+        /// </summary>
+        public bool IsFrozen = false;
+
+        /// <summary>
         /// Default implementation of dispose that removes the element from the
         /// document
         /// </summary>
         [IsVisibleInDynamoLibrary(false)]
         public virtual void Dispose()
         {
-
-            // Do not cleanup Revit elements if we are shutting down Dynamo.
-            if (DisposeLogic.IsShuttingDown)
+            // Do not cleanup Revit elements if we are shutting down Dynamo or
+            // closing homeworkspace or the element itself is frozen.
+            if (DisposeLogic.IsShuttingDown || DisposeLogic.IsClosingHomeworkspace || IsFrozen)
                 return;
-
+            
             bool didRevitDelete = ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(Id);
 
             var elementManager = ElementIDLifecycleManager<int>.GetInstance();
@@ -263,12 +303,22 @@ namespace Revit.Elements
         }
 
         [IsVisibleInDynamoLibrary(false)]
-        public void Tessellate(IRenderPackage package, double tol, int gridLines)
+        public void Tessellate(IRenderPackage package, TessellationParameters parameters)
         {
             // Do nothing. We implement this method only to prevent the GraphicDataProvider from
             // attempting to interrogate the public properties, some of which may require regeneration
             // or transactions and which must necessarily be threaded in a specific way.
         }
+
+        internal static bool IsConvertableParameterType(ParameterType paramType)
+        {
+            return paramType == ParameterType.Length || paramType == ParameterType.Area ||
+                paramType == ParameterType.Volume || paramType == ParameterType.Angle ||
+                paramType == ParameterType.Slope || paramType == ParameterType.Currency ||
+                paramType == ParameterType.MassDensity;
+        }
+
+
 
         /// <summary>
         /// Get the value of one of the element's parameters.
@@ -277,53 +327,20 @@ namespace Revit.Elements
         /// <returns></returns>
         public object GetParameterValueByName(string parameterName)
         {
-            object result;
 
-            var param = InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>().FirstOrDefault(x => x.Definition.Name == parameterName);
-
+            var param =
+                // We don't use Element.GetOrderedParameters(), it only returns ordered parameters
+                // as show in the UI
+                InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
+                    // Element.Parameters returns a differently ordered list on every invocation.
+                    // We must sort it to get sensible results.
+                    .OrderBy(x => x.Id.IntegerValue) 
+                    .FirstOrDefault(x => x.Definition.Name == parameterName);         
+            
             if (param == null || !param.HasValue)
                 return string.Empty;
 
-            switch (param.StorageType)
-            {
-                case StorageType.ElementId:
-                    int id = param.AsElementId().IntegerValue;
-                    // When the element is obtained here, to convert it to our element wrapper, it
-                    // need to be figured out whether this element is created by us. Here the existing
-                    // element wrappers will be checked. If there is one, its property to specify
-                    // whether it is created by us will be followed. If there is none, it means the
-                    // element is not created by us.
-                    var ele = ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(id) as Element;
-                    result = ElementSelector.ByElementId(id, ele == null ? true : ele.IsRevitOwned);
-                    break;
-                case StorageType.String:
-                    result = param.AsString();
-                    break;
-                case StorageType.Integer:
-                    result = param.AsInteger();
-                    break;
-                case StorageType.Double:
-                    switch (param.Definition.ParameterType)
-                    {
-                        case ParameterType.Length:
-                            result = Length.FromFeet(param.AsDouble());
-                            break;
-                        case ParameterType.Area:
-                            result = Area.FromSquareFeet(param.AsDouble());
-                            break;
-                        case ParameterType.Volume:
-                            result = Volume.FromCubicFeet(param.AsDouble());
-                            break;
-                        default:
-                            result = param.AsDouble();
-                            break;
-                    }
-                    break;
-                default:
-                    throw new Exception(string.Format("Parameter {0} has no storage type.", param));
-            }
-
-            return result;
+            return Revit.Elements.InternalUtilities.ElementUtils.GetParameterValue(param);
         }
 
         /// <summary>
@@ -333,19 +350,38 @@ namespace Revit.Elements
         public Element OverrideColorInView(Color color)
         {
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-
             var view = DocumentManager.Instance.CurrentUIDocument.ActiveView;
-            var ogs = new OverrideGraphicSettings();
+            var ogs = new Autodesk.Revit.DB.OverrideGraphicSettings();
 
             var patternCollector = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-            patternCollector.OfClass(typeof(FillPatternElement));
-            FillPatternElement solidFill = patternCollector.ToElements().Cast<FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
+            patternCollector.OfClass(typeof(Autodesk.Revit.DB.FillPatternElement));
+            Autodesk.Revit.DB.FillPatternElement solidFill = patternCollector.ToElements().Cast<Autodesk.Revit.DB.FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
 
-            ogs.SetProjectionFillColor(new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue));
+            var overrideColor = new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue);
+            ogs.SetProjectionFillColor(overrideColor);
             ogs.SetProjectionFillPatternId(solidFill.Id);
+            ogs.SetProjectionLineColor(overrideColor);
             view.SetElementOverrides(InternalElementId, ogs);
-
             TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Override Elements Graphics Settings in Active View.
+        /// </summary>
+        /// <param name="overrides">Override Graphics Settings.</param>
+        /// <param name="hide">If True given Element will be hidden.</param>
+        /// <returns></returns>
+        public Element OverrideInView(Revit.Filter.OverrideGraphicSettings overrides, bool hide = false)
+        {
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            var view = DocumentManager.Instance.CurrentUIDocument.ActiveView;
+            view.SetElementOverrides(InternalElementId, overrides.InternalOverrideGraphicSettings);
+            if (hide) view.HideElements(new List<ElementId>() { InternalElementId });
+            else view.UnhideElements(new List<ElementId>() { InternalElementId });
+            TransactionManager.Instance.TransactionTaskDone();
+
             return this;
         }
 
@@ -359,69 +395,19 @@ namespace Revit.Elements
             var param = InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>().FirstOrDefault(x => x.Definition.Name == parameterName);
 
             if (param == null)
-                throw new Exception("No parameter found by that name.");
+                throw new Exception(Properties.Resources.ParameterNotFound);
 
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
 
             var dynval = value as dynamic;
-            SetParameterValue(param, dynval);
+            Revit.Elements.InternalUtilities.ElementUtils.SetParameterValue(param, dynval);
 
             TransactionManager.Instance.TransactionTaskDone();
 
             return this;
         }
 
-        #region dynamic parameter setting methods
 
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, double value)
-        {
-            if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
-                throw new Exception("The parameter's storage type is not a number.");
-
-            param.Set(value);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, Element value)
-        {
-            if (param.StorageType != StorageType.ElementId)
-                throw new Exception("The parameter's storage type is not an Element.");
-
-            param.Set(value.InternalElementId);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, int value)
-        {
-            if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
-                throw new Exception("The parameter's storage type is not a number.");
-
-            param.Set(value);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, string value)
-        {
-            if (param.StorageType != StorageType.String)
-                throw new Exception("The parameter's storage type is not a string.");
-
-            param.Set(value);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, bool value)
-        {
-            if (param.StorageType != StorageType.Integer)
-                throw new Exception("The parameter's storage type is not an integer.");
-
-            param.Set(value == false ? 0 : 1);
-        }
-
-        private static void SetParameterValue(Autodesk.Revit.DB.Parameter param, SIUnit value)
-        {
-            if(param.StorageType != StorageType.Double)
-                throw new Exception("The parameter's storage type is not an integer.");
-
-            param.Set(value.ConvertToHostUnits());
-        }
-
-        #endregion
 
         /// <summary>
         /// Get all of the Geometry associated with this object
@@ -432,17 +418,19 @@ namespace Revit.Elements
 
             foreach (var geometryObject in InternalGeometry())
             {
-                try
+                var geoObj = geometryObject.Convert();
+                if (geoObj != null)
                 {
-                    var convert = geometryObject.Convert();
-                    if (convert != null)
-                    {
-                        converted.Add(convert);
-                    }
+                    converted.Add(geoObj);
                 }
-                catch (Exception)
+                else
                 {
-                    // we catch all geometry conversion exceptions
+                    var solid = geometryObject as Autodesk.Revit.DB.Solid;
+                    if (solid != null)
+                    {
+                        var geomObjs = solid.ConvertToMany();
+                        converted.AddRange(geomObjs.Where(x => { return x != null; }));
+                    }
                 }
             }
 
@@ -503,11 +491,11 @@ namespace Revit.Elements
                 if (geomInstance != null)
                 {
                     var instanceGeom = useSymbolGeometry ? geomInstance.GetSymbolGeometry() : geomInstance.GetInstanceGeometry();
-                    instanceGeometryObjects.AddRange( CollectConcreteGeometry(instanceGeom) );
+                    instanceGeometryObjects.AddRange(CollectConcreteGeometry(instanceGeom));
                 }
                 else if (geomElement != null)
                 {
-                    instanceGeometryObjects.AddRange( CollectConcreteGeometry(geometryElement) );
+                    instanceGeometryObjects.AddRange(CollectConcreteGeometry(geometryElement));
                 }
                 else
                 {
@@ -559,7 +547,7 @@ namespace Revit.Elements
                 // The is the geometry with the correctly computed References, from GetSymbolGeometry
                 var refs = InternalGeometry<Autodesk.Revit.DB.Curve>(true).Select(x => x.Reference);
 
-                return geoms.Zip( refs, (geom, reference) => geom.ToProtoType(true, reference))
+                return geoms.Zip(refs, (geom, reference) => geom.ToProtoType(true, reference))
                     .ToArray();
             }
         }
@@ -641,5 +629,108 @@ namespace Revit.Elements
             }
         }
 
+        #region Location extraction & manipulation
+
+        /// <summary>
+        /// Update an existing element's location
+        /// </summary>
+        /// <param name="geometry">New Location Point or Curve</param>
+        public void SetLocation(Geometry geometry)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+
+            if (this.InternalElement.Location is Autodesk.Revit.DB.LocationPoint)
+            {
+                if (geometry is Autodesk.DesignScript.Geometry.Point)
+                {
+                    Autodesk.DesignScript.Geometry.Point point = geometry as Autodesk.DesignScript.Geometry.Point;
+                    Autodesk.Revit.DB.LocationPoint pt = this.InternalElement.Location as Autodesk.Revit.DB.LocationPoint;
+                    pt.Point = point.ToRevitType(true);
+                }
+                else
+                    throw new Exception(Properties.Resources.PointRequired);
+            }
+            else if (this.InternalElement.Location is Autodesk.Revit.DB.LocationCurve && geometry is Curve)
+            {
+                if (geometry is Curve)
+                {
+                    Curve dynamoCurve = geometry as Curve;
+                    Autodesk.Revit.DB.LocationCurve curve = this.InternalElement.Location as Autodesk.Revit.DB.LocationCurve;
+                    curve.Curve = dynamoCurve.ToRevitType(true);
+                }
+                else
+                    throw new Exception(Properties.Resources.CurveRequired);
+            }
+            else
+            {
+                throw new Exception(Properties.Resources.InvalidElementLocation);
+            }
+
+            TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        /// <summary>
+        /// Get an exsiting element's location
+        /// </summary>
+        /// <returns>Location Geometry</returns>
+        public Geometry GetLocation()
+        {
+            if (this.InternalElement.Location is Autodesk.Revit.DB.LocationPoint)
+            {
+                Autodesk.Revit.DB.LocationPoint pt = this.InternalElement.Location as Autodesk.Revit.DB.LocationPoint;
+                return pt.Point.ToPoint(true);
+            }
+            else if (this.InternalElement.Location is Autodesk.Revit.DB.LocationCurve)
+            {
+                Autodesk.Revit.DB.LocationCurve curve = this.InternalElement.Location as Autodesk.Revit.DB.LocationCurve;
+                return curve.Curve.ToProtoType(true);
+            }
+            else
+            {
+                throw new Exception(Properties.Resources.InvalidElementLocation);
+            }
+        }
+
+        /// <summary>
+        /// Move Revit Element by Vector
+        /// </summary>
+        /// <param name="vector">Translation Vector</param>
+        public void MoveByVector(Vector vector)
+        {
+            if (!this.InternalElement.Location.Move(vector.ToXyz(true)))
+            {
+                throw new Exception(Properties.Resources.InvalidElementLocation);
+            }
+        }
+
+
+        #endregion
+
+        #region Material
+
+        /// <summary>
+        /// Get Material Names from a Revit Element
+        /// </summary>
+        /// <param name="paintMaterials">Paint Materials</param>
+        /// <returns>List of Names</returns>
+        public IEnumerable<Material> GetMaterials(bool paintMaterials = false)
+        {
+            // Get the active Document
+            Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+            List<Material> materialnames = new List<Material>();
+
+            foreach (Autodesk.Revit.DB.ElementId id in this.InternalElement.GetMaterialIds(paintMaterials))
+            {
+                Autodesk.Revit.DB.Material material = (Autodesk.Revit.DB.Material)document.GetElement(id);
+                Material mat = Material.FromExisting(material, true);
+
+                if (!materialnames.Contains(mat)) materialnames.Add(mat);
+            }
+
+            return materialnames;
+        }
+
+        #endregion
     }
 }

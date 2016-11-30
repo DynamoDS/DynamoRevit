@@ -130,13 +130,23 @@ namespace Revit.Elements
         #endregion
 
         #region Public static constructors
-
+        /// <summary>
+        /// Creates a Form by lofting a list of curves
+        /// </summary>
+        /// <param name="curves"></param>
+        /// <param name="isSolid"></param>
+        /// <returns></returns>
         public static Form ByLoftCrossSections(Autodesk.DesignScript.Geometry.Curve[] curves, bool isSolid = true)
         {
             if (curves == null) throw new ArgumentNullException("curves");
             return ByLoftCrossSectionsInternal(curves, isSolid);
         }
-
+        /// <summary>
+        /// Creates a Form by lofting a nested list of curves
+        /// </summary>
+        /// <param name="curves"></param>
+        /// <param name="isSolid"></param>
+        /// <returns></returns>
         public static Form ByLoftCrossSections(Autodesk.DesignScript.Geometry.Curve[][] curves, bool isSolid = true)
         {
             if (curves == null) throw new ArgumentNullException("curves");
@@ -176,7 +186,7 @@ namespace Revit.Elements
         {
             if (curves == null || curves.SelectMany(x => x).Any(x => x == null))
             {
-                throw new ArgumentNullException("Some of the input curves are null.");
+                throw new ArgumentNullException(Properties.Resources.NullInputCurvesError);
             }
 
             var refArrArr = new ReferenceArrayArray();

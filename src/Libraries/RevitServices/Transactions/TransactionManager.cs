@@ -199,19 +199,19 @@ namespace RevitServices.Transactions
     {
         public TransactionHandle EnsureInTransaction(TransactionWrapper wrapper, Document document)
         {
-            TransactionManager.Log("EnsureInTransaction - AUTO STRAT: Starting new Transaction");
+            TransactionManager.Log("EnsureInTransaction - AUTO START: Starting new Transaction");
             return !wrapper.TransactionActive ? wrapper.StartTransaction(document) : wrapper.Handle;
         }
 
         public void TransactionTaskDone(TransactionHandle handle)
         {
-            TransactionManager.Log("TransactionTaskDone - AUTO STRAT: Preserving Transaction");
+            TransactionManager.Log("TransactionTaskDone - AUTO START: Preserving Transaction");
             //Do nothing in automatic, continue using the same transaction.
         }
 
         public void ForceCloseTransaction(TransactionHandle handle)
         {
-            TransactionManager.Log("ForceCloseTransaction - AUTO STRAT: Ending Transaction");
+            TransactionManager.Log("ForceCloseTransaction - AUTO START: Ending Transaction");
             if (handle != null && handle.Status == TransactionStatus.Started)
                 handle.CommitTransaction();
         }
@@ -226,6 +226,7 @@ namespace RevitServices.Transactions
         internal Transaction Transaction { get; set; }
         private readonly WarningHandler handler;
         internal readonly TransactionHandle Handle;
+        public static readonly string TransactionName = "Dynamo-51297CB5 Script";
 
         internal TransactionWrapper()
         {
@@ -295,9 +296,11 @@ namespace RevitServices.Transactions
                 
                 // Dispose the old transaction so that it won't impact the new transaction
                 if (null != Transaction && Transaction.IsValidObject)
+                {
                     Transaction.Dispose();
+                }
 
-                Transaction = new Transaction(document, "Dynamo Script");
+                Transaction = new Transaction(document, TransactionName);
                 Transaction.Start();
 
                 FailureHandlingOptions failOpt = Transaction.GetFailureHandlingOptions();

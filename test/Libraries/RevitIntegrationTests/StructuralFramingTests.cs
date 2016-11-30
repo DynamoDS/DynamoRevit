@@ -9,15 +9,17 @@ using NUnit.Framework;
 
 using RevitServices.Persistence;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
-using FamilySymbol = Revit.Elements.FamilySymbol;
-using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
+using FamilyType = Revit.Elements.FamilyType;
+using IntegerSlider = CoreNodeModels.Input.IntegerSlider;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    public class StructuralFramingTests : SystemTest
+    public class StructuralFramingTests : RevitSystemTestBase
     {
         [Test, TestModel(@".\StructuralFraming\StructuralFraming.rvt")]
         public void StructuralFraming_Beam()
@@ -64,7 +66,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
             
-            var dynamoSymbol = typeSelector.GetValue(0, ViewModel.Model.EngineController).Data as FamilySymbol;
+            var dynamoSymbol = typeSelector.GetValue(0, ViewModel.Model.EngineController).Data as FamilyType;
             var revitSymbol = dynamoSymbol.InternalElement;
 
             Console.WriteLine("Family type is now set to {0}", revitSymbol);

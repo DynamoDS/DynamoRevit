@@ -157,7 +157,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception("The number of divisions must be greater than 2!");
+                throw new Exception(Properties.Resources.NumberOfDivisionsMustBeGreaterThan2);
             }
 
             return new DividedPath(new[] { ElementCurveReference.TryGetCurveReference(element) }, divisions);
@@ -173,7 +173,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception("The number of divisions must be greater than 2!");
+                throw new Exception(Properties.Resources.NumberOfDivisionsMustBeGreaterThan2);
             }
 
             if (curveReferences.Any(x => x == null))
@@ -194,7 +194,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception("The number of divisions must be greater than 2!");
+                throw new Exception(Properties.Resources.NumberOfDivisionsMustBeGreaterThan2);
             }
 
             return new DividedPath(new[] { ElementCurveReference.TryGetCurveReference(element) }, divisions);
@@ -210,7 +210,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception("The number of divisions must be greater than 2!");
+                throw new Exception(Properties.Resources.NumberOfDivisionsMustBeGreaterThan2);
             }
 
             if (elements.Any(x => x == null))
@@ -224,7 +224,12 @@ namespace Revit.Elements
         #endregion
 
         #region Static constructors
-
+        /// <summary>
+        /// Creates a Revit divided path on the given curve with specified amount of division
+        /// </summary>
+        /// <param name="curve"></param>
+        /// <param name="divisions"></param>
+        /// <returns></returns>
         public static DividedPath ByCurveAndDivisions(Autodesk.DesignScript.Geometry.Curve curve, int divisions)
         {
             if (curve == null)
@@ -234,12 +239,17 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception("The number of divisions must be greater than 2!");
+                throw new Exception(Properties.Resources.NumberOfDivisionsMustBeGreaterThan2);
             }
 
             return new DividedPath(new[] { ElementCurveReference.TryGetCurveReference(curve) }, divisions);
         }
-
+        /// <summary>
+        /// Creates a Revit divided path on the given collection of curves with specified amount of division
+        /// </summary>
+        /// <param name="curve"></param>
+        /// <param name="divisions"></param>
+        /// <returns></returns>
         public static DividedPath ByCurvesAndDivisions(Autodesk.DesignScript.Geometry.Curve[] curve, int divisions)
         {
             if (curve == null)
@@ -249,7 +259,7 @@ namespace Revit.Elements
 
             if (divisions < 2)
             {
-                throw new Exception("The number of divisions must be greater than 2!");
+                throw new Exception(Properties.Resources.NumberOfDivisionsMustBeGreaterThan2);
             }
 
             if (curve.Any(x => x == null))

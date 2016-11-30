@@ -2,33 +2,34 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
 using Autodesk.Revit.DB.Electrical;
+using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.DB.Structure;
 
+using Dynamo.Applications;
 using Dynamo.Applications.Models;
+using Dynamo.Graph.Nodes;
+using Dynamo.Migration;
 using Dynamo.Models;
 using Dynamo.Nodes;
-
 using ProtoCore.AST.AssociativeAST;
-
 using Revit.Elements;
 using Revit.Elements.InternalUtilities;
-
 using RevitServices.Elements;
+using RevitServices.EventHandler;
 using RevitServices.Persistence;
-
 using Category = Revit.Elements.Category;
 using CurveElement = Autodesk.Revit.DB.CurveElement;
 using DividedSurface = Autodesk.Revit.DB.DividedSurface;
 using Element = Autodesk.Revit.DB.Element;
-using FamilySymbol = Revit.Elements.FamilySymbol;
+using FamilyType = Revit.Elements.FamilyType;
 using Level = Revit.Elements.Level;
 using ModelText = Autodesk.Revit.DB.ModelText;
 using ReferencePlane = Autodesk.Revit.DB.ReferencePlane;
 using ReferencePoint = Autodesk.Revit.DB.ReferencePoint;
+using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
 {
@@ -37,11 +38,20 @@ namespace DSRevitNodesUI
         protected ElementsQueryBase()
         {
             var u = RevitServicesUpdater.Instance;
-            u.ElementsAdded += Updater_ElementsAdded;
-            u.ElementsModified += Updater_ElementsModified;
-            u.ElementsDeleted += Updater_ElementsDeleted;
+            u.ElementsUpdated += OnElementsUpdated;
 
             ShouldDisplayPreviewCore = false;
+        }
+
+        void OnElementsUpdated(object sender, ElementUpdateEventArgs e)
+        {
+            if (!e.Elements.Any()) return;
+
+#if DEBUG
+            Debug.WriteLine("There are {0} elements {1}", e.Elements.Count(), e.Operation.ToString());
+            DebugElements(e.Elements);
+#endif
+            OnNodeModified(forceExecute: true);
         }
 
         public override void Dispose()
@@ -49,50 +59,7 @@ namespace DSRevitNodesUI
             base.Dispose();
 
             var u = RevitServicesUpdater.Instance;
-            u.ElementsModified -= Updater_ElementsModified;
-            u.ElementsDeleted -= Updater_ElementsDeleted;
-        }
-
-        protected virtual void Updater_ElementsAdded(IEnumerable<string> updated)
-        {
-            if (!updated.Any()) return;
-
-#if DEBUG
-            Debug.WriteLine("There are {0} updated elements", updated.Count());
-            DebugElements(updated);
-#endif
-            OnNodeModified(forceExecute:true);
-        }
-
-
-        protected virtual void Updater_ElementsModified(IEnumerable<string> updated)
-        {
-            if (!updated.Any()) return;
-#if DEBUG
-            Debug.WriteLine("There are {0} modified elements", updated.Count());
-            DebugElements(updated);
-#endif
-            OnNodeModified(forceExecute:true);
-
-        }
-
-        protected virtual void Updater_ElementsDeleted(Document document, IEnumerable<ElementId> deleted)
-        {
-            if (!deleted.Any()) return;
-#if DEBUG
-            Debug.WriteLine("There are {0} deleted elements", deleted.Count());
-            DebugElements(deleted);
-#endif
-            OnNodeModified(forceExecute:true);
-
-        }
-
-        private static void DebugElements(IEnumerable<string> updated)
-        {
-            var els = updated.Select(
-                id => DocumentManager.Instance.CurrentDBDocument.GetElement(id));
-            foreach (var el in els.Where(el => el != null))
-                Debug.WriteLine(string.Format("\t{0}", el.Name));
+            u.ElementsUpdated -= OnElementsUpdated;
         }
 
         private static void DebugElements(IEnumerable<ElementId> updated)
@@ -114,8 +81,8 @@ namespace DSRevitNodesUI
     {
         public ElementsOfFamilyType()
         {
-            InPortData.Add(new PortData("Family Type", Properties.Resources.PortDataFamilTypeToolTip));
-            OutPortData.Add(new PortData("Elements", Properties.Resources.PortDataElementsToolTip));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Family Type", Properties.Resources.PortDataFamilTypeToolTip)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Elements", Properties.Resources.PortDataElementsToolTip)));
 
             RegisterAllPorts();
         }
@@ -124,7 +91,7 @@ namespace DSRevitNodesUI
             List<AssociativeNode> inputAstNodes)
         {
             var func =
-                new Func<FamilySymbol, IList<Revit.Elements.Element>>(ElementQueries.OfFamilyType);
+                new Func<FamilyType, IList<Revit.Elements.Element>>(ElementQueries.OfFamilyType);
 
             var functionCall = AstFactory.BuildFunctionCall(func, inputAstNodes);
             return new[]
@@ -139,8 +106,8 @@ namespace DSRevitNodesUI
     {
         public ElementsOfType()
         {
-            InPortData.Add(new PortData("element type", Properties.Resources.PortDataElementTypeToolTip));
-            OutPortData.Add(new PortData("elements", Properties.Resources.PortDataAllElementsInDocumentToolTip));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("element type", Properties.Resources.PortDataElementTypeToolTip)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("elements", Properties.Resources.PortDataAllElementsInDocumentToolTip)));
             RegisterAllPorts();
         }
 
@@ -162,8 +129,8 @@ namespace DSRevitNodesUI
     {
         public ElementsOfCategory()
         {
-            InPortData.Add(new PortData("Category", Properties.Resources.PortDataCategoryToolTip));
-            OutPortData.Add(new PortData("Elements", Properties.Resources.PortDataElementTypeToolTip));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Category", Properties.Resources.PortDataCategoryToolTip)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Elements", Properties.Resources.PortDataElementTypeToolTip)));
 
             RegisterAllPorts();
         }
@@ -186,8 +153,8 @@ namespace DSRevitNodesUI
     {
         public ElementsAtLevel()
         {
-            InPortData.Add(new PortData("Level", Properties.Resources.PortDataALevelToolTip));
-            OutPortData.Add(new PortData("Elements", Properties.Resources.PortDataElementAtLevelToolTip));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Level", Properties.Resources.PortDataALevelToolTip)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Elements", Properties.Resources.PortDataElementAtLevelToolTip)));
 
             RegisterAllPorts();
         }
@@ -213,58 +180,65 @@ namespace DSRevitNodesUI
 
         public ElementsInView()
         {
-            OutPortData.Add(new PortData("elements", Properties.Resources.PortDataAllVisibleElementsToolTip));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("elements", Properties.Resources.PortDataAllVisibleElementsToolTip)));
             RegisterAllPorts();
 
-            DocumentManager.Instance.CurrentUIApplication.ViewActivated +=
-                RevitDynamoModel_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
 
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened +=
-                RevitDynamoModel_RevitDocumentChanged;
-
-            RevitServicesUpdater.Instance.ElementsDeleted +=
-                RevitServicesUpdaterOnElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified +=
-                RevitServicesUpdaterOnElementsModified;
-            RevitServicesUpdater.Instance.ElementsAdded +=
-                RevitServicesUpdaterOnElementsAdded;
-
+            RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdaterOnElementsUpdated;
             RevitDynamoModel_RevitDocumentChanged(null, null);
         }
 
         public override void Dispose()
         {
+            DynamoRevitApp.EventHandlerProxy.ViewActivated -= RevitDynamoModel_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= RevitDynamoModel_RevitDocumentChanged;
+
+            RevitServicesUpdater.Instance.ElementsUpdated -= RevitServicesUpdaterOnElementsUpdated;
+
             base.Dispose();
-            DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
-                RevitDynamoModel_RevitDocumentChanged;
+        }
 
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -=
-                RevitDynamoModel_RevitDocumentChanged;
-
-            RevitServicesUpdater.Instance.ElementsDeleted -=
-                RevitServicesUpdaterOnElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified -=
-                RevitServicesUpdaterOnElementsModified;
-            RevitServicesUpdater.Instance.ElementsAdded -=
-                RevitServicesUpdaterOnElementsAdded;
+        void RevitServicesUpdaterOnElementsUpdated(object sender, ElementUpdateEventArgs e)
+        {
+            switch (e.Operation)
+            {
+                case ElementUpdateEventArgs.UpdateType.Added:
+                    RevitServicesUpdaterOnElementsAdded(e.GetUniqueIds());
+                    break;
+                case ElementUpdateEventArgs.UpdateType.Modified:
+                    RevitServicesUpdaterOnElementsModified(e.GetUniqueIds());
+                    break;
+                case ElementUpdateEventArgs.UpdateType.Deleted:
+                    RevitServicesUpdaterOnElementsDeleted(e.RevitDocument, e.Elements);
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void RevitServicesUpdaterOnElementsAdded(IEnumerable<string> updated)
         {
+            var filter = GetVisibleElementFilter();
+
             bool recalc = false;
             foreach (var id in updated)
             {
                 Element e;
                 if (doc.TryGetElement(id, out e))
                 {
-                    uniqueIds.Add(id);
-                    elementIds.Add(e.Id);
-                    recalc = true;
+                    if (filter.PassesFilter(e))
+                    {
+                        uniqueIds.Add(id);
+                        elementIds.Add(e.Id);
+                        recalc = true;
+                    }
                 }
             }
             if (recalc)
             {
-                OnNodeModified(forceExecute:true);
+                OnNodeModified(forceExecute: true);
             }
         }
 

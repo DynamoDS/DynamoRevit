@@ -1,43 +1,88 @@
 ﻿using System.IO;
 using System.Linq;
+using Autodesk.Revit.DB;
+using Dynamo.Nodes;
+using Dynamo.Tests;
 
 using NUnit.Framework;
+using RevitServices.Persistence;
+
+using RevitTestServices;
 
 using RTF.Framework;
+using System;
+using CoreNodeModels.Input;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class LevelTests : SystemTest
+    class LevelTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\Level\Level.rvt")]
         public void Level()
         {
-            //var model = ViewModel.Model;
+            var samplePath = Path.Combine(workingDirectory, @".\Level\Level.dyn");
+            var testPath = Path.GetFullPath(samplePath);
 
-            //string samplePath = Path.Combine(workingDirectory, @".\Level\Level.dyn");
-            //string testPath = Path.GetFullPath(samplePath);
+            ViewModel.OpenCommand.Execute(testPath);
 
-            //model.Open(testPath);
+            AssertNoDummyNodes();
+
+            RunCurrentModel();
+
+            //ensure that the level count is the same
+            var levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            levelColl.OfClass(typeof(Level));
+            Assert.AreEqual(levelColl.ToElements().Count(), 6);
+
+            //change the number and run again
+            var numNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<DoubleInput>();
+            numNode.Value = "0..20..2";
+
+            RunCurrentModel();
+
+            //ensure that the level count is the same
+            levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            levelColl.OfClass(typeof(Level));
+            Assert.AreEqual(levelColl.ToElements().Count(), 11);
+       }
+
+        //this test runs in automatic to attempt to reproduce the defect in MAGN 8187
+        [Test,Ignore]
+        [TestModel(@".\Level\Level.rvt")]
+        public void SetAllLevelsToSameName()
+        {
+            var samplePath = Path.Combine(workingDirectory, @".\Level\SameNameLevels.dyn");
+            var testPath = Path.GetFullPath(samplePath);
+      
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            //ensure that the level count is the same
+            var levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            levelColl.OfClass(typeof(Level));
+            Assert.AreEqual(levelColl.ToElements().Count(),6);
+
+            var firstLevelID = levelColl.ToElementIds().First().IntegerValue;
+
+            //change the name and run again
+            var stringNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<StringInput>();
+            stringNode.Value = "aNewName";
             
+            //ensure that the first level has new name
+            levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            levelColl.OfClass(typeof(Level));
+            Assert.AreEqual(levelColl.ToElements().First().Name,"aNewName");
+            Assert.AreEqual(levelColl.ToElements().Last().Name, "aNewName(5)");
 
-            ////ensure that the level count is the same
-            //var levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            //levelColl.OfClass(typeof(Autodesk.Revit.DB.Level));
-            //Assert.AreEqual(levelColl.ToElements().Count(), 6);
+            var firstLevelIDModified = levelColl.ToElementIds().First().IntegerValue;
 
-            ////change the number and run again
-            //var numNode = (DoubleInput)ViewModel.Model.DynamoModel.Nodes.First(x => x is DoubleInput);
-            //numNode.Value = "0..20..2";
+            //assert that the elementId of the first level is unchanged... and rebinding has succeeded.
+            //while this is true... currently this test throws exceptions during nodeModified runs
+            //so the infinite loop would not occur even before the fix, so I have marked the test ignore.
+            Assert.AreEqual(firstLevelID, firstLevelIDModified);
             
-
-            ////ensure that the level count is the same
-            //levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            //levelColl.OfClass(typeof(Autodesk.Revit.DB.Level));
-            //Assert.AreEqual(levelColl.ToElements().Count(), 11);
-
-            Assert.Inconclusive("Porting : DoubleInput");
         }
 
         [Test]
@@ -60,7 +105,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(9, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(9, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(8, model.CurrentWorkspace.Connectors.Count());
 
             var levelByElevationAndName = GetPreviewValue

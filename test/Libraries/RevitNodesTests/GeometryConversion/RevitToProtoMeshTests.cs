@@ -41,9 +41,9 @@ namespace RevitNodesTests.GeometryConversion
             var bbmin = bb.MinPoint;
             var bbmax = bb.MaxPoint;
 
-            bbvol.ShouldBeApproximately(560845.185, 1e-2);
-            bbmin.X.ShouldBeApproximately(-114.688, 1e-2);
-            bbmax.X.ShouldBeApproximately(204.378, 1e-2);
+            bbvol.ShouldBeApproximately(19806060.78503, 1e-1);
+            bbmin.X.ShouldBeApproximately(-376.2729659, 1e-2);
+            bbmax.X.ShouldBeApproximately(670.5314961, 1e-2);
 
             convertedMesh.Dispose();
         }

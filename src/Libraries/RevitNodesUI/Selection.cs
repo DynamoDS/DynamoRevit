@@ -5,6 +5,8 @@ using System.Linq;
 
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+
+using Dynamo.Applications;
 using Dynamo.Controls;
 using Dynamo.Interfaces;
 
@@ -26,6 +28,14 @@ using RevitDynamoModel = Dynamo.Applications.Models.RevitDynamoModel;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using String = System.String;
 using UV = Autodesk.DesignScript.Geometry.UV;
+using RevitServices.EventHandler;
+using Autodesk.Revit.DB.Events;
+using CoreNodeModels;
+using Dynamo.Applications;
+using DSRevitNodesUI.Properties;
+using Dynamo.Graph.Nodes;
+using Dynamo.Graph.Workspaces;
+using RevitServices.Transactions;
 
 namespace Dynamo.Nodes
 {
@@ -35,14 +45,65 @@ namespace Dynamo.Nodes
     public abstract class RevitSelection<TSelection, TResult> : SelectionBase<TSelection, TResult>
     {
         protected Document SelectionOwner { get; private set; }
-        protected RevitDynamoModel RevitDynamoModel { get; private set; }
+        private RevitDynamoModel revitDynamoModel;
 
         #region public properties
 
-        /* TODO: Now that nodes know nothing about their owners, we can't access RunEnabled.
+        public RevitDynamoModel RevitDynamoModel
+        {
+            get
+            {
+               return revitDynamoModel;
+            }
+            set
+            {
+                if (revitDynamoModel != null)
+                {
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (hwm != null)
+                    {
+                        hwm.RunSettings.PropertyChanged -= revMod_PropertyChanged;
+                    }
+                }
+
+                revitDynamoModel = value;
+
+                if (revitDynamoModel != null)
+                {
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (hwm != null)
+                    {
+                        hwm.RunSettings.PropertyChanged += revMod_PropertyChanged;
+                    }
+                }
+            }
+       }
+
         public override bool CanSelect
         {
-            get { return base.CanSelect && RevitDynamoModel.RunEnabled; }
+            get
+            {
+                if (revitDynamoModel != null)
+                {
+                    // Different document, disable selection button.
+                    if (!revitDynamoModel.IsInMatchingDocumentContext)
+                        return false;
+                    
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (hwm != null)
+                    {
+                        return base.CanSelect && hwm.RunSettings.RunEnabled;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                   return base.CanSelect;
+                }
+            }
             set { base.CanSelect = value; }
         }
 
@@ -50,9 +111,24 @@ namespace Dynamo.Nodes
         {
             get
             {
-                return RevitDynamoModel.RunEnabled
-                    ? base.SelectionSuggestion
-                    : "Selection is disabled when Dynamo run is disabled.";
+               if (revitDynamoModel != null)
+                {
+                    var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    if (hwm != null)
+                    {
+                        return hwm.RunSettings.RunEnabled
+                            ? base.SelectionSuggestion
+                            : DSRevitNodesUI.Properties.Resources.SelectionIsDisabledDescription;
+                    }
+                    else
+                    {
+                        return DSRevitNodesUI.Properties.Resources.SelectionIsDisabledDescription;
+                    }
+                }
+                else
+                {
+                    return base.SelectionSuggestion;
+                }   
             }
         }
 
@@ -73,7 +149,7 @@ namespace Dynamo.Nodes
                 RaisePropertyChanged("SelectionSuggestion");
             }
         }
-        */
+     
 
         #endregion
 
@@ -83,10 +159,8 @@ namespace Dynamo.Nodes
             SelectionObjectType selectionObjectType, string message, string prefix)
             : base(selectionType, selectionObjectType, message, prefix)
         {
-            RevitServicesUpdater.Instance.ElementsDeleted += Updater_ElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
-            //revMod.PropertyChanged += revMod_PropertyChanged;
+            RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
         #endregion
@@ -105,10 +179,19 @@ namespace Dynamo.Nodes
         public override void Dispose()
         {
             base.Dispose();
-            RevitServicesUpdater.Instance.ElementsDeleted -= Updater_ElementsDeleted;
-            RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened -= Controller_RevitDocumentChanged;
-        }
+
+            RevitServicesUpdater.Instance.ElementsUpdated -= Updater_ElementsUpdated;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= Controller_RevitDocumentChanged;
+
+            if (revitDynamoModel != null)
+            {
+                var hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                if (hwm != null)
+                {
+                    hwm.RunSettings.PropertyChanged -= revMod_PropertyChanged;
+                }
+            }
+         }
 
         public override void UpdateSelection(IEnumerable<TSelection> rawSelection)
         {
@@ -119,6 +202,31 @@ namespace Dynamo.Nodes
         #endregion
 
         #region protected methods
+        private void Updater_ElementsUpdated(object sender, ElementUpdateEventArgs e)
+        {
+            switch (e.Operation)
+            {
+                case ElementUpdateEventArgs.UpdateType.Added:
+                    break;
+                case ElementUpdateEventArgs.UpdateType.Modified:
+                    bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
+                    HomeWorkspaceModel hwm = null;
+                    if (revitDynamoModel != null)
+                    {
+                        hwm = revitDynamoModel.CurrentWorkspace as HomeWorkspaceModel;
+                    }
+                    if (!dynamoTransaction || (hwm != null && hwm.RunSettings.RunType == RunType.Manual))
+                    {
+                        Updater_ElementsModified(e.GetUniqueIds());
+                    }
+                    break;
+                case ElementUpdateEventArgs.UpdateType.Deleted:
+                    Updater_ElementsDeleted(e.RevitDocument, e.Elements);
+                    break;
+                default:
+                    break;
+            }
+        }
 
         protected virtual void Updater_ElementsDeleted(
             Document document, IEnumerable<ElementId> deleted) { }
@@ -212,7 +320,21 @@ namespace Dynamo.Nodes
 
         protected override string GetIdentifierFromModelObject(TSelection modelObject)
         {
-            return modelObject == null ? null : modelObject.UniqueId;
+            try
+            {
+                return modelObject == null ? null : modelObject.UniqueId;
+            }
+            catch (Autodesk.Revit.Exceptions.InvalidObjectException)
+            {
+                // This call is being made from SelectionBase.SerializeCore in 
+                // scenarios like dragging of a node (undo recorder needs the 
+                // node to be serialized prior to dragging). If the current 
+                // document is not the same as that of the selected modelObject,
+                // an exception will be thrown. Dynamo shouldn't be crashed in 
+                // cases like this, so handle this exception gracefully.
+                // 
+                return null;
+            }
         }
 
         protected override void Updater_ElementsDeleted(
@@ -221,6 +343,13 @@ namespace Dynamo.Nodes
             if (!SelectionResults.Any() || 
                 !document.Equals(SelectionOwner) ||
                 !deleted.Any())
+            {
+                return;
+            }
+
+            // If the deleting operations does not make any elements in SelectionResults
+            // invalid, then there is no need to update.
+            if (SelectionResults.Where(el => !el.IsValidObject).Count() == 0)
             {
                 return;
             }
@@ -372,7 +501,7 @@ namespace Dynamo.Nodes
             if (!SelectionResults.Any() ||
                 !document.Equals(SelectionOwner) ||
                 !deleted.Any() ||
-                !SelectionResults.Any(x=>deleted.Contains(x.ElementId))) return;
+                !SelectionResults.Any(x => deleted.Contains(x.ElementId))) return;
 
             // The new selections is everything in the current selection
             // that is not in the deleted collection as well
@@ -395,7 +524,7 @@ namespace Dynamo.Nodes
             // If this modification is being parsed as part of a document
             // update that also contains a deletion, then we need to try to 
             // get the elements first to see if they are valid. 
-            var validIds = SelectionResults.Select(doc.GetElement).Where(x=>x != null).Select(x=>x.UniqueId);
+            var validIds = SelectionResults.Select(doc.GetElement).Where(x => x != null).Select(x => x.UniqueId);
 
             // If none of the updated elements are included in the 
             // list of valid ids in the selection, then return.
@@ -403,10 +532,10 @@ namespace Dynamo.Nodes
             {
                 return;
             }
-                
+
             // We want this modification to trigger a graph reevaluation
             // and we want the AST for this node to be regenerated.
-            OnNodeModified(forceExecute:true);
+            OnNodeModified(forceExecute: true);
         }
 
         protected override IEnumerable<Reference> ExtractSelectionResults(Reference selection)
@@ -417,7 +546,7 @@ namespace Dynamo.Nodes
 
     #endregion
 
-    [NodeName("Select Analysis Results"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+    [NodeName("Select Analysis Results"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectAnalysisResultsDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible,
      IsVisibleInDynamoLibrary(false)]
     public class DSAnalysisResultSelection : ElementSelection<Element>
@@ -430,7 +559,7 @@ namespace Dynamo.Nodes
                 "Analysis Results") { }
     }
 
-    [NodeName("Select Model Element"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+    [NodeName("Select Model Element"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectModelElementDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSModelElementSelection : ElementSelection<Element>
     {
@@ -442,7 +571,7 @@ namespace Dynamo.Nodes
                 "Element") { }
     }
 
-    [NodeName("Select Face"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+    [NodeName("Select Face"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSFaceSelection : ReferenceSelection
     {
@@ -454,7 +583,7 @@ namespace Dynamo.Nodes
                 "Face of Element Id") { }
     }
 
-    [NodeName("Select Edge"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+    [NodeName("Select Edge"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectEdgeDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSEdgeSelection : ReferenceSelection
     {
@@ -466,7 +595,7 @@ namespace Dynamo.Nodes
                 "Edge of Element Id") { }
     }
 
-    [NodeName("Select Point on Face"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+    [NodeName("Select Point on Face"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectPointonFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSPointOnElementSelection : ReferenceSelection
     {
@@ -527,7 +656,7 @@ namespace Dynamo.Nodes
         }
     }
 
-    [NodeName("Select UV on Face"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+    [NodeName("Select UV on Face"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectUVonFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSUvOnElementSelection : ReferenceSelection
     {
@@ -588,7 +717,7 @@ namespace Dynamo.Nodes
     }
 
     [NodeName("Select Divided Surface Families"),
-     NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectDividedSurfaceFamiliesDescription", typeof(DSRevitNodesUI.Properties.Resources)),
      IsDesignScriptCompatible]
     public class DSDividedSurfaceFamiliesSelection : ElementSelection<DividedSurface>
@@ -604,13 +733,32 @@ namespace Dynamo.Nodes
         // Revit, this will cause the sub-elements to be modified.
         protected override IEnumerable<Element> ExtractSelectionResults(DividedSurface selection)
         {
-            return
-                RevitElementSelectionHelper<DividedSurface>.GetFamilyInstancesFromDividedSurface(
-                    selection);
+            IEnumerable<Element> result;
+            try
+            {
+                result = RevitElementSelectionHelper<DividedSurface>.GetFamilyInstancesFromDividedSurface(
+                            selection).ToList();
+            }
+            catch
+            {
+                result = new List<Element>();
+            }
+
+            return result;
+        }
+
+        public override string ToString()
+        {
+            if (Selection.Any() && !SelectionResults.Any())
+            {
+                return Resources.NoFamilyInstancesInDividedSurfaceWarning;
+            }
+
+            return base.ToString();
         }
     }
 
-    [NodeName("Select Model Elements"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+    [NodeName("Select Model Elements"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectModelElementsDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSModelElementsSelection : ElementSelection<Element>
     {
@@ -622,7 +770,7 @@ namespace Dynamo.Nodes
                 "Elements") { }
     }
 
-    [NodeName("Select Faces"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+    [NodeName("Select Faces"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectFacesDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class SelectFaces : ReferenceSelection
     {
@@ -633,4 +781,17 @@ namespace Dynamo.Nodes
                 "Select faces.",
                 "Faces") { }
     }
+
+    [NodeName("Select Edges"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription("SelectEdgesDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    public class SelectEdges : ReferenceSelection
+    {
+        public SelectEdges()
+            : base(
+                SelectionType.Many,
+                SelectionObjectType.Edge,
+                DSRevitNodesUI.Properties.Resources.SelectEdgesDescription,
+                DSRevitNodesUI.Properties.Resources.SelectEdgesPrefix) { }
+    }
+
 }

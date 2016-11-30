@@ -4,14 +4,14 @@ using System.Linq;
 
 using Autodesk.Revit.UI.Events;
 
+using Dynamo.Applications;
 using Dynamo.Applications.Models;
-using Dynamo.Models;
-using Dynamo.Nodes;
+using Dynamo.Graph.Nodes;
 
 using ProtoCore.AST.AssociativeAST;
-
 using RevitServices.Elements;
 using RevitServices.Persistence;
+using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
 {
@@ -23,23 +23,23 @@ namespace DSRevitNodesUI
 
         public SunSettings()
         {
-            OutPortData.Add(new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip));
-            
-            RegisterAllPorts();
-            
-            RevitServicesUpdater.Instance.ElementsModified += Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.ViewActivated += CurrentUIApplication_ViewActivated;
+            OutPorts.Add(new PortModel(PortType.Output, this,
+                new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip)));
 
-            CurrentUIApplicationOnViewActivated();
+            RegisterAllPorts();
+
+            RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
+            DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
+
+            DynamoRevitApp.AddIdleAction(() => CurrentUIApplicationOnViewActivated());
         }
 
         public override void Dispose()
         {
-            base.Dispose();
+            RevitServicesUpdater.Instance.ElementsUpdated -= Updater_ElementsUpdated;
+            DynamoRevitApp.EventHandlerProxy.ViewActivated -= CurrentUIApplication_ViewActivated;
 
-            RevitServicesUpdater.Instance.ElementsModified -= Updater_ElementsModified;
-            DocumentManager.Instance.CurrentUIApplication.ViewActivated -=
-                CurrentUIApplication_ViewActivated;
+            base.Dispose();
         }
 
         private void CurrentUIApplication_ViewActivated(object sender, ViewActivatedEventArgs e)
@@ -54,9 +54,11 @@ namespace DSRevitNodesUI
             OnNodeModified(forceExecute:true);
         }
 
-        private void Updater_ElementsModified(IEnumerable<string> updated)
+        private void Updater_ElementsUpdated(object sender, ElementUpdateEventArgs e)
         {
-            if (updated.Contains(settingsID))
+            if (e.Operation != ElementUpdateEventArgs.UpdateType.Modified) return;
+
+            if (e.GetUniqueIds().Contains(settingsID))
             {
                 OnNodeModified(forceExecute:true);
             }

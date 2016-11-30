@@ -2,9 +2,8 @@
 using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
-
-using DSCoreNodesUI;
-
+using Dynamo.Graph.Nodes;
+using Dynamo.Nodes;
 using Dynamo.Models;
 using Dynamo.Tests;
 
@@ -12,12 +11,14 @@ using NUnit.Framework;
 
 using ProtoCore.Mirror;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class TransformTest : SystemTest
+    class TransformTest : RevitSystemTestBase
     {
         [Test]
         [TestModel(@".\empty.rvt")]
@@ -31,7 +32,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             // Check that all nodes and connectors are loaded
-            Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(2, model.CurrentWorkspace.Connectors.Count());
 
             var nodes = ViewModel.Model.CurrentWorkspace.Nodes;
@@ -70,7 +71,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             // Check that all nodes and connectors are loaded
-            Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(2, model.CurrentWorkspace.Connectors.Count());
 
             var nodes = ViewModel.Model.CurrentWorkspace.Nodes;
@@ -108,7 +109,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             // Check that all nodes and connectors are loaded
-            Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(2, model.CurrentWorkspace.Connectors.Count());
 
             var nodes = ViewModel.Model.CurrentWorkspace.Nodes;

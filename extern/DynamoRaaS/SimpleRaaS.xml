@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleRaaS</name>
+    </assembly>
+    <members>
+        <member name="T:Analyze.Render.Core">
+            <summary>
+            Provides static access to the lazily initialized RaaS client and job monitor
+            </summary>
+        </member>
+        <member name="M:Analyze.Render.CloudRenderingJob.ByViewNameWidthHeight(System.String,System.Int32,System.Int32,Analyze.Render.RenderType,Analyze.Render.RenderQuality)">
+            <summary>
+            Set the parameters of a render job to be run in the cloud.  \n\nUse this node with CloudRender to submit the job.
+            </summary>
+            <param name="viewName">The name of the 3D view</param>
+            <param name="width">The width of the view (> 150)</param>
+            <param name="height">The height of the view (> 150)</param>
+            <param name="renderType"></param>
+            <param name="renderQuality"></param>
+            <returns>The job to be submitted</returns>
+        </member>
+        <member name="M:Analyze.Render.DateTime.ByDateInformation(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Make a DateTime object from month, day, year, hour, minute, second
+            </summary>
+            <param name="month">The month as an integer between 1 and 12</param>
+            <param name="day">The day as an integer between 1 and 31</param>
+            <param name="year">The year as an integer</param>
+            <param name="hour">Hour in the day as integer between 0 and 23</param>
+            <param name="minute">Minute in the hour as integer between 0 and 59</param>
+            <param name="second">Second in the minute as integer between 0 and 59</param>
+            <param name="timezoneOffset">Integer offset from UTC time zone between -12, 12</param>
+            <returns></returns>
+        </member>
+        <member name="M:Analyze.Render.RenderingEnvironment.BySkyModelLocationDate(Analyze.Render.SkyModel,System.Double,System.Double,Analyze.Render.DateTime)">
+            <summary>
+            Describe the characteristics of the environment in which the rendering should take place
+            </summary>
+            <param name="skymodelType">A SkyModel describing the characteristics of the sky</param>
+            <param name="gpsX">GPS coordinate in X direction</param>
+            <param name="gpsY">GPS coordinate in Y direction</param>
+            <param name="dateTime">The time at which to evaluate (the UTC offset must correspond to the GPS coordinate)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Analyze.Render.SkyModel.ByTypeConstants(Analyze.Render.SkyModelType,System.Double,System.Double,System.Double)">
+            <summary>
+            Create a SkyModel for Rendering
+            </summary>
+            <param name="skymodelType">The type of skymodel to use. If left null, uses Perez.</param>
+            <param name="diffHorizIrrad">Diffuse horizontal irradiance of the sky in W/m^2</param>
+            <param name="dirNormIrrad">Direct normal irradiance of the sky in W/m^2</param>
+            <param name="globalHorizIrrad">Global horizontal irradiance of the sky in W/m^2</param>
+            <returns></returns>
+        </member>
+        <member name="M:Analyze.Daylighting.CloudDaylightingJob.ByViewNameDivisionsGridBoundary(System.String,System.Int32,System.Int32,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point,Analyze.Render.RenderingEnvironment)">
+            <summary>
+            Set the parameters of a daylighting analysis job to be run in the cloud.  \n\nDirect the output of this node with Cloud Render to submit the job.
+            </summary>
+            <param name="viewName">The name of the Revit 3D view</param>
+            <param name="xDivisions">The number of divisions in X direction of sensor grid (> 150)</param>
+            <param name="yDivisions">The number of divisions in Y direction of sensor grid (> 150)</param>
+            <param name="bottomLeft">Of sensor area in meters</param>
+            <param name="bottomRight">Of sensor area in meters</param>
+            <param name="topLeft">Of sensor area in meters</param>
+            <param name="environment">Environment data for analysis</param>
+            <returns></returns>
+        </member>
+        <member name="M:Analyze.Daylighting.DaylightingResults.Parse(System.String)">
+            <summary>
+            Open and parse an SDF daylighting data file
+            </summary>
+            <param name="path">A path to a valid SDF file on disk</param>
+            <returns></returns>
+        </member>
+        <member name="P:Analyze.Daylighting.DaylightingResults.XResolution">
+            <summary>
+            The resolution of the DaylightingData grid in the x direction
+            </summary>
+        </member>
+        <member name="P:Analyze.Daylighting.DaylightingResults.YResolution">
+            <summary>
+            The resolution of the DaylightingData grid in the y direction
+            </summary>
+        </member>
+        <member name="P:Analyze.Daylighting.DaylightingResults.Resolution">
+            <summary>
+            The resolution of the DaylightingData grid in the form [x,y]
+            </summary>
+        </member>
+        <member name="M:Analyze.Daylighting.DaylightingResults.IlluminanceValues">
+            <summary>
+            Read Foreground Illuminance from DaylightingData
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Analyze.Daylighting.DaylightingResults.Colors(System.Double)">
+            <summary>
+            ColorData from DaylightingData 
+            </summary>
+            <param name="clamp"></param>
+            <returns>1 dimensional list of all of the colors</returns>
+        </member>
+        <member name="M:Analyze.Daylighting.DaylightingResults.Normals">
+            <summary>
+            PositionData from DaylightingData 
+            </summary>
+            <returns>1 dimensional list of all of the sample points</returns>
+        </member>
+        <member name="M:Analyze.Daylighting.DaylightingResults.Points">
+            <summary>
+            PositionData from DaylightingData 
+            </summary>
+            <returns>1 dimensional list of all of the sample points</returns>
+        </member>
+        <member name="M:Analyze.Daylighting.DaylightingResults.ToImage(System.Double)">
+            <summary>
+            Extract an image from DaylightingData
+            </summary>
+            <param name="clamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Analyze.Daylighting.Illuminance.ByRGB(System.Double,System.Double,System.Double)">
+            <summary>
+            Construct an Illuminance data point.  Illuminance is the integrated 
+            total visible light energy arriving per unit area on a surface from all directions. 
+            The data is three colored illuminance value (RGB). Each color is measured in Lux. 
+            Lux is a derived unit equal to lumens per square meter.
+            </summary>
+            <param name="r"></param>
+            <param name="g"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Analyze.Daylighting.Illuminance.ToSRGB">
+            <summary>
+            Transform an RGB Illuminance value to the sRGB standard computed as (0.2126 * R + 0.7152 * G + 0.0722 * B).  The unit of the returned value is in lux (lumens/m^2)."
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Analyze.Daylighting.Illuminance.ToFootCandles(System.Double)">
+            <summary>
+            Transform a single illuminance value in lux to foot-candles
+            </summary>
+            <param name="luxValue">An illuminance value in lux</param>
+            <returns>The transformed illuminance value in foot-candles</returns>
+        </member>
+        <member name="T:SimpleRaaS.DismissableMessageBox">
+            <summary>
+            Interaction logic for DismissableMessageBox.xaml
+            </summary>
+        </member>
+        <member name="M:SimpleRaaS.DismissableMessageBox.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+    </members>
+</doc>

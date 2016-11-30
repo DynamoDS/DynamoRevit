@@ -3,21 +3,29 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using NUnit.Framework;
+
+using RevitTestServices;
+
 using RTF.Framework;
 using Autodesk.Revit.DB;
-
+using CoreNodeModels.Input;
+using Dynamo.Graph.Nodes.ZeroTouch;
+using Dynamo.Models;
 using Dynamo.Nodes;
+using Dynamo.Tests;
 
 using RevitServices.Persistence;
 
 using Transaction = Autodesk.Revit.DB.Transaction;
-using DoubleSlider = DSCoreNodesUI.Input.DoubleSlider;
-using IntegerSlider = DSCoreNodesUI.Input.IntegerSlider;
+using DoubleSlider = CoreNodeModels.Input.DoubleSlider;
+using IntegerSlider = CoreNodeModels.Input.IntegerSlider;
+using Utils = RevitServices.Elements.ElementUtils;
+using Dynamo.Graph.Nodes;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    internal class ElementBindingTests : SystemTest
+    internal class ElementBindingTests : RevitSystemTestBase
     {
         /// <summary>
         /// This function gets all the model curves in the current Revit document
@@ -128,8 +136,8 @@ namespace RevitSystemTests
         /// <returns>the element id</returns>
         private ElementId GetBindingElementIdForNode(Guid guid)
         {
-            ProtoCore.Core core = ViewModel.Model.EngineController.LiveRunnerCore;
-            var guidToCallSites = core.DSExecutable.RuntimeData.GetCallsitesForNodes(new[] { guid }, core.DSExecutable);
+            ProtoCore.RuntimeCore runtimeCore = ViewModel.Model.EngineController.LiveRunnerRuntimeCore;
+            var guidToCallSites = runtimeCore.RuntimeData.GetCallsitesForNodes(new[] { guid }, runtimeCore.DSExecutable);
 
             var callSites = guidToCallSites[guid];
             if (!callSites.Any())
@@ -230,6 +238,66 @@ namespace RevitSystemTests
             points = GetAllReferencePointElements(true);
             Assert.AreEqual(1, points.Count);
             pnt = points[0] as ReferencePoint;
+            Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void CreateInDynamoCloseGraphReopenGraphRerun()
+        {
+            //Create a reference point at (0.0, 0.0, 0.0);
+            string dynFilePath = Path.Combine(workingDirectory, @".\ElementBinding\CreateOneReferencePoint.dyn");
+            string testPath = Path.GetFullPath(dynFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            //Close the current graph
+            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+
+            //Open the same graph 
+            ViewModel.OpenCommand.Execute(testPath);
+
+            //Run the graph once again
+            RunCurrentModel();
+
+            var points = GetAllReferencePointElements(true);
+            Assert.AreEqual(2, points.Count);
+            var pnt = points[0] as ReferencePoint;
+            Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
+            pnt = points[1] as ReferencePoint;
+            Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void CreateInDynamoSaveCloseGraphReopenGraphRerun()
+        {
+            //Create a reference point at (0.0, 0.0, 0.0);
+            string dynFilePath = Path.Combine(workingDirectory, @".\ElementBinding\CreateOneReferencePoint.dyn");
+            string testPath = Path.GetFullPath(dynFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            //Save the current graph
+            string tempPath = Path.Combine(Path.GetTempPath(), "CreateOneReferencePoint.dyn");
+            ViewModel.SaveAsCommand.Execute(tempPath);
+
+            //Close the current graph
+            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+
+            //Open the saved graph 
+            ViewModel.OpenCommand.Execute(tempPath);
+
+            //Run the graph once again
+            RunCurrentModel();
+
+            var points = GetAllReferencePointElements(true);
+            Assert.AreEqual(1, points.Count);
+            var pnt = points[0] as ReferencePoint;
             Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
         }
 
@@ -619,6 +687,153 @@ namespace RevitSystemTests
             arc = GetArcFromArcCurveElement(curve);
             Assert.IsNotNull(arc);
             IsFuzzyEqual(8, arc.Radius, 1.0e-6);
+        }
+
+        [Test, TestModel(@".\ElementBinding\RebindingSingleDimension.rfa")]
+        public void Rebinding_SingleDimensionDecreaseOnReopen()
+        {
+            var model = OpenElementBindingWorkspace("RebindingSingleDimension.dyn");
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var numNode = model.CurrentWorkspace.FirstNodeFromWorkspace<DoubleInput>();
+
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 3, 1);
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 8, 1);
+        }
+
+        [Test, TestModel(@".\ElementBinding\RebindingSingleDimension.rfa")]
+        public void Rebinding_SingleDimensionIncreaseOnReopen()
+        {
+            var model = OpenElementBindingWorkspace("RebindingSingleDimension.dyn");
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var numNode = model.CurrentWorkspace.FirstNodeFromWorkspace<DoubleInput>();
+
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 8, 1);
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 3, 1);
+        }
+
+        [Test, TestModel(@".\ElementBinding\RebindingMultiDimension.rfa")]
+        public void Rebinding_MultiDimensionDecreaseOnReopen()
+        {
+            var model = OpenElementBindingWorkspace("RebindingMultiDimension.dyn");
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var numNode = model.CurrentWorkspace.FirstNodeFromWorkspace<DoubleInput>();
+
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 3, 2);
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 8, 2);
+        }
+
+        [Test, TestModel(@".\ElementBinding\RebindingMultiDimension.rfa")]
+        public void Rebinding_MultiDimensionIncreaseOnReopen()
+        {
+            var model = OpenElementBindingWorkspace("RebindingMultiDimension.dyn");
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var numNode = model.CurrentWorkspace.FirstNodeFromWorkspace<DoubleInput>();
+
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 8, 2);
+            ChangeNumberValueAndCheckElementCount(numNode, doc, 3, 2);
+        }
+
+        [Test, TestModel(@".\ElementBinding\RebindingSingleDimension.rfa")]
+        public void Rebinding_NodeDeletedBeforeRun()
+        {
+            var model = OpenElementBindingWorkspace("RebindingSingleDimension.dyn");
+
+            var refPtNode = model.CurrentWorkspace.FirstNodeFromWorkspace<DSFunction>();
+            var command = new DynamoModel.DeleteModelCommand(refPtNode.GUID);
+            ViewModel.ExecuteCommand(command);
+            RunCurrentModel();
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var refPts = Utils.AllElementsOfType<ReferencePoint>(doc);
+            Assert.AreEqual(refPts.Count(), 0);
+        }
+
+        [Test, TestModel(@".\ElementBinding\DynamoSample.rvt")]
+        public void Rebinding_ReboundAdaptiveComponentsAreNotDeleted()
+        {
+            var model = OpenElementBindingWorkspace("RebindingBatchedACs.dyn");
+            RunCurrentModel();
+            NodeModel adaptiveCompNode = model.CurrentWorkspace.Nodes.Where(x => x.NickName == "AdaptiveComponent.ByPoints").First();
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var familyInstances = Utils.AllElementsOfType<FamilyInstance>(doc);
+            Assert.AreEqual(9,adaptiveCompNode.GetValue(0, model.EngineController).GetElements().Select(x=>x.Data).ToList().Count);
+        }
+
+        [Test]
+        [TestModel(@".\ElementBinding\FamilyInstancePlacementByFace.rvt")]
+        public void ByFace_UpdateLocation_ProducesValidFamilyInstanceWithCorrectLocation()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\ElementBinding\FamilyInstancePlacementByFace.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            var initialNumber = GetAllFamilyInstances(false).Count;
+
+            // The current Revit file already has a family placed at UV param location 0.50
+            // We update placement location of family instance to 0.75 param location
+            var cbn = GetNode<CodeBlockNodeModel>("a7e21de3-bff4-4d1d-b23d-3fb2db980d57");
+
+            var command = new Dynamo.Models.DynamoModel.UpdateModelValueCommand(
+                Guid.Empty, cbn.GUID, "Code", "0.75");
+            this.Model.ExecuteCommand(command);
+
+            RunCurrentModel();
+
+            var finalNumber = GetAllFamilyInstances(false).Count;
+            var famInst = GetPreviewValue("56cf69ec-d4ca-4add-810d-aee64d003c76") as Revit.Elements.FamilyInstance;
+            Assert.IsNotNull(famInst);
+
+            // Assert that there is no change in the total number of family instances in the document
+            // as the original should have been updated and no new one should be created
+            Assert.AreEqual(initialNumber, finalNumber);
+        }
+
+        [Test]
+        [TestModel(@".\ElementBinding\MultipleCustomInstance.rvt")]
+        public void MultipleCustomNodeInstance()
+        {
+            string dynPath = Path.Combine(workingDirectory, @".\ElementBinding\PlaceMultipleRevitCustomNodes.dyn");
+
+            ViewModel.OpenCommand.Execute(dynPath);
+            RunCurrentModel();
+
+            var walls = GetAllWalls();
+            Assert.AreEqual(8, walls.Count());
+
+            var cbn = GetNode<CodeBlockNodeModel>("a4705f1f-1cfb-43eb-ba35-a797d5703d37");
+            var command = new Dynamo.Models.DynamoModel.UpdateModelValueCommand(Guid.Empty, cbn.GUID, "Code", "100;100;");
+            this.Model.ExecuteCommand(command);
+
+            walls = GetAllWalls();
+            Assert.AreEqual(8, walls.Count());
+        }
+
+
+        private DynamoModel OpenElementBindingWorkspace(string name)
+        {
+            var dynFilePath = Path.Combine(
+                workingDirectory, string.Format(
+                @".\ElementBinding\{0}", name));
+            var testPath = Path.GetFullPath(dynFilePath);
+
+            var model = ViewModel.Model;
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            return model;
+        }
+
+        private void ChangeNumberValueAndCheckElementCount(DoubleInput numNode, Document doc, int value, int power)
+        {
+            numNode.Value = value.ToString();
+            RunCurrentModel();
+            var refPts = Utils.AllElementsOfType<ReferencePoint>(doc);
+            Assert.AreEqual(refPts.Count(), Math.Pow(value + 1,power));
         }
     }
 }

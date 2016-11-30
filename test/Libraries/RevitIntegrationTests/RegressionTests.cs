@@ -2,28 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-
-using Autodesk.Revit.DB;
-
-using Dynamo.Applications;
-using Dynamo.Applications.Models;
+using Dynamo.Graph.Nodes;
 using Dynamo.Models;
-using Dynamo.ViewModels;
-
-using DynamoUtilities;
-
 using NUnit.Framework;
-
-using RevitServices.Persistence;
-using RevitServices.Threading;
-using RevitServices.Transactions;
 using RevitServices.Elements;
+using RevitTestServices;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    public class RegressionTest : SystemTest
+    public class RegressionTest : RevitSystemTestBase
     {
         /// <summary>
         /// Automated creation of regression test cases. Opens each workflow
@@ -53,13 +41,17 @@ namespace RevitSystemTests
                 //open the revit model
                 SwapCurrentModel(revitFilePath);
 
+                //Ensure SystemTestBase picks up the right directory.
+                pathResolver = new RevitTestPathResolver();
+                (pathResolver as RevitTestPathResolver).InitializePreloadedLibraries();
+
                 //Setup should be called after swapping document, so that RevitDynamoModel 
                 //is now associated with swapped model.
                 Setup();
 
                 //open the dyn file
                 ViewModel.OpenCommand.Execute(dynamoFilePath);
-                Assert.IsTrue(ViewModel.Model.CurrentWorkspace.Nodes.Count > 0);
+                Assert.IsTrue(ViewModel.Model.CurrentWorkspace.Nodes.Any());
                 AssertNoDummyNodes();
                 
                 //run the expression and assert that it does not
@@ -78,9 +70,6 @@ namespace RevitSystemTests
             }
             finally
             {
-                ViewModel.Model.ShutDown(false);
-                ViewModel = null;
-                RevitServicesUpdater.DisposeInstance();
                 TearDown();
             }
 
@@ -99,7 +88,7 @@ namespace RevitSystemTests
         {
             var testParameters = new List<RegressionTestData>();
 
-			var config = RevitTestConfiguration.LoadConfiguration();
+            var config = RevitTestConfiguration.LoadConfiguration();
             string testsLoc = Path.Combine(config.WorkingDirectory, "Regression");
             var regTestPath = Path.GetFullPath(testsLoc);
 

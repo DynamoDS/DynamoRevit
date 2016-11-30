@@ -4,19 +4,19 @@ using System.Globalization;
 using System.Linq;
 using System.Xml;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Events;
 using DSCore;
-using DSCoreNodesUI;
-
+using CoreNodeModels;
 using Dynamo.Applications;
-using Dynamo.DSEngine;
+using Dynamo.Engine;
+using Dynamo.Graph;
+using Dynamo.Graph.Nodes;
 using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.Utilities;
-
 using ProtoCore.AST.AssociativeAST;
-
 using Revit.Elements;
-
+using RevitServices.EventHandler;
 using RevitServices.Persistence;
 
 using Category = Revit.Elements.Category;
@@ -26,24 +26,40 @@ using FamilyInstance = Autodesk.Revit.DB.FamilyInstance;
 using FamilySymbol = Autodesk.Revit.DB.FamilySymbol;
 using Level = Autodesk.Revit.DB.Level;
 using Parameter = Autodesk.Revit.DB.Parameter;
+using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
 {
+    public class DropDownItemEqualityComparer : IEqualityComparer<DynamoDropDownItem>
+    {
+        public bool Equals(DynamoDropDownItem x, DynamoDropDownItem y)
+        {
+            return string.Equals(x.Name, y.Name);
+        }
+
+        public int GetHashCode(DynamoDropDownItem obj)
+        {
+            return obj.Name.GetHashCode();
+        }
+    }
+
     public abstract class RevitDropDownBase : DSDropDownBase
     {
+
         protected RevitDropDownBase(string value) : base(value)
         {
-           DocumentManager.Instance.CurrentUIApplication.Application.DocumentOpened += Controller_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
         void Controller_RevitDocumentChanged(object sender, EventArgs e)
         {
             PopulateItems();
+        }
 
-            if (Items.Any())
-            {
-                SelectedIndex = 0;
-            }
+        public override void Dispose()
+        {
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= Controller_RevitDocumentChanged;
+            base.Dispose();
         }
     }
 
@@ -57,29 +73,32 @@ namespace DSRevitNodesUI
 
         public FamilyTypes() : base("Family Type") { }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
 
             var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
 
             fec.OfClass(typeof(Family));
-            if (fec.ToElements().Count == 0)
+            var elements = fec.ToElements();
+            if (!elements.Any())
             {
                 Items.Add(new DynamoDropDownItem(NO_FAMILY_TYPES, null));
                 SelectedIndex = 0;
-                return;
+                return SelectionState.Done;
             }
 
-            foreach (Family family in fec.ToElements())
+            foreach (Family family in elements)
             {
-                foreach (FamilySymbol fs in family.Symbols)
+                foreach (var id in family.GetFamilySymbolIds())
                 {
+                    var fs = family.Document.GetElement(id);
                     Items.Add(new DynamoDropDownItem(string.Format("{0}:{1}", family.Name, fs.Name), fs));
                 }
             }
 
             Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
@@ -98,8 +117,8 @@ namespace DSRevitNodesUI
             };
 
             var functionCall = AstFactory.BuildFunctionCall
-                <System.String, System.String, Revit.Elements.FamilySymbol>
-                (Revit.Elements.FamilySymbol.ByFamilyNameAndTypeName, args);
+                <System.String, System.String, Revit.Elements.FamilyType>
+                (Revit.Elements.FamilyType.ByFamilyNameAndTypeName, args);
 
             return new[] {AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
         }
@@ -120,19 +139,33 @@ namespace DSRevitNodesUI
         public FamilyInstanceParameters()
             : base("Parameter") 
         {
-            this.AddPort(PortType.Input, new PortData("f", Properties.Resources.PortDataFamilySymbolToolTip), 0);
-            this.PropertyChanged += OnPropertyChanged;
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("f", Properties.Resources.PortDataFamilySymbolToolTip)));
+            PropertyChanged += OnPropertyChanged;
         }
 
         void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName != "IsUpdated")
+            if (e.PropertyName != "CachedValue")
                 return;
 
             if (InPorts.Any(x => x.Connectors.Count == 0))
+            {
+                Items.Clear(); //The input is not connected, so clear the list.
+                return;
+            }
+
+            var oldElement = element;
+            element = GetInputElement();
+            if(element == null)
+            {
+                Items.Clear();
+                return;
+            }
+
+            if (oldElement != null && oldElement.Id == element.Id)
                 return;
 
-            element = GetInputElement();
+            PopulateItems();
         }
 
         private static string getStorageTypeString(StorageType st)
@@ -151,52 +184,67 @@ namespace DSRevitNodesUI
             }
         }
 
-        public override void PopulateItems() //(IEnumerable set, bool readOnly)
+        /// <summary>
+        /// Reads the internal element to get all the family 
+        /// or instance parameters, and adds them to the Items collection.
+        /// 
+        /// Items are sorted alphabetically by name. 
+        /// If the SelectedIndex is already set, it is set to zero.
+        /// </summary>
+        protected override SelectionState PopulateItemsCore(string currentSelection) //(IEnumerable set, bool readOnly)
         {
             //only update the collection on evaluate
             //if the item coming in is different
             if (element == null || element.Id.Equals(this.storedId))
-                return;
-            else
-            {
-                this.storedId = element.Id;
-                this.Items.Clear();
-            }
+                return SelectionState.Restore;
 
-            FamilySymbol fs = element as FamilySymbol;
-            FamilyInstance fi = element as FamilyInstance;
-            if(null != fs)
-                AddFamilySymbolParameters(fs);
-            if(null != fi)
-                AddFamilyInstanceParameters(fi);
+            storedId = element.Id;
+            Items.Clear();
+            
+            AddElementParams(element);
 
-            Items = Items.OrderBy(x => x.Name).ToObservableCollection<DynamoDropDownItem>();
+            Items = Items.OrderBy(x => x.Name).Distinct(new DropDownItemEqualityComparer()).ToObservableCollection<DynamoDropDownItem>();
+
+            return SelectionState.Restore;
         }
 
-        private void AddFamilySymbolParameters(FamilySymbol fs)
+        private void AddElementParams(Element e)
         {
-            foreach (Parameter p in fs.Parameters)
+            foreach (Parameter p in e.Parameters)
             {
-                if (p.IsReadOnly || p.StorageType == StorageType.None)
-                    continue;
-                Items.Add(
-                    new DynamoDropDownItem(
-                        string.Format("{0}(Type)({1})", p.Definition.Name, getStorageTypeString(p.StorageType)), p.Definition.Name));
+                if (!(p.StorageType == StorageType.None))
+                {
+                    AddDropDownItem(p);
+                }
+            }
+            // if element can have type assigned it's safe to assume that it's an instance
+            // and add type parameters to the list
+            if (e.CanHaveTypeAssigned())
+            {
+                ElementType et = DocumentManager.Instance.CurrentDBDocument.GetElement(e.GetTypeId()) as ElementType;
+                if (et != null)
+                {
+                    AddTypeParams(et);
+                }
             }
         }
 
-        private void AddFamilyInstanceParameters(FamilyInstance fi)
+        private void AddTypeParams(ElementType et)
         {
-            foreach (Parameter p in fi.Parameters)
+            foreach (Parameter p in et.Parameters)
             {
-                if (p.IsReadOnly || p.StorageType == StorageType.None)
+                if (p.StorageType == StorageType.None)
                     continue;
-                Items.Add(
-                    new DynamoDropDownItem(
-                        string.Format("{0}({1})", p.Definition.Name, getStorageTypeString(p.StorageType)), p.Definition.Name));
-            }
 
-            AddFamilySymbolParameters(fi.Symbol);
+                AddDropDownItem(p);
+            }
+        }
+
+        private void AddDropDownItem(Parameter p)
+        {
+            Items.Add(
+                new DynamoDropDownItem(
+                    string.Format("{0}(Type)({1})", p.Definition.Name, getStorageTypeString(p.StorageType)), p.Definition.Name));
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
@@ -218,9 +266,14 @@ namespace DSRevitNodesUI
             
             var identifier = inputNode.GetAstIdentifierForOutputIndex(index).Name;
 
-            if (EngineController == null) return null;
-            var data = this.EngineController.GetMirror(identifier).GetData();
-
+            var data = inputNode.CachedValue; //This may not represent the correct value for multiple output ports.
+            //If EngineController is set, find the real mirrordata. In headless 
+            //mode it may not be set, because it is set from NodeView customization.
+            if (EngineController != null) 
+            {
+                data = this.EngineController.GetMirror(identifier).GetData();
+            }
+            if (data == null) return null;
 
             object family = data.IsCollection ? 
                 data.GetElements().FirstOrDefault() : 
@@ -296,36 +349,32 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FloorTypes : RevitDropDownBase
     {
-        private const string noFloorTypes = "No floor types available.";
+        
 
         public FloorTypes() : base("Floor Type") { }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
 
             var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             fec.OfClass(typeof(Autodesk.Revit.DB.FloorType));
-
-            if (fec.ToElements().Count == 0)
+            var elements = fec.ToElements();
+            if (!elements.Any())
             {
-                Items.Add(new DynamoDropDownItem(noFloorTypes, null));
+                Items.Add(new DynamoDropDownItem(Properties.Resources.NoFloorTypesAvailable, null));
                 SelectedIndex = 0;
-                return;
+                return SelectionState.Done;
             }
 
-            foreach (var ft in fec.ToElements())
-            {
-                Items.Add(new DynamoDropDownItem(ft.Name, ft));
-            }
-
-            Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             if (Items.Count == 0 || 
-                Items[0].Name == noFloorTypes ||
+                Items[0].Name == Properties.Resources.NoFloorTypesAvailable ||
                 SelectedIndex == -1)
             {
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
@@ -350,36 +399,33 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class WallTypes : RevitDropDownBase
     {
-        private const string noWallTypes = "No wall types available.";
+ 
 
         public WallTypes() : base("Wall Type") { }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
 
             var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
 
             fec.OfClass(typeof(Autodesk.Revit.DB.WallType));
-            if (fec.ToElements().Count == 0)
+            var elements = fec.ToElements();
+            if (!elements.Any())
             {
-                Items.Add(new DynamoDropDownItem(noWallTypes, null));
+                Items.Add(new DynamoDropDownItem(Properties.Resources.NoWallTypesAvailable, null));
                 SelectedIndex = 0;
-                return;
+                return SelectionState.Done;
             }
 
-            foreach (var wt in fec.ToElements())
-            {
-                Items.Add(new DynamoDropDownItem(wt.Name, wt));
-            }
-
-            Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             if (Items.Count == 0 ||
-                Items[0].Name == noWallTypes ||
+                Items[0].Name == Properties.Resources.NoWallTypesAvailable ||
                 SelectedIndex == -1)
             {
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
@@ -405,32 +451,118 @@ namespace DSRevitNodesUI
     {
         public Categories()
         {
-            OutPorts[0].PortName = "Category";
-            OutPortData[0].ToolTipString = "The selected Category.";
+            var existing = OutPorts[0];
+            OutPorts[0] = new PortModel(PortType.Output, this, 
+                new PortData("Category", Properties.Resources.PortDataCategoriesToolTip, existing.DefaultValue));
+            OutPorts[0].GUID = existing.GUID;
         }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
-            foreach (var constant in Enum.GetValues(typeof(BuiltInCategory)))
+            var document = DocumentManager.Instance.CurrentDBDocument;
+
+            foreach (BuiltInCategory categoryId in Enum.GetValues(typeof(BuiltInCategory)))
             {
-                Items.Add(new DynamoDropDownItem(constant.ToString().Substring(4), constant));
+                Autodesk.Revit.DB.Category category;
+                
+                try 
+                {
+                    category = Autodesk.Revit.DB.Category.GetCategory(document, categoryId);
+                }
+                catch
+                {
+                    // We get here for internal/deprecated categories
+                    continue;
+                }
+
+                if (category != null)
+                {
+                    string name = getFullName(category);
+                    Items.Add(new DynamoDropDownItem(name, categoryId));
+                }
             }
 
             Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
+            //Some of the legacy categories which were not working before will now be out of index.
+            if (SelectedIndex < 0 || SelectedIndex >= Items.Count)
+                return new[] { AstFactory.BuildNullNode() };
+
+            BuiltInCategory categoryId = (BuiltInCategory)Items[SelectedIndex].Item;
+
             var args = new List<AssociativeNode>
             {
-                AstFactory.BuildStringNode(((BuiltInCategory) Items[SelectedIndex].Item).ToString())
+                AstFactory.BuildIntNode((int)categoryId)
             };
 
-            var func = new Func<string, Category>(Revit.Elements.Category.ByName);
+            var func = new Func<int, Category>(Revit.Elements.Category.ById);
             var functionCall = AstFactory.BuildFunctionCall(func, args);
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+        }
+
+        protected override int ParseSelectedIndex(string index, IList<DynamoDropDownItem> items)
+        {
+            int selectedIndex = -1;
+
+            var splits = index.Split(':');
+            if (splits.Count() > 1)
+            {
+                var name = XmlUnescape(index.Substring(index.IndexOf(':') + 1));
+
+                // Lookup by built in category enum name (without the OST_ prefix)
+                var item = items.FirstOrDefault(i => ((BuiltInCategory)i.Item).ToString().Substring(4) == name);
+                selectedIndex = item != null ?
+                    items.IndexOf(item) :
+                    -1;
+            }
+
+
+            return selectedIndex;
+        }
+
+        protected override string SaveSelectedIndex(int index, IList<DynamoDropDownItem> items)
+        {
+            // If nothing is selected or there are no
+            // items in the collection, than return -1
+            if (index == -1 || items.Count == 0)
+            {
+                return "-1";
+            }
+
+            // Save the enum name for the category (without the OST_ prefix)
+            var item = items[index];
+            BuiltInCategory categoryId = (BuiltInCategory)item.Item;
+            return string.Format("{0}:{1}", index, XmlEscape(categoryId.ToString().Substring(4)));
+        }
+
+        private static string getFullName(Autodesk.Revit.DB.Category category)
+        {
+            string name = string.Empty;
+
+            if(category != null)
+            {
+                var parent = category.Parent;
+                if (parent == null)
+                {
+                    // Top level category
+                    // For example "Cable Trays"
+                    name = category.Name.ToString();
+                }
+                else
+                {
+                    // Sub-category
+                    // For example "Cable Tray - Center Lines"
+                    name = parent.Name.ToString() + " - " + category.Name.ToString();
+                }
+            }
+
+            return name;
         }
     }
 
@@ -444,24 +576,23 @@ namespace DSRevitNodesUI
 
         public Levels() : base("Levels") { }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
 
             //find all levels in the project
             var levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             levelColl.OfClass(typeof(Level));
-
-            if (levelColl.ToElements().Count == 0)
+            var elements = levelColl.ToElements();
+            if (!elements.Any())
             {
                 Items.Add(new DynamoDropDownItem(noLevels, null));
                 SelectedIndex = 0;
-                return;
+                return SelectionState.Done;
             }
 
-            levelColl.ToElements().ToList().ForEach(x => Items.Add(new DynamoDropDownItem(x.Name, x)));
-
-            Items = Items.OrderBy(x => x.Name).ToObservableCollection<DynamoDropDownItem>();
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
@@ -498,7 +629,7 @@ namespace DSRevitNodesUI
             PopulateItems();
         }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
 
@@ -507,18 +638,16 @@ namespace DSRevitNodesUI
 
             var catFilter = new ElementCategoryFilter(category);
             collector.OfClass(typeof(FamilySymbol)).WherePasses(catFilter);
-
-            if (collector.ToElements().Count == 0)
+            var elements = collector.ToElements();
+            if (!elements.Any())
             {
                 Items.Add(new DynamoDropDownItem(noTypesMessage, null));
                 SelectedIndex = 0;
-                return;
+                return SelectionState.Done;
             }
 
-            foreach (var e in collector.ToElements())
-                Items.Add(new DynamoDropDownItem(e.Name, e));
-
-            Items = Items.OrderBy(x => x.Name).ToObservableCollection<DynamoDropDownItem>();
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
@@ -549,7 +678,7 @@ namespace DSRevitNodesUI
     public class StructuralFramingTypes : AllElementsInBuiltInCategory
     {
         public StructuralFramingTypes()
-            : base(BuiltInCategory.OST_StructuralFraming, "Framing Types", "No structural framing types available."){}
+            : base(BuiltInCategory.OST_StructuralFraming, "Framing Types", Properties.Resources.DropDownNoFramingType){}
     }
 
     [NodeName("Structural Column Types")]
@@ -559,11 +688,11 @@ namespace DSRevitNodesUI
     public class StructuralColumnTypes : AllElementsInBuiltInCategory
     {
         public StructuralColumnTypes()
-            : base(BuiltInCategory.OST_StructuralColumns, "Column Types", "No structural column types available."){}
+            : base(BuiltInCategory.OST_StructuralColumns, "Column Types", Properties.Resources.DropDownNoColumnType){}
     }
 
     [NodeName("Spacing Rule Layout")]
-    [NodeCategory(BuiltinNodeCategories.GEOMETRY_CURVE_DIVIDE)]
+    [NodeCategory(BuiltinNodeCategories.REVIT_ELEMENTS_DIVIDEDPATH_ACTION)]
     [NodeDescription("SpacingRuleLayoutDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class SpacingRuleLayouts : EnumAsInt<SpacingRuleLayout> {
@@ -577,10 +706,22 @@ namespace DSRevitNodesUI
     {
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            var typeName = AstFactory.BuildStringNode(Items[SelectedIndex].Name);
-            var assemblyName = AstFactory.BuildStringNode("RevitAPI");
-            var functionCall = AstFactory.BuildFunctionCall(new Func<string,string,object>(Types.FindTypeByNameInAssembly) , new List<AssociativeNode>(){typeName, assemblyName});
-            return new []{AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall)};
+            AssociativeNode node;
+            if(SelectedIndex < 0 || SelectedIndex >= Items.Count)
+            {
+                node = AstFactory.BuildNullNode();
+            }
+            else
+            {
+               var typeName = AstFactory.BuildStringNode(Items[SelectedIndex].Name);
+               var assemblyName = AstFactory.BuildStringNode("RevitAPI");
+
+               node =
+                     AstFactory.BuildFunctionCall(
+                        new Func<string, string, object>(Types.FindTypeByNameInAssembly),
+                        new List<AssociativeNode>() { typeName, assemblyName });
+            }
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
         }
     }
     
@@ -592,15 +733,25 @@ namespace DSRevitNodesUI
     {
         public Views() : base("Views") { }
 
-        public override void PopulateItems()
+        protected override SelectionState PopulateItemsCore(string currentSelection)
         {
-            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-            var views = fec.OfClass(typeof(View)).ToElements();
+            Items.Clear();
 
+            //find all views in the project
+            //exclude <RevisionSchedule> (revision tables on sheets) from list
+            var views = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(View))
+                .Where(x => !x.Name.Contains('<'))
+                .ToList();
+            
+            //there must always be at least 1 view in a Revit document, so we can exclude the empty list check
             foreach (var v in views)
             {
                 Items.Add(new DynamoDropDownItem(v.Name, v));
             }
+            Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+
+            return SelectionState.Restore;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)

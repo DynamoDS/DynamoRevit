@@ -1,28 +1,28 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.IO;
 using System.Reflection;
 using System.Resources;
 using System.Windows;
 using System.Windows.Interop;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
 using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-
+using Autodesk.Revit.UI.Events;
 using Dynamo.Applications.Properties;
-using Dynamo.Utilities;
-
-using DynamoUtilities;
-
 using RevitServices.Elements;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-
 using MessageBox = System.Windows.Forms.MessageBox;
+using Dynamo.Models;
+using RevitServices.EventHandler;
+using System.Collections;
 
 namespace Dynamo.Applications
 {
@@ -35,34 +35,110 @@ namespace Dynamo.Applications
         private static readonly string assemblyName = Assembly.GetExecutingAssembly().Location;
         private static ResourceManager res;
         public static ControlledApplication ControlledApplication;
+        public static UIControlledApplication UIControlledApplication;
         public static List<IUpdater> Updaters = new List<IUpdater>();
-        internal static PushButton DynamoButton;
+        private static PushButton DynamoButton;
+
+        public static string DynamoCorePath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(dynamopath))
+                {
+                    dynamopath = GetDynamoCorePath();
+                }
+                return dynamopath;
+            }
+        }
+
+        /// <summary>
+        /// Finds the Dynamo Core path by looking into registery or potentially a config file.
+        /// </summary>
+        /// <returns>The root folder path of Dynamo Core.</returns>
+        private static string GetDynamoCorePath()
+        {
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            var dynamoRevitRootDirectory = Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
+            var dynamoRoot = GetDynamoRoot(dynamoRevitRootDirectory);
+            
+            var assembly = Assembly.LoadFrom(Path.Combine(dynamoRevitRootDirectory, "DynamoInstallDetective.dll"));
+            var type = assembly.GetType("DynamoInstallDetective.DynamoProducts");
+
+            var methodToInvoke = type.GetMethod("GetDynamoPath", BindingFlags.Public | BindingFlags.Static);
+            if (methodToInvoke == null)
+            {
+                throw new MissingMethodException("Method 'DynamoInstallDetective.DynamoProducts.GetDynamoPath' not found");
+            }
+
+            var methodParams = new object[] { version, dynamoRoot };
+            return methodToInvoke.Invoke(null, methodParams) as string;
+        }
+
+        /// <summary>
+        /// Gets Dynamo Root folder from the given DynamoRevit root.
+        /// </summary>
+        /// <param name="dynamoRevitRoot">The root folder of DynamoRevit binaries</param>
+        /// <returns>The root folder path of Dynamo Core</returns>
+        private static string GetDynamoRoot(string dynamoRevitRoot)
+        {
+            //TODO: use config file to setup Dynamo Path for debug builds.
+
+            //When there is no config file, just replace DynamoRevit by Dynamo 
+            //from the 'dynamoRevitRoot' folder.
+            var parent = new DirectoryInfo(dynamoRevitRoot);
+            var path =  string.Empty;
+            while(null != parent && parent.Name != @"DynamoRevit")
+            {
+                path = Path.Combine(parent.Name, path);
+                parent = Directory.GetParent(parent.FullName);
+            }
+            
+            return parent != null ? Path.Combine(Path.GetDirectoryName(parent.FullName), @"Dynamo", path) : dynamoRevitRoot;
+        }
+
+        private static string dynamopath;
+        private static readonly Queue<Action> idleActionQueue = new Queue<Action>(10);
+        private static EventHandlerProxy proxy;
 
         public Result OnStartup(UIControlledApplication application)
         {
+            // Revit2015+ has disabled hardware acceleration for WPF to
+            // avoid issues with rendering certain elements in the Revit UI. 
+            // Here we get it back, by setting the ProcessRenderMode to Default,
+            // signifying that we want to use hardware rendering if it's 
+            // available.
+
+            RenderOptions.ProcessRenderMode = RenderMode.Default;
+
             try
             {
-                SetupDynamoPaths(application);
+                if (false == TryResolveDynamoCore())
+                    return Result.Failed;
 
-                SubscribeAssemblyResolvingEvent();
-
+                UIControlledApplication = application;
                 ControlledApplication = application.ControlledApplication;
+
+                SubscribeAssemblyEvents();
+                SubscribeApplicationEvents();
 
                 TransactionManager.SetupManager(new AutomaticTransactionStrategy());
                 ElementBinder.IsEnabled = true;
 
-                res = Resources.ResourceManager;
-
                 // Create new ribbon panel
-                RibbonPanel ribbonPanel =
-                    application.CreateRibbonPanel(res.GetString("App_Description"));
+                var panels = application.GetRibbonPanels();
+                var ribbonPanel = panels.FirstOrDefault(p => p.Name.Contains(Resources.App_Description));
+                if(null == ribbonPanel)
+                    ribbonPanel = application.CreateRibbonPanel(Resources.App_Description);
+
+                var fvi = FileVersionInfo.GetVersionInfo(assemblyName);
+                var dynVersion = String.Format(Resources.App_Name, fvi.FileMajorPart, fvi.FileMinorPart);
 
                 DynamoButton =
                     (PushButton)
                         ribbonPanel.AddItem(
                             new PushButtonData(
-                                "Dynamo 0.7",
-                                res.GetString("App_Name"),
+                                dynVersion,
+                                dynVersion,
                                 assemblyName,
                                 "Dynamo.Applications.DynamoRevit"));
 
@@ -80,6 +156,9 @@ namespace Dynamo.Applications
 
                 RegisterAdditionalUpdaters(application);
 
+                RevitServicesUpdater.Initialize(DynamoRevitApp.Updaters);
+                SubscribeDocumentChangedEvent();
+
                 return Result.Succeeded;
             }
             catch (Exception ex)
@@ -91,9 +170,54 @@ namespace Dynamo.Applications
 
         public Result OnShutdown(UIControlledApplication application)
         {
-            UnsubscribeAssemblyResolvingEvent();
+            UnsubscribeAssemblyEvents();
+            UnsubscribeApplicationEvents();
+            UnsubscribeDocumentChangedEvent();
+            RevitServicesUpdater.DisposeInstance();
 
             return Result.Succeeded;
+        }
+
+        private static void OnApplicationIdle(object sender, IdlingEventArgs e)
+        {
+            if (!idleActionQueue.Any())
+                return;
+
+            Action pendingAction = null;
+            lock (idleActionQueue)
+            {
+                pendingAction = idleActionQueue.Dequeue();
+            }
+
+            if (pendingAction != null)
+                pendingAction();
+        }
+
+
+        /// <summary>
+        /// Add an action to run when the application is in the idle state
+        /// </summary>
+        /// <param name="a"></param>
+        public static void AddIdleAction(Action a)
+        {
+            // If we are running in test mode, invoke 
+            // the action immediately.
+            if (DynamoModel.IsTestMode)
+            {
+                a.Invoke();
+            }
+            else
+            {
+                lock (idleActionQueue)
+                {
+                    idleActionQueue.Enqueue(a);
+                }
+            }
+        }
+
+        public static EventHandlerProxy EventHandlerProxy
+        {
+            get { return proxy; }
         }
 
         // should be handled by the ModelUpdater class. But there are some
@@ -120,48 +244,124 @@ namespace Dynamo.Applications
             Updaters.Add(sunUpdater);
         }
 
-        private static void SetupDynamoPaths(UIControlledApplication application)
+        private void SubscribeApplicationEvents()
         {
-            // The executing assembly will be in Revit_20xx, so 
-            // we have to walk up one level. Unfortunately, we
-            // can't use DynamoPathManager here because those are not
-            // initialized until the DynamoModel is constructed.
-            string assDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            UIControlledApplication.Idling += OnApplicationIdle;
 
-            // Add the Revit_20xx folder for assembly resolution
-            DynamoPathManager.Instance.AddResolutionPath(assDir);
+            proxy = new EventHandlerProxy();
 
-            // Setup the core paths
-            DynamoPathManager.Instance.InitializeCore(Path.GetFullPath(assDir + @"\.."));
+            UIControlledApplication.ViewActivated += proxy.OnApplicationViewActivated;
+            UIControlledApplication.ViewActivating += proxy.OnApplicationViewActivating;
 
-            // Add Revit-specific paths for loading.
-            DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "RevitNodes.dll"));
-            DynamoPathManager.Instance.AddPreloadLibrary(Path.Combine(assDir, "SimpleRaaS.dll"));
-
-            //add an additional node processing folder
-            DynamoPathManager.Instance.Nodes.Add(Path.Combine(assDir, "nodes"));
-
-            // Set the LibG folder based on the context.
-            // LibG is set to reference the libg_219 folder by default.
-            var versionInt = int.Parse(application.ControlledApplication.VersionNumber);
-            if (versionInt > 2014)
-            {
-                DynamoPathManager.Instance.SetLibGPath("220");
-            }
-            else
-            {
-                DynamoPathManager.Instance.SetLibGPath("219");
-            }
+            ControlledApplication.DocumentClosing += proxy.OnApplicationDocumentClosing;
+            ControlledApplication.DocumentClosed += proxy.OnApplicationDocumentClosed;
+            ControlledApplication.DocumentOpened += proxy.OnApplicationDocumentOpened;
         }
 
-        private void SubscribeAssemblyResolvingEvent()
+        private void UnsubscribeApplicationEvents()
         {
-            AppDomain.CurrentDomain.AssemblyResolve += AssemblyHelper.ResolveAssembly;
+            UIControlledApplication.Idling -= OnApplicationIdle;
+
+            UIControlledApplication.ViewActivated -= proxy.OnApplicationViewActivated;
+            UIControlledApplication.ViewActivating -= proxy.OnApplicationViewActivating;
+
+            ControlledApplication.DocumentClosing -= proxy.OnApplicationDocumentClosing;
+            ControlledApplication.DocumentClosed -= proxy.OnApplicationDocumentClosed;
+            ControlledApplication.DocumentOpened -= proxy.OnApplicationDocumentOpened;
+
+            proxy = null;
         }
 
-        private void UnsubscribeAssemblyResolvingEvent()
+        private void SubscribeAssemblyEvents()
         {
-            AppDomain.CurrentDomain.AssemblyResolve -= AssemblyHelper.ResolveAssembly;
+            AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
+        }
+
+      
+        private void UnsubscribeAssemblyEvents()
+        {
+            AppDomain.CurrentDomain.AssemblyResolve -= ResolveAssembly;
+            //AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
+        }
+
+        /// <summary>
+        /// Handler to the ApplicationDomain's AssemblyResolve event.
+        /// If an assembly's location cannot be resolved, an exception is
+        /// thrown. Failure to resolve an assembly will leave Dynamo in 
+        /// a bad state, so we should throw an exception here which gets caught 
+        /// by our unhandled exception handler and presents the crash dialogue.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public static Assembly ResolveAssembly(object sender, ResolveEventArgs args)
+        {
+            var assemblyPath = string.Empty;
+            var assemblyName = new AssemblyName(args.Name).Name + ".dll";
+
+            try
+            {
+                assemblyPath = Path.Combine(DynamoRevitApp.DynamoCorePath, assemblyName);
+                if(File.Exists(assemblyPath))
+                {
+                    return Assembly.LoadFrom(assemblyPath);
+                }
+
+                var assemblyLocation = Assembly.GetExecutingAssembly().Location;
+                var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
+
+                // Try "Dynamo 0.x\Revit_20xx" folder first...
+                assemblyPath = Path.Combine(assemblyDirectory, assemblyName);
+                if (!File.Exists(assemblyPath))
+                {
+                    // If assembly cannot be found, try in "Dynamo 0.x" folder.
+                    var parentDirectory = Directory.GetParent(assemblyDirectory);
+                    assemblyPath = Path.Combine(parentDirectory.FullName, assemblyName);
+                }
+
+                return (File.Exists(assemblyPath) ? Assembly.LoadFrom(assemblyPath) : null);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Format("The location of the assembly, {0} could not be resolved for loading.", assemblyPath), ex);
+            }
+        }
+        
+        private void SubscribeDocumentChangedEvent()
+        {
+            ControlledApplication.DocumentChanged += RevitServicesUpdater.Instance.ApplicationDocumentChanged;
+        }
+
+        private void UnsubscribeDocumentChangedEvent()
+        {
+            ControlledApplication.DocumentChanged -= RevitServicesUpdater.Instance.ApplicationDocumentChanged;
+        }
+        
+        public static bool DynamoButtonEnabled
+        {
+            get { return DynamoButton.Enabled; }
+            set { DynamoButton.Enabled = value; }
+        }
+
+        private bool TryResolveDynamoCore()
+        {
+            if (string.IsNullOrEmpty(DynamoCorePath))
+            {
+                var fvi = FileVersionInfo.GetVersionInfo(assemblyName);
+                var shortversion = fvi.FileMajorPart + "." + fvi.FileMinorPart;
+
+                if (MessageBoxResult.OK ==
+                    System.Windows.MessageBox.Show(
+                        string.Format(Resources.DynamoCoreNotFoundDialogMessage, shortversion),
+                        Resources.DynamoCoreNotFoundDialogTitle,
+                        MessageBoxButton.OKCancel,
+                        MessageBoxImage.Error))
+                {
+                    System.Diagnostics.Process.Start("http://dynamobim.org/download/");
+                }
+                return false;
+            }
+            return true;
         }
     }
 }

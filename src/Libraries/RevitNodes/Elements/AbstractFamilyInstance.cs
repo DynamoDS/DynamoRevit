@@ -51,7 +51,13 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalFamilyInstance.Symbol = fs;
+            // Don't attempt to set the symbol if it is the same.
+            // Doing so will raise a document modification event which
+            // will, in turn, be responded to by this node causing an infinite loop.
+            if (InternalFamilyInstance.Symbol.UniqueId != fs.UniqueId)
+            {
+                InternalFamilyInstance.Symbol = fs;
+            }
 
             TransactionManager.Instance.TransactionTaskDone();
         }
@@ -60,11 +66,11 @@ namespace Revit.Elements
 
         #region Public properties
 
-        public FamilySymbol Symbol
+        public FamilyType Type
         {
             get
             {
-                return FamilySymbol.FromExisting(this.InternalFamilyInstance.Symbol, true);
+                return FamilyType.FromExisting(this.InternalFamilyInstance.Symbol, true);
             }
         }
 
@@ -84,7 +90,10 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return string.Format("Family={0}, Type={1}", InternalFamilyInstance.Symbol.Name, InternalFamilyInstance.Name);
+            if (InternalFamilyInstance != null && InternalFamilyInstance.IsValidObject)
+                return string.Format("Family={0}, Type={1}", InternalFamilyInstance.Symbol.Name, InternalFamilyInstance.Name);
+
+            return string.Format("Family={0}, Type={1}", "empty", "empty");
         }
     }
 }

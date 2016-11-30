@@ -69,7 +69,7 @@ namespace Revit.Elements
 
             if (importInstance == null)
             {
-                throw new Exception("Could not obtain ImportInstance from imported Element");
+                throw new Exception(Properties.Resources.InstanceImportFailure);
             }
 
             InternalSetImportInstance(importInstance);
@@ -102,7 +102,9 @@ namespace Revit.Elements
         }
 
         #region Public properties
-
+        /// <summary>
+        /// Gets file path of the sat file that represents the geometry of the specified ImportInstance Element
+        /// </summary>
         public string Path { get; private set; }
 
         #endregion
@@ -122,7 +124,7 @@ namespace Revit.Elements
 
             if (!File.Exists(pathToFile))
             {
-                throw new ArgumentException("The file could not be found at: " + pathToFile );
+                throw new ArgumentException(string.Format(Properties.Resources.FileNotFound, pathToFile));
             }
 
             return new ImportInstance(pathToFile);

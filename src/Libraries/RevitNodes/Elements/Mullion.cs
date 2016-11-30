@@ -14,14 +14,16 @@ namespace Revit.Elements
    public class Mullion : AbstractFamilyInstance
    {
       #region Properties
-
+      /// <summary>
+       /// Gets curve geometry from the specified Mullion Element
+      /// </summary>
       public Autodesk.DesignScript.Geometry.Curve LocationCurve
       {
          get
          {
             var elementAsMullion = InternalElement as Autodesk.Revit.DB.Mullion;
             if (elementAsMullion == null)
-               throw new Exception("Mullion should represent Revit's Mullion");
+               throw new Exception(Properties.Resources.MullionParseError);
             var crv  = elementAsMullion.LocationCurve;
             return Revit.GeometryConversion.RevitToProtoCurve.ToProtoType(crv);
          }
@@ -62,12 +64,12 @@ namespace Revit.Elements
       {
          var elementAsMullion = mullionElement.InternalElement as Autodesk.Revit.DB.Mullion;
          if (elementAsMullion == null)
-            throw new Exception("Mullion should represent Revit's Mullion");
+            throw new Exception(Properties.Resources.MullionParseError);
          return new Mullion(elementAsMullion);
       }
 
       /// <summary>
-      ///get all mullions of curtain wall, system or slope galzing roof
+      ///get all mullions of curtain wall, system or slope glazing roof
       /// </summary>
       /// <param name="hostingElement"></param>
       public static Mullion[] ByElement(Element hostingElement)
@@ -112,12 +114,15 @@ namespace Revit.Elements
       #endregion
 
       #region public methods
-
+      /// <summary>
+      /// Returns curtain panels supported by the specified Mullion Element
+      /// </summary>
+      /// <returns></returns>
       public CurtainPanel[] SupportedPanels()
       {
          var elementAsMullion = InternalElement as Autodesk.Revit.DB.Mullion;
          if (elementAsMullion == null)
-            throw new Exception("Mullion should represent Revit's Mullion");
+            throw new Exception(Properties.Resources.MullionParseError);
 
          var host = elementAsMullion.Host;
 
@@ -163,7 +168,10 @@ namespace Revit.Elements
          }
          return result.ToArray();
       }
-
+       /// <summary>
+       /// Returns FamilyInstance object as represented by the specified mullion
+       /// </summary>
+       /// <returns></returns>
       public FamilyInstance AsFamilyInstance()
       {
          return FamilyInstance.FromExisting(InternalElement as Autodesk.Revit.DB.FamilyInstance, true);

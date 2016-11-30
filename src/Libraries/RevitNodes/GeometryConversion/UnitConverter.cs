@@ -1,28 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-using DynamoUnits;
+
+using RevitServices.Persistence;
 
 namespace Revit.GeometryConversion
 {
     [SupressImportIntoVM]
     public static class UnitConverter
     {
-        public static double DynamoToHostFactor
+        public static double DynamoToHostFactor(UnitType unitType)
         {
-            get { return Length.FromDouble(1.0).ConvertToHostUnits(); }
+            var revitDisplayUnits =
+                DocumentManager.Instance.CurrentDBDocument.GetUnits()
+                    .GetFormatOptions(unitType)
+                    .DisplayUnits;
+
+            // Here we use the Revit API to return the conversion
+            // factor between the display units in Revit and the internal
+            // units (decimal feet). We are not converting a value, so 
+            // we simply supply 1 to return the converstion factor.
+            return UnitUtils.ConvertToInternalUnits(1, revitDisplayUnits);
         }
 
-        public static double HostToDynamoFactor
+        public static double HostToDynamoFactor(UnitType unitType)
         {
-            get { return 1 / DynamoToHostFactor; }
+            // Here we invert the conversion factor to return
+            // the conversion from internal units to display units.
+            return 1/DynamoToHostFactor(unitType);
         }
 
         /// <summary>
-        /// Convert from Revit API internal units (feet) to Dynamo internal units (meters) 
+        /// Convert from Revit API internal units (feet) to Revit Display units.
         /// 
         /// Can be used simply as geometry.InDynamoUnits() as the type is constrained
         /// </summary>
@@ -37,12 +47,13 @@ namespace Revit.GeometryConversion
                 throw new ArgumentNullException("geometry");
             }
 
-            var result = (T)geometry.Scale(HostToDynamoFactor);
+            var result = (T)geometry.Scale(HostToDynamoFactor(UnitType.UT_Length));
+            geometry.Dispose();
             return result;
         }
 
         /// <summary>
-        /// Convert from Dynamo internal units (meters) to Revit API internal units (feet)
+        /// Convert from Revit Display Units to Revit API internal units (feet)
         /// 
         /// Can be used simply as geometry.InHostUnits()
         /// </summary>
@@ -57,7 +68,7 @@ namespace Revit.GeometryConversion
                 throw new ArgumentNullException("geometry");
             }
 
-            var result = (T)geometry.Scale(DynamoToHostFactor);
+            var result = (T)geometry.Scale(DynamoToHostFactor(UnitType.UT_Length));
             return result;
         }
         

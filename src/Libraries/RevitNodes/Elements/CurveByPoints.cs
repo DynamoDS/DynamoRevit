@@ -8,6 +8,8 @@ using DynamoServices;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
+using Revit.GeometryConversion;
+
 namespace Revit.Elements
 {
     /// <summary>
@@ -20,16 +22,25 @@ namespace Revit.Elements
 
         private void InternalSetReferencePoints(ReferencePointArray pts)
         {
-            TransactionManager.Instance.EnsureInTransaction(Document);
-            ((Autodesk.Revit.DB.CurveByPoints) InternalCurveElement).SetPoints(pts);
-            TransactionManager.Instance.TransactionTaskDone();
+            var cbp = ((Autodesk.Revit.DB.CurveByPoints)InternalCurveElement) as Autodesk.Revit.DB.CurveByPoints;
+            var crvPnts = cbp.GetPoints();
+            if (!CurveUtils.PointArraysAreSame(crvPnts, pts))
+            {
+                TransactionManager.Instance.EnsureInTransaction(Document);
+                ((Autodesk.Revit.DB.CurveByPoints)InternalCurveElement).SetPoints(pts);
+                TransactionManager.Instance.TransactionTaskDone();
+            }
         }
 
         private void InternalSetIsReferenceLine(bool isReferenceLine)
         {
-            TransactionManager.Instance.EnsureInTransaction(Document);
-            ((Autodesk.Revit.DB.CurveByPoints) InternalCurveElement).IsReferenceLine = isReferenceLine;
-            TransactionManager.Instance.TransactionTaskDone();
+            var cbp = ((Autodesk.Revit.DB.CurveByPoints)InternalCurveElement) as Autodesk.Revit.DB.CurveByPoints;
+            if (cbp.IsReferenceLine != isReferenceLine)
+            {
+                TransactionManager.Instance.EnsureInTransaction(Document);
+                cbp.IsReferenceLine = isReferenceLine;
+                TransactionManager.Instance.TransactionTaskDone();
+            }
         }
 
         #endregion
@@ -79,7 +90,7 @@ namespace Revit.Elements
             {
                 InternalSetCurveElement(cbp);
                 InternalSetReferencePoints(refPtArr);
-                cbp.IsReferenceLine = isReferenceLine;
+                InternalSetIsReferenceLine(isReferenceLine);
                 return;
             }
 
@@ -110,7 +121,7 @@ namespace Revit.Elements
         {
             if (points.Count() < 2)
             {
-                throw new Exception("Cannot create Curve By Points with less than two points.");
+                throw new Exception(Properties.Resources.CurveNeedsTwoPoints);
             }
 
             return new CurveByPoints(points.Select(x=>x.InternalReferencePoint), isReferenceLine);

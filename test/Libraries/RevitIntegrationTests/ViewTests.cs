@@ -1,16 +1,21 @@
 ﻿using System.IO;
 using System.Linq;
-
+using CoreNodeModels.Input;
 using Dynamo.Nodes;
 
 using NUnit.Framework;
 
+using RevitTestServices;
+
 using RTF.Framework;
+
+using Revit.Elements;
+
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class ViewTests : SystemTest
+    class ViewTests : RevitSystemTestBase
     {
 
         [Test]
@@ -23,7 +28,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
-            
+
         }
 
         [Test]
@@ -36,7 +41,18 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
-            
+            var model = ViewModel.Model;
+            Assert.AreEqual(10, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(16, model.CurrentWorkspace.Connectors.Count());
+
+            //check Element.OverrideColorInView
+            var elementID = "99608c4e-c064-4486-a016-7221a5df2e3a";
+            AssertPreviewCount(elementID, 100);
+            for (int i = 0; i < 100; i++)
+            {
+                var element = GetPreviewValueAtIndex(elementID, i) as Element;
+                Assert.IsNotNull(element);
+            }
         }
 
         [Test]
@@ -49,7 +65,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
-            
+
         }
 
         [Test, TestModel(@".\Empty.rvt")]
@@ -59,7 +75,7 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             OpenDynamoDefinition(testPath);
-            
+
             AssertNoDummyNodes();
 
             // Find the CBN and change it to have two temporary paths.
@@ -77,7 +93,7 @@ namespace RevitSystemTests
 
 
             RunCurrentModel();
-            
+
 
             // Ensure that our two temporary files have some data
             var tmp1Info = new FileInfo(tmp1);

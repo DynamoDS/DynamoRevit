@@ -2,6 +2,8 @@
 
 using Autodesk.DesignScript.Runtime;
 
+using DynamoUnits;
+
 using Revit.GeometryReferences;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
@@ -188,7 +190,8 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalDividedSurface.AllGridRotation = rotation;
+            if(!InternalDividedSurface.AllGridRotation.AlmostEquals(rotation, 1.0e-6))
+                InternalDividedSurface.AllGridRotation = rotation;
 
             TransactionManager.Instance.TransactionTaskDone();
         }
@@ -222,12 +225,12 @@ namespace Revit.Elements
 
             if (uDivs <= 0)
             {
-                throw new Exception("uDivs must be a positive integer");
+                throw new Exception(string.Format(Properties.Resources.NotPositiveIntegerError, "uDivs"));
             }
 
             if (vDivs <= 0)
             {
-                throw new Exception("vDivs must be a positive integer");
+                throw new Exception(string.Format(Properties.Resources.NotPositiveIntegerError, "vDivs"));
             }
 
             return new DividedSurface(ElementFaceReference.TryGetFaceReference(faceReference), uDivs, vDivs, gridRotation);
@@ -268,12 +271,12 @@ namespace Revit.Elements
 
             if (uDivs <= 0)
             {
-                throw new Exception("uDivs must be a positive integer");
+                throw new Exception(string.Format(Properties.Resources.NotPositiveIntegerError, "uDivs"));
             }
 
             if (vDivs <= 0)
             {
-                throw new Exception("vDivs must be a positive integer");
+                throw new Exception(string.Format(Properties.Resources.NotPositiveIntegerError, "vDivs"));
             }
 
             return new DividedSurface(ElementFaceReference.TryGetFaceReference(surface), uDivs, vDivs, gridRotation);

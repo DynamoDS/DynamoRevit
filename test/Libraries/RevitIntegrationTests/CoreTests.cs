@@ -1,29 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
-using DSCoreNodesUI;
-using Dynamo.Annotations;
+using CoreNodeModels;
+using CoreNodeModels.Input;
+using Dynamo.Graph;
+using Dynamo.Graph.Nodes;
 using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.Search.SearchElements;
 using Dynamo.Selection;
+using Dynamo.Tests;
 
 using NUnit.Framework;
 
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
+using RevitTestServices;
+
 using RTF.Framework;
 
 namespace RevitSystemTests
 {
     [TestFixture]
-    class CoreTests : SystemTest
+    class CoreTests : RevitSystemTestBase
     {
         /// <summary>
         /// Sanity Check graph should always have nodes that error.
@@ -56,7 +60,7 @@ namespace RevitSystemTests
             Assert.IsNotNull(xyzNode);
             
             //test the shortest lacing
-            xyzNode.ArgumentLacing = LacingStrategy.Shortest;
+            xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "Shortest"));
 
             RunCurrentModel();
 
@@ -65,7 +69,7 @@ namespace RevitSystemTests
             Assert.AreEqual(4, fec.ToElements().Count());
 
             //test the longest lacing
-            xyzNode.ArgumentLacing = LacingStrategy.Longest;
+            xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "Longest"));
             RunCurrentModel();
 
             fec = null;
@@ -76,7 +80,7 @@ namespace RevitSystemTests
             Assert.AreEqual(5, fec.ToElements().Count());
 
             //test the cross product lacing
-            xyzNode.ArgumentLacing = LacingStrategy.CrossProduct;
+            xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "CrossProduct"));
 
             RunCurrentModel();
 
@@ -88,7 +92,7 @@ namespace RevitSystemTests
             Assert.AreEqual(20, fec.ToElements().Count());
         }
 
-        [Test, Category("Failure")]
+        [Test]
         [TestModel(@".\empty.rfa")]
         public void SwitchDocuments()
         {
@@ -117,22 +121,15 @@ namespace RevitSystemTests
             Assert.IsNotNull((Document)DocumentManager.Instance.CurrentDBDocument);
 
             ////update the double node so the graph reevaluates
-            var doubleNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is BasicInteractive<double>);
-            BasicInteractive<double> node = doubleNodes.First() as BasicInteractive<double>;
-            node.Value = node.Value + .1;
+            var doubleNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<DoubleInput>();
+            doubleNode.Value = doubleNode.Value + .1;
 
             ////run the expression again
             RunCurrentModel();
 
-            //fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-            //fec.OfClass(typeof(ReferencePoint));
-            //Assert.AreEqual(1, fec.ToElements().Count());
-
-            //finish out by restoring the original
-            //initialDoc = DocumentManager.GetInstance().CurrentUIApplication.ActiveUIDocument;
-            //shellPath = Path.Combine(workingDirectory, @"empty.rfa");
-            //DocumentManager.GetInstance().CurrentUIApplication.OpenAndActivateDocument(shellPath);
-            //initialDoc.Document.Close(false);
+            fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
+            fec.OfClass(typeof(ReferencePoint));
+            Assert.AreEqual(1, fec.ToElements().Count());
 
         }
 
@@ -161,6 +158,8 @@ namespace RevitSystemTests
             var excludes = new List<string>();
             excludes.Add("Input");
             excludes.Add("Output");
+
+            if (ViewModel == null) return Enumerable.Empty<NodeModelSearchElement>();
 
             return
                 ViewModel.Model.SearchModel.SearchEntries.OfType<NodeModelSearchElement>()

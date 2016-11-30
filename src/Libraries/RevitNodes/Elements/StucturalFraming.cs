@@ -95,7 +95,7 @@ namespace Revit.Elements
 
                 if (elementIds.Count == 0)
                 {
-                    throw new Exception("Could not create the FamilyInstance");
+                    throw new Exception(Properties.Resources.FamilyInstanceCreationFailure);
                 }
 
                 fi = (Autodesk.Revit.DB.FamilyInstance)Document.GetElement(elementIds.First());
@@ -106,7 +106,7 @@ namespace Revit.Elements
 
                 if (elementIds.Count == 0)
                 {
-                    throw new Exception("Could not create the FamilyInstance");
+                    throw new Exception(Properties.Resources.FamilyInstanceCreationFailure);
                 }
 
                 fi = (Autodesk.Revit.DB.FamilyInstance)Document.GetElement(elementIds.First());
@@ -153,7 +153,7 @@ namespace Revit.Elements
 
                 if (elementIds.Count == 0)
                 {
-                    throw new Exception("Could not create the FamilyInstance");
+                    throw new Exception(Properties.Resources.FamilyInstanceCreationFailure);
                 }
 
                 fi = (Autodesk.Revit.DB.FamilyInstance)Document.GetElement(elementIds.First());
@@ -166,7 +166,7 @@ namespace Revit.Elements
 
                 if (elementIds.Count == 0)
                 {
-                    throw new Exception("Could not create the FamilyInstance");
+                    throw new Exception(Properties.Resources.FamilyInstanceCreationFailure);
                 }
 
                 fi = (Autodesk.Revit.DB.FamilyInstance)Document.GetElement(elementIds.First());
@@ -227,9 +227,16 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            //update the curve
+            // Updating the curve will cause a document modification event
+            // which will be handled by this node and could cause an 
+            // infinite loop. Check the framing's curve for similarity to the 
+            // provided curve and update only if the two are different.
+
             var locCurve = InternalFamilyInstance.Location as LocationCurve;
-            locCurve.Curve = crv;
+            if (!CurveUtils.CurvesAreSimilar(locCurve.Curve, crv))
+            {
+                locCurve.Curve = crv;
+            }
 
             TransactionManager.Instance.TransactionTaskDone();
         }
@@ -237,7 +244,9 @@ namespace Revit.Elements
         #endregion
 
         #region Public properties
-
+        /// <summary>
+        /// Gets curve geometry from location of the specified structural element
+        /// </summary>
         new public Autodesk.DesignScript.Geometry.Curve Location
         {
             get
@@ -246,15 +255,20 @@ namespace Revit.Elements
                 var crv = location as LocationCurve;
                 if (null != crv && null != crv.Curve)
                     return crv.Curve.ToProtoType();
-                throw new Exception("The location of the structural element is not a valid curve!");
+                throw new Exception(Properties.Resources.InvalidElementLocation);
             }
         }
-
-        public new FamilySymbol Symbol
+        /// <summary>
+        /// Gets family type from the specified structural element
+        /// </summary>
+        /// <search>
+        /// symbol
+        /// </search>
+        public new FamilyType Type
         {    
             // NOTE: Because AbstractFamilyInstance is not visible in the library
             //       we redefine this method on FamilyInstance
-            get { return base.Symbol; }
+            get { return base.Type; }
         }
 
         #endregion
@@ -272,7 +286,7 @@ namespace Revit.Elements
         /// <returns></returns>
         [Obsolete("Use StructuralFraming.BeamByCurve, StructuralFraming.BraceByCurve, or StructuralFraming.ColumnByCurve instead.")]
         public static StructuralFraming ByCurveLevelUpVectorAndType(Autodesk.DesignScript.Geometry.Curve curve, Level level, 
-            Autodesk.DesignScript.Geometry.Vector upVector, StructuralType structuralType, FamilySymbol structuralFramingType)
+            Autodesk.DesignScript.Geometry.Vector upVector, StructuralType structuralType, FamilyType structuralFramingType)
         {
             if (curve == null)
             {
@@ -305,7 +319,7 @@ namespace Revit.Elements
         /// <param name="level">The level with which you'd like the beam to be associated.</param>
         /// <param name="structuralFramingType">The structural framing type representing the beam.</param>
         /// <returns></returns>
-        public static StructuralFraming BeamByCurve(Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilySymbol structuralFramingType)
+        public static StructuralFraming BeamByCurve(Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilyType structuralFramingType)
         {
             if (curve == null)
             {
@@ -332,7 +346,7 @@ namespace Revit.Elements
         /// <param name="level">The level with which you'd like the brace to be associated.</param>
         /// <param name="structuralFramingType">The structural framing type representing the brace.</param>
         /// <returns></returns>
-        public static StructuralFraming BraceByCurve(Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilySymbol structuralFramingType)
+        public static StructuralFraming BraceByCurve(Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilyType structuralFramingType)
         {
             if (curve == null)
             {
@@ -360,7 +374,7 @@ namespace Revit.Elements
         /// <param name="structuralColumnType">The structural column type representing the column.</param>
         /// <returns></returns>
         public static StructuralFraming ColumnByCurve(
-            Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilySymbol structuralColumnType)
+            Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilyType structuralColumnType)
         {
             if (curve == null)
             {
@@ -384,7 +398,7 @@ namespace Revit.Elements
             // base is above its top. 
             if (end.Z <= start.Z)
             {
-                throw new Exception("The end of the curve for creating a column should be above the start of the curve.");
+                throw new Exception(Properties.Resources.InvalidColumnBaseLocation);
             }
 
             return new StructuralFraming(curve.ToRevitType(), level.InternalLevel, Autodesk.Revit.DB.Structure.StructuralType.Column, structuralColumnType.InternalFamilySymbol);

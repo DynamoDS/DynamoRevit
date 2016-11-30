@@ -160,22 +160,28 @@ namespace Revit.Elements
 
             XYZ oldBubbleEnd = refPlane.BubbleEnd;
             XYZ oldFreeEnd = refPlane.FreeEnd;
-            XYZ midPointOld = 0.5 * (oldBubbleEnd + oldFreeEnd);
 
-            XYZ midPoint = 0.5 * (bubbleEnd + freeEnd);
-            XYZ moveVec = XYZ.BasisZ.DotProduct(midPoint - midPointOld) * XYZ.BasisZ;
-
-            // (sic) From Dynamo Legacy
             var success = true;
-            try
+
+            if (!refPlane.FreeEnd.IsAlmostEqualTo(oldFreeEnd) ||
+                !refPlane.BubbleEnd.IsAlmostEqualTo(oldBubbleEnd))
             {
-                ElementTransformUtils.MoveElement(Document, refPlane.Id, moveVec);
-                refPlane.BubbleEnd = bubbleEnd;
-                refPlane.FreeEnd = freeEnd;
-            }
-            catch
-            {
-                success = false;
+                XYZ midPointOld = 0.5 * (oldBubbleEnd + oldFreeEnd);
+
+                XYZ midPoint = 0.5 * (bubbleEnd + freeEnd);
+                XYZ moveVec = XYZ.BasisZ.DotProduct(midPoint - midPointOld) * XYZ.BasisZ;
+
+                // (sic) From Dynamo Legacy
+                try
+                {
+                    ElementTransformUtils.MoveElement(Document, refPlane.Id, moveVec);
+                    refPlane.BubbleEnd = bubbleEnd;
+                    refPlane.FreeEnd = freeEnd;
+                }
+                catch
+                {
+                    success = false;
+                }
             }
 
             TransactionManager.Instance.TransactionTaskDone();
@@ -257,6 +263,21 @@ namespace Revit.Elements
                                         end.ToXyz(),
                                         (end.ToXyz() - start.ToXyz()).GetPerpendicular(),
                                         Document.ActiveView);
+        }
+
+        /// <summary>
+        /// Create reference plane by 3 points
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static ReferencePlane ByPoints(Point a, Point b, Point c)
+        {
+            return new ReferencePlane(a.ToXyz(),
+                            b.ToXyz(),
+                            c.ToXyz(),
+                            Document.ActiveView);
         }
 
         #endregion

@@ -4,6 +4,8 @@ using Autodesk.Revit.DB;
 
 using DynamoServices;
 
+using DynamoUnits;
+
 using Revit.GeometryConversion;
 
 using RevitServices.Persistence;
@@ -138,7 +140,8 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalModelText.Depth = depth;
+            if(!InternalModelText.Depth.AlmostEquals(depth, 1.0e-6))
+                InternalModelText.Depth = depth;
 
             TransactionManager.Instance.TransactionTaskDone();
         }
@@ -151,7 +154,8 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalModelText.Text = text;
+            if(InternalModelText.Text != text)
+                InternalModelText.Text = text;
 
             TransactionManager.Instance.TransactionTaskDone();
         }
@@ -164,7 +168,8 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalModelText.ModelTextType = modelTextType;
+            if(InternalModelText.ModelTextType.UniqueId != modelTextType.UniqueId)
+                InternalModelText.ModelTextType = modelTextType;
 
             TransactionManager.Instance.TransactionTaskDone();
         }
@@ -252,7 +257,7 @@ namespace Revit.Elements
         /// </summary>
         public double Depth
         {
-            get { return InternalModelText.Depth*UnitConverter.HostToDynamoFactor; }
+            get { return InternalModelText.Depth * UnitConverter.HostToDynamoFactor(UnitType.UT_Length); }
         }
 
         /// <summary>
@@ -282,7 +287,7 @@ namespace Revit.Elements
         {
             if (!Document.IsFamilyDocument)
             {
-                throw new Exception("ModelText Elements can only be created in a Family Document");
+                throw new Exception(Properties.Resources.ModelTextCreationFailure);
             }
 
             if (text == null)
@@ -300,8 +305,11 @@ namespace Revit.Elements
                 throw new ArgumentNullException("modelTextType");
             }
 
-            return new ModelText(text, sketchPlane.InternalSketchPlane, xCoordinateInPlane * UnitConverter.DynamoToHostFactor, yCoordinateInPlane * UnitConverter.DynamoToHostFactor,
-                textDepth * UnitConverter.DynamoToHostFactor, modelTextType.InternalModelTextType);
+            return new ModelText(text, sketchPlane.InternalSketchPlane, 
+                xCoordinateInPlane * UnitConverter.DynamoToHostFactor(UnitType.UT_Length),
+                yCoordinateInPlane * UnitConverter.DynamoToHostFactor(UnitType.UT_Length),
+                textDepth * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), 
+                modelTextType.InternalModelTextType);
         }
 
         #endregion

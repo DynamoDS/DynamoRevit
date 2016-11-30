@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 
 using Autodesk.Revit.DB;
-
+using Dynamo.Graph.Nodes;
 using Dynamo.Models;
 
 using NUnit.Framework;
@@ -9,6 +9,8 @@ using NUnit.Framework;
 using Revit.GeometryConversion;
 
 using RevitServices.Persistence;
+
+using RevitTestServices;
 
 using RTF.Framework;
 
@@ -18,7 +20,7 @@ using SiteLocation = DSRevitNodesUI.SiteLocation;
 namespace RevitSystemTests
 {
     [TestFixture]
-    class SiteLocationTests : SystemTest
+    class SiteLocationTests : RevitSystemTestBase
     {
         [Test, TestModel(@".\SiteLocation\SiteLocation.rvt")]
         public void SiteLocation_ValidArgs()
