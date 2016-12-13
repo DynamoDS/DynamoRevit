@@ -22,7 +22,7 @@ if %CurrentDir:~-1%==\ (
 REM 1. set the directory to find nugetCLI ie. nuget.exe               
 set NugetExe=%CurrentDir%\Tools\NugetCLI\nuget.exe
 
-REM 2. download 3rdParty packages by Aget.py
+REM 2. download 3rdParty packages by Aget.exe
 :DownloadNugetPackages
     
     set AgetFile=%CurrentDir%\Tools\Aget\aget.exe
