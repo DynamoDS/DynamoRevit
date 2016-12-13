@@ -1,0 +1,114 @@
+{
+ "HelixToolkit": {
+  "path": "HelixToolkit/2015.1.629",
+  "sha512": "ZB2lsB4Ps1ePfn8AJ+Sivv03BGpS/W/skgBx+WN9KE7tRrjacH8wxxaG5xvttoMgxXIGbKTSNEsrRin6Dd6V1g=="
+ },
+ "SharpDX.Direct2D1": {
+  "path": "SharpDX.Direct2D1/2.6.3",
+  "sha512": "mzMcrUnCgl0f8/FglD+g0WS0xFpuiP12LYUrZc3pZp8vRSYRRPi8hW7wFuU35XrtsffuEtk+QLxeB3yYGU8dRA=="
+ },
+ "GregRevitAuth": {
+  "path": "GregRevitAuth/1.0.5907.17451",
+  "sha512": "3Sw/pUJiuKMfiD1AEsRjC/BAgthczKQ86t7SRQlxMjy2EqUiYqIHHLiuHWzKownAj66GDFZ25LBO7njXvzL2ag=="
+ },
+ "IronPython": {
+  "path": "IronPython/2.7.2",
+  "sha512": "I6z5lHYU0l7dPCUzX3tnq82y5SlX8EwuXbqS8/O/mrnCZwQ2rl483qBKYxd7U6qCTBf7ZFTvh+cVuoTQrijygQ=="
+ },
+ "SharpDX.Direct3D9": {
+  "path": "SharpDX.Direct3D9/2.6.3",
+  "sha512": "ZG5QvPlGEhiKM/LZXKOmgqR9pI7GJIazZW1L+0WbPbQ0cedMjSlDwU6WZnVACHGxl23/VuwjYMFG4Dtpdp7WaQ=="
+ },
+ "DynamoVisualProgramming.DynamoCoreNodes": {
+  "path": "DynamoVisualProgramming.DynamoCoreNodes/2.0.0-beta1",
+  "sha512": "G4Q5v9Xn9aJmcm/vNrBnTojqO0z5E7J6pQW61YshW9Gy/LA8QWNJK4taOnhbLMhQsgtAD4C3ZUWGo74zwdsCTw=="
+ },
+ "DynamoVisualProgramming.Core": {
+  "path": "DynamoVisualProgramming.Core/2.0.0-beta3402",
+  "sha512": "ESktA2TiFbHGt32QaymFglfF5JTQ+gaEXM4SBJSTF+6FwdMGfH+FiJ1RJhseKcU2NAgTjeQj0SQMVhOfL7av8A=="
+ },
+ "Greg": {
+  "path": "Greg/1.0.6176.18754",
+  "sha512": "Xty+uhkJFJDA+zDLQwHHGlgjVISC4AwTpDwQsZnPqCK9W5ErOHtU1KS4pV+HYsAw/goFGeB3AC/RISH1eoy/rg=="
+ },
+ "SharpDX.Direct3D11": {
+  "path": "SharpDX.Direct3D11/2.6.3",
+  "sha512": "zxyebHWoPiC2Z5IW4Is2Ise2IvfPmaAeI/nFLNzKQR6MgVADYCdQsDuocj92S0u4U6ZubGAsZibp081tyFfvQA=="
+ },
+ "DynamoVisualProgramming.WpfUILibrary": {
+  "path": "DynamoVisualProgramming.WpfUILibrary/2.0.0-beta3402",
+  "sha512": "FOMSGWFpLfvXgn381DtFbnXrA02VCuXk4NL2Vk2IjRy7W8YwGyWlx9+dMmNi2lbmqeF3j+jUa8kVFNQr1xQwHg=="
+ },
+ "CommonServiceLocator": {
+  "path": "CommonServiceLocator/1.0.0",
+  "sha512": "RJjv0yxm+Fk/ak/CVMTGr0ng7g/nudkVYos4eQrIDpth3BdE1j7J2ddRm8FXtOoIZbgDqTU6hKq5zoackwL3HQ=="
+ },
+ "SharpDX.Direct3D11.Effects": {
+  "path": "SharpDX.Direct3D11.Effects/2.6.3",
+  "sha512": "Kdot1iBDhBuw5n+gAkuEVwF4rrI/HWb0JX6KnH5ehM64mYJlJk4ao37ZLkcxQtUTlH6H5R47cZwVRX8g4yMK/Q=="
+ },
+ "SharpDX.D3DCompiler": {
+  "path": "SharpDX.D3DCompiler/2.6.3",
+  "sha512": "1S1GhEUIHycJ0yL22Isltzmv0zTqzCtz6A21U4rd9zHiSHq0k0ju1esykYlnwT08SlNpzhF8B6b/x6F3OdCwsw=="
+ },
+ "HelixToolkit.Wpf": {
+  "path": "HelixToolkit.Wpf/2015.1.629",
+  "sha512": "asVkoDM4HiOCHDcVg1aI9RodZ8y0DddkcBVu/bB1h0A7nBqLWF3ERlS56LjmJOR8qBWJ4IFsfaq0MY1MfH9saQ=="
+ },
+ "RestSharp": {
+  "path": "RestSharp/105.2.3",
+  "sha512": "50LkciOclb7Lza9QXqR9reKeUoPlDQiFD4iBdOmd6twOBmTtqEFIOXQgdDdsTHQg4HcGh6EvrM6gN1X72vkJLA=="
+ },
+ "Prism": {
+  "path": "Prism/4.1.0",
+  "sha512": "V4pNkp9iutnJToIkPKeHaVT5M2m9sWTgq2xLHPD51OAg5VNS9oTx4E/vZMdXMcPQwpHbHlF04T8fMLKZTo8S3g=="
+ },
+ "DynamoVisualProgramming.DynamoServices": {
+  "path": "DynamoVisualProgramming.DynamoServices/2.0.0-beta3402",
+  "sha512": "HjvGT2dLcc0Ttq48r4rm4Qm5NazqpZ0haYJIN7pTfhdI4LiW04H/3mihM4LhTRW50MQ/HUCcpiwl38PeQjqnYA=="
+ },
+ "Newtonsoft.Json": {
+  "path": "Newtonsoft.Json/8.0.3",
+  "sha512": "KGsYQdS2zLH+H8x2cZaSI7e+YZ4SFIbyy1YJQYl6GYBWjf5o4H1A68nxyq+WTyVSOJQ4GqS/DiPE+UseUizgMg=="
+ },
+ "SharpDX.Toolkit.Graphics": {
+  "path": "SharpDX.Toolkit.Graphics/2.6.3",
+  "sha512": "9mzJUu5Yc3QsWw/UQGPEZcI8sMY3MF4fiAqIb1PBFAxtadM2YYcRpRsZ78uqqvM+yGDJzqymf+JMDANZxgcdEw=="
+ },
+ "SharpDX.DXGI": {
+  "path": "SharpDX.DXGI/2.6.3",
+  "sha512": "lUn5TF/Kh6OMG51eVUhhWn6rXwBjA1uVIkZHH9HUAFpH4a3fGTO5bAypaTfKPFGenAqunfDlMsr2lZ60lN7FOg=="
+ },
+ "SharpDX": {
+  "path": "SharpDX/2.6.3",
+  "sha512": "0O+ts/ZR1bTbeRmMrwkd1PbQ8du4k8mYcz1upqXKZgzidM/LBBXibXS7qmZwqslSX+De85h7hPLGI7Yef3Ssbw=="
+ },
+ "DynamoVisualProgramming.Tests": {
+  "path": "DynamoVisualProgramming.Tests/2.0.0-beta3402",
+  "sha512": "MQMFAWoBWTmzwpnZ5xaErEJfJX61ZDjDBmDmf0hKNLXBxTT4Petjh0fReK7zBdHyxKzZZR8QVeEabKAh30WYSA=="
+ },
+ "SharpDX.Toolkit": {
+  "path": "SharpDX.Toolkit/2.6.3",
+  "sha512": "HBks9mAlbSqKBT6BeIQjO7OCcbPMc5vlCQ/geMBj66oOMc2inKtOvd01ONViDaMBj2vQdgJCoiwNm23JBiXHfQ=="
+ },
+ "DynamoVisualProgramming.ZeroTouchLibrary": {
+  "path": "DynamoVisualProgramming.ZeroTouchLibrary/2.0.0-beta3402",
+  "sha512": "iV4WwzU4k0s7koU7AUOOdgixKN0r0W+FC2UL4zPNTtigKdXk4X1q7CPhc3P4nPejHqJg/vEZMPlgPD3XOdGt2g=="
+ },
+ "HelixToolkit.Wpf.SharpDX": {
+  "path": "HelixToolkit.Wpf.SharpDX/2015.1.629",
+  "sha512": "MMuufW6IMC8hHZ/whJMBnFL83UueE2SmJkhhfedI/g8D6pYBKWmOCKVWeaxouKTHWLsf9KcmfZV0QA4mFqR4hQ=="
+ },
+ "Unofficial.Ionic.Zip": {
+  "path": "Unofficial.Ionic.Zip/1.9.1.8",
+  "sha512": "D4+IoUljoBXFmVrMACeFH0G0+MX/P/3tBvK1B6B5mtEu6zfKJ0eEnvhp+XaH0hEGtRalUWGHnQHNHcKci5480w=="
+ },
+ "NUnit": {
+  "path": "NUnit/2.6.2",
+  "sha512": "bWEVvuPgy4ci3LL4x3nXmUeY4VTSFsXSbyAAalXCFFpQHXbEwfUtImcqA+4guoX1u2/52vnv9i7nbrgst0khSA=="
+ },
+ "Cyotek.Drawing.BitmapFont": {
+  "path": "Cyotek.Drawing.BitmapFont/1.0.2",
+  "sha512": "hNToaGLi9aeepA/N2E/Hy44kozecpn4DvBzSAPFXFxE2tjn7HaAgyWeHiDwn4jJ/EXe4l1aLAeTFkBznQHEODA=="
+ }
+}

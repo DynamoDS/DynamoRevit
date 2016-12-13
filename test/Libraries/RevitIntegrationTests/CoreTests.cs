@@ -60,7 +60,7 @@ namespace RevitSystemTests
             Assert.IsNotNull(xyzNode);
             
             //test the shortest lacing
-            xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "Auto"));
+            xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "Shortest"));
 
             RunCurrentModel();
 
