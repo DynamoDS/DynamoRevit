@@ -33,11 +33,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Practices.Prism">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>$(PACKAGESPATH)\Prism\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>$(PACKAGESPATH)\NUnit\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="RevitAPI">
@@ -59,12 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DynamoCore">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
 	<Reference Include="ProtoCore">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>

@@ -1,30 +1,15 @@
 {
   "nuget": {
-    "repos": [
-      "team-dynamo-nuget"
-    ],
+    "repos": [],
     "references": {
       "DynamoVisualProgramming.Core" : "2.0.0-beta3402",
       "DynamoVisualProgramming.DynamoCoreNodes" : "2.0.0-beta1",
       "DynamoVisualProgramming.DynamoServices" : "2.0.0-beta3402",
-      "DynamoVisualProgramming.Tests" : "2.0.0-beta3402",
+      "DynamoVisualProgramming.Tests" : "2.0.0-beta3472",
       "DynamoVisualProgramming.WpfUILibrary" : "2.0.0-beta3402",
       "DynamoVisualProgramming.ZeroTouchLibrary" : "2.0.0-beta3402",
       "Greg" : "1.0.6176.18754",
       "GregRevitAuth" : "1.0.5907.17451",
-      "HelixToolkit.Wpf.SharpDX" : "2015.1.629",
-      "Cyotek.Drawing.BitmapFont" : "1.0.2.0",
-      "HelixToolkit" : "2015.1.629",
-      "HelixToolkit.Wpf" : "2015.1.629",
-      "SharpDX" : "2.6.3",
-      "SharpDX.D3DCompiler" : "2.6.3",
-      "SharpDX.Direct2D1" : "2.6.3",
-      "SharpDX.Direct3D9" : "2.6.3",
-      "SharpDX.Direct3D11" : "2.6.3",
-      "SharpDX.Direct3D11.Effects" : "2.6.3",
-      "SharpDX.DXGI" : "2.6.3",
-      "SharpDX.Toolkit" : "2.6.3",
-      "SharpDX.Toolkit.Graphics" : "2.6.3",
       "IronPython" : "2.7.2",
       "Newtonsoft.Json" : "8.0.3",
       "NUnit" : "2.6.2",

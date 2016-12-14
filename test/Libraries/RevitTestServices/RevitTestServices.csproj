@@ -44,7 +44,6 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>$(PACKAGESPATH)\NUnit\lib\nunit.framework.dll</HintPath>
       <Private>False</Private>
     </Reference>

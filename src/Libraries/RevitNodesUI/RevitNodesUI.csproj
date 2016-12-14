@@ -39,10 +39,6 @@
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="HelixToolkit.Wpf.SharpDX">
-      <HintPath>$(PACKAGESPATH)\HelixToolkit.Wpf.SharpDX\lib\net45\HelixToolkit.Wpf.SharpDX.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ProtoGeometry">

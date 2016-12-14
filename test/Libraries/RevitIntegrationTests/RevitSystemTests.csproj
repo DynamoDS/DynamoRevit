@@ -52,14 +52,12 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>$(PACKAGESPATH)\NUnit\lib\nunit.framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ProtoGeometry">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net45\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>

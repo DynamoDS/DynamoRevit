@@ -38,7 +38,6 @@ REM 2. download 3rdParty packages by Aget.exe
     :: Symlinks are generated here
     set ThirdPartyDir=%CurrentDir%\packages
     !PythonAget! -agettable "%CurrentDir%\Config\packages.aget" -refsDir !ThirdPartyDir!
-    (call )
     if ERRORLEVEL 1 (
             echo ERROR: Failed to update Dynamo 3rdParty nuget packages in !ThirdPartyDir!\packages.aget
             exit /b 1

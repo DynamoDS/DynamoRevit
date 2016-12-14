@@ -40,7 +40,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DSCoreNodes">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net45\DSCoreNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>

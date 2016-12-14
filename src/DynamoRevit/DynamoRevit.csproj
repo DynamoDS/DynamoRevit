@@ -76,7 +76,6 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Scripting">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>$(PACKAGESPATH)\IronPython\lib\Net40\Microsoft.Scripting.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -91,7 +90,6 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="ProtoGeometry">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net45\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -199,9 +197,6 @@
       <Project>{e4701f9e-41ab-4044-8166-85d924feb632}</Project>
       <Name>RevitServices</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
