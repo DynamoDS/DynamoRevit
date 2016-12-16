@@ -145,7 +145,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Analysis">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\Analysis.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net45\Analysis.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj">
