@@ -16,17 +16,12 @@
     </ProjectToBuild>
 </ItemGroup>
 
-<Target Name="Build" DependsOnTargets="GetPackages">
+<Target Name="Build">
     <MSBuild Projects="@(ProjectToBuild)" Targets="Rebuild"/>
 </Target>
 
 <Target Name="Buildonly">
     <MSBuild Projects="@(ProjectToBuild)" Targets="Rebuild"/>
 </Target>
-
-<Target Name="GetPackages">
-   <Exec Command="$(DynamoFolderPath)\tools\nuget\nuget.exe restore -ConfigFile $(DynamoFolderPath)\dynamo-nuget.config $(Solution)" />
-</Target>
-
 
 </Project>
