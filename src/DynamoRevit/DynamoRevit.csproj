@@ -174,8 +174,6 @@
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
-	<Reference Include="DynamoShapeManager">
-      <HintPath>$(DYNAMOAPI)\DynamoShapeManager.dll</HintPath>
     <Reference Include="DynamoShapeManager">
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoShapeManager.dll</HintPath>
       <Private>False</Private>
