@@ -9,14 +9,13 @@
 	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2018</RevitVersionNumber>
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
 	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
-    <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
-	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
+    <PACKAGESPATH>$(SolutionDir)packages</PACKAGESPATH>
 	<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
 	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOTESTAPI>
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</TestOutputPath>
     <REVITAPI  Condition=" '$(REVITAPI)' == '' ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
-	<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture Kepler</REVITAPI>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Preview Release</REVITAPI>
     <BaseIntermediateOutputPath>$(OutputPath)\int\</BaseIntermediateOutputPath>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -32,14 +31,13 @@
 	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2018</RevitVersionNumber>
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
 	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
-    <NunitPath Condition=" '$(NunitPath)' == '' ">$(SolutionDir)..\extern\NUnit</NunitPath>
-	<DYNAMOAPI  Condition=" '$(DYNAMOAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOAPI>
+    <PACKAGESPATH>$(SolutionDir)packages</PACKAGESPATH>
 	<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
 	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOTESTAPI>
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</TestOutputPath>
     <REVITAPI  Condition=" '$(REVITAPI)' == '' ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
-	<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture Kepler</REVITAPI>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Preview Release</REVITAPI>
     <BaseIntermediateOutputPath>$(OutputPath)\int\</BaseIntermediateOutputPath>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>

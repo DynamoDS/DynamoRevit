@@ -182,6 +182,11 @@ namespace Revit.Elements
             return SectionView.FromExisting(view, isRevitOwned);
         }
 
+        public static ScheduleView Wrap(Autodesk.Revit.DB.ViewSchedule view, bool isRevitOwned)
+        {
+            return ScheduleView.FromExisting(view, isRevitOwned);
+        }
+
         public static Sheet Wrap(Autodesk.Revit.DB.ViewSheet view, bool isRevitOwned)
         {
             return Sheet.FromExisting(view, isRevitOwned);
@@ -225,7 +230,17 @@ namespace Revit.Elements
         public static FilledRegion Wrap(Autodesk.Revit.DB.FilledRegion ele, bool isRevitOwned)
         {
             return FilledRegion.FromExisting(ele, isRevitOwned);
-	}
+	    }
+
+        public static FillPatternElement Wrap(Autodesk.Revit.DB.FillPatternElement ele, bool isRevitOwned)
+        {
+            return FillPatternElement.FromExisting(ele, isRevitOwned);
+        }
+
+        public static LinePatternElement Wrap(Autodesk.Revit.DB.LinePatternElement ele, bool isRevitOwned)
+        {
+            return LinePatternElement.FromExisting(ele, isRevitOwned);
+        }
 
         public static TextNote Wrap(Autodesk.Revit.DB.TextNote ele, bool isRevitOwned)
         {

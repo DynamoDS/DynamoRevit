@@ -360,7 +360,25 @@
   <data name="TypeNotFound" xml:space="preserve">
     <value>Type not found in document.</value>
   </data>
-  <data name="ViewDoesNotSupportAnnotations" xml:space="preserve">
-    <value>View does not support annotations.</value>
+  <data name="CategoryArgumentException" xml:space="preserve">
+    <value>You must supply a Category.</value>
+  </data>
+  <data name="NameArgumentException" xml:space="preserve">
+    <value>You must supply a Name.</value>
+  </data>
+  <data name="ScheduleTypeArgumentException" xml:space="preserve">
+    <value>Invalid Schedule Type.</value>
+  </data>
+  <data name="ScheduleExportError" xml:space="preserve">
+    <value>There was an error exporting this schedule.</value>
+  </data>
+  <data name="ExportOptionsArgumentException" xml:space="preserve">
+    <value>Invalid Schedule Export Options.</value>
+  </data>
+  <data name="CategoryVisibilityOverrideError" xml:space="preserve">
+    <value>Specified View Template is not valid for this View.</value>
+  </data>
+  <data name="ViewExportImageError" xml:space="preserve">
+    <value>There was an error exporting the image.</value>
   </data>
 </root>

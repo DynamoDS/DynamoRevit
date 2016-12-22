@@ -42,7 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoServices">
-      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\net45\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -55,7 +55,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ProtoGeometry">
-      <HintPath>$(DYNAMOAPI)\ProtoGeometry.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net45\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
@@ -113,6 +113,7 @@
     <Compile Include="Elements\InternalUtilities\ElementWrapper.cs" />
     <Compile Include="Elements\Topography.cs" />
     <Compile Include="Elements\Views\PlanView.cs" />
+    <Compile Include="Elements\Views\ScheduleView.cs" />
     <Compile Include="Elements\Views\View.cs" />
     <Compile Include="Elements\Views\Packing\CygonRectanglePacker.cs" />
     <Compile Include="Elements\Views\AxonometricView.cs" />
@@ -128,7 +129,9 @@
     <Compile Include="Elements\Views\SectionView.cs" />
     <Compile Include="Elements\Views\Packing\OutOfSpaceException.cs" />
     <Compile Include="Elements\Views\Packing\RectanglePacker.cs" />
+    <Compile Include="Elements\FillPatternElement.cs" />
     <Compile Include="Filter\FilterRule.cs" />
+    <Compile Include="Elements\LinePatternElement.cs" />
     <Compile Include="Filter\OverrideGraphicSettings.cs" />
     <Compile Include="Filter\ParameterFilterElement.cs" />
     <Compile Include="GeometryConversion\EdgeLoopPartition.cs" />
@@ -188,23 +191,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
+    <Compile Include="Schedules\SchedulableField.cs" />
+    <Compile Include="Schedules\ScheduleExportOptions.cs" />
+    <Compile Include="Schedules\ScheduleField.cs" />
     <Compile Include="Transaction\Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DynamoCore">
-      <HintPath>$(DYNAMOAPI)\DynamoCore.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Analysis">
-      <HintPath>$(DYNAMOAPI)\Analysis.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net45\Analysis.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DSCoreNodes">
-      <HintPath>$(DYNAMOAPI)\DSCoreNodes.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net45\DSCoreNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">
-      <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net45\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="..\RevitServices\RevitServices.csproj">
@@ -235,6 +241,7 @@
       <Name>RevitServices</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>copy /Y "$(ProjectDir)*_DynamoCustomization.xml" "$(OutputPath)"

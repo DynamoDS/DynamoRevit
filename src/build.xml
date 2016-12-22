@@ -1,0 +1,27 @@
+<Project
+    xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+    ToolsVersion="4.0"
+    DefaultTargets="Build">
+<PropertyGroup>
+    <Solution>DynamoRevit.2013.sln</Solution>
+    <Configuration>Release</Configuration>
+	<DynamoFolderPath>$(MSBuildProjectDirectory)\..\..\Dynamo</DynamoFolderPath>
+</PropertyGroup>
+
+<Import Project="./Config/user_local.props" />
+
+<ItemGroup>
+    <ProjectToBuild Include="$(Solution)" >
+        <Properties>Configuration=$(Configuration);DefineConstants=$(Constants);Platform=Any CPU;VisualStudioVersion=12.0</Properties>
+    </ProjectToBuild>
+</ItemGroup>
+
+<Target Name="Build">
+    <MSBuild Projects="@(ProjectToBuild)" Targets="Rebuild"/>
+</Target>
+
+<Target Name="Buildonly">
+    <MSBuild Projects="@(ProjectToBuild)" Targets="Rebuild"/>
+</Target>
+
+</Project>

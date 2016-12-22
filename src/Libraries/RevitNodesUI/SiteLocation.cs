@@ -50,7 +50,7 @@ namespace DSRevitNodesUI
 
         public SiteLocation()
         {
-            OutPortData.Add(new PortData("Location", Properties.Resources.PortDataLocationToolTip));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Location", Properties.Resources.PortDataLocationToolTip)));
             RegisterAllPorts();
 
             Location = DynamoUnits.Location.ByLatitudeAndLongitude(0.0, 0.0);
