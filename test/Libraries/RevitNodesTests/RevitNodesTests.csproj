@@ -39,21 +39,20 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DSCoreNodes, Version=1.0.1.1523, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(DYNAMOAPI)/DSCoreNodes.dll</HintPath>
+    <Reference Include="DSCoreNodes">
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net45\DSCoreNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>$(NunitPath)\nunit.framework.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\NUnit\lib\nunit.framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ProtoGeometry">
-      <HintPath>$(DYNAMOAPI)\ProtoGeometry.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net45\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices">
-      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\net45\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
@@ -142,11 +141,11 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DynamoCore">
-      <HintPath>$(DYNAMOAPI)\DynamoCore.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Analysis">
-      <HintPath>$(DYNAMOAPI)\Analysis.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net45\Analysis.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj">
@@ -160,7 +159,7 @@
       <Private>False</Private>
     </ProjectReference>
     <Reference Include="TestServices">
-      <HintPath>$(DYNAMOTESTAPI)\TestServices.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\net45\TestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="..\RevitTestServices\RevitTestServices.csproj">
