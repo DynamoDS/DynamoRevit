@@ -75,6 +75,6 @@
   </Target>
   -->
   <Target Name="BeforeBuild">
-    <Exec Command="$(SolutionDir)restorepackages.bat" ContinueOnError="true" /> 
+    <Exec Command="&quot;$(SolutionDir)restorepackages.bat&quot;" ContinueOnError="true" /> 
   </Target>
 </Project>
