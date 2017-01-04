@@ -48,7 +48,7 @@ REM 3. download 3rdParty packages by Aget.exe
     echo If any package is not found in the NuGet Gallery, redirect to look up in the Artifactory server...
 
     :: Symlinks are generated here
-    %PythonAget% -agettable "%ConfigDir%\packages.aget" -refsDir %SymLinksDir%
+    %PythonAget% -agettable "%ConfigDir%\packages.aget" -refsDir "%SymLinksDir%"
     if ERRORLEVEL 1 (
         echo ERROR: Failed to update Dynamo 3rdParty nuget packages in packages.aget
         exit /b 1
