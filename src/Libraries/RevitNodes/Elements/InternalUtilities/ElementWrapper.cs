@@ -83,6 +83,15 @@ namespace Revit.Elements
         {
             return FloorType.FromExisting(ele, isRevitOwned);
         }
+        public static Roof Wrap(Autodesk.Revit.DB.RoofBase ele, bool isRevitOwned)
+        {
+            return Roof.FromExisting(ele, isRevitOwned);
+        }
+
+        public static RoofType Wrap(Autodesk.Revit.DB.RoofType ele, bool isRevitOwned)
+        {
+            return RoofType.FromExisting(ele, isRevitOwned);
+        }
 
         public static Form Wrap(Autodesk.Revit.DB.Form ele, bool isRevitOwned)
         {
