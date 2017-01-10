@@ -220,34 +220,39 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Add Point to Slab Shape
+        /// Add a new point to the slab shape editor.
+        /// Behaves the same as adding a point manually to a slab in
+        /// Revit's slab shape edit mode.
         /// </summary>
-        public void AddPoint(Pt point)
+        public static Roof AddPoint(Roof roof, Pt point)
         {
-            if (this.InternalRoof.SlabShapeEditor == null)
+            if (roof.InternalRoof.SlabShapeEditor == null)
             {
                 throw new Exception(Properties.Resources.InvalidShapeEditor);
             }
 
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-            this.InternalRoof.SlabShapeEditor.Enable();
-            this.InternalRoof.SlabShapeEditor.DrawPoint(point.ToXyz());
+            roof.InternalRoof.SlabShapeEditor.Enable();
+            roof.InternalRoof.SlabShapeEditor.DrawPoint(point.ToXyz());
             TransactionManager.Instance.TransactionTaskDone();
+
+            return roof;
         }
 
         /// <summary>
-        /// Move existing point by offset
+        /// Move an existing point in Revit's slab shape editor by an offset.
+        /// Behaves as moving a point manually in Revit's slab shape editor.
         /// </summary>
-        public void MovePoint(Pt point, double offset)
+        public static Roof MovePoint(Roof roof, Pt point, double offset)
         {
-            if (this.InternalRoof.SlabShapeEditor == null)
+            if (roof.InternalRoof.SlabShapeEditor == null)
             {
                 throw new Exception(Properties.Resources.InvalidShapeEditor);
             }
 
             SlabShapeVertex vertex = null;
 
-            foreach (SlabShapeVertex v in this.InternalRoof.SlabShapeEditor.SlabShapeVertices)
+            foreach (SlabShapeVertex v in roof.InternalRoof.SlabShapeEditor.SlabShapeVertices)
             {
                 if (point.IsAlmostEqualTo(v.Position.ToPoint()))
                 {
@@ -258,10 +263,12 @@ namespace Revit.Elements
             if (vertex != null && offset != 0)
             {
                 TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-                this.InternalRoof.SlabShapeEditor.Enable();
-                this.InternalRoof.SlabShapeEditor.ModifySubElement(vertex, offset);
+                roof.InternalRoof.SlabShapeEditor.Enable();
+                roof.InternalRoof.SlabShapeEditor.ModifySubElement(vertex, offset);
                 TransactionManager.Instance.TransactionTaskDone();
             }
+
+            return roof;
         }
 
 

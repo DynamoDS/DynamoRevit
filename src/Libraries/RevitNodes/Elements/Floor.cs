@@ -196,34 +196,39 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Add Point to Slab Shape
+        /// Add a new point to the slab shape editor.
+        /// Behaves the same as adding a point manually to a slab in
+        /// Revit's slab shape edit mode.
         /// </summary>
-        public void AddPoint(Pt point)
+        public static Floor AddPoint(Floor floor, Pt point)
         {
-            if (this.InternalFloor.SlabShapeEditor == null)
+            if (floor.InternalFloor.SlabShapeEditor == null)
             {
                 throw new Exception(Properties.Resources.InvalidShapeEditor);
             }
 
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-            this.InternalFloor.SlabShapeEditor.Enable();
-            this.InternalFloor.SlabShapeEditor.DrawPoint(point.ToXyz());
+            floor.InternalFloor.SlabShapeEditor.Enable();
+            floor.InternalFloor.SlabShapeEditor.DrawPoint(point.ToXyz());
             TransactionManager.Instance.TransactionTaskDone();
+
+            return floor;
         }
 
         /// <summary>
-        /// Move existing point by offset
+        /// Move an existing point in Revit's slab shape editor by an offset.
+        /// Behaves as moving a point manually in Revit's slab shape editor.
         /// </summary>
-        public void MovePoint(Pt point, double offset)
+        public static Floor MovePoint(Floor floor, Pt point, double offset)
         {
-            if (this.InternalFloor.SlabShapeEditor == null)
+            if (floor.InternalFloor.SlabShapeEditor == null)
             {
                 throw new Exception(Properties.Resources.InvalidShapeEditor);
             }
 
             SlabShapeVertex vertex = null;
 
-            foreach (SlabShapeVertex v in this.InternalFloor.SlabShapeEditor.SlabShapeVertices)
+            foreach (SlabShapeVertex v in floor.InternalFloor.SlabShapeEditor.SlabShapeVertices)
             {
                 if (point.IsAlmostEqualTo(v.Position.ToPoint()))
                 {
@@ -234,10 +239,12 @@ namespace Revit.Elements
             if (vertex != null && offset != 0)
             {
                 TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-                this.InternalFloor.SlabShapeEditor.Enable();
-                this.InternalFloor.SlabShapeEditor.ModifySubElement(vertex, offset);
+                floor.InternalFloor.SlabShapeEditor.Enable();
+                floor.InternalFloor.SlabShapeEditor.ModifySubElement(vertex, offset);
                 TransactionManager.Instance.TransactionTaskDone();
             }
+
+            return floor;
         }
 
         #endregion
