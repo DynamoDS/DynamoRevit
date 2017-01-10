@@ -217,6 +217,11 @@ namespace Revit.Elements
             return FaceWall.FromExisting(ele, isRevitOwned);
         }
 
+        public static CurtainSystemType Wrap(Autodesk.Revit.DB.CurtainSystemType ele, bool isRevitOwned)
+        {
+            return CurtainSystemType.FromExisting(ele, isRevitOwned);
+        }
+
         public static Dimension Wrap(Autodesk.Revit.DB.Dimension ele, bool isRevitOwned)
         {
             return Dimension.FromExisting(ele, isRevitOwned);
