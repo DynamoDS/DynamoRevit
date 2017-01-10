@@ -219,4 +219,3 @@ test/Libraries/RevitIntegrationTests/RevitTestConfiguration.xml
 
 # Icon resources
 /src/DynamoRevitIcons/*.resources
-src/Libraries/RevitNodes/Elements/InternalUtilities/ElementWrapper.cs
