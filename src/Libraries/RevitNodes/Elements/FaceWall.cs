@@ -84,6 +84,11 @@ namespace Revit.Elements
             
             var wallElem = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FaceWall>(Document);
 
+            if (wallElem != null)
+            { 
+                Document.Delete(wallElem.Id);
+            }
+            
             // there is no way of comparing the existing element to the new reference.
             // that's why the wall will be recreated.
 
@@ -131,8 +136,8 @@ namespace Revit.Elements
             {
                 try
                 {
-                    Reference refr = reference as Reference;
-                    return new FaceWall(location, wallType.InternalWallType, refr);
+                    var revitReference = reference as Reference;
+                    return new FaceWall(location, wallType.InternalWallType, revitReference);
                 }
                 catch (Exception) { throw new Exception(Properties.Resources.InvalidFace); }
             }
