@@ -84,6 +84,8 @@ namespace RevitNodesTests.Elements
 
             Assert.NotNull(wall);
             Assert.AreEqual(wall.GetType(), typeof(FaceWall));
+            Assert.NotNull(wall.InternalElement);
+                
         }
     }
 }
