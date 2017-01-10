@@ -31,7 +31,9 @@ namespace RevitNodesTests.Elements
             var tag = Tag.ByElement(Revit.Application.Document.Current.ActiveView, wall, true, false, "Center", "Middle", Vector.ByCoordinates(0, 0, 0));
             Assert.NotNull(tag);
             Assert.NotNull(tag.InternalElement);
-            tag.GetLocation().DistanceTo(Point.ByCoordinates(500, 0, 0)).ShouldBeApproximately(0);
+            Assert.IsInstanceOf(typeof(Autodesk.Revit.DB.IndependentTag), tag.InternalElement);
+            var itag = tag.InternalElement as Autodesk.Revit.DB.IndependentTag;
+            itag.TagHeadPosition.DistanceTo(new Autodesk.Revit.DB.XYZ(500, 0, 0)).ShouldBeApproximately(0);
         }
 
         [Test]
@@ -50,7 +52,9 @@ namespace RevitNodesTests.Elements
             var tag = Tag.ByElementAndLocation(Revit.Application.Document.Current.ActiveView, wall, Point.ByCoordinates(0, 0, 0));
             Assert.NotNull(tag);
             Assert.NotNull(tag.InternalElement);
-            tag.GetLocation().DistanceTo(Point.ByCoordinates(0, 0, 0)).ShouldBeApproximately(0);
+            Assert.IsInstanceOf(typeof(Autodesk.Revit.DB.IndependentTag), tag.InternalElement);
+            var itag = tag.InternalElement as Autodesk.Revit.DB.IndependentTag;
+            itag.TagHeadPosition.DistanceTo(new Autodesk.Revit.DB.XYZ(0, 0, 0)).ShouldBeApproximately(0);
         }
 
         [Test]
@@ -69,7 +73,9 @@ namespace RevitNodesTests.Elements
             var tag = Tag.ByElementAndOffset(Revit.Application.Document.Current.ActiveView, wall, Vector.ByCoordinates(0, 0, 0));
             Assert.NotNull(tag);
             Assert.NotNull(tag.InternalElement);
-            tag.GetLocation().DistanceTo(Point.ByCoordinates(500, 0, 0)).ShouldBeApproximately(0);
+            Assert.IsInstanceOf(typeof(Autodesk.Revit.DB.IndependentTag), tag.InternalElement);
+            var itag = tag.InternalElement as Autodesk.Revit.DB.IndependentTag;
+            itag.TagHeadPosition.DistanceTo(new Autodesk.Revit.DB.XYZ(500, 0, 0)).ShouldBeApproximately(0);
         }
 
 
