@@ -121,7 +121,6 @@
     <Compile Include="Elements\Views\SectionViewTests.cs" />
     <Compile Include="Elements\Views\SheetTests.cs" />
     <Compile Include="Elements\Views\ViewTests.cs" />
-    <Compile Include="Elements\FaceWallTests.cs" />
     <Compile Include="Elements\ParameterTests.cs" />
     <Compile Include="Elements\WallTests.cs" />
     <Compile Include="Elements\WallTypeTests.cs" />
