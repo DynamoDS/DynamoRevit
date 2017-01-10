@@ -210,7 +210,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Create Wall by Face reference
+        /// Creates a Wall following the geometry of a surface.
         /// </summary>
         /// <param name="location"></param>
         /// <param name="wallType"></param>
