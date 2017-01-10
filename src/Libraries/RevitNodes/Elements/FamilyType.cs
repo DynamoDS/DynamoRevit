@@ -73,7 +73,7 @@ namespace Revit.Elements
         private static Solid GetSolidFromElement(Autodesk.Revit.DB.Element element)
         {
             GeometryElement geo = element.get_Geometry(new Options() { ComputeReferences = true });
-
+            
             // Get geometry instance from geometry element
             var enumerator = geo.GetEnumerator();
             enumerator.MoveNext();
@@ -250,9 +250,11 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Create new Family Instance from Geometry (via SAT import)
+        /// Create new Family Type from a solid geometry.
+        /// This method exports the geometry to SAT and imports it into
+        /// a new family document.
         /// </summary>
-        /// <param name="geometry"></param>
+        /// <param name="solidGeometry"></param>
         /// <param name="name"></param>
         /// <param name="category"></param>
         /// <param name="templatePath"></param>
@@ -260,7 +262,7 @@ namespace Revit.Elements
         /// <param name="material"></param>
         /// <param name="subcategory"></param>
         /// <returns></returns>
-        public static FamilyType ByGeometry(Autodesk.DesignScript.Geometry.Geometry geometry, string name, Category category, string templatePath, Material material, bool isVoid = false, string subcategory = "")
+        public static FamilyType ByGeometry(Autodesk.DesignScript.Geometry.Solid solidGeometry, string name, Category category, string templatePath, Material material, bool isVoid = false, string subcategory = "")
         {
             Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.ForceCloseTransaction();
@@ -271,22 +273,18 @@ namespace Revit.Elements
             // create a temp family file
             string tempDir = System.IO.Path.GetTempPath();
             string tempFamilyFile = tempDir + "\\" + name + ".rfa";
-
-            // Get the conversion factor based on the display units
-            DisplayUnitType units = document.GetUnits().GetFormatOptions(UnitType.UT_Length).DisplayUnits;
-            double factor = UnitUtils.ConvertToInternalUnits(1, units);
-
+            
             // scale the incoming geometry
-            geometry = geometry.Scale(factor);
+            UnitConverter.ConvertToDynamoUnits<Autodesk.DesignScript.Geometry.Solid>(ref solidGeometry);
 
             // get a displacement vector
-            Vector vector = Vector.ByTwoPoints(Autodesk.DesignScript.Geometry.BoundingBox.ByGeometry(geometry).MinPoint, Autodesk.DesignScript.Geometry.Point.Origin());
+            Vector vector = Vector.ByTwoPoints(Autodesk.DesignScript.Geometry.BoundingBox.ByGeometry(solidGeometry).MinPoint, Autodesk.DesignScript.Geometry.Point.Origin());
 
             // translate the geometry to origin
-            geometry = geometry.Translate(vector);
+            solidGeometry = solidGeometry.Translate(vector) as Autodesk.DesignScript.Geometry.Solid;
 
             // export geometry to SAT
-            geometry.ExportToSAT(tempFile);
+            solidGeometry.ExportToSAT(tempFile);
 
             // create a new family document using the supplied template
             Autodesk.Revit.DB.Document familyDocument = document.Application.NewFamilyDocument(templatePath);
