@@ -176,19 +176,19 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get extends of an element by view
+        /// Get extents of an element by view
         /// </summary>
         /// <param name="element"></param>
         /// <param name="view"></param>
-        private static BoundingBoxXYZ GetElementExtendsByView(Element element, View view)
+        private static BoundingBoxXYZ GetElementExtentsByView(Element element, View view)
         {
-            BoundingBoxXYZ box = element.InternalElement.get_BoundingBox(view);
+            var box = element.InternalElement.get_BoundingBox(view);
             if (box == null) box = element.InternalElement.get_BoundingBox(null);
             return box;
         }
 
         /// <summary>
-        /// Get element extends by view and apply offset vector
+        /// Get element extents by view and apply offset vector
         /// </summary>
         /// <param name="element"></param>
         /// <param name="view"></param>
@@ -196,9 +196,9 @@ namespace Revit.Elements
         /// <param name="verticalAlignment"></param>
         /// <param name="horizontalAlignment"></param>
         /// <returns></returns>
-        private static XYZ GetExtendsWithOffset(Element element, View view, XYZ offset, VerticalAlignmentStyle verticalAlignment, HorizontalAlignmentStyle horizontalAlignment)
+        private static XYZ GetExtentsWithOffset(Element element, View view, XYZ offset, VerticalAlignmentStyle verticalAlignment, HorizontalAlignmentStyle horizontalAlignment)
         {
-            BoundingBoxXYZ box = GetElementExtendsByView(element, view);
+            var box = GetElementExtentsByView(element, view);
             if (box != null)
             {
                 double X, Y, Z = 0;
@@ -240,8 +240,8 @@ namespace Revit.Elements
         /// <param name="addLeader">Add a leader</param>
         /// <param name="offset">Optional: Offset Vector or Tag Location, defaults to 0,0,0</param>
         /// <param name="isOffset">Optional: Specifies if the point is being used as an offset vector or if it specifies the tags location, defaults to true</param>
-        /// <param name="horizontalAlignment">Horizontal Alignment within the element's extends</param>
-        /// <param name="verticalAlignment">Vertical Alignment within the element's extends</param>
+        /// <param name="horizontalAlignment">Horizontal Alignment within the element's extents</param>
+        /// <param name="verticalAlignment">Vertical Alignment within the element's extents</param>
         /// <returns></returns>
         public static Tag ByElement(Revit.Elements.Views.View view, Element element, bool horizontal, bool addLeader, string horizontalAlignment, string verticalAlignment, [DefaultArgument("Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0,0,0)")]Autodesk.DesignScript.Geometry.Vector offset, bool isOffset = true)
         {
@@ -264,7 +264,7 @@ namespace Revit.Elements
             if (!view.IsAnnotationView())
                 throw new Exception(Properties.Resources.ViewDoesNotSupportAnnotations);
 
-            XYZ location = GetExtendsWithOffset(element, revitView, offset.ToRevitType(true), verticalAlignmentStyle, horizontalAlignmentStyle);
+            XYZ location = GetExtentsWithOffset(element, revitView, offset.ToRevitType(true), verticalAlignmentStyle, horizontalAlignmentStyle);
 
             return new Tag(revitView, element.InternalElement, orientation, tagMode, addLeader, location);
         }
@@ -292,15 +292,19 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Create a Revit Tag for a Revit Element at an offset location from the element's view extends
+        /// Create a Revit Tag for a Revit Element at an offset location 
+        /// from the element's view extents
         /// </summary>
         /// <param name="view">View to tag in</param>
         /// <param name="element">Element to tag</param>
-        /// <param name="horizontal">Optional: Place tag horizontal, defaults to true</param>
+        /// <param name="horizontal">Optional: Place tag horizontal, 
+        /// defaults to true</param>
         /// <param name="addLeader">Optional: Add a leader, defaults to false</param>
         /// <param name="offset">Optional: Offset Vector, defaults to 0,0,0</param>
-        /// <param name="horizontalAlignment">Optional: Horizontal Alignment within the element's extends, defaults to Center</param>
-        /// <param name="verticalAlignment">Optional: Vertical Alignment within the element's extends, defaults to Middle</param>
+        /// <param name="horizontalAlignment">Optional: Horizontal Alignment 
+        /// within the element's extents, defaults to Center</param>
+        /// <param name="verticalAlignment">Optional: Vertical Alignment 
+        /// within the element's extents, defaults to Middle</param>
         /// <returns></returns>
         public static Tag ByElementAndOffset(Revit.Elements.Views.View view, Element element, [DefaultArgument("Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0,0,0)")]Autodesk.DesignScript.Geometry.Vector offset, string horizontalAlignment = "Center", string verticalAlignment = "Middle", bool horizontal = true, bool addLeader = false)
         {
@@ -317,13 +321,16 @@ namespace Revit.Elements
             }
 
             Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
+            
+            // Tagging elements by element category
             Autodesk.Revit.DB.TagMode tagMode = TagMode.TM_ADDBY_CATEGORY;
+
             Autodesk.Revit.DB.TagOrientation orientation = (horizontal) ? TagOrientation.Horizontal : TagOrientation.Vertical;
 
             if (!view.IsAnnotationView())
                 throw new Exception(Properties.Resources.ViewDoesNotSupportAnnotations);
 
-            XYZ location = GetExtendsWithOffset(element, revitView, offset.ToRevitType(true), verticalAlignmentStyle, horizontalAlignmentStyle);
+            XYZ location = GetExtentsWithOffset(element, revitView, offset.ToRevitType(true), verticalAlignmentStyle, horizontalAlignmentStyle);
 
             return new Tag(revitView, element.InternalElement, orientation, tagMode, addLeader, location);
         }
