@@ -131,10 +131,8 @@ namespace Revit.Elements
             foreach (Autodesk.DesignScript.Geometry.Surface face in faces)
             {
                 var reference = face.Tags.LookupTag("RevitFaceReference");
-                if (reference != null)
-                {
-                    ca.Append((Autodesk.Revit.DB.Reference)reference);
-                }
+                if (reference == null) throw new Exception(Properties.Resources.FaceReferenceFailure);
+                ca.Append((Autodesk.Revit.DB.Reference)reference);               
             }
 
             return new CurtainSystem(ca, curtainSystemType.InternalCurtainSystemType);
