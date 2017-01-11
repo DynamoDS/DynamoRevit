@@ -31,7 +31,7 @@ set versionQueryParams=list DynamoVisualProgramming.Core -prerelease -config "%N
 for /F "tokens=2 delims= " %%F in ( 'call "%NugetExe%" %versionQueryParams%' ) do (set LatestBeta=%%F)
 echo Latest pre-release version of "DynamoVisualProgramming.Core" package is "%LatestBeta%"
 
-if exist %ConfigDir%\packages.aget del %ConfigDir%\packages.aget
+if exist "%ConfigDir%\packages.aget" del "%ConfigDir%\packages.aget"
 for /f "tokens=* delims=¶" %%i in ( 'type "%ConfigDir%\packages-template.aget"' ) do (
     set line=%%i
     setlocal EnableDelayedExpansion
