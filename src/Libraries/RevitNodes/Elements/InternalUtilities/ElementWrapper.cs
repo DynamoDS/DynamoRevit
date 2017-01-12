@@ -222,6 +222,11 @@ namespace Revit.Elements
             return Dimension.FromExisting(ele, isRevitOwned);
         }
 
+        public static DimensionType Wrap(Autodesk.Revit.DB.DimensionType ele, bool isRevitOwned)
+        {
+            return DimensionType.FromExisting(ele, isRevitOwned);
+        }
+
         public static FilledRegionType Wrap(Autodesk.Revit.DB.FilledRegionType ele, bool isRevitOwned)
         {
             return FilledRegionType.FromExisting(ele, isRevitOwned);

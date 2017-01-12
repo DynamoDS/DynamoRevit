@@ -84,6 +84,7 @@
     <Compile Include="Elements\CurtainPanel.cs" />
     <Compile Include="Elements\Dimension.cs" />
     <Compile Include="Elements\DetailCurve.cs" />
+    <Compile Include="Elements\DimensionType.cs" />
     <Compile Include="Elements\DirectShape.cs" />
     <Compile Include="Elements\Element.cs" />
     <Compile Include="Elements\AbstractFamilyInstance.cs" />
