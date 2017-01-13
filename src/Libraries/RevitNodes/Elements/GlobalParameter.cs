@@ -150,7 +150,7 @@ namespace Revit.Elements
                 throw new Exception(Properties.Resources.DocumentDoesNotSupportGlobalParams);
             }
 
-            var ids = Autodesk.Revit.DB.GlobalParametersManager.GetGlobalParametersOrdered(Document);
+            var ids = Autodesk.Revit.DB.GlobalParametersManager.GetAllGlobalParameters(Document);
 
             List<GlobalParameter> parameters = new List<GlobalParameter>();
 
