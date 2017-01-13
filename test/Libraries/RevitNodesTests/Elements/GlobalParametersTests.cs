@@ -26,7 +26,7 @@ namespace RevitNodesTests.Elements
     class GlobalParametersTests : RevitNodeTestBase
     {
         [Test]
-        [TestModel(@".\empty-2017.rvt")]
+        [TestModel(@".\empty.rvt")]
         public void SetAndGetGlobalParameterByName()
         {
             
@@ -42,7 +42,7 @@ namespace RevitNodesTests.Elements
         }
 
         [Test]
-        [TestModel(@".\empty-2017.rvt")]
+        [TestModel(@".\empty.rvt")]
         public void GetAllGlobalParameters()
         {
             var gp1 = Revit.Elements.GlobalParameter.ByName("MyGlobal1", "Text");
