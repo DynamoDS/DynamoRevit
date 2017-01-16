@@ -372,4 +372,8 @@
     <value>The type of the fill pattern.</value>
     <comment>Description for Fill Pattern Target</comment>
   </data>
+  <data name="ScheduleFilterTypeDescription" xml:space="preserve">
+    <value>A View Schedule Filter Type.</value>
+    <comment>Description for Filter Type</comment>
+  </data>
 </root>

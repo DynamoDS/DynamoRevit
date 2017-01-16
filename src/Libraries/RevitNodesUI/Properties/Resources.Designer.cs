@@ -205,7 +205,7 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The type of the fill pattern..
         /// </summary>
         internal static string FillPatternTargetDescription {
             get {
@@ -480,6 +480,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string RevisionVisibilitySelectorDescription {
             get {
                 return ResourceManager.GetString("RevisionVisibilitySelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A View Schedule Filter Type..
+        /// </summary>
+        internal static string ScheduleFilterTypeDescription {
+            get {
+                return ResourceManager.GetString("ScheduleFilterTypeDescription", resourceCulture);
             }
         }
         

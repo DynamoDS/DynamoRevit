@@ -249,6 +249,28 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scheduleFilter"></param>
+        /// <returns></returns>
+        public ScheduleView AddFilter(ScheduleFilter scheduleFilter)
+        {
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            TransactionManager.Instance.EnsureInTransaction(doc);
+
+            var filters = this.InternalViewSchedule.Definition.GetFilters().Select(x => new ScheduleFilter(x));
+
+            if (!filters.Contains(scheduleFilter))
+            {
+                this.InternalViewSchedule.Definition.AddFilter(scheduleFilter.InternalScheduleFilter);
+            }
+            
+            TransactionManager.Instance.TransactionTaskDone();
+            
+            return this;
+        }
+
+        /// <summary>
         /// Schedule Fields.
         /// </summary>
         public List<Revit.Schedules.ScheduleField> Fields
