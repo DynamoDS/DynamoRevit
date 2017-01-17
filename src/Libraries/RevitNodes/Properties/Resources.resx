@@ -381,10 +381,4 @@
   <data name="ViewExportImageError" xml:space="preserve">
     <value>There was an error exporting the image.</value>
   </data>
-  <data name="DocumentDoesNotSupportGlobalParams" xml:space="preserve">
-    <value>Document does not support global parameters.</value>
-  </data>
-  <data name="NameAlreadyInUse" xml:space="preserve">
-    <value>Name already in use.</value>
-  </data>
 </root>

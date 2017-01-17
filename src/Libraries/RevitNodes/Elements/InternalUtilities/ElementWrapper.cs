@@ -283,11 +283,6 @@ namespace Revit.Elements
 
         }
 
-        public static GlobalParameter Wrap(Autodesk.Revit.DB.GlobalParameter ele, bool isRevitOwned)
-        {
-            return GlobalParameter.FromExisting(ele, isRevitOwned);
-
-        }
 
         #endregion
 
