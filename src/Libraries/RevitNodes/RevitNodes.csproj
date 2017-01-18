@@ -80,7 +80,6 @@
     <Compile Include="Application\Document.cs" />
     <Compile Include="Elements\Category.cs" />
     <Compile Include="Elements\Coordinates.cs" />
-    <Compile Include="Elements\ClashDetectionRule.cs" />
     <Compile Include="Elements\CurtainGrid.cs" />
     <Compile Include="Elements\CurtainPanel.cs" />
     <Compile Include="Elements\Dimension.cs" />

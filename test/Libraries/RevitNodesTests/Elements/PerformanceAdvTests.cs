@@ -1,12 +1,8 @@
-﻿using System;
-using System.Linq;
-
-
-using Revit.Elements;
-using NUnit.Framework;
+﻿using System.Collections.Generic;
 using Autodesk.Revit.DB;
+using NUnit.Framework;
+using Revit.Elements;
 using RevitTestServices;
-using System.Collections.Generic;
 using RTF.Framework;
 
 namespace RevitNodesTests.Elements
