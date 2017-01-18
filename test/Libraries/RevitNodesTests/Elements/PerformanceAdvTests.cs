@@ -12,7 +12,7 @@ using RTF.Framework;
 namespace RevitNodesTests.Elements
 {
     [TestFixture]
-    public class RevisionTests : RevitNodeTestBase
+    public class PerformanceAdviserTests : RevitNodeTestBase
     {
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
@@ -30,7 +30,24 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(perf.GetType(), typeof(Revit.Elements.PerformanceAdviserRule));
         }
 
+        [Test]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
+        public void Execute_ValidResult()
+        {
+            PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
+            IList<PerformanceAdviserRuleId> ruleIds = adviser.GetAllRuleIds();
+            var perf = Revit.Elements.PerformanceAdviserRule.ById(ruleIds[0].Guid.ToString());
+            List<PerformanceAdviserRule> rules = new List<PerformanceAdviserRule>(){perf};
 
+            var messages = Revit.Elements.PerformanceAdviserRule.Execute(rules);
+
+            foreach (var msg in messages)
+            {
+                Assert.IsTrue(msg.GetType() == typeof(Revit.Elements.FailureMessage));
+                Assert.IsNotNull(msg.Description);
+                Assert.IsNotNull(msg.Severity);
+            }
+        }
 
 
     }
