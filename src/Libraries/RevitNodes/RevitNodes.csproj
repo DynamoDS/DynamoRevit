@@ -80,6 +80,7 @@
     <Compile Include="Application\Document.cs" />
     <Compile Include="Elements\Category.cs" />
     <Compile Include="Elements\Coordinates.cs" />
+    <Compile Include="Elements\ClashDetectionRule.cs" />
     <Compile Include="Elements\CurtainGrid.cs" />
     <Compile Include="Elements\CurtainPanel.cs" />
     <Compile Include="Elements\Dimension.cs" />
@@ -99,6 +100,8 @@
     <Compile Include="Elements\Room.cs" />
     <Compile Include="Elements\Revision.cs" />
     <Compile Include="Elements\RevisionCloud.cs" />
+    <Compile Include="Elements\FailureMessage.cs" />
+    <Compile Include="Elements\PerformanceAdviserRule.cs" />
     <Compile Include="Elements\SunSettings.cs" />
     <Compile Include="Elements\Tag.cs" />
     <Compile Include="Elements\TextElement.cs" />
