@@ -78,7 +78,7 @@ namespace Revit.Elements
         /// <param name="messages"></param>
         public static void PostInDocument(IEnumerable<FailureMessage> messages)
         {
-
+            
             var document = DocumentManager.Instance.CurrentDBDocument;
 
             foreach (var msg in messages)
