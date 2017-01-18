@@ -1,10 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.DesignScript.Runtime;
-using System;
-using RevitServices.Transactions;
 using RevitServices.Persistence;
 using System.Collections.Generic;
-using System.Collections;
 
 
 namespace Revit.Elements
