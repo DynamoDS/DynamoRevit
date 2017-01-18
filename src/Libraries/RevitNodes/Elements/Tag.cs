@@ -146,20 +146,106 @@ namespace Revit.Elements
 
         #endregion
 
+        #region Helpers for public static constructors
+
+        /// <summary>
+        /// Gets element location from locationPoint or Curve
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        private static XYZ GetLocationPoint(Element element)
+        {
+            if (element.InternalElement.Location != null)
+            {
+                if (element.InternalElement.Location.GetType() == typeof(LocationCurve))
+                {
+                    LocationCurve lc = (LocationCurve)element.InternalElement.Location;
+                    XYZ midpoint = lc.Curve.Evaluate(0.5, true);
+                    return new XYZ(midpoint.X, midpoint.Y, 0);
+                }
+                else if (element.InternalElement.Location.GetType() == typeof(LocationPoint))
+                {
+                    LocationPoint lp = (LocationPoint)element.InternalElement.Location;
+                    return new XYZ(lp.Point.X, lp.Point.Y, 0);
+                }
+                else
+                    throw new Exception(Properties.Resources.InvalidElementLocation);
+            }
+            else
+                throw new Exception(Properties.Resources.InvalidElementLocation);
+        }
+
+        /// <summary>
+        /// Get extents of an element by view
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="view"></param>
+        private static BoundingBoxXYZ GetElementExtentsByView(Element element, View view)
+        {
+            var box = element.InternalElement.get_BoundingBox(view);
+            if (box == null) box = element.InternalElement.get_BoundingBox(null);
+            return box;
+        }
+
+        /// <summary>
+        /// Get element extents by view and apply offset vector
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="view"></param>
+        /// <param name="offset"></param>
+        /// <param name="verticalAlignment"></param>
+        /// <param name="horizontalAlignment"></param>
+        /// <returns></returns>
+        private static XYZ GetExtentsWithOffset(Element element, View view, XYZ offset, VerticalAlignmentStyle verticalAlignment, HorizontalAlignmentStyle horizontalAlignment)
+        {
+            var box = GetElementExtentsByView(element, view);
+            if (box != null)
+            {
+                double X, Y, Z = 0;
+
+                switch (verticalAlignment)
+                {
+                    case VerticalAlignmentStyle.Bottom: Y = box.Min.Y; break;
+                    case VerticalAlignmentStyle.Top: Y = box.Max.Y; break;
+                    default: Y = box.Min.Y + ((box.Max.Y - box.Min.Y) / 2); break;
+                }
+
+                switch (horizontalAlignment)
+                {
+                    case HorizontalAlignmentStyle.Left: X = box.Min.X; break;
+                    case HorizontalAlignmentStyle.Right: X = box.Max.X; break;
+                    default: X = box.Min.X + ((box.Max.X - box.Min.X) / 2); break;
+                }
+
+                return new XYZ(X + offset.X, Y + offset.Y, Z + offset.Z);
+            }
+            else
+            {
+                XYZ location = GetLocationPoint(element);
+                return new XYZ(location.X + offset.X, location.Y + offset.Y, location.Z + offset.Z);
+            }
+        }
+
+
+        #endregion
+
         #region Public static constructors
 
         /// <summary>
         /// Create a Revit Tag for a Revit Element
         /// </summary>
-        /// <param name="view">View to Tag</param>
+        /// <param name="view">View to Tag in</param>
         /// <param name="element">Element to tag</param>
-        /// <param name="horizontal">Horizontal alignment</param>
+        /// <param name="horizontal">Place tag horizontal</param>
         /// <param name="addLeader">Add a leader</param>
-        /// <param name="offset">Offset Vector or Tag Location</param>
-        /// <param name="isOffset">Specifies if the point is being used as an offset vector or if it specifies the tags location</param>
-        /// <param name="horizontalAlignment">Horizontal Alignment</param>
-        /// <param name="verticalAlignment">Vertical Alignment</param>
+        /// <param name="offset">Optional: Offset Vector or Tag Location, defaults to 0,0,0</param>
+        /// <param name="isOffset">Optional: Specifies if the point is being used as an offset vector or if it specifies the tags location, defaults to true</param>
+        /// <param name="horizontalAlignment">Horizontal Alignment within the element's extents</param>
+        /// <param name="verticalAlignment">Vertical Alignment within the element's extents</param>
         /// <returns></returns>
+        /// <search>
+        /// tagelement,annotate,documentation
+        /// </search>
         public static Tag ByElement(Revit.Elements.Views.View view, Element element, bool horizontal, bool addLeader, string horizontalAlignment, string verticalAlignment, [DefaultArgument("Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0,0,0)")]Autodesk.DesignScript.Geometry.Vector offset, bool isOffset = true)
         {
             Autodesk.Revit.DB.HorizontalAlignmentStyle horizontalAlignmentStyle = HorizontalAlignmentStyle.Center;
@@ -174,66 +260,88 @@ namespace Revit.Elements
                 verticalAlignmentStyle = VerticalAlignmentStyle.Middle;
             }
 
-
-
             Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
-            Autodesk.Revit.DB.XYZ point = offset.ToRevitType(true);
             Autodesk.Revit.DB.TagMode tagMode = TagMode.TM_ADDBY_CATEGORY;
             Autodesk.Revit.DB.TagOrientation orientation = (horizontal) ? TagOrientation.Horizontal : TagOrientation.Vertical;
 
             if (!view.IsAnnotationView())
                 throw new Exception(Properties.Resources.ViewDoesNotSupportAnnotations);
 
-            if (isOffset)
-            {
-                BoundingBoxXYZ box = element.InternalElement.get_BoundingBox(revitView);
-                if (box == null) box = element.InternalElement.get_BoundingBox(null);
-                if (box != null)
-                {
-                    double Y, X = 0;
+            XYZ location = GetExtentsWithOffset(element, revitView, offset.ToRevitType(true), verticalAlignmentStyle, horizontalAlignmentStyle);
 
-                    switch (verticalAlignmentStyle)
-                    {
-                        case VerticalAlignmentStyle.Bottom: Y = box.Min.Y; break;
-                        case VerticalAlignmentStyle.Top: Y = box.Max.Y; break;
-                        default: Y = box.Min.Y + ((box.Max.Y - box.Min.Y) / 2); break;
-                    }
+            return new Tag(revitView, element.InternalElement, orientation, tagMode, addLeader, location);
+        }
 
-                    switch (horizontalAlignmentStyle)
-                    {
-                        case HorizontalAlignmentStyle.Left: X = box.Min.X; break;
-                        case HorizontalAlignmentStyle.Right: X = box.Max.X; break;
-                        default: X = box.Min.X + ((box.Max.X - box.Min.X) / 2); break;
-                    }
+        /// <summary>
+        /// Create a Revit Tag for a Revit Element at a specified location point
+        /// </summary>
+        /// <param name="view">View to tag in</param>
+        /// <param name="element">Element to tag</param>
+        /// <param name="location">Location point</param>
+        /// <param name="horizontal">Optional: Place tag horizontal, defaults to true</param>
+        /// <param name="addLeader">Optional: Add a leader, defaults to false</param>
+        /// <returns></returns>
+        /// <search>
+        /// tagelement,annotate,documentation,taglocation
+        /// </search>
+        public static Tag ByElementAndLocation(Revit.Elements.Views.View view, Element element, Autodesk.DesignScript.Geometry.Point location, bool horizontal = true, bool addLeader = false)
+        {
+            Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
+            Autodesk.Revit.DB.XYZ point = location.ToRevitType(true);
+            Autodesk.Revit.DB.TagMode tagMode = TagMode.TM_ADDBY_CATEGORY;
+            Autodesk.Revit.DB.TagOrientation orientation = (horizontal) ? TagOrientation.Horizontal : TagOrientation.Vertical;
 
-                    point = new XYZ(X + point.X, Y + point.Y, 0 + point.Z);
-                }
-                else
-                {
-                    if (element.InternalElement.Location != null)
-                    {
-                        if (element.InternalElement.Location.GetType() == typeof(LocationCurve))
-                        {
-                            LocationCurve lc = (LocationCurve)element.InternalElement.Location;
-                            XYZ midpoint = lc.Curve.Evaluate(0.5, true);
-                            point = new XYZ(midpoint.X + point.X, midpoint.Y + point.Y, 0 + point.Z);
-                        }
-                        else if (element.InternalElement.Location.GetType() == typeof(LocationPoint))
-                        {
-                            LocationPoint lp = (LocationPoint)element.InternalElement.Location;
-                            point = new XYZ(lp.Point.X + point.X, lp.Point.Y + point.Y, 0 + point.Z);
-                        }
-                        else
-                            throw new Exception(Properties.Resources.InvalidElementLocation);
-                    }
-                    else
-                        throw new Exception(Properties.Resources.InvalidElementLocation);
-                }
-            }
-
-
+            if (!view.IsAnnotationView())
+                throw new Exception(Properties.Resources.ViewDoesNotSupportAnnotations);
 
             return new Tag(revitView, element.InternalElement, orientation, tagMode, addLeader, point);
+        }
+
+        /// <summary>
+        /// Create a Revit Tag for a Revit Element at an offset location 
+        /// from the element's view extents
+        /// </summary>
+        /// <param name="view">View to tag in</param>
+        /// <param name="element">Element to tag</param>
+        /// <param name="horizontal">Optional: Place tag horizontal, 
+        /// defaults to true</param>
+        /// <param name="addLeader">Optional: Add a leader, defaults to false</param>
+        /// <param name="offset">Optional: Offset Vector, defaults to 0,0,0</param>
+        /// <param name="horizontalAlignment">Optional: Horizontal Alignment 
+        /// within the element's extents, defaults to Center</param>
+        /// <param name="verticalAlignment">Optional: Vertical Alignment 
+        /// within the element's extents, defaults to Middle</param>
+        /// <returns></returns>
+        /// <search>
+        /// tagelement,annotate,documentation,tagoffset,movetag
+        /// </search>
+        public static Tag ByElementAndOffset(Revit.Elements.Views.View view, Element element, [DefaultArgument("Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0,0,0)")]Autodesk.DesignScript.Geometry.Vector offset, string horizontalAlignment = "Center", string verticalAlignment = "Middle", bool horizontal = true, bool addLeader = false)
+        {
+            Autodesk.Revit.DB.HorizontalAlignmentStyle horizontalAlignmentStyle = HorizontalAlignmentStyle.Center;
+            if (!Enum.TryParse<Autodesk.Revit.DB.HorizontalAlignmentStyle>(horizontalAlignment, out horizontalAlignmentStyle))
+            {
+                horizontalAlignmentStyle = HorizontalAlignmentStyle.Center;
+            }
+
+            Autodesk.Revit.DB.VerticalAlignmentStyle verticalAlignmentStyle = VerticalAlignmentStyle.Middle;
+            if (!Enum.TryParse<Autodesk.Revit.DB.VerticalAlignmentStyle>(verticalAlignment, out verticalAlignmentStyle))
+            {
+                verticalAlignmentStyle = VerticalAlignmentStyle.Middle;
+            }
+
+            Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
+            
+            // Tagging elements by element category
+            Autodesk.Revit.DB.TagMode tagMode = TagMode.TM_ADDBY_CATEGORY;
+
+            Autodesk.Revit.DB.TagOrientation orientation = (horizontal) ? TagOrientation.Horizontal : TagOrientation.Vertical;
+
+            if (!view.IsAnnotationView())
+                throw new Exception(Properties.Resources.ViewDoesNotSupportAnnotations);
+
+            XYZ location = GetExtentsWithOffset(element, revitView, offset.ToRevitType(true), verticalAlignmentStyle, horizontalAlignmentStyle);
+
+            return new Tag(revitView, element.InternalElement, orientation, tagMode, addLeader, location);
         }
 
         #endregion
