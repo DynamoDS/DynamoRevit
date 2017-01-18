@@ -368,4 +368,7 @@
     <value>The type of the fill pattern.</value>
     <comment>Description for Fill Pattern Target</comment>
   </data>
+  <data name="PerformanceAdviserDescription" xml:space="preserve">
+    <value>All Performance Adviser rules.</value>
+  </data>
 </root>
