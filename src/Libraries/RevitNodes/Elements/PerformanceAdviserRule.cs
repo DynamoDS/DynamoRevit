@@ -1,10 +1,9 @@
-﻿using Autodesk.Revit.DB;
-using Autodesk.DesignScript.Runtime;
-using System;
-using RevitServices.Transactions;
-using RevitServices.Persistence;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections;
+using Autodesk.DesignScript.Runtime;
+using Autodesk.Revit.DB;
+using RevitServices.Persistence;
+using RevitServices.Transactions;
 
 
 namespace Revit.Elements
@@ -50,25 +49,27 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Check is the rule is activated
+        /// A boolean indicating if the rule is activated.
         /// </summary>
         public bool Enabled
         {
             get
             {
                 PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
+                // Check if the rule is activated
                 return adviser.IsRuleEnabled(this.InternalId);
             }
         }
 
         /// <summary>
-        /// Activate or deactivate the rule
+        /// A boolean indicating if the rule is activated successfully.
         /// </summary>
         public bool SetEnabled
         {
             set
             {
                 PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
+                // Activate or deactivate the rule
                 adviser.SetRuleEnabled(this.InternalId, value);
             }
         }
@@ -123,6 +124,10 @@ namespace Revit.Elements
             return new PerformanceAdviserRule(new PerformanceAdviserRuleId(new Guid(guid)));
         }
 
+        /// <summary>
+        /// Outputs rule name and rule description.
+        /// </summary>
+        /// <returns></returns>
         [SupressImportIntoVM]
         public override string ToString()
         {
