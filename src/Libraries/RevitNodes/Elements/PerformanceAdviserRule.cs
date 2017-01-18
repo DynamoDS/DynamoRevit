@@ -134,8 +134,8 @@ namespace Revit.Elements
             Type t = element.InternalElement.GetType();
 
             ClashDetectionRule clash = new ClashDetectionRule(t);
-            //PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
-            //adviser.AddRule(clash.Id, clash);
+            PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
+            adviser.AddRule(clash.Id, clash);
             return new PerformanceAdviserRule(clash.Id);
 
         }

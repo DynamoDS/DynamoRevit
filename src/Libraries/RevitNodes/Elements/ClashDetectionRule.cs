@@ -66,13 +66,7 @@ namespace Revit.Elements
 
                     fm.SetFailingElements(clashingElements);
 
-                    Autodesk.Revit.DB.Transaction failureReportingTransaction = new Autodesk.Revit.DB.Transaction(document);
-
-                    failureReportingTransaction.Start("Failure reporting");
-
                     PerformanceAdviser.GetPerformanceAdviser().PostWarning(fm);
-
-                    failureReportingTransaction.Commit();
 
                     clashingElements.Clear();
                 }
