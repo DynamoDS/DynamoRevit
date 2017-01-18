@@ -243,6 +243,9 @@ namespace Revit.Elements
         /// <param name="horizontalAlignment">Horizontal Alignment within the element's extents</param>
         /// <param name="verticalAlignment">Vertical Alignment within the element's extents</param>
         /// <returns></returns>
+        /// <search>
+        /// tagelement,annotate,documentation
+        /// </search>
         public static Tag ByElement(Revit.Elements.Views.View view, Element element, bool horizontal, bool addLeader, string horizontalAlignment, string verticalAlignment, [DefaultArgument("Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0,0,0)")]Autodesk.DesignScript.Geometry.Vector offset, bool isOffset = true)
         {
             Autodesk.Revit.DB.HorizontalAlignmentStyle horizontalAlignmentStyle = HorizontalAlignmentStyle.Center;
@@ -278,6 +281,9 @@ namespace Revit.Elements
         /// <param name="horizontal">Optional: Place tag horizontal, defaults to true</param>
         /// <param name="addLeader">Optional: Add a leader, defaults to false</param>
         /// <returns></returns>
+        /// <search>
+        /// tagelement,annotate,documentation,taglocation
+        /// </search>
         public static Tag ByElementAndLocation(Revit.Elements.Views.View view, Element element, Autodesk.DesignScript.Geometry.Point location, bool horizontal = true, bool addLeader = false)
         {
             Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
@@ -306,6 +312,9 @@ namespace Revit.Elements
         /// <param name="verticalAlignment">Optional: Vertical Alignment 
         /// within the element's extents, defaults to Middle</param>
         /// <returns></returns>
+        /// <search>
+        /// tagelement,annotate,documentation,tagoffset,movetag
+        /// </search>
         public static Tag ByElementAndOffset(Revit.Elements.Views.View view, Element element, [DefaultArgument("Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0,0,0)")]Autodesk.DesignScript.Geometry.Vector offset, string horizontalAlignment = "Center", string verticalAlignment = "Middle", bool horizontal = true, bool addLeader = false)
         {
             Autodesk.Revit.DB.HorizontalAlignmentStyle horizontalAlignmentStyle = HorizontalAlignmentStyle.Center;
