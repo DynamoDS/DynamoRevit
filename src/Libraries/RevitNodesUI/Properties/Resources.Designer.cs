@@ -205,7 +205,7 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to The type of the fill pattern..
         /// </summary>
         internal static string FillPatternTargetDescription {
             get {
@@ -327,6 +327,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string ParameterTypeSelectorDescription {
             get {
                 return ResourceManager.GetString("ParameterTypeSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Performance Adviser rules..
+        /// </summary>
+        internal static string PerformanceAdviserDescription {
+            get {
+                return ResourceManager.GetString("PerformanceAdviserDescription", resourceCulture);
             }
         }
         

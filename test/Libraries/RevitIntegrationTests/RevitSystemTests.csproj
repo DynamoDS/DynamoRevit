@@ -97,6 +97,7 @@
     <Compile Include="AnalysisDisplayTests.cs" />
     <Compile Include="AsynchronousModeTests.cs" />
     <Compile Include="GlobalParameterTests.cs" />
+    <Compile Include="PerformanceAdviserTests.cs" />
     <Compile Include="RoomTests.cs" />
     <Compile Include="RevisionTests.cs" />
     <Compile Include="LocationTests.cs" />

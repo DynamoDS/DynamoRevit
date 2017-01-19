@@ -100,6 +100,8 @@
     <Compile Include="Elements\Room.cs" />
     <Compile Include="Elements\Revision.cs" />
     <Compile Include="Elements\RevisionCloud.cs" />
+    <Compile Include="Elements\FailureMessage.cs" />
+    <Compile Include="Elements\PerformanceAdviserRule.cs" />
     <Compile Include="Elements\SunSettings.cs" />
     <Compile Include="Elements\Tag.cs" />
     <Compile Include="Elements\TextElement.cs" />
