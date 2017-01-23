@@ -156,7 +156,7 @@ namespace Dynamo.Applications
      Regeneration(RegenerationOption.Manual)]
     public class DynamoRevit : IExternalCommand
     {
-        enum Versions { ShapeManager = 222 };
+        enum Versions { ShapeManager = 223 };
 
         /// <summary>
         /// Based on the RevitDynamoModelState a dependent component can take certain 
