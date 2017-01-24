@@ -138,11 +138,11 @@
   <data name="CurtainPanelIsNotPlanar" xml:space="preserve">
     <value>Curtain Panel is not planar</value>
   </data>
-  <data name="CurtainPanelIsNotRectangular" xml:space="preserve">
-    <value>Curtain Panel is not rectangular</value>
-  </data>
   <data name="CurtainPanelShouldRepresentRevitPanel" xml:space="preserve">
     <value>Curtain Panel should represent Revit panel</value>
+  </data>
+  <data name="CurtainPanelIsNotRectangular" xml:space="preserve">
+    <value>Curtain Panel is not rectangular</value>
   </data>
   <data name="NumberOfDivisionsMustBeGreaterThan2" xml:space="preserve">
     <value>The number of divisions must be greater than 2!</value>
@@ -315,6 +315,12 @@
   <data name="InvalidShapeEditor" xml:space="preserve">
     <value>Floor Shape cannot be edited.</value>
   </data>
+  <data name="DynamoSurfaceToRevitBRepFailure" xml:space="preserve">
+    <value>An unexpected failure occurred when attempting to convert the surface into a Revit BRep</value>
+  </data>
+  <data name="DynamoSolidToRevitBRepFailure" xml:space="preserve">
+    <value>An unexpected failure occurred when attempting to convert the solid into a Revit BRep</value>
+  </data>
   <data name="ElementCannotBeAnnotatedError" xml:space="preserve">
     <value>Element cannot be annotated</value>
   </data>
@@ -359,5 +365,26 @@
   </data>
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
+  </data>
+  <data name="CategoryArgumentException" xml:space="preserve">
+    <value>You must supply a Category.</value>
+  </data>
+  <data name="NameArgumentException" xml:space="preserve">
+    <value>You must supply a Name.</value>
+  </data>
+  <data name="ScheduleTypeArgumentException" xml:space="preserve">
+    <value>Invalid Schedule Type.</value>
+  </data>
+  <data name="ScheduleExportError" xml:space="preserve">
+    <value>There was an error exporting this schedule.</value>
+  </data>
+  <data name="ExportOptionsArgumentException" xml:space="preserve">
+    <value>Invalid Schedule Export Options.</value>
+  </data>
+  <data name="CategoryVisibilityOverrideError" xml:space="preserve">
+    <value>Specified View Template is not valid for this View.</value>
+  </data>
+  <data name="ViewExportImageError" xml:space="preserve">
+    <value>There was an error exporting the image.</value>
   </data>
 </root>

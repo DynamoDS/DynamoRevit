@@ -81,8 +81,8 @@ namespace DSRevitNodesUI
     {
         public ElementsOfFamilyType()
         {
-            InPortData.Add(new PortData("Family Type", Properties.Resources.PortDataFamilTypeToolTip));
-            OutPortData.Add(new PortData("Elements", Properties.Resources.PortDataElementsToolTip));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Family Type", Properties.Resources.PortDataFamilTypeToolTip)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Elements", Properties.Resources.PortDataElementsToolTip)));
 
             RegisterAllPorts();
         }
@@ -106,8 +106,8 @@ namespace DSRevitNodesUI
     {
         public ElementsOfType()
         {
-            InPortData.Add(new PortData("element type", Properties.Resources.PortDataElementTypeToolTip));
-            OutPortData.Add(new PortData("elements", Properties.Resources.PortDataAllElementsInDocumentToolTip));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("element type", Properties.Resources.PortDataElementTypeToolTip)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("elements", Properties.Resources.PortDataAllElementsInDocumentToolTip)));
             RegisterAllPorts();
         }
 
@@ -129,8 +129,8 @@ namespace DSRevitNodesUI
     {
         public ElementsOfCategory()
         {
-            InPortData.Add(new PortData("Category", Properties.Resources.PortDataCategoryToolTip));
-            OutPortData.Add(new PortData("Elements", Properties.Resources.PortDataElementTypeToolTip));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Category", Properties.Resources.PortDataCategoryToolTip)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Elements", Properties.Resources.PortDataElementTypeToolTip)));
 
             RegisterAllPorts();
         }
@@ -153,8 +153,8 @@ namespace DSRevitNodesUI
     {
         public ElementsAtLevel()
         {
-            InPortData.Add(new PortData("Level", Properties.Resources.PortDataALevelToolTip));
-            OutPortData.Add(new PortData("Elements", Properties.Resources.PortDataElementAtLevelToolTip));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Level", Properties.Resources.PortDataALevelToolTip)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Elements", Properties.Resources.PortDataElementAtLevelToolTip)));
 
             RegisterAllPorts();
         }
@@ -180,7 +180,7 @@ namespace DSRevitNodesUI
 
         public ElementsInView()
         {
-            OutPortData.Add(new PortData("elements", Properties.Resources.PortDataAllVisibleElementsToolTip));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("elements", Properties.Resources.PortDataAllVisibleElementsToolTip)));
             RegisterAllPorts();
 
             DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
