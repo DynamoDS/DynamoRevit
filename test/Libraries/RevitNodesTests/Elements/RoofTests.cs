@@ -38,7 +38,7 @@ namespace RevitNodesTests.Elements
 
             var roof = Roof.ByOutlineTypeAndLevel(outline, roofType, level);
 
-            BoundingBoxVolume(roof.BoundingBox).ShouldBeApproximately(100 * 100, 1e-3);
+            BoundingBoxVolume(roof.BoundingBox).ShouldBeApproximately(7500, 1e-3);
         }
 
 
@@ -65,14 +65,11 @@ namespace RevitNodesTests.Elements
 
             roof.AddPoint(Point.ByCoordinates(50, 50, 0));
             Assert.IsTrue(roof.Points.ToList().Count == 5);
+            
+            double elev = roof.Points.First().Z;
+            roof.MovePoint(roof.Points.First(), 10);
 
-            roof.MovePoint(Point.ByCoordinates(50, 50, 0), 200);
-
-            double maxElev = 0;
-            foreach (Point p in roof.Points)
-                if (p.Z > maxElev) maxElev = p.Z;
-
-            Assert.IsTrue(maxElev == 200);
+            roof.Points.First().Z.ShouldBeApproximately(10 + elev);
 
         }
     }
