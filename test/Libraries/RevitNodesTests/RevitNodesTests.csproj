@@ -87,6 +87,7 @@
     <Compile Include="Elements\ElementTests.cs" />
     <Compile Include="Elements\FillPatternTests.cs" />
     <Compile Include="Elements\FilterTests.cs" />
+    <Compile Include="Elements\RoofTests.cs" />
     <Compile Include="Elements\FloorTests.cs" />
     <Compile Include="Elements\CoordinatesTests.cs" />
     <Compile Include="Elements\FloorTypeTests.cs" />

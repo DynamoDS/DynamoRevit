@@ -387,4 +387,10 @@
   <data name="NameAlreadyInUse" xml:space="preserve">
     <value>Name already in use.</value>
   </data>
+  <data name="InvalidShapeEditor" xml:space="preserve">
+    <value>Floor Shape cannot be edited.</value>
+  </data>
+  <data name="RoofTypeNotFound" xml:space="preserve">
+    <value>Roof type not found.</value>
+  </data>
 </root>
