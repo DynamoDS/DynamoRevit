@@ -210,13 +210,15 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Creates a Wall following the geometry of a surface.
+        /// Creates a Wall following the geometry of a surface. 
+        /// Walls by Faces cannot be updated, any geometry change will 
+        /// create a new wall and delete the old one.
         /// </summary>
         /// <param name="location"></param>
         /// <param name="wallType"></param>
         /// <param name="surface"></param>
         /// <returns></returns>
-        public static FaceWall ByFace(string location, WallType wallType, Autodesk.DesignScript.Geometry.Surface surface)
+        public static Element ByFace(string location, WallType wallType, Autodesk.DesignScript.Geometry.Surface surface)
         {
             WallLocationLine loc = WallLocationLine.CoreCenterline;
             if (!Enum.TryParse<WallLocationLine>(location, out loc))
