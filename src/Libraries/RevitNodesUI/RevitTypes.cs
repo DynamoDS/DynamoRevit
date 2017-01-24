@@ -110,6 +110,14 @@ namespace DSRevitNodesUI
         public DirectShapeRoomBoundingOption() : base("Direct Shape Room Bounding Option", typeof(Autodesk.Revit.DB.DirectShapeRoomBoundingOption)) { }
     }
 
+    [NodeName("Detail Level")]
+    [NodeCategory("Revit.Filter.OverrideGraphicSettings")]
+    [NodeDescription("ViewDetailLevelDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class DetailLevel : CustomGenericEnumerationDropDown
+    {
+        public DetailLevel() : base("Detail Level", typeof(Autodesk.Revit.DB.ViewDetailLevel)) { }
+    }
 
     [NodeName("Select Horizontal Text Alignment")]
     [NodeCategory("Revit.Elements.Text")]
@@ -136,6 +144,60 @@ namespace DSRevitNodesUI
     public class WallLocation : CustomGenericEnumerationDropDown
     {
         public WallLocation() : base("Wall Location", typeof(Autodesk.Revit.DB.WallLocationLine)) { }
+    }
+
+    [NodeName("Schedule Type")]
+    [NodeCategory("Revit.Views.ScheduleView")]
+    [NodeDescription("ScheduleTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class ScheduleTypes : CustomGenericEnumerationDropDown
+    {
+        public ScheduleTypes() : base("ScheduleType", typeof(Revit.Elements.Views.ScheduleView.ScheduleType)) { }
+    }
+
+    [NodeName("Export Column Headers")]
+    [NodeCategory("Revit.Views.ScheduleView")]
+    [NodeDescription("ExportColumnHeadersDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class ExportColumnHeaders : CustomGenericEnumerationDropDown
+    {
+        public ExportColumnHeaders() : base("ColumnHeaders", typeof(Revit.Schedules.ScheduleExportOptions.ExportColumnHeaders)) { }
+    }
+
+    [NodeName("Export Text Qualifier")]
+    [NodeCategory("Revit.Views.ScheduleView")]
+    [NodeDescription("ExportTextQualifierDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class ExportTextQualifier : CustomGenericEnumerationDropDown
+    {
+        public ExportTextQualifier() : base("TextQualifier", typeof(Revit.Schedules.ScheduleExportOptions.ExportTextQualifier)) { }
+    }
+
+    [NodeName("Fill Patterns")]
+    [NodeCategory("Revit.Elements.FillPatternElement")]
+    [NodeDescription("FillPatternsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class FillPatterns : CustomRevitElementDropDown
+    {
+        public FillPatterns() : base("FillPattern", typeof(Autodesk.Revit.DB.FillPatternElement)) { }
+    }
+
+    [NodeName("Fill Pattern Targets")]
+    [NodeCategory("Revit.Elements.FillPatternElement")]
+    [NodeDescription("FillPatternTargetDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class FillPatternTargets : CustomGenericEnumerationDropDown
+    {
+        public FillPatternTargets() : base("FillPatternTarget", typeof(Autodesk.Revit.DB.FillPatternTarget)) { }
+    }
+
+    [NodeName("Line Patterns")]
+    [NodeCategory("Revit.Elements.LinePatternElement")]
+    [NodeDescription("LinePatternsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class LinePatterns : CustomRevitElementDropDown
+    {
+        public LinePatterns() : base("LinePattern", typeof(Autodesk.Revit.DB.LinePatternElement)) { }
     }
 
 }

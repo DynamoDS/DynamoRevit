@@ -106,6 +106,24 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must supply a Category..
+        /// </summary>
+        internal static string CategoryArgumentException {
+            get {
+                return ResourceManager.GetString("CategoryArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specified View Template is not valid for this View..
+        /// </summary>
+        internal static string CategoryVisibilityOverrideError {
+            get {
+                return ResourceManager.GetString("CategoryVisibilityOverrideError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find cell for panel.
         /// </summary>
         internal static string CellForPanelNotFound {
@@ -259,11 +277,38 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unexpected failure occurred when attempting to convert the solid into a Revit BRep.
+        /// </summary>
+        internal static string DynamoSolidToRevitBRepFailure {
+            get {
+                return ResourceManager.GetString("DynamoSolidToRevitBRepFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unexpected failure occurred when attempting to convert the surface into a Revit BRep.
+        /// </summary>
+        internal static string DynamoSurfaceToRevitBRepFailure {
+            get {
+                return ResourceManager.GetString("DynamoSurfaceToRevitBRepFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Element cannot be annotated.
         /// </summary>
         internal static string ElementCannotBeAnnotatedError {
             get {
                 return ResourceManager.GetString("ElementCannotBeAnnotatedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Schedule Export Options..
+        /// </summary>
+        internal static string ExportOptionsArgumentException {
+            get {
+                return ResourceManager.GetString("ExportOptionsArgumentException", resourceCulture);
             }
         }
         
@@ -475,6 +520,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Floor Shape cannot be edited..
+        /// </summary>
+        internal static string InvalidShapeEditor {
+            get {
+                return ResourceManager.GetString("InvalidShapeEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The height must be greater than 0 and less that 30000 ft.  You provided a height of {0} ft..
         /// </summary>
         internal static string InvalidWallHeight {
@@ -534,6 +588,15 @@ namespace Revit.Properties {
         internal static string MultipleSurfacesIntroducedAfterConversion {
             get {
                 return ResourceManager.GetString("MultipleSurfacesIntroducedAfterConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must supply a Name..
+        /// </summary>
+        internal static string NameArgumentException {
+            get {
+                return ResourceManager.GetString("NameArgumentException", resourceCulture);
             }
         }
         
@@ -709,11 +772,38 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Roof type not found..
+        /// </summary>
+        internal static string RoofTypeNotFound {
+            get {
+                return ResourceManager.GetString("RoofTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The number of sample points and number of samples must be the same..
         /// </summary>
         internal static string SamplePointsMismatchError {
             get {
                 return ResourceManager.GetString("SamplePointsMismatchError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error exporting this schedule..
+        /// </summary>
+        internal static string ScheduleExportError {
+            get {
+                return ResourceManager.GetString("ScheduleExportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Schedule Type..
+        /// </summary>
+        internal static string ScheduleTypeArgumentException {
+            get {
+                return ResourceManager.GetString("ScheduleTypeArgumentException", resourceCulture);
             }
         }
         
@@ -768,6 +858,15 @@ namespace Revit.Properties {
         internal static string ViewDoesNotSupportAnnotations {
             get {
                 return ResourceManager.GetString("ViewDoesNotSupportAnnotations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error exporting the image..
+        /// </summary>
+        internal static string ViewExportImageError {
+            get {
+                return ResourceManager.GetString("ViewExportImageError", resourceCulture);
             }
         }
         

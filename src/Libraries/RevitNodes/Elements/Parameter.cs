@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using RevitServices.Persistence;
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
-using System.Linq;
 using Revit.GeometryConversion;
 
 namespace Revit.Elements

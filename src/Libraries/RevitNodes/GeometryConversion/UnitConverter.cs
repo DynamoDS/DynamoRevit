@@ -48,6 +48,7 @@ namespace Revit.GeometryConversion
             }
 
             var result = (T)geometry.Scale(HostToDynamoFactor(UnitType.UT_Length));
+            geometry.Dispose();
             return result;
         }
 
