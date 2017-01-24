@@ -163,143 +163,6 @@ namespace Revit.Elements
             return new Floor(ca, floorType.InternalFloorType, level.InternalLevel );
         }
 
-        /// <summary>
-        /// Create Revit Floor by Points, Type and Level
-        /// </summary>
-        /// <param name="points"></param>
-        /// <param name="floorType"></param>
-        /// <param name="level"></param>
-        /// <returns></returns>
-        public static Floor ByPoints(IList<Pt> points, FloorType floorType, Level level)
-        { 
-            CurveArray array = new CurveArray();
-
-            for (int i = 0; i < points.Count(); i++)
-            {
-                XYZ p1 = points[i].ToXyz();
-                XYZ p2;
-
-                if (i < points.Count - 1)
-                {
-                    p2 = points[i + 1].ToXyz();
-                }
-                else
-                {
-                    p2 = points[0].ToXyz();
-                }
-
-
-                XYZ flatPoint1 = new XYZ(p1.X, p1.Y, 0);
-                XYZ flatPoint2 = new XYZ(p2.X, p2.Y, 0);
-
-                if (!p1.IsAlmostEqualTo(p2))
-                {
-                    array.Append(Autodesk.Revit.DB.Line.CreateBound(flatPoint1, flatPoint2));
-                }
-            }
-
-            Floor floor = new Floor(array, floorType.InternalFloorType, level.InternalLevel);
-            TransactionManager.Instance.ForceCloseTransaction();
-
-            if (floor.InternalFloor.SlabShapeEditor != null)
-            {
-
-                TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-
-                floor.InternalFloor.SlabShapeEditor.Enable();
-
-                if (floor.InternalFloor.SlabShapeEditor.SlabShapeVertices.Size == 0)
-                {
-                    foreach (Pt point in points)
-                    {
-                        floor.InternalFloor.SlabShapeEditor.DrawPoint(point.ToXyz());
-                    }
-                }
-                else
-                {
-                    foreach (Pt point in points)
-                    {
-                        foreach (SlabShapeVertex v in floor.InternalFloor.SlabShapeEditor.SlabShapeVertices)
-                        {
-                            XYZ ptz = point.ToXyz();
-                            if (v.Position.X.EqualsTo(ptz.X) && v.Position.Y.EqualsTo(ptz.Y))
-                            {
-                                floor.InternalFloor.SlabShapeEditor.ModifySubElement(v, ptz.Z);
-                            }
-                        }
-                    }                    
-                }
-                TransactionManager.Instance.TransactionTaskDone();
-
-
-                
-            }
-                return floor;
-            
-        }
-
-
-        /// <summary>
-        /// Create Floor By Surface, Type and Level
-        /// </summary>
-        /// <param name="surface"></param>
-        /// <param name="floorType"></param>
-        /// <param name="level"></param>
-        /// <returns></returns>
-        public static Floor BySurface(Autodesk.DesignScript.Geometry.Surface surface, FloorType floorType, Level level)
-        {
-            List<Pt> points = new List<Pt>();
-
-            var curves = surface.PerimeterCurves();
-            
-
-            foreach (Curve curve in curves)
-            {
-                foreach (XYZ p in curve.ToRevitType(false).Tessellate())
-                {
-                    Pt point = p.ToPoint();
-                    if (!points.Contains(point))
-                        points.Add(point);
-                }
-            }
-
-
-            return Floor.ByPoints(points, floorType, level);
-        }
-
-
-        public static Floor BySurface2(Autodesk.DesignScript.Geometry.Surface surface, FloorType floorType, Level level, bool f)
-        {
-            var curves = surface.PerimeterCurves();
-
-            var ca = new CurveArray();
-            if (f)
-                curves.ForEach(x => ca.Append(x.PullOntoPlane(Autodesk.DesignScript.Geometry.Plane.XY()).ToRevitType()));
-            else
-                curves.ForEach(x => ca.Append(x.ToRevitType()));
-
-            Floor floor = new Floor(ca, floorType.InternalFloorType, level.InternalLevel);
-            TransactionManager.Instance.ForceCloseTransaction();
-            
-
-            
-
-            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-
-            floor.InternalFloor.SlabShapeEditor.Enable();
-
-            foreach (Curve curve in curves)
-            {
-                foreach (XYZ p in curve.ToRevitType(true).Tessellate())
-                {
-                    floor.InternalFloor.SlabShapeEditor.DrawPoint(p);
-                }
-            }
-
-            TransactionManager.Instance.TransactionTaskDone();
-            return floor;
-        }
-
 
         #endregion
 
@@ -312,6 +175,11 @@ namespace Revit.Elements
         {
             get 
             {
+                if (this.InternalFloor.SlabShapeEditor == null)
+                {
+                    throw new Exception(Properties.Resources.InvalidShapeEditor);
+                }
+
                 TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
                 this.InternalFloor.SlabShapeEditor.Enable();
                 TransactionManager.Instance.TransactionTaskDone();
@@ -330,6 +198,11 @@ namespace Revit.Elements
         /// </summary>
         public void AddPoint(Pt point)
         {
+            if (this.InternalFloor.SlabShapeEditor == null)
+            {
+                throw new Exception(Properties.Resources.InvalidShapeEditor);
+            }
+
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
             this.InternalFloor.SlabShapeEditor.Enable();
             this.InternalFloor.SlabShapeEditor.DrawPoint(point.ToXyz());
@@ -341,6 +214,11 @@ namespace Revit.Elements
         /// </summary>
         public void MovePoint(Pt point, double offset)
         {
+            if (this.InternalFloor.SlabShapeEditor == null)
+            {
+                throw new Exception(Properties.Resources.InvalidShapeEditor);
+            }
+
             SlabShapeVertex vertex = null;
 
             foreach (SlabShapeVertex v in this.InternalFloor.SlabShapeEditor.SlabShapeVertices)
