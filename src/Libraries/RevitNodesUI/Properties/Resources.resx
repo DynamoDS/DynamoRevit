@@ -349,4 +349,26 @@
   <data name="FilterTypeSelectorDescription" xml:space="preserve">
     <value>Filter Types for Revit Filters</value>
   </data>
+  <data name="ExportColumnHeadersDescription" xml:space="preserve">
+    <value>How to export column headers. Default is MultipleRows.</value>
+  </data>
+  <data name="ExportTextQualifierDescription" xml:space="preserve">
+    <value>How to qualify text fields. Default is DoubleQuote.</value>
+  </data>
+  <data name="ViewDetailLevelDescription" xml:space="preserve">
+    <value>View Detail Level</value>
+  </data>
+  <data name="FillPatternsDescription" xml:space="preserve">
+    <value>All available fill patterns.</value>
+  </data>
+  <data name="LinePatternsDescription" xml:space="preserve">
+    <value>All available line patterns.</value>
+  </data>
+  <data name="FillPatternTargetDescription" xml:space="preserve">
+    <value>The type of the fill pattern.</value>
+    <comment>Description for Fill Pattern Target</comment>
+  </data>
+  <data name="PerformanceAdviserDescription" xml:space="preserve">
+    <value>All Performance Adviser rules.</value>
+  </data>
 </root>

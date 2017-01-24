@@ -7,13 +7,12 @@ using Autodesk.Revit.DB;
 namespace Revit.Elements.Views
 {
     /// <summary>
-    /// An abstract Revit View - All view types inherit from this type
+    ///     An abstract Revit View - All view types inherit from this type
     /// </summary>
-    //[SupressImportIntoVM]
     public abstract class View : Element
     {
         /// <summary>
-        /// Obtain the reference Element as a View
+        ///     Obtain the reference Element as a View
         /// </summary>
         internal Autodesk.Revit.DB.View InternalView
         {
@@ -24,7 +23,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Check if this type of view supports annotative elements
+        ///     Check if this type of view supports annotative elements
         /// </summary>
         /// <returns></returns>
         internal bool IsAnnotationView()
@@ -45,8 +44,8 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Export the view as an image to the given path - defaults to png, but you can override 
-        /// the file type but supplying a path with the appropriate extension
+        ///     Export the view as an image to the given path - defaults to png, but you can override 
+        ///     the file type but supplying a path with the appropriate extension
         /// </summary>
         /// <param name="path">A valid path for the image</param>
         /// <returns>The image</returns>
@@ -125,7 +124,7 @@ namespace Revit.Elements.Views
             }
             catch (Exception ex)
             {
-                throw new Exception("There was an error exporting the image.", ex);
+                throw new Exception(Properties.Resources.ViewExportImageError, ex);
             }
 
             return bmp;
@@ -160,21 +159,26 @@ namespace Revit.Elements.Views
         #region Filter
 
         /// <summary>
-        /// Add Filter to View
+        ///     Add a Filter to a View. The Filter will be added even if View has a View Template applied, which normally would prevent user from adding
+        ///     Filters without first disabling or modifying the View Template.
         /// </summary>
-        /// <param name="view">View</param>
         /// <param name="parameterFilter">Parameter filter</param>
-        public void AddFilter(Revit.Filter.ParameterFilterElement parameterFilter)
+        /// <returns name="view">View</returns>
+        public Revit.Elements.Views.View AddFilter(Revit.Filter.ParameterFilterElement parameterFilter)
         {
-            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
-            this.InternalView.AddFilter(parameterFilter.InternalElement.Id);
-            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+            if (!this.InternalView.IsFilterApplied(parameterFilter.InternalElement.Id))
+            {
+                RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+                this.InternalView.AddFilter(parameterFilter.InternalElement.Id);
+                RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+            }
+            return this;
         }
 
         /// <summary>
-        /// Get View Filters
+        ///     Get View Filters
         /// </summary>
-        /// <returns></returns>
+        /// <returns name="filter">View Filters</returns>
         public IEnumerable<Revit.Filter.ParameterFilterElement> Filters
         {
             get
@@ -190,26 +194,105 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Set Filter overrides
+        ///     Set Filter overrides. If View doesn't have specified Filter, it will be first added to the View and then its settings will be overriden.
+        ///     This behavior will persist even if View has a View Template applied which normally would prevent user from adding Filters without first
+        ///     disabling or modifying the View Template.
         /// </summary>
-        /// <param name="view">View</param>
-        /// <param name="parameterFilter">Parameter filter</param>
-        /// <param name="overrides">overrides settings</param>
-        public void SetFilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter, Revit.Filter.OverrideGraphicSettings overrides)
+        /// <param name="parameterFilter">Parameter Filter</param>
+        /// <param name="overrides">Graphic Overrides Settings</param>
+        /// <param name="hide">If True given Filter will be hidden.</param>
+        /// <returns name="view">View</returns>
+        public Revit.Elements.Views.View SetFilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter, Revit.Filter.OverrideGraphicSettings overrides, bool hide = false)
         {
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
             this.InternalView.SetFilterOverrides(parameterFilter.InternalElement.Id, overrides.InternalOverrideGraphicSettings);
+            this.InternalView.SetFilterVisibility(parameterFilter.InternalElement.Id, hide);
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
         }
 
         /// <summary>
-        /// Get Filter overrides
+        ///     Get Filter overrides
         /// </summary>
-        /// <returns></returns>
+        /// <returns name="overrides">Filter overrides</returns>
         public Revit.Filter.OverrideGraphicSettings FilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter)
         {
             OverrideGraphicSettings overrides = this.InternalView.GetFilterOverrides(parameterFilter.InternalElement.Id);
             return new Revit.Filter.OverrideGraphicSettings(overrides);
+        }
+
+        #endregion
+
+        #region View Templates
+
+        /// <summary>
+        ///     Checks if View is a View Template.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsViewTemplate()
+        {
+            return this.InternalView.IsTemplate;
+        }
+
+        #endregion
+
+        #region Graphic Overrides
+
+        /// <summary>
+        ///     Set Category Overrides.
+        /// </summary>
+        /// <param name="category">Category</param>
+        /// <param name="overrides">Graphics Overrides Settings.</param>
+        /// <param name="hide">If True givent Category will be hidden.</param>
+        /// <returns name="view">View</returns>
+        public Revit.Elements.Views.View SetCategoryOverrides(Category category, Revit.Filter.OverrideGraphicSettings overrides, bool hide = false)
+        {
+            Autodesk.Revit.DB.ElementId catId = new ElementId(category.Id);
+            if (!this.InternalView.IsCategoryOverridable(catId))
+            {
+                throw new ArgumentException(Properties.Resources.CategoryVisibilityOverrideError);
+            }
+
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            this.InternalView.SetCategoryOverrides(catId, overrides.InternalOverrideGraphicSettings);
+            if (hide)
+            {
+                var docCollector = new FilteredElementCollector(Document).OfCategoryId(category.InternalCategory.Id);
+                var elementsToHide = docCollector.ToElementIds();
+                this.InternalView.HideElementsTemporary(elementsToHide);
+            }
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        #endregion
+
+        #region Scale
+
+        /// <summary>
+        ///     Set View Scale
+        /// </summary>
+        /// <param name="scale">View scale is the ration of true model size to paper size.</param>
+        /// <returns name="view">View</returns>
+        public Revit.Elements.Views.View SetScale(int scale=100)
+        {
+            if (Autodesk.Revit.DB.View.IsValidViewScale(scale))
+            {
+                if (this.InternalView.Scale != scale)
+                {
+                    RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+                    this.InternalView.Scale = scale;
+                    RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+                }
+
+                return this;
+            }
+            else
+            {
+                throw new ArgumentNullException("scale");
+            }
         }
 
         #endregion
