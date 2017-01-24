@@ -6,6 +6,9 @@ using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
+using Pt = Autodesk.DesignScript.Geometry.Point;
+using System.Collections.Generic;
+using Autodesk.DesignScript.Runtime;
 
 namespace Revit.Elements
 {
@@ -27,6 +30,7 @@ namespace Revit.Elements
         /// <summary>
         /// Reference to the Element
         /// </summary>
+        [SupressImportIntoVM]
         public override Autodesk.Revit.DB.Element InternalElement
         {
             get { return InternalFloor; }
@@ -159,6 +163,88 @@ namespace Revit.Elements
             outline.Curves().ForEach(x => ca.Append(x.ToRevitType())); 
 
             return new Floor(ca, floorType.InternalFloorType, level.InternalLevel );
+        }
+
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Get Slab Shape Points
+        /// </summary>
+        public IEnumerable<Pt> Points
+        {
+            get 
+            {
+                if (this.InternalFloor.SlabShapeEditor == null)
+                {
+                    throw new Exception(Properties.Resources.InvalidShapeEditor);
+                }
+
+                TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+                this.InternalFloor.SlabShapeEditor.Enable();
+                TransactionManager.Instance.TransactionTaskDone();
+
+                List<Pt> points = new List<Pt>();              
+                foreach (SlabShapeVertex v in this.InternalFloor.SlabShapeEditor.SlabShapeVertices)
+                {
+                    points.Add(v.Position.ToPoint());
+                }
+                return points;
+            }
+        }
+
+        /// <summary>
+        /// Add a new point to the slab shape editor.
+        /// Behaves the same as adding a point manually to a slab in
+        /// Revit's slab shape edit mode.
+        /// </summary>
+        public static Floor AddPoint(Floor floor, Pt point)
+        {
+            if (floor.InternalFloor.SlabShapeEditor == null)
+            {
+                throw new Exception(Properties.Resources.InvalidShapeEditor);
+            }
+
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            floor.InternalFloor.SlabShapeEditor.Enable();
+            floor.InternalFloor.SlabShapeEditor.DrawPoint(point.ToXyz());
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return floor;
+        }
+
+        /// <summary>
+        /// Move an existing point in Revit's slab shape editor by an offset.
+        /// Behaves as moving a point manually in Revit's slab shape editor.
+        /// </summary>
+        public static Floor MovePoint(Floor floor, Pt point, double offset)
+        {
+            if (floor.InternalFloor.SlabShapeEditor == null)
+            {
+                throw new Exception(Properties.Resources.InvalidShapeEditor);
+            }
+
+            SlabShapeVertex vertex = null;
+
+            foreach (SlabShapeVertex v in floor.InternalFloor.SlabShapeEditor.SlabShapeVertices)
+            {
+                if (point.IsAlmostEqualTo(v.Position.ToPoint()))
+                {
+                    vertex = v;
+                }
+            }
+
+            if (vertex != null && offset != 0)
+            {
+                TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+                floor.InternalFloor.SlabShapeEditor.Enable();
+                floor.InternalFloor.SlabShapeEditor.ModifySubElement(vertex, offset);
+                TransactionManager.Instance.TransactionTaskDone();
+            }
+
+            return floor;
         }
 
         #endregion

@@ -312,6 +312,9 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
+  <data name="InvalidShapeEditor" xml:space="preserve">
+    <value>Floor Shape cannot be edited.</value>
+  </data>
   <data name="DynamoSurfaceToRevitBRepFailure" xml:space="preserve">
     <value>An unexpected failure occurred when attempting to convert the surface into a Revit BRep</value>
   </data>
@@ -359,6 +362,9 @@
   </data>
   <data name="TypeNotFound" xml:space="preserve">
     <value>Type not found in document.</value>
+  </data>
+  <data name="RoofTypeNotFound" xml:space="preserve">
+    <value>Roof type not found.</value>
   </data>
   <data name="CategoryArgumentException" xml:space="preserve">
     <value>You must supply a Category.</value>
