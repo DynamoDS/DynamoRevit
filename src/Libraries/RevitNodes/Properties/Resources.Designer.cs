@@ -484,6 +484,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Floor Shape cannot be edited..
+        /// </summary>
+        internal static string InvalidShapeEditor {
+            get {
+                return ResourceManager.GetString("InvalidShapeEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The height must be greater than 0 and less that 30000 ft.  You provided a height of {0} ft..
         /// </summary>
         internal static string InvalidWallHeight {
@@ -543,6 +552,24 @@ namespace Revit.Properties {
         internal static string MultipleSurfacesIntroducedAfterConversion {
             get {
                 return ResourceManager.GetString("MultipleSurfacesIntroducedAfterConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name already in use..
+        /// </summary>
+        internal static string NameAlreadyInUse {
+            get {
+                return ResourceManager.GetString("NameAlreadyInUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must supply a Name..
+        /// </summary>
+        internal static string NameArgumentException {
+            get {
+                return ResourceManager.GetString("NameArgumentException", resourceCulture);
             }
         }
         
