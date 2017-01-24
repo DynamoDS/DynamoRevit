@@ -139,8 +139,8 @@ namespace DSRevitNodesUI
         public FamilyInstanceParameters()
             : base("Parameter") 
         {
-            this.AddPort(PortType.Input, new PortData("f", Properties.Resources.PortDataFamilySymbolToolTip), 0);
-            this.PropertyChanged += OnPropertyChanged;
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("f", Properties.Resources.PortDataFamilySymbolToolTip)));
+            PropertyChanged += OnPropertyChanged;
         }
 
         void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -443,6 +443,63 @@ namespace DSRevitNodesUI
         }
     }
 
+    [NodeName("Performance Adviser Rules")]
+    [NodeCategory(BuiltinNodeCategories.REVIT)]
+    [NodeDescription("PerformanceAdviserDescription", typeof(Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class PerformanceAdviserRules : RevitDropDownBase
+    {
+
+
+        public PerformanceAdviserRules() : base("Performance Adviser Rules") { }
+
+        protected override SelectionState PopulateItemsCore(string currentSelection)
+        {
+            Items.Clear();
+
+            PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
+            IList<PerformanceAdviserRuleId> ruleIds = adviser.GetAllRuleIds();
+            string ruleInfo = string.Empty;
+
+            List<PerformanceAdviserRule> elements = new List<PerformanceAdviserRule>();
+            foreach (PerformanceAdviserRuleId ruleId in ruleIds)
+            {
+                elements.Add(new PerformanceAdviserRule(ruleId));
+            }
+
+            if (!elements.Any())
+            {
+                Items.Add(new DynamoDropDownItem(Properties.Resources.NoWallTypesAvailable, null));
+                SelectedIndex = 0;
+                return SelectionState.Done;
+            }
+
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
+        }
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            if (Items.Count == 0 ||
+                Items[0].Name == Properties.Resources.NoWallTypesAvailable ||
+                SelectedIndex == -1)
+            {
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+            }
+
+            var args = new List<AssociativeNode>
+            {
+                AstFactory.BuildStringNode(((PerformanceAdviserRule) Items[SelectedIndex].Item).RuleId.ToString())
+            };
+            var functionCall = AstFactory.BuildFunctionCall("Revit.Elements.PerformanceAdviserRule",
+                                                            "ById",
+                                                            args);
+
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+        }
+    }
+
+
     [NodeName("Categories")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("CategoriesDescription", typeof(Properties.Resources))]
@@ -451,9 +508,10 @@ namespace DSRevitNodesUI
     {
         public Categories()
         {
-            OutPortData[0].NickName = "Category";
-            OutPortData[0].ToolTipString = Properties.Resources.PortDataCategoriesToolTip;
-            OutPorts[0].SetPortData(OutPortData[0]);
+            var existing = OutPorts[0];
+            OutPorts[0] = new PortModel(PortType.Output, this, 
+                new PortData("Category", Properties.Resources.PortDataCategoriesToolTip, existing.DefaultValue));
+            OutPorts[0].GUID = existing.GUID;
         }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
@@ -735,15 +793,21 @@ namespace DSRevitNodesUI
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
+
             //find all views in the project
-            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-            var views = fec.OfClass(typeof(View)).ToElements();
+            //exclude <RevisionSchedule> (revision tables on sheets) from list
+            var views = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(View))
+                .Where(x => !x.Name.Contains('<'))
+                .ToList();
             
             //there must always be at least 1 view in a Revit document, so we can exclude the empty list check
             foreach (var v in views)
             {
                 Items.Add(new DynamoDropDownItem(v.Name, v));
             }
+            Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+
             return SelectionState.Restore;
         }
 

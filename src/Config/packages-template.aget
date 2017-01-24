@@ -1,0 +1,20 @@
+{
+  "nuget": {
+    "references": {
+      "DynamoVisualProgramming.Core" : "LatestBeta",
+      "DynamoVisualProgramming.DynamoCoreNodes" : "LatestBeta",
+      "DynamoVisualProgramming.DynamoServices" : "LatestBeta",
+      "DynamoVisualProgramming.Tests" : "LatestBeta",
+      "DynamoVisualProgramming.WpfUILibrary" : "LatestBeta",
+      "DynamoVisualProgramming.ZeroTouchLibrary" : "LatestBeta",
+      "Greg" : "1.0.6176.18754",
+      "GregRevitAuth" : "1.0.5907.17451",
+      "IronPython" : "2.7.2",
+      "Newtonsoft.Json" : "8.0.3",
+      "NUnit" : "2.6.2",
+      "Prism" : "4.1.0",
+      "RestSharp" : "105.2.3",
+      "Unofficial.Ionic.Zip" : "1.9.1.8"
+    }
+  }
+}
