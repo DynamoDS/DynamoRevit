@@ -198,7 +198,7 @@ namespace Revit.Elements
         /// <summary>
         /// Add Point to Slab Shape
         /// </summary>
-        public void AddPoint(Pt point)
+        public Floor AddPoint(Pt point)
         {
             if (this.InternalFloor.SlabShapeEditor == null)
             {
@@ -209,12 +209,15 @@ namespace Revit.Elements
             this.InternalFloor.SlabShapeEditor.Enable();
             this.InternalFloor.SlabShapeEditor.DrawPoint(point.ToXyz());
             TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
         }
 
         /// <summary>
-        /// Move existing point by offset
+        /// Move an existing point in the slab shape editor by an offset.
+        /// Behaves as moving a point manually in the slab shape editor.
         /// </summary>
-        public void MovePoint(Pt point, double offset)
+        public Floor MovePoint(Pt point, double offset)
         {
             if (this.InternalFloor.SlabShapeEditor == null)
             {
@@ -238,6 +241,8 @@ namespace Revit.Elements
                 this.InternalFloor.SlabShapeEditor.ModifySubElement(vertex, offset);
                 TransactionManager.Instance.TransactionTaskDone();
             }
+
+            return this;
         }
 
         #endregion
