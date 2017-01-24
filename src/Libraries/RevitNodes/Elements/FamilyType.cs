@@ -65,29 +65,6 @@ namespace Revit.Elements
             InternalSetFamilySymbol(symbol);
         }
 
-        /// <summary>
-        /// Get Solid from Element helper method
-        /// </summary>
-        /// <param name="element"></param>
-        /// <returns></returns>
-        private static Solid GetSolidFromElement(Autodesk.Revit.DB.Element element)
-        {
-            GeometryElement geo = element.get_Geometry(new Options() { ComputeReferences = true });
-            
-            // Get geometry instance from geometry element
-            var enumerator = geo.GetEnumerator();
-            enumerator.MoveNext();
-            GeometryInstance i = (GeometryInstance)enumerator.Current;
-
-            // Get solid from geometry instance
-            var geom2 = i.GetInstanceGeometry();
-            var enumarator2 = geom2.GetEnumerator();
-            enumarator2.MoveNext();
-
-            return (Solid)enumarator2.Current;
-        }
-
-
         #endregion
 
         #region Private mutators
@@ -255,131 +232,37 @@ namespace Revit.Elements
         /// a new family document.
         /// </summary>
         /// <param name="solidGeometry"></param>
-        /// <param name="name"></param>
-        /// <param name="category"></param>
-        /// <param name="templatePath"></param>
-        /// <param name="isVoid"></param>
-        /// <param name="material"></param>
-        /// <param name="subcategory"></param>
-        /// <returns></returns>
-        public static FamilyType ByGeometry(Autodesk.DesignScript.Geometry.Solid solidGeometry, string name, Category category, string templatePath, Material material, bool isVoid = false, string subcategory = "")
+        /// <param name="name">Name fo the Family Type</param>
+        /// <param name="category">Family Type Category</param>
+        /// <param name="templatePath">Family Template to use for creation</param>
+        /// <param name="material">Material to apply to the solids</param>
+        /// <param name="subcategory">Subcategory for the Family Type (optional)</param>
+        /// <returns>Family Type</returns>
+        public static FamilyType ByGeometry(Autodesk.DesignScript.Geometry.Solid solidGeometry, string name, Category category, string templatePath, Material material, string subcategory = "")
         {
-            Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
-            TransactionManager.Instance.ForceCloseTransaction();
+            var symbol = solidGeometry.ToRevitFamilyType(name, category, templatePath, material, false, subcategory);
 
-            // create a temp sat file
-            string tempFile = System.IO.Path.GetTempFileName() + ".sat";
-
-            // create a temp family file
-            string tempDir = System.IO.Path.GetTempPath();
-            string tempFamilyFile = tempDir + "\\" + name + ".rfa";
-            
-            // scale the incoming geometry
-            UnitConverter.ConvertToDynamoUnits<Autodesk.DesignScript.Geometry.Solid>(ref solidGeometry);
-
-            // get a displacement vector
-            Vector vector = Vector.ByTwoPoints(Autodesk.DesignScript.Geometry.BoundingBox.ByGeometry(solidGeometry).MinPoint, Autodesk.DesignScript.Geometry.Point.Origin());
-
-            // translate the geometry to origin
-            solidGeometry = solidGeometry.Translate(vector) as Autodesk.DesignScript.Geometry.Solid;
-
-            // export geometry to SAT
-            solidGeometry.ExportToSAT(tempFile);
-
-            // create a new family document using the supplied template
-            Autodesk.Revit.DB.Document familyDocument = document.Application.NewFamilyDocument(templatePath);
-
-            // Get the families 3d view
-            var collector = new Autodesk.Revit.DB.FilteredElementCollector(familyDocument).OfClass(typeof(Autodesk.Revit.DB.View));
-            Autodesk.Revit.DB.View view = null;
-            foreach (Autodesk.Revit.DB.View v in collector.ToElements())
+            return new FamilyType(symbol)
             {
-                if (!v.IsTemplate && v.ViewType == ViewType.ThreeD)
-                {
-                    view = v;
-                }
-            }
+                IsRevitOwned = true
+            };
+        }
 
-            // Import the sat file to origin in feet
-            TransactionManager.Instance.EnsureInTransaction(familyDocument);
-            ElementId importedElementId = familyDocument.Import(tempFile, new SATImportOptions() { Placement = ImportPlacement.Origin, Unit = ImportUnit.Foot }, view);
+        /// <summary>
+        /// Create a Void Family Type from a solid geometry.
+        /// This method exports the solid to SAT and imports it into
+        /// a new family document.
+        /// </summary>
+        /// <param name="solidGeometry"></param>
+        /// <param name="name">Name to apply to the Family Type</param>
+        /// <param name="category">Category to apply</param>
+        /// <param name="templatePath">Template file to use for creation</param>
+        /// <returns>Void Family Type</returns>
+        public static FamilyType VoidByGeometry(Autodesk.DesignScript.Geometry.Solid solidGeometry, string name, Category category, string templatePath)
+        {
+            var symbol = solidGeometry.ToRevitFamilyType(name, category, templatePath, null, true, string.Empty);
 
-            // get the solid element from the imported sat file
-            Solid solid = GetSolidFromElement(familyDocument.GetElement(importedElementId));
-
-            // delete imported sat
-            familyDocument.Delete(importedElementId);
-            System.IO.File.Delete(tempFile);
-
-            // Set the families category
-            familyDocument.OwnerFamily.FamilyCategory = familyDocument.Settings.Categories.get_Item(category.Name);
-
-            // create a free form element from the solid geometry
-            FreeFormElement freeFormElement = FreeFormElement.Create(familyDocument, solid);
-
-            // if the geometry should be void set parameters accordingly
-            if (isVoid)
-            {
-                var elementIsCuttingParameter = freeFormElement.get_Parameter(BuiltInParameter.ELEMENT_IS_CUTTING);
-                if (elementIsCuttingParameter != null && !elementIsCuttingParameter.IsReadOnly)
-                {
-                    Revit.Elements.InternalUtilities.ElementUtils.SetParameterValue(elementIsCuttingParameter, 1);
-                }
-
-                var cutWithVoidsParameter = freeFormElement.get_Parameter(BuiltInParameter.FAMILY_ALLOW_CUT_WITH_VOIDS);
-                if (cutWithVoidsParameter != null && !cutWithVoidsParameter.IsReadOnly)
-                {
-                    Revit.Elements.InternalUtilities.ElementUtils.SetParameterValue(cutWithVoidsParameter, 1);
-                }
-            }
-            else
-            {
-                // Apply material if supplied
-                if (material != null)
-                {
-                    var materialCollector = new Autodesk.Revit.DB.FilteredElementCollector(familyDocument).OfClass(typeof(Autodesk.Revit.DB.Material));
-                    foreach (Autodesk.Revit.DB.Material mat in materialCollector)
-                    {
-                        if (mat.Name == material.Name)
-                        {
-                            var materialParam = freeFormElement.get_Parameter(BuiltInParameter.MATERIAL_ID_PARAM);
-                            if (materialParam != null && !materialParam.IsReadOnly)
-                            {
-                                Revit.Elements.InternalUtilities.ElementUtils.SetParameterValue(materialParam, material);
-                            }
-                        }
-                    }
-                }
-
-                // Apply Subcategory if supplied
-                if (subcategory != string.Empty)
-                {
-                    var currentFamilyCategory = familyDocument.OwnerFamily.FamilyCategory;
-                    var newSubCategory = familyDocument.Settings.Categories.NewSubcategory(currentFamilyCategory, subcategory);
-                    freeFormElement.Subcategory = newSubCategory;
-                }
-            }
-
-            TransactionManager.Instance.ForceCloseTransaction();
-
-            // Save Family document and load it into the project
-            familyDocument.SaveAs(tempFamilyFile, new SaveAsOptions() { OverwriteExistingFile = true });
-            var family = familyDocument.LoadFamily(document, new FamOpt1());
-
-            // close and delete family
-            familyDocument.Close(false);
-            System.IO.File.Delete(tempFamilyFile);
-
-            // get imported family symbol
-            var symbols = family.GetFamilySymbolIds().GetEnumerator();
-            symbols.MoveNext();
-            FamilySymbol symbol1 = (FamilySymbol)document.GetElement(symbols.Current);
-
-            // activate symbol
-            TransactionManager.Instance.EnsureInTransaction(document);
-            if (!symbol1.IsActive) symbol1.Activate();
-
-            return new FamilyType(symbol1)
+            return new FamilyType(symbol)
             {
                 IsRevitOwned = true
             };
@@ -418,22 +301,4 @@ namespace Revit.Elements
 
     }
 
-    public class FamOpt1 : IFamilyLoadOptions
-    {
-        public FamOpt1() { }
-
-        public bool OnFamilyFound(bool familyInUse, out bool overwriteParameterValues)
-        {
-            overwriteParameterValues = true;
-            return true;
-        }
-
-        public bool OnSharedFamilyFound(Autodesk.Revit.DB.Family sharedFamily, bool familyInUse, out FamilySource source, out bool overwriteParameterValues)
-        {
-            source = FamilySource.Project;
-            overwriteParameterValues = true;
-            return true;
-        }
-
-    }
 }
