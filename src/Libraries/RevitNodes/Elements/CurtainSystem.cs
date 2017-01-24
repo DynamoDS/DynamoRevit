@@ -124,16 +124,13 @@ namespace Revit.Elements
         /// <param name="faces"></param>
         /// <param name="curtainSystemType"></param>
         /// <returns></returns>
-        public static CurtainSystem ByFaces(Autodesk.DesignScript.Geometry.Surface[] faces, CurtainSystemType curtainSystemType)
+        public static CurtainSystem ByFace(Autodesk.DesignScript.Geometry.Surface face, CurtainSystemType curtainSystemType)
         {
             ReferenceArray ca = new ReferenceArray();
 
-            foreach (Autodesk.DesignScript.Geometry.Surface face in faces)
-            {
-                var reference = face.Tags.LookupTag("RevitFaceReference");
-                if (reference == null) throw new Exception(Properties.Resources.FaceReferenceFailure);
-                ca.Append((Autodesk.Revit.DB.Reference)reference);               
-            }
+            var reference = face.Tags.LookupTag("RevitFaceReference");
+            if (reference == null) throw new Exception(Properties.Resources.FaceReferenceFailure);
+            ca.Append((Autodesk.Revit.DB.Reference)reference);
 
             return new CurtainSystem(ca, curtainSystemType.InternalCurtainSystemType);
         }
