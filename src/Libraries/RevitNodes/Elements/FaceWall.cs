@@ -110,7 +110,7 @@ namespace Revit.Elements
 
         #endregion
 
-        #region Public static constructors
+        #region Internal static constructors
         
         /// <summary>
         /// Create Wall By Face
@@ -119,9 +119,9 @@ namespace Revit.Elements
         /// <param name="wallType"></param>
         /// <param name="surface"></param>
         /// <returns></returns>
-        /// Note: This moved to Wall.cs for clarity. All Walls (even FaceWalls) are created there.
+        /// Note: This is wrapped in Wall. FaceWalls will be created there.
         [Autodesk.DesignScript.Runtime.IsVisibleInDynamoLibrary(false)]
-        public static FaceWall ByFace(WallLocationLine location, WallType wallType, Autodesk.DesignScript.Geometry.Surface surface)
+        internal static FaceWall ByFace(WallLocationLine location, WallType wallType, Autodesk.DesignScript.Geometry.Surface surface)
         {
             object reference = surface.Tags.LookupTag("RevitFaceReference");
             if (reference != null && reference.GetType() == typeof(Reference))
@@ -145,7 +145,7 @@ namespace Revit.Elements
         /// <returns></returns>
         /// Nots: This is for testing purposes only to directly use references from the Revit API
         [Autodesk.DesignScript.Runtime.IsVisibleInDynamoLibrary(false)]
-        public static FaceWall ByFace(WallLocationLine location, WallType wallType, Reference reference)
+        internal static FaceWall ByFace(WallLocationLine location, WallType wallType, Reference reference)
         {
             return new FaceWall(location, wallType.InternalWallType, reference);
         }
