@@ -89,6 +89,8 @@
     <Compile Include="Elements\AbstractFamilyInstance.cs" />
     <Compile Include="Elements\CurveByPoints.cs" />
     <Compile Include="Elements\CurveElement.cs" />
+    <Compile Include="Elements\CurtainSystemType.cs" />
+    <Compile Include="Elements\CurtainSystem.cs" />
     <Compile Include="Elements\RoofType.cs" />
     <Compile Include="Elements\Roof.cs" />
     <Compile Include="Elements\FilledRegion.cs" />

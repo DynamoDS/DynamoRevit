@@ -187,6 +187,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot find Curtain System Type in active document..
+        /// </summary>
+        internal static string CurtainSystemTypeNotFound {
+            get {
+                return ResourceManager.GetString("CurtainSystemTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Curve ist not planar. Please supply a planar curve..
         /// </summary>
         internal static string CurveIsNotPlanar {

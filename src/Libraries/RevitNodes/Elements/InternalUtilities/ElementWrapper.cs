@@ -226,6 +226,16 @@ namespace Revit.Elements
            return Mullion.FromExisting(ele, isRevitOwned);
         }
 
+        public static CurtainSystem Wrap(Autodesk.Revit.DB.CurtainSystem ele, bool isRevitOwned)
+        {
+            return CurtainSystem.FromExisting(ele, isRevitOwned);
+        }
+
+        public static CurtainSystemType Wrap(Autodesk.Revit.DB.CurtainSystemType ele, bool isRevitOwned)
+        {
+            return CurtainSystemType.FromExisting(ele, isRevitOwned);
+        }
+
         public static Dimension Wrap(Autodesk.Revit.DB.Dimension ele, bool isRevitOwned)
         {
             return Dimension.FromExisting(ele, isRevitOwned);
@@ -291,7 +301,6 @@ namespace Revit.Elements
             return DetailCurve.FromExisting(ele, isRevitOwned);
 
         }
-
 
         #endregion
 
