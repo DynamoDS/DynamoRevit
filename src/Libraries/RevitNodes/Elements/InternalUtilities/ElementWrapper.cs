@@ -216,7 +216,7 @@ namespace Revit.Elements
         {
            return Mullion.FromExisting(ele, isRevitOwned);
         }
-
+        
         public static Dimension Wrap(Autodesk.Revit.DB.Dimension ele, bool isRevitOwned)
         {
             return Dimension.FromExisting(ele, isRevitOwned);
@@ -286,7 +286,11 @@ namespace Revit.Elements
         public static GlobalParameter Wrap(Autodesk.Revit.DB.GlobalParameter ele, bool isRevitOwned)
         {
             return GlobalParameter.FromExisting(ele, isRevitOwned);
+        }
 
+        public static FaceWall Wrap(Autodesk.Revit.DB.FaceWall ele, bool isRevitOwned)
+        {
+            return FaceWall.FromExisting(ele, isRevitOwned);
         }
 
         #endregion
