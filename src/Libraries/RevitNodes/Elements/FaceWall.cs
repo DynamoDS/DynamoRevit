@@ -81,14 +81,6 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            
-            var wallElem = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FaceWall>(Document);
-
-            if (wallElem != null)
-            { 
-                Document.Delete(wallElem.Id);
-            }
-            
             // there is no way of comparing the existing element to the new reference.
             // that's why the wall will be recreated.
 
