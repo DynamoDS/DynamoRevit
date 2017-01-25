@@ -216,9 +216,13 @@ namespace Revit.Elements
         /// <param name="wallType"></param>
         /// <param name="surface"></param>
         /// <returns></returns>
-        public static FaceWall ByFace(WallLocationLine location, WallType wallType, Autodesk.DesignScript.Geometry.Surface surface)
+        public static FaceWall ByFace(string location, WallType wallType, Autodesk.DesignScript.Geometry.Surface surface)
         {
-            return FaceWall.ByFace(location, wallType, surface);
+            WallLocationLine loc = WallLocationLine.CoreCenterline;
+            if (!Enum.TryParse<WallLocationLine>(location, out loc))
+                loc = WallLocationLine.CoreCenterline;
+
+            return FaceWall.ByFace(loc, wallType, surface);
         }
 
         #endregion
