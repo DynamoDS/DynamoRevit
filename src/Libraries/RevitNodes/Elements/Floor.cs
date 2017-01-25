@@ -127,7 +127,9 @@ namespace Revit.Elements
                 throw new ArgumentNullException("outlineCurves");
             }
 
-            return ByOutlineTypeAndLevel(PolyCurve.ByJoinedCurves(outlineCurves), floorType, level);
+            var floor = ByOutlineTypeAndLevel(PolyCurve.ByJoinedCurves(outlineCurves), floorType, level);
+            DocumentManager.Regenerate();
+            return floor;
         }
 
         /// <summary>
@@ -162,7 +164,9 @@ namespace Revit.Elements
             var ca = new CurveArray();
             outline.Curves().ForEach(x => ca.Append(x.ToRevitType())); 
 
-            return new Floor(ca, floorType.InternalFloorType, level.InternalLevel );
+            var floor = new Floor(ca, floorType.InternalFloorType, level.InternalLevel);
+            DocumentManager.Regenerate();
+            return floor;
         }
 
 
