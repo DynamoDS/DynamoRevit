@@ -130,6 +130,7 @@
     <Compile Include="Elements\Views\DraftingView.cs" />
     <Compile Include="Elements\Views\FloorPlanView.cs" />
     <Compile Include="Elements\Views\Sheet.cs" />
+    <Compile Include="Elements\WallFace.cs" />
     <Compile Include="Elements\WallType.cs" />
     <Compile Include="Elements\Views\SectionView.cs" />
     <Compile Include="Elements\Views\Packing\OutOfSpaceException.cs" />
