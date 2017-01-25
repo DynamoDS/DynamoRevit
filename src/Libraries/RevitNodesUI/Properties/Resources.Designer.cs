@@ -682,6 +682,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wall locations..
+        /// </summary>
+        internal static string WallLocationLineDescription {
+            get {
+                return ResourceManager.GetString("WallLocationLineDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All wall types available in the document..
         /// </summary>
         internal static string WallTypesDescription {

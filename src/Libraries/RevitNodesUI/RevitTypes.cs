@@ -137,6 +137,15 @@ namespace DSRevitNodesUI
         public VerticalAlignment() : base("Vertical Alignment", typeof(Autodesk.Revit.DB.VerticalAlignmentStyle)) { }
     }
 
+    [NodeName("Wall Location")]
+    [NodeCategory("Revit.Elements.Wall")]
+    [NodeDescription("WallLocationLineDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class WallLocation : CustomGenericEnumerationDropDown
+    {
+        public WallLocation() : base("Wall Location", typeof(Autodesk.Revit.DB.WallLocationLine)) { }
+    }
+
     [NodeName("Schedule Type")]
     [NodeCategory("Revit.Views.ScheduleView")]
     [NodeDescription("ScheduleTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
@@ -190,4 +199,5 @@ namespace DSRevitNodesUI
     {
         public LinePatterns() : base("LinePattern", typeof(Autodesk.Revit.DB.LinePatternElement)) { }
     }
+
 }

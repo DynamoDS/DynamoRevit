@@ -312,6 +312,9 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
+  <data name="InvalidFace" xml:space="preserve">
+    <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
+  </data>
   <data name="DynamoSurfaceToRevitBRepFailure" xml:space="preserve">
     <value>An unexpected failure occurred when attempting to convert the surface into a Revit BRep</value>
   </data>

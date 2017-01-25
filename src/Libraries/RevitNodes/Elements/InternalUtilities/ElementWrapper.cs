@@ -226,6 +226,11 @@ namespace Revit.Elements
            return Mullion.FromExisting(ele, isRevitOwned);
         }
 
+        public static FaceWall Wrap(Autodesk.Revit.DB.FaceWall ele, bool isRevitOwned)
+        {
+            return FaceWall.FromExisting(ele, isRevitOwned);
+        }
+
         public static Dimension Wrap(Autodesk.Revit.DB.Dimension ele, bool isRevitOwned)
         {
             return Dimension.FromExisting(ele, isRevitOwned);
@@ -291,7 +296,6 @@ namespace Revit.Elements
             return DetailCurve.FromExisting(ele, isRevitOwned);
 
         }
-
 
         #endregion
 

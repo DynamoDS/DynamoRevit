@@ -349,6 +349,9 @@
   <data name="FilterTypeSelectorDescription" xml:space="preserve">
     <value>Filter Types for Revit Filters</value>
   </data>
+  <data name="WallLocationLineDescription" xml:space="preserve">
+    <value>Wall locations.</value>
+  </data>
   <data name="ExportColumnHeadersDescription" xml:space="preserve">
     <value>How to export column headers. Default is MultipleRows.</value>
   </data>
