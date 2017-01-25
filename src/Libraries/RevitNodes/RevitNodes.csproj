@@ -91,6 +91,9 @@
     <Compile Include="Elements\CurveElement.cs" />
     <Compile Include="Elements\FilledRegion.cs" />
     <Compile Include="Elements\FilledRegionType.cs" />
+    <Compile Include="Elements\GlobalParameter.cs" />
+    <Compile Include="Elements\RoofType.cs" />
+    <Compile Include="Elements\Roof.cs" />
     <Compile Include="Elements\InternalUtilities\ElementQueries.cs" />
     <Compile Include="Elements\InternalUtilities\ElementUtils.cs" />
     <Compile Include="Elements\InternalUtilities\TransformUtils.cs" />
@@ -99,6 +102,8 @@
     <Compile Include="Elements\Room.cs" />
     <Compile Include="Elements\Revision.cs" />
     <Compile Include="Elements\RevisionCloud.cs" />
+    <Compile Include="Elements\FailureMessage.cs" />
+    <Compile Include="Elements\PerformanceAdviserRule.cs" />
     <Compile Include="Elements\SunSettings.cs" />
     <Compile Include="Elements\Tag.cs" />
     <Compile Include="Elements\TextElement.cs" />
