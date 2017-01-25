@@ -131,6 +131,12 @@ namespace Revit.Elements
             return null;
         }
 
+        [Autodesk.DesignScript.Runtime.IsVisibleInDynamoLibrary(false)]
+        public static FaceWall ByFace(WallLocationLine location, WallType wallType, Reference reference)
+        {
+            return new FaceWall(location, wallType.InternalWallType, reference);
+        }
+
         #endregion
 
         #region Internal static constructors
