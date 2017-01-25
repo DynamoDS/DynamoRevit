@@ -37,23 +37,23 @@ namespace Revit.Elements
         /// <summary>
         /// The Failing Elements of the message.
         /// </summary>
-        public ICollection<ElementId> FailingElements
+        public ICollection<Element> FailingElements
         {
             get
             {
-                return InternalElement.GetFailingElements();
-            }
-        }
+                var failingIds = InternalElement.GetFailingElements();
+                var failingElements = new List<Element>();
 
+                foreach (var failingId in failingIds)
+                {
+                    if (failingId != ElementId.InvalidElementId)
+                    {
+                        var element = DocumentManager.Instance.CurrentDBDocument.GetElement(failingId);
+                        failingElements.Add(element.ToDSType(true));
+                    }
+                }
 
-        /// <summary>
-        /// The additional Failing Elements of the message.
-        /// </summary>
-        public ICollection<ElementId> AdditionalElements
-        {
-            get
-            {
-                return InternalElement.GetAdditionalElements();
+                return failingElements;
             }
         }
 
