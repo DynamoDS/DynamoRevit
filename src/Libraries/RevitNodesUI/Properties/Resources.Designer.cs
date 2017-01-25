@@ -493,6 +493,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a Schedule Type..
+        /// </summary>
+        internal static string ScheduleTypeSelectorDescription {
+            get {
+                return ResourceManager.GetString("ScheduleTypeSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select analysis results from the document..
         /// </summary>
         internal static string SelectAnalysisResultsDescription {
@@ -678,6 +687,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string ViewsDescription {
             get {
                 return ResourceManager.GetString("ViewsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wall locations..
+        /// </summary>
+        internal static string WallLocationLineDescription {
+            get {
+                return ResourceManager.GetString("WallLocationLineDescription", resourceCulture);
             }
         }
         
