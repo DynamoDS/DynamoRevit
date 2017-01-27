@@ -390,4 +390,7 @@
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
   </data>
+  <data name="CurtainSystemTypeNotFound" xml:space="preserve">
+    <value>Curtain System Type not found.</value>
+  </data>
 </root>

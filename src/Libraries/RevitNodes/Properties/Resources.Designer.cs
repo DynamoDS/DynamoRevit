@@ -203,6 +203,14 @@ namespace Revit.Properties {
                 return ResourceManager.GetString("CurveLoopNotClosed", resourceCulture);
             }
         }
+
+        ///   Looks up a localized string similar to Curtain System Type not found..
+        /// </summary>
+        internal static string CurtainSystemTypeNotFound {
+            get {
+                return ResourceManager.GetString("CurtainSystemTypeNotFound", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Cannot create Curve By Points with less than two points..
