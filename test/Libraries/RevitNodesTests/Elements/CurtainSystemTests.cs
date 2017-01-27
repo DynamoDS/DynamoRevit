@@ -25,19 +25,11 @@ namespace RevitNodesTests.Elements
 
             Assert.NotNull(mass);
             
-            Autodesk.Revit.DB.Face face = null;
-
-            foreach (Autodesk.Revit.DB.Solid solid in mass.InternalElement.get_Geometry(new Autodesk.Revit.DB.Options() { }))
-            {
-                face = solid.Faces.get_Item(0);
-            }
-
-            var system = CurtainSystem.ByFace(face.ToProtoType().ToArray().ElementAt(0),type);
+            var system = CurtainSystem.ByFace(mass.Faces.ElementAt(0),type);
             Assert.NotNull(system);
 
             Assert.NotNull(system.Faces);
             Assert.NotNull(system.InternalCurtainSystem);
-            Assert.IsTrue(typeof(CurtainSystem) == type.GetType());
         }
 
 
