@@ -169,7 +169,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Curtain System Type not found..
+        ///   Looks up a localized string similar to Cannot find Curtain System Type in active document..
         /// </summary>
         internal static string CurtainSystemTypeNotFound {
             get {
