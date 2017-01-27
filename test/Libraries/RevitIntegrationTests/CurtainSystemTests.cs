@@ -29,7 +29,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            var system = GetPreviewValue("58078c74-5ac8-4f11-bf44-9c442ed3a449");
+            var system = GetPreviewValue("4d37de22-e10a-4c55-a3a7-5275c3d06f0e");
             Assert.IsNotNull(system);
             Assert.IsTrue(typeof(Revit.Elements.CurtainSystem) == system.GetType());
         }
