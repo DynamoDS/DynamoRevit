@@ -408,4 +408,7 @@
   <data name="InvalidFace" xml:space="preserve">
     <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
   </data>
+  <data name="CurtainSystemTypeNotFound" xml:space="preserve">
+    <value>Curtain System Type not found.</value>
+  </data>
 </root>
