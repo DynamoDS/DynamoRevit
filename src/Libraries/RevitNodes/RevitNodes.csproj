@@ -94,6 +94,8 @@
     <Compile Include="Elements\GlobalParameter.cs" />
     <Compile Include="Elements\RoofType.cs" />
     <Compile Include="Elements\Roof.cs" />
+    <Compile Include="Elements\CurtainSystemType.cs" />
+    <Compile Include="Elements\CurtainSystem.cs" />
     <Compile Include="Elements\InternalUtilities\ElementQueries.cs" />
     <Compile Include="Elements\InternalUtilities\ElementUtils.cs" />
     <Compile Include="Elements\InternalUtilities\TransformUtils.cs" />
