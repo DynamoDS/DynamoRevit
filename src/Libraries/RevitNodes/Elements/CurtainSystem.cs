@@ -121,7 +121,7 @@ namespace Revit.Elements
         /// <summary>
         /// Create Curtain System from face references
         /// </summary>
-        /// <param name="faces"></param>
+        /// <param name="face"></param>
         /// <param name="curtainSystemType"></param>
         /// <returns></returns>
         public static CurtainSystem ByFace(Autodesk.DesignScript.Geometry.Surface face, CurtainSystemType curtainSystemType)
