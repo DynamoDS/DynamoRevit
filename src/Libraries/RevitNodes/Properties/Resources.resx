@@ -327,6 +327,9 @@
   <data name="InvalidShapeEditor" xml:space="preserve">
     <value>Floor Shape cannot be edited.</value>
   </data>
+  <data name="CurtainSystemTypeNotFound" xml:space="preserve">
+    <value>Cannot find Curtain System Type in active document.</value>
+  </data>
   <data name="ElementCannotBeAnnotatedError" xml:space="preserve">
     <value>Element cannot be annotated</value>
   </data>
@@ -389,5 +392,8 @@
   </data>
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
+  </data>
+  <data name="CurtainSystemTypeNotFound" xml:space="preserve">
+    <value>Curtain System Type not found.</value>
   </data>
 </root>

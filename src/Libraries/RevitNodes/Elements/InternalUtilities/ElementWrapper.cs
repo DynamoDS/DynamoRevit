@@ -225,10 +225,15 @@ namespace Revit.Elements
         {
            return Mullion.FromExisting(ele, isRevitOwned);
         }
-
+        
         public static FaceWall Wrap(Autodesk.Revit.DB.FaceWall ele, bool isRevitOwned)
         {
             return FaceWall.FromExisting(ele, isRevitOwned);
+        }
+
+        public static CurtainSystemType Wrap(Autodesk.Revit.DB.CurtainSystemType ele, bool isRevitOwned)
+        {
+            return CurtainSystemType.FromExisting(ele, isRevitOwned);
         }
 
         public static Dimension Wrap(Autodesk.Revit.DB.Dimension ele, bool isRevitOwned)
@@ -297,6 +302,11 @@ namespace Revit.Elements
 
         }
 
+        public static CurtainSystem Wrap(Autodesk.Revit.DB.CurtainSystem ele, bool isRevitOwned)
+        {
+            return CurtainSystem.FromExisting(ele, isRevitOwned);
+        }
+        
         #endregion
 
     }

@@ -98,6 +98,7 @@
     <Compile Include="AsynchronousModeTests.cs" />
     <Compile Include="WallTests.cs" />
     <Compile Include="PerformanceAdviserTests.cs" />
+    <Compile Include="CurtainSystemTests.cs" />
     <Compile Include="RoomTests.cs" />
     <Compile Include="RevisionTests.cs" />
     <Compile Include="LocationTests.cs" />
