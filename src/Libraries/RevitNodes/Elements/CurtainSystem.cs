@@ -73,8 +73,7 @@ namespace Revit.Elements
             TransactionManager.Instance.EnsureInTransaction(Document);
 
             Autodesk.Revit.DB.CurtainSystem curtainSystem = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.CurtainSystem>(Document);
-            //if (CurtainSystem == null)
-            //{
+
             ICollection<ElementId> ids = Document.Create.NewCurtainSystem2(faces, curtainSystemType);
             if (ids.Count > 1)
             {
@@ -89,7 +88,6 @@ namespace Revit.Elements
             {
                 curtainSystem = (Autodesk.Revit.DB.CurtainSystem)Document.GetElement(ids.First());
             }
-            //}
 
             InternalSetCurtainSystem(curtainSystem);
 
