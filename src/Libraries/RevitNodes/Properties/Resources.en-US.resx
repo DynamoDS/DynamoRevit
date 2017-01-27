@@ -312,23 +312,35 @@
   <data name="MultipleSurfacesIntroducedAfterConversion" xml:space="preserve">
     <value>There are multiple surfaces converted from the input face.</value>
   </data>
+  <data name="InvalidFace" xml:space="preserve">
+    <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
+  </data>
+  <data name="DynamoSurfaceToRevitBRepFailure" xml:space="preserve">
+    <value>An unexpected failure occurred when attempting to convert the surface into a Revit BRep</value>
+  </data>
+  <data name="DynamoSolidToRevitBRepFailure" xml:space="preserve">
+    <value>An unexpected failure occurred when attempting to convert the solid into a Revit BRep</value>
+  </data>
+  <data name="InvalidFilterType" xml:space="preserve">
+    <value>FilterType is not valid.</value>
+  </data>
+  <data name="InvalidShapeEditor" xml:space="preserve">
+    <value>Floor Shape cannot be edited.</value>
+  </data>
   <data name="ElementCannotBeAnnotatedError" xml:space="preserve">
     <value>Element cannot be annotated</value>
   </data>
   <data name="ViewDoesNotSupportAnnotations" xml:space="preserve">
     <value>View does not support annotations.</value>
   </data>
+  <data name="CannotGetBaseOrSurveyPoint" xml:space="preserve">
+    <value>Cannot get base or survey point from document.</value>
+  </data>
   <data name="NotEnoughDataError" xml:space="preserve">
     <value>You need at least two elements for a dimension.</value>
   </data>
   <data name="CurveLoopNotClosed" xml:space="preserve">
     <value>Curves do not form a closed loop.</value>
-  </data>
-  <data name="CannotGetBaseOrSurveyPoint" xml:space="preserve">
-    <value>Cannot get base or survey point from document.</value>
-  </data>
-  <data name="InvalidFilterType" xml:space="preserve">
-    <value>FilterType is not valid.</value>
   </data>
   <data name="NoSharedParameterFileFound" xml:space="preserve">
     <value>No shared parameter file found.</value>
@@ -353,13 +365,11 @@
   </data>
   <data name="TypeNotFound" xml:space="preserve">
     <value>Type not found in document.</value>
-  <data name="InvalidShapeEditor" xml:space="preserve">
-    <value>Floor Shape cannot be edited.</value>
   </data>
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
   </data>
-  <data name="InvalidFace" xml:space="preserve">
-    <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
+  <data name="CurtainSystemTypeNotFound" xml:space="preserve">
+    <value>Curtain System Type not found.</value>
   </data>
 </root>
