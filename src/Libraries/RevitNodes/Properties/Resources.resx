@@ -324,6 +324,9 @@
   <data name="InvalidFace" xml:space="preserve">
     <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
   </data>
+  <data name="CurtainSystemTypeNotFound" xml:space="preserve">
+    <value>Cannot find Curtain System Type in active document.</value>
+  </data>
   <data name="ElementCannotBeAnnotatedError" xml:space="preserve">
     <value>Element cannot be annotated</value>
   </data>
@@ -398,5 +401,8 @@
   </data>
   <data name="InvalidFace" xml:space="preserve">
     <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
+  </data>
+  <data name="CurtainSystemTypeNotFound" xml:space="preserve">
+    <value>Curtain System Type not found.</value>
   </data>
 </root>
