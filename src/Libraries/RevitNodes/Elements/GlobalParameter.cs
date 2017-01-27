@@ -77,20 +77,24 @@ namespace Revit.Elements
         /// <param name="line"></param>
         private void InitGlobalParameter(string name, Autodesk.Revit.DB.ParameterType type)
         {
-            if (Autodesk.Revit.DB.GlobalParametersManager.IsUniqueName(Document, name))
+            var existingId = Autodesk.Revit.DB.GlobalParametersManager.FindByName(Document, name);
+
+            if (existingId != null && existingId != Autodesk.Revit.DB.ElementId.InvalidElementId)
             {
-                TransactionManager.Instance.EnsureInTransaction(Document);
-
-                Autodesk.Revit.DB.GlobalParameter g = Autodesk.Revit.DB.GlobalParameter.Create(Document, name, type);
-
-                InternalSetGlobalParameter(g);
-
-                TransactionManager.Instance.TransactionTaskDone();
-
-                ElementBinder.SetElementForTrace(this.InternalElement);
+                // GP already exists
+                var existingParameter = Document.GetElement(existingId) as Autodesk.Revit.DB.GlobalParameter;
+                InternalSetGlobalParameter(existingParameter);
             }
             else
-                throw new Exception(Properties.Resources.NameAlreadyInUse);
+            {        
+                // Create a new GP
+                TransactionManager.Instance.EnsureInTransaction(Document);
+                Autodesk.Revit.DB.GlobalParameter newParameter = Autodesk.Revit.DB.GlobalParameter.Create(Document, name, type);
+                InternalSetGlobalParameter(newParameter);
+                TransactionManager.Instance.TransactionTaskDone();
+            }
+
+            ElementBinder.CleanupAndSetElementForTrace(Document, InternalGlobalParameter);
         }
 
 
