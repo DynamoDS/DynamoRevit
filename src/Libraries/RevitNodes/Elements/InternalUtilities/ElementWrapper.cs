@@ -216,7 +216,7 @@ namespace Revit.Elements
         {
            return Mullion.FromExisting(ele, isRevitOwned);
         }
-        
+
         public static Dimension Wrap(Autodesk.Revit.DB.Dimension ele, bool isRevitOwned)
         {
             return Dimension.FromExisting(ele, isRevitOwned);
