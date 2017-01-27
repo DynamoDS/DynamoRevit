@@ -32,7 +32,7 @@ namespace RevitNodesTests.Elements
                 face = solid.Faces.get_Item(0);
             }
 
-            var system = CurtainSystem.ByFaces(face.ToProtoType().ToArray(),type);
+            var system = CurtainSystem.ByFace(face.ToProtoType().ToArray().ElementAt(0),type);
             Assert.NotNull(system);
 
             Assert.NotNull(system.Faces);
