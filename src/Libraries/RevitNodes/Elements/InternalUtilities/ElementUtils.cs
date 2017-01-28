@@ -196,6 +196,7 @@ namespace Revit.Elements.InternalUtilities
             return value;
         }
 
+
         [SupressImportIntoVM]
         internal static UnitType ParameterTypeToUnitType(ParameterType parameterType)
         {
@@ -203,9 +204,15 @@ namespace Revit.Elements.InternalUtilities
             {
                 case ParameterType.Length:
                     return UnitType.UT_Length;
+                case ParameterType.ReinforcementLength:
+                    return UnitType.UT_Length;
                 case ParameterType.Area:
                     return UnitType.UT_Area;
+                case ParameterType.ReinforcementArea:
+                    return UnitType.UT_Area;
                 case ParameterType.Volume:
+                    return UnitType.UT_Volume;
+                case ParameterType.ReinforcementVolume:
                     return UnitType.UT_Volume;
                 case ParameterType.Angle:
                     return UnitType.UT_Angle;

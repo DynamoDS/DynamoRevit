@@ -315,7 +315,8 @@ namespace Revit.Elements
             return paramType == ParameterType.Length || paramType == ParameterType.Area ||
                 paramType == ParameterType.Volume || paramType == ParameterType.Angle ||
                 paramType == ParameterType.Slope || paramType == ParameterType.Currency ||
-                paramType == ParameterType.MassDensity;
+                paramType == ParameterType.MassDensity || paramType == ParameterType.ReinforcementLength ||
+                paramType == ParameterType.ReinforcementArea || paramType == ParameterType.ReinforcementVolume;
         }
 
 
