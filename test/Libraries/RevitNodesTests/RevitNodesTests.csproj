@@ -77,6 +77,7 @@
     <Compile Include="Elements\AbstractElementTests.cs" />
     <Compile Include="Elements\AdaptiveComponentTests.cs" />
     <Compile Include="Elements\CategoryTests.cs" />
+    <Compile Include="Elements\CurtainSystemTests.cs" />
     <Compile Include="Elements\CurveByPointsTests.cs" />
     <Compile Include="Elements\DimensionTests.cs" />
     <Compile Include="Elements\DetailCurveTests.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Elements\ElementTests.cs" />
     <Compile Include="Elements\FillPatternTests.cs" />
     <Compile Include="Elements\FilterTests.cs" />
+    <Compile Include="Elements\RoofTests.cs" />
     <Compile Include="Elements\FloorTests.cs" />
     <Compile Include="Elements\CoordinatesTests.cs" />
     <Compile Include="Elements\FloorTypeTests.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="Elements\ModelCurveTests.cs" />
     <Compile Include="Elements\ReferencePointTests.cs" />
     <Compile Include="Elements\ParseEnumTests.cs" />
+    <Compile Include="Elements\PerformanceAdvTests.cs" />
     <Compile Include="Elements\RoomTests.cs" />
     <Compile Include="Elements\RevisionTests.cs" />
     <Compile Include="Elements\SunSettingsTests.cs" />

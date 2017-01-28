@@ -321,6 +321,12 @@
   <data name="InvalidFilterType" xml:space="preserve">
     <value>FilterType is not valid.</value>
   </data>
+  <data name="InvalidFace" xml:space="preserve">
+    <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
+  </data>
+  <data name="CurtainSystemTypeNotFound" xml:space="preserve">
+    <value>Cannot find Curtain System Type in active document.</value>
+  </data>
   <data name="ElementCannotBeAnnotatedError" xml:space="preserve">
     <value>Element cannot be annotated</value>
   </data>
@@ -386,5 +392,17 @@
   </data>
   <data name="NameAlreadyInUse" xml:space="preserve">
     <value>Name already in use.</value>
+  </data>
+  <data name="InvalidShapeEditor" xml:space="preserve">
+    <value>Floor Shape cannot be edited.</value>
+  </data>
+  <data name="RoofTypeNotFound" xml:space="preserve">
+    <value>Roof type not found.</value>
+  </data>
+  <data name="InvalidFace" xml:space="preserve">
+    <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
+  </data>
+  <data name="CurtainSystemTypeNotFound" xml:space="preserve">
+    <value>Curtain System Type not found.</value>
   </data>
 </root>

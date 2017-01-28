@@ -353,11 +353,11 @@
     <value>Select a Schedule Type.</value>
     <comment>Description Schedule Types</comment>
   </data>
-  <data name="ExportTextQualifierDescription" xml:space="preserve">
-    <value>How to qualify text fields. Default is DoubleQuote.</value>
-  </data>
   <data name="ExportColumnHeadersDescription" xml:space="preserve">
     <value>How to export column headers. Default is MultipleRows.</value>
+  </data>
+  <data name="ExportTextQualifierDescription" xml:space="preserve">
+    <value>How to qualify text fields. Default is DoubleQuote.</value>
   </data>
   <data name="ViewDetailLevelDescription" xml:space="preserve">
     <value>View Detail Level</value>
@@ -375,5 +375,10 @@
   <data name="ScheduleFilterTypeDescription" xml:space="preserve">
     <value>A View Schedule Filter Type.</value>
     <comment>Description for Filter Type</comment>
+  <data name="PerformanceAdviserDescription" xml:space="preserve">
+    <value>All Performance Adviser rules.</value>
+  </data>
+  <data name="WallLocationLineDescription" xml:space="preserve">
+    <value>Wall locations.</value>
   </data>
 </root>
