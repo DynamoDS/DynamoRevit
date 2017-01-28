@@ -115,6 +115,53 @@ namespace RevitNodesTests.Elements.Views
             Assert.Greater(view.Fields.Count, 0);
         }
 
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void AddScheduleFilter_ValidArgs()
+        {
+            var view = ScheduleView.CreateSchedule(Category.ByName("OST_Walls"), "WallSchedule_Test", ScheduleView.ScheduleType.RegularSchedule.ToString());
+            Assert.NotNull(view);
+
+            // get a list of schedulable fields and add "Width" field to schedule
+            var schedulableFields = view.SchedulableFields;
+            Assert.Greater(schedulableFields.Count, 0);
+
+            var fieldToAdd = schedulableFields.Where(x => x.Name == "Width").FirstOrDefault();
+            Assert.NotNull(fieldToAdd);
+
+            view.AddFields(new List<Revit.Schedules.SchedulableField>() { fieldToAdd });
+            Assert.Greater(view.Fields.Count, 0);
+
+            // create new schedule filter and add it to schedule
+            var field = view.Fields.Where(x => x.Name == "Width").FirstOrDefault();
+            Assert.NotNull(field);
+
+            var filter = Revit.Schedules.ScheduleFilter.ByFieldTypeAndValue(field, Autodesk.Revit.DB.ScheduleFilterType.Equal.ToString(), 0.1);
+            Assert.NotNull(filter);
+
+            view.AddFilters(new List<Revit.Schedules.ScheduleFilter>() { filter });
+            Assert.Greater(view.ScheduleFilters.Count, 0);
+        }
+
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void ClearAllScheduleFilters_ValidArgs()
+        {
+            var rView = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(Autodesk.Revit.DB.ViewSchedule))
+                .Cast<Autodesk.Revit.DB.ViewSchedule>()
+                .Where(x => x.Name == "Wall Schedule")
+                .FirstOrDefault();
+
+            var view = ScheduleView.FromExisting(rView, true);
+            Assert.NotNull(view);
+
+            // remove all schedule filters
+            view.ClearAllFilters();
+            Assert.AreEqual(view.ScheduleFilters.Count, 0);
+        }
+
+
         private static ScheduleView CreateTestView()
         {
             var view = ScheduleView.CreateSchedule(Category.ByName("OST_GenericModel"), "KeySchedule_Test", ScheduleView.ScheduleType.KeySchedule.ToString());

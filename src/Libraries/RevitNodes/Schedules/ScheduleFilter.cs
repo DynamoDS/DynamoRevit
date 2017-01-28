@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using Autodesk.Revit.DB;
 using Autodesk.DesignScript.Runtime;
-using DynamoServices;
-using Revit.GeometryConversion;
-using RevitServices.Persistence;
-using RevitServices.Transactions;
 
 namespace Revit.Schedules
 {
@@ -40,12 +34,12 @@ namespace Revit.Schedules
         #region Public static constructors
 
         /// <summary>
-        /// 
+        /// Creates Schedule Filter by Schedule Field, Filter Type and value.
         /// </summary>
-        /// <param name="field"></param>
-        /// <param name="filterType"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="field">Schedule Field used for creating filter.</param>
+        /// <param name="filterType">Filter type. Ex: Equal.</param>
+        /// <param name="value">Value used by filter for comparison.</param>
+        /// <returns name="ScheduleFilter">Schedule Filter</returns>
         public static ScheduleFilter ByFieldTypeAndValue(ScheduleField field, string filterType, object value)
         {
             var ft = (Autodesk.Revit.DB.ScheduleFilterType)System.Enum.Parse(typeof(Autodesk.Revit.DB.ScheduleFilterType), filterType);
@@ -139,33 +133,29 @@ namespace Revit.Schedules
                 return false;
             }
 
-            return (this.FilterType.Equals(item.FilterType) && this.FiledId.Equals(item.FiledId) && this.Value.Equals(item.Value));
+            if (this.InternalScheduleFilter.IsDoubleValue)
+            {
+                return (this.FilterType.Equals(item.FilterType) && this.FiledId.Equals(item.FiledId) && Equals4DigitPrecision((double)this.Value, (double)item.Value));
+            }
+            else
+            {
+                return (this.FilterType.Equals(item.FilterType) && this.FiledId.Equals(item.FiledId) && this.Value.Equals(item.Value));
+            }
         }
 
         public override int GetHashCode()
         {
             return this.FilterType.GetHashCode() ^ this.FiledId.GetHashCode() ^ this.Value.GetHashCode();
         }
+
+        #region Helpers
+
+        [IsVisibleInDynamoLibrary(false)]
+        public static bool Equals4DigitPrecision(double left, double right)
+        {
+            return Math.Abs(left - right) < 0.0001;
+        }
+
+        #endregion
     }
-
-    //[IsVisibleInDynamoLibrary(false)]
-    //public class ScheduleFilterComparer : IEqualityComparer<ScheduleFilter>
-    //{
-    //    public bool Equals(ScheduleFilter x, ScheduleFilter y)
-    //    {
-    //        if (x == null && y == null)
-    //            return true;
-    //        else if (x == null | y == null)
-    //            return false;
-    //        else if (x.FilterType == y.FilterType && x.FiledId == y.FiledId && x.Value == y.Value)
-    //            return true;
-    //        else
-    //            return false;
-    //    }
-
-    //    public int GetHashCode(ScheduleFilter x)
-    //    {
-    //        return x.FilterType.GetHashCode() ^ x.FiledId.GetHashCode() ^ x.Value.GetHashCode();
-    //    }
-    //}
 }

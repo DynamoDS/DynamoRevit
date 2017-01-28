@@ -34,6 +34,15 @@ namespace Revit.Elements.Views
             get { return InternalViewSchedule; }
         }
 
+        /// <summary>
+        /// Reference to Schedule Filters
+        /// </summary>
+        internal IList<Autodesk.Revit.DB.ScheduleFilter> InternalScheduleFilters
+        {
+            get;
+            private set;
+        }
+
         #endregion
 
         #region Private constructors
@@ -88,7 +97,6 @@ namespace Revit.Elements.Views
             InternalSetScheduleView(vs);
 
             TransactionManager.Instance.TransactionTaskDone();
-
             ElementBinder.CleanupAndSetElementForTrace(doc, this.InternalElement);
         }
 
@@ -105,6 +113,7 @@ namespace Revit.Elements.Views
             this.InternalViewSchedule = view;
             this.InternalElementId = view.Id;
             this.InternalUniqueId = view.UniqueId;
+            this.InternalScheduleFilters = view.Definition.GetFilters();
         }
 
         #endregion
@@ -145,10 +154,10 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Create Schedule by Category, Type and Name.
         /// </summary>
-        /// <param name="category"></param>
-        /// <param name="name"></param>
-        /// <param name="scheduleType"></param>
-        /// <returns name="scheduleView">Schedule</returns>
+        /// <param name="category">Category that Schedule will be associated with.</param>
+        /// <param name="name">Name of the Schedule View.</param>
+        /// <param name="scheduleType">Type of Schedule View to be created. Ex. Key Schedule.</param>
+        /// <returns name="scheduleView">Schedule View.</returns>
         public static ScheduleView CreateSchedule(Category category, string name, string scheduleType)
         {
             if (category == null)
@@ -169,10 +178,10 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Remove Schedule Field from Schedule.
+        /// Remove Schedule Field from Schedule View.
         /// </summary>
-        /// <param name="fields"></param>
-        /// <returns name="View">View Schedule</returns>
+        /// <param name="fields">Schedule Fields (columns) to be removed.</param>
+        /// <returns name="scheduleView">Schedule View.</returns>
         public ScheduleView RemoveFields(List<Revit.Schedules.ScheduleField> fields)
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;
@@ -192,10 +201,10 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Add Field.
+        /// Add Field (Column) to Schedule View.
         /// </summary>
-        /// <param name="fields"></param>
-        /// <returns></returns>
+        /// <param name="fields">Schedulable Field retrieved from ScheduleView.SchedulableFields.</param>
+        /// <returns name="scheduleView">Schedule View.</returns>
         public ScheduleView AddFields(List<Revit.Schedules.SchedulableField> fields)
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;
@@ -219,7 +228,7 @@ namespace Revit.Elements.Views
         /// </summary>
         /// <param name="path">A valid file path with file extension.</param>
         /// <param name="exportOptions">Export Options. If null, default will be used.</param>
-        /// <returns></returns>
+        /// <returns name="scheduleView">Schedule View.</returns>
         public ScheduleView Export(
             string path, 
             ScheduleExportOptions exportOptions)
@@ -233,7 +242,7 @@ namespace Revit.Elements.Views
                 throw new ArgumentException(Properties.Resources.ExportOptionsArgumentException);
             }
 
-            // run export
+            // Run export
             string folder = System.IO.Path.GetDirectoryName(path);
             string name = System.IO.Path.GetFileName(path);
             try
@@ -249,25 +258,59 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// 
+        /// Add Schedule Filters to Schedule View.
         /// </summary>
-        /// <param name="scheduleFilter"></param>
-        /// <returns></returns>
-        public ScheduleView AddFilter(ScheduleFilter scheduleFilter)
+        /// <param name="scheduleFilters">List of Schedule Filters.</param>
+        /// <returns name="scheduleView">Schedule View.</returns>
+        public ScheduleView AddFilters(List<ScheduleFilter> scheduleFilters)
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(doc);
 
-            var filters = this.InternalViewSchedule.Definition.GetFilters().Select(x => new ScheduleFilter(x));
-
-            if (!filters.Contains(scheduleFilter))
+            var currentFilters = this.InternalScheduleFilters.Select(x => new ScheduleFilter(x)).ToList();
+            foreach (var sf in scheduleFilters)
             {
-                this.InternalViewSchedule.Definition.AddFilter(scheduleFilter.InternalScheduleFilter);
+                if (!currentFilters.Contains(sf))
+                {
+                    this.InternalViewSchedule.Definition.AddFilter(sf.InternalScheduleFilter);
+                    currentFilters.Add(sf);
+                }
             }
-            
+            this.InternalScheduleFilters = currentFilters.Select(x => x.InternalScheduleFilter).ToList();
+
             TransactionManager.Instance.TransactionTaskDone();
-            
             return this;
+        }
+
+        /// <summary>
+        /// Clear all Schedule Filters from Schedule View.
+        /// </summary>
+        /// <returns name="scheduleView">Schedule View.</returns>
+        public ScheduleView ClearAllFilters()
+        {
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            TransactionManager.Instance.EnsureInTransaction(doc);
+
+            this.InternalViewSchedule.Definition.ClearFilters();
+            this.InternalScheduleFilters.Clear();
+
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Schedule Filters.
+        /// </summary>
+        public List<Revit.Schedules.ScheduleFilter> ScheduleFilters
+        {
+            get
+            {
+                return this.InternalScheduleFilters.Select(x => new ScheduleFilter(x)).ToList();
+            }
         }
 
         /// <summary>
@@ -280,7 +323,6 @@ namespace Revit.Elements.Views
                 IList<Autodesk.Revit.DB.ScheduleFieldId> fieldIds = this.InternalViewSchedule.Definition.GetFieldOrder();
                 return fieldIds.Select(id => new Revit.Schedules.ScheduleField(this.InternalViewSchedule.Definition.GetField(id))).ToList();
             }
-            
         }
 
         /// <summary>
