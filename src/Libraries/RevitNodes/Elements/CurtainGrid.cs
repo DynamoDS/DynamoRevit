@@ -36,9 +36,9 @@ namespace Revit.Elements
          get
          {
             CurtainGridSet gridSets = null;
-            if (InternalCurtainHolderElement is CurtainSystem)
+            if (InternalCurtainHolderElement is Autodesk.Revit.DB.CurtainSystem)
             {
-               var gridAsCurtainSystem = InternalCurtainHolderElement as CurtainSystem;
+               var gridAsCurtainSystem = InternalCurtainHolderElement as Autodesk.Revit.DB.CurtainSystem;
                gridSets = gridAsCurtainSystem.CurtainGrids;
             }
             else if (InternalCurtainHolderElement is ExtrusionRoof)
@@ -296,10 +296,10 @@ namespace Revit.Elements
       internal static CurtainGridSet AllCurtainGrids(Autodesk.Revit.DB.Element revitElement)
       {
          CurtainGridSet gridSets = null;
-         if (revitElement is CurtainSystem)
+         if (revitElement is Autodesk.Revit.DB.CurtainSystem)
          {
-            var gridAsCurtainSystem = revitElement as CurtainSystem;
-            gridSets = gridAsCurtainSystem.CurtainGrids;
+             var gridAsCurtainSystem = revitElement as Autodesk.Revit.DB.CurtainSystem;
+             gridSets = gridAsCurtainSystem.CurtainGrids;
          }
          else if (revitElement is ExtrusionRoof)
          {

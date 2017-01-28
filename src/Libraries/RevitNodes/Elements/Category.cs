@@ -154,5 +154,24 @@ namespace Revit.Elements
         {
             return internalCategory != null ? Name : string.Empty;
         }
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as Category;
+
+            if (item == null)
+            {
+                return false;
+            }
+            else
+            {
+                return this.Id.Equals(item.Id);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
+        }
     }
 }
