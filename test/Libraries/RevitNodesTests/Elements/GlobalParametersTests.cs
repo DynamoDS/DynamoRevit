@@ -65,25 +65,6 @@ namespace RevitNodesTests.Elements
             Assert.NotNull(param);
         }
 
-        [Test]
-        [TestModel(@".\empty.rvt")]
-        public void GetAllGlobalParameters()
-        {
-            var gp1 = Revit.Elements.GlobalParameter.ByName("MyGlobal1", "Text");
-            Assert.IsNotNull(gp1);
-
-            var gps = Revit.Elements.GlobalParameter.GetAllGlobalParameters();
-            Assert.IsNotNull(gps);
-
-            bool found = false;
-
-            foreach (var gp in gps)
-            {
-                if (gp.Name == "MyGlobal1") found = true;
-            }
-
-            Assert.IsTrue(found);
-        }
 
 
     }
