@@ -143,29 +143,6 @@ namespace Revit.Elements
             return null;
         }
 
-        /// <summary>
-        /// Get all Global Parameters
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<GlobalParameter> GetAllGlobalParameters()
-        {
-            if (!Autodesk.Revit.DB.GlobalParametersManager.AreGlobalParametersAllowed(Document))
-            {
-                throw new Exception(Properties.Resources.DocumentDoesNotSupportGlobalParams);
-            }
-
-            var ids = Autodesk.Revit.DB.GlobalParametersManager.GetGlobalParametersOrdered(Document);
-
-            List<GlobalParameter> parameters = new List<GlobalParameter>();
-
-            foreach (Autodesk.Revit.DB.ElementId id in ids)
-            {
-                var global = Document.GetElement(id) as Autodesk.Revit.DB.GlobalParameter;
-                parameters.Add(GlobalParameter.FromExisting(global, true));
-            }
-
-            return parameters;
-        }
 
 
         /// <summary>
