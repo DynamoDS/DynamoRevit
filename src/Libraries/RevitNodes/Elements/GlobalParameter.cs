@@ -77,20 +77,24 @@ namespace Revit.Elements
         /// <param name="line"></param>
         private void InitGlobalParameter(string name, Autodesk.Revit.DB.ParameterType type)
         {
-            if (Autodesk.Revit.DB.GlobalParametersManager.IsUniqueName(Document, name))
+            var existingId = Autodesk.Revit.DB.GlobalParametersManager.FindByName(Document, name);
+
+            if (existingId != null && existingId != Autodesk.Revit.DB.ElementId.InvalidElementId)
             {
-                TransactionManager.Instance.EnsureInTransaction(Document);
-
-                Autodesk.Revit.DB.GlobalParameter g = Autodesk.Revit.DB.GlobalParameter.Create(Document, name, type);
-
-                InternalSetGlobalParameter(g);
-
-                TransactionManager.Instance.TransactionTaskDone();
-
-                ElementBinder.SetElementForTrace(this.InternalElement);
+                // GP already exists
+                var existingParameter = Document.GetElement(existingId) as Autodesk.Revit.DB.GlobalParameter;
+                InternalSetGlobalParameter(existingParameter);
             }
             else
-                throw new Exception(Properties.Resources.NameAlreadyInUse);
+            {        
+                // Create a new GP
+                TransactionManager.Instance.EnsureInTransaction(Document);
+                Autodesk.Revit.DB.GlobalParameter newParameter = Autodesk.Revit.DB.GlobalParameter.Create(Document, name, type);
+                InternalSetGlobalParameter(newParameter);
+                TransactionManager.Instance.TransactionTaskDone();
+            }
+
+            ElementBinder.CleanupAndSetElementForTrace(Document, InternalGlobalParameter);
         }
 
 
@@ -139,29 +143,6 @@ namespace Revit.Elements
             return null;
         }
 
-        /// <summary>
-        /// Get all Global Parameters
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<GlobalParameter> GetAllGlobalParameters()
-        {
-            if (!Autodesk.Revit.DB.GlobalParametersManager.AreGlobalParametersAllowed(Document))
-            {
-                throw new Exception(Properties.Resources.DocumentDoesNotSupportGlobalParams);
-            }
-
-            var ids = Autodesk.Revit.DB.GlobalParametersManager.GetGlobalParametersOrdered(Document);
-
-            List<GlobalParameter> parameters = new List<GlobalParameter>();
-
-            foreach (Autodesk.Revit.DB.ElementId id in ids)
-            {
-                var global = Document.GetElement(id) as Autodesk.Revit.DB.GlobalParameter;
-                parameters.Add(GlobalParameter.FromExisting(global, true));
-            }
-
-            return parameters;
-        }
 
 
         /// <summary>
@@ -172,6 +153,133 @@ namespace Revit.Elements
             get
             {
                 return this.InternalGlobalParameter.GetDefinition().Name;
+            }
+        }
+
+        /// <summary>
+        /// Get Global Parameter Value
+        /// </summary>
+        public object Value
+        {
+            get
+            {
+                var valueWrapper = this.InternalGlobalParameter.GetValue();
+                if (valueWrapper != null)
+                {
+                    if (valueWrapper.GetType() == typeof(Autodesk.Revit.DB.IntegerParameterValue))
+                    {
+                        var valueInt = valueWrapper as Autodesk.Revit.DB.IntegerParameterValue;
+                        return valueInt.Value;
+                    }
+                    else if (valueWrapper.GetType() == typeof(Autodesk.Revit.DB.ElementIdParameterValue))
+                    {
+                        var valueElementId = valueWrapper as Autodesk.Revit.DB.ElementIdParameterValue;
+                        return valueElementId.Value.IntegerValue;
+                    }
+                    else if (valueWrapper.GetType() == typeof(Autodesk.Revit.DB.NullParameterValue))
+                    {
+                        return null;
+                    }
+                    else if (valueWrapper.GetType() == typeof(Autodesk.Revit.DB.StringParameterValue))
+                    {
+                        var valueString = valueWrapper as Autodesk.Revit.DB.StringParameterValue;
+                        return valueString.Value;
+                    }
+                    else if (valueWrapper.GetType() == typeof(Autodesk.Revit.DB.DoubleParameterValue))
+                    {
+
+                        var valueDouble = valueWrapper as Autodesk.Revit.DB.DoubleParameterValue;
+                        var type = this.InternalGlobalParameter.GetDefinition().ParameterType;
+
+                        if (Element.IsConvertableParameterType(type))
+                        {
+                            return valueDouble.Value * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(
+                               Revit.Elements.InternalUtilities.ElementUtils.ParameterTypeToUnitType(type));
+                        }
+                        else
+                        {
+                            return valueDouble.Value;
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception(string.Format(
+                            Properties.Resources.ParameterWithoutStorageType, this.InternalGlobalParameter));
+                    }
+                }
+                else
+                {
+                    throw new Exception(string.Format(
+                        Properties.Resources.ParameterWithoutStorageType, this.InternalGlobalParameter));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Set Global Parameter Value
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <param name="value"></param>
+        public static void SetValue(GlobalParameter parameter, object value)
+        {
+            if (!parameter.InternalGlobalParameter.IsReporting)
+            {
+                // get document and open transaction
+                Autodesk.Revit.DB.Document document = Application.Document.Current.InternalDocument;
+                TransactionManager.Instance.EnsureInTransaction(document);
+                
+                if (value == null)
+                {
+                    parameter.InternalGlobalParameter.SetValue(
+                        new Autodesk.Revit.DB.NullParameterValue());
+                }
+                else if (value.GetType() == typeof(int))
+                {
+                    parameter.InternalGlobalParameter.SetValue(
+                        new Autodesk.Revit.DB.IntegerParameterValue((int)value));
+                }
+                else if (value.GetType() == typeof(string))
+                {
+                    parameter.InternalGlobalParameter.SetValue(
+                        new Autodesk.Revit.DB.StringParameterValue((string)value));
+                }
+                else if (value.GetType() == typeof(double))
+                {
+                    var type = parameter.InternalGlobalParameter.GetDefinition().ParameterType;
+                    double valueToSet = (double)value;
+
+                    if (Element.IsConvertableParameterType(type))
+                    {
+                        valueToSet = valueToSet * UnitConverter.DynamoToHostFactor(
+                            Revit.Elements.InternalUtilities.ElementUtils.ParameterTypeToUnitType(type));
+                    }
+
+                    parameter.InternalGlobalParameter.SetValue(
+                        new Autodesk.Revit.DB.DoubleParameterValue(valueToSet));
+
+                }
+
+                TransactionManager.Instance.TransactionTaskDone();
+            }
+        }
+
+        /// <summary>
+        /// Set Global Parameter Value to an Element ID from Integer
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <param name="elementId"></param>
+        public static void SetValueToElementId(GlobalParameter parameter, int elementId)
+        {
+            if (!parameter.InternalGlobalParameter.IsReporting)
+            {
+                // get document and open transaction
+                Autodesk.Revit.DB.Document document = Application.Document.Current.InternalDocument;
+                TransactionManager.Instance.EnsureInTransaction(document);
+
+                Autodesk.Revit.DB.ElementId id = new Autodesk.Revit.DB.ElementId(elementId);
+                parameter.InternalGlobalParameter.SetValue(new Autodesk.Revit.DB.ElementIdParameterValue(id));              
+
+                TransactionManager.Instance.TransactionTaskDone();
             }
         }
 
