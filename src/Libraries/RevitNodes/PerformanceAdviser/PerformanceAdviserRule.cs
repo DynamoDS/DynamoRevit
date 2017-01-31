@@ -4,22 +4,21 @@ using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-using Revit.Elements;
 
-namespace Revit.PerformanceAdviser
+namespace Revit.Elements
 {
     /// <summary>
     /// Performance Adviser Rule
     /// </summary>
     public class PerformanceAdviserRule
     {
-        internal Autodesk.Revit.DB.PerformanceAdviserRuleId InternalId
+        internal PerformanceAdviserRuleId InternalId
         { 
             get; set;
         }
 
         [SupressImportIntoVM]
-        public PerformanceAdviserRule(Autodesk.Revit.DB.PerformanceAdviserRuleId id)
+        public PerformanceAdviserRule(PerformanceAdviserRuleId id)
         {
             this.InternalId = id;
         }
@@ -31,7 +30,7 @@ namespace Revit.PerformanceAdviser
         {
             get
             {
-                Autodesk.Revit.DB.PerformanceAdviser adviser = Autodesk.Revit.DB.PerformanceAdviser.GetPerformanceAdviser();
+                PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
                 return adviser.GetRuleName(this.InternalId);
             }
         }
@@ -43,7 +42,7 @@ namespace Revit.PerformanceAdviser
         {
             get
             {
-                Autodesk.Revit.DB.PerformanceAdviser adviser = Autodesk.Revit.DB.PerformanceAdviser.GetPerformanceAdviser();
+                PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
                 return adviser.GetRuleDescription(this.InternalId);
             }
         }
@@ -55,7 +54,7 @@ namespace Revit.PerformanceAdviser
         {
             get
             {
-                Autodesk.Revit.DB.PerformanceAdviser adviser = Autodesk.Revit.DB.PerformanceAdviser.GetPerformanceAdviser();
+                PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
                 // Check if the rule is activated
                 return adviser.IsRuleEnabled(this.InternalId);
             }
@@ -68,7 +67,7 @@ namespace Revit.PerformanceAdviser
         {
             set
             {
-                Autodesk.Revit.DB.PerformanceAdviser adviser = Autodesk.Revit.DB.PerformanceAdviser.GetPerformanceAdviser();
+                PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
                 // Activate or deactivate the rule
                 adviser.SetRuleEnabled(this.InternalId, value);
             }
@@ -96,7 +95,7 @@ namespace Revit.PerformanceAdviser
             var document = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(document);
 
-            Autodesk.Revit.DB.PerformanceAdviser adviser = Autodesk.Revit.DB.PerformanceAdviser.GetPerformanceAdviser();
+            PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
             IList<PerformanceAdviserRuleId> rulesIdsToExecute = new List<PerformanceAdviserRuleId>();
 
             foreach (var rule in rules) rulesIdsToExecute.Add(new PerformanceAdviserRuleId(rule.RuleId));
@@ -131,7 +130,7 @@ namespace Revit.PerformanceAdviser
         [SupressImportIntoVM]
         public override string ToString()
         {
-            Autodesk.Revit.DB.PerformanceAdviser adviser = Autodesk.Revit.DB.PerformanceAdviser.GetPerformanceAdviser();
+            PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
             return string.Format("{0} : {1}", adviser.GetRuleName(this.InternalId), adviser.GetRuleDescription(this.InternalId));
         }
         
