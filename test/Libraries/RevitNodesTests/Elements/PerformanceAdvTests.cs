@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Autodesk.Revit.DB;
 using NUnit.Framework;
-using Revit.Elements;
 using RevitTestServices;
 using RTF.Framework;
 
@@ -16,14 +15,14 @@ namespace RevitNodesTests.Elements
         {
             PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
             IList<PerformanceAdviserRuleId> ruleIds = adviser.GetAllRuleIds();
-            var perf = Revit.Elements.PerformanceAdviserRule.ById(ruleIds[0].Guid.ToString());
+            var perf = Revit.PerformanceAdviser.PerformanceAdviserRule.ById(ruleIds[0].Guid.ToString());
             Assert.NotNull(perf);
 
             Assert.NotNull(perf.Description);
 
             Assert.NotNull(perf.Name);
 
-            Assert.AreEqual(perf.GetType(), typeof(Revit.Elements.PerformanceAdviserRule));
+            Assert.AreEqual(perf.GetType(), typeof(Revit.PerformanceAdviser.PerformanceAdviserRule));
         }
 
         [Test]
@@ -32,14 +31,14 @@ namespace RevitNodesTests.Elements
         {
             PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
             IList<PerformanceAdviserRuleId> ruleIds = adviser.GetAllRuleIds();
-            var perf = Revit.Elements.PerformanceAdviserRule.ById(ruleIds[0].Guid.ToString());
-            List<PerformanceAdviserRule> rules = new List<PerformanceAdviserRule>(){perf};
+            var perf = Revit.PerformanceAdviser.PerformanceAdviserRule.ById(ruleIds[0].Guid.ToString());
+            List<Revit.PerformanceAdviser.PerformanceAdviserRule> rules = new List<Revit.PerformanceAdviser.PerformanceAdviserRule>(){perf};
 
-            var messages = Revit.Elements.PerformanceAdviserRule.Execute(rules);
+            var messages = Revit.PerformanceAdviser.PerformanceAdviserRule.Execute(rules);
 
             foreach (var msg in messages)
             {
-                Assert.IsTrue(msg.GetType() == typeof(Revit.Elements.FailureMessage));
+                Assert.IsTrue(msg.GetType() == typeof(Revit.PerformanceAdviser.FailureMessage));
                 Assert.IsNotNull(msg.Description);
                 Assert.IsNotNull(msg.Severity);
             }
