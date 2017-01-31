@@ -4,29 +4,23 @@ using System.Globalization;
 using System.Linq;
 using System.Xml;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.Events;
-using DSCore;
 using CoreNodeModels;
+using DSCore;
 using Dynamo.Applications;
 using Dynamo.Engine;
 using Dynamo.Graph;
 using Dynamo.Graph.Nodes;
-using Dynamo.Models;
-using Dynamo.Nodes;
 using Dynamo.Utilities;
 using ProtoCore.AST.AssociativeAST;
 using Revit.Elements;
-using RevitServices.EventHandler;
 using RevitServices.Persistence;
-
+using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 using Category = Revit.Elements.Category;
 using Element = Autodesk.Revit.DB.Element;
 using Family = Autodesk.Revit.DB.Family;
-using FamilyInstance = Autodesk.Revit.DB.FamilyInstance;
 using FamilySymbol = Autodesk.Revit.DB.FamilySymbol;
 using Level = Autodesk.Revit.DB.Level;
 using Parameter = Autodesk.Revit.DB.Parameter;
-using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
 {
@@ -442,6 +436,61 @@ namespace DSRevitNodesUI
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
         }
     }
+
+    [NodeName("Performance Adviser Rules")]
+    [NodeCategory(BuiltinNodeCategories.REVIT_ELEMENTS_PERFORMANCEADVISER)]
+    [NodeDescription("PerformanceAdviserDescription", typeof(Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class PerformanceAdviserRules : RevitDropDownBase
+    {
+        public PerformanceAdviserRules() : base("Performance Adviser Rules") { }
+
+        protected override SelectionState PopulateItemsCore(string currentSelection)
+        {
+            Items.Clear();
+
+            PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
+            IList<PerformanceAdviserRuleId> ruleIds = adviser.GetAllRuleIds();
+            string ruleInfo = string.Empty;
+
+            List<Revit.Elements.PerformanceAdviserRule> elements = new List<Revit.Elements.PerformanceAdviserRule>();
+            foreach (PerformanceAdviserRuleId ruleId in ruleIds)
+            {
+                elements.Add(new Revit.Elements.PerformanceAdviserRule(ruleId));
+            }
+
+            if (!elements.Any())
+            {
+                Items.Add(new DynamoDropDownItem(Properties.Resources.NoWallTypesAvailable, null));
+                SelectedIndex = 0;
+                return SelectionState.Done;
+            }
+
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
+        }
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            if (Items.Count == 0 ||
+                Items[0].Name == Properties.Resources.NoWallTypesAvailable ||
+                SelectedIndex == -1)
+            {
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+            }
+
+            var args = new List<AssociativeNode>
+            {
+                AstFactory.BuildStringNode(((Revit.Elements.PerformanceAdviserRule) Items[SelectedIndex].Item).RuleId.ToString())
+            };
+            var functionCall = AstFactory.BuildFunctionCall("Revit.Elements.PerformanceAdviserRule",
+                                                            "ById",
+                                                            args);
+
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+        }
+    }
+
 
     [NodeName("Categories")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
