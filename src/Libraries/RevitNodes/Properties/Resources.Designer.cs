@@ -187,7 +187,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot find Curtain System Type in active document..
+        ///   Looks up a localized string similar to Curtain System Type not found..
         /// </summary>
         internal static string CurtainSystemTypeNotFound {
             get {
@@ -858,15 +858,6 @@ namespace Revit.Properties {
         internal static string TypeNotFound {
             get {
                 return ResourceManager.GetString("TypeNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ParameterType cannot be converted to UnitType..
-        /// </summary>
-        internal static string UnitTypeConversionError {
-            get {
-                return ResourceManager.GetString("UnitTypeConversionError", resourceCulture);
             }
         }
         
