@@ -102,11 +102,15 @@ namespace Revit.Elements.InternalUtilities
                     break;
                 case StorageType.Double:
                     var paramType = param.Definition.ParameterType;
-                    if (Element.IsConvertableParameterType(paramType))
-                        result = param.AsDouble() * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(
-                            ParameterTypeToUnitType(paramType));
+                    UnitType unitType;
+                    if (ParamTypeMap.TryGetValue(paramType, out unitType))
+                    {
+                        result = param.AsDouble() * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(unitType);
+                    }
                     else
+                    {
                         result = param.AsDouble();
+                    }
                     break;
                 default:
                     throw new Exception(string.Format(Properties.Resources.ParameterWithoutStorageType, param));
@@ -124,12 +128,15 @@ namespace Revit.Elements.InternalUtilities
         [SupressImportIntoVM]
         private static double ConvertValue(ParameterType type, double value)
         {
-            if (Element.IsConvertableParameterType(type))
+            UnitType unitType;
+            if (ParamTypeMap.TryGetValue(type, out unitType))
             {
-                return value * UnitConverter.DynamoToHostFactor(ParameterTypeToUnitType(type));
+                return value * UnitConverter.DynamoToHostFactor(unitType);
             }
-
-            return value;
+            else
+            {
+                return value;
+            }
         }
 
         #region dynamic parameter setting methods
@@ -187,45 +194,142 @@ namespace Revit.Elements.InternalUtilities
         public static double GetConvertedParameterValue(Autodesk.Revit.DB.Parameter param, double value)
         {
             var paramType = param.Definition.ParameterType;
-
-            if (Element.IsConvertableParameterType(paramType))
+            UnitType unitType;
+            if (ParamTypeMap.TryGetValue(paramType, out unitType))
             {
-                return value * UnitConverter.DynamoToHostFactor(ParameterTypeToUnitType(paramType));
+                return value * UnitConverter.DynamoToHostFactor(unitType);
             }
-
-            return value;
+            else
+            {
+                return value;
+            }
         }
 
-
-        [SupressImportIntoVM]
-        internal static UnitType ParameterTypeToUnitType(ParameterType parameterType)
+        private static Dictionary<ParameterType, UnitType> ParamTypeMap = new Dictionary<ParameterType, UnitType>()
         {
-            switch (parameterType)
-            {
-                case ParameterType.Length:
-                    return UnitType.UT_Length;
-                case ParameterType.ReinforcementLength:
-                    return UnitType.UT_Length;
-                case ParameterType.Area:
-                    return UnitType.UT_Area;
-                case ParameterType.ReinforcementArea:
-                    return UnitType.UT_Area;
-                case ParameterType.Volume:
-                    return UnitType.UT_Volume;
-                case ParameterType.ReinforcementVolume:
-                    return UnitType.UT_Volume;
-                case ParameterType.Angle:
-                    return UnitType.UT_Angle;
-                case ParameterType.Slope:
-                    return UnitType.UT_Slope;
-                case ParameterType.Currency:
-                    return UnitType.UT_Currency;
-                case ParameterType.MassDensity:
-                    return UnitType.UT_MassDensity;
-                default:
-                    throw new Exception(Properties.Resources.UnitTypeConversionError);
-            }
-        }
+            { ParameterType.Number, UnitType.UT_Number},
+            { ParameterType.Length, UnitType.UT_Length},
+            { ParameterType.Area, UnitType.UT_Area},
+            { ParameterType.Volume, UnitType.UT_Volume},
+            { ParameterType.Angle, UnitType.UT_Angle},
+            { ParameterType.Force, UnitType.UT_Force},
+            { ParameterType.LinearForce, UnitType.UT_LinearForce},
+            { ParameterType.AreaForce, UnitType.UT_AreaForce},
+            { ParameterType.Moment, UnitType.UT_Moment},
+            { ParameterType.HVACDensity, UnitType.UT_HVAC_Density},
+            { ParameterType.HVACEnergy, UnitType.UT_HVAC_Energy},
+            { ParameterType.HVACFriction, UnitType.UT_HVAC_Friction},
+            { ParameterType.HVACPower, UnitType.UT_HVAC_Power},
+            { ParameterType.HVACPowerDensity, UnitType.UT_HVAC_Power_Density},
+            { ParameterType.HVACPressure, UnitType.UT_HVAC_Pressure},
+            { ParameterType.HVACTemperature, UnitType.UT_HVAC_Temperature},
+            { ParameterType.HVACVelocity, UnitType.UT_HVAC_Velocity},
+            { ParameterType.HVACAirflow, UnitType.UT_HVAC_Airflow},
+            { ParameterType.HVACDuctSize, UnitType.UT_HVAC_DuctSize},
+            { ParameterType.HVACCrossSection, UnitType.UT_HVAC_CrossSection},
+            { ParameterType.HVACHeatGain, UnitType.UT_HVAC_HeatGain},
+            { ParameterType.ElectricalCurrent, UnitType.UT_Electrical_Current},
+            { ParameterType.ElectricalPotential, UnitType.UT_Electrical_Potential},
+            { ParameterType.ElectricalFrequency, UnitType.UT_Electrical_Frequency},
+            { ParameterType.ElectricalIlluminance, UnitType.UT_Electrical_Illuminance},
+            { ParameterType.ElectricalLuminousFlux, UnitType.UT_Electrical_Luminous_Flux},
+            { ParameterType.ElectricalPower, UnitType.UT_Electrical_Power},
+            { ParameterType.HVACRoughness, UnitType.UT_HVAC_Roughness},
+            { ParameterType.ElectricalApparentPower, UnitType.UT_Electrical_Apparent_Power},
+            { ParameterType.ElectricalPowerDensity, UnitType.UT_Electrical_Power_Density},
+            { ParameterType.PipingDensity, UnitType.UT_Piping_Density},
+            { ParameterType.PipingFlow, UnitType.UT_Piping_Flow},
+            { ParameterType.PipingFriction, UnitType.UT_Piping_Friction},
+            { ParameterType.PipingPressure, UnitType.UT_Piping_Pressure},
+            { ParameterType.PipingTemperature, UnitType.UT_Piping_Temperature},
+            { ParameterType.PipingVelocity, UnitType.UT_Piping_Velocity},
+            { ParameterType.PipingViscosity, UnitType.UT_Piping_Viscosity},
+            { ParameterType.PipeSize, UnitType.UT_PipeSize},
+            { ParameterType.PipingRoughness, UnitType.UT_Piping_Roughness},
+            { ParameterType.Stress, UnitType.UT_Stress},
+            { ParameterType.UnitWeight, UnitType.UT_UnitWeight},
+            { ParameterType.ThermalExpansion, UnitType.UT_ThermalExpansion},
+            { ParameterType.LinearMoment, UnitType.UT_LinearMoment},
+            { ParameterType.ForcePerLength, UnitType.UT_ForcePerLength},
+            { ParameterType.ForceLengthPerAngle, UnitType.UT_ForceLengthPerAngle},
+            { ParameterType.LinearForcePerLength, UnitType.UT_LinearForcePerLength},
+            { ParameterType.LinearForceLengthPerAngle, UnitType.UT_LinearForceLengthPerAngle},
+            { ParameterType.AreaForcePerLength, UnitType.UT_AreaForcePerLength},
+            { ParameterType.PipingVolume, UnitType.UT_Piping_Volume},
+            { ParameterType.HVACViscosity, UnitType.UT_HVAC_Viscosity},
+            { ParameterType.HVACCoefficientOfHeatTransfer, UnitType.UT_HVAC_CoefficientOfHeatTransfer},
+            { ParameterType.HVACAirflowDensity, UnitType.UT_HVAC_Airflow_Density},
+            { ParameterType.HVACCoolingLoad, UnitType.UT_HVAC_Cooling_Load},
+            { ParameterType.HVACCoolingLoadDividedByArea, UnitType.UT_HVAC_Cooling_Load_Divided_By_Area},
+            { ParameterType.HVACCoolingLoadDividedByVolume, UnitType.UT_HVAC_Cooling_Load_Divided_By_Volume},
+            { ParameterType.HVACHeatingLoad, UnitType.UT_HVAC_Heating_Load},
+            { ParameterType.HVACHeatingLoadDividedByArea, UnitType.UT_HVAC_Heating_Load_Divided_By_Area},
+            { ParameterType.HVACHeatingLoadDividedByVolume, UnitType.UT_HVAC_Heating_Load_Divided_By_Volume},
+            { ParameterType.HVACAirflowDividedByVolume, UnitType.UT_HVAC_Airflow_Divided_By_Volume},
+            { ParameterType.HVACAirflowDividedByCoolingLoad, UnitType.UT_HVAC_Airflow_Divided_By_Cooling_Load},
+            { ParameterType.HVACAreaDividedByCoolingLoad, UnitType.UT_HVAC_Area_Divided_By_Cooling_Load},
+            { ParameterType.WireSize, UnitType.UT_WireSize},
+            { ParameterType.HVACSlope, UnitType.UT_HVAC_Slope},
+            { ParameterType.PipingSlope, UnitType.UT_Piping_Slope},
+            { ParameterType.ElectricalEfficacy, UnitType.UT_Electrical_Efficacy},
+            { ParameterType.ElectricalWattage, UnitType.UT_Electrical_Wattage},
+            { ParameterType.ColorTemperature, UnitType.UT_Color_Temperature},
+            { ParameterType.ElectricalLuminousIntensity, UnitType.UT_Electrical_Luminous_Intensity},
+            { ParameterType.ElectricalLuminance, UnitType.UT_Electrical_Luminance},
+            { ParameterType.HVACAreaDividedByHeatingLoad, UnitType.UT_HVAC_Area_Divided_By_Heating_Load},
+            { ParameterType.HVACFactor, UnitType.UT_HVAC_Factor},
+            { ParameterType.ElectricalTemperature, UnitType.UT_Electrical_Temperature},
+            { ParameterType.ElectricalCableTraySize, UnitType.UT_Electrical_CableTraySize},
+            { ParameterType.ElectricalConduitSize, UnitType.UT_Electrical_ConduitSize},
+            { ParameterType.ElectricalDemandFactor, UnitType.UT_Electrical_Demand_Factor},
+            { ParameterType.HVACDuctInsulationThickness, UnitType.UT_HVAC_DuctInsulationThickness},
+            { ParameterType.HVACDuctLiningThickness, UnitType.UT_HVAC_DuctLiningThickness},
+            { ParameterType.PipeInsulationThickness, UnitType.UT_PipeInsulationThickness},
+            { ParameterType.HVACThermalResistance, UnitType.UT_HVAC_ThermalResistance},
+            { ParameterType.HVACThermalMass, UnitType.UT_HVAC_ThermalMass},
+            { ParameterType.Acceleration, UnitType.UT_Acceleration},
+            { ParameterType.BarDiameter, UnitType.UT_Bar_Diameter},
+            { ParameterType.CrackWidth, UnitType.UT_Crack_Width},
+            { ParameterType.DisplacementDeflection, UnitType.UT_Displacement_Deflection},
+            { ParameterType.Energy, UnitType.UT_Energy},
+            { ParameterType.StructuralFrequency, UnitType.UT_Structural_Frequency},
+            { ParameterType.Mass, UnitType.UT_Mass},
+            { ParameterType.MassPerUnitLength, UnitType.UT_Mass_per_Unit_Length},
+            { ParameterType.MomentOfInertia, UnitType.UT_Moment_of_Inertia},
+            { ParameterType.SurfaceArea, UnitType.UT_Surface_Area},
+            { ParameterType.Period, UnitType.UT_Period},
+            { ParameterType.Pulsation, UnitType.UT_Pulsation},
+            { ParameterType.ReinforcementAreaPerUnitLength, UnitType.UT_Reinforcement_Area_per_Unit_Length},
+            { ParameterType.ReinforcementCover, UnitType.UT_Reinforcement_Cover},
+            { ParameterType.ReinforcementSpacing, UnitType.UT_Reinforcement_Spacing},
+            { ParameterType.Rotation, UnitType.UT_Rotation},
+            { ParameterType.SectionArea, UnitType.UT_Section_Area},
+            { ParameterType.SectionDimension, UnitType.UT_Section_Dimension},
+            { ParameterType.SectionModulus, UnitType.UT_Section_Modulus},
+            { ParameterType.SectionProperty, UnitType.UT_Section_Property},
+            { ParameterType.StructuralVelocity, UnitType.UT_Structural_Velocity},
+            { ParameterType.WarpingConstant, UnitType.UT_Warping_Constant},
+            { ParameterType.Weight, UnitType.UT_Weight},
+            { ParameterType.WeightPerUnitLength, UnitType.UT_Weight_per_Unit_Length},
+            { ParameterType.HVACThermalConductivity, UnitType.UT_HVAC_ThermalConductivity},
+            { ParameterType.HVACSpecificHeat, UnitType.UT_HVAC_SpecificHeat},
+            { ParameterType.HVACSpecificHeatOfVaporization, UnitType.UT_HVAC_SpecificHeatOfVaporization},
+            { ParameterType.HVACPermeability, UnitType.UT_HVAC_Permeability},
+            { ParameterType.ElectricalResistivity, UnitType.UT_Electrical_Resistivity},
+            { ParameterType.MassPerUnitArea, UnitType.UT_MassPerUnitArea},
+            { ParameterType.PipeDimension, UnitType.UT_Pipe_Dimension},
+            { ParameterType.PipeMass, UnitType.UT_PipeMass},
+            { ParameterType.PipeMassPerUnitLength, UnitType.UT_PipeMassPerUnitLength},
+            { ParameterType.HVACTemperatureDifference, UnitType.UT_HVAC_TemperatureDifference},
+            { ParameterType.PipingTemperatureDifference, UnitType.UT_Piping_TemperatureDifference},
+            { ParameterType.ElectricalTemperatureDifference, UnitType.UT_Electrical_TemperatureDifference},
+            { ParameterType.Slope, UnitType.UT_Slope},
+            { ParameterType.Currency, UnitType.UT_Currency},
+            { ParameterType.MassDensity, UnitType.UT_MassDensity},
+            { ParameterType.ReinforcementLength, UnitType.UT_Reinforcement_Length},
+            { ParameterType.ReinforcementArea, UnitType.UT_Reinforcement_Area},
+            { ParameterType.ReinforcementVolume, UnitType.UT_Reinforcement_Volume}
+        };
         #endregion
     }
 }
