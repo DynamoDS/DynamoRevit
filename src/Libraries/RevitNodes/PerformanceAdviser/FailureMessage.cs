@@ -1,10 +1,9 @@
-﻿using Autodesk.Revit.DB;
+﻿using System.Collections.Generic;
 using Autodesk.DesignScript.Runtime;
+using Autodesk.Revit.DB;
 using RevitServices.Persistence;
-using System.Collections.Generic;
-using Revit.Elements;
 
-namespace Revit.PerformanceAdviser
+namespace Revit.Elements
 {
     /// <summary>
     /// Performance Adviser Failure Message
@@ -37,12 +36,12 @@ namespace Revit.PerformanceAdviser
         /// <summary>
         /// The Failing Elements of the message.
         /// </summary>
-        public ICollection<Revit.Elements.Element> FailingElements
+        public ICollection<Element> FailingElements
         {
             get
             {
                 var failingIds = InternalElement.GetFailingElements();
-                var failingElements = new List<Revit.Elements.Element>();
+                var failingElements = new List<Element>();
 
                 foreach (var failingId in failingIds)
                 {
