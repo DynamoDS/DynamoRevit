@@ -438,13 +438,11 @@ namespace DSRevitNodesUI
     }
 
     [NodeName("Performance Adviser Rules")]
-    [NodeCategory(BuiltinNodeCategories.REVIT)]
+    [NodeCategory(BuiltinNodeCategories.REVIT_ELEMENTS_PERFORMANCEADVISER)]
     [NodeDescription("PerformanceAdviserDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
     public class PerformanceAdviserRules : RevitDropDownBase
     {
-
-
         public PerformanceAdviserRules() : base("Performance Adviser Rules") { }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
@@ -455,10 +453,10 @@ namespace DSRevitNodesUI
             IList<PerformanceAdviserRuleId> ruleIds = adviser.GetAllRuleIds();
             string ruleInfo = string.Empty;
 
-            List<Revit.PerformanceAdviser.PerformanceAdviserRule> elements = new List<Revit.PerformanceAdviser.PerformanceAdviserRule>();
+            List<Revit.Elements.PerformanceAdviserRule> elements = new List<Revit.Elements.PerformanceAdviserRule>();
             foreach (PerformanceAdviserRuleId ruleId in ruleIds)
             {
-                elements.Add(new Revit.PerformanceAdviser.PerformanceAdviserRule(ruleId));
+                elements.Add(new Revit.Elements.PerformanceAdviserRule(ruleId));
             }
 
             if (!elements.Any())
@@ -483,7 +481,7 @@ namespace DSRevitNodesUI
 
             var args = new List<AssociativeNode>
             {
-                AstFactory.BuildStringNode(((Revit.PerformanceAdviser.PerformanceAdviserRule) Items[SelectedIndex].Item).RuleId.ToString())
+                AstFactory.BuildStringNode(((Revit.Elements.PerformanceAdviserRule) Items[SelectedIndex].Item).RuleId.ToString())
             };
             var functionCall = AstFactory.BuildFunctionCall("Revit.Elements.PerformanceAdviserRule",
                                                             "ById",
