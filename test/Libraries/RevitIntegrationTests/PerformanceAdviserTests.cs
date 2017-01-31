@@ -30,8 +30,8 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             object rule = GetPreviewValue("4afe4fdd-4663-4bc1-923c-48210fff043f");
-            Assert.IsTrue(typeof(Revit.Elements.PerformanceAdviserRule) == rule.GetType());
-            Revit.Elements.PerformanceAdviserRule prule = rule as Revit.Elements.PerformanceAdviserRule;
+            Assert.IsTrue(typeof(Revit.PerformanceAdviser.PerformanceAdviserRule) == rule.GetType());
+            Revit.PerformanceAdviser.PerformanceAdviserRule prule = rule as Revit.PerformanceAdviser.PerformanceAdviserRule;
 
             object name = GetPreviewValue("0d24a270-9640-4cda-b6fe-8850be7ba0d8");
             Assert.AreEqual(name, prule.Name);
