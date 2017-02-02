@@ -5,7 +5,6 @@ using Autodesk.Revit.DB;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
-
 namespace Revit.Elements
 {
     /// <summary>
@@ -13,13 +12,13 @@ namespace Revit.Elements
     /// </summary>
     public class PerformanceAdviserRule
     {
-        internal Autodesk.Revit.DB.PerformanceAdviserRuleId InternalId
+        internal PerformanceAdviserRuleId InternalId
         { 
             get; set;
         }
 
         [SupressImportIntoVM]
-        public PerformanceAdviserRule(Autodesk.Revit.DB.PerformanceAdviserRuleId id)
+        public PerformanceAdviserRule(PerformanceAdviserRuleId id)
         {
             this.InternalId = id;
         }
