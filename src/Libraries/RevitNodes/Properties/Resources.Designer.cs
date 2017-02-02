@@ -187,6 +187,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot find Curtain System Type in active document..
+        /// </summary>
+        internal static string CurtainSystemTypeNotFound {
+            get {
+                return ResourceManager.GetString("CurtainSystemTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Curve ist not planar. Please supply a planar curve..
         /// </summary>
         internal static string CurveIsNotPlanar {
@@ -498,6 +507,15 @@ namespace Revit.Properties {
         internal static string InvalidElementLocation {
             get {
                 return ResourceManager.GetString("InvalidElementLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected face cannot be used to create a wall. Please use a mass face instead..
+        /// </summary>
+        internal static string InvalidFace {
+            get {
+                return ResourceManager.GetString("InvalidFace", resourceCulture);
             }
         }
         

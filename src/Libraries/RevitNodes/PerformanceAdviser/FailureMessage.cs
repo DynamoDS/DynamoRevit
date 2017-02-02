@@ -1,8 +1,7 @@
-﻿using Autodesk.Revit.DB;
+﻿using System.Collections.Generic;
 using Autodesk.DesignScript.Runtime;
+using Autodesk.Revit.DB;
 using RevitServices.Persistence;
-using System.Collections.Generic;
-
 
 namespace Revit.Elements
 {
@@ -37,23 +36,23 @@ namespace Revit.Elements
         /// <summary>
         /// The Failing Elements of the message.
         /// </summary>
-        public ICollection<ElementId> FailingElements
+        public ICollection<Element> FailingElements
         {
             get
             {
-                return InternalElement.GetFailingElements();
-            }
-        }
+                var failingIds = InternalElement.GetFailingElements();
+                var failingElements = new List<Element>();
 
+                foreach (var failingId in failingIds)
+                {
+                    if (failingId != ElementId.InvalidElementId)
+                    {
+                        var element = DocumentManager.Instance.CurrentDBDocument.GetElement(failingId);
+                        failingElements.Add(element.ToDSType(true));
+                    }
+                }
 
-        /// <summary>
-        /// The additional Failing Elements of the message.
-        /// </summary>
-        public ICollection<ElementId> AdditionalElements
-        {
-            get
-            {
-                return InternalElement.GetAdditionalElements();
+                return failingElements;
             }
         }
 
@@ -68,27 +67,7 @@ namespace Revit.Elements
                 return InternalElement.GetSeverity().ToString();
             }
         }
-     
-        /// <summary>
-        /// Post Messages in Document
-        /// </summary>
-        /// <param name="messages"></param>
-        public static void PostInDocument(IEnumerable<FailureMessage> messages)
-        {
-            
-            var document = DocumentManager.Instance.CurrentDBDocument;
 
-            foreach (var msg in messages)
-            {
-                Autodesk.Revit.DB.Transaction tr = new Autodesk.Revit.DB.Transaction(document);
-                tr.Start("Reporting");
-
-                document.PostFailure(msg.InternalElement);
-
-                tr.Commit();
-            }
-
-        }
 
 
         public override string ToString()
