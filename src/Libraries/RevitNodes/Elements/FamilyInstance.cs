@@ -471,6 +471,8 @@ namespace Revit.Elements
                 .ToArray();
         }
 
+
+
         #endregion
 
         #region Internal static constructors 
@@ -587,4 +589,6 @@ namespace Revit.Elements
 
         #endregion
     }
+
+
 }
