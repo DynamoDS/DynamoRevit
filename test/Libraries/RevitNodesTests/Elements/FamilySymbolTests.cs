@@ -61,7 +61,7 @@ namespace RevitNodesTests.Elements
                 Autodesk.DesignScript.Geometry.Point.ByCoordinates(100,100,100));
 
             string path = System.Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            path += @"\Autodesk\RVT 2016\Family Templates\English\Metric Generic Model.rft";
+            path = System.IO.Path.Combine(path, @"Autodesk\RAC 2016\Family Templates\English\Metric Generic Model.rft");
 
             var type = FamilyType.ByGeometry(cube, "MyCube", Category.ByName("Mass"), path, Material.ByName("Poche"));
             Assert.NotNull(type);
