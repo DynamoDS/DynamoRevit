@@ -139,7 +139,7 @@ namespace Revit.GeometryConversion
 
             // create a temp family file
             string tempDir = System.IO.Path.GetTempPath();
-            string tempFamilyFile = tempDir + "\\" + name + ".rfa";
+            string tempFamilyFile = System.IO.Path.Combine(tempDir, name + ".rfa");
 
             // scale the incoming geometry
             UnitConverter.ConvertToHostUnits<Autodesk.DesignScript.Geometry.Solid>(ref solidGeometry);
