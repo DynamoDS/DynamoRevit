@@ -30,9 +30,9 @@ namespace Revit.GeometryConversion
 
             foreach (object obj in geo)
             {
-                if (obj.GetType() == typeof(GeometryInstance))
+                GeometryInstance geoinstance = obj as GeometryInstance;
+                if (geoinstance != null)
                 {
-                    GeometryInstance geoinstance = obj as GeometryInstance;
                     foreach (object solidobj in geoinstance.GetInstanceGeometry())
                     {
                         if (solidobj.GetType() == typeof(Autodesk.Revit.DB.Solid))
@@ -142,7 +142,7 @@ namespace Revit.GeometryConversion
             string tempFamilyFile = tempDir + "\\" + name + ".rfa";
 
             // scale the incoming geometry
-            UnitConverter.ConvertToDynamoUnits<Autodesk.DesignScript.Geometry.Solid>(ref solidGeometry);
+            UnitConverter.ConvertToHostUnits<Autodesk.DesignScript.Geometry.Solid>(ref solidGeometry);
 
             // get a displacement vector
             Vector vector = Vector.ByTwoPoints(Autodesk.DesignScript.Geometry.BoundingBox.ByGeometry(solidGeometry).MinPoint, Autodesk.DesignScript.Geometry.Point.Origin());
