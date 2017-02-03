@@ -152,6 +152,7 @@ namespace Revit.GeometryConversion
 
             // export geometry to SAT
             solidGeometry.ExportToSAT(tempFile);
+            solidGeometry.Dispose();
 
             // create a new family document using the supplied template
             Autodesk.Revit.DB.Document familyDocument = document.Application.NewFamilyDocument(templatePath);
