@@ -40,7 +40,7 @@ namespace DSRevitNodesUI
             var u = RevitServicesUpdater.Instance;
             u.ElementsUpdated += OnElementsUpdated;
 
-            ShouldDisplayPreviewCore = false;
+            ShouldDisplayPreviewCore = true;
         }
 
         void OnElementsUpdated(object sender, ElementUpdateEventArgs e)
