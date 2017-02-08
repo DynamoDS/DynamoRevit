@@ -2,7 +2,7 @@
 using Autodesk.DesignScript.Geometry;
 using Revit.Elements;
 using NUnit.Framework;
-
+using System.Linq;
 using RevitTestServices;
 
 using RTF.Framework;
@@ -108,6 +108,38 @@ namespace RevitNodesTests.Elements
             Assert.NotNull(floor);
             Assert.IsTrue(floor.InternalFloor.FloorType.IsFoundationSlab);
             Assert.AreEqual(floor.InternalFloor.FloorType.Name, "6\" Foundation Slab");
+        }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void FloorSlabShapePoints_Edit()
+        {
+            var elevation = 100;
+            var level = Level.ByElevation(elevation);
+
+            var outline = new[]
+            {
+                Line.ByStartPointEndPoint(Point.ByCoordinates(0, 0, 0), Point.ByCoordinates(100, 0, 0)),
+                Line.ByStartPointEndPoint(Point.ByCoordinates(100, 0, 0), Point.ByCoordinates(100, 100, 0)),
+                Line.ByStartPointEndPoint(Point.ByCoordinates(100, 100, 0), Point.ByCoordinates(0, 100, 0)),
+                Line.ByStartPointEndPoint(Point.ByCoordinates(0, 100, 0), Point.ByCoordinates(0, 0, 0))
+            };
+
+            var floorType = FloorType.ByName("Generic - 12\"");
+
+            var floor = Floor.ByOutlineTypeAndLevel(outline, floorType, level);
+
+            Assert.NotNull(floor);
+            
+
+            floor.AddPoint(Point.ByCoordinates(50, 50, 0));
+            Assert.IsTrue(floor.Points.ToList().Count == 5);
+
+            double elev = floor.Points.First().Z;
+            floor.MovePoint(floor.Points.First(), 10);
+
+            floor.Points.First().Z.ShouldBeApproximately(elev + 10);
+
         }
     }
 }

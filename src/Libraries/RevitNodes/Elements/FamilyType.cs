@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Linq;
 using Autodesk.Revit.DB;
-
 using DynamoServices;
-
 using RevitServices.Persistence;
+using Revit.GeometryConversion;
+using RevitServices.Transactions;
+using DynamoUnits;
+using Revit.Elements.InternalUtilities;
+
+using Point = Autodesk.DesignScript.Geometry.Point;
+using Vector = Autodesk.DesignScript.Geometry.Vector;
 
 namespace Revit.Elements
 {
@@ -221,6 +226,49 @@ namespace Revit.Elements
             };
         }
 
+        /// <summary>
+        /// Create new Family Type from a solid geometry.
+        /// This method exports the geometry to SAT and imports it into
+        /// a new family document.
+        /// </summary>
+        /// <param name="solidGeometry"></param>
+        /// <param name="name">Name fo the Family Type</param>
+        /// <param name="category">Family Type Category</param>
+        /// <param name="templatePath">Family Template to use for creation</param>
+        /// <param name="material">Material to apply to the solids</param>
+        /// <param name="subcategory">Subcategory for the Family Type (optional)</param>
+        /// <returns>Family Type</returns>
+        public static FamilyType ByGeometry(Autodesk.DesignScript.Geometry.Solid solidGeometry, string name, Category category, string templatePath, Material material, string subcategory = "")
+        {
+            var symbol = solidGeometry.ToRevitFamilyType(name, category, templatePath, material, false, subcategory);
+
+            return new FamilyType(symbol)
+            {
+                IsRevitOwned = true
+            };
+        }
+
+        /// <summary>
+        /// Create a Void Family Type from a solid geometry.
+        /// This method exports the solid to SAT and imports it into
+        /// a new family document.
+        /// </summary>
+        /// <param name="solidGeometry"></param>
+        /// <param name="name">Name to apply to the Family Type</param>
+        /// <param name="category">Category to apply</param>
+        /// <param name="templatePath">Template file to use for creation</param>
+        /// <returns>Void Family Type</returns>
+        public static FamilyType VoidByGeometry(Autodesk.DesignScript.Geometry.Solid solidGeometry, string name, Category category, string templatePath)
+        {
+            var symbol = solidGeometry.ToRevitFamilyType(name, category, templatePath, null, true, string.Empty);
+
+            return new FamilyType(symbol)
+            {
+                IsRevitOwned = true
+            };
+        }
+
+
         #endregion
 
         #region Internal static constructors
@@ -252,4 +300,5 @@ namespace Revit.Elements
         #endregion
 
     }
+
 }
