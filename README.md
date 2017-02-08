@@ -1,11 +1,9 @@
 ### Dynamo for Revit
-
-#### Background Info
 **Dynamo for Revit** is a plugin for Revit and a library of [Dynamo](https://github.com/DynamoDS/Dynamo) Nodes.
 
 **Dynamo for Revit** has different branches for different versions of Revit. For example to run **Dynamo for Revit** on Revit 2016 you want the **Dynamo for Revit** 2016 branch.
 
-####To Build
+#### To Build
 - Clone the DynamoRevit repository.
 ```
 git clone https://github.com/DynamoDS/DynamoRevit.git
@@ -14,10 +12,8 @@ git clone https://github.com/DynamoDS/DynamoRevit.git
 - Open DynamoRevit.2013.sln in Visual Studio, and select a build confiuration (Debug | Release)
 - Build
 
-###Creating an Addin
-DynamoRevit requires an addin which instructs Revit to load the plugin on startup.
-
-The Dynamo for Revit installer takes care of building an addin for use on the end user's machine. For development, you'll have to create an addin manually. A DynamoRevit addin would look like this:
+#### Creating an Addin
+DynamoRevit requires an addin which instructs Revit to load the plugin on startup. The Dynamo for Revit installer takes care of building an addin for use on the end user's machine. For development, you'll have to create an addin manually. A DynamoRevit addin would look like this:
 
 ```
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
@@ -32,7 +28,7 @@ The Dynamo for Revit installer takes care of building an addin for use on the en
 </AddIn>
 </RevitAddIns>
 ```
-Notice that the `Assembly` tag points to the VersionSelector.dll that is built during a build of  **Dynamo for Revit** and copied into the Dynamo/bin/Revitxxx/ folder.
+This .addin file will be placed in `User/<user>/AppData/Roaming/Autodesk/Revit/Addins/<version>`, where `<user>` is the user who will be using the addin and `<version>` is the version of Revit for which the addin is built. Notice that the `Assembly` tag points to the VersionSelector.dll that is built during a build of  **Dynamo for Revit** and copied into the Dynamo/bin/Revitxxx/ folder.
 
 
 #### Dynamo for Revit requires a few dependencies
@@ -41,7 +37,7 @@ Notice that the `Assembly` tag points to the VersionSelector.dll that is built d
 * IronPython 2.7 (this is already installed if you install Dynamo)
 * Few other dependencies are also fetched from NuGet package.
 
-####Build Issues
+#### Build Issues
 * NuGet packages are downloaded using [restorepackages.bat](https://github.com/DynamoDS/DynamoRevit/blob/Revit2017/src/restorepackages.bat), it creates soft link for all the NuGet packages folder dropping the version information so that the projects files doesn't need to be changed when package versions are changed. The package versions are defined in [packages-template.aget](https://github.com/DynamoDS/DynamoRevit/blob/Revit2017/src/Config/packages-template.aget) file. LatestBeta is used for Dynamo specific packages to automatically download the latest beta packages. 
 
 * restorepackages.bat file is run as a pre-build step for AssemblySharedInfoGenerator project. Sometimes this file may fail to create the symbolic links in absence of administrative privilege. To fix the issue you can run restorepackages.bat file as administrator.
