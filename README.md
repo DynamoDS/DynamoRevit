@@ -8,9 +8,9 @@
 
 
 ####Steps
-~~Download Dynamo from http://www.github.com/DyanmoDS/Dynamo~~
-Download **DynamoRevit** from here.
-~~Build Dynamo.all.sln~~
+```
+git clone https://github.com/DynamoDS/DynamoRevit.git
+```
 Build DynamoRevit.2013.sln
 
 if you have a version of revit installed, you can build an installer from Dynamo/Tools/Install/...
