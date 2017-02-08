@@ -1,22 +1,23 @@
-### Building DynamoRevit
+### Dynamo for Revit
 
 #### Background Info
-**DynamoRevit** is a library of Dynamo Nodes as well as a set of utilities for interacting with Revit via the Dynamo visual programming language.
+**Dynamo for Revit** is a plugin for Revit and a library of [Dynamo](https://github.com/DynamoDS/Dynamo) Nodes.
 
-**DynamoRevit** has different branches for different versions of Revit. For example to run **DynamoRevit** on Revit 2016 you want the **DynamoRevit** 2016 branch.
-**DynamoRevit** is also built on top of Dynamo, and in some cases requires matching the version of Dynamo as well. For example, to run **DynamoRevit** on Revit 2016 using Dynamo .91 you want to build The Dynamo .91 Branch, then build the **DynamoRevit** .91 2016 branch.
+**Dynamo for Revit** has different branches for different versions of Revit. For example to run **Dynamo for Revit** on Revit 2016 you want the **Dynamo for Revit** 2016 branch.
 
-
-####Steps
+####To Build
+- Clone the DynamoRevit repository.
 ```
 git clone https://github.com/DynamoDS/DynamoRevit.git
 ```
-Build DynamoRevit.2013.sln
+- Run `restorepackages.bat` with administrative privileges.
+- Open DynamoRevit.2013.sln in Visual Studio, and select a build confiuration (Debug | Release)
+- Build
 
-If you have a version of revit installed, you can build an installer from Dynamo/Tools/Install/...
+###Creating an Addin
+DynamoRevit requires an addin which instructs Revit to load the plugin on startup.
 
-If you do not have an installed version of revit, you can create an .addin file that points to the Dynamo application manually:
-in the correct Revit adding location for your application add a text file as follows:
+The Dynamo for Revit installer takes care of building an addin for use on the end user's machine. For development, you'll have to create an addin manually. A DynamoRevit addin would look like this:
 
 ```
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
@@ -31,11 +32,10 @@ in the correct Revit adding location for your application add a text file as fol
 </AddIn>
 </RevitAddIns>
 ```
+Notice that the `Assembly` tag points to the VersionSelector.dll that is built during a build of  **Dynamo for Revit** and copied into the Dynamo/bin/Revitxxx/ folder.
 
-you want to point the addin button thats loaded into Revit to the VersionSelector.dll that is built during a build of  **DynamoRevit** and copied into the Dynamo/bin/Revitxxx/ folder.
 
-
-#### DynamoRevit requires a few dependencies
+#### Dynamo for Revit requires a few dependencies
 * Dynamo from http://www.github.com/DyanmoDS/Dynamo. The required binaries are obtained from DynamoVisualProgramming, NuGet Packages.
 * RevitAPI.dll + RevitAPIUI.dll (path set with *REVITAPI*)
 * IronPython 2.7 (this is already installed if you install Dynamo)
