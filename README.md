@@ -13,9 +13,9 @@ git clone https://github.com/DynamoDS/DynamoRevit.git
 ```
 Build DynamoRevit.2013.sln
 
-if you have a version of revit installed, you can build an installer from Dynamo/Tools/Install/...
+If you have a version of revit installed, you can build an installer from Dynamo/Tools/Install/...
 
-if you do not have an installed version of revit, you can create an .addin file that points to the Dynamo application manually:
+If you do not have an installed version of revit, you can create an .addin file that points to the Dynamo application manually:
 in the correct Revit adding location for your application add a text file as follows:
 
 ```
