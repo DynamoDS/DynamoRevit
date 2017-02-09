@@ -349,4 +349,7 @@
   <data name="FilterTypeSelectorDescription" xml:space="preserve">
     <value>Filter Types for Revit Filters</value>
   </data>
+  <data name="WallLocationLineDescription" xml:space="preserve">
+    <value>Wall locations.</value>
+  </data>
 </root>
