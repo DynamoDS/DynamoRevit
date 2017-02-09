@@ -349,6 +349,9 @@
   <data name="FilterTypeSelectorDescription" xml:space="preserve">
     <value>Filter Types for Revit Filters</value>
   </data>
+  <data name="PerformanceAdviserDescription" xml:space="preserve">
+    <value>All Performance Adviser rules.</value>
+  </data>
   <data name="ScheduleTypeSelectorDescription" xml:space="preserve">
     <value>Select a Schedule Type.</value>
     <comment>Description Schedule Types</comment>
