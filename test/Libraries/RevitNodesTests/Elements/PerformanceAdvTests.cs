@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Autodesk.Revit.DB;
 using NUnit.Framework;
-using Revit.Elements;
 using RevitTestServices;
 using RTF.Framework;
 
@@ -33,7 +32,7 @@ namespace RevitNodesTests.Elements
             PerformanceAdviser adviser = PerformanceAdviser.GetPerformanceAdviser();
             IList<PerformanceAdviserRuleId> ruleIds = adviser.GetAllRuleIds();
             var perf = Revit.Elements.PerformanceAdviserRule.ById(ruleIds[0].Guid.ToString());
-            List<PerformanceAdviserRule> rules = new List<PerformanceAdviserRule>(){perf};
+            List<Revit.Elements.PerformanceAdviserRule> rules = new List<Revit.Elements.PerformanceAdviserRule>(){perf};
 
             var messages = Revit.Elements.PerformanceAdviserRule.Execute(rules);
 

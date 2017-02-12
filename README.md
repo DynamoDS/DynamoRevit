@@ -1,22 +1,19 @@
-### Building DynamoRevit
+### Dynamo for Revit
+**Dynamo for Revit** is a plugin for Revit and a library of [Dynamo](https://github.com/DynamoDS/Dynamo) Nodes.
 
-#### Background Info
-**DynamoRevit** is a library of Dynamo Nodes as well as a set of utilities for interacting with Revit via the Dynamo visual programming language.
+**Dynamo for Revit** has different branches for different versions of Revit. For example to run **Dynamo for Revit** on Revit 2016 you want the **Dynamo for Revit** 2016 branch.
 
-**DynamoRevit** has different branches for different versions of Revit. For example to run **DynamoRevit** on Revit 2016 you want the **DynamoRevit** 2016 branch.
-**DynamoRevit** is also built on top of Dynamo, and in some cases requires matching the version of Dynamo as well. For example, to run **DynamoRevit** on Revit 2016 using Dynamo .91 you want to build The Dynamo .91 Branch, then build the **DynamoRevit** .91 2016 branch.
+#### To Build
+- Clone the DynamoRevit repository.
+```
+git clone https://github.com/DynamoDS/DynamoRevit.git
+```
+- Run `restorepackages.bat` with administrative privileges.
+- Open DynamoRevit.2013.sln in Visual Studio, and select a build confiuration (Debug | Release)
+- Build
 
-
-####Steps
-~~Download Dynamo from http://www.github.com/DyanmoDS/Dynamo~~
-Download **DynamoRevit** from here.
-~~Build Dynamo.all.sln~~
-Build DynamoRevit.2013.sln
-
-if you have a version of revit installed, you can build an installer from Dynamo/Tools/Install/...
-
-if you do not have an installed version of revit, you can create an .addin file that points to the Dynamo application manually:
-in the correct Revit adding location for your application add a text file as follows:
+#### Creating an Addin
+DynamoRevit requires an addin which instructs Revit to load the plugin on startup. The Dynamo for Revit installer takes care of building an addin for use on the end user's machine. For development, you'll have to create an addin manually. A DynamoRevit addin would look like this:
 
 ```
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
@@ -31,17 +28,16 @@ in the correct Revit adding location for your application add a text file as fol
 </AddIn>
 </RevitAddIns>
 ```
+This .addin file will be placed in `User/<user>/AppData/Roaming/Autodesk/Revit/Addins/<version>`, where `<user>` is the user who will be using the addin and `<version>` is the version of Revit for which the addin is built. Notice that the `Assembly` tag points to the VersionSelector.dll that is built during a build of  **Dynamo for Revit** and copied into the Dynamo/bin/Revitxxx/ folder.
 
-you want to point the addin button thats loaded into Revit to the VersionSelector.dll that is built during a build of  **DynamoRevit** and copied into the Dynamo/bin/Revitxxx/ folder.
 
-
-#### DynamoRevit requires a few dependencies
+#### Dynamo for Revit requires a few dependencies
 * Dynamo from http://www.github.com/DyanmoDS/Dynamo. The required binaries are obtained from DynamoVisualProgramming, NuGet Packages.
 * RevitAPI.dll + RevitAPIUI.dll (path set with *REVITAPI*)
 * IronPython 2.7 (this is already installed if you install Dynamo)
 * Few other dependencies are also fetched from NuGet package.
 
-####Build Issues
+#### Build Issues
 * NuGet packages are downloaded using [restorepackages.bat](https://github.com/DynamoDS/DynamoRevit/blob/Revit2017/src/restorepackages.bat), it creates soft link for all the NuGet packages folder dropping the version information so that the projects files doesn't need to be changed when package versions are changed. The package versions are defined in [packages-template.aget](https://github.com/DynamoDS/DynamoRevit/blob/Revit2017/src/Config/packages-template.aget) file. LatestBeta is used for Dynamo specific packages to automatically download the latest beta packages. 
 
 * restorepackages.bat file is run as a pre-build step for AssemblySharedInfoGenerator project. Sometimes this file may fail to create the symbolic links in absence of administrative privilege. To fix the issue you can run restorepackages.bat file as administrator.
