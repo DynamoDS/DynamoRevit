@@ -9,7 +9,7 @@ namespace Dynamo.Nodes
 {
     public class SunPathDirection : MigrationNode
     {
-        [NodeMigration(from: "0.7.0.0", to: "0.7.3.0")]
+        [NodeMigration(version: "0.7.0.0")]
         public static NodeMigrationData Migrate_0700_to_0730(NodeMigrationData data)
         {
             var migrationData = new NodeMigrationData(data.Document);
@@ -55,7 +55,7 @@ namespace DSRevitNodesUI
 {
     public class SunPathDirection : MigrationNode
     {
-        [NodeMigration(from: "0.7.0.0", to: "0.7.3.0")]
+        [NodeMigration(version: "0.7.0.0")]
         public static NodeMigrationData Migrate_0700_to_0730(NodeMigrationData data)
         {
             return Dynamo.Nodes.SunPathDirection.Migrate_0700_to_0730(data);
