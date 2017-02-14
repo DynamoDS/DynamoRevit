@@ -129,33 +129,6 @@ namespace DSRevitNodesUI
         public VerticalAlignment() : base("Vertical Alignment", typeof(Autodesk.Revit.DB.VerticalAlignmentStyle)) { }
     }
 
-    [NodeName("Fill Patterns")]
-    [NodeCategory("Revit.Elements.FillPatternElement")]
-    [NodeDescription("FillPatternsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
-    [IsDesignScriptCompatible]
-    public class FillPatterns : CustomRevitElementDropDown
-    {
-        public FillPatterns() : base("FillPattern", typeof(Autodesk.Revit.DB.FillPatternElement)) { }
-    }
-
-    [NodeName("Fill Pattern Targets")]
-    [NodeCategory("Revit.Elements.FillPatternElement")]
-    [NodeDescription("FillPatternTargetDescription", typeof(DSRevitNodesUI.Properties.Resources))]
-    [IsDesignScriptCompatible]
-    public class FillPatternTargets : CustomGenericEnumerationDropDown
-    {
-        public FillPatternTargets() : base("FillPatternTarget", typeof(Autodesk.Revit.DB.FillPatternTarget)) { }
-    }
-
-    [NodeName("Line Patterns")]
-    [NodeCategory("Revit.Elements.LinePatternElement")]
-    [NodeDescription("LinePatternsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
-    [IsDesignScriptCompatible]
-    public class LinePatterns : CustomRevitElementDropDown
-    {
-        public LinePatterns() : base("LinePattern", typeof(Autodesk.Revit.DB.LinePatternElement)) { }
-    }
-
     [NodeName("Wall Location")]
     [NodeCategory("Revit.Elements.Wall")]
     [NodeDescription("WallLocationLineDescription", typeof(DSRevitNodesUI.Properties.Resources))]
