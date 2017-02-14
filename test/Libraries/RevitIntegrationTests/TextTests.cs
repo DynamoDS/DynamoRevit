@@ -35,7 +35,7 @@ namespace RevitSystemTests
 
             Revit.Elements.TextNote note = (Revit.Elements.TextNote)textelement;
 
-            Assert.AreEqual(note.Text, "Hello World");
+            Assert.AreEqual(note.Text, "Hello World\r");
 
         }
 

@@ -378,4 +378,7 @@
   <data name="WallLocationLineDescription" xml:space="preserve">
     <value>Wall locations.</value>
   </data>
+  <data name="PerformanceAdviserDescription" xml:space="preserve">
+    <value>All Performance Adviser rules.</value>
+  </data>
 </root>
