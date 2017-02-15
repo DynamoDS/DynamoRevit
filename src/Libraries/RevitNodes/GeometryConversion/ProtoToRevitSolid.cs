@@ -243,6 +243,8 @@ namespace Revit.GeometryConversion
     /// <summary>
     /// Family Import Options
     /// </summary>
+    [IsVisibleInDynamoLibrary(false)]
+    [SupressImportIntoVM]
     public class FamilyImportOptions : IFamilyLoadOptions
     {
         public FamilyImportOptions() { }
