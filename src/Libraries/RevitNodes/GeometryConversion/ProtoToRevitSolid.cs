@@ -142,7 +142,7 @@ namespace Revit.GeometryConversion
             string tempFamilyFile = System.IO.Path.Combine(tempDir, name + ".rfa");
 
             // scale the incoming geometry
-            UnitConverter.ConvertToHostUnits<Autodesk.DesignScript.Geometry.Solid>(ref solidGeometry);
+            solidGeometry = solidGeometry.InHostUnits();
 
             // get a displacement vector
             Vector vector = Vector.ByTwoPoints(Autodesk.DesignScript.Geometry.BoundingBox.ByGeometry(solidGeometry).MinPoint, Autodesk.DesignScript.Geometry.Point.Origin());
