@@ -601,15 +601,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name already in use..
-        /// </summary>
-        internal static string NameAlreadyInUse {
-            get {
-                return ResourceManager.GetString("NameAlreadyInUse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No shared parameter file found..
         /// </summary>
         internal static string NoSharedParameterFileFound {
