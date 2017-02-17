@@ -158,7 +158,8 @@ namespace Dynamo.Applications
     }
 
     /// <summary>
-    /// Defines parameters for Dynamo nodes
+    /// Defines parameters for Dynamo nodes needed in order to update nodes
+    /// values through UpdateModelValueCommand.
     /// </summary>
     public class JournalNodeKeys
     {
@@ -572,15 +573,22 @@ namespace Dynamo.Applications
                         {
                             foreach (var nodeInfo in allNodesInfo)
                             {
-                                if (nodeInfo.ContainsKey(JournalNodeKeys.Id) && nodeInfo.ContainsKey(JournalNodeKeys.Name) && nodeInfo.ContainsKey(JournalNodeKeys.Value))
+                                if (nodeInfo.ContainsKey(JournalNodeKeys.Id) && 
+                                    nodeInfo.ContainsKey(JournalNodeKeys.Name) && 
+                                    nodeInfo.ContainsKey(JournalNodeKeys.Value))
                                 {
-                                    DynamoModel.UpdateModelValueCommand modelCommand = new DynamoModel.UpdateModelValueCommand(nodeInfo[JournalNodeKeys.Id], nodeInfo[JournalNodeKeys.Name], nodeInfo[JournalNodeKeys.Value]);
+                                    var modelCommand = new DynamoModel.UpdateModelValueCommand(nodeInfo[JournalNodeKeys.Id], 
+                                                                                               nodeInfo[JournalNodeKeys.Name], 
+                                                                                               nodeInfo[JournalNodeKeys.Value]);
                                     modelCommand.Execute(revitDynamoModel);
                                 }
                             }
                         }
                     }
-                    catch { }
+                    catch
+                    {
+                        Console.WriteLine("Exception while trying to update nodes with new values");
+                    }
                 }
 
                 //If we are in automation mode the model will run anyway (on the main thread 
