@@ -111,17 +111,17 @@ namespace Revit.Elements
         #endregion
 
         #region Internal static constructors
-        
+
         /// <summary>
         /// Create Wall By Face
         /// </summary>
-        /// <param name="location"></param>
+        /// <param name="locationLine"></param>
         /// <param name="wallType"></param>
         /// <param name="surface"></param>
         /// <returns></returns>
         /// Note: This is wrapped in Wall. FaceWalls will be created there.
         [Autodesk.DesignScript.Runtime.IsVisibleInDynamoLibrary(false)]
-        internal static FaceWall ByFace(WallLocationLine location, WallType wallType, Autodesk.DesignScript.Geometry.Surface surface)
+        internal static FaceWall ByFace(WallLocationLine locationLine, WallType wallType, Autodesk.DesignScript.Geometry.Surface surface)
         {
             object reference = surface.Tags.LookupTag("RevitFaceReference");
             if (reference != null && reference.GetType() == typeof(Reference))
@@ -129,7 +129,7 @@ namespace Revit.Elements
                 try
                 {
                     var revitReference = reference as Reference;
-                    return new FaceWall(location, wallType.InternalWallType, revitReference);
+                    return new FaceWall(locationLine, wallType.InternalWallType, revitReference);
                 }
                 catch (Exception) { throw new Exception(Properties.Resources.InvalidFace); }
             }
