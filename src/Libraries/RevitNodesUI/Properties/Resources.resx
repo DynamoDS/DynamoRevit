@@ -375,6 +375,7 @@
   <data name="ScheduleFilterTypeDescription" xml:space="preserve">
     <value>A View Schedule Filter Type.</value>
     <comment>Description for Filter Type</comment>
+  </data>
   <data name="PerformanceAdviserDescription" xml:space="preserve">
     <value>All Performance Adviser rules.</value>
   </data>
