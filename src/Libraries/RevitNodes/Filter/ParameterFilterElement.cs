@@ -1,8 +1,5 @@
-﻿using System;
-using Autodesk.Revit.DB;
-using DynamoServices;
+﻿using Autodesk.Revit.DB;
 using Autodesk.DesignScript.Runtime;
-using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using System.Collections.Generic;
@@ -44,7 +41,7 @@ namespace Revit.Filter
         /// <summary>
         /// Set the internal Element, ElementId, and UniqueId
         /// </summary>
-        /// <param name="wall"></param>
+        /// <param name="element"></param>
         private void InternalSetElement(Autodesk.Revit.DB.ParameterFilterElement element)
         {
             InternalRevitElement = element;

@@ -7,15 +7,10 @@ using Autodesk.Revit.UI.Events;
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Graph.Nodes;
-using Dynamo.Models;
-using Dynamo.Nodes;
 
 using ProtoCore.AST.AssociativeAST;
-
-using Revit.Elements;
 using RevitServices.Elements;
 using RevitServices.Persistence;
-using RevitServices.Transactions;
 using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
@@ -28,8 +23,8 @@ namespace DSRevitNodesUI
 
         public SunSettings()
         {
-            OutPortData.Add(
-                new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip));
+            OutPorts.Add(new PortModel(PortType.Output, this,
+                new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip)));
 
             RegisterAllPorts();
 
