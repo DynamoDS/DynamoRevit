@@ -191,6 +191,15 @@ namespace DSRevitNodesUI
         public LinePatterns() : base("LinePattern", typeof(Autodesk.Revit.DB.LinePatternElement)) { }
     }
 
+    [NodeName("Schedule Filter Type")]
+    [NodeCategory("Revit.Views.ScheduleView")]
+    [NodeDescription("ScheduleFilterTypeDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class ScheduleFilterType : CustomGenericEnumerationDropDown
+    {
+        public ScheduleFilterType() : base("FilterType", typeof(Autodesk.Revit.DB.ScheduleFilterType)) { }
+    }
+    
     [NodeName("Wall Location")]
     [NodeCategory("Revit.Elements.Wall")]
     [NodeDescription("WallLocationLineDescription", typeof(DSRevitNodesUI.Properties.Resources))]
