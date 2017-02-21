@@ -310,16 +310,6 @@ namespace Revit.Elements
             // or transactions and which must necessarily be threaded in a specific way.
         }
 
-        internal static bool IsConvertableParameterType(ParameterType paramType)
-        {
-            return paramType == ParameterType.Length || paramType == ParameterType.Area ||
-                paramType == ParameterType.Volume || paramType == ParameterType.Angle ||
-                paramType == ParameterType.Slope || paramType == ParameterType.Currency ||
-                paramType == ParameterType.MassDensity;
-        }
-
-
-
         /// <summary>
         /// Get the value of one of the element's parameters.
         /// </summary>

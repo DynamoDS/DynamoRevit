@@ -187,19 +187,10 @@ namespace Revit.Elements
                     }
                     else if (valueWrapper.GetType() == typeof(Autodesk.Revit.DB.DoubleParameterValue))
                     {
-
                         var valueDouble = valueWrapper as Autodesk.Revit.DB.DoubleParameterValue;
-                        var type = this.InternalGlobalParameter.GetDefinition().ParameterType;
 
-                        if (Element.IsConvertableParameterType(type))
-                        {
-                            return valueDouble.Value * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(
-                               Revit.Elements.InternalUtilities.ElementUtils.ParameterTypeToUnitType(type));
-                        }
-                        else
-                        {
-                            return valueDouble.Value;
-                        }
+                        return valueDouble.Value * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(
+                            this.InternalGlobalParameter.GetDefinition().UnitType);
                     }
                     else
                     {
@@ -245,14 +236,7 @@ namespace Revit.Elements
                 }
                 else if (value.GetType() == typeof(double))
                 {
-                    var type = parameter.InternalGlobalParameter.GetDefinition().ParameterType;
-                    double valueToSet = (double)value;
-
-                    if (Element.IsConvertableParameterType(type))
-                    {
-                        valueToSet = valueToSet * UnitConverter.DynamoToHostFactor(
-                            Revit.Elements.InternalUtilities.ElementUtils.ParameterTypeToUnitType(type));
-                    }
+                    var valueToSet = (double)value * UnitConverter.DynamoToHostFactor(parameter.InternalGlobalParameter.GetDefinition().UnitType);
 
                     parameter.InternalGlobalParameter.SetValue(
                         new Autodesk.Revit.DB.DoubleParameterValue(valueToSet));
