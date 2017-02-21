@@ -297,9 +297,6 @@
   <data name="TopographyNeedsThreePoints" xml:space="preserve">
     <value>A minimum of three points is required to create a topography surface.</value>
   </data>
-  <data name="UnitTypeConversionError" xml:space="preserve">
-    <value>ParameterType cannot be converted to UnitType.</value>
-  </data>
   <data name="WallTypeNotFound" xml:space="preserve">
     <value>There is no WallType of the given name in the current Document.</value>
   </data>
@@ -398,11 +395,5 @@
   </data>
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
-  </data>
-  <data name="InvalidFace" xml:space="preserve">
-    <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
-  </data>
-  <data name="CurtainSystemTypeNotFound" xml:space="preserve">
-    <value>Curtain System Type not found.</value>
   </data>
 </root>
