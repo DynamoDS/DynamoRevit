@@ -33,17 +33,6 @@ namespace Revit.Elements
             private set;
         }
 
-        /// <summary>
-        /// Set the internal Element, ElementId, and UniqueId
-        /// </summary>
-        /// <param name="element"></param>
-        private void InternalSetElement(Autodesk.Revit.DB.ImportInstance element)
-        {
-            InternalImportInstance = element;
-            InternalElementId = element.Id;
-            InternalUniqueId = element.UniqueId;
-        }
-
         #region Private constructor
 
         /// <summary>
@@ -62,7 +51,7 @@ namespace Revit.Elements
         /// <param name="element"></param>
         private ImportInstance(Autodesk.Revit.DB.ImportInstance element)
         {
-            SafeInit(() => InitImportInstance(element));
+            SafeInit(() => InternalSetImportInstance(element));
         }
 
         #endregion
@@ -106,15 +95,6 @@ namespace Revit.Elements
             ElementBinder.SetElementForTrace(importInstance);
         }
 
-        /// <summary>
-        /// Initilize an ImportInstance from existing element
-        /// </summary>
-        /// <param name="instance"></param>
-        private void InitImportInstance(Autodesk.Revit.DB.ImportInstance instance)
-        {
-            InternalSetImportInstance(instance);
-        }
-
         private void InternalUnpinAndTranslateImportInstance(Autodesk.Revit.DB.XYZ translation)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
@@ -129,9 +109,9 @@ namespace Revit.Elements
 
         private void InternalSetImportInstance(Autodesk.Revit.DB.ImportInstance ele)
         {
-            this.InternalUniqueId = ele.UniqueId;
-            this.InternalElementId = ele.Id;
             this.InternalImportInstance = ele;
+            this.InternalElementId = ele.Id;
+            this.InternalUniqueId = ele.UniqueId;
         }
 
         #region Public properties
