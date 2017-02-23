@@ -27,7 +27,11 @@ namespace Revit.Elements
             get { return InternalImportInstance; }
         }
 
-        internal Autodesk.Revit.DB.ImportInstance InternalImportInstance { get; private set; }
+        internal Autodesk.Revit.DB.ImportInstance InternalImportInstance
+        {
+            get;
+            private set;
+        }
 
         #region Private constructor
 
@@ -39,6 +43,15 @@ namespace Revit.Elements
         internal ImportInstance(string satPath, XYZ translation = null)
         {
             SafeInit(() => InitImportInstance(satPath, translation));
+        }
+
+        /// <summary>
+        /// ImportInstance from existing
+        /// </summary>
+        /// <param name="element"></param>
+        private ImportInstance(Autodesk.Revit.DB.ImportInstance element)
+        {
+            SafeInit(() => InternalSetImportInstance(element));
         }
 
         #endregion
@@ -96,9 +109,9 @@ namespace Revit.Elements
 
         private void InternalSetImportInstance(Autodesk.Revit.DB.ImportInstance ele)
         {
-            this.InternalUniqueId = ele.UniqueId;
-            this.InternalElementId = ele.Id;
             this.InternalImportInstance = ele;
+            this.InternalElementId = ele.Id;
+            this.InternalUniqueId = ele.UniqueId;
         }
 
         #region Public properties
@@ -227,5 +240,12 @@ namespace Revit.Elements
 
         #endregion
 
+        internal static ImportInstance FromExisting(Autodesk.Revit.DB.ImportInstance instance, bool isRevitOwned)
+        {
+            return new ImportInstance(instance)
+            {
+                IsRevitOwned = isRevitOwned
+            };
+        }
     }
 }

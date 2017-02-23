@@ -283,6 +283,11 @@ namespace Revit.Elements
 
         }
 
+        public static ImportInstance Wrap(Autodesk.Revit.DB.ImportInstance ele, bool isRevitOwned)
+        {
+            return ImportInstance.FromExisting(ele, isRevitOwned);
+        }
+
         public static GlobalParameter Wrap(Autodesk.Revit.DB.GlobalParameter ele, bool isRevitOwned)
         {
             return GlobalParameter.FromExisting(ele, isRevitOwned);
