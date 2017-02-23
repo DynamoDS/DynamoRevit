@@ -63,6 +63,36 @@ namespace RevitSystemTests
             Assert.AreEqual(1, instances.Count());
         }
 
+
+        [Test]
+        [TestModel(@".\ImportInstance\ImportInstanceFromSelectModelElement.rfa")]
+
+        public void SelectModelElement_CreatesImportInstance()
+        {
+            //Run the graph to create an ImportInstance
+            string dynFilePath = Path.Combine(workingDirectory, @".\ImportInstance\ImportInstanceFromSelectModelElement.dyn");
+            string testPath = Path.GetFullPath(dynFilePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+    
+            var elementsOfTypeNode = GetNode<DSRevitNodesUI.ElementsOfType>("cbe69f20-be26-4993-912b-81f8f482d198");
+            Assert.NotNull(elementsOfTypeNode);
+
+            var elements = GetPreviewCollection(elementsOfTypeNode.GUID.ToString());
+            Assert.NotNull(elements);
+            var element1 = elements[0] as Revit.Elements.ImportInstance;
+            Assert.NotNull(element1);
+
+            var objectTypeNode = GetNode<DSFunction>("5e3c8bf5-5e6f-499b-97bc-6fedee5eafe8");
+            Assert.NotNull(objectTypeNode);
+
+            var element2 = GetPreviewValue(objectTypeNode.GUID.ToString());
+            Assert.NotNull(element2);
+            Assert.AreEqual("Revit.Elements.ImportInstance", element2);
+        }
+
         /// <summary>
         /// This function gets all the import instances in the current Revit document
         /// </summary>
