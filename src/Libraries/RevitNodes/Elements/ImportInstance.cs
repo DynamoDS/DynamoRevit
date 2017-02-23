@@ -27,7 +27,22 @@ namespace Revit.Elements
             get { return InternalImportInstance; }
         }
 
-        internal Autodesk.Revit.DB.ImportInstance InternalImportInstance { get; private set; }
+        internal Autodesk.Revit.DB.ImportInstance InternalImportInstance
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Set the internal Element, ElementId, and UniqueId
+        /// </summary>
+        /// <param name="element"></param>
+        private void InternalSetElement(Autodesk.Revit.DB.ImportInstance element)
+        {
+            InternalImportInstance = element;
+            InternalElementId = element.Id;
+            InternalUniqueId = element.UniqueId;
+        }
 
         #region Private constructor
 
@@ -39,6 +54,15 @@ namespace Revit.Elements
         internal ImportInstance(string satPath, XYZ translation = null)
         {
             SafeInit(() => InitImportInstance(satPath, translation));
+        }
+
+        /// <summary>
+        /// ImportInstance from existing
+        /// </summary>
+        /// <param name="element"></param>
+        private ImportInstance(Autodesk.Revit.DB.ImportInstance element)
+        {
+            SafeInit(() => InitImportInstance(element));
         }
 
         #endregion
@@ -80,6 +104,15 @@ namespace Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
 
             ElementBinder.SetElementForTrace(importInstance);
+        }
+
+        /// <summary>
+        /// Initilize an ImportInstance from existing element
+        /// </summary>
+        /// <param name="instance"></param>
+        private void InitImportInstance(Autodesk.Revit.DB.ImportInstance instance)
+        {
+            InternalSetImportInstance(instance);
         }
 
         private void InternalUnpinAndTranslateImportInstance(Autodesk.Revit.DB.XYZ translation)
@@ -227,5 +260,12 @@ namespace Revit.Elements
 
         #endregion
 
+        internal static ImportInstance FromExisting(Autodesk.Revit.DB.ImportInstance instance, bool isRevitOwned)
+        {
+            return new ImportInstance(instance)
+            {
+                IsRevitOwned = isRevitOwned
+            };
+        }
     }
 }
