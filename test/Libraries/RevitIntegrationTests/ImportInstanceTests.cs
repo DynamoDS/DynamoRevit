@@ -65,7 +65,7 @@ namespace RevitSystemTests
 
 
         [Test]
-        [TestModel(@".\ImportInstance\ImportInstanceFromSelectModelElement.rvt")]
+        [TestModel(@".\ImportInstance\ImportInstanceFromSelectModelElement.rfa")]
 
         public void SelectModelElement_CreatesImportInstance()
         {
