@@ -1,0 +1,44 @@
+<Workspace Version="1.2.3" X="-1031.87075795616" Y="613.003236566393" zoom="1.54779198722857" ScaleFactor="1" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="List" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="System.Object" resolvedName="System.Object" assemblyName="" />
+    <ClassMap partialName="Vector" resolvedName="Autodesk.DesignScript.Geometry.Vector" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Plane" resolvedName="Autodesk.DesignScript.Geometry.Plane" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Solid" resolvedName="Autodesk.DesignScript.Geometry.Solid" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="BoundingBox" resolvedName="Autodesk.DesignScript.Geometry.BoundingBox" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Geometry" resolvedName="Autodesk.DesignScript.Geometry.Geometry" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <DSRevitNodesUI.ElementsOfCategory guid="25b9adb4-9948-4f48-b53b-24b487126906" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="938.521105212773" y="-243.809974498509" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </DSRevitNodesUI.ElementsOfCategory>
+    <DSRevitNodesUI.Categories guid="733be10a-8cd3-4b0a-b5d4-a314e9eb509c" type="DSRevitNodesUI.Categories" nickname="Categories" x="718.251728865535" y="-262.260420394983" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="403:Rooms" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="cfe548b0-42bf-4480-b561-0ace4fc4d68d" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Room.Area" x="1269.28627437021" y="-381.125039939583" isVisible="true" isUpstreamVisible="true" lacing="Auto" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Room.Area">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="636279f6-d676-4fe8-9d57-fa2c8bc28af6" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Room.Height" x="1282.54050348928" y="-251.06791670869" isVisible="true" isUpstreamVisible="true" lacing="Auto" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Room.Height">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="47871f8b-994e-4fab-8153-0e8b0fb925c4" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Room.Number" x="1296.23779791341" y="-126.564509547912" isVisible="true" isUpstreamVisible="true" lacing="Auto" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="RevitNodes.dll" function="Revit.Elements.Room.Number">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="03a3917e-45a5-481e-a895-39b7a7a1146f" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1023" y="-152" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="a[0];" ShouldFocus="false">
+      <PortInfo index="0" default="False" name="a" />
+      <OutPortInfo LineIndex="0" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="25b9adb4-9948-4f48-b53b-24b487126906" start_index="0" end="03a3917e-45a5-481e-a895-39b7a7a1146f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="733be10a-8cd3-4b0a-b5d4-a314e9eb509c" start_index="0" end="25b9adb4-9948-4f48-b53b-24b487126906" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="03a3917e-45a5-481e-a895-39b7a7a1146f" start_index="0" end="636279f6-d676-4fe8-9d57-fa2c8bc28af6" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="03a3917e-45a5-481e-a895-39b7a7a1146f" start_index="0" end="cfe548b0-42bf-4480-b561-0ace4fc4d68d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="03a3917e-45a5-481e-a895-39b7a7a1146f" start_index="0" end="47871f8b-994e-4fab-8153-0e8b0fb925c4" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-30018.4375" eyeY="24710.09765625" eyeZ="7777.5576171875" lookX="26540.603515625" lookY="-19300.78515625" lookZ="-14900.3681640625" upX="0.298234224319458" upY="0.939692676067352" upZ="-0.167434006929398" />
+  </Cameras>
+</Workspace>
