@@ -222,6 +222,11 @@ namespace Revit.Elements
             return Dimension.FromExisting(ele, isRevitOwned);
         }
 
+        public static DimensionType Wrap(Autodesk.Revit.DB.DimensionType ele, bool isRevitOwned)
+        {
+            return DimensionType.FromExisting(ele, isRevitOwned);
+        }
+
         public static FilledRegionType Wrap(Autodesk.Revit.DB.FilledRegionType ele, bool isRevitOwned)
         {
             return FilledRegionType.FromExisting(ele, isRevitOwned);
@@ -281,6 +286,11 @@ namespace Revit.Elements
         {
             return DetailCurve.FromExisting(ele, isRevitOwned);
 
+        }
+
+        public static ImportInstance Wrap(Autodesk.Revit.DB.ImportInstance ele, bool isRevitOwned)
+        {
+            return ImportInstance.FromExisting(ele, isRevitOwned);
         }
 
         public static GlobalParameter Wrap(Autodesk.Revit.DB.GlobalParameter ele, bool isRevitOwned)
