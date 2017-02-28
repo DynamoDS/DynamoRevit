@@ -31,5 +31,27 @@ namespace RevitSystemTests
 
 
         }
+
+        [Test]
+        [TestModel(@".\Room_Properties.rvt")]
+        public void RoomProperties()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Annotations\Room_Properties.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+
+            var area = GetPreviewValue("cfe548b0-42bf-4480-b561-0ace4fc4d68d");
+            Assert.AreEqual(12.87, area);
+
+            var height = GetPreviewValue("636279f6-d676-4fe8-9d57-fa2c8bc28af6");
+            Assert.AreEqual(4000, height);
+
+            var number = GetPreviewValue("47871f8b-994e-4fab-8153-0e8b0fb925c4");
+            Assert.AreEqual(101, number);
+        }
     }
 }

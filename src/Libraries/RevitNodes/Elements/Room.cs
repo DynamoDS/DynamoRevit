@@ -208,7 +208,7 @@ namespace Revit.Elements
         {
             get
             {
-               return this.InternalRevitElement.Area * Math.Pow(UnitConverter.HostToDynamoFactor(UnitType.UT_Length), 2);
+               return this.InternalRevitElement.Area * UnitConverter.HostToDynamoFactor(UnitType.UT_Area);
             }
         }
 
@@ -230,7 +230,7 @@ namespace Revit.Elements
         {
             get
             {
-                return this.InternalRevitElement.Volume * Math.Pow(UnitConverter.HostToDynamoFactor(UnitType.UT_Length), 3);
+                return this.InternalRevitElement.Volume * UnitConverter.HostToDynamoFactor(UnitType.UT_Volume);
             }
         }
 
