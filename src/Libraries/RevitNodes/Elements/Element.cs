@@ -310,6 +310,19 @@ namespace Revit.Elements
             // or transactions and which must necessarily be threaded in a specific way.
         }
 
+
+        private Autodesk.Revit.DB.Parameter GetParameterByName(string parameterName)
+        {
+            var allParams =
+            InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
+                .Where(x => x.Definition.Name == parameterName)
+                .OrderBy(x => x.Id.IntegerValue);
+
+            var param = allParams.FirstOrDefault(x => x.IsReadOnly == false) ?? allParams.FirstOrDefault();
+
+            return param;
+        }
+
         /// <summary>
         /// Get the value of one of the element's parameters.
         /// </summary>
@@ -318,14 +331,15 @@ namespace Revit.Elements
         public object GetParameterValueByName(string parameterName)
         {
 
-            var param =
+//            var param =
                 // We don't use Element.GetOrderedParameters(), it only returns ordered parameters
                 // as show in the UI
-                InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
+//                InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
                     // Element.Parameters returns a differently ordered list on every invocation.
                     // We must sort it to get sensible results.
-                    .OrderBy(x => x.Id.IntegerValue) 
-                    .FirstOrDefault(x => x.Definition.Name == parameterName);         
+//                    .OrderBy(x => x.Id.IntegerValue) 
+//                    .FirstOrDefault(x => x.Definition.Name == parameterName);         
+            var param = GetParameterByName(parameterName);
             
             if (param == null || !param.HasValue)
                 return string.Empty;
@@ -382,7 +396,8 @@ namespace Revit.Elements
         /// <param name="value">The value.</param>
         public Element SetParameterByName(string parameterName, object value)
         {
-            var param = InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>().FirstOrDefault(x => x.Definition.Name == parameterName);
+//            var param = InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>().FirstOrDefault(x => x.Definition.Name == parameterName);
+            var param = GetParameterByName(parameterName);
 
             if (param == null)
                 throw new Exception(Properties.Resources.ParameterNotFound);
