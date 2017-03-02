@@ -311,6 +311,11 @@ namespace Revit.Elements
         }
 
 
+        /// <summary>
+        /// Get a parameter by name of an element
+        /// </summary>
+        /// <param name="parameterName">The name of the parameter.</param>
+        /// <returns></returns>
         private Autodesk.Revit.DB.Parameter GetParameterByName(string parameterName)
         {
             var allParams =
