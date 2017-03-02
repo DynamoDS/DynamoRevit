@@ -343,7 +343,7 @@ namespace Revit.Elements
             //
             var allParams =
             InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
-                .Where(x => x.Definition.Name == parameterName)
+                .Where(x => string.CompareOrdinal(x.Definition.Name, parameterName) == 0)
                 .OrderBy(x => x.Id.IntegerValue);
 
             var param = allParams.FirstOrDefault(x => x.IsReadOnly == false) ?? allParams.FirstOrDefault();
