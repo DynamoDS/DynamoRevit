@@ -51,7 +51,7 @@ namespace RevitSystemTests
             Assert.AreEqual(4000, (double)height, 1e-9);
 
             var number = GetPreviewValue("47871f8b-994e-4fab-8153-0e8b0fb925c4");
-            Assert.AreEqual(101, number);
+            Assert.AreEqual("101", number);
         }
     }
 }
