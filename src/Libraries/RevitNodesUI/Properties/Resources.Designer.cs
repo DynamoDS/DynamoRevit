@@ -178,6 +178,24 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All available fill patterns..
+        /// </summary>
+        internal static string FillPatternsDescription {
+            get {
+                return ResourceManager.GetString("FillPatternsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The type of the fill pattern..
+        /// </summary>
+        internal static string FillPatternTargetDescription {
+            get {
+                return ResourceManager.GetString("FillPatternTargetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter Types for Revit Filters.
         /// </summary>
         internal static string FilterTypeSelectorDescription {
@@ -453,6 +471,14 @@ namespace DSRevitNodesUI.Properties {
         internal static string ScheduleTypeSelectorDescription {
             get {
                 return ResourceManager.GetString("ScheduleTypeSelectorDescription", resourceCulture);
+            }
+        }
+
+        ///   Looks up a localized string similar to A View Schedule Filter Type..
+        /// </summary>
+        internal static string ScheduleFilterTypeDescription {
+            get {
+                return ResourceManager.GetString("ScheduleFilterTypeDescription", resourceCulture);
             }
         }
         
