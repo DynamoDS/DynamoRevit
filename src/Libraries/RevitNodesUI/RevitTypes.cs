@@ -138,4 +138,39 @@ namespace DSRevitNodesUI
         public WallLocation() : base("Wall Location", typeof(Autodesk.Revit.DB.WallLocationLine)) { }
     }
 
+    [NodeName("Fill Patterns")]
+    [NodeCategory("Revit.Elements.FillPatternElement")]
+    [NodeDescription("FillPatternsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class FillPatterns : CustomRevitElementDropDown
+    {
+        public FillPatterns() : base("FillPattern", typeof(Autodesk.Revit.DB.FillPatternElement)) { }
+    }
+
+    [NodeName("Fill Pattern Targets")]
+    [NodeCategory("Revit.Elements.FillPatternElement")]
+    [NodeDescription("FillPatternTargetDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class FillPatternTargets : CustomGenericEnumerationDropDown
+    {
+        public FillPatternTargets() : base("FillPatternTarget", typeof(Autodesk.Revit.DB.FillPatternTarget)) { }
+    }
+
+    [NodeName("Line Patterns")]
+    [NodeCategory("Revit.Elements.LinePatternElement")]
+    [NodeDescription("LinePatternsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class LinePatterns : CustomRevitElementDropDown
+    {
+        public LinePatterns() : base("LinePattern", typeof(Autodesk.Revit.DB.LinePatternElement)) { }
+    }
+
+    [NodeName("Schedule Filter Type")]
+    [NodeCategory("Revit.Views.ScheduleView")]
+    [NodeDescription("ScheduleFilterTypeDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class ScheduleFilterType : CustomGenericEnumerationDropDown
+    {
+        public ScheduleFilterType() : base("FilterType", typeof(Autodesk.Revit.DB.ScheduleFilterType)) { }
+    }
 }
