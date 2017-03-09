@@ -137,13 +137,4 @@ namespace DSRevitNodesUI
     {
         public WallLocation() : base("Wall Location", typeof(Autodesk.Revit.DB.WallLocationLine)) { }
     }
-
-    [NodeName("Schedule Filter Type")]
-    [NodeCategory("Revit.Views.ScheduleView")]
-    [NodeDescription("ScheduleFilterTypeDescription", typeof(DSRevitNodesUI.Properties.Resources))]
-    [IsDesignScriptCompatible]
-    public class ScheduleFilterType : CustomGenericEnumerationDropDown
-    {
-        public ScheduleFilterType() : base("FilterType", typeof(Autodesk.Revit.DB.ScheduleFilterType)) { }
-    }
 }
