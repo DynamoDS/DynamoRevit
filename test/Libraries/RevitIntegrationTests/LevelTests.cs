@@ -2,6 +2,7 @@
 using System.Linq;
 using Autodesk.Revit.DB;
 using Dynamo.Nodes;
+using Dynamo.Graph.Nodes;
 using Dynamo.Tests;
 
 using NUnit.Framework;
@@ -37,8 +38,9 @@ namespace RevitSystemTests
             Assert.AreEqual(levelColl.ToElements().Count(), 6);
 
             //change the number and run again
-            var numNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<DoubleInput>();
-            numNode.Value = "0..20..2";
+            var cbnNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<CodeBlockNodeModel>();
+            var cmd = new Dynamo.Models.DynamoModel.UpdateModelValueCommand(Guid.Empty, cbnNode.GUID, "Code", "0..20..2");
+            Model.ExecuteCommand(cmd);
 
             RunCurrentModel();
 
