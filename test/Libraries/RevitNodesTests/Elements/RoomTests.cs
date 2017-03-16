@@ -49,6 +49,7 @@ namespace RevitNodesTests.Elements
             Revit.Application.Document.Current.InternalDocument.Create.NewRoomBoundaryLines(plane,curves, Revit.Application.Document.Current.ActiveView.InternalView);
         }
 
+
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
         public void CheckBoundaryAndLocationProperty()
