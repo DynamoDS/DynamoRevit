@@ -208,13 +208,4 @@ namespace DSRevitNodesUI
     {
         public ScheduleFilterType() : base("FilterType", typeof(Autodesk.Revit.DB.ScheduleFilterType)) { }
     }
-
-    [NodeName("Wall Location")]
-    [NodeCategory("Revit.Elements.Wall")]
-    [NodeDescription("WallLocationLineDescription", typeof(DSRevitNodesUI.Properties.Resources))]
-    public class WallLocation : CustomGenericEnumerationDropDown
-    {
-        public WallLocation() : base("Wall Location", typeof(Autodesk.Revit.DB.WallLocationLine)) { }
-    }
-
 }
