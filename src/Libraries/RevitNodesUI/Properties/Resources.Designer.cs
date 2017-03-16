@@ -331,6 +331,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Performance Adviser rules..
+        /// </summary>
+        internal static string PerformanceAdviserDescription {
+            get {
+                return ResourceManager.GetString("PerformanceAdviserDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select an existing Revit Phase from the active document..
         /// </summary>
         internal static string PhaseSelectorDescription {
@@ -489,6 +498,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string ScheduleFilterTypeDescription {
             get {
                 return ResourceManager.GetString("ScheduleFilterTypeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Schedule Type..
+        /// </summary>
+        internal static string ScheduleTypeSelectorDescription {
+            get {
+                return ResourceManager.GetString("ScheduleTypeSelectorDescription", resourceCulture);
             }
         }
         
@@ -678,6 +696,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string ViewsDescription {
             get {
                 return ResourceManager.GetString("ViewsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wall locations..
+        /// </summary>
+        internal static string WallLocationLineDescription {
+            get {
+                return ResourceManager.GetString("WallLocationLineDescription", resourceCulture);
             }
         }
         
