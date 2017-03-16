@@ -405,4 +405,10 @@
   <data name="CurtainSystemTypeNotFound" xml:space="preserve">
     <value>Curtain System Type not found.</value>
   </data>
+  <data name="ExportColumnHeadersDescription" xml:space="preserve">
+    <value>How to export column headers. Default is MultipleRows.</value>
+  </data>
+  <data name="ScheduleExportError" xml:space="preserve">
+    <value>There was an error exporting this schedule.</value>
+  </data>
 </root>

@@ -19,6 +19,9 @@
     <namespace name="Revit.Filter">
       <category>Revit.Filter</category>
     </namespace>
+    <namespace name="Revit.Schedules">
+      <category>Revit.Schedules</category>
+    </namespace>
     <namespace name="Revit.Geometry">
       <category>Revit.Geometry</category>
     </namespace>
