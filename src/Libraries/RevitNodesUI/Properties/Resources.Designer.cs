@@ -493,14 +493,6 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a Schedule Type..
-        /// </summary>
-        internal static string ScheduleTypeSelectorDescription {
-            get {
-                return ResourceManager.GetString("ScheduleTypeSelectorDescription", resourceCulture);
-            }
-        }
-        /// <summary>
         ///   Looks up a localized string similar to A View Schedule Filter Type..
         /// </summary>
         internal static string ScheduleFilterTypeDescription {
