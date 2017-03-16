@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using RevitServices.Persistence;
@@ -10,7 +8,6 @@ using RevitServices.Transactions;
 
 namespace Revit.Elements.Views
 {
-    //[SupressImportIntoVM]
     public abstract class View3D : View
     {
         [IsVisibleInDynamoLibrary(false)]

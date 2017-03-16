@@ -52,7 +52,7 @@ namespace RevitNodesTests.Elements
             Assert.Throws(typeof(System.ArgumentNullException), () => FamilyType.ByFamilyAndName(null, "Turtle"));
         }
 
-        [Ignore]
+        [Test]
         [TestModel(@".\empty.rvt")]
         public void ByGeometry_GoodArgs()
         {
