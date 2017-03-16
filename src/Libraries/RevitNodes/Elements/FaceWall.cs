@@ -119,7 +119,7 @@ namespace Revit.Elements
         /// <param name="wallType"></param>
         /// <param name="surface"></param>
         /// <returns></returns>
-        /// Note: This moved to the Wall element
+        /// Note: This is wrapped in Wall. FaceWalls will be created there.
         [Autodesk.DesignScript.Runtime.IsVisibleInDynamoLibrary(false)]
         internal static FaceWall ByFace(WallLocationLine locationLine, WallType wallType, Autodesk.DesignScript.Geometry.Surface surface)
         {
@@ -143,6 +143,7 @@ namespace Revit.Elements
         /// <param name="wallType"></param>
         /// <param name="reference"></param>
         /// <returns></returns>
+        /// Nots: This is for testing purposes only to directly use references from the Revit API
         [Autodesk.DesignScript.Runtime.IsVisibleInDynamoLibrary(false)]
         internal static FaceWall ByFace(WallLocationLine location, WallType wallType, Reference reference)
         {
