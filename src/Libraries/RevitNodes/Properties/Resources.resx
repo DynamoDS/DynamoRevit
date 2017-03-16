@@ -327,6 +327,9 @@
   <data name="InvalidShapeEditor" xml:space="preserve">
     <value>Floor Shape cannot be edited.</value>
   </data>
+  <data name="InvalidFace" xml:space="preserve">
+    <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
+  </data>
   <data name="CurtainSystemTypeNotFound" xml:space="preserve">
     <value>Cannot find Curtain System Type in active document.</value>
   </data>
@@ -371,5 +374,80 @@
   </data>
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
+  </data>
+  <data name="NotEnoughDataError" xml:space="preserve">
+    <value>You need at least two elements for a dimension.</value>
+  </data>
+  <data name="CurveLoopNotClosed" xml:space="preserve">
+    <value>Curves do not form a closed loop.</value>
+  </data>
+  <data name="CannotGetBaseOrSurveyPoint" xml:space="preserve">
+    <value>Cannot get base or survey point from document.</value>
+  </data>
+  <data name="InvalidFilterType" xml:space="preserve">
+    <value>FilterType is not valid.</value>
+  </data>
+  <data name="NoSharedParameterFileFound" xml:space="preserve">
+    <value>No shared parameter file found.</value>
+  </data>
+  <data name="ParameterGroupNotFound" xml:space="preserve">
+    <value>Invalid parameter group.</value>
+  </data>
+  <data name="ParameterTypeNotFound" xml:space="preserve">
+    <value>Invalid parameter type.</value>
+  </data>
+  <data name="CurveIsNotPlanar" xml:space="preserve">
+    <value>Curve ist not planar. Please supply a planar curve.</value>
+  </data>
+  <data name="CurveRequired" xml:space="preserve">
+    <value>Please supply a curve geometry.</value>
+  </data>
+  <data name="InvalidHost" xml:space="preserve">
+    <value>Element does not have a host.</value>
+  </data>
+  <data name="PointRequired" xml:space="preserve">
+    <value>Please supply a point geometry.</value>
+  </data>
+  <data name="TypeNotFound" xml:space="preserve">
+    <value>Type not found in document.</value>
+  </data>
+  <data name="CategoryArgumentException" xml:space="preserve">
+    <value>You must supply a Category.</value>
+  </data>
+  <data name="NameArgumentException" xml:space="preserve">
+    <value>You must supply a Name.</value>
+  </data>
+  <data name="ScheduleTypeArgumentException" xml:space="preserve">
+    <value>Invalid Schedule Type.</value>
+  </data>
+  <data name="ScheduleExportError" xml:space="preserve">
+    <value>There was an error exporting this schedule.</value>
+  </data>
+  <data name="ExportOptionsArgumentException" xml:space="preserve">
+    <value>Invalid Schedule Export Options.</value>
+  </data>
+  <data name="CategoryVisibilityOverrideError" xml:space="preserve">
+    <value>Specified View Template is not valid for this View.</value>
+  </data>
+  <data name="ViewExportImageError" xml:space="preserve">
+    <value>There was an error exporting the image.</value>
+  </data>
+  <data name="DocumentDoesNotSupportGlobalParams" xml:space="preserve">
+    <value>Document does not support global parameters.</value>
+  </data>
+  <data name="NameAlreadyInUse" xml:space="preserve">
+    <value>Name already in use.</value>
+  </data>
+  <data name="InvalidShapeEditor" xml:space="preserve">
+    <value>Floor Shape cannot be edited.</value>
+  </data>
+  <data name="RoofTypeNotFound" xml:space="preserve">
+    <value>Roof type not found.</value>
+  </data>
+  <data name="InvalidFace" xml:space="preserve">
+    <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
+  </data>
+  <data name="CurtainSystemTypeNotFound" xml:space="preserve">
+    <value>Curtain System Type not found.</value>
   </data>
 </root>
