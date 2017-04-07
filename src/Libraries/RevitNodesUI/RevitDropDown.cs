@@ -554,6 +554,23 @@ namespace DSRevitNodesUI
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
         }
 
+        protected override bool UpdateValueCore(UpdateValueParams updateValueParams)
+        {
+            string name = updateValueParams.PropertyName;
+            string value = updateValueParams.PropertyValue;
+
+            if (name == "Value" && value != null)
+            {
+                // Un-exception: Find selection by display name, just like the base class does!
+                SelectedIndex = ParseSelectedIndexImpl(value, Items);
+                if (SelectedIndex < 0)
+                    Warning(Dynamo.Properties.Resources.NothingIsSelectedWarning);
+                return true; // UpdateValueCore handled.
+            }
+
+            return base.UpdateValueCore(updateValueParams);
+        }
+
         protected override int ParseSelectedIndex(string index, IList<DynamoDropDownItem> items)
         {
             int selectedIndex = -1;
