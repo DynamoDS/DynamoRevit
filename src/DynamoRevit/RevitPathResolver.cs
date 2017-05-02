@@ -46,7 +46,7 @@ namespace Dynamo.Applications
                 "DynamoUnits.dll",
                 "Tessellation.dll",
                 "Analysis.dll",
-                "Display.dll",
+                "GeometryColor.dll",
 
                 revitNodesDll,
                 simpleRaaSDll
