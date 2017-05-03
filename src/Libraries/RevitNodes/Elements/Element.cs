@@ -310,6 +310,47 @@ namespace Revit.Elements
             // or transactions and which must necessarily be threaded in a specific way.
         }
 
+
+        /// <summary>
+        /// Get a parameter by name of an element
+        /// </summary>
+        /// <param name="parameterName">The name of the parameter.</param>
+        /// <returns></returns>
+        private Autodesk.Revit.DB.Parameter GetParameterByName(string parameterName)
+        {
+            //
+            // Parameter names are not unique on a given element. There are several valid cases where 
+            // duplicated parameter names can be found in the Parameter Set.
+            //
+            // The most common ones are:
+            // 
+            // 1. Multiple built-in parameters with the same name
+            // This is a common implementation pattern when a different parameter behavior is wanted
+            // for different scopes. For example, lets say that you want a parameter to be writable
+            // in the property palette but read-only in a schedule view. The easiest way to accomplish
+            // this would be to add two parameters. One that is read-write and one that is read-only. 
+            // These parameters will both have the same name and they will share the same getter. 
+            //
+            // 2. Built-in parameters and User parameters with the same name
+            // This happens when a loadable family defines a user parameter with the same name
+            // as a built-in parameter.
+            //
+            // Currently, we try to resolve this and get consistent results by
+            // 1. Get all parameters for the given name
+            // 2. Sort parameters by ElementId - This will give us built-in parameters first (ID's for built-ins are always < -1)
+            // 3. If it exist: Use the first writable parameter
+            // 4. Otherwise: Use the first read-only parameter
+            //
+            var allParams =
+            InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
+                .Where(x => string.CompareOrdinal(x.Definition.Name, parameterName) == 0)
+                .OrderBy(x => x.Id.IntegerValue);
+
+            var param = allParams.FirstOrDefault(x => x.IsReadOnly == false) ?? allParams.FirstOrDefault();
+
+            return param;
+        }
+
         /// <summary>
         /// Get the value of one of the element's parameters.
         /// </summary>
@@ -317,15 +358,7 @@ namespace Revit.Elements
         /// <returns></returns>
         public object GetParameterValueByName(string parameterName)
         {
-
-            var param =
-                // We don't use Element.GetOrderedParameters(), it only returns ordered parameters
-                // as show in the UI
-                InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
-                    // Element.Parameters returns a differently ordered list on every invocation.
-                    // We must sort it to get sensible results.
-                    .OrderBy(x => x.Id.IntegerValue) 
-                    .FirstOrDefault(x => x.Definition.Name == parameterName);         
+            var param = GetParameterByName(parameterName);
             
             if (param == null || !param.HasValue)
                 return string.Empty;
@@ -382,7 +415,7 @@ namespace Revit.Elements
         /// <param name="value">The value.</param>
         public Element SetParameterByName(string parameterName, object value)
         {
-            var param = InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>().FirstOrDefault(x => x.Definition.Name == parameterName);
+            var param = GetParameterByName(parameterName);
 
             if (param == null)
                 throw new Exception(Properties.Resources.ParameterNotFound);
