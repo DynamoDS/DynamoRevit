@@ -396,4 +396,7 @@
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
   </data>
+  <data name="ViewSetViewTemplateInvalidTemplate" xml:space="preserve">
+    <value>Invalid View Template was used.</value>
+  </data>
 </root>
