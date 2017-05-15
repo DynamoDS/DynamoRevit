@@ -10,6 +10,31 @@ namespace Revit.Elements.InternalUtilities
     [IsVisibleInDynamoLibrary(false)]
     public static class ElementQueries
     {
+        private static readonly Dictionary<Type, string> ClassFilterExceptions = new Dictionary<Type, string>
+        {
+            { typeof(Autodesk.Revit.DB.Material), "Material"},
+            { typeof(Autodesk.Revit.DB.CurveElement), "CurveElement"},
+            { typeof(Autodesk.Revit.DB.ConnectorElement), "ConnectorElement"},
+            { typeof(Autodesk.Revit.DB.HostedSweep), "HostedSweep"},
+            { typeof(Autodesk.Revit.DB.Architecture.Room), "Room"},
+            { typeof(Autodesk.Revit.DB.Mechanical.Space), "Space"},
+            { typeof(Autodesk.Revit.DB.Area), "Area"},
+            { typeof(Autodesk.Revit.DB.Architecture.RoomTag), "RoomTag"},
+            { typeof(Autodesk.Revit.DB.Mechanical.SpaceTag), "SpaceTag"},
+            { typeof(Autodesk.Revit.DB.AreaTag), "AreaTag"},
+            { typeof(Autodesk.Revit.DB.CombinableElement), "CombinableElement"},
+            { typeof(Autodesk.Revit.DB.Mullion), "Mullion"},
+            { typeof(Autodesk.Revit.DB.Panel), "Panel"},
+            { typeof(Autodesk.Revit.DB.AnnotationSymbol), "AnnotationSymbol"},
+            { typeof(Autodesk.Revit.DB.Structure.AreaReinforcementType), "AreaReinforecementType"},
+            { typeof(Autodesk.Revit.DB.Structure.PathReinforcementType), "PathReinforecementType"},
+            { typeof(Autodesk.Revit.DB.AnnotationSymbolType), "AnnotationSymbolType"},
+            { typeof(Autodesk.Revit.DB.Architecture.RoomTagType), "RoomTagType"},
+            { typeof(Autodesk.Revit.DB.Mechanical.SpaceTagType), "SpaceTagType"},
+            { typeof(Autodesk.Revit.DB.AreaTagType), "AreaTagType"},
+            { typeof(Autodesk.Revit.DB.Structure.TrussType), "TrussType"}
+        };
+
         public static IList<Element> OfFamilyType(FamilyType familyType)
         {
             if (familyType == null) return null;
@@ -33,13 +58,29 @@ namespace Revit.Elements.InternalUtilities
         {
             if (elementType == null) return null;
 
-            var elFilter = new ElementClassFilter(elementType);
-            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-            fec.WherePasses(elFilter);
+            /*
+            (Konrad) According to RevitAPI documentation the quick filter
+            ElementClassFilter() has certain limitations that prevent it
+            from working on certain derived classes. In that case we need
+            to collect elements from base class and then perform additional
+            filtering to get our intended element set.
+            */
 
-            var instances = fec.ToElements()
-                .Select(x => ElementSelector.ByElementId(x.Id.IntegerValue)).ToList();
-            return instances;
+            if (ClassFilterExceptions.ContainsKey(elementType))
+            {
+                return new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                    .OfClass(elementType.BaseType)
+                    .Where(x => x.GetType() == elementType)
+                    .Select(x => ElementSelector.ByElementId(x.Id.IntegerValue))
+                    .ToList();
+            }
+
+            var classFilter = new ElementClassFilter(elementType);
+            return new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .WherePasses(classFilter)
+                .ToElementIds()
+                .Select(x => ElementSelector.ByElementId(x.IntegerValue))
+                .ToList();
         }
 
         public static IList<Element> OfCategory(Category category)
