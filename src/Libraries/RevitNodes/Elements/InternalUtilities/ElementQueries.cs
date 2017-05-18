@@ -10,29 +10,29 @@ namespace Revit.Elements.InternalUtilities
     [IsVisibleInDynamoLibrary(false)]
     public static class ElementQueries
     {
-        private static readonly Dictionary<Type, string> ClassFilterExceptions = new Dictionary<Type, string>
+        private static readonly HashSet<Type> ClassFilterExceptions = new HashSet<Type>
         {
-            { typeof(Autodesk.Revit.DB.Material), "Material"},
-            { typeof(Autodesk.Revit.DB.CurveElement), "CurveElement"},
-            { typeof(Autodesk.Revit.DB.ConnectorElement), "ConnectorElement"},
-            { typeof(Autodesk.Revit.DB.HostedSweep), "HostedSweep"},
-            { typeof(Autodesk.Revit.DB.Architecture.Room), "Room"},
-            { typeof(Autodesk.Revit.DB.Mechanical.Space), "Space"},
-            { typeof(Autodesk.Revit.DB.Area), "Area"},
-            { typeof(Autodesk.Revit.DB.Architecture.RoomTag), "RoomTag"},
-            { typeof(Autodesk.Revit.DB.Mechanical.SpaceTag), "SpaceTag"},
-            { typeof(Autodesk.Revit.DB.AreaTag), "AreaTag"},
-            { typeof(Autodesk.Revit.DB.CombinableElement), "CombinableElement"},
-            { typeof(Autodesk.Revit.DB.Mullion), "Mullion"},
-            { typeof(Autodesk.Revit.DB.Panel), "Panel"},
-            { typeof(Autodesk.Revit.DB.AnnotationSymbol), "AnnotationSymbol"},
-            { typeof(Autodesk.Revit.DB.Structure.AreaReinforcementType), "AreaReinforecementType"},
-            { typeof(Autodesk.Revit.DB.Structure.PathReinforcementType), "PathReinforecementType"},
-            { typeof(Autodesk.Revit.DB.AnnotationSymbolType), "AnnotationSymbolType"},
-            { typeof(Autodesk.Revit.DB.Architecture.RoomTagType), "RoomTagType"},
-            { typeof(Autodesk.Revit.DB.Mechanical.SpaceTagType), "SpaceTagType"},
-            { typeof(Autodesk.Revit.DB.AreaTagType), "AreaTagType"},
-            { typeof(Autodesk.Revit.DB.Structure.TrussType), "TrussType"}
+            typeof(Autodesk.Revit.DB.Material),
+            typeof(Autodesk.Revit.DB.CurveElement),
+            typeof(Autodesk.Revit.DB.ConnectorElement),
+            typeof(Autodesk.Revit.DB.HostedSweep),
+            typeof(Autodesk.Revit.DB.Architecture.Room),
+            typeof(Autodesk.Revit.DB.Mechanical.Space),
+            typeof(Autodesk.Revit.DB.Area),
+            typeof(Autodesk.Revit.DB.Architecture.RoomTag),
+            typeof(Autodesk.Revit.DB.Mechanical.SpaceTag),
+            typeof(Autodesk.Revit.DB.AreaTag),
+            typeof(Autodesk.Revit.DB.CombinableElement),
+            typeof(Autodesk.Revit.DB.Mullion),
+            typeof(Autodesk.Revit.DB.Panel),
+            typeof(Autodesk.Revit.DB.AnnotationSymbol),
+            typeof(Autodesk.Revit.DB.Structure.AreaReinforcementType),
+            typeof(Autodesk.Revit.DB.Structure.PathReinforcementType),
+            typeof(Autodesk.Revit.DB.AnnotationSymbolType),
+            typeof(Autodesk.Revit.DB.Architecture.RoomTagType),
+            typeof(Autodesk.Revit.DB.Mechanical.SpaceTagType),
+            typeof(Autodesk.Revit.DB.AreaTagType),
+            typeof(Autodesk.Revit.DB.Structure.TrussType)
         };
 
         public static IList<Element> OfFamilyType(FamilyType familyType)
@@ -66,7 +66,7 @@ namespace Revit.Elements.InternalUtilities
             filtering to get our intended element set.
             */
 
-            if (ClassFilterExceptions.ContainsKey(elementType))
+            if (ClassFilterExceptions.Contains(elementType))
             {
                 return new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
                     .OfClass(elementType.BaseType)
