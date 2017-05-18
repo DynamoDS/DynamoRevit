@@ -889,6 +889,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ViewPlan_ViewFamilyNotFound {
+            get {
+                return ResourceManager.GetString("ViewPlan_ViewFamilyNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no WallType of the given name in the current Document..
         /// </summary>
         internal static string WallTypeNotFound {

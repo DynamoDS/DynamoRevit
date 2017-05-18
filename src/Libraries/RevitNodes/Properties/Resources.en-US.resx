@@ -396,4 +396,7 @@
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
   </data>
+  <data name="ViewPlan_ViewFamilyNotFound" xml:space="preserve">
+    <value>There is no such ViewFamily in the document</value>
+  </data>
 </root>
