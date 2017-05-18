@@ -1,10 +1,5 @@
-﻿
-using System;
-
-using Autodesk.Revit.DB;
-
+﻿using System;
 using DynamoServices;
-
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
@@ -54,13 +49,13 @@ namespace Revit.Elements.Views
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            var vd = CreatePlanView(level, ViewFamily.FloorPlan);
+            var vd = CreatePlanView(level, Autodesk.Revit.DB.ViewFamily.FloorPlan);
 
             InternalSetPlanView(vd);
 
             TransactionManager.Instance.TransactionTaskDone();
 
-            ElementBinder.CleanupAndSetElementForTrace(Document, this.InternalElement);
+            ElementBinder.CleanupAndSetElementForTrace(Document, InternalElement);
         }
 
         #endregion
@@ -76,7 +71,7 @@ namespace Revit.Elements.Views
         {
             if (level == null)
             {
-                throw new ArgumentNullException("level");
+                throw new ArgumentNullException(nameof(level));
             }
 
             return new FloorPlanView( level.InternalLevel );
@@ -96,7 +91,7 @@ namespace Revit.Elements.Views
         {
             if (plan == null)
             {
-                throw new ArgumentNullException("plan");
+                throw new ArgumentNullException(nameof(plan));
             }
 
             return new FloorPlanView(plan)
