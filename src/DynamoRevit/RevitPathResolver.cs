@@ -41,7 +41,7 @@ namespace Dynamo.Applications
                 "DSOffice.dll",
                 "DSIronPython.dll",
                 "FunctionObject.ds",
-                "BuiltIns.ds",
+                "BuiltIn.ds",
                 "DynamoConversions.dll",
                 "DynamoUnits.dll",
                 "Tessellation.dll",
