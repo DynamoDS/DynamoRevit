@@ -718,12 +718,16 @@ namespace Revit.Elements
         /// Move Revit Element by Vector
         /// </summary>
         /// <param name="vector">Translation Vector</param>
-        public void MoveByVector(Vector vector)
+        public Element MoveByVector(Vector vector)
         {
-            if (!this.InternalElement.Location.Move(vector.ToXyz(true)))
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            TransactionManager.Instance.EnsureInTransaction(doc);
+            if (!InternalElement.Location.Move(vector.ToXyz(true)))
             {
                 throw new Exception(Properties.Resources.InvalidElementLocation);
             }
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
         }
 
 
