@@ -66,7 +66,16 @@ namespace RevitNodesTests.Elements
 
             var beam = e as StructuralFraming;
             Assert.NotNull(beam);
-            var curve = beam.Location;
+            var loc = beam.Location;
+
+            var pt = loc as Point;
+            if (pt != null)
+            {
+                Assert.NotNull(pt);
+            }
+
+            var curve = loc as Curve;
+            if (curve == null) return;
             Assert.NotNull(curve.StartPoint);
             Assert.NotNull(curve.EndPoint);
         }
