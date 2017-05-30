@@ -304,8 +304,8 @@ namespace RevitSystemTests
             Assert.AreEqual(initialNumber, finalNumber);
         }
 
-
-        [Test]
+        //TODO: Turn this test on once template files are installed on CI machines
+        [Ignore]
         [TestModel(@".\empty.rvt")]
         public void CreateFamilyTypeByGeometry()
         {

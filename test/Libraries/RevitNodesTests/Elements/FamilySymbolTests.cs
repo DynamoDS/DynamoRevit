@@ -52,7 +52,8 @@ namespace RevitNodesTests.Elements
             Assert.Throws(typeof(System.ArgumentNullException), () => FamilyType.ByFamilyAndName(null, "Turtle"));
         }
 
-        [Test]
+        //TODO: Turn this test on once template files are installed on CI machines
+        [Ignore]
         [TestModel(@".\empty.rvt")]
         public void ByGeometry_GoodArgs()
         {
