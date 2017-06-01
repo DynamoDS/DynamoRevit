@@ -250,7 +250,14 @@ namespace DSRevitNodesUI
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
             }
 
-            return new[] {AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildStringNode((string)Items[SelectedIndex].Item)) };
+            var args = new List<AssociativeNode>
+            {
+                inputAstNodes[0],
+                AstFactory.BuildStringNode((string)Items[SelectedIndex].Item)
+            };
+            var functionCall = AstFactory.BuildFunctionCall("Revit.Elements.Parameter", "ParameterByName", args);
+
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
         }
 
         private Element GetInputElement()

@@ -1,10 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using RevitServices.Transactions;
-using System.Collections.Generic;
 using RevitServices.Persistence;
 using System.Linq;
-using Autodesk.DesignScript.Runtime;
-using Revit.GeometryConversion;
 
 namespace Revit.Elements
 {
@@ -105,20 +102,26 @@ namespace Revit.Elements
         /// <param name="element">Element</param>
         /// <param name="name">Parameter Name</param>
         /// <returns>Parameter</returns>
-        public static Elements.Parameter ParameterByName(Elements.Element element, string name)
+        public static Parameter ParameterByName(Element element, string name)
         {
-            var param = element.Parameters.Cast<Parameter>()
+            var output = element.Parameters
                 .OrderBy(x => x.InternalParameter.Id.IntegerValue)
                 .FirstOrDefault(x => x.InternalParameter.Definition.Name == name);
 
-            if (param == null)
+            if (output != null) return output;
+            if (!element.InternalElement.CanHaveTypeAssigned()) return null;
+
+            // (Konrad) Check element type for parameter with the same name.
+            var et = DocumentManager.Instance.CurrentDBDocument.GetElement(element.InternalElement.GetTypeId()) as ElementType;
+            if (et != null)
             {
-                return null;
+                output = (from Autodesk.Revit.DB.Parameter p in et.Parameters select p)
+                    .ToList()
+                    .OrderBy(x => x.Id.IntegerValue)
+                    .Select(x => new Parameter(x))
+                    .FirstOrDefault(x => x.InternalParameter.Definition.Name == name);
             }
-            else
-            {
-                return param;
-            }
+            return output;
         }
 
 
@@ -127,15 +130,14 @@ namespace Revit.Elements
         /// </summary>
         public static void SetValue(Parameter parameter, object value)
         {
-            if (!parameter.IsReadOnly)
-            {
-                // get document and open transaction
-                Document document = Application.Document.Current.InternalDocument;
-                TransactionManager.Instance.EnsureInTransaction(document);
-                var val = value as dynamic;
-                Revit.Elements.InternalUtilities.ElementUtils.SetParameterValue(parameter.InternalParameter, val);
-                TransactionManager.Instance.TransactionTaskDone();
-            }
+            if (parameter.IsReadOnly) return;
+
+            // get document and open transaction
+            var document = Application.Document.Current.InternalDocument;
+            TransactionManager.Instance.EnsureInTransaction(document);
+            var val = value as dynamic;
+            Revit.Elements.InternalUtilities.ElementUtils.SetParameterValue(parameter.InternalParameter, val);
+            TransactionManager.Instance.TransactionTaskDone();
         }
 
         /// <summary>
@@ -151,14 +153,14 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            string value = string.Empty;
+            string value;
             switch (InternalParameter.StorageType)
             {
                 case Autodesk.Revit.DB.StorageType.String:
                     value = InternalParameter.AsString();
                     break;
                 default:
-                    var ops = new FormatOptions() { };
+                    var ops = new FormatOptions();
                     value = InternalParameter.AsValueString(ops);
                     break;
             }
@@ -175,7 +177,7 @@ namespace Revit.Elements
         /// <returns></returns>
         public static string SharedParameterFile()
         {
-            Document document = Application.Document.Current.InternalDocument;
+            var document = Application.Document.Current.InternalDocument;
             return document.Application.SharedParametersFilename;
         }
 
@@ -214,23 +216,23 @@ namespace Revit.Elements
                 throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
             // get document and open transaction
-            Document document = Application.Document.Current.InternalDocument;
+            var document = Application.Document.Current.InternalDocument;
             TransactionManager.Instance.EnsureInTransaction(document);
 
             try
             {
                 // get current shared parameter file
-                string sharedParameterFile = document.Application.SharedParametersFilename;
+                var sharedParameterFile = document.Application.SharedParametersFilename;
 
                 // if the file does not exist, throw an error
                 if (sharedParameterFile == null || !System.IO.File.Exists(sharedParameterFile))
                     throw new System.Exception(Properties.Resources.NoSharedParameterFileFound);
 
                 // Apply selected parameter categories
-                CategorySet categories = (categoryList == null) ? AllCategories() : ToCategorySet(categoryList);
+                var categories = (categoryList == null) ? AllCategories() : ToCategorySet(categoryList);
 
                 // Create new parameter group if it does not exist yet
-                DefinitionGroup groupDef = 
+                var groupDef = 
                     document.Application.OpenSharedParameterFile()
                     .Groups.get_Item(groupName);
 
@@ -244,12 +246,12 @@ namespace Revit.Elements
                 // If the parameter definition does not exist yet, create it
                 if (groupDef.Definitions.get_Item(parameterName) == null)
                 {
-                    ExternalDefinition def = 
+                    var def = 
                         groupDef.Definitions.Create
                         (new ExternalDefinitionCreationOptions(parameterName, parameterType)) as ExternalDefinition;
 
                     // Apply instance or type binding
-                    Binding bin = (instance) ? 
+                    var bin = (instance) ? 
                         (Binding)document.Application.Create.NewInstanceBinding(categories) : 
                         (Binding)document.Application.Create.NewTypeBinding(categories);
 
@@ -306,28 +308,28 @@ namespace Revit.Elements
                 throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
             // get document and open transaction
-            Document document = Application.Document.Current.InternalDocument;
+            var document = Application.Document.Current.InternalDocument;
             TransactionManager.Instance.EnsureInTransaction(document);
 
             try
             {
                 // buffer the current shared parameter file name and apply a new empty parameter file instead
-                string sharedParameterFile = document.Application.SharedParametersFilename;
-                string tempSharedParameterFile = System.IO.Path.GetTempFileName() + ".txt";
+                var sharedParameterFile = document.Application.SharedParametersFilename;
+                var tempSharedParameterFile = System.IO.Path.GetTempFileName() + ".txt";
                 using (System.IO.File.Create(tempSharedParameterFile)) { }
                 document.Application.SharedParametersFilename = tempSharedParameterFile;
 
                 // Apply selected parameter categories
-                CategorySet categories = (categoryList == null) ? AllCategories() : ToCategorySet(categoryList);
+                var categories = (categoryList == null) ? AllCategories() : ToCategorySet(categoryList);
 
                 // create a new shared parameter, since the file is empty everything has to be created from scratch
-                ExternalDefinition def = 
+                var def = 
                     document.Application.OpenSharedParameterFile()
                     .Groups.Create(groupName).Definitions.Create(
                     new ExternalDefinitionCreationOptions(parameterName, parameterType)) as ExternalDefinition;
 
                 // Create an instance or type binding
-                Binding bin = (instance) ? 
+                var bin = (instance) ? 
                     (Binding)document.Application.Create.NewInstanceBinding(categories) : 
                     (Binding)document.Application.Create.NewTypeBinding(categories);
 
@@ -359,10 +361,10 @@ namespace Revit.Elements
         /// <returns></returns>
         internal static CategorySet AllCategories()
         {
-            Document document = Application.Document.Current.InternalDocument;
+            var document = Application.Document.Current.InternalDocument;
 
             // Apply selected parameter categories
-            CategorySet categories = document.Application.Create.NewCategorySet();
+            var categories = document.Application.Create.NewCategorySet();
 
 
             // Walk thru all categories and add them if they allow bound parameters
@@ -385,13 +387,13 @@ namespace Revit.Elements
         /// <returns></returns>
         internal static CategorySet ToCategorySet(System.Collections.Generic.IEnumerable<Category> categoryList)
         {
-            Document document = Application.Document.Current.InternalDocument;
+            var document = Application.Document.Current.InternalDocument;
 
             // Apply selected parameter categories
-            CategorySet categories = document.Application.Create.NewCategorySet();
+            var categories = document.Application.Create.NewCategorySet();
 
 
-            foreach (Category category in categoryList)
+            foreach (var category in categoryList)
             {
                 if (category.InternalCategory.AllowsBoundParameters)
                 {
