@@ -105,6 +105,7 @@
     <Compile Include="Elements\Room.cs" />
     <Compile Include="Elements\Revision.cs" />
     <Compile Include="Elements\RevisionCloud.cs" />
+    <Compile Include="Elements\Views\View3D.cs" />
     <Compile Include="PerformanceAdviser\FailureMessage.cs" />
     <Compile Include="PerformanceAdviser\PerformanceAdviserRule.cs" />
     <Compile Include="Elements\SunSettings.cs" />
@@ -186,7 +187,7 @@
     <Compile Include="Elements\ReferencePoint.cs" />
     <Compile Include="AnalysisDisplay\AbstractAnalysisDisplay.cs" />
     <Compile Include="Elements\StucturalFraming.cs" />
-    <Compile Include="Elements\Views\View3D.cs" />
+    <Compile Include="Elements\Views\AbstractView3D.cs" />
     <Compile Include="Elements\Wall.cs" />
     <Compile Include="NodeCategories.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
