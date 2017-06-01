@@ -121,8 +121,18 @@ namespace Revit.Elements.Views
                 throw new ArgumentException(Properties.Resources.View_ExportAsImage_Path_Invalid, nameof(path));
 
             // rename the file
-            if (File.Exists(destinationFileName)) File.Delete(destinationFileName);
-            File.Move(actualFileName, destinationFileName);
+            if (File.Exists(destinationFileName))
+            {
+                try
+                {
+                    File.Delete(destinationFileName);
+                    File.Move(actualFileName, destinationFileName);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(Properties.Resources.ViewExportImageLockedError, ex);
+                }
+            }
             
             Bitmap bmp;
             try

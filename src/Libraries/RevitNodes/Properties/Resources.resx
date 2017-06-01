@@ -396,4 +396,7 @@
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
   </data>
+  <data name="ViewExportImageLockedError" xml:space="preserve">
+    <value>Attempt to override existing image failed due to file lock. Please make sure that image is not currently open in another application.</value>
+  </data>
 </root>
