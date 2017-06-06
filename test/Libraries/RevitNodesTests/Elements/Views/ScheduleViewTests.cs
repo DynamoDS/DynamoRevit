@@ -8,6 +8,7 @@ using RTF.Framework;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using Category = Revit.Elements.Category;
 
 namespace RevitNodesTests.Elements.Views
 {
@@ -87,7 +88,7 @@ namespace RevitNodesTests.Elements.Views
             var options = new Revit.Schedules.ScheduleExportOptions(new Autodesk.Revit.DB.ViewScheduleExportOptions());
             Assert.NotNull(options);
 
-            var exportView = view.Export(path, options);
+            view.Export(path, options);
             var pathInfo = new FileInfo(path);
             Assert.Greater(pathInfo.Length, 0);
         }
@@ -139,7 +140,8 @@ namespace RevitNodesTests.Elements.Views
             var schedulableFields = view.SchedulableFields;
             Assert.Greater(schedulableFields.Count, 0);
 
-            var fieldToAdd = schedulableFields.Where(x => x.Name == "Key Name").FirstOrDefault();
+            var fieldToAdd = schedulableFields
+                .FirstOrDefault(x => x.Name == "Key Name");
             Assert.NotNull(fieldToAdd);
 
             view.AddFields(new List<Revit.Schedules.SchedulableField>() { fieldToAdd });
@@ -157,14 +159,16 @@ namespace RevitNodesTests.Elements.Views
             var schedulableFields = view.SchedulableFields;
             Assert.Greater(schedulableFields.Count, 0);
 
-            var fieldToAdd = schedulableFields.Where(x => x.Name == "Width").FirstOrDefault();
+            var fieldToAdd = schedulableFields
+                .FirstOrDefault(x => x.Name == "Width");
             Assert.NotNull(fieldToAdd);
 
             view.AddFields(new List<Revit.Schedules.SchedulableField>() { fieldToAdd });
             Assert.Greater(view.Fields.Count, 0);
 
             // create new schedule filter and add it to schedule
-            var field = view.Fields.Where(x => x.Name == "Width").FirstOrDefault();
+            var field = view.Fields
+                .FirstOrDefault(x => x.Name == "Width");
             Assert.NotNull(field);
 
             var filter = Revit.Schedules.ScheduleFilter.ByFieldTypeAndValue(field, Autodesk.Revit.DB.ScheduleFilterType.Equal.ToString(), 0.1);
@@ -181,8 +185,7 @@ namespace RevitNodesTests.Elements.Views
             var rView = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
                 .OfClass(typeof(Autodesk.Revit.DB.ViewSchedule))
                 .Cast<Autodesk.Revit.DB.ViewSchedule>()
-                .Where(x => x.Name == "Wall Schedule")
-                .FirstOrDefault();
+                .FirstOrDefault(x => x.Name == "Wall Schedule");
 
             var view = ScheduleView.FromExisting(rView, true);
             Assert.NotNull(view);
