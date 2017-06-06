@@ -26,11 +26,42 @@ namespace RevitNodesTests.Elements.Views
 
         [Test]
         [TestModel(@".\Empty.rvt")]
+        public void ByAreaSchemeName_ValidArgs()
+        {
+            var areaScheme = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfCategory(Autodesk.Revit.DB.BuiltInCategory.OST_AreaSchemes)
+                .Select(x => x.ToDSType(true))
+                .FirstOrDefault();
+            Assert.IsNotNull(areaScheme);
+
+            var view = ScheduleView.CreateAreaSchedule(areaScheme, "AreaSchedule_Test");
+            Assert.NotNull(view);
+
+            Assert.IsTrue(DocumentManager.Instance.ElementExistsInDocument(
+                 new ElementUUID(view.InternalElement.UniqueId)));
+        }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
         public void ByCategoryNameType_NullArgs()
         {
             Assert.Throws(typeof(ArgumentNullException), () => ScheduleView.CreateSchedule(null, "KeySchedule_Test", ScheduleView.ScheduleType.KeySchedule.ToString()));
             Assert.Throws(typeof(ArgumentNullException), () => ScheduleView.CreateSchedule(Category.ByName("OST_GenericModel"), null, ScheduleView.ScheduleType.KeySchedule.ToString()));
             Assert.Throws(typeof(ArgumentNullException), () => ScheduleView.CreateSchedule(Category.ByName("OST_GenericModel"), "KeySchedule_Test", null));
+        }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void ByAreaSchemeName_NullArgs()
+        {
+            var areaScheme = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfCategory(Autodesk.Revit.DB.BuiltInCategory.OST_AreaSchemes)
+                .Select(x => x.ToDSType(true))
+                .FirstOrDefault();
+            Assert.IsNotNull(areaScheme);
+
+            Assert.Throws(typeof(ArgumentNullException), () => ScheduleView.CreateAreaSchedule(null, "AreaSchedule_Test"));
+            Assert.Throws(typeof(ArgumentNullException), () => ScheduleView.CreateAreaSchedule(areaScheme, null));
         }
 
         [Test]
