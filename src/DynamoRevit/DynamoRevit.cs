@@ -153,8 +153,9 @@ namespace Dynamo.Applications
 
         /// <summary>
         /// The journal file can specify if a check should be performed to see if the
-        /// existing model already points to the Dynamo file we want to run or perform
-        /// other tasks. If that's the case, we want to use the existing model.
+        /// current workspaceModel already points to the Dynamo file we want to 
+        /// run (or perform other tasks). If that's the case, we want to use the
+        /// current workspaceModel.
         /// </summary>
         public const string DynPathCheckExisting = "dynPathCheckExisting";
 
@@ -571,7 +572,7 @@ namespace Dynamo.Applications
                     }
                 }
 
-                if (!useExistingWorkspace)
+                if (!useExistingWorkspace) //if use existing is false, open the specified workspace
                 {
                     if (ModelState == RevitDynamoModelState.StartedUIless)
                     {
