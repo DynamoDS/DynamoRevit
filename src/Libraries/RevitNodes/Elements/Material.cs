@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Collections.Generic;
 using DynamoServices;
-
 using RevitServices.Persistence;
 
 namespace Revit.Elements
@@ -23,10 +22,7 @@ namespace Revit.Elements
         /// <summary>
         /// Reference to the Element
         /// </summary>
-        public override Autodesk.Revit.DB.Element InternalElement
-        {
-            get { return InternalMaterial; }
-        }
+        public override Autodesk.Revit.DB.Element InternalElement => InternalMaterial;
 
         #endregion
 
@@ -64,9 +60,9 @@ namespace Revit.Elements
         /// <param name="material"></param>
         private void InternalSetMaterial(Autodesk.Revit.DB.Material material)
         {
-            this.InternalMaterial = material;
-            this.InternalElementId = material.Id;
-            this.InternalUniqueId = material.UniqueId;
+            InternalMaterial = material;
+            InternalElementId = material.Id;
+            InternalUniqueId = material.UniqueId;
         }
 
         #endregion
@@ -82,7 +78,7 @@ namespace Revit.Elements
         {
             if (name == null)
             {
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
             }
 
             var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>()
@@ -107,85 +103,52 @@ namespace Revit.Elements
         /// Get Material Name
         /// </summary>
         /// <returns></returns>
-        public string Name
-        {
-            get { return this.InternalMaterial.Name; }
-        }
+        public new string Name => InternalMaterial.Name;
 
         /// <summary>
         /// Get Shininess
         /// </summary>
-        public int Shininess
-        {
-            get { return this.InternalMaterial.Shininess; }
-        }
+        public int Shininess => InternalMaterial.Shininess;
 
         /// <summary>
         /// Get Smoothness
         /// </summary>
-        public int Smoothness
-        {
-            get { return this.InternalMaterial.Smoothness; }
-        }
+        public int Smoothness => InternalMaterial.Smoothness;
 
         /// <summary>
         /// Get Transparency
         /// </summary>
-        public int Transparency
-        {
-            get { return this.InternalMaterial.Transparency; }
-        }
+        public int Transparency => InternalMaterial.Transparency;
 
         /// <summary>
         /// Get SurfacePatternColor
         /// </summary>
-        public DSCore.Color SurfacePatternColor
-        {
-            get { return ToDSColor(this.InternalMaterial.SurfacePatternColor); }
-        }
+        public DSCore.Color SurfacePatternColor => ToDSColor(InternalMaterial.SurfacePatternColor);
 
         /// <summary>
         /// Get Material Class
         /// </summary>
-        public string MaterialClass
-        {
-            get { return this.InternalMaterial.MaterialClass; }
-        }
+        public string MaterialClass => InternalMaterial.MaterialClass;
 
         /// <summary>
         /// Get Material category
         /// </summary>
-        public string MaterialCategory
-        {
-            get { return this.InternalMaterial.MaterialCategory; }
-        }
+        public string MaterialCategory => InternalMaterial.MaterialCategory;
 
         /// <summary>
         /// Get cut pattern color
         /// </summary>
-        public DSCore.Color CutPatternColor
-        {
-            get { return ToDSColor(this.InternalMaterial.CutPatternColor); }
-        }
+        public DSCore.Color CutPatternColor => ToDSColor(InternalMaterial.CutPatternColor);
 
         /// <summary>
         /// Get color
         /// </summary>
-        public DSCore.Color Color
-        {
-            get { return ToDSColor(this.InternalMaterial.Color); }
-        }
+        public DSCore.Color Color => ToDSColor(InternalMaterial.Color);
 
         /// <summary>
         /// Get cut pattern id
         /// </summary>
-        public int CutPatternId
-        {
-            get
-            {
-                return this.InternalMaterial.CutPatternId.IntegerValue;
-            }
-        }
+        public int CutPatternId => InternalMaterial.CutPatternId.IntegerValue;
 
         /// <summary>
         /// Get all apperance parameters
@@ -195,22 +158,19 @@ namespace Revit.Elements
             get
             {
                 // Get the active Document
-                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+                var document = DocumentManager.Instance.CurrentDBDocument;
 
-                List<Parameter> appearances = new List<Parameter>();
-                if (this.InternalMaterial.AppearanceAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
+                var appearances = new List<Parameter>();
+                if (InternalMaterial.AppearanceAssetId == Autodesk.Revit.DB.ElementId.InvalidElementId) return appearances;
+
+                var appearance = document.GetElement(InternalMaterial.AppearanceAssetId) as Autodesk.Revit.DB.AppearanceAssetElement;
+                if (appearance == null) return appearances;
+
+                foreach (var parameter in appearance.Parameters)
                 {
-                    Autodesk.Revit.DB.AppearanceAssetElement appearance = document.GetElement(this.InternalMaterial.AppearanceAssetId) as Autodesk.Revit.DB.AppearanceAssetElement;
-                    if (appearance != null)
-                    {
-                        foreach (var parameter in appearance.Parameters)
-                        {
-                            Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
-                            if (!appearances.Contains(p)) appearances.Add(p);
-                        }
-                    }
+                    var p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
+                    if (!appearances.Contains(p)) appearances.Add(p);
                 }
-
                 return appearances;
             }
         }
@@ -222,20 +182,18 @@ namespace Revit.Elements
         {
             get
             {
-                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+                var document = DocumentManager.Instance.CurrentDBDocument;
 
-                List<Parameter> thermals = new List<Parameter>();
-                if (this.InternalMaterial.ThermalAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
+                var thermals = new List<Parameter>();
+                if (InternalMaterial.ThermalAssetId == Autodesk.Revit.DB.ElementId.InvalidElementId) return thermals;
+
+                var thermal = document.GetElement(InternalMaterial.ThermalAssetId) as Autodesk.Revit.DB.PropertySetElement;
+                if (thermal == null) return thermals;
+
+                foreach (var parameter in thermal.Parameters)
                 {
-                    Autodesk.Revit.DB.PropertySetElement thermal = document.GetElement(this.InternalMaterial.ThermalAssetId) as Autodesk.Revit.DB.PropertySetElement;
-                    if (thermal != null)
-                    {
-                        foreach (var parameter in thermal.Parameters)
-                        {
-                            Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
-                            if (!thermals.Contains(p)) thermals.Add(p);
-                        }
-                    }
+                    var p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
+                    if (!thermals.Contains(p)) thermals.Add(p);
                 }
 
                 return thermals;
@@ -249,27 +207,23 @@ namespace Revit.Elements
         {
             get
             {
-                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+                var document = DocumentManager.Instance.CurrentDBDocument;
 
-                List<Parameter> structurals = new List<Parameter>();
-                if (this.InternalMaterial.StructuralAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
+                var structurals = new List<Parameter>();
+                if (InternalMaterial.StructuralAssetId == Autodesk.Revit.DB.ElementId.InvalidElementId) return structurals;
+
+                var structural = document.GetElement(InternalMaterial.StructuralAssetId) as Autodesk.Revit.DB.PropertySetElement;
+                if (structural == null) return structurals;
+
+                foreach (var parameter in structural.Parameters)
                 {
-                    Autodesk.Revit.DB.PropertySetElement structural = document.GetElement(this.InternalMaterial.StructuralAssetId) as Autodesk.Revit.DB.PropertySetElement;
-                    if (structural != null)
-                    {
-                        foreach (var parameter in structural.Parameters)
-                        {
-                            Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
-                            if (!structurals.Contains(p)) structurals.Add(p);
-                        }
-                    }
+                    var p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
+                    if (!structurals.Contains(p)) structurals.Add(p);
                 }
 
                 return structurals;
             }
         }
-
-
 
         #endregion
 
@@ -304,6 +258,5 @@ namespace Revit.Elements
         }
 
         #endregion
-
     }
 }
