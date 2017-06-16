@@ -396,4 +396,7 @@
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
   </data>
+  <data name="ReferencePlaneInvalidName" xml:space="preserve">
+    <value>Could not find Reference Plane with the specified name.</value>
+  </data>
 </root>

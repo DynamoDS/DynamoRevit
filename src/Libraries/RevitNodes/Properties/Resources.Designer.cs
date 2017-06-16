@@ -790,6 +790,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not find Reference Plane with the specified name..
+        /// </summary>
+        internal static string ReferencePlaneInvalidName {
+            get {
+                return ResourceManager.GetString("ReferencePlaneInvalidName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ReferencePoint Elements can only be created in a Family Document..
         /// </summary>
         internal static string ReferencePointCreationFailure {
