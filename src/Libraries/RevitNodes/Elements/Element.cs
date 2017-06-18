@@ -173,6 +173,11 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Check if element is Pinned.
+        /// </summary>
+        public bool IsPinned => InternalElement.Pinned;
+
+        /// <summary>
         /// Returns the FamilyType for this Element. Returns null if the Element cannot have a FamilyType assigned.
         /// </summary>
         /// <returns name="ElementType">Element Type or Null.</returns>
@@ -406,6 +411,47 @@ namespace Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
 
             return this;
+        }
+
+        /// <summary>
+        /// Pin/Unpin Element. An element which is pinned may not be moved, and warnings will be issued when an attempt is made to delete it.
+        /// </summary>
+        /// <param name="action">If set to true Element will be Pinned while false will Unpin it.</param>
+        /// <returns></returns>
+        public Element PinUnpin(bool action = true)
+        {
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            InternalElement.Pinned = action;
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
+        /// <summary>
+        /// Select Element by its Id.
+        /// </summary>
+        /// <param name="id">Integer value of ElementId.</param>
+        /// <returns></returns>
+        public static Element ById(int? id)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            return ElementSelector.ByElementId((int) id);
+        }
+
+        /// <summary>
+        /// Select Element by its Unique Id.
+        /// </summary>
+        /// <param name="uniqueId">String value of UniqueId.</param>
+        /// <returns></returns>
+        public static Element ByUniqueId(string uniqueId)
+        {
+            if (string.IsNullOrEmpty(uniqueId))
+            {
+                throw new ArgumentNullException(nameof(uniqueId));
+            }
+            return ElementSelector.ByUniqueId(uniqueId);
         }
 
         /// <summary>
