@@ -1,28 +1,19 @@
 ﻿using System;
 using System.Linq;
-
-using Autodesk.Revit.DB;
-
-using DynamoServices;
-
+using System.Runtime.Serialization;
 using DynamoUnits;
-
-
-using RevitServices.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-
 using Revit.Elements.InternalUtilities;
 using Autodesk.DesignScript.Runtime;
-using System.Runtime.Serialization;
+using UnitType = Autodesk.Revit.DB.UnitType;
 
 namespace Revit.Elements
 {
-
     /// <summary>
     /// This class acts as a representation of a Level constructor state, we can store it in trace
-    // it's used to keep track of what the user wanted to set the name of the level to
+    /// it's used to keep track of what the user wanted to set the name of the level to
     /// </summary>
     [SupressImportIntoVM]
     [Serializable]
@@ -37,12 +28,11 @@ namespace Revit.Elements
             info.AddValue("inputName", InputName, typeof(string));
         }
 
-        public LevelTraceData(Level lev, string inputName) :
-            base()
+        public LevelTraceData(Level lev, string inputName)
         {
-            this.IntID = lev.InternalElement.Id.IntegerValue;
-            this.StringID = lev.UniqueId;
-            this.InputName = inputName;
+            IntID = lev.InternalElement.Id.IntegerValue;
+            StringID = lev.UniqueId;
+            InputName = inputName;
         }
 
         public LevelTraceData(SerializationInfo info, StreamingContext context) :
@@ -52,6 +42,7 @@ namespace Revit.Elements
           
         }
     }
+
     /// <summary>
     /// A Revit Level
     /// </summary>
@@ -71,10 +62,7 @@ namespace Revit.Elements
         /// <summary>
         /// Reference to the Element
         /// </summary>
-        public override Autodesk.Revit.DB.Element InternalElement
-        {
-            get { return InternalLevel; }
-        }
+        public override Autodesk.Revit.DB.Element InternalElement => InternalLevel;
 
         #endregion
 
@@ -125,16 +113,7 @@ namespace Revit.Elements
             //There was no element, create a new one
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            Autodesk.Revit.DB.Level level;
-
-            if (Document.IsFamilyDocument)
-            {
-                level = Autodesk.Revit.DB.Level.Create(Document, elevation);
-            }
-            else
-            {
-                level = Autodesk.Revit.DB.Level.Create(Document, elevation);
-            }
+            var level = Autodesk.Revit.DB.Level.Create(Document, elevation);
 
             InternalSetLevel(level);
             InternalSetName(string.Empty,name);
@@ -142,12 +121,11 @@ namespace Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
 
             ElementBinder.SetRawDataForTrace(traceData);
-
         }
 
         private void InitLevel(Autodesk.Revit.DB.Level level)
         {
-            this.InternalSetLevel(level);
+            InternalSetLevel(level);
         }
 
         #endregion
@@ -160,9 +138,9 @@ namespace Revit.Elements
         /// <param name="level"></param>
         private void InternalSetLevel(Autodesk.Revit.DB.Level level)
         {
-            this.InternalLevel = level;
-            this.InternalElementId = level.Id;
-            this.InternalUniqueId = level.UniqueId;
+            InternalLevel = level;
+            InternalElementId = level.Id;
+            InternalUniqueId = level.UniqueId;
         }
 
         /// <summary>
@@ -185,22 +163,22 @@ namespace Revit.Elements
         /// we retrieve this from trace</param>
         private void InternalSetName(string oldname,string name)
         {
-            if (String.IsNullOrEmpty(name) ||
+            if (string.IsNullOrEmpty(name) ||
                 string.CompareOrdinal(InternalLevel.Name, name) == 0 ||
                 string.CompareOrdinal(oldname,name) == 0)
                 return;
             //make a copy of the string
             var originalInputName = name;
             //Check to see whether there is an existing level with the same name
-            var levels = ElementQueries.GetAllLevels();
+            var levels = ElementQueries.GetAllLevels().ToList();
             while (levels.Any(x => string.CompareOrdinal(x.Name, name) == 0))
             {
                 //Update the level name
-                Revit.Elements.InternalUtilities.ElementUtils.UpdateLevelName(ref name);
+                ElementUtils.UpdateLevelName(ref name);
             }
 
             TransactionManager.Instance.EnsureInTransaction(Document);
-            this.InternalLevel.Name = name;
+            InternalLevel.Name = name;
             var updatedTraceData =new LevelTraceData(this, originalInputName);
             ElementBinder.SetRawDataForTrace(updatedTraceData);
             TransactionManager.Instance.TransactionTaskDone();
@@ -213,32 +191,17 @@ namespace Revit.Elements
         /// <summary>
         /// The elevation of the level above ground level
         /// </summary>
-        public double Elevation
-        {
-            get { return InternalLevel.Elevation*UnitConverter.HostToDynamoFactor(UnitType.UT_Length); }
-        }
+        public double Elevation => InternalLevel.Elevation*UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
 
         /// <summary>
         /// Elevation relative to the Project origin
         /// </summary>
-        public double ProjectElevation
-        {
-            get
-            {
-                return InternalLevel.ProjectElevation * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
-            }
-        }
+        public double ProjectElevation => InternalLevel.ProjectElevation * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
 
         /// <summary>
         /// The name of the level
         /// </summary>
-        public new string Name
-        {
-            get
-            {
-                return InternalLevel.Name;
-            }
-        }
+        public new string Name => InternalLevel.Name;
 
         #endregion
 
@@ -247,14 +210,14 @@ namespace Revit.Elements
         /// <summary>
         /// Create a Revit Level given it's elevation and name in the project
         /// </summary>
-        /// <param name="elevation"></param>
-        /// <param name="name"></param>
+        /// <param name="elevation">Height above project base point.</param>
+        /// <param name="name">Name of the new Level.</param>
         /// <returns></returns>
         public static Level ByElevationAndName(double elevation, string name)
         {
             if (name == null)
             {
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
             }
 
             return new Level(elevation * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), name);
@@ -264,7 +227,7 @@ namespace Revit.Elements
         /// Create a Revit Level given it's elevation.  The name will be whatever
         /// Revit gives it.
         /// </summary>
-        /// <param name="elevation"></param>
+        /// <param name="elevation">Height above project base point.</param>
         /// <returns></returns>
         public static Level ByElevation(double elevation)
         {
@@ -274,14 +237,14 @@ namespace Revit.Elements
         /// <summary>
         /// Create a Revit Level given it's length offset from an existing level
         /// </summary>
-        /// <param name="level"></param>
-        /// <param name="offset"></param>
+        /// <param name="level">Existing Level to offset from.</param>
+        /// <param name="offset">Value of offset.</param>
         /// <returns></returns>
         public static Level ByLevelAndOffset(Level level, double offset)
         {
             if (level == null)
             {
-                throw new ArgumentNullException("level");
+                throw new ArgumentNullException(nameof(level));
             }
 
             return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), null);
@@ -291,23 +254,47 @@ namespace Revit.Elements
         /// Create a Revit Level given a distance offset from an existing 
         /// level and a name for the new level
         /// </summary>
-        /// <param name="level"></param>
-        /// <param name="offset"></param>
-        /// <param name="name"></param>
+        /// <param name="level">Existing Level to offset from.</param>
+        /// <param name="offset">Value of offset.</param>
+        /// <param name="name">Name of the new Level.</param>
         /// <returns></returns>
         public static Level ByLevelOffsetAndName(Level level, double offset, string name)
         {
             if (level == null)
             {
-                throw new ArgumentNullException("level");
+                throw new ArgumentNullException(nameof(level));
             }
 
             if (name == null)
             {
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
             }
 
             return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), name);
+        }
+
+        /// <summary>
+        /// Retrieves Level from project by its Name.
+        /// </summary>
+        /// <param name="name">Name of the Level to select.</param>
+        /// <returns></returns>
+        public static Level ByName(string name)
+        {
+            if (name == null)
+            {
+                throw new ArgumentNullException(nameof(name));
+            }
+
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var level = new Autodesk.Revit.DB.FilteredElementCollector(doc)
+                .OfClass(typeof(Autodesk.Revit.DB.Level))
+                .FirstOrDefault(x => x.Name == name);
+            if (level == null)
+            {
+                throw new Exception(Properties.Resources.LevelByNameError);
+            }
+
+            return (Level)level.ToDSType(true);
         }
 
         #endregion
@@ -332,7 +319,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return string.Format("Level(Name={0}, Elevation={1})", Name, Elevation);
+            return $"Level(Name={Name}, Elevation={Elevation})";
         }
 
     }

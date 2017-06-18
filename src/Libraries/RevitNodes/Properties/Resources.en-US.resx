@@ -396,4 +396,7 @@
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
   </data>
+  <data name="LevelByNameError" xml:space="preserve">
+    <value>Level with specified Name doesn't exist in project.</value>
+  </data>
 </root>

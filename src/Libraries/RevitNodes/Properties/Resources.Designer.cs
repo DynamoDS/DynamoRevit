@@ -556,6 +556,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Level with specified Name doesn&apos;t exist in project..
+        /// </summary>
+        internal static string LevelByNameError {
+            get {
+                return ResourceManager.GetString("LevelByNameError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Material with the given name does not exist in the current Document..
         /// </summary>
         internal static string MaterialNotFound {
