@@ -561,7 +561,7 @@ namespace RevitSystemTests
             Assert.AreEqual(8, points.Count);
 
             var model = ViewModel.Model;
-            var selNodes = model.AllNodes.Where(x => string.Equals(x.NickName, "ReferencePoint.ByCoordinates"));
+            var selNodes = model.AllNodes.Where(x => string.Equals(x.Name, "ReferencePoint.ByCoordinates"));
             Assert.IsTrue(selNodes.Any());
             var node = selNodes.First() as DSFunction;
 
@@ -758,7 +758,7 @@ namespace RevitSystemTests
         {
             var model = OpenElementBindingWorkspace("RebindingBatchedACs.dyn");
             RunCurrentModel();
-            NodeModel adaptiveCompNode = model.CurrentWorkspace.Nodes.Where(x => x.NickName == "AdaptiveComponent.ByPoints").First();
+            NodeModel adaptiveCompNode = model.CurrentWorkspace.Nodes.Where(x => x.Name == "AdaptiveComponent.ByPoints").First();
 
             var doc = DocumentManager.Instance.CurrentDBDocument;
             var familyInstances = Utils.AllElementsOfType<FamilyInstance>(doc);
