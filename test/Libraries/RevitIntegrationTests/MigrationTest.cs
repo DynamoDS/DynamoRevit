@@ -32,7 +32,7 @@ namespace RevitSystemTests
                 if (node.NodeNature == DummyNode.Nature.Unresolved) 
                 {
                     unresolvedNodeCount++;
-                    str += node.NickName;
+                    str += node.Name;
                     str += "\n";
                 }
             }
