@@ -194,6 +194,11 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
+        /// Retrieves a Sketch Plane associated with View.
+        /// </summary>
+        public SketchPlane SketchPlane => (SketchPlane)InternalView.SketchPlane.ToDSType(true);
+
+        /// <summary>
         ///     Set Filter overrides. If View doesn't have specified Filter, it will be first added to the View and then its settings will be overriden.
         ///     This behavior will persist even if View has a View Template applied which normally would prevent user from adding Filters without first
         ///     disabling or modifying the View Template.
