@@ -396,4 +396,7 @@
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
   </data>
+  <data name="AreaSchemeArgumentException" xml:space="preserve">
+    <value>You must supply an Area Scheme.</value>
+  </data>
 </root>
