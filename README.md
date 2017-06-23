@@ -32,7 +32,7 @@ in the correct Revit adding location for your application add a text file as fol
 </RevitAddIns>
 ```
 
-you want to point the addin button thats loaded into Revit to the VersionSelector.dll that is built during a build of  **DynamoRevit** and copied into the Dynamo/bin/Revitxxx/ folder.
+This .addin file will be placed in `ProgramData/Autodesk/Revit/Addins/<version>`, where `<version>` is the version of Revit for which the addin is built. Notice that the `Assembly` tag points to the VersionSelector.dll that is built during a build of  **Dynamo for Revit** and copied into the Dynamo/bin/Revitxxx/ folder.
 
 
 #### DynamoRevit requires a few dependencies
