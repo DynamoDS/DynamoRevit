@@ -79,8 +79,9 @@ namespace Revit.GeometryConversion
                 var convertedGeoms = InternalConvertToMany(solid);
                 return convertedGeoms.Select(x => { return Tag(Transform(x, transform), reference); });
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                DynamoServices.LogWarningMessageEvents.OnLogWarningMessage(e.Message);
                 return null;
             }
 
