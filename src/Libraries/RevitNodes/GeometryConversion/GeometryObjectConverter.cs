@@ -34,8 +34,9 @@ namespace Revit.GeometryConversion
                 protoGeom = InternalConvert(dynGeom);
                 return Tag(Transform(protoGeom, transform), reference);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                DynamoServices.LogWarningMessageEvents.OnLogWarningMessage(Properties.Resources.GeometryConversionFailure + e.Message);
                 return null;
             }
             finally
@@ -81,7 +82,7 @@ namespace Revit.GeometryConversion
             }
             catch (Exception e)
             {
-                DynamoServices.LogWarningMessageEvents.OnLogWarningMessage(e.Message);
+                DynamoServices.LogWarningMessageEvents.OnLogWarningMessage(Properties.Resources.GeometryConversionFailure + e.Message);
                 return null;
             }
 

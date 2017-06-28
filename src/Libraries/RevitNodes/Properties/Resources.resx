@@ -396,4 +396,7 @@
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
   </data>
+  <data name="GeometryConversionFailure" xml:space="preserve">
+    <value>One or more geometries have failed to convert due to this error: </value>
+  </data>
 </root>
