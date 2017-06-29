@@ -56,7 +56,7 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
 
-            var xyzNode = ViewModel.Model.CurrentWorkspace.Nodes.First(x => x.NickName == "Point.ByCoordinates");
+            var xyzNode = ViewModel.Model.CurrentWorkspace.Nodes.First(x => x.Name == "Point.ByCoordinates");
             Assert.IsNotNull(xyzNode);
             
             //test the shortest lacing
