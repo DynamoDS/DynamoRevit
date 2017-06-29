@@ -396,4 +396,7 @@
   <data name="CurtainSystemTypeNotFound" xml:space="preserve">
     <value>Curtain System Type not found.</value>
   </data>
+  <data name="GeometryConversionFailure" xml:space="preserve">
+    <value>One or more geometries have failed to convert due to this error: </value>
+  </data>
 </root>
