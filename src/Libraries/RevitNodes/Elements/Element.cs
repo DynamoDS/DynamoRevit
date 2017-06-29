@@ -452,6 +452,9 @@ namespace Revit.Elements
                     if (solid != null)
                     {
                         var geomObjs = solid.ConvertToMany();
+
+                        if (geomObjs == null) continue;
+
                         converted.AddRange(geomObjs.Where(x => { return x != null; }));
                     }
                 }
