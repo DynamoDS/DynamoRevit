@@ -24,6 +24,7 @@ using Dynamo.Models;
 using Dynamo.Scheduler;
 using Dynamo.Updates;
 using Dynamo.ViewModels;
+using Dynamo.Wpf.Interfaces;
 using DynamoInstallDetective;
 using Greg.AuthProviders;
 using Microsoft.Win32;
@@ -189,6 +190,7 @@ namespace Dynamo.Applications
         private static RevitDynamoModel revitDynamoModel;
         private static bool handledCrash;
         private static List<Exception> preLoadExceptions;
+        private static Action shutdownHandler;
 
         /// <summary>
         /// The modelState tels us if the RevitDynamoModel was started and if has the
@@ -477,8 +479,55 @@ namespace Dynamo.Applications
 
             dynamoView.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
             dynamoView.Closed += OnDynamoViewClosed;
+            dynamoView.Loaded += (o, e) => UpdateLibraryLayoutSpec();
 
             return dynamoView;
+        }
+
+        /// <summary>
+        /// Updates the Libarary Layout spec to include layout for Revit nodes. 
+        /// The Revit layout spec is embeded as resource "LayoutSpecs.json".
+        /// </summary>
+        private static void UpdateLibraryLayoutSpec()
+        {
+            //Get the library view customization service to update spec
+            var customization = revitDynamoModel.ExtensionManager.Service<ILibraryViewCustomization>();
+            if (customization == null) return;
+
+            if(shutdownHandler == null && extCommandData != null)
+            {
+                //Make sure to notify customization for application closing, so that 
+                //the CEF can be shutdown for clean Revit exit
+                shutdownHandler = () => customization.OnAppShutdown();
+                extCommandData.Application.ApplicationClosing += (o, _) => shutdownHandler();
+            }
+
+            //Register the icon resource
+            customization.RegisterResourceStream("/icons/Category.Revit.svg", 
+                GetResourceStream("Dynamo.Applications.Resources.Category.Revit.svg"));
+
+            //Read the revitspec from the resource stream
+            LayoutSpecification revitspec;
+            using (Stream stream = GetResourceStream("Dynamo.Applications.Resources.LayoutSpecs.json"))
+            {
+                revitspec = LayoutSpecification.FromJSONStream(stream);
+            }
+
+            //The revitspec should have only one section, add all its child elements to the customization
+            var elements = revitspec.sections.First().childElements;
+            customization.AddElements(elements); //add all the elements to default section
+        }
+
+        /// <summary>
+        /// Reads the embeded resource stream by given name
+        /// </summary>
+        /// <param name="resource">Fully qualified name of the embeded resource.</param>
+        /// <returns>The resource Stream if successful else null</returns>
+        private static Stream GetResourceStream(string resource)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var stream = assembly.GetManifestResourceStream(resource);
+            return stream;
         }
 
         private static bool initializedCore;
