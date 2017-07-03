@@ -278,7 +278,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="name">Name of the Level to select.</param>
         /// <returns></returns>
-        public static Level ByName(string name)
+        public static Level GetByName(string name)
         {
             if (name == null)
             {

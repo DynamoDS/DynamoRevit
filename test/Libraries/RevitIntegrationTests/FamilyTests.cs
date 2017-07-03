@@ -304,7 +304,6 @@ namespace RevitSystemTests
             Assert.AreEqual(initialNumber, finalNumber);
         }
 
-
         [Test]
         [TestModel(@".\empty.rvt")]
         public void CreateFamilyTypeByGeometry()

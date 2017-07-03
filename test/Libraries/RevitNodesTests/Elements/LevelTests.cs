@@ -183,7 +183,7 @@ namespace RevitNodesTests.Elements
             var level = Level.ByElevation(elevation);
             Assert.IsNotNull(level);
 
-            var selected = Level.ByName(level.Name);
+            var selected = Level.GetByName(level.Name);
             Assert.IsNotNull(selected);
         }
 
@@ -191,8 +191,8 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\empty.rfa")]
         public void LevelByName_NullArgs()
         {
-            Assert.Throws(typeof(ArgumentNullException), () => Level.ByName(null));
-            Assert.Throws(typeof(Exception), () => Level.ByName("InvalidLevelName"));
+            Assert.Throws(typeof(ArgumentNullException), () => Level.GetByName(null));
+            Assert.Throws(typeof(Exception), () => Level.GetByName("InvalidLevelName"));
         }
     }
 }

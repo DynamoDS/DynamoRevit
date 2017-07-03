@@ -398,5 +398,7 @@
   </data>
   <data name="LevelByNameError" xml:space="preserve">
     <value>Level with specified Name doesn't exist in project.</value>
+  <data name="GeometryConversionFailure" xml:space="preserve">
+    <value>One or more geometries have failed to convert due to this error: </value>
   </data>
 </root>
