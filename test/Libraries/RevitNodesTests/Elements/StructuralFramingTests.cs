@@ -68,16 +68,8 @@ namespace RevitNodesTests.Elements
             Assert.NotNull(beam);
             var loc = beam.Location;
 
-            var pt = loc as Point;
-            if (pt != null)
-            {
-                Assert.NotNull(pt);
-            }
-
             var curve = loc as Curve;
-            if (curve == null) return;
-            Assert.NotNull(curve.StartPoint);
-            Assert.NotNull(curve.EndPoint);
+            Assert.IsNotNull(curve);
         }
 
         [Test, TestModel(@".\Empty.rvt")]
