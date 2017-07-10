@@ -1,28 +1,21 @@
 ﻿using System;
 using System.Linq;
-
 using Autodesk.Revit.DB;
-
 using NUnit.Framework;
-
 using Revit.GeometryConversion;
-
 using RevitTestServices;
-
 using RTF.Framework;
 using Revit.Elements.InternalUtilities;
-
 using Level = Revit.Elements.Level;
 
 namespace RevitNodesTests.Elements
 {
-
     [TestFixture]
     public class LevelTests : RevitNodeTestBase
     {
-        public static double InternalElevation(Revit.Elements.Level level)
+        public static double InternalElevation(Level level)
         {
-            return (level.InternalElement as Autodesk.Revit.DB.Level).Elevation;
+            return ((Autodesk.Revit.DB.Level)level.InternalElement).Elevation;
         }
 
         [Test]
@@ -30,8 +23,8 @@ namespace RevitNodesTests.Elements
         public void ByElevationAndName_ShouldProduceLevelAtCorrectElevation()
         {
             // construct the extrusion
-            var elevation = 100.0;
-            var name = "Ham";
+            const double elevation = 100.0;
+            const string name = "Ham";
             var level = Level.ByElevationAndName(elevation, name);
             Assert.NotNull(level);
 
@@ -43,14 +36,13 @@ namespace RevitNodesTests.Elements
             // without unit conversion
             InternalElevation(level)
                 .ShouldBeApproximately(elevation * UnitConverter.DynamoToHostFactor(UnitType.UT_Length));
-
         }
 
         [Test]
         [TestModel(@".\empty.rfa")]
         public void ByElevationAndName_NullArgument()
         {
-            var elevation = 100;
+            const int elevation = 100;
 
             Assert.Throws(typeof(ArgumentNullException), () => Level.ByElevationAndName(elevation, null));
         }
@@ -61,8 +53,8 @@ namespace RevitNodesTests.Elements
         {
             //Create a new level with the name of "Ham" and the
             //elevation of 100
-            var elevation = 100.0;
-            var name = "Old Level";
+            const double elevation = 100.0;
+            const string name = "Old Level";
             var level = Level.ByElevationAndName(elevation, name);
             Assert.NotNull(level);
 
@@ -83,7 +75,7 @@ namespace RevitNodesTests.Elements
 
             //Create a new level with a name of lowercase letters
             //and the same elevation
-            var name3 = "old level";
+            const string name3 = "old level";
             var level3 = Level.ByElevationAndName(elevation, name3);
             Assert.IsNotNull(level3);
 
@@ -91,7 +83,7 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(name3, level3.Name);
 
             //Create a new level with a totally different name
-            var name4 = "New level";
+            const string name4 = "New level";
             var level4 = Level.ByElevationAndName(elevation, name4);
             Assert.NotNull(level4);
 
@@ -103,7 +95,7 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\empty.rfa")]
         public void ByElevation_ShouldProduceLevelAtCorrectElevation()
         {
-            var elevation = 100.0;
+            const double elevation = 100.0;
             var level = Level.ByElevation(elevation);
             Assert.NotNull(level);
 
@@ -119,8 +111,8 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\empty.rfa")]
         public void ByLevelAndOffset_ValidArgs()
         {
-            var elevation = 100.0;
-            var offset = 100.0;
+            const double elevation = 100.0;
+            const double offset = 100.0;
             var level = Level.ByElevation(elevation);
 
             var level2 = Level.ByLevelAndOffset(level, offset);
@@ -138,7 +130,7 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\empty.rfa")]
         public void ByLevelAndOffset_NullArgument()
         {
-            var offset = 100;
+            const int offset = 100;
             Assert.Throws(typeof(ArgumentNullException), () => Level.ByLevelAndOffset(null, offset));
         }
 
@@ -146,9 +138,9 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\empty.rfa")]
         public void ByLevelOffsetAndName_ShouldProduceLevelAtCorrectElevation()
         {
-            var elevation = 100;
-            var offset = 100;
-            var name = "TortoiseTime";
+            const int elevation = 100;
+            const int offset = 100;
+            const string name = "TortoiseTime";
             var level = Level.ByElevation(elevation);
 
             var level2 = Level.ByLevelOffsetAndName(level, offset, name);
@@ -166,9 +158,9 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\empty.rfa")]
         public void ByLevelOffsetAndName_NullArgument()
         {
-            var elevation = 100;
-            var offset = 100;
-            var name = "Ham";
+            const int elevation = 100;
+            const int offset = 100;
+            const string name = "Ham";
             var level = Level.ByElevation(elevation);
 
             Assert.Throws(typeof(ArgumentNullException), () => Level.ByLevelOffsetAndName(null, offset, name));
@@ -182,7 +174,26 @@ namespace RevitNodesTests.Elements
             var levels = ElementQueries.GetAllLevels();
             Assert.AreEqual(levels.Count(), 1.0);
         }
-    }
 
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void LevelByName_ValidArgs()
+        {
+            const double elevation = 100;
+            var level = Level.ByElevation(elevation);
+            Assert.IsNotNull(level);
+
+            var selected = Level.GetByName(level.Name);
+            Assert.IsNotNull(selected);
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void LevelByName_NullArgs()
+        {
+            Assert.Throws(typeof(ArgumentNullException), () => Level.GetByName(null));
+            Assert.Throws(typeof(Exception), () => Level.GetByName("InvalidLevelName"));
+        }
+    }
 }
 
