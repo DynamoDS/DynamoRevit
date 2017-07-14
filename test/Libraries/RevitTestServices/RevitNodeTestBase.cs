@@ -43,8 +43,8 @@ namespace RevitTestServices
 
         protected override TestSessionConfiguration GetTestSessionConfiguration()
         {
-            var asmDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            return new TestSessionConfiguration(Path.GetFullPath(asmDir + @"\..\"), asmDir);
+            //var asmDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            return new TestSessionConfiguration(Dynamo.Applications.DynamoRevitApp.DynamoCorePath);
         }
 
         private static void SetupTransactionManager()
