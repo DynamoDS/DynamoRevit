@@ -34,31 +34,15 @@ namespace Revit.GeometryConversion
                 protoGeom = InternalConvert(dynGeom);
                 return Tag(Transform(protoGeom, transform), reference);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                DynamoServices.LogWarningMessageEvents.OnLogWarningMessage(Properties.Resources.GeometryConversionFailure + e.Message);
                 return null;
             }
             finally
             {
                 // Dispose the temporary geometry that has been transformed.
-                if (protoGeom != null && transform != null)
-                {
-                    if (protoGeom is Autodesk.DesignScript.Geometry.Geometry)
-                    {
-                        protoGeom.Dispose();
-                    }
-                    else if (protoGeom is IEnumerable<Autodesk.DesignScript.Geometry.Geometry>)
-                    {
-                        var geoms = protoGeom as IEnumerable<Autodesk.DesignScript.Geometry.Geometry>;
-                        foreach (var g in geoms)
-                        {
-                            if (g != null)
-                            {
-                                g.Dispose();
-                            }
-                        }
-                    }
-                }
+                DisposeGeometry(protoGeom, transform);
             }
         }
 
@@ -69,21 +53,27 @@ namespace Revit.GeometryConversion
         /// <param name="reference"></param>
         /// <param name="transform"></param>
         /// <returns></returns>
-        public static IEnumerable<object> ConvertToMany(this Autodesk.Revit.DB.Solid solid, Autodesk.Revit.DB.Reference reference = null,
-            Autodesk.DesignScript.Geometry.CoordinateSystem transform = null)
+        public static IEnumerable<object> ConvertToMany(this Autodesk.Revit.DB.Solid solid, Reference reference = null,
+            CoordinateSystem transform = null)
         {
             if (solid == null) return null;
 
+            IEnumerable<Geometry> convertedGeoms = null;
             try
             {
-                var convertedGeoms = InternalConvertToMany(solid);
-                return convertedGeoms.Select(x => { return Tag(Transform(x, transform), reference); });
+                convertedGeoms = InternalConvertToMany(solid);
+                return convertedGeoms.Select(x => Tag(Transform(x, transform), reference));
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                DynamoServices.LogWarningMessageEvents.OnLogWarningMessage(Properties.Resources.GeometryConversionFailure + e.Message);
                 return null;
             }
-
+            finally
+            {
+                // Dispose the temporary geometry that has been transformed.
+                DisposeGeometry(convertedGeoms, transform);
+            }
         }
 
         #region Tagging
@@ -104,7 +94,28 @@ namespace Revit.GeometryConversion
         {
             return geom;
         }
-        
+
+        private static void DisposeGeometry(dynamic protoGeom, CoordinateSystem transform)
+        {
+            if (protoGeom == null || transform == null) return;
+
+            if (protoGeom is Geometry)
+            {
+                protoGeom.Dispose();
+            }
+            else if (protoGeom is IEnumerable<Geometry>)
+            {
+                var geoms = protoGeom as IEnumerable<Geometry>;
+                foreach (var g in geoms)
+                {
+                    if (g != null)
+                    {
+                        g.Dispose();
+                    }
+                }
+            }
+        }
+
         private static Autodesk.DesignScript.Geometry.Curve Tag(Autodesk.DesignScript.Geometry.Curve curve,
             Autodesk.Revit.DB.Reference reference)
         {
