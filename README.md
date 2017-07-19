@@ -28,7 +28,13 @@ DynamoRevit requires an addin which instructs Revit to load the plugin on startu
 </AddIn>
 </RevitAddIns>
 ```
-This .addin file will be placed in `ProgramData/Autodesk/Revit/Addins/<version>`, where `<version>` is the version of Revit for which the addin is built. Notice that the `Assembly` tag points to the VersionSelector.dll that is built during a build of  **Dynamo for Revit** and copied into the Dynamo/bin/Revitxxx/ folder.
+This .addin file should be placed in one of the following locations:
+-  `ProgramData/Autodesk/Revit/Addins/<version>`
+-  `Users/<user>/AppData/Roaming/Autodesk/Revit/Addins/<version>`
+-  `ProgramFiles/Autodesk/Revit <version>/AddIns`
+
+where `<user>` is the user who will be using the addin and `<version>` is the version of Revit for which the addin is built. Notice that the `Assembly` tag points to the VersionSelector.dll that is built during a build of  **Dynamo for Revit** and copied into the Dynamo/bin/Revitxxx/ folder.
+
 
 
 #### Dynamo for Revit requires a few dependencies
