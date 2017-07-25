@@ -256,14 +256,7 @@ namespace RevitTestServices
 
         protected override TestSessionConfiguration GetTestSessionConfiguration()
         {
-            // Create a remote test config option specifying a core path
-            // one directory above the executing assembly. If the core path is not
-            // specified in the config, or the config is not present, it is assumed
-            // that the executing assembly's directory will be a Revit sub-folder, so
-            // we need to set core to the parent directory.
-
-            var asmDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            return new TestSessionConfiguration(Path.GetFullPath(asmDir + @"\..\"), asmDir);
+            return new TestSessionConfiguration(Dynamo.Applications.DynamoRevitApp.DynamoCorePath);
         }
 
         protected void OpenSampleDefinition(string relativeFilePath)
