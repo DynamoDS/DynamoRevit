@@ -296,7 +296,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            Assert.AreEqual(8, ViewModel.Model.CurrentWorkspace.Nodes.Count);
+            Assert.AreEqual(8, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(9, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check CurveByPoints.ByReferencePoints

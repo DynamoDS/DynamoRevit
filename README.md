@@ -12,6 +12,14 @@ git clone https://github.com/DynamoDS/DynamoRevit.git
 - Open DynamoRevit.2013.sln in Visual Studio, and select a build confiuration (Debug | Release)
 - Build
 
+After DynamoRevit is built, you will notice that there is a `Dynamo.config` file in DynamoRevit\bin\AnyCPU\Debug[Or Release]. With this file you can specify which DynamoCore you want to run with the DynamoRevit built.
+
+For example, if you specify
+```
+<add key="DynamoRuntime" value="D:\Dynamo\bin\AnyCPU\Debug"/>
+```
+you will run DynamoRevit with the DynamoCore at `D:\Dynamo\bin\AnyCPU\Debug`. This is especially useful when you want to test the DynamoRevit built with different flavors of DynamoCore. Or you are using RTF to test a built version of DynamoRevit.
+
 #### Creating an Addin
 DynamoRevit requires an addin which instructs Revit to load the plugin on startup. The Dynamo for Revit installer takes care of building an addin for use on the end user's machine. For development, you'll have to create an addin manually. A DynamoRevit addin would look like this:
 
@@ -28,6 +36,24 @@ DynamoRevit requires an addin which instructs Revit to load the plugin on startu
 </AddIn>
 </RevitAddIns>
 ```
+
+or
+
+```
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+<AddIn Type="Application">
+<Name>Dynamo For Revit</Name>
+<Assembly>"D:\DynamoRevit\bin\AnyCPU\Debug\Revit_2017\DynamoRevitDS.dll"</Assembly>
+<AddInId>8D83C886-B739-4ACD-A9DB-1BC78F315B2B</AddInId>
+<FullClassName>Dynamo.Applications.DynamoRevitApp</FullClassName>
+<VendorId>ADSK</VendorId>
+<VendorDescription>Dynamo</VendorDescription>
+</AddIn>
+</RevitAd
+```
+These two addin files are mostly same but the second one specifies which version of DynamoRevit you want to load with Revit without going through version selector at all. This could be useful sometimes when you have multiple versions of DynamoRevit built or installed, thus you want to be more specific which one you are testing against.
+
 This .addin file should be placed in one of the following locations:
 -  `ProgramData/Autodesk/Revit/Addins/<version>`
 -  `Users/<user>/AppData/Roaming/Autodesk/Revit/Addins/<version>`
