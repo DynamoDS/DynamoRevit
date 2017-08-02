@@ -844,6 +844,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Must supply more than 0 views.
+        /// </summary>
+        internal static string Sheet_NoViewsError {
+            get {
+                return ResourceManager.GetString("Sheet_NoViewsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Revit face with the corresponding tag could not be found..
         /// </summary>
         internal static string Tag_Lookup_Error {

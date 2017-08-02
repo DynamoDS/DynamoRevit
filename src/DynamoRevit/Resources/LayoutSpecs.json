@@ -1,0 +1,531 @@
+{
+  "sections": [
+    {
+      "text": "default",
+      "iconUrl": "",
+      "elementType": "section",
+      "showHeader": false,
+      "include": [ ],
+      "childElements": [
+        {
+          "text": "Revit",
+          "iconUrl": "/icons/Category.Revit.svg",
+          "elementType": "category",
+          "include": [ ],
+          "childElements": [
+            {
+              "text": "Analyze",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Analysis.Analysis",
+                  "inclusive": false
+                },
+                {
+                  "path": "SimpleRaaS.Analyze",
+                  "inclusive": false
+                },
+                {
+                  "path": "Analyze.Render"
+                },
+                {
+                  "path": "RevitNodes.Revit.AnalysisDisplay",
+                  "inclusive": false
+                }
+              ],
+              "childElements": [
+                {
+                  "text": "SiteLocation",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "Analyze.SiteLocation"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Selection",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Revit.Selection",
+                  "inclusive": false
+                }
+              ]
+            },
+            {
+              "text": "Application",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "RevitNodes.Revit.Application.Document"
+                }
+              ]
+            },
+            {
+              "text": "Elements",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "RevitNodes.Revit.Elements.AdaptiveComponent"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Category"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Coordinates"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.CurtainPanel"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.CurtainSystem"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.CurtainSystemType"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.CurveByPoints"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.CurveElement"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.DetailCurve"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Dimension"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.DimensionType"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.DividedSurface"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Element"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.FailureMessage"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Family"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.FamilyInstance"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.FamilyType"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.FilledRegion"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.FilledRegionType"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Floor"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.FloorType"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Form"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.GlobalParameter"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Grid"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.ImportInstance"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Level"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Material"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.ModelCurve"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.ModelText"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.ModelTextType"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Mullion"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.ReferencePlane"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.ReferencePoint"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.RevisionCloud"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Roof"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.RoofType"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Room"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.SketchPlane"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.StructuralFraming"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.StructuralType"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.SunSettings"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Tag"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.TextNote"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.TextNoteType"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Topography"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.WallType"
+                }
+              ],
+              "childElements": [
+                {
+                  "text": "DirectShape",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "RevitNodes.Revit.Elements.DirectShape",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.Elements.DirectShape",
+                      "inclusive": false
+                    }
+                  ]
+                },
+                {
+                  "text": "DividedPath",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "RevitNodes.Revit.Elements.DividedPath",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.Elements.DividedPath",
+                      "inclusive": false
+                    }
+                  ]
+                },
+                {
+                  "text": "FilledRegionType",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "Revit.Elements.FilledRegionType",
+                      "inclusive": false
+                    }
+                  ]
+                },
+                {
+                  "text": "FilledPatternElement",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "RevitNodes.Revit.Elements.FillPatternElement",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.Elements.FillPatternElement"
+                    }
+                  ]
+                },
+                {
+                  "text": "LinePatternElement",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "RevitNodes.Revit.Elements.LinePatternElement",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.Elements.LinePatternElement",
+                      "inclusive": false
+                    }
+                  ]
+                },
+                {
+                  "text": "Parameter",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "RevitNodes.Revit.Elements.Parameter",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.Elements.Parameter",
+                      "inclusive": false
+                    }
+                  ]
+                },
+                {
+                  "text": "PerformanceAdviserRule",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "RevitNodes.Revit.Elements.PerformanceAdviserRule",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.Elements.PerformanceAdviserRule",
+                      "inclusive": false
+                    }
+                  ]
+                },
+                {
+                  "text": "Phase",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "RevitNodes.Revit.Elements.Phase",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.Elements.Phase",
+                      "inclusive": false
+                    }
+                  ]
+                },
+                {
+                  "text": "Revision",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "RevitNodes.Revit.Elements.Revision",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.Elements.Revision",
+                      "inclusive": false
+                    }
+                  ]
+                },
+                {
+                  "text": "Text",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "RevitNodes.Revit.Elements.Text",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.Elements.Text",
+                      "inclusive": false
+                    }
+                  ]
+                },
+                {
+                  "text": "Wall",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "RevitNodes.Revit.Elements.Wall",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.Elements.Wall",
+                      "inclusive": false
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "Filter",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "RevitNodes.Revit.Filter.FilterRule"
+                },
+                {
+                  "path": "RevitNodes.Revit.Filter.ParameterFilterElement"
+                }
+              ],
+              "childElements": [
+                {
+                  "text": "OverrideGraphicSettings",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "Revit.Filter.OverrideGraphicSettings.Detail Level"
+                    },
+                    {
+                      "path": "RevitNodes.Revit.Filter.OverrideGraphicSettings.ByProperties"
+                    }
+                  ]
+                },
+                {
+                  "text": "RuleType",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "Revit.Filter.RuleType.Select Rule Type"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "References",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "RevitNodes.Revit.References",
+                  "inclusive": false
+                }
+              ]
+            },
+            {
+              "text": "Schedules",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "RevitNodes.Revit.Schedules",
+                  "inclusive": false
+                }
+              ]
+            },
+            {
+              "text": "Transaction",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "RevitNodes.Revit.Transaction",
+                  "inclusive": false
+                }
+              ]
+            },
+            {
+              "text": "Views",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "RevitNodes.Revit.Elements.Views.AxonometricView"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Views.CeilingPlanView"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Views.DraftingView"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Views.FloorPlanView"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Views.PerspectiveView"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Views.SectionView"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Views.Sheet"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Views.StructuralPlanView"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Views.View3D"
+                }
+              ],
+              "childElements": [
+                {
+                  "text": "ScheduleView",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "RevitNodes.Revit.Elements.Views.ScheduleView",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.Views.ScheduleView",
+                      "inclusive": false
+                    }
+                  ]
+                },
+                {
+                  "text": "View",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "RevitNodes.Revit.Elements.Views.View",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.View.All Elements In Active View",
+                      "inclusive": false
+                    }
+                  ]
+                },
+                {
+                  "text": "SunSettings",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "Revit.View.SunSettings",
+                      "inclusive": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
