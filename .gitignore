@@ -216,6 +216,8 @@ pip-log.txt
 .mr.developer.cfg
 src/AssemblySharedInfoGenerator/AssemblySharedInfo.cs
 test/Libraries/RevitIntegrationTests/RevitTestConfiguration.xml
+test/**/*.txt
+test/**/*.addin
 
 # Icon resources
 /src/DynamoRevitIcons/*.resources

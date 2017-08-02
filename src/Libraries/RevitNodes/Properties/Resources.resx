@@ -399,4 +399,7 @@
   <data name="GeometryConversionFailure" xml:space="preserve">
     <value>One or more geometries have failed to convert due to this error: </value>
   </data>
+  <data name="Sheet_NoViewsError" xml:space="preserve">
+    <value>Must supply more than 0 views</value>
+  </data>
 </root>

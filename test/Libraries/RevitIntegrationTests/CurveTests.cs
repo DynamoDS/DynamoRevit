@@ -280,5 +280,30 @@ namespace RevitSystemTests
             Assert.IsNotNull(ellipseArc);
 
         }
+
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void CurvebyPoints_ByReferencePoints()
+        {
+            // This test is for testing the reference defect in
+            //http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-6710
+            // check whether CurveByPoints.ByReferencePoints does work.
+            string samplePath = Path.Combine(workingDirectory, @".\Curve\CurvebyPoints_ByReferencePoints.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            Assert.AreEqual(8, ViewModel.Model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(9, ViewModel.Model.CurrentWorkspace.Connectors.Count());
+
+            //check CurveByPoints.ByReferencePoints
+            var curveByPointsID = "94af7a17-0961-496a-86f7-53b458bafb58";
+            var curveByPoints = GetPreviewValue(curveByPointsID) as Revit.Elements.CurveByPoints;
+            Assert.IsNotNull(curveByPoints);
+        }
+
     }
 }
