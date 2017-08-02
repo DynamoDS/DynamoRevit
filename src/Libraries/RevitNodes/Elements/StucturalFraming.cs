@@ -247,17 +247,28 @@ namespace Revit.Elements
         /// <summary>
         /// Gets curve geometry from location of the specified structural element
         /// </summary>
-        new public Autodesk.DesignScript.Geometry.Curve Location
+        public new Autodesk.DesignScript.Geometry.Geometry Location
         {
             get
             {
-                var location = this.InternalFamilyInstance.Location;
-                var crv = location as LocationCurve;
-                if (null != crv && null != crv.Curve)
-                    return crv.Curve.ToProtoType();
+                var location = InternalFamilyInstance.Location;
+
+                var curve = location as LocationCurve;
+                if (curve != null)
+                {
+                    return curve.Curve.ToProtoType();
+                }
+
+                var point = location as LocationPoint;
+                if (point != null)
+                {
+                    return point.Point.ToPoint();
+                }
+
                 throw new Exception(Properties.Resources.InvalidElementLocation);
             }
         }
+
         /// <summary>
         /// Gets family type from the specified structural element
         /// </summary>
