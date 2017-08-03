@@ -305,7 +305,7 @@ namespace RevitSystemTests
         }
 
 
-        [Test]
+        [Test, Category("Failure")]
         [TestModel(@".\empty.rvt")]
         public void CreateFamilyTypeByGeometry()
         {
