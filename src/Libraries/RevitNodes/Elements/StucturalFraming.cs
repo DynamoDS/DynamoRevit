@@ -299,22 +299,22 @@ namespace Revit.Elements
         {
             if (curve == null)
             {
-                throw new ArgumentNullException(nameof(curve));
+                throw new ArgumentNullException("curve");
             }
 
             if (level == null)
             {
-                throw new ArgumentNullException(nameof(level));
+                throw new ArgumentNullException("level");
             }
 
             if (upVector == null)
             {
-                throw new ArgumentNullException(nameof(upVector));
+                throw new ArgumentNullException("upVector");
             }
 
             if (structuralFramingType == null)
             {
-                throw new ArgumentNullException(nameof(structuralFramingType));
+                throw new ArgumentNullException("structuralFramingType");
             }            
 
             return new StructuralFraming(curve.ToRevitType(), upVector.ToXyz(), level.InternalLevel,
@@ -332,17 +332,17 @@ namespace Revit.Elements
         {
             if (curve == null)
             {
-                throw new ArgumentNullException(nameof(curve));
+                throw new ArgumentNullException("curve");
             }
 
             if (level == null)
             {
-                throw new ArgumentNullException(nameof(level));
+                throw new ArgumentNullException("level");
             }
 
             if (structuralFramingType == null)
             {
-                throw new ArgumentNullException(nameof(structuralFramingType));
+                throw new ArgumentNullException("structuralFramingType");
             }
 
             return new StructuralFraming(curve.ToRevitType(), level.InternalLevel, Autodesk.Revit.DB.Structure.StructuralType.Beam, structuralFramingType.InternalFamilySymbol);
@@ -359,17 +359,17 @@ namespace Revit.Elements
         {
             if (curve == null)
             {
-                throw new ArgumentNullException(nameof(curve));
+                throw new ArgumentNullException("curve");
             }
 
             if (level == null)
             {
-                throw new ArgumentNullException(nameof(level));
+                throw new ArgumentNullException("level");
             }
 
             if (structuralFramingType == null)
             {
-                throw new ArgumentNullException(nameof(structuralFramingType));
+                throw new ArgumentNullException("structuralFramingType");
             }
 
             return new StructuralFraming(curve.ToRevitType(), level.InternalLevel, Autodesk.Revit.DB.Structure.StructuralType.Brace, structuralFramingType.InternalFamilySymbol);
@@ -387,17 +387,17 @@ namespace Revit.Elements
         {
             if (curve == null)
             {
-                throw new ArgumentNullException(nameof(curve));
+                throw new ArgumentNullException("curve");
             }
 
             if (level == null)
             {
-                throw new ArgumentNullException(nameof(level));
+                throw new ArgumentNullException("level");
             }
 
             if (structuralColumnType == null)
             {
-                throw new ArgumentNullException(nameof(structuralColumnType));
+                throw new ArgumentNullException("structuralColumnType");
             }
 
             var start = curve.PointAtParameter(0);

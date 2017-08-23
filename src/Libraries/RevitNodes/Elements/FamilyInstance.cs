@@ -309,12 +309,12 @@ namespace Revit.Elements
         {
             if (familyType == null)
             {
-                throw new ArgumentNullException(nameof(familyType));
+                throw new ArgumentNullException("familyType");
             } 
             
             if (point == null)
             {
-                throw new ArgumentNullException(nameof(point));
+                throw new ArgumentNullException("point");
             }
 
             return new FamilyInstance(familyType.InternalFamilySymbol, point.ToXyz());
@@ -334,15 +334,15 @@ namespace Revit.Elements
         {
             if (familyType == null)
             {
-                throw new ArgumentNullException(nameof(familyType));
+                throw new ArgumentNullException("familyType");
             }
             if (face == null)
             {
-                throw new ArgumentNullException(nameof(face));
+                throw new ArgumentNullException("face");
             }
             if (line == null)
             {
-                throw new ArgumentNullException(nameof(line));
+                throw new ArgumentNullException("line");
             }
             var reference = ElementFaceReference.TryGetFaceReference(face);
 
@@ -365,19 +365,19 @@ namespace Revit.Elements
         {
             if (familyType == null)
             {
-                throw new ArgumentNullException(nameof(familyType));
+                throw new ArgumentNullException("familyType");
             }
             if (face == null)
             {
-                throw new ArgumentNullException(nameof(face));
+                throw new ArgumentNullException("face");
             }
             if (location == null)
             {
-                throw new ArgumentNullException(nameof(location));
+                throw new ArgumentNullException("location");
             }
             if (referenceDirection == null)
             {
-                throw new ArgumentNullException(nameof(referenceDirection));
+                throw new ArgumentNullException("referenceDirection");
             }
             var reference = ElementFaceReference.TryGetFaceReference(face);
 
@@ -397,7 +397,7 @@ namespace Revit.Elements
         {
             if (familyType == null)
             {
-                throw new ArgumentNullException(nameof(familyType));
+                throw new ArgumentNullException("familyType");
             }
 
             var pt = Point.ByCoordinates(x, y, z);
@@ -416,7 +416,7 @@ namespace Revit.Elements
         {
             if (familyType == null)
             {
-                throw new ArgumentNullException(nameof(familyType));
+                throw new ArgumentNullException("familyType");
             }
 
             return new FamilyInstance(familyType.InternalFamilySymbol, point.ToXyz(), level.InternalLevel);
@@ -434,7 +434,7 @@ namespace Revit.Elements
         {
             if (familyType == null)
             {
-                throw new ArgumentNullException(nameof(familyType));
+                throw new ArgumentNullException("familyType");
             }
 
             return DocumentManager.Instance
@@ -523,7 +523,7 @@ namespace Revit.Elements
         {
             if (this == null)
             {
-                throw new ArgumentNullException(nameof(degree));
+                throw new ArgumentNullException("degree");
             }
 
             var oldTransform = InternalGetTransform();

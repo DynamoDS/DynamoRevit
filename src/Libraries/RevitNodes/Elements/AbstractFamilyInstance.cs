@@ -83,7 +83,7 @@ namespace Revit.Elements
                 DocumentManager.Regenerate();
                 var pos = InternalFamilyInstance.Location as Autodesk.Revit.DB.LocationPoint;
                 TransactionManager.Instance.TransactionTaskDone();
-                return pos?.Point.ToPoint();
+                return pos != null ? pos.Point.ToPoint() : null;
             }
         }
 
