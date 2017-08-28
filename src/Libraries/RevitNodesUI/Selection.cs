@@ -37,6 +37,8 @@ using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
 using RevitServices.Transactions;
 
+using Newtonsoft.Json;
+
 namespace Dynamo.Nodes
 {
 
@@ -158,6 +160,16 @@ namespace Dynamo.Nodes
         protected RevitSelection(SelectionType selectionType,
             SelectionObjectType selectionObjectType, string message, string prefix)
             : base(selectionType, selectionObjectType, message, prefix)
+        {
+            RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
+        }
+
+        [JsonConstructor]
+        public RevitSelection(SelectionType selectionType,
+            SelectionObjectType selectionObjectType, string message, string prefix, List<string> selectionIdentifier,
+            IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(selectionType, selectionObjectType, message, prefix, selectionIdentifier, inPorts, outPorts)
         {
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
@@ -400,6 +412,12 @@ namespace Dynamo.Nodes
             SelectionObjectType selectionObjectType, string message, string prefix)
             : base(selectionType, selectionObjectType, message, prefix) { }
 
+        [JsonConstructor]
+        public ReferenceSelection(SelectionType selectionType,
+            SelectionObjectType selectionObjectType, string message, string prefix, List<string> selectionIdentifier,
+            IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(selectionType, selectionObjectType, message, prefix, selectionIdentifier, inPorts, outPorts) { }
+
         public override IModelSelectionHelper<Reference> SelectionHelper
         {
             get { return RevitReferenceSelectionHelper.Instance; }
@@ -581,6 +599,13 @@ namespace Dynamo.Nodes
                 SelectionObjectType.Face,
                 "Select a face.",
                 "Face of Element Id") { }
+        
+        [JsonConstructor]
+        public DSFaceSelection(SelectionType selectionType,
+            SelectionObjectType selectionObjectType, string message, string prefix, List<string> selectionIdentifier,
+            IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(selectionType, selectionObjectType, message, prefix, selectionIdentifier, inPorts, outPorts) {}
+            
     }
 
     [NodeName("Select Edge"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
