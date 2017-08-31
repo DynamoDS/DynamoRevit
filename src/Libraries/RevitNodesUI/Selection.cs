@@ -167,8 +167,8 @@ namespace Dynamo.Nodes
 
         [JsonConstructor]
         public RevitSelection(SelectionType selectionType,
-            SelectionObjectType selectionObjectType, string message, string prefix, 
-            List<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            SelectionObjectType selectionObjectType, string message, string prefix,
+            IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(selectionType, selectionObjectType, message, prefix, selectionIdentifier, inPorts, outPorts)
         {
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
@@ -266,8 +266,8 @@ namespace Dynamo.Nodes
 
         [JsonConstructor]
         protected ElementSelection(SelectionType selectionType,
-            SelectionObjectType selectionObjectType, string message, string prefix, 
-            List<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            SelectionObjectType selectionObjectType, string message, string prefix,
+            IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(selectionType, selectionObjectType, message, prefix, selectionIdentifier, inPorts, outPorts) { }
 
         
@@ -422,8 +422,8 @@ namespace Dynamo.Nodes
 
         [JsonConstructor]
         public ReferenceSelection(SelectionType selectionType,
-            SelectionObjectType selectionObjectType, string message, string prefix, List<string> selectionIdentifier,
-            IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            SelectionObjectType selectionObjectType, string message, string prefix,
+            IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(selectionType, selectionObjectType, message, prefix, selectionIdentifier, inPorts, outPorts) { }
 
         public override IModelSelectionHelper<Reference> SelectionHelper
@@ -585,7 +585,7 @@ namespace Dynamo.Nodes
                 "Analysis Results") { }
 
         [JsonConstructor]
-        public DSAnalysisResultSelection(List<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+        public DSAnalysisResultSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(
                   SelectionType.One, 
                   SelectionObjectType.None, 
@@ -608,7 +608,7 @@ namespace Dynamo.Nodes
                 "Element") { }
 
         [JsonConstructor]
-        public DSModelElementSelection(List<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+        public DSModelElementSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(
                 SelectionType.One,
                 SelectionObjectType.None,
@@ -631,7 +631,7 @@ namespace Dynamo.Nodes
                 "Face of Element Id") { }
         
         [JsonConstructor]
-        public DSFaceSelection(List<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+        public DSFaceSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(
                   SelectionType.One, 
                   SelectionObjectType.Face, 
@@ -654,7 +654,7 @@ namespace Dynamo.Nodes
                 "Edge of Element Id") { }
 
         [JsonConstructor]
-        public DSEdgeSelection(List<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+        public DSEdgeSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(
                 SelectionType.One,
                 SelectionObjectType.Edge,
@@ -677,7 +677,7 @@ namespace Dynamo.Nodes
                 "Point on Element") { }
 
         [JsonConstructor]
-        public DSPointOnElementSelection(List<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+        public DSPointOnElementSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(
                 SelectionType.One,
                 SelectionObjectType.PointOnFace,
@@ -749,7 +749,7 @@ namespace Dynamo.Nodes
                 "UV on Element") { }
 
         [JsonConstructor]
-        public DSUvOnElementSelection(List<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+        public DSUvOnElementSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(
                 SelectionType.One,
                 SelectionObjectType.PointOnFace,
@@ -822,7 +822,7 @@ namespace Dynamo.Nodes
                 "Elements") { }
 
         [JsonConstructor]
-        public DSDividedSurfaceFamiliesSelection(List<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+        public DSDividedSurfaceFamiliesSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(
                 SelectionType.One,
                 SelectionObjectType.None,
@@ -873,7 +873,7 @@ namespace Dynamo.Nodes
                 "Elements") { }
 
         [JsonConstructor]
-        public DSModelElementsSelection(List<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+        public DSModelElementsSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(
                 SelectionType.Many,
                 SelectionObjectType.None,
@@ -897,7 +897,7 @@ namespace Dynamo.Nodes
                 "Faces") { }
 
         [JsonConstructor]
-        public SelectFaces(List<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+        public SelectFaces(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(
                 SelectionType.Many,
                 SelectionObjectType.Face,
@@ -921,7 +921,7 @@ namespace Dynamo.Nodes
                 DSRevitNodesUI.Properties.Resources.SelectEdgesPrefix) { }
 
         [JsonConstructor]
-        public SelectEdges(List<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+        public SelectEdges(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(
                 SelectionType.Many,
                 SelectionObjectType.Edge,
