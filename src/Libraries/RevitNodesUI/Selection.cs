@@ -37,6 +37,8 @@ using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
 using RevitServices.Transactions;
 
+using Newtonsoft.Json;
+
 namespace Dynamo.Nodes
 {
 
@@ -163,6 +165,16 @@ namespace Dynamo.Nodes
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
+        [JsonConstructor]
+        public RevitSelection(SelectionType selectionType,
+            SelectionObjectType selectionObjectType, string message, string prefix,
+            IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(selectionType, selectionObjectType, message, prefix, selectionIdentifier, inPorts, outPorts)
+        {
+            RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
+        }
+
         #endregion
 
         #region ElementSync
@@ -251,6 +263,14 @@ namespace Dynamo.Nodes
         protected ElementSelection(SelectionType selectionType,
             SelectionObjectType selectionObjectType, string message, string prefix)
             : base(selectionType, selectionObjectType, message, prefix) { }
+
+        [JsonConstructor]
+        protected ElementSelection(SelectionType selectionType,
+            SelectionObjectType selectionObjectType, string message, string prefix,
+            IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(selectionType, selectionObjectType, message, prefix, selectionIdentifier, inPorts, outPorts) { }
+
+        
 
         public override IModelSelectionHelper<TSelection> SelectionHelper
         {
@@ -399,6 +419,12 @@ namespace Dynamo.Nodes
         protected ReferenceSelection(SelectionType selectionType,
             SelectionObjectType selectionObjectType, string message, string prefix)
             : base(selectionType, selectionObjectType, message, prefix) { }
+
+        [JsonConstructor]
+        public ReferenceSelection(SelectionType selectionType,
+            SelectionObjectType selectionObjectType, string message, string prefix,
+            IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(selectionType, selectionObjectType, message, prefix, selectionIdentifier, inPorts, outPorts) { }
 
         public override IModelSelectionHelper<Reference> SelectionHelper
         {
@@ -557,6 +583,17 @@ namespace Dynamo.Nodes
                 SelectionObjectType.None,
                 "Select an analysis result.",
                 "Analysis Results") { }
+
+        [JsonConstructor]
+        public DSAnalysisResultSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(
+                  SelectionType.One, 
+                  SelectionObjectType.None, 
+                  "Select an analysis result.", 
+                  "Analysis Results", 
+                  selectionIdentifier, 
+                  inPorts, 
+                  outPorts) { }
     }
 
     [NodeName("Select Model Element"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
@@ -569,6 +606,17 @@ namespace Dynamo.Nodes
                 SelectionObjectType.None,
                 "Select Model Element",
                 "Element") { }
+
+        [JsonConstructor]
+        public DSModelElementSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.One,
+                SelectionObjectType.None,
+                "Select Model Element",
+                "Element",
+                selectionIdentifier,
+                inPorts,
+                outPorts) { }
     }
 
     [NodeName("Select Face"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
@@ -581,6 +629,17 @@ namespace Dynamo.Nodes
                 SelectionObjectType.Face,
                 "Select a face.",
                 "Face of Element Id") { }
+        
+        [JsonConstructor]
+        public DSFaceSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(
+                  SelectionType.One, 
+                  SelectionObjectType.Face, 
+                  "Select a face.", 
+                  "Face of Element Id", 
+                  selectionIdentifier, 
+                  inPorts, 
+                  outPorts) {}
     }
 
     [NodeName("Select Edge"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
@@ -593,6 +652,17 @@ namespace Dynamo.Nodes
                 SelectionObjectType.Edge,
                 "Select an edge.",
                 "Edge of Element Id") { }
+
+        [JsonConstructor]
+        public DSEdgeSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.One,
+                SelectionObjectType.Edge,
+                "Select an edge.",
+                "Edge of Element Id",
+                selectionIdentifier,
+                inPorts,
+                outPorts) { }
     }
 
     [NodeName("Select Point on Face"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
@@ -605,6 +675,17 @@ namespace Dynamo.Nodes
                 SelectionObjectType.PointOnFace,
                 "Select a point on a face.",
                 "Point on Element") { }
+
+        [JsonConstructor]
+        public DSPointOnElementSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.One,
+                SelectionObjectType.PointOnFace,
+                "Select a point on a face.",
+                "Point on Element",
+                selectionIdentifier,
+                inPorts,
+                outPorts) { }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(
             List<AssociativeNode> inputAstNodes)
@@ -666,6 +747,17 @@ namespace Dynamo.Nodes
                 SelectionObjectType.PointOnFace,
                 "Select a point on a face.",
                 "UV on Element") { }
+
+        [JsonConstructor]
+        public DSUvOnElementSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.One,
+                SelectionObjectType.PointOnFace,
+                "Select a point on a face.",
+                "UV on Element",
+                selectionIdentifier,
+                inPorts,
+                outPorts) { }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(
             List<AssociativeNode> inputAstNodes)
@@ -729,6 +821,17 @@ namespace Dynamo.Nodes
                 "Select a divided surface.",
                 "Elements") { }
 
+        [JsonConstructor]
+        public DSDividedSurfaceFamiliesSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.One,
+                SelectionObjectType.None,
+                "Select a divided surface.",
+                "Elements",
+                selectionIdentifier,
+                inPorts,
+                outPorts) { }
+
         // Set an update method. When the target object is modified in
         // Revit, this will cause the sub-elements to be modified.
         protected override IEnumerable<Element> ExtractSelectionResults(DividedSurface selection)
@@ -768,6 +871,18 @@ namespace Dynamo.Nodes
                 SelectionObjectType.None,
                 "Select elements.",
                 "Elements") { }
+
+        [JsonConstructor]
+        public DSModelElementsSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.Many,
+                SelectionObjectType.None,
+                "Select elements.",
+                "Elements",
+                selectionIdentifier,
+                inPorts,
+                outPorts)
+        { }
     }
 
     [NodeName("Select Faces"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
@@ -780,6 +895,18 @@ namespace Dynamo.Nodes
                 SelectionObjectType.Face,
                 "Select faces.",
                 "Faces") { }
+
+        [JsonConstructor]
+        public SelectFaces(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.Many,
+                SelectionObjectType.Face,
+                "Select faces.",
+                "Faces",
+                selectionIdentifier,
+                inPorts,
+                outPorts)
+        { }
     }
 
     [NodeName("Select Edges"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
@@ -792,6 +919,17 @@ namespace Dynamo.Nodes
                 SelectionObjectType.Edge,
                 DSRevitNodesUI.Properties.Resources.SelectEdgesDescription,
                 DSRevitNodesUI.Properties.Resources.SelectEdgesPrefix) { }
+
+        [JsonConstructor]
+        public SelectEdges(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.Many,
+                SelectionObjectType.Edge,
+                DSRevitNodesUI.Properties.Resources.SelectEdgesDescription,
+                DSRevitNodesUI.Properties.Resources.SelectEdgesPrefix,
+                selectionIdentifier,
+                inPorts,
+                outPorts) { }
     }
 
 }
