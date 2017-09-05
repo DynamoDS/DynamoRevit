@@ -377,6 +377,56 @@ namespace RevitSystemTests
             Assert.AreEqual(0, list.Count);
         }
 
+        [Test]
+        [Category("SmokeTests")]
+        [TestModel(@".\Selection\Selection.rfa")]
+        public void SelectionVerifyElementID()
+        {
+            // Open Xml graph
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectModelElement.dyn"));
+            RunCurrentModel();
+
+            // Expected identification values
+            const string expectedSelectionId = "d854cdd2-7ea0-4cc0-bd7b-18891f94b3ee-000082e3";
+            const string expectedUUID = "bce7e393-aba2-4136-80ad-5aa136e5c5bf";
+
+            // Select model element node
+            var modelElementNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<DSModelElementSelection>();
+            var elementSelectionId = modelElementNode.SelectionIdentifier.First();
+            var elementUUID = modelElementNode.GUID.ToString();
+
+            // Assert node exists and returns expected identifiers
+            Assert.NotNull(modelElementNode);
+            Assert.AreEqual(expectedSelectionId, elementSelectionId);
+            Assert.AreEqual(expectedUUID, elementUUID);
+    
+            // Save model in temp location
+            ViewModel.CurrentSpace.Save(Path.Combine(workingDirectory, @".\Selection\SelectModelElement_temp.dyn"));
+
+            // Close workspace
+            Assert.IsTrue(ViewModel.CloseHomeWorkspaceCommand.CanExecute(null));
+            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+
+            // Open Json temp file
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectModelElement_temp.dyn"));
+            RunCurrentModel();
+
+            // Repeat verifications
+            modelElementNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<DSModelElementSelection>();
+            elementSelectionId = modelElementNode.SelectionIdentifier.First();
+            elementUUID = modelElementNode.GUID.ToString();
+            Assert.NotNull(modelElementNode);
+            Assert.AreEqual(expectedSelectionId, elementSelectionId);
+            Assert.AreEqual(expectedUUID, elementUUID);
+
+            // Close workspace
+            Assert.IsTrue(ViewModel.CloseHomeWorkspaceCommand.CanExecute(null));
+            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+
+            // Delete temp file
+            File.Delete(Path.Combine(workingDirectory, @".\Selection\SelectionElementId_temp.dyn"));
+        }
+
         [Test, Category("SmokeTests"), TestModel(@".\Selection\SelectionSync.rvt")]
         public void SelectionInSyncWithDocumentOperations_Elements()
         {
