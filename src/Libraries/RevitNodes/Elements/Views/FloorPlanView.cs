@@ -71,7 +71,7 @@ namespace Revit.Elements.Views
         {
             if (level == null)
             {
-                throw new ArgumentNullException(nameof(level));
+                throw new ArgumentNullException("level");
             }
 
             return new FloorPlanView( level.InternalLevel );
@@ -91,7 +91,7 @@ namespace Revit.Elements.Views
         {
             if (plan == null)
             {
-                throw new ArgumentNullException(nameof(plan));
+                throw new ArgumentNullException("plan");
             }
 
             return new FloorPlanView(plan)

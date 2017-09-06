@@ -72,11 +72,11 @@ namespace Revit.Elements.Views
         {
             if (level == null)
             {
-                throw new ArgumentNullException(nameof(level));
+                throw new ArgumentNullException("level");
             }
             if (areaScheme == null)
             {
-                throw new ArgumentNullException(nameof(areaScheme));
+                throw new ArgumentNullException("level");
             }
 
             var scheme = areaScheme.InternalElement as Autodesk.Revit.DB.AreaScheme;
@@ -98,7 +98,7 @@ namespace Revit.Elements.Views
         {
             if (plan == null)
             {
-                throw new ArgumentNullException(nameof(plan));
+                throw new ArgumentNullException("plan");
             }
 
             return new AreaPlanView(plan)
