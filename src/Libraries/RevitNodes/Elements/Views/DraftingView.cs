@@ -82,7 +82,7 @@ namespace Revit.Elements.Views
 
             //rename the view
             if (!vd.Name.Equals(name))
-                vd.Name = View3D.CreateUniqueViewName(name);
+                vd.Name = AbstractView3D.CreateUniqueViewName(name);
 
             InternalSetDraftingView(vd);
 

@@ -15,7 +15,7 @@ namespace Revit.Elements.Views
     /// A Revit View3D
     /// </summary>
     [RegisterForTrace]
-    public class AxonometricView : View3D
+    public class AxonometricView : AbstractView3D
     {
         #region Private constructors
 
@@ -30,7 +30,7 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Private constructor
         /// </summary>
-        private AxonometricView(XYZ eye, XYZ target, BoundingBoxXYZ bbox, string name = DEFAULT_VIEW_NAME,
+        private AxonometricView(XYZ eye, XYZ target, BoundingBoxXYZ bbox, string name = DefaultViewName,
             bool isolate = false)
         {
             SafeInit(() => InitAxonometricView(eye, target, bbox, name, isolate));
@@ -39,7 +39,7 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Private constructor
         /// </summary>
-        private AxonometricView(XYZ eye, XYZ target, string name = DEFAULT_VIEW_NAME, Autodesk.Revit.DB.Element element = null, bool isolate = false)
+        private AxonometricView(XYZ eye, XYZ target, string name = DefaultViewName, Autodesk.Revit.DB.Element element = null, bool isolate = false)
         {
             SafeInit(() => InitAxonometricView(eye, target, name, element, isolate));
         }
@@ -59,7 +59,7 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Initialize an AxonometricView element
         /// </summary>
-        private void InitAxonometricView(XYZ eye, XYZ target, BoundingBoxXYZ bbox, string name = DEFAULT_VIEW_NAME, bool isolate = false)
+        private void InitAxonometricView(XYZ eye, XYZ target, BoundingBoxXYZ bbox, string name = DefaultViewName, bool isolate = false)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldEle =
@@ -91,7 +91,7 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Initialize an AxonometricView element
         /// </summary>
-        private void InitAxonometricView(XYZ eye, XYZ target, string name = DEFAULT_VIEW_NAME, Autodesk.Revit.DB.Element element = null, bool isolate = false)
+        private void InitAxonometricView(XYZ eye, XYZ target, string name = DefaultViewName, Autodesk.Revit.DB.Element element = null, bool isolate = false)
         {
             //Phase 1 - Check to see if the object exists and should be rebound
             var oldEle =
@@ -151,7 +151,7 @@ namespace Revit.Elements.Views
         public static AxonometricView ByEyePointAndTarget(
             Autodesk.DesignScript.Geometry.Point eyePoint,
             Autodesk.DesignScript.Geometry.Point target, 
-            string name = DEFAULT_VIEW_NAME)
+            string name = DefaultViewName)
         {
             if (eyePoint == null)
                 throw new ArgumentNullException("eyePoint");
@@ -161,7 +161,7 @@ namespace Revit.Elements.Views
 
             if (name == null)
             {
-                name = DEFAULT_VIEW_NAME;
+                name = DefaultViewName;
             }
 
             return ByEyePointTargetAndElement(eyePoint,
@@ -183,7 +183,7 @@ namespace Revit.Elements.Views
         public static AxonometricView ByEyePointTargetAndElement(
             Autodesk.DesignScript.Geometry.Point eyePoint, 
             Autodesk.DesignScript.Geometry.Point target,
-            string name = DEFAULT_VIEW_NAME, 
+            string name = DefaultViewName, 
             Element element = null, 
             bool isolateElement = false)
         {
@@ -195,7 +195,7 @@ namespace Revit.Elements.Views
 
             if (name == null)
             {
-                name = DEFAULT_VIEW_NAME;
+                name = DefaultViewName;
             }
 
             if (element == null)
@@ -233,7 +233,7 @@ namespace Revit.Elements.Views
         public static AxonometricView ByEyePointTargetAndBoundingBox(Autodesk.DesignScript.Geometry.Point eyePoint, 
             Autodesk.DesignScript.Geometry.Point target, 
             Autodesk.DesignScript.Geometry.BoundingBox boundingBox, 
-            string name = DEFAULT_VIEW_NAME, 
+            string name = DefaultViewName, 
             bool isolateElement = false)
         {
             if (boundingBox == null)
@@ -249,7 +249,7 @@ namespace Revit.Elements.Views
 
             if (name == null)
             {
-                name = DEFAULT_VIEW_NAME;
+                name = DefaultViewName;
             }
 
             return new AxonometricView(eyePoint.ToXyz(true), target.ToXyz(true), boundingBox.ToRevitType(true), name, isolateElement);
