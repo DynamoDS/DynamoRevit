@@ -29,7 +29,7 @@ namespace RevitNodesTests.Elements.Views
             var view = AreaPlanView.ByLevelAndAreaScheme(level, areaScheme);
       
             Assert.NotNull(view);
-            Assert.AreEqual(level.Id, view.InternalViewPlan.LevelId);
+            Assert.AreEqual(level.Id, view.InternalViewPlan.GenLevel.Id.IntegerValue);
         }
 
         [Test]
