@@ -52,7 +52,8 @@ namespace RevitNodesTests.Elements
             Assert.Throws(typeof(System.ArgumentNullException), () => FamilyType.ByFamilyAndName(null, "Turtle"));
         }
 
-        [Test]
+        //TODO: Turn this test on once template files are installed on CI machines
+        [Ignore]
         [TestModel(@".\empty.rvt")]
         public void ByGeometry_GoodArgs()
         {
@@ -61,7 +62,7 @@ namespace RevitNodesTests.Elements
                 Autodesk.DesignScript.Geometry.Point.ByCoordinates(100,100,100));
 
             string path = System.Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            path = System.IO.Path.Combine(path, @"Autodesk\RAC 2016\Family Templates\English\Metric Generic Model.rft");
+            path = System.IO.Path.Combine(path, @"Autodesk\RVT 2017\Family Templates\English\Metric Generic Model.rft");
 
             var type = FamilyType.ByGeometry(cube, "MyCube", Category.ByName("Mass"), path, Material.ByName("Poche"));
             Assert.NotNull(type);

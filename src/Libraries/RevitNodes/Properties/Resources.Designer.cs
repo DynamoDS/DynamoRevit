@@ -430,6 +430,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One or more geometries have failed to convert due to this error: .
+        /// </summary>
+        internal static string GeometryConversionFailure {
+            get {
+                return ResourceManager.GetString("GeometryConversionFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not get a geometry object from the current document using the provided reference.
         /// </summary>
         internal static string GeometryObjectReferenceFailure {
@@ -831,6 +840,15 @@ namespace Revit.Properties {
         internal static string ScheduleTypeArgumentException {
             get {
                 return ResourceManager.GetString("ScheduleTypeArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must supply more than 0 views.
+        /// </summary>
+        internal static string Sheet_NoViewsError {
+            get {
+                return ResourceManager.GetString("Sheet_NoViewsError", resourceCulture);
             }
         }
         
