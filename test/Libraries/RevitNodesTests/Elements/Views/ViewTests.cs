@@ -1,14 +1,11 @@
 ﻿using System.IO;
-
+using System.Linq;
 using Autodesk.DesignScript.Geometry;
-
 using NUnit.Framework;
-
 using Revit.Elements.Views;
-
 using RevitTestServices;
-
 using RTF.Framework;
+using RevitServices.Persistence;
 
 namespace RevitNodesTests.Elements.Views
 {
@@ -23,7 +20,7 @@ namespace RevitNodesTests.Elements.Views
             var tmp1 = Path.GetTempFileName();
 
             tmp1 = Path.ChangeExtension(tmp1, ".png");
-            var bmp = testView.ExportAsImage(tmp1);
+            testView.ExportAsImage(tmp1);
 
             var tmp1Info = new FileInfo(tmp1);
             Assert.Greater(tmp1Info.Length, 0);
@@ -48,6 +45,58 @@ namespace RevitNodesTests.Elements.Views
 
             return v;
         }
-        
+
+        [Test, TestModel(@".\ViewTemplateTests.rvt")]
+        public void GetViewTemplate()
+        {
+            var rView = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(Autodesk.Revit.DB.View))
+                .FirstOrDefault(x => x.Name == "ViewWithViewTemplate") as Autodesk.Revit.DB.ViewPlan;
+
+            var dView = FloorPlanView.FromExisting(rView, true);
+            Assert.NotNull(dView);
+
+            var viewTemplate = dView.ViewTemplate() as FloorPlanView;
+            Assert.NotNull(viewTemplate);
+        }
+
+        [Test, TestModel(@".\ViewTemplateTests.rvt")]
+        public void SetViewTemplate()
+        {
+            var rView = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(Autodesk.Revit.DB.View))
+                .FirstOrDefault(x => x.Name == "ViewWithoutViewTemplate") as Autodesk.Revit.DB.ViewPlan;
+
+            var dView = FloorPlanView.FromExisting(rView, true);
+            Assert.NotNull(dView);
+
+            var viewTemplate = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(Autodesk.Revit.DB.View))
+                .Cast<Autodesk.Revit.DB.ViewPlan>()
+                .FirstOrDefault(x => x.IsTemplate && x.Name == "Architectural Plan");
+
+            var dViewTemp = FloorPlanView.FromExisting(viewTemplate, true);
+            Assert.NotNull(dViewTemp);
+
+            dView.SetViewTemplate(dViewTemp);
+            var result = dView.ViewTemplate() as FloorPlanView;
+            Assert.NotNull(result);
+        }
+
+        [Test, TestModel(@".\ViewTemplateTests.rvt")]
+        public void RemoveViewTemplate()
+        {
+            var rView = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(Autodesk.Revit.DB.View))
+                .FirstOrDefault(x => x.Name == "ViewWithViewTemplate") as Autodesk.Revit.DB.ViewPlan;
+
+            var dView = FloorPlanView.FromExisting(rView, true);
+            Assert.NotNull(dView);
+
+            dView.RemoveViewTemplate();
+            var result = dView.ViewTemplate();
+            Assert.IsNull(result);
+        }
+
     }
 }

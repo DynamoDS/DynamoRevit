@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -228,12 +228,58 @@ namespace Revit.Elements.Views
         #region View Templates
 
         /// <summary>
-        ///     Checks if View is a View Template.
+        /// Checks if View is a View Template.
         /// </summary>
         /// <returns></returns>
         public bool IsViewTemplate()
         {
-            return this.InternalView.IsTemplate;
+            return InternalView.IsTemplate;
+        }
+
+        /// <summary>
+        /// Returns View Template applied to View or null.
+        /// </summary>
+        /// <returns name="view">View Template</returns>
+        public object ViewTemplate()
+        {
+            var id = InternalView.ViewTemplateId;
+            return id != ElementId.InvalidElementId
+                ? Application.Document.Current.InternalDocument.GetElement(id).ToDSType(true)
+                : null;
+        }
+
+        /// <summary>
+        /// Set View Template for the View.
+        /// </summary>
+        /// <param name="viewTemplate">View Template to apply to View.</param>
+        /// <returns name="view">View</returns>
+        public View SetViewTemplate(View viewTemplate)
+        {
+            if (InternalView.IsValidViewTemplate(viewTemplate.InternalElementId))
+            {
+                RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+                InternalView.ViewTemplateId = viewTemplate.InternalElementId;
+                RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+            }
+            else
+            {
+                throw new ArgumentException(Properties.Resources.ViewSetViewTemplateInvalidTemplate, nameof(viewTemplate));
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Remove View Template from the View.
+        /// </summary>
+        /// <returns name="view">View</returns>
+        public View RemoveViewTemplate()
+        {
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            var bip = InternalView.get_Parameter(BuiltInParameter.VIEW_TEMPLATE_FOR_SCHEDULE);
+            bip.Set(new ElementId(-1));
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
         }
 
         #endregion

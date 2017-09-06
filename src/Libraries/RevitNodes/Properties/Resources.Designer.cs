@@ -907,6 +907,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid View Template was used..
+        /// </summary>
+        internal static string ViewSetViewTemplateInvalidTemplate {
+            get {
+                return ResourceManager.GetString("ViewSetViewTemplateInvalidTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no WallType of the given name in the current Document..
         /// </summary>
         internal static string WallTypeNotFound {
