@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 using Autodesk.Revit.UI.Events;
 
@@ -28,6 +29,15 @@ namespace DSRevitNodesUI
 
             RegisterAllPorts();
 
+            RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
+            DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
+
+            DynamoRevitApp.AddIdleAction(() => CurrentUIApplicationOnViewActivated());
+        }
+
+        [JsonConstructor]
+        public SunSettings(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
             DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
 
