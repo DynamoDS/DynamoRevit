@@ -172,6 +172,8 @@ namespace Revit.Elements
                     return FloorPlanView.FromExisting(view, isRevitOwned);
                 case ViewType.EngineeringPlan:
                     return StructuralPlanView.FromExisting(view, isRevitOwned);
+                case ViewType.AreaPlan:
+                    return AreaPlanView.FromExisting(view, isRevitOwned);
                 default:
                     return UnknownElement.FromExisting(view, true);
             }
