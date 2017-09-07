@@ -91,7 +91,7 @@ namespace Revit.Elements.Views
         {
             if (plan == null)
             {
-                throw new ArgumentNullException("level");
+                throw new ArgumentNullException("plan");
             }
 
             return new FloorPlanView(plan)
