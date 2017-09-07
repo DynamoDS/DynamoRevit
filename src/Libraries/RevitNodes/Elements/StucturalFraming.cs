@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.Creation;
-using Autodesk.Revit.DB;
-
 using DynamoServices;
-
 using Revit.GeometryConversion;
-
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
@@ -191,21 +187,21 @@ namespace Revit.Elements
             //we do this by finding the angle between the z axis
             //and vector between the start of the beam and the target point
             //both projected onto the start plane of the beam.
-            var zAxis = new XYZ(0, 0, 1);
-            var yAxis = new XYZ(0, 1, 0);
+            var zAxis = new Autodesk.Revit.DB.XYZ(0, 0, 1);
+            var yAxis = new Autodesk.Revit.DB.XYZ(0, 1, 0);
 
             //flatten the beam line onto the XZ plane
             //using the start's z coordinate
             var start = curve.GetEndPoint(0);
             var end = curve.GetEndPoint(1);
-            var newEnd = new XYZ(end.X, end.Y, start.Z); //drop end point to plane
+            var newEnd = new Autodesk.Revit.DB.XYZ(end.X, end.Y, start.Z); //drop end point to plane
 
             //catch the case where the end is directly above
             //the start, creating a normal with zero length
             //in that case, use the Z axis
-            XYZ planeNormal = newEnd.IsAlmostEqualTo(start) ? zAxis : (newEnd - start).Normalize();
+            var planeNormal = newEnd.IsAlmostEqualTo(start) ? zAxis : (newEnd - start).Normalize();
 
-            double gamma = upVector.AngleOnPlaneTo(zAxis.IsAlmostEqualTo(planeNormal) ? yAxis : zAxis, planeNormal);
+            var gamma = upVector.AngleOnPlaneTo(zAxis.IsAlmostEqualTo(planeNormal) ? yAxis : zAxis, planeNormal);
 
             return new FamilyInstanceCreationData(curve, symbol, level, structuralType)
             {
@@ -232,8 +228,8 @@ namespace Revit.Elements
             // infinite loop. Check the framing's curve for similarity to the 
             // provided curve and update only if the two are different.
 
-            var locCurve = InternalFamilyInstance.Location as LocationCurve;
-            if (!CurveUtils.CurvesAreSimilar(locCurve.Curve, crv))
+            var locCurve = InternalFamilyInstance.Location as Autodesk.Revit.DB.LocationCurve;
+            if (locCurve != null && !CurveUtils.CurvesAreSimilar(locCurve.Curve, crv))
             {
                 locCurve.Curve = crv;
             }
@@ -247,12 +243,12 @@ namespace Revit.Elements
         /// <summary>
         /// Gets curve geometry from location of the specified structural element
         /// </summary>
-        new public Autodesk.DesignScript.Geometry.Curve Location
+        public new Autodesk.DesignScript.Geometry.Curve Location
         {
             get
             {
                 var location = this.InternalFamilyInstance.Location;
-                var crv = location as LocationCurve;
+                var crv = location as Autodesk.Revit.DB.LocationCurve;
                 if (null != crv && null != crv.Curve)
                     return crv.Curve.ToProtoType();
                 throw new Exception(Properties.Resources.InvalidElementLocation);
@@ -264,8 +260,21 @@ namespace Revit.Elements
         /// <search>
         /// symbol
         /// </search>
+        [Obsolete("Use Element.ElementType instead.")]
         public new FamilyType Type
         {    
+            // NOTE: Because AbstractFamilyInstance is not visible in the library
+            //       we redefine this method on FamilyInstance
+            get { return base.Type; }
+        }
+
+        // (Konrad) We had to add this call here because if we feed Structural Framing to
+        // FamilyInstance.GetType it tries to call StructuralFraming.GetType and that throws 
+        // an exception. These methods should not exist on either class, but rather on base Element.
+        [Obsolete("Use Element.ElementType instead.")]
+        [IsVisibleInDynamoLibrary(false)]
+        public new FamilyType GetType
+        {
             // NOTE: Because AbstractFamilyInstance is not visible in the library
             //       we redefine this method on FamilyInstance
             get { return base.Type; }
@@ -290,22 +299,22 @@ namespace Revit.Elements
         {
             if (curve == null)
             {
-                throw new System.ArgumentNullException("curve");
+                throw new ArgumentNullException(nameof(curve));
             }
 
             if (level == null)
             {
-                throw new System.ArgumentNullException("level");
+                throw new ArgumentNullException(nameof(level));
             }
 
             if (upVector == null)
             {
-                throw new System.ArgumentNullException("upVector");
+                throw new ArgumentNullException(nameof(upVector));
             }
 
             if (structuralFramingType == null)
             {
-                throw new System.ArgumentNullException("structuralFramingType");
+                throw new ArgumentNullException(nameof(structuralFramingType));
             }            
 
             return new StructuralFraming(curve.ToRevitType(), upVector.ToXyz(), level.InternalLevel,
@@ -319,21 +328,21 @@ namespace Revit.Elements
         /// <param name="level">The level with which you'd like the beam to be associated.</param>
         /// <param name="structuralFramingType">The structural framing type representing the beam.</param>
         /// <returns></returns>
-        public static StructuralFraming BeamByCurve(Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilyType structuralFramingType)
+        public static StructuralFraming BeamByCurve(Autodesk.DesignScript.Geometry.Curve curve, Level level, FamilyType structuralFramingType)
         {
             if (curve == null)
             {
-                throw new System.ArgumentNullException("curve");
+                throw new ArgumentNullException(nameof(curve));
             }
 
             if (level == null)
             {
-                throw new System.ArgumentNullException("level");
+                throw new ArgumentNullException(nameof(level));
             }
 
             if (structuralFramingType == null)
             {
-                throw new System.ArgumentNullException("structuralFramingType");
+                throw new ArgumentNullException(nameof(structuralFramingType));
             }
 
             return new StructuralFraming(curve.ToRevitType(), level.InternalLevel, Autodesk.Revit.DB.Structure.StructuralType.Beam, structuralFramingType.InternalFamilySymbol);
@@ -346,21 +355,21 @@ namespace Revit.Elements
         /// <param name="level">The level with which you'd like the brace to be associated.</param>
         /// <param name="structuralFramingType">The structural framing type representing the brace.</param>
         /// <returns></returns>
-        public static StructuralFraming BraceByCurve(Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilyType structuralFramingType)
+        public static StructuralFraming BraceByCurve(Autodesk.DesignScript.Geometry.Curve curve, Level level, FamilyType structuralFramingType)
         {
             if (curve == null)
             {
-                throw new System.ArgumentNullException("curve");
+                throw new ArgumentNullException(nameof(curve));
             }
 
             if (level == null)
             {
-                throw new System.ArgumentNullException("level");
+                throw new ArgumentNullException(nameof(level));
             }
 
             if (structuralFramingType == null)
             {
-                throw new System.ArgumentNullException("structuralFramingType");
+                throw new ArgumentNullException(nameof(structuralFramingType));
             }
 
             return new StructuralFraming(curve.ToRevitType(), level.InternalLevel, Autodesk.Revit.DB.Structure.StructuralType.Brace, structuralFramingType.InternalFamilySymbol);
@@ -374,21 +383,21 @@ namespace Revit.Elements
         /// <param name="structuralColumnType">The structural column type representing the column.</param>
         /// <returns></returns>
         public static StructuralFraming ColumnByCurve(
-            Autodesk.DesignScript.Geometry.Curve curve, Revit.Elements.Level level, Revit.Elements.FamilyType structuralColumnType)
+            Autodesk.DesignScript.Geometry.Curve curve, Level level, FamilyType structuralColumnType)
         {
             if (curve == null)
             {
-                throw new System.ArgumentNullException("curve");
+                throw new ArgumentNullException(nameof(curve));
             }
 
             if (level == null)
             {
-                throw new System.ArgumentNullException("level");
+                throw new ArgumentNullException(nameof(level));
             }
 
             if (structuralColumnType == null)
             {
-                throw new System.ArgumentNullException("structuralColumnType");
+                throw new ArgumentNullException(nameof(structuralColumnType));
             }
 
             var start = curve.PointAtParameter(0);
