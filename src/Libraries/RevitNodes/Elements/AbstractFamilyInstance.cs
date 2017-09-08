@@ -1,8 +1,5 @@
 ﻿using Autodesk.DesignScript.Runtime;
-using Autodesk.Revit.DB;
-
 using Revit.GeometryConversion;
-
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using Point = Autodesk.DesignScript.Geometry.Point;
@@ -70,7 +67,11 @@ namespace Revit.Elements
         {
             get
             {
-                return FamilyType.FromExisting(this.InternalFamilyInstance.Symbol, true);
+                var typeId = InternalFamilyInstance.GetTypeId();
+                return typeId == Autodesk.Revit.DB.ElementId.InvalidElementId
+                    ? null
+                    : FamilyType.FromExisting(
+                        (Autodesk.Revit.DB.FamilySymbol)DocumentManager.Instance.CurrentDBDocument.GetElement(typeId), true);
             }
         }
 
@@ -80,9 +81,9 @@ namespace Revit.Elements
             {
                 TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
                 DocumentManager.Regenerate();
-                var pos = InternalFamilyInstance.Location as LocationPoint;
+                var pos = InternalFamilyInstance.Location as Autodesk.Revit.DB.LocationPoint;
                 TransactionManager.Instance.TransactionTaskDone();
-                return pos.Point.ToPoint();
+                return pos != null ? pos.Point.ToPoint() : null;
             }
         }
 
