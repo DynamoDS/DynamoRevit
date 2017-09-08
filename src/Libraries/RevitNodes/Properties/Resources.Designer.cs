@@ -430,6 +430,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to One or more geometries have failed to convert due to this error: .
+        /// </summary>
+        internal static string GeometryConversionFailure {
+            get {
+                return ResourceManager.GetString("GeometryConversionFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not get a geometry object from the current document using the provided reference.
         /// </summary>
         internal static string GeometryObjectReferenceFailure {
@@ -835,6 +844,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Must supply more than 0 views.
+        /// </summary>
+        internal static string Sheet_NoViewsError {
+            get {
+                return ResourceManager.GetString("Sheet_NoViewsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Revit face with the corresponding tag could not be found..
         /// </summary>
         internal static string Tag_Lookup_Error {
@@ -885,6 +903,15 @@ namespace Revit.Properties {
         internal static string ViewExportImageError {
             get {
                 return ResourceManager.GetString("ViewExportImageError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ViewPlan_ViewFamilyNotFound {
+            get {
+                return ResourceManager.GetString("ViewPlan_ViewFamilyNotFound", resourceCulture);
             }
         }
         

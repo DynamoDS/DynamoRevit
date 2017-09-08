@@ -37,6 +37,8 @@ namespace Revit.Elements.Views
                 case Autodesk.Revit.DB.ViewType.Elevation:
                 case Autodesk.Revit.DB.ViewType.CeilingPlan:
                 case Autodesk.Revit.DB.ViewType.DraftingView:
+                case Autodesk.Revit.DB.ViewType.AreaPlan:
+                case Autodesk.Revit.DB.ViewType.DrawingSheet:
                     return true;
 
                 default: return false;
@@ -200,13 +202,13 @@ namespace Revit.Elements.Views
         /// </summary>
         /// <param name="parameterFilter">Parameter Filter</param>
         /// <param name="overrides">Graphic Overrides Settings</param>
-        /// <param name="hide">If True given Filter will be hidden.</param>
+        /// <param name="visible">If True given Filter will show filtered elements.</param>
         /// <returns name="view">View</returns>
-        public Revit.Elements.Views.View SetFilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter, Revit.Filter.OverrideGraphicSettings overrides, bool hide = false)
+        public Revit.Elements.Views.View SetFilterOverrides(Revit.Filter.ParameterFilterElement parameterFilter, Revit.Filter.OverrideGraphicSettings overrides, bool visible = true)
         {
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
             this.InternalView.SetFilterOverrides(parameterFilter.InternalElement.Id, overrides.InternalOverrideGraphicSettings);
-            this.InternalView.SetFilterVisibility(parameterFilter.InternalElement.Id, hide);
+            this.InternalView.SetFilterVisibility(parameterFilter.InternalElement.Id, visible);
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
 
             return this;
