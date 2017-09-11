@@ -532,7 +532,7 @@ namespace DSRevitNodesUI
         [JsonConstructor]
         public Categories(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
-            // Verify additional information for output ports is not required here!
+            // TODO verify additional information for output ports is not required here!
         }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
