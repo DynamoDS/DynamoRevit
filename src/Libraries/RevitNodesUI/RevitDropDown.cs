@@ -71,11 +71,12 @@ namespace DSRevitNodesUI
     public class FamilyTypes : RevitDropDownBase
     {
         private const string NO_FAMILY_TYPES = "No family types available.";
+        private const string outputName = "Family Type";
 
-        public FamilyTypes() : base("Family Type") { }
+        public FamilyTypes() : base(outputName) { }
 
         [JsonConstructor]
-        public FamilyTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base("Family Type", inPorts, outPorts)
+        public FamilyTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts)
         {
         }
 
@@ -138,19 +139,20 @@ namespace DSRevitNodesUI
     public class FamilyInstanceParameters : RevitDropDownBase 
     {
         private const string noFamilyParameters = "No family parameters available.";
+        private const string outputName = "Parameter";
         private Element element;
         private ElementId storedId = null;
         internal EngineController EngineController { get; set; }
 
         public FamilyInstanceParameters()
-            : base("Parameter") 
+            : base(outputName) 
         {
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("f", Properties.Resources.PortDataFamilySymbolToolTip)));
             PropertyChanged += OnPropertyChanged;
         }
 
         [JsonConstructor]
-        public FamilyInstanceParameters(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base("Parameter", inPorts, outPorts)
+        public FamilyInstanceParameters(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts)
         {
             PropertyChanged += OnPropertyChanged;
         }
@@ -361,10 +363,12 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FloorTypes : RevitDropDownBase
     {
-        public FloorTypes() : base("Floor Type") { }
+        private const string outputName = "Floor Type";
+
+        public FloorTypes() : base(outputName) { }
 
         [JsonConstructor]
-        public FloorTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base("Floor Type", inPorts, outPorts) { }
+        public FloorTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
@@ -412,10 +416,12 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class WallTypes : RevitDropDownBase
     {
-        public WallTypes() : base("Wall Type") { }
+        private const string outputName = "Wall Type";
+
+        public WallTypes() : base(outputName) { }
 
         [JsonConstructor]
-        public WallTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base("Wall Type", inPorts, outPorts) { }
+        public WallTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
@@ -463,10 +469,12 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class PerformanceAdviserRules : RevitDropDownBase
     {
-        public PerformanceAdviserRules() : base("Performance Adviser Rules") { }
+        private const string outputName = "Performance Adviser Rules";
+
+        public PerformanceAdviserRules() : base(outputName) { }
 
         [JsonConstructor]
-        public PerformanceAdviserRules(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base("Performance Adviser Rules", inPorts, outPorts) { }
+        public PerformanceAdviserRules(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
@@ -668,11 +676,12 @@ namespace DSRevitNodesUI
     public class Levels : RevitDropDownBase
     {
         private const string noLevels = "No levels available.";
+        private const string outputName = "Levels";
 
-        public Levels() : base("Levels") { }
+        public Levels() : base(outputName) { }
 
         [JsonConstructor]
-        public Levels(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base("Levels", inPorts, outPorts) { }
+        public Levels(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
@@ -786,12 +795,14 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class StructuralFramingTypes : AllElementsInBuiltInCategory
     {
+        private const string outputName = "Framing Types";
+
         public StructuralFramingTypes()
-            : base(BuiltInCategory.OST_StructuralFraming, "Framing Types", Properties.Resources.DropDownNoFramingType){}
+            : base(BuiltInCategory.OST_StructuralFraming, outputName, Properties.Resources.DropDownNoFramingType){}
 
         [JsonConstructor]
         public StructuralFramingTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
-            : base(BuiltInCategory.OST_StructuralFraming, "Framing Types", Properties.Resources.DropDownNoFramingType, inPorts, outPorts) { }
+            : base(BuiltInCategory.OST_StructuralFraming, outputName, Properties.Resources.DropDownNoFramingType, inPorts, outPorts) { }
     }
 
     [NodeName("Structural Column Types")]
@@ -800,12 +811,14 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class StructuralColumnTypes : AllElementsInBuiltInCategory
     {
+        private const string outputName = "Column Types";
+
         public StructuralColumnTypes()
-            : base(BuiltInCategory.OST_StructuralColumns, "Column Types", Properties.Resources.DropDownNoColumnType){}
+            : base(BuiltInCategory.OST_StructuralColumns, outputName, Properties.Resources.DropDownNoColumnType){}
 
         [JsonConstructor]
         public StructuralColumnTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
-            : base(BuiltInCategory.OST_StructuralColumns, "Column Types", Properties.Resources.DropDownNoColumnType, inPorts, outPorts) { }
+            : base(BuiltInCategory.OST_StructuralColumns, outputName, Properties.Resources.DropDownNoColumnType, inPorts, outPorts) { }
     }
 
     [NodeName("Spacing Rule Layout")]
@@ -858,10 +871,12 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class Views : RevitDropDownBase
     {
-        public Views() : base("Views") { }
+        private const string outputName = "Views";
+
+        public Views() : base(outputName) { }
 
         [JsonConstructor]
-        public Views(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base("Views", inPorts, outPorts) { }
+        public Views(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
