@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using DSRevitNodesUI;
@@ -11,6 +12,7 @@ using RevitServices.Transactions;
 
 using Dynamo.Utilities;
 using Dynamo.Models;
+using Dynamo.Graph.Nodes;
 using ProtoCore.AST.AssociativeAST;
 
 namespace DSRevitNodesUI
@@ -28,7 +30,19 @@ namespace DSRevitNodesUI
         /// </summary>
         /// <param name="name">Name of the Node</param>
         /// <param name="elementType">Type of Revit Element to display</param>
-        public CustomRevitElementDropDown(string name, Type elementType) : base(name) { this.ElementType = elementType; PopulateDropDownItems(); }
+        public CustomRevitElementDropDown(string name, Type elementType) : base(name)
+        {
+            this.ElementType = elementType;
+            PopulateDropDownItems();
+        }
+
+        [JsonConstructor]
+        public CustomRevitElementDropDown(string name, Type elementType, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(name, inPorts, outPorts)
+        {
+            this.ElementType = elementType;
+            PopulateDropDownItems();
+        }
 
         /// <summary>
         /// Type of Element
@@ -120,7 +134,19 @@ namespace DSRevitNodesUI
         /// </summary>
         /// <param name="name">Node Name</param>
         /// <param name="enumerationType">Type of Enumeration to Display</param>
-        public CustomGenericEnumerationDropDown(string name, Type enumerationType) : base(name) { this.EnumerationType = enumerationType; PopulateDropDownItems(); }
+        public CustomGenericEnumerationDropDown(string name, Type enumerationType) : base(name)
+        {
+            this.EnumerationType = enumerationType;
+            PopulateDropDownItems();
+        }
+
+        [JsonConstructor]
+        public CustomGenericEnumerationDropDown(string name, Type enumerationType, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(name, inPorts, outPorts)
+        {
+            this.EnumerationType = enumerationType;
+            PopulateDropDownItems();
+        }
 
         /// <summary>
         /// Type of Enumeration
