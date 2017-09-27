@@ -236,7 +236,8 @@ namespace RevitSystemTests
             wallElementCountPresave = wallsPresave.Count();
 
             // Save in temp location
-            ViewModel.CurrentSpace.Save(Path.Combine(workingDirectory, @".\ElementBinding\CreateWallInDynamo_temp.dyn"));
+            string tempPath = Path.Combine(workingDirectory, @".\ElementBinding\CreateWallInDynamo_temp.dyn");
+            ViewModel.SaveAsCommand.Execute(tempPath);
 
             // Close workspace
             Assert.IsTrue(ViewModel.CloseHomeWorkspaceCommand.CanExecute(null));
@@ -266,7 +267,7 @@ namespace RevitSystemTests
             Assert.AreEqual(wallElementCountPresave, wallElementCountPostsave);
 
             // Delete temp file
-            File.Delete(Path.Combine(workingDirectory, @".\ElementBinding\CreateWallInDynamo_temp.dyn"));
+            File.Delete(tempPath);
         }
 
         [Test]
