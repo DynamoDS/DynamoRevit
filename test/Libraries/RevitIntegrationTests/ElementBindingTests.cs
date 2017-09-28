@@ -207,6 +207,70 @@ namespace RevitSystemTests
         }
 
         [Test]
+        [TestModel(@".\ElementBinding\CreateWallInDynamo.rvt")]
+        public void VerifyJsonRestoresExpectedBinding()
+        {
+            // Test variables
+            int wallElementCountPresave;
+            int wallElementCountPostsave;
+            ElementId wallElementIdPresave;
+            ElementId wallElementIdPostsave;
+
+            // Load Dynamo xml file containing trace data
+            string dynFilePath = Path.Combine(workingDirectory, @".\ElementBinding\CreateWallInDynamo.dyn");
+            string testPath = Path.GetFullPath(dynFilePath);
+            ViewModel.OpenCommand.Execute(testPath);
+
+            // Run
+            RunCurrentModel();
+
+            // Get binding element id for wall node presave
+            var selNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.GUID.ToString(), "b568d298-f7be-4619-99a1-cae16efaed58"));
+            Assert.IsTrue(selNodes.Any());
+            var node = selNodes.First();
+            wallElementIdPresave = GetBindingElementIdForNode(node.GUID);
+
+            // Get initial wall count
+            var doc = DocumentManager.Instance.CurrentUIDocument.Document;
+            IEnumerable<Element> wallsPresave = Utils.AllElementsOfType<Wall>(doc);
+            wallElementCountPresave = wallsPresave.Count();
+
+            // Save in temp location
+            string tempPath = Path.Combine(workingDirectory, @".\ElementBinding\CreateWallInDynamo_temp.dyn");
+            ViewModel.SaveAsCommand.Execute(tempPath);
+
+            // Close workspace
+            Assert.IsTrue(ViewModel.CloseHomeWorkspaceCommand.CanExecute(null));
+            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+
+            // Open Json temp file
+            dynFilePath = Path.Combine(workingDirectory, @".\ElementBinding\CreateWallInDynamo_temp.dyn");
+            testPath = Path.GetFullPath(dynFilePath);
+            ViewModel.OpenCommand.Execute(testPath);
+
+            // Run
+            RunCurrentModel();
+
+            // Get binding element id for wall node postsave
+            selNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.GUID.ToString(), "b568d298-f7be-4619-99a1-cae16efaed58"));
+            Assert.IsTrue(selNodes.Any());
+            node = selNodes.First();
+            wallElementIdPostsave = GetBindingElementIdForNode(node.GUID);
+
+            // Get wall count upon reopening to verify no duplicate walls exist
+            doc = DocumentManager.Instance.CurrentUIDocument.Document;
+            IEnumerable<Element> wallsPostsave = Utils.AllElementsOfType<Wall>(doc);
+            wallElementCountPostsave = wallsPostsave.Count();
+
+            // Verify xml results against json
+            Assert.AreEqual(wallElementIdPresave, wallElementIdPostsave);
+            Assert.AreEqual(wallElementCountPresave, wallElementCountPostsave);
+
+            // Delete temp file
+            File.Delete(tempPath);
+        }
+
+        [Test]
         [TestModel(@".\empty.rfa")]
         public void CreateInDynamoModifyInRevitReRun()
         {
