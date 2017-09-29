@@ -167,7 +167,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Element Category
         /// </summary>
-        public Category GetCategory
+        public Category Category
         {
             get { return new Category(this.InternalElement.Category); }
         }
