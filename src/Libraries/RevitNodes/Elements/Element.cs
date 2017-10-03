@@ -94,14 +94,17 @@ namespace Revit.Elements
         internal bool IsRevitOwned = false;
 
         /// <summary>
-        /// Obtain all of the Parameters from an Element
+        /// Obtain all of the Parameters from an Element, sorted by Name.
         /// </summary>
         public Parameter[] Parameters
         {
             get
             {
-                var parms = InternalElement.Parameters;
-                return parms.Cast<Autodesk.Revit.DB.Parameter>().Select(x => new Parameter(x)).ToArray();
+                return
+                    InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
+                        .OrderBy(x => x.Definition.Name)
+                        .Select(x => new Parameter(x))
+                        .ToArray();
             }
         }
 
