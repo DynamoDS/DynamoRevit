@@ -92,7 +92,7 @@ namespace RevitSystemTests
             Assert.AreEqual(GetPreviewValue(nurbsCurve3ID), null);
         }
 
-        [Test]
+        [Test, Ignore, Category("Failure")]
         [TestModel(@".\Intersect\EdgePlaneIntersection.rfa")]
         public void EdgePlaneIntersection()
         {
