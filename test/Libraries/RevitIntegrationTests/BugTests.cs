@@ -75,7 +75,7 @@ namespace RevitSystemTests
             RunCurrentModel();
         }
 
-        [Test, Ignore, Category("Failure")]
+        [Test]
         [Category("RegressionTests")]
         [TestModel(@".\Bugs\MAGN-122_wallsAndFloorsAndLevels.rvt")]
         public void MAGN_122()
