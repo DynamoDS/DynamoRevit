@@ -12,36 +12,19 @@ namespace RevitSystemTests
     [TestFixture]
     class SerializationTests : RevitSystemTestBase
     {
-        /// <summary>
-        /// This function gathers all dyn and dyf in 
-        /// workingDirectory into paths array.
-        /// </summary>
-        /// <returns>Test files paths array</returns>
-        public object[] FindWorkspaces()
-        {
-            var config = RevitTestConfiguration.LoadConfiguration();
+        private string JsonFolderName = "DynamoRevitJsons";
 
-            //get the test path
-            workingDirectory = config.WorkingDirectory;
+        [Test, TestModel(@".\empty.rfa")]
+        public void SaveXMLTestFilesToJson()
+        {
+            // Get all old XML DYNs
             var di = new DirectoryInfo(workingDirectory);
             var fis = new string[] { "*.dyn", "*.dyf" }
             .SelectMany(i => di.GetFiles(i, SearchOption.AllDirectories))
             .ToArray();
+            string[] XmlFilePaths = fis.Select(fi => fi.FullName).ToArray();
 
-            //di.GetFiles("*.dyn, *.dyf", SearchOption.AllDirectories);
-            return fis.Select(fi => fi.FullName).ToArray();
-        }
-
-        protected string JsonFolderName = "DynamoRevitJsons";
-
-        [Test, TestModel(@".\empty.rfa"), TestCaseSource("FindWorkspaces")]
-        public void SaveXMLTestFilesToJson(string filePath)
-        {
-            ViewModel.OpenCommand.Execute(filePath);
-            AssertNoDummyNodes();
-
-            bool isCustomNodeWorkspace = filePath.Contains(".dyf");
-
+            // Create new Folder under temp to store Json
             var tempPath = Path.GetTempPath();
             var jsonFolder = Path.Combine(tempPath, JsonFolderName);
 
@@ -50,14 +33,28 @@ namespace RevitSystemTests
                 System.IO.Directory.CreateDirectory(jsonFolder);
             }
 
-            // Get file name
-            var fileNameSameStructure = filePath.Split(new string[] { "\\test" }, StringSplitOptions.None).Last();
-            var jsonPath = isCustomNodeWorkspace? jsonFolder + fileNameSameStructure + ".dyf" : jsonFolder + fileNameSameStructure + ".dyn";
-            if (File.Exists(jsonPath))
+            foreach (var filePath in XmlFilePaths)
             {
-                File.Delete(jsonPath);
+                // Open XMLs in new Dynamo Core which should take care of
+                // Migration but element binding might be lost
+                ViewModel.OpenCommand.Execute(filePath);
+                AssertNoDummyNodes();
+
+                // Get new file path under temp folder
+                var fileNameSameStructure = filePath.Split(new string[] { "\\test" }, StringSplitOptions.None).Last();
+                var jsonPath = jsonFolder + fileNameSameStructure;
+                if (File.Exists(jsonPath))
+                {
+                    File.Delete(jsonPath);
+                }
+
+                // Re-save dyn, if folder does not exist, create it
+                FileInfo fileInfo = new FileInfo(jsonPath);
+                if (!fileInfo.Exists)
+                    Directory.CreateDirectory(fileInfo.Directory.FullName);
+
+                ViewModel.SaveAsCommand.Execute(jsonPath);
             }
-            ViewModel.SaveAsCommand.Execute(jsonPath);
         }
     }
 }
