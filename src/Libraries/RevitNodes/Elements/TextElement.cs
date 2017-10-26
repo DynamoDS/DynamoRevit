@@ -157,6 +157,7 @@ namespace Revit.Elements
         /// <summary>
         /// Empty method - we don't want to tessellate text automatically
         /// but it seems we need this method to correctly import this library into Dynamo.
+        /// See description in base class.
         /// </summary>
         /// <param name="package"></param>
         /// <param name="parameters"></param>
@@ -176,14 +177,13 @@ namespace Revit.Elements
 
             // Get Text outline path at 0,0
             PathGeometry path = CreateText(this.Value, this.Bold, this.Italic, new FontFamily(this.FontFamilyName), this.FontSize * Scale / factor, new System.Windows.Point(0, 0));
-
+            
             // Apply horizontal Text offset            
             if (Alignment == HorizontalTextAlignment.Center) { horizontalOffset = path.Bounds.Width / 2; }
             if (Alignment == HorizontalTextAlignment.Right) { horizontalOffset = path.Bounds.Width; }
 
             return convertPathToLines(horizontalOffset, path);
         }
-        //TODO dispose points
         private DS.Curve[] convertPathToLines(double horizontalOffset, PathGeometry path)
         {
             var outputCurves = new List<List<DS.Curve>>();
@@ -205,10 +205,11 @@ namespace Revit.Elements
                             // rotate point and apply offsets
                             var pLinePoint = RotatePoint(new System.Windows.Point(point.X - horizontalOffset, point.Y * -1), this.Rotation);
                             points.Add(DS.Point.ByCoordinates(pLinePoint.X, pLinePoint.Y, 0));
-
+                            
                         }
                     }
                     figureCurves.Add(DS.PolyCurve.ByPoints(points, true));
+                    points.ForEach(pt => pt.Dispose());
                 }
                 outputCurves.Add(figureCurves);
             }
