@@ -38,7 +38,6 @@ namespace RevitSystemTests
                 // Open XMLs in new Dynamo Core which should take care of
                 // Migration but element binding might be lost
                 ViewModel.OpenCommand.Execute(filePath);
-                AssertNoDummyNodes();
 
                 // Get new file path under temp folder
                 var fileNameSameStructure = filePath.Split(new string[] { "\\test" }, StringSplitOptions.None).Last();
