@@ -9,6 +9,8 @@ using Autodesk.DesignScript.Runtime;
 using DS = Autodesk.DesignScript.Geometry;
 using System.Windows.Media;
 using System.Windows;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Revit.Elements
 {
@@ -153,12 +155,19 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Text Tesselation
+        /// Empty method - we don't want to tessellate text automatically
+        /// but it seems we need this method to correctly import this library into Dynamo.
+        /// See description in base class.
         /// </summary>
         /// <param name="package"></param>
         /// <param name="parameters"></param>
         [IsVisibleInDynamoLibrary(false)]
         public new void Tessellate(IRenderPackage package, TessellationParameters parameters)
+        {
+         
+        }
+
+        protected Autodesk.DesignScript.Geometry.Curve[] Curves()
         {
             // Offset for text adjustments
             double horizontalOffset = 0;
@@ -168,45 +177,43 @@ namespace Revit.Elements
 
             // Get Text outline path at 0,0
             PathGeometry path = CreateText(this.Value, this.Bold, this.Italic, new FontFamily(this.FontFamilyName), this.FontSize * Scale / factor, new System.Windows.Point(0, 0));
-
+            
             // Apply horizontal Text offset            
             if (Alignment == HorizontalTextAlignment.Center) { horizontalOffset = path.Bounds.Width / 2; }
             if (Alignment == HorizontalTextAlignment.Right) { horizontalOffset = path.Bounds.Width; }
-            
+
+            return convertPathToLines(horizontalOffset, path);
+        }
+        private DS.Curve[] convertPathToLines(double horizontalOffset, PathGeometry path)
+        {
+            var outputCurves = new List<List<DS.Curve>>();
             // Walk thorugh all figures and draw lines
             foreach (PathFigure figure in path.Figures)
             {
+                var figureCurves = new List<DS.Curve>();
                 // Rotate the start point and apply offsets
-                var startPoint = RotatePoint(new System.Windows.Point(figure.StartPoint.X - horizontalOffset, figure.StartPoint.Y * -1), this.Rotation);
-                package.AddLineStripVertex(startPoint.X + Location.X , startPoint.Y + Location.Y, this.Location.Z);
-
                 foreach (PathSegment segment in figure.Segments)
                 {
+                    var points = new List<DS.Point>();
+
                     if (segment is System.Windows.Media.PolyLineSegment)
                     {
                         System.Windows.Media.PolyLineSegment pline = segment as System.Windows.Media.PolyLineSegment;
                         for (int i = 0; i < pline.Points.Count; i++)
                         {
                             System.Windows.Point point = pline.Points[i];
-
                             // rotate point and apply offsets
                             var pLinePoint = RotatePoint(new System.Windows.Point(point.X - horizontalOffset, point.Y * -1), this.Rotation);
-                            package.AddLineStripVertex(pLinePoint.X + Location.X , pLinePoint.Y + Location.Y, this.Location.Z);
-
-                            // send the same point again to continue drawing
-                            if (i < pline.Points.Count - 1)
-                            {
-                                package.AddLineStripVertex(pLinePoint.X + Location.X, pLinePoint.Y + Location.Y, this.Location.Z);
-                            }
+                            points.Add(DS.Point.ByCoordinates(pLinePoint.X, pLinePoint.Y, 0));
+                            
                         }
                     }
+                    figureCurves.Add(DS.PolyCurve.ByPoints(points, true));
+                    points.ForEach(pt => pt.Dispose());
                 }
+                outputCurves.Add(figureCurves);
             }
-
-            if (package.LineVertexCount > 0)
-            {
-                package.ApplyLineVertexColors(CreateColorByteArrayOfSize(package.LineVertexCount, DefR, DefG, DefB, DefA));
-            }
+            return outputCurves.SelectMany(list => list).ToArray();
         }
 
         /// <summary>

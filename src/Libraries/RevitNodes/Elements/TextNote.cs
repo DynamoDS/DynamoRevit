@@ -233,6 +233,14 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Get geometrical curves from the text this TextNote contains.
+        /// </summary>
+        public new Autodesk.DesignScript.Geometry.Curve[] Curves
+        {
+            get { return base.Curves(); }
+        }
+
+        /// <summary>
         /// Set Text
         /// </summary>
         /// <param name="value"></param>
