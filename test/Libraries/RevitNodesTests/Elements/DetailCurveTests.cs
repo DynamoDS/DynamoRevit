@@ -31,8 +31,8 @@ namespace RevitNodesTests.Elements
             curve.Length.ShouldBeApproximately(100);
         }
 
-        [Test, Ignore, Category("Failure")]
-        [TestModel(@".\emptyAnnotativeView.rfa")]
+        [Test]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
         public void ByCurve_Curve_AcceptsStraightDegree3NurbsCurve()
         {
             var points =
