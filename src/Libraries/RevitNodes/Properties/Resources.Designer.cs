@@ -862,15 +862,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ParameterType cannot be converted to UnitType..
-        /// </summary>
-        internal static string UnitTypeConversionError {
-            get {
-                return ResourceManager.GetString("UnitTypeConversionError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The supplied path is invalid..
         /// </summary>
         internal static string View_ExportAsImage_Path_Invalid {
