@@ -859,7 +859,7 @@ namespace RevitSystemTests
             Assert.AreEqual(initialNumber, finalNumber);
         }
 
-        [Test, Ignore, Category("Failure")]
+        [Test]
         [TestModel(@".\ElementBinding\MultipleCustomInstance.rvt")]
         public void MultipleCustomNodeInstance()
         {
