@@ -52,7 +52,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            //assert number of loaded families in document:
+            //get the number of loaded families in document:
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             fec.OfClass(typeof(Autodesk.Revit.DB.Family));
 
@@ -66,7 +66,7 @@ namespace RevitSystemTests
             //now delete the node
             model.CurrentWorkspace.RemoveAndDisposeNode(node);
 
-            //now assert the families count is the same.
+            //get the number of loaded families in document after removing the family.byname node from the graph:
             var fec2 = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             fec2.OfClass(typeof(Autodesk.Revit.DB.Family));
 
@@ -74,6 +74,7 @@ namespace RevitSystemTests
             var families2 = fec2.Cast<Autodesk.Revit.DB.Family>();
             var newcount = families.Count();
 
+            //now assert the families count is the same.
             Assert.AreEqual(oldcount, newcount);
 
         }
