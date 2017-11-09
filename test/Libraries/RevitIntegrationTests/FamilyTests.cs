@@ -62,7 +62,7 @@ namespace RevitSystemTests
 
             //find the node
             var node = this.Model.CurrentWorkspace.Nodes.Where(currentNode => currentNode.Name == "Family.ByName").FirstOrDefault();
-
+            Assert.IsNotNull(node);
             //now delete the node
             model.CurrentWorkspace.RemoveAndDisposeNode(node);
 
