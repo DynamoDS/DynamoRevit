@@ -125,7 +125,7 @@ namespace Revit.Elements
 
             TransactionManager.Instance.TransactionTaskDone();
 
-            return new Family(family);
+            return Family.FromExisting(family, true);
         }
 
         #endregion
