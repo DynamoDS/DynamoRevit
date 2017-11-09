@@ -12,7 +12,7 @@ namespace RevitSystemTests
     [TestFixture]
     class SerializationTests : RevitSystemTestBase
     {
-        private string JsonFolderName = "DynamoRevitJsons";
+        private string JsonFolderName = "SystemInJson";
 
         [Test, TestModel(@".\empty.rfa")]
         public void SaveXMLTestFilesToJson()
@@ -25,7 +25,7 @@ namespace RevitSystemTests
             string[] XmlFilePaths = fis.Select(fi => fi.FullName).ToArray();
 
             // Create new Folder under temp to store Json
-            var tempPath = Path.GetTempPath();
+            var tempPath = di.Parent.FullName;
             var jsonFolder = Path.Combine(tempPath, JsonFolderName);
 
             if (!System.IO.Directory.Exists(jsonFolder))
@@ -40,7 +40,7 @@ namespace RevitSystemTests
                 ViewModel.OpenCommand.Execute(filePath);
 
                 // Get new file path under temp folder
-                var fileNameSameStructure = filePath.Split(new string[] { "\\test" }, StringSplitOptions.None).Last();
+                var fileNameSameStructure = filePath.Split(new string[] { "\\System" }, StringSplitOptions.None).Last();
                 var jsonPath = jsonFolder + fileNameSameStructure;
                 if (File.Exists(jsonPath))
                 {
