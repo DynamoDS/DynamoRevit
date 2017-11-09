@@ -10,6 +10,9 @@ using RevitTestServices;
 
 using RTF.Framework;
 using FamilyInstance = Revit.Elements.FamilyInstance;
+using Dynamo.Applications.Models;
+using RevitServices.Persistence;
+using System.Linq;
 
 namespace RevitSystemTests
 {
@@ -34,6 +37,46 @@ namespace RevitSystemTests
             
 
             Assert.AreEqual(100, GetPreviewValue("5eac6ab9-e736-49a9-a90a-8b6d93676813"));
+        }
+
+        [Test]
+        [TestModel(@".\Family\GetFamilyInstancesByType.rvt")]
+        public void GetFamilyInstancesByName()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Family\GetFamilyInstancesByName.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            //get the number of loaded families in document:
+            var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
+            fec.OfClass(typeof(Autodesk.Revit.DB.Family));
+
+            // obtain the family type with the provided name
+            var families = fec.Cast<Autodesk.Revit.DB.Family>();
+            var oldcount = families.Count();
+
+            //find the node
+            var node = this.Model.CurrentWorkspace.Nodes.Where(currentNode => currentNode.Name == "Family.ByName").FirstOrDefault();
+            Assert.IsNotNull(node);
+            //now delete the node
+            model.CurrentWorkspace.RemoveAndDisposeNode(node);
+
+            //get the number of loaded families in document after removing the family.byname node from the graph:
+            var fec2 = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
+            fec2.OfClass(typeof(Autodesk.Revit.DB.Family));
+
+            // obtain the family type with the provided name
+            var families2 = fec2.Cast<Autodesk.Revit.DB.Family>();
+            var newcount = families.Count();
+
+            //now assert the families count is the same.
+            Assert.AreEqual(oldcount, newcount);
+
         }
 
         [Test]
@@ -321,5 +364,6 @@ namespace RevitSystemTests
             Assert.IsTrue(typeof(Revit.Elements.FamilyType) == famInst.GetType());
             
         }
+
     }
 }
