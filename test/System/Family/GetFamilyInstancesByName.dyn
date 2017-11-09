@@ -1,0 +1,115 @@
+{
+  "Uuid": "f21e6473-caad-4f46-a59f-e173603ebc6e",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Home",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"AC_panel\";",
+      "Id": "94d32bffd61a410ea8787377c58d9c9e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4386f76d72384df095a33e8cd58d2b7c",
+          "Name": "",
+          "Description": "t6BBA4B28C5E54CF89F300D510499A00E_0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Family.ByName@string",
+      "Id": "f8932b8d6eff458899666e734fc33cbd",
+      "Inputs": [
+        {
+          "Id": "8d34f98b43c947e09227439b54b4cdc4",
+          "Name": "name",
+          "Description": "The name of the family in the current document\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "988c26561480463fb40db31fec7ec645",
+          "Name": "Family",
+          "Description": "Family",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Obtain a Family from the current document given it's name\n\nFamily.ByName (name: string): Family"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4386f76d72384df095a33e8cd58d2b7c",
+      "End": "8d34f98b43c947e09227439b54b4cdc4",
+      "Id": "1ca1d16b0554450d8eb5fec01cc0c1da"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.0.3090",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "94d32bffd61a410ea8787377c58d9c9e",
+        "Excluded": false,
+        "X": 46.028991721737441,
+        "Y": 228.88277260340982
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Family.ByName",
+        "Id": "f8932b8d6eff458899666e734fc33cbd",
+        "Excluded": false,
+        "X": 229.55943516995913,
+        "Y": 222.04003422976771
+      }
+    ],
+    "Annotations": [],
+    "X": 23.849201002712306,
+    "Y": -109.57626929408161,
+    "Zoom": 1.0065043104810645
+  }
+}
