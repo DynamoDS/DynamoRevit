@@ -64,7 +64,7 @@ namespace RevitSystemTests
             var node = this.Model.CurrentWorkspace.Nodes.Where(currentNode => currentNode.Name == "Family.ByName").FirstOrDefault();
             Assert.IsNotNull(node);
             //now delete the node
-            model.CurrentWorkspace.RemoveAndDisposeNode(node);
+            model.CurrentWorkspace.RemoveNode(node);
 
             //get the number of loaded families in document after removing the family.byname node from the graph:
             var fec2 = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
