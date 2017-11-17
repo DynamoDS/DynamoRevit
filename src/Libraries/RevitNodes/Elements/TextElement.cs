@@ -167,55 +167,6 @@ namespace Revit.Elements
          
         }
 
-        protected Autodesk.DesignScript.Geometry.Curve[] Curves()
-        {
-            // Offset for text adjustments
-            double horizontalOffset = 0;
-
-            // Get Conversion factor according to the documents units
-            double factor = Revit.GeometryConversion.UnitConverter.DynamoToHostFactor(UnitType.UT_Length);
-
-            // Get Text outline path at 0,0
-            PathGeometry path = CreateText(this.Value, this.Bold, this.Italic, new FontFamily(this.FontFamilyName), this.FontSize * Scale / factor, new System.Windows.Point(0, 0));
-            
-            // Apply horizontal Text offset            
-            if (Alignment == HorizontalTextAlignment.Center) { horizontalOffset = path.Bounds.Width / 2; }
-            if (Alignment == HorizontalTextAlignment.Right) { horizontalOffset = path.Bounds.Width; }
-
-            return convertPathToLines(horizontalOffset, path);
-        }
-        private DS.Curve[] convertPathToLines(double horizontalOffset, PathGeometry path)
-        {
-            var outputCurves = new List<List<DS.Curve>>();
-            // Walk thorugh all figures and draw lines
-            foreach (PathFigure figure in path.Figures)
-            {
-                var figureCurves = new List<DS.Curve>();
-                // Rotate the start point and apply offsets
-                foreach (PathSegment segment in figure.Segments)
-                {
-                    var points = new List<DS.Point>();
-
-                    if (segment is System.Windows.Media.PolyLineSegment)
-                    {
-                        System.Windows.Media.PolyLineSegment pline = segment as System.Windows.Media.PolyLineSegment;
-                        for (int i = 0; i < pline.Points.Count; i++)
-                        {
-                            System.Windows.Point point = pline.Points[i];
-                            // rotate point and apply offsets
-                            var pLinePoint = RotatePoint(new System.Windows.Point(point.X - horizontalOffset, point.Y * -1), this.Rotation);
-                            points.Add(DS.Point.ByCoordinates(pLinePoint.X, pLinePoint.Y, 0));
-                            
-                        }
-                    }
-                    figureCurves.Add(DS.PolyCurve.ByPoints(points, true));
-                    points.ForEach(pt => pt.Dispose());
-                }
-                outputCurves.Add(figureCurves);
-            }
-            return outputCurves.SelectMany(list => list).ToArray();
-        }
-
         /// <summary>
         /// Rotate point around 0,0
         /// </summary>
