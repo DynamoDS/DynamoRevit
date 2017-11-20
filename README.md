@@ -8,6 +8,7 @@
 ```
 git clone https://github.com/DynamoDS/DynamoRevit.git
 ```
+- Make sure you have [.Net Framework 4.7 SDK](https://www.microsoft.com/en-us/download/details.aspx?id=55168) installed on your computer
 - Run `restorepackages.bat` with administrative privileges.
 - Open DynamoRevit.2013.sln in Visual Studio, and select a build confiuration (Debug | Release)
 - Build
