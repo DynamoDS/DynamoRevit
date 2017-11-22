@@ -218,6 +218,7 @@ src/AssemblySharedInfoGenerator/AssemblySharedInfo.cs
 test/Libraries/RevitIntegrationTests/RevitTestConfiguration.xml
 test/**/*.txt
 test/**/*.addin
+test/SystemInJson
 
 # Icon resources
 /src/DynamoRevitIcons/*.resources
