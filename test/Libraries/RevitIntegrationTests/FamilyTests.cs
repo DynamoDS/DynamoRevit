@@ -61,7 +61,7 @@ namespace RevitSystemTests
             var oldcount = families.Count();
 
             //find the node
-            var node = this.Model.CurrentWorkspace.Nodes.Where(currentNode => currentNode.Name == "Family.ByName").FirstOrDefault();
+            var node = this.Model.CurrentWorkspace.Nodes.Where(currentNode => currentNode.NickName == "Family.ByName").FirstOrDefault();
             Assert.IsNotNull(node);
             //now delete the node
             model.CurrentWorkspace.RemoveNode(node);
