@@ -5,7 +5,7 @@ using View3D = Revit.Elements.Views.View3D;
 
 namespace Revit.Elements
 {
-    /// <summary>
+    /// <sumry>
     /// Element wrapper supplies tools for wrapping Autodesk.Revit.DB.Element types
     /// in their associated Revit.Elements.Element wrapper
     /// </summary>
@@ -308,6 +308,11 @@ namespace Revit.Elements
         public static CurtainSystem Wrap(Autodesk.Revit.DB.CurtainSystem ele, bool isRevitOwned)
         {
             return CurtainSystem.FromExisting(ele, isRevitOwned);
+        }
+
+        public static Material Wrap(Autodesk.Revit.DB.Material ele, bool isRevitOwned)
+        {
+            return Material.FromExisting(ele, isRevitOwned);
         }
         #endregion
 
