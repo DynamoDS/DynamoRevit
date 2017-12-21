@@ -176,15 +176,7 @@ namespace RevitTestServices
             DocumentManager.Instance.CurrentUIDocument =
                 RevitTestExecutive.CommandData.Application.ActiveUIDocument;
 
-            var config = RevitTestConfiguration.LoadConfiguration();
-            
-            //It is used to get the path of journal file.
-            if(IsJournalReplaying())
-            {
-                string journalPath = RevitTestExecutive.CommandData.Application.Application.RecordingJournalFilename;
-                config.WorkingDirectory = journalPath.Substring(0, journalPath.LastIndexOf('\\'));
-                config.SamplesPath = journalPath.Substring(0, journalPath.LastIndexOf('\\'));
-            }
+            var config = RevitTestConfiguration.LoadConfiguration(); 
 
             //get the test path
             workingDirectory = config.WorkingDirectory;
