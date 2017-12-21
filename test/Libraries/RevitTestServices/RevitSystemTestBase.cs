@@ -176,7 +176,7 @@ namespace RevitTestServices
             DocumentManager.Instance.CurrentUIDocument =
                 RevitTestExecutive.CommandData.Application.ActiveUIDocument;
 
-            var config = RevitTestConfiguration.LoadConfiguration(); 
+            var config = RevitTestConfiguration.LoadConfiguration();
 
             //get the test path
             workingDirectory = config.WorkingDirectory;
