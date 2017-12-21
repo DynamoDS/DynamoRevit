@@ -96,7 +96,7 @@ namespace Dynamo.Applications
 
         private static string dynamopath;
         private static readonly Queue<Action> idleActionQueue = new Queue<Action>(10);
-        private static EventHandlerProxy proxy = new EventHandlerProxy();
+        private static EventHandlerProxy proxy;
         private AddInCommandBinding dynamoCommand;
 
         private Result loadDependentComponents()
