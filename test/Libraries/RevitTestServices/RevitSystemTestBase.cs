@@ -199,7 +199,10 @@ namespace RevitTestServices
             }
         }
         
-        //Indicates whether it is in journal replaying mode.
+        /// <summary>
+        /// Indicates whether it is in journal replaying mode.
+        /// </summary>
+        /// <returns>Whether journal is replaying or not.</returns>
         public static bool IsJournalReplaying()
         {
             var method = typeof(Autodesk.Revit.UI.UIFabricationUtils).GetMethod("IsJournalReplaying", BindingFlags.NonPublic | BindingFlags.Static);
