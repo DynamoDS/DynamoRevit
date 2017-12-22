@@ -86,6 +86,9 @@ namespace RevitTestServices
             string assDir = fi.DirectoryName;
             
             //It is used to get the path of journal file.
+            //The path to the journal files is different. 
+            //We have to get where each journal file runs when Revit gets it,
+            //and then get the location of the required Revit files and dynamo files.
             if (RevitSystemTestBase.IsJournalReplaying())
             {
                 string journalPath = RevitTestExecutive.CommandData.Application.Application.RecordingJournalFilename;
