@@ -89,8 +89,8 @@ namespace RevitTestServices
             if (RevitSystemTestBase.IsJournalReplaying())
             {
                 string journalPath = RevitTestExecutive.CommandData.Application.Application.RecordingJournalFilename;
-                WorkingDirectory = journalPath.Substring(0, journalPath.LastIndexOf('\\'));
-                SamplesPath = journalPath.Substring(0, journalPath.LastIndexOf('\\'));
+                WorkingDirectory = Path.GetDirectoryName(journalPath);
+                SamplesPath = Path.GetDirectoryName(journalPath);
             }
 
             //get the test path
