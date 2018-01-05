@@ -144,7 +144,7 @@ namespace Revit.Elements
         #region Public static constructors
 
         /// <summary>
-        /// Create a Revit Roof given it's curve outline and Level
+        /// Create a Revit Roof given its curve outline and Level
         /// </summary>
         /// <param name="outline"></param>
         /// <param name="RoofType"></param>

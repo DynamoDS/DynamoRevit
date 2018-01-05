@@ -114,7 +114,7 @@ namespace Revit.Elements
         #region Public static constructors
 
         /// <summary>
-        /// Create a Revit Floor given it's curve outline and Level
+        /// Create a Revit Floor given its curve outline and Level
         /// </summary>
         /// <param name="outlineCurves"></param>
         /// <param name="floorType"></param>
@@ -133,7 +133,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Create a Revit Floor given it's curve outline and Level
+        /// Create a Revit Floor given its curve outline and Level
         /// </summary>
         /// <param name="outline"></param>
         /// <param name="floorType"></param>
