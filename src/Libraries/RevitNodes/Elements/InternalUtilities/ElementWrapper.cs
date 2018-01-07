@@ -5,7 +5,7 @@ using View3D = Revit.Elements.Views.View3D;
 
 namespace Revit.Elements
 {
-    /// <sumry>
+    /// <summary>
     /// Element wrapper supplies tools for wrapping Autodesk.Revit.DB.Element types
     /// in their associated Revit.Elements.Element wrapper
     /// </summary>
