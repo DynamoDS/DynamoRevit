@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -18,6 +19,7 @@ using Dynamo.Applications.Models;
 using Dynamo.Applications.ViewModel;
 using Dynamo.Controls;
 using Dynamo.Core;
+using Dynamo.Configuration;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Logging;
 using Dynamo.Models;
@@ -33,6 +35,7 @@ using RevitServices.Persistence;
 using RevitServices.Threading;
 using DynUpdateManager = Dynamo.Updates.UpdateManager;
 using MessageBox = System.Windows.Forms.MessageBox;
+using Reach.WebSocket;
 
 namespace RevitServices.Threading
 {
@@ -199,6 +202,7 @@ namespace Dynamo.Applications
         private static bool handledCrash;
         private static List<Exception> preLoadExceptions;
         private static Action shutdownHandler;
+        private static WebSocketServer ws;
 
         /// <summary>
         /// The modelState tels us if the RevitDynamoModel was started and if has the
@@ -276,43 +280,43 @@ namespace Dynamo.Applications
                 UpdateSystemPathForProcess();
 
                 // create core data models
-                revitDynamoModel = InitializeCoreModel(extCommandData);
-                revitDynamoModel.UpdateManager.RegisterExternalApplicationProcessId(Process.GetCurrentProcess().Id);
-                revitDynamoModel.Logger.Log("SYSTEM", string.Format("Environment Path:{0}", Environment.GetEnvironmentVariable("PATH")));
+                InitializeCoreModel(extCommandData);
+                //revitDynamoModel.UpdateManager.RegisterExternalApplicationProcessId(Process.GetCurrentProcess().Id);
+                //revitDynamoModel.Logger.Log("SYSTEM", string.Format("Environment Path:{0}", Environment.GetEnvironmentVariable("PATH")));
 
-                // handle initialization steps after RevitDynamoModel is created.
-                revitDynamoModel.HandlePostInitialization();
+                //// handle initialization steps after RevitDynamoModel is created.
+                //revitDynamoModel.HandlePostInitialization();
                 ModelState = RevitDynamoModelState.StartedUIless;
 
                 // show the window
-                if (CheckJournalForKey(extCommandData, JournalKeys.ShowUiKey, true))
-                {
-                    dynamoViewModel = InitializeCoreViewModel(revitDynamoModel);
+                //if (CheckJournalForKey(extCommandData, JournalKeys.ShowUiKey, true))
+                //{
+                //    dynamoViewModel = InitializeCoreViewModel(revitDynamoModel);
 
-                    // Let the host (e.g. Revit) control the rendering mode
-                    var save = RenderOptions.ProcessRenderMode;
-                    InitializeCoreView().Show();
-                    RenderOptions.ProcessRenderMode = save;
-                    revitDynamoModel.Logger.Log(Dynamo.Applications.Properties.Resources.WPFRenderMode + RenderOptions.ProcessRenderMode.ToString());
+                //    // Let the host (e.g. Revit) control the rendering mode
+                //    var save = RenderOptions.ProcessRenderMode;
+                //    InitializeCoreView().Show();
+                //    RenderOptions.ProcessRenderMode = save;
+                //    revitDynamoModel.Logger.Log(Dynamo.Applications.Properties.Resources.WPFRenderMode + RenderOptions.ProcessRenderMode.ToString());
 
-                    ModelState = RevitDynamoModelState.StartedUI;
-                    // Disable the Dynamo button to prevent a re-run
-                    DynamoRevitApp.DynamoButtonEnabled = false;
-                }
+                //    ModelState = RevitDynamoModelState.StartedUI;
+                //    // Disable the Dynamo button to prevent a re-run
+                //    DynamoRevitApp.DynamoButtonEnabled = false;
+                //}
 
                 //foreach preloaded exception send a notification to the Dynamo Logger
                 //these are messages we want the user to notice.
-                preLoadExceptions.ForEach(x => revitDynamoModel.Logger.LogNotification
-                (revitDynamoModel.GetType().ToString(),
-                x.GetType().ToString(),
-                DynamoApplications.Properties.Resources.MismatchedAssemblyVersionShortMessage,
-                x.Message));
+                //preLoadExceptions.ForEach(x => revitDynamoModel.Logger.LogNotification
+                //(revitDynamoModel.GetType().ToString(),
+                //x.GetType().ToString(),
+                //DynamoApplications.Properties.Resources.MismatchedAssemblyVersionShortMessage,
+                //x.Message));
 
-                TryOpenAndExecuteWorkspaceInCommandData(extCommandData);
+                //TryOpenAndExecuteWorkspaceInCommandData(extCommandData);
 
-                //unsubscribe to the assembly load
-                AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
-                Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed, ModelState.ToString());
+                ////unsubscribe to the assembly load
+                //AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
+                //Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed, ModelState.ToString());
             }
             catch (Exception ex)
             {
@@ -404,7 +408,7 @@ namespace Dynamo.Applications
             }
         }
 
-        private static RevitDynamoModel InitializeCoreModel(DynamoRevitCommandData commandData)
+        private static void InitializeCoreModel(DynamoRevitCommandData commandData)
         {
             // Temporary fix to pre-load DLLs that were also referenced in Revit folder. 
             // To do: Need to align with Revit when provided a chance.
@@ -434,21 +438,50 @@ namespace Dynamo.Applications
 
             PreloadAsmFromRevit();
 
-            return RevitDynamoModel.Start(
-                new RevitDynamoModel.RevitStartConfiguration()
-                {
-                    DynamoCorePath = corePath,
-                    DynamoHostPath = dynamoRevitRoot,
-                    GeometryFactoryPath = GetGeometryFactoryPath(corePath),
-                    PathResolver = new RevitPathResolver(userDataFolder, commonDataFolder),
-                    Context = GetRevitContext(commandData),
-                    SchedulerThread = new RevitSchedulerThread(commandData.Application),
-                    StartInTestMode = isAutomationMode,
-                    AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
-                    ExternalCommandData = commandData,
-                    UpdateManager = revitUpdateManager,
-                    ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
-                });
+            RevitDynamoModel model;
+
+            Func<RevitDynamoModel> rdm = () =>
+            {
+                model = RevitDynamoModel.Start(
+                    new RevitDynamoModel.RevitStartConfiguration()
+                    {
+                        IsHeadless = true,
+                        DynamoCorePath = corePath,
+                        DynamoHostPath = dynamoRevitRoot,
+                        GeometryFactoryPath = GetGeometryFactoryPath(corePath),
+                        PathResolver = new RevitPathResolver(userDataFolder, commonDataFolder),
+                        Preferences = new PreferenceSettings()
+                        {
+                            IsAnalyticsReportingApproved = false,
+                            IsUsageReportingApproved = false,
+                            IsFirstRun = false,
+                            CustomPackageFolders = new List<string>() { }
+                        },
+                        Context = GetRevitContext(commandData),
+                        SchedulerThread = new RevitSchedulerThread(commandData.Application),
+                        StartInTestMode = isAutomationMode,
+                        AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
+                        ExternalCommandData = commandData,
+                        UpdateManager = revitUpdateManager,
+                        ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
+                    });
+                return model;
+            };
+
+            var h = new EventWaitHandle(false, EventResetMode.ManualReset);
+            var startParams = new WebSocketServer.StartParams()
+            {
+                DynamoModelSource = rdm,
+                DisableTokenValidator = true
+            };
+
+            ws = new WebSocketServer(startParams);
+            {
+                //h.WaitOne();
+            }
+
+
+            //return model;
         }
 
         private static void PreloadAsmFromRevit()

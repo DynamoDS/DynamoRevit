@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="../Config/CS.props" />
+  </ImportGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{55636E8F-53B1-4E27-A0D7-68A00DA13C92}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Reach</RootNamespace>
+    <AssemblyName>Reach</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CoreNodeModels">
+      <HintPath>$(DYNAMOAPI)\nodes\CoreNodeModels.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoServices, Version=1.0.0.885, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
+    </Reference>
+    <Reference Include="DynamoUtilities">
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoUtilities.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DSCoreNodes">
+      <HintPath>$(DYNAMOAPI)\DSCoreNodes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoConversions">
+      <HintPath>$(DYNAMOAPI)\DynamoConversions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Greg, Version=1.0.6176.18754, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Greg.1.0.6176.18754\lib\net45\Greg.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\extern\SharpZipLib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ProtoCore">
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\ProtoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PythonNodeModels">
+      <HintPath>$(DYNAMOAPI)\nodes\PythonNodeModels.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Watch3DNodeModels">
+      <HintPath>$(DYNAMOAPI)\nodes\Watch3DNodeModels.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="DynamoCore">
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Conversion\MessageSerializationBinder.cs" />
+    <Compile Include="Messages\CameraDataMessage.cs" />
+    <Compile Include="Messages\DownloadDependencyMessage.cs" />
+    <Compile Include="Messages\GetSerializedNodeValuesMessage.cs" />
+    <Compile Include="Messages\RestoreDynamoGroupsMessage.cs" />
+    <Compile Include="Messages\RestoreNodesPositionsMessage.cs" />
+    <Compile Include="Messages\SetWatch3DCamerasMessage.cs" />
+    <Compile Include="Messages\WorkspaceSettingsMessage.cs" />
+    <Compile Include="Responses\DownloadDependencyResponse.cs" />
+    <Compile Include="Responses\Data\SerializedNodeValueData.cs" />
+    <Compile Include="Responses\HealthResponse.cs" />
+    <Compile Include="Responses\MessageConsumedResponse.cs" />
+    <Compile Include="Responses\NodeAvailabilityCheckResponse.cs" />
+    <Compile Include="Responses\SerializedNodeValuesResponse.cs" />
+    <Compile Include="Responses\RefreshResponse.cs" />
+    <Compile Include="Serialization\INodeValueSerializer.cs" />
+    <Compile Include="Messages\Data\SerializedNodeData.cs" />
+    <Compile Include="Messages\HeartbeatMessage.cs" />
+    <Compile Include="Responses\Data\CodeBlockData.cs" />
+    <Compile Include="Responses\Data\FormulaData.cs" />
+    <Compile Include="Responses\FormulaResponse.cs" />
+    <Compile Include="Serialization\NodeValueSerializerDefinition.cs" />
+    <Compile Include="Serialization\NodeValueSerializerLibrary.cs" />
+    <Compile Include="Serialization\NodeValueSerializerLoader.cs" />
+    <Compile Include="Utilities\DependentFileStorage.cs" />
+    <Compile Include="Utilities\Configuration.cs" />
+    <Compile Include="Utilities\Constants.cs" />
+    <Compile Include="Responses\TimeoutResponse.cs" />
+    <Compile Include="Rendering\IRenderPackageCache.cs" />
+    <Compile Include="Execution\GetExecutedNodesAsyncTask.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\ConsoleLogger.cs" />
+    <Compile Include="Logging\FileLogger.cs" />
+    <Compile Include="Responses\TokenValidationResponse.cs" />
+    <Compile Include="Synchronization\TolerantCommandVerifier.cs" />
+    <Compile Include="Utilities\EventNames.cs" />
+    <Compile Include="Utilities\IWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilities\PropertyNames.cs" />
+    <Compile Include="Utilities\Extensions.cs" />
+    <Compile Include="Synchronization\ICommandVerifier.cs" />
+    <Compile Include="Execution\IMessageHandler.cs" />
+    <Compile Include="Execution\IActionQueue.cs" />
+    <Compile Include="Messages\ClearWorkspaceMessage.cs" />
+    <Compile Include="Messages\GetNodeArrayItemsMessage.cs" />
+    <Compile Include="Messages\HasUnsavedChangesMessage.cs" />
+    <Compile Include="Messages\Data\GeometryData.cs" />
+    <Compile Include="Messages\GetNodeGeometryMessage.cs" />
+    <Compile Include="Messages\Data\ExecutedNode.cs" />
+    <Compile Include="Messages\GetLibraryItemsMessage.cs" />
+    <Compile Include="Messages\Data\LibraryItem.cs" />
+    <Compile Include="Messages\Message.cs" />
+    <Compile Include="Execution\MessageHandler.cs" />
+    <Compile Include="Messages\Data\NodeToCreate.cs" />
+    <Compile Include="Messages\UploadFileMessage.cs" />
+    <Compile Include="Execution\FileUploader.cs" />
+    <Compile Include="Messages\Data\ConnectorToCreate.cs" />
+    <Compile Include="Execution\ActionQueue.cs" />
+    <Compile Include="Messages\SaveFileMessage.cs" />
+    <Compile Include="Messages\RunCommandsMessage.cs" />
+    <Compile Include="Rendering\WorkspaceRenderPackageCache.cs" />
+    <Compile Include="Utilities\ReachPathResolver.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Responses\ArrayItemsDataResponse.cs" />
+    <Compile Include="Responses\CodeBlockDataResponse.cs" />
+    <Compile Include="Responses\HasUnsavedChangesResponse.cs" />
+    <Compile Include="Responses\GeometryDataResponse.cs" />
+    <Compile Include="Responses\Response.cs" />
+    <Compile Include="Responses\NewConnectionResponse.cs" />
+    <Compile Include="Responses\RestResponse.cs" />
+    <Compile Include="Responses\UpdateProxyNodesResponse.cs" />
+    <Compile Include="Responses\WorkspacePathResponse.cs" />
+    <Compile Include="Responses\ComputationResponse.cs" />
+    <Compile Include="Responses\ContentResponse.cs" />
+    <Compile Include="Responses\LibraryItemsListResponse.cs" />
+    <Compile Include="Responses\NewWorkspaceResponse.cs" />
+    <Compile Include="Responses\UploadFileResponse.cs" />
+    <Compile Include="Responses\SavedFileResponse.cs" />
+    <Compile Include="Synchronization\RollbackFileLogger.cs" />
+    <Compile Include="Utilities\StartConfiguration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ionic.Zip.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dynamo.Storage\Dynamo.Storage.csproj">
+      <Project>{816d07b5-7479-417d-a672-57c11b60f81b}</Project>
+      <Name>Dynamo.Storage</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

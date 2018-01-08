@@ -186,7 +186,7 @@
   <ItemGroup>
     <Content Include="Ionic.Zip.xml" />
     <EmbeddedResource Include="Resources\Category.Revit.svg" />
-	<EmbeddedResource Include="Resources\LayoutSpecs.json" />
+    <EmbeddedResource Include="Resources\LayoutSpecs.json" />
     <Content Include="Resources\logo_square_32x32.png" />
     <Content Include="Resources\logo_square_64x64.png" />
   </ItemGroup>
@@ -198,6 +198,18 @@
     <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj">
       <Project>{e4701f9e-41ab-4044-8166-85d924feb632}</Project>
       <Name>RevitServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dynamo.Storage\Dynamo.Storage.csproj">
+      <Project>{816d07b5-7479-417d-a672-57c11b60f81b}</Project>
+      <Name>Dynamo.Storage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reach.WebSocket\Reach.WebSocket.csproj">
+      <Project>{d1f48ce0-5fc4-40a6-bab3-32769cf3620c}</Project>
+      <Name>Reach.WebSocket</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reach\Reach.csproj">
+      <Project>{55636e8f-53b1-4e27-a0d7-68a00da13c92}</Project>
+      <Name>Reach</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

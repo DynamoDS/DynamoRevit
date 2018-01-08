@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="../Config/CS.props" />
+  </ImportGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{816D07B5-7479-417D-A672-57C11B60F81B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dynamo.Storage</RootNamespace>
+    <AssemblyName>Dynamo.Storage</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>$(OutputPath)</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>$(OutputPath)</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CoreNodeModels">
+      <HintPath>$(DYNAMOAPI)\nodes\CoreNodeModels.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoConversions, Version=1.0.1.1057, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(DYNAMOAPI)\DynamoConversions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoCore">
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoUtilities">
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoUtilities.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Greg, Version=1.0.6176.18754, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Greg.1.0.6176.18754\lib\net45\Greg.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ProtoCore">
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\ProtoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PythonNodeModels">
+      <HintPath>$(DYNAMOAPI)\nodes\PythonNodeModels.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Watch3DNodeModels">
+      <HintPath>$(DYNAMOAPI)\nodes\Watch3DNodeModels.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\CameraData.cs" />
+    <Compile Include="Conversion\ExtraInfo\BaseExtraInfo.cs" />
+    <Compile Include="Conversion\ExtraInfo\BoolExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\CodeBlockExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\ConvertNodeExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\DoubleInputExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\DoubleInputSliderExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\DSVarArgFunctionExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\FormulaExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\FunctionExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\IntegerSliderExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\OutputExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\PythonNodeExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\StringInputExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\SymbolExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\VariableInputNodeExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\Watch3DExtra.cs" />
+    <Compile Include="Conversion\ExtraInfo\WatchExtra.cs" />
+    <Compile Include="Conversion\INodeModelConverter.cs" />
+    <Compile Include="Conversion\IWorkspaceConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\BaseConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\BoolConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\CodeBlockConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\ConvertNodeConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\DoubleInputConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\DoubleInputSliderConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\DSVarArgFunctionConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\FormulaConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\FunctionConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\IntegerSliderConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\OutputConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\PythonNodeConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\StringInputConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\SymbolConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\VariableInputNodeConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\Watch3DConverter.cs" />
+    <Compile Include="Conversion\NodeConverters\WatchConverter.cs" />
+    <Compile Include="Conversion\ReachNode.cs" />
+    <Compile Include="Conversion\ReplicationTypeConverter.cs" />
+    <Compile Include="Conversion\TypeNameSerializationBinder.cs" />
+    <Compile Include="Conversion\WorkspaceConverter.cs" />
+    <Compile Include="Data\GroupData.cs" />
+    <Compile Include="Data\NodePortData.cs" />
+    <Compile Include="Data\RequestModels.cs" />
+    <Compile Include="Exceptions\GetWorkspacesException.cs" />
+    <Compile Include="Exceptions\InvalidNodeException.cs" />
+    <Compile Include="NodeToPublish.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Upload\IWorkspaceStorageClient.cs" />
+    <Compile Include="Upload\NodeFilter.cs" />
+    <Compile Include="Upload\WorkspaceDependencies.cs" />
+    <Compile Include="Upload\WorkspaceStorageClient.cs" />
+    <Compile Include="Utilities\Constants.cs" />
+    <Compile Include="WorkspaceProperties.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ionic.Zip.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DynamoVisualProgramming.Storage</id>
+    <version>2.0.0-beta3</version>
+    <title>DynamoVisualProgramming.Storage</title>
+    <authors>Autodesk, Inc.</authors>
+    <projectUrl>https://github.com/DynamoDS/Dynamo</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/DynamoDS/Dynamo/master/doc/distrib/Images/logo_square_32x32.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Dynamo Workspace storage client.</description>
+    <copyright>Copyright 2017</copyright>
+    <tags>dynamo reach web</tags>  
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="8.0.2" />
+      <dependency id="RestSharp" version="105.2.3"/>
+      <dependency id="Greg" version="1.0.5950.12824"/>
+    </dependencies> 
+  </metadata>
+  <files>
+    <file src="..\..\..\Dynamo\bin\AnyCPU\$configuration$\Dynamo.Storage.dll" target="lib\net45" /> 
+  </files>
+</package>

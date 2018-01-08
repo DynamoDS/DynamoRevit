@@ -62,6 +62,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{821DE75A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoAddinGenerator", "Tools\DynamoAddinGenerator\DynamoAddinGenerator.csproj", "{92A46535-D870-4E1A-AED0-7492789E9C4A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reach.WebSocket", "Reach.WebSocket\Reach.WebSocket.csproj", "{D1F48CE0-5FC4-40A6-BAB3-32769CF3620C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reach", "Reach\Reach.csproj", "{55636E8F-53B1-4E27-A0D7-68A00DA13C92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamo.Storage", "Dynamo.Storage\Dynamo.Storage.csproj", "{816D07B5-7479-417D-A672-57C11B60F81B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,6 +126,18 @@ Global
 		{92A46535-D870-4E1A-AED0-7492789E9C4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92A46535-D870-4E1A-AED0-7492789E9C4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92A46535-D870-4E1A-AED0-7492789E9C4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1F48CE0-5FC4-40A6-BAB3-32769CF3620C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1F48CE0-5FC4-40A6-BAB3-32769CF3620C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1F48CE0-5FC4-40A6-BAB3-32769CF3620C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1F48CE0-5FC4-40A6-BAB3-32769CF3620C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55636E8F-53B1-4E27-A0D7-68A00DA13C92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55636E8F-53B1-4E27-A0D7-68A00DA13C92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55636E8F-53B1-4E27-A0D7-68A00DA13C92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55636E8F-53B1-4E27-A0D7-68A00DA13C92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{816D07B5-7479-417D-A672-57C11B60F81B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{816D07B5-7479-417D-A672-57C11B60F81B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{816D07B5-7479-417D-A672-57C11B60F81B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{816D07B5-7479-417D-A672-57C11B60F81B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
