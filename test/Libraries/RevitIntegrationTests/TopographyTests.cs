@@ -14,7 +14,7 @@ using Autodesk.DesignScript.Geometry;
 
 namespace RevitSystemTests
 {
-    [TestFixture]
+    [TestFixture, Category("Failure")]
     class TopographyTests : RevitSystemTestBase
     {
         [Test]
