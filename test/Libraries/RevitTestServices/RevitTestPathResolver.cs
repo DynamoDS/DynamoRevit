@@ -11,6 +11,7 @@ namespace RevitTestServices
         {
             AddPreloadLibraryPath("VMDataBridge.dll");
             AddPreloadLibraryPath("ProtoGeometry.dll");
+            AddPreloadLibraryPath("Builtin.dll");
             AddPreloadLibraryPath("DSCoreNodes.dll");
             AddPreloadLibraryPath("DSOffice.dll");
             AddPreloadLibraryPath("DSIronPython.dll");
