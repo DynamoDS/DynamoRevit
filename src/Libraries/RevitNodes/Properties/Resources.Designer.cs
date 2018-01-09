@@ -115,6 +115,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specified View Template is not valid for this View..
+        /// </summary>
+        internal static string CategoryVisibilityOverrideError {
+            get {
+                return ResourceManager.GetString("CategoryVisibilityOverrideError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find cell for panel.
         /// </summary>
         internal static string CellForPanelNotFound {
@@ -174,6 +183,15 @@ namespace Revit.Properties {
         internal static string CurtainPanelShouldRepresentRevitPanel {
             get {
                 return ResourceManager.GetString("CurtainPanelShouldRepresentRevitPanel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curtain System Type not found..
+        /// </summary>
+        internal static string CurtainSystemTypeNotFound {
+            get {
+                return ResourceManager.GetString("CurtainSystemTypeNotFound", resourceCulture);
             }
         }
         
@@ -259,6 +277,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Document does not support global parameters..
+        /// </summary>
+        internal static string DocumentDoesNotSupportGlobalParams {
+            get {
+                return ResourceManager.GetString("DocumentDoesNotSupportGlobalParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dynamo Data.
         /// </summary>
         internal static string Dynamo_AVF_Data_Name {
@@ -291,6 +318,15 @@ namespace Revit.Properties {
         internal static string ElementCannotBeAnnotatedError {
             get {
                 return ResourceManager.GetString("ElementCannotBeAnnotatedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Schedule Export Options..
+        /// </summary>
+        internal static string ExportOptionsArgumentException {
+            get {
+                return ResourceManager.GetString("ExportOptionsArgumentException", resourceCulture);
             }
         }
         
@@ -475,6 +511,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The selected face cannot be used to create a wall. Please use a mass face instead..
+        /// </summary>
+        internal static string InvalidFace {
+            get {
+                return ResourceManager.GetString("InvalidFace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FilterType is not valid..
         /// </summary>
         internal static string InvalidFilterType {
@@ -489,6 +534,15 @@ namespace Revit.Properties {
         internal static string InvalidHost {
             get {
                 return ResourceManager.GetString("InvalidHost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Floor Shape cannot be edited..
+        /// </summary>
+        internal static string InvalidShapeEditor {
+            get {
+                return ResourceManager.GetString("InvalidShapeEditor", resourceCulture);
             }
         }
         
@@ -552,6 +606,15 @@ namespace Revit.Properties {
         internal static string MultipleSurfacesIntroducedAfterConversion {
             get {
                 return ResourceManager.GetString("MultipleSurfacesIntroducedAfterConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name already in use..
+        /// </summary>
+        internal static string NameAlreadyInUse {
+            get {
+                return ResourceManager.GetString("NameAlreadyInUse", resourceCulture);
             }
         }
         
@@ -736,11 +799,38 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Roof type not found..
+        /// </summary>
+        internal static string RoofTypeNotFound {
+            get {
+                return ResourceManager.GetString("RoofTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The number of sample points and number of samples must be the same..
         /// </summary>
         internal static string SamplePointsMismatchError {
             get {
                 return ResourceManager.GetString("SamplePointsMismatchError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error exporting this schedule..
+        /// </summary>
+        internal static string ScheduleExportError {
+            get {
+                return ResourceManager.GetString("ScheduleExportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Schedule Type..
+        /// </summary>
+        internal static string ScheduleTypeArgumentException {
+            get {
+                return ResourceManager.GetString("ScheduleTypeArgumentException", resourceCulture);
             }
         }
         
@@ -772,15 +862,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ParameterType cannot be converted to UnitType..
-        /// </summary>
-        internal static string UnitTypeConversionError {
-            get {
-                return ResourceManager.GetString("UnitTypeConversionError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The supplied path is invalid..
         /// </summary>
         internal static string View_ExportAsImage_Path_Invalid {
@@ -795,6 +876,15 @@ namespace Revit.Properties {
         internal static string ViewDoesNotSupportAnnotations {
             get {
                 return ResourceManager.GetString("ViewDoesNotSupportAnnotations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error exporting the image..
+        /// </summary>
+        internal static string ViewExportImageError {
+            get {
+                return ResourceManager.GetString("ViewExportImageError", resourceCulture);
             }
         }
         

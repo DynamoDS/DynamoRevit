@@ -1,11 +1,5 @@
-﻿using System;
-using Autodesk.Revit.DB;
-using DynamoServices;
+﻿using Autodesk.Revit.DB;
 using Autodesk.DesignScript.Runtime;
-using Revit.GeometryConversion;
-using RevitServices.Persistence;
-using RevitServices.Transactions;
-using System.Collections.Generic;
 
 namespace Revit.Filter
 {
@@ -38,7 +32,7 @@ namespace Revit.Filter
         #region Public static constructors
 
         /// <summary>
-        /// Create a OverrideGraphicSettings element
+        /// Create a OverrideGraphicSettings Element.
         /// </summary>
         /// <param name="cutFillColor">Fill color</param>
         /// <param name="projectionFillColor">Projection color</param>
@@ -50,18 +44,24 @@ namespace Revit.Filter
         /// <param name="projectionFillPattern">Projection fill pattern</param>
         /// <param name="cutLinePattern">Cut line pattern</param>
         /// <param name="projectionLinePattern">Projection line pattern</param>
-        /// <returns>OverrideGraphicSettings</returns>
+        /// <param name="transparency">Transparency as integer between 1-100.</param>
+        /// <param name="detailLevel">Detail Level setting, ex: Coarse, Fine etc.</param>
+        /// <param name="halftone">Halftone. True = halftone.</param>
+        /// <returns name="overrides">Override Graphic Settings</returns>
         public static OverrideGraphicSettings ByProperties(
             [DefaultArgumentAttribute("null")]DSCore.Color cutFillColor,
             [DefaultArgumentAttribute("null")]DSCore.Color projectionFillColor,
             [DefaultArgumentAttribute("null")]DSCore.Color cutLineColor,
             [DefaultArgumentAttribute("null")]DSCore.Color projectionLineColor,
-            [DefaultArgumentAttribute("null")]FillPatternElement cutFillPattern,
-            [DefaultArgumentAttribute("null")]FillPatternElement projectionFillPattern,
-            [DefaultArgumentAttribute("null")]LinePatternElement cutLinePattern,
-            [DefaultArgumentAttribute("null")]LinePatternElement projectionLinePattern,
+            [DefaultArgumentAttribute("null")]Revit.Elements.FillPatternElement cutFillPattern,
+            [DefaultArgumentAttribute("null")]Revit.Elements.FillPatternElement projectionFillPattern,
+            [DefaultArgumentAttribute("null")]Revit.Elements.LinePatternElement cutLinePattern,
+            [DefaultArgumentAttribute("null")]Revit.Elements.LinePatternElement projectionLinePattern,
             int cutLineWeight = -1,
-            int projectionLineWeight = -1
+            int projectionLineWeight = -1,
+            int transparency = -1,
+            string detailLevel = "Undefined",
+            bool halftone = false
             )
         {
             Autodesk.Revit.DB.OverrideGraphicSettings filterSettings = new Autodesk.Revit.DB.OverrideGraphicSettings();
@@ -77,10 +77,15 @@ namespace Revit.Filter
             if (projectionLineWeight != -1) filterSettings.SetProjectionLineWeight(projectionLineWeight);
 
             // Apply Patterns          
-            if (cutFillPattern != null) filterSettings.SetCutFillPatternId(cutFillPattern.Id);
-            if (projectionFillPattern != null) filterSettings.SetProjectionFillPatternId(projectionFillPattern.Id);
-            if (cutLinePattern != null) filterSettings.SetCutLinePatternId(cutLinePattern.Id);
-            if (projectionLinePattern != null) filterSettings.SetProjectionLinePatternId(projectionLinePattern.Id);
+            if (cutFillPattern != null) filterSettings.SetCutFillPatternId(cutFillPattern.InternalElement.Id);
+            if (projectionFillPattern != null) filterSettings.SetProjectionFillPatternId(projectionFillPattern.InternalElement.Id);
+            if (cutLinePattern != null) filterSettings.SetCutLinePatternId(cutLinePattern.InternalElement.Id);
+            if (projectionLinePattern != null) filterSettings.SetProjectionLinePatternId(projectionLinePattern.InternalElement.Id);
+
+            // Apply transparency, detail level and halftone
+            if (transparency != -1) filterSettings.SetSurfaceTransparency(transparency);
+            if (halftone) filterSettings.SetHalftone(halftone);
+            filterSettings.SetDetailLevel((Autodesk.Revit.DB.ViewDetailLevel)System.Enum.Parse(typeof(Autodesk.Revit.DB.ViewDetailLevel), detailLevel));
 
             return new OverrideGraphicSettings(filterSettings);
         }
@@ -100,9 +105,5 @@ namespace Revit.Filter
         }
 
         #endregion
-
     }
-
-
-
 }
