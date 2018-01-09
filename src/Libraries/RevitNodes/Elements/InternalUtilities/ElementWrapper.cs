@@ -222,6 +222,11 @@ namespace Revit.Elements
             return Dimension.FromExisting(ele, isRevitOwned);
         }
 
+        public static DimensionType Wrap(Autodesk.Revit.DB.DimensionType ele, bool isRevitOwned)
+        {
+            return DimensionType.FromExisting(ele, isRevitOwned);
+        }
+
         public static FilledRegionType Wrap(Autodesk.Revit.DB.FilledRegionType ele, bool isRevitOwned)
         {
             return FilledRegionType.FromExisting(ele, isRevitOwned);
@@ -230,7 +235,17 @@ namespace Revit.Elements
         public static FilledRegion Wrap(Autodesk.Revit.DB.FilledRegion ele, bool isRevitOwned)
         {
             return FilledRegion.FromExisting(ele, isRevitOwned);
-	}
+	    }
+
+        public static FillPatternElement Wrap(Autodesk.Revit.DB.FillPatternElement ele, bool isRevitOwned)
+        {
+            return FillPatternElement.FromExisting(ele, isRevitOwned);
+        }
+
+        public static LinePatternElement Wrap(Autodesk.Revit.DB.LinePatternElement ele, bool isRevitOwned)
+        {
+            return LinePatternElement.FromExisting(ele, isRevitOwned);
+        }
 
         public static TextNote Wrap(Autodesk.Revit.DB.TextNote ele, bool isRevitOwned)
         {
@@ -255,7 +270,7 @@ namespace Revit.Elements
         public static RevisionCloud Wrap(Autodesk.Revit.DB.RevisionCloud ele, bool isRevitOwned)
         {
             return RevisionCloud.FromExisting(ele, isRevitOwned);
-	}
+		}
 
         public static Revit.Filter.ParameterFilterElement Wrap(Autodesk.Revit.DB.ParameterFilterElement ele, bool isRevitOwned)
         {
@@ -265,7 +280,7 @@ namespace Revit.Elements
         public static Room Wrap(Autodesk.Revit.DB.Architecture.Room ele, bool isRevitOwned)
         {
             return Room.FromExisting(ele, isRevitOwned);
-        }
+    	}
 
         public static DetailCurve Wrap(Autodesk.Revit.DB.DetailCurve ele, bool isRevitOwned)
         {
@@ -273,7 +288,21 @@ namespace Revit.Elements
 
         }
 
+        public static FaceWall Wrap(Autodesk.Revit.DB.FaceWall ele, bool isRevitOwned)
+        {
+            return FaceWall.FromExisting(ele, isRevitOwned);
+        }
 
+        public static GlobalParameter Wrap(Autodesk.Revit.DB.GlobalParameter ele, bool isRevitOwned)
+        {
+            return GlobalParameter.FromExisting(ele, isRevitOwned);
+
+        }
+
+        public static CurtainSystem Wrap(Autodesk.Revit.DB.CurtainSystem ele, bool isRevitOwned)
+        {
+            return CurtainSystem.FromExisting(ele, isRevitOwned);
+        }
         #endregion
 
     }

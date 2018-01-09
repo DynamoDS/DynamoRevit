@@ -304,6 +304,75 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Centerline boundary
+        /// </summary>
+        public IEnumerable<IEnumerable<Autodesk.DesignScript.Geometry.Curve>> CenterBoundary
+        {
+            get
+            {
+                return GetBoundaries(Autodesk.Revit.DB.SpatialElementBoundaryLocation.Center);
+            }
+        }
+
+        /// <summary>
+        /// Core boundary
+        /// </summary>
+        public IEnumerable<IEnumerable<Autodesk.DesignScript.Geometry.Curve>> CoreBoundary
+        {
+            get
+            {
+                return GetBoundaries(Autodesk.Revit.DB.SpatialElementBoundaryLocation.CoreBoundary);
+            }
+        }
+
+        /// <summary>
+        /// Finish boundary
+        /// </summary>
+        public IEnumerable<IEnumerable<Autodesk.DesignScript.Geometry.Curve>> FinishBoundary
+        {
+            get
+            {
+                return GetBoundaries(Autodesk.Revit.DB.SpatialElementBoundaryLocation.Finish);
+            }
+        }
+
+        /// <summary>
+        /// Core center boundary
+        /// </summary>
+        public IEnumerable<IEnumerable<Autodesk.DesignScript.Geometry.Curve>> CoreCenterBoundary
+        {
+            get
+            {
+                return GetBoundaries(Autodesk.Revit.DB.SpatialElementBoundaryLocation.CoreCenter);
+            }
+        }
+
+        /// <summary>
+        /// Get Room Location
+        /// </summary>
+        public Autodesk.DesignScript.Geometry.Point Location
+        {
+            get
+            {
+                if (this.InternalRevitElement.Location is Autodesk.Revit.DB.LocationPoint)
+                {
+                    var loc = this.InternalRevitElement.Location as Autodesk.Revit.DB.LocationPoint;
+                    return loc.Point.ToPoint();
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Check if a point is inside of a room
+        /// </summary>
+        public bool IsInsideRoom(Autodesk.DesignScript.Geometry.Point point)
+        {
+            return this.InternalRevitElement.IsPointInRoom(point.ToRevitType());
+        }
+
+        /// <summary>
         /// Set name
         /// </summary>
         /// <param name="value">Name</param>
