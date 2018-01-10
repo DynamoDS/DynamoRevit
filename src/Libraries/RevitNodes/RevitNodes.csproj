@@ -106,6 +106,7 @@
     <Compile Include="Elements\Revision.cs" />
     <Compile Include="Elements\RevisionCloud.cs" />
     <Compile Include="Elements\Views\AreaPlanView.cs" />
+    <Compile Include="Elements\Views\Legend.cs" />
     <Compile Include="PerformanceAdviser\FailureMessage.cs" />
     <Compile Include="PerformanceAdviser\PerformanceAdviserRule.cs" />
     <Compile Include="Elements\SunSettings.cs" />
@@ -239,7 +240,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.en-US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
