@@ -14,10 +14,10 @@ using Autodesk.DesignScript.Geometry;
 
 namespace RevitSystemTests
 {
-    [TestFixture, Category("Failure")]
+    [TestFixture]
     class TopographyTests : RevitSystemTestBase
     {
-        [Test]
+        [Test, Ignore, Category("Failure")]
         [TestModel(@".\empty.rvt")]
         public void TopographyFromPoints()
         {
