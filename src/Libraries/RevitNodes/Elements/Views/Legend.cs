@@ -22,7 +22,10 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Reference to the Element
         /// </summary>
-        public override Autodesk.Revit.DB.Element InternalElement => InternalLegend;
+        public override Autodesk.Revit.DB.Element InternalElement
+        {
+            get { return InternalLegend; }
+        }
 
         #endregion
 
