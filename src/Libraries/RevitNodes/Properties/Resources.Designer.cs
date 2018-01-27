@@ -907,7 +907,16 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Attempt to override existing image failed due to file lock. Please make sure that image is not currently open in another application..
+        /// </summary>
+        internal static string ViewExportImageLockedError {
+            get {
+                return ResourceManager.GetString("ViewExportImageLockedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specified View Type could not be found..
         /// </summary>
         internal static string ViewPlan_ViewFamilyNotFound {
             get {
