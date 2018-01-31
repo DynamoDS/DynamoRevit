@@ -66,9 +66,15 @@ namespace Revit.Filter
         {
             Autodesk.Revit.DB.OverrideGraphicSettings filterSettings = new Autodesk.Revit.DB.OverrideGraphicSettings();
 
+            // the old functions SetCutFillColor, SetCutFillPatternId,
+            // SetProjectionFillColor and SetProjectionFillPatternId,
+            // are obsoleted and suggested by the documentation that will be removed and 
+            // replaced by SetCutForegroundPatternColor, SetCutForegroundPatternId,
+            // SetSurfaceForegroundPatternColor, SetSurfaceForegroundPatternId.
+
             // Apply Colors
-            if (cutFillColor != null) filterSettings.SetCutFillColor(ToRevitColor(cutFillColor));
-            if (projectionFillColor != null) filterSettings.SetProjectionFillColor(ToRevitColor(projectionFillColor));
+            if (cutFillColor != null) filterSettings.SetCutForegroundPatternColor(ToRevitColor(cutFillColor));
+            if (projectionFillColor != null) filterSettings.SetSurfaceForegroundPatternColor(ToRevitColor(projectionFillColor));
             if (cutLineColor != null) filterSettings.SetCutLineColor(ToRevitColor(cutLineColor));
             if (projectionLineColor != null) filterSettings.SetProjectionLineColor(ToRevitColor(projectionLineColor));
 
@@ -77,8 +83,8 @@ namespace Revit.Filter
             if (projectionLineWeight != -1) filterSettings.SetProjectionLineWeight(projectionLineWeight);
 
             // Apply Patterns          
-            if (cutFillPattern != null) filterSettings.SetCutFillPatternId(cutFillPattern.InternalElement.Id);
-            if (projectionFillPattern != null) filterSettings.SetProjectionFillPatternId(projectionFillPattern.InternalElement.Id);
+            if (cutFillPattern != null) filterSettings.SetCutForegroundPatternId(cutFillPattern.InternalElement.Id);
+            if (projectionFillPattern != null) filterSettings.SetSurfaceForegroundPatternId(projectionFillPattern.InternalElement.Id);
             if (cutLinePattern != null) filterSettings.SetCutLinePatternId(cutLinePattern.InternalElement.Id);
             if (projectionLinePattern != null) filterSettings.SetProjectionLinePatternId(projectionLinePattern.InternalElement.Id);
 
