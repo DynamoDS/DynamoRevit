@@ -66,6 +66,12 @@ namespace Revit.Filter
         {
             Autodesk.Revit.DB.OverrideGraphicSettings filterSettings = new Autodesk.Revit.DB.OverrideGraphicSettings();
 
+            // the old functions SetCutFillColor, SetCutFillPatternId,
+            // SetProjectionFillColor and SetProjectionFillPatternId,
+            // are obsoleted and suggested by the documentation that will be removed and 
+            // replaced by SetCutForegroundPatternColor, SetCutForegroundPatternId,
+            // SetSurfaceForegroundPatternColor, SetSurfaceForegroundPatternId.
+
             // Apply Colors
             if (cutFillColor != null) filterSettings.SetCutForegroundPatternColor(ToRevitColor(cutFillColor));
             if (projectionFillColor != null) filterSettings.SetSurfaceForegroundPatternColor(ToRevitColor(projectionFillColor));
