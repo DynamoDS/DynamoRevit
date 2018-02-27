@@ -28,8 +28,7 @@ namespace DSRevitNodesUI
 
         public SunSettings()
         {
-            OutPortData.Add(
-                new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip)));
 
             RegisterAllPorts();
 
