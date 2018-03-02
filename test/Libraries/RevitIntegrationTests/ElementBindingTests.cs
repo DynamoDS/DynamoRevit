@@ -757,7 +757,7 @@ namespace RevitSystemTests
         {
             var model = OpenElementBindingWorkspace("RebindingBatchedACs.dyn");
             RunCurrentModel();
-            NodeModel adaptiveCompNode = model.CurrentWorkspace.Nodes.Where(x => x.NickName == "AdaptiveComponent.ByPoints").First();
+            NodeModel adaptiveCompNode = model.CurrentWorkspace.Nodes.Where(x => x.Name == "AdaptiveComponent.ByPoints").First();
 
             var doc = DocumentManager.Instance.CurrentDBDocument;
             var familyInstances = Utils.AllElementsOfType<FamilyInstance>(doc);
