@@ -123,19 +123,18 @@ namespace Revit.Elements
 
         #endregion
 
+        /// <summary>
+        /// Empty method - we don't want to tessellate curves automatically
+        /// but it seems we need this method to correctly import this library into Dynamo.
+        /// See description in base class.
+        /// </summary>
+        /// <param name="package"></param>
+        /// <param name="parameters"></param>
         [IsVisibleInDynamoLibrary(false)]
         public new void Tessellate(IRenderPackage package, TessellationParameters parameters)
         {
-            //Ensure that the object is still alive
-            if (!IsAlive) return;
-
-            this.Curve.Tessellate(package, parameters);
-
-            if (package.LineVertexCount > 0)
-            {
-                package.ApplyLineVertexColors(CreateColorByteArrayOfSize(package.LineVertexCount, DefR, DefG, DefB, DefA));
-            }
-       }
+            
+        }
 
        private static byte[] CreateColorByteArrayOfSize(int size, byte red, byte green, byte blue, byte alpha)
        {

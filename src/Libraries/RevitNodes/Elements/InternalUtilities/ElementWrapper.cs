@@ -309,6 +309,11 @@ namespace Revit.Elements
         {
             return CurtainSystem.FromExisting(ele, isRevitOwned);
         }
+
+        public static Material Wrap(Autodesk.Revit.DB.Material ele, bool isRevitOwned)
+        {
+            return Material.FromExisting(ele, isRevitOwned);
+        }
         #endregion
 
     }

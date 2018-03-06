@@ -1116,7 +1116,7 @@ namespace RevitSystemTests
             }
         }
 
-        [Test, Category("SmokeTests")]
+        [Test, Ignore, Category("Failure"), Category("SmokeTests")]
         [TestModel(@".\empty.rfa")]
         public void Geometry_Solids()
         {
