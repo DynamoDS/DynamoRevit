@@ -107,7 +107,7 @@ namespace Revit.Elements
         /// </summary>
         public DSCore.Color Color
         {
-            get { return DSCore.Color.ByARGB(255, this.InternalRevitElement.Color.Red,this.InternalRevitElement.Color.Green, this.InternalRevitElement.Color.Blue); }
+            get { return DSCore.Color.ByARGB(255, this.InternalRevitElement.ForegroundPatternColor.Red, this.InternalRevitElement.ForegroundPatternColor.Green, this.InternalRevitElement.ForegroundPatternColor.Blue); }
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Revit.Elements
         /// </summary>
         public ElementId FillPatternId
         {
-            get { return this.InternalRevitElement.FillPatternId; }
+            get { return this.InternalRevitElement.ForegroundPatternId; }
         }
 
         #endregion
