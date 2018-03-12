@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using Autodesk.Revit.DB;
-using Revit.Elements.Views;
 using RevitServices.Persistence;
 using Autodesk.DesignScript.Runtime;
-using View = Revit.Elements.Views.View;
+using Revit.Elements.Views;
 
 namespace Revit.Elements
 {
@@ -44,29 +39,34 @@ namespace Revit.Elements
         /// <summary>
         /// Set the InternalViewPlan property and the associated element id and unique id
         /// </summary>
-        /// <param name="plan"></param>
+        /// <param name="plan">ViewPlan</param>
         protected void InternalSetPlanView(Autodesk.Revit.DB.ViewPlan plan)
         {
-            this.InternalViewPlan = plan;
-            this.InternalElementId = plan.Id;
-            this.InternalUniqueId = plan.UniqueId;
+            InternalViewPlan = plan;
+            InternalElementId = plan.Id;
+            InternalUniqueId = plan.UniqueId;
         }
 
         #endregion
 
         #region Protected helper methods
 
-        protected static ViewPlan CreatePlanView(Autodesk.Revit.DB.Level level, Autodesk.Revit.DB.ViewFamily planType)
+        protected static Autodesk.Revit.DB.ViewPlan CreatePlanView(Autodesk.Revit.DB.Level level, Autodesk.Revit.DB.ViewFamily planType)
         {
-            var viewFam = DocumentManager.Instance.ElementsOfType<ViewFamilyType>()
+            var viewFam = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.ViewFamilyType>()
                 .FirstOrDefault(x => x.ViewFamily == planType);
 
             if (viewFam == null)
             {
-                throw new Exception("There is no such ViewFamily in the document");
+                throw new Exception(Properties.Resources.ViewPlan_ViewFamilyNotFound);
             }
 
-            return ViewPlan.Create(Document, viewFam.Id, level.Id); ;
+            return Autodesk.Revit.DB.ViewPlan.Create(Document, viewFam.Id, level.Id);
+        }
+
+        protected static Autodesk.Revit.DB.ViewPlan CreateAreaPlan(Autodesk.Revit.DB.Level level, Autodesk.Revit.DB.AreaScheme areaScheme)
+        {
+            return Autodesk.Revit.DB.ViewPlan.CreateAreaPlan(Document, areaScheme.Id, level.Id);
         }
 
         #endregion

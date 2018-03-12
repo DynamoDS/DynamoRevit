@@ -17,7 +17,7 @@ namespace RevitSystemTests
     class GlobalParameterTests : RevitSystemTestBase
     {
         [Test]
-        [TestModel(@".\empty-2017.rvt")]
+        [TestModel(@".\empty.rvt")]
         public void CreateGlobalParameterAndTestProperties()
         {
             var model = ViewModel.Model;

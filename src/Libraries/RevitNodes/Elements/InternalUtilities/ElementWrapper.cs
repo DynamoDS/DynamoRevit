@@ -172,6 +172,8 @@ namespace Revit.Elements
                     return FloorPlanView.FromExisting(view, isRevitOwned);
                 case ViewType.EngineeringPlan:
                     return StructuralPlanView.FromExisting(view, isRevitOwned);
+                case ViewType.AreaPlan:
+                    return AreaPlanView.FromExisting(view, isRevitOwned);
                 default:
                     return UnknownElement.FromExisting(view, true);
             }
@@ -306,6 +308,11 @@ namespace Revit.Elements
         public static CurtainSystem Wrap(Autodesk.Revit.DB.CurtainSystem ele, bool isRevitOwned)
         {
             return CurtainSystem.FromExisting(ele, isRevitOwned);
+        }
+
+        public static Material Wrap(Autodesk.Revit.DB.Material ele, bool isRevitOwned)
+        {
+            return Material.FromExisting(ele, isRevitOwned);
         }
         #endregion
 

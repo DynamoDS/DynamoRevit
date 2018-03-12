@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using DSRevitNodesUI;
@@ -25,7 +26,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class RevitPhases : CustomRevitElementDropDown
     {
-        public RevitPhases() : base("Phase", typeof(Autodesk.Revit.DB.Phase)) { }
+        private const string outputName = "Phase";
+
+        public RevitPhases() : base(outputName, typeof(Autodesk.Revit.DB.Phase)) { }
+
+        [JsonConstructor]
+        public RevitPhases(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.Phase), inPorts, outPorts) { }
     }
 
     [NodeName("Select Revision")]
@@ -34,7 +41,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class RevitRevisions : CustomRevitElementDropDown
     {
-        public RevitRevisions() : base("Revision", typeof(Autodesk.Revit.DB.Revision)) { }
+        private const string outputName = "Revision";
+
+        public RevitRevisions() : base(outputName, typeof(Autodesk.Revit.DB.Revision)) { }
+
+        [JsonConstructor]
+        public RevitRevisions(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.Revision), inPorts, outPorts) { }
     }
 
     [NodeName("Select Filled Region Type")]
@@ -43,7 +56,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FilledRegionTypes : CustomRevitElementDropDown
     {
-        public FilledRegionTypes() : base("FilledRegionType", typeof(Autodesk.Revit.DB.FilledRegionType)) { }
+        private const string outputName = "FilledRegionType";
+
+        public FilledRegionTypes() : base(outputName, typeof(Autodesk.Revit.DB.FilledRegionType)) { }
+
+        [JsonConstructor]
+        public FilledRegionTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.FilledRegionType), inPorts, outPorts) { }
     }
 
     [NodeName("Select Rule Type")]
@@ -52,7 +71,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class RuleTypes : CustomGenericEnumerationDropDown
     {
-        public RuleTypes() : base("RuleType", typeof(Revit.Filter.FilterRule.RuleType)) { }
+        private const string outputName = "RuleType";
+
+        public RuleTypes() : base(outputName, typeof(Revit.Filter.FilterRule.RuleType)) { }
+
+        [JsonConstructor]
+        public RuleTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Revit.Filter.FilterRule.RuleType), inPorts, outPorts) { }
     }
 
     [NodeName("Select Revision Numbering")]
@@ -61,7 +86,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class RevisionNumbering : CustomGenericEnumerationDropDown
     {
-        public RevisionNumbering() : base("Revision Numbering", typeof(Autodesk.Revit.DB.RevisionNumbering)) { }
+        private const string outputName = "Revision Numbering";
+
+        public RevisionNumbering() : base(outputName, typeof(Autodesk.Revit.DB.RevisionNumbering)) { }
+
+        [JsonConstructor]
+        public RevisionNumbering(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.RevisionNumbering), inPorts, outPorts) { }
     }
 
     [NodeName("Select Revision Number Type")]
@@ -70,7 +101,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class RevisionNumberType : CustomGenericEnumerationDropDown
     {
-        public RevisionNumberType() : base("Revision Number Type", typeof(Autodesk.Revit.DB.RevisionNumberType)) { }
+        private const string outputName = "Revision Number Type";
+
+        public RevisionNumberType() : base(outputName, typeof(Autodesk.Revit.DB.RevisionNumberType)) { }
+
+        [JsonConstructor]
+        public RevisionNumberType(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.RevisionNumberType), inPorts, outPorts) { }
     }
 
 
@@ -80,7 +117,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ParameterType : CustomGenericEnumerationDropDown
     {
-        public ParameterType() : base("Parameter Type", typeof(Autodesk.Revit.DB.ParameterType)) { }
+        private const string outputName = "Parameter Type";
+
+        public ParameterType() : base(outputName, typeof(Autodesk.Revit.DB.ParameterType)) { }
+
+        [JsonConstructor]
+        public ParameterType(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.ParameterType), inPorts, outPorts) { }
     }
 
     [NodeName("Select BuiltIn Parameter Group")]
@@ -89,7 +132,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class BuiltInParameterGroup : CustomGenericEnumerationDropDown
     {
-        public BuiltInParameterGroup() : base("BuiltIn Parameter Group", typeof(Autodesk.Revit.DB.BuiltInParameterGroup)) { }
+        private const string outputName = "BuiltIn Parameter Group";
+
+        public BuiltInParameterGroup() : base(outputName, typeof(Autodesk.Revit.DB.BuiltInParameterGroup)) { }
+
+        [JsonConstructor]
+        public BuiltInParameterGroup(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.BuiltInParameterGroup), inPorts, outPorts) { }
     }
 
     [NodeName("Select Revision Visibility")]
@@ -98,7 +147,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class RevisionVisibility : CustomGenericEnumerationDropDown
     {
-        public RevisionVisibility() : base("Revision Visibility", typeof(Autodesk.Revit.DB.RevisionVisibility)) { }
+        private const string outputName = "Revision Visibility";
+
+        public RevisionVisibility() : base(outputName, typeof(Autodesk.Revit.DB.RevisionVisibility)) { }
+
+        [JsonConstructor]
+        public RevisionVisibility(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.RevisionVisibility), inPorts, outPorts) { }
     }
 
     [NodeName("Select Direct Shape Room Bounding Option")]
@@ -107,7 +162,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class DirectShapeRoomBoundingOption : CustomGenericEnumerationDropDown
     {
-        public DirectShapeRoomBoundingOption() : base("Direct Shape Room Bounding Option", typeof(Autodesk.Revit.DB.DirectShapeRoomBoundingOption)) { }
+        private const string outputName = "Direct Shape Room Bounding Option";
+
+        public DirectShapeRoomBoundingOption() : base(outputName, typeof(Autodesk.Revit.DB.DirectShapeRoomBoundingOption)) { }
+
+        [JsonConstructor]
+        public DirectShapeRoomBoundingOption(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.DirectShapeRoomBoundingOption), inPorts, outPorts) { }
     }
 
     [NodeName("Detail Level")]
@@ -116,7 +177,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class DetailLevel : CustomGenericEnumerationDropDown
     {
-        public DetailLevel() : base("Detail Level", typeof(Autodesk.Revit.DB.ViewDetailLevel)) { }
+        private const string outputName = "Detail Level";
+
+        public DetailLevel() : base(outputName, typeof(Autodesk.Revit.DB.ViewDetailLevel)) { }
+
+        [JsonConstructor]
+        public DetailLevel(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.ViewDetailLevel), inPorts, outPorts) { }
     }
 
     [NodeName("Select Horizontal Text Alignment")]
@@ -125,7 +192,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class HorizontalAlignment : CustomGenericEnumerationDropDown
     {
-        public HorizontalAlignment() : base("Horizontal Alignment", typeof(Autodesk.Revit.DB.HorizontalAlignmentStyle)) { }
+        private const string outputName = "Horizontal Alignment";
+
+        public HorizontalAlignment() : base(outputName, typeof(Autodesk.Revit.DB.HorizontalAlignmentStyle)) { }
+
+        [JsonConstructor]
+        public HorizontalAlignment(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.HorizontalAlignmentStyle), inPorts, outPorts) { }
     }
 
     [NodeName("Select Vertical Text Alignment")]
@@ -134,7 +207,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class VerticalAlignment : CustomGenericEnumerationDropDown
     {
-        public VerticalAlignment() : base("Vertical Alignment", typeof(Autodesk.Revit.DB.VerticalAlignmentStyle)) { }
+        private const string outputName = "Vertical Alignment";
+
+        public VerticalAlignment() : base(outputName, typeof(Autodesk.Revit.DB.VerticalAlignmentStyle)) { }
+
+        [JsonConstructor]
+        public VerticalAlignment(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.VerticalAlignmentStyle), inPorts, outPorts) { }
     }
     
     [NodeName("Schedule Type")]
@@ -143,7 +222,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ScheduleTypes : CustomGenericEnumerationDropDown
     {
-        public ScheduleTypes() : base("ScheduleType", typeof(Revit.Elements.Views.ScheduleView.ScheduleType)) { }
+        private const string outputName = "ScheduleType";
+
+        public ScheduleTypes() : base(outputName, typeof(Revit.Elements.Views.ScheduleView.ScheduleType)) { }
+
+        [JsonConstructor]
+        public ScheduleTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Revit.Elements.Views.ScheduleView.ScheduleType), inPorts, outPorts) { }
     }
 
     [NodeName("Export Column Headers")]
@@ -152,7 +237,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ExportColumnHeaders : CustomGenericEnumerationDropDown
     {
-        public ExportColumnHeaders() : base("ColumnHeaders", typeof(Revit.Schedules.ScheduleExportOptions.ExportColumnHeaders)) { }
+        private const string outputName = "ColumnHeaders";
+
+        public ExportColumnHeaders() : base(outputName, typeof(Revit.Schedules.ScheduleExportOptions.ExportColumnHeaders)) { }
+
+        [JsonConstructor]
+        public ExportColumnHeaders(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Revit.Schedules.ScheduleExportOptions.ExportColumnHeaders), inPorts, outPorts) { }
     }
 
     [NodeName("Export Text Qualifier")]
@@ -161,7 +252,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ExportTextQualifier : CustomGenericEnumerationDropDown
     {
-        public ExportTextQualifier() : base("TextQualifier", typeof(Revit.Schedules.ScheduleExportOptions.ExportTextQualifier)) { }
+        private const string outputName = "TextQualifier";
+
+        public ExportTextQualifier() : base(outputName, typeof(Revit.Schedules.ScheduleExportOptions.ExportTextQualifier)) { }
+
+        [JsonConstructor]
+        public ExportTextQualifier(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Revit.Schedules.ScheduleExportOptions.ExportTextQualifier), inPorts, outPorts) { }
     }
 
     [NodeName("Fill Patterns")]
@@ -170,7 +267,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FillPatterns : CustomRevitElementDropDown
     {
-        public FillPatterns() : base("FillPattern", typeof(Autodesk.Revit.DB.FillPatternElement)) { }
+        private const string outputName = "FillPattern";
+
+        public FillPatterns() : base(outputName, typeof(Autodesk.Revit.DB.FillPatternElement)) { }
+
+        [JsonConstructor]
+        public FillPatterns(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.FillPatternElement), inPorts, outPorts) { }
     }
 
     [NodeName("Fill Pattern Targets")]
@@ -179,7 +282,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FillPatternTargets : CustomGenericEnumerationDropDown
     {
-        public FillPatternTargets() : base("FillPatternTarget", typeof(Autodesk.Revit.DB.FillPatternTarget)) { }
+        private const string outputName = "FillPatternTarget";
+
+        public FillPatternTargets() : base(outputName, typeof(Autodesk.Revit.DB.FillPatternTarget)) { }
+
+        [JsonConstructor]
+        public FillPatternTargets(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.FillPatternTarget), inPorts, outPorts) { }
     }
 
     [NodeName("Line Patterns")]
@@ -188,7 +297,13 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class LinePatterns : CustomRevitElementDropDown
     {
-        public LinePatterns() : base("LinePattern", typeof(Autodesk.Revit.DB.LinePatternElement)) { }
+        private const string outputName = "LinePattern";
+
+        public LinePatterns() : base(outputName, typeof(Autodesk.Revit.DB.LinePatternElement)) { }
+
+        [JsonConstructor]
+        public LinePatterns(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.LinePatternElement), inPorts, outPorts) { }
     }
 
     [NodeName("Schedule Filter Type")]
@@ -197,15 +312,27 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ScheduleFilterType : CustomGenericEnumerationDropDown
     {
-        public ScheduleFilterType() : base("FilterType", typeof(Autodesk.Revit.DB.ScheduleFilterType)) { }
+        private const string outputName = "FilterType";
+
+        public ScheduleFilterType() : base(outputName, typeof(Autodesk.Revit.DB.ScheduleFilterType)) { }
+
+        [JsonConstructor]
+        public ScheduleFilterType(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputName, typeof(Autodesk.Revit.DB.ScheduleFilterType), inPorts, outPorts) { }
     }
-    
+
     [NodeName("Wall Location")]
     [NodeCategory("Revit.Elements.Wall")]
     [NodeDescription("WallLocationLineDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     public class WallLocation : CustomGenericEnumerationDropDown
     {
-        public WallLocation() : base("Wall Location", typeof(Autodesk.Revit.DB.WallLocationLine)) { }
+        private const string outputName = "Wall Location";
+
+        public WallLocation() : base(outputName, typeof(Autodesk.Revit.DB.WallLocationLine)) { }
+
+        [JsonConstructor]
+        public WallLocation(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(outputName, typeof(Autodesk.Revit.DB.WallLocationLine), inPorts, outPorts) { }
     }
 }

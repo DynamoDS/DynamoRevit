@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 using Autodesk.Revit.Creation;
 
@@ -46,6 +47,7 @@ namespace DSRevitNodesUI
     {
         private readonly RevitDynamoModel model;
 
+        [JsonIgnore]
         public DynamoUnits.Location Location { get; set; }
 
         public SiteLocation()
@@ -61,6 +63,20 @@ namespace DSRevitNodesUI
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdater_ElementsUpdated;
             
+            DynamoRevitApp.AddIdleAction(() => Update());
+        }
+
+        [JsonConstructor]
+        public SiteLocation(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
+            Location = DynamoUnits.Location.ByLatitudeAndLongitude(0.0, 0.0);
+            Location.Name = string.Empty;
+
+            ArgumentLacing = LacingStrategy.Disabled;
+
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += model_RevitDocumentChanged;
+            RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdater_ElementsUpdated;
+
             DynamoRevitApp.AddIdleAction(() => Update());
         }
 
