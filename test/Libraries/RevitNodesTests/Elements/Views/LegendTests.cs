@@ -20,7 +20,7 @@ namespace RevitNodesTests.Elements.Views
             Assert.NotNull(legend);
 
             var wrappedLegend = legend.ToDSType(true);
-            Assert.Equals(wrappedLegend.GetType(), typeof(Revit.Elements.Views.Legend));
+            Assert.AreEqual(wrappedLegend.GetType(), typeof(Revit.Elements.Views.Legend));
         }
     }
 }
