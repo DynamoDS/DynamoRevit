@@ -37,6 +37,9 @@ namespace Revit.Elements.Views
                 case Autodesk.Revit.DB.ViewType.Elevation:
                 case Autodesk.Revit.DB.ViewType.CeilingPlan:
                 case Autodesk.Revit.DB.ViewType.DraftingView:
+                case Autodesk.Revit.DB.ViewType.DrawingSheet:
+                case Autodesk.Revit.DB.ViewType.AreaPlan:
+                case Autodesk.Revit.DB.ViewType.Legend:
                     return true;
 
                 default: return false;
@@ -105,7 +108,7 @@ namespace Revit.Elements.Views
 
             // Revit outputs file with a bunch of crap in the file name, let's construct that
             var actualFn = string.Format("{0} - {1} - {2}{3}", pathName, ViewTypeString(InternalView.ViewType),
-                InternalView.Name, extension);
+                InternalView.ViewName, extension);
 
             // and the intended destination
             var destFn = pathName + extension;
@@ -153,7 +156,7 @@ namespace Revit.Elements.Views
 
         public override string ToString()
         {
-            return GetType().Name + "(Name = " + InternalView.Name + " )";
+            return GetType().Name + "(Name = " + InternalView.ViewName + " )";
         }
 
         #region Filter
