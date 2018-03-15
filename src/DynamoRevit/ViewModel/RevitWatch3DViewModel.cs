@@ -30,7 +30,7 @@ namespace Dynamo.Applications.ViewModel
 
         public override string PreferenceWatchName { get { return "IsRevitBackgroundPreviewActive"; } }
 
-        public RevitWatch3DViewModel(Watch3DViewModelStartupParams parameters) : base(parameters)
+        public RevitWatch3DViewModel(Watch3DViewModelStartupParams parameters) : base(null,parameters)
         {
             Name = Resources.BackgroundPreviewName;
             Draw();
@@ -108,7 +108,7 @@ namespace Dynamo.Applications.ViewModel
             }
             else
             {
-                graphicItems = model.CurrentWorkspace.Nodes
+                graphicItems = dynamoModel.CurrentWorkspace.Nodes
                  .Where(n => n.IsVisible)
                  .SelectMany(n => n.GeneratedGraphicItems(engineManager.EngineController));
             }

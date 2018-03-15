@@ -47,11 +47,11 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="RevitAPI">
-      <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\revit\revit\Releasex64\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI">
-      <HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
+      <HintPath>..\..\..\..\..\revit\revit\Releasex64\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ProtoGeometry">
@@ -105,8 +105,8 @@
     <Compile Include="Elements\Room.cs" />
     <Compile Include="Elements\Revision.cs" />
     <Compile Include="Elements\RevisionCloud.cs" />
-	<Compile Include="PerformanceAdviser\FailureMessage.cs" />
-	<Compile Include="PerformanceAdviser\PerformanceAdviserRule.cs" />
+    <Compile Include="PerformanceAdviser\FailureMessage.cs" />
+    <Compile Include="PerformanceAdviser\PerformanceAdviserRule.cs" />
     <Compile Include="Elements\SunSettings.cs" />
     <Compile Include="Elements\Tag.cs" />
     <Compile Include="Elements\TextElement.cs" />

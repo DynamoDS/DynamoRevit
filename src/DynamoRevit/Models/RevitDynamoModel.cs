@@ -51,6 +51,7 @@ namespace Dynamo.Applications.Models
             public IUpdateManager UpdateManager { get; set; }
             public ISchedulerThread SchedulerThread { get; set; }
             public string GeometryFactoryPath { get; set; }
+            public bool IsHeadless { get; set; }
             public IAuthProvider AuthProvider { get; set; }
             public string PackageManagerAddress { get; set; }
             public DynamoRevitCommandData ExternalCommandData { get; set; }

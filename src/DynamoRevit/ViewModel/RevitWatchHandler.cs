@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Collections.Generic;
 
 using Dynamo.Interfaces;
 using Dynamo.ViewModels;
@@ -28,7 +29,7 @@ namespace Dynamo.Applications
             preferences = prefs;
         }
 
-        private WatchViewModel ProcessThing(Element element, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
+        private WatchViewModel ProcessThing(Element element, IEnumerable<string> preferredDictionaryOrdering, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
             var id = element.Id;
 
@@ -46,28 +47,28 @@ namespace Dynamo.Applications
         }
 
         //If no dispatch target is found, then invoke base watch handler.
-        private WatchViewModel ProcessThing(object obj, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
+        private WatchViewModel ProcessThing(object obj, IEnumerable<string> preferredDictionaryOrdering, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
-            return baseHandler.Process(obj, runtimeCore, tag, showRawData, callback);
+            return baseHandler.Process(obj, preferredDictionaryOrdering, runtimeCore, tag, showRawData, callback);
         }
 
-        private WatchViewModel ProcessThing(MirrorData data, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
+        private WatchViewModel ProcessThing(MirrorData data, IEnumerable<string> preferredDictionaryOrdering, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
             try
             {
-                return baseHandler.Process(data, runtimeCore, tag, showRawData, callback);
+                return baseHandler.Process(data, preferredDictionaryOrdering, runtimeCore, tag, showRawData, callback);
             }
             catch (Exception)
             {
-                return callback(data.Data, runtimeCore, tag, showRawData);
+                return callback(data.Data, preferredDictionaryOrdering, runtimeCore, tag, showRawData);
             }
         }
 
-        public WatchViewModel Process(dynamic value, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
+        public WatchViewModel Process(dynamic value, IEnumerable<string> preferredDictionaryOrdering, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
             return Object.ReferenceEquals(value, null)
                 ? new WatchViewModel("null", tag, RequestSelectGeometry)
-                : ProcessThing(value, runtimeCore, tag, showRawData, callback);
+                : ProcessThing(value, preferredDictionaryOrdering, runtimeCore, tag, showRawData, callback);
         }
 
 
