@@ -37,6 +37,7 @@ namespace Dynamo.Applications
             {
                 "VMDataBridge.dll",
                 "ProtoGeometry.dll",
+                "DesignScriptBuiltin.dll",
                 "DSCoreNodes.dll",
                 "DSOffice.dll",
                 "DSIronPython.dll",
