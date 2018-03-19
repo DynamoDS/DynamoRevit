@@ -100,24 +100,10 @@ namespace Revit.Elements
         #region Hidden public static constructors 
 
         [IsVisibleInDynamoLibrary(false)]
-        public static Form ByLoftCrossSections(ElementCurveReference[] curves, bool isSolid = true)
-        {
-            if (curves == null) throw new ArgumentNullException("curves");
-            return ByLoftCrossSectionsInternal(curves, isSolid);
-        }
-
-        [IsVisibleInDynamoLibrary(false)]
         public static Form ByLoftCrossSections(ElementCurveReference[][] curves, bool isSolid = true)
         {
             if (curves == null) throw new ArgumentNullException("curves");
             return ByLoftMultiPartCrossSectionsInternal(curves, isSolid);
-        }
-
-        [IsVisibleInDynamoLibrary(false)]
-        public static Form ByLoftCrossSections(Revit.Elements.Element[] curves, bool isSolid = true)
-        {
-            if (curves == null) throw new ArgumentNullException("curves");
-            return ByLoftCrossSectionsInternal(curves, isSolid);
         }
 
         [IsVisibleInDynamoLibrary(false)]
@@ -130,17 +116,6 @@ namespace Revit.Elements
         #endregion
 
         #region Public static constructors
-        /// <summary>
-        /// Creates a Form by lofting a list of curves
-        /// </summary>
-        /// <param name="curves"></param>
-        /// <param name="isSolid"></param>
-        /// <returns></returns>
-        public static Form ByLoftCrossSections(Autodesk.DesignScript.Geometry.Curve[] curves, bool isSolid = true)
-        {
-            if (curves == null) throw new ArgumentNullException("curves");
-            return ByLoftCrossSectionsInternal(curves, isSolid);
-        }
         /// <summary>
         ///  Creates a Form by lofting a nested list of curves
         /// </summary>
@@ -156,31 +131,6 @@ namespace Revit.Elements
         #endregion
 
         #region Private static constructors
-
-        private static Form ByLoftCrossSectionsInternal(object[] curves, bool isSolid = true)
-        {
-            if (curves == null) throw new ArgumentNullException("curves");
-
-            // if the arguments are polycurves, explode them
-            if (curves.Any(x => x is PolyCurve))
-            {
-                var ca = curves.Select(x => x is PolyCurve ? ((PolyCurve)x).Curves() : new[] { x }).ToArray();
-                return ByLoftMultiPartCrossSectionsInternal(ca, isSolid);
-            }
-
-            var refArrArr = new ReferenceArrayArray();
-
-            foreach (var l in curves)
-            {
-                if (l == null) throw new ArgumentNullException("curves");
-                var refArr = new ReferenceArray();
-
-                refArr.Append(ElementCurveReference.TryGetCurveReference(l, "Form").InternalReference);
-                refArrArr.Append(refArr);
-            }
-
-            return new Form(isSolid, refArrArr);
-        }
 
         private static Form ByLoftMultiPartCrossSectionsInternal(object[][] curves, bool isSolid = true)
         {
