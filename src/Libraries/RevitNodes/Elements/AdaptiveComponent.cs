@@ -336,28 +336,6 @@ namespace Revit.Elements
             return new AdaptiveComponent(uvs, ElementFaceReference.TryGetFaceReference(faceReference), familyType);
         }
 
-        [Obsolete]
-        [SupressImportIntoVM]
-        public static AdaptiveComponent[] ByParametersOnFace(double[][][] uvs, ElementFaceReference faceReference, FamilyType familyType)
-        {
-            if (uvs == null)
-            {
-                throw new ArgumentNullException("uvs");
-            }
-
-            if (faceReference == null)
-            {
-                throw new ArgumentNullException("faceReference");
-            }
-
-            if (familyType == null)
-            {
-                throw new ArgumentNullException("familyType");
-            }
-
-            return uvs.Select(x => ByParametersOnFace(x, faceReference, familyType)).ToArray();
-        }
-
         [IsVisibleInDynamoLibrary(false)]
         public static AdaptiveComponent ByParametersOnFace(Autodesk.DesignScript.Geometry.UV[] uvs, ElementFaceReference faceReference, FamilyType familyType)
         {
@@ -377,28 +355,6 @@ namespace Revit.Elements
             }
 
             return new AdaptiveComponent(uvs.Select(x => new[] { x.U, x.V }).ToArray(), ElementFaceReference.TryGetFaceReference(faceReference), familyType);
-        }
-
-        [Obsolete]
-        [SupressImportIntoVM]
-        public static AdaptiveComponent[] ByParametersOnFace(Autodesk.DesignScript.Geometry.UV[][] uvs, ElementFaceReference faceReference, FamilyType familyType)
-        {
-            if (uvs == null)
-            {
-                throw new ArgumentNullException("uvs");
-            }
-
-            if (faceReference == null)
-            {
-                throw new ArgumentNullException("faceReference");
-            }
-
-            if (familyType == null)
-            {
-                throw new ArgumentNullException("familyType");
-            }
-
-            return uvs.Select(x => ByParametersOnFace(x, faceReference, familyType)).ToArray();
         }
 
         [IsVisibleInDynamoLibrary(false)]
@@ -422,28 +378,6 @@ namespace Revit.Elements
             return new AdaptiveComponent(uvs, ElementFaceReference.TryGetFaceReference(surface), familyType);
         }
 
-        [Obsolete]
-        [SupressImportIntoVM]
-        public static AdaptiveComponent[] ByParametersOnFace(double[][][] uvs, Surface surface, FamilyType familyType)
-        {
-            if (uvs == null)
-            {
-                throw new ArgumentNullException("uvs");
-            }
-
-            if (surface == null)
-            {
-                throw new ArgumentNullException("surface");
-            }
-
-            if (familyType == null)
-            {
-                throw new ArgumentNullException("familyType");
-            }
-
-            return uvs.Select(x => ByParametersOnFace(x, surface, familyType)).ToArray();
-        }
-
         [IsVisibleInDynamoLibrary(false)]
         public static AdaptiveComponent ByParametersOnCurveReference(double[] parameters, Revit.Elements.Element revitCurve, FamilyType familyType)
         {
@@ -465,28 +399,6 @@ namespace Revit.Elements
             return new AdaptiveComponent(parameters, ElementCurveReference.TryGetCurveReference(revitCurve).InternalReference, familyType);
         }
 
-        [Obsolete]
-        [SupressImportIntoVM]
-        public static AdaptiveComponent[] ByParametersOnCurveReference(double[][] parameters, Revit.Elements.Element revitCurve, FamilyType familyType)
-        {
-            if (parameters == null)
-            {
-                throw new ArgumentNullException("parameters");
-            }
-
-            if (revitCurve == null)
-            {
-                throw new ArgumentNullException("revitCurve");
-            }
-
-            if (familyType == null)
-            {
-                throw new ArgumentNullException("familyType");
-            }
-
-            return parameters.Select(x => ByParametersOnCurveReference(x, revitCurve, familyType)).ToArray();
-        }
-
         [IsVisibleInDynamoLibrary(false)]
         public static AdaptiveComponent ByParametersOnCurveReference(double[] parameters, ElementCurveReference revitCurve, FamilyType familyType)
         {
@@ -506,28 +418,6 @@ namespace Revit.Elements
             }
 
             return new AdaptiveComponent(parameters, ElementCurveReference.TryGetCurveReference(revitCurve).InternalReference, familyType);
-        }
-
-        [Obsolete]
-        [SupressImportIntoVM]
-        public static AdaptiveComponent[] ByParametersOnCurveReference(double[][] parameters, ElementCurveReference revitCurve, FamilyType familyType)
-        {
-            if (parameters == null)
-            {
-                throw new ArgumentNullException("parameters");
-            }
-
-            if (revitCurve == null)
-            {
-                throw new ArgumentNullException("revitCurve");
-            }
-
-            if (familyType == null)
-            {
-                throw new ArgumentNullException("familyType");
-            }
-
-            return parameters.Select(x => ByParametersOnCurveReference(x, revitCurve, familyType)).ToArray();
         }
 
         #endregion
@@ -583,28 +473,6 @@ namespace Revit.Elements
             return new AdaptiveComponent(uvs.Select(x => new[] { x.U, x.V }).ToArray(), ElementFaceReference.TryGetFaceReference(surface), familyType);
         }
 
-        [Obsolete]
-        [SupressImportIntoVM]
-        public static AdaptiveComponent[] ByParametersOnFace(Autodesk.DesignScript.Geometry.UV[][] uvs, Surface surface, FamilyType familyType)
-        {
-            if (uvs == null)
-            {
-                throw new ArgumentNullException("uvs");
-            }
-
-            if (surface == null)
-            {
-                throw new ArgumentNullException("surface");
-            }
-
-            if (familyType == null)
-            {
-                throw new ArgumentNullException("familyType");
-            }
-
-            return uvs.Select(x => ByParametersOnFace(x, surface, familyType)).ToArray();
-        }
-
         /// <summary>
         /// Create an adaptive component referencing the parameters on a Curve reference
         /// </summary>
@@ -630,28 +498,6 @@ namespace Revit.Elements
             }
 
             return new AdaptiveComponent(parameters, ElementCurveReference.TryGetCurveReference(curve).InternalReference, familyType);
-        }
-
-        [Obsolete]
-        [SupressImportIntoVM]
-        public static AdaptiveComponent[] ByParametersOnCurveReference(double[][] parameters, Autodesk.DesignScript.Geometry.Curve curve, FamilyType familyType)
-        {
-            if (parameters == null)
-            {
-                throw new ArgumentNullException("parameters");
-            }
-
-            if (curve == null)
-            {
-                throw new ArgumentNullException("curve");
-            }
-
-            if (familyType == null)
-            {
-                throw new ArgumentNullException("familyType");
-            }
-
-            return parameters.Select(x => ByParametersOnCurveReference(x, curve, familyType)).ToArray();
         }
 
         /// <summary>
