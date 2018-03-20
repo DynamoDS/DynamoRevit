@@ -105,7 +105,7 @@ namespace Revit.Elements.Views
 
             // Revit outputs file with a bunch of crap in the file name, let's construct that
             var actualFn = string.Format("{0} - {1} - {2}{3}", pathName, ViewTypeString(InternalView.ViewType),
-                InternalView.ViewName, extension);
+                InternalView.Name, extension);
 
             // and the intended destination
             var destFn = pathName + extension;
@@ -153,7 +153,7 @@ namespace Revit.Elements.Views
 
         public override string ToString()
         {
-            return GetType().Name + "(Name = " + InternalView.ViewName + " )";
+            return GetType().Name + "(Name = " + InternalView.Name + " )";
         }
 
         #region Filter
