@@ -98,11 +98,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
-      <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
+      <HintPath>..\..\..\..\revit\revit\Releasex64\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI">
-      <HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
+      <HintPath>..\..\..\..\revit\revit\Releasex64\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -186,7 +186,7 @@
   <ItemGroup>
     <Content Include="Ionic.Zip.xml" />
     <EmbeddedResource Include="Resources\Category.Revit.svg" />
-	<EmbeddedResource Include="Resources\LayoutSpecs.json" />
+    <EmbeddedResource Include="Resources\LayoutSpecs.json" />
     <Content Include="Resources\logo_square_32x32.png" />
     <Content Include="Resources\logo_square_64x64.png" />
   </ItemGroup>
