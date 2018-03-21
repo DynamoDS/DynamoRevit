@@ -57,7 +57,6 @@ namespace Dynamo.Applications.Models
             public DynamoRevitCommandData ExternalCommandData { get; set; }
             public IEnumerable<Dynamo.Extensions.IExtension> Extensions { get; set; }
             public TaskProcessMode ProcessMode { get; set; }
-            public bool IsHeadless { get; set; }
         }
 
         /// <summary>

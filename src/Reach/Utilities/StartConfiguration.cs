@@ -9,7 +9,7 @@ using Greg;
 
 namespace Reach
 {
-    public struct StartConfiguration : DynamoModel.IStartConfiguration, DynamoModel.IStartConfiguration2
+    public struct StartConfiguration : DynamoModel.IStartConfiguration
     {
         public string Context { get; set; }
         public string DynamoCorePath { get; set; }
