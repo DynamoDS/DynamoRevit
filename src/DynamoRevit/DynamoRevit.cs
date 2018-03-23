@@ -629,7 +629,7 @@ namespace Dynamo.Applications
                     }
                     else
                     {
-                        dynamoViewModel.OpenIfSavedCommand.Execute(new Dynamo.Models.DynamoModel.OpenFileCommand(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun));
+                        dynamoViewModel.OpenCommand.Execute(new Tuple<string,bool>(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun));
                         dynamoViewModel.ShowStartPage = false;
                     }
                 }
