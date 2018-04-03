@@ -57,7 +57,7 @@
     <Reference Include="ProtoGeometry">
       <HintPath>$(DYNAMOAPI)\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
-    </Reference>    
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -101,12 +101,9 @@
     <Compile Include="Elements\Room.cs" />
     <Compile Include="Elements\Revision.cs" />
     <Compile Include="Elements\RevisionCloud.cs" />
-	<Compile Include="PerformanceAdviser\FailureMessage.cs" />
-	<Compile Include="PerformanceAdviser\PerformanceAdviserRule.cs" />
-    <Compile Include="Elements\Views\AreaPlanView.cs" />
-    <Compile Include="Elements\Views\Legend.cs" />
     <Compile Include="PerformanceAdviser\FailureMessage.cs" />
     <Compile Include="PerformanceAdviser\PerformanceAdviserRule.cs" />
+    <Compile Include="Elements\Views\Legend.cs" />
     <Compile Include="Elements\SunSettings.cs" />
     <Compile Include="Elements\Tag.cs" />
     <Compile Include="Elements\TextElement.cs" />
