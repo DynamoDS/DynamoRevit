@@ -39,6 +39,7 @@ namespace Revit.Elements.Views
                 case Autodesk.Revit.DB.ViewType.DraftingView:
                 case Autodesk.Revit.DB.ViewType.DrawingSheet:
                 case Autodesk.Revit.DB.ViewType.AreaPlan:
+                case Autodesk.Revit.DB.ViewType.Legend:
                     return true;
 
                 default: return false;
