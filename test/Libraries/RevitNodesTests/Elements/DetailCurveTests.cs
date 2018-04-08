@@ -32,7 +32,7 @@ namespace RevitNodesTests.Elements
         }
 
         [Test]
-        [TestModel(@".\emptyAnnotativeView.rfa")]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
         public void ByCurve_Curve_AcceptsStraightDegree3NurbsCurve()
         {
             var points =

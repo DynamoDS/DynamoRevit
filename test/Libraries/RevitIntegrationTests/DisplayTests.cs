@@ -11,6 +11,7 @@ using Dynamo.Models;
 using Dynamo.Visualization;
 using Dynamo.UI;
 using Dynamo.Wpf.Rendering;
+using Dynamo.Visualization;
 using NUnit.Framework;
 using RevitTestServices;
 using RTF.Framework;

@@ -318,6 +318,12 @@
   <data name="InvalidFilterType" xml:space="preserve">
     <value>FilterType is not valid.</value>
   </data>
+  <data name="InvalidFace" xml:space="preserve">
+    <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
+  </data>
+  <data name="CurtainSystemTypeNotFound" xml:space="preserve">
+    <value>Curtain System Type not found.</value>
+  </data>
   <data name="ElementCannotBeAnnotatedError" xml:space="preserve">
     <value>Element cannot be annotated</value>
   </data>
@@ -390,16 +396,10 @@
   <data name="RoofTypeNotFound" xml:space="preserve">
     <value>Roof type not found.</value>
   </data>
-  <data name="InvalidFace" xml:space="preserve">
-    <value>The selected face cannot be used to create a wall. Please use a mass face instead.</value>
+  <data name="GeometryConversionFailure" xml:space="preserve">
+    <value>One or more geometries have failed to convert due to this error: </value>
   </data>
-  <data name="CurtainSystemTypeNotFound" xml:space="preserve">
-    <value>Curtain System Type not found.</value>
-  </data>
-  <data name="ExportColumnHeadersDescription" xml:space="preserve">
-    <value>How to export column headers. Default is MultipleRows.</value>
-  </data>
-  <data name="ScheduleExportError" xml:space="preserve">
-    <value>There was an error exporting this schedule.</value>
+  <data name="Sheet_NoViewsError" xml:space="preserve">
+    <value>Must supply more than 0 views</value>
   </data>
 </root>

@@ -94,14 +94,17 @@ namespace Revit.Elements
         internal bool IsRevitOwned = false;
 
         /// <summary>
-        /// Obtain all of the Parameters from an Element
+        /// Obtain all of the Parameters from an Element, sorted by Name.
         /// </summary>
         public Parameter[] Parameters
         {
             get
             {
-                var parms = InternalElement.Parameters;
-                return parms.Cast<Autodesk.Revit.DB.Parameter>().Select(x => new Parameter(x)).ToArray();
+                return
+                    InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
+                        .OrderBy(x => x.Definition.Name)
+                        .Select(x => new Parameter(x))
+                        .ToArray();
             }
         }
 
@@ -310,6 +313,7 @@ namespace Revit.Elements
             // or transactions and which must necessarily be threaded in a specific way.
         }
 
+
         /// <summary>
         /// Get a parameter by name of an element
         /// </summary>
@@ -380,11 +384,6 @@ namespace Revit.Elements
             Autodesk.Revit.DB.FillPatternElement solidFill = patternCollector.ToElements().Cast<Autodesk.Revit.DB.FillPatternElement>().First(x => x.GetFillPattern().IsSolidFill);
 
             var overrideColor = new Autodesk.Revit.DB.Color(color.Red, color.Green, color.Blue);
-            
-            // the old functions SetProjectionFillColor and SetProjectionFillPatternId,
-            // are obsoleted and suggested by the documentation that will be removed and 
-            // replaced by SetSurfaceForegroundPatternColor and SetSurfaceForegroundPatternId.
-
             ogs.SetSurfaceForegroundPatternColor(overrideColor);
             ogs.SetSurfaceForegroundPatternId(solidFill.Id);
             ogs.SetProjectionLineColor(overrideColor);
@@ -456,6 +455,9 @@ namespace Revit.Elements
                     if (solid != null)
                     {
                         var geomObjs = solid.ConvertToMany();
+
+                        if (geomObjs == null) continue;
+
                         converted.AddRange(geomObjs.Where(x => { return x != null; }));
                     }
                 }

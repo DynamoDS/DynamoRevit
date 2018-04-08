@@ -168,10 +168,6 @@ namespace Revit.Elements.Views
             {
                 throw new System.ArgumentNullException(Properties.Resources.NameArgumentException);
             }
-            if (scheduleType == null)
-            {
-                throw new System.ArgumentNullException(Properties.Resources.ScheduleTypeArgumentException);
-            }
 
             ScheduleType t = (ScheduleType)System.Enum.Parse(typeof(ScheduleType), scheduleType);
             return new ScheduleView(category, name, t);

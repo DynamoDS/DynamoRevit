@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Globalization;
 using System.Collections.Generic;
-
+using System.Globalization;
+using System.Linq;
 using Dynamo.Interfaces;
 using Dynamo.ViewModels;
 
@@ -29,7 +29,7 @@ namespace Dynamo.Applications
             preferences = prefs;
         }
 
-        private WatchViewModel ProcessThing(Element element, IEnumerable<string> preferredDictionaryOrdering, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
+        private WatchViewModel ProcessThing(Element element, List<string> preferredDictionaryOrdering, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
             var id = element.Id;
 
@@ -47,12 +47,12 @@ namespace Dynamo.Applications
         }
 
         //If no dispatch target is found, then invoke base watch handler.
-        private WatchViewModel ProcessThing(object obj, IEnumerable<string> preferredDictionaryOrdering, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
+        private WatchViewModel ProcessThing(object obj, List<string> preferredDictionaryOrdering, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
             return baseHandler.Process(obj, preferredDictionaryOrdering, runtimeCore, tag, showRawData, callback);
         }
 
-        private WatchViewModel ProcessThing(MirrorData data, IEnumerable<string> preferredDictionaryOrdering, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
+        private WatchViewModel ProcessThing(MirrorData data, List<string> preferredDictionaryOrdering, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace Dynamo.Applications
         {
             return Object.ReferenceEquals(value, null)
                 ? new WatchViewModel("null", tag, RequestSelectGeometry)
-                : ProcessThing(value, preferredDictionaryOrdering, runtimeCore, tag, showRawData, callback);
+                : ProcessThing(value, preferredDictionaryOrdering.ToList(), runtimeCore, tag, showRawData, callback);
         }
 
 

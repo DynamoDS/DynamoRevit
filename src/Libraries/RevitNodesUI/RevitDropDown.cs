@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Xml;
+using Newtonsoft.Json;
 using Autodesk.Revit.DB;
 using CoreNodeModels;
 using DSCore;
@@ -45,6 +46,12 @@ namespace DSRevitNodesUI
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
+        [JsonConstructor]
+        public RevitDropDownBase(string value, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(value, inPorts, outPorts)
+        {
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
+        }
+
         void Controller_RevitDocumentChanged(object sender, EventArgs e)
         {
             PopulateItems();
@@ -64,8 +71,14 @@ namespace DSRevitNodesUI
     public class FamilyTypes : RevitDropDownBase
     {
         private const string NO_FAMILY_TYPES = "No family types available.";
+        private const string outputName = "Family Type";
 
-        public FamilyTypes() : base("Family Type") { }
+        public FamilyTypes() : base(outputName) { }
+
+        [JsonConstructor]
+        public FamilyTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts)
+        {
+        }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
@@ -126,15 +139,22 @@ namespace DSRevitNodesUI
     public class FamilyInstanceParameters : RevitDropDownBase 
     {
         private const string noFamilyParameters = "No family parameters available.";
+        private const string outputName = "Parameter";
         private Element element;
         private ElementId storedId = null;
         internal EngineController EngineController { get; set; }
 
         public FamilyInstanceParameters()
-            : base("Parameter") 
+            : base(outputName) 
         {
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("f", Properties.Resources.PortDataFamilySymbolToolTip)));
-            this.PropertyChanged += OnPropertyChanged;
+            PropertyChanged += OnPropertyChanged;
+        }
+
+        [JsonConstructor]
+        public FamilyInstanceParameters(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts)
+        {
+            PropertyChanged += OnPropertyChanged;
         }
 
         void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -343,9 +363,12 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FloorTypes : RevitDropDownBase
     {
-        
+        private const string outputName = "Floor Type";
 
-        public FloorTypes() : base("Floor Type") { }
+        public FloorTypes() : base(outputName) { }
+
+        [JsonConstructor]
+        public FloorTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
@@ -393,9 +416,12 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class WallTypes : RevitDropDownBase
     {
- 
+        private const string outputName = "Wall Type";
 
-        public WallTypes() : base("Wall Type") { }
+        public WallTypes() : base(outputName) { }
+
+        [JsonConstructor]
+        public WallTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
@@ -443,7 +469,12 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class PerformanceAdviserRules : RevitDropDownBase
     {
-        public PerformanceAdviserRules() : base("Performance Adviser Rules") { }
+        private const string outputName = "Performance Adviser Rules";
+
+        public PerformanceAdviserRules() : base(outputName) { }
+
+        [JsonConstructor]
+        public PerformanceAdviserRules(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
@@ -501,8 +532,15 @@ namespace DSRevitNodesUI
         public Categories()
         {
             var existing = OutPorts[0];
-            OutPorts[0] = new PortModel(PortType.Output, this, new PortData("Category", Properties.Resources.PortDataCategoriesToolTip, existing.DefaultValue));
+            OutPorts[0] = new PortModel(PortType.Output, this, 
+                new PortData("Category", Properties.Resources.PortDataCategoriesToolTip, existing.DefaultValue));
             OutPorts[0].GUID = existing.GUID;
+        }
+
+        [JsonConstructor]
+        public Categories(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
+            // TODO verify additional information for output ports is not required here!
         }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
@@ -638,8 +676,12 @@ namespace DSRevitNodesUI
     public class Levels : RevitDropDownBase
     {
         private const string noLevels = "No levels available.";
+        private const string outputName = "Levels";
 
-        public Levels() : base("Levels") { }
+        public Levels() : base(outputName) { }
+
+        [JsonConstructor]
+        public Levels(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
@@ -694,6 +736,17 @@ namespace DSRevitNodesUI
             PopulateItems();
         }
 
+        [JsonConstructor]
+        internal AllElementsInBuiltInCategory(
+            BuiltInCategory category, string outputMessage, string noTypesMessage,
+            IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(outputMessage, inPorts, outPorts)
+        {
+            this.category = category;
+            this.noTypesMessage = noTypesMessage;
+            PopulateItems();
+        }
+
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
@@ -742,8 +795,14 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class StructuralFramingTypes : AllElementsInBuiltInCategory
     {
+        private const string outputName = "Framing Types";
+
         public StructuralFramingTypes()
-            : base(BuiltInCategory.OST_StructuralFraming, "Framing Types", Properties.Resources.DropDownNoFramingType){}
+            : base(BuiltInCategory.OST_StructuralFraming, outputName, Properties.Resources.DropDownNoFramingType){}
+
+        [JsonConstructor]
+        public StructuralFramingTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(BuiltInCategory.OST_StructuralFraming, outputName, Properties.Resources.DropDownNoFramingType, inPorts, outPorts) { }
     }
 
     [NodeName("Structural Column Types")]
@@ -752,15 +811,26 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class StructuralColumnTypes : AllElementsInBuiltInCategory
     {
+        private const string outputName = "Column Types";
+
         public StructuralColumnTypes()
-            : base(BuiltInCategory.OST_StructuralColumns, "Column Types", Properties.Resources.DropDownNoColumnType){}
+            : base(BuiltInCategory.OST_StructuralColumns, outputName, Properties.Resources.DropDownNoColumnType){}
+
+        [JsonConstructor]
+        public StructuralColumnTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
+            : base(BuiltInCategory.OST_StructuralColumns, outputName, Properties.Resources.DropDownNoColumnType, inPorts, outPorts) { }
     }
 
     [NodeName("Spacing Rule Layout")]
     [NodeCategory(BuiltinNodeCategories.REVIT_ELEMENTS_DIVIDEDPATH_ACTION)]
     [NodeDescription("SpacingRuleLayoutDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
-    public class SpacingRuleLayouts : EnumAsInt<SpacingRuleLayout> {
+    public class SpacingRuleLayouts : EnumAsInt<SpacingRuleLayout>
+    {
+        public SpacingRuleLayouts() { }
+
+        [JsonConstructor]
+        public SpacingRuleLayouts(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
     }
 
     [NodeName("Element Types")]
@@ -769,6 +839,11 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ElementTypes : AllChildrenOfType<Element>
     {
+        public ElementTypes() { }
+
+        [JsonConstructor]
+        public ElementTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
+
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             AssociativeNode node;
@@ -796,20 +871,31 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class Views : RevitDropDownBase
     {
-        public Views() : base("Views") { }
+        private const string outputName = "Views";
+
+        public Views() : base(outputName) { }
+
+        [JsonConstructor]
+        public Views(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
 
         protected override SelectionState PopulateItemsCore(string currentSelection)
         {
             Items.Clear();
+
             //find all views in the project
-            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-            var views = fec.OfClass(typeof(View)).ToElements();
+            //exclude <RevisionSchedule> (revision tables on sheets) from list
+            var views = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(View))
+                .Where(x => !x.Name.Contains('<'))
+                .ToList();
             
             //there must always be at least 1 view in a Revit document, so we can exclude the empty list check
             foreach (var v in views)
             {
                 Items.Add(new DynamoDropDownItem(v.Name, v));
             }
+            Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+
             return SelectionState.Restore;
         }
 
