@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 using Autodesk.Revit.UI.Events;
 
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Graph.Nodes;
-using Dynamo.Models;
-using Dynamo.Nodes;
 
 using ProtoCore.AST.AssociativeAST;
-
-using Revit.Elements;
 using RevitServices.Elements;
 using RevitServices.Persistence;
-using RevitServices.Transactions;
 using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
@@ -28,10 +24,20 @@ namespace DSRevitNodesUI
 
         public SunSettings()
         {
-            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip)));
+            OutPorts.Add(new PortModel(PortType.Output, this,
+                new PortData("SunSettings", Properties.Resources.PortDataSunSettingToolTip)));
 
             RegisterAllPorts();
 
+            RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
+            DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
+
+            DynamoRevitApp.AddIdleAction(() => CurrentUIApplicationOnViewActivated());
+        }
+
+        [JsonConstructor]
+        public SunSettings(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
             DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
 

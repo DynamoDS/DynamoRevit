@@ -83,17 +83,17 @@ namespace RevitTestServices
         private void SetDefaultValuesToUninitializedProperties()
         {
             var fi = new FileInfo(Assembly.GetExecutingAssembly().Location);
-            string assDir = fi.DirectoryName;
-            
+            string assDir = fi.DirectoryName;           
+
             //It is used to get the path of journal file.
             //The path to the journal files is different. 
             //We have to get where each journal file runs when Revit gets it,
             //and then get the location of the required Revit files and dynamo files.
             if (RevitSystemTestBase.IsJournalReplaying())
             {
-                string journalPath = RevitTestExecutive.CommandData.Application.Application.RecordingJournalFilename;
-                WorkingDirectory = Path.GetDirectoryName(journalPath);
-                SamplesPath = Path.GetDirectoryName(journalPath);
+               string journalPath = RevitTestExecutive.CommandData.Application.Application.RecordingJournalFilename;
+               WorkingDirectory = Path.GetDirectoryName(journalPath);
+               SamplesPath = Path.GetDirectoryName(journalPath);
             }
 
             //get the test path
@@ -214,9 +214,9 @@ namespace RevitTestServices
                 return (bool) method.Invoke(null, null);
             }
             return false;
-        }
+        }      
 
-        protected override void StartDynamo(TestSessionConfiguration testConfig)
+      protected override void StartDynamo(TestSessionConfiguration testConfig)
         {
             try
             {
@@ -281,14 +281,7 @@ namespace RevitTestServices
 
         protected override TestSessionConfiguration GetTestSessionConfiguration()
         {
-            // Create a remote test config option specifying a core path
-            // one directory above the executing assembly. If the core path is not
-            // specified in the config, or the config is not present, it is assumed
-            // that the executing assembly's directory will be a Revit sub-folder, so
-            // we need to set core to the parent directory.
-
-            var asmDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            return new TestSessionConfiguration(Path.GetFullPath(asmDir + @"\..\"), asmDir);
+            return new TestSessionConfiguration(Dynamo.Applications.DynamoRevitApp.DynamoCorePath);
         }
 
         protected void OpenSampleDefinition(string relativeFilePath)

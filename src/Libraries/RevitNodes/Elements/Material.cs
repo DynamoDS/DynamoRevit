@@ -141,7 +141,7 @@ namespace Revit.Elements
         /// </summary>
         public DSCore.Color SurfacePatternColor
         {
-            get { return ToDSColor(this.InternalMaterial.SurfacePatternColor); }
+            get { return ToDSColor(this.InternalMaterial.SurfaceForegroundPatternColor); }
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace Revit.Elements
         /// </summary>
         public DSCore.Color CutPatternColor
         {
-            get { return ToDSColor(this.InternalMaterial.CutPatternColor); }
+            get { return ToDSColor(this.InternalMaterial.CutForegroundPatternColor); }
         }
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace Revit.Elements
         {
             get
             {
-                return this.InternalMaterial.CutPatternId.IntegerValue;
+                return this.InternalMaterial.CutForegroundPatternId.IntegerValue;
             }
         }
 

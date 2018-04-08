@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
-
 using DynamoServices;
-
 using Nuclex.Game.Packing;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
@@ -17,7 +14,7 @@ namespace Revit.Elements.Views
     /// A Revit ViewSheet
     /// </summary>
     [RegisterForTrace]
-    public class Sheet : Element
+    public class Sheet : View
     {
 
         #region Internal properties
@@ -324,67 +321,14 @@ namespace Revit.Elements.Views
 
         #region Public static constructors
 
-        // PB: Commented out until we have a good way of setting the sheet size given the views.  Not sure how to do that yet.
-
-        ///// <summary>
-        ///// Create a Revit Sheet by the sheet name, number, and a collection of views.  This method will automatically
-        ///// pack the views onto the sheet.
-        ///// </summary>
-        ///// <param name="sheetName"></param>
-        ///// <param name="sheetNumber"></param>
-        ///// <param name="views"></param>
-        ///// <returns></returns>
-        //public static Sheet ByNameNumberAndViews(string sheetName, string sheetNumber, AbstractView[] views)
-        //{
-        //    if (sheetName == null)
-        //    {
-        //        throw new ArgumentNullException("sheetName");
-        //    }
-
-        //    if (sheetNumber == null)
-        //    {
-        //        throw new ArgumentNullException("sheetNumber");
-        //    }
-
-        //    if (views == null)
-        //    {
-        //        throw new ArgumentNullException("views");
-        //    }
-
-        //    if (views.Length == 0)
-        //    {
-        //        throw new ArgumentException("Must supply more than one view");
-        //    }
-
-        //    return new Sheet(sheetName, sheetNumber, views.Select(x => x.InternalView));
-        //}
-
-        ///// <summary>
-        ///// Create a Revit Sheet by the sheet name, number, and a view.  This method will automatically
-        ///// pack the views onto the sheet.
-        ///// </summary>
-        ///// <param name="sheetName"></param>
-        ///// <param name="sheetNumber"></param>
-        ///// <param name="view"></param>
-        ///// <returns></returns>
-        //public static Sheet ByNameNumberAndView(string sheetName, string sheetNumber, AbstractView view)
-        //{
-        //    if (view == null)
-        //    {
-        //        throw new ArgumentNullException("view");
-        //    }
-
-        //    return Sheet.ByNameNumberAndViews(sheetName, sheetNumber, new[] { view });
-        //}
-
         /// <summary>
         /// Create a Revit Sheet by the sheet name, number, a title block FamilyType, and a collection of views.  This method will automatically
         /// pack the views onto the sheet. 
         /// </summary>
-        /// <param name="sheetName"></param>
-        /// <param name="sheetNumber"></param>
-        /// <param name="titleBlockFamilyType"></param>
-        /// <param name="views"></param>
+        /// <param name="sheetName">Sheet Name as String.</param>
+        /// <param name="sheetNumber">Sheet Number as String.</param>
+        /// <param name="titleBlockFamilyType">Titleblock that will be assigned to created Sheet.</param>
+        /// <param name="views">Views to be placed on Sheet.</param>
         /// <returns></returns>
         public static Sheet ByNameNumberTitleBlockAndViews(string sheetName, string sheetNumber, FamilyType titleBlockFamilyType, View[] views)
         {
@@ -410,7 +354,7 @@ namespace Revit.Elements.Views
 
             if (views.Length == 0)
             {
-                throw new ArgumentException("Must supply more than 0 views");
+                throw new ArgumentException(Properties.Resources.Sheet_NoViewsError);
             }
 
             return new Sheet(sheetName, sheetNumber, titleBlockFamilyType.InternalFamilySymbol, views.Select(x => x.InternalView));
@@ -420,10 +364,10 @@ namespace Revit.Elements.Views
         /// Create a Revit Sheet by the sheet name, number, a title block FamilyType, and a collection of views.  This method will automatically
         /// pack the view onto the sheet.
         /// </summary>
-        /// <param name="sheetName"></param>
-        /// <param name="sheetNumber"></param>
-        /// <param name="titleBlockFamilyType"></param>
-        /// <param name="view"></param>
+        /// <param name="sheetName">Sheet Name as String.</param>
+        /// <param name="sheetNumber">Sheet Number as String.</param>
+        /// <param name="titleBlockFamilyType">Titleblock that will be assigned to created Sheet.</param>
+        /// <param name="view">Views to be placed on Sheet.</param>
         /// <returns></returns>
         public static Sheet ByNameNumberTitleBlockAndView(string sheetName, string sheetNumber, FamilyType titleBlockFamilyType, View view)
         {

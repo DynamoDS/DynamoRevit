@@ -187,8 +187,8 @@ namespace Revit.Elements
                     }
                     else if (valueWrapper.GetType() == typeof(Autodesk.Revit.DB.DoubleParameterValue))
                     {
-
                         var valueDouble = valueWrapper as Autodesk.Revit.DB.DoubleParameterValue;
+
                         return valueDouble.Value * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(
                             this.InternalGlobalParameter.GetDefinition().UnitType);
                     }

@@ -8,8 +8,10 @@ using Autodesk.DesignScript.Interfaces;
 using Dynamo.Controls;
 using Dynamo.Graph.Nodes;
 using Dynamo.Models;
+using Dynamo.Visualization;
 using Dynamo.UI;
 using Dynamo.Wpf.Rendering;
+using Dynamo.Visualization;
 using NUnit.Framework;
 using RevitTestServices;
 using RTF.Framework;
@@ -47,9 +49,9 @@ namespace RevitSystemTests
             RunCurrentModel();
         }
 
-        void NodeRenderPackagesUpdated(NodeModel node, IEnumerable<IRenderPackage> packages)
+        void NodeRenderPackagesUpdated(NodeModel node, RenderPackageCache packages)
         {
-            var curvePackage = packages.FirstOrDefault(p => p.LineVertexCount > 0);
+            var curvePackage = packages.Packages.FirstOrDefault(p => p.LineVertexCount > 0);
             if (curvePackage == null)
                 return;
 
