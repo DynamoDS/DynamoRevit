@@ -100,11 +100,7 @@
     <Compile Include="CurtainSystemTests.cs" />
     <Compile Include="PerformanceAdviserTests.cs" />
     <Compile Include="GlobalParameterTests.cs" />
-    <Compile Include="GlobalParameterTests.cs" />
-    <Compile Include="PerformanceAdviserTests.cs" />
     <Compile Include="SerializationTests.cs" />
-    <Compile Include="WallTests.cs" />
-    <Compile Include="CurtainSystemTests.cs" />
     <Compile Include="RoomTests.cs" />
     <Compile Include="RevisionTests.cs" />
     <Compile Include="LocationTests.cs" />
