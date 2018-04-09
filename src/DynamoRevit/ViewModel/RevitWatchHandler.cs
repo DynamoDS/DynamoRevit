@@ -68,7 +68,7 @@ namespace Dynamo.Applications
         {
             return Object.ReferenceEquals(value, null)
                 ? new WatchViewModel("null", tag, RequestSelectGeometry)
-                : ProcessThing(value, preferredDictionaryOrdering.ToList(), runtimeCore, tag, showRawData, callback);
+                : ProcessThing(value, preferredDictionaryOrdering?.ToList(), runtimeCore, tag, showRawData, callback);
         }
 
 
