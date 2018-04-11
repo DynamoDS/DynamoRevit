@@ -402,15 +402,13 @@
   <data name="Sheet_NoViewsError" xml:space="preserve">
     <value>Must supply more than 0 views</value>
   </data>
-<<<<<<< HEAD
   <data name="GeometryConversionFailure" xml:space="preserve">
     <value>One or more geometries have failed to convert due to this error: </value>
-=======
+  </data>
   <data name="ViewExportImageLockedError" xml:space="preserve">
     <value>Attempt to override existing image failed due to file lock. Please make sure that image is not currently open in another application.</value>
   </data>
   <data name="ViewPlan_ViewFamilyNotFound" xml:space="preserve">
     <value>Specified View Type could not be found.</value>
->>>>>>> 4965a81... fix to view export
   </data>
 </root>
