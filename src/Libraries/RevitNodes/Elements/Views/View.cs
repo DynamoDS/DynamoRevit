@@ -8,12 +8,12 @@ using RevitServices.Persistence;
 namespace Revit.Elements.Views
 {
     /// <summary>
-    ///     An abstract Revit View - All view types inherit from this type
+    /// An abstract Revit View - All view types inherit from this type
     /// </summary>
     public abstract class View : Element
     {
         /// <summary>
-        ///     Obtain the reference Element as a View
+        /// Obtain the reference Element as a View
         /// </summary>
         internal Autodesk.Revit.DB.View InternalView
         {
@@ -24,23 +24,23 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        ///     Check if this type of view supports annotative elements
+        /// Check if this type of view supports annotative elements
         /// </summary>
         /// <returns></returns>
         internal bool IsAnnotationView()
         {
             switch (this.InternalView.ViewType)
             {
-                case Autodesk.Revit.DB.ViewType.FloorPlan:
-                case Autodesk.Revit.DB.ViewType.EngineeringPlan:
-                case Autodesk.Revit.DB.ViewType.Detail:
-                case Autodesk.Revit.DB.ViewType.Section:
-                case Autodesk.Revit.DB.ViewType.Elevation:
-                case Autodesk.Revit.DB.ViewType.CeilingPlan:
-                case Autodesk.Revit.DB.ViewType.DraftingView:
-                case Autodesk.Revit.DB.ViewType.DrawingSheet:
-                case Autodesk.Revit.DB.ViewType.AreaPlan:
-                case Autodesk.Revit.DB.ViewType.Legend:
+                case ViewType.FloorPlan:
+                case ViewType.EngineeringPlan:
+                case ViewType.Detail:
+                case ViewType.Section:
+                case ViewType.Elevation:
+                case ViewType.CeilingPlan:
+                case ViewType.DraftingView:
+                case ViewType.DrawingSheet:
+                case ViewType.AreaPlan:
+                case ViewType.Legend:
                     return true;
 
                 default: return false;
@@ -48,11 +48,11 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        ///     Export the view as an image to the given path - defaults to png, but you can override 
-        ///     the file type but supplying a path with the appropriate extension
+        /// Export the view as an image to the given path - defaults to png, but you can override 
+        /// the file type but supplying a path with the appropriate extension.
         /// </summary>
-        /// <param name="path">A valid path for the image</param>
-        /// <returns>The image</returns>
+        /// <param name="path">A valid path for the image.</param>
+        /// <returns>A Bitmap Image.</returns>
         public Bitmap ExportAsImage(string path)
         {
             if (string.IsNullOrEmpty(path))
@@ -124,7 +124,7 @@ namespace Revit.Elements.Views
                 throw new ArgumentException(Properties.Resources.View_ExportAsImage_Path_Invalid, nameof(path));
 
             // rename the file
-            if (File.Exists(destinationFileName))
+            if (File.Exists(actualFileName))
             {
                 try
                 {
