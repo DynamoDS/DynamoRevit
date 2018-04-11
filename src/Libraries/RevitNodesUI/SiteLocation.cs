@@ -47,6 +47,7 @@ namespace DSRevitNodesUI
     {
         private readonly RevitDynamoModel model;
 
+        [JsonIgnore]
         public DynamoUnits.Location Location { get; set; }
 
         public SiteLocation()
