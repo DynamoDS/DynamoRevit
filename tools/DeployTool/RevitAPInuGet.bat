@@ -2,7 +2,7 @@ set toolFolder=C:\DeployTool
 
 set referenceFolderBase=..\DynamoRevit
 set libFolder=lib
-set revitVersion=Revit 2019
+set revitVersion=Revit 2020
 set netVersion=net452
 
 set destinationFolder=%referenceFolderBase%\%libFolder%\%revitVersion%\%netVersion%
