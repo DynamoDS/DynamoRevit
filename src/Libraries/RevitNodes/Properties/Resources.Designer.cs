@@ -925,6 +925,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Provided Schedule Type is not supported..
+        /// </summary>
+        internal static string ViewUnsupportedScheduleType {
+            get {
+                return ResourceManager.GetString("ViewUnsupportedScheduleType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no WallType of the given name in the current Document..
         /// </summary>
         internal static string WallTypeNotFound {
