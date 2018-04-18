@@ -408,4 +408,7 @@
   <data name="ViewPlan_ViewFamilyNotFound" xml:space="preserve">
     <value>Matching ViewFamilyType was not found.</value>
   </data>
+  <data name="ViewUnsupportedScheduleType" xml:space="preserve">
+    <value>Provided Schedule Type is not supported.</value>
+  </data>
 </root>
