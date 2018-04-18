@@ -88,6 +88,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must supply an Area Scheme..
+        /// </summary>
+        internal static string AreaSchemeArgumentException {
+            get {
+                return ResourceManager.GetString("AreaSchemeArgumentException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The number of sample locations and samples is not equal..
         /// </summary>
         internal static string Array_Count_Mismatch {
@@ -907,7 +916,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Matching ViewFamilyType was not found..
         /// </summary>
         internal static string ViewPlan_ViewFamilyNotFound {
             get {
