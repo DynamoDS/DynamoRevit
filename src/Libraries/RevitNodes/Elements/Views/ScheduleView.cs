@@ -56,7 +56,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Private constructor
+        /// Private constructor for creating Schedules from Category/ScheduleType.
         /// </summary>
         private ScheduleView(Category category, string name, ScheduleType type)
         {
@@ -64,7 +64,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Private constructor
+        /// Private constructor for creating Schedules from AreaScheme.
         /// </summary>
         private ScheduleView(Element areaScheme, string name)
         {
@@ -84,11 +84,11 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Initialize a ViewSchedule Element.
+        /// Initialize a ScheduleView Element by Category, name and ScheduleType.
         /// </summary>
-        /// <param name="category"></param>
-        /// <param name="name"></param>
-        /// <param name="type"></param>
+        /// <param name="category">Category of elements that Schedule will display.</param>
+        /// <param name="name">Name of the Schedule.</param>
+        /// <param name="type">ScheduleType ex: Key Schedule.</param>
         private void InitScheduleView(Category category, string name, ScheduleType type)
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;
@@ -105,10 +105,10 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Initialize a ViewSchedule Element.
+        /// Initialize a ScheduleView Element by AreaScheme and name.
         /// </summary>
-        /// <param name="areaScheme"></param>
-        /// <param name="name"></param>
+        /// <param name="areaScheme">Area Scheme.</param>
+        /// <param name="name">Name of the Schedule.</param>
         private void InitScheduleView(Element areaScheme, string name)
         {
             var doc = DocumentManager.Instance.CurrentDBDocument;
@@ -212,8 +212,15 @@ namespace Revit.Elements.Views
                 throw new System.ArgumentNullException(Properties.Resources.ScheduleTypeArgumentException);
             }
 
-            var t = (ScheduleType)Enum.Parse(typeof(ScheduleType), scheduleType);
-            return new ScheduleView(category, name, t);
+            try
+            {
+                var t = (ScheduleType)Enum.Parse(typeof(ScheduleType), scheduleType);
+                return new ScheduleView(category, name, t);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentNullException(Properties.Resources.ViewUnsupportedScheduleType);
+            }
         }
 
         /// <summary>

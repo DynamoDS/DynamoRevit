@@ -413,4 +413,7 @@
     <value>Matching ViewFamilyType was not found.</value>
 >>>>>>> dfb806b... area schedule support
   </data>
+  <data name="ViewUnsupportedScheduleType" xml:space="preserve">
+    <value>Provided Schedule Type is not supported.</value>
+  </data>
 </root>
