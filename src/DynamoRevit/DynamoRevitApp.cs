@@ -334,8 +334,23 @@ namespace Dynamo.Applications
         /// <returns></returns>
         public static Assembly ResolveAssembly(object sender, ResolveEventArgs args)
         {
+            // Ignore missing resources
+            if (args.Name.Contains(".resources"))
+               return null;
+
+            // check for assemblies already loaded
+            Assembly assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.FullName == args.Name);
+            if (assembly != null)
+               return assembly;
+
             var assemblyPath = string.Empty;
             var assemblyName = new AssemblyName(args.Name).Name + ".dll";
+
+            // check for Newtonsoft.Json.dll's version should be 8.0.0.0.
+            if (assemblyName == "Newtonsoft.Json.dll" && !args.Name.Contains("Version=8.0.0.0"))
+            {
+               return null;
+            }
 
             try
             {
