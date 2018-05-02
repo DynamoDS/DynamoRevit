@@ -1,4 +1,4 @@
-﻿@echo off
+@echo off
 REM ***********************************************************************
 REM This bat file uses Aget: https://git.autodesk.com/Dynamo/Aget to 
 REM download the nuget packages from NuGet server or closest Artifactory server for 
