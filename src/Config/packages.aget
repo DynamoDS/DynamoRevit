@@ -1,12 +1,12 @@
 {
   "nuget": {
     "references": {
-      "DynamoVisualProgramming.Core" : "2.0.1.4955",
-      "DynamoVisualProgramming.DynamoCoreNodes" : "2.0.1.4955",
-      "DynamoVisualProgramming.DynamoServices" : "2.0.1.4955",
-      "DynamoVisualProgramming.Tests" : "2.0.1.4955",
-      "DynamoVisualProgramming.WpfUILibrary" : "2.0.1.4955",
-      "DynamoVisualProgramming.ZeroTouchLibrary" : "2.0.1.4955",
+      "DynamoVisualProgramming.Core" : "2.0.1.5055",
+      "DynamoVisualProgramming.DynamoCoreNodes" : "2.0.1.5055",
+      "DynamoVisualProgramming.DynamoServices" : "2.0.1.5055",
+      "DynamoVisualProgramming.Tests" : "2.0.1.5055",
+      "DynamoVisualProgramming.WpfUILibrary" : "2.0.1.5055",
+      "DynamoVisualProgramming.ZeroTouchLibrary" : "2.0.1.5055",
       "Greg" : "1.0.6176.18754",
       "GregRevitAuth" : "1.0.5907.17451",
       "IronPython" : "2.7.2",
