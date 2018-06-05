@@ -115,7 +115,7 @@ namespace Revit.Elements
             if (tagElem == null || view.Id != tagElem.OwnerViewId ||
                 (tagElem.TaggedElementId.HostElementId != host.Id && tagElem.TaggedElementId.LinkedElementId != host.Id))
             {
-                tagElem = IndependentTag.Create(Document, view.Id, new Autodesk.Revit.DB.Reference(host), addLeader, mode, orientation, vector);
+                tagElem = document.Create.NewTag(view, host, addLeader, mode, orientation, vector);
             }
             else
             {
