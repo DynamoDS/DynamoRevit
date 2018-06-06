@@ -50,7 +50,15 @@ namespace Dynamo.Applications.Tools
                 Object obj = null;
                 GetValue(RegKey, VERSION, ref obj);
                 if (obj == null) return null;
-                if (obj.GetType() == typeof(String)) return new Version((string)obj);
+                if (obj.GetType() == typeof(String))
+                {
+                    try {
+                        return new Version((string)obj);
+                    } catch (Exception e) {
+                        Debug.Write(e);
+                        return null;
+                    }
+                }
                 return null;
             }
 

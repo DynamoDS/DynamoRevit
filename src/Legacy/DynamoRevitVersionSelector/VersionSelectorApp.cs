@@ -45,6 +45,8 @@ namespace Dynamo.Applications
             try
             {
                 activeVersion = Tools.Presistence.ActiveVersion;
+                if (!DynamoProducts.Contains(activeVersion)) activeVersion = Product.LASTESTDYNAMO;
+                Tools.Presistence.ActiveVersion = activeVersion;
             }
             catch (Exception) { /* */ }
 
@@ -55,10 +57,11 @@ namespace Dynamo.Applications
             // Start Dynamo Product
             try
             {
-                DynamoProducts.Load(Tools.Presistence.ActiveVersion);
+                DynamoProducts.Load(version);
                 return Result.Succeeded;
             }
             catch (Exception) { /* */ }
+
             return Result.Failed;
         }
 

@@ -38,11 +38,16 @@ namespace Dynamo.Applications
 
         private void OnClick()
         {
-            // retreived current active version
+            // Latest version available
             Version latestVersion = mProductList.First().Version;
-            Version currentVersion = Tools.Presistence.ActiveVersion;
-            if (currentVersion == Product.LASTESTDYNAMO)
-                currentVersion = latestVersion;
+
+            // Current Version loaded in appDomain
+            Version currentVersion = latestVersion;
+            var isCurrentVersion = ProductsManager.IsProductLoaded(ref currentVersion);
+
+            // Selected Version
+            Version selectedVersion = Tools.Presistence.ActiveVersion;
+            if (selectedVersion == Product.LASTESTDYNAMO) selectedVersion = latestVersion;
 
             // Creates a Revit task dialog to communicate information to the user.
             TaskDialog mainDialog = new TaskDialog(Resources.DynamoVersions);
@@ -57,7 +62,7 @@ namespace Dynamo.Applications
             {
                 item.isCurrent = (item.Version == currentVersion);
                 mainDialog.AddCommandLink((TaskDialogCommandLinkId)id, item.Title, item.SubTitle);
-                if (item.isCurrent) defaultResult = (TaskDialogResult)id;
+                if (item.Version == selectedVersion) defaultResult = (TaskDialogResult)id;
                 id++;
             }
             mainDialog.CommonButtons = TaskDialogCommonButtons.Close;
@@ -70,13 +75,12 @@ namespace Dynamo.Applications
             var index = (int)tResult - (int)TaskDialogCommandLinkId.CommandLink1;
             try
             {
-                var selectedVersion = mProductList[index].Version;
-                if (selectedVersion == latestVersion)
-                    selectedVersion = Product.LASTESTDYNAMO;
+                var version = mProductList[index].Version;
+                if (version == latestVersion) version = Product.LASTESTDYNAMO;
 
                 // Save Result
-                Tools.Presistence.ActiveVersion = selectedVersion;
-                OnVersionSelected(selectedVersion);
+                Tools.Presistence.ActiveVersion = version;
+                OnVersionSelected(version);
             }
             catch (Exception) { /* */ }
 

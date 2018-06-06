@@ -116,6 +116,15 @@ namespace Dynamo.Applications
         }
 
         /// <summary>
+        /// Return true if Product list contains a specific version
+        /// </summary>
+        public bool Contains(Version version)
+        {
+            if (version == Product.LASTESTDYNAMO) return mProducts.Count > 0;
+            return mProducts.ContainsKey(version);
+        }
+
+        /// <summary>
         /// Check if a specific Product is currently loaded
         /// </summary>
         public void Load(Version version)
