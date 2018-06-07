@@ -109,12 +109,16 @@ namespace Revit.Filter
 
             if (elem == null)
             {
-                elem = Autodesk.Revit.DB.ParameterFilterElement.Create(document, name, ids.ToList(), eleFilter);
+               // ParameterFilterElement..::..Create Method (Document, String, ICollection<ElementId>, IList<FilterRule>) is deprecated in Revit 2019 and will be removed in the next version of Revit. 
+               //We suggest you instead use a Create method that takes an ElementFilter as input.
+               elem = Autodesk.Revit.DB.ParameterFilterElement.Create(document, name, ids.ToList(), eleFilter);
             }
             else
             {
                 elem.Name = name;
                 elem.SetCategories(ids.ToList());
+                //ParameterFilterElement..::..SetRules Method is deprecated in Revit 2019 and will be removed in the next version of Revit. 
+                //We suggest you instead use SetElementFilter instead.
                 elem.SetElementFilter(eleFilter);
             }
 
