@@ -96,18 +96,26 @@ namespace Revit.Filter
         {
             Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(document);
+            var elemFilters = new List<ElementFilter>();
+            foreach(var rule in rules)
+            {
+               var elemParamFilter = new ElementParameterFilter(rule);
+               elemFilters.Add(elemParamFilter);
+            }
+            Autodesk.Revit.DB.ElementFilter eleFilter = new LogicalOrFilter(elemFilters);
 
             var elem = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.ParameterFilterElement>(document);
+         
 
             if (elem == null)
             {
-                elem = Autodesk.Revit.DB.ParameterFilterElement.Create(document, name, ids.ToList(), rules.ToList());
+                elem = Autodesk.Revit.DB.ParameterFilterElement.Create(document, name, ids.ToList(), eleFilter);
             }
             else
             {
                 elem.Name = name;
                 elem.SetCategories(ids.ToList());
-                elem.SetRules(rules.ToList());
+                elem.SetElementFilter(eleFilter);
             }
 
             InternalSetElement(elem);
