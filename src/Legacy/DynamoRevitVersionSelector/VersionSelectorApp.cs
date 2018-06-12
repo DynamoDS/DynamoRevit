@@ -48,24 +48,31 @@ namespace Dynamo.Applications
             activeVersion = Tools.Presistence.ActiveVersion;
             if ((activeVersion != Product.LASTESTDYNAMO) && (!DynamoProducts.Contains(activeVersion)))
                 activeVersion = Product.NODYNAMO; // default
-            
+
             // Write it back to keep consistency
             Tools.Presistence.ActiveVersion = activeVersion;
 
-
-            if (activeVersion == Product.NODYNAMO)
+            // Multiple Revit Product without any persisted version ?
+            if (DynamoProducts.Count > 1 && activeVersion == Product.NODYNAMO)
             {
                 Commands.Bind();
+                return Result.Succeeded;
             }
-            else
+
+            // Single Revit Version
+            if (DynamoProducts.Count == 1)
             {
-                // load expected product
-                var ret = DynamoProducts.Load(activeVersion);
-                if (!ret.IsSucceed) {
-                    /* Error, go back in a safe position for the next time */
-                    Tools.Presistence.ActiveVersion = Product.NODYNAMO;
-                    return Result.Failed;
-                }
+                Tools.Presistence.ActiveVersion = Product.NODYNAMO; // back to default
+                activeVersion = DynamoProducts.Latest.Version; // force to use the unique version available
+            }
+
+
+            // load expected product
+            var ret = DynamoProducts.Load(activeVersion);
+            if (!ret.IsSucceed) {
+                /* Error, go back in a safe position for the next time */
+                Tools.Presistence.ActiveVersion = Product.NODYNAMO;
+                return Result.Failed;
             }
 
             return Result.Succeeded;

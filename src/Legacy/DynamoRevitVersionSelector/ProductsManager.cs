@@ -50,6 +50,18 @@ namespace Dynamo.Applications
         }
 
         /// <summary>
+        /// Accessor to return the most recent Dyanmo Product.
+        /// </summary>
+        /// <seealso cref="Contains"/>
+        public Product Latest
+        {
+            get
+            {
+                return this.List.First();
+            }
+        }
+
+        /// <summary>
         /// Number of Dyanmo Products available
         /// </summary>
         /// <seealso cref="Contains"/>
@@ -193,7 +205,7 @@ namespace Dynamo.Applications
                 }
                 if (version == Product.LASTESTDYNAMO)
                 {
-                    product = this.List.First();
+                    product = this.Latest;
                     break;
                 }
 
