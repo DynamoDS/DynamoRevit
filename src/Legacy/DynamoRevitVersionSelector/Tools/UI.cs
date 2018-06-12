@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autodesk.Revit.UI;
+using System;
 using System.Collections.Generic;
 using adWin = Autodesk.Windows;
 
@@ -13,12 +14,18 @@ namespace Dynamo.Applications.Tools
         // UI Event Handling
         private delegate void EventHandler(object sender, adWin.UIElementActivatedEventArgs e);
         private static Dictionary<string, EventHandler> listener = new Dictionary<string, EventHandler>();
+        private static readonly OperationRequestHandler opReq = new OperationRequestHandler();
         private static void OnUIEvent(object sender, adWin.UIElementActivatedEventArgs e)
         {
             if (e == null) return;
             if (e.Item == null) return;
             if (e.Item.Id == null) return;
-            if (listener.ContainsKey(e.Item.Id)) listener[e.Item.Id](sender, e);
+            if (listener.ContainsKey(e.Item.Id))
+            {
+                opReq.Raise(() => {
+                    listener[e.Item.Id](sender, e);
+                });
+            }
         }
 
         ///
@@ -141,6 +148,49 @@ namespace Dynamo.Applications.Tools
                 btn.GroupLocation = Autodesk.Private.Windows.RibbonItemGroupLocation.Last;
                 btn.IsCheckable = true;
                 listener.Add(btn.Id, this.OnUIEvent);
+            }
+        }
+
+        private class OperationRequestHandler : IExternalEventHandler
+        {
+            public delegate void Operation();
+            private Operation mOperation = null;
+            private readonly Object opLock = new Object();
+            ExternalEvent m_exEvent = null;
+
+            public OperationRequestHandler()
+            {
+                m_exEvent = ExternalEvent.Create(this);
+            }
+
+            public void Raise(Operation operation)
+            {
+                lock (opLock) mOperation = operation;
+                m_exEvent.Raise();
+            }
+
+
+            public String GetName()
+            {
+                return "UI OperationRequestHandler";
+            }
+
+            /// <summary>
+            ///   The top method of the event handler.
+            /// </summary>
+            /// <remarks>
+            ///   This is called by Revit after the corresponding
+            ///   external event was raised (by the modeless form)
+            ///   and Revit reached the time at which it could call
+            ///   the event's handler (i.e. this object)
+            /// </remarks>
+            /// 
+            public void Execute(UIApplication uiapp)
+            {
+                lock (opLock)
+                {
+                    mOperation();
+                }
             }
         }
     }

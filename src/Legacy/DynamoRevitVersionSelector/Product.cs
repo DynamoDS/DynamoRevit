@@ -17,11 +17,18 @@ namespace Dynamo.Applications
     {
         #region Statics
         /// <summary>
-        /// A way to says "plz keep using the lastest installed version available".
-        /// This should be the default value / lazy case (think if the end-user never use this DynamoRevitSelector facility).
-        /// We assume, that if the end-user selects explicitly the lastest version, then he'll keep follow tatest version
+        /// A way to says "do not loat load Dyanmo during starup".
         /// </summary>
-        public static readonly Version LASTESTDYNAMO = null;
+        /// <remarks>
+        /// Legacy use case - This should be the default case
+        /// This might be usefull when people need to change Dyanmo version on each Revit Session
+        /// </remarks>
+        public static readonly Version NODYNAMO = null;
+
+        /// <summary>
+        /// A way to says "please keep using the lastest installed version available".
+        /// </summary>
+        public static readonly Version LASTESTDYNAMO = new Version(0,0,0,0);
 
         /// <summary>
         /// Dynamo product's assembly should always define the same type name
@@ -61,22 +68,41 @@ namespace Dynamo.Applications
         {
             get
             {
+                if (Version == NODYNAMO)
+                    return Resources.DynamoVersionKeepClear;
                 var msg = isCurrent ? Resources.DynamoCurrentVersionText : Resources.DynamoVersionText;
                 return string.Format(msg, Version.ToString(4));
             }
         }
 
         /// <summary>
-        /// How to describe this product in (Sub Title)
+        /// How to describe this product (Sub Title)
         /// </summary>
         public string SubTitle
         {
             get; set;
         }
+
+        /// <summary>
+        /// Generic String conversion
+        /// </summary>
+        public override string ToString()
+        {
+            return Title;
+        }
+
+        /// <summary>
+        /// Get product instance (if it has been created)
+        /// </summary>
+        /// <seealso cref="CreateInstance"/>
+        public Object Instance
+        {
+            get; private set;
+        }
         #endregion
 
         /// <summary>
-        /// Generic contructor
+        /// Lazy constructor
         /// </summary>
         public Product(Version version)
         {
@@ -84,7 +110,7 @@ namespace Dynamo.Applications
         }
 
         /// <summary>
-        /// Contructor, for a full defined product
+        /// Constructor, for a full defined/existing dynamo product
         /// </summary>
         public Product(Version version, string assemblyPath, string installFolder)
         {
@@ -111,12 +137,36 @@ namespace Dynamo.Applications
             }
             try
             {
-                return asm.CreateInstance(DYNAMO_TYPENAME);
+                Instance = asm.CreateInstance(DYNAMO_TYPENAME);
+                return Instance;
             }
             catch (Exception)
             {
                 throw new System.MethodAccessException($"AsssemblyPath '{AsssemblyPath}', can't be access to '{DYNAMO_TYPENAME}'");
             }
+        }
+
+        /// <summary>
+        /// Execute OnStartup() by reflection
+        /// </summary>
+        /// <param name="application"></param>
+        /// <returns></returns>
+        public Result OnStartup(UIControlledApplication application)
+        {
+            var method = Instance.GetType().GetMethod("OnStartup");
+            return (Result)method.Invoke(Instance, new object[] { application });
+        }
+
+        /// <summary>
+        /// Execute ExecuteDynamoCommand() by reflection
+        /// </summary>
+        /// <param name="journalData"></param>
+        /// <param name="appUI"></param>
+        /// <returns></returns>
+        public Result ExecuteDynamoCommand(IDictionary<string, string> journalData, UIApplication appUI)
+        {
+            var method = Instance.GetType().GetMethod("ExecuteDynamoCommand");
+            return (Result)method.Invoke(Instance, new object[] { journalData, appUI });
         }
     }
 

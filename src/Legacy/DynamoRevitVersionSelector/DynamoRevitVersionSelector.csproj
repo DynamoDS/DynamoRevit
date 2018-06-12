@@ -58,6 +58,7 @@
     <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs">
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
+    <Compile Include="CommandsBinders.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductsManager.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -73,6 +74,7 @@
     <Compile Include="Tools\ImageConversion.cs" />
     <Compile Include="Tools\Presistence.cs" />
     <Compile Include="Tools\UI.cs" />
+    <Compile Include="VersionDialog.cs" />
     <Compile Include="VersionSelectorApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VersionSelectorButton.cs" />

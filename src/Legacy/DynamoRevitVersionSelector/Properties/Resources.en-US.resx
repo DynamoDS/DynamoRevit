@@ -152,4 +152,10 @@ Please restart Revit to use it.</value>
   <data name="DynamoCurrentVersionText" xml:space="preserve">
     <value>Dynamo {0} (current)</value>
   </data>
+  <data name="DynamoVersionKeepClear" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="NeedToRestartRevit" xml:space="preserve">
+    <value>You need to restart Revit to apply this change</value>
+  </data>
 </root>

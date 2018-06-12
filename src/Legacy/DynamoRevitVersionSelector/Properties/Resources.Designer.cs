@@ -80,6 +80,15 @@ namespace DynamoRevitVersionSelector.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string DynamoVersionKeepClear {
+            get {
+                return ResourceManager.GetString("DynamoVersionKeepClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dynamo Version.
         /// </summary>
         internal static string DynamoVersions {
@@ -103,6 +112,15 @@ namespace DynamoRevitVersionSelector.Properties {
         internal static string DynamoVersionText {
             get {
                 return ResourceManager.GetString("DynamoVersionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to restart Revit to apply this change.
+        /// </summary>
+        internal static string NeedToRestartRevit {
+            get {
+                return ResourceManager.GetString("NeedToRestartRevit", resourceCulture);
             }
         }
         

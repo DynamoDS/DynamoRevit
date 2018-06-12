@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Autodesk.Revit.UI;
 using System.Linq;
-using DynamoRevitVersionSelector.Properties;
 using System.IO;
 using System.Reflection;
 using System.Collections;
@@ -12,68 +11,103 @@ namespace Dynamo.Applications
 {
     internal class ProductsManager
     {
-
-        #region Statics
         /// <summary>
-        /// Check if a Product is currently loaded in Current Application Domain
+        /// Check if a Product is currently loaded in Current Application Domain and returns its version.
         /// </summary>
-        /// <param name="version">If a product is loaded, provides its version.</param>
-        /// <returns>True if a Dynamo product is currently loaded</returns>
-        public static bool IsProductLoaded(ref Version version)
+        /// <returns>Dynamo product which is currently loaded, Product.NODYNAMO otherwise</returns>
+        public static Version LoadedProduct()
         {
             Assembly[] asms = AppDomain.CurrentDomain.GetAssemblies();
             foreach (Assembly asm in asms)
             {
                 if (asm.GetType(Product.DYNAMO_TYPENAME) != null)
                 {
-                    version = asm.GetName().Version;
-                    return true;
+                    return asm.GetName().Version;
                 }
             }
-            return false;
+            return Product.NODYNAMO;
         }
-        #endregion
 
-        #region Accessors
         /// <summary>
-        /// Accessor to the list of Dyanmo Product, the list is sorted in a way that .first() is
-        /// the most recent one
+        /// Revit Version
         /// </summary>
+        public string RevitVersion
+        {
+            get; private set;
+        }
+
+        #region Product List
+        /// <summary>
+        /// Accessor to the list of Dyanmo Product (the list is sorted).
+        /// </summary>
+        /// <seealso cref="Contains"/>
         public List<Product> List
         {
             get {
                 var list = mProducts.Values.ToList();
-                return list.OrderByDescending(x => x.Version).ToList();
+                return list.OrderByDescending(x => x.Version).ToList(); // -- list.first() = most recent version
             }
         }
 
         /// <summary>
         /// Number of Dyanmo Products available
         /// </summary>
+        /// <seealso cref="Contains"/>
         public int Count
         {
             get { return mProducts.Count; }
         }
 
         /// <summary>
-        /// Revit Version
+        /// Return true if Product list contains a specific version (product should exist and be a real)
         /// </summary>
-        public string RevitVersion {
-            get; private set;
+        public bool Contains(Version version)
+        {
+            if (version == Product.LASTESTDYNAMO) return false;
+            if (version == Product.NODYNAMO) return false;
+            return mProducts.ContainsKey(version);
+        }
+
+        /// <summary>
+        /// Return true if Product list contains at least one product with dynamo player in it
+        /// </summary>
+        public bool ContainsDynamoPlayer()
+        {
+            //Minimum version requirements needed by Playlist feature for Dynamo and Revit.
+            Version MinDynamoVersionForPlaylist = new Version(1, 2);
+            foreach (var p in mProducts.Values)
+            {
+                if (p.Version >= MinDynamoVersionForPlaylist)
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns one Product
+        /// </summary>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        public Product Get(Version version)
+        {
+            return mProducts[version];
         }
         #endregion
 
         protected UIControlledApplication uiControlledApplication;
         protected Dictionary<Version, Product> mProducts;
 
+        public delegate void BeforeLoadEventHandler();
+        public event BeforeLoadEventHandler OnBeforeLoad;
+
         /// <summary>
-        /// Contructor
+        /// ProductsManager Contructor, Manage available Dyanmo Products (DLLs assemblies)
         /// </summary>
         public ProductsManager(UIControlledApplication application)
         {
             uiControlledApplication = application;
             RevitVersion = application.ControlledApplication.VersionNumber;
-            var revitFolder = new System.IO.DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            var revitFolder = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
             var debugPath = revitFolder.Parent.FullName;
             var dynamoProducts = FindDynamoRevitInstallations(debugPath);
             mProducts = new Dictionary<Version, Product>();
@@ -94,9 +128,7 @@ namespace Dynamo.Applications
             var type = assembly.GetType("DynamoInstallDetective.Utilities");
             var LocateDynamoInstallations = type.GetMethod("LocateDynamoInstallations", BindingFlags.Public | BindingFlags.Static);
             if (LocateDynamoInstallations == null)
-            {
                 throw new MissingMethodException("Method 'DynamoInstallDetective.Utilities.LocateDynamoInstallations' not found");
-            }
 
             // Where search for "DynamoRevitDS.dll" products which follow this Pattern:
             Func<string, string> fileLocator = p => Path.Combine(p, string.Format("Revit_{0}", RevitVersion), "DynamoRevitDS.dll");
@@ -115,45 +147,92 @@ namespace Dynamo.Applications
                 );
         }
 
-        /// <summary>
-        /// Return true if Product list contains a specific version
-        /// </summary>
-        public bool Contains(Version version)
+        internal class LoadResult
         {
-            if (version == Product.LASTESTDYNAMO) return mProducts.Count > 0;
-            return mProducts.ContainsKey(version);
+            /// <summary>
+            /// Version before Load() call
+            /// </summary>
+            public Version fromVersion;
+
+            /// <summary>
+            /// Version after Load() call
+            /// </summary>
+            public Version afterVersion;
+
+            public enum ResultType {
+                FAILED,
+                DONE,
+                PENDING
+            };
+
+            /// <summary>
+            /// Load Result
+            /// </summary>
+            public ResultType Result;
+
+            public bool IsSucceed {
+                get { return Result != ResultType.FAILED; }
+            }
         }
 
         /// <summary>
-        /// Check if a specific Product is currently loaded
+        /// Load a specific product version
         /// </summary>
-        public void Load(Version version)
+        /// <param name="version">Version expected</param>
+        /// <returns>Succeed if no error occurs</returns>
+        public LoadResult Load(Version version)
         {
             // Retreived product
-            var product = (version == Product.LASTESTDYNAMO) ? this.List.First() : mProducts[version];
-
-            // Is a dynamo product already loaded ?
-            Version currVersion = Product.LASTESTDYNAMO;
-            if (IsProductLoaded(ref currVersion))
+            Product product = null;
+            do
             {
-                var popup = new TaskDialog(Resources.DynamoVersions);
-                popup.MainInstruction = Resources.DynamoVersionSelection;
-                if (product.Version == currVersion)
+                if (version == Product.NODYNAMO)
                 {
-                    popup.MainContent = String.Format(Resources.ProductLoaded, product.Version);
+                    product = new Product(Product.NODYNAMO);
+                    break;
                 }
-                else
+                if (version == Product.LASTESTDYNAMO)
                 {
-                    popup.MainContent = String.Format(Resources.ProductNeedToRestartRevit, product.Version);
+                    product = this.List.First();
+                    break;
                 }
-                popup.Show();
-                return;
+
+                product = mProducts[version];
+            } while (false);
+
+            LoadResult ret = new LoadResult();
+            ret.fromVersion = LoadedProduct();
+            ret.afterVersion = product.Version;
+
+            // Trivial - nothing to do
+            if (ret.fromVersion == ret.afterVersion)
+            {
+                ret.Result = LoadResult.ResultType.DONE;
+                return ret;
             }
-            
-            // Start Dyanmo product
-            var inst = product.CreateInstance();
-            var OnStartup = inst.GetType().GetMethod("OnStartup");
-            OnStartup.Invoke(inst, new object[] { uiControlledApplication });
+
+            // Can we Load dll right now ?
+            if (ret.fromVersion != Product.NODYNAMO)
+            {
+                ret.Result = LoadResult.ResultType.PENDING;
+                return ret;
+            }
+
+            // Actual Load
+            try
+            {
+                OnBeforeLoad?.Invoke();
+                product.CreateInstance();
+                if (Result.Succeeded != product.OnStartup(uiControlledApplication))
+                    throw new Exception("OnStartup() Error");
+                ret.Result = LoadResult.ResultType.DONE;
+                return ret;
+            }
+            catch
+            {
+                ret.Result = LoadResult.ResultType.FAILED;
+                return ret;
+            }
         }
     }
 }
