@@ -11,7 +11,7 @@
       "GregRevitAuth" : "1.0.5907.17451",
       "IronPython" : "2.7.2",
       "Newtonsoft.Json" : "8.0.3",
-      "NUnit" : "2.6.2",
+      "NUnit" : "2.6.3",
       "Prism" : "4.1.0",
       "RestSharp" : "105.2.3",
       "Unofficial.Ionic.Zip" : "1.9.1.8"
