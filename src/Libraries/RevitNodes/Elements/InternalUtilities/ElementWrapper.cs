@@ -1,4 +1,5 @@
-﻿using Autodesk.DesignScript.Runtime;
+﻿using System;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Revit.Elements.Views;
 using View3D = Revit.Elements.Views.View3D;
@@ -172,6 +173,8 @@ namespace Revit.Elements
                     return FloorPlanView.FromExisting(view, isRevitOwned);
                 case ViewType.EngineeringPlan:
                     return StructuralPlanView.FromExisting(view, isRevitOwned);
+                case ViewType.AreaPlan:
+                    return AreaPlanView.FromExisting(view, isRevitOwned);
                 default:
                     return UnknownElement.FromExisting(view, true);
             }
@@ -185,6 +188,17 @@ namespace Revit.Elements
         public static ScheduleView Wrap(Autodesk.Revit.DB.ViewSchedule view, bool isRevitOwned)
         {
             return ScheduleView.FromExisting(view, isRevitOwned);
+        }
+
+        public static Element Wrap(Autodesk.Revit.DB.View view, bool isRevitOwned)
+        {
+            switch (view.ViewType)
+            {
+                case ViewType.Legend:
+                    return Legend.FromExisting(view, isRevitOwned);
+                default:
+                    return UnknownElement.FromExisting(view, true);
+            }
         }
 
         public static Sheet Wrap(Autodesk.Revit.DB.ViewSheet view, bool isRevitOwned)
@@ -222,6 +236,11 @@ namespace Revit.Elements
             return Dimension.FromExisting(ele, isRevitOwned);
         }
 
+        public static DimensionType Wrap(Autodesk.Revit.DB.DimensionType ele, bool isRevitOwned)
+        {
+            return DimensionType.FromExisting(ele, isRevitOwned);
+        }
+
         public static FilledRegionType Wrap(Autodesk.Revit.DB.FilledRegionType ele, bool isRevitOwned)
         {
             return FilledRegionType.FromExisting(ele, isRevitOwned);
@@ -230,7 +249,17 @@ namespace Revit.Elements
         public static FilledRegion Wrap(Autodesk.Revit.DB.FilledRegion ele, bool isRevitOwned)
         {
             return FilledRegion.FromExisting(ele, isRevitOwned);
-	}
+	    }
+
+        public static FillPatternElement Wrap(Autodesk.Revit.DB.FillPatternElement ele, bool isRevitOwned)
+        {
+            return FillPatternElement.FromExisting(ele, isRevitOwned);
+        }
+
+        public static LinePatternElement Wrap(Autodesk.Revit.DB.LinePatternElement ele, bool isRevitOwned)
+        {
+            return LinePatternElement.FromExisting(ele, isRevitOwned);
+        }
 
         public static TextNote Wrap(Autodesk.Revit.DB.TextNote ele, bool isRevitOwned)
         {
@@ -273,7 +302,30 @@ namespace Revit.Elements
 
         }
 
+        public static ImportInstance Wrap(Autodesk.Revit.DB.ImportInstance ele, bool isRevitOwned)
+        {
+            return ImportInstance.FromExisting(ele, isRevitOwned);
+        }
 
+        public static GlobalParameter Wrap(Autodesk.Revit.DB.GlobalParameter ele, bool isRevitOwned)
+        {
+            return GlobalParameter.FromExisting(ele, isRevitOwned);
+        }
+
+        public static FaceWall Wrap(Autodesk.Revit.DB.FaceWall ele, bool isRevitOwned)
+        {
+            return FaceWall.FromExisting(ele, isRevitOwned);
+        }
+
+        public static CurtainSystem Wrap(Autodesk.Revit.DB.CurtainSystem ele, bool isRevitOwned)
+        {
+            return CurtainSystem.FromExisting(ele, isRevitOwned);
+        }
+
+        public static Material Wrap(Autodesk.Revit.DB.Material ele, bool isRevitOwned)
+        {
+            return Material.FromExisting(ele, isRevitOwned);
+        }
         #endregion
 
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Newtonsoft.Json;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
 using Autodesk.Revit.DB.Electrical;
@@ -40,7 +41,16 @@ namespace DSRevitNodesUI
             var u = RevitServicesUpdater.Instance;
             u.ElementsUpdated += OnElementsUpdated;
 
-            ShouldDisplayPreviewCore = false;
+            ShouldDisplayPreviewCore = true;
+        }
+
+        [JsonConstructor]
+        public ElementsQueryBase(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
+            var u = RevitServicesUpdater.Instance;
+            u.ElementsUpdated += OnElementsUpdated;
+
+            ShouldDisplayPreviewCore = true;
         }
 
         void OnElementsUpdated(object sender, ElementUpdateEventArgs e)
@@ -87,6 +97,11 @@ namespace DSRevitNodesUI
             RegisterAllPorts();
         }
 
+        [JsonConstructor]
+        public ElementsOfFamilyType(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
+        }
+
         public override IEnumerable<AssociativeNode> BuildOutputAst(
             List<AssociativeNode> inputAstNodes)
         {
@@ -109,6 +124,11 @@ namespace DSRevitNodesUI
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("element type", Properties.Resources.PortDataElementTypeToolTip)));
             OutPorts.Add(new PortModel(PortType.Output, this, new PortData("elements", Properties.Resources.PortDataAllElementsInDocumentToolTip)));
             RegisterAllPorts();
+        }
+
+        [JsonConstructor]
+        public ElementsOfType(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(
@@ -135,6 +155,11 @@ namespace DSRevitNodesUI
             RegisterAllPorts();
         }
 
+        [JsonConstructor]
+        public ElementsOfCategory(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
+        }
+
         public override IEnumerable<AssociativeNode> BuildOutputAst(
             List<AssociativeNode> inputAstNodes)
         {
@@ -157,6 +182,11 @@ namespace DSRevitNodesUI
             OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Elements", Properties.Resources.PortDataElementAtLevelToolTip)));
 
             RegisterAllPorts();
+        }
+
+        [JsonConstructor]
+        public ElementsAtLevel(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(
@@ -183,6 +213,16 @@ namespace DSRevitNodesUI
             OutPorts.Add(new PortModel(PortType.Output, this, new PortData("elements", Properties.Resources.PortDataAllVisibleElementsToolTip)));
             RegisterAllPorts();
 
+            DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
+
+            RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdaterOnElementsUpdated;
+            RevitDynamoModel_RevitDocumentChanged(null, null);
+        }
+
+        [JsonConstructor]
+        public ElementsInView(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
             DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
 

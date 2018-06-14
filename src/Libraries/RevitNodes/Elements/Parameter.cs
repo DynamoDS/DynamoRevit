@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using RevitServices.Persistence;
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
-using System.Linq;
 using Revit.GeometryConversion;
 
 namespace Revit.Elements
@@ -187,7 +186,7 @@ namespace Revit.Elements
         /// <param name="groupName">Group of the parameter for shared parameters</param>
         /// <param name="type">Parameter Type</param>
         /// <param name="group">Parameter Group</param>
-        /// <param name="instance">Is instance parameter, otherwise its a type parameter</param>
+        /// <param name="instance">Is instance parameter, otherwise it's a type parameter</param>
         public static void CreateSharedParameterForAllCategories(string parameterName, string groupName, string type, string group, bool instance)
         {
             CreateSharedParameter(parameterName, groupName, type, group, instance, null); 
@@ -200,7 +199,7 @@ namespace Revit.Elements
         /// <param name="groupName">Group of the parameter for shared parameters</param>
         /// <param name="type">Parameter Type</param>
         /// <param name="group">Parameter Group</param>
-        /// <param name="instance">Is instance parameter, otherwise its a type parameter</param>
+        /// <param name="instance">Is instance parameter, otherwise it's a type parameter</param>
         /// <param name="categoryList">List of categories this parameter applies to, If no category is supplied, all possible categories are selected</param>
         public static void CreateSharedParameter(string parameterName, string groupName, string type, string group, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
         {
@@ -279,7 +278,7 @@ namespace Revit.Elements
         /// <param name="groupName">Group of the parameter for shared parameters</param>
         /// <param name="type">Parameter Type</param>
         /// <param name="group">Parameter Group</param>
-        /// <param name="instance">Is instance parameter, otherwise its a type parameter</param>
+        /// <param name="instance">Is instance parameter, otherwise it's a type parameter</param>
         public static void CreateProjectParameterForAllCategories(string parameterName, string groupName, string type, string group, bool instance)
         {
             CreateProjectParameter(parameterName, groupName, type, group, instance, null);
@@ -292,7 +291,7 @@ namespace Revit.Elements
         /// <param name="groupName">Group of the parameter for shared parameters</param>
         /// <param name="type">Parameter Type</param>
         /// <param name="group">Parameter Group</param>
-        /// <param name="instance">Is instance parameter, otherwise its a type parameter</param>
+        /// <param name="instance">Is instance parameter, otherwise it's a type parameter</param>
         /// <param name="categoryList">List of categories this parameter applies to. If no category is supplied, all possible categories are selected</param>
         public static void CreateProjectParameter(string parameterName, string groupName, string type, string group, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
         {

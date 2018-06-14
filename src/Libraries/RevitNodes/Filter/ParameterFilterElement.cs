@@ -1,8 +1,5 @@
-﻿using System;
-using Autodesk.Revit.DB;
-using DynamoServices;
+﻿using Autodesk.Revit.DB;
 using Autodesk.DesignScript.Runtime;
-using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using System.Collections.Generic;
@@ -44,7 +41,7 @@ namespace Revit.Filter
         /// <summary>
         /// Set the internal Element, ElementId, and UniqueId
         /// </summary>
-        /// <param name="wall"></param>
+        /// <param name="element"></param>
         private void InternalSetElement(Autodesk.Revit.DB.ParameterFilterElement element)
         {
             InternalRevitElement = element;
@@ -99,18 +96,30 @@ namespace Revit.Filter
         {
             Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
             TransactionManager.Instance.EnsureInTransaction(document);
+            var elemFilters = new List<ElementFilter>();
+            foreach(var rule in rules)
+            {
+               var elemParamFilter = new ElementParameterFilter(rule);
+               elemFilters.Add(elemParamFilter);
+            }
+            Autodesk.Revit.DB.ElementFilter eleFilter = new LogicalOrFilter(elemFilters);
 
             var elem = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.ParameterFilterElement>(document);
+         
 
             if (elem == null)
             {
-                elem = Autodesk.Revit.DB.ParameterFilterElement.Create(document, name, ids.ToList(), rules.ToList());
+               // ParameterFilterElement..::..Create Method (Document, String, ICollection<ElementId>, IList<FilterRule>) is deprecated in Revit 2019 and will be removed in the next version of Revit. 
+               //We suggest you instead use a Create method that takes an ElementFilter as input.
+               elem = Autodesk.Revit.DB.ParameterFilterElement.Create(document, name, ids.ToList(), eleFilter);
             }
             else
             {
                 elem.Name = name;
                 elem.SetCategories(ids.ToList());
-                elem.SetRules(rules.ToList());
+                //ParameterFilterElement..::..SetRules Method is deprecated in Revit 2019 and will be removed in the next version of Revit. 
+                //We suggest you instead use SetElementFilter instead.
+                elem.SetElementFilter(eleFilter);
             }
 
             InternalSetElement(elem);

@@ -42,7 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoServices">
-      <HintPath>$(DYNAMOAPI)\DynamoServices.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\net45\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -55,13 +55,9 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ProtoGeometry">
-      <HintPath>$(DYNAMOAPI)\ProtoGeometry.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net45\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI">
-      <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    </Reference>    
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -84,6 +80,7 @@
     <Compile Include="Elements\CurtainPanel.cs" />
     <Compile Include="Elements\Dimension.cs" />
     <Compile Include="Elements\DetailCurve.cs" />
+    <Compile Include="Elements\DimensionType.cs" />
     <Compile Include="Elements\DirectShape.cs" />
     <Compile Include="Elements\Element.cs" />
     <Compile Include="Elements\AbstractFamilyInstance.cs" />
@@ -91,6 +88,11 @@
     <Compile Include="Elements\CurveElement.cs" />
     <Compile Include="Elements\FilledRegion.cs" />
     <Compile Include="Elements\FilledRegionType.cs" />
+    <Compile Include="Elements\GlobalParameter.cs" />
+    <Compile Include="Elements\RoofType.cs" />
+    <Compile Include="Elements\Roof.cs" />
+    <Compile Include="Elements\CurtainSystemType.cs" />
+    <Compile Include="Elements\CurtainSystem.cs" />
     <Compile Include="Elements\InternalUtilities\ElementQueries.cs" />
     <Compile Include="Elements\InternalUtilities\ElementUtils.cs" />
     <Compile Include="Elements\InternalUtilities\TransformUtils.cs" />
@@ -99,6 +101,10 @@
     <Compile Include="Elements\Room.cs" />
     <Compile Include="Elements\Revision.cs" />
     <Compile Include="Elements\RevisionCloud.cs" />
+    <Compile Include="Elements\Views\AreaPlanView.cs" />
+    <Compile Include="Elements\Views\Legend.cs" />
+    <Compile Include="PerformanceAdviser\FailureMessage.cs" />
+    <Compile Include="PerformanceAdviser\PerformanceAdviserRule.cs" />
     <Compile Include="Elements\SunSettings.cs" />
     <Compile Include="Elements\Tag.cs" />
     <Compile Include="Elements\TextElement.cs" />
@@ -125,11 +131,14 @@
     <Compile Include="Elements\Views\DraftingView.cs" />
     <Compile Include="Elements\Views\FloorPlanView.cs" />
     <Compile Include="Elements\Views\Sheet.cs" />
+    <Compile Include="Elements\FaceWall.cs" />
     <Compile Include="Elements\WallType.cs" />
     <Compile Include="Elements\Views\SectionView.cs" />
     <Compile Include="Elements\Views\Packing\OutOfSpaceException.cs" />
     <Compile Include="Elements\Views\Packing\RectanglePacker.cs" />
+    <Compile Include="Elements\FillPatternElement.cs" />
     <Compile Include="Filter\FilterRule.cs" />
+    <Compile Include="Elements\LinePatternElement.cs" />
     <Compile Include="Filter\OverrideGraphicSettings.cs" />
     <Compile Include="Filter\ParameterFilterElement.cs" />
     <Compile Include="GeometryConversion\EdgeLoopPartition.cs" />
@@ -138,6 +147,7 @@
     <Compile Include="GeometryConversion\CurveUtils.cs" />
     <Compile Include="GeometryConversion\HermiteToNurbs.cs" />
     <Compile Include="GeometryConversion\DynamoToRevitBRep.cs" />
+    <Compile Include="GeometryConversion\ProtoToRevitSolid.cs" />
     <Compile Include="GeometryConversion\ProtoToRevitMesh.cs" />
     <Compile Include="GeometryConversion\NurbsUtils.cs" />
     <Compile Include="GeometryConversion\PolygonContainment.cs" />
@@ -190,24 +200,26 @@
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
     <Compile Include="Schedules\SchedulableField.cs" />
+    <Compile Include="Schedules\ScheduleExportOptions.cs" />
     <Compile Include="Schedules\ScheduleField.cs" />
+    <Compile Include="Schedules\ScheduleFilter.cs" />
     <Compile Include="Transaction\Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DynamoCore">
-      <HintPath>$(DYNAMOAPI)\DynamoCore.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Analysis">
-      <HintPath>$(DYNAMOAPI)\Analysis.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net45\Analysis.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DSCoreNodes">
-      <HintPath>$(DYNAMOAPI)\DSCoreNodes.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net45\DSCoreNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">
-      <HintPath>$(DYNAMOAPI)\DynamoUnits.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net45\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="..\RevitServices\RevitServices.csproj">
