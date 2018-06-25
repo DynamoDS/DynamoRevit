@@ -52,7 +52,7 @@ namespace Dynamo.Applications
             if (product.VersionInfo < new Version(0, 7))
                 return string.Empty; //0.6.3 and older version not supported for Revit2015 onwards
 
-            return Path.Combine(product.InstallLocation, string.Format("Revit_{0}", revitVersion), "DynamoRevitDS.dll");
+            return Path.Combine(product.InstallLocation, "Revit", "DynamoRevitDS.dll");
         }
 
         public Result OnStartup(UIControlledApplication application)
@@ -309,7 +309,7 @@ namespace Dynamo.Applications
             }
 
             Func<string, string> fileLocator =
-                p => Path.Combine(p, string.Format("Revit_{0}", revitVersion), "DynamoRevitDS.dll");
+                p => Path.Combine(p, "Revit", "DynamoRevitDS.dll");
 
             var methodParams = new object[] { debugPath, fileLocator };
 
