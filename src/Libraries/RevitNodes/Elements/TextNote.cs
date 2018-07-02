@@ -69,10 +69,10 @@ namespace Revit.Elements
         /// <param name="angle"></param>
         private void InternalSetType(string value, RVT.TextNoteType type, XYZ location, HorizontalTextAlignment alignment, double angle)
         {
-            int bold = type.LookupParameter("Bold").AsInteger();
-            int italic = type.LookupParameter("Italic").AsInteger();
-            string font = type.LookupParameter("Text Font").AsString();
-            double size = type.LookupParameter("Text Size").AsDouble();
+            int bold = type.get_Parameter(BuiltInParameter.TEXT_STYLE_BOLD).AsInteger();
+            int italic = type.get_Parameter(BuiltInParameter.TEXT_STYLE_ITALIC).AsInteger();
+            string font = type.get_Parameter(BuiltInParameter.TEXT_FONT).AsString();
+            double size = type.get_Parameter(BuiltInParameter.TEXT_SIZE).AsDouble();
             bool isBold = (bold == 1) ? true : false;
             bool isItalic = (italic == 1) ? true : false;
 
