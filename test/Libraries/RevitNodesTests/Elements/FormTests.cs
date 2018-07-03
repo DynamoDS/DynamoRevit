@@ -28,7 +28,14 @@ namespace RevitNodesTests.Elements
 
             Assert.AreEqual(2, eles.Count());
 
-            var loft = Form.ByLoftCrossSections(eles.ToArray(), false);
+            var curveArray = eles.ToArray();
+            ElementCurveReference[][] curveArrayArray =
+            {
+                new ElementCurveReference[] {curveArray[0]},
+                new ElementCurveReference[] {curveArray[1]}
+            };
+
+            var loft = Form.ByLoftCrossSections(curveArrayArray, false);
 
             Assert.NotNull(loft);
             Assert.IsTrue(DocumentManager.Instance.ElementExistsInDocument(
