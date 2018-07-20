@@ -57,6 +57,31 @@ namespace Revit.Elements
         {
             SafeInit(() => InitFamilyInstance(fs, reference, location, referenceDirection));
         }
+
+        internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.Line pos, Autodesk.Revit.DB.View specView)
+        {
+            SafeInit(() => InitFamilyInstance(fs, pos, specView));
+        }
+
+        internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.Line pos, Autodesk.Revit.DB.Face face)
+        {
+            SafeInit(() => InitFamilyInstance(fs, pos, face));
+        }
+
+        internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.XYZ origin, Autodesk.Revit.DB.View specView)
+        {
+            SafeInit(() => InitFamilyInstance(fs, origin, specView));
+        }
+
+        internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.Curve pos, Autodesk.Revit.DB.Level level)
+        {
+            SafeInit(() => InitFamilyInstance(fs, pos, level));
+        }
+
+        internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.Face face, Autodesk.Revit.DB.XYZ location, Autodesk.Revit.DB.XYZ referenceDirection)
+        {
+            SafeInit(() => InitFamilyInstance(fs, face, location, referenceDirection));
+        }
         #endregion
 
         #region Helpers for private constructors
@@ -212,6 +237,168 @@ namespace Revit.Elements
             var fi = Document.IsFamilyDocument 
                 ? Document.FamilyCreate.NewFamilyInstance(reference,  location, referenceDirection, fs) 
                 : Document.Create.NewFamilyInstance(reference, location, referenceDirection, fs);
+
+            InternalSetFamilyInstance(fi);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            ElementBinder.SetElementForTrace(InternalElement);
+        }
+
+        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.Line pos, Autodesk.Revit.DB.View specView)
+        {
+            //Phase 1 - Check to see if the object exists and should be rebound
+            var oldFam =
+                ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
+
+            //There was an existing family instance, rebind to that, and adjust its position
+            if (oldFam != null)
+            {
+               InternalSetFamilyInstance(oldFam);
+               InternalSetFamilySymbol(fs);
+               InternalSetPosition(pos);
+               return;
+            }
+            //Phase 2- There was no existing point, create one
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            //If the symbol is not active, then activate it
+            if (!fs.IsActive)
+               fs.Activate();
+
+            var fi = Document.IsFamilyDocument
+                     ? Document.FamilyCreate.NewFamilyInstance(pos, fs, specView)
+                     : Document.Create.NewFamilyInstance(pos, fs, specView);
+
+            InternalSetFamilyInstance(fi);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            ElementBinder.SetElementForTrace(InternalElement);
+        }
+
+        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.Line pos, Autodesk.Revit.DB.Face face)
+        {
+            //Phase 1 - Check to see if the object exists and should be rebound
+            var oldFam =
+                ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
+
+            //There was an existing family instance, rebind to that, and adjust its position
+            if (oldFam != null)
+            {
+               InternalSetFamilyInstance(oldFam);
+               InternalSetFamilySymbol(fs);
+               InternalSetPosition(pos);
+               return;
+            }
+            //Phase 2- There was no existing point, create one
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            //If the symbol is not active, then activate it
+            if (!fs.IsActive)
+               fs.Activate();
+
+            var fi = Document.IsFamilyDocument
+                        ? Document.FamilyCreate.NewFamilyInstance(face, pos, fs)
+                        : Document.Create.NewFamilyInstance(face, pos, fs);
+
+            InternalSetFamilyInstance(fi);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            ElementBinder.SetElementForTrace(InternalElement);
+        }
+
+        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.XYZ origin, Autodesk.Revit.DB.View specView)
+        {
+            //Phase 1 - Check to see if the object exists and should be rebound
+            var oldFam =
+                ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
+
+            //There was an existing family instance, rebind to that, and adjust its position
+            if (oldFam != null)
+            {
+               InternalSetFamilyInstance(oldFam);
+               InternalSetFamilySymbol(fs);
+               InternalSetPosition(origin);
+               return;
+            }
+            //Phase 2- There was no existing point, create one
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            //If the symbol is not active, then activate it
+            if (!fs.IsActive)
+               fs.Activate();
+
+            var fi = Document.IsFamilyDocument
+                        ? Document.FamilyCreate.NewFamilyInstance(origin, fs, specView)
+                        : Document.Create.NewFamilyInstance(origin, fs, specView);
+
+            InternalSetFamilyInstance(fi);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            ElementBinder.SetElementForTrace(InternalElement);
+        }
+
+        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.Curve pos,Autodesk.Revit.DB.Level level)
+        {
+            //Phase 1 - Check to see if the object exists and should be rebound
+            var oldFam =
+                ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
+
+            //There was an existing family instance, rebind to that, and adjust its position
+            if (oldFam != null)
+            {
+               InternalSetFamilyInstance(oldFam);
+               InternalSetLevel(level);
+               InternalSetFamilySymbol(fs);
+               InternalSetPosition(pos);
+               return;
+            }
+            //Phase 2- There was no existing point, create one
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            //If the symbol is not active, then activate it
+            if (!fs.IsActive)
+               fs.Activate();
+
+            var fi = Document.IsFamilyDocument
+                        ? null//Document.FamilyCreate.NewFamilyInstance(pos,fs,level, Autodesk.Revit.DB.Structure.StructuralType.NonStructural)
+                        : Document.Create.NewFamilyInstance(pos, fs, level, Autodesk.Revit.DB.Structure.StructuralType.NonStructural);
+
+            InternalSetFamilyInstance(fi);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            ElementBinder.SetElementForTrace(InternalElement);
+        }
+
+        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.Face face, Autodesk.Revit.DB.XYZ location, Autodesk.Revit.DB.XYZ referenceDirection)
+        {
+            //Phase 1 - Check to see if the object exists and should be rebound
+            var oldFam =
+                ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
+
+            //There was an existing family instance, rebind to that, and adjust its position
+            if (oldFam != null)
+            {
+               InternalSetFamilyInstance(oldFam);
+               InternalSetFamilySymbol(fs);
+               InternalSetPosition(location);
+               return;
+            }
+
+            //Phase 2- There was no existing point, create one
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            //If the symbol is not active, then activate it
+            if (!fs.IsActive)
+               fs.Activate();
+
+            var fi = Document.IsFamilyDocument
+                ? Document.FamilyCreate.NewFamilyInstance(face, location, referenceDirection, fs)
+                : Document.Create.NewFamilyInstance(face, location, referenceDirection, fs);
 
             InternalSetFamilyInstance(fi);
 
@@ -444,8 +631,125 @@ namespace Revit.Elements
                 .ToArray();
         }
 
+        /// <summary>
+        /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API)
+        /// a line and a specView as reference for its position.
+        /// </summary>
+        /// <param name="familyType">Family Type. Also called Family Symbol.</param>
+        /// <param name="line">A line on the face defining where the symbol is to be placed</param>
+        /// <param name="specView">A 2D view in which to display the family instance.</param>
+        /// <returns>FamilyInstance</returns>
+        public static FamilyInstance ByLineAndView(FamilyType familyType, Autodesk.DesignScript.Geometry.Line line, Views.View specView)
+        {
+            if(familyType == null)
+            {
+               throw new ArgumentNullException("familyType");
+            }
 
+            if(line == null)
+            {
+               throw new ArgumentNullException("line");
+            }
 
+            if(specView == null)
+            {
+               throw new ArgumentNullException("View"); 
+            }
+
+            return new FamilyInstance(familyType.InternalFamilySymbol, (Autodesk.Revit.DB.Line)line.ToRevitType(), specView.InternalView);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="familyType"></param>
+        /// <param name="line"></param>
+        /// <param name="wall"></param>
+        /// <returns></returns>
+        public static FamilyInstance ByLineAndWall(FamilyType familyType, Autodesk.DesignScript.Geometry.Line line, Wall wall)
+        {
+            if (familyType == null)
+            {
+               throw new ArgumentNullException("familyType");
+            }
+
+            if (line == null)
+            {
+               throw new ArgumentNullException("line");
+            }
+
+            if (wall == null)
+            {
+               throw new ArgumentNullException("Wall");
+            }
+
+            Autodesk.Revit.DB.Face face = InternalTransformWallToFace(wall);
+            
+            return new FamilyInstance(familyType.InternalFamilySymbol, (Autodesk.Revit.DB.Line)line.ToRevitType(), face);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="familyType"></param>
+        /// <param name="point"></param>
+        /// <param name="specView"></param>
+        /// <returns></returns>
+        public static FamilyInstance ByPointAndView(FamilyType familyType,Point point,Views.View specView)
+        {
+            if (familyType == null)
+            {
+               throw new ArgumentNullException("familyType");
+            }
+
+            if (point == null)
+            {
+               throw new ArgumentNullException("point");
+            }
+
+            if(specView == null)
+            {
+               throw new ArgumentNullException("View");
+            }
+            if(familyType.InternalFamilySymbol.Family.FamilyPlacementType == Autodesk.Revit.DB.FamilyPlacementType.CurveBasedDetail)
+            {
+               throw new ArgumentException("Family Symbol should be Curve Based Detail.");
+            }
+         
+            return new FamilyInstance(familyType.InternalFamilySymbol, point.ToXyz(), specView.InternalView);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="familyType"></param>
+        /// <param name="wall"></param>
+        /// <param name="location"></param>
+        /// <param name="referenceDirection"></param>
+        /// <returns></returns>
+        public static FamilyInstance ByWall(FamilyType familyType, Wall wall, Point location, Vector referenceDirection)
+        {
+            if (familyType == null)
+            {
+               throw new ArgumentNullException("familyType");
+            }
+            if (wall == null)
+            {
+               throw new ArgumentNullException("Wall");
+            }
+            if (location == null)
+            {
+               throw new ArgumentNullException("location");
+            }
+            if (referenceDirection == null)
+            {
+               throw new ArgumentNullException("referenceDirection");
+            }
+
+            Autodesk.Revit.DB.Face face = InternalTransformWallToFace(wall);
+
+            return new FamilyInstance(familyType.InternalFamilySymbol, face, location.ToXyz(), referenceDirection.ToXyz());
+        }
         #endregion
 
         #region Internal static constructors 
@@ -560,6 +864,34 @@ namespace Revit.Elements
             return InternalFamilyInstance.IsValidObject ? InternalFamilyInstance.GetTransform() : null;
         }
 
+        /// <summary>
+        /// Get a Autodesk.Revit.DB.Face instance from a Wall(Dynamo Type) instance.
+        /// </summary>
+        /// <param name="wall"></param>
+        /// <returns>A Autodesk.Revit.DB.Face instance</returns>
+        private static Autodesk.Revit.DB.Face InternalTransformWallToFace(Wall wall)
+        {
+            Autodesk.Revit.DB.Face face = null;
+            Autodesk.Revit.DB.Wall revitWall = wall.InternalWall;
+            Autodesk.Revit.DB.Options geomOptions = new Autodesk.Revit.DB.Options();
+            geomOptions.ComputeReferences = true;
+            Autodesk.Revit.DB.GeometryElement wallGeom = revitWall.get_Geometry(geomOptions);
+            foreach (Autodesk.Revit.DB.GeometryObject geomObj in wallGeom)
+            {
+               Autodesk.Revit.DB.Solid geomSolid = geomObj as Autodesk.Revit.DB.Solid;
+               if (null != geomSolid)
+               {
+                  foreach (Autodesk.Revit.DB.Face geomFace in geomSolid.Faces)
+                  {
+                     face = geomFace;
+                     break;
+                  }
+                  break;
+               }
+            }
+
+            return face;
+        }
         #endregion
     }
 
