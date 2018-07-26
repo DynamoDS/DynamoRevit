@@ -11,6 +11,8 @@ node('D4R') {
       echo "Checkout ..."
       try {        
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '../DynamoRevit'] , [$class: 'CleanBeforeCheckout'], [$class: 'GitLFSPull']], gitTool: 'default', submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'aecbuild', url: 'https://git.autodesk.com/Dynamo/DynamoRevit.git']]])
+        checkout([$class: 'GitSCM', branches: [[name: '*/Dynamo-2.0--Revit-2020']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '../DynamoRevitAdditions'] , [$class: 'CleanBeforeCheckout'], [$class: 'GitLFSPull']], gitTool: 'default', submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'aecbuild', url: 'https://git.autodesk.com/DynamoPL/DynamoRevitAdditions.git']]])
+        checkout([$class: 'GitSCM', branches: [[name: '*/Dynamo-2.0--Revit-2020']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '../DynamoPlayer'] , [$class: 'CleanBeforeCheckout'], [$class: 'GitLFSPull']], gitTool: 'default', submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'aecbuild', url: 'https://git.autodesk.com/DynamoPL/DynamoPlayer.git']]])
       } catch(err) {
         echo "Git Checkout Failed: $err"
         currentBuild.result = 'FAILURE'
