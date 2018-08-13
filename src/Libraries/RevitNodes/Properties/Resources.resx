@@ -402,16 +402,14 @@
   <data name="Sheet_NoViewsError" xml:space="preserve">
     <value>Must supply more than 0 views</value>
   </data>
-<<<<<<< HEAD
   <data name="GeometryConversionFailure" xml:space="preserve">
     <value>One or more geometries have failed to convert due to this error: </value>
-=======
+  </data>
   <data name="AreaSchemeArgumentException" xml:space="preserve">
     <value>You must supply an Area Scheme.</value>
   </data>
   <data name="ViewPlan_ViewFamilyNotFound" xml:space="preserve">
     <value>Matching ViewFamilyType was not found.</value>
->>>>>>> dfb806b... area schedule support
   </data>
   <data name="ViewUnsupportedScheduleType" xml:space="preserve">
     <value>Provided Schedule Type is not supported.</value>
