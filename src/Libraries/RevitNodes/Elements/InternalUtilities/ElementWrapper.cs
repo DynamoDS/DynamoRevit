@@ -2,7 +2,7 @@
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Revit.Elements.Views;
-using View3D = Revit.Elements.Views.View3D;
+using AbstractView3D = Revit.Elements.Views.AbstractView3D;
 
 namespace Revit.Elements
 {
@@ -151,16 +151,14 @@ namespace Revit.Elements
             return WallType.FromExisting(ele, isRevitOwned);
         }
 
-        public static View3D Wrap(Autodesk.Revit.DB.View3D view, bool isRevitOwned)
+        public static AbstractView3D Wrap(Autodesk.Revit.DB.View3D view, bool isRevitOwned)
         {
-            if (!view.IsTemplate)
-            {
-                if (view.IsPerspective)
-                    return PerspectiveView.FromExisting(view, isRevitOwned);
-                else
-                    return AxonometricView.FromExisting(view, isRevitOwned);
-            }
-            return null;
+            if (view.IsTemplate)
+                return Revit.Elements.Views.View3D.FromExisting(view, isRevitOwned);
+            if (view.IsPerspective)
+                return PerspectiveView.FromExisting(view, isRevitOwned);
+
+            return AxonometricView.FromExisting(view, isRevitOwned);
         }
 
         public static Element Wrap(Autodesk.Revit.DB.ViewPlan view, bool isRevitOwned)
