@@ -101,7 +101,6 @@
     <Compile Include="Elements\Room.cs" />
     <Compile Include="Elements\Revision.cs" />
     <Compile Include="Elements\RevisionCloud.cs" />
-    <Compile Include="Elements\Views\AbstractView3D.cs" />
     <Compile Include="Elements\Views\AreaPlanView.cs" />
     <Compile Include="Elements\Views\Legend.cs" />
     <Compile Include="PerformanceAdviser\FailureMessage.cs" />
