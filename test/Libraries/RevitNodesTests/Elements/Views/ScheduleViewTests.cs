@@ -1,13 +1,14 @@
 ﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Revit.Elements;
 using Revit.Elements.Views;
 using RevitServices.Persistence;
 using RevitTestServices;
 using RTF.Framework;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
+using Category = Revit.Elements.Category;
 
 namespace RevitNodesTests.Elements.Views
 {
@@ -21,7 +22,24 @@ namespace RevitNodesTests.Elements.Views
             var view = CreateTestView();
 
             Assert.IsTrue(DocumentManager.Instance.ElementExistsInDocument(
-                 new ElementUUID(view.InternalElement.UniqueId)));
+                new ElementUUID(view.InternalElement.UniqueId)));
+        }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void ByAreaSchemeName_ValidArgs()
+        {
+            var areaScheme = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfCategory(Autodesk.Revit.DB.BuiltInCategory.OST_AreaSchemes)
+                .Select(x => x.ToDSType(true))
+                .FirstOrDefault();
+            Assert.IsNotNull(areaScheme);
+
+            var view = ScheduleView.CreateAreaSchedule(areaScheme, "AreaSchedule_Test");
+            Assert.NotNull(view);
+
+            Assert.IsTrue(DocumentManager.Instance.ElementExistsInDocument(
+                new ElementUUID(view.InternalElement.UniqueId)));
         }
 
         [Test]
@@ -31,6 +49,20 @@ namespace RevitNodesTests.Elements.Views
             Assert.Throws(typeof(ArgumentNullException), () => ScheduleView.CreateSchedule(null, "KeySchedule_Test", ScheduleView.ScheduleType.KeySchedule.ToString()));
             Assert.Throws(typeof(ArgumentNullException), () => ScheduleView.CreateSchedule(Category.ByName("OST_GenericModel"), null, ScheduleView.ScheduleType.KeySchedule.ToString()));
             Assert.Throws(typeof(ArgumentNullException), () => ScheduleView.CreateSchedule(Category.ByName("OST_GenericModel"), "KeySchedule_Test", null));
+        }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void ByAreaSchemeName_NullArgs()
+        {
+            var areaScheme = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfCategory(Autodesk.Revit.DB.BuiltInCategory.OST_AreaSchemes)
+                .Select(x => x.ToDSType(true))
+                .FirstOrDefault();
+            Assert.IsNotNull(areaScheme);
+
+            Assert.Throws(typeof(ArgumentNullException), () => ScheduleView.CreateAreaSchedule(null, "AreaSchedule_Test"));
+            Assert.Throws(typeof(ArgumentNullException), () => ScheduleView.CreateAreaSchedule(areaScheme, null));
         }
 
         [Test]
@@ -56,7 +88,7 @@ namespace RevitNodesTests.Elements.Views
             var options = new Revit.Schedules.ScheduleExportOptions(new Autodesk.Revit.DB.ViewScheduleExportOptions());
             Assert.NotNull(options);
 
-            var exportView = view.Export(path, options);
+            view.Export(path, options);
             var pathInfo = new FileInfo(path);
             Assert.Greater(pathInfo.Length, 0);
         }
@@ -108,10 +140,11 @@ namespace RevitNodesTests.Elements.Views
             var schedulableFields = view.SchedulableFields;
             Assert.Greater(schedulableFields.Count, 0);
 
-            var fieldToAdd = schedulableFields.Where(x => x.Name == "Key Name").FirstOrDefault();
+            var fieldToAdd = schedulableFields
+                .FirstOrDefault(x => x.Name == "Key Name");
             Assert.NotNull(fieldToAdd);
 
-            view.AddFields(new List<Revit.Schedules.SchedulableField>() { fieldToAdd });
+            view.AddFields(new List<Revit.Schedules.SchedulableField> { fieldToAdd });
             Assert.Greater(view.Fields.Count, 0);
         }
 
@@ -126,20 +159,22 @@ namespace RevitNodesTests.Elements.Views
             var schedulableFields = view.SchedulableFields;
             Assert.Greater(schedulableFields.Count, 0);
 
-            var fieldToAdd = schedulableFields.Where(x => x.Name == "Width").FirstOrDefault();
+            var fieldToAdd = schedulableFields
+                .FirstOrDefault(x => x.Name == "Width");
             Assert.NotNull(fieldToAdd);
 
-            view.AddFields(new List<Revit.Schedules.SchedulableField>() { fieldToAdd });
+            view.AddFields(new List<Revit.Schedules.SchedulableField> { fieldToAdd });
             Assert.Greater(view.Fields.Count, 0);
 
             // create new schedule filter and add it to schedule
-            var field = view.Fields.Where(x => x.Name == "Width").FirstOrDefault();
+            var field = view.Fields
+                .FirstOrDefault(x => x.Name == "Width");
             Assert.NotNull(field);
 
             var filter = Revit.Schedules.ScheduleFilter.ByFieldTypeAndValue(field, Autodesk.Revit.DB.ScheduleFilterType.Equal.ToString(), 0.1);
             Assert.NotNull(filter);
 
-            view.AddFilters(new List<Revit.Schedules.ScheduleFilter>() { filter });
+            view.AddFilters(new List<Revit.Schedules.ScheduleFilter> { filter });
             Assert.Greater(view.ScheduleFilters.Count, 0);
         }
 
@@ -150,8 +185,7 @@ namespace RevitNodesTests.Elements.Views
             var rView = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
                 .OfClass(typeof(Autodesk.Revit.DB.ViewSchedule))
                 .Cast<Autodesk.Revit.DB.ViewSchedule>()
-                .Where(x => x.Name == "Wall Schedule")
-                .FirstOrDefault();
+                .FirstOrDefault(x => x.Name == "Wall Schedule");
 
             var view = ScheduleView.FromExisting(rView, true);
             Assert.NotNull(view);
