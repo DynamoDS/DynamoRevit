@@ -398,7 +398,7 @@
   </data>
   <data name="ViewPlan_ViewFamilyNotFound" xml:space="preserve">
     <value>There is no such ViewFamily in the document</value>
-    </data>
+  </data>
   <data name="Sheet_NoViewsError" xml:space="preserve">
     <value>Must supply more than 0 views</value>
   </data>
@@ -410,5 +410,11 @@
   </data>
   <data name="ViewPlan_ViewFamilyNotFound" xml:space="preserve">
     <value>Specified View Type could not be found.</value>
+  </data>
+  <data name="AreaSchemeArgumentException" xml:space="preserve">
+    <value>You must supply an Area Scheme.</value>
+  </data>
+  <data name="ViewUnsupportedScheduleType" xml:space="preserve">
+    <value>Provided Schedule Type is not supported.</value>
   </data>
 </root>
