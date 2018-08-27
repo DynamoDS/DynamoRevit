@@ -29,6 +29,15 @@ IF EXIST "%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\12.0\TextTra
 IF EXIST "%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\14.0\TextTransform.exe" (
     set TEXTTRANSFORMPATH="%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\14.0\TextTransform.exe"
 )
+IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Professional\Common7\IDE\TextTransform.exe" (
+    set TEXTTRANSFORMPATH="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Professional\Common7\IDE\TextTransform.exe"
+)
+IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\TextTransform.exe" (
+    set TEXTTRANSFORMPATH="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\TextTransform.exe"
+)
+IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\IDE\TextTransform.exe" (
+    set TEXTTRANSFORMPATH="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\IDE\TextTransform.exe"
+)
 
 :: transform all the templates
 for /f %%d in (t4list.txt) do (
