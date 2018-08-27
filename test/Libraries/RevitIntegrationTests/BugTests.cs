@@ -40,7 +40,7 @@ namespace RevitSystemTests
         [TestModel(@".\Bugs\MAGN_66.rfa")]
         public void MAGN_66()
         {
-            // Details are available in defect http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-66
+            // Additional Info: https://github.com/DynamoDS/Dynamo/commit/08788a5693ace4c0ca6fb72b2c59ba203c9362f2
 
             string samplePath = Path.Combine(workingDirectory, @".\\Bugs\MAGN_66.dyn");
             string testPath = Path.GetFullPath(samplePath);
@@ -57,7 +57,8 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void MAGN_102()
         {
-            // Details are available in defect http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-102
+            // Additional Info: https://github.com/DynamoDS/Dynamo/commit/06ea6eb0ab3156f96809f4ba4c648406a9ca8155
+            // Verify project to face/plane now sends out the intersection point NOT the original XYZ
 
             var model = ViewModel.Model;
 
@@ -80,7 +81,9 @@ namespace RevitSystemTests
         [TestModel(@".\Bugs\MAGN-122_wallsAndFloorsAndLevels.rvt")]
         public void MAGN_122()
         {
-            // Details are available in defect http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-122
+            // Additional Info: https://github.com/DynamoDS/Dynamo/pull/1749
+            // Verify migration of graph containing references to wall, floors, levels
+
             var model = ViewModel.Model;
 
             string samplePath = Path.Combine(workingDirectory, @".\\Bugs\MAGN_122_wallsAndFloorsAndLevels.dyn");
@@ -143,6 +146,9 @@ namespace RevitSystemTests
         [TestModel(@".\Bugs\MAGN_2576_DataImport.rvt")]
         public void MAGN_2576()
         {
+            // Additional Info: https://github.com/DynamoDS/Dynamo/commit/f100dd48920b600e22ddd475571c424c3ba4b28f
+            // Verify no crash occurs when evaluating empty or unselected drop downs
+
             var samplePath = Path.Combine(workingDirectory, @".\\Bugs\Defect_MAGN_2576.dyn");
             var testPath = Path.GetFullPath(samplePath);
 
@@ -150,7 +156,6 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-            // Details are available in defect http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-2576
             var model = ViewModel.Model;
             var workspace = ViewModel.Model.CurrentWorkspace;
 
@@ -171,8 +176,7 @@ namespace RevitSystemTests
         [TestModel(@".\Bugs\MAGN-3620_topo.rvt")]
         public void MAGN_3620()
         {
-            // Details are available in defect 
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-3620
+            // Additional Info: https://github.com/DynamoDS/Dynamo/pull/1780
 
             var model = ViewModel.Model;
 
@@ -210,8 +214,8 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void MAGN_3784()
         {
-            // Details are available in defect 
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-3784
+            // Additional Info: https://github.com/DynamoDS/Dynamo/pull/1845
+            // Verify that reference point is updating when its input value is changed
 
             var model = ViewModel.Model;
 
@@ -262,8 +266,9 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void MAGN_4511()
         {
-            // Details are available in defect 
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-34511
+            // Additional Info: https://github.com/DynamoDS/Dynamo/pull/2452
+            // Verify passing null as an argument to a method expecting
+            // object[] or object[][] does not cause Dynamo to hang
 
             var model = ViewModel.Model;
 
@@ -331,8 +336,8 @@ namespace RevitSystemTests
         [TestModel(@".\Bugs\MAGN_3408.rvt")]
         public void MAGN_3408()
         {
-            // Details are available in defect 
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-3408
+            // Additional Info: https://github.com/DynamoDS/Dynamo/pull/1657
+            // Verify Ray-Bounce node does not return null
 
             var model = ViewModel.Model;
 
@@ -372,8 +377,8 @@ namespace RevitSystemTests
         [TestModel(@".\Bugs\MAGN_529_GetFamilyInstanceLocation.rfa")]
         public void MAGN_529()
         {
-            // Details are available in defect 
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-529
+            // Additional Info: https://github.com/DynamoDS/Dynamo/issues/529
+            // Verify sun path does not crash on multiple runs
 
             var model = ViewModel.Model;
 
@@ -451,9 +456,8 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void MAGN_4566()
         {
-            // Details are available in defect 
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4566
-            // Passing empty list was resulting in Crash.
+            // Additional Info: https://github.com/DynamoDS/Dynamo/pull/2437
+            // Passing empty list was resulting in crash
 
             var model = ViewModel.Model;
 
@@ -479,9 +483,8 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void MAGN_4737()
         {
-            // Details are available in defect 
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4566
-            // Passing ReferencePlane to watch node was crashng Dynamo.
+            // Additional Info: https://github.com/DynamoDS/Dynamo/pull/2513
+            // Passing ReferencePlane to watch node was crashing Dynamo
 
             var model = ViewModel.Model;
 
@@ -573,6 +576,9 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void MAGN_5160()
         {
+            // Additional Info: https://github.com/DynamoDS/Dynamo/pull/4896
+            // Passing null should mark graph as dirty
+
             string samplePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_5160.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
@@ -615,7 +621,10 @@ namespace RevitSystemTests
         [TestModel(@".\Bugs\StructuralFoundationTest.rvt")]
         public void MAGN_4679()
         {
-           string samplePath = Path.Combine(workingDirectory, @".\Bugs\StructuralFoundationTest.dyn");
+            // Additional Info: https://github.com/DynamoDS/Dynamo/issues/2447
+            // Verify StructuralFraming.Location node does not throw warning
+
+            string samplePath = Path.Combine(workingDirectory, @".\Bugs\StructuralFoundationTest.dyn");
            string testPath = Path.GetFullPath(samplePath);
 
            //open the test file
@@ -634,6 +643,9 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void MAGN_6710()
         {
+            // Additional Info: https://git.autodesk.com/Dynamo/DynamoRevit/commit/8bcd6c34cd45971bd91db3a8399bf44c29bdb840
+            // CurveByPoints.byReferencePoints was crashing Revit
+
             string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_6710.dyn");
             string testPath = Path.GetFullPath(filePath);
 
@@ -945,6 +957,9 @@ namespace RevitSystemTests
         [TestModel(@".\emptyS.rvt")]
         public void Rotation_MAGN_8056()
         {
+            // Additional Info: https://git.autodesk.com/Dynamo/DynamoRevit/commit/4517b56ff369488a2279e1a5510dd0d2b4c60549
+            // FamilyInstance.SetRotation is not working correctly for the first element in a sliced list
+
             var model = ViewModel.Model;
 
             string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_8056.dyn");
@@ -991,6 +1006,9 @@ namespace RevitSystemTests
         [TestModel(@".\emptyS.rvt")]
         public void Rotation_MAGN_10069()
         {
+            // Additional Info: https://git.autodesk.com/Dynamo/DynamoRevit/commit/7bfb4adf04afb7ddb181693389c9820b0c076bc0
+            // Verify FamilyInstance.SetRotation does not misplace family on first run
+
             var model = ViewModel.Model;
 
             string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_10069.dyn");
@@ -1013,6 +1031,8 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void ElementGeometryIssue_MAGN_7978()
         {
+            // Additional Info: https://git.autodesk.com/Dynamo/DynamoRevit/commit/7200a174617ccfc5136f613c01ccae88fdec7658
+            // Verify Element.Geometry finds geometry for import instances
 
             var model = ViewModel.Model;
 
@@ -1039,6 +1059,9 @@ namespace RevitSystemTests
         [TestModel(@".\Bugs\MAGN_9132.rfa")]
         public void TraceDataForBatchProcessing_MAGN_9132()
         {
+            // Additional Info: https://git.autodesk.com/Dynamo/DynamoRevit/commit/8011004c14ad2cf78009d0cfb466356d9d018d8d
+            // Verify Adaptive Components update when graph is reopened and executed from trace data
+
             var model = ViewModel.Model;
 
             string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_9132.dyn");

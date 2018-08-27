@@ -123,7 +123,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Fix for: http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-8993
+        /// Fix: https://github.com/DynamoDS/DynamoRevit/pull/879
         /// 
         /// StartDateAndTime, EndDateAndTime and ActiveFrameTime should return local datetime,
         /// that is set in Revit project configuration.
