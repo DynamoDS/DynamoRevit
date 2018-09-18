@@ -402,11 +402,14 @@
   <data name="Sheet_NoViewsError" xml:space="preserve">
     <value>Must supply more than 0 views</value>
   </data>
-  <data name="AreaSchemeArgumentException" xml:space="preserve">
-    <value>You must supply an Area Scheme.</value>
+  <data name="ViewExportImageLockedError" xml:space="preserve">
+    <value>Attempt to override existing image failed due to file lock. Please make sure that image is not currently open in another application.</value>
   </data>
   <data name="ViewPlan_ViewFamilyNotFound" xml:space="preserve">
-    <value>Matching ViewFamilyType was not found.</value>
+    <value>Specified View Type could not be found.</value>
+  </data>
+  <data name="AreaSchemeArgumentException" xml:space="preserve">
+    <value>You must supply an Area Scheme.</value>
   </data>
   <data name="ViewUnsupportedScheduleType" xml:space="preserve">
     <value>Provided Schedule Type is not supported.</value>
