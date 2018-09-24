@@ -182,7 +182,6 @@ namespace Dynamo.Applications
      Regeneration(RegenerationOption.Manual)]
     public class DynamoRevit : IExternalCommand
     {
-        enum Versions { ShapeManager = 223 };
 
         /// <summary>
         /// Based on the RevitDynamoModelState a dependent component can take certain 
@@ -233,7 +232,7 @@ namespace Dynamo.Applications
         }
 
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
-        {
+        {   
             var startupTimer = Stopwatch.StartNew();
             if (ModelState == RevitDynamoModelState.StartedUIless)
             {
@@ -374,6 +373,7 @@ namespace Dynamo.Applications
         /// located.</param>
         /// <returns>Returns the full path to geometry factory assembly.</returns>
         /// 
+        [Obsolete("Please use the overload which specifies the version of the geometry library to load")]
         public static string GetGeometryFactoryPath(string corePath)
         {
             var dynamoAsmPath = Path.Combine(corePath, "DynamoShapeManager.dll");
@@ -382,11 +382,28 @@ namespace Dynamo.Applications
                 throw new FileNotFoundException("File not found", dynamoAsmPath);
 
             var utilities = assembly.GetType("DynamoShapeManager.Utilities");
-            var getGeometryFactoryPath = utilities.GetMethod("GetGeometryFactoryPath");
+            var getGeometryFactoryPath = utilities.GetMethod("GetGeometryFactoryPath2");
 
             return (getGeometryFactoryPath.Invoke(null,
-                new object[] { corePath, Versions.ShapeManager }) as string);
+                new object[] { corePath, 224  }) as string);
         }
+
+
+        public static string GetGeometryFactoryPath(string corePath,Version version)
+        {
+            var dynamoAsmPath = Path.Combine(corePath, "DynamoShapeManager.dll");
+            var assembly = Assembly.LoadFrom(dynamoAsmPath);
+            if (assembly == null)
+                throw new FileNotFoundException("File not found", dynamoAsmPath);
+
+            var utilities = assembly.GetType("DynamoShapeManager.Utilities");
+            var getGeometryFactoryPath = utilities.GetMethod("GetGeometryFactoryPath2");
+
+            return (getGeometryFactoryPath.Invoke(null,
+                new object[] { corePath, version }) as string);
+        }
+
+
 
         private static void PreloadDynamoCoreDlls()
         {
@@ -414,11 +431,11 @@ namespace Dynamo.Applications
             var dynamoRevitRoot = Path.GetDirectoryName(dynamoRevitExePath);// ...\Revit_xxxx\ folder
 
             // get Dynamo Revit Version
-            var revitVersion = Assembly.GetExecutingAssembly().GetName().Version;
+            var dynRevitVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
             var umConfig = UpdateManagerConfiguration.GetSettings(new DynamoRevitLookUp());
             var revitUpdateManager = new DynUpdateManager(umConfig);
-            revitUpdateManager.HostVersion = revitVersion; // update RevitUpdateManager with the current DynamoRevit Version
+            revitUpdateManager.HostVersion = dynRevitVersion; // update RevitUpdateManager with the current DynamoRevit Version
             revitUpdateManager.HostName = "Dynamo Revit";
 
             Debug.Assert(umConfig.DynamoLookUp != null);
@@ -432,14 +449,17 @@ namespace Dynamo.Applications
 
             bool isAutomationMode = CheckJournalForKey(extCommandData,JournalKeys.AutomationModeKey);
 
-            PreloadAsmFromRevit();
+            // when Dynamo runs on top of revit we must load the same version of ASM as revit
+            // so tell Dynamo core we've loaded that version.
+            var loadedLibGVersion = PreloadAsmFromRevit();
 
-            return RevitDynamoModel.Start(
+
+                return RevitDynamoModel.Start(
                 new RevitDynamoModel.RevitStartConfiguration()
                 {
                     DynamoCorePath = corePath,
                     DynamoHostPath = dynamoRevitRoot,
-                    GeometryFactoryPath = GetGeometryFactoryPath(corePath),
+                    GeometryFactoryPath = GetGeometryFactoryPath(corePath, loadedLibGVersion),
                     PathResolver = new RevitPathResolver(userDataFolder, commonDataFolder),
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
@@ -451,18 +471,20 @@ namespace Dynamo.Applications
                 });
         }
 
-        private static void PreloadAsmFromRevit()
+        private static Version PreloadAsmFromRevit()
         {
             var asmLocation = AppDomain.CurrentDomain.BaseDirectory;
 
             var lookup = new InstalledProductLookUp("Revit", "ASMAHL*.dll");
             var product = lookup.GetProductFromInstallPath(asmLocation);
+            var libGversion = new Version(product.VersionInfo.Item1, product.VersionInfo.Item2, product.VersionInfo.Item3);
 
             var dynCorePath = DynamoRevitApp.DynamoCorePath;
-            var libGFolderName = string.Format("libg_{0}", product.VersionInfo.Item1);
+            var libGFolderName = string.Format("libg_{0}_{1}_{2}", libGversion.Major, libGversion.Minor, libGversion.Build );
             var preloaderLocation = Path.Combine(dynCorePath, libGFolderName);
 
             DynamoShapeManager.Utilities.PreloadAsmFromPath(preloaderLocation, asmLocation);
+            return libGversion;
         }
 
         private static DynamoViewModel InitializeCoreViewModel(RevitDynamoModel revitDynamoModel)
