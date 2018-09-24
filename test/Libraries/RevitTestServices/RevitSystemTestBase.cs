@@ -236,7 +236,9 @@ namespace RevitTestServices
                     new RevitDynamoModel.RevitStartConfiguration()
                     {
                         StartInTestMode = true,
-                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(testConfig.DynamoCorePath),
+                        //TODO update reference to new dynamo dlls.]
+                        //TODO update testConfig file.
+                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(testConfig.DynamoCorePath,testConfig.RequestedLibraryVersion2),
                         DynamoCorePath = testConfig.DynamoCorePath,
                         PathResolver = revitTestPathResolver,
                         Context = "Revit 2014",
