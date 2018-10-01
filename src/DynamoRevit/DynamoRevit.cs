@@ -474,15 +474,21 @@ namespace Dynamo.Applications
         {
             var asmLocation = AppDomain.CurrentDomain.BaseDirectory;
 
-            var lookup = new InstalledProductLookUp("Revit", "ASMAHL*.dll");
-            var product = lookup.GetProductFromInstallPath(asmLocation);
-            var libGversion = new Version(product.VersionInfo.Item1, product.VersionInfo.Item2, product.VersionInfo.Item3);
+            Version libGversion = findRevitASMVersion(asmLocation);
 
             var dynCorePath = DynamoRevitApp.DynamoCorePath;
-            var libGFolderName = string.Format("libg_{0}_{1}_{2}", libGversion.Major, libGversion.Minor, libGversion.Build );
+            var libGFolderName = string.Format("libg_{0}_{1}_{2}", libGversion.Major, libGversion.Minor, libGversion.Build);
             var preloaderLocation = Path.Combine(dynCorePath, libGFolderName);
 
             DynamoShapeManager.Utilities.PreloadAsmFromPath(preloaderLocation, asmLocation);
+            return libGversion;
+        }
+
+        internal static Version findRevitASMVersion(string asmLocation)
+        {
+            var lookup = new InstalledProductLookUp("Revit", "ASMAHL*.dll");
+            var product = lookup.GetProductFromInstallPath(asmLocation);
+            var libGversion = new Version(product.VersionInfo.Item1, product.VersionInfo.Item2, product.VersionInfo.Item3);
             return libGversion;
         }
 
