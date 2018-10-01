@@ -207,11 +207,18 @@ namespace RevitTestServices
                 var revitTestPathResolver = new RevitTestPathResolver();
                 revitTestPathResolver.InitializePreloadedLibraries();
 
+                var asmLocation = AppDomain.CurrentDomain.BaseDirectory;
+                var libGVersion = DynamoRevit.findRevitASMVersion(asmLocation);
+
                 var loadedLibGVersion = testConfig.RequestedLibraryVersion2;
                 //RequestedLibraryVersion2 is null when the host should decide what version to load.
                 if (loadedLibGVersion == null)
                 {
                     loadedLibGVersion = DynamoRevit.PreloadAsmFromRevit();
+                }
+                if(loadedLibGVersion != libGVersion)
+                {
+                    Console.WriteLine($"loaded version of libG is not the same as the version the host supports{loadedLibGVersion} , {libGVersion}");
                 }
 
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
