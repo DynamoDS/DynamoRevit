@@ -384,8 +384,9 @@ namespace Dynamo.Applications
             var utilities = assembly.GetType("DynamoShapeManager.Utilities");
             var getGeometryFactoryPath = utilities.GetMethod("GetGeometryFactoryPath2");
 
+            //if old method is called default to 224.4.0
             return (getGeometryFactoryPath.Invoke(null,
-                new object[] { corePath, 224  }) as string);
+                new object[] { corePath, new Version(224,4,0)  }) as string);
         }
 
 
