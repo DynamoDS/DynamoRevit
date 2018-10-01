@@ -472,7 +472,7 @@ namespace Dynamo.Applications
                 });
         }
 
-        private static Version PreloadAsmFromRevit()
+        internal static Version PreloadAsmFromRevit()
         {
             var asmLocation = AppDomain.CurrentDomain.BaseDirectory;
 
