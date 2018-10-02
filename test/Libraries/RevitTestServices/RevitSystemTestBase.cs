@@ -232,27 +232,16 @@ namespace RevitTestServices
                 var revitTestPathResolver = new RevitTestPathResolver();
                 revitTestPathResolver.InitializePreloadedLibraries();
 
-                var asmLocation = AppDomain.CurrentDomain.BaseDirectory;
-                var libGVersion = DynamoRevit.findRevitASMVersion(asmLocation);
-
-                var loadedLibGVersion = testConfig.RequestedLibraryVersion2;
-                //RequestedLibraryVersion2 is null when the host should decide what version to load.
-                if (loadedLibGVersion == null)
-                {
-                    loadedLibGVersion = DynamoRevit.PreloadAsmFromRevit();
-                }
-                if(loadedLibGVersion != libGVersion)
-                {
-                    Console.WriteLine($"loaded version of libG is not the same as the version the host supports{loadedLibGVersion} , {libGVersion}");
-                }
-
+                //preload ASM and instruct dynamo to load that version of libG.
+                var requestedLibGVersion = DynamoRevit.PreloadAsmFromRevit();
+                
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new RevitDynamoModel.RevitStartConfiguration()
                     {
                         StartInTestMode = true,
                         //TODO update reference to new dynamo dlls.]
                         //TODO update testConfig file.
-                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(testConfig.DynamoCorePath,loadedLibGVersion),
+                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(testConfig.DynamoCorePath, requestedLibGVersion),
                         DynamoCorePath = testConfig.DynamoCorePath,
                         PathResolver = revitTestPathResolver,
                         Context = "Revit 2014",
