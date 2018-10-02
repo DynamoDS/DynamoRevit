@@ -239,8 +239,6 @@ namespace RevitTestServices
                     new RevitDynamoModel.RevitStartConfiguration()
                     {
                         StartInTestMode = true,
-                        //TODO update reference to new dynamo dlls.]
-                        //TODO update testConfig file.
                         GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(testConfig.DynamoCorePath, requestedLibGVersion),
                         DynamoCorePath = testConfig.DynamoCorePath,
                         PathResolver = revitTestPathResolver,
