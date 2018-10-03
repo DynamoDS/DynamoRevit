@@ -478,6 +478,12 @@ namespace Dynamo.Applications
             return libGversion;
         }
 
+        /// <summary>
+        /// Returns the version of ASM which is installed with Revit at the requested path.
+        /// This version number can be used to load the appropriate libG version.
+        /// </summary>
+        /// <param name="asmLocation">path where asm dlls are located, this is usually the product(Revit) install path</param>
+        /// <returns></returns>
         internal static Version findRevitASMVersion(string asmLocation)
         {
             var lookup = new InstalledProductLookUp("Revit", "ASMAHL*.dll");
