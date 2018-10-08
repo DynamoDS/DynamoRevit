@@ -153,14 +153,6 @@ namespace Dynamo.Applications
         public const string ModelShutDownKey = "dynModelShutDown";
 
         /// <summary>
-        /// The journal file can specify if a check should be performed to see if the
-        /// current workspaceModel already points to the Dynamo file we want to 
-        /// run (or perform other tasks). If that's the case, we want to use the
-        /// current workspaceModel.
-        /// </summary>
-        public const string DynPathCheckExisting = "dynPathCheckExisting";
-
-        /// <summary>
         /// The journal file can specify the values of Dynamo nodes.
         /// </summary>
         public const string ModelNodesInfo = "dynModelNodesInfo";
