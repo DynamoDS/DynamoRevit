@@ -643,30 +643,16 @@ namespace Dynamo.Applications
             if (commandData.JournalData.ContainsKey(JournalKeys.DynPathKey))
             {
                 bool isAutomationMode = CheckJournalForKey(commandData, JournalKeys.AutomationModeKey);
-                bool forceManualRun = CheckJournalForKey(commandData, JournalKeys.ForceManualRunKey);
+                bool forceManualRun = CheckJournalForKey(commandData, JournalKeys.ForceManualRunKey);                
 
-                bool useExistingWorkspace = false;
-                if (CheckJournalForKey(commandData, JournalKeys.DynPathCheckExisting))
+                if (ModelState == RevitDynamoModelState.StartedUIless)
                 {
-                    WorkspaceModel currentWorkspace = revitDynamoModel.CurrentWorkspace;
-                    if (currentWorkspace.FileName.Equals(commandData.JournalData[JournalKeys.DynPathKey], 
-                        StringComparison.OrdinalIgnoreCase))
-                    {
-                        useExistingWorkspace = true;
-                    }
+                    revitDynamoModel.OpenFileFromPath(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun);
                 }
-
-                if (!useExistingWorkspace) //if use existing is false, open the specified workspace
+                else
                 {
-                    if (ModelState == RevitDynamoModelState.StartedUIless)
-                    {
-                        revitDynamoModel.OpenFileFromPath(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun);
-                    }
-                    else
-                    {
-                        dynamoViewModel.OpenIfSavedCommand.Execute(new Dynamo.Models.DynamoModel.OpenFileCommand(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun));
-                        dynamoViewModel.ShowStartPage = false;
-                    }
+                    dynamoViewModel.OpenIfSavedCommand.Execute(new Dynamo.Models.DynamoModel.OpenFileCommand(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun));
+                    dynamoViewModel.ShowStartPage = false;
                 }
 
                 //If we have information about the nodes and their values we want to push those values after the file is opened.
