@@ -387,7 +387,7 @@ namespace Dynamo.Applications
         /// </summary>
         /// <param name="application"></param>
         /// <returns>True is that Dynamo and DynamoRevit are in Revit Addins</returns>
-        private static Boolean IsRevitAddin(UIControlledApplication application)
+        private static Boolean IsRevitInternalAddin(UIControlledApplication application)
         {
             if (application == null)
                 return false;
@@ -396,7 +396,7 @@ namespace Dynamo.Applications
                return false;
             var dynamoRevitRoot = Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
             var RevitRoot = Path.GetDirectoryName(application.GetType().Assembly.Location);
-            if (dynamoRevitRoot.Contains(RevitRoot))
+            if (dynamoRevitRoot.StartsWith(RevitRoot))
             {
                 if (File.Exists(Path.Combine(dynamoRevitRoot, "DynamoInstallDetective.dll")) && File.Exists(Path.Combine(dynamoRevitRoot, "DynamoCore.dll")))
                 {
@@ -414,7 +414,7 @@ namespace Dynamo.Applications
 
         private bool TryResolveDynamoCore(UIControlledApplication application)
         {
-            if(IsRevitAddin(application))
+            if(IsRevitInternalAddin(application))
                 dynamopath= Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
             if (string.IsNullOrEmpty(DynamoCorePath))
             {
