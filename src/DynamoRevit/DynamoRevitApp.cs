@@ -58,7 +58,7 @@ namespace Dynamo.Applications
             var version = Assembly.GetExecutingAssembly().GetName().Version;
             var dynamoRevitRootDirectory = Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
             var dynamoRoot = GetDynamoRoot(dynamoRevitRootDirectory);
-            
+           
             var assembly = Assembly.LoadFrom(Path.Combine(dynamoRevitRootDirectory, "DynamoInstallDetective.dll"));
             var type = assembly.GetType("DynamoInstallDetective.DynamoProducts");
 
@@ -70,7 +70,7 @@ namespace Dynamo.Applications
 
             var methodParams = new object[] { version, dynamoRoot };
             return methodToInvoke.Invoke(null, methodParams) as string;
-        }
+        }        
 
         /// <summary>
         /// Gets Dynamo Root folder from the given DynamoRevit root.
@@ -131,7 +131,7 @@ namespace Dynamo.Applications
         {
             try
             {
-                if (false == TryResolveDynamoCore())
+                if (false == TryResolveDynamoCore(application))
                     return Result.Failed;
 
                 UIControlledApplication = application;
@@ -381,8 +381,35 @@ namespace Dynamo.Applications
             set;
         }
 
-        private bool TryResolveDynamoCore()
+        private static Boolean IsRevitAddin(UIControlledApplication application)
         {
+            if (application == null)
+                return false;
+            var revitVersion = application.ControlledApplication.VersionNumber;
+            if (int.Parse(revitVersion) < 2020)
+               return false;
+            var dynamoRevitRoot = Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
+            var RevitRoot = Path.GetDirectoryName(application.GetType().Assembly.Location);
+            if (dynamoRevitRoot.Contains(RevitRoot))
+            {
+                if (File.Exists(Path.Combine(dynamoRevitRoot, "DynamoInstallDetective.dll")) && File.Exists(Path.Combine(dynamoRevitRoot, "DynamoCore.dll")))
+                {
+                    var version_DynamoInstallDetective = FileVersionInfo.GetVersionInfo(Path.Combine(dynamoRevitRoot, "DynamoInstallDetective.dll"));
+                    var version_DynamoCore = FileVersionInfo.GetVersionInfo(Path.Combine(dynamoRevitRoot, "DynamoCore.dll"));
+                    if (version_DynamoCore.FileMajorPart == version_DynamoInstallDetective.FileMajorPart &&
+                        version_DynamoCore.FileMinorPart == version_DynamoInstallDetective.FileMinorPart &&
+                        version_DynamoCore.FileBuildPart == version_DynamoInstallDetective.FileBuildPart
+                       )
+                       return true;
+                }
+            }
+            return false;
+        }
+
+        private bool TryResolveDynamoCore(UIControlledApplication application)
+        {
+            if(IsRevitAddin(application))
+                dynamopath= Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
             if (string.IsNullOrEmpty(DynamoCorePath))
             {
                 var fvi = FileVersionInfo.GetVersionInfo(assemblyName);
