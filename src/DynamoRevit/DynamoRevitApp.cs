@@ -58,7 +58,7 @@ namespace Dynamo.Applications
             var version = Assembly.GetExecutingAssembly().GetName().Version;
             var dynamoRevitRootDirectory = Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
             var dynamoRoot = GetDynamoRoot(dynamoRevitRootDirectory);
-           
+            
             var assembly = Assembly.LoadFrom(Path.Combine(dynamoRevitRootDirectory, "DynamoInstallDetective.dll"));
             var type = assembly.GetType("DynamoInstallDetective.DynamoProducts");
 
@@ -70,7 +70,7 @@ namespace Dynamo.Applications
 
             var methodParams = new object[] { version, dynamoRoot };
             return methodToInvoke.Invoke(null, methodParams) as string;
-        }        
+        }
 
         /// <summary>
         /// Gets Dynamo Root folder from the given DynamoRevit root.
@@ -381,6 +381,12 @@ namespace Dynamo.Applications
             set;
         }
 
+        /// <summary>
+        /// Whether the DynamoCore and DynamoRevit are in Revit's Addin, 
+        /// and Revit version is more than 2020
+        /// </summary>
+        /// <param name="application"></param>
+        /// <returns>True is that Dynamo and DynamoRevit are in Revit Addins</returns>
         private static Boolean IsRevitAddin(UIControlledApplication application)
         {
             if (application == null)
