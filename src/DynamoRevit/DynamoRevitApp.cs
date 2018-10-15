@@ -382,8 +382,7 @@ namespace Dynamo.Applications
         }
 
         /// <summary>
-        /// Whether the DynamoCore and DynamoRevit are in Revit's internal Addin folder, 
-        /// and Revit version is more than 2020
+        /// Whether the DynamoCore and DynamoRevit are in Revit's internal Addin folder
         /// </summary>
         /// <param name="application"></param>
         /// <returns>True is that Dynamo and DynamoRevit are in Revit internal Addins folder</returns>
@@ -392,8 +391,6 @@ namespace Dynamo.Applications
             if (application == null)
                 return false;
             var revitVersion = application.ControlledApplication.VersionNumber;
-            if (int.Parse(revitVersion) < 2020)
-               return false;
             var dynamoRevitRoot = Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
             var RevitRoot = Path.GetDirectoryName(application.GetType().Assembly.Location);
             if (dynamoRevitRoot.StartsWith(RevitRoot))
