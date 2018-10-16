@@ -131,7 +131,7 @@ namespace Dynamo.Applications
         {
             try
             {
-                if (false == TryResolveDynamoCore())
+                if (false == TryResolveDynamoCore(application))
                     return Result.Failed;
 
                 UIControlledApplication = application;
@@ -381,8 +381,40 @@ namespace Dynamo.Applications
             set;
         }
 
-        private bool TryResolveDynamoCore()
+        /// <summary>
+        /// Whether the DynamoCore and DynamoRevit are in Revit's internal Addin folder
+        /// </summary>
+        /// <param name="application"></param>
+        /// <returns>True is that Dynamo and DynamoRevit are in Revit internal Addins folder</returns>
+        private static Boolean IsRevitInternalAddin(UIControlledApplication application)
         {
+            if (application == null)
+                return false;
+            var revitVersion = application.ControlledApplication.VersionNumber;
+            var dynamoRevitRoot = Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
+            var RevitRoot = Path.GetDirectoryName(application.GetType().Assembly.Location);
+            if (dynamoRevitRoot.StartsWith(RevitRoot))
+            {
+                if (File.Exists(Path.Combine(dynamoRevitRoot, "DynamoInstallDetective.dll")) && File.Exists(Path.Combine(dynamoRevitRoot, "DynamoCore.dll")))
+                {
+                    var version_DynamoInstallDetective = FileVersionInfo.GetVersionInfo(Path.Combine(dynamoRevitRoot, "DynamoInstallDetective.dll"));
+                    var version_DynamoCore = FileVersionInfo.GetVersionInfo(Path.Combine(dynamoRevitRoot, "DynamoCore.dll"));
+                    if (version_DynamoCore.FileMajorPart == version_DynamoInstallDetective.FileMajorPart &&
+                        version_DynamoCore.FileMinorPart == version_DynamoInstallDetective.FileMinorPart &&
+                        version_DynamoCore.FileBuildPart == version_DynamoInstallDetective.FileBuildPart
+                       )
+                       return true;
+                }
+            }
+            return false;
+        }
+
+        private bool TryResolveDynamoCore(UIControlledApplication application)
+        {
+            if(IsRevitInternalAddin(application))
+            {
+                dynamopath = Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
+            }
             if (string.IsNullOrEmpty(DynamoCorePath))
             {
                 var fvi = FileVersionInfo.GetVersionInfo(assemblyName);
