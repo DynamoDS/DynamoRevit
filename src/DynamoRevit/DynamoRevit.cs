@@ -150,30 +150,6 @@ namespace Dynamo.Applications
         /// needs to be shutdown before performing any action.
         /// </summary>
         public const string ModelShutDownKey = "dynModelShutDown";
-
-        /// <summary>
-        /// The journal file can specify if a check should be performed to see if the
-        /// current workspaceModel already points to the Dynamo file we want to 
-        /// run (or perform other tasks). If that's the case, we want to use the
-        /// current workspaceModel.
-        /// </summary>
-        public const string DynPathCheckExisting = "dynPathCheckExisting";
-
-        /// <summary>
-        /// The journal file can specify the values of Dynamo nodes.
-        /// </summary>
-        public const string ModelNodesInfo = "dynModelNodesInfo";
-    }
-
-    /// <summary>
-    /// Defines parameters for Dynamo nodes needed in order to update nodes
-    /// values through UpdateModelValueCommand.
-    /// </summary>
-    public class JournalNodeKeys
-    {
-        public const string Id = "Id";
-        public const string Name = "Name";
-        public const string Value = "Value";
     }
 
 
@@ -594,58 +570,16 @@ namespace Dynamo.Applications
             if (commandData.JournalData.ContainsKey(JournalKeys.DynPathKey))
             {
                 bool isAutomationMode = CheckJournalForKey(commandData, JournalKeys.AutomationModeKey);
-                bool forceManualRun = CheckJournalForKey(commandData, JournalKeys.ForceManualRunKey);
+                bool forceManualRun = CheckJournalForKey(commandData, JournalKeys.ForceManualRunKey);                
 
-                bool useExistingWorkspace = false;
-                if (CheckJournalForKey(commandData, JournalKeys.DynPathCheckExisting))
+                if (ModelState == RevitDynamoModelState.StartedUIless)
                 {
-                    WorkspaceModel currentWorkspace = revitDynamoModel.CurrentWorkspace;
-                    if (currentWorkspace.FileName.Equals(commandData.JournalData[JournalKeys.DynPathKey], 
-                        StringComparison.OrdinalIgnoreCase))
-                    {
-                        useExistingWorkspace = true;
-                    }
+                    revitDynamoModel.OpenFileFromPath(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun);
                 }
-
-                if (!useExistingWorkspace) //if use existing is false, open the specified workspace
+                else
                 {
-                    if (ModelState == RevitDynamoModelState.StartedUIless)
-                    {
-                        revitDynamoModel.OpenFileFromPath(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun);
-                    }
-                    else
-                    {
-                        dynamoViewModel.OpenIfSavedCommand.Execute(new Dynamo.Models.DynamoModel.OpenFileCommand(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun));
-                        dynamoViewModel.ShowStartPage = false;
-                    }
-                }
-
-                //If we have information about the nodes and their values we want to push those values after the file is opened.
-                if (commandData.JournalData.ContainsKey(JournalKeys.ModelNodesInfo))
-                {
-                    try
-                    {
-                        var allNodesInfo = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(commandData.JournalData[JournalKeys.ModelNodesInfo]);
-                        if (allNodesInfo != null)
-                        {
-                            foreach (var nodeInfo in allNodesInfo)
-                            {
-                                if (nodeInfo.ContainsKey(JournalNodeKeys.Id) && 
-                                    nodeInfo.ContainsKey(JournalNodeKeys.Name) && 
-                                    nodeInfo.ContainsKey(JournalNodeKeys.Value))
-                                {
-                                    var modelCommand = new DynamoModel.UpdateModelValueCommand(nodeInfo[JournalNodeKeys.Id], 
-                                                                                               nodeInfo[JournalNodeKeys.Name], 
-                                                                                               nodeInfo[JournalNodeKeys.Value]);
-                                    modelCommand.Execute(revitDynamoModel);
-                                }
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Exception while trying to update nodes with new values");
-                    }
+                    dynamoViewModel.OpenIfSavedCommand.Execute(new Dynamo.Models.DynamoModel.OpenFileCommand(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun));
+                    dynamoViewModel.ShowStartPage = false;
                 }
 
                 //If we are in automation mode the model will run anyway (on the main thread 
