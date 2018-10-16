@@ -1,6 +1,7 @@
+using System;
 using System.IO;
 using System.Reflection;
-
+using Dynamo.Applications;
 using DynamoUnits;
 
 using NUnit.Framework;
@@ -43,8 +44,8 @@ namespace RevitTestServices
 
         protected override TestSessionConfiguration GetTestSessionConfiguration()
         {
-            var asmDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            return new TestSessionConfiguration(Path.GetFullPath(asmDir + @"\..\"), asmDir);
+            var asmLocation = AppDomain.CurrentDomain.BaseDirectory;
+            return new TestSessionConfiguration(Dynamo.Applications.DynamoRevitApp.DynamoCorePath, DynamoRevit.findRevitASMVersion(asmLocation));
         }
 
         private static void SetupTransactionManager()
