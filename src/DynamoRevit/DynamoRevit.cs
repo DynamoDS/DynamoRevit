@@ -27,7 +27,6 @@ using Dynamo.ViewModels;
 using DynamoInstallDetective;
 using Greg.AuthProviders;
 using Microsoft.Win32;
-using Newtonsoft.Json;
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using DynUpdateManager = Dynamo.Updates.UpdateManager;
