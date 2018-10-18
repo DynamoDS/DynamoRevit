@@ -232,11 +232,14 @@ namespace RevitTestServices
                 var revitTestPathResolver = new RevitTestPathResolver();
                 revitTestPathResolver.InitializePreloadedLibraries();
 
+                //preload ASM and instruct dynamo to load that version of libG.
+                var requestedLibGVersion = DynamoRevit.PreloadAsmFromRevit();
+                
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new RevitDynamoModel.RevitStartConfiguration()
                     {
                         StartInTestMode = true,
-                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(testConfig.DynamoCorePath),
+                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(testConfig.DynamoCorePath, requestedLibGVersion),
                         DynamoCorePath = testConfig.DynamoCorePath,
                         PathResolver = revitTestPathResolver,
                         Context = "Revit 2014",
