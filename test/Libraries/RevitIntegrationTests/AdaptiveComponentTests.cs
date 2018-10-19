@@ -14,6 +14,7 @@ using DoubleSlider = CoreNodeModels.Input.DoubleSlider;
 using Revit.Elements;
 using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
+using System;
 
 namespace RevitSystemTests
 {
@@ -168,8 +169,8 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // Check all the nodes and connectors are loaded
-            Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(10, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(16, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
@@ -181,6 +182,10 @@ namespace RevitSystemTests
                 var adapValue = GetPreviewValueAtIndex(adapID, i) as AdaptiveComponent;
                 Assert.IsNotNull(adapValue);
             }
+            var volumeSumId = "f76b55af-52f0-451e-9819-2a51ce8a1afc";
+            var volume = GetPreviewValue(volumeSumId);
+            Assert.IsTrue(Math.Abs((double)volume - 13.39) < 0.1);
+            
         }
 
         [Test]
