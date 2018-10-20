@@ -871,7 +871,7 @@ namespace RevitSystemTests
 
         #region New Sample Tests
 
-        [Test, Category("SmokeTests")]
+        [Test, Category("Failure"), Category("SmokeTests")]
         [TestModel(@".\Samples\DynamoSample_2015.rvt")]
         public void Revit_Adaptive_Component_Placement()
         {
@@ -916,7 +916,7 @@ namespace RevitSystemTests
 
         }
 
-        [Test, Category("SmokeTests")]
+        [Test, Category("Failure"), Category("SmokeTests")]
         [TestModel(@".\Samples\DynamoSample_2015.rvt")]
         public void Revit_Color()
         {
@@ -943,7 +943,7 @@ namespace RevitSystemTests
             }
         }
 
-        [Test, Category("SmokeTests")]
+        [Test, Category("Failure"), Category("SmokeTests")]
         [TestModel(@".\Samples\DynamoSample_2015.rvt")]
         public void Revit_Floors_and_Framing()
         {
@@ -981,7 +981,7 @@ namespace RevitSystemTests
             Assert.AreEqual(levelFraming.Count, levelCount * 4);
         }
 
-        [Test, Category("SmokeTests")]
+        [Test, Category("Failure"), Category("SmokeTests")]
         [TestModel(@".\Samples\DynamoSample_2015.rvt")]
         public void Revit_ImportSolid()
         {
@@ -1005,7 +1005,7 @@ namespace RevitSystemTests
 
         }
 
-        [Test, Category("SmokeTests")]
+        [Test, Category("Failure"), Category("SmokeTests")]
         [TestModel(@".\Samples\DynamoSample_2015.rvt")]
         public void Revit_PlaceFamiliesByLevel_Set_Parameters()
         {
@@ -1032,7 +1032,7 @@ namespace RevitSystemTests
             }
         }
 
-        [Test, Category("SmokeTests")]
+        [Test, Category("Failure"), Category("SmokeTests")]
         [TestModel(@".\Samples\DynamoSample_2015.rvt")]
         public void Revit_StructuralFraming()
         {
@@ -1059,7 +1059,7 @@ namespace RevitSystemTests
             }
         }
 
-        [Test, Category("SmokeTests")]
+        [Test, Category("Failure"), Category("SmokeTests")]
         [TestModel(@".\empty.rfa")]
         public void Geometry_Curves()
         {
@@ -1088,7 +1088,7 @@ namespace RevitSystemTests
             Assert.NotNull(polyCurve);
         }
 
-        [Test, Category("SmokeTests")]
+        [Test, Category("Failure"), Category("SmokeTests")]
         [TestModel(@".\empty.rfa")]
         public void Geometry_Points()
         {
@@ -1116,7 +1116,7 @@ namespace RevitSystemTests
             }
         }
 
-        [Test, Category("SmokeTests")]
+        [Test, Category("Failure"), Category("SmokeTests")]
         [TestModel(@".\empty.rfa")]
         public void Geometry_Solids()
         {
@@ -1149,7 +1149,7 @@ namespace RevitSystemTests
 
         }
 
-        [Test, Category("SmokeTests")]
+        [Test, Category("Failure"), Category("SmokeTests")]
         [TestModel(@".\empty.rfa")]
         public void Geometry_Surfaces()
         {
