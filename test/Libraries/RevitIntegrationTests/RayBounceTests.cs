@@ -54,7 +54,7 @@ namespace RevitSystemTests
 
             // Validation for Reference Points.
             var modelCurve = "64b62b8e-a07e-477e-ba5d-9e33eb03debf";
-            AssertPreviewCount(modelCurve, 52);
+            AssertPreviewCount(modelCurve, 50);
 
             for (int i = 0; i <= 42; i++)
             {
