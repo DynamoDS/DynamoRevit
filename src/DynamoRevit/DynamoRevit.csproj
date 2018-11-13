@@ -210,7 +210,8 @@ xcopy /Y "$(DynamoExternPath)\DynamoRaaS\RevitRaaS.dll" "$(OutputPath)"
 xcopy /Y "$(DynamoExternPath)\DynamoRaaS\SDF.dll" "$(OutputPath)"
 xcopy /Y "$(DynamoExternPath)\DynamoRaaS\*_DynamoCustomization.xml" "$(OutputPath)"
 xcopy /Y "$(DynamoExternPath)\DynamoRaaS\SimpleRaas.xml" "$(OutputPath)en-US\"
-xcopy /Y "$(DynamoExternPath)\DynamoRaaS\en-US\*resources.dll" "$(OutputPath)en-US\"</PostBuildEvent>
+xcopy /Y "$(DynamoExternPath)\DynamoRaaS\en-US\RevitRaaS.resources.dll" "$(OutputPath)en-US\"
+xcopy /Y "$(DynamoExternPath)\DynamoRaaS\en-US\DynamoRaaS.resources.dll" "$(OutputPath)nodes\en-US\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
