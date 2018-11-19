@@ -17,26 +17,21 @@ dir *.tt /b > t4list.txt
 echo the following T4 templates will be transformed:
 type t4list.txt
 
-:: clear the environment variable
+:: Use texttransform.exe from the IDE if it is present, otherwise, use legacy locations. 
+
+:: clear text transform path to undefine it
 set TEXTTRANSFORMPATH=
 
-IF EXIST "%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\11.0\TextTransform.exe" (
-    set TEXTTRANSFORMPATH="%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\11.0\TextTransform.exe"
+:: use latest vswhere utility to locate in IDE, where it resides now. 
+IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" (
+   for /f "usebackq tokens=1* delims=: " %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -all`) do (
+      if /i "%%i" == "installationPath" set TEXTTRANSFORMPATH="%%j\Common7\IDE\TextTransform.exe"
+   )
 )
-IF EXIST "%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\12.0\TextTransform.exe" (
-    set TEXTTRANSFORMPATH="%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\12.0\TextTransform.exe"
-)
-IF EXIST "%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\14.0\TextTransform.exe" (
-    set TEXTTRANSFORMPATH="%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\14.0\TextTransform.exe"
-)
-IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Professional\Common7\IDE\TextTransform.exe" (
-    set TEXTTRANSFORMPATH="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Professional\Common7\IDE\TextTransform.exe"
-)
-IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\TextTransform.exe" (
-    set TEXTTRANSFORMPATH="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\TextTransform.exe"
-)
-IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\IDE\TextTransform.exe" (
-    set TEXTTRANSFORMPATH="%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\Common7\IDE\TextTransform.exe"
+
+:: not found in IDE, use legacy
+IF NOT DEFINED TEXTTRANSFORMPATH (
+   set TEXTTRANSFORMPATH="%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\%VisualStudioVersion%\TextTransform.exe"
 )
 
 :: transform all the templates
