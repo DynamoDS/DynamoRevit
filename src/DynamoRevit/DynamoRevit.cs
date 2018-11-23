@@ -445,12 +445,12 @@ namespace Dynamo.Applications
                 Environment.SpecialFolder.ApplicationData), 
                 "Dynamo", "Dynamo Revit");
             var commonDataFolder = Path.Combine(Environment.GetFolderPath(
-                Environment.SpecialFolder.CommonApplicationData), 
-                "Dynamo", "Dynamo Revit");
+                Environment.SpecialFolder.CommonApplicationData),
+                "Autodesk", "RVT 2020", "Dynamo");
 
             bool isAutomationMode = CheckJournalForKey(extCommandData,JournalKeys.AutomationModeKey);
 
-            // when Dynamo runs on top of revit we must load the same version of ASM as revit
+            // when Dynamo runs on top of Revit we must load the same version of ASM as revit
             // so tell Dynamo core we've loaded that version.
             var loadedLibGVersion = PreloadAsmFromRevit();
 
