@@ -446,7 +446,7 @@ namespace Dynamo.Applications
                 "Dynamo", "Dynamo Revit");
             var commonDataFolder = Path.Combine(Environment.GetFolderPath(
                 Environment.SpecialFolder.CommonApplicationData),
-                "Autodesk", "RVT " + DocumentManager.Instance.CurrentUIApplication.Application.VersionNumber, "Dynamo");
+                "Autodesk", "RVT " + commandData.Application.Application.VersionNumber, "Dynamo");
 
             bool isAutomationMode = CheckJournalForKey(extCommandData,JournalKeys.AutomationModeKey);
 
