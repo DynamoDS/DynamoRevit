@@ -87,6 +87,9 @@ ipch/
 *.sdf
 *.cachefile
 
+# Visual Studio cache directory
+.vs
+
 # Visual Studio profiler
 *.psess
 *.vsp

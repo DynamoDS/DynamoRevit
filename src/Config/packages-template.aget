@@ -1,6 +1,7 @@
 {
   "nuget": {
     "references": {
+      "DynamicLanguageRuntime" : "1.2.1",
       "DynamoVisualProgramming.Core" : "LatestBeta",
       "DynamoVisualProgramming.DynamoCoreNodes" : "LatestBeta",
       "DynamoVisualProgramming.DynamoServices" : "LatestBeta",
@@ -9,7 +10,7 @@
       "DynamoVisualProgramming.ZeroTouchLibrary" : "LatestBeta",
       "Greg" : "1.0.6176.18754",
       "GregRevitAuth" : "1.0.5907.17451",
-      "IronPython" : "2.7.2",
+      "IronPython" : "2.7.8.1",
       "Newtonsoft.Json" : "8.0.3",
       "NUnit" : "2.6.3",
       "Prism" : "4.1.0",

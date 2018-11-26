@@ -70,13 +70,16 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Dynamic" />
+    <Reference Include="Microsoft.Dynamic">
+      <HintPath>$(PACKAGESPATH)\DynamicLanguageRuntime\lib\net45\Microsoft.Dynamic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>$(PACKAGESPATH)\Prism\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Scripting">
-      <HintPath>$(PACKAGESPATH)\IronPython\lib\Net40\Microsoft.Scripting.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamicLanguageRuntime\lib\net45\Microsoft.Scripting.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
