@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoShapeManager">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoShapeManager.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\47\DynamoShapeManager.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">
@@ -75,11 +75,11 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DynamoCore">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoCore.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCoreWpf">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net45\DynamoCoreWpf.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net47\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj">
@@ -88,11 +88,11 @@
       <Private>False</Private>
     </ProjectReference>
     <Reference Include="DynamoUtilities">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoUtilities.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net45\DynamoUnits.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net47\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj">
@@ -102,11 +102,11 @@
     </ProjectReference>
     <Reference Include="System.XML" />
     <Reference Include="TestServices">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\net45\TestServices.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\net47\TestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SystemTestServices">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\net45\SystemTestServices.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\net47\SystemTestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
