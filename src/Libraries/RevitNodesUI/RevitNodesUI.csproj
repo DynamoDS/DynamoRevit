@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoUtilities">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoUtilities.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -46,11 +46,11 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ProtoGeometry">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net45\ProtoGeometry.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net47\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\net45\DynamoServices.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\net47\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
@@ -98,31 +98,31 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DynamoCoreWpf">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net45\DynamoCoreWpf.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net47\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ProtoCore">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\ProtoCore.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModelsWpf">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net45\CoreNodeModelsWpf.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net47\CoreNodeModelsWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModels">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net45\CoreNodeModels.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net47\CoreNodeModels.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net45\DynamoCore.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DSCoreNodes">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net45\DSCoreNodes.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net47\DSCoreNodes.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net45\DynamoUnits.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net47\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">
