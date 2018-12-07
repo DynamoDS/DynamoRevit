@@ -77,7 +77,7 @@ namespace RevitNodesTests.Elements.Views
             var target = Point.ByCoordinates(0, 1, 2);
 
             var v = AxonometricView.ByEyePointAndTarget(eye, target);
-            Assert.AreEqual(v.InternalElement.Name, AbstractView3D.DefaultViewName);
+            Assert.AreEqual(v.InternalElement.Name, View3D.DEFAULT_VIEW_NAME);
         }
 
         [Test]
@@ -129,7 +129,7 @@ namespace RevitNodesTests.Elements.Views
 
             var v = AxonometricView.ByEyePointTargetAndBoundingBox(eye, target, famInst.BoundingBox);
             var view = (Autodesk.Revit.DB.View3D)v.InternalElement;
-            Assert.AreEqual(view.Name, AbstractView3D.DefaultViewName);
+            Assert.AreEqual(view.Name, View3D.DEFAULT_VIEW_NAME);
             Assert.False(view.CropBoxActive);
         }
 
@@ -181,7 +181,7 @@ namespace RevitNodesTests.Elements.Views
 
             var v = AxonometricView.ByEyePointTargetAndBoundingBox(eye, target, famInst.BoundingBox);
             var view = (Autodesk.Revit.DB.View3D)v.InternalElement;
-            Assert.AreEqual(view.Name, AbstractView3D.DefaultViewName);
+            Assert.AreEqual(view.Name, View3D.DEFAULT_VIEW_NAME);
             Assert.False(view.CropBoxActive);
         }
     }
