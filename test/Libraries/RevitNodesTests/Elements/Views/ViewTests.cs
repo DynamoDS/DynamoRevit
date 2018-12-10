@@ -43,7 +43,7 @@ namespace RevitNodesTests.Elements.Views
 
             var v = AxonometricView.ByEyePointAndTarget(eye, target);
             var view = (Autodesk.Revit.DB.View3D)v.InternalElement;
-            Assert.AreEqual(view.Name, AbstractView3D.DefaultViewName);
+            Assert.AreEqual(view.Name, View3D.DEFAULT_VIEW_NAME);
             Assert.False(view.CropBoxActive);
 
             return v;

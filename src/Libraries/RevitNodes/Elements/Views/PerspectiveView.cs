@@ -15,7 +15,7 @@ namespace Revit.Elements.Views
     /// A Revit View3D
     /// </summary>
     [RegisterForTrace]
-    public class PerspectiveView : AbstractView3D
+    public class PerspectiveView : View3D
     {
 
         #region Private constructors
