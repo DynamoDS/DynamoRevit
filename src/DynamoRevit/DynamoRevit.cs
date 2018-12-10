@@ -593,8 +593,6 @@ namespace Dynamo.Applications
         private static void InitializeAssemblies()
         {
             RevitAssemblyLoader.LoadAll();
-            AppDomain.CurrentDomain.AssemblyResolve +=
-                Analyze.Render.AssemblyHelper.ResolveAssemblies;
         }
 
         private static void InitializeDocumentManager(DynamoRevitCommandData commandData)
@@ -797,9 +795,6 @@ namespace Dynamo.Applications
 
             view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
             view.Closed -= OnDynamoViewClosed;
-
-            AppDomain.CurrentDomain.AssemblyResolve -=
-                Analyze.Render.AssemblyHelper.ResolveAssemblies;
 
             DynamoRevitApp.DynamoButtonEnabled = true;
 
