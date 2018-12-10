@@ -22,15 +22,12 @@ namespace Dynamo.Applications
 
             var nodesDirectory = Path.Combine(currentAssemblyDir, "nodes");
             var revitNodesDll = Path.Combine(currentAssemblyDir, "RevitNodes.dll");
-            var simpleRaaSDll = Path.Combine(currentAssemblyDir, "SimpleRaaS.dll");
 
             // Just making sure we are looking at the right level of nesting.
             if (!Directory.Exists(nodesDirectory))
                 throw new DirectoryNotFoundException(nodesDirectory);
             if (!File.Exists(revitNodesDll))
                 throw new FileNotFoundException(revitNodesDll);
-            if (!File.Exists(simpleRaaSDll))
-                throw new FileNotFoundException(simpleRaaSDll);
 
             // Add Revit-specific library paths for preloading.
             preloadLibraryPaths = new List<string>
@@ -49,8 +46,7 @@ namespace Dynamo.Applications
                 "Analysis.dll",
                 "GeometryColor.dll",
 
-                revitNodesDll,
-                simpleRaaSDll
+                revitNodesDll
             };
 
             // Add an additional node processing folder
