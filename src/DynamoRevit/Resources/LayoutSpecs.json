@@ -23,10 +23,6 @@
                   "inclusive": false
                 },
                 {
-                  "path": "SimpleRaaS.Analyze",
-                  "inclusive": false
-                },
-                {
                   "path": "Analyze.Render"
                 },
                 {

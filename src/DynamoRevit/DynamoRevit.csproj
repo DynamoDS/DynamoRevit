@@ -50,9 +50,6 @@
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\DynamoApplications.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoRaaSHelper">
-      <HintPath>$(DynamoExternPath)\DynamoRaaS\DynamoRaaSHelper.dll</HintPath>
-    </Reference>
     <Reference Include="DynamoServices">
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\net47\DynamoServices.dll</HintPath>
       <Private>False</Private>
@@ -205,16 +202,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "$(DynamoExternPath)\DynamoRaaS\RevitRaaS.dll.config" "$(OutputPath)"
-xcopy /Y "$(DynamoExternPath)\DynamoRaaS\DynamoRaaS.dll" "$(OutputPath)nodes\"
-xcopy /Y "$(DynamoExternPath)\DynamoRaaS\SimpleRaaS.dll" "$(OutputPath)"
-xcopy /Y "$(DynamoExternPath)\DynamoRaaS\JobMonitor.dll" "$(OutputPath)"
-xcopy /Y "$(DynamoExternPath)\DynamoRaaS\RevitRaaS.dll" "$(OutputPath)"
-xcopy /Y "$(DynamoExternPath)\DynamoRaaS\SDF.dll" "$(OutputPath)"
-xcopy /Y "$(DynamoExternPath)\DynamoRaaS\*_DynamoCustomization.xml" "$(OutputPath)"
-xcopy /Y "$(DynamoExternPath)\DynamoRaaS\SimpleRaas.xml" "$(OutputPath)en-US\"
-xcopy /Y "$(DynamoExternPath)\DynamoRaaS\en-US\RevitRaaS.resources.dll" "$(OutputPath)en-US\"
-xcopy /Y "$(DynamoExternPath)\DynamoRaaS\en-US\DynamoRaaS.resources.dll" "$(OutputPath)nodes\en-US\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
