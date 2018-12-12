@@ -63,10 +63,28 @@ namespace DynamoRevitVersionSelector.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dynamo_32x32 {
+        internal static System.Drawing.Bitmap dynamo_setting_32x32 {
             get {
-                object obj = ResourceManager.GetObject("dynamo_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("dynamo_setting_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamo {0} (current).
+        /// </summary>
+        internal static string DynamoCurrentVersionText {
+            get {
+                return ResourceManager.GetString("DynamoCurrentVersionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string DynamoVersionKeepClear {
+            get {
+                return ResourceManager.GetString("DynamoVersionKeepClear", resourceCulture);
             }
         }
         
@@ -98,20 +116,49 @@ namespace DynamoRevitVersionSelector.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Launches Dynamo {0}, to launch a different version of Dynamo you may need to restart Revit.
+        ///   Looks up a localized string similar to You need to restart Revit to apply this change.
         /// </summary>
-        internal static string DynamoVersionTooltip {
+        internal static string NeedToRestartRevit {
             get {
-                return ResourceManager.GetString("DynamoVersionTooltip", resourceCulture);
+                return ResourceManager.GetString("NeedToRestartRevit", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dynamo version {0} will be loaded after Revit restart..
+        ///   Looks up a localized string similar to Dynamo [{0}] is selected..
         /// </summary>
-        internal static string RestartMessage {
+        internal static string ProductLoaded {
             get {
-                return ResourceManager.GetString("RestartMessage", resourceCulture);
+                return ResourceManager.GetString("ProductLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamo [{0}] is selected.
+        ///
+        ///Please restart Revit to use it..
+        /// </summary>
+        internal static string ProductNeedToRestartRevit {
+            get {
+                return ResourceManager.GetString("ProductNeedToRestartRevit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version Selection.
+        /// </summary>
+        internal static string VersionSelectionBtnText {
+            get {
+                return ResourceManager.GetString("VersionSelectionBtnText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change active Dynamo version.
+        /// </summary>
+        internal static string VersionSelectionBtnToolTip {
+            get {
+                return ResourceManager.GetString("VersionSelectionBtnToolTip", resourceCulture);
             }
         }
         
@@ -122,15 +169,6 @@ namespace DynamoRevitVersionSelector.Properties {
         internal static string VersionSelectionContent {
             get {
                 return ResourceManager.GetString("VersionSelectionContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Visual Programming.
-        /// </summary>
-        internal static string VisualProgramming {
-            get {
-                return ResourceManager.GetString("VisualProgramming", resourceCulture);
             }
         }
     }
