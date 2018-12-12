@@ -88,7 +88,7 @@ the installer structure for DynamoCore and DynamoRevit has recently changed - if
 #### Testing latest master with Revit 2020
 * Install Revit 2020 - user Revit Beta Program
 * Build Dynamo master branch
-* Build DynamoRevit master branch. Make sure `dynamo.config` file, which will be in the `bin` folder, is pointing to the `bin` folder of Dynamo that was just built. Your config file should look like below. Note that there's a bug in the system where `dynamo.config` needs to be updated after a successful build
+* Build DynamoRevit master branch. Make sure `dynamo.config` file, which will be in the `bin` folder, is pointing to the `bin` folder of Dynamo that was just built. Your config file should look like below. Note that the `dynamo.config` needs to be updated after a successful build
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
