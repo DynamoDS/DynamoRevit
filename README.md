@@ -84,3 +84,32 @@ it's also possible that *transform_all.bat* is looking for a text templating eng
 
 ####Note####
 the installer structure for DynamoCore and DynamoRevit has recently changed - if you have trouble with these instructions please reach out to the Dynamo team for help.
+
+#### Testing latest master with Revit 2020
+* Install Revit 2020 - user Revit Beta Program
+* Build Dynamo master branch
+* Build DynamoRevit master branch. Make sure `dynamo.config` file, which will be in the `bin` folder, is pointing to the `bin` folder of Dynamo that was just built. Your config file should look like below. Note that there's a bug in the system where `dynamo.config` needs to be updated after a successful build
+```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <appSettings>
+     <add key="DynamoRuntime" value="C:\Workspace\GitHub\Dynamo\bin\AnyCPU\Debug"/>
+  </appSettings>
+</configuration>
+```
+* Remove/delete the DynamoForRevit addin folder from the following location:`C:\Program Files\Autodesk\Revit Preview Release\AddIns`
+* Now add a `Dynamo.addin` file to this location: `C:\ProgramData\Autodesk\Revit\Addins\2020`. The addin file looks like:
+```
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+<AddIn Type="Application">
+<Name>Dynamo For Revit</Name>
+<Assembly>"C:\Workspace\GitHub\DynamoRevit\bin\AnyCPU\Debug\Revit\DynamoRevitDS.dll"</Assembly>
+<AddInId>8D83C886-B739-4ACD-A9DB-1BC78F315B2B</AddInId>
+<FullClassName>Dynamo.Applications.DynamoRevitApp</FullClassName>
+<VendorId>ADSK</VendorId>
+<VendorDescription>Dynamo</VendorDescription>
+</AddIn>
+</RevitAddIns>
+```
+* Start Revit 2020 and check if you can load Dynamo
