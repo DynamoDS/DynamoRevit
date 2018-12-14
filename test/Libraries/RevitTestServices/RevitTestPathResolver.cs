@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using TestServices;
 
@@ -25,19 +24,15 @@ namespace RevitTestServices
             var assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var nodesDirectory = Path.Combine(assemblyDirectory, "nodes");
             var revitNodesDll = Path.Combine(assemblyDirectory, "RevitNodes.dll");
-            var simpleRaaSDll = Path.Combine(assemblyDirectory, "SimpleRaaS.dll");
 
             if (!Directory.Exists(nodesDirectory))
                 throw new DirectoryNotFoundException(nodesDirectory);
             if (!File.Exists(revitNodesDll))
                 throw new FileNotFoundException(revitNodesDll);
-            if (!File.Exists(simpleRaaSDll))
-                throw new FileNotFoundException(simpleRaaSDll);
 
             AddNodeDirectory(nodesDirectory);
             AddResolutionPath(assemblyDirectory);
             AddPreloadLibraryPath(revitNodesDll);
-            AddPreloadLibraryPath(simpleRaaSDll);
         }
     }
 }
