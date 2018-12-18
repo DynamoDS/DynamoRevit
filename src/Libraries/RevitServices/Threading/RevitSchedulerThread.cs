@@ -42,6 +42,9 @@ namespace RevitServices.Threading
                 return;
             }
 
+            if (revitApplication.ActiveUIDocument == null)
+                return;
+
             const bool waitIfTaskQueueIsEmpty = false;
             while (scheduler.ProcessNextTask(waitIfTaskQueueIsEmpty))
             {
