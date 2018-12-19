@@ -42,6 +42,7 @@ namespace RevitServices.Threading
                 return;
             }
 
+            // Don't run the graph if no active Revit doucment.
             if (revitApplication.ActiveUIDocument == null)
                 return;
 

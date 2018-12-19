@@ -19,7 +19,7 @@ namespace Dynamo.Applications.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -106,7 +106,7 @@ namespace Dynamo.Applications.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dynamo no longer has an active document. Please open a document..
+        ///   Looks up a localized string similar to Dynamo no longer has an active document and won&apos;t run the graph. Please open a document..
         /// </summary>
         public static string DocumentLostWarning {
             get {
