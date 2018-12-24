@@ -580,6 +580,7 @@ namespace DSRevitNodesUI
                 return new[] { AstFactory.BuildNullNode() };
 
             BuiltInCategory categoryId = (BuiltInCategory)Items[SelectedIndex].Item;
+            SelectedString = categoryId.ToString();
 
             var args = new List<AssociativeNode>
             {
