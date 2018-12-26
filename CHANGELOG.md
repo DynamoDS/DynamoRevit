@@ -1,3 +1,7 @@
+## 0.0.31
+* Set 5 tests to ignore because of DynamoRaaS removed.
+* Update DynamoCoreRuntime version from 2.1.0-beta6967 to 2.1.0-beta7186 in D4R's CICD.
+
 ## 0.0.30
 * Remove Simple RaaS from test base.
 * Update DynamoCoreRuntime version to resolve ASM upgrade - Libg_225_0_0.
