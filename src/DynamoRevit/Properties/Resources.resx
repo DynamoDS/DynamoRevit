@@ -127,7 +127,7 @@
     <value>Dynamo {0}.{1}</value>
   </data>
   <data name="DocumentLostWarning" xml:space="preserve">
-    <value>Dynamo no longer has an active document. Please open a document.</value>
+    <value>Dynamo no longer has an active document and won't run the graph. Please open a document.</value>
   </data>
   <data name="DocumentPointerMessage" xml:space="preserve">
     <value>Dynamo is now running on {0}.</value>

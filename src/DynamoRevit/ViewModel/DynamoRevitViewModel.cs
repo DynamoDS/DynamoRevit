@@ -80,6 +80,7 @@ namespace Dynamo.Applications.ViewModel
             var hsvm = (HomeWorkspaceViewModel)HomeSpaceViewModel;
             hsvm.CurrentNotificationLevel = NotificationLevel.Error;
             hsvm.CurrentNotificationMessage = Resources.DocumentLostWarning;
+            CloseHomeWorkspaceCommand.Execute(null);
         }
 
         private void model_RevitContextUnavailable()

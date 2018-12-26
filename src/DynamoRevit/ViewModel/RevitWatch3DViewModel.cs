@@ -96,7 +96,8 @@ namespace Dynamo.Applications.ViewModel
 
         private void Draw(NodeModel node = null)
         {
-            if (!Active) return;
+            // If there is no open Revit document, some nodes cannot be executed.
+            if (!Active || DocumentManager.Instance.CurrentDBDocument == null) return;
             IEnumerable<IGraphicItem> graphicItems = new List<IGraphicItem>();
 
             if (node != null)
