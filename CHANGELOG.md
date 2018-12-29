@@ -1,3 +1,7 @@
+
+* Upgrade DynamoCore version from 2.1.0-beta6967 to 2.1.0-beta7020
+* Disable the D4R upgrade function which would download higher Dynamo Version.
+
 ## 0.0.31
 * Set 5 tests to ignore because of DynamoRaaS removed.
 * Update DynamoCoreRuntime version from 2.1.0-beta6967 to 2.1.0-beta7186 in D4R's CICD.
