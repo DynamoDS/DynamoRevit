@@ -481,8 +481,7 @@ namespace Dynamo.Applications
             Version libGversion = findRevitASMVersion(asmLocation);
 
             var dynCorePath = DynamoRevitApp.DynamoCorePath;
-            var libGFolderName = string.Format("libg_{0}_{1}_{2}", libGversion.Major, libGversion.Minor, libGversion.Build);
-            var preloaderLocation = Path.Combine(dynCorePath, libGFolderName);
+            var preloaderLocation = DynamoShapeManager.Utilities.GetLibGPreloaderLocation(libGversion, dynCorePath);
 
             DynamoShapeManager.Utilities.PreloadAsmFromPath(preloaderLocation, asmLocation);
             return libGversion;
