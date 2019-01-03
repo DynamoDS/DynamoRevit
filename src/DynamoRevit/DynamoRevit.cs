@@ -477,13 +477,12 @@ namespace Dynamo.Applications
         internal static Version PreloadAsmFromRevit()
         {
             var asmLocation = AppDomain.CurrentDomain.BaseDirectory;
-
             Version libGversion = findRevitASMVersion(asmLocation);
-
             var dynCorePath = DynamoRevitApp.DynamoCorePath;
-            var libGFolderName = string.Format("libg_{0}_{1}_{2}", libGversion.Major, libGversion.Minor, libGversion.Build);
-            var preloaderLocation = Path.Combine(dynCorePath, libGFolderName);
-
+            // Get the corresponding libG preloader location for the target ASM loading version.
+            // If there is exact match preloader version to the target ASM version, use it, 
+            // otherwise use the closest below.
+            var preloaderLocation = DynamoShapeManager.Utilities.GetLibGPreloaderLocation(libGversion, dynCorePath);
             DynamoShapeManager.Utilities.PreloadAsmFromPath(preloaderLocation, asmLocation);
             return libGversion;
         }
