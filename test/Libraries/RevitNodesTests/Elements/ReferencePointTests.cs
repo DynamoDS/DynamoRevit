@@ -1,18 +1,12 @@
 ﻿using System.Linq;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
-
-using Revit.Elements;
 using NUnit.Framework;
-
+using Revit.Elements;
 using Revit.GeometryConversion;
-
 using RevitServices.Persistence;
-
 using RevitTestServices;
-
 using RTF.Framework;
-
 using Form = Revit.Elements.Form;
 using Line = Autodesk.DesignScript.Geometry.Line;
 using ModelCurve = Revit.Elements.ModelCurve;

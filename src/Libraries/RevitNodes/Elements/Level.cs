@@ -1,21 +1,13 @@
 ﻿using System;
 using System.Linq;
-
+using System.Runtime.Serialization;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-
-using DynamoServices;
-
 using DynamoUnits;
-
-
-using RevitServices.Elements;
+using Revit.Elements.InternalUtilities;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-
-using Revit.Elements.InternalUtilities;
-using Autodesk.DesignScript.Runtime;
-using System.Runtime.Serialization;
 
 namespace Revit.Elements
 {

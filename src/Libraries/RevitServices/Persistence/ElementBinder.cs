@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using Autodesk.Revit.DB;
-using DynamoServices;
-
-using ProtoCore;
-
 using Dynamo.Engine;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Nodes.ZeroTouch;
 using Dynamo.Graph.Workspaces;
+using DynamoServices;
+using ProtoCore;
 using RevitServices.Elements;
 
 namespace RevitServices.Persistence

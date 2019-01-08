@@ -1,9 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
 using System.Windows;
@@ -16,17 +17,16 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 using Dynamo.Applications.Properties;
+using Dynamo.Models;
 using RevitServices.Elements;
+using RevitServices.EventHandler;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using MessageBox = System.Windows.Forms.MessageBox;
-using Dynamo.Models;
-using RevitServices.EventHandler;
-using System.Collections;
 
 namespace Dynamo.Applications
 {
-    
+
 
     [Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual),
      Regeneration(RegenerationOption.Manual)]

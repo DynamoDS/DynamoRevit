@@ -1,10 +1,8 @@
 ﻿using System;
-using Revit.Elements;
 using NUnit.Framework;
+using Revit.Elements;
 using RevitServices.Persistence;
-
 using RevitTestServices;
-
 using RTF.Framework;
 
 namespace RevitNodesTests.Elements

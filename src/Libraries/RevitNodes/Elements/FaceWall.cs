@@ -3,10 +3,8 @@
 using Autodesk.Revit.DB;
 
 using DynamoServices;
-using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-using Curve = Autodesk.Revit.DB.Curve;
 
 namespace Revit.Elements
 {

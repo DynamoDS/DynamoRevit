@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Linq;
-
 using Autodesk.Revit.DB;
-
 using NUnit.Framework;
-
-using Revit.GeometryConversion;
-
-using RevitTestServices;
-
-using RTF.Framework;
 using Revit.Elements.InternalUtilities;
-
+using Revit.GeometryConversion;
+using RevitTestServices;
+using RTF.Framework;
 using Level = Revit.Elements.Level;
 
 namespace RevitNodesTests.Elements

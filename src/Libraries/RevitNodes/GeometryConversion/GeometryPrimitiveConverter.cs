@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Autodesk.Revit.DB;
 using Autodesk.DesignScript.Geometry;
-using RevitServices.Persistence;
-using Line = Autodesk.Revit.DB.Line;
-using System.ComponentModel;
 using Autodesk.DesignScript.Runtime;
+using Autodesk.Revit.DB;
 
 namespace Revit.GeometryConversion
 {

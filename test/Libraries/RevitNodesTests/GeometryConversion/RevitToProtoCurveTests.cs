@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using Revit.GeometryConversion;
 using NUnit.Framework;
-
+using Revit.GeometryConversion;
 using RevitTestServices;
-
 using RTF.Framework;
 
 namespace RevitNodesTests.GeometryConversion

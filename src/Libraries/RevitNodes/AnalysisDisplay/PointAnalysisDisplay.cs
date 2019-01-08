@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Runtime.Serialization;
 using Analysis;
-
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Analysis;
-
 using Revit.GeometryConversion;
-
-using RevitServices.Transactions;
-using View = Revit.Elements.Views.View;
-using RevitServices.Persistence;
-using System.Runtime.Serialization;
 using RevitServices.Elements;
-
+using RevitServices.Persistence;
+using RevitServices.Transactions;
 using Point = Autodesk.DesignScript.Geometry.Point;
+using View = Revit.Elements.Views.View;
 
 namespace Revit.AnalysisDisplay
 {

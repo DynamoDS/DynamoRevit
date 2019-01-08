@@ -10,7 +10,7 @@ using RevitServices.Persistence;
 using RevitServices.Transactions;
 
 namespace Revit.Elements
-{   
+{
     /// <summary>
     /// A Revit DividedPath
     /// </summary>

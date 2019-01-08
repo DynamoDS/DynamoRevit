@@ -1,16 +1,15 @@
 ﻿using System;
-using Revit.Elements;
-using NUnit.Framework;
-
-using RevitTestServices;
-using RTF.Framework;
-using Autodesk.DesignScript.Geometry;
-using RevitServices.Persistence;
-using System.Linq;
 using System.Collections.Generic;
-using RevitServices.Transactions;
+using System.Linq;
+using Autodesk.DesignScript.Geometry;
+using NUnit.Framework;
+using Revit.Elements;
 using Revit.GeometryConversion;
 using RevitServices.Materials;
+using RevitServices.Persistence;
+using RevitServices.Transactions;
+using RevitTestServices;
+using RTF.Framework;
 
 
 namespace RevitNodesTests.Elements

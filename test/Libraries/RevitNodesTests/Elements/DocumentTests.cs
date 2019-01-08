@@ -1,6 +1,5 @@
-﻿using Revit.Application;
-using NUnit.Framework;
-
+﻿using NUnit.Framework;
+using Revit.Application;
 using RevitTestServices;
 
 namespace RevitNodesTests.Elements

@@ -1,11 +1,11 @@
-﻿using RevitServices.Persistence;
-using Autodesk.DesignScript.Runtime;
-using RevitServices.Transactions;
-using DynamoServices;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using Autodesk.DesignScript.Runtime;
+using DynamoServices;
 using Revit.Schedules;
+using RevitServices.Persistence;
+using RevitServices.Transactions;
 
 namespace Revit.Elements.Views
 {

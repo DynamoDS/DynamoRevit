@@ -1,11 +1,8 @@
-﻿using System;
-using Revit.Elements;
+﻿using System.Linq;
 using NUnit.Framework;
+using Revit.Elements;
 using RevitTestServices;
 using RTF.Framework;
-using Autodesk.DesignScript.Geometry;
-using Revit.GeometryConversion;
-using System.Linq;
 
 namespace RevitNodesTests.Elements
 {

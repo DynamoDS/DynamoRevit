@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-using Microsoft.CSharp.RuntimeBinder;
-using Revit.GeometryConversion;
 using Revit.GeometryReferences;
-using Point = Autodesk.DesignScript.Geometry.Point;
 
 namespace Revit.GeometryConversion
 {

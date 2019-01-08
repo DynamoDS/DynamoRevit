@@ -1,6 +1,5 @@
-﻿using System;
+﻿using NUnit.Framework;
 using Revit.Elements;
-using NUnit.Framework;
 using RevitTestServices;
 using RTF.Framework;
 

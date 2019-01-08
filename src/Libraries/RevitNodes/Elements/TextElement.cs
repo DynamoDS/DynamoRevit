@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Reflection;
-using Autodesk.DesignScript.Interfaces;
-using Autodesk.Revit.DB;
-using Revit.GeometryConversion;
-using Revit.GeometryReferences;
-using RevitServices.Persistence;
-using Autodesk.DesignScript.Runtime;
-using DS = Autodesk.DesignScript.Geometry;
-using System.Windows.Media;
 using System.Windows;
-using System.Collections.Generic;
-using System.Linq;
+using System.Windows.Media;
+using Autodesk.DesignScript.Interfaces;
+using Autodesk.DesignScript.Runtime;
+using Autodesk.Revit.DB;
+using DS = Autodesk.DesignScript.Geometry;
 
 namespace Revit.Elements
 {

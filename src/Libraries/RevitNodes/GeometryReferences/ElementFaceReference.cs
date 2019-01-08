@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Autodesk.Revit.DB;
 using Microsoft.CSharp.RuntimeBinder;
-using RevitServices.Persistence;
 
 namespace Revit.GeometryReferences
 {

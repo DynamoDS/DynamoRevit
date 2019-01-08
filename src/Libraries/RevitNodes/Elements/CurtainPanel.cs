@@ -14,10 +14,10 @@ using Plane = Autodesk.DesignScript.Geometry.Plane;
 
 namespace Revit.Elements
 {
-   /// <summary>
-   /// A Revit CurtainPanel
-   /// </summary>
-   public class CurtainPanel : AbstractFamilyInstance
+    /// <summary>
+    /// A Revit CurtainPanel
+    /// </summary>
+    public class CurtainPanel : AbstractFamilyInstance
    {
       #region Properties
 

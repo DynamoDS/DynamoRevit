@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
@@ -10,6 +10,7 @@ using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 using DSIronPython;
 using Dynamo.Graph.Nodes;
+using Dynamo.Graph.Nodes.ZeroTouch;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Interfaces;
 using Dynamo.Logging;
@@ -18,9 +19,9 @@ using Dynamo.Scheduler;
 using Dynamo.Updates;
 using Dynamo.Utilities;
 using Greg;
+using ProtoCore;
 using Revit.Elements;
 using RevitServices.Elements;
-
 using RevitServices.Materials;
 using RevitServices.Persistence;
 using RevitServices.Threading;
@@ -28,8 +29,6 @@ using RevitServices.Transactions;
 using Category = Revit.Elements.Category;
 using Element = Autodesk.Revit.DB.Element;
 using View = Autodesk.Revit.DB.View;
-using ProtoCore;
-using Dynamo.Graph.Nodes.ZeroTouch;
 
 namespace Dynamo.Applications.Models
 {

@@ -5,19 +5,14 @@ using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-
-using DynamoServices;
-
-using DynamoUnits;
 using Revit.GeometryConversion;
 using Revit.GeometryReferences;
+using RevitServices.Elements;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using Color = DSCore.Color;
-using Area = DynamoUnits.Area;
 using Curve = Autodesk.DesignScript.Geometry.Curve;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
-using RevitServices.Elements;
 
 namespace Revit.Elements
 {

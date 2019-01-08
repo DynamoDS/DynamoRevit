@@ -1,14 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
-using Autodesk.Revit.Creation;
 using Autodesk.Revit.DB;
 
 using NUnit.Framework;
 
 using Revit.Elements;
-using Revit.GeometryConversion;
 using Revit.GeometryReferences;
 
 using RevitServices.Persistence;

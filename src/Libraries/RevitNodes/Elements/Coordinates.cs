@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Autodesk.DesignScript.Geometry;
-using Autodesk.DesignScript.Runtime;
-using RVT = Autodesk.Revit.DB;
-using RevitServices.Persistence;
-using RevitServices.Transactions;
-using Dynamo.Utilities;
-using Dynamo.Models;
 using Revit.GeometryConversion;
+using RVT = Autodesk.Revit.DB;
 
 namespace Revit.Elements
 {

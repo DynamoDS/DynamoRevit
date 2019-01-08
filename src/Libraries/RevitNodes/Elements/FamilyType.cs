@@ -2,14 +2,8 @@
 using System.Linq;
 using Autodesk.Revit.DB;
 using DynamoServices;
-using RevitServices.Persistence;
 using Revit.GeometryConversion;
-using RevitServices.Transactions;
-using DynamoUnits;
-using Revit.Elements.InternalUtilities;
-
-using Point = Autodesk.DesignScript.Geometry.Point;
-using Vector = Autodesk.DesignScript.Geometry.Vector;
+using RevitServices.Persistence;
 
 namespace Revit.Elements
 {

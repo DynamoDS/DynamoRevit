@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -6,7 +7,6 @@ using System.Security.AccessControl;
 using System.Security.Principal;
 using Autodesk.RevitAddIns;
 using DynamoInstallDetective;
-using System.Collections.Generic;
 
 namespace DynamoAddinGenerator
 {

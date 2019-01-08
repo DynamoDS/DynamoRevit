@@ -1,5 +1,4 @@
-﻿using System;
-using Autodesk.DesignScript.Runtime;
+﻿using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Revit.Elements.Views;
 using View3D = Revit.Elements.Views.View3D;

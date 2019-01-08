@@ -18,8 +18,6 @@ License along with this library
 */
 #endregion
 
-using System;
-using System.Collections.Generic;
 using Autodesk.Revit.DB;
 //using Microsoft.Xna.Framework;
 

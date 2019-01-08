@@ -4,7 +4,6 @@ using System.Linq;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using RevitServices.Elements;
-using RevitServices.Threading;
 using RevitServices.Transactions;
 
 namespace RevitServices.Persistence

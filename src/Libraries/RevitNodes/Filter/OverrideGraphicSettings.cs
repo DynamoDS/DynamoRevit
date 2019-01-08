@@ -1,5 +1,4 @@
-﻿using Autodesk.Revit.DB;
-using Autodesk.DesignScript.Runtime;
+﻿using Autodesk.DesignScript.Runtime;
 
 namespace Revit.Filter
 {
