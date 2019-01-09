@@ -581,7 +581,7 @@ namespace DSRevitNodesUI
         /// <returns></returns>
         protected override string GetSelectedStringFromItem(DynamoDropDownItem item)
         {
-            return item.Item.ToString();
+            return item == null ? string.Empty : item.Item.ToString();
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
