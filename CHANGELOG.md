@@ -1,6 +1,9 @@
+## 0.0.33
+* Compile DynamoRevit with the correct ProtoGeometry version
+* DropDown Node in Dynamo now serialize SelectedString for all the dropdown nodes, among which categories node serializae interal category id
+
 ## 0.0.32
 * Consume the new API DynamoShapeManager.Utilities.GetLibGPreloaderLocation()
-* Compile DynamoRevit with the correct ProtoGeometry version
 * Upgrade DynamoCore version from 2.1.0-beta6967 to 2.1.0-beta7020
 * Disable the D4R upgrade function which would download higher Dynamo Version.
 

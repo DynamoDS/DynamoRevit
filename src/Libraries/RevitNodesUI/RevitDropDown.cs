@@ -573,6 +573,17 @@ namespace DSRevitNodesUI
             return SelectionState.Restore;
         }
 
+        /// <summary>
+        /// Override the default behavior to serialize internal category id 
+        /// instead of category name.
+        /// </summary>
+        /// <param name="item">Selected DynamoDropDownItem</param>
+        /// <returns></returns>
+        protected override string GetSelectedStringFromItem(DynamoDropDownItem item)
+        {
+            return item == null ? string.Empty : item.Item.ToString();
+        }
+
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             //Some of the legacy categories which were not working before will now be out of index.
