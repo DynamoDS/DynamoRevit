@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
-using SystemTestServices;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
@@ -22,6 +21,7 @@ using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
 using RTF.Applications;
+using SystemTestServices;
 using TestServices;
 
 namespace RevitTestServices

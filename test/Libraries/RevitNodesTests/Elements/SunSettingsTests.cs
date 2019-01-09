@@ -1,13 +1,9 @@
 ﻿using Autodesk.DesignScript.Geometry;
-using Revit.Elements;
 using NUnit.Framework;
+using Revit.Elements;
 using RevitServices.Persistence;
-
 using RevitTestServices;
-
 using RTF.Framework;
-using Revit.GeometryConversion;
-using RevitNodesTests;
 
 namespace RevitNodesTests.Elements
 {

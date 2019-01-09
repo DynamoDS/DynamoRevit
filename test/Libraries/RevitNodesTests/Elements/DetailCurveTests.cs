@@ -1,8 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Autodesk.DesignScript.Geometry;
-using Revit.Elements;
 using NUnit.Framework;
+using Revit.Elements;
 using RevitTestServices;
 using RTF.Framework;
 

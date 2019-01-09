@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
-using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Revit.GeometryConversion;
-using Revit.GeometryReferences;
 using RevitServices.Persistence;
-using Face = Autodesk.DesignScript.Geometry.Face;
 
 namespace Revit.GeometryObjects
 {

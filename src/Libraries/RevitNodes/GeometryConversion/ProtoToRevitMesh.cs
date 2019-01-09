@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-using RevitServices.Materials;
-using Autodesk.DesignScript.Geometry;
 using Dynamo.Visualization;
+using RevitServices.Materials;
 
 namespace Revit.GeometryConversion
 {

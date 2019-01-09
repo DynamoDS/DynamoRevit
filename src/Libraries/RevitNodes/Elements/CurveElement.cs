@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Reflection;
 using Autodesk.DesignScript.Interfaces;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Revit.GeometryConversion;
 using Revit.GeometryReferences;
-using RevitServices.Persistence;
-using Autodesk.DesignScript.Runtime;
 namespace Revit.Elements
 {
     public abstract class CurveElement : Element, IGraphicItem

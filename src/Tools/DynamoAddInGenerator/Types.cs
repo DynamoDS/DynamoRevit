@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using Autodesk.RevitAddIns;
-using DynamoInstallDetective;
 
 namespace DynamoAddinGenerator
 {

@@ -1,10 +1,10 @@
-﻿using Autodesk.Revit.DB;
+﻿using System;
+using Autodesk.Revit.DB;
 using NUnit.Framework;
 using Revit.Elements.InternalUtilities;
 using Revit.GeometryConversion;
 using RevitTestServices;
 using RTF.Framework;
-using System;
 using FamilyInstance = Revit.Elements.FamilyInstance;
 using FamilyType = Revit.Elements.FamilyType;
 using Point = Autodesk.DesignScript.Geometry.Point;

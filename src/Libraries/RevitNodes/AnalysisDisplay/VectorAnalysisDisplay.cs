@@ -8,8 +8,6 @@ using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Analysis;
 
-using Dynamo.Properties;
-
 using Revit.GeometryConversion;
 
 using RevitServices.Transactions;

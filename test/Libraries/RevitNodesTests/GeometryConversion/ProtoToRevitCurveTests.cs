@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Autodesk.DesignScript.Geometry;
-using Revit.GeometryConversion;
 using NUnit.Framework;
-
+using Revit.GeometryConversion;
 using RevitTestServices;
-
 using RTF.Framework;
 using Point = Autodesk.DesignScript.Geometry.Point;
 

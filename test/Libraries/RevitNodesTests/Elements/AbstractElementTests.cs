@@ -2,8 +2,6 @@
 
 using RevitServices.Persistence;
 
-using RevitNodesTests;
-
 using RevitTestServices;
 
 using RTF.Framework;

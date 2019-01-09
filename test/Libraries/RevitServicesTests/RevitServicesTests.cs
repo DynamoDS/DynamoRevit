@@ -1,9 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Soap;
 using Autodesk.Revit.DB;
 using NUnit.Framework;
-using System;
 using RevitServices.Elements;
 using RevitServices.Materials;
 using RevitServices.Persistence;

@@ -1,9 +1,7 @@
 ﻿using System;
 using Autodesk.DesignScript.Runtime;
 using DynamoServices;
-using System.Collections.Generic;
 using Revit.GeometryConversion;
-using Revit.GeometryReferences;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 

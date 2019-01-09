@@ -1,10 +1,6 @@
-﻿using Autodesk.Revit.DB;
+﻿using System.Linq;
+using Autodesk.Revit.DB;
 using RevitServices.Transactions;
-using System.Collections.Generic;
-using RevitServices.Persistence;
-using System.Linq;
-using Autodesk.DesignScript.Runtime;
-using Revit.GeometryConversion;
 
 namespace Revit.Elements
 {

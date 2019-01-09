@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Analysis;
-
 using DynamoUnits;
-
 using RevitServices.Elements;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-using Autodesk.DesignScript.Runtime;
 
 namespace Revit.AnalysisDisplay
 {

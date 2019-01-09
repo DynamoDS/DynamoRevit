@@ -1,15 +1,10 @@
 ﻿using System.Linq;
-
 using Autodesk.Revit.DB;
-
-using Revit.Elements;
 using NUnit.Framework;
+using Revit.Elements;
 using RevitServices.Persistence;
-
 using RevitTestServices;
-
 using RTF.Framework;
-
 using Family = Revit.Elements.Family;
 using FamilyType = Revit.Elements.FamilyType;
 

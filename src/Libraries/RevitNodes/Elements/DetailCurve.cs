@@ -1,7 +1,4 @@
 ﻿using System;
-using Autodesk.Revit.DB;
-using DynamoServices;
-using Autodesk.DesignScript.Runtime;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;

@@ -8,10 +8,10 @@ using RevitServices.Persistence;
 
 namespace Revit.Elements
 {
-   /// <summary>
-   /// A Revit Mullion
-   /// </summary>
-   public class Mullion : AbstractFamilyInstance
+    /// <summary>
+    /// A Revit Mullion
+    /// </summary>
+    public class Mullion : AbstractFamilyInstance
    {
       #region Properties
       /// <summary>

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-using RevitServices.Persistence;
 using Revit.GeometryConversion;
-using RevitServices.Transactions;
+using RevitServices.Persistence;
 
 namespace Revit.Elements.InternalUtilities
 {

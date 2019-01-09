@@ -1,11 +1,9 @@
 ﻿using System;
-using Autodesk.DesignScript.Geometry;
-using Revit.Elements;
-using NUnit.Framework;
 using System.Collections.Generic;
-using RevitTestServices;
+using NUnit.Framework;
+using Revit.Elements;
 using RevitServices.Persistence;
-using System.Linq;
+using RevitTestServices;
 using RTF.Framework;
 
 namespace RevitNodesTests.Elements

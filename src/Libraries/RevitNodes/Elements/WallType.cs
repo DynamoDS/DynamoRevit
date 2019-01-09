@@ -1,8 +1,5 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
-using System.Windows.Markup;
-using Autodesk.DesignScript.Runtime;
 using RevitServices.Persistence;
 
 namespace Revit.Elements

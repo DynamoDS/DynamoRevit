@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
-using RTF.Framework;
+using Revit.Elements;
 using Revit.Elements.Views;
 using RevitServices.Persistence;
 using RevitTestServices;
-using Revit.Elements;
+using RTF.Framework;
 
 namespace RevitNodesTests.Elements.Views
 {

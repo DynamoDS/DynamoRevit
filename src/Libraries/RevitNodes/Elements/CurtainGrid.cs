@@ -9,10 +9,10 @@ using RevitServices.Persistence;
 
 namespace Revit.Elements
 {
-   /// <summary>
-   /// A Revit CurtainGrid
-   /// </summary>
-   internal class CurtainGrid : Element
+    /// <summary>
+    /// A Revit CurtainGrid
+    /// </summary>
+    internal class CurtainGrid : Element
    {
       #region Properties
 

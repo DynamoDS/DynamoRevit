@@ -1,21 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Analysis;
-
-using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Analysis;
-
 using Revit.GeometryConversion;
-
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-
+using Surface = Autodesk.DesignScript.Geometry.Surface;
 using UV = Autodesk.Revit.DB.UV;
 using View = Revit.Elements.Views.View;
-using Surface = Autodesk.DesignScript.Geometry.Surface;
 
 namespace Revit.AnalysisDisplay
 {

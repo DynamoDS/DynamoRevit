@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Autodesk.Revit.DB;
-
 using DynamoServices;
-
+using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-
-using Revit.GeometryConversion;
 
 namespace Revit.Elements
 {
