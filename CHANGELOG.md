@@ -1,3 +1,6 @@
+## 0.0.34
+* Update version for CICD.
+
 ## 0.0.33
 * Compile DynamoRevit with the correct ProtoGeometry version
 * DropDown Node in Dynamo now serialize SelectedString for all the dropdown nodes, among which categories node serializae interal category id
