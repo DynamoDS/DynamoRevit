@@ -1,3 +1,6 @@
+## 0.0.35
+* Consume the final DynamoCore 2.1 nugets
+
 ## 0.0.34
 * Update version for CICD.
 
