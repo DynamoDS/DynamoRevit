@@ -1,3 +1,6 @@
+## 0.0.37
+* Consume the version 2.1.0.7464 of DynamoCoreRuntime in D4R's CICD
+
 ## 0.0.36
 * Consume the version 2.1.0.7455 of DynamoCoreRuntime in D4R's CICD
 
