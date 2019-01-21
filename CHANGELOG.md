@@ -1,3 +1,6 @@
+## 0.0.38
+* Consume the version 2.1.0.7500 of DynamoCoreRuntime in D4R's CICD resolve OpenIfSaved API for DynamoPlayer.
+
 ## 0.0.37
 * Consume the version 2.1.0.7464 of DynamoCoreRuntime in D4R's CICD
 
