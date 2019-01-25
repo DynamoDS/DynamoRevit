@@ -21,7 +21,7 @@ node('D4R') {
     stage('Revit API Download') {
       echo "RevitAPI and RevitAPIUI download and extract ..."
       try {
-        bat batFolder + '\\' + 'RevitAPInuGet.bat'
+        bat batFolder + '\\' + 'RevitAPInuGet.bat 2020'
       } catch(err) {
         echo "RevitAPI or RevitAPIUI Download or Extract Error: $err"
         currentBuild.result = 'FAILURE'
