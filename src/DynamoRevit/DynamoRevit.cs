@@ -499,20 +499,19 @@ namespace Dynamo.Applications
         /// <returns></returns>
         internal static Version PreloadLibGVersion(string preloaderLocation)
         {
-            preloaderLocation = preloaderLocation.Substring(preloaderLocation.LastIndexOf('\\') + 1);
+            preloaderLocation = new DirectoryInfo(preloaderLocation).Name;
             var regExp = new Regex(@"^libg_(\d\d\d)_(\d)_(\d)$", RegexOptions.IgnoreCase);
-            {
-                var match = regExp.Match(preloaderLocation);
-                if (match.Groups.Count == 4)
-                {
-                    return new Version(
-                        Convert.ToInt32(match.Groups[1].Value),
-                        Convert.ToInt32(match.Groups[2].Value),
-                        Convert.ToInt32(match.Groups[3].Value));
-                }
 
-                return new Version();
+            var match = regExp.Match(preloaderLocation);
+            if (match.Groups.Count == 4)
+            {
+                return new Version(
+                    Convert.ToInt32(match.Groups[1].Value),
+                    Convert.ToInt32(match.Groups[2].Value),
+                    Convert.ToInt32(match.Groups[3].Value));
             }
+
+            return new Version();
         }
 
         /// <summary>
