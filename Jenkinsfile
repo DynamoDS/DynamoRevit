@@ -10,7 +10,7 @@ node('D4R') {
     stage('Checkout') {
       echo "Checkout ..."
       try {        
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '../DynamoRevit'] , [$class: 'CleanBeforeCheckout'], [$class: 'GitLFSPull']], gitTool: 'default', submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'aecbuild', url: 'https://git.autodesk.com/Dynamo/DynamoRevit.git']]])        
+        checkout([$class: 'GitSCM', branches: [[name: '*/RC2.1.0_Revit2020']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '../DynamoRevit'] , [$class: 'CleanBeforeCheckout'], [$class: 'GitLFSPull']], gitTool: 'default', submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'aecbuild', url: 'https://git.autodesk.com/Dynamo/DynamoRevit.git']]])        
       } catch(err) {
         echo "Git Checkout Failed: $err"
         currentBuild.result = 'FAILURE'
