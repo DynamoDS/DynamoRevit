@@ -477,14 +477,41 @@ namespace Dynamo.Applications
         internal static Version PreloadAsmFromRevit()
         {
             var asmLocation = AppDomain.CurrentDomain.BaseDirectory;
-            Version libGversion = findRevitASMVersion(asmLocation);
+            Version libGVersion = findRevitASMVersion(asmLocation);
             var dynCorePath = DynamoRevitApp.DynamoCorePath;
             // Get the corresponding libG preloader location for the target ASM loading version.
             // If there is exact match preloader version to the target ASM version, use it, 
             // otherwise use the closest below.
-            var preloaderLocation = DynamoShapeManager.Utilities.GetLibGPreloaderLocation(libGversion, dynCorePath);
+            var preloaderLocation = DynamoShapeManager.Utilities.GetLibGPreloaderLocation(libGVersion, dynCorePath);
+
+            // [Tech Debt] (Will refactor the code later)
+            // The LibG version maybe different in Dynamo and Revit, using the one which is in Dynamo.
+            Version preLoadLibGVersion = PreloadLibGVersion(preloaderLocation);
             DynamoShapeManager.Utilities.PreloadAsmFromPath(preloaderLocation, asmLocation);
-            return libGversion;
+            return preLoadLibGVersion;
+        }
+
+        // [Tech Debt] (Will refactor the code later)
+        /// <summary>
+        /// Return the preload version of LibG.
+        /// </summary>
+        /// <param name="preloaderLocation"></param>
+        /// <returns></returns>
+        internal static Version PreloadLibGVersion(string preloaderLocation)
+        {
+            preloaderLocation = new DirectoryInfo(preloaderLocation).Name;
+            var regExp = new Regex(@"^libg_(\d\d\d)_(\d)_(\d)$", RegexOptions.IgnoreCase);
+
+            var match = regExp.Match(preloaderLocation);
+            if (match.Groups.Count == 4)
+            {
+                return new Version(
+                    Convert.ToInt32(match.Groups[1].Value),
+                    Convert.ToInt32(match.Groups[2].Value),
+                    Convert.ToInt32(match.Groups[3].Value));
+            }
+
+            return new Version();
         }
 
         /// <summary>
