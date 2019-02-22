@@ -104,7 +104,7 @@ namespace DSRevitNodesUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             // If there are no elements in the dropdown or the selected Index is invalid return a Null node.
-            if(!IsItemOrSelectedIndexValid(Properties.Resources.NoTypesFound,Properties.Resources.None))
+            if(!CanBuildOutputAst(Properties.Resources.NoTypesFound,Properties.Resources.None))
                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
 
             // Cast the selected object to a Revit Element and get its Id
@@ -194,7 +194,7 @@ namespace DSRevitNodesUI
             }
 
             // If there are no elements in the dropdown or the selected Index is invalid return a Null node.
-            if(!IsItemOrSelectedIndexValid(Properties.Resources.NoTypesFound,Properties.Resources.None))
+            if(!CanBuildOutputAst(Properties.Resources.NoTypesFound,Properties.Resources.None))
                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
 
             // get the selected items name
