@@ -197,6 +197,14 @@ namespace DSRevitNodesUI
                 }
             }
 
+            // If there are no elements in the dropdown or the selected Index is invalid return a Null node.
+            if (Items.Count == 0 ||
+            Items[0].Name == Properties.Resources.NoTypesFound ||
+            SelectedIndex == -1 || Items[SelectedIndex].Name == Properties.Resources.None)
+            {
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+            }
+
             // get the selected items name
             var stringNode = AstFactory.BuildStringNode((string)Items[SelectedIndex].Name);
 
