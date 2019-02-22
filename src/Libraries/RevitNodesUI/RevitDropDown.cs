@@ -63,13 +63,19 @@ namespace DSRevitNodesUI
             base.Dispose();
         }
 
-        public Boolean CanBuildOutputAst(string itemValue = null, string selectedValue = null)
+        /// <summary>
+        /// whether it have valid Enumeration values to the output
+        /// </summary>
+        /// <param name="itemValueToIgnore"></param>
+        /// <param name="selectedValueToIgnore"></param>
+        /// <returns>true is that there are valid values to output,false is that only a null value to output</returns>
+        public Boolean CanBuildOutputAst(string itemValueToIgnore = null, string selectedValueToIgnore = null)
         {
             if(Items.Count == 0 || SelectedIndex < 0)
                 return false;
-            if (!string.IsNullOrEmpty(itemValue) && Items[0].Name == itemValue) 
+            if (!string.IsNullOrEmpty(itemValueToIgnore) && Items[0].Name == itemValueToIgnore) 
                 return false;
-            if (!string.IsNullOrEmpty(selectedValue) && Items[SelectedIndex].Name == selectedValue)
+            if (!string.IsNullOrEmpty(selectedValueToIgnore) && Items[SelectedIndex].Name == selectedValueToIgnore)
                 return false;
             return true;
         }
@@ -121,7 +127,7 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if(!CanBuildOutputAst(NO_FAMILY_TYPES,null))
+            if(!CanBuildOutputAst(NO_FAMILY_TYPES))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
             
             var args = new List<AssociativeNode>
@@ -270,7 +276,7 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if(!CanBuildOutputAst(noFamilyParameters,null))
+            if(!CanBuildOutputAst(noFamilyParameters))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
             
             return new[] {AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildStringNode((string)Items[SelectedIndex].Item)) };
@@ -393,7 +399,7 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if(!CanBuildOutputAst(Properties.Resources.NoFloorTypesAvailable,null))
+            if(!CanBuildOutputAst(Properties.Resources.NoFloorTypesAvailable))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
             
             var args = new List<AssociativeNode>
@@ -443,7 +449,7 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if(!CanBuildOutputAst(Properties.Resources.NoWallTypesAvailable, null))
+            if(!CanBuildOutputAst(Properties.Resources.NoWallTypesAvailable))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
             
             var args = new List<AssociativeNode>
@@ -498,7 +504,7 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if(!CanBuildOutputAst(Properties.Resources.NoWallTypesAvailable, null))
+            if(!CanBuildOutputAst(Properties.Resources.NoWallTypesAvailable))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
             
             var args = new List<AssociativeNode>
@@ -706,7 +712,7 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if(!CanBuildOutputAst(noLevels, null))
+            if(!CanBuildOutputAst(noLevels))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
             
             var node = AstFactory.BuildFunctionCall(
@@ -768,7 +774,7 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if(!CanBuildOutputAst(noTypesMessage, null))
+            if(!CanBuildOutputAst(noTypesMessage))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
             
             var node = AstFactory.BuildFunctionCall(
