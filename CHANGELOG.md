@@ -1,3 +1,5 @@
+* Add CanBuildOutputAst function to RevitDropDownBase for judging whether it have valid Enumeration values to the output in dropdown list
+
 ## 0.1.0
 * The version of master branch will be start with 0.1.x, and Revit2020 branch will still be 0.0.xx.
 * LibG should be more version compatible.
