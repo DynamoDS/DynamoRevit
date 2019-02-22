@@ -62,6 +62,23 @@ namespace DSRevitNodesUI
             DynamoRevitApp.EventHandlerProxy.DocumentOpened -= Controller_RevitDocumentChanged;
             base.Dispose();
         }
+
+        /// <summary>
+        /// whether it have valid Enumeration values to the output
+        /// </summary>
+        /// <param name="itemValueToIgnore"></param>
+        /// <param name="selectedValueToIgnore"></param>
+        /// <returns>true is that there are valid values to output,false is that only a null value to output</returns>
+        public Boolean CanBuildOutputAst(string itemValueToIgnore = null, string selectedValueToIgnore = null)
+        {
+            if(Items.Count == 0 || SelectedIndex < 0)
+                return false;
+            if (!string.IsNullOrEmpty(itemValueToIgnore) && Items[0].Name == itemValueToIgnore) 
+                return false;
+            if (!string.IsNullOrEmpty(selectedValueToIgnore) && Items[SelectedIndex].Name == selectedValueToIgnore)
+                return false;
+            return true;
+        }
     }
 
     [NodeName("Family Types")]
@@ -110,13 +127,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 ||
-                Items[0].Name == NO_FAMILY_TYPES ||
-                SelectedIndex == -1)
-            {
+            if(!CanBuildOutputAst(NO_FAMILY_TYPES))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             var args = new List<AssociativeNode>
             {
                 AstFactory.BuildStringNode(((FamilySymbol) Items[SelectedIndex].Item).Family.Name),
@@ -263,13 +276,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 ||
-                Items[0].Name == noFamilyParameters ||
-                SelectedIndex == -1)
-            {
+            if(!CanBuildOutputAst(noFamilyParameters))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             return new[] {AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildStringNode((string)Items[SelectedIndex].Item)) };
         }
 
@@ -390,13 +399,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 || 
-                Items[0].Name == Properties.Resources.NoFloorTypesAvailable ||
-                SelectedIndex == -1)
-            {
+            if(!CanBuildOutputAst(Properties.Resources.NoFloorTypesAvailable))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             var args = new List<AssociativeNode>
             {
                 AstFactory.BuildStringNode(((Autodesk.Revit.DB.FloorType) Items[SelectedIndex].Item).Name)
@@ -444,13 +449,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 ||
-                Items[0].Name == Properties.Resources.NoWallTypesAvailable ||
-                SelectedIndex == -1)
-            {
+            if(!CanBuildOutputAst(Properties.Resources.NoWallTypesAvailable))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             var args = new List<AssociativeNode>
             {
                 AstFactory.BuildStringNode(((Autodesk.Revit.DB.WallType) Items[SelectedIndex].Item).Name)
@@ -503,13 +504,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 ||
-                Items[0].Name == Properties.Resources.NoWallTypesAvailable ||
-                SelectedIndex == -1)
-            {
+            if(!CanBuildOutputAst(Properties.Resources.NoWallTypesAvailable))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             var args = new List<AssociativeNode>
             {
                 AstFactory.BuildStringNode(((Revit.Elements.PerformanceAdviserRule) Items[SelectedIndex].Item).RuleId.ToString())
@@ -715,13 +712,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 ||
-                Items[0].Name == noLevels ||
-                SelectedIndex == -1)
-            {
+            if(!CanBuildOutputAst(noLevels))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             var node = AstFactory.BuildFunctionCall(
                 "Revit.Elements.ElementSelector",
                 "ByElementId",
@@ -781,13 +774,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 ||
-                Items[0].Name == noTypesMessage ||
-                SelectedIndex == -1)
-            {
+            if(!CanBuildOutputAst(noTypesMessage))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             var node = AstFactory.BuildFunctionCall(
                 "Revit.Elements.ElementSelector",
                 "ByElementId",
@@ -913,8 +902,7 @@ namespace DSRevitNodesUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             AssociativeNode node;
-
-            if (SelectedIndex == -1)
+            if (!CanBuildOutputAst())
             {
                 node = AstFactory.BuildNullNode();
             }
