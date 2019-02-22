@@ -104,12 +104,8 @@ namespace DSRevitNodesUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             // If there are no elements in the dropdown or the selected Index is invalid return a Null node.
-            if (Items.Count == 0 ||
-            Items[0].Name == Properties.Resources.NoTypesFound ||
-            SelectedIndex == -1 || Items[SelectedIndex].Name == Properties.Resources.None)
-            {
-                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
+            if(!IsItemOrSelectedIndexValid(Properties.Resources.NoTypesFound,Properties.Resources.None))
+               return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
 
             // Cast the selected object to a Revit Element and get its Id
             Autodesk.Revit.DB.ElementId Id = ((Autodesk.Revit.DB.Element)Items[SelectedIndex].Item).Id;
@@ -198,12 +194,8 @@ namespace DSRevitNodesUI
             }
 
             // If there are no elements in the dropdown or the selected Index is invalid return a Null node.
-            if (Items.Count == 0 ||
-            Items[0].Name == Properties.Resources.NoTypesFound ||
-            SelectedIndex == -1 || Items[SelectedIndex].Name == Properties.Resources.None)
-            {
-                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
+            if(!IsItemOrSelectedIndexValid(Properties.Resources.NoTypesFound,Properties.Resources.None))
+               return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
 
             // get the selected items name
             var stringNode = AstFactory.BuildStringNode((string)Items[SelectedIndex].Name);

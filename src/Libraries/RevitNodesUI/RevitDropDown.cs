@@ -62,6 +62,17 @@ namespace DSRevitNodesUI
             DynamoRevitApp.EventHandlerProxy.DocumentOpened -= Controller_RevitDocumentChanged;
             base.Dispose();
         }
+
+        public Boolean IsItemOrSelectedIndexValid(string itemValue = null, string selectedValue = null)
+        {
+            if(Items.Count == 0 || SelectedIndex < 0)
+                return false;
+            if (string.IsNullOrEmpty(itemValue) && Items[0].Name == itemValue) 
+                return false;
+            if (string.IsNullOrEmpty(selectedValue) && Items[SelectedIndex].Name == selectedValue)
+                return false;
+            return true;
+        }
     }
 
     [NodeName("Family Types")]
@@ -110,13 +121,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 ||
-                Items[0].Name == NO_FAMILY_TYPES ||
-                SelectedIndex == -1)
-            {
+            if(!IsItemOrSelectedIndexValid(NO_FAMILY_TYPES,null))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             var args = new List<AssociativeNode>
             {
                 AstFactory.BuildStringNode(((FamilySymbol) Items[SelectedIndex].Item).Family.Name),
@@ -263,13 +270,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 ||
-                Items[0].Name == noFamilyParameters ||
-                SelectedIndex == -1)
-            {
+            if(!IsItemOrSelectedIndexValid(noFamilyParameters,null))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             return new[] {AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildStringNode((string)Items[SelectedIndex].Item)) };
         }
 
@@ -390,13 +393,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 || 
-                Items[0].Name == Properties.Resources.NoFloorTypesAvailable ||
-                SelectedIndex == -1)
-            {
+            if(!IsItemOrSelectedIndexValid(Properties.Resources.NoFloorTypesAvailable,null))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             var args = new List<AssociativeNode>
             {
                 AstFactory.BuildStringNode(((Autodesk.Revit.DB.FloorType) Items[SelectedIndex].Item).Name)
@@ -444,13 +443,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 ||
-                Items[0].Name == Properties.Resources.NoWallTypesAvailable ||
-                SelectedIndex == -1)
-            {
+            if(!IsItemOrSelectedIndexValid(Properties.Resources.NoWallTypesAvailable, null))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             var args = new List<AssociativeNode>
             {
                 AstFactory.BuildStringNode(((Autodesk.Revit.DB.WallType) Items[SelectedIndex].Item).Name)
@@ -503,13 +498,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 ||
-                Items[0].Name == Properties.Resources.NoWallTypesAvailable ||
-                SelectedIndex == -1)
-            {
+            if(!IsItemOrSelectedIndexValid(Properties.Resources.NoWallTypesAvailable, null))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             var args = new List<AssociativeNode>
             {
                 AstFactory.BuildStringNode(((Revit.Elements.PerformanceAdviserRule) Items[SelectedIndex].Item).RuleId.ToString())
@@ -715,13 +706,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 ||
-                Items[0].Name == noLevels ||
-                SelectedIndex == -1)
-            {
+            if(!IsItemOrSelectedIndexValid(noLevels, null))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             var node = AstFactory.BuildFunctionCall(
                 "Revit.Elements.ElementSelector",
                 "ByElementId",
@@ -781,13 +768,9 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (Items.Count == 0 ||
-                Items[0].Name == noTypesMessage ||
-                SelectedIndex == -1)
-            {
+            if(!IsItemOrSelectedIndexValid(noTypesMessage, null))
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
+            
             var node = AstFactory.BuildFunctionCall(
                 "Revit.Elements.ElementSelector",
                 "ByElementId",
@@ -913,8 +896,7 @@ namespace DSRevitNodesUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
             AssociativeNode node;
-
-            if (SelectedIndex == -1)
+            if (!IsItemOrSelectedIndexValid())
             {
                 node = AstFactory.BuildNullNode();
             }
