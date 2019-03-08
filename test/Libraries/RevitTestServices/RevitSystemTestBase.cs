@@ -27,7 +27,7 @@ using Dynamo.Configuration;
 
 namespace RevitTestServices
 {
-   public class RevitTestConfiguration
+    public class RevitTestConfiguration
     {
         /// <summary>
         /// Directory where test files are kept
@@ -134,7 +134,7 @@ namespace RevitTestServices
 
         }
     }
-   
+
     [TestFixture]
     public class RevitSystemTestBase : SystemTestBase
     {
@@ -246,7 +246,7 @@ namespace RevitTestServices
                 };
                 RevitTestPathResolver revitTestPathResolver = new RevitTestPathResolver(pathResolverParams);
                 revitTestPathResolver.InitializePreloadedLibraries();
-                
+
                 // Init DynamoTestPath to get DynamoSettings.xml which under user data folder
                 PreferenceSettings.DynamoTestPath = string.Empty;
                 //preload ASM and instruct dynamo to load that version of libG.
