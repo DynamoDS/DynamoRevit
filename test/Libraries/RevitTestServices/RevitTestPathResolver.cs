@@ -6,6 +6,12 @@ namespace RevitTestServices
 {
     public class RevitTestPathResolver : TestPathResolver
     {
+        public RevitTestPathResolver() { }
+
+        internal RevitTestPathResolver(TestPathResolverParams resolverParams) : base(resolverParams)
+        {
+            //Set UserDataBootFolder & CommonDataRootFolder to PathResolver.
+        }
         public void InitializePreloadedLibraries()
         {
             AddPreloadLibraryPath("VMDataBridge.dll");

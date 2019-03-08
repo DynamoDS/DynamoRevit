@@ -743,7 +743,7 @@ namespace Dynamo.Applications
             }
         }
 
-        private static string GetRevitContext(DynamoRevitCommandData commandData)
+        public static string GetRevitContext(DynamoRevitCommandData commandData)
         {
             var r = new Regex(@"\b(Autodesk |Structure |MEP |Architecture )\b");
             string context = r.Replace(commandData.Application.Application.VersionName, "");
