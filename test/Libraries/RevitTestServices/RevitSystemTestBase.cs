@@ -23,6 +23,7 @@ using RevitServices.Transactions;
 using RTF.Applications;
 using SystemTestServices;
 using TestServices;
+using Dynamo.Configuration;
 
 namespace RevitTestServices
 {
@@ -229,9 +230,25 @@ namespace RevitTestServices
                 // SystemTestBase. That pathResolver will be used only in StartDynamo
                 // of the base class, here a local instance of pathResolver is used.
                 // 
-                var revitTestPathResolver = new RevitTestPathResolver();
+                var commandData = new DynamoRevitCommandData(RevitTestExecutive.CommandData);
+                var userDataFolder = Path.Combine(Environment.GetFolderPath(
+                  Environment.SpecialFolder.ApplicationData), 
+                  "Dynamo", "Dynamo Revit");
+                var commonDataFolder = Path.Combine(Environment.GetFolderPath(
+                  Environment.SpecialFolder.CommonApplicationData),
+                  "Autodesk", "RVT " + commandData.Application.Application.VersionNumber, "Dynamo");
+
+                // Set Path Resolver's user data folder and common data folder with DynamoRevit runtime.
+                var pathResolverParams = new TestPathResolverParams()
+                {
+                   UserDataRootFolder = userDataFolder,
+                   CommonDataRootFolder = commonDataFolder
+                };
+                RevitTestPathResolver revitTestPathResolver = new RevitTestPathResolver(pathResolverParams);
                 revitTestPathResolver.InitializePreloadedLibraries();
 
+                // Init DynamoTestPath to get DynamoSettings.xml which under user data folder
+                PreferenceSettings.DynamoTestPath = string.Empty;
                 //preload ASM and instruct dynamo to load that version of libG.
                 var requestedLibGVersion = DynamoRevit.PreloadAsmFromRevit();
                 
@@ -242,10 +259,10 @@ namespace RevitTestServices
                         GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(testConfig.DynamoCorePath, requestedLibGVersion),
                         DynamoCorePath = testConfig.DynamoCorePath,
                         PathResolver = revitTestPathResolver,
-                        Context = "Revit 2014",
+                        Context = DynamoRevit.GetRevitContext(commandData),
                         SchedulerThread = new TestSchedulerThread(),
                         PackageManagerAddress = "https://www.dynamopackages.com",
-                        ExternalCommandData = new DynamoRevitCommandData(RevitTestExecutive.CommandData),
+                        ExternalCommandData = commandData,
                         ProcessMode = RevitTaskProcessMode
                     });
 
