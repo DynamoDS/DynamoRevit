@@ -46,6 +46,17 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Constructor for ImportInstance
+        /// </summary>
+        /// <param name="satPath"></param>
+        /// <param name="translation"></param>
+        /// <param name="view"></param>
+        internal ImportInstance(string satPath, Revit.Elements.Views.View view, XYZ translation = null)
+        {
+            SafeInit(() => InitImportInstance(satPath, view, translation));
+        }
+
+        /// <summary>
         /// ImportInstance from existing
         /// </summary>
         /// <param name="element"></param>
@@ -77,6 +88,46 @@ namespace Revit.Elements
             };
 
             var id = Document.Import(satPath, options, Document.ActiveView);
+            var element = Document.GetElement(id);
+            var importInstance = element as Autodesk.Revit.DB.ImportInstance;
+
+            if (importInstance == null)
+            {
+                throw new Exception(Properties.Resources.InstanceImportFailure);
+            }
+
+            InternalSetImportInstance(importInstance);
+            InternalUnpinAndTranslateImportInstance(translation);
+
+            this.Path = satPath;
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            ElementBinder.SetElementForTrace(importInstance);
+        }
+
+        /// <summary>
+        /// Initialize an ImportInstance element
+        /// </summary>
+        /// <param name="satPath"></param>
+        /// <param name="translation"></param>
+        /// <param name="view"></param>
+        private void InitImportInstance(string satPath, Revit.Elements.Views.View view, XYZ translation = null)
+        {
+            var instance = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.ImportInstance>(Document);
+            if (null != instance)
+                DocumentManager.Instance.DeleteElement(new ElementUUID(instance.UniqueId));
+
+            translation = translation ?? XYZ.Zero;
+
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            var options = new SATImportOptions()
+            {
+                Unit = ImportUnit.Foot
+            };
+
+            var id = Document.Import(satPath, options, view.InternalView);
             var element = Document.GetElement(id);
             var importInstance = element as Autodesk.Revit.DB.ImportInstance;
 
@@ -172,6 +223,39 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Import a collection of Geometry (Solid, Curve, Surface, etc) into Revit views as an ImportInstance.  This variant is much faster than
+        /// ImportInstance.ByGeometry as it uses a batch method.
+        /// </summary>
+        /// <param name="geometries">A collection of Geometry</param>
+        /// <param name="view">The view into which the ImportInstance will be imported.</param>
+        /// <returns></returns>
+        public static ImportInstance ByGeometriesAndView(Autodesk.DesignScript.Geometry.Geometry[] geometries, Revit.Elements.Views.View view)
+        {
+            if (geometries == null)
+            {
+                throw new ArgumentNullException("geometries");
+            }
+            if (view == null)
+            {
+                throw new ArgumentNullException("view");
+            }
+
+            // transform geometry from dynamo unit system (m) to revit (ft)
+            var newGeometries = geometries.Select(x => x.InHostUnits()).ToArray();
+
+            var translation = Vector.ByCoordinates(0, 0, 0);
+            Robustify(ref newGeometries, ref translation);
+
+            // Export to temporary file
+            var fn = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".sat";
+            var exported_fn = Autodesk.DesignScript.Geometry.Geometry.ExportToSAT(newGeometries, fn);
+
+            newGeometries.ForEach(x => x.Dispose());
+
+            return new ImportInstance(exported_fn, view, translation.ToXyz());
+        }
+
+        /// <summary>
         /// Import a collection of Geometry (Solid, Curve, Surface, etc) into Revit as an ImportInstance.
         /// </summary>
         /// <param name="geometry">A single piece of geometry</param>
@@ -184,6 +268,19 @@ namespace Revit.Elements
             return ByGeometries(geometries.ToArray());
         }
 
+        /// <summary>
+        /// Import a collection of Geometry (Solid, Curve, Surface, etc) into Revit views as an ImportInstance.
+        /// </summary>
+        /// <param name="geometry">A single piece of geometry</param>
+        /// <param name="view">The view into which the ImportInstance will be imported.</param>
+        /// <returns></returns>
+        public static ImportInstance ByGeometryAndView(Autodesk.DesignScript.Geometry.Geometry geometry, Revit.Elements.Views.View view)
+        {
+            List<Autodesk.DesignScript.Geometry.Geometry> geometries =
+                new List<Autodesk.DesignScript.Geometry.Geometry>();
+            geometries.Add(geometry);
+            return ByGeometriesAndView(geometries.ToArray(), view);
+        }
 
         #region Helper methods
         
