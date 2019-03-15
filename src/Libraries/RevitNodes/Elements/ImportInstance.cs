@@ -34,7 +34,7 @@ namespace Revit.Elements
         }
 
         #region Private constructor
-      
+
         /// <summary>
         /// Constructor for ImportInstance
         /// </summary>
@@ -56,7 +56,7 @@ namespace Revit.Elements
         }
 
         #endregion
-              
+
         /// <summary>
         /// Initialize an ImportInstance element
         /// </summary>
@@ -153,24 +153,7 @@ namespace Revit.Elements
         /// <returns></returns>
         public static ImportInstance ByGeometries(Autodesk.DesignScript.Geometry.Geometry[] geometries)
         {
-            if (geometries == null)
-            {
-                throw new ArgumentNullException("geometries");
-            }
-
-            // transform geometry from dynamo unit system (m) to revit (ft)
-            var newGeometries = geometries.Select(x => x.InHostUnits()).ToArray();
-
-            var translation = Vector.ByCoordinates(0, 0, 0);
-            Robustify(ref newGeometries, ref translation);
-
-            // Export to temporary file
-            var fn = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".sat";
-            var exported_fn = Autodesk.DesignScript.Geometry.Geometry.ExportToSAT(newGeometries, fn);
-
-            newGeometries.ForEach(x => x.Dispose());
-
-            return new ImportInstance(exported_fn, translation.ToXyz());
+            return ByGeometriesAndView(geometries);
         }
 
         /// <summary>
@@ -180,17 +163,13 @@ namespace Revit.Elements
         /// <param name="geometries">A collection of Geometry</param>
         /// <param name="view">The view into which the ImportInstance will be imported.</param>
         /// <returns></returns>
-        public static ImportInstance ByGeometriesAndView(Autodesk.DesignScript.Geometry.Geometry[] geometries, Revit.Elements.Views.View view)
+        public static ImportInstance ByGeometriesAndView(Autodesk.DesignScript.Geometry.Geometry[] geometries, Revit.Elements.Views.View view = null)
         {
             if (geometries == null)
             {
                 throw new ArgumentNullException("geometries");
             }
-            if (view == null)
-            {
-                throw new ArgumentNullException("view");
-            }
-
+            
             // transform geometry from dynamo unit system (m) to revit (ft)
             var newGeometries = geometries.Select(x => x.InHostUnits()).ToArray();
 
