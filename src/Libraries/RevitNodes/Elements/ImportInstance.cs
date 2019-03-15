@@ -153,7 +153,16 @@ namespace Revit.Elements
         /// <returns></returns>
         public static ImportInstance ByGeometries(Autodesk.DesignScript.Geometry.Geometry[] geometries)
         {
-            return ByGeometriesAndView(geometries);
+            if (geometries == null)
+            {
+                throw new ArgumentNullException("geometries");
+            }
+
+            var translation = Vector.ByCoordinates(0, 0, 0);
+
+            string exported_fn = CreateSATFile(geometries, ref translation);
+
+            return new ImportInstance(exported_fn, translation.ToXyz());
         }
 
         /// <summary>
@@ -163,24 +172,21 @@ namespace Revit.Elements
         /// <param name="geometries">A collection of Geometry</param>
         /// <param name="view">The view into which the ImportInstance will be imported.</param>
         /// <returns></returns>
-        public static ImportInstance ByGeometriesAndView(Autodesk.DesignScript.Geometry.Geometry[] geometries, Revit.Elements.Views.View view = null)
+        public static ImportInstance ByGeometriesAndView(Autodesk.DesignScript.Geometry.Geometry[] geometries, Revit.Elements.Views.View view)
         {
             if (geometries == null)
             {
                 throw new ArgumentNullException("geometries");
             }
+
+            if (view == null)
+            {
+                throw new ArgumentNullException("view");
+            }
             
-            // transform geometry from dynamo unit system (m) to revit (ft)
-            var newGeometries = geometries.Select(x => x.InHostUnits()).ToArray();
-
             var translation = Vector.ByCoordinates(0, 0, 0);
-            Robustify(ref newGeometries, ref translation);
-
-            // Export to temporary file
-            var fn = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".sat";
-            var exported_fn = Autodesk.DesignScript.Geometry.Geometry.ExportToSAT(newGeometries, fn);
-
-            newGeometries.ForEach(x => x.Dispose());
+            
+            var exported_fn = CreateSATFile(geometries, ref translation);
 
             return new ImportInstance(exported_fn, translation.ToXyz(), view);
         }
@@ -263,6 +269,29 @@ namespace Revit.Elements
 
             // so that we can move it all back
             translation = trans.Reverse();
+        }
+
+        /// <summary>
+        /// Create a SAT and export it to a temporary file.
+        /// </summary>
+        /// <param name="geometries"></param>
+        /// <param name="translation"></param>
+        /// <returns></returns>
+        private static string CreateSATFile(Autodesk.DesignScript.Geometry.Geometry[] geometries,
+            ref Autodesk.DesignScript.Geometry.Vector translation)
+        {
+            // transform geometry from dynamo unit system (m) to revit (ft)
+            var newGeometries = geometries.Select(x => x.InHostUnits()).ToArray();
+
+            Robustify(ref newGeometries, ref translation);
+
+            // Export to temporary file
+            var fn = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".sat";
+            var exported_fn = Autodesk.DesignScript.Geometry.Geometry.ExportToSAT(newGeometries, fn);
+
+            newGeometries.ForEach(x => x.Dispose());
+
+            return exported_fn;
         }
 
         #endregion
