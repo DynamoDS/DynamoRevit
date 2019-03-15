@@ -34,24 +34,14 @@ namespace Revit.Elements
         }
 
         #region Private constructor
-
-        /// <summary>
-        /// Constructor for ImportInstance
-        /// </summary>
-        /// <param name="satPath"></param>
-        /// <param name="translation"></param>
-        internal ImportInstance(string satPath, XYZ translation = null)
-        {
-            SafeInit(() => InitImportInstance(satPath, translation));
-        }
-
+      
         /// <summary>
         /// Constructor for ImportInstance
         /// </summary>
         /// <param name="satPath"></param>
         /// <param name="translation"></param>
         /// <param name="view"></param>
-        internal ImportInstance(string satPath, Revit.Elements.Views.View view, XYZ translation = null)
+        internal ImportInstance(string satPath, XYZ translation = null, Revit.Elements.Views.View view = null)
         {
             SafeInit(() => InitImportInstance(satPath, view, translation));
         }
@@ -66,46 +56,7 @@ namespace Revit.Elements
         }
 
         #endregion
-
-        /// <summary>
-        /// Initialize an ImportInstance element
-        /// </summary>
-        /// <param name="satPath"></param>
-        /// <param name="translation"></param>
-        private void InitImportInstance(string satPath, XYZ translation = null)
-        {
-            var instance = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.ImportInstance>(Document);
-            if (null != instance)
-                DocumentManager.Instance.DeleteElement(new ElementUUID(instance.UniqueId));
-
-            translation = translation ?? XYZ.Zero;
-
-            TransactionManager.Instance.EnsureInTransaction(Document);
-
-            var options = new SATImportOptions()
-            {
-                Unit = ImportUnit.Foot
-            };
-
-            var id = Document.Import(satPath, options, Document.ActiveView);
-            var element = Document.GetElement(id);
-            var importInstance = element as Autodesk.Revit.DB.ImportInstance;
-
-            if (importInstance == null)
-            {
-                throw new Exception(Properties.Resources.InstanceImportFailure);
-            }
-
-            InternalSetImportInstance(importInstance);
-            InternalUnpinAndTranslateImportInstance(translation);
-
-            this.Path = satPath;
-
-            TransactionManager.Instance.TransactionTaskDone();
-
-            ElementBinder.SetElementForTrace(importInstance);
-        }
-
+              
         /// <summary>
         /// Initialize an ImportInstance element
         /// </summary>
@@ -127,7 +78,7 @@ namespace Revit.Elements
                 Unit = ImportUnit.Foot
             };
 
-            var id = Document.Import(satPath, options, view.InternalView);
+            var id = null != view ? Document.Import(satPath, options, view.InternalView) : Document.Import(satPath, options, Document.ActiveView);
             var element = Document.GetElement(id);
             var importInstance = element as Autodesk.Revit.DB.ImportInstance;
 
@@ -252,7 +203,7 @@ namespace Revit.Elements
 
             newGeometries.ForEach(x => x.Dispose());
 
-            return new ImportInstance(exported_fn, view, translation.ToXyz());
+            return new ImportInstance(exported_fn, translation.ToXyz(), view);
         }
 
         /// <summary>
