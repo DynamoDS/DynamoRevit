@@ -180,6 +180,7 @@ namespace Revit.AnalysisDisplay
         /// <param name="description">An optional analysis results description to show on the results legend.</param>
         /// <param name="unitType">An optional Unit type to provide conversions in the analysis results.</param>
         /// <returns>A FaceAnalysisDisplay object.</returns>
+        [Obsolete("Use FaceAnalysisDisplay.ByViewFacePointsAndValues instead.")]
         public static FaceAnalysisDisplay ByViewAndFaceAnalysisData(
             View view, SurfaceData data, string name = "", string description = "", Type unitType = null)
         {

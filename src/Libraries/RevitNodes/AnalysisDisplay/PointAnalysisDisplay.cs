@@ -203,6 +203,7 @@ namespace Revit.AnalysisDisplay
         /// <param name="description">An optional analysis results description to show on the results legend.</param>
         /// <param name="unitType">An optional Unit type to provide conversions in the analysis results.</param>
         /// <returns>An PointAnalysisDisplay object.</returns>
+        [Obsolete("Use PointAnalysisDisplay.ByViewPointsAndValues instead.")]
         public static PointAnalysisDisplay ByViewAndPointAnalysisData(View view,
                         PointData data,
             string name = "", string description = "", Type unitType = null)
