@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Analysis;
+using Dynamo.Graph.Nodes;
 
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
@@ -144,7 +145,7 @@ namespace Revit.AnalysisDisplay
         /// <param name="description">An optional analysis results description to show on the results legend.</param>
         /// <param name="unitType">An optional Unit type to provide conversions in the analysis results.</param>
         /// <returns>A VectorAnalysisDisplay object.</returns>
-        [Obsolete("Use VectorAnalysisDisplay.ByViewPointsAndVectorValues instead.")]
+        [NodeObsolete("VectorDataObsolete", typeof(Properties.Resources))]
         public static VectorAnalysisDisplay ByViewAndVectorAnalysisData(View view,
                         VectorData data,
             string name = "", string description = "", Type unitType = null)

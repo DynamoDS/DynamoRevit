@@ -414,4 +414,13 @@
   <data name="ViewUnsupportedScheduleType" xml:space="preserve">
     <value>Provided Schedule Type is not supported.</value>
   </data>
+  <data name="PointDataObsolete" xml:space="preserve">
+    <value>Use PointAnalysisDisplay.ByViewPointsAndValues instead.</value>
+  </data>
+  <data name="SurfaceDataObsolete" xml:space="preserve">
+    <value>Use FaceAnalysisDisplay.ByViewFacePointsAndValues instead.</value>
+  </data>
+  <data name="VectorDataObsolete" xml:space="preserve">
+    <value>Use VectorAnalysisDisplay.ByViewPointsAndVectorValues instead.</value>
+  </data>
 </root>

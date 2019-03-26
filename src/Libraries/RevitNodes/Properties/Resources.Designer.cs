@@ -781,6 +781,15 @@ namespace Revit.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use PointAnalysisDisplay.ByViewPointsAndValues instead..
+        /// </summary>
+        internal static string PointDataObsolete {
+            get {
+                return ResourceManager.GetString("PointDataObsolete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please supply a point geometry..
         /// </summary>
         internal static string PointRequired {
@@ -862,6 +871,15 @@ namespace Revit.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use FaceAnalysisDisplay.ByViewFacePointsAndValues instead..
+        /// </summary>
+        internal static string SurfaceDataObsolete {
+            get {
+                return ResourceManager.GetString("SurfaceDataObsolete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Revit face with the corresponding tag could not be found..
         /// </summary>
         internal static string Tag_Lookup_Error {
@@ -885,6 +903,15 @@ namespace Revit.Properties
         internal static string TypeNotFound {
             get {
                 return ResourceManager.GetString("TypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use VectorAnalysisDisplay.ByViewPointsAndVectorValues instead..
+        /// </summary>
+        internal static string VectorDataObsolete {
+            get {
+                return ResourceManager.GetString("VectorDataObsolete", resourceCulture);
             }
         }
         
