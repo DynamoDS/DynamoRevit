@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Analysis;
+using Dynamo.Graph.Nodes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Analysis;
 using Revit.GeometryConversion;
@@ -180,6 +181,7 @@ namespace Revit.AnalysisDisplay
         /// <param name="description">An optional analysis results description to show on the results legend.</param>
         /// <param name="unitType">An optional Unit type to provide conversions in the analysis results.</param>
         /// <returns>A FaceAnalysisDisplay object.</returns>
+        [NodeObsolete("SurfaceDataObsolete", typeof(Properties.Resources))]
         public static FaceAnalysisDisplay ByViewAndFaceAnalysisData(
             View view, SurfaceData data, string name = "", string description = "", Type unitType = null)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using Analysis;
+using Dynamo.Graph.Nodes;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Analysis;
@@ -203,6 +204,7 @@ namespace Revit.AnalysisDisplay
         /// <param name="description">An optional analysis results description to show on the results legend.</param>
         /// <param name="unitType">An optional Unit type to provide conversions in the analysis results.</param>
         /// <returns>An PointAnalysisDisplay object.</returns>
+        [NodeObsolete("PointDataObsolete", typeof(Properties.Resources))]
         public static PointAnalysisDisplay ByViewAndPointAnalysisData(View view,
                         PointData data,
             string name = "", string description = "", Type unitType = null)
