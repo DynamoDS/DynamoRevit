@@ -247,6 +247,17 @@ namespace RevitTestServices
                 RevitTestPathResolver revitTestPathResolver = new RevitTestPathResolver(pathResolverParams);
                 revitTestPathResolver.InitializePreloadedLibraries();
 
+                // Get the preloaded DynamoRevit Custom Nodes, and Add them to Preload Libraries.
+                var preloadedLibraries = new List<string>();
+                GetLibrariesToPreload(preloadedLibraries);
+                if(preloadedLibraries.Any())
+                {
+                    foreach(var preloadedLibrary in preloadedLibraries)
+                    {
+                        revitTestPathResolver.AddPreloadLibraryPath(preloadedLibrary);
+                    }
+                }
+
                 // Init DynamoTestPath to get DynamoSettings.xml which under user data folder
                 PreferenceSettings.DynamoTestPath = string.Empty;
                 //preload ASM and instruct dynamo to load that version of libG.
