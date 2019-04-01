@@ -254,7 +254,10 @@ namespace RevitTestServices
                 {
                     foreach(var preloadedLibrary in preloadedLibraries)
                     {
-                        revitTestPathResolver.AddPreloadLibraryPath(preloadedLibrary);
+                        if(Directory.Exists(preloadedLibrary))
+                            revitTestPathResolver.AddNodeDirectory(preloadedLibrary);
+                        else if(File.Exists(preloadedLibrary))
+                            revitTestPathResolver.AddPreloadLibraryPath(preloadedLibrary);
                     }
                 }
 
