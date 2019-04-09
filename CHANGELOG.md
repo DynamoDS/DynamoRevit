@@ -1,3 +1,6 @@
+## 0.1.2
+* Update Dynamo Core Version to 2.2.0.4565 in Config file-packages.aget 
+
 ## 0.1.1
 * Add CanBuildOutputAst function to RevitDropDownBase for judging whether it have valid Enumeration values to the output in dropdown list
 * Update RevitSystemTestBase to make it more user friendly
