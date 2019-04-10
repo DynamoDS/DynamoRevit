@@ -1,7 +1,5 @@
-## 0.1.2
-* Update Dynamo Core Version to 2.2.0.4565 in Config file-packages.aget 
-
-## 0.1.1
+## 0.0.42
+* Update Dynamo Core Version to 2.2.0.4565 in Config file-packages.aget
 * Add CanBuildOutputAst function to RevitDropDownBase for judging whether it have valid Enumeration values to the output in dropdown list
 * Update RevitSystemTestBase to make it more user friendly
 * Add two new nodes to ImportInstance because of RevitAPI changes
@@ -9,9 +7,12 @@
 * Improve RevitSystemTestBase that DynamoRevit custom node developers could preload their nodes for test in Code.
 * Improve RevitSystemTestBase that DynamoRevit custom node developers could preload their node packages for test in Code.
 
-## 0.1.0
+## 0.0.41
+* Update Jenkinsfile to compatible with RC2.1.0_Revit2020 branch's CICD.
+
+## 0.0.40
 * The version of master branch will be start with 0.1.x, and Revit2020 branch will still be 0.0.xx.
-* LibG should be more version compatible.
+* Cherry-pick fix from master branch, LibG should be more version compatible.
 
 ## 0.0.39
 * Consume the version 20.0.0-b94 of RevitAPI and RevitAPIUI in D4R's CICD to support Revit 2020 release.
