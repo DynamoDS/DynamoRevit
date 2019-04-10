@@ -10,7 +10,7 @@ node('D4R') {
     stage('Checkout') {
       echo "Checkout ..."
       try {        
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '../DynamoRevit'] , [$class: 'CleanBeforeCheckout'], [$class: 'GitLFSPull']], gitTool: 'default', submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'aecbuild', url: 'https://git.autodesk.com/Dynamo/DynamoRevit.git']]])        
+        checkout([$class: 'GitSCM', branches: [[name: '*/RC2.2.0_Revit2020']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '../DynamoRevit'] , [$class: 'CleanBeforeCheckout'], [$class: 'GitLFSPull']], gitTool: 'default', submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'aecbuild', url: 'https://git.autodesk.com/Dynamo/DynamoRevit.git']]])        
       } catch(err) {
         echo "Git Checkout Failed: $err"
         currentBuild.result = 'FAILURE'
@@ -21,7 +21,7 @@ node('D4R') {
     stage('Revit API Download') {
       echo "RevitAPI and RevitAPIUI download and extract ..."
       try {
-        bat batFolder + '\\' + 'RevitAPInuGet.bat'
+        bat batFolder + '\\' + 'RevitAPInuGet.bat 2020'
       } catch(err) {
         echo "RevitAPI or RevitAPIUI Download or Extract Error: $err"
         currentBuild.result = 'FAILURE'
