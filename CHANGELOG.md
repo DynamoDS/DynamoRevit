@@ -1,3 +1,6 @@
+## 0.0.43
+* Direct Revit Version to 2020 in config file
+
 ## 0.0.42
 * Update Dynamo Core Version to 2.2.0.4565 in Config file-packages.aget
 * Add CanBuildOutputAst function to RevitDropDownBase for judging whether it have valid Enumeration values to the output in dropdown list
