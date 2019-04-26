@@ -55,7 +55,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Greg">
-      <HintPath>$(PACKAGESPATH)\Greg\lib\net45\Greg.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\Greg\lib\net47\Greg.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GregRevitAuth">
