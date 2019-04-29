@@ -59,7 +59,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="GregRevitAuth">
-      <HintPath>$(PACKAGESPATH)\GregRevitAuth\lib\net45\GregRevitAuth.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\GregRevitAuth\lib\net47\GregRevitAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ionic.Zip">
