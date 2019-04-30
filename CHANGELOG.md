@@ -1,3 +1,4 @@
+## 0.0.44
 * Update Greg & GregRevitAuth to latest version (Greg - 1.1.7040.19960 GregRevitAuth - 1.0.7057.20655)
 * Consume the version 2.2.0.4667 of DynamoCoreRuntime in D4R's CICD
 * Consume the version 20.1.0-b21 of RevitAPI and RevitAPIUI
