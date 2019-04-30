@@ -1,3 +1,7 @@
+## 0.1.3
+* Update Greg & GregRevitAuth to latest version (Greg - 1.1.7040.19960 GregRevitAuth - 1.0.7057.20655)
+* Consume the version 2.2.0.4667 of DynamoCoreRuntime in D4R's CICD
+
 ## 0.1.2
 * Update Dynamo Core Version to 2.2.0.4565 in Config file-packages.aget 
 
