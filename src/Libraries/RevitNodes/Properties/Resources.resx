@@ -423,4 +423,28 @@
   <data name="VectorDataObsolete" xml:space="preserve">
     <value>Use VectorAnalysisDisplay.ByViewPointsAndVectorValues instead.</value>
   </data>
+  <data name="EndPointListEmpty" xml:space="preserve">
+    <value>End point list is empty</value>
+  </data>
+  <data name="EndPointListHasNulls" xml:space="preserve">
+    <value>End point list contains null elements</value>
+  </data>
+  <data name="InvalidEndPointList" xml:space="preserve">
+    <value>Invalid end point list</value>
+  </data>
+  <data name="InvalidStartPointList" xml:space="preserve">
+    <value>Invalid start point list.</value>
+  </data>
+  <data name="InvalidView" xml:space="preserve">
+    <value>Invalid view.</value>
+  </data>
+  <data name="StartEndListSizeMismatch" xml:space="preserve">
+    <value>Size of start point array doesn't match size of end point array</value>
+  </data>
+  <data name="StartPointListEmpty" xml:space="preserve">
+    <value>Start points list is empty</value>
+  </data>
+  <data name="StartPointListHasNulls" xml:space="preserve">
+    <value>Start point list contains null elements</value>
+  </data>
 </root>

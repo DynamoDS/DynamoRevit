@@ -66,28 +66,28 @@ namespace Revit.Elements
       public static PathOfTravel[] ByFloorPlanPoints(Revit.Elements.Views.FloorPlanView floorPlan, Autodesk.DesignScript.Geometry.Point[] startPtList, Autodesk.DesignScript.Geometry.Point[] endPtList, bool manyToMany)
       {
          if (floorPlan == null)
-            throw new ArgumentNullException("Invalid view");
+            throw new ArgumentNullException(Properties.Resources.InvalidView);
 
          if (startPtList == null)
-            throw new ArgumentNullException("Invalid start points list");
+            throw new ArgumentNullException(Properties.Resources.InvalidStartPointList);
 
          if (endPtList == null)
-            throw new ArgumentNullException("Invalid end point list");
+            throw new ArgumentNullException(Properties.Resources.InvalidEndPointList);
 
          if (!startPtList.Any())
-            throw new ArgumentNullException("Start points list is empty");
+            throw new ArgumentNullException(Properties.Resources.StartPointListEmpty);
 
          if (!endPtList.Any())
-            throw new ArgumentNullException("End point list is empty");
+            throw new ArgumentNullException(Properties.Resources.EndPointListEmpty);
 
          if (startPtList.Any(x => x == null))
-            throw new ArgumentException("Start point list contains null elements");
+            throw new ArgumentException(Properties.Resources.StartPointListHasNulls);
 
          if (endPtList.Any(x => x == null))
-            throw new ArgumentException("End point list contains null elements");
+            throw new ArgumentException(Properties.Resources.EndPointListHasNulls);
 
          if (!manyToMany && (startPtList.Count() != endPtList.Count()))
-            throw new ArgumentException("Size of start point array doesn't match size of end point array");
+            throw new ArgumentException(Properties.Resources.StartEndListSizeMismatch);
 
          if (manyToMany)
          {
