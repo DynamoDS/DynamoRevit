@@ -872,12 +872,15 @@ namespace RevitSystemTests
         #region New Sample Tests
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample_2015.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2020.rvt")]
         public void Revit_Adaptive_Component_Placement()
         {
             var model = ViewModel.Model;
 
-            OpenSampleDefinition(@".\Revit\Revit_Adaptive Component Placement.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Revit_Adaptive Component Placement.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
 
             AssertNoDummyNodes();
 
@@ -917,12 +920,15 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample_2015.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2020.rvt")]
         public void Revit_Color()
         {
             var model = ViewModel.Model;
 
-            OpenSampleDefinition(@".\Revit\Revit_Color.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Revit_Color.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
 
             AssertNoDummyNodes();
 
@@ -944,7 +950,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample_2015.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2020.rvt")]
         public void Revit_Floors_and_Framing()
         {
             // this test marked as Ignore because on running it is throwing error from Revit side.
@@ -952,7 +958,10 @@ namespace RevitSystemTests
 
             var model = ViewModel.Model;
 
-            OpenSampleDefinition(@".\Revit\Revit_Floors and Framing.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Revit_Floors and Framing.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
 
             AssertNoDummyNodes();
 
@@ -982,12 +991,15 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample_2015.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2020.rvt")]
         public void Revit_ImportSolid()
         {
             var model = ViewModel.Model;
 
-            OpenSampleDefinition(@".\Revit\Revit_ImportSolid.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Revit_ImportSolid.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
 
             AssertNoDummyNodes();
 
@@ -1006,12 +1018,15 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample_2015.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2020.rvt")]
         public void Revit_PlaceFamiliesByLevel_Set_Parameters()
         {
             var model = ViewModel.Model;
 
-            OpenSampleDefinition(@".\Revit\Revit_PlaceFamiliesByLevel_Set Parameters.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Revit_PlaceFamiliesByLevel_Set Parameters.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
 
             AssertNoDummyNodes();
 
@@ -1033,12 +1048,15 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample_2015.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2020.rvt")]
         public void Revit_StructuralFraming()
         {
             var model = ViewModel.Model;
 
-            OpenSampleDefinition(@".\Revit\Revit_StructuralFraming.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Revit_StructuralFraming.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
 
             AssertNoDummyNodes();
 
@@ -1065,7 +1083,10 @@ namespace RevitSystemTests
         {
             var model = ViewModel.Model;
 
-            OpenSampleDefinition(@".\Geometry\Geometry_Curves.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Geometry_Curves.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
 
             AssertNoDummyNodes();
 
@@ -1094,7 +1115,10 @@ namespace RevitSystemTests
         {
             var model = ViewModel.Model;
 
-            OpenSampleDefinition(@".\Geometry\Geometry_Points.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Geometry_Points.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
 
             AssertNoDummyNodes();
 
@@ -1122,7 +1146,10 @@ namespace RevitSystemTests
         {
             var model = ViewModel.Model;
 
-            OpenSampleDefinition(@".\Geometry\Geometry_Solids.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Geometry_Solids.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
 
             AssertNoDummyNodes();
 
@@ -1155,7 +1182,10 @@ namespace RevitSystemTests
         {
             var model = ViewModel.Model;
 
-            OpenSampleDefinition(@".\Geometry\Geometry_Surfaces.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Geometry_Surfaces.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
 
             AssertNoDummyNodes();
 
@@ -1185,6 +1215,403 @@ namespace RevitSystemTests
             var surface2 = GetPreviewValue(extrudedSurface) as Surface;
             Assert.IsNotNull(surface2);
 
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void Basics_Basic01()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Basics_Basic01.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(4, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // get the result of add operation
+            var addOperation = "0d2e1e9d21dc4e5bb105e3bedca3b1f9";
+            var result = GetPreviewValue(addOperation);
+            Assert.AreEqual(8, result);
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void Basics_Basic02()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Basics_Basic02.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(9, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(8, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Validation for ReferencePoint
+            var refPtNodeId = "66c0540b9aa84a589a8eacd89b7a8c37";
+            var refPt = GetPreviewValue(refPtNodeId) as ReferencePoint;
+            Assert.IsNotNull(refPt);
+            Assert.AreEqual(4.430, refPt.Z, 0.0000001);
+
+            // Validation for ModelCurve
+            var modelCurveNodeId = "859b30aef9f042268e0896b5066e31c7";
+            var ModelCurve = GetPreviewValue(modelCurveNodeId) as ModelCurve;
+            Assert.IsNotNull(ModelCurve);
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void Basics_Basic03()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Basics_Basic03.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(10, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(9, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Validation for List.LastItem
+            var lastItemNodeId = "980b45cf716b4c8eb7c247a23abf85ed";
+            var lastItem = GetPreviewValue(lastItemNodeId);
+            Assert.IsNotNull(lastItem);
+            
+            var chopNodeId = "42d739c78e2142759a12cbcbfd3cf569";
+            var chopList = GetPreviewCollection(chopNodeId);
+            Assert.AreEqual(4, chopList.Count());
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void Core_AttractorPoint()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Core_AttractorPoint.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(13, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(17, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Validation for Cylinder
+            var cylindersNodeId = "ef3eaed07a8e47a9b06e416bb30ec72f";
+            AssertPreviewCount(cylindersNodeId, 100);
+
+            // get all Cylinders
+            for (int i = 0; i <= 99; i++)
+            {
+                var cylinder = GetPreviewValueAtIndex(cylindersNodeId, i) as Cylinder;
+                Assert.IsNotNull(cylinder);
+            }
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void Core_CodeBlocks()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Core_CodeBlocks.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(89, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(68, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void Core_ListAtLevel()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Core_ListAtLevel.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Validation for NurbsSurface
+            var nurbsSurfaceNodeId = "e9e562823e244d508095f44acaca0c79";
+            AssertPreviewCount(nurbsSurfaceNodeId, 8);
+            // get all NurbsSurface
+            for (int i = 0; i <= 7; i++) 
+            {
+                var nurbsSurface = GetPreviewValueAtIndex(nurbsSurfaceNodeId, i);
+                Assert.IsNotNull(nurbsSurface);
+            }
+        }
+      
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void Core_ListLacing()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Core_ListLacing.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(20, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Validation for Longest lacing
+            var longestLacingNodeId = "de2b139195e04b3db7f043d03d5c5b5a";
+            AssertPreviewCount(longestLacingNodeId,10);
+            // get all Line 
+            for (int i = 0; i < 10; i++)
+            {
+                var Line = GetPreviewValueAtIndex(longestLacingNodeId, i) as Line;
+                Assert.IsNotNull(Line);
+            }
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void Core_Math()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Core_Math.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(199, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(201, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void Core_PassingFunctions()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Core_PassingFunctions.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(16, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void Core_Python()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Core_Python.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(13, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void Core_RangeSyntax()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Core_RangeSyntax.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(35, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(24, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void Core_Strings()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Core_Strings.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(32, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(37, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Validation for String count
+            var stringCountNodeId = "a93dc4ad9f2a4158b994363ce737a070";
+            var stringCount = GetPreviewValue(stringCountNodeId);
+            Assert.AreEqual(2, stringCount);
+
+            // Validation for String Contains
+            var stringContainsNodeId = "d78216bfd28d4b15b6050b6a66f603c9";
+            AssertPreviewCount(stringContainsNodeId, 21);
+            for (int i = 0; i < 21; i++)
+            {
+                var isContained = GetPreviewValueAtIndex(stringContainsNodeId, i);
+                Assert.IsNotNull(isContained);
+            }
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void ImportExport_CSV()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\ImportExport_CSV to Stuff.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(16, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(17, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Validation for Geometry Scale
+            var scaleNodeId = "0cde47c6106f4a0a9566872fd23a0a20";
+            AssertPreviewCount(scaleNodeId, 201);
+            for (int i = 0; i < 201; i++)
+            {
+                var point = GetPreviewValueAtIndex(scaleNodeId, i) as Point;
+                Assert.IsNotNull(point);
+            }
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void ImportExport_Data()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\ImportExport_Data To Excel.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(14, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+            
+            // Validation for Points
+            var ptsNodeId = "48175079300b4b1d9953e23d570dce12";
+            AssertPreviewCount(ptsNodeId, 65);
+            for (int i = 0; i < 65; i++)
+            {
+                var pt = GetPreviewValueAtIndex(ptsNodeId, i) as Point;
+                Assert.IsNotNull(pt);
+            }
+        }
+
+        [Test, Category("SmokeTests")]
+        [TestModel(@".\empty.rfa")]
+        public void ImportExport_Excel()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\ImportExport_Excel to Dynamo.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(12, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(13, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            // Validation for Points
+            var ptsNodeId = "d538c147b79f4f119c001efd7f9b3c09";
+            AssertPreviewCount(ptsNodeId, 201);
+            for (int i = 0; i < 201; i++)
+            {
+                var pt = GetPreviewValueAtIndex(ptsNodeId, i) as Point;
+                Assert.IsNotNull(pt);
+            }
         }
         #endregion
     }

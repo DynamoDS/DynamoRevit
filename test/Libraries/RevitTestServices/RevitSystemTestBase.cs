@@ -94,7 +94,6 @@ namespace RevitTestServices
             {
                string journalPath = RevitTestExecutive.CommandData.Application.Application.RecordingJournalFilename;
                WorkingDirectory = Path.GetDirectoryName(journalPath);
-               SamplesPath = Path.GetDirectoryName(journalPath);
             }
 
             //get the test path
