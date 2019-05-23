@@ -325,8 +325,14 @@ namespace Revit.Elements
         {
             return Material.FromExisting(ele, isRevitOwned);
         }
-        #endregion
 
-    }
+        public static PathOfTravel Wrap(Autodesk.Revit.DB.Analysis.PathOfTravel ele, bool isRevitOwned)
+        {
+            return PathOfTravel.FromExisting(ele, isRevitOwned);
+        }
+
+      #endregion
+
+   }
 
 }
