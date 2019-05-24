@@ -24,7 +24,7 @@ namespace RevitNodesTests.Elements
             false);
        
          Assert.NotNull(pathOfTravelOneToOne);
-         Assert.Equals(pathOfTravelOneToOne.GetLength(0), 1);
+         Assert.AreEqual(1, pathOfTravelOneToOne.GetLength(0));
          Assert.NotNull(pathOfTravelOneToOne[0]);
 
          var pathOfTravelManyToMany = PathOfTravel.ByFloorPlanPoints(
@@ -34,7 +34,7 @@ namespace RevitNodesTests.Elements
             true);
 
          Assert.NotNull(pathOfTravelManyToMany);
-         Assert.Equals(pathOfTravelManyToMany.GetLength(0), 1);
+         Assert.AreEqual(1, pathOfTravelManyToMany.GetLength(0));
          Assert.NotNull(pathOfTravelManyToMany[0]);
       }
 
@@ -125,7 +125,7 @@ namespace RevitNodesTests.Elements
             false);
 
          Assert.NotNull(pathOfTravelOneToOne);
-         Assert.Equals(pathOfTravelOneToOne.GetLength(0), 1);
+         Assert.AreEqual(1, pathOfTravelOneToOne.GetLength(0));
          Assert.Null(pathOfTravelOneToOne[0]);
 
          var pathOfTravelManyToMany = PathOfTravel.ByFloorPlanPoints(
@@ -135,7 +135,7 @@ namespace RevitNodesTests.Elements
             true);
 
          Assert.NotNull(pathOfTravelManyToMany);
-         Assert.Equals(pathOfTravelManyToMany.GetLength(0), 1);
+         Assert.AreEqual(1, pathOfTravelManyToMany.GetLength(0));
          Assert.Null(pathOfTravelManyToMany[0]);
       }
 
@@ -150,7 +150,7 @@ namespace RevitNodesTests.Elements
             false);
 
          Assert.NotNull(pathOfTravelOneToOne);
-         Assert.Equals(pathOfTravelOneToOne.GetLength(0), 1);
+         Assert.AreEqual(1, pathOfTravelOneToOne.GetLength(0));
          Assert.Null(pathOfTravelOneToOne[0]);
 
          var pathOfTravelManyToMany = PathOfTravel.ByFloorPlanPoints(
@@ -160,7 +160,7 @@ namespace RevitNodesTests.Elements
             true);
 
          Assert.NotNull(pathOfTravelManyToMany);
-         Assert.Equals(pathOfTravelManyToMany.GetLength(0), 1);
+         Assert.AreEqual(1, pathOfTravelManyToMany.GetLength(0));
          Assert.Null(pathOfTravelManyToMany[0]);
       }
 
