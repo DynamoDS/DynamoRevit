@@ -151,6 +151,17 @@ namespace RevitSystemTests
             return new ElementId(id.IntID);
         }
 
+        /// <summary>
+        /// Get all the wall from current document
+        /// </summary>
+        /// <returns>the list of walls</returns>
+        private IList<Wall> GetAllWalls()
+        {
+            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(Wall));
+            return fec.ToElements().Cast<Wall>().ToList();
+        }
+
         [Test]
         [TestModel(@".\ElementBinding\CreateWallInDynamo.rvt")]
         public void CreateInDynamoModifyInRevitToCauseFailure()
@@ -662,7 +673,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             //Check the number of the family instances
-            var instances = GetAllFamilyInstances(true);
+            var instances = RevitSystemTestHelper.GetAllFamilyInstances(true);
             Assert.AreEqual(8, instances.Count);
 
             var model = ViewModel.Model;
@@ -684,7 +695,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             //Check the number of family instances
-            instances = GetAllFamilyInstances(true);
+            instances = RevitSystemTestHelper.GetAllFamilyInstances(true);
             Assert.AreEqual(8, instances.Count);
         }
 
@@ -838,7 +849,7 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
 
-            var initialNumber = GetAllFamilyInstances(false).Count;
+            var initialNumber = RevitSystemTestHelper.GetAllFamilyInstances(false).Count;
 
             // The current Revit file already has a family placed at UV param location 0.50
             // We update placement location of family instance to 0.75 param location
@@ -850,7 +861,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            var finalNumber = GetAllFamilyInstances(false).Count;
+            var finalNumber = RevitSystemTestHelper.GetAllFamilyInstances(false).Count;
             var famInst = GetPreviewValue("56cf69ec-d4ca-4add-810d-aee64d003c76") as Revit.Elements.FamilyInstance;
             Assert.IsNotNull(famInst);
 

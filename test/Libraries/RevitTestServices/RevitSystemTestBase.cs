@@ -363,12 +363,45 @@ namespace RevitTestServices
             initialDoc.Close(false);
         }
 
+        #endregion
+
+        protected void MakeConnector(NodeModel start, NodeModel end, int portStart, int portEnd)
+        {
+            var cmdStart = new DynamoModel.MakeConnectionCommand(start.GUID, portStart, PortType.Output,
+                DynamoModel.MakeConnectionCommand.Mode.Begin);
+            this.Model.ExecuteCommand(cmdStart);
+
+            var cmdend = new DynamoModel.MakeConnectionCommand(end.GUID, portEnd, PortType.Input,
+                DynamoModel.MakeConnectionCommand.Mode.End);
+            this.Model.ExecuteCommand(cmdend);
+        }
+      
+        private static void UpdateSystemPathForProcess()
+        {
+            var assemblyLocation = Assembly.GetExecutingAssembly().Location;
+            var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
+            var parentDirectory = Directory.GetParent(assemblyDirectory);
+            var corePath = parentDirectory.FullName;
+
+            // Add the main exec path to the system PATH
+            // This is required to pickup certain dlls.
+            var path =
+                Environment.GetEnvironmentVariable(
+                    "Path",
+                    EnvironmentVariableTarget.Process) + ";" + corePath;
+            Environment.SetEnvironmentVariable("Path", path, EnvironmentVariableTarget.Process);
+        }
+    }
+
+    
+    public class RevitSystemTestHelper
+    {
         /// <summary>
         /// This function gets all the family instances in the current Revit document
         /// </summary>
         /// <param name="startNewTransaction">whether do the filtering in a new transaction</param>
         /// <returns>the family instances</returns>
-        protected static IList<Element> GetAllFamilyInstances(bool startNewTransaction)
+        public static IList<Element> GetAllFamilyInstances(bool startNewTransaction)
         {
             if (startNewTransaction)
             {
@@ -391,42 +424,6 @@ namespace RevitTestServices
                 fec.WherePasses(ef);
                 return fec.ToElements();
             }
-        }
-
-        #endregion
-
-        protected void MakeConnector(NodeModel start, NodeModel end, int portStart, int portEnd)
-        {
-            var cmdStart = new DynamoModel.MakeConnectionCommand(start.GUID, portStart, PortType.Output,
-                DynamoModel.MakeConnectionCommand.Mode.Begin);
-            this.Model.ExecuteCommand(cmdStart);
-
-            var cmdend = new DynamoModel.MakeConnectionCommand(end.GUID, portEnd, PortType.Input,
-                DynamoModel.MakeConnectionCommand.Mode.End);
-            this.Model.ExecuteCommand(cmdend);
-        }
-
-        protected static IList<Wall> GetAllWalls()
-        {
-            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            fec.OfClass(typeof(Wall));
-            return fec.ToElements().Cast<Wall>().ToList();
-        }
-
-        private static void UpdateSystemPathForProcess()
-        {
-            var assemblyLocation = Assembly.GetExecutingAssembly().Location;
-            var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-            var parentDirectory = Directory.GetParent(assemblyDirectory);
-            var corePath = parentDirectory.FullName;
-
-            // Add the main exec path to the system PATH
-            // This is required to pickup certain dlls.
-            var path =
-                Environment.GetEnvironmentVariable(
-                    "Path",
-                    EnvironmentVariableTarget.Process) + ";" + corePath;
-            Environment.SetEnvironmentVariable("Path", path, EnvironmentVariableTarget.Process);
         }
     }
 }
