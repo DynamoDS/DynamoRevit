@@ -216,7 +216,7 @@ namespace RevitTestServices
            return false;
         }
 
-      protected override void StartDynamo(TestSessionConfiguration testConfig)
+        protected override void StartDynamo(TestSessionConfiguration testConfig)
         {
             try
             {
@@ -391,9 +391,8 @@ namespace RevitTestServices
                     EnvironmentVariableTarget.Process) + ";" + corePath;
             Environment.SetEnvironmentVariable("Path", path, EnvironmentVariableTarget.Process);
         }
-    }
+    }   
 
-    
     public class RevitSystemTestHelper
     {
         /// <summary>
