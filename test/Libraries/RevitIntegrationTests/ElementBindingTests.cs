@@ -673,7 +673,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             //Check the number of the family instances
-            var instances = RevitSystemTestHelper.GetAllFamilyInstances(true);
+            var instances = TestUtils.GetAllFamilyInstances(true);
             Assert.AreEqual(8, instances.Count);
 
             var model = ViewModel.Model;
@@ -695,7 +695,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             //Check the number of family instances
-            instances = RevitSystemTestHelper.GetAllFamilyInstances(true);
+            instances = TestUtils.GetAllFamilyInstances(true);
             Assert.AreEqual(8, instances.Count);
         }
 
@@ -849,7 +849,7 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
 
-            var initialNumber = RevitSystemTestHelper.GetAllFamilyInstances(false).Count;
+            var initialNumber = TestUtils.GetAllFamilyInstances(false).Count;
 
             // The current Revit file already has a family placed at UV param location 0.50
             // We update placement location of family instance to 0.75 param location
@@ -861,7 +861,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            var finalNumber = RevitSystemTestHelper.GetAllFamilyInstances(false).Count;
+            var finalNumber = TestUtils.GetAllFamilyInstances(false).Count;
             var famInst = GetPreviewValue("56cf69ec-d4ca-4add-810d-aee64d003c76") as Revit.Elements.FamilyInstance;
             Assert.IsNotNull(famInst);
 
