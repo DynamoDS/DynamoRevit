@@ -99,17 +99,10 @@ namespace RevitSystemTests
         /// <returns>the import instances</returns>
         protected static IList<Element> GetAllImportInstances()
         {
-            using (var trans = new Transaction(DocumentManager.Instance.CurrentUIDocument.Document, "FilteringElements"))
-            {
-                trans.Start();
-
-                ElementClassFilter ef = new ElementClassFilter(typeof(Autodesk.Revit.DB.ImportInstance));
-                FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-                fec.WherePasses(ef);
-
-                trans.Commit();
-                return fec.ToElements();
-            }
+            ElementClassFilter ef = new ElementClassFilter(typeof(Autodesk.Revit.DB.ImportInstance));
+            FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.WherePasses(ef);
+            return fec.ToElements();
         }
     }
 }

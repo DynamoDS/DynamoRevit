@@ -216,7 +216,7 @@ namespace RevitTestServices
            return false;
         }
 
-      protected override void StartDynamo(TestSessionConfiguration testConfig)
+        protected override void StartDynamo(TestSessionConfiguration testConfig)
         {
             try
             {
@@ -363,36 +363,6 @@ namespace RevitTestServices
             initialDoc.Close(false);
         }
 
-        /// <summary>
-        /// This function gets all the family instances in the current Revit document
-        /// </summary>
-        /// <param name="startNewTransaction">whether do the filtering in a new transaction</param>
-        /// <returns>the family instances</returns>
-        protected static IList<Element> GetAllFamilyInstances(bool startNewTransaction)
-        {
-            if (startNewTransaction)
-            {
-                using (var trans = new Transaction(DocumentManager.Instance.CurrentUIDocument.Document, "FilteringElements"))
-                {
-                    trans.Start();
-
-                    ElementClassFilter ef = new ElementClassFilter(typeof(FamilyInstance));
-                    FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-                    fec.WherePasses(ef);
-
-                    trans.Commit();
-                    return fec.ToElements();
-                }
-            }
-            else
-            {
-                ElementClassFilter ef = new ElementClassFilter(typeof(FamilyInstance));
-                FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-                fec.WherePasses(ef);
-                return fec.ToElements();
-            }
-        }
-
         #endregion
 
         protected void MakeConnector(NodeModel start, NodeModel end, int portStart, int portEnd)
@@ -405,14 +375,7 @@ namespace RevitTestServices
                 DynamoModel.MakeConnectionCommand.Mode.End);
             this.Model.ExecuteCommand(cmdend);
         }
-
-        protected static IList<Wall> GetAllWalls()
-        {
-            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            fec.OfClass(typeof(Wall));
-            return fec.ToElements().Cast<Wall>().ToList();
-        }
-
+      
         private static void UpdateSystemPathForProcess()
         {
             var assemblyLocation = Assembly.GetExecutingAssembly().Location;

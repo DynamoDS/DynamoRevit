@@ -33,17 +33,11 @@ namespace RevitSystemTests
         /// <returns>the model curves</returns>
         private static IList<Autodesk.Revit.DB.ModelCurve> GetAllModelCurves()
         {
-            using (var trans = new Transaction(DocumentManager.Instance.CurrentUIDocument.Document, "FilteringElements"))
-            {
-                trans.Start();
-
-                ElementClassFilter ef = new ElementClassFilter(typeof(Autodesk.Revit.DB.CurveElement));
-                FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-                fec.WherePasses(ef);
-
-                trans.Commit();
-                return fec.ToElements().OfType<Autodesk.Revit.DB.ModelCurve>().ToList();
-            }
+            ElementClassFilter ef = new ElementClassFilter(typeof(Autodesk.Revit.DB.CurveElement));
+            FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.WherePasses(ef);
+               
+            return fec.ToElements().OfType<Autodesk.Revit.DB.ModelCurve>().ToList();            
         }
 
         /// <summary>
@@ -51,29 +45,12 @@ namespace RevitSystemTests
         /// </summary>
         /// <param name="startNewTransaction">whether do the filtering in a new transaction</param>
         /// <returns>the reference points</returns>
-        private static IList<Element> GetAllReferencePointElements(bool startNewTransaction)
-        {
-            if (startNewTransaction)
-            {
-                using (var trans = new Transaction(DocumentManager.Instance.CurrentUIDocument.Document, "FilteringElements"))
-                {
-                    trans.Start();
-
-                    ElementClassFilter ef = new ElementClassFilter(typeof(ReferencePoint));
-                    FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-                    fec.WherePasses(ef);
-
-                    trans.Commit();
-                    return fec.ToElements();
-                }
-            }
-            else
-            {
-                ElementClassFilter ef = new ElementClassFilter(typeof(ReferencePoint));
-                FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-                fec.WherePasses(ef);
-                return fec.ToElements();
-            }
+        private static IList<Element> GetAllReferencePointElements()
+        {            
+            ElementClassFilter ef = new ElementClassFilter(typeof(ReferencePoint));
+            FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.WherePasses(ef);
+            return fec.ToElements();
         }
 
         /// <summary>
@@ -81,29 +58,12 @@ namespace RevitSystemTests
         /// </summary>
         /// <param name="startNewTransaction">whether do the filtering in a new transaction</param>
         /// <returns>the walls</returns>
-        private static IList<Element> GetAllWallElements(bool startNewTransaction)
+        private static IList<Element> GetAllWallElements()
         {
-            if (startNewTransaction)
-            {
-                using (var trans = new Transaction(DocumentManager.Instance.CurrentUIDocument.Document, "FilteringElements"))
-                {
-                    trans.Start();
-
-                    ElementClassFilter ef = new ElementClassFilter(typeof(Wall));
-                    FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-                    fec.WherePasses(ef);
-
-                    trans.Commit();
-                    return fec.ToElements();
-                }
-            }
-            else
-            {
-                ElementClassFilter ef = new ElementClassFilter(typeof(Wall));
-                FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-                fec.WherePasses(ef);
-                return fec.ToElements();
-            }
+            ElementClassFilter ef = new ElementClassFilter(typeof(Wall));
+            FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.WherePasses(ef);
+            return fec.ToElements();
         }
 
         /// <summary>
@@ -151,6 +111,17 @@ namespace RevitSystemTests
             return new ElementId(id.IntID);
         }
 
+        /// <summary>
+        /// Get all the wall from current document
+        /// </summary>
+        /// <returns>the list of walls</returns>
+        private IList<Wall> GetAllWalls()
+        {
+            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(Wall));
+            return fec.ToElements().Cast<Wall>().ToList();
+        }
+
         [Test]
         [TestModel(@".\ElementBinding\CreateWallInDynamo.rvt")]
         public void CreateInDynamoModifyInRevitToCauseFailure()
@@ -172,7 +143,7 @@ namespace RevitSystemTests
 
                 try
                 {
-                    IList<Element> rps = GetAllWallElements(false);
+                    IList<Element> rps = GetAllWallElements();
                     Assert.AreEqual(1, rps.Count);
                     Wall wall = rps.First() as Wall;
                     List<XYZ> ctrlPnts = new List<XYZ>();
@@ -202,7 +173,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
             
-            IList<Element> rps2 = GetAllWallElements(false);
+            IList<Element> rps2 = GetAllWallElements();
             Assert.AreEqual(1, rps2.Count);
         }
 
@@ -284,7 +255,7 @@ namespace RevitSystemTests
             
 
             //Change the position of the reference point
-            var points = GetAllReferencePointElements(true);
+            var points = GetAllReferencePointElements();
             Assert.AreEqual(1, points.Count);
             ReferencePoint pnt = points[0] as ReferencePoint;
             Assert.IsNotNull(pnt);
@@ -299,7 +270,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
             
-            points = GetAllReferencePointElements(true);
+            points = GetAllReferencePointElements();
             Assert.AreEqual(1, points.Count);
             pnt = points[0] as ReferencePoint;
             Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
@@ -326,7 +297,7 @@ namespace RevitSystemTests
             //Run the graph once again
             RunCurrentModel();
 
-            var points = GetAllReferencePointElements(true);
+            var points = GetAllReferencePointElements();
             Assert.AreEqual(2, points.Count);
             var pnt = points[0] as ReferencePoint;
             Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
@@ -360,7 +331,7 @@ namespace RevitSystemTests
             //Run the graph once again
             RunCurrentModel();
 
-            var points = GetAllReferencePointElements(true);
+            var points = GetAllReferencePointElements();
             Assert.AreEqual(1, points.Count);
             var pnt = points[0] as ReferencePoint;
             Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
@@ -394,7 +365,7 @@ namespace RevitSystemTests
             {
                 trans.Start();
 
-                IList<Element> rps = GetAllReferencePointElements(false);
+                IList<Element> rps = GetAllReferencePointElements();
                 var rpIDs = rps.Select(x => x.Id);
                 DocumentManager.Instance.CurrentDBDocument.Delete(rpIDs.ToList());
 
@@ -409,7 +380,7 @@ namespace RevitSystemTests
 
             //Check the number of reference points
             //This also verifies MAGN-2317
-            IList<Element> newRps = GetAllReferencePointElements(true);
+            IList<Element> newRps = GetAllReferencePointElements();
             Assert.AreEqual(1, newRps.Count());
 
             //Ensure the binding elements are different
@@ -578,7 +549,7 @@ namespace RevitSystemTests
             
 
             //Check the number of the refrence points
-            var points = GetAllReferencePointElements(true);
+            var points = GetAllReferencePointElements();
             Assert.AreEqual(8, points.Count);
 
             var model = ViewModel.Model;
@@ -596,7 +567,7 @@ namespace RevitSystemTests
             
 
             //Check the number of the refrence points
-            points = GetAllReferencePointElements(true);
+            points = GetAllReferencePointElements();
             Assert.AreEqual(6, points.Count);
         }
 
@@ -662,7 +633,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             //Check the number of the family instances
-            var instances = GetAllFamilyInstances(true);
+            var instances = TestUtils.GetAllFamilyInstances();
             Assert.AreEqual(8, instances.Count);
 
             var model = ViewModel.Model;
@@ -684,7 +655,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             //Check the number of family instances
-            instances = GetAllFamilyInstances(true);
+            instances = TestUtils.GetAllFamilyInstances();
             Assert.AreEqual(8, instances.Count);
         }
 
@@ -838,7 +809,7 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
 
-            var initialNumber = GetAllFamilyInstances(false).Count;
+            var initialNumber = TestUtils.GetAllFamilyInstances().Count;
 
             // The current Revit file already has a family placed at UV param location 0.50
             // We update placement location of family instance to 0.75 param location
@@ -850,7 +821,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            var finalNumber = GetAllFamilyInstances(false).Count;
+            var finalNumber = TestUtils.GetAllFamilyInstances().Count;
             var famInst = GetPreviewValue("56cf69ec-d4ca-4add-810d-aee64d003c76") as Revit.Elements.FamilyInstance;
             Assert.IsNotNull(famInst);
 

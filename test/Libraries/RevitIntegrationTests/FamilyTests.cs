@@ -194,7 +194,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            var initialNumber = GetAllFamilyInstances(false).Count;
+            var initialNumber = TestUtils.GetAllFamilyInstances().Count;
             var famInst1 = GetPreviewValue("e8dbd9fa-c0fd-4a5c-9cd8-2616f98285c8") as FamilyInstance;
             Assert.IsNotNull(famInst1);
 
@@ -207,7 +207,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            var finalNumber = GetAllFamilyInstances(false).Count;
+            var finalNumber = TestUtils.GetAllFamilyInstances().Count;
             var famInst2 = GetPreviewValue("e8dbd9fa-c0fd-4a5c-9cd8-2616f98285c8") as FamilyInstance;
             Assert.IsNotNull(famInst2);
 
@@ -291,7 +291,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            var initialNumber = GetAllFamilyInstances(false).Count;
+            var initialNumber = TestUtils.GetAllFamilyInstances().Count;
 
             // Update input line used to create family instance
             // connect Surface.PointAtParameter node to endPoint of Line.StartPointEndPoint node
@@ -305,7 +305,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            var finalNumber = GetAllFamilyInstances(false).Count;
+            var finalNumber = TestUtils.GetAllFamilyInstances().Count;
 
             // FamilyInstance.ByFace (with Line overload) node
             var famInst = GetPreviewValue("f8a4485d-6bfa-413c-a547-60a8df5022cf") as FamilyInstance;
