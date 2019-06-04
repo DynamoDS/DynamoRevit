@@ -1,4 +1,7 @@
 * Add System tests for Sample files.
+* Refactoring some RevitSystemTestBase codes.
+* Update RayBounce_SunStudy test due to RevitAPI update.
+* Add nodes for path of travel element.
 
 ## 0.1.3
 * Update Greg & GregRevitAuth to latest version (Greg - 1.1.7040.19960 GregRevitAuth - 1.0.7057.20655)
