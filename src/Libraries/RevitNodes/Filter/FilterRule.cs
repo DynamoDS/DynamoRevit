@@ -45,7 +45,7 @@ namespace Revit.Filter
             Equals,
             Greater,
             Less,
-            GeaterOrEqual,
+            GreaterOrEqual,
             LessOrEqual,
             NotBeginsWith,
             NotContains,
@@ -94,7 +94,7 @@ namespace Revit.Filter
                 ruletype == RuleType.NotEquals ||
                 ruletype == RuleType.Greater ||
                 ruletype == RuleType.Less ||
-                ruletype == RuleType.GeaterOrEqual ||
+                ruletype == RuleType.GreaterOrEqual ||
                 ruletype == RuleType.LessOrEqual
                 )
             {
