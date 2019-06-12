@@ -324,7 +324,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return string.Format("Level(Name={0}, Elevation={1})", Name, Elevation);
+            return string.Format(Properties.Resources.Level+"("+Properties.Resources.Name+"={0}, "+Properties.Resources.Elevation+"={1})", Name, Elevation);
         }
 
     }

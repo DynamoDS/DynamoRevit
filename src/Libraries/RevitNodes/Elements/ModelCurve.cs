@@ -291,7 +291,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return "ModelCurve";
+            return Properties.Resources.ModelCurveToString;
         }
     }
 }

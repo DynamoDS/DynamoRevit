@@ -121,7 +121,7 @@ namespace Revit.Schedules
 
         public override string ToString()
         {
-            return string.Format("ScheduleFilter(FilterType: {0}, FieldId: {1}, Value: {2})", this.FilterType, this.FiledId, this.Value);
+            return string.Format(Properties.Resources.ScheduleFilterToString, this.FilterType, this.FiledId, this.Value);
         }
 
         public override bool Equals(object obj)

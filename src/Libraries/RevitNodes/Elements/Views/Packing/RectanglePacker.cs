@@ -57,7 +57,7 @@ namespace Nuclex.Game.Packing
             UV point;
 
             if (!TryPack(rectangleWidth, rectangleHeight, out point))
-                throw new OutOfSpaceException("Rectangle does not fit in packing area");
+                throw new OutOfSpaceException(Revit.Properties.Resources.PackOutOfSpaceException);
 
             return point;
         }

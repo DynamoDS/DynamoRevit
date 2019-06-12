@@ -161,7 +161,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return "DetailCurve";
+            return Properties.Resources.DetailCurveToString;
         }
 
     }

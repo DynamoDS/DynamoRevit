@@ -92,9 +92,9 @@ namespace Revit.Elements
         public override string ToString()
         {
             if (InternalFamilyInstance != null && InternalFamilyInstance.IsValidObject)
-                return string.Format("Family={0}, Type={1}", InternalFamilyInstance.Symbol.Name, InternalFamilyInstance.Name);
+                return string.Format(Properties.Resources.Family + "={0}, " + Properties.Resources.Type + "={1}", InternalFamilyInstance.Symbol.Name, InternalFamilyInstance.Name);
 
-            return string.Format("Family={0}, Type={1}", "empty", "empty");
+            return string.Format(Properties.Resources.Family + "={0}, " + Properties.Resources.Type + "={1}", Properties.Resources.Empty, Properties.Resources.Empty);
         }
     }
 }

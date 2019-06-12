@@ -377,9 +377,159 @@
   </data>
   <data name="WallLocationLineDescription" xml:space="preserve">
     <value>Wall locations.</value>
- </data>
+  </data>
   <data name="ScheduleFilterTypeDescription" xml:space="preserve">
     <value>A View Schedule Filter Type.</value>
     <comment>Description for Filter Type</comment>
+  </data>
+  <data name="AnalysisResults" xml:space="preserve">
+    <value>Analysis Results</value>
+  </data>
+  <data name="AnalysisResultSelection" xml:space="preserve">
+    <value>Select an analysis result.</value>
+  </data>
+  <data name="BuiltInParameterGroup" xml:space="preserve">
+    <value>BuiltIn Parameter Group</value>
+  </data>
+  <data name="ColumnHeaders" xml:space="preserve">
+    <value>Column Headers</value>
+  </data>
+  <data name="ColumnTypes" xml:space="preserve">
+    <value>Column Types</value>
+  </data>
+  <data name="DetailLevel" xml:space="preserve">
+    <value>Detail Level</value>
+  </data>
+  <data name="DirectShapeRoomBoundingOption" xml:space="preserve">
+    <value>Direct Shape Room Bounding Option</value>
+  </data>
+  <data name="DividedSurfaceFamiliesSelection" xml:space="preserve">
+    <value>Select a divided surface.</value>
+  </data>
+  <data name="EdgeOfElementId" xml:space="preserve">
+    <value>Edge of Element Id</value>
+  </data>
+  <data name="EdgeSelection" xml:space="preserve">
+    <value>Select an edge.</value>
+  </data>
+  <data name="Element" xml:space="preserve">
+    <value>Element</value>
+  </data>
+  <data name="Elements" xml:space="preserve">
+    <value>Elements</value>
+  </data>
+  <data name="FaceOfElementId" xml:space="preserve">
+    <value>Face of Element Id</value>
+  </data>
+  <data name="Faces" xml:space="preserve">
+    <value>Faces</value>
+  </data>
+  <data name="FaceSelection" xml:space="preserve">
+    <value>Select a face.</value>
+  </data>
+  <data name="FamilyType" xml:space="preserve">
+    <value>Family Type</value>
+  </data>
+  <data name="FilledRegionType" xml:space="preserve">
+    <value>Filled Region Type</value>
+  </data>
+  <data name="FillPattern" xml:space="preserve">
+    <value>Fill Pattern</value>
+  </data>
+  <data name="FillPatternTarget" xml:space="preserve">
+    <value>Fill Pattern Target</value>
+  </data>
+  <data name="FilterType" xml:space="preserve">
+    <value>Filter Type</value>
+  </data>
+  <data name="FloorType" xml:space="preserve">
+    <value>Floor Type</value>
+  </data>
+  <data name="FramingTypes" xml:space="preserve">
+    <value>Framing Types</value>
+  </data>
+  <data name="HorizontalAlignment" xml:space="preserve">
+    <value>Horizontal Alignment</value>
+  </data>
+  <data name="Levels" xml:space="preserve">
+    <value>Levels</value>
+  </data>
+  <data name="LinePattern" xml:space="preserve">
+    <value>Line Pattern</value>
+  </data>
+  <data name="ModelElementSelection" xml:space="preserve">
+    <value>Select Model Element</value>
+  </data>
+  <data name="ModelElementsSelection" xml:space="preserve">
+    <value>Select elements.</value>
+  </data>
+  <data name="NoFamilyParameters" xml:space="preserve">
+    <value>No family parameters available.</value>
+  </data>
+  <data name="NoFamilyTypes" xml:space="preserve">
+    <value>No family types available.</value>
+  </data>
+  <data name="NoLevelsAvailable" xml:space="preserve">
+    <value>No levels available.</value>
+  </data>
+  <data name="Parameter" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
+  <data name="ParameterType" xml:space="preserve">
+    <value>Parameter Type</value>
+  </data>
+  <data name="PerformanceAdviserRules" xml:space="preserve">
+    <value>Performance Adviser Rules</value>
+  </data>
+  <data name="Phase" xml:space="preserve">
+    <value>Phase</value>
+  </data>
+  <data name="PointOnElement" xml:space="preserve">
+    <value>Point on Element</value>
+  </data>
+  <data name="PointOnElementSelection" xml:space="preserve">
+    <value>Select a point on a face.</value>
+  </data>
+  <data name="Revision" xml:space="preserve">
+    <value>Revision</value>
+  </data>
+  <data name="RevisionNumbering" xml:space="preserve">
+    <value>Revision Numbering</value>
+  </data>
+  <data name="RevisionNumberType" xml:space="preserve">
+    <value>Revision Number Type</value>
+  </data>
+  <data name="RevisionVisibility" xml:space="preserve">
+    <value>Revision Visibility</value>
+  </data>
+  <data name="RuleType" xml:space="preserve">
+    <value>Rule Type</value>
+  </data>
+  <data name="ScheduleTypes" xml:space="preserve">
+    <value>Schedule Type</value>
+  </data>
+  <data name="SelectFaces" xml:space="preserve">
+    <value>Select faces.</value>
+  </data>
+  <data name="TextQualifier" xml:space="preserve">
+    <value>Text Qualifier</value>
+  </data>
+  <data name="UVOnElement" xml:space="preserve">
+    <value>UV on Element</value>
+  </data>
+  <data name="VerticalAlignment" xml:space="preserve">
+    <value>Vertical Alignment</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Views</value>
+  </data>
+  <data name="WallLocation" xml:space="preserve">
+    <value>Wall Location</value>
+  </data>
+  <data name="WallType" xml:space="preserve">
+    <value>Wall Type</value>
+  </data>
+  <data name="SiteLocationToString" xml:space="preserve">
+    <value>Name: {0}, Latitude: {1}, Longitude: {2}</value>
   </data>
 </root>

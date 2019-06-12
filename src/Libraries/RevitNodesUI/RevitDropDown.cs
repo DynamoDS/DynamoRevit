@@ -87,8 +87,8 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FamilyTypes : RevitDropDownBase
     {
-        private const string NO_FAMILY_TYPES = "No family types available.";
-        private const string outputName = "Family Type";
+        private string NO_FAMILY_TYPES = Properties.Resources.NoFamilyTypes;
+        private static string outputName = Properties.Resources.FamilyType;
 
         public FamilyTypes() : base(outputName) { }
 
@@ -151,8 +151,8 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FamilyInstanceParameters : RevitDropDownBase 
     {
-        private const string noFamilyParameters = "No family parameters available.";
-        private const string outputName = "Parameter";
+        private string noFamilyParameters = Properties.Resources.NoFamilyParameters;
+        private static string outputName = Properties.Resources.Parameter;
         private Element element;
         private ElementId storedId = null;
         internal EngineController EngineController { get; set; }
@@ -372,7 +372,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FloorTypes : RevitDropDownBase
     {
-        private const string outputName = "Floor Type";
+        private static string outputName = Properties.Resources.FloorType;
 
         public FloorTypes() : base(outputName) { }
 
@@ -421,7 +421,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class WallTypes : RevitDropDownBase
     {
-        private const string outputName = "Wall Type";
+        private static string outputName = Properties.Resources.WallType;
 
         public WallTypes() : base(outputName) { }
 
@@ -470,7 +470,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class PerformanceAdviserRules : RevitDropDownBase
     {
-        private const string outputName = "Performance Adviser Rules";
+        private static string outputName = Properties.Resources.PerformanceAdviserRules;
 
         public PerformanceAdviserRules() : base(outputName) { }
 
@@ -683,8 +683,8 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class Levels : RevitDropDownBase
     {
-        private const string noLevels = "No levels available.";
-        private const string outputName = "Levels";
+        private string noLevels = Properties.Resources.NoLevelsAvailable;
+        private static string outputName = Properties.Resources.Levels;
 
         public Levels() : base(outputName) { }
 
@@ -795,7 +795,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class StructuralFramingTypes : AllElementsInBuiltInCategory
     {
-        private const string outputName = "Framing Types";
+        private static string outputName = Properties.Resources.FramingTypes;
 
         public StructuralFramingTypes()
             : base(BuiltInCategory.OST_StructuralFraming, outputName, Properties.Resources.DropDownNoFramingType){}
@@ -811,7 +811,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class StructuralColumnTypes : AllElementsInBuiltInCategory
     {
-        private const string outputName = "Column Types";
+        private static string outputName = Properties.Resources.ColumnTypes;
 
         public StructuralColumnTypes()
             : base(BuiltInCategory.OST_StructuralColumns, outputName, Properties.Resources.DropDownNoColumnType){}
@@ -871,7 +871,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class Views : RevitDropDownBase
     {
-        private const string outputName = "Views";
+        private static string outputName = Properties.Resources.Views;
 
         public Views() : base(outputName) { }
 

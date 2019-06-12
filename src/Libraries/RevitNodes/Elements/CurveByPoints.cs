@@ -147,7 +147,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return "CurveByPoints";
+            return Properties.Resources.CurveByPoints;
         }
     }
 }

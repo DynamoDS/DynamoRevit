@@ -19,7 +19,7 @@ namespace DSRevitNodesUI.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -61,6 +61,33 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Analysis Results.
+        /// </summary>
+        internal static string AnalysisResults {
+            get {
+                return ResourceManager.GetString("AnalysisResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an analysis result..
+        /// </summary>
+        internal static string AnalysisResultSelection {
+            get {
+                return ResourceManager.GetString("AnalysisResultSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BuiltIn Parameter Group.
+        /// </summary>
+        internal static string BuiltInParameterGroup {
+            get {
+                return ResourceManager.GetString("BuiltInParameterGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a built-in parameter group..
         /// </summary>
         internal static string BuiltInParameterGroupSelectorDescription {
@@ -79,11 +106,56 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Column Headers.
+        /// </summary>
+        internal static string ColumnHeaders {
+            get {
+                return ResourceManager.GetString("ColumnHeaders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column Types.
+        /// </summary>
+        internal static string ColumnTypes {
+            get {
+                return ResourceManager.GetString("ColumnTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detail Level.
+        /// </summary>
+        internal static string DetailLevel {
+            get {
+                return ResourceManager.GetString("DetailLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Shape Room Bounding Option.
+        /// </summary>
+        internal static string DirectShapeRoomBoundingOption {
+            get {
+                return ResourceManager.GetString("DirectShapeRoomBoundingOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a Direct Shape Room Bounding Option..
         /// </summary>
         internal static string DirectShapeRoomBoundingOptionSelectorDescription {
             get {
                 return ResourceManager.GetString("DirectShapeRoomBoundingOptionSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a divided surface..
+        /// </summary>
+        internal static string DividedSurfaceFamiliesSelection {
+            get {
+                return ResourceManager.GetString("DividedSurfaceFamiliesSelection", resourceCulture);
             }
         }
         
@@ -102,6 +174,42 @@ namespace DSRevitNodesUI.Properties {
         internal static string DropDownNoFramingType {
             get {
                 return ResourceManager.GetString("DropDownNoFramingType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edge of Element Id.
+        /// </summary>
+        internal static string EdgeOfElementId {
+            get {
+                return ResourceManager.GetString("EdgeOfElementId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an edge..
+        /// </summary>
+        internal static string EdgeSelection {
+            get {
+                return ResourceManager.GetString("EdgeSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Element.
+        /// </summary>
+        internal static string Element {
+            get {
+                return ResourceManager.GetString("Element", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elements.
+        /// </summary>
+        internal static string Elements {
+            get {
+                return ResourceManager.GetString("Elements", resourceCulture);
             }
         }
         
@@ -178,11 +286,56 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Face of Element Id.
+        /// </summary>
+        internal static string FaceOfElementId {
+            get {
+                return ResourceManager.GetString("FaceOfElementId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Faces.
+        /// </summary>
+        internal static string Faces {
+            get {
+                return ResourceManager.GetString("Faces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a face..
+        /// </summary>
+        internal static string FaceSelection {
+            get {
+                return ResourceManager.GetString("FaceSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Family Type.
+        /// </summary>
+        internal static string FamilyType {
+            get {
+                return ResourceManager.GetString("FamilyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All family types available in the document..
         /// </summary>
         internal static string FamilyTypesDescription {
             get {
                 return ResourceManager.GetString("FamilyTypesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filled Region Type.
+        /// </summary>
+        internal static string FilledRegionType {
+            get {
+                return ResourceManager.GetString("FilledRegionType", resourceCulture);
             }
         }
         
@@ -196,11 +349,29 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fill Pattern.
+        /// </summary>
+        internal static string FillPattern {
+            get {
+                return ResourceManager.GetString("FillPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All available fill patterns..
         /// </summary>
         internal static string FillPatternsDescription {
             get {
                 return ResourceManager.GetString("FillPatternsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill Pattern Target.
+        /// </summary>
+        internal static string FillPatternTarget {
+            get {
+                return ResourceManager.GetString("FillPatternTarget", resourceCulture);
             }
         }
         
@@ -214,11 +385,29 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter Type.
+        /// </summary>
+        internal static string FilterType {
+            get {
+                return ResourceManager.GetString("FilterType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter Types for Revit Filters.
         /// </summary>
         internal static string FilterTypeSelectorDescription {
             get {
                 return ResourceManager.GetString("FilterTypeSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Floor Type.
+        /// </summary>
+        internal static string FloorType {
+            get {
+                return ResourceManager.GetString("FloorType", resourceCulture);
             }
         }
         
@@ -232,11 +421,29 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Framing Types.
+        /// </summary>
+        internal static string FramingTypes {
+            get {
+                return ResourceManager.GetString("FramingTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Given a Family Instance or Type allows the user to select a parameter as a string..
         /// </summary>
         internal static string GetFamilyParameterDescription {
             get {
                 return ResourceManager.GetString("GetFamilyParameterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horizontal Alignment.
+        /// </summary>
+        internal static string HorizontalAlignment {
+            get {
+                return ResourceManager.GetString("HorizontalAlignment", resourceCulture);
             }
         }
         
@@ -250,6 +457,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Levels.
+        /// </summary>
+        internal static string Levels {
+            get {
+                return ResourceManager.GetString("Levels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a level in the active document.
         /// </summary>
         internal static string LevelsDescription {
@@ -259,11 +475,38 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Line Pattern.
+        /// </summary>
+        internal static string LinePattern {
+            get {
+                return ResourceManager.GetString("LinePattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All available line patterns..
         /// </summary>
         internal static string LinePatternsDescription {
             get {
                 return ResourceManager.GetString("LinePatternsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Model Element.
+        /// </summary>
+        internal static string ModelElementSelection {
+            get {
+                return ResourceManager.GetString("ModelElementSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select elements..
+        /// </summary>
+        internal static string ModelElementsSelection {
+            get {
+                return ResourceManager.GetString("ModelElementsSelection", resourceCulture);
             }
         }
         
@@ -286,11 +529,38 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No family parameters available..
+        /// </summary>
+        internal static string NoFamilyParameters {
+            get {
+                return ResourceManager.GetString("NoFamilyParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No family types available..
+        /// </summary>
+        internal static string NoFamilyTypes {
+            get {
+                return ResourceManager.GetString("NoFamilyTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No floor types available..
         /// </summary>
         internal static string NoFloorTypesAvailable {
             get {
                 return ResourceManager.GetString("NoFloorTypesAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No levels available..
+        /// </summary>
+        internal static string NoLevelsAvailable {
+            get {
+                return ResourceManager.GetString("NoLevelsAvailable", resourceCulture);
             }
         }
         
@@ -322,6 +592,24 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parameter.
+        /// </summary>
+        internal static string Parameter {
+            get {
+                return ResourceManager.GetString("Parameter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parameter Type.
+        /// </summary>
+        internal static string ParameterType {
+            get {
+                return ResourceManager.GetString("ParameterType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a parameter type..
         /// </summary>
         internal static string ParameterTypeSelectorDescription {
@@ -340,11 +628,47 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Performance Adviser Rules.
+        /// </summary>
+        internal static string PerformanceAdviserRules {
+            get {
+                return ResourceManager.GetString("PerformanceAdviserRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phase.
+        /// </summary>
+        internal static string Phase {
+            get {
+                return ResourceManager.GetString("Phase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select an existing Revit Phase from the active document..
         /// </summary>
         internal static string PhaseSelectorDescription {
             get {
                 return ResourceManager.GetString("PhaseSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Point on Element.
+        /// </summary>
+        internal static string PointOnElement {
+            get {
+                return ResourceManager.GetString("PointOnElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a point on a face..
+        /// </summary>
+        internal static string PointOnElementSelection {
+            get {
+                return ResourceManager.GetString("PointOnElementSelection", resourceCulture);
             }
         }
         
@@ -457,11 +781,38 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Revision.
+        /// </summary>
+        internal static string Revision {
+            get {
+                return ResourceManager.GetString("Revision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revision Numbering.
+        /// </summary>
+        internal static string RevisionNumbering {
+            get {
+                return ResourceManager.GetString("RevisionNumbering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select an way to number the revisions..
         /// </summary>
         internal static string RevisionNumberingSelectorDescription {
             get {
                 return ResourceManager.GetString("RevisionNumberingSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revision Number Type.
+        /// </summary>
+        internal static string RevisionNumberType {
+            get {
+                return ResourceManager.GetString("RevisionNumberType", resourceCulture);
             }
         }
         
@@ -484,6 +835,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Revision Visibility.
+        /// </summary>
+        internal static string RevisionVisibility {
+            get {
+                return ResourceManager.GetString("RevisionVisibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select the revision visilibity type..
         /// </summary>
         internal static string RevisionVisibilitySelectorDescription {
@@ -493,19 +853,38 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a Schedule Type..
+        ///   Looks up a localized string similar to Rule Type.
         /// </summary>
-        internal static string ScheduleTypeSelectorDescription {
+        internal static string RuleType {
             get {
-                return ResourceManager.GetString("ScheduleTypeSelectorDescription", resourceCulture);
+                return ResourceManager.GetString("RuleType", resourceCulture);
             }
         }
         
+        /// <summary>
         ///   Looks up a localized string similar to A View Schedule Filter Type..
         /// </summary>
         internal static string ScheduleFilterTypeDescription {
             get {
                 return ResourceManager.GetString("ScheduleFilterTypeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule Type.
+        /// </summary>
+        internal static string ScheduleTypes {
+            get {
+                return ResourceManager.GetString("ScheduleTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Schedule Type..
+        /// </summary>
+        internal static string ScheduleTypeSelectorDescription {
+            get {
+                return ResourceManager.GetString("ScheduleTypeSelectorDescription", resourceCulture);
             }
         }
         
@@ -560,6 +939,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string SelectFaceDescription {
             get {
                 return ResourceManager.GetString("SelectFaceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select faces..
+        /// </summary>
+        internal static string SelectFaces {
+            get {
+                return ResourceManager.GetString("SelectFaces", resourceCulture);
             }
         }
         
@@ -636,6 +1024,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name: {0}, Latitude: {1}, Longitude: {2}.
+        /// </summary>
+        internal static string SiteLocationToString {
+            get {
+                return ResourceManager.GetString("SiteLocationToString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A spacing rule layout for calculating divided paths..
         /// </summary>
         internal static string SpacingRuleLayoutDescription {
@@ -672,6 +1069,33 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text Qualifier.
+        /// </summary>
+        internal static string TextQualifier {
+            get {
+                return ResourceManager.GetString("TextQualifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UV on Element.
+        /// </summary>
+        internal static string UVOnElement {
+            get {
+                return ResourceManager.GetString("UVOnElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertical Alignment.
+        /// </summary>
+        internal static string VerticalAlignment {
+            get {
+                return ResourceManager.GetString("VerticalAlignment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select the vertical text alignment style..
         /// </summary>
         internal static string VerticalTextAlignmentStyleSelectorDescription {
@@ -690,6 +1114,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Views.
+        /// </summary>
+        internal static string Views {
+            get {
+                return ResourceManager.GetString("Views", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All views available in the current document..
         /// </summary>
         internal static string ViewsDescription {
@@ -699,11 +1132,29 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wall Location.
+        /// </summary>
+        internal static string WallLocation {
+            get {
+                return ResourceManager.GetString("WallLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wall locations..
         /// </summary>
         internal static string WallLocationLineDescription {
             get {
                 return ResourceManager.GetString("WallLocationLineDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wall Type.
+        /// </summary>
+        internal static string WallType {
+            get {
+                return ResourceManager.GetString("WallType", resourceCulture);
             }
         }
         

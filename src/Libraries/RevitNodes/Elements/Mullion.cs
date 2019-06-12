@@ -179,7 +179,7 @@ namespace Revit.Elements
 
       public override string ToString()
       {
-         return "Mullion";
+         return Properties.Resources.MullionToString;
       }
 
       #endregion

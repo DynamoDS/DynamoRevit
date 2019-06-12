@@ -176,7 +176,7 @@ namespace Revit.Elements.Views
 
         public override string ToString()
         {
-            return GetType().Name + "(Name = " + InternalView.Name + " )";
+            return GetType().Name + "("+Properties.Resources.Name+" = " + InternalView.Name + " )";
         }
 
         #region Filter

@@ -1,4 +1,6 @@
+* Correct spelling mistakes in Select Rule Type Node
 * Resolve DynamoCore new version 2.2.1.5204
+* Refactory some hardcoded string
 
 ## 0.1.4
 * Add System tests for Sample files.

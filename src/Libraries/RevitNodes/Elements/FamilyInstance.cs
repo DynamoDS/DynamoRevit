@@ -470,7 +470,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return InternalFamilyInstance.IsValidObject ? InternalFamilyInstance.Name : "empty";
+            return InternalFamilyInstance.IsValidObject ? InternalFamilyInstance.Name : Properties.Resources.Empty;
         }
 
         /// <summary>

@@ -115,7 +115,7 @@ namespace Revit.Elements.Views
 
             if (viewFam == null)
             {
-                throw new Exception("There is no three dimensional view family in the document");
+                throw new Exception(Properties.Resources.CreateSectionViewException);
             }
 
             var viewSection = ViewSection.CreateSection( Document, viewFam.Id, bbox);

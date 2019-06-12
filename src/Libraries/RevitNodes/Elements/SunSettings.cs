@@ -115,7 +115,7 @@ namespace Revit.Elements
         public override string ToString()
         {
             return string.Format(
-                "Name: {0}, Alt: {1}, Azim: {2}",
+                Properties.Resources.SunSettingsToString,
                 InternalSunAndShadowSettings.Name,
                 InternalSunAndShadowSettings.Altitude.ToDegrees(),
                 InternalSunAndShadowSettings.Azimuth.ToDegrees()

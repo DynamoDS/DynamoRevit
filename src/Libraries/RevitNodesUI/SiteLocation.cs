@@ -112,7 +112,7 @@ namespace DSRevitNodesUI
         public override string ToString()
         {
             return string.Format(
-                "Name: {0}, Lat: {1}, Lon: {2}",
+                DSRevitNodesUI.Properties.Resources.SiteLocationToString,
                 Location.Name,
                 Location.Latitude,
                 Location.Longitude);

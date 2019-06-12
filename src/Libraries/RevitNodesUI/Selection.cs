@@ -577,8 +577,8 @@ namespace Dynamo.Nodes
      IsVisibleInDynamoLibrary(false)]
     public class DSAnalysisResultSelection : ElementSelection<Element>
     {
-        private const string message = "Select an analysis result.";
-        private const string prefix = "Analysis Results";
+        private static string message = DSRevitNodesUI.Properties.Resources.AnalysisResultSelection;
+        private static string prefix = DSRevitNodesUI.Properties.Resources.AnalysisResults;
 
         public DSAnalysisResultSelection()
             : base(
@@ -603,8 +603,8 @@ namespace Dynamo.Nodes
      NodeDescription("SelectModelElementDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSModelElementSelection : ElementSelection<Element>
     {
-        private const string message = "Select Model Element";
-        private const string prefix = "Element";
+        private static string message = DSRevitNodesUI.Properties.Resources.ModelElementSelection;
+        private static string prefix = DSRevitNodesUI.Properties.Resources.Element;
 
         public DSModelElementSelection()
             : base(
@@ -629,8 +629,8 @@ namespace Dynamo.Nodes
      NodeDescription("SelectFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSFaceSelection : ReferenceSelection
     {
-        private const string message = "Select a face.";
-        private const string prefix = "Face of Element Id";
+        private static string message = DSRevitNodesUI.Properties.Resources.FaceSelection;
+        private static string prefix = DSRevitNodesUI.Properties.Resources.FaceOfElementId;
 
         public DSFaceSelection()
             : base(
@@ -655,8 +655,8 @@ namespace Dynamo.Nodes
      NodeDescription("SelectEdgeDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSEdgeSelection : ReferenceSelection
     {
-        private const string message = "Select an edge.";
-        private const string prefix = "Edge of Element Id";
+        private static string message = DSRevitNodesUI.Properties.Resources.EdgeSelection;
+        private static string prefix = DSRevitNodesUI.Properties.Resources.EdgeOfElementId;
 
         public DSEdgeSelection()
             : base(
@@ -681,8 +681,8 @@ namespace Dynamo.Nodes
      NodeDescription("SelectPointonFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSPointOnElementSelection : ReferenceSelection
     {
-        private const string message = "Select a point on a face.";
-        private const string prefix = "Point on Element";
+        private static string message = DSRevitNodesUI.Properties.Resources.PointOnElementSelection;
+        private static string prefix = DSRevitNodesUI.Properties.Resources.PointOnElement;
 
         public DSPointOnElementSelection()
             : base(
@@ -756,8 +756,8 @@ namespace Dynamo.Nodes
      NodeDescription("SelectUVonFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSUvOnElementSelection : ReferenceSelection
     {
-        private const string message = "Select a point on a face.";
-        private const string prefix = "UV on Element";
+        private static string message = DSRevitNodesUI.Properties.Resources.PointOnElementSelection;
+        private static string prefix = DSRevitNodesUI.Properties.Resources.UVOnElement;
 
         public DSUvOnElementSelection()
             : base(
@@ -832,8 +832,8 @@ namespace Dynamo.Nodes
      IsDesignScriptCompatible]
     public class DSDividedSurfaceFamiliesSelection : ElementSelection<DividedSurface>
     {
-        private const string message = "Select a divided surface.";
-        private const string prefix = "Elements";
+        private static string message = DSRevitNodesUI.Properties.Resources.DividedSurfaceFamiliesSelection;
+        private static string prefix = DSRevitNodesUI.Properties.Resources.Elements;
 
         public DSDividedSurfaceFamiliesSelection()
             : base(
@@ -886,8 +886,8 @@ namespace Dynamo.Nodes
      NodeDescription("SelectModelElementsDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSModelElementsSelection : ElementSelection<Element>
     {
-        private const string message = "Select elements.";
-        private const string prefix = "Elements";
+        private static string message = DSRevitNodesUI.Properties.Resources.ModelElementsSelection;
+        private static string prefix = DSRevitNodesUI.Properties.Resources.Elements;
 
         public DSModelElementsSelection()
             : base(
@@ -913,8 +913,8 @@ namespace Dynamo.Nodes
      NodeDescription("SelectFacesDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class SelectFaces : ReferenceSelection
     {
-        private const string message = "Select faces.";
-        private const string prefix = "Faces";
+        private static string message = DSRevitNodesUI.Properties.Resources.SelectFaces;
+        private static string prefix = DSRevitNodesUI.Properties.Resources.Faces;
 
         public SelectFaces()
             : base(

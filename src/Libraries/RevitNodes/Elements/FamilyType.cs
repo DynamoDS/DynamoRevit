@@ -287,7 +287,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return String.Format("Family Type: {0}, Family: {1}", InternalFamilySymbol.Name,
+            return String.Format(Properties.Resources.Family+" "+Properties.Resources.Type+": {0}, "+Properties.Resources.Family+": {1}", InternalFamilySymbol.Name,
                 InternalFamilySymbol.Family.Name);
         }
 

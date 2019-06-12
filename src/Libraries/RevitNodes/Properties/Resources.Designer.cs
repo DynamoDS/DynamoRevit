@@ -142,6 +142,24 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no three dimensional view family in the document.
+        /// </summary>
+        internal static string CreateSectionViewException {
+            get {
+                return ResourceManager.GetString("CreateSectionViewException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curtain Grid.
+        /// </summary>
+        internal static string CurtainGrid {
+            get {
+                return ResourceManager.GetString("CurtainGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Element has no Curtain Grid..
         /// </summary>
         internal static string CurtainGridNotFound {
@@ -156,6 +174,15 @@ namespace Revit.Properties {
         internal static string CurtainGridReferenceError {
             get {
                 return ResourceManager.GetString("CurtainGridReferenceError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curtain Panel.
+        /// </summary>
+        internal static string CurtainPanel {
+            get {
+                return ResourceManager.GetString("CurtainPanel", resourceCulture);
             }
         }
         
@@ -201,6 +228,15 @@ namespace Revit.Properties {
         internal static string CurtainSystemTypeNotFound {
             get {
                 return ResourceManager.GetString("CurtainSystemTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curve By Points.
+        /// </summary>
+        internal static string CurveByPoints {
+            get {
+                return ResourceManager.GetString("CurveByPoints", resourceCulture);
             }
         }
         
@@ -277,6 +313,24 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detail Curve.
+        /// </summary>
+        internal static string DetailCurveToString {
+            get {
+                return ResourceManager.GetString("DetailCurveToString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DirectShape(Geometry = {0}, Category = {1}, Material ={2}.).
+        /// </summary>
+        internal static string DirectShapeInternalSetName {
+            get {
+                return ResourceManager.GetString("DirectShapeInternalSetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can only create DirectShapes from Solids, Surfaces or Meshes..
         /// </summary>
         internal static string DirectShapeInvalidArgument {
@@ -322,11 +376,38 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to element.
+        /// </summary>
+        internal static string Element {
+            get {
+                return ResourceManager.GetString("Element", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Element cannot be annotated.
         /// </summary>
         internal static string ElementCannotBeAnnotatedError {
             get {
                 return ResourceManager.GetString("ElementCannotBeAnnotatedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elevation.
+        /// </summary>
+        internal static string Elevation {
+            get {
+                return ResourceManager.GetString("Elevation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to empty.
+        /// </summary>
+        internal static string Empty {
+            get {
+                return ResourceManager.GetString("Empty", resourceCulture);
             }
         }
         
@@ -390,6 +471,15 @@ namespace Revit.Properties {
         internal static string FaceReferenceHint {
             get {
                 return ResourceManager.GetString("FaceReferenceHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Family.
+        /// </summary>
+        internal static string Family {
+            get {
+                return ResourceManager.GetString("Family", resourceCulture);
             }
         }
         
@@ -475,6 +565,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not get the element from the document..
+        /// </summary>
+        internal static string GetElementFromDocException {
+            get {
+                return ResourceManager.GetString("GetElementFromDocException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Grid Element can only be created in a Revit Project..
         /// </summary>
         internal static string GridCreationFailure {
@@ -516,6 +615,33 @@ namespace Revit.Properties {
         internal static string InstanceImportFailure {
             get {
                 return ResourceManager.GetString("InstanceImportFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View {0} could not be packed on the Sheet.  The sheet is {1} x {2} and the view to be added is {3} x {4}.
+        /// </summary>
+        internal static string InternalAddViewsToSheetViewException {
+            get {
+                return ResourceManager.GetString("InternalAddViewsToSheetViewException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not obtain element from the current document!  The id may not be valid..
+        /// </summary>
+        internal static string InternalGetElementByIdException {
+            get {
+                return ResourceManager.GetString("InternalGetElementByIdException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not obtain element from the current document!  The unique id may not be valid.&quot;.
+        /// </summary>
+        internal static string InternalGetElementByUniqueIdException {
+            get {
+                return ResourceManager.GetString("InternalGetElementByUniqueIdException", resourceCulture);
             }
         }
         
@@ -619,11 +745,29 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        internal static string Level {
+            get {
+                return ResourceManager.GetString("Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Material with the given name does not exist in the current Document..
         /// </summary>
         internal static string MaterialNotFound {
             get {
                 return ResourceManager.GetString("MaterialNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model Curve.
+        /// </summary>
+        internal static string ModelCurveToString {
+            get {
+                return ResourceManager.GetString("ModelCurveToString", resourceCulture);
             }
         }
         
@@ -655,6 +799,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mullion.
+        /// </summary>
+        internal static string MullionToString {
+            get {
+                return ResourceManager.GetString("MullionToString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are multiple curves converted from the input curve element..
         /// </summary>
         internal static string MultipleCurvesIntroducedAfterConversion {
@@ -669,6 +822,15 @@ namespace Revit.Properties {
         internal static string MultipleSurfacesIntroducedAfterConversion {
             get {
                 return ResourceManager.GetString("MultipleSurfacesIntroducedAfterConversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
@@ -754,6 +916,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rectangle does not fit in packing area.
+        /// </summary>
+        internal static string PackOutOfSpaceException {
+            get {
+                return ResourceManager.GetString("PackOutOfSpaceException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid parameter group..
         /// </summary>
         internal static string ParameterGroupNotFound {
@@ -826,6 +997,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Argument is expected to be of type &apos;Revit.Elements.AbstractElement&apos; or  &apos;Revit.GeometryObjectsBoundingBox&apos;, but found to be of type &apos;{0}&apos;.
+        /// </summary>
+        internal static string PerspectiveViewByEyePointAndTargetException {
+            get {
+                return ResourceManager.GetString("PerspectiveViewByEyePointAndTargetException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use PointAnalysisDisplay.ByViewPointsAndValues instead..
         /// </summary>
         internal static string PointDataObsolete {
@@ -871,6 +1051,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reference Point: Location=(X={0}, Y={1}, Z={2}).
+        /// </summary>
+        internal static string ReferencePointToString {
+            get {
+                return ResourceManager.GetString("ReferencePointToString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Roof type not found..
         /// </summary>
         internal static string RoofTypeNotFound {
@@ -894,6 +1083,15 @@ namespace Revit.Properties {
         internal static string ScheduleExportError {
             get {
                 return ResourceManager.GetString("ScheduleExportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ScheduleFilter(FilterType: {0}, FieldId: {1}, Value: {2}).
+        /// </summary>
+        internal static string ScheduleFilterToString {
+            get {
+                return ResourceManager.GetString("ScheduleFilterToString", resourceCulture);
             }
         }
         
@@ -943,6 +1141,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name: {0}, Alt: {1}, Azim: {2}.
+        /// </summary>
+        internal static string SunSettingsToString {
+            get {
+                return ResourceManager.GetString("SunSettingsToString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use FaceAnalysisDisplay.ByViewFacePointsAndValues instead..
         /// </summary>
         internal static string SurfaceDataObsolete {
@@ -966,6 +1173,24 @@ namespace Revit.Properties {
         internal static string TopographyNeedsThreePoints {
             get {
                 return ResourceManager.GetString("TopographyNeedsThreePoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Topography.
+        /// </summary>
+        internal static string TopographyToString {
+            get {
+                return ResourceManager.GetString("TopographyToString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        internal static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
         

@@ -166,7 +166,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return "Topography";
+            return Properties.Resources.TopographyToString;
         }
     }
 }

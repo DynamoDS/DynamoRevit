@@ -447,4 +447,79 @@
   <data name="StartPointListHasNulls" xml:space="preserve">
     <value>Start point list contains null elements</value>
   </data>
+  <data name="CreateSectionViewException" xml:space="preserve">
+    <value>There is no three dimensional view family in the document</value>
+  </data>
+  <data name="CurtainGrid" xml:space="preserve">
+    <value>Curtain Grid</value>
+  </data>
+  <data name="CurtainPanel" xml:space="preserve">
+    <value>Curtain Panel</value>
+  </data>
+  <data name="CurveByPoints" xml:space="preserve">
+    <value>Curve By Points</value>
+  </data>
+  <data name="DirectShapeInternalSetName" xml:space="preserve">
+    <value>DirectShape(Geometry = {0}, Category = {1}, Material ={2}.)</value>
+  </data>
+  <data name="Element" xml:space="preserve">
+    <value>element</value>
+  </data>
+  <data name="Elevation" xml:space="preserve">
+    <value>Elevation</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>empty</value>
+  </data>
+  <data name="Family" xml:space="preserve">
+    <value>Family</value>
+  </data>
+  <data name="GetElementFromDocException" xml:space="preserve">
+    <value>Could not get the element from the document.</value>
+  </data>
+  <data name="InternalAddViewsToSheetViewException" xml:space="preserve">
+    <value>View {0} could not be packed on the Sheet.  The sheet is {1} x {2} and the view to be added is {3} x {4}</value>
+  </data>
+  <data name="InternalGetElementByIdException" xml:space="preserve">
+    <value>Could not obtain element from the current document!  The id may not be valid.</value>
+  </data>
+  <data name="InternalGetElementByUniqueIdException" xml:space="preserve">
+    <value>Could not obtain element from the current document!  The unique id may not be valid."</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PackOutOfSpaceException" xml:space="preserve">
+    <value>Rectangle does not fit in packing area</value>
+  </data>
+  <data name="PerspectiveViewByEyePointAndTargetException" xml:space="preserve">
+    <value>Argument is expected to be of type 'Revit.Elements.AbstractElement' or  'Revit.GeometryObjectsBoundingBox', but found to be of type '{0}'</value>
+  </data>
+  <data name="ReferencePointToString" xml:space="preserve">
+    <value>Reference Point: Location=(X={0}, Y={1}, Z={2})</value>
+  </data>
+  <data name="ScheduleFilterToString" xml:space="preserve">
+    <value>ScheduleFilter(FilterType: {0}, FieldId: {1}, Value: {2})</value>
+  </data>
+  <data name="SunSettingsToString" xml:space="preserve">
+    <value>Name: {0}, Alt: {1}, Azim: {2}</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="DetailCurveToString" xml:space="preserve">
+    <value>Detail Curve</value>
+  </data>
+  <data name="ModelCurveToString" xml:space="preserve">
+    <value>Model Curve</value>
+  </data>
+  <data name="MullionToString" xml:space="preserve">
+    <value>Mullion</value>
+  </data>
+  <data name="TopographyToString" xml:space="preserve">
+    <value>Topography</value>
+  </data>
 </root>

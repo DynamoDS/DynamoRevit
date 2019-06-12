@@ -38,7 +38,7 @@ namespace Revit.Elements
                 return ele.ToDSType(isRevitOwned);
             }
             
-            throw new Exception("Could not get the element from the document.");
+            throw new Exception(Properties.Resources.GetElementFromDocException);
         }
 
         public static Element ByElementId(int elementId)
@@ -50,7 +50,7 @@ namespace Revit.Elements
                 return ele.ToDSType(true);
             }
 
-            throw new Exception("Could not get the element from the document.");
+            throw new Exception(Properties.Resources.GetElementFromDocException);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Revit.Elements
                 return ele.ToDSType(isRevitOwned);
             }
 
-            throw new Exception("Could not get the element from the document");
+            throw new Exception(Properties.Resources.GetElementFromDocException);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Revit.Elements
 
             if (!Element.Document.TryGetElement(eleId, out ele))
             {
-                throw new Exception("Could not obtain element from the current document!  The id may not be valid.");
+                throw new Exception(Properties.Resources.InternalGetElementByIdException);
             }
 
             return ele;
@@ -101,7 +101,7 @@ namespace Revit.Elements
 
             if (!Element.Document.TryGetElement(uniqueId, out ele))
             {
-                throw new Exception("Could not obtain element from the current document!  The unique id may not be valid.");
+                throw new Exception(Properties.Resources.InternalGetElementByUniqueIdException);
             }
 
             return ele;

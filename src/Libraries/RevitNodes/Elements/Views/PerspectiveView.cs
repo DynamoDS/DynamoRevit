@@ -188,11 +188,9 @@ namespace Revit.Elements.Views
                     target, boundingBox, name, isolateElement);
             }
 
-            string message = string.Format("Argument is expected to be of type " +
-                "'Revit.Elements.AbstractElement' or ' Revit.GeometryObjectsBoundingBox', " +
-                "but found to be of type '{0}'", element.GetType());
+            string message = string.Format(Properties.Resources.PerspectiveViewByEyePointAndTargetException, element.GetType());
 
-            throw new ArgumentException(message, "element");
+            throw new ArgumentException(message, Properties.Resources.Element);
         }
 
         /// <summary>

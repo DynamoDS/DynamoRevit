@@ -215,7 +215,7 @@ namespace Revit.Elements.Views
                 }
                 else
                 {
-                    throw new Exception( String.Format("View {0} could not be packed on the Sheet.  The sheet is {1} x {2} and the view to be added is {3} x {4}", 
+                    throw new Exception( String.Format(Properties.Resources.InternalAddViewsToSheetViewException, 
                         count, width, height, viewWidth, viewHeight));
                 }
 

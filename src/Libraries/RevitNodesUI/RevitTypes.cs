@@ -26,7 +26,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class RevitPhases : CustomRevitElementDropDown
     {
-        private const string outputName = "Phase";
+        private static string outputName = Properties.Resources.Phase;
 
         public RevitPhases() : base(outputName, typeof(Autodesk.Revit.DB.Phase)) { }
 
@@ -41,7 +41,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class RevitRevisions : CustomRevitElementDropDown
     {
-        private const string outputName = "Revision";
+        private static string outputName = Properties.Resources.Revision;
 
         public RevitRevisions() : base(outputName, typeof(Autodesk.Revit.DB.Revision)) { }
 
@@ -56,7 +56,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FilledRegionTypes : CustomRevitElementDropDown
     {
-        private const string outputName = "FilledRegionType";
+        private static string outputName = Properties.Resources.FilledRegionType;
 
         public FilledRegionTypes() : base(outputName, typeof(Autodesk.Revit.DB.FilledRegionType)) { }
 
@@ -71,7 +71,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class RuleTypes : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "RuleType";
+        private static string outputName = Properties.Resources.RuleType;
 
         public RuleTypes() : base(outputName, typeof(Revit.Filter.FilterRule.RuleType)) { }
 
@@ -86,7 +86,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class RevisionNumbering : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "Revision Numbering";
+        private static string outputName = Properties.Resources.RevisionNumbering;
 
         public RevisionNumbering() : base(outputName, typeof(Autodesk.Revit.DB.RevisionNumbering)) { }
 
@@ -101,7 +101,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class RevisionNumberType : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "Revision Number Type";
+        private static string outputName = Properties.Resources.RevisionNumberType;
 
         public RevisionNumberType() : base(outputName, typeof(Autodesk.Revit.DB.RevisionNumberType)) { }
 
@@ -117,7 +117,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ParameterType : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "Parameter Type";
+        private static string outputName = "Parameter Type";
 
         public ParameterType() : base(outputName, typeof(Autodesk.Revit.DB.ParameterType)) { }
 
@@ -132,7 +132,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class BuiltInParameterGroup : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "BuiltIn Parameter Group";
+        private static string outputName = Properties.Resources.BuiltInParameterGroup;
 
         public BuiltInParameterGroup() : base(outputName, typeof(Autodesk.Revit.DB.BuiltInParameterGroup)) { }
 
@@ -147,7 +147,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class RevisionVisibility : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "Revision Visibility";
+        private static string outputName = "Revision Visibility";
 
         public RevisionVisibility() : base(outputName, typeof(Autodesk.Revit.DB.RevisionVisibility)) { }
 
@@ -162,7 +162,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class DirectShapeRoomBoundingOption : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "Direct Shape Room Bounding Option";
+        private static string outputName = Properties.Resources.DirectShapeRoomBoundingOption;
 
         public DirectShapeRoomBoundingOption() : base(outputName, typeof(Autodesk.Revit.DB.DirectShapeRoomBoundingOption)) { }
 
@@ -177,7 +177,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class DetailLevel : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "Detail Level";
+        private static string outputName = Properties.Resources.DetailLevel;
 
         public DetailLevel() : base(outputName, typeof(Autodesk.Revit.DB.ViewDetailLevel)) { }
 
@@ -192,7 +192,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class HorizontalAlignment : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "Horizontal Alignment";
+        private static string outputName = Properties.Resources.HorizontalAlignment;
 
         public HorizontalAlignment() : base(outputName, typeof(Autodesk.Revit.DB.HorizontalAlignmentStyle)) { }
 
@@ -207,7 +207,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class VerticalAlignment : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "Vertical Alignment";
+        private static string outputName = Properties.Resources.VerticalAlignment;
 
         public VerticalAlignment() : base(outputName, typeof(Autodesk.Revit.DB.VerticalAlignmentStyle)) { }
 
@@ -222,7 +222,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class WallLocation : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "Wall Location";
+        private static string outputName = Properties.Resources.WallLocation;
 
         public WallLocation() : base(outputName, typeof(Autodesk.Revit.DB.WallLocationLine)) { }
 
@@ -238,7 +238,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ScheduleTypes : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "ScheduleType";
+        private static string outputName = Properties.Resources.ScheduleTypes;
 
         public ScheduleTypes() : base(outputName, typeof(Revit.Elements.Views.ScheduleView.ScheduleType)) { }
 
@@ -253,7 +253,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ExportColumnHeaders : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "ColumnHeaders";
+        private static string outputName = Properties.Resources.ColumnHeaders;
 
         public ExportColumnHeaders() : base(outputName, typeof(Revit.Schedules.ScheduleExportOptions.ExportColumnHeaders)) { }
 
@@ -268,7 +268,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ExportTextQualifier : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "TextQualifier";
+        private static string outputName = Properties.Resources.TextQualifier;
 
         public ExportTextQualifier() : base(outputName, typeof(Revit.Schedules.ScheduleExportOptions.ExportTextQualifier)) { }
 
@@ -283,7 +283,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FillPatterns : CustomRevitElementDropDown
     {
-        private const string outputName = "FillPattern";
+        private static string outputName = Properties.Resources.FillPattern;
 
         public FillPatterns() : base(outputName, typeof(Autodesk.Revit.DB.FillPatternElement)) { }
 
@@ -298,7 +298,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class FillPatternTargets : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "FillPatternTarget";
+        private static string outputName = Properties.Resources.FillPatternTarget;
 
         public FillPatternTargets() : base(outputName, typeof(Autodesk.Revit.DB.FillPatternTarget)) { }
 
@@ -313,7 +313,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class LinePatterns : CustomRevitElementDropDown
     {
-        private const string outputName = "LinePattern";
+        private static string outputName = Properties.Resources.LinePattern;
 
         public LinePatterns() : base(outputName, typeof(Autodesk.Revit.DB.LinePatternElement)) { }
 
@@ -328,7 +328,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ScheduleFilterType : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "FilterType";
+        private static string outputName = Properties.Resources.FilterType;
 
         public ScheduleFilterType() : base(outputName, typeof(Autodesk.Revit.DB.ScheduleFilterType)) { }
 
