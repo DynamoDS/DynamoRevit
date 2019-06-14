@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Revit.Properties
-{
-
-
+namespace Revit.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -19,7 +19,7 @@ namespace Revit.Properties
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -331,6 +331,24 @@ namespace Revit.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End point list is empty.
+        /// </summary>
+        internal static string EndPointListEmpty {
+            get {
+                return ResourceManager.GetString("EndPointListEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End point list contains null elements.
+        /// </summary>
+        internal static string EndPointListHasNulls {
+            get {
+                return ResourceManager.GetString("EndPointListHasNulls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Schedule Export Options..
         /// </summary>
         internal static string ExportOptionsArgumentException {
@@ -529,6 +547,15 @@ namespace Revit.Properties
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid end point list.
+        /// </summary>
+        internal static string InvalidEndPointList {
+            get {
+                return ResourceManager.GetString("InvalidEndPointList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The selected face cannot be used to create a wall. Please use a mass face instead..
         /// </summary>
         internal static string InvalidFace {
@@ -561,6 +588,24 @@ namespace Revit.Properties
         internal static string InvalidShapeEditor {
             get {
                 return ResourceManager.GetString("InvalidShapeEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid start point list..
+        /// </summary>
+        internal static string InvalidStartPointList {
+            get {
+                return ResourceManager.GetString("InvalidStartPointList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid view..
+        /// </summary>
+        internal static string InvalidView {
+            get {
+                return ResourceManager.GetString("InvalidView", resourceCulture);
             }
         }
         
@@ -867,6 +912,33 @@ namespace Revit.Properties
         internal static string Sheet_NoViewsError {
             get {
                 return ResourceManager.GetString("Sheet_NoViewsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of start point array doesn&apos;t match size of end point array.
+        /// </summary>
+        internal static string StartEndListSizeMismatch {
+            get {
+                return ResourceManager.GetString("StartEndListSizeMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start points list is empty.
+        /// </summary>
+        internal static string StartPointListEmpty {
+            get {
+                return ResourceManager.GetString("StartPointListEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start point list contains null elements.
+        /// </summary>
+        internal static string StartPointListHasNulls {
+            get {
+                return ResourceManager.GetString("StartPointListHasNulls", resourceCulture);
             }
         }
         

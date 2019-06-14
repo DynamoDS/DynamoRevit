@@ -1,3 +1,8 @@
+## 0.0.45
+* Add nodes for path of travel element.
+* Upgrade DynamoRevit Version to 2.2.1.
+* Consume DynamoCoreRuntime 2.2.1.5175 & RevitAPI 20.1.0-b56 in D4R's CICD
+
 ## 0.0.44
 * Update Greg & GregRevitAuth to latest version (Greg - 1.1.7040.19960 GregRevitAuth - 1.0.7057.20655)
 * Consume the version 2.2.0.4667 of DynamoCoreRuntime in D4R's CICD

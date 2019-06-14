@@ -31,6 +31,16 @@
                 }
               ],
               "childElements": [
+				{
+                  "text": "RouteAnalysis",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "RevitNodes.Revit.Elements.PathOfTravel"
+                    }
+                  ]
+                },
                 {
                   "text": "SiteLocation",
                   "iconUrl": "",
