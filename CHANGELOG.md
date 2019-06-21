@@ -1,3 +1,5 @@
+* Exit Dynamo when Revit document lost.
+
 ## 0.1.4
 * Add System tests for Sample files.
 * Refactoring some RevitSystemTestBase codes.
