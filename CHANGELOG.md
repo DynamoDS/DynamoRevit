@@ -1,4 +1,6 @@
 * Exit Dynamo when Revit document lost.
+* Correct spelling mistakes in Select Rule Type Node
+* Resolve DynamoCore new version 2.2.1.5204
 
 ## 0.1.4
 * Add System tests for Sample files.
