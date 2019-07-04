@@ -4,6 +4,7 @@ using System.Linq;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using RevitServices.Persistence;
+using System.Collections.Generic;
 
 namespace Revit.Elements
 {
@@ -83,25 +84,30 @@ namespace Revit.Elements
 
             Autodesk.Revit.DB.Category category = null;
             var splits = name.Split('-');
-            if(splits.Count() > 1)
+            if(groups.Contains(name))
             {
-                var parentName = splits[0].TrimEnd(' ');
-                if(groups.Contains(parentName))
+                category = groups.get_Item(name);                
+            }
+            else if (splits.Count() > 1)
+            {
+                var indexs = FindAllChars(name, '-');
+                foreach(var index in indexs)
                 {
-                    var parentCategory = groups.get_Item(parentName);
-                    if(parentCategory != null)
+                    var parentName = name.Substring(0, index).TrimEnd(' ');
+                    var subName = name.Substring(index + 1).TrimStart(' ');
+                    if(groups.Contains(parentName))
                     {
-                        var subName = splits[1].TrimStart(' ');
-                        if(parentCategory.SubCategories.Contains(subName))
+                        var parentCategory = groups.get_Item(parentName);
+                        if(parentCategory != null)
                         {
-                            category = parentCategory.SubCategories.get_Item(subName);
+                            if(parentCategory.SubCategories.Contains(subName))
+                            {
+                                category = parentCategory.SubCategories.get_Item(subName);
+                                break;
+                            }
                         }
                     }
-                }
-            }
-            else if (groups.Contains(name))
-            {
-                category = groups.get_Item(name);
+                }                
             }
             else
             {
@@ -172,6 +178,21 @@ namespace Revit.Elements
         public override int GetHashCode()
         {
             return this.Id.GetHashCode();
+        }
+
+        private static List<int> FindAllChars(String source, char specifiedChar)
+        {
+            List<int> CharIndex = new List<int>();
+
+            var splits = source.Split(specifiedChar);
+            int index = -1;
+            for (int i = 0; i < splits.Count() - 1; i++)
+            {
+               index = index + splits[i].Length + 1;
+               CharIndex.Add(index);
+            }
+
+            return CharIndex;
         }
     }
 }
