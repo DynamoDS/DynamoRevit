@@ -79,48 +79,8 @@ namespace Revit.Elements
             }
 
             // Find category using localized name
-            Settings documentSettings = DocumentManager.Instance.CurrentDBDocument.Settings;
-            var groups = documentSettings.Categories;
-
             Autodesk.Revit.DB.Category category = null;
-            var splits = name.Split('-');
-            if(groups.Contains(name))
-            {
-                category = groups.get_Item(name);                
-            }
-            else if (splits.Count() > 1)
-            {
-                var indexs = FindAllChars(name, '-');
-                foreach(var index in indexs)
-                {
-                    var parentName = name.Substring(0, index).TrimEnd(' ');
-                    var subName = name.Substring(index + 1).TrimStart(' ');
-                    if(groups.Contains(parentName))
-                    {
-                        var parentCategory = groups.get_Item(parentName);
-                        if(parentCategory != null)
-                        {
-                            if(parentCategory.SubCategories.Contains(subName))
-                            {
-                                category = parentCategory.SubCategories.get_Item(subName);
-                                break;
-                            }
-                        }
-                    }
-                }                
-            }
-            else
-            {
-                // Fall back
-                // Use category enum name with or without OST_ prefix
-                var fullName = name.Length > 3 && name.Substring(0, 4) == "OST_" ? name : "OST_" + name;
-                var names = Enum.GetNames(typeof(BuiltInCategory));
-                if(System.Array.Exists(names, entry => entry == fullName))
-                {
-                    var builtInCat = (BuiltInCategory)Enum.Parse(typeof(BuiltInCategory), fullName);
-                    category = groups.get_Item(builtInCat);
-                }
-            }
+            category = GetCategory(name);
 
             if (category == null)
             {
@@ -178,6 +138,54 @@ namespace Revit.Elements
         public override int GetHashCode()
         {
             return this.Id.GetHashCode();
+        }
+
+        private static Autodesk.Revit.DB.Category GetCategory(String name)
+        {
+            Autodesk.Revit.DB.Category category = null;
+            Settings documentSettings = DocumentManager.Instance.CurrentDBDocument.Settings;
+            var groups = documentSettings.Categories;
+            
+            var splits = name.Split('-');
+            if(groups.Contains(name))
+            {
+                category = groups.get_Item(name);                
+            }
+            else if (splits.Count() > 1)
+            {
+                var indexs = FindAllChars(name, '-');
+                foreach(var index in indexs)
+                {
+                    var parentName = name.Substring(0, index).TrimEnd(' ');
+                    var subName = name.Substring(index + 1).TrimStart(' ');
+                    if(groups.Contains(parentName))
+                    {
+                        var parentCategory = groups.get_Item(parentName);
+                        if(parentCategory != null)
+                        {
+                            if(parentCategory.SubCategories.Contains(subName))
+                            {
+                                category = parentCategory.SubCategories.get_Item(subName);
+                                break;
+                            }
+                        }
+                    }
+                }                
+            }
+            else
+            {
+                // Fall back
+                // Use category enum name with or without OST_ prefix
+                var fullName = name.Length > 3 && name.Substring(0, 4) == "OST_" ? name : "OST_" + name;
+                var names = Enum.GetNames(typeof(BuiltInCategory));
+                if(System.Array.Exists(names, entry => entry == fullName))
+                {
+                    var builtInCat = (BuiltInCategory)Enum.Parse(typeof(BuiltInCategory), fullName);
+                    category = groups.get_Item(builtInCat);
+                }
+            }
+
+            return category;
         }
 
         private static List<int> FindAllChars(String source, char specifiedChar)
