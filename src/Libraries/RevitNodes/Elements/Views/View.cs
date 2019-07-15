@@ -260,7 +260,7 @@ namespace Revit.Elements.Views
                 throw new ArgumentException(Properties.Resources.View_ElementsByCategory_Category_Invalid, nameof(category));
             }
 
-            // setup the built in category to fitler by
+            // setup the built in category to filter by
             var bic = (Autodesk.Revit.DB.BuiltInCategory)Enum.ToObject(typeof(Autodesk.Revit.DB.BuiltInCategory), category.Id);
 
             // collect elements
