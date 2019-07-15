@@ -447,4 +447,7 @@
   <data name="StartPointListHasNulls" xml:space="preserve">
     <value>Start point list contains null elements</value>
   </data>
+  <data name="View_ElementsByCategory_Category_Invalid" xml:space="preserve">
+    <value>The supplied category id is invalid.</value>
+  </data>
 </root>

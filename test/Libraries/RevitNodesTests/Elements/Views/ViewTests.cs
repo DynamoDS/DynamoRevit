@@ -4,6 +4,8 @@ using Autodesk.DesignScript.Geometry;
 
 using NUnit.Framework;
 
+using Revit.Application;
+using Revit.Elements;
 using Revit.Elements.Views;
 
 using RevitTestServices;
@@ -34,6 +36,31 @@ namespace RevitNodesTests.Elements.Views
         {
             var testView = CreateTestView();
             Assert.Throws<System.ArgumentException>(()=>testView.ExportAsImage(""));
+        }
+
+        [Test, TestModel(@".\Room_Properties.rvt")]
+        public void ElementsByCategory_FindRooms()
+        {
+            var testView = Document.Current.ActiveView;
+            var cat = Category.ById((int)Autodesk.Revit.DB.BuiltInCategory.OST_Rooms);
+            var elements = testView.ElementsByCategory(cat);
+            Assert.Greater(elements.Count, 1);
+        }
+
+        [Test, TestModel(@".\Empty.rvt")]
+        public void ElementsByCategory_EmptyList()
+        {
+            var testView = CreateTestView();
+            var cat = Category.ById((int)Autodesk.Revit.DB.BuiltInCategory.OST_Rooms);
+            var elements = testView.ElementsByCategory(cat);
+            Assert.Equals(elements.Count, 0);
+        }
+
+        [Test, TestModel(@".\Empty.rvt")]
+        public void ElementsByCategory_BadArgs()
+        {
+            var testView = CreateTestView();
+            Assert.Throws<System.ArgumentException>(() => testView.ElementsByCategory(null));
         }
 
         private static View CreateTestView()
