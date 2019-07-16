@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
-using Autodesk.Revit.DB;
+using Revit.Elements.Views;
 using RevitServices.Persistence;
 
 namespace Revit.Elements.InternalUtilities
@@ -39,8 +39,8 @@ namespace Revit.Elements.InternalUtilities
         {
             if (familyType == null) return null;
 
-            var instanceFilter = new ElementClassFilter(typeof(Autodesk.Revit.DB.FamilyInstance));
-            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
+            var instanceFilter = new Autodesk.Revit.DB.ElementClassFilter(typeof(Autodesk.Revit.DB.FamilyInstance));
+            var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
 
             var familyInstances = fec.WherePasses(instanceFilter)
                 .WhereElementIsNotElementType()
@@ -68,27 +68,29 @@ namespace Revit.Elements.InternalUtilities
 
             if (ClassFilterExceptions.Contains(elementType))
             {
-                return new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                return new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
                     .OfClass(elementType.BaseType)
                     .Where(x => x.GetType() == elementType)
                     .Select(x => ElementSelector.ByElementId(x.Id.IntegerValue))
                     .ToList();
             }
 
-            var classFilter = new ElementClassFilter(elementType);
-            return new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+            var classFilter = new Autodesk.Revit.DB.ElementClassFilter(elementType);
+            return new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
                 .WherePasses(classFilter)
                 .ToElementIds()
                 .Select(x => ElementSelector.ByElementId(x.IntegerValue))
                 .ToList();
         }
 
-        public static IList<Element> OfCategory(Category category)
+        public static IList<Element> OfCategory(Category category, View view = null)
         {
             if (category == null) return null;
 
-            var catFilter = new ElementCategoryFilter(category.InternalCategory.Id);
-            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
+            var catFilter = new Autodesk.Revit.DB.ElementCategoryFilter(category.InternalCategory.Id);
+            var fec = (view == null) ? 
+                new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument) :
+                new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument, view.InternalView.Id);
             var instances = 
                 fec.WherePasses(catFilter)
                     .WhereElementIsNotElementType()
@@ -102,8 +104,8 @@ namespace Revit.Elements.InternalUtilities
         {
             if (arg == null) return null;
 
-            var levFilter = new ElementLevelFilter(arg.InternalLevel.Id);
-            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
+            var levFilter = new Autodesk.Revit.DB.ElementLevelFilter(arg.InternalLevel.Id);
+            var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             var instances =
                 fec.WherePasses(levFilter)
                     .WhereElementIsNotElementType()

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using Autodesk.Revit.DB;
 using RevitServices.Persistence;
 
@@ -245,36 +244,7 @@ namespace Revit.Elements.Views
             OverrideGraphicSettings overrides = this.InternalView.GetFilterOverrides(parameterFilter.InternalElement.Id);
             return new Revit.Filter.OverrideGraphicSettings(overrides);
         }
-
-        /// <summary>
-        ///     Get the elements contained in the view of the specified category. 
-        /// </summary>
-        /// <param name="category">Element Category</param>
-        /// <returns name="Elements">List of elements, empty list if none found.</returns>
-        /// <exception cref="System.ArgumentException">Thrown if category is null or invalid.</exception>
-        public List<Element> ElementsByCategory(Category category)
-        {
-            // Validate Category
-            if (category == null || category.Id == Autodesk.Revit.DB.ElementId.InvalidElementId.IntegerValue)
-            {
-                throw new ArgumentException(Properties.Resources.View_ElementsByCategory_Category_Invalid, nameof(category));
-            }
-
-            // setup the built in category to filter by
-            var bic = (Autodesk.Revit.DB.BuiltInCategory)Enum.ToObject(typeof(Autodesk.Revit.DB.BuiltInCategory), category.Id);
-
-            // collect elements
-            var elements = (new Autodesk.Revit.DB.FilteredElementCollector(this.InternalView.Document, this.InternalView.Id)
-                    .OfCategory(bic)
-                    .WhereElementIsNotElementType()
-                    .ToElements())
-                .Select(x => x.ToDSType(true))
-                .ToList();
-            
-            // return the collected elements, will be empty if none found. 
-            return elements;
-        }
-      #endregion
+        #endregion
 
       #region View Templates
 

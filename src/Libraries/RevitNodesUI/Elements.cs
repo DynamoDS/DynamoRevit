@@ -6,20 +6,15 @@ using Newtonsoft.Json;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
 using Autodesk.Revit.DB.Electrical;
-using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.DB.Structure;
 
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Graph.Nodes;
-using Dynamo.Migration;
-using Dynamo.Models;
-using Dynamo.Nodes;
 using ProtoCore.AST.AssociativeAST;
 using Revit.Elements;
 using Revit.Elements.InternalUtilities;
 using RevitServices.Elements;
-using RevitServices.EventHandler;
 using RevitServices.Persistence;
 using Category = Revit.Elements.Category;
 using CurveElement = Autodesk.Revit.DB.CurveElement;
@@ -31,6 +26,7 @@ using ModelText = Autodesk.Revit.DB.ModelText;
 using ReferencePlane = Autodesk.Revit.DB.ReferencePlane;
 using ReferencePoint = Autodesk.Revit.DB.ReferencePoint;
 using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
+using View = Revit.Elements.Views.View;
 
 namespace DSRevitNodesUI
 {
@@ -163,7 +159,37 @@ namespace DSRevitNodesUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(
             List<AssociativeNode> inputAstNodes)
         {
-            var func = new Func<Category, IList<Revit.Elements.Element>>(ElementQueries.OfCategory);
+            var func = new Func<Category, View, IList<Revit.Elements.Element>>(ElementQueries.OfCategory);
+
+            var functionCall = AstFactory.BuildFunctionCall(func, inputAstNodes);
+            return new[]
+            { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+        }
+    }
+
+    [NodeName("All Elements of Category in View"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription("ElementsofCategoryInViewDescription", typeof(Properties.Resources)),
+     IsDesignScriptCompatible]
+    public class ElementsOfCategoryInView : ElementsQueryBase
+    {
+        public ElementsOfCategoryInView()
+        {
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Category", Properties.Resources.PortDataCategoryToolTip)));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("View", Properties.Resources.PortDataViewToolTip)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Elements", Properties.Resources.PortDataElementTypeToolTip)));
+
+            RegisterAllPorts();
+        }
+
+        [JsonConstructor]
+        public ElementsOfCategoryInView(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
+        }
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(
+            List<AssociativeNode> inputAstNodes)
+        {
+            var func = new Func<Category, View, IList<Revit.Elements.Element>>(ElementQueries.OfCategory);
 
             var functionCall = AstFactory.BuildFunctionCall(func, inputAstNodes);
             return new[]
