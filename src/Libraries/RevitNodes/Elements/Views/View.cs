@@ -244,14 +244,15 @@ namespace Revit.Elements.Views
             OverrideGraphicSettings overrides = this.InternalView.GetFilterOverrides(parameterFilter.InternalElement.Id);
             return new Revit.Filter.OverrideGraphicSettings(overrides);
         }
+
         #endregion
 
-      #region View Templates
+        #region View Templates
 
-      /// <summary>
-      ///     Checks if View is a View Template.
-      /// </summary>
-      /// <returns></returns>
+        /// <summary>
+        ///     Checks if View is a View Template.
+        /// </summary>
+        /// <returns></returns>
         public bool IsViewTemplate()
         {
             return this.InternalView.IsTemplate;

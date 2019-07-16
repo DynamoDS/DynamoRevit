@@ -35,7 +35,7 @@ namespace RevitNodesTests.Elements.Views
             var testView = CreateTestView();
             Assert.Throws<System.ArgumentException>(()=>testView.ExportAsImage(""));
         }
-                
+
         private static View CreateTestView()
         {
             var eye = Point.ByCoordinates(100, 100, 100);

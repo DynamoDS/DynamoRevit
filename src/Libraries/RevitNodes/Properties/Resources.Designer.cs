@@ -19,7 +19,7 @@ namespace Revit.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -988,15 +988,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The supplied category id is invalid..
-        /// </summary>
-        internal static string View_ElementsByCategory_Category_Invalid {
-            get {
-                return ResourceManager.GetString("View_ElementsByCategory_Category_Invalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The supplied path is invalid..
         /// </summary>
         internal static string View_ExportAsImage_Path_Invalid {
@@ -1060,3 +1051,4 @@ namespace Revit.Properties {
         }
     }
 }
+
