@@ -308,6 +308,40 @@ namespace Revit.Elements
             // or transactions and which must necessarily be threaded in a specific way.
         }
 
+        /// <summary>
+        /// Delete the element from the document. 
+        /// </summary>
+        /// <returns>true if successfully deleted, false otherwise.</returns>
+        public bool Delete()
+        {
+            // Document to work with
+            Autodesk.Revit.DB.Document document = this.InternalElement.Document;
+            
+            // Start the transaction
+            TransactionManager.Instance.EnsureInTransaction(document);
+
+            // Delete the element
+            try
+            {
+                document.Delete(this.InternalElementId);
+            }
+            catch(Autodesk.Revit.Exceptions.ArgumentException)
+            {
+                // Element not able to be deleted or not found in document. 
+                return false;
+            }
+            catch(Autodesk.Revit.Exceptions.ModificationForbiddenException)
+            {
+                // Document in failure or uneditable state, can't be deleted.
+                return false; 
+            }
+
+            // Finished
+            TransactionManager.Instance.TransactionTaskDone();
+
+            // success
+            return true;
+        }
 
         /// <summary>
         /// Get a parameter by name of an element
