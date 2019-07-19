@@ -332,9 +332,9 @@ namespace Revit.Elements
                 // Start the transaction
                 TransactionManager.Instance.EnsureInTransaction(document);
 
-                // Delete the element, collectiong the id's deleted.
+                // Delete the element, collecting the id's deleted.
                 deletedElements = document.Delete(element.InternalElementId)
-                        .Select(x => x.IntegerValue).ToList<int>().ToArray();
+                        .Select(x => x.IntegerValue).ToArray<int>();
             }
             finally
             {
