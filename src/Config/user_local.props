@@ -4,8 +4,7 @@
     <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
 	<REVIT_VERSION>Revit</REVIT_VERSION>
 	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)</DYNAMOTESTAPI>
-	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
+	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\AnyCPU\$(Configuration)\$(REVIT_VERSION)</OutputPath>
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(OutputPath)</TestOutputPath>
-    <REVITAPI>D:\Dev\Revit\Revit\Debugx64</REVITAPI>
   </PropertyGroup>
 </Project>
