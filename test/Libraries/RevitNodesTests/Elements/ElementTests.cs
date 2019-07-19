@@ -50,15 +50,19 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\element.rvt")]
         public void CanSuccessfullyDeleteElement()
         {
+            // Id of wall
+            const int wallId = 184176;
+
             // Get element from document
-            var wall = ElementSelector.ByElementId(184176, true);
+            var wall = ElementSelector.ByElementId(wallId, true);
             Assert.IsNotNull(wall);
 
-            // Delete element, confirming deletion success
-            Assert.IsTrue(wall.Delete());
+            // Delete Element
+            var deleted = Element.Delete(wall);
 
-            // Verify element really deleted.
-            Assert.IsFalse(wall.Delete());
+            // Confirm list of elements represent the wall requested to delete. 
+            Assert.AreEqual(1, deleted.Length);
+            Assert.AreEqual(wallId, deleted[0]);
         }
 
         [Test]

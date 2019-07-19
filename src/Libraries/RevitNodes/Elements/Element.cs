@@ -309,38 +309,44 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Delete the element from the document. 
+        /// Delete the element and any elements that are totally dependent upon the element. 
         /// </summary>
-        /// <returns>true if successfully deleted, false otherwise.</returns>
-        public bool Delete()
+        /// <param name="element">The element to delete.</param>
+        /// <returns>The list of element id's deleted, including any dependent elements.</returns>
+        /// <exception cref="System.ArgumentNullException">Thrown if element is null.</exception>
+        public static int[] Delete(Element element)
         {
-            // Document to work with
-            Autodesk.Revit.DB.Document document = this.InternalElement.Document;
-            
-            // Start the transaction
-            TransactionManager.Instance.EnsureInTransaction(document);
+            if (element == null)
+            {
+                throw new ArgumentNullException("element");
+            }
 
-            // Delete the element
+            // Collection of elements deleted
+            int[] deletedElements = null;
+
             try
             {
-                document.Delete(this.InternalElementId);
+                // Document to work with
+                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+                // Start the transaction
+                TransactionManager.Instance.EnsureInTransaction(document);
+
+                // Delete the element, collectiong the id's deleted.
+                deletedElements = document.Delete(element.InternalElementId)
+                        .Select(x => x.IntegerValue).ToList<int>().ToArray();
             }
-            catch(Autodesk.Revit.Exceptions.ArgumentException)
+            finally
             {
-                // Element not able to be deleted or not found in document. 
-                return false;
-            }
-            catch(Autodesk.Revit.Exceptions.ModificationForbiddenException)
-            {
-                // Document in failure or uneditable state, can't be deleted.
-                return false; 
+                // handle transaction cleanup based on successful deletion or not. 
+                if (deletedElements == null || deletedElements.Length == 0)
+                    TransactionManager.Instance.ForceCloseTransaction();
+                else
+                    TransactionManager.Instance.TransactionTaskDone();
             }
 
-            // Finished
-            TransactionManager.Instance.TransactionTaskDone();
-
-            // success
-            return true;
+            // return deleted elements
+            return deletedElements; 
         }
 
         /// <summary>
