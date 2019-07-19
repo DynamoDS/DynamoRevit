@@ -694,7 +694,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get an exsiting element's location
+        /// Get an existing element's location
         /// </summary>
         /// <returns>Location Geometry</returns>
         public Geometry GetLocation()
