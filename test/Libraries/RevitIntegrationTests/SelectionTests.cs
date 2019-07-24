@@ -588,6 +588,29 @@ namespace RevitSystemTests
             
         }
 
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void SelectElementsByCategoryInView()
+        {
+            string samplePath = Path.Combine(workingDirectory,
+                                               @".\Selection\SelectElementsOfCategoryInView.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            // evaluate  graph
+            RunCurrentModel();
+
+            // Validate properly returned the 1 wall in the project.
+            var allWallsInViewNodeID = "8a7fddcd02844987ad303b8471be9883";
+            AssertPreviewCount(allWallsInViewNodeID, 1);
+            var wall = GetPreviewValueAtIndex(allWallsInViewNodeID, 0) as Revit.Elements.Wall;
+            Assert.IsNotNull(wall);
+
+            // Validate no rooms found
+            AssertPreviewCount("53dfd709eb0848ee88238f6679711730", 0);
+        }
+
 
         # region Private Methods
 

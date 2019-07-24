@@ -1,9 +1,9 @@
 <Project
     xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
-    ToolsVersion="15.0"
+    ToolsVersion="16.0"
     DefaultTargets="Build">
 <PropertyGroup>
-    <Solution>DynamoRevit.2017.sln</Solution>
+    <Solution>DynamoRevit.All.sln</Solution>
     <Configuration>Release</Configuration>
    <DynamoFolderPath>$(MSBuildProjectDirectory)\..\..\Dynamo</DynamoFolderPath>
 </PropertyGroup>
@@ -12,7 +12,7 @@
 
 <ItemGroup>
     <ProjectToBuild Include="$(Solution)" >
-        <Properties>Configuration=$(Configuration);DefineConstants=$(Constants);Platform=Any CPU;VisualStudioVersion=15.0</Properties>
+        <Properties>Configuration=$(Configuration);DefineConstants=$(Constants);Platform=Any CPU;VisualStudioVersion=16.0</Properties>
     </ProjectToBuild>
 </ItemGroup>
 
