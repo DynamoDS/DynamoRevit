@@ -54,15 +54,17 @@ namespace RevitNodesTests.Elements
             const int wallId = 184176;
 
             // Get element from document
-            var wall = ElementSelector.ByElementId(wallId, true);
-            Assert.IsNotNull(wall);
+            using (Element wall = ElementSelector.ByElementId(wallId, true))
+            {
+                Assert.IsNotNull(wall);
 
-            // Delete Element
-            var deleted = Element.Delete(wall);
+                // Delete Element
+                int[] deleted = Element.Delete(wall);
 
-            // Confirm list of elements represent the wall requested to delete. 
-            Assert.AreEqual(1, deleted.Length);
-            Assert.AreEqual(wallId, deleted[0]);
+                // Confirm list of elements represent the wall requested to delete. 
+                Assert.AreEqual(1, deleted.Length);
+                Assert.AreEqual(wallId, deleted[0]);
+            }
         }
 
         [Test]
