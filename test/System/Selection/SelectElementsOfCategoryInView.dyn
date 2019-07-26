@@ -1,0 +1,299 @@
+{
+  "Uuid": "a12ff1c8-b297-4e6a-a1e1-2cea26f6a9ee",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "SelectElementsOfCategoryInView",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "8a7fddcd02844987ad303b8471be9883",
+      "Inputs": [
+        {
+          "Id": "7322518bbaa64d318d8375525470b516",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1e6fe1e677e94a5fbf017f54c24a4669",
+          "Name": "View",
+          "Description": "The View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7863345cd8ef402189673c1a579c6bfc",
+          "Name": "Elements",
+          "Description": "An element type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category in the specified view from the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 609,
+      "SelectedString": "OST_Walls",
+      "NodeType": "ExtensionNode",
+      "Id": "7689281da14c4288bbc5c4b23fe4baaa",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4b8d9e1417504c80b6c9f5afb63686a9",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Id": "e0f6f7648f6a4a08aa721413de142cf9",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "98ac7dc064544183bcc5f747595e1e17",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Document.ActiveView",
+      "Id": "c796f18fb92f4817b303926612bb7f58",
+      "Inputs": [
+        {
+          "Id": "384d4128e9df4baaba6ea0f561b4abe6",
+          "Name": "document",
+          "Description": "Revit.Application.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9027ee0f207d406fa9db4acca26600b9",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the active view for the document\n\nDocument.ActiveView: View"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "53dfd709eb0848ee88238f6679711730",
+      "Inputs": [
+        {
+          "Id": "811e090c2b834b59957de4c5c73ddf15",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "690d8e963ab048808d55ea79e3bbfd6c",
+          "Name": "View",
+          "Description": "The View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f9e368895b5c4671a4ce7e0901a911a4",
+          "Name": "Elements",
+          "Description": "An element type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category in the specified view from the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 428,
+      "SelectedString": "OST_Rooms",
+      "NodeType": "ExtensionNode",
+      "Id": "4fefcd87c0fa47769b61fe4c06242e16",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9ef3082bbd634c7695e2aaf1360ed53c",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4b8d9e1417504c80b6c9f5afb63686a9",
+      "End": "7322518bbaa64d318d8375525470b516",
+      "Id": "5d0d564cd5384f418f4c987311dd7bb7"
+    },
+    {
+      "Start": "98ac7dc064544183bcc5f747595e1e17",
+      "End": "384d4128e9df4baaba6ea0f561b4abe6",
+      "Id": "60250b497ff94a1aa663b1e2b0848fa8"
+    },
+    {
+      "Start": "9027ee0f207d406fa9db4acca26600b9",
+      "End": "1e6fe1e677e94a5fbf017f54c24a4669",
+      "Id": "592f21695fc5447691441a37ee009e45"
+    },
+    {
+      "Start": "9027ee0f207d406fa9db4acca26600b9",
+      "End": "690d8e963ab048808d55ea79e3bbfd6c",
+      "Id": "0affb652bb2a40d99165a4bb9152aa16"
+    },
+    {
+      "Start": "9ef3082bbd634c7695e2aaf1360ed53c",
+      "End": "811e090c2b834b59957de4c5c73ddf15",
+      "Id": "f88775584d77467c9409016f18cafa7b"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.4.0.5694",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "All Walls in current View",
+        "Id": "8a7fddcd02844987ad303b8471be9883",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 350.5,
+        "Y": 306.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "7689281da14c4288bbc5c4b23fe4baaa",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 108.5,
+        "Y": 311.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Current",
+        "Id": "e0f6f7648f6a4a08aa721413de142cf9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 102.5,
+        "Y": 147.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.ActiveView",
+        "Id": "c796f18fb92f4817b303926612bb7f58",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 283.5,
+        "Y": 136.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "All Rooms in Current View",
+        "Id": "53dfd709eb0848ee88238f6679711730",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 350.5,
+        "Y": 457.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "4fefcd87c0fa47769b61fe4c06242e16",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 71.5,
+        "Y": 464.5
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

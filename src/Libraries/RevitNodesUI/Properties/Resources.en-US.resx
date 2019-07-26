@@ -382,10 +382,11 @@
     <value>A View Schedule Filter Type.</value>
     <comment>Description for Filter Type</comment>
   </data>
-  <data name="PerformanceAdviserDescription" xml:space="preserve">
-    <value>All Performance Adviser rules.</value>
+  <data name="ElementsofCategoryInViewDescription" xml:space="preserve">
+    <value>Get all elements of the specified category in the specified view from the model.</value>
+    <comment>Description for All Elements of Category in View</comment>
   </data>
-  <data name="WallLocationLineDescription" xml:space="preserve">
-    <value>Wall locations.</value>
+  <data name="PortDataViewToolTip" xml:space="preserve">
+    <value>The View</value>
   </data>
 </root>

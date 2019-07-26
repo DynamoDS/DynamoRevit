@@ -19,7 +19,7 @@ namespace DSRevitNodesUI.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -129,6 +129,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string ElementsofCategoryDescription {
             get {
                 return ResourceManager.GetString("ElementsofCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get all elements of the specified category in the specified view from the model..
+        /// </summary>
+        internal static string ElementsofCategoryInViewDescription {
+            get {
+                return ResourceManager.GetString("ElementsofCategoryInViewDescription", resourceCulture);
             }
         }
         
@@ -457,6 +466,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The View.
+        /// </summary>
+        internal static string PortDataViewToolTip {
+            get {
+                return ResourceManager.GetString("PortDataViewToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select an way to number the revisions..
         /// </summary>
         internal static string RevisionNumberingSelectorDescription {
@@ -493,19 +511,20 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a Schedule Type..
-        /// </summary>
-        internal static string ScheduleTypeSelectorDescription {
-            get {
-                return ResourceManager.GetString("ScheduleTypeSelectorDescription", resourceCulture);
-            }
-        }
-        
         ///   Looks up a localized string similar to A View Schedule Filter Type..
         /// </summary>
         internal static string ScheduleFilterTypeDescription {
             get {
                 return ResourceManager.GetString("ScheduleFilterTypeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Schedule Type..
+        /// </summary>
+        internal static string ScheduleTypeSelectorDescription {
+            get {
+                return ResourceManager.GetString("ScheduleTypeSelectorDescription", resourceCulture);
             }
         }
         

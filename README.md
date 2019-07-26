@@ -10,7 +10,7 @@ git clone https://github.com/DynamoDS/DynamoRevit.git
 ```
 - Make sure you have [.Net Framework 4.7 SDK](https://www.microsoft.com/en-us/download/details.aspx?id=55168) installed on your computer
 - Run `restorepackages.bat` with administrative privileges.
-- Open DynamoRevit.2013.sln in Visual Studio, and select a build confiuration (Debug | Release)
+- Open DynamoRevit.All.sln in Visual Studio, and select a build confiuration (Debug | Release)
 - Build
 
 After DynamoRevit is built, you will notice that there is a `Dynamo.config` file in DynamoRevit\bin\AnyCPU\Debug[Or Release]. With this file you can specify which DynamoCore you want to run with the DynamoRevit built.
