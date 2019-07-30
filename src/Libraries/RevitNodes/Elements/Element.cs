@@ -308,6 +308,46 @@ namespace Revit.Elements
             // or transactions and which must necessarily be threaded in a specific way.
         }
 
+        /// <summary>
+        /// Delete the element and any elements that are totally dependent upon the element. 
+        /// </summary>
+        /// <param name="element">The element to delete.</param>
+        /// <returns>The list of element id's deleted, including any dependent elements.</returns>
+        /// <exception cref="System.ArgumentNullException">Thrown if element is null.</exception>
+        public static int[] Delete(Element element)
+        {
+            if (element == null)
+            {
+                throw new ArgumentNullException("element");
+            }
+
+            // Collection of elements deleted
+            int[] deletedElements = null;
+
+            try
+            {
+                // Document to work with
+                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+                // Start the transaction
+                TransactionManager.Instance.EnsureInTransaction(document);
+
+                // Delete the element, collecting the id's deleted.
+                deletedElements = document.Delete(element.InternalElementId)
+                        .Select(x => x.IntegerValue).ToArray<int>();
+            }
+            finally
+            {
+                // handle transaction cleanup based on successful deletion or not. 
+                if (deletedElements == null || deletedElements.Length == 0)
+                    TransactionManager.Instance.ForceCloseTransaction();
+                else
+                    TransactionManager.Instance.TransactionTaskDone();
+            }
+
+            // return deleted elements
+            return deletedElements; 
+        }
 
         /// <summary>
         /// Get a parameter by name of an element
