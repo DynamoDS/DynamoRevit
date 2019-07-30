@@ -1,0 +1,211 @@
+{
+  "Uuid": "8f7c0bd5-d6eb-4d1e-87fb-866f8cc75a5b",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "deleteWallFromDocument",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "9eaf61cc9500463b966eeea18b9a75ca",
+      "Inputs": [
+        {
+          "Id": "40e51756dcb84e1fa2fe5282c150a55c",
+          "Name": "element type",
+          "Description": "An element type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "40101ef405a8497baed10c528e0d2119",
+          "Name": "elements",
+          "Description": "All elements in the active document of a given type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All elements in the active document of a given type."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementTypes, DSRevitNodesUI",
+      "SelectedIndex": 347,
+      "SelectedString": "Wall",
+      "NodeType": "ExtensionNode",
+      "Id": "94ea2a276a614846b08345c6dd30fb99",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "160234ff31b149dd8e4a5990cfdfeec1",
+          "Name": "Types",
+          "Description": "The selected Types",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All element subtypes."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Delete@Revit.Elements.Element",
+      "Id": "32392b3033a144818e94ea7039dc054c",
+      "Inputs": [
+        {
+          "Id": "671303c8378f4efda2dd0e1e9f249648",
+          "Name": "element",
+          "Description": "The element to delete.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b280a998b03f4c1ab36a3d5ed427ebe8",
+          "Name": "int[]",
+          "Description": "The list of element id's deleted, including any dependent elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Delete the element and any elements that are totally dependent upon the element.\n\nElement.Delete (element: Element): int[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Count@var[]..[]",
+      "Id": "ccd8a5ba37fd4b1297def564392ccf54",
+      "Inputs": [
+        {
+          "Id": "cd6871a70b964b9787cde4c9b9bccf59",
+          "Name": "list",
+          "Description": "List to get the item count of.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6192c5cd5f5947019154a511b2f78f6e",
+          "Name": "count",
+          "Description": "List length.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the number of items stored in the given list.\n\nList.Count (list: var[]..[]): int"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "40101ef405a8497baed10c528e0d2119",
+      "End": "671303c8378f4efda2dd0e1e9f249648",
+      "Id": "b1dbe4a35efb4f13b23c66abe0b99691"
+    },
+    {
+      "Start": "160234ff31b149dd8e4a5990cfdfeec1",
+      "End": "40e51756dcb84e1fa2fe5282c150a55c",
+      "Id": "1342db74d66c4aaf927271855682ebcc"
+    },
+    {
+      "Start": "b280a998b03f4c1ab36a3d5ed427ebe8",
+      "End": "cd6871a70b964b9787cde4c9b9bccf59",
+      "Id": "0da18be5ed854f699122ae87aeaaa67d"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.4.0.5694",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "All Walls in Document",
+        "Id": "9eaf61cc9500463b966eeea18b9a75ca",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 242.71428571428572,
+        "Y": 250.85714285714283
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element Types",
+        "Id": "94ea2a276a614846b08345c6dd30fb99",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 39.142857142857167,
+        "Y": 249.14285714285711
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Delete Wall",
+        "Id": "32392b3033a144818e94ea7039dc054c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 255.71428571428572,
+        "Y": 422.28571428571422
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Deletion Count",
+        "Id": "ccd8a5ba37fd4b1297def564392ccf54",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 499.5,
+        "Y": 420.0
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}
