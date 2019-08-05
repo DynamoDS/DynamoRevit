@@ -24,7 +24,7 @@ namespace RevitNodesTests.Elements
             false);
        
          Assert.NotNull(pathOfTravelOneToOne);
-         Assert.Equals(pathOfTravelOneToOne.GetLength(0), 1);
+         Assert.AreEqual(pathOfTravelOneToOne.GetLength(0), 1);
          Assert.NotNull(pathOfTravelOneToOne[0]);
 
          var pathOfTravelManyToMany = PathOfTravel.ByFloorPlanPoints(
@@ -34,7 +34,7 @@ namespace RevitNodesTests.Elements
             true);
 
          Assert.NotNull(pathOfTravelManyToMany);
-         Assert.Equals(pathOfTravelManyToMany.GetLength(0), 1);
+         Assert.AreEqual(pathOfTravelManyToMany.GetLength(0), 1);
          Assert.NotNull(pathOfTravelManyToMany[0]);
       }
 
@@ -109,8 +109,8 @@ namespace RevitNodesTests.Elements
             typeof(System.ArgumentException),
             () => PathOfTravel.ByFloorPlanPoints(
                GetFloorPlan(),
-               new Point[] { },
-               new Point[] { Point.ByCoordinates(100, 100, 0) },
+               new Point[] { Point.ByCoordinates(0, 0, 0) },
+               new Point[] { Point.ByCoordinates(100, 100, 0), Point.ByCoordinates(100, 100, 100) },
                false));
       }
 
@@ -125,7 +125,7 @@ namespace RevitNodesTests.Elements
             false);
 
          Assert.NotNull(pathOfTravelOneToOne);
-         Assert.Equals(pathOfTravelOneToOne.GetLength(0), 1);
+         Assert.AreEqual(pathOfTravelOneToOne.GetLength(0), 1);
          Assert.Null(pathOfTravelOneToOne[0]);
 
          var pathOfTravelManyToMany = PathOfTravel.ByFloorPlanPoints(
@@ -135,7 +135,7 @@ namespace RevitNodesTests.Elements
             true);
 
          Assert.NotNull(pathOfTravelManyToMany);
-         Assert.Equals(pathOfTravelManyToMany.GetLength(0), 1);
+         Assert.AreEqual(pathOfTravelManyToMany.GetLength(0), 1);
          Assert.Null(pathOfTravelManyToMany[0]);
       }
 
@@ -150,7 +150,7 @@ namespace RevitNodesTests.Elements
             false);
 
          Assert.NotNull(pathOfTravelOneToOne);
-         Assert.Equals(pathOfTravelOneToOne.GetLength(0), 1);
+         Assert.AreEqual(pathOfTravelOneToOne.GetLength(0), 1);
          Assert.Null(pathOfTravelOneToOne[0]);
 
          var pathOfTravelManyToMany = PathOfTravel.ByFloorPlanPoints(
@@ -160,7 +160,7 @@ namespace RevitNodesTests.Elements
             true);
 
          Assert.NotNull(pathOfTravelManyToMany);
-         Assert.Equals(pathOfTravelManyToMany.GetLength(0), 1);
+         Assert.AreEqual(pathOfTravelManyToMany.GetLength(0), 1);
          Assert.Null(pathOfTravelManyToMany[0]);
       }
 
