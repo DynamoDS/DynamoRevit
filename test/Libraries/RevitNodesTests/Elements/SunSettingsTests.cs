@@ -20,20 +20,20 @@ namespace RevitNodesTests.Elements
         [Test, TestModel(@".\Empty.rvt")]
         public void Direction()
         {
-            Vector.ByCoordinates(39.898058, -28.624325, 87.113678).ShouldBeApproximately(
+            Vector.ByCoordinates(39.898085, -28.624307, 87.113672).ShouldBeApproximately(
                 SunSettings.Current().SunDirection);
         }
 
         [Test, TestModel(@".\Empty.rvt")]
         public void Altitude()
         {
-            SunSettings.Current().Altitude.ShouldBeApproximately(60.591011);
+            SunSettings.Current().Altitude.ShouldBeApproximately(60.591003);
         }
 
         [Test, TestModel(@".\Empty.rvt")]
         public void Azimuth()
         {
-            SunSettings.Current().Azimuth.ShouldBeApproximately(125.657039);
+            SunSettings.Current().Azimuth.ShouldBeApproximately(125.657004);
         }
 
         [Test, TestModel(@".\Empty.rvt")]
