@@ -28,7 +28,7 @@ namespace RevitNodesTests.Elements
             var import = Revit.Elements.ImportInstance.ByGeometry(cuboid);
 
             // extract geometry
-            var importGeometry = import.Geometry().First();
+            var importGeometry = import.Geometry().Where(x => x is Autodesk.DesignScript.Geometry.Solid).First();
 
             Assert.IsAssignableFrom(typeof(Autodesk.DesignScript.Geometry.Solid), importGeometry);
 
@@ -57,7 +57,7 @@ namespace RevitNodesTests.Elements
             // import
             var import = Revit.Elements.ImportInstance.ByGeometryAndView(cuboid,view);
             // extract geometry
-            var importGeometry = import.Geometry().First();
+            var importGeometry = import.Geometry().Where(x => x is Autodesk.DesignScript.Geometry.Solid).First();
 
             Assert.IsAssignableFrom(typeof(Autodesk.DesignScript.Geometry.Solid), importGeometry);
 
