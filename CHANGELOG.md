@@ -1,6 +1,13 @@
+## 0.1.5
 * Exit Dynamo when Revit document lost.
 * Correct spelling mistakes in Select Rule Type Node
 * Resolve DynamoCore new version 2.2.1.5204
+* Resolved CategoryByName Node not working with some German words
+* Spell error in tooltip for Element.GetLocation Node 
+* Add new Select node "All Elements of Category In View"
+* Add Element Delete Node
+* Update some failed nodes tests
+* Add Node Icons for PathOfTravel, Element Delete, All Elements of Category In View nodes.
 
 ## 0.1.4
 * Add System tests for Sample files.
