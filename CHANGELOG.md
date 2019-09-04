@@ -1,3 +1,6 @@
+## 0.1.6
+* Update DynamoCore Version to 2.3.0.5885
+
 ## 0.1.5
 * Exit Dynamo when Revit document lost.
 * Correct spelling mistakes in Select Rule Type Node
