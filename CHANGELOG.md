@@ -1,5 +1,6 @@
 ## 0.1.6
 * Update DynamoCore Version to 2.3.0.5885
+* Update DSRevitNodesUIImages & DSRevitNodesUI version to 2.0.0.0 due to PathOfTravel Node Resource added
 
 ## 0.1.5
 * Exit Dynamo when Revit document lost.
