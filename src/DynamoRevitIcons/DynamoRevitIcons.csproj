@@ -41,9 +41,9 @@
       <Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
     </GetReferenceAssemblyPaths>
     <GenerateResource SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" UseSourcePath="true" Sources="$(ProjectDir)RevitNodesImages.resx" OutputResources="$(ProjectDir)RevitNodesImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
-    <AL TargetType="library" EmbedResources="$(ProjectDir)RevitNodesImages.resources" FileVersion="1.0.0.0" ProductName="Dynamo For Revit 2019" ProductVersion="1.0.0.0" Copyright="Copyright © Autodesk, Inc 2017-2018" OutputAssembly="$(OutputPath)RevitNodes.customization.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)RevitNodesImages.resources" FileVersion="2.0.0.0" ProductName="Dynamo For Revit 2020" ProductVersion="2.0.0.0" Copyright="Copyright © Autodesk, Inc 2017-2018" OutputAssembly="$(OutputPath)RevitNodes.customization.dll" />
     <GenerateResource SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" UseSourcePath="true" Sources="$(ProjectDir)DSRevitNodesUIImages.resx" OutputResources="$(ProjectDir)DSRevitNodesUIImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
-    <AL TargetType="library" EmbedResources="$(ProjectDir)DSRevitNodesUIImages.resources" FileVersion="1.0.0.0" ProductName="Dynamo For Revit 2019" ProductVersion="1.0.0.0" Copyright="Copyright © Autodesk, Inc 2017-2018" OutputAssembly="$(OutputPath)DSRevitNodesUI.customization.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)DSRevitNodesUIImages.resources" FileVersion="2.0.0.0" ProductName="Dynamo For Revit 2020" ProductVersion="2.0.0.0" Copyright="Copyright © Autodesk, Inc 2017-2018" OutputAssembly="$(OutputPath)DSRevitNodesUI.customization.dll" />
   </Target>
   <Target Name="AfterBuild">
     <ItemGroup>
