@@ -1,3 +1,6 @@
+## 0.1.8
+* Update Python and NUnit versions
+
 ## 0.1.7
 * Update DynamoCore Version to 2.4.0.6186
 
