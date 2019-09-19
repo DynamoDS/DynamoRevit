@@ -11,9 +11,9 @@
       "DynamoVisualProgramming.DynamoSamples" : "2.4.0.6186",
       "Greg" : "1.2.7177.24952",
       "GregRevitAuth" : "1.0.7057.20655",
-      "IronPython" : "2.7.9.1",
+      "IronPython" : "2.7.9",
       "Newtonsoft.Json" : "8.0.3",
-      "NUnit" : "2.6.2",
+      "NUnit" : "2.6.3",
       "Prism" : "4.1.0",
       "RestSharp" : "105.2.3",
       "Unofficial.Ionic.Zip" : "1.9.1.8"
