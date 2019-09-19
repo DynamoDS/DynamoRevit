@@ -48,7 +48,7 @@ namespace Dynamo.Applications
             if (product.VersionInfo < new Version(0, 7))
                 return string.Empty; //0.6.3 and older version not supported for Revit2015 onwards
 
-            return Path.Combine(product.InstallLocation, "DynamoRevitDS.dll");
+            return Path.Combine(product.InstallLocation, "Revit", "DynamoRevitDS.dll");
         }
 
         public Result OnStartup(UIControlledApplication application)

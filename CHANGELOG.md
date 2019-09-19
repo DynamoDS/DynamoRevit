@@ -1,39 +1,31 @@
-## 0.1.8
-* Update Python and NUnit versions
-
-## 0.1.7
-* Update DynamoCore Version to 2.4.0.6186
-
-## 0.1.6
-* Update DynamoCore Version to 2.3.0.5885
-* Update DSRevitNodesUIImages & DSRevitNodesUI version to 2.0.0.0 due to PathOfTravel Node Resource added
-
-## 0.1.5
+## 0.0.46
 * Exit Dynamo when Revit document lost.
 * Correct spelling mistakes in Select Rule Type Node
 * Resolve DynamoCore new version 2.2.1.5204
 * Resolved CategoryByName Node not working with some German words
-* Spell error in tooltip for Element.GetLocation Node 
+* Spell error in tooltip for Element.GetLocation Node
 * Add new Select node "All Elements of Category In View"
 * Add Element Delete Node
 * Update some failed nodes tests
 * Add Node Icons for PathOfTravel, Element Delete, All Elements of Category In View nodes.
+* Update DynamoCore Version to 2.3.0.5885
+* Update DSRevitNodesUIImages & DSRevitNodesUI version to 2.0.0.0 due to PathOfTravel Node Resource added
 
-## 0.1.4
-* Add System tests for Sample files.
-* Refactoring some RevitSystemTestBase codes.
-* Update RayBounce_SunStudy test due to RevitAPI update.
+## 0.0.45
 * Add nodes for path of travel element.
-* Upgrade DynamoRevit Version to 2.2.1
+* Upgrade DynamoRevit Version to 2.2.1.
+* Consume DynamoCoreRuntime 2.2.1.5175 & RevitAPI 20.1.0-b56 in D4R's CICD
 
-## 0.1.3
+## 0.0.44
 * Update Greg & GregRevitAuth to latest version (Greg - 1.1.7040.19960 GregRevitAuth - 1.0.7057.20655)
 * Consume the version 2.2.0.4667 of DynamoCoreRuntime in D4R's CICD
+* Consume the version 20.1.0-b21 of RevitAPI and RevitAPIUI
 
-## 0.1.2
-* Update Dynamo Core Version to 2.2.0.4565 in Config file-packages.aget 
+## 0.0.43
+* Direct Revit Version to 2020 in config file
 
-## 0.1.1
+## 0.0.42
+* Update Dynamo Core Version to 2.2.0.4565 in Config file-packages.aget
 * Add CanBuildOutputAst function to RevitDropDownBase for judging whether it have valid Enumeration values to the output in dropdown list
 * Update RevitSystemTestBase to make it more user friendly
 * Add two new nodes to ImportInstance because of RevitAPI changes
@@ -41,9 +33,12 @@
 * Improve RevitSystemTestBase that DynamoRevit custom node developers could preload their nodes for test in Code.
 * Improve RevitSystemTestBase that DynamoRevit custom node developers could preload their node packages for test in Code.
 
-## 0.1.0
+## 0.0.41
+* Update Jenkinsfile to compatible with RC2.1.0_Revit2020 branch's CICD.
+
+## 0.0.40
 * The version of master branch will be start with 0.1.x, and Revit2020 branch will still be 0.0.xx.
-* LibG should be more version compatible.
+* Cherry-pick fix from master branch, LibG should be more version compatible.
 
 ## 0.0.39
 * Consume the version 20.0.0-b94 of RevitAPI and RevitAPIUI in D4R's CICD to support Revit 2020 release.
