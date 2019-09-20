@@ -1,3 +1,6 @@
+## 0.0.47
+* Revert the test RayBounce_SunStudy changes due to RevitAPI diff.
+
 ## 0.0.46
 * Exit Dynamo when Revit document lost.
 * Correct spelling mistakes in Select Rule Type Node
