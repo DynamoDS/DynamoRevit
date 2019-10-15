@@ -64,6 +64,22 @@
                 }
               ]
             },
+			{
+              "text": "Steel Connections",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Autodesk Steel Connections.Input"
+                },
+                {
+                  "path": "AdvanceSteelConnAutoNodes.AdvanceSteel.ConnectionAutomation.Nodes",
+                  "inclusive": false
+                }
+              ],
+              "childElements": [
+              ]
+            },
             {
               "text": "Application",
               "iconUrl": "",
