@@ -56,7 +56,7 @@ namespace Dynamo.Applications
             additionalResolutionPaths = new List<string> { currentAssemblyDir };
 
 			// Add Steel nodes to preload
-			var steelNodesDirectory = Path.Combine(currentAssemblyDir, "nodesSteelConnections", "steel-pkg", "bin");
+            var steelNodesDirectory = Path.Combine(currentAssemblyDir, "nodesSteelConnections", "steel-pkg", "bin");
             var steelNodesDll = Path.Combine(steelNodesDirectory, "AdvanceSteelConnAutoNodes.dll");
 
             if (File.Exists(steelNodesDll) == true)
