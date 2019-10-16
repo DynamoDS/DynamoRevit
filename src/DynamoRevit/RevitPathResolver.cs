@@ -55,7 +55,7 @@ namespace Dynamo.Applications
             // Add the Revit_20xx folder for assembly resolution
             additionalResolutionPaths = new List<string> { currentAssemblyDir };
 
-			// Add Steel nodes to preload
+            // Add Steel nodes to preload
             var steelNodesDirectory = Path.Combine(currentAssemblyDir, "nodesSteelConnections", "steel-pkg", "bin");
             var steelNodesDll = Path.Combine(steelNodesDirectory, "AdvanceSteelConnAutoNodes.dll");
 
