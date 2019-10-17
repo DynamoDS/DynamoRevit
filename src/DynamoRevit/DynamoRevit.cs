@@ -10,6 +10,8 @@ using System.Text.RegularExpressions;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
+using System.Xml;
+using System.Xml.Serialization;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -586,6 +588,26 @@ namespace Dynamo.Applications
 
             //The revitspec should have only one section, add all its child elements to the customization
             var elements = revitspec.sections.First().childElements;
+
+            // Extend it with the layoutSpecs from internal nodes
+            var internalNodesLayouts = DynamoRevitInternalNodes.GetLayoutSpecsFiles();
+            foreach (var layoutSpecsFile in internalNodesLayouts)
+            {
+                try
+                {
+                    LayoutSpecification spec = LayoutSpecification.FromJSONString(File.ReadAllText(layoutSpecsFile));
+                    var revitSection = spec.sections.First();
+                    var revitCategory = revitSection.childElements.First();
+
+                    var revitCategoryToExtend = elements.First(elem => elem.text == "Revit");
+                    revitCategoryToExtend.childElements.AddRange(revitCategory.childElements);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(string.Format("Exception while trying to load {0}", layoutSpecsFile));
+                }
+            }
+
             customization.AddElements(elements); //add all the elements to default section
         }
 
@@ -888,6 +910,81 @@ namespace Dynamo.Applications
             }
 
             return paths;
+        }
+    }
+
+    [Serializable()]
+    public class ExtensionInfo
+    {
+        public string NodePath { get; set; }
+        public string LayoutSpecsPath { get; set; }
+    }
+    public static class DynamoRevitInternalNodes
+    {
+        private static IEnumerable<string> GetAllExtensionFiles()
+        {
+            string currentAssemblyPath = Assembly.GetExecutingAssembly().Location;
+            string currentAssemblyDir = Path.GetDirectoryName(currentAssemblyPath);
+
+            string internalNodesDir = Path.Combine(currentAssemblyDir, "packages");
+            if (false == Directory.Exists(internalNodesDir))
+                return new List<string>();
+
+            string[] internalNodesFolders = Directory.GetDirectories(internalNodesDir);
+
+            List<string> extensionFiles = new List<string>();
+            foreach (string dir in internalNodesFolders)
+            {
+                string extensionFile = Path.Combine(dir, "extension.xml");
+                if (true == File.Exists(extensionFile))
+                {
+                    extensionFiles.Add(extensionFile);
+                }
+            }
+            return extensionFiles;
+        }
+        private static IEnumerable<ExtensionInfo> ParseExtensionFiles(IEnumerable<string> extensionFiles)
+        {
+            List<ExtensionInfo> extensionInfos = new List<ExtensionInfo>();
+
+            foreach (string extensionFile in extensionFiles)
+            {
+                try
+                {
+                    string extensionFileDir = Path.GetDirectoryName(extensionFile);
+                    using (StreamReader reader = new StreamReader(extensionFile))
+                    {
+                        XmlSerializer serializer = new XmlSerializer(typeof(ExtensionInfo));
+                        ExtensionInfo extInfo = serializer.Deserialize(reader) as ExtensionInfo;
+
+                        // convert to absolute path, if needed
+                        if (false == Path.IsPathRooted(extInfo.NodePath))
+                            extInfo.NodePath = Path.Combine(extensionFileDir, extInfo.NodePath);
+
+                        // convert to absolute path, if needed
+                        if (false == Path.IsPathRooted(extInfo.LayoutSpecsPath))
+                            extInfo.LayoutSpecsPath = Path.Combine(extensionFileDir, extInfo.LayoutSpecsPath);
+
+                        extensionInfos.Add(extInfo);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(string.Format("Exception while trying to parse extension file {0}", extensionFile));
+                }
+            }
+
+            return extensionInfos;
+        }
+        public static IEnumerable<string> GetNodesToPreload()
+        {
+            IEnumerable<string> extensionFiles = GetAllExtensionFiles();
+            return ParseExtensionFiles(extensionFiles).Select(info => info.NodePath);
+        }
+        public static IEnumerable<string> GetLayoutSpecsFiles()
+        {
+            IEnumerable<string> extensionFiles = GetAllExtensionFiles();
+            return ParseExtensionFiles(extensionFiles).Select(info => info.LayoutSpecsPath);
         }
     }
 }

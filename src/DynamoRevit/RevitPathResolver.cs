@@ -55,6 +55,17 @@ namespace Dynamo.Applications
             // Add the Revit_20xx folder for assembly resolution
             additionalResolutionPaths = new List<string> { currentAssemblyDir };
 
+            // Add other internal nodes to preload list
+            var internalNodes = DynamoRevitInternalNodes.GetNodesToPreload();
+            foreach (var assemblyPath in internalNodes)
+            {
+                if (File.Exists(assemblyPath))
+                {
+                    preloadLibraryPaths.Add(assemblyPath);
+                    additionalNodeDirectories.Add(Path.GetDirectoryName(assemblyPath));
+                }
+            }
+
             this.userDataRootFolder = userDataFolder;
             this.commonDataRootFolder = commonDataFolder;
         }
