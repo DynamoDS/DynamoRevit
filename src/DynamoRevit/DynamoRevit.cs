@@ -919,7 +919,7 @@ namespace Dynamo.Applications
         public string NodePath { get; set; }
         public string LayoutSpecsPath { get; set; }
     }
-    public static class DynamoRevitInternalNodes
+    internal static class DynamoRevitInternalNodes
     {
         private static IEnumerable<string> GetAllExtensionFiles()
         {
@@ -928,7 +928,9 @@ namespace Dynamo.Applications
 
             string internalNodesDir = Path.Combine(currentAssemblyDir, "packages");
             if (false == Directory.Exists(internalNodesDir))
+            {
                 return new List<string>();
+            }
 
             string[] internalNodesFolders = Directory.GetDirectories(internalNodesDir);
 
@@ -959,11 +961,15 @@ namespace Dynamo.Applications
 
                         // convert to absolute path, if needed
                         if (false == Path.IsPathRooted(extInfo.NodePath))
+                        {
                             extInfo.NodePath = Path.Combine(extensionFileDir, extInfo.NodePath);
+                        }
 
                         // convert to absolute path, if needed
                         if (false == Path.IsPathRooted(extInfo.LayoutSpecsPath))
+                        {
                             extInfo.LayoutSpecsPath = Path.Combine(extensionFileDir, extInfo.LayoutSpecsPath);
+                        }
 
                         extensionInfos.Add(extInfo);
                     }
@@ -976,12 +982,12 @@ namespace Dynamo.Applications
 
             return extensionInfos;
         }
-        public static IEnumerable<string> GetNodesToPreload()
+        internal static IEnumerable<string> GetNodesToPreload()
         {
             IEnumerable<string> extensionFiles = GetAllExtensionFiles();
             return ParseExtensionFiles(extensionFiles).Select(info => info.NodePath);
         }
-        public static IEnumerable<string> GetLayoutSpecsFiles()
+        internal static IEnumerable<string> GetLayoutSpecsFiles()
         {
             IEnumerable<string> extensionFiles = GetAllExtensionFiles();
             return ParseExtensionFiles(extensionFiles).Select(info => info.LayoutSpecsPath);
