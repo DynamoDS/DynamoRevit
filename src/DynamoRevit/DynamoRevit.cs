@@ -913,15 +913,25 @@ namespace Dynamo.Applications
         }
     }
 
+    /// <summary>
+    /// Defines parameters used for loading internal Dynamo Revit packages
+    /// </summary>
     [Serializable()]
-    public class ExtensionInfo
+    public class InternalPackage
     {
+        /// <summary>
+        /// keeps the path to the node file
+        /// </summary>
         public string NodePath { get; set; }
+
+        /// <summary>
+        /// keeps the path to the layoutSpecs.json file
+        /// </summary>
         public string LayoutSpecsPath { get; set; }
     }
     internal static class DynamoRevitInternalNodes
     {
-        private static IEnumerable<string> GetAllExtensionFiles()
+        private static IEnumerable<string> GetAllInternalPackageFiles()
         {
             string currentAssemblyPath = Assembly.GetExecutingAssembly().Location;
             string currentAssemblyDir = Path.GetDirectoryName(currentAssemblyPath);
@@ -934,63 +944,63 @@ namespace Dynamo.Applications
 
             string[] internalNodesFolders = Directory.GetDirectories(internalNodesDir);
 
-            List<string> extensionFiles = new List<string>();
+            List<string> internalPackageFiles = new List<string>();
             foreach (string dir in internalNodesFolders)
             {
-                string extensionFile = Path.Combine(dir, "extension.xml");
-                if (true == File.Exists(extensionFile))
+                string internalPackageFile = Path.Combine(dir, "internalPackage.xml");
+                if (true == File.Exists(internalPackageFile))
                 {
-                    extensionFiles.Add(extensionFile);
+                    internalPackageFiles.Add(internalPackageFile);
                 }
             }
-            return extensionFiles;
+            return internalPackageFiles;
         }
-        private static IEnumerable<ExtensionInfo> ParseExtensionFiles(IEnumerable<string> extensionFiles)
+        private static IEnumerable<InternalPackage> ParseinternalPackageFiles(IEnumerable<string> internalPackageFiles)
         {
-            List<ExtensionInfo> extensionInfos = new List<ExtensionInfo>();
+            List<InternalPackage> internalPackages = new List<InternalPackage>();
 
-            foreach (string extensionFile in extensionFiles)
+            foreach (string internalPackageFile in internalPackageFiles)
             {
                 try
                 {
-                    string extensionFileDir = Path.GetDirectoryName(extensionFile);
-                    using (StreamReader reader = new StreamReader(extensionFile))
+                    string internalPackageDir = Path.GetDirectoryName(internalPackageFile);
+                    using (StreamReader reader = new StreamReader(internalPackageFile))
                     {
-                        XmlSerializer serializer = new XmlSerializer(typeof(ExtensionInfo));
-                        ExtensionInfo extInfo = serializer.Deserialize(reader) as ExtensionInfo;
+                        XmlSerializer serializer = new XmlSerializer(typeof(InternalPackage));
+                        InternalPackage intPackage = serializer.Deserialize(reader) as InternalPackage;
 
                         // convert to absolute path, if needed
-                        if (false == Path.IsPathRooted(extInfo.NodePath))
+                        if (false == Path.IsPathRooted(intPackage.NodePath))
                         {
-                            extInfo.NodePath = Path.Combine(extensionFileDir, extInfo.NodePath);
+                            intPackage.NodePath = Path.Combine(internalPackageDir, intPackage.NodePath);
                         }
 
                         // convert to absolute path, if needed
-                        if (false == Path.IsPathRooted(extInfo.LayoutSpecsPath))
+                        if (false == Path.IsPathRooted(intPackage.LayoutSpecsPath))
                         {
-                            extInfo.LayoutSpecsPath = Path.Combine(extensionFileDir, extInfo.LayoutSpecsPath);
+                            intPackage.LayoutSpecsPath = Path.Combine(internalPackageDir, intPackage.LayoutSpecsPath);
                         }
 
-                        extensionInfos.Add(extInfo);
+                        internalPackages.Add(intPackage);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(string.Format("Exception while trying to parse extension file {0}", extensionFile));
+                    Console.WriteLine(string.Format("Exception while trying to parse internalPackage file {0}", internalPackageFile));
                 }
             }
 
-            return extensionInfos;
+            return internalPackages;
         }
         internal static IEnumerable<string> GetNodesToPreload()
         {
-            IEnumerable<string> extensionFiles = GetAllExtensionFiles();
-            return ParseExtensionFiles(extensionFiles).Select(info => info.NodePath);
+            IEnumerable<string> internalPackageFiles = GetAllInternalPackageFiles();
+            return ParseinternalPackageFiles(internalPackageFiles).Select(pkg => pkg.NodePath);
         }
         internal static IEnumerable<string> GetLayoutSpecsFiles()
         {
-            IEnumerable<string> extensionFiles = GetAllExtensionFiles();
-            return ParseExtensionFiles(extensionFiles).Select(info => info.LayoutSpecsPath);
+            IEnumerable<string> internalPackageFiles = GetAllInternalPackageFiles();
+            return ParseinternalPackageFiles(internalPackageFiles).Select(pkg => pkg.LayoutSpecsPath);
         }
     }
 }
