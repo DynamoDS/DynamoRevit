@@ -926,7 +926,7 @@ namespace Dynamo.Applications
             string currentAssemblyPath = Assembly.GetExecutingAssembly().Location;
             string currentAssemblyDir = Path.GetDirectoryName(currentAssemblyPath);
 
-            string internalNodesDir = Path.Combine(currentAssemblyDir, "packages");
+            string internalNodesDir = Path.Combine(currentAssemblyDir, "nodes");
             if (false == Directory.Exists(internalNodesDir))
             {
                 return new List<string>();
