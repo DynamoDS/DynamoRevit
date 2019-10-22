@@ -931,12 +931,13 @@ namespace Dynamo.Applications
     }
     internal static class DynamoRevitInternalNodes
     {
+        private const string InternalNodesDir = "nodes";
         private static IEnumerable<string> GetAllInternalPackageFiles()
         {
             string currentAssemblyPath = Assembly.GetExecutingAssembly().Location;
             string currentAssemblyDir = Path.GetDirectoryName(currentAssemblyPath);
 
-            string internalNodesDir = Path.Combine(currentAssemblyDir, "nodes");
+            string internalNodesDir = Path.Combine(currentAssemblyDir, InternalNodesDir);
             if (false == Directory.Exists(internalNodesDir))
             {
                 return new List<string>();
