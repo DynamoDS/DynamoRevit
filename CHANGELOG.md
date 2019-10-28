@@ -1,3 +1,6 @@
+## 0.1.9
+* Preload dynamically internal packages
+
 ## 0.1.8
 * Update Python and NUnit versions
 
