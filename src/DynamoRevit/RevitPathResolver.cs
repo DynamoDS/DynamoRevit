@@ -62,7 +62,9 @@ namespace Dynamo.Applications
                 if (File.Exists(assemblyPath))
                 {
                     preloadLibraryPaths.Add(assemblyPath);
-                    additionalNodeDirectories.Add(Path.GetDirectoryName(assemblyPath));
+                    string assemblyDir = Path.GetDirectoryName(assemblyPath);
+                    additionalNodeDirectories.Add(assemblyDir);
+                    additionalResolutionPaths.Add(assemblyDir);
                 }
             }
 
