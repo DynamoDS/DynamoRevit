@@ -10,6 +10,8 @@ using System.Text.RegularExpressions;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
+using System.Xml;
+using System.Xml.Serialization;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
@@ -586,6 +588,26 @@ namespace Dynamo.Applications
 
             //The revitspec should have only one section, add all its child elements to the customization
             var elements = revitspec.sections.First().childElements;
+
+            // Extend it with the layoutSpecs from internal nodes
+            var internalNodesLayouts = DynamoRevitInternalNodes.GetLayoutSpecsFiles();
+            foreach (var layoutSpecsFile in internalNodesLayouts)
+            {
+                try
+                {
+                    LayoutSpecification spec = LayoutSpecification.FromJSONString(File.ReadAllText(layoutSpecsFile));
+                    var revitSection = spec.sections.First();
+                    var revitCategory = revitSection.childElements.First();
+
+                    var revitCategoryToExtend = elements.First(elem => elem.text == "Revit");
+                    revitCategoryToExtend.childElements.AddRange(revitCategory.childElements);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(string.Format("Exception while trying to load {0}", layoutSpecsFile));
+                }
+            }
+
             customization.AddElements(elements); //add all the elements to default section
         }
 
@@ -888,6 +910,98 @@ namespace Dynamo.Applications
             }
 
             return paths;
+        }
+    }
+
+    /// <summary>
+    /// Defines parameters used for loading internal Dynamo Revit packages
+    /// </summary>
+    [Serializable()]
+    public class InternalPackage
+    {
+        /// <summary>
+        /// keeps the path to the node file
+        /// </summary>
+        public string NodePath { get; set; }
+
+        /// <summary>
+        /// keeps the path to the layoutSpecs.json file
+        /// </summary>
+        public string LayoutSpecsPath { get; set; }
+    }
+    internal static class DynamoRevitInternalNodes
+    {
+        private const string InternalNodesDir = "nodes";
+        private static IEnumerable<string> GetAllInternalPackageFiles()
+        {
+            string currentAssemblyPath = Assembly.GetExecutingAssembly().Location;
+            string currentAssemblyDir = Path.GetDirectoryName(currentAssemblyPath);
+
+            string internalNodesDir = Path.Combine(currentAssemblyDir, InternalNodesDir);
+            if (false == Directory.Exists(internalNodesDir))
+            {
+                return new List<string>();
+            }
+
+            string[] internalNodesFolders = Directory.GetDirectories(internalNodesDir);
+
+            List<string> internalPackageFiles = new List<string>();
+            foreach (string dir in internalNodesFolders)
+            {
+                string internalPackageFile = Path.Combine(dir, "internalPackage.xml");
+                if (true == File.Exists(internalPackageFile))
+                {
+                    internalPackageFiles.Add(internalPackageFile);
+                }
+            }
+            return internalPackageFiles;
+        }
+        private static IEnumerable<InternalPackage> ParseinternalPackageFiles(IEnumerable<string> internalPackageFiles)
+        {
+            List<InternalPackage> internalPackages = new List<InternalPackage>();
+
+            foreach (string internalPackageFile in internalPackageFiles)
+            {
+                try
+                {
+                    string internalPackageDir = Path.GetDirectoryName(internalPackageFile);
+                    using (StreamReader reader = new StreamReader(internalPackageFile))
+                    {
+                        XmlSerializer serializer = new XmlSerializer(typeof(InternalPackage));
+                        InternalPackage intPackage = serializer.Deserialize(reader) as InternalPackage;
+
+                        // convert to absolute path, if needed
+                        if (false == Path.IsPathRooted(intPackage.NodePath))
+                        {
+                            intPackage.NodePath = Path.Combine(internalPackageDir, intPackage.NodePath);
+                        }
+
+                        // convert to absolute path, if needed
+                        if (false == Path.IsPathRooted(intPackage.LayoutSpecsPath))
+                        {
+                            intPackage.LayoutSpecsPath = Path.Combine(internalPackageDir, intPackage.LayoutSpecsPath);
+                        }
+
+                        internalPackages.Add(intPackage);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(string.Format("Exception while trying to parse internalPackage file {0}", internalPackageFile));
+                }
+            }
+
+            return internalPackages;
+        }
+        internal static IEnumerable<string> GetNodesToPreload()
+        {
+            IEnumerable<string> internalPackageFiles = GetAllInternalPackageFiles();
+            return ParseinternalPackageFiles(internalPackageFiles).Select(pkg => pkg.NodePath);
+        }
+        internal static IEnumerable<string> GetLayoutSpecsFiles()
+        {
+            IEnumerable<string> internalPackageFiles = GetAllInternalPackageFiles();
+            return ParseinternalPackageFiles(internalPackageFiles).Select(pkg => pkg.LayoutSpecsPath);
         }
     }
 }
