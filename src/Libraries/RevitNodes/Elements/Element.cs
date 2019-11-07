@@ -532,6 +532,19 @@ namespace Revit.Elements
                 }
             }
 
+            // FamilySymbol is a special case: the symbol must be activated before geometry is available, unless an instance is already present in the model
+            else if ((thisElement is FamilySymbol) && (geomElement == null || !geomElement.Any()))
+            {
+                var fs = (FamilySymbol)thisElement;
+                if (!fs.IsActive)
+                {
+                    fs.Activate();
+                    DocumentManager.Regenerate();
+                    geomElement = fs.get_Geometry(goptions0);
+                }
+
+            }
+
             return CollectConcreteGeometry(geomElement, useSymbolGeometry);
         }
 
