@@ -269,7 +269,7 @@ namespace RevitNodesTests.Elements
         }
 
         [Test]
-        [TestModel(@".\joinedElements.rvt")]
+        [TestModel(@".\Element\elementJoin.rvt")]
         public void CanSuccessfullyCheckIfTwoElementsAreJoined()
         {
             var wall1 = ElementSelector.ByElementId(184176, true);
