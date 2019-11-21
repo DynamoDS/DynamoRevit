@@ -51,21 +51,15 @@ namespace RevitSystemTests
             // Arrange - setup to run Dynamo script
             string samplePath = Path.Combine(workingDirectory, @".\Element\canGetJoinedElementsFromElement.dyn");
             string testPath = Path.GetFullPath(samplePath);
-            List<int> expectedElementIds = new List<int>() { 184176, 208422 };
+            int expectedElementCount = 2;
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            List<Element> joinedElements = GetPreviewValue("bae6e489b6d34519996aa4f9c9ad8e67") as List<Element>;
-            Assert.IsNotNull(joinedElements);
-
             // Act - get output of Element.GetJoinedElements in Dynamo script
-            var joinedElementIds = joinedElements
-                .Select(x => x.Id)
-                .ToArray();
-            Assert.IsNotNull(joinedElementIds);
+            var joinedElementsCount = GetPreviewValue("a3e87f4fcb0f4326a239cedf26e2748c");
 
             // Assert - check if outcome element ids are the same as the expected element ids
-            CollectionAssert.AreEqual(expectedElementIds, joinedElementIds);
+            Assert.AreEqual(expectedElementCount, joinedElementsCount);
         }
 
         /// <summary>
@@ -85,12 +79,12 @@ namespace RevitSystemTests
 
             // Act
             // get output of Element.Names in dynamo script
-            List<string> hostedElementNames = GetPreviewValue("d9a3fb06d30a4c088c582ae81ca4245f") as List<string>;
-            List<string> expectedValues = new List<string>() { "600 x 3100", "600 x 3100", "600 x 3100", "Rectangular Straight Wall Opening" };
+            var hostedElements = GetPreviewValue("52001294a6284c1185f9564d8924f781");
+            int expectedValues = 4;
 
             // Assert
             // check if outcome is the same as the expected collection
-            CollectionAssert.AreEqual(expectedValues, hostedElementNames);
+            Assert.AreEqual(expectedValues, hostedElements);
         }
 
         [Test]
@@ -105,7 +99,7 @@ namespace RevitSystemTests
             RunCurrentModel();
             
             // query AllFalse node to check that the output of IsPinned is false for both elements in test model
-            Assert.AreEqual(true, GetPreviewValue("d9811fadc1964cd0b58c440e227ce9ba"));
+            Assert.AreEqual(false, GetPreviewValue("d9811fadc1964cd0b58c440e227ce9ba"));
         }
 
         /// <summary>
@@ -118,28 +112,24 @@ namespace RevitSystemTests
             string samplePath = Path.Combine(workingDirectory, @".\Element\setElementsPinStatus.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
-            ViewModel.OpenCommand.Execute(testPath);
-
-            RunCurrentModel();
             //check Select Model Element
-            var selectElement = "f49d6941-4497-43c3-9a52-fe4e5424e4e7-0002cf70;";
-            var selectElementValue = GetPreviewValue(selectElement) as Element;
-            Assert.IsNotNull(selectElementValue);
+            var elem = ElementSelector.ByElementId(184176, true);
+            Assert.IsNotNull(elem);
 
-            bool originalPinnedStatus = selectElementValue.IsPinned;
-            Assert.IsNotNull(originalPinnedStatus);
+            bool originalPinnedStatus = elem.InternalElement.Pinned;
             Assert.AreEqual(false, originalPinnedStatus);
 
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            
             //now flip the switch for setting the pinned status to true
             var boolNode = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is CoreNodeModels.Input.BoolSelector).First();
-            Assert.IsNotNull(boolNode);
             bool boolNodeValue = true;
             ((CoreNodeModels.Input.BasicInteractive<bool>)boolNode).Value = boolNodeValue;
 
             RunCurrentModel();
-            bool newPinnedStatus = selectElementValue.IsPinned;
+            bool newPinnedStatus = elem.InternalElement.Pinned;
             Assert.AreNotEqual(originalPinnedStatus, newPinnedStatus);
-            Assert.IsNotNull(newPinnedStatus);
             Assert.AreEqual(boolNodeValue, newPinnedStatus);
             
         }
@@ -149,7 +139,7 @@ namespace RevitSystemTests
         public void CanCheckIfTwoElementsAreJoined()
         {
             // Arange
-            string samplePath = Path.Combine(workingDirectory, @".\Element\canCheckIfTwoElementsAreJoined");
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canCheckIfTwoElementsAreJoined.dyn");
             string testPath = Path.GetFullPath(samplePath);
             
             ViewModel.OpenCommand.Execute(testPath);
@@ -158,8 +148,8 @@ namespace RevitSystemTests
             // Act - Get values of the two IsJoined nodes
             // first one should return false as it is checking two elements that are not joined
             // second one should return true as it test two joined elements
-            var isJoinedFalse = GetPreviewValue("d18424a424aa476588f6f466675b7123");
-            var isJoinedTrue = GetPreviewValue("f93b0fb9baca4a6fa4d9818b4dffd713");
+            var isJoinedFalse = GetPreviewValue("b29dc14336bc4c9382f9acc5036d632f");
+            var isJoinedTrue = GetPreviewValue("b49a72f29d504acdb524ab0953623ea5");
 
             // Assert
             Assert.AreEqual(true, isJoinedTrue);

@@ -2,52 +2,13 @@
   "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "canCheckIfElmentsAreJoined",
+  "Name": "canCheckIfTwoElementsAreJoined",
   "ElementResolver": {
     "ResolutionMap": {}
   },
   "Inputs": [],
   "Outputs": [],
   "Nodes": [
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.Element.IsJoined@Revit.Elements.Element",
-      "Id": "d18424a424aa476588f6f466675b7123",
-      "Inputs": [
-        {
-          "Id": "e0004e507a4f4f27bf73a5519db222f4",
-          "Name": "element",
-          "Description": "Revit.Elements.Element",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "2c0aea345f734b33b51eae891150f51b",
-          "Name": "otherElement",
-          "Description": "Element to check\n\nElement",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "606f9d09a4fb4a099ac080026b8b389f",
-          "Name": "bool",
-          "Description": "True if the two elements are joined, False otherwise",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Checks if two elements are joined\n\nElement.IsJoined (otherElement: Element): bool"
-    },
     {
       "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
       "NodeType": "ExtensionNode",
@@ -91,45 +52,6 @@
       "Replication": "Disabled"
     },
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.Element.IsJoined@Revit.Elements.Element",
-      "Id": "f93b0fb9baca4a6fa4d9818b4dffd713",
-      "Inputs": [
-        {
-          "Id": "925cb5a5de6b4e45918bf8160be65f17",
-          "Name": "element",
-          "Description": "Revit.Elements.Element",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "f8ca48cbb5954dab8fb78e8198673c1a",
-          "Name": "otherElement",
-          "Description": "Element to check\n\nElement",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "efe5d18d79d240f89ce88647c88fc507",
-          "Name": "bool",
-          "Description": "True if the two elements are joined, False otherwise",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Checks if two elements are joined\n\nElement.IsJoined (otherElement: Element): bool"
-    },
-    {
       "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
       "NodeType": "ExtensionNode",
       "InstanceId": [
@@ -149,28 +71,106 @@
         }
       ],
       "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.AreJoined@Revit.Elements.Element",
+      "Id": "b29dc14336bc4c9382f9acc5036d632f",
+      "Inputs": [
+        {
+          "Id": "8783bac1d7354dec9f9f470580b3b06a",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "678a4aa732254668bf17b6c8c4256bb7",
+          "Name": "otherElement",
+          "Description": "Second element to check\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3c18b8c2c5b1430f8cf431eaa2ab376a",
+          "Name": "bool",
+          "Description": "True if the two elements are joined, False otherwise",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Checks if two elements are joined\n\nElement.AreJoined (otherElement: Element): bool"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.AreJoined@Revit.Elements.Element",
+      "Id": "b49a72f29d504acdb524ab0953623ea5",
+      "Inputs": [
+        {
+          "Id": "d3e2b460158648e492e0028de7665e2f",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ab9293564d7c49619cb74737c3b6287f",
+          "Name": "otherElement",
+          "Description": "Second element to check\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bc37aebb704c4cc596f99e4dd63dcc3b",
+          "Name": "bool",
+          "Description": "True if the two elements are joined, False otherwise",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Checks if two elements are joined\n\nElement.AreJoined (otherElement: Element): bool"
     }
   ],
   "Connectors": [
     {
       "Start": "ec3434424d1d415b85302c74e78fb4b4",
-      "End": "e0004e507a4f4f27bf73a5519db222f4",
-      "Id": "a4015c018cdc46f38346fc5cf26c7ba1"
+      "End": "d3e2b460158648e492e0028de7665e2f",
+      "Id": "af1d53cd9c574a109d658f041cc5f17f"
     },
     {
       "Start": "ec3434424d1d415b85302c74e78fb4b4",
-      "End": "925cb5a5de6b4e45918bf8160be65f17",
-      "Id": "0f0dfdc044454b13b89d2696d1b768a9"
+      "End": "8783bac1d7354dec9f9f470580b3b06a",
+      "Id": "68cae634d4be4111952f0db08925cf50"
     },
     {
       "Start": "1b944730b29a44d69a917e62e19fc80a",
-      "End": "2c0aea345f734b33b51eae891150f51b",
-      "Id": "87fbe54ddfaa405a99457110a488c390"
+      "End": "678a4aa732254668bf17b6c8c4256bb7",
+      "Id": "d3855b714bc246a899d2e2abb0d46324"
     },
     {
       "Start": "6a63b60df66748bf838ada2e66377e6d",
-      "End": "f8ca48cbb5954dab8fb78e8198673c1a",
-      "Id": "9c491287feb84867b220fdf2034aaa04"
+      "End": "ab9293564d7c49619cb74737c3b6287f",
+      "Id": "aecda881ca9c4f29a6dfab52879fab2a"
     }
   ],
   "Dependencies": [],
@@ -182,7 +182,7 @@
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
       "Version": "2.5.0.5905",
-      "RunType": "Automatic",
+      "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "Camera": {
@@ -199,54 +199,54 @@
     },
     "NodeViews": [
       {
-        "Id": "d18424a424aa476588f6f466675b7123",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Name": "Element.IsJoined-TEST",
         "ShowGeometry": true,
-        "Excluded": false,
-        "X": 1330.4989019452416,
-        "Y": 111.58687575885895
-      },
-      {
+        "Name": "Select Model Element",
         "Id": "43061559e1754781bafb852ea06b32ec",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "Select Model Element",
-        "ShowGeometry": true,
         "Excluded": false,
         "X": 1048.9551181584616,
         "Y": 112.45048226719126
       },
       {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
         "Id": "deb6bd3a48304bfca628960cb871ed04",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "Select Model Element",
-        "ShowGeometry": true,
         "Excluded": false,
         "X": 1048.9551181584616,
         "Y": 230.8504822671913
       },
       {
-        "Id": "f93b0fb9baca4a6fa4d9818b4dffd713",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Name": "Element.IsJoined",
         "ShowGeometry": true,
-        "Excluded": false,
-        "X": 1334.5469272397886,
-        "Y": 352.82267468202292
-      },
-      {
+        "Name": "Select Model Element",
         "Id": "a155d7dbd972452fbedcfbbfdba8a75a",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
-        "Name": "Select Model Element",
-        "ShowGeometry": true,
         "Excluded": false,
         "X": 1050.4108146508293,
         "Y": 351.71518539634781
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.AreJoined",
+        "Id": "b29dc14336bc4c9382f9acc5036d632f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1327.6145937005076,
+        "Y": 130.42477422623219
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.AreJoined",
+        "Id": "b49a72f29d504acdb524ab0953623ea5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1331.2491033266206,
+        "Y": 350.31260660578528
       }
     ],
     "Annotations": [
@@ -330,7 +330,7 @@
         "Height": 412.26470312915654,
         "FontSize": 36.0,
         "InitialTop": 112.45048226719126,
-        "InitialHeight": 263.40000000000003,
+        "InitialHeight": 384.26470312915654,
         "TextblockHeight": 43.2,
         "Background": "#FFFFB8D8"
       },
@@ -338,14 +338,14 @@
         "Id": "9f32fffed59a45f8ab6888d2b11cd76b",
         "Title": "Output - Not joined",
         "Nodes": [
-          "d18424a424aa476588f6f466675b7123"
+          "b29dc14336bc4c9382f9acc5036d632f"
         ],
-        "Left": 1320.4989019452416,
-        "Top": 15.186875758858946,
+        "Left": 1317.6145937005076,
+        "Top": 34.024774226232182,
         "Width": 248.0,
         "Height": 214.60000000000002,
         "FontSize": 36.0,
-        "InitialTop": 111.58687575885895,
+        "InitialTop": 130.42477422623219,
         "InitialHeight": 145.0,
         "TextblockHeight": 86.4,
         "Background": "#FFFFC999"
@@ -354,15 +354,15 @@
         "Id": "a19006c0087c4d4f862293f57954f297",
         "Title": "Output - Joined",
         "Nodes": [
-          "f93b0fb9baca4a6fa4d9818b4dffd713"
+          "b49a72f29d504acdb524ab0953623ea5"
         ],
-        "Left": 1324.5469272397886,
-        "Top": 256.42267468202294,
+        "Left": 1321.2491033266206,
+        "Top": 253.91260660578527,
         "Width": 248.0,
-        "Height": 214.59999999999997,
+        "Height": 214.60000000000002,
         "FontSize": 36.0,
-        "InitialTop": 352.82267468202292,
-        "InitialHeight": 148.2,
+        "InitialTop": 350.31260660578528,
+        "InitialHeight": 145.0,
         "TextblockHeight": 86.4,
         "Background": "#FFFFC999"
       },
@@ -451,8 +451,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": -797.0865159796017,
-    "Y": 44.285552849267276,
-    "Zoom": 1.0382953144590104
+    "X": -908.51925275816006,
+    "Y": 111.54520611624967,
+    "Zoom": 0.88044889935438908
   }
 }

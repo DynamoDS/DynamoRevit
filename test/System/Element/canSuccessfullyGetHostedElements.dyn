@@ -12,36 +12,6 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.Element.Name",
-      "Id": "d9a3fb06d30a4c088c582ae81ca4245f",
-      "Inputs": [
-        {
-          "Id": "934b690e9b414f549c6741488decfc04",
-          "Name": "element",
-          "Description": "Revit.Elements.Element",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "f9d0e3dfa8674549b0941b943ee88a9b",
-          "Name": "string",
-          "Description": "string",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Get the Name of the Element\n\nElement.Name: string"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
       "FunctionSignature": "Revit.Elements.Element.GetHostedElements@bool,bool,bool,bool",
       "Id": "d1f1b1a1281b4841a445d3564511fcd8",
       "Inputs": [
@@ -205,13 +175,43 @@
       ],
       "Replication": "Disabled",
       "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Count@var[]..[]",
+      "Id": "52001294a6284c1185f9564d8924f781",
+      "Inputs": [
+        {
+          "Id": "7dbf59b35f044773a425bce4222ccad5",
+          "Name": "list",
+          "Description": "List to get the item count of.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fb0fe83b6d954da0940f1cc6a324a1b7",
+          "Name": "count",
+          "Description": "List length.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the number of items stored in the given list.\n\nList.Count (list: var[]..[]): int"
     }
   ],
   "Connectors": [
     {
       "Start": "aa3c5e5e0e9c4daf97d7c5a144ca2120",
-      "End": "934b690e9b414f549c6741488decfc04",
-      "Id": "64c2e2683a9e480985af18512cc8c8bf"
+      "End": "7dbf59b35f044773a425bce4222ccad5",
+      "Id": "e92da107086f482091d90ab996ddc0b3"
     },
     {
       "Start": "e19af7de41874026b70c4d1e28b7abff",
@@ -264,16 +264,6 @@
       "UpZ": 0.0
     },
     "NodeViews": [
-      {
-        "ShowGeometry": true,
-        "Name": "Element.Name",
-        "Id": "d9a3fb06d30a4c088c582ae81ca4245f",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 1832.5187027942252,
-        "Y": 179.13479010558166
-      },
       {
         "ShowGeometry": true,
         "Name": "Element.GetHostedElements",
@@ -333,6 +323,16 @@
         "Excluded": false,
         "X": 1047.760713611138,
         "Y": 458.85369284904368
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.Count",
+        "Id": "52001294a6284c1185f9564d8924f781",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1795.0729250606828,
+        "Y": 178.48802216266449
       }
     ],
     "Annotations": [
@@ -418,7 +418,7 @@
         "Height": 435.795214393936,
         "FontSize": 36.0,
         "InitialTop": 144.05847845510766,
-        "InitialHeight": 322.55374363641596,
+        "InitialHeight": 459.795214393936,
         "TextblockHeight": 43.2,
         "Background": "#FFFFB8D8"
       },
@@ -442,14 +442,14 @@
         "Id": "42db4db1963841b69bd19b9048516cb5",
         "Title": "Output",
         "Nodes": [
-          "d9a3fb06d30a4c088c582ae81ca4245f"
+          "52001294a6284c1185f9564d8924f781"
         ],
-        "Left": 1822.5187027942252,
-        "Top": 125.93479010558165,
-        "Width": 222.4,
+        "Left": 1785.0729250606828,
+        "Top": 125.28802216266449,
+        "Width": 190.4,
         "Height": 145.8,
         "FontSize": 36.0,
-        "InitialTop": 179.13479010558166,
+        "InitialTop": 178.48802216266449,
         "InitialHeight": 145.0,
         "TextblockHeight": 43.2,
         "Background": "#FFFFC999"
@@ -539,8 +539,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": -552.97439241712925,
-    "Y": -93.058712842568355,
+    "X": -660.1743924171293,
+    "Y": -12.258712842568372,
     "Zoom": 0.70513814494435634
   }
 }

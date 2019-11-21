@@ -29,7 +29,7 @@
         {
           "Id": "4e550d0f7c874a8f82f4e2e91168eb61",
           "Name": "Element[]",
-          "Description": "all elements joined to the given element",
+          "Description": "All elements joined to the given element",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -59,9 +59,44 @@
         }
       ],
       "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Count@var[]..[]",
+      "Id": "a3e87f4fcb0f4326a239cedf26e2748c",
+      "Inputs": [
+        {
+          "Id": "2b3c160a0b1441bbb83c2f280f1dddb2",
+          "Name": "list",
+          "Description": "List to get the item count of.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3ac8d87dd1fd411aa5b73223ead05487",
+          "Name": "count",
+          "Description": "List length.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the number of items stored in the given list.\n\nList.Count (list: var[]..[]): int"
     }
   ],
   "Connectors": [
+    {
+      "Start": "4e550d0f7c874a8f82f4e2e91168eb61",
+      "End": "2b3c160a0b1441bbb83c2f280f1dddb2",
+      "Id": "18aa743839a449b493f97d9ec4dcfe74"
+    },
     {
       "Start": "dc3941e236884a269a0c0995e16a4e81",
       "End": "25c9803479cf4c1298a09961c6e1a6c5",
@@ -100,8 +135,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1459.3882209718404,
-        "Y": 376.91364706109584
+        "X": 1435.0124750123291,
+        "Y": 380.5700089550225
       },
       {
         "ShowGeometry": true,
@@ -112,6 +147,16 @@
         "Excluded": false,
         "X": 1198.1882209718403,
         "Y": 378.91364706109584
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.Count",
+        "Id": "a3e87f4fcb0f4326a239cedf26e2748c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1760.271685221044,
+        "Y": 387.66781933841958
       }
     ],
     "Annotations": [
@@ -266,8 +311,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": -220.2836386044689,
-    "Y": 48.098184005249948,
-    "Zoom": 0.96187154594552715
+    "X": -610.64573370726112,
+    "Y": -77.516067464293883,
+    "Zoom": 0.65639016859530619
   }
 }

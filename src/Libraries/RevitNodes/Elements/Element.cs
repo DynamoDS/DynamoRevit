@@ -545,7 +545,7 @@ namespace Revit.Elements
             HostObject hostObject = this.InternalElement as HostObject;
             if (hostObject == null)
                 throw new NullReferenceException("Element is not a Host Element");
-            
+
             IList<ElementId> inserts = hostObject
                 .FindInserts(includeOpenings,
                              includeShadows,
@@ -561,7 +561,9 @@ namespace Revit.Elements
                 hostedElements.Add(elem);
             }
             return hostedElements;
+        }
 
+        /// <summary>
         /// Sets an existing element's pinned status
         /// </summary>
         /// <param name="pinned">Value for pin status true/false</param>

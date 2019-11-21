@@ -310,7 +310,7 @@ namespace RevitNodesTests.Elements
         #region Join tests
 
         [Test]
-        [TestModel(@".\elementJoin.rvt")]
+        [TestModel(@".\Element\elementJoin.rvt")]
         public void CanSuccessfullyGetJoinedElementsFromElement()
         {
             // Arrange - get element from model
@@ -431,7 +431,7 @@ namespace RevitNodesTests.Elements
         }
         private static void AssertElementsAreJoined(Element element, Element otherElement, bool expected)
         {
-            bool arejoined = element.IsJoined(otherElement);
+            bool arejoined = element.AreJoined(otherElement);
             Assert.AreEqual(expected, arejoined);
         }
 
