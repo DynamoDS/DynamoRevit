@@ -277,7 +277,28 @@ namespace RevitNodesTests.Elements
             AssertElementPinnedStatusIs(unPinnedElement, false);
         }
 
-        private static void AssertElementPinnedStatusIs(Element element, bool expectedValue)
+        /// <summary>
+        /// Checks if Pin status can be set correctly
+        /// </summary>
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void CanSuccessfullySetElementPinnedStatus()
+        {
+            var elem = ElementSelector.ByElementId(184176, true);
+            Assert.IsNotNull(elem);
+
+            bool originalPinStatus = elem.IsPinned;
+
+            elem.SetPinnedStatus(true);
+            Assert.AreNotEqual(originalPinStatus, elem.IsPinned);
+
+            elem.SetPinnedStatus(false);
+            Assert.AreEqual(originalPinStatus, elem.IsPinned);
+        }
+
+        private static void AssertElementPinnedStatusIs(
+            Element element,
+            bool expectedValue)
         {
             bool pinStatus = element.IsPinned;
 

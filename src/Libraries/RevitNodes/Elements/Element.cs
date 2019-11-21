@@ -527,6 +527,20 @@ namespace Revit.Elements
             return converted.ToArray();
         }
 
+        /// <summary>
+        /// Sets an existing element's pinned status
+        /// </summary>
+        /// <param name="pinned">Value for pin status true/false</param>
+        public Element SetPinnedStatus(bool pinned)
+        {
+            if (this.InternalElement.Pinned == pinned) return this;
+
+            TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            this.InternalElement.Pinned = pinned;
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
         #region Geometry extraction
 
         /// <summary>
@@ -719,8 +733,8 @@ namespace Revit.Elements
             }
         }
 
-        #region Location extraction & manipulation
 
+        #region Location extraction & manipulation
         /// <summary>
         /// Update an existing element's location
         /// </summary>
@@ -822,5 +836,6 @@ namespace Revit.Elements
         }
 
         #endregion
+
     }
 }
