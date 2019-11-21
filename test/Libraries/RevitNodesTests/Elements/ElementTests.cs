@@ -310,6 +310,23 @@ namespace RevitNodesTests.Elements
         #region Join tests
 
         [Test]
+        [TestModel(@".\elementJoin.rvt")]
+        public void CanSuccessfullyGetJoinedElementsFromElement()
+        {
+            // Arrange - get element from model
+            var element = ElementSelector.ByElementId(184176, true);
+            int[] expectedIds = new int[] { 207960, 208259, 208422 };
+
+            // Act
+            Element[] joinedElements = element.GetJoinedElements();
+            var joinedElementIds = joinedElements
+                .Select(x => x.Id)
+                .ToArray();
+
+            // Assert
+            CollectionAssert.AreEqual(expectedIds, joinedElementIds);
+        }
+        
         [TestModel(@".\Element\hostedElements.rvt")]
         public void CanSuccessfullyGetHostedElements()
         {

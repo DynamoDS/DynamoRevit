@@ -766,6 +766,17 @@ namespace Revit.Elements
                 return !ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(InternalElementId.IntegerValue);
             }
         }
+        /// <summary>
+        /// Finds the elements that are joined with the given element.
+        /// </summary>
+        /// <returns>All elements joined to the given element</returns>
+        public Element[] GetJoinedElements()
+        {
+            return JoinGeometryUtils.GetJoinedElements(Document, this.InternalElement)
+                .Select(id => Document.GetElement(id).ToDSType(true))
+                .ToArray();
+        }
+
 
 
         #region Location extraction & manipulation
