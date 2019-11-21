@@ -260,11 +260,36 @@ namespace RevitNodesTests.Elements
 
         #endregion
 
+        #region Pin settings
+
+        /// <summary>
+        /// gets the pinned status of an element from the model
+        /// and checks if IsPinned is the correct value
+        /// </summary>
+        [Test]
+        [TestModel(@".\Element\elementPinned.rvt")]
+        public void CanSuccessfullyGetElementPinnedStatus()
+        {
+            var pinnedElement = ElementSelector.ByElementId(184176, true);
+            AssertElementPinnedStatusIs(pinnedElement, true);
+
+            var unPinnedElement = ElementSelector.ByElementId(184324, true);
+            AssertElementPinnedStatusIs(unPinnedElement, false);
+        }
+
+        private static void AssertElementPinnedStatusIs(Element element, bool expectedValue)
+        {
+            bool pinStatus = element.IsPinned;
+
+            Assert.NotNull(pinStatus);
+            Assert.AreEqual(expectedValue, pinStatus);
+        }
+        #endregion
         #region Join tests
 
         private static void AssertElementsAreJoined(Element element, Element otherElement, bool expected)
         {
-            bool arejoined = element.IsJoined(otherElement);
+            bool arejoined = element.AreJoined(otherElement);
             Assert.AreEqual(expected, arejoined);
         }
 
