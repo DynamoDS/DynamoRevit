@@ -528,6 +528,40 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Gets all elements hosted by the supplied element
+        /// </summary>
+        /// <param name="includeOpenings">Include rectangular openings in output</param>
+        /// <param name="includeShadows">Include shadows in output</param>
+        /// <param name="includeEmbeddedWalls">Include embedded walls in output</param>
+        /// <param name="includeSharedEmbeddedInserts">Include shared embedded elements in output</param>
+        /// <returns>Hosted Elements</returns>
+        public List<Element> GetHostedElements(
+            bool includeOpenings = false,
+            bool includeShadows = false,
+            bool includeEmbeddedWalls = false,
+            bool includeSharedEmbeddedInserts = false)
+        {
+
+            HostObject hostObject = this.InternalElement as HostObject;
+            if (hostObject == null)
+                throw new NullReferenceException("Element is not a Host Element");
+            
+            IList<ElementId> inserts = hostObject
+                .FindInserts(includeOpenings,
+                             includeShadows,
+                             includeEmbeddedWalls,
+                             includeSharedEmbeddedInserts);
+
+            // Get all hosted elements from their Id's 
+            // and convert them to DS type
+            List<Element> hostedElements = new List<Element>();
+            for (int i = 0; i < inserts.Count; i++)
+            {
+                Element elem = Document.GetElement(inserts[i]).ToDSType(true);
+                hostedElements.Add(elem);
+            }
+            return hostedElements;
+
         /// Sets an existing element's pinned status
         /// </summary>
         /// <param name="pinned">Value for pin status true/false</param>

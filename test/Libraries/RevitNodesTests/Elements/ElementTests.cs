@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
@@ -308,10 +309,81 @@ namespace RevitNodesTests.Elements
         #endregion
         #region Join tests
 
-        private static void AssertElementsAreJoined(Element element, Element otherElement, bool expected)
+        [Test]
+        [TestModel(@".\Element\hostedElements.rvt")]
+        public void CanSuccessfullyGetHostedElements()
         {
-            bool arejoined = element.AreJoined(otherElement);
-            Assert.AreEqual(expected, arejoined);
+            // Arrange - Select the wall element in revit by it Id
+            var elem = ElementSelector.ByElementId(261723, true);
+            // Model element names
+            string windowFamName = "600 x 3100";
+            string curtainWallFamName = "Curtain Wall";
+            string wallOpeningFamName = "Rectangular Straight Wall Opening";
+            // Expected hosted elements lists
+            var famNamesWithShadowsInserts = new[] { windowFamName, windowFamName, windowFamName };
+            var famNamesWithEverything = new[] { curtainWallFamName, windowFamName, windowFamName, windowFamName, wallOpeningFamName };
+            var famNamesWithOpeningsShadows = new[] { windowFamName, windowFamName, windowFamName, wallOpeningFamName };
+            var famNamesWithShadowEmbeddedWallsInserts = new[] { curtainWallFamName, windowFamName, windowFamName, windowFamName };
+
+            // Act - Invoke GetHostedElements with all possible cobinations
+            var hostedElementsIncludeNothing = elem.GetHostedElements();
+            var hostedElementsIncludeEverything = elem.GetHostedElements(true, true, true, true);
+
+            var hostedElementsIncludeOpenings = elem.GetHostedElements(true, false, false, false);
+            var hostedElementsIncludeOpeningsAndShadows = elem.GetHostedElements(true, true, false, false);
+            var hostedElementsIncludeOpeningsAndShadowsAndEmbeddedWalls = elem.GetHostedElements(true, true, true, false);
+
+            var hostedElementsIncludeShadows = elem.GetHostedElements(false, true, false, false);
+            var hostedElementsIncludeShadowsAndEmbeddedWalls = elem.GetHostedElements(false, true, true, false);
+            var hostedElementsIncludeShadowsAndEmbeddedWallsAndEmbeddedInserts = elem.GetHostedElements(false, true, true, true);
+
+            var hostedElementsIncludeEmbeddedWalls = elem.GetHostedElements(false, false, true, false);
+            var hostedElementsIncludeEmbeddedWallsAndEmbeddedInserts = elem.GetHostedElements(false, false, true, true);
+            var hostedElementsIncludeEmbeddedWallsAndEmbeddedInsertsAndOpenings = elem.GetHostedElements(true, false, true, true);
+
+            var hostedElementsIncludeEmbeddedInserts = elem.GetHostedElements(false, false, false, true);
+            var hostedElementsIncludeSEmbeddedInsertsAndOpenings = elem.GetHostedElements(true, false, false, true);
+            var hostedElementsIncludeEmbeddedInsertsAndOpeningsAndShadows = elem.GetHostedElements(true, true, false, true);
+
+            //Assert all combinations has the right amount of output elements
+            Assert.AreEqual(3, hostedElementsIncludeNothing.Count);
+            Assert.AreEqual(5, hostedElementsIncludeEverything.Count);
+
+            Assert.AreEqual(4, hostedElementsIncludeOpenings.Count);
+            Assert.AreEqual(4, hostedElementsIncludeOpeningsAndShadows.Count);
+            Assert.AreEqual(5, hostedElementsIncludeOpeningsAndShadowsAndEmbeddedWalls.Count);
+
+            Assert.AreEqual(3, hostedElementsIncludeShadows.Count);
+            Assert.AreEqual(4, hostedElementsIncludeShadowsAndEmbeddedWalls.Count);
+            Assert.AreEqual(4, hostedElementsIncludeShadowsAndEmbeddedWallsAndEmbeddedInserts.Count);
+
+            Assert.AreEqual(4, hostedElementsIncludeEmbeddedWalls.Count);
+            Assert.AreEqual(4, hostedElementsIncludeEmbeddedWallsAndEmbeddedInserts.Count);
+            Assert.AreEqual(5, hostedElementsIncludeEmbeddedWallsAndEmbeddedInsertsAndOpenings.Count);
+
+            Assert.AreEqual(3, hostedElementsIncludeEmbeddedInserts.Count);
+            Assert.AreEqual(4, hostedElementsIncludeSEmbeddedInsertsAndOpenings.Count);
+            Assert.AreEqual(4, hostedElementsIncludeEmbeddedInsertsAndOpeningsAndShadows.Count);
+
+            //Assert all combinations has the right elements as output
+            CollectionAssert.AreEqual(famNamesWithShadowsInserts, hostedElementsIncludeNothing.Select(x => x.Name).ToArray());
+            CollectionAssert.AreEqual(famNamesWithEverything, hostedElementsIncludeEverything.Select(x => x.Name).ToArray());
+
+            CollectionAssert.AreEqual(famNamesWithOpeningsShadows, hostedElementsIncludeOpenings.Select(x => x.Name).ToArray());
+            CollectionAssert.AreEqual(famNamesWithOpeningsShadows, hostedElementsIncludeOpeningsAndShadows.Select(x => x.Name).ToArray());
+            CollectionAssert.AreEqual(famNamesWithEverything, hostedElementsIncludeOpeningsAndShadowsAndEmbeddedWalls.Select(x => x.Name).ToArray());
+
+            CollectionAssert.AreEqual(famNamesWithShadowsInserts, hostedElementsIncludeShadows.Select(x => x.Name).ToArray());
+            CollectionAssert.AreEqual(famNamesWithShadowEmbeddedWallsInserts, hostedElementsIncludeShadowsAndEmbeddedWalls.Select(x => x.Name).ToArray());
+            CollectionAssert.AreEqual(famNamesWithShadowEmbeddedWallsInserts, hostedElementsIncludeShadowsAndEmbeddedWallsAndEmbeddedInserts.Select(x => x.Name).ToArray());
+
+            CollectionAssert.AreEqual(famNamesWithShadowEmbeddedWallsInserts, hostedElementsIncludeEmbeddedWalls.Select(x => x.Name).ToArray());
+            CollectionAssert.AreEqual(famNamesWithShadowEmbeddedWallsInserts, hostedElementsIncludeEmbeddedWallsAndEmbeddedInserts.Select(x => x.Name).ToArray());
+            CollectionAssert.AreEqual(famNamesWithEverything, hostedElementsIncludeEmbeddedWallsAndEmbeddedInsertsAndOpenings.Select(x => x.Name).ToArray());
+
+            CollectionAssert.AreEqual(famNamesWithShadowsInserts, hostedElementsIncludeEmbeddedInserts.Select(x => x.Name).ToArray());
+            CollectionAssert.AreEqual(famNamesWithOpeningsShadows, hostedElementsIncludeSEmbeddedInsertsAndOpenings.Select(x => x.Name).ToArray());
+            CollectionAssert.AreEqual(famNamesWithOpeningsShadows, hostedElementsIncludeEmbeddedInsertsAndOpeningsAndShadows.Select(x => x.Name).ToArray());
         }
 
         [Test]
@@ -339,6 +411,11 @@ namespace RevitNodesTests.Elements
             AssertElementsAreJoined(beam1, beam2, true);
             // beam1 and floor are joined
             AssertElementsAreJoined(beam1, floor, true);
+        }
+        private static void AssertElementsAreJoined(Element element, Element otherElement, bool expected)
+        {
+            bool arejoined = element.IsJoined(otherElement);
+            Assert.AreEqual(expected, arejoined);
         }
 
         #endregion
