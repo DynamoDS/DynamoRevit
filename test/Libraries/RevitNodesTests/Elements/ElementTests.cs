@@ -261,6 +261,14 @@ namespace RevitNodesTests.Elements
 
         #endregion
 
+        #region Join tests
+
+        private static void AssertElementsAreJoined(Element element, Element otherElement, bool expected)
+        {
+            bool arejoined = element.IsJoined(otherElement);
+            Assert.AreEqual(expected, arejoined);
+        }
+        
         #region Pin settings
 
         /// <summary>
@@ -429,6 +437,7 @@ namespace RevitNodesTests.Elements
             // beam1 and floor are joined
             AssertElementsAreJoined(beam1, floor, true);
         }
+
         private static void AssertElementsAreJoined(Element element, Element otherElement, bool expected)
         {
             bool arejoined = element.AreJoined(otherElement);

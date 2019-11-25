@@ -152,6 +152,24 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Checks if two elements are joined
+        /// </summary>
+        /// <param name="otherElement">Element to check</param>
+        /// <returns>True if the two elements are joined, False otherwise</returns>
+        public bool IsJoined(Element otherElement)
+        {
+            if (this.InternalElement == null)
+                throw new Exception(nameof(this.InternalElement));
+            if (otherElement == null)
+                throw new Exception(nameof(otherElement));
+
+            bool areJoined= JoinGeometryUtils.AreElementsJoined(Document,
+                                                              this.InternalElement,
+                                                              otherElement.InternalElement);
+            return areJoined;
+        }
+        
+        /// <summary>
         /// Get the Element Pinned status
         /// </summary>
         public bool IsPinned
@@ -944,5 +962,41 @@ namespace Revit.Elements
 
         #endregion
 
+        public IEnumerable<Element> JoinGeometry(Element secondElement)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            var transManager = TransactionManager.Instance.TransactionWrapper;
+            transManager.FailuresRaised += TransManager_FailuresRaised;
+            var joinedElements = new List<Element>();
+
+            var t = transManager.StartTransaction(Document);
+            try
+            {                 
+                JoinGeometryUtils.JoinGeometry(Document, this.InternalElement, secondElement.InternalElement);              
+                joinedElements.AddRange(new List<Element>() { this, secondElement });
+                t.CommitTransaction();
+                TransactionStatus status = t.Status;
+            }
+            catch (Exception ex)
+            {
+                t.CancelTransaction();
+                throw new ArgumentException(ex.Message);
+            }
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return joinedElements;
+        }
+
+        private void TransManager_FailuresRaised(FailuresAccessor failures)
+        {
+            bool ol = failures.IsActive();
+            List<FailureMessageAccessor> te = failures.GetFailureMessages() as List<FailureMessageAccessor>;
+            foreach (var t in te)
+            {
+                string messages = t.GetDescriptionText();
+            }
+        }
     }
 }
