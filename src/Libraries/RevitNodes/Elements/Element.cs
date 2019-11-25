@@ -779,6 +779,17 @@ namespace Revit.Elements
                 .ToArray();
         }
 
+        public IEnumerable<Element> GetIntersectingElementsOfCategory(Category category)
+        {
+            BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
+                                                                                 category.InternalCategory.Id.ToString());
+
+            ElementIntersectsElementFilter filter = new ElementIntersectsElementFilter(this.InternalElement);
+            FilteredElementCollector intersecting = new FilteredElementCollector(Document).WherePasses(filter)
+                                                                                          .OfCategory(builtInCategory);
+            return intersecting.Select(x => x.ToDSType(true)).ToList();
+        }
+
         /// <summary>
         /// Unjoins elements if they are joined 
         /// </summary>

@@ -466,7 +466,6 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(newWall2AndFloorJoinedValue, orignalWall2AndFloorJoinedValue);
 
         }
-
         #endregion
     }
 }
