@@ -1,0 +1,166 @@
+{
+  "Uuid": "47a37382-97ed-4895-b327-e14fa8b99831",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "setElementsPinStatus",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.SetPinnedStatus@bool",
+      "Id": "fefd9d4abf2d47279ec1637e22518e67",
+      "Inputs": [
+        {
+          "Id": "c74051c554394896be73dfb065ed1511",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "101ffbe3a11f4aa0927739e6731b3422",
+          "Name": "pinned",
+          "Description": "Value for pin status true/false\n\nbool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6719b32bb61f483fadc8ff19837798e1",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Sets an exsisting element's pinned status\n\nElement.SetPinnedStatus (pinned: bool): Element"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementsSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "f49d6941-4497-43c3-9a52-fe4e5424e4e7-0002cf70"
+      ],
+      "Id": "e8c04eafe7c44a4b8d174aad474cbd32",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "89a16d84c02d4fb6be0f00239a880243",
+          "Name": "Elements",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "6263b7205253436495d80743cd8bdada",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "705c2aad968440d6a6e665c2de8307d9",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "89a16d84c02d4fb6be0f00239a880243",
+      "End": "c74051c554394896be73dfb065ed1511",
+      "Id": "5ccbccfc070a4b2daae3a90e7e55a508"
+    },
+    {
+      "Start": "705c2aad968440d6a6e665c2de8307d9",
+      "End": "101ffbe3a11f4aa0927739e6731b3422",
+      "Id": "7e805e1a99d84b2c9b7c6ae9bead7937"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.5.0.5905",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "fefd9d4abf2d47279ec1637e22518e67",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Element.SetPinnedStatus",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 262.4,
+        "Y": 217.20000000000002
+      },
+      {
+        "Id": "e8c04eafe7c44a4b8d174aad474cbd32",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Select Model Elements",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 30.631220162960062,
+        "Y": 132.80781615797804
+      },
+      {
+        "Id": "6263b7205253436495d80743cd8bdada",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Boolean",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 72.275370919881141,
+        "Y": 272.59737102470416
+      }
+    ],
+    "Annotations": [],
+    "X": -2.9932513805057397,
+    "Y": -5.8280936018743432,
+    "Zoom": 0.95404292488281262
+  }
+}
