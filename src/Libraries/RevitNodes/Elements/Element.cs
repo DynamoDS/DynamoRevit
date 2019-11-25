@@ -152,6 +152,24 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Checks if two elements are joined
+        /// </summary>
+        /// <param name="otherElement">Element to check</param>
+        /// <returns>True if the two elements are joined, False otherwise</returns>
+        public bool IsJoined(Element otherElement)
+        {
+            if (this.InternalElement == null)
+                throw new Exception(nameof(this.InternalElement));
+            if (otherElement == null)
+                throw new Exception(nameof(otherElement));
+
+            bool areJoined= JoinGeometryUtils.AreElementsJoined(Document,
+                                                              this.InternalElement,
+                                                              otherElement.InternalElement);
+            return areJoined;
+        }
+        
+        /// <summary>
         /// Get the Element Pinned status
         /// </summary>
         public bool IsPinned
@@ -779,7 +797,74 @@ namespace Revit.Elements
                 .ToList();
         }
 
+        public Element[] GetJoinedElements()
+        {
+            return JoinGeometryUtils.GetJoinedElements(Document, this.InternalElement)
+                .Select(id => Document.GetElement(id).ToDSType(true))
+                .ToArray();
+        }
 
+        public IEnumerable<Element> SwitchJoinOrder(Element otherElement)
+        {
+            List<Element> joinedElements = new List<Element>();
+            if (JoinGeometryUtils.AreElementsJoined(Document, this.InternalElement, otherElement.InternalElement))
+            {
+                TransactionManager.Instance.EnsureInTransaction(Document);
+                JoinGeometryUtils.SwitchJoinOrder(Document, this.InternalElement, otherElement.InternalElement);
+                TransactionManager.Instance.TransactionTaskDone();
+                joinedElements.AddRange(new List<Element>() { this, otherElement });
+            }
+            return joinedElements;
+        }
+
+        public IEnumerable<Element> GetIntersectingElementsOfCategory(Category category)
+        {
+            BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
+                                                                                 category.InternalCategory.Id.ToString());
+
+            ElementIntersectsElementFilter filter = new ElementIntersectsElementFilter(this.InternalElement);
+            FilteredElementCollector intersecting = new FilteredElementCollector(Document).WherePasses(filter)
+                                                                                          .OfCategory(builtInCategory);
+            return intersecting.Select(x => x.ToDSType(true)).ToList();
+        }
+
+        /// <summary>
+        /// Unjoins elements if they are joined 
+        /// </summary>
+        /// <param name="elements">List of elements to unjoin</param>
+        /// <returns>Elements that have been unjoined</returns>
+        public static List<Element> UnjoinGeometry(List<Element> elements)
+        {
+            List<Element> modifiedElements = new List<Element>();
+            for (int i = 0; i < elements.Count; i++)
+            {
+                Element[] joinedElements = elements[i].GetJoinedElements();
+                if (joinedElements.Length > 0)
+                {
+                    for (int j = 0; j < joinedElements.Length; j++)
+                    {
+                        JoinGeometryUtils.UnjoinGeometry(
+                            Document,
+                            elements[i].InternalElement,
+                            joinedElements[j].InternalElement);
+
+                        // check if the unjoined element is already in the modifiedElements list 
+                        // if not we add it here
+                        if (!modifiedElements.Any(item => item.Id == joinedElements[j].Id))
+                        {
+                            modifiedElements.Add(joinedElements[j]);
+                        }
+
+                    }
+                    // add the modified element to modifiedElements if its not already there
+                    if (!modifiedElements.Any(item => item.Id == elements[i].Id))
+                    {
+                        modifiedElements.Add(elements[i]);
+                    }
+                }
+            }
+            return modifiedElements;
+        }
 
         #region Location extraction & manipulation
         /// <summary>
@@ -884,5 +969,41 @@ namespace Revit.Elements
 
         #endregion
 
+        public IEnumerable<Element> JoinGeometry(Element secondElement)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            var transManager = TransactionManager.Instance.TransactionWrapper;
+            transManager.FailuresRaised += TransManager_FailuresRaised;
+            var joinedElements = new List<Element>();
+
+            var t = transManager.StartTransaction(Document);
+            try
+            {                 
+                JoinGeometryUtils.JoinGeometry(Document, this.InternalElement, secondElement.InternalElement);              
+                joinedElements.AddRange(new List<Element>() { this, secondElement });
+                t.CommitTransaction();
+                TransactionStatus status = t.Status;
+            }
+            catch (Exception ex)
+            {
+                t.CancelTransaction();
+                throw new ArgumentException(ex.Message);
+            }
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return joinedElements;
+        }
+
+        private void TransManager_FailuresRaised(FailuresAccessor failures)
+        {
+            bool ol = failures.IsActive();
+            List<FailureMessageAccessor> te = failures.GetFailureMessages() as List<FailureMessageAccessor>;
+            foreach (var t in te)
+            {
+                string messages = t.GetDescriptionText();
+            }
+        }
     }
 }

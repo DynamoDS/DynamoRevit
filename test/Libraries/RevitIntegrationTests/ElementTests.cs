@@ -40,7 +40,36 @@ namespace RevitSystemTests
             // query count node to verify 1 item deleted as a result of the wall deletion. 
             Assert.AreEqual(1, GetPreviewValue("ccd8a5ba37fd4b1297def564392ccf54"));
          }
-   
+
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanCheckIfTwoElementsAreJoined()
+        {
+            #region Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canCheckIfTwoElementsAreJoined");
+            string testPath = Path.GetFullPath(samplePath);
+            #endregion
+
+            #region Act
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            // Get values of the two IsJoined nodes
+            // first one should return false as it is checking two elements that are not joined
+            // second one should return true as it test two joined elements
+            bool? isJoinedFalse = GetPreviewValue("d18424a424aa476588f6f466675b7123") as bool?;
+            bool? isJoinedTrue = GetPreviewValue("f93b0fb9baca4a6fa4d9818b4dffd713") as bool?;
+            
+            #endregion
+
+            #region Assert
+
+            Assert.AreEqual(true, isJoinedTrue);
+            Assert.AreEqual(false, isJoinedFalse);
+            #endregion
+        }
+
         /// <summary>
         /// Checks if Elements hosted elements can be retrived from Dynamo
         /// </summary>
@@ -154,6 +183,24 @@ namespace RevitSystemTests
             // Assert
             Assert.AreEqual(true, isJoinedTrue);
             Assert.AreEqual(false, isJoinedFalse);
+        }
+
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanUnjoinListOfElements()
+        {
+            // Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canUnjoinListOfElements.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+            var modifiedElements = GetPreviewValue("2bf6ae19361e4c8e841071411eb02fc8");
+
+            // Assert
+            Assert.AreEqual(5, modifiedElements);
         }
     }
 }

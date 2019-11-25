@@ -261,6 +261,12 @@ namespace RevitNodesTests.Elements
 
         #endregion
 
+        private static void AssertElementsAreJoined(Element element, Element otherElement, bool expected)
+        {
+            bool arejoined = element.IsJoined(otherElement);
+            Assert.AreEqual(expected, arejoined);
+        }
+        
         #region Pin settings
 
         /// <summary>
@@ -429,12 +435,44 @@ namespace RevitNodesTests.Elements
             // beam1 and floor are joined
             AssertElementsAreJoined(beam1, floor, true);
         }
+
         private static void AssertElementsAreJoined(Element element, Element otherElement, bool expected)
         {
             bool arejoined = element.AreJoined(otherElement);
             Assert.AreEqual(expected, arejoined);
         }
 
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanSuccessfullyUnjoinListOfElements()
+        {
+            var wall1 = ElementSelector.ByElementId(184176, true);
+            var wall2 = ElementSelector.ByElementId(207960, true);
+            var floor = ElementSelector.ByElementId(208259, true);
+
+            // Are joined
+            bool orignalWall1AndWall2JoinedValue = wall1.AreJoined(wall2);
+            // Are joined
+            bool orignalWall1AndFloorJoinedValue = wall1.AreJoined(floor);
+            // Are not joined
+            bool orignalWall2AndFloorJoinedValue = wall2.AreJoined(floor);
+
+            var elementList = new List<Element>() { wall1, wall2, floor };
+
+            Element.UnjoinGeometry(elementList);
+
+            bool newWall1AndWall2JoinedValue = wall1.AreJoined(wall2);
+            bool newWall1AndFloorJoinedValue = wall1.AreJoined(floor);
+            bool newWall2AndFloorJoinedValue = wall2.AreJoined(floor);
+
+            // Are joined should have changed
+            Assert.AreNotEqual(newWall1AndWall2JoinedValue, orignalWall1AndWall2JoinedValue);
+            // Are joined should have changed 
+            Assert.AreNotEqual(newWall1AndFloorJoinedValue, orignalWall1AndFloorJoinedValue);
+            // Are joined should be the same 
+            Assert.AreEqual(newWall2AndFloorJoinedValue, orignalWall2AndFloorJoinedValue);
+
+        }
         #endregion
     }
 }
