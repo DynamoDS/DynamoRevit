@@ -535,7 +535,7 @@ namespace Revit.Elements
         /// <param name="includeEmbeddedWalls">Include embedded walls in output</param>
         /// <param name="includeSharedEmbeddedInserts">Include shared embedded elements in output</param>
         /// <returns>Hosted Elements</returns>
-        public List<Element> GetHostedElements(
+        public IEnumerable<Element> GetHostedElements(
             bool includeOpenings = false,
             bool includeShadows = false,
             bool includeEmbeddedWalls = false,
@@ -544,7 +544,7 @@ namespace Revit.Elements
 
             HostObject hostObject = this.InternalElement as HostObject;
             if (hostObject == null)
-                throw new NullReferenceException("Element is not a Host Element");
+                throw new NullReferenceException(Properties.Resources.NotHostElement);
 
             IList<ElementId> inserts = hostObject
                 .FindInserts(includeOpenings,
@@ -772,11 +772,11 @@ namespace Revit.Elements
         /// Finds the elements that are joined with the given element.
         /// </summary>
         /// <returns>All elements joined to the given element</returns>
-        public Element[] GetJoinedElements()
+        public IEnumerable<Element> GetJoinedElements()
         {
             return JoinGeometryUtils.GetJoinedElements(Document, this.InternalElement)
                 .Select(id => Document.GetElement(id).ToDSType(true))
-                .ToArray();
+                .ToList();
         }
 
 
