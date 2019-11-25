@@ -779,6 +779,19 @@ namespace Revit.Elements
                 .ToArray();
         }
 
+        public IEnumerable<Element> SwitchJoinOrder(Element otherElement)
+        {
+            List<Element> joinedElements = new List<Element>();
+            if (JoinGeometryUtils.AreElementsJoined(Document, this.InternalElement, otherElement.InternalElement))
+            {
+                TransactionManager.Instance.EnsureInTransaction(Document);
+                JoinGeometryUtils.SwitchJoinOrder(Document, this.InternalElement, otherElement.InternalElement);
+                TransactionManager.Instance.TransactionTaskDone();
+                joinedElements.AddRange(new List<Element>() { this, otherElement });
+            }
+            return joinedElements;
+        }
+
         public IEnumerable<Element> GetIntersectingElementsOfCategory(Category category)
         {
             BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
