@@ -187,12 +187,12 @@ namespace Revit.Elements
         /// <summary>
         /// Create a Revit Wall from a guiding Curve, start Level, end Level, and WallType
         /// </summary>
-        /// <param name="c"></param>
+        /// <param name="curve"></param>
         /// <param name="startLevel"></param>
         /// <param name="endLevel"></param>
         /// <param name="wallType"></param>
         /// <returns></returns>
-        public static Wall ByCurveAndLevels(Autodesk.DesignScript.Geometry.Curve c, Level startLevel, Level endLevel, WallType wallType)
+        public static Wall ByCurveAndLevels(Autodesk.DesignScript.Geometry.Curve curve, Level startLevel, Level endLevel, WallType wallType)
         {
             if (endLevel == null)
             {
@@ -206,7 +206,7 @@ namespace Revit.Elements
 
             var height = endLevel.Elevation - startLevel.Elevation;
 
-            return ByCurveAndHeight(c, height, startLevel, wallType);
+            return ByCurveAndHeight(curve, height, startLevel, wallType);
         }
 
         /// <summary>
