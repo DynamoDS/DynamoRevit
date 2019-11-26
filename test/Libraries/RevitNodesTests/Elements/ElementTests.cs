@@ -318,7 +318,7 @@ namespace RevitNodesTests.Elements
             int[] expectedIds = new int[] { 207960, 208259, 208422 };
 
             // Act
-            Element[] joinedElements = element.GetJoinedElements();
+            IEnumerable<Element> joinedElements = element.GetJoinedElements();
             var joinedElementIds = joinedElements
                 .Select(x => x.Id)
                 .ToArray();
@@ -363,24 +363,24 @@ namespace RevitNodesTests.Elements
             var hostedElementsIncludeEmbeddedInsertsAndOpeningsAndShadows = elem.GetHostedElements(true, true, false, true);
 
             //Assert all combinations has the right amount of output elements
-            Assert.AreEqual(3, hostedElementsIncludeNothing.Count);
-            Assert.AreEqual(5, hostedElementsIncludeEverything.Count);
+            Assert.AreEqual(3, hostedElementsIncludeNothing.Count());
+            Assert.AreEqual(5, hostedElementsIncludeEverything.Count());
 
-            Assert.AreEqual(4, hostedElementsIncludeOpenings.Count);
-            Assert.AreEqual(4, hostedElementsIncludeOpeningsAndShadows.Count);
-            Assert.AreEqual(5, hostedElementsIncludeOpeningsAndShadowsAndEmbeddedWalls.Count);
+            Assert.AreEqual(4, hostedElementsIncludeOpenings.Count());
+            Assert.AreEqual(4, hostedElementsIncludeOpeningsAndShadows.Count());
+            Assert.AreEqual(5, hostedElementsIncludeOpeningsAndShadowsAndEmbeddedWalls.Count());
 
-            Assert.AreEqual(3, hostedElementsIncludeShadows.Count);
-            Assert.AreEqual(4, hostedElementsIncludeShadowsAndEmbeddedWalls.Count);
-            Assert.AreEqual(4, hostedElementsIncludeShadowsAndEmbeddedWallsAndEmbeddedInserts.Count);
+            Assert.AreEqual(3, hostedElementsIncludeShadows.Count());
+            Assert.AreEqual(4, hostedElementsIncludeShadowsAndEmbeddedWalls.Count());
+            Assert.AreEqual(4, hostedElementsIncludeShadowsAndEmbeddedWallsAndEmbeddedInserts.Count());
 
-            Assert.AreEqual(4, hostedElementsIncludeEmbeddedWalls.Count);
-            Assert.AreEqual(4, hostedElementsIncludeEmbeddedWallsAndEmbeddedInserts.Count);
-            Assert.AreEqual(5, hostedElementsIncludeEmbeddedWallsAndEmbeddedInsertsAndOpenings.Count);
+            Assert.AreEqual(4, hostedElementsIncludeEmbeddedWalls.Count());
+            Assert.AreEqual(4, hostedElementsIncludeEmbeddedWallsAndEmbeddedInserts.Count());
+            Assert.AreEqual(5, hostedElementsIncludeEmbeddedWallsAndEmbeddedInsertsAndOpenings.Count());
 
-            Assert.AreEqual(3, hostedElementsIncludeEmbeddedInserts.Count);
-            Assert.AreEqual(4, hostedElementsIncludeSEmbeddedInsertsAndOpenings.Count);
-            Assert.AreEqual(4, hostedElementsIncludeEmbeddedInsertsAndOpeningsAndShadows.Count);
+            Assert.AreEqual(3, hostedElementsIncludeEmbeddedInserts.Count());
+            Assert.AreEqual(4, hostedElementsIncludeSEmbeddedInsertsAndOpenings.Count());
+            Assert.AreEqual(4, hostedElementsIncludeEmbeddedInsertsAndOpeningsAndShadows.Count());
 
             //Assert all combinations has the right elements as output
             CollectionAssert.AreEqual(famNamesWithShadowsInserts, hostedElementsIncludeNothing.Select(x => x.Name).ToArray());
