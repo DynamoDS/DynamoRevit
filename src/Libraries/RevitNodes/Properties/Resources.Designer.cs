@@ -745,6 +745,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot unjoin Elements that are not already joined..
+        /// </summary>
+        internal static string NotJoinedElements {
+            get {
+                return ResourceManager.GetString("NotJoinedElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} must be a positive integer.
         /// </summary>
         internal static string NotPositiveIntegerError {

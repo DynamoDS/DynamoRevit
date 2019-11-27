@@ -768,11 +768,12 @@ namespace Revit.Elements
                 return !ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(InternalElementId.IntegerValue);
             }
         }
-        
+
+        #region Geometry Join
         /// <summary>
-        /// Finds the elements that are joined with the given element.
+        /// Finds the elements whose geometry is joined with the given element.
         /// </summary>
-        /// <returns>All elements joined to the given element</returns>
+        /// <returns>All elements whose geometry is joined to the given element.</returns>
         public IEnumerable<Element> GetJoinedElements()
         {
             return JoinGeometryUtils.GetJoinedElements(Document, this.InternalElement)
@@ -780,6 +781,59 @@ namespace Revit.Elements
                 .ToList();
         }
 
+        /// <summary>
+        /// Unjoin the geometry of two Elements.
+        /// This node provides control over two specific elements whose geometry is unjoined and will 
+        /// perform a transaction in Revit for each of the input Elements. 
+        /// Consider using the UnjoinAllGeometry node for batch unjoin operations.
+        /// </summary>
+        /// <param name="otherElement">Other element to unjoin from the element.</param>
+        /// <returns>The input elements with their geometry unjoined.</returns>
+        public IEnumerable<Element> UnjoinGeometry(Element otherElement)
+        {
+            if (!JoinGeometryUtils.AreElementsJoined(Document, this.InternalElement, otherElement.InternalElement))
+                throw new InvalidOperationException(Properties.Resources.NotJoinedElements);
+
+            TransactionManager.Instance.EnsureInTransaction(Document);
+            JoinGeometryUtils.UnjoinGeometry(
+                        Document,
+                        this.InternalElement,
+                        otherElement.InternalElement);
+            TransactionManager.Instance.TransactionTaskDone();
+            return new List<Element>() { this, otherElement };
+        }
+
+        /// <summary>
+        /// Unjoins the geometry of all elements from each other if they are joined.
+        /// This performs only one transaction in Revit.
+        /// </summary>
+        /// <param name="elements">List of elements to unjoin from each other</param>
+        /// <returns>All input Elements, with their geometry now unjoined from each other.</returns>
+        public static IEnumerable<Element> UnjoinAllGeometry(List<Element> elements)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+            for (int i = 0; i < elements.Count; i++)
+            {
+                List<Element> joinedElements = JoinGeometryUtils.GetJoinedElements(Document, elements[i].InternalElement)
+                                                                .Select(id => Document.GetElement(id).ToDSType(true))
+                                                                .ToList();
+                if (joinedElements.Count <= 0)
+                    continue;
+
+                for (int j = 0; j < joinedElements.Count; j++)
+                {
+                    JoinGeometryUtils.UnjoinGeometry(
+                        Document,
+                        elements[i].InternalElement,
+                        joinedElements[j].InternalElement);
+                }
+            }
+            TransactionManager.Instance.TransactionTaskDone();
+            return elements;
+        }
+
+        #endregion
+        
         /// <summary>
         /// Switch the order in which the geometry of two elements is joined. If the order is already as desired, elements are not affected. 
         /// Note that changing this will affect both 3D and 2D views and that it is not the recommended way of managing wall joins.

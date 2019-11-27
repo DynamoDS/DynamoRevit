@@ -158,6 +158,27 @@ namespace RevitSystemTests
 
         [Test]
         [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanUnjoinListOfElements()
+        {
+            // Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canUnjoinListOfElements.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            var areJoinedBeforeRun = GetPreviewValue("e31b7404cd6243578b0e50b5a525baa4");
+            var areJoinedAfterRun = GetPreviewValue("4779f361975a4a5fa5f8b0f6b94159ad");
+
+            // Assert - The preview value of areJoinedAfterRun comes from an AllFalse node
+            // that checks if every output of AreJoined is false,  returning
+            // true if all elements have been unjoined.
+            Assert.AreEqual(areJoinedBeforeRun, areJoinedAfterRun);
+        }
+
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
         public void CanSwitchJoinOrderOfTwoJoinedElements()
         {
             // Arange
@@ -177,6 +198,28 @@ namespace RevitSystemTests
             Assert.AreNotEqual(originalCuttingElementId, cuttingElementIdNewOrder);
         }
 
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanUnjoinTwoElements()
+        {
+            // Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canUnjoinTwoElements.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var areJoinedBeforeRun = GetPreviewValue("c753a1ccf59f49dd8c01549b51dd2961");
+            Assert.AreEqual(true, areJoinedBeforeRun);
+            var areJoinedAfterRun = GetPreviewValue("5132f787bcdc44608b2cff2b7540c3e5");
+            var unjoinElementsException = GetPreviewValue("8fc0495f5b1047599609404407446c79");
+
+            // Assert
+            Assert.AreEqual(true, areJoinedBeforeRun);
+            Assert.AreNotEqual(areJoinedBeforeRun, areJoinedAfterRun);
+            Assert.IsNull(unjoinElementsException);
+        }
+        
         [Test]
         [TestModel(@".\Element\elementJoin.rvt")]
         public void CanJoinTwoIntersectingElements()

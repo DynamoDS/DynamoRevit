@@ -36,7 +36,7 @@ namespace RevitNodesTests.Elements
             var paramName = "Body Material";
             var elemId0 = ele.GetParameterValueByName(paramName);
 
-            Assert.AreNotEqual( mat.Id, elemId0 );
+            Assert.AreNotEqual(mat.Id, elemId0);
 
             ele.SetParameterByName(paramName, mat);
 
@@ -83,7 +83,7 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(sym.Name, "18\" x 18\"");
         }
 
-        [Test] 
+        [Test]
         [TestModel(@".\element.rvt")]
         public void CanSuccessfullySetElementParamWithUnitType()
         {
@@ -162,7 +162,7 @@ namespace RevitNodesTests.Elements
                 Assert.AreEqual(46874, refer.InternalReference.ElementId.IntegerValue);
             }
         }
-        
+
         [Test]
         [TestModel(@".\AdaptiveComponents.rfa")]
         public void Geometry_ExtractsSolidAccountingForInstanceTransform()
@@ -179,7 +179,7 @@ namespace RevitNodesTests.Elements
             bbox.MaxPoint.ShouldBeApproximately(-210.846457, -26.243438, 199.124016, 1e-2);
             bbox.MinPoint.ShouldBeApproximately(-304.160105, -126.243438, 0, 1e-2);
         }
-        
+
         [Test]
         [TestModel(@".\AdaptiveComponents.rfa")]
         public void ElementFaceReferences_ExtractsExpectedReferences()
@@ -308,6 +308,7 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(expectedValue, pinStatus);
         }
         #endregion
+
         #region Join tests
 
         [Test]
@@ -327,7 +328,7 @@ namespace RevitNodesTests.Elements
             // Assert
             CollectionAssert.AreEqual(expectedIds, joinedElementIds);
         }
-        
+
         [TestModel(@".\Element\hostedElements.rvt")]
         public void CanSuccessfullyGetHostedElements()
         {
@@ -434,6 +435,79 @@ namespace RevitNodesTests.Elements
         {
             bool arejoined = element.AreJoined(otherElement);
             Assert.AreEqual(expected, arejoined);
+        }
+
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanUnjoinListOfElements()
+        {
+            var wall1 = ElementSelector.ByElementId(184176, true);
+            var wall2 = ElementSelector.ByElementId(207960, true);
+            var floor = ElementSelector.ByElementId(208259, true);
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+
+            // Are joined
+            bool originalWall1AndWall2JoinedValue = JoinGeometryUtils.AreElementsJoined(doc,
+                                                                                       wall1.InternalElement,
+                                                                                       wall2.InternalElement);
+            Assert.AreEqual(true, originalWall1AndWall2JoinedValue);
+            // Are joined
+            bool originalWall1AndFloorJoinedValue = JoinGeometryUtils.AreElementsJoined(doc,
+                                                                                       wall1.InternalElement,
+                                                                                       floor.InternalElement);
+            Assert.AreEqual(true, originalWall1AndFloorJoinedValue);
+            // Are not joined
+            bool originalWall2AndFloorJoinedValue = JoinGeometryUtils.AreElementsJoined(doc,
+                                                                                       wall2.InternalElement,
+                                                                                       floor.InternalElement);
+            Assert.AreEqual(false, originalWall2AndFloorJoinedValue);
+
+            var elementList = new List<Element>() { wall1, wall2, floor };
+
+            Element.UnjoinAllGeometry(elementList);
+
+            bool newWall1AndWall2JoinedValue = wall1.AreJoined(wall2);
+            bool newWall1AndFloorJoinedValue = wall1.AreJoined(floor);
+            bool newWall2AndFloorJoinedValue = wall2.AreJoined(floor);
+
+            // Are joined should have changed
+            Assert.AreNotEqual(newWall1AndWall2JoinedValue, originalWall1AndWall2JoinedValue);
+            // Are joined should have changed 
+            Assert.AreNotEqual(newWall1AndFloorJoinedValue, originalWall1AndFloorJoinedValue);
+            // Are joined should be the same 
+            Assert.AreEqual(newWall2AndFloorJoinedValue, originalWall2AndFloorJoinedValue);
+        }
+
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanUnjoinTwoElements()
+        {
+            var wall1 = ElementSelector.ByElementId(184176, true);
+            var wall2 = ElementSelector.ByElementId(207960, true);
+            var floor = ElementSelector.ByElementId(208259, true);
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            string expectedNotJoinedExceptionMessages = Revit.Properties.Resources.NotJoinedElements;
+
+            // Are joined
+            bool originalWall1AndWall2JoinedValue = JoinGeometryUtils.AreElementsJoined(doc,
+                                                                                       wall1.InternalElement,
+                                                                                       wall2.InternalElement);
+            Assert.AreEqual(true, originalWall1AndWall2JoinedValue);
+
+            // Are not joined
+            bool originalWall2AndFloorJoinedValue = JoinGeometryUtils.AreElementsJoined(doc,
+                                                                                       wall2.InternalElement,
+                                                                                       floor.InternalElement);
+            Assert.AreEqual(false, originalWall2AndFloorJoinedValue);
+
+            wall1.UnjoinGeometry(wall2);
+            bool newWall1AndWall2JoinedValue = wall1.AreJoined(wall2);
+
+            // Are joined should have changed
+            Assert.AreNotEqual(newWall1AndWall2JoinedValue, originalWall1AndWall2JoinedValue);
+            // Should throw InvalidOperationException
+            var ex = Assert.Throws<InvalidOperationException>(() => wall2.UnjoinGeometry(floor));
+            Assert.AreEqual(ex.Message, expectedNotJoinedExceptionMessages);
         }
 
         [Test]
