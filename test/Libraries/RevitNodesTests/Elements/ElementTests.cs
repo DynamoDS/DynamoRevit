@@ -546,6 +546,55 @@ namespace RevitNodesTests.Elements
         #endregion
 
         [Test]
+        [TestModel(@".\Element\elementIntersection.rvt")]
+        public void CanGetIntersectingElementsOfSpecificCategory()
+        {
+            // Element to check intersections on
+            int intersectionElementId = 316167;
+            var intersectionElement = ElementSelector.ByElementId(intersectionElementId, true);
+
+            // Element intersecting
+            int structuralFramingId = 316318;
+            var structuralFramingElement = ElementSelector.ByElementId(structuralFramingId, true);
+            int floorId = 316539;
+            var floorElement = ElementSelector.ByElementId(floorId, true);
+            int wallId = 316246;
+            var wallElement = ElementSelector.ByElementId(wallId, true);
+
+            // Expected outcomes
+            var expectedStructuralFramingIds = new List<int>() { structuralFramingId };
+            var expectedFloorIds = new List<int>() { floorId };
+            var expectedWallIds = new List<int>() { wallId };
+
+            // Get intersecting elements of category
+            var structuralFrameCategory = Revit.Elements.Category.ByName("StructuralFraming");
+            List<int> intersectedFraming = GetIntersectingElementIds(intersectionElement, structuralFrameCategory);
+
+            var floorCategory = Revit.Elements.Category.ByName("Floors");
+            List<int> intersectedFloorId = GetIntersectingElementIds(intersectionElement, floorCategory);
+
+            var wallCategory = Revit.Elements.Category.ByName("Walls");
+            List<int> intersectedWallId = GetIntersectingElementIds(intersectionElement, wallCategory);
+
+            // Check if method returns null if there are no intersecting elements of the specified category
+            var windowCategory = Revit.Elements.Category.ByName("Windows");
+            IEnumerable<Element> intersectedWindow = intersectionElement.GetIntersectingElementsOfCategory(windowCategory);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedStructuralFramingIds, intersectedFraming);
+            CollectionAssert.AreEqual(expectedFloorIds, intersectedFloorId);
+            CollectionAssert.AreEqual(expectedWallIds, intersectedWallId);
+            CollectionAssert.AreEqual(new List<Element>(), intersectedWindow);
+        }
+
+        private static List<int> GetIntersectingElementIds(Element intersectionElement, Revit.Elements.Category category)
+        {
+            return intersectionElement.GetIntersectingElementsOfCategory(category)
+                                      .Select(elem => elem.Id)
+                                      .ToList();
+        }
+        
+        [Test]
         [TestModel(@".\Element\elementJoin.rvt")]
         public void CanSuccessfullyJoinTwoIntersectingElements()
         {
@@ -576,6 +625,5 @@ namespace RevitNodesTests.Elements
             var ex = Assert.Throws<InvalidOperationException>(() => primaryBeam.JoinGeometry(nonIntersectingBeam)); 
             Assert.AreEqual(ex.Message, nonIntersectingTestExpectedExceptionString);
         }
-
     }
 }

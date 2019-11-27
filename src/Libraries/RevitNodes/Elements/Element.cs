@@ -782,6 +782,25 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Gets all Elements intersecting the input element, that are of a specific category.
+        /// </summary>
+        /// <param name="category">Category of Elements to check intersection against</param>
+        /// <returns>List of intersection elements of the specified category</returns>
+        public IEnumerable<Element> GetIntersectingElementsOfCategory(Category category)
+        {
+            BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
+                                                                                 category.InternalCategory.Id.ToString());
+
+            ElementIntersectsElementFilter filter = new ElementIntersectsElementFilter(this.InternalElement);
+            FilteredElementCollector intersecting = new FilteredElementCollector(Document).WherePasses(filter)
+                                                                                          .OfCategory(builtInCategory);
+            if (!intersecting.Any())
+                return new List<Element>();
+
+            return intersecting.Select(x => x.ToDSType(true)).ToList();
+        }
+
+        /// <summary>
         /// Unjoin the geometry of two Elements.
         /// This node provides control over two specific elements whose geometry is unjoined and will 
         /// perform a transaction in Revit for each of the input Elements. 

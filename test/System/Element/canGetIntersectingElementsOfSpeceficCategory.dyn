@@ -1,0 +1,257 @@
+{
+  "Uuid": "0f32e06b-6f0c-4e36-9adc-40a35b54396d",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "canGetIntersectingElementsOfSpeceficCategory",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.GetIntersectingElementsOfCategory@Revit.Elements.Category",
+      "Id": "468e88e2c4244a46afa6c5332f108f75",
+      "Inputs": [
+        {
+          "Id": "de91af7e412d410487818b693fac16af",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a041dd52ab2a42da936ecf28249fb2c4",
+          "Name": "category",
+          "Description": "Category of Elements to check intersection against\n\nCategory",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "224470904eb34b5f909c13f3d0d7a295",
+          "Name": "Element[]",
+          "Description": "List of intersection elements of the specified category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Gets all Elements intersecting the input element of a specefic category.\n\nElement.GetIntersectingElementsOfCategory (category: Category): Element[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "02314cc5-c46f-439e-b9e8-75ada8adf7c1-0004d307"
+      ],
+      "Id": "d5274e8193ae419c98dbd42da140dc1f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1ee66f0dba9f4fa0b194f14e9774b1d7",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 609,
+      "SelectedString": "OST_Walls",
+      "NodeType": "ExtensionNode",
+      "Id": "975243baeaa4478cab416f8e53e5b3b7",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "786db0aa398b4a4db1a126e872e73c03",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Id",
+      "Id": "438ec88918b94167887c7f4b2813ebfe",
+      "Inputs": [
+        {
+          "Id": "560010d5be05442b8316621d9a572840",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8f951db8c42240f1acb20dea1aa3def6",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Element Id for this element\n\nElement.Id: int"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
+      "Id": "4c0458a431524c468b885929bace7144",
+      "Inputs": [
+        {
+          "Id": "807991a17c83468cba5aa1d14fd61783",
+          "Name": "list",
+          "Description": "List to get the first item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e30310f9fdbc48a3b899b924dd8b5203",
+          "Name": "item",
+          "Description": "First item in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "224470904eb34b5f909c13f3d0d7a295",
+      "End": "807991a17c83468cba5aa1d14fd61783",
+      "Id": "ba4bdbf414664f168467dd4d0de97c20"
+    },
+    {
+      "Start": "1ee66f0dba9f4fa0b194f14e9774b1d7",
+      "End": "de91af7e412d410487818b693fac16af",
+      "Id": "aa1b19633a79445984172935f43cb262"
+    },
+    {
+      "Start": "786db0aa398b4a4db1a126e872e73c03",
+      "End": "a041dd52ab2a42da936ecf28249fb2c4",
+      "Id": "e9ea5e295c0649f1ab072fb68e9e4ac4"
+    },
+    {
+      "Start": "e30310f9fdbc48a3b899b924dd8b5203",
+      "End": "560010d5be05442b8316621d9a572840",
+      "Id": "09601432d4d54c51bf292f7e261110df"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.5.0.5905",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Element.GetIntersectingElementsOfCategory",
+        "Id": "468e88e2c4244a46afa6c5332f108f75",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 273.6,
+        "Y": 170.00000000000003
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "d5274e8193ae419c98dbd42da140dc1f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 28.800000000000054,
+        "Y": 170.40000000000003
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "975243baeaa4478cab416f8e53e5b3b7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 28.799999999999997,
+        "Y": 282.4
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.Id",
+        "Id": "438ec88918b94167887c7f4b2813ebfe",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 788.8,
+        "Y": 169.6
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.FirstItem",
+        "Id": "4c0458a431524c468b885929bace7144",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 592.00000000000023,
+        "Y": 169.59999999999997
+      }
+    ],
+    "Annotations": [],
+    "X": -358.40000000000003,
+    "Y": -12.799999999999955,
+    "Zoom": 1.0
+  }
+}

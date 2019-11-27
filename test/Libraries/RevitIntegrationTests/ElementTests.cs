@@ -157,6 +157,24 @@ namespace RevitSystemTests
         }
 
         [Test]
+        [TestModel(@".\Element\elementIntersection.rvt")]
+        public void canGetIntersectingElementsOfSpeceficCategory()
+        {
+            // Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canGetIntersectingElementsOfSpeceficCategory.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            int expectedIntersectingElementId = 316246;
+
+            // Act - Get the intersecting element id of wall category
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var actualIntersectingElementId = GetPreviewValue("438ec88918b94167887c7f4b2813ebfe");
+            
+            // Assert
+            Assert.AreEqual(expectedIntersectingElementId, actualIntersectingElementId);
+        }
+        
+        [Test]
         [TestModel(@".\Element\elementJoin.rvt")]
         public void CanUnjoinListOfElements()
         {
