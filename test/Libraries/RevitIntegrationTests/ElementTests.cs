@@ -155,5 +155,26 @@ namespace RevitSystemTests
             Assert.AreEqual(true, isJoinedTrue);
             Assert.AreEqual(false, isJoinedFalse);
         }
+
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanJoinTwoIntersectingElements()
+        {
+            // Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canJoinTwoIntersectingElements.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            int expectedElementId = 208259;
+
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Act 
+            var firstJoinedElementId = GetPreviewValue("0ee537c473c04470b5041d16d9b5ab12");
+            var nonIntersectingElementsResult = GetPreviewValue("a9e31eafd9d5488ab843ea434c9243ed");
+
+            // Assert
+            Assert.AreEqual(expectedElementId, firstJoinedElementId);
+            Assert.IsNull(nonIntersectingElementsResult);
+        }
     }
 }

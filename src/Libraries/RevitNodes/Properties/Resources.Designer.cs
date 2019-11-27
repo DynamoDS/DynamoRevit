@@ -691,6 +691,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Elements are not intersecting.
+        /// </summary>
+        internal static string NonIntersectingElements {
+            get {
+                return ResourceManager.GetString("NonIntersectingElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No shared parameter file found..
         /// </summary>
         internal static string NoSharedParameterFileFound {

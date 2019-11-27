@@ -426,4 +426,7 @@
   <data name="NotHostElement" xml:space="preserve">
     <value>Element is not a Host Element</value>
   </data>
+  <data name="NonIntersectingElements" xml:space="preserve">
+    <value>Elements are not intersecting</value>
+  </data>
 </root>
