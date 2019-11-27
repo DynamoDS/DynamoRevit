@@ -158,6 +158,27 @@ namespace RevitSystemTests
 
         [Test]
         [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanSwitchJoinOrderOfTwoJoinedElements()
+        {
+            // Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canSwitchJoinOrderOfTwoJoinedElements.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            int originalCuttingElementId = 208422;
+            int newOrderCuttingElementId = 208572;
+
+            // Act - get the Id of the first element from SwitchGeometryJoinOrder
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var cuttingElementIdNewOrder = GetPreviewValue("8b96e9f628314bcab833ea4f830bc2a7");
+        
+            // Assert
+            Assert.AreEqual(newOrderCuttingElementId, cuttingElementIdNewOrder);
+            Assert.AreNotEqual(originalCuttingElementId, cuttingElementIdNewOrder);
+        }
+
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
         public void CanJoinTwoIntersectingElements()
         {
             // Arange

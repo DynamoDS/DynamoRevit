@@ -601,6 +601,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Geometry join order can only be switched when the elements are already joined..
+        /// </summary>
+        internal static string InvalidSwitchJoinOrder {
+            get {
+                return ResourceManager.GetString("InvalidSwitchJoinOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid view..
         /// </summary>
         internal static string InvalidView {

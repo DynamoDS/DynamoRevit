@@ -768,6 +768,7 @@ namespace Revit.Elements
                 return !ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(InternalElementId.IntegerValue);
             }
         }
+        
         /// <summary>
         /// Finds the elements that are joined with the given element.
         /// </summary>
@@ -779,6 +780,29 @@ namespace Revit.Elements
                 .ToList();
         }
 
+        /// <summary>
+        /// Switch the order in which the geometry of two elements is joined. If the order is already as desired, elements are not affected. 
+        /// Note that changing this will affect both 3D and 2D views and that it is not the recommended way of managing wall joins.
+        /// </summary>
+        /// <param name="cuttingElement">The element that should be cutting the other element</param>
+        /// <param name="otherElement">The other element that is being cut by the cuttingElement</param>
+        /// <returns>Joined elements</returns>
+        public static IEnumerable<Element> SwitchGeometryJoinOrder(Element cuttingElement, Element otherElement)
+        {
+            if (!JoinGeometryUtils.AreElementsJoined(Document, cuttingElement.InternalElement, otherElement.InternalElement))
+            {
+                throw new InvalidOperationException(Properties.Resources.InvalidSwitchJoinOrder);
+            }
+            if (JoinGeometryUtils.IsCuttingElementInJoin(Document, cuttingElement.InternalElement, otherElement.InternalElement))
+            {
+                return new List<Element>() { cuttingElement, otherElement };
+            }         
+            TransactionManager.Instance.EnsureInTransaction(Document);
+            JoinGeometryUtils.SwitchJoinOrder(Document, cuttingElement.InternalElement, otherElement.InternalElement);
+            TransactionManager.Instance.TransactionTaskDone();
+            return new List<Element>() { cuttingElement, otherElement };
+        }
+        
         /// <summary>
         /// Joins the geometry of two elements, if they are intersecting.
         /// </summary>
