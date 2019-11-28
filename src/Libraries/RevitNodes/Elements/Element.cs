@@ -542,7 +542,7 @@ namespace Revit.Elements
             bool includeSharedEmbeddedInserts = false)
         {
 
-            HostObject hostObject = this.InternalElement as HostObject;
+            var hostObject = this.InternalElement as HostObject;
             if (hostObject == null)
                 throw new NullReferenceException(Properties.Resources.NotHostElement);
 
