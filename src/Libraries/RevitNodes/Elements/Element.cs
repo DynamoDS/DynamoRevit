@@ -850,8 +850,6 @@ namespace Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
             return elements;
         }
-
-        #endregion
         
         /// <summary>
         /// Switch the order in which the geometry of two elements is joined. If the order is already as desired, elements are not affected. 
@@ -899,6 +897,7 @@ namespace Revit.Elements
 
             return joinedElements;
         }
+        #endregion
 
         #region Location extraction & manipulation
         /// <summary>
