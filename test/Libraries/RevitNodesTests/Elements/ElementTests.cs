@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -263,7 +263,6 @@ namespace RevitNodesTests.Elements
         #endregion
 
         #region Pin settings
-
         /// <summary>
         /// gets the pinned status of an element from the model
         /// and checks if IsPinned is the correct value
@@ -308,7 +307,6 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(expectedValue, pinStatus);
         }
         #endregion
-
         #region Join tests
 
         [Test]
@@ -328,7 +326,7 @@ namespace RevitNodesTests.Elements
             // Assert
             CollectionAssert.AreEqual(expectedIds, joinedElementIds);
         }
-
+        [Test]
         [TestModel(@".\Element\hostedElements.rvt")]
         public void CanSuccessfullyGetHostedElements()
         {
@@ -543,6 +541,38 @@ namespace RevitNodesTests.Elements
             var ex = Assert.Throws<InvalidOperationException>(() => Element.SwitchGeometryJoinOrder(cutFraming, unjoinedElement));
             Assert.AreEqual(ex.Message, invalidSwitchJoinOrderMessages);
         }
+        
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanSuccessfullyJoinTwoIntersectingElements()
+        {
+            // Arrange
+            Document doc = DocumentManager.Instance.CurrentDBDocument;
+            var primaryBeam = ElementSelector.ByElementId(208422, true);
+            var nonIntersectingBeam = ElementSelector.ByElementId(209681, true);
+            var joinedBeam = ElementSelector.ByElementId(208572, true);
+            var notJoinedWall = ElementSelector.ByElementId(207960, true);
+            var notJoinedFloor = ElementSelector.ByElementId(208259, true);
+
+            var nonIntersectingTestExpectedExceptionType = typeof(System.NullReferenceException);
+            string nonIntersectingTestExpectedExceptionString = "Elements are not intersecting";
+
+            // Act
+            List<int> joinedTestExpectedOutcome = new List<int> { 208422, 208572 };
+            List<int> notJoinedTestExpectedOutcome = new List<int> { 207960, 208259 };
+
+            var alreadyJoinedOutcome = primaryBeam.JoinGeometry(joinedBeam).Select(elem => elem.Id).ToList();
+            var notJoinedIntersectingOutcome = notJoinedWall.JoinGeometry(notJoinedFloor).Select(elem => elem.Id).ToList();
+
+            // Assert
+            Assert.AreEqual(joinedTestExpectedOutcome, alreadyJoinedOutcome);
+            Assert.AreEqual(notJoinedTestExpectedOutcome, notJoinedIntersectingOutcome);
+
+            // Non intersecting elements should throw a NullReferenceException
+            // with the messages Elements are not intersecting
+            var ex = Assert.Throws<InvalidOperationException>(() => primaryBeam.JoinGeometry(nonIntersectingBeam)); 
+            Assert.AreEqual(ex.Message, nonIntersectingTestExpectedExceptionString);
+        }
         #endregion
 
         [Test]
@@ -592,38 +622,6 @@ namespace RevitNodesTests.Elements
             return intersectionElement.GetIntersectingElementsOfCategory(category)
                                       .Select(elem => elem.Id)
                                       .ToList();
-        }
-        
-        [Test]
-        [TestModel(@".\Element\elementJoin.rvt")]
-        public void CanSuccessfullyJoinTwoIntersectingElements()
-        {
-            // Arrange
-            Document doc = DocumentManager.Instance.CurrentDBDocument;
-            var primaryBeam = ElementSelector.ByElementId(208422, true);
-            var nonIntersectingBeam = ElementSelector.ByElementId(209681, true);
-            var joinedBeam = ElementSelector.ByElementId(208572, true);
-            var notJoinedWall = ElementSelector.ByElementId(207960, true);
-            var notJoinedFloor = ElementSelector.ByElementId(208259, true);
-
-            var nonIntersectingTestExpectedExceptionType = typeof(System.NullReferenceException);
-            string nonIntersectingTestExpectedExceptionString = "Elements are not intersecting";
-
-            // Act
-            List<int> joinedTestExpectedOutcome = new List<int> { 208422, 208572 };
-            List<int> notJoinedTestExpectedOutcome = new List<int> { 207960, 208259 };
-
-            var alreadyJoinedOutcome = primaryBeam.JoinGeometry(joinedBeam).Select(elem => elem.Id).ToList();
-            var notJoinedIntersectingOutcome = notJoinedWall.JoinGeometry(notJoinedFloor).Select(elem => elem.Id).ToList();
-
-            // Assert
-            Assert.AreEqual(joinedTestExpectedOutcome, alreadyJoinedOutcome);
-            Assert.AreEqual(notJoinedTestExpectedOutcome, notJoinedIntersectingOutcome);
-
-            // Non intersecting elements should throw a NullReferenceException
-            // with the messages Elements are not intersecting
-            var ex = Assert.Throws<InvalidOperationException>(() => primaryBeam.JoinGeometry(nonIntersectingBeam)); 
-            Assert.AreEqual(ex.Message, nonIntersectingTestExpectedExceptionString);
         }
     }
 }

@@ -972,7 +972,6 @@ namespace Revit.Elements
             }
         }
 
-
         #endregion
 
         #region Material
@@ -1001,6 +1000,5 @@ namespace Revit.Elements
         }
 
         #endregion
-
     }
 }
