@@ -423,4 +423,7 @@
   <data name="VectorDataObsolete" xml:space="preserve">
     <value>Use VectorAnalysisDisplay.ByViewPointsAndVectorValues instead.</value>
   </data>
+  <data name="NotHostElement" xml:space="preserve">
+    <value>Element is not a Host Element</value>
+  </data>
 </root>

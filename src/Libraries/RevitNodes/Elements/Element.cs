@@ -152,6 +152,32 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Get the Element Pinned status
+        /// </summary>
+        public bool IsPinned
+        {
+            get 
+            {
+                if (InternalElement == null)
+                    return false;
+                return this.InternalElement.Pinned; 
+            }
+        }
+
+        /// <summary>
+        /// Checks if two elements are joined
+        /// </summary>
+        /// <param name="otherElement">Second element to check</param>
+        /// <returns>True if the two elements are joined, False otherwise</returns>
+        public bool AreJoined(Element otherElement)
+        {
+            return JoinGeometryUtils.AreElementsJoined(
+                Document,
+                this.InternalElement,
+                otherElement.InternalElement);
+        }
+
+        /// <summary>
         /// A reference to the element
         /// </summary>
         [SupressImportIntoVM]
@@ -501,6 +527,56 @@ namespace Revit.Elements
             return converted.ToArray();
         }
 
+        /// <summary>
+        /// Gets all elements hosted by the supplied element
+        /// </summary>
+        /// <param name="includeOpenings">Include rectangular openings in output</param>
+        /// <param name="includeShadows">Include shadows in output</param>
+        /// <param name="includeEmbeddedWalls">Include embedded walls in output</param>
+        /// <param name="includeSharedEmbeddedInserts">Include shared embedded elements in output</param>
+        /// <returns>Hosted Elements</returns>
+        public IEnumerable<Element> GetHostedElements(
+            bool includeOpenings = false,
+            bool includeShadows = false,
+            bool includeEmbeddedWalls = false,
+            bool includeSharedEmbeddedInserts = false)
+        {
+
+            HostObject hostObject = this.InternalElement as HostObject;
+            if (hostObject == null)
+                throw new NullReferenceException(Properties.Resources.NotHostElement);
+
+            IList<ElementId> inserts = hostObject
+                .FindInserts(includeOpenings,
+                             includeShadows,
+                             includeEmbeddedWalls,
+                             includeSharedEmbeddedInserts);
+
+            // Get all hosted elements from their Id's 
+            // and convert them to DS type
+            List<Element> hostedElements = new List<Element>();
+            for (int i = 0; i < inserts.Count; i++)
+            {
+                Element elem = Document.GetElement(inserts[i]).ToDSType(true);
+                hostedElements.Add(elem);
+            }
+            return hostedElements;
+        }
+
+        /// <summary>
+        /// Sets an existing element's pinned status
+        /// </summary>
+        /// <param name="pinned">Value for pin status true/false</param>
+        public Element SetPinnedStatus(bool pinned)
+        {
+            if (this.InternalElement.Pinned == pinned) return this;
+
+            TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            this.InternalElement.Pinned = pinned;
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
         #region Geometry extraction
 
         /// <summary>
@@ -692,9 +768,20 @@ namespace Revit.Elements
                 return !ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(InternalElementId.IntegerValue);
             }
         }
+        /// <summary>
+        /// Finds the elements that are joined with the given element.
+        /// </summary>
+        /// <returns>All elements joined to the given element</returns>
+        public IEnumerable<Element> GetJoinedElements()
+        {
+            return JoinGeometryUtils.GetJoinedElements(Document, this.InternalElement)
+                .Select(id => Document.GetElement(id).ToDSType(true))
+                .ToList();
+        }
+
+
 
         #region Location extraction & manipulation
-
         /// <summary>
         /// Update an existing element's location
         /// </summary>
@@ -796,5 +883,6 @@ namespace Revit.Elements
         }
 
         #endregion
+
     }
 }
