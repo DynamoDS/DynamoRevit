@@ -158,10 +158,10 @@ namespace RevitSystemTests
 
         [Test]
         [TestModel(@".\Element\elementIntersection.rvt")]
-        public void canGetIntersectingElementsOfSpeceficCategory()
+        public void canGetIntersectingElementsOfSpecificCategory()
         {
             // Arange
-            string samplePath = Path.Combine(workingDirectory, @".\Element\canGetIntersectingElementsOfSpeceficCategory.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canGetIntersectingElementsOfSpecificCategory.dyn");
             string testPath = Path.GetFullPath(samplePath);
             int expectedIntersectingElementId = 316246;
 
