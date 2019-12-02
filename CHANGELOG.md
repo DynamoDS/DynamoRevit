@@ -1,3 +1,11 @@
+## 0.1.10
+* Update README.md
+* Address inconsistency with PathOfTravel Icons and other Revit Node icons
+* Update Roof.cs to avoid memory issue.
+* Fix Port Name - Wall.ByCurveAndLevels node.
+* Element nodes first batch - add 5 new nodes for DynamoRevit
+* Update dynamocore version to 2.5.0-beta6607
+
 ## 0.1.9
 * Preload dynamically internal packages
 
