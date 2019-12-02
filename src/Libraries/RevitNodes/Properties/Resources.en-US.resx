@@ -423,4 +423,7 @@
   <data name="VectorDataObsolete" xml:space="preserve">
     <value>Use VectorAnalysisDisplay.ByViewPointsAndVectorValues instead.</value>
   </data>
+  <data name="NoSubComponents" xml:space="preserve">
+    <value>Element has no sub components</value>
+  </data>
 </root>

@@ -447,4 +447,7 @@
   <data name="StartPointListHasNulls" xml:space="preserve">
     <value>Start point list contains null elements</value>
   </data>
+  <data name="NoSubComponents" xml:space="preserve">
+    <value>Element has no sub components</value>
+  </data>
 </root>

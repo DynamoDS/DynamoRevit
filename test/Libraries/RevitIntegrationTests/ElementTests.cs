@@ -37,6 +37,27 @@ namespace RevitSystemTests
             // query count node to verify 1 item deleted as a result of the wall deletion. 
             Assert.AreEqual(1, GetPreviewValue("ccd8a5ba37fd4b1297def564392ccf54"));
          }
-        
+
+        [Test]
+        [TestModel(@".\Element\elementComponents.rvt")]
+        public void CanGetElementSubComponents()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canGetElementSubComponents.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            int expectedBeamSystemSubElementCount = 5;
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var resultBeamSystemSubElementCount = GetPreviewValue("939d773907c94323b2abe1f1df69761c");
+            var resultWallSubElement = GetPreviewValue("ed85fef0a6e649dcb1384f8ec231b051");
+
+            // Assert
+            Assert.AreEqual(expectedBeamSystemSubElementCount, resultBeamSystemSubElementCount);
+            Assert.IsNull(resultWallSubElement);
+        }
+
+
     }
 }

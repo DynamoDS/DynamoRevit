@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
@@ -260,6 +261,37 @@ namespace RevitNodesTests.Elements
 
         #endregion
 
+        [Test]
+        [TestModel((@".\Element\elementComponents.rvt"))]
+        public void CanGetElementSubComponenets()
+        {
+            // Arrange
+            var wall = ElementSelector.ByElementId(316153, true);
+            var window = ElementSelector.ByElementId(319481, true);
+            var beamSystem = ElementSelector.ByElementId(319537, true);
+            var stair = ElementSelector.ByElementId(316246, true);
+            var railing = ElementSelector.ByElementId(319643, true);
 
+            var expectedExceptionMessageWallSubComponents = Revit.Properties.Resources.NoSubComponents;
+            var expectedWindowSubComponents = new List<int>() { 319484, 319485 };
+            var expectedBeamSystemSubComponents = new List<int>() { 319563, 319575, 319577, 319579, 319581 };
+            var expectedStairSubComponents = new List<int>() { 316286, 316288, 316289 };
+            var expectedRailingSubComponents = new List<int>() { 319683 };
+
+            // Act
+            var resultWindowSubComponents = window.GetSubComponents().Select(x => x.Id).ToList();
+            var resultBeamSystemSubComponents = beamSystem.GetSubComponents().Select(x => x.Id).ToList();
+            var resultStairSubComponents = stair.GetSubComponents().Select(x => x.Id).ToList();
+            var resultRailingSubComponents = railing.GetSubComponents().Select(x => x.Id).ToList();
+            var wallSubComponentsException = Assert.Throws<System.NullReferenceException>(() => wall.GetSubComponents());
+
+            // Assert
+            Assert.AreEqual(wallSubComponentsException.Message, expectedExceptionMessageWallSubComponents);
+            CollectionAssert.AreEqual(expectedWindowSubComponents, resultWindowSubComponents);
+            CollectionAssert.AreEqual(expectedBeamSystemSubComponents, resultBeamSystemSubComponents);
+            CollectionAssert.AreEqual(expectedStairSubComponents, resultStairSubComponents);
+            CollectionAssert.AreEqual(expectedRailingSubComponents, resultRailingSubComponents);
+
+        }
     }
 }
