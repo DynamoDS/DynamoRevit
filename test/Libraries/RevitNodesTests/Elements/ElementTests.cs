@@ -510,7 +510,7 @@ namespace RevitNodesTests.Elements
 
         [Test]
         [TestModel(@".\Element\elementJoin.rvt")]
-        public void CanSwitchOrderOfTwoJoinedElements()
+        public void CanSetOrderOfTwoJoinedElements()
         {
             int cuttingElementId = 208422;
             int cutElementId = 208572;
@@ -527,18 +527,18 @@ namespace RevitNodesTests.Elements
             var unjoinedElement = ElementSelector.ByElementId(unjoinedElementId, true);
 
             // Elements already in the wanted join order
-            IEnumerable<Element> orderedElements = Element.SwitchGeometryJoinOrder(cuttingFraming, cutFraming);
+            IEnumerable<Element> orderedElements = Element.SetGeometryJoinOrder(cuttingFraming, cutFraming);
             List<int> orderedElementIds = orderedElements.Select(elem => elem.Id).ToList();
             CollectionAssert.AreEqual(unchangedOrder, orderedElementIds);
 
             // Elements not in wanted join order
-            IEnumerable<Element> switchedElements = Element.SwitchGeometryJoinOrder(cutFraming, cuttingFraming);
+            IEnumerable<Element> switchedElements = Element.SetGeometryJoinOrder(cutFraming, cuttingFraming);
             List<int> changedElementIds = switchedElements.Select(elem => elem.Id).ToList();
             unchangedOrder.Reverse();
             CollectionAssert.AreEqual(unchangedOrder, changedElementIds);
 
             // Element not joined
-            var ex = Assert.Throws<InvalidOperationException>(() => Element.SwitchGeometryJoinOrder(cutFraming, unjoinedElement));
+            var ex = Assert.Throws<InvalidOperationException>(() => Element.SetGeometryJoinOrder(cutFraming, unjoinedElement));
             Assert.AreEqual(ex.Message, invalidSwitchJoinOrderMessages);
         }
         
