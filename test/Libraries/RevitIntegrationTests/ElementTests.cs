@@ -155,5 +155,108 @@ namespace RevitSystemTests
             Assert.AreEqual(true, isJoinedTrue);
             Assert.AreEqual(false, isJoinedFalse);
         }
+
+        [Test]
+        [TestModel(@".\Element\elementIntersection.rvt")]
+        public void CanGetIntersectingElementsOfSpecificCategory()
+        {
+            // Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canGetIntersectingElementsOfSpecificCategory.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            int expectedIntersectingElementId = 316246;
+
+            // Act - Get the intersecting element id of wall category
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var actualIntersectingElementId = GetPreviewValue("438ec88918b94167887c7f4b2813ebfe");
+            
+            // Assert
+            Assert.AreEqual(expectedIntersectingElementId, actualIntersectingElementId);
+        }
+        
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanUnjoinListOfElements()
+        {
+            // Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canUnjoinListOfElements.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            var areJoinedBeforeRun = GetPreviewValue("e31b7404cd6243578b0e50b5a525baa4");
+            var areJoinedAfterRun = GetPreviewValue("4779f361975a4a5fa5f8b0f6b94159ad");
+
+            // Assert - The preview value of areJoinedAfterRun comes from an AllFalse node
+            // that checks if every output of AreJoined is false,  returning
+            // true if all elements have been unjoined.
+            Assert.AreEqual(areJoinedBeforeRun, areJoinedAfterRun);
+        }
+
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanSwitchJoinOrderOfTwoJoinedElements()
+        {
+            // Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canSwitchJoinOrderOfTwoJoinedElements.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            int originalCuttingElementId = 208422;
+            int newOrderCuttingElementId = 208572;
+
+            // Act - get the Id of the first element from SwitchGeometryJoinOrder
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var cuttingElementIdNewOrder = GetPreviewValue("8b96e9f628314bcab833ea4f830bc2a7");
+        
+            // Assert
+            Assert.AreEqual(newOrderCuttingElementId, cuttingElementIdNewOrder);
+            Assert.AreNotEqual(originalCuttingElementId, cuttingElementIdNewOrder);
+        }
+
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanUnjoinTwoElements()
+        {
+            // Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canUnjoinTwoElements.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var areJoinedBeforeRun = GetPreviewValue("c753a1ccf59f49dd8c01549b51dd2961");
+            Assert.AreEqual(true, areJoinedBeforeRun);
+            var areJoinedAfterRun = GetPreviewValue("5132f787bcdc44608b2cff2b7540c3e5");
+            var unjoinElementsException = GetPreviewValue("8fc0495f5b1047599609404407446c79");
+
+            // Assert
+            Assert.AreEqual(true, areJoinedBeforeRun);
+            Assert.AreNotEqual(areJoinedBeforeRun, areJoinedAfterRun);
+            Assert.IsNull(unjoinElementsException);
+        }
+        
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanJoinTwoIntersectingElements()
+        {
+            // Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canJoinTwoIntersectingElements.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            int expectedElementId = 208259;
+
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Act 
+            var firstJoinedElementId = GetPreviewValue("0ee537c473c04470b5041d16d9b5ab12");
+            var nonIntersectingElementsResult = GetPreviewValue("a9e31eafd9d5488ab843ea434c9243ed");
+
+            // Assert
+            Assert.AreEqual(expectedElementId, firstJoinedElementId);
+            Assert.IsNull(nonIntersectingElementsResult);
+        }
     }
 }

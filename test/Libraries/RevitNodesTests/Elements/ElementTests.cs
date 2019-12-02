@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Autodesk.DesignScript.Geometry;
@@ -10,7 +11,7 @@ using Revit.Elements;
 using Revit.GeometryReferences;
 
 using RevitServices.Persistence;
-
+using RevitServices.Transactions;
 using RevitTestServices;
 
 using RTF.Framework;
@@ -35,7 +36,7 @@ namespace RevitNodesTests.Elements
             var paramName = "Body Material";
             var elemId0 = ele.GetParameterValueByName(paramName);
 
-            Assert.AreNotEqual( mat.Id, elemId0 );
+            Assert.AreNotEqual(mat.Id, elemId0);
 
             ele.SetParameterByName(paramName, mat);
 
@@ -82,7 +83,7 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(sym.Name, "18\" x 18\"");
         }
 
-        [Test] 
+        [Test]
         [TestModel(@".\element.rvt")]
         public void CanSuccessfullySetElementParamWithUnitType()
         {
@@ -161,7 +162,7 @@ namespace RevitNodesTests.Elements
                 Assert.AreEqual(46874, refer.InternalReference.ElementId.IntegerValue);
             }
         }
-        
+
         [Test]
         [TestModel(@".\AdaptiveComponents.rfa")]
         public void Geometry_ExtractsSolidAccountingForInstanceTransform()
@@ -178,7 +179,7 @@ namespace RevitNodesTests.Elements
             bbox.MaxPoint.ShouldBeApproximately(-210.846457, -26.243438, 199.124016, 1e-2);
             bbox.MinPoint.ShouldBeApproximately(-304.160105, -126.243438, 0, 1e-2);
         }
-        
+
         [Test]
         [TestModel(@".\AdaptiveComponents.rfa")]
         public void ElementFaceReferences_ExtractsExpectedReferences()
@@ -262,7 +263,6 @@ namespace RevitNodesTests.Elements
         #endregion
 
         #region Pin settings
-
         /// <summary>
         /// gets the pinned status of an element from the model
         /// and checks if IsPinned is the correct value
@@ -326,7 +326,7 @@ namespace RevitNodesTests.Elements
             // Assert
             CollectionAssert.AreEqual(expectedIds, joinedElementIds);
         }
-        
+        [Test]
         [TestModel(@".\Element\hostedElements.rvt")]
         public void CanSuccessfullyGetHostedElements()
         {
@@ -435,6 +435,193 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(expected, arejoined);
         }
 
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanUnjoinListOfElements()
+        {
+            var wall1 = ElementSelector.ByElementId(184176, true);
+            var wall2 = ElementSelector.ByElementId(207960, true);
+            var floor = ElementSelector.ByElementId(208259, true);
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+
+            // Are joined
+            bool originalWall1AndWall2JoinedValue = JoinGeometryUtils.AreElementsJoined(doc,
+                                                                                       wall1.InternalElement,
+                                                                                       wall2.InternalElement);
+            Assert.AreEqual(true, originalWall1AndWall2JoinedValue);
+            // Are joined
+            bool originalWall1AndFloorJoinedValue = JoinGeometryUtils.AreElementsJoined(doc,
+                                                                                       wall1.InternalElement,
+                                                                                       floor.InternalElement);
+            Assert.AreEqual(true, originalWall1AndFloorJoinedValue);
+            // Are not joined
+            bool originalWall2AndFloorJoinedValue = JoinGeometryUtils.AreElementsJoined(doc,
+                                                                                       wall2.InternalElement,
+                                                                                       floor.InternalElement);
+            Assert.AreEqual(false, originalWall2AndFloorJoinedValue);
+
+            var elementList = new List<Element>() { wall1, wall2, floor };
+
+            Element.UnjoinAllGeometry(elementList);
+
+            bool newWall1AndWall2JoinedValue = wall1.AreJoined(wall2);
+            bool newWall1AndFloorJoinedValue = wall1.AreJoined(floor);
+            bool newWall2AndFloorJoinedValue = wall2.AreJoined(floor);
+
+            // Are joined should have changed
+            Assert.AreNotEqual(newWall1AndWall2JoinedValue, originalWall1AndWall2JoinedValue);
+            // Are joined should have changed 
+            Assert.AreNotEqual(newWall1AndFloorJoinedValue, originalWall1AndFloorJoinedValue);
+            // Are joined should be the same 
+            Assert.AreEqual(newWall2AndFloorJoinedValue, originalWall2AndFloorJoinedValue);
+        }
+
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanUnjoinTwoElements()
+        {
+            var wall1 = ElementSelector.ByElementId(184176, true);
+            var wall2 = ElementSelector.ByElementId(207960, true);
+            var floor = ElementSelector.ByElementId(208259, true);
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            string expectedNotJoinedExceptionMessages = Revit.Properties.Resources.NotJoinedElements;
+
+            // Are joined
+            bool originalWall1AndWall2JoinedValue = JoinGeometryUtils.AreElementsJoined(doc,
+                                                                                       wall1.InternalElement,
+                                                                                       wall2.InternalElement);
+            Assert.AreEqual(true, originalWall1AndWall2JoinedValue);
+
+            // Are not joined
+            bool originalWall2AndFloorJoinedValue = JoinGeometryUtils.AreElementsJoined(doc,
+                                                                                       wall2.InternalElement,
+                                                                                       floor.InternalElement);
+            Assert.AreEqual(false, originalWall2AndFloorJoinedValue);
+
+            wall1.UnjoinGeometry(wall2);
+            bool newWall1AndWall2JoinedValue = wall1.AreJoined(wall2);
+
+            // Are joined should have changed
+            Assert.AreNotEqual(newWall1AndWall2JoinedValue, originalWall1AndWall2JoinedValue);
+            // Should throw InvalidOperationException
+            var ex = Assert.Throws<InvalidOperationException>(() => wall2.UnjoinGeometry(floor));
+            Assert.AreEqual(ex.Message, expectedNotJoinedExceptionMessages);
+        }
+
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanSetOrderOfTwoJoinedElements()
+        {
+            int cuttingElementId = 208422;
+            int cutElementId = 208572;
+            int unjoinedElementId = 208259;
+
+            List<int> unchangedOrder = new List<int>() { cuttingElementId, cutElementId };
+            string invalidSwitchJoinOrderMessages = Revit.Properties.Resources.InvalidSwitchJoinOrder;
+
+            // Joined elements
+            var cuttingFraming = ElementSelector.ByElementId(cuttingElementId, true);
+            var cutFraming = ElementSelector.ByElementId(cutElementId, true);
+
+            // Not Joined element
+            var unjoinedElement = ElementSelector.ByElementId(unjoinedElementId, true);
+
+            // Elements already in the wanted join order
+            IEnumerable<Element> orderedElements = Element.SetGeometryJoinOrder(cuttingFraming, cutFraming);
+            List<int> orderedElementIds = orderedElements.Select(elem => elem.Id).ToList();
+            CollectionAssert.AreEqual(unchangedOrder, orderedElementIds);
+
+            // Elements not in wanted join order
+            IEnumerable<Element> switchedElements = Element.SetGeometryJoinOrder(cutFraming, cuttingFraming);
+            List<int> changedElementIds = switchedElements.Select(elem => elem.Id).ToList();
+            unchangedOrder.Reverse();
+            CollectionAssert.AreEqual(unchangedOrder, changedElementIds);
+
+            // Element not joined
+            var ex = Assert.Throws<InvalidOperationException>(() => Element.SetGeometryJoinOrder(cutFraming, unjoinedElement));
+            Assert.AreEqual(ex.Message, invalidSwitchJoinOrderMessages);
+        }
+        
+        [Test]
+        [TestModel(@".\Element\elementJoin.rvt")]
+        public void CanSuccessfullyJoinTwoIntersectingElements()
+        {
+            // Arrange
+            Document doc = DocumentManager.Instance.CurrentDBDocument;
+            var primaryBeam = ElementSelector.ByElementId(208422, true);
+            var nonIntersectingBeam = ElementSelector.ByElementId(209681, true);
+            var joinedBeam = ElementSelector.ByElementId(208572, true);
+            var notJoinedWall = ElementSelector.ByElementId(207960, true);
+            var notJoinedFloor = ElementSelector.ByElementId(208259, true);
+
+            var nonIntersectingTestExpectedExceptionType = typeof(System.NullReferenceException);
+            string nonIntersectingTestExpectedExceptionString = "Elements are not intersecting";
+
+            // Act
+            List<int> joinedTestExpectedOutcome = new List<int> { 208422, 208572 };
+            List<int> notJoinedTestExpectedOutcome = new List<int> { 207960, 208259 };
+
+            var alreadyJoinedOutcome = primaryBeam.JoinGeometry(joinedBeam).Select(elem => elem.Id).ToList();
+            var notJoinedIntersectingOutcome = notJoinedWall.JoinGeometry(notJoinedFloor).Select(elem => elem.Id).ToList();
+
+            // Assert
+            Assert.AreEqual(joinedTestExpectedOutcome, alreadyJoinedOutcome);
+            Assert.AreEqual(notJoinedTestExpectedOutcome, notJoinedIntersectingOutcome);
+
+            // Non intersecting elements should throw a NullReferenceException
+            // with the messages Elements are not intersecting
+            var ex = Assert.Throws<InvalidOperationException>(() => primaryBeam.JoinGeometry(nonIntersectingBeam)); 
+            Assert.AreEqual(ex.Message, nonIntersectingTestExpectedExceptionString);
+        }
         #endregion
+
+        [Test]
+        [TestModel(@".\Element\elementIntersection.rvt")]
+        public void CanGetIntersectingElementsOfSpecificCategory()
+        {
+            // Element to check intersections on
+            int intersectionElementId = 316167;
+            var intersectionElement = ElementSelector.ByElementId(intersectionElementId, true);
+
+            // Element intersecting
+            int structuralFramingId = 316318;
+            var structuralFramingElement = ElementSelector.ByElementId(structuralFramingId, true);
+            int floorId = 316539;
+            var floorElement = ElementSelector.ByElementId(floorId, true);
+            int wallId = 316246;
+            var wallElement = ElementSelector.ByElementId(wallId, true);
+
+            // Expected outcomes
+            var expectedStructuralFramingIds = new List<int>() { structuralFramingId };
+            var expectedFloorIds = new List<int>() { floorId };
+            var expectedWallIds = new List<int>() { wallId };
+
+            // Get intersecting elements of category
+            var structuralFrameCategory = Revit.Elements.Category.ByName("StructuralFraming");
+            List<int> intersectedFraming = GetIntersectingElementIds(intersectionElement, structuralFrameCategory);
+
+            var floorCategory = Revit.Elements.Category.ByName("Floors");
+            List<int> intersectedFloorId = GetIntersectingElementIds(intersectionElement, floorCategory);
+
+            var wallCategory = Revit.Elements.Category.ByName("Walls");
+            List<int> intersectedWallId = GetIntersectingElementIds(intersectionElement, wallCategory);
+
+            // Check if method returns null if there are no intersecting elements of the specified category
+            var windowCategory = Revit.Elements.Category.ByName("Windows");
+            IEnumerable<Element> intersectedWindow = intersectionElement.GetIntersectingElementsOfCategory(windowCategory);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedStructuralFramingIds, intersectedFraming);
+            CollectionAssert.AreEqual(expectedFloorIds, intersectedFloorId);
+            CollectionAssert.AreEqual(expectedWallIds, intersectedWallId);
+            CollectionAssert.AreEqual(new List<Element>(), intersectedWindow);
+        }
+
+        private static List<int> GetIntersectingElementIds(Element intersectionElement, Revit.Elements.Category category)
+        {
+            return intersectionElement.GetIntersectingElementsOfCategory(category)
+                                      .Select(elem => elem.Id)
+                                      .ToList();
+        }
     }
 }
