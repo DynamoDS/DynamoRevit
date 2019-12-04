@@ -1,3 +1,6 @@
+## 0.1.11
+* Element nodes second batch - add 5 new nodes for DynamoRevit
+
 ## 0.1.10
 * Update README.md
 * Address inconsistency with PathOfTravel Icons and other Revit Node icons
