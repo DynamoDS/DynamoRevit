@@ -694,10 +694,10 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Gets the sub component elements of the current Element.
+        /// Gets the child component elements of the current Element.
         /// </summary>
         /// <returns>Sub component elements.</returns>
-        public IEnumerable<Element> GetSubComponents()
+        public IEnumerable<Element> GetChildComponents()
         {
             var subComponents = GetElementSubComponents(this.InternalElement);
             return subComponents;
@@ -707,7 +707,7 @@ namespace Revit.Elements
         {
             List<Element> components = new List<Element>();
             BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
-                                                                                 element.Id.ToString());
+                                                                                 element.Category.Id.ToString());
 
             switch (builtInCategory)
             {
@@ -734,7 +734,7 @@ namespace Revit.Elements
                     components.AddRange(beamSystemComponentElements);
                     break;
 
-                case BuiltInCategory.OST_Railings:
+                case BuiltInCategory.OST_StairsRailing:
                     var railingElement = element as Autodesk.Revit.DB.Architecture.Railing;
                     List<ElementId> railingComponentIds = new List<ElementId>();
                     railingComponentIds.AddRange(railingElement.GetHandRails().ToList());
