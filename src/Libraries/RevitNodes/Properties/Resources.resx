@@ -450,4 +450,7 @@
   <data name="NoSubComponents" xml:space="preserve">
     <value>Element has no sub components</value>
   </data>
+  <data name="NoSuperComponent" xml:space="preserve">
+    <value>Element has no parent component</value>
+  </data>
 </root>

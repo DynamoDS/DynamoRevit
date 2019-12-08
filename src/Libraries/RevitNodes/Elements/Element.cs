@@ -761,6 +761,53 @@ namespace Revit.Elements
             return components;
         }
 
+        public Element GetParentComponent()
+        {
+            var parentComponent = GetParentElementFromElement(this.InternalElement);
+            return parentComponent;
+        }
+
+        private Element GetParentElementFromElement(Autodesk.Revit.DB.Element element)
+        {
+            Autodesk.Revit.DB.Element parent;
+            BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
+                                                                                 element.Category.Id.ToString());
+            switch (builtInCategory)
+            {
+                case BuiltInCategory.OST_StairsLandings:
+                    var stairElement = element as Autodesk.Revit.DB.Architecture.StairsLanding;
+                    if (stairElement == null)
+                        throw new InvalidOperationException(Properties.Resources.NoSuperComponent);
+                    parent = stairElement.GetStairs();
+                    break;
+
+                case BuiltInCategory.OST_StructuralFraming:
+                    var beam = element as Autodesk.Revit.DB.FamilyInstance;
+                    if (beam == null)
+                        throw new InvalidOperationException(Properties.Resources.NoSuperComponent);
+                    parent = BeamSystem.BeamBelongsTo(beam);
+                    break;
+
+                case BuiltInCategory.OST_Railings:
+                    var railingElement = element as Autodesk.Revit.DB.Architecture.ContinuousRail;
+                    ElementId hostId = railingElement.HostRailingId;
+                    if (hostId == null)
+                        throw new InvalidOperationException(Properties.Resources.NoSuperComponent);
+                    parent = Document.GetElement(hostId);
+                    break;
+
+                default:
+                    var familyInstance = element as Autodesk.Revit.DB.FamilyInstance;
+                    if (familyInstance == null)
+                        throw new InvalidOperationException(Properties.Resources.NoSuperComponent);
+                    parent = familyInstance.SuperComponent;
+                    break;
+            }
+            if (parent == null)
+                throw new InvalidOperationException(Properties.Resources.NoSuperComponent);
+            return parent.ToDSType(true);
+        }
+
         #region Location extraction & manipulation
 
         /// <summary>
