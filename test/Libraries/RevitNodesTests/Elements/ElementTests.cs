@@ -293,5 +293,29 @@ namespace RevitNodesTests.Elements
             CollectionAssert.AreEqual(expectedRailingSubComponents, resultRailingSubComponents);
 
         }
+
+        [Test]
+        [TestModel((@".\Element\elementComponents.rvt"))]
+        public void CanGetElementSuperComponent()
+        {
+            // Arrange
+            var wall = ElementSelector.ByElementId(316153, true);
+            var window = ElementSelector.ByElementId(319485, true);
+            var beam = ElementSelector.ByElementId(319579, true);
+
+            var expectedExceptionMessageWallSubComponents = Revit.Properties.Resources.NoSuperComponent;
+            var expectedWindowParentComponent = 319481;
+            var expectedBeamParentComponent = 319537;
+
+            // Act
+            var wallSubComponentsException = Assert.Throws<System.InvalidOperationException>(() => wall.GetParentComponent());
+            var resultWindowParentComponent = window.GetParentComponent().Id;
+            var resultBeamParentComponent = beam.GetParentComponent().Id;
+
+            // Assert
+            Assert.AreEqual(wallSubComponentsException.Message, expectedExceptionMessageWallSubComponents);
+            Assert.AreEqual(expectedWindowParentComponent, resultWindowParentComponent);
+            Assert.AreEqual(expectedBeamParentComponent, resultBeamParentComponent);
+        }
     }
 }
