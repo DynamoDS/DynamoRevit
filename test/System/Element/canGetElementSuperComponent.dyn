@@ -1,0 +1,340 @@
+{
+  "Uuid": "d10a72b1-6ff8-4b0e-99bf-51933e096160",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "canGetElementSuperComponent",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "3dd65e64-bb72-4a5d-a65e-6d5dd0a805b1-0004dffd"
+      ],
+      "Id": "865cf56fda9347cba864ac6cb41c4c06",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8c1a785160dd40efa8c247b7caaec9a8",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "4636e5fa-db23-45ca-95a4-863c77c16492-0004e057"
+      ],
+      "Id": "d70047c6ce11435e8a786905632431b7",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "80c224515ed64759b69e336b43810c97",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.GetParentComponent",
+      "Id": "0e4167639df346c2ae93eb263afe7bfa",
+      "Inputs": [
+        {
+          "Id": "400fef90772f436191267ae816d4af38",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6a3b14d31aff48a7992293bc5c453dd2",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Element.GetParentComponent ( ): Element"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.GetParentComponent",
+      "Id": "fb38e9242d364466b413c52b5c0a9e00",
+      "Inputs": [
+        {
+          "Id": "e4cfbc88a9bc48dbbce8ae1dfd0b72f1",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8dc8f60eaf154d09b6494fcd9e4fd15b",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Element.GetParentComponent ( ): Element"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Id",
+      "Id": "54c8d93d86494469b9e0cd06c78d248b",
+      "Inputs": [
+        {
+          "Id": "d29c2772509446ffb778979bb7c9df82",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "32bb7f5052e34e1b9f1c3423db70992a",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Element Id for this element\n\nElement.Id: int"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Id",
+      "Id": "85a73f659194410db9d9cf27355b0fd6",
+      "Inputs": [
+        {
+          "Id": "85f3c182628641f0add6d1cde0236b64",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "76e2711f4bb34018b494a0b1928aa31c",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Element Id for this element\n\nElement.Id: int"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "8c1a785160dd40efa8c247b7caaec9a8",
+      "End": "400fef90772f436191267ae816d4af38",
+      "Id": "df42bb2060e4417585c0a26d9410739b"
+    },
+    {
+      "Start": "80c224515ed64759b69e336b43810c97",
+      "End": "e4cfbc88a9bc48dbbce8ae1dfd0b72f1",
+      "Id": "0a10658f98ba400c986eea8088994708"
+    },
+    {
+      "Start": "6a3b14d31aff48a7992293bc5c453dd2",
+      "End": "d29c2772509446ffb778979bb7c9df82",
+      "Id": "802a428605eb400cb01eb78ac5e60906"
+    },
+    {
+      "Start": "8dc8f60eaf154d09b6494fcd9e4fd15b",
+      "End": "85f3c182628641f0add6d1cde0236b64",
+      "Id": "d0ac8eaf37eb44a8ac5ede93b0f014f4"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7034",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element - Window",
+        "Id": "865cf56fda9347cba864ac6cb41c4c06",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 72.797020462328959,
+        "Y": 138.29218477592434
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element - Beam",
+        "Id": "d70047c6ce11435e8a786905632431b7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 75.463687128995645,
+        "Y": 318.95885144259097
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.GetParentComponent",
+        "Id": "0e4167639df346c2ae93eb263afe7bfa",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 329.11742368475439,
+        "Y": 135.12125289194995
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.GetParentComponent",
+        "Id": "fb38e9242d364466b413c52b5c0a9e00",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 353.933321975074,
+        "Y": 317.03003849917633
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.Id - Window Parent",
+        "Id": "54c8d93d86494469b9e0cd06c78d248b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 731.805070291585,
+        "Y": 131.87715519590705
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.Id - Beam Parent",
+        "Id": "85a73f659194410db9d9cf27355b0fd6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 734.24398532063378,
+        "Y": 319.62518276504494
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "df87cef0faec4763aba9c4c9429f6c30",
+        "Title": "Inputs",
+        "Nodes": [
+          "865cf56fda9347cba864ac6cb41c4c06",
+          "d70047c6ce11435e8a786905632431b7"
+        ],
+        "Left": 62.797020462328959,
+        "Top": 84.958851442591,
+        "Width": 226.66666666666669,
+        "Height": 353.66666666666663,
+        "FontSize": 36.0,
+        "InitialTop": 138.29218477592434,
+        "InitialHeight": 330.33333333333331,
+        "TextblockHeight": 43.333333333333336,
+        "Background": "#FFFFB8D8"
+      },
+      {
+        "Id": "0afe62fae5d54539b16e325af787c801",
+        "Title": "GetParentComponent",
+        "Nodes": [
+          "0e4167639df346c2ae93eb263afe7bfa",
+          "fb38e9242d364466b413c52b5c0a9e00"
+        ],
+        "Left": 319.11742368475439,
+        "Top": 81.787919558616608,
+        "Width": 355.30666666666667,
+        "Height": 328.24211894055975,
+        "FontSize": 36.0,
+        "InitialTop": 135.12125289194995,
+        "InitialHeight": 304.90878560722638,
+        "TextblockHeight": 43.333333333333336,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "10a82edb3fdc4f1d8c3f49d40415e46f",
+        "Title": "Output",
+        "Nodes": [
+          "54c8d93d86494469b9e0cd06c78d248b",
+          "85a73f659194410db9d9cf27355b0fd6"
+        ],
+        "Left": 721.805070291585,
+        "Top": 78.543821862573708,
+        "Width": 207.7722483623821,
+        "Height": 334.08136090247126,
+        "FontSize": 36.0,
+        "InitialTop": 131.87715519590705,
+        "InitialHeight": 278.67953645613943,
+        "TextblockHeight": 43.333333333333336,
+        "Background": "#FFFFAA45"
+      }
+    ],
+    "X": -63.700191348821946,
+    "Y": 72.8293629352394,
+    "Zoom": 1.4921120565749033
+  }
+}

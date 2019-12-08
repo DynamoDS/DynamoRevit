@@ -58,6 +58,26 @@ namespace RevitSystemTests
             Assert.IsNull(resultWallSubElement);
         }
 
+        [Test]
+        [TestModel(@".\Element\elementComponents.rvt")]
+        public void CanGetElementSuperComponent()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canGetElementSuperComponent.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            int expectedWindowSuperComponentId = 319481;
+            int expectedBeamSuperComponentId = 319537;
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var resultWindowSuperComponent = GetPreviewValue("54c8d93d86494469b9e0cd06c78d248b");
+            var resultBeamSuperComponent = GetPreviewValue("85a73f659194410db9d9cf27355b0fd6");
+
+            // Assert
+            Assert.AreEqual(expectedBeamSuperComponentId, resultBeamSuperComponent);
+            Assert.AreEqual(expectedWindowSuperComponentId, resultWindowSuperComponent);
+        }
 
     }
 }
