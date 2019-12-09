@@ -761,6 +761,10 @@ namespace Revit.Elements
             return components;
         }
 
+        /// <summary>
+        /// Gets the parent component of the Element.
+        /// </summary>
+        /// <returns>Parent Element</returns>
         public Element GetParentComponent()
         {
             var parentComponent = GetParentElementFromElement(this.InternalElement);
