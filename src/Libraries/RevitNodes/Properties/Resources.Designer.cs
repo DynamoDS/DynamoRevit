@@ -601,6 +601,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Geometry join order can only be switched when the elements are already joined..
+        /// </summary>
+        internal static string InvalidSwitchJoinOrder {
+            get {
+                return ResourceManager.GetString("InvalidSwitchJoinOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid view..
         /// </summary>
         internal static string InvalidView {
@@ -709,6 +718,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Elements are not intersecting.
+        /// </summary>
+        internal static string NonIntersectingElements {
+            get {
+                return ResourceManager.GetString("NonIntersectingElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No shared parameter file found..
         /// </summary>
         internal static string NoSharedParameterFileFound {
@@ -732,6 +750,24 @@ namespace Revit.Properties {
         internal static string NotEnoughDataError {
             get {
                 return ResourceManager.GetString("NotEnoughDataError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Element is not a Host Element.
+        /// </summary>
+        internal static string NotHostElement {
+            get {
+                return ResourceManager.GetString("NotHostElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot unjoin Elements that are not already joined..
+        /// </summary>
+        internal static string NotJoinedElements {
+            get {
+                return ResourceManager.GetString("NotJoinedElements", resourceCulture);
             }
         }
         

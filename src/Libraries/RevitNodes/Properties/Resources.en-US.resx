@@ -429,4 +429,16 @@
   <data name="NoParentElement" xml:space="preserve">
     <value>Element has no parent component</value>
   </data>
+  <data name="NotHostElement" xml:space="preserve">
+    <value>Element is not a Host Element</value>
+  </data>
+  <data name="NotJoinedElements" xml:space="preserve">
+    <value>Cannot unjoin Elements that are not already joined.</value>
+  </data>
+  <data name="InvalidSwitchJoinOrder" xml:space="preserve">
+    <value>Geometry join order can only be switched when the elements are already joined.</value>
+  </data>
+  <data name="NonIntersectingElements" xml:space="preserve">
+    <value>Elements are not intersecting</value>
+  </data>
 </root>

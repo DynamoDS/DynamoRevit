@@ -159,8 +159,11 @@ namespace Revit.Elements
             }
 
             var ca = new CurveArray();
-            polycurve.Curves().ForEach(x => ca.Append(x.ToRevitType()));
-
+            polycurve.Curves().ForEach(x => {
+                ca.Append(x.ToRevitType());
+                x.Dispose();
+                });
+            
             var roof = new Roof(ca, level.InternalLevel,roofType.InternalRoofType);
             DocumentManager.Regenerate();
             return roof;
@@ -185,7 +188,10 @@ namespace Revit.Elements
             }
 
             var ca = new CurveArray();
-            outline.Curves().ForEach(x => ca.Append(x.ToRevitType()));
+            outline.Curves().ForEach(x => {
+                ca.Append(x.ToRevitType());
+                x.Dispose();
+                });
 
             var roof = new Roof(ca, plane.InternalReferencePlane, level.InternalLevel, roofType.InternalRoofType, extrusionStart, extrusionEnd);
             DocumentManager.Regenerate();

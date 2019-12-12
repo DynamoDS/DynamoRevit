@@ -1,0 +1,257 @@
+{
+  "Uuid": "4843757d-a3b9-4ec3-b7de-889ac877f5e5",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "canSwitchJoinOrderOfTwoJoinedElements",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "a20ae38f-f065-411e-996b-dbae00669cb4-00032ebc"
+      ],
+      "Id": "8d6988eaa74e461296061cac5b2ee097",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bc2e0632ff2a42bb8fbf5400b45f6341",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "a20ae38f-f065-411e-996b-dbae00669cb4-00032e26"
+      ],
+      "Id": "8efa39b7f5a349609c3c076d9932b6a4",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "11b09ee26cb7457786aa9f2fbdcc9565",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
+      "Id": "ff4e565818f14dbf890343eced258772",
+      "Inputs": [
+        {
+          "Id": "6017394d5e6940c3b91f2691c05b958d",
+          "Name": "list",
+          "Description": "List to get the first item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4545cc8332a5425d9ec66cf9ecf1ca61",
+          "Name": "item",
+          "Description": "First item in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Id",
+      "Id": "8b96e9f628314bcab833ea4f830bc2a7",
+      "Inputs": [
+        {
+          "Id": "48cea45fddf742338d5802b8e2e1d73f",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9e4d17df923f4735bbae89770b016c58",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Element Id for this element\n\nElement.Id: int"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.SwitchGeometryJoinOrder@Revit.Elements.Element,Revit.Elements.Element",
+      "Id": "d61ea03f28d94a78a817ff0a031a4e36",
+      "Inputs": [
+        {
+          "Id": "6f6d0d45acb247e3a8d3ffef78149fc3",
+          "Name": "cuttingElement",
+          "Description": "The element that should be cutting the other element\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0f605c7803894f8eb7e69da66c9d4223",
+          "Name": "otherElement",
+          "Description": "The other element that are being cut by the cuttingElement\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f51d7c1d544342c78a44160e1a547c8b",
+          "Name": "Element[]",
+          "Description": "Joined elements",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Switch the order of how two elements are joined\n\nElement.SwitchGeometryJoinOrder (cuttingElement: Element, otherElement: Element): Element[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "bc2e0632ff2a42bb8fbf5400b45f6341",
+      "End": "6f6d0d45acb247e3a8d3ffef78149fc3",
+      "Id": "40ed5eca414f4df598c667d1ea4b9e1c"
+    },
+    {
+      "Start": "11b09ee26cb7457786aa9f2fbdcc9565",
+      "End": "0f605c7803894f8eb7e69da66c9d4223",
+      "Id": "bbe5fc007a7c4a8c907d24d2d8b616f6"
+    },
+    {
+      "Start": "4545cc8332a5425d9ec66cf9ecf1ca61",
+      "End": "48cea45fddf742338d5802b8e2e1d73f",
+      "Id": "2c6493ce871146d1be533e659cea8e23"
+    },
+    {
+      "Start": "f51d7c1d544342c78a44160e1a547c8b",
+      "End": "6017394d5e6940c3b91f2691c05b958d",
+      "Id": "d3b643a96a3d492ea300a3f3a7cf5ce5"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.5.0.5905",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "8d6988eaa74e461296061cac5b2ee097",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 117.07105971646115,
+        "Y": 169.89749515906266
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "8efa39b7f5a349609c3c076d9932b6a4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 125.60000000000014,
+        "Y": 320.00000000000006
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.FirstItem",
+        "Id": "ff4e565818f14dbf890343eced258772",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 691.65726080331581,
+        "Y": 246.31025862219025
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.Id",
+        "Id": "8b96e9f628314bcab833ea4f830bc2a7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 903.88847449628577,
+        "Y": 244.89538386423709
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.SwitchGeometryJoinOrder",
+        "Id": "d61ea03f28d94a78a817ff0a031a4e36",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 384.51092292147149,
+        "Y": 247.64381410381185
+      }
+    ],
+    "Annotations": [],
+    "X": 58.257928202468918,
+    "Y": -67.164974980876877,
+    "Zoom": 0.9540429248828125
+  }
+}

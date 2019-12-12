@@ -1,0 +1,458 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "canCheckIfTwoElementsAreJoined",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "a20ae38f-f065-411e-996b-dbae00669cb4-00032d83"
+      ],
+      "Id": "43061559e1754781bafb852ea06b32ec",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ec3434424d1d415b85302c74e78fb4b4",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "a20ae38f-f065-411e-996b-dbae00669cb4-00032c58"
+      ],
+      "Id": "deb6bd3a48304bfca628960cb871ed04",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1b944730b29a44d69a917e62e19fc80a",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "f49d6941-4497-43c3-9a52-fe4e5424e4e7-0002cf70"
+      ],
+      "Id": "a155d7dbd972452fbedcfbbfdba8a75a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6a63b60df66748bf838ada2e66377e6d",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.AreJoined@Revit.Elements.Element",
+      "Id": "b29dc14336bc4c9382f9acc5036d632f",
+      "Inputs": [
+        {
+          "Id": "8783bac1d7354dec9f9f470580b3b06a",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "678a4aa732254668bf17b6c8c4256bb7",
+          "Name": "otherElement",
+          "Description": "Second element to check\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3c18b8c2c5b1430f8cf431eaa2ab376a",
+          "Name": "bool",
+          "Description": "True if the two elements are joined, False otherwise",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Checks if two elements are joined\n\nElement.AreJoined (otherElement: Element): bool"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.AreJoined@Revit.Elements.Element",
+      "Id": "b49a72f29d504acdb524ab0953623ea5",
+      "Inputs": [
+        {
+          "Id": "d3e2b460158648e492e0028de7665e2f",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ab9293564d7c49619cb74737c3b6287f",
+          "Name": "otherElement",
+          "Description": "Second element to check\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bc37aebb704c4cc596f99e4dd63dcc3b",
+          "Name": "bool",
+          "Description": "True if the two elements are joined, False otherwise",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Checks if two elements are joined\n\nElement.AreJoined (otherElement: Element): bool"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ec3434424d1d415b85302c74e78fb4b4",
+      "End": "d3e2b460158648e492e0028de7665e2f",
+      "Id": "af1d53cd9c574a109d658f041cc5f17f"
+    },
+    {
+      "Start": "ec3434424d1d415b85302c74e78fb4b4",
+      "End": "8783bac1d7354dec9f9f470580b3b06a",
+      "Id": "68cae634d4be4111952f0db08925cf50"
+    },
+    {
+      "Start": "1b944730b29a44d69a917e62e19fc80a",
+      "End": "678a4aa732254668bf17b6c8c4256bb7",
+      "Id": "d3855b714bc246a899d2e2abb0d46324"
+    },
+    {
+      "Start": "6a63b60df66748bf838ada2e66377e6d",
+      "End": "ab9293564d7c49619cb74737c3b6287f",
+      "Id": "aecda881ca9c4f29a6dfab52879fab2a"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.5.0.5905",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -982.94669847861735,
+      "EyeY": 1070.442256685169,
+      "EyeZ": 4718.7423759799831,
+      "LookX": 977.94669847861735,
+      "LookY": -1059.442256685169,
+      "LookZ": -4726.7423759799831,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "43061559e1754781bafb852ea06b32ec",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1048.9551181584616,
+        "Y": 112.45048226719126
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "deb6bd3a48304bfca628960cb871ed04",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1048.9551181584616,
+        "Y": 230.8504822671913
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "a155d7dbd972452fbedcfbbfdba8a75a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1050.4108146508293,
+        "Y": 351.71518539634781
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.AreJoined",
+        "Id": "b29dc14336bc4c9382f9acc5036d632f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1327.6145937005076,
+        "Y": 130.42477422623219
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.AreJoined",
+        "Id": "b49a72f29d504acdb524ab0953623ea5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1331.2491033266206,
+        "Y": 350.31260660578528
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "621f07a9ff4b4801a8fcf5bbeacba3fc",
+        "Title": "DynamoRevit Test Graph                     \r\n",
+        "Nodes": [
+          "16508cdc5c1849a0937347f3596c19a0",
+          "24498c4589c94216916045d26682b1c9",
+          "73f9337f4835454c8bc672ed8cf3c4b7"
+        ],
+        "Left": 275.9367814226207,
+        "Top": -22.0,
+        "Width": 313.6,
+        "Height": 553.49772344971188,
+        "FontSize": 48.0,
+        "InitialTop": 160.8,
+        "InitialHeight": 379.89772344971192,
+        "TextblockHeight": 172.8,
+        "Background": "#FFFFFFFF"
+      },
+      {
+        "Id": "87e94b2fd80e441e8847fbe0d6023fe9",
+        "Title": "",
+        "Nodes": [
+          "2298ed741cc04665bb5997e85097f1f1"
+        ],
+        "Left": 598.93063549727174,
+        "Top": 76.6145471201514,
+        "Width": 313.6,
+        "Height": 146.4,
+        "FontSize": 14.0,
+        "InitialTop": 106.6145471201514,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 20.0,
+        "Background": "#FFFFB8D8"
+      },
+      {
+        "Id": "fe7e71e6596b4d978b625c1e8bb46064",
+        "Title": "",
+        "Nodes": [
+          "8d41215d85ff4964a1ef1ee0ee615698"
+        ],
+        "Left": 598.83196204258161,
+        "Top": 234.95306731153516,
+        "Width": 313.6,
+        "Height": 146.4,
+        "FontSize": 14.0,
+        "InitialTop": 264.95306731153516,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 20.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "b3691114f21d413c8f7b505a579c0734",
+        "Title": "",
+        "Nodes": [
+          "d8eef98f137d4dcea094254abf7f40cf"
+        ],
+        "Left": 598.78035481666984,
+        "Top": 391.58027305708833,
+        "Width": 313.6,
+        "Height": 132.0,
+        "FontSize": 14.0,
+        "InitialTop": 421.58027305708833,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 20.0,
+        "Background": "#FFFFC999"
+      },
+      {
+        "Id": "7f31cc40a401471aa9a2561cb85892df",
+        "Title": "Inputs",
+        "Nodes": [
+          "43061559e1754781bafb852ea06b32ec",
+          "deb6bd3a48304bfca628960cb871ed04",
+          "a155d7dbd972452fbedcfbbfdba8a75a"
+        ],
+        "Left": 1038.9551181584616,
+        "Top": 59.250482267191259,
+        "Width": 189.45569649236768,
+        "Height": 412.26470312915654,
+        "FontSize": 36.0,
+        "InitialTop": 112.45048226719126,
+        "InitialHeight": 384.26470312915654,
+        "TextblockHeight": 43.2,
+        "Background": "#FFFFB8D8"
+      },
+      {
+        "Id": "9f32fffed59a45f8ab6888d2b11cd76b",
+        "Title": "Output - Not joined",
+        "Nodes": [
+          "b29dc14336bc4c9382f9acc5036d632f"
+        ],
+        "Left": 1317.6145937005076,
+        "Top": 34.024774226232182,
+        "Width": 248.0,
+        "Height": 214.60000000000002,
+        "FontSize": 36.0,
+        "InitialTop": 130.42477422623219,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 86.4,
+        "Background": "#FFFFC999"
+      },
+      {
+        "Id": "a19006c0087c4d4f862293f57954f297",
+        "Title": "Output - Joined",
+        "Nodes": [
+          "b49a72f29d504acdb524ab0953623ea5"
+        ],
+        "Left": 1321.2491033266206,
+        "Top": 253.91260660578527,
+        "Width": 248.0,
+        "Height": 214.60000000000002,
+        "FontSize": 36.0,
+        "InitialTop": 350.31260660578528,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 86.4,
+        "Background": "#FFFFC999"
+      },
+      {
+        "Id": "16508cdc5c1849a0937347f3596c19a0",
+        "Title": "File Name\r\n_______________________________________________________\r\n\r\nIsJoined_UnitTest.dyn",
+        "Nodes": [],
+        "Left": 285.9367814226207,
+        "Top": 160.8,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "24498c4589c94216916045d26682b1c9",
+        "Title": "Version\r\n_______________________________________________________\r\n\r\nScript Version - 001\r\nDynamo Version - 2.2.3\r\nRevit Model - rac_advanced_sample_project.rvt\r\nRevit Version - 2020",
+        "Nodes": [],
+        "Left": 285.9367814226207,
+        "Top": 259.24886172485168,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "73f9337f4835454c8bc672ed8cf3c4b7",
+        "Title": "Author\r\n_______________________________________________________\r\n\r\nSylvester Knudsen\r\n\r\nComputational Specialist\r\nmetaspace.co",
+        "Nodes": [],
+        "Left": 285.9367814226207,
+        "Top": 400.69772344971193,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "2298ed741cc04665bb5997e85097f1f1",
+        "Title": "Variables / Inputs\r\n_______________________________________________________\r\n\r\nRed indicates Variables that can be altered per project and must be set accordingly before running the script.",
+        "Nodes": [],
+        "Left": 608.93063549727174,
+        "Top": 106.6145471201514,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "8d41215d85ff4964a1ef1ee0ee615698",
+        "Title": "Working / Functions\r\n_______________________________________________________\r\n\r\nGreen indicates the working of the script. No changes should be made in these groups unless advised.",
+        "Nodes": [],
+        "Left": 608.83196204258161,
+        "Top": 264.95306731153516,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "d8eef98f137d4dcea094254abf7f40cf",
+        "Title": "Checking / Outputs\r\n_______________________________________________________\r\n\r\nOrange indicates checking nodes to ensure the script has deployed correctly.",
+        "Nodes": [],
+        "Left": 608.78035481666984,
+        "Top": 421.58027305708833,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -908.51925275816006,
+    "Y": 111.54520611624967,
+    "Zoom": 0.88044889935438908
+  }
+}
