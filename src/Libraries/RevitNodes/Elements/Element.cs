@@ -694,16 +694,16 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Gets the child component elements of the current Element.
+        /// Gets the child Elements of the current Element.
         /// </summary>
-        /// <returns>Sub component elements.</returns>
-        public IEnumerable<Element> GetChildComponents()
+        /// <returns>Child Elements.</returns>
+        public IEnumerable<Element> GetChildElements()
         {
-            var subComponents = GetElementSubComponents(this.InternalElement);
+            var subComponents = GetElementChildElements(this.InternalElement);
             return subComponents;
         }
 
-        private IEnumerable<Element> GetElementSubComponents(Autodesk.Revit.DB.Element element)
+        private IEnumerable<Element> GetElementChildElements(Autodesk.Revit.DB.Element element)
         {
             List<Element> components = new List<Element>();
             BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
@@ -712,53 +712,77 @@ namespace Revit.Elements
             switch (builtInCategory)
             {
                 case BuiltInCategory.OST_Stairs:
-                    var stairElement = element as Autodesk.Revit.DB.Architecture.Stairs;
-                    List<ElementId> stairComponentIds = new List<ElementId>();
-                    stairComponentIds.AddRange(stairElement.GetStairsLandings().ToList());
-                    stairComponentIds.AddRange(stairElement.GetStairsRuns().ToList());
-                    stairComponentIds.AddRange(stairElement.GetStairsSupports().ToList());
-                    if (stairComponentIds.Count == 0)
-                        throw new InvalidOperationException(Properties.Resources.NoSubComponents);
-                    List<Element> stairComponentElements = stairComponentIds.Select(id => Document.GetElement(id).ToDSType(true))
-                                                                             .ToList();
+                    List<Element> stairComponentElements = GetChildElementsFromStairs(element);
                     components.AddRange(stairComponentElements);
                     break;
 
                 case BuiltInCategory.OST_StructuralFramingSystem:
-                    var beamSystemElement = element as Autodesk.Revit.DB.BeamSystem;
-                    List<ElementId> beamSystemComponentIds = beamSystemElement.GetBeamIds().ToList();
-                    if (beamSystemComponentIds.Count == 0)
-                        throw new InvalidOperationException(Properties.Resources.NoSubComponents);
-                    List<Element> beamSystemComponentElements = beamSystemComponentIds.Select(id => Document.GetElement(id).ToDSType(true))
-                                                                             .ToList();
+                    List<Element> beamSystemComponentElements = GetChildElementsFromStructuralFramingSystem(element);
                     components.AddRange(beamSystemComponentElements);
                     break;
 
-                case BuiltInCategory.OST_StairsRailing:
-                    var railingElement = element as Autodesk.Revit.DB.Architecture.Railing;
-                    List<ElementId> railingComponentIds = new List<ElementId>();
-                    railingComponentIds.AddRange(railingElement.GetHandRails().ToList());
-                    railingComponentIds.Add(railingElement.TopRail);
-                    if (railingComponentIds.Count == 0)
-                        throw new InvalidOperationException(Properties.Resources.NoSubComponents);
-                    List<Element> railingComponentElements = railingComponentIds.Select(id => Document.GetElement(id).ToDSType(true))
-                                                                                 .ToList();
+                case BuiltInCategory.OST_Railings:
+                    List<Element> railingComponentElements = GetChildElementsFromRailings(element);
                     components.AddRange(railingComponentElements);
                     break;
 
                 default:
-                    var familyInstance = element as Autodesk.Revit.DB.FamilyInstance;
-                    if (familyInstance == null)
-                        throw new NullReferenceException(Properties.Resources.NoSubComponents);
-                    List<ElementId> componentIds = familyInstance.GetSubComponentIds().ToList();
-                    if (componentIds.Count == 0 || componentIds == null)
-                        throw new NullReferenceException(Properties.Resources.NoSubComponents);
-                    List<Element> componentElements = componentIds.Select(id => Document.GetElement(id).ToDSType(true))
-                                                                   .ToList();
+                    List<Element> componentElements = GetChildElementsFromFamilyInstance(element);
                     components.AddRange(componentElements);
                     break;
             }
             return components;
+        }
+
+        private static List<Element> GetChildElementsFromFamilyInstance(Autodesk.Revit.DB.Element element)
+        {
+            var familyInstance = element as Autodesk.Revit.DB.FamilyInstance;
+            if (familyInstance == null)
+                throw new NullReferenceException(Properties.Resources.NoChildElements);
+            List<ElementId> componentIds = familyInstance.GetSubComponentIds().ToList();
+            if (componentIds.Count == 0 || componentIds == null)
+                throw new NullReferenceException(Properties.Resources.NoChildElements);
+            List<Element> componentElements = componentIds.Select(id => Document.GetElement(id).ToDSType(true))
+                                                           .ToList();
+            return componentElements;
+        }
+
+        private static List<Element> GetChildElementsFromRailings(Autodesk.Revit.DB.Element element)
+        {
+            var railingElement = element as Autodesk.Revit.DB.Architecture.Railing;
+            List<ElementId> railingComponentIds = new List<ElementId>();
+            railingComponentIds.AddRange(railingElement.GetHandRails().ToList());
+            railingComponentIds.Add(railingElement.TopRail);
+            if (railingComponentIds.Count == 0)
+                throw new InvalidOperationException(Properties.Resources.NoChildElements);
+            List<Element> railingComponentElements = railingComponentIds.Select(id => Document.GetElement(id).ToDSType(true))
+                                                                         .ToList();
+            return railingComponentElements;
+        }
+
+        private static List<Element> GetChildElementsFromStructuralFramingSystem(Autodesk.Revit.DB.Element element)
+        {
+            var beamSystemElement = element as Autodesk.Revit.DB.BeamSystem;
+            List<ElementId> beamSystemComponentIds = beamSystemElement.GetBeamIds().ToList();
+            if (beamSystemComponentIds.Count == 0)
+                throw new InvalidOperationException(Properties.Resources.NoChildElements);
+            List<Element> beamSystemComponentElements = beamSystemComponentIds.Select(id => Document.GetElement(id).ToDSType(true))
+                                                                     .ToList();
+            return beamSystemComponentElements;
+        }
+
+        private static List<Element> GetChildElementsFromStairs(Autodesk.Revit.DB.Element element)
+        {
+            var stairElement = element as Autodesk.Revit.DB.Architecture.Stairs;
+            List<ElementId> stairComponentIds = new List<ElementId>();
+            stairComponentIds.AddRange(stairElement.GetStairsLandings().ToList());
+            stairComponentIds.AddRange(stairElement.GetStairsRuns().ToList());
+            stairComponentIds.AddRange(stairElement.GetStairsSupports().ToList());
+            if (stairComponentIds.Count == 0)
+                throw new InvalidOperationException(Properties.Resources.NoChildElements);
+            List<Element> stairComponentElements = stairComponentIds.Select(id => Document.GetElement(id).ToDSType(true))
+                                                                     .ToList();
+            return stairComponentElements;
         }
 
         /// <summary>
@@ -767,8 +791,7 @@ namespace Revit.Elements
         /// <returns>Parent Element</returns>
         public Element GetParentComponent()
         {
-            var parentComponent = GetParentElementFromElement(this.InternalElement);
-            return parentComponent;
+            return GetParentElementFromElement(this.InternalElement);
         }
 
         private Element GetParentElementFromElement(Autodesk.Revit.DB.Element element)
@@ -779,37 +802,65 @@ namespace Revit.Elements
             switch (builtInCategory)
             {
                 case BuiltInCategory.OST_StairsLandings:
-                    var stairElement = element as Autodesk.Revit.DB.Architecture.StairsLanding;
-                    if (stairElement == null)
-                        throw new InvalidOperationException(Properties.Resources.NoSuperComponent);
-                    parent = stairElement.GetStairs();
+                    parent = GetParentComponentFromStairsLandings(element);
                     break;
 
                 case BuiltInCategory.OST_StructuralFraming:
-                    var beam = element as Autodesk.Revit.DB.FamilyInstance;
-                    if (beam == null)
-                        throw new InvalidOperationException(Properties.Resources.NoSuperComponent);
-                    parent = BeamSystem.BeamBelongsTo(beam);
+                    parent = GetParentElementFromStructuralFraming(element);
                     break;
 
                 case BuiltInCategory.OST_Railings:
-                    var railingElement = element as Autodesk.Revit.DB.Architecture.ContinuousRail;
-                    ElementId hostId = railingElement.HostRailingId;
-                    if (hostId == null)
-                        throw new InvalidOperationException(Properties.Resources.NoSuperComponent);
-                    parent = Document.GetElement(hostId);
+                    parent = GetParentElementFromRailings(element);
                     break;
 
                 default:
-                    var familyInstance = element as Autodesk.Revit.DB.FamilyInstance;
-                    if (familyInstance == null)
-                        throw new InvalidOperationException(Properties.Resources.NoSuperComponent);
-                    parent = familyInstance.SuperComponent;
+                    parent = GetParentElementFromFamilyInstance(element);
                     break;
             }
             if (parent == null)
-                throw new InvalidOperationException(Properties.Resources.NoSuperComponent);
+                throw new InvalidOperationException(Properties.Resources.NoParentElement);
             return parent.ToDSType(true);
+        }
+
+        private static Autodesk.Revit.DB.Element GetParentElementFromFamilyInstance(Autodesk.Revit.DB.Element element)
+        {
+            Autodesk.Revit.DB.Element parent;
+            var familyInstance = element as Autodesk.Revit.DB.FamilyInstance;
+            if (familyInstance == null)
+                throw new InvalidOperationException(Properties.Resources.NoParentElement);
+            parent = familyInstance.SuperComponent;
+            return parent;
+        }
+
+        private static Autodesk.Revit.DB.Element GetParentElementFromRailings(Autodesk.Revit.DB.Element element)
+        {
+            Autodesk.Revit.DB.Element parent;
+            var railingElement = element as Autodesk.Revit.DB.Architecture.ContinuousRail;
+            ElementId hostId = railingElement.HostRailingId;
+            if (hostId == null)
+                throw new InvalidOperationException(Properties.Resources.NoParentElement);
+            parent = Document.GetElement(hostId);
+            return parent;
+        }
+
+        private static Autodesk.Revit.DB.Element GetParentElementFromStructuralFraming(Autodesk.Revit.DB.Element element)
+        {
+            Autodesk.Revit.DB.Element parent;
+            var beam = element as Autodesk.Revit.DB.FamilyInstance;
+            if (beam == null)
+                throw new InvalidOperationException(Properties.Resources.NoParentElement);
+            parent = BeamSystem.BeamBelongsTo(beam);
+            return parent;
+        }
+
+        private static Autodesk.Revit.DB.Element GetParentComponentFromStairsLandings(Autodesk.Revit.DB.Element element)
+        {
+            Autodesk.Revit.DB.Element parent;
+            var stairElement = element as Autodesk.Revit.DB.Architecture.StairsLanding;
+            if (stairElement == null)
+                throw new InvalidOperationException(Properties.Resources.NoParentElement);
+            parent = stairElement.GetStairs();
+            return parent;
         }
 
         #region Location extraction & manipulation
