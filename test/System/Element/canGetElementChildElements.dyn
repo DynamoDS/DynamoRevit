@@ -2,7 +2,7 @@
   "Uuid": "ead17c92-af78-4588-bf3b-5a5e2913f794",
   "IsCustomNode": false,
   "Description": null,
-  "Name": "canGetElementSubComponents",
+  "Name": "canGetElementChildElements",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -114,11 +114,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.Element.GetChildComponents",
-      "Id": "843192c44f0041bca6f673342899fde5",
+      "FunctionSignature": "Revit.Elements.Element.GetChildElements",
+      "Id": "d0d72824899e4a3cbb2bac20f06df0d3",
       "Inputs": [
         {
-          "Id": "511aa442332f44f2a1713ebae5240c47",
+          "Id": "842267066b6b4ddfacc153c84a19d64a",
           "Name": "element",
           "Description": "Revit.Elements.Element",
           "UsingDefaultValue": false,
@@ -129,9 +129,9 @@
       ],
       "Outputs": [
         {
-          "Id": "358f59d872724b1aae06c4255a64e7d1",
+          "Id": "9dedce9afcb94cfbae3ab787a5e3ab38",
           "Name": "Element[]",
-          "Description": "Sub component elements.",
+          "Description": "Child Elements.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -139,16 +139,16 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Gets the child component elements of the current Element.\n\nElement.GetChildComponents ( ): Element[]"
+      "Description": "Gets the child Elements of the current Element.\n\nElement.GetChildElements ( ): Element[]"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.Element.GetChildComponents",
-      "Id": "e0b8a17961b146f690b90b7712f5c36c",
+      "FunctionSignature": "Revit.Elements.Element.GetChildElements",
+      "Id": "2be80c00e2174a588d91e442da4fe4e0",
       "Inputs": [
         {
-          "Id": "5eccdcb5e8a648f8b254d7adca9399bd",
+          "Id": "c6247e978e634d67944f12ce1ddb519a",
           "Name": "element",
           "Description": "Revit.Elements.Element",
           "UsingDefaultValue": false,
@@ -159,9 +159,9 @@
       ],
       "Outputs": [
         {
-          "Id": "f28bd72db1114e8bb1dc8cbcdabeda12",
+          "Id": "ff11682678ba42879bb08cc20f5b609c",
           "Name": "Element[]",
-          "Description": "Sub component elements.",
+          "Description": "Child Elements.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -169,29 +169,29 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Gets the child component elements of the current Element.\n\nElement.GetChildComponents ( ): Element[]"
+      "Description": "Gets the child Elements of the current Element.\n\nElement.GetChildElements ( ): Element[]"
     }
   ],
   "Connectors": [
     {
       "Start": "5e1695e45cf74003a9cb7731e04694ae",
-      "End": "511aa442332f44f2a1713ebae5240c47",
-      "Id": "f51d729321884baab0c21e6c4500e71c"
+      "End": "842267066b6b4ddfacc153c84a19d64a",
+      "Id": "87f24a1b3ba24862abe67f49877b5add"
     },
     {
       "Start": "e053958c6f834c528310083a19e4bd5e",
-      "End": "5eccdcb5e8a648f8b254d7adca9399bd",
-      "Id": "36fd5c32de8444648263946a2383fa15"
+      "End": "c6247e978e634d67944f12ce1ddb519a",
+      "Id": "4cefb2aca265457a9273773bd90e8324"
     },
     {
-      "Start": "358f59d872724b1aae06c4255a64e7d1",
+      "Start": "9dedce9afcb94cfbae3ab787a5e3ab38",
       "End": "88db67f6073f498f8639801def607463",
-      "Id": "cb5498f7b3484382b5756c6b0cb5eebd"
+      "Id": "a40b0a1434a845efa03e3dd6b4206c56"
     },
     {
-      "Start": "f28bd72db1114e8bb1dc8cbcdabeda12",
+      "Start": "ff11682678ba42879bb08cc20f5b609c",
       "End": "060f31ed377e4fb0b4fae8a77842df41",
-      "Id": "c20c908f1edb456fb84d74278148ba53"
+      "Id": "30d42a2ca85e41f7b87af70eedd17217"
     }
   ],
   "Dependencies": [],
@@ -261,23 +261,23 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "Element.GetChildComponents",
-        "Id": "843192c44f0041bca6f673342899fde5",
+        "Name": "Element.GetChildElements",
+        "Id": "d0d72824899e4a3cbb2bac20f06df0d3",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 298.37717467690777,
-        "Y": 87.745213643521311
+        "X": 293.10226381072994,
+        "Y": 89.855177989992058
       },
       {
         "ShowGeometry": true,
-        "Name": "Element.GetChildComponents",
-        "Id": "e0b8a17961b146f690b90b7712f5c36c",
+        "Name": "Element.GetChildElements",
+        "Id": "2be80c00e2174a588d91e442da4fe4e0",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 309.39450120549589,
-        "Y": 217.46335966001016
+        "X": 300.954643819612,
+        "Y": 206.91353792765528
       }
     ],
     "Annotations": [
@@ -366,18 +366,18 @@
       },
       {
         "Id": "7c9ce5ea853443b2817bb41cc29ab53d",
-        "Title": "Element.GetSubComponents",
+        "Title": "Element.GetChildElements",
         "Nodes": [
-          "843192c44f0041bca6f673342899fde5",
-          "e0b8a17961b146f690b90b7712f5c36c"
+          "d0d72824899e4a3cbb2bac20f06df0d3",
+          "2be80c00e2174a588d91e442da4fe4e0"
         ],
-        "Left": 288.37717467690777,
-        "Top": 34.411880310187975,
-        "Width": 466.05,
-        "Height": 276.05147934982222,
+        "Left": 283.10226381072994,
+        "Top": 36.521844656658722,
+        "Width": 426.43333333333334,
+        "Height": 263.3916932709966,
         "FontSize": 36.0,
-        "InitialTop": 87.745213643521311,
-        "InitialHeight": 256.73748232064634,
+        "InitialTop": 89.855177989992058,
+        "InitialHeight": 274.71814601648884,
         "TextblockHeight": 43.333333333333336,
         "Background": "#FFB9F9E1"
       },
@@ -483,8 +483,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": 138.51939245034004,
-    "Y": 189.62240681212802,
-    "Zoom": 0.63192221023233175
+    "X": 144.42241751082997,
+    "Y": 177.66334541114958,
+    "Zoom": 1.1321728068677515
   }
 }

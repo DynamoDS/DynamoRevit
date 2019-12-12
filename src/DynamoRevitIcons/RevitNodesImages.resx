@@ -9127,7 +9127,7 @@
         IsWNtkhxoy1S3GiLFDfaIsWNtkhxoy1S3GiLFDfaIsWNluze+R+dPFk+KUnfeAAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="Revit.Elements.Element.GetParentComponent.Large" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Revit.Elements.Element.GetParentElement.Large" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGEAAABhCAYAAADGBs+jAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EgAACxIB0t1+/AAABgpJREFUeF7tnLtuG0cUhv0IfIP4EdTI8EWRFYm+QQEiqApYSZ2QilCjIhDBwlAn
@@ -9159,7 +9159,7 @@
         OY/hafAuzV0AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="Revit.Elements.Element.GetParentComponent.Small" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Revit.Elements.Element.GetParentElement.Small" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EgAACxIB0t1+/AAAAjdJREFUWEfNlkFLW0EUhf0J/SnZRHShVu1rXpyikl9gNjZ05SZkIYQQsuiiWaSE

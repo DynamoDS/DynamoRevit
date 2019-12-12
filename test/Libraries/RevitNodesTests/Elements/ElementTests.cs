@@ -308,9 +308,9 @@ namespace RevitNodesTests.Elements
             var expectedBeamParentElement = 319537;
 
             // Act
-            var wallParentElementException = Assert.Throws<System.InvalidOperationException>(() => wall.GetParentComponent());
-            var resultWindowParentElement = window.GetParentComponent().Id;
-            var resultBeamParentElement = beam.GetParentComponent().Id;
+            var wallParentElementException = Assert.Throws<System.InvalidOperationException>(() => wall.GetParentElement());
+            var resultWindowParentElement = window.GetParentElement().Id;
+            var resultBeamParentElement = beam.GetParentElement().Id;
 
             // Assert
             Assert.AreEqual(wallParentElementException.Message, expectedExceptionMessageWallSubComponents);
