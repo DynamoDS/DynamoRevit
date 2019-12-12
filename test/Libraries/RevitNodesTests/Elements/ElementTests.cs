@@ -317,5 +317,52 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(expectedWindowParentElement, resultWindowParentElement);
             Assert.AreEqual(expectedBeamParentElement, resultBeamParentElement);
         }
+        
+        [Test]
+        [TestModel((@".\Element\elementTransform.rvt"))]
+        public void CanTransformElement()
+        {
+            // Arrange
+            var delta = 0.001;
+            var originPoint = Coordinates.BasePoint();  
+            var fromCS = CoordinateSystem.ByOrigin(originPoint);
+            var translatedOriginPoint = originPoint.Translate(Vector.XAxis(), 10000) as Autodesk.DesignScript.Geometry.Point;
+            var contextCS = CoordinateSystem.ByOrigin(translatedOriginPoint).Rotate(translatedOriginPoint,
+                                                                                    Vector.ZAxis(),
+                                                                                    25);
+            var wall = ElementSelector.ByElementId(316150);
+            var rectangularColumn = ElementSelector.ByElementId(318266);
+            var steelColumn = ElementSelector.ByElementId(316180);
+            var lineBasedFamily = ElementSelector.ByElementId(317296);
+
+            var expectedRectangularColumnLocation = Autodesk.DesignScript.Geometry.Point.ByCoordinates(5317.185,-364.393,0);
+            var expectedLineBasedFamilyLocation = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(Autodesk.DesignScript.Geometry.Point.ByCoordinates(6192.436, 989.836, 0),
+                                                                                                           Autodesk.DesignScript.Geometry.Point.ByCoordinates(7220.897, 2215.507, 0));
+
+            var originalRectangularColumnLocation = Autodesk.DesignScript.Geometry.Point.ByCoordinates(-5924.398, -81.245, 0); ;
+            var originalLineBasedFamilyLocation = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(Autodesk.DesignScript.Geometry.Point.ByCoordinates(-4324.398, 118.755, 0),
+                                                                                                           Autodesk.DesignScript.Geometry.Point.ByCoordinates(-2724.398, 118.755, 0));
+
+            // Act
+            var transformlineBasedFamily = lineBasedFamily.Transform(fromCS, contextCS);
+            var transformedlineBasedFamilyLocation = transformlineBasedFamily.GetLocation() as Autodesk.DesignScript.Geometry.Line;
+            var transformRectangularColumn = rectangularColumn.Transform(fromCS, contextCS);
+            var transformedRectangularColumnLocation = transformRectangularColumn.GetLocation() as Autodesk.DesignScript.Geometry.Point;
+            var wallEx = Assert.Throws<System.Exception>(() => wall.Transform(fromCS, contextCS));
+            var steelColumnEx = Assert.Throws<System.Exception>(() => steelColumn.Transform(fromCS, contextCS));
+
+
+            // Assert - Elements have moved
+            Assert.AreNotEqual(originalRectangularColumnLocation.X, transformedRectangularColumnLocation.X);
+            Assert.AreNotEqual(originalRectangularColumnLocation.Y, transformedRectangularColumnLocation.Y);
+            Assert.AreNotEqual(originalLineBasedFamilyLocation.StartPoint.X, transformedlineBasedFamilyLocation.StartPoint.X);
+            Assert.AreNotEqual(originalLineBasedFamilyLocation.StartPoint.Y, transformedlineBasedFamilyLocation.StartPoint.Y);
+
+            // Assert - Elements are in correct position
+            Assert.AreEqual(expectedRectangularColumnLocation.X, transformedRectangularColumnLocation.X, delta);
+            Assert.AreEqual(expectedRectangularColumnLocation.Y, transformedRectangularColumnLocation.Y, delta);
+            Assert.AreEqual(expectedLineBasedFamilyLocation.StartPoint.X, transformedlineBasedFamilyLocation.StartPoint.X, delta);
+            Assert.AreEqual(expectedLineBasedFamilyLocation.StartPoint.Y, transformedlineBasedFamilyLocation.StartPoint.Y, delta);
+        }
     }
 }

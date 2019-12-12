@@ -5,6 +5,8 @@ using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+using DynamoUnits;
+using Revit.Elements.InternalUtilities;
 using Revit.GeometryConversion;
 using Revit.GeometryReferences;
 using RevitServices.Elements;
@@ -861,6 +863,82 @@ namespace Revit.Elements
                 throw new InvalidOperationException(Properties.Resources.NoParentElement);
             parent = stairElement.GetStairs();
             return parent;
+        }
+
+        /// <summary>
+        /// Transforms this Element from source CoordinateSystem to new context CoordinateSystem.
+        /// </summary>
+        /// <param name="fromCoordinateSystem">Source CoordinatSystem</param>
+        /// <param name="contextCoordinateSystem">Context CordinateSystem</param>
+        /// <returns>Transformed Element</returns>
+        public Element Transform(CoordinateSystem fromCoordinateSystem, CoordinateSystem contextCoordinateSystem)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+            var transManager = TransactionManager.Instance.TransactionWrapper;
+            var t = transManager.StartTransaction(Document);
+            try
+            {
+                SetLocationFromCS(this, fromCoordinateSystem, contextCoordinateSystem);
+                RotateElementFromCS(this, fromCoordinateSystem, contextCoordinateSystem);
+                t.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                t.CancelTransaction();
+                throw new Exception(ex.Message);
+            }         
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
+        private void RotateElementFromCS(Element element, CoordinateSystem fromCS, CoordinateSystem contextCS)
+        {
+            var familyInstance = element as FamilyInstance;
+            if (familyInstance == null)
+                throw new NullReferenceException(nameof(element));
+            var newTransform = contextCS.ToTransform() as Autodesk.Revit.DB.Transform;
+
+            var oldTransform = fromCS.ToTransform() as Autodesk.Revit.DB.Transform;
+            double[] oldRotationAngles;
+            TransformUtils.ExtractEularAnglesFromTransform(oldTransform, out oldRotationAngles);
+            double[] newRotationAngles;
+            TransformUtils.ExtractEularAnglesFromTransform(newTransform, out newRotationAngles);
+            // Convert Eular angle to degrees
+            var rotationDegrees = (newRotationAngles.FirstOrDefault() / (2 * Math.PI)) * 360;
+            var newRotationAngle = rotationDegrees * Math.PI / 180;
+
+            if (!oldRotationAngles[0].AlmostEquals(newRotationAngle, 1.0e-6))
+            {
+                var rotateAngle = newRotationAngle - oldRotationAngles[0];
+                var axis = Autodesk.Revit.DB.Line.CreateUnbound(oldTransform.Origin, oldTransform.BasisZ);
+                Autodesk.Revit.DB.ElementTransformUtils.RotateElement(Document, new Autodesk.Revit.DB.ElementId(Id), axis, -rotateAngle);
+            }
+        }
+
+        private void SetLocationFromCS(Element element, CoordinateSystem fromCS, CoordinateSystem contextCS)
+        {
+            var locationGeometry = element.InternalElement.Location;
+            if (locationGeometry is Autodesk.Revit.DB.LocationCurve)
+            {
+                var locationCurve = locationGeometry as Autodesk.Revit.DB.LocationCurve;
+                var dynamoCurve = locationCurve.Curve.ToProtoType();
+                var newLocation = dynamoCurve.Transform(fromCS,contextCS) as Curve;
+                locationCurve.Curve = newLocation.ToRevitType(true);
+                dynamoCurve.Dispose();
+                newLocation.Dispose();
+                return;
+            }
+            else if (locationGeometry is Autodesk.Revit.DB.LocationPoint)
+            {
+                var location = element.InternalElement.Location as Autodesk.Revit.DB.LocationPoint;
+                var dynamoPoint = location.Point.ToPoint();
+                var newLocation = dynamoPoint.Transform(fromCS, contextCS) as Autodesk.DesignScript.Geometry.Point;
+                location.Point = newLocation.ToRevitType(true);
+                dynamoPoint.Dispose();
+                newLocation.Dispose();
+                return;
+            }
+            throw new Exception(Properties.Resources.InvalidElementLocation);
         }
 
         #region Location extraction & manipulation
