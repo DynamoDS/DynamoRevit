@@ -691,20 +691,29 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Element has no child Elements.
+        /// </summary>
+        internal static string NoChildElements {
+            get {
+                return ResourceManager.GetString("NoChildElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Element has no parent component.
+        /// </summary>
+        internal static string NoParentElement {
+            get {
+                return ResourceManager.GetString("NoParentElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No shared parameter file found..
         /// </summary>
         internal static string NoSharedParameterFileFound {
             get {
                 return ResourceManager.GetString("NoSharedParameterFileFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Element has no sub components.
-        /// </summary>
-        internal static string NoSubComponents {
-            get {
-                return ResourceManager.GetString("NoSubComponents", resourceCulture);
             }
         }
         
