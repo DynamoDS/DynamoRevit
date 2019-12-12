@@ -447,10 +447,10 @@
   <data name="StartPointListHasNulls" xml:space="preserve">
     <value>Start point list contains null elements</value>
   </data>
-  <data name="NoSubComponents" xml:space="preserve">
-    <value>Element has no sub components</value>
+  <data name="NoChildElements" xml:space="preserve">
+    <value>Element has no child Elements</value>
   </data>
-  <data name="NoSuperComponent" xml:space="preserve">
+  <data name="NoParentElement" xml:space="preserve">
     <value>Element has no parent component</value>
   </data>
 </root>

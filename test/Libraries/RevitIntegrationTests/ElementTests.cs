@@ -40,22 +40,22 @@ namespace RevitSystemTests
 
         [Test]
         [TestModel(@".\Element\elementComponents.rvt")]
-        public void CanGetElementSubComponents()
+        public void CanGetElementChildComponents()
         {
             // Arrange
-            string samplePath = Path.Combine(workingDirectory, @".\Element\canGetElementSubComponents.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canGetElementChildElements.dyn");
             string testPath = Path.GetFullPath(samplePath);
-            int expectedBeamSystemSubElementCount = 5;
+            int expectedBeamSystemChildElementCount = 5;
 
             // Act
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
-            var resultBeamSystemSubElementCount = GetPreviewValue("939d773907c94323b2abe1f1df69761c");
-            var resultWallSubElement = GetPreviewValue("ed85fef0a6e649dcb1384f8ec231b051");
+            var resultBeamSystemChildElementCount = GetPreviewValue("939d773907c94323b2abe1f1df69761c");
+            var resultWallChildElement = GetPreviewValue("ed85fef0a6e649dcb1384f8ec231b051");
 
             // Assert
-            Assert.AreEqual(expectedBeamSystemSubElementCount, resultBeamSystemSubElementCount);
-            Assert.IsNull(resultWallSubElement);
+            Assert.AreEqual(expectedBeamSystemChildElementCount, resultBeamSystemChildElementCount);
+            Assert.IsNull(resultWallChildElement);
         }
 
         [Test]
@@ -63,20 +63,20 @@ namespace RevitSystemTests
         public void CanGetElementSuperComponent()
         {
             // Arrange
-            string samplePath = Path.Combine(workingDirectory, @".\Element\canGetElementSuperComponent.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canGetElementParentElement.dyn");
             string testPath = Path.GetFullPath(samplePath);
-            int expectedWindowSuperComponentId = 319481;
-            int expectedBeamSuperComponentId = 319537;
+            int expectedWindowParentElementId = 319481;
+            int expectedBeamParentElementId = 319537;
 
             // Act
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
-            var resultWindowSuperComponent = GetPreviewValue("54c8d93d86494469b9e0cd06c78d248b");
-            var resultBeamSuperComponent = GetPreviewValue("85a73f659194410db9d9cf27355b0fd6");
+            var resultWindowParentElement = GetPreviewValue("54c8d93d86494469b9e0cd06c78d248b");
+            var resultBeamParentElement = GetPreviewValue("85a73f659194410db9d9cf27355b0fd6");
 
             // Assert
-            Assert.AreEqual(expectedBeamSuperComponentId, resultBeamSuperComponent);
-            Assert.AreEqual(expectedWindowSuperComponentId, resultWindowSuperComponent);
+            Assert.AreEqual(expectedBeamParentElementId, resultBeamParentElement);
+            Assert.AreEqual(expectedWindowParentElementId, resultWindowParentElement);
         }
 
     }

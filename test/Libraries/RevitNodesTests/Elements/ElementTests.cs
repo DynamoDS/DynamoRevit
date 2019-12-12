@@ -263,7 +263,7 @@ namespace RevitNodesTests.Elements
 
         [Test]
         [TestModel((@".\Element\elementComponents.rvt"))]
-        public void CanGetElementSubComponenets()
+        public void CanGetElementChildElements()
         {
             // Arrange
             var wall = ElementSelector.ByElementId(316153, true);
@@ -272,50 +272,50 @@ namespace RevitNodesTests.Elements
             var stair = ElementSelector.ByElementId(316246, true);
             var railing = ElementSelector.ByElementId(319643, true);
 
-            var expectedExceptionMessageWallSubComponents = Revit.Properties.Resources.NoSubComponents;
-            var expectedWindowSubComponents = new List<int>() { 319484, 319485 };
-            var expectedBeamSystemSubComponents = new List<int>() { 319563, 319575, 319577, 319579, 319581 };
-            var expectedStairSubComponents = new List<int>() { 316286, 316288, 316289 };
-            var expectedRailingSubComponents = new List<int>() { 319683 };
+            var expectedExceptionMessageWallChildElement = Revit.Properties.Resources.NoChildElements;
+            var expectedWindowChildElement = new List<int>() { 319484, 319485 };
+            var expectedBeamChildElements = new List<int>() { 319563, 319575, 319577, 319579, 319581 };
+            var expectedStairChildElements = new List<int>() { 316286, 316288, 316289 };
+            var expectedRailingChildElements = new List<int>() { 319683 };
 
             // Act
-            var resultWindowSubComponents = window.GetSubComponents().Select(x => x.Id).ToList();
-            var resultBeamSystemSubComponents = beamSystem.GetSubComponents().Select(x => x.Id).ToList();
-            var resultStairSubComponents = stair.GetSubComponents().Select(x => x.Id).ToList();
-            var resultRailingSubComponents = railing.GetSubComponents().Select(x => x.Id).ToList();
-            var wallSubComponentsException = Assert.Throws<System.NullReferenceException>(() => wall.GetSubComponents());
+            var resultWindowChildElements = window.GetChildElements().Select(x => x.Id).ToList();
+            var resultBeamSystemChildElements = beamSystem.GetChildElements().Select(x => x.Id).ToList();
+            var resultStairChildElements = stair.GetChildElements().Select(x => x.Id).ToList();
+            var resultRailingChildElements = railing.GetChildElements().Select(x => x.Id).ToList();
+            var wallChildElementsException = Assert.Throws<System.NullReferenceException>(() => wall.GetChildElements());
 
             // Assert
-            Assert.AreEqual(wallSubComponentsException.Message, expectedExceptionMessageWallSubComponents);
-            CollectionAssert.AreEqual(expectedWindowSubComponents, resultWindowSubComponents);
-            CollectionAssert.AreEqual(expectedBeamSystemSubComponents, resultBeamSystemSubComponents);
-            CollectionAssert.AreEqual(expectedStairSubComponents, resultStairSubComponents);
-            CollectionAssert.AreEqual(expectedRailingSubComponents, resultRailingSubComponents);
+            Assert.AreEqual(wallChildElementsException.Message, expectedExceptionMessageWallChildElement);
+            CollectionAssert.AreEqual(expectedWindowChildElement, resultWindowChildElements);
+            CollectionAssert.AreEqual(expectedBeamChildElements, resultBeamSystemChildElements);
+            CollectionAssert.AreEqual(expectedStairChildElements, resultStairChildElements);
+            CollectionAssert.AreEqual(expectedRailingChildElements, resultRailingChildElements);
 
         }
 
         [Test]
         [TestModel((@".\Element\elementComponents.rvt"))]
-        public void CanGetElementSuperComponent()
+        public void CanGetElementParentElement()
         {
             // Arrange
             var wall = ElementSelector.ByElementId(316153, true);
             var window = ElementSelector.ByElementId(319485, true);
             var beam = ElementSelector.ByElementId(319579, true);
 
-            var expectedExceptionMessageWallSubComponents = Revit.Properties.Resources.NoSuperComponent;
-            var expectedWindowParentComponent = 319481;
-            var expectedBeamParentComponent = 319537;
+            var expectedExceptionMessageWallSubComponents = Revit.Properties.Resources.NoParentElement;
+            var expectedWindowParentElement = 319481;
+            var expectedBeamParentElement = 319537;
 
             // Act
-            var wallSubComponentsException = Assert.Throws<System.InvalidOperationException>(() => wall.GetParentComponent());
-            var resultWindowParentComponent = window.GetParentComponent().Id;
-            var resultBeamParentComponent = beam.GetParentComponent().Id;
+            var wallParentElementException = Assert.Throws<System.InvalidOperationException>(() => wall.GetParentComponent());
+            var resultWindowParentElement = window.GetParentComponent().Id;
+            var resultBeamParentElement = beam.GetParentComponent().Id;
 
             // Assert
-            Assert.AreEqual(wallSubComponentsException.Message, expectedExceptionMessageWallSubComponents);
-            Assert.AreEqual(expectedWindowParentComponent, resultWindowParentComponent);
-            Assert.AreEqual(expectedBeamParentComponent, resultBeamParentComponent);
+            Assert.AreEqual(wallParentElementException.Message, expectedExceptionMessageWallSubComponents);
+            Assert.AreEqual(expectedWindowParentElement, resultWindowParentElement);
+            Assert.AreEqual(expectedBeamParentElement, resultBeamParentElement);
         }
     }
 }
