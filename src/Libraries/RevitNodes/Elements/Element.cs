@@ -699,8 +699,8 @@ namespace Revit.Elements
         /// <returns>Child Elements.</returns>
         public IEnumerable<Element> GetChildElements()
         {
-            var subComponents = GetElementChildElements(this.InternalElement);
-            return subComponents;
+            return GetElementChildElements(this.InternalElement);
+            
         }
 
         private IEnumerable<Element> GetElementChildElements(Autodesk.Revit.DB.Element element)
