@@ -721,7 +721,7 @@ namespace Revit.Elements
                     components.AddRange(beamSystemComponentElements);
                     break;
 
-                case BuiltInCategory.OST_Railings:
+                case BuiltInCategory.OST_StairsRailing:
                     List<Element> railingComponentElements = GetChildElementsFromRailings(element);
                     components.AddRange(railingComponentElements);
                     break;
