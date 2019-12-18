@@ -538,6 +538,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Id is not a valid ElementId, GUID, string or int..
+        /// </summary>
+        internal static string InvalidElementId {
+            get {
+                return ResourceManager.GetString("InvalidElementId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The location of the structural element is not a valid curve..
         /// </summary>
         internal static string InvalidElementLocation {

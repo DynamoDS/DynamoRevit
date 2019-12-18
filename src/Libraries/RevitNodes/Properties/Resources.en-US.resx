@@ -426,4 +426,7 @@
   <data name="NotHostElement" xml:space="preserve">
     <value>Element is not a Host Element</value>
   </data>
+  <data name="InvalidElementId" xml:space="preserve">
+    <value>Id is not a valid ElementId, GUID, string or int.</value>
+  </data>
 </root>

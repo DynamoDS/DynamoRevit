@@ -35,6 +35,12 @@
   <ItemGroup>
     <Reference Include="System.Drawing" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Revit.Application.Document.GetWorksharingPath.Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Revit.Application.Document.GetWorksharingPath.Small.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
     <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v2.0">

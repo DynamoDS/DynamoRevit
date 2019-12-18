@@ -106,6 +106,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gets the Element with the specified Id.
+        /// </summary>
+        internal static string ElementById {
+            get {
+                return ResourceManager.GetString("ElementById", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get all the elements at the specified Level from the model..
         /// </summary>
         internal static string ElementsatLevelDescription {
@@ -381,6 +390,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string PortDataAllVisibleElementsToolTip {
             get {
                 return ResourceManager.GetString("PortDataAllVisibleElementsToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Element Id as string, int or ElementId.
+        /// </summary>
+        internal static string PortDataByElementId {
+            get {
+                return ResourceManager.GetString("PortDataByElementId", resourceCulture);
             }
         }
         

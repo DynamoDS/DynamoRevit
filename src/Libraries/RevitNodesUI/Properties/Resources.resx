@@ -389,4 +389,10 @@
   <data name="PortDataViewToolTip" xml:space="preserve">
     <value>The View</value>
   </data>
+  <data name="ElementById" xml:space="preserve">
+    <value>Gets the Element with the specified Id</value>
+  </data>
+  <data name="PortDataByElementId" xml:space="preserve">
+    <value>Element Id as string, int or ElementId</value>
+  </data>
 </root>
