@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
+using Autodesk.Revit.DB;
 using Revit.Elements.Views;
 using RevitServices.Persistence;
 
@@ -83,7 +84,7 @@ namespace Revit.Elements.InternalUtilities
                 .ToList();
         }
 
-        public static IList<Element> OfCategory(Category category, View view = null)
+        public static IList<Element> OfCategory(Category category, Revit.Elements.Views.View view = null)
         {
             if (category == null) return null;
 
@@ -120,6 +121,53 @@ namespace Revit.Elements.InternalUtilities
             var collector = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             collector.OfClass(typeof(Autodesk.Revit.DB.Level));
             return collector.ToElements().Cast<Autodesk.Revit.DB.Level>();
+        }
+
+        public static List<List<Element>> RoomsByStatus()
+        {
+            List<List<Element>> roomsByStatus = new List<List<Element>>();
+            Document doc = DocumentManager.Instance.CurrentDBDocument;
+            var allRooms = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Rooms).WhereElementIsNotElementType().Cast<Autodesk.Revit.DB.Architecture.Room>();
+            
+            List<Revit.Elements.Element> placedRooms = new List<Revit.Elements.Element>();
+            List<Revit.Elements.Element> unplacedRooms = new List<Revit.Elements.Element>();
+            List<Revit.Elements.Element> notEnclosedRooms = new List<Revit.Elements.Element>();
+            List<Revit.Elements.Element> redundantRooms = new List<Revit.Elements.Element>();
+
+            SpatialElementBoundaryOptions opt = new SpatialElementBoundaryOptions();
+
+            foreach (Autodesk.Revit.DB.Architecture.Room room in allRooms)
+            {
+                if (room.Area > 0)
+                {
+                    placedRooms.Add(room.ToDSType(true));
+                }
+                else
+                {
+                    if (room.Location == null)
+                    {
+                        unplacedRooms.Add(room.ToDSType(true));
+                    }
+                    else
+                    {
+                        if (room.GetBoundarySegments(opt) == null || (room.GetBoundarySegments(opt)).Count == 0)
+                        {
+                            notEnclosedRooms.Add(room.ToDSType(true));
+                        }
+                        else
+                        {
+                            redundantRooms.Add(room.ToDSType(true));
+                        }
+                    }
+                }
+            }
+
+            roomsByStatus.Add(placedRooms);
+            roomsByStatus.Add(unplacedRooms);
+            roomsByStatus.Add(notEnclosedRooms);
+            roomsByStatus.Add(redundantRooms);
+
+            return roomsByStatus;
         }
     }
 }

@@ -457,11 +457,47 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not Enclosed Rooms in the document.
+        /// </summary>
+        internal static string PortDataNotEnclosedRoomsToolTip {
+            get {
+                return ResourceManager.GetString("PortDataNotEnclosedRoomsToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Placed Rooms in the document.
+        /// </summary>
+        internal static string PortDataPlacedRoomsToolTip {
+            get {
+                return ResourceManager.GetString("PortDataPlacedRoomsToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Redundant Rooms in the document.
+        /// </summary>
+        internal static string PortDataRedundantRoomsToolTip {
+            get {
+                return ResourceManager.GetString("PortDataRedundantRoomsToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SunSettings element..
         /// </summary>
         internal static string PortDataSunSettingToolTip {
             get {
                 return ResourceManager.GetString("PortDataSunSettingToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unplaced Rooms in the document.
+        /// </summary>
+        internal static string PortDataUnplacedRoomsToolTip {
+            get {
+                return ResourceManager.GetString("PortDataUnplacedRoomsToolTip", resourceCulture);
             }
         }
         
@@ -507,6 +543,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string RevisionVisibilitySelectorDescription {
             get {
                 return ResourceManager.GetString("RevisionVisibilitySelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Returns all rooms in the document grouped by status.
+        /// </summary>
+        internal static string RoomsByStatusDescription {
+            get {
+                return ResourceManager.GetString("RoomsByStatusDescription", resourceCulture);
             }
         }
         
