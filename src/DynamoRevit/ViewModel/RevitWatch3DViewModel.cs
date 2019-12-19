@@ -374,14 +374,14 @@ namespace Dynamo.Applications.ViewModel
    
             // Never access the current document with an invalid keeperId
             // See comment at the beginning of this method.
-            var dbDoc = DocumentManager.Instance.CurrentDBDocument;
+            var dbDoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument.Document;
             if (null == dbDoc)
             {
                 return;
             }
 
             TransactionManager.Instance.EnsureInTransaction(dbDoc);
-            DocumentManager.Instance.CurrentUIDocument.Document.Delete(keeperId);
+            dbDoc.Delete(keeperId);
             TransactionManager.Instance.ForceCloseTransaction();
         }
 
