@@ -237,7 +237,8 @@ namespace RevitSystemTests
             Assert.AreEqual(wallElementIdPresave, wallElementIdPostsave);
             Assert.AreEqual(wallElementCountPresave, wallElementCountPostsave);
 
-            // Delete temp file
+            // Close work space and delete temp file
+            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
             File.Delete(tempPath);
         }
 
