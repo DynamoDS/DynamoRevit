@@ -1,3 +1,7 @@
+## 0.1.12
+* Remove transient elements in Revit doc when Dynamo shutdown
+* Fix test failure of JsonRestoresBinding
+
 ## 0.1.11
 * Element nodes second batch - add 5 new nodes for DynamoRevit
 
