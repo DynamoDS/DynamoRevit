@@ -5,7 +5,7 @@ using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Revit.GeometryReferences;
 
-using Edge = Autodesk.Revit.DB.Edge;
+using Curve = Autodesk.Revit.DB.Curve;
 using Face = Autodesk.Revit.DB.Face;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
 
@@ -19,23 +19,23 @@ namespace Revit.GeometryConversion
         {
             if (revitFace == null) throw new ArgumentNullException("revitFace");
 
-            var revitEdgeLoops = EdgeLoopPartition.GetAllEdgeLoopsFromRevitFace(revitFace);
-            var partitionedRevitEdgeLoops = EdgeLoopPartition.ByEdgeLoopsAndFace(revitFace, revitEdgeLoops);
+            var revitCurveLoops = CurveLoopPartition.GetAllCurveloopsFromRevitFace(revitFace);
+            var partitionedRevitCurveLoops = CurveLoopPartition.ByCurveLoopsAndFace(revitFace, revitCurveLoops);
 
             var listSurface = new List<Surface>();
 
-            foreach (var edgeloopPartition in partitionedRevitEdgeLoops)
+            foreach (var curveloopPartition in partitionedRevitCurveLoops)
             {
                 // convert the trimming curves
-                var edgeLoops = EdgeLoopsAsPolyCurves(revitFace, edgeloopPartition);
+                var curveLoops = CurveLoopsAsPolyCurves(revitFace, curveloopPartition);
 
                 // convert the underrlying surface
                 var dyFace = (dynamic)revitFace;
-                Surface untrimmedSrf = SurfaceExtractor.ExtractSurface(dyFace, edgeLoops);
+                Surface untrimmedSrf = SurfaceExtractor.ExtractSurface(dyFace, curveLoops);
                 if (untrimmedSrf == null)
                 {
-                    edgeLoops.ForEach(x => x.Dispose());
-                    edgeLoops.Clear();
+                    curveLoops.ForEach(x => x.Dispose());
+                    curveLoops.Clear();
                     throw new Exception("Failed to extract surface");
                 }
 
@@ -43,18 +43,18 @@ namespace Revit.GeometryConversion
                 Surface converted;
                 try
                 {
-                    converted = untrimmedSrf.TrimWithEdgeLoops(edgeLoops);
+                    converted = untrimmedSrf.TrimWithEdgeLoops(curveLoops);
                 }
                 catch (Exception e)
                 {
-                    edgeLoops.ForEach(x => x.Dispose());
-                    edgeLoops.Clear();
+                    curveLoops.ForEach(x => x.Dispose());
+                    curveLoops.Clear();
                     untrimmedSrf.Dispose();
                     throw e;
                 }
 
-                edgeLoops.ForEach(x => x.Dispose());
-                edgeLoops.Clear();
+                curveLoops.ForEach(x => x.Dispose());
+                curveLoops.Clear();
                 untrimmedSrf.Dispose();
 
                 // perform unit conversion if necessary
@@ -71,18 +71,17 @@ namespace Revit.GeometryConversion
             return listSurface;
         }
 
-        private static List<PolyCurve> EdgeLoopsAsPolyCurves(Face face, 
-            IEnumerable<IEnumerable<Edge>> edgeLoops)
+        private static List<PolyCurve> CurveLoopsAsPolyCurves(Face face,
+            IEnumerable<IEnumerable<Autodesk.Revit.DB.Curve>> curveLoops)
         {
             List<PolyCurve> result = new List<PolyCurve>();
-            foreach (var edgeLoop in edgeLoops)
+            foreach(var curveLoop in curveLoops)
             {
-                List<Autodesk.DesignScript.Geometry.Curve> curves = 
+                List<Autodesk.DesignScript.Geometry.Curve> curves =
                     new List<Autodesk.DesignScript.Geometry.Curve>();
-                foreach (var edge in edgeLoop)
+                foreach (var curve in curveLoop)
                 {
-                    var dbCurve = edge.AsCurveFollowingFace(face);
-                    curves.Add(dbCurve.ToProtoType(false));
+                    curves.Add(curve.ToProtoType(false));
                 }
                 result.Add(PolyCurve.ByJoinedCurves(curves));
                 curves.ForEach(x => x.Dispose());
@@ -90,6 +89,5 @@ namespace Revit.GeometryConversion
             }
             return result;
         }
-
     }
 }

@@ -1217,7 +1217,7 @@ namespace RevitSystemTests
 
         }
 
-        [Test, Category("SmokeTests")]
+        [Test, Ignore, Category("Failure")] // This dyn file should connect nodes manully
         [TestModel(@".\empty.rfa")]
         public void Basics_Basic01()
         {
