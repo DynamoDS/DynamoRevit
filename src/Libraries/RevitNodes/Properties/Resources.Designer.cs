@@ -142,6 +142,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting child elements is not supported for this type of Element..
+        /// </summary>
+        internal static string ChildElementsNotSupported {
+            get {
+                return ResourceManager.GetString("ChildElementsNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Element has no Curtain Grid..
         /// </summary>
         internal static string CurtainGridNotFound {
@@ -709,20 +718,20 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Element has no parent component.
-        /// </summary>
-        internal static string NoParentElement {
-            get {
-                return ResourceManager.GetString("NoParentElement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Elements are not intersecting.
         /// </summary>
         internal static string NonIntersectingElements {
             get {
                 return ResourceManager.GetString("NonIntersectingElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Element has no parent component.
+        /// </summary>
+        internal static string NoParentElement {
+            get {
+                return ResourceManager.GetString("NoParentElement", resourceCulture);
             }
         }
         
