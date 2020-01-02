@@ -273,7 +273,7 @@ namespace RevitNodesTests.Elements
             var stair = ElementSelector.ByElementId(316246, true);
             var railing = ElementSelector.ByElementId(319643, true);
 
-            var expectedExceptionMessageWallChildElement = Revit.Properties.Resources.NoChildElements;
+            var expectedExceptionMessageWallChildElement = Revit.Properties.Resources.ChildElementsNotSupported;
             var expectedWindowChildElement = new List<int>() { 319484, 319485 };
             var expectedBeamChildElements = new List<int>() { 319563, 319575, 319577, 319579, 319581 };
             var expectedStairChildElements = new List<int>() { 316286, 316288, 316289 };
@@ -331,14 +331,15 @@ namespace RevitNodesTests.Elements
             var contextCS = CoordinateSystem.ByOrigin(translatedOriginPoint).Rotate(translatedOriginPoint,
                                                                                     Vector.ZAxis(),
                                                                                     25);
-            var wall = ElementSelector.ByElementId(316150);
-            var rectangularColumn = ElementSelector.ByElementId(318266);
-            var steelColumn = ElementSelector.ByElementId(316180);
-            var lineBasedFamily = ElementSelector.ByElementId(317296);
 
-            var expectedRectangularColumnLocation = Autodesk.DesignScript.Geometry.Point.ByCoordinates(5317.185,-364.393,0);
-            var expectedLineBasedFamilyLocation = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(Autodesk.DesignScript.Geometry.Point.ByCoordinates(6192.436, 989.836, 0),
-                                                                                                           Autodesk.DesignScript.Geometry.Point.ByCoordinates(7220.897, 2215.507, 0));
+            var wall = ElementSelector.ByElementId(316150) as Revit.Elements.FamilyInstance;
+            var rectangularColumn = ElementSelector.ByElementId(318266) as Revit.Elements.FamilyInstance;
+            var steelColumn = ElementSelector.ByElementId(316180) as Revit.Elements.FamilyInstance;
+            var lineBasedFamily = ElementSelector.ByElementId(317296) as Revit.Elements.FamilyInstance;
+
+            var expectedRectangularColumnLocation = Autodesk.DesignScript.Geometry.Point.ByCoordinates(4665.007,-2577.392,0);
+            var expectedLineBasedFamilyLocation = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(Autodesk.DesignScript.Geometry.Point.ByCoordinates(6030.576, -1719.941, 0),
+                                                                                                           Autodesk.DesignScript.Geometry.Point.ByCoordinates(7059.036, -494.270, 0));
 
             var originalRectangularColumnLocation = Autodesk.DesignScript.Geometry.Point.ByCoordinates(-5924.398, -81.245, 0); ;
             var originalLineBasedFamilyLocation = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(Autodesk.DesignScript.Geometry.Point.ByCoordinates(-4324.398, 118.755, 0),
@@ -349,8 +350,8 @@ namespace RevitNodesTests.Elements
             var transformedlineBasedFamilyLocation = transformlineBasedFamily.GetLocation() as Autodesk.DesignScript.Geometry.Line;
             var transformRectangularColumn = rectangularColumn.Transform(fromCS, contextCS);
             var transformedRectangularColumnLocation = transformRectangularColumn.GetLocation() as Autodesk.DesignScript.Geometry.Point;
-            var wallEx = Assert.Throws<System.Exception>(() => wall.Transform(fromCS, contextCS));
-            var steelColumnEx = Assert.Throws<System.Exception>(() => steelColumn.Transform(fromCS, contextCS));
+            var wallEx = Assert.Throws<System.NullReferenceException>(() => wall.Transform(fromCS, contextCS));
+            var steelColumnEx = Assert.Throws<System.NullReferenceException>(() => steelColumn.Transform(fromCS, contextCS));
 
 
             // Assert - Elements have moved

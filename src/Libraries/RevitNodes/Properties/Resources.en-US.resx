@@ -441,4 +441,7 @@
   <data name="NonIntersectingElements" xml:space="preserve">
     <value>Elements are not intersecting</value>
   </data>
+  <data name="ChildElementsNotSupported" xml:space="preserve">
+    <value>Getting child elements is not supported for this type of Element.</value>
+  </data>
 </root>
