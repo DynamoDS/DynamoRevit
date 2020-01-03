@@ -17,7 +17,7 @@ namespace Revit.GeometryConversion
             if (curveLoops.Count == 1)
                 return new List<CurvePartition>()
                 {
-                    new CurvePartition(){ AllCurves = curveLoops }
+                    new CurvePartition(){ OuterCurves = curveLoops[0] }
                 };
 
             var tesselatedCurveLoops = new List<Tuple<BoundingBox, List<XYZ>, List<Curve>>>();
@@ -85,7 +85,6 @@ namespace Revit.GeometryConversion
                 // remove innerEdge loops that have already been added to a partition
                 innerCurveLoops = innerCurveLoops.Where((_, j) => mask[j]).ToList();
                 // add the new partition
-                curvePatition.MergeAllCurves();
                 curvesPartitions.Add(curvePatition);
             }
 
@@ -131,19 +130,18 @@ namespace Revit.GeometryConversion
         public List<Curve> OuterCurves;
         public List<List<Curve>> InnerCurves;
 
-        public List<List<Curve>> AllCurves;
-
         public CurvePartition()
         {
             OuterCurves = new List<Curve>();
             InnerCurves = new List<List<Curve>>();
-            AllCurves = new List<List<Curve>>();
         }
 
-        public void MergeAllCurves()
+        public List<List<Curve>> GetAllCurves()
         {
-            AllCurves.Add(OuterCurves);
-            AllCurves.AddRange(InnerCurves);
+            var allCurves = new List<List<Curve>>();
+            allCurves.Add(OuterCurves);
+            allCurves.AddRange(InnerCurves);
+            return allCurves;
         }
     }
 }

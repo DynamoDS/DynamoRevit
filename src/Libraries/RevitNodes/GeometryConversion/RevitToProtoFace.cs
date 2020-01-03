@@ -27,7 +27,7 @@ namespace Revit.GeometryConversion
             foreach (var curveloopPartition in partitionedRevitCurveLoops)
             {
                 // convert the trimming curves
-                var curveLoops = CurveLoopsAsPolyCurves(revitFace, curveloopPartition.AllCurves);
+                var curveLoops = CurveLoopsAsPolyCurves(revitFace, curveloopPartition.GetAllCurves());
 
                 // convert the underrlying surface
                 var dyFace = (dynamic)revitFace;
