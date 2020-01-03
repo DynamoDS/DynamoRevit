@@ -1,5 +1,6 @@
-﻿using System.IO;
-
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using NUnit.Framework;
 
 using RevitServices.Persistence;
@@ -73,6 +74,37 @@ namespace RevitSystemTests
         public void WhenActiveDocumentResetIsRequiredVisualizationsAreCleared()
         {
             Assert.Inconclusive("Cannot test. API required for allowing closing all docs.");
+        }
+
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void CanSaveFamilyInCurrentDocument()
+        {
+            // Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Document\canSaveFamiliesInCurrentDocument.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            string expectedSavedFamilyFileName = "Rectangular Column.rfa";
+            int expectedSavedFileCount = 1;
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            string savedFamilyDirectoryPath = GetPreviewValue("0af5cc47acab47369c479f3a4b198306").ToString();
+
+            List<string> files = Directory.GetFiles(savedFamilyDirectoryPath).Select(x => Path.GetFileName(x)).ToList();
+            int resultSavedFileCount = files.Count;
+            string savedFamilyName = files.FirstOrDefault();
+            var fileExistInFolder = File.Exists(Path.GetFullPath(Path.Combine(savedFamilyDirectoryPath, expectedSavedFamilyFileName)));
+
+            // Assert
+            Assert.AreEqual(expectedSavedFileCount, resultSavedFileCount);
+            Assert.AreEqual(savedFamilyName, expectedSavedFamilyFileName);
+            Assert.IsTrue(fileExistInFolder);
+
+            // Clean up
+            Directory.Delete(savedFamilyDirectoryPath, true);
         }
 
         [Test]

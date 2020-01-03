@@ -1,7 +1,10 @@
 ﻿using NUnit.Framework;
 using Revit.Application;
+using Revit.Elements;
 using RevitTestServices;
 using RTF.Framework;
+using System;
+using System.IO;
 
 namespace RevitNodesTests.Elements
 {
@@ -77,5 +80,39 @@ namespace RevitNodesTests.Elements
             string worksharePath = Document.Current.WorksharingPath;
         }
 
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void CanSaveFamilyInCurrentDocument()
+        {
+            // Arrange
+            var saveableFamily = ElementSelector.ByElementId(110049, true);
+            var noneditableFamily = ElementSelector.ByElementId(20915, true);
+            string savedFamilyName = saveableFamily.Name + ".rfa";
+
+            string nonExistingTempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            string existingTempFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            Directory.CreateDirectory(existingTempFolder);
+
+            string expectedSavedFilePathNonExistingFolder = Path.GetFullPath(Path.Combine(nonExistingTempFolder, savedFamilyName));
+            string expectedSavedFilePathExistingFolder = Path.GetFullPath(Path.Combine(existingTempFolder, savedFamilyName));
+
+            // Act
+            var doc = Document.Current;
+            var resultSavedFamilyInNonExistingFolder = doc.SaveFamilyToFolder((Family)saveableFamily, nonExistingTempFolder);
+            var resultSavedFamilyInExistingFolder = doc.SaveFamilyToFolder((Family)saveableFamily, existingTempFolder);
+            var resultnoneditableFamily = Assert.Throws<Autodesk.Revit.Exceptions.ArgumentException>(() => doc.SaveFamilyToFolder((Family)noneditableFamily, existingTempFolder));
+            var fileExistInNonExistingFolder = File.Exists(Path.Combine(nonExistingTempFolder, savedFamilyName));
+            var fileExistInExistingFolder = File.Exists(Path.Combine(existingTempFolder, savedFamilyName));
+
+            // Assert
+            Assert.AreEqual(expectedSavedFilePathNonExistingFolder, resultSavedFamilyInNonExistingFolder);
+            Assert.AreEqual(expectedSavedFilePathExistingFolder, resultSavedFamilyInExistingFolder);
+            Assert.IsTrue(fileExistInNonExistingFolder);
+            Assert.IsTrue(fileExistInExistingFolder);
+
+            // Clean up
+            Directory.Delete(nonExistingTempFolder, true);
+            Directory.Delete(existingTempFolder, true);
+        }
     }
 }
