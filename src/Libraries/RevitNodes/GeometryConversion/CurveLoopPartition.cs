@@ -12,12 +12,12 @@ namespace Revit.GeometryConversion
     [SupressImportIntoVM]
     internal static class CurveLoopPartition
     {
-        public static List<List<List<Curve>>> ByCurveLoopsAndFace(Face face, List<List<Curve>> curveLoops)
+        public static List<CurvePartition> ByCurveLoops(List<List<Curve>> curveLoops)
         {
             if (curveLoops.Count == 1)
-                return new List<List<List<Curve>>>()
+                return new List<CurvePartition>()
                 {
-                    curveLoops
+                    new CurvePartition(){ AllCurves = curveLoops }
                 };
 
             var tesselatedCurveLoops = new List<Tuple<BoundingBox, List<XYZ>, List<Curve>>>();
@@ -43,13 +43,13 @@ namespace Revit.GeometryConversion
             var innerCurveLoops = new List<Tuple<BoundingBox, List<XYZ>, List<Curve>>>();
 
             // collect the outer loops, which are not contained in any other loop
-            for (int i = 0, j = tesselatedCurveLoops.Count - 1; i < tesselatedCurveLoops.Count; j = i++) 
+            for (int i = 0, j = tesselatedCurveLoops.Count - 1; i < tesselatedCurveLoops.Count; j = i++)
             {
                 var curveLoop = tesselatedCurveLoops[i];
                 var isOuter = tesselatedCurveLoops.Where((_, l) => i != l)
                     .All(bound => !curveLoop.Item2.IsContainedIn(bound.Item1));
 
-                if(isOuter)
+                if (isOuter)
                 {
                     outerCurveLoops.Add(curveLoop);
                 }
@@ -59,7 +59,7 @@ namespace Revit.GeometryConversion
                 }
             }
 
-            var partitionedLoops = new List<List<List<Curve>>>();
+            var curvesPartitions = new List<CurvePartition>();
 
             // for each outer loop, collect the loops that are inside of it
             // forming the partitions of the original curve loop set
@@ -67,12 +67,15 @@ namespace Revit.GeometryConversion
             {
                 var comp = new List<List<Curve>> { outerLoop.Item3 };
                 var mask = new List<bool>();
+                var curvePatition = new CurvePartition();
+                curvePatition.OuterCurves.AddRange(outerLoop.Item3);
                 foreach (var innerLoop in innerCurveLoops)
                 {
                     if (innerLoop.Item2.IsContainedIn(outerLoop.Item1))
                     {
                         mask.Add(false);
                         comp.Add(innerLoop.Item3);
+                        curvePatition.InnerCurves.Add(innerLoop.Item3);
                     }
                     else
                     {
@@ -82,22 +85,21 @@ namespace Revit.GeometryConversion
                 // remove innerEdge loops that have already been added to a partition
                 innerCurveLoops = innerCurveLoops.Where((_, j) => mask[j]).ToList();
                 // add the new partition
-                partitionedLoops.Add(comp);
+                curvePatition.MergeAllCurves();
+                curvesPartitions.Add(curvePatition);
             }
 
-            return partitionedLoops;
+            return curvesPartitions;
         }
 
         public static List<List<Autodesk.Revit.DB.Curve>> GetAllCurveloopsFromRevitFace(Face face)
         {
             var curveLoops = face.GetEdgesAsCurveLoops();
             List<List<Autodesk.Revit.DB.Curve>> curves = new List<List<Curve>>();
-            XYZ normal = face.ComputeNormal(new UV());
             foreach (var curveloop in curveLoops)
             {
                 var a = curveloop.GetCurveLoopIterator();
                 bool hasItems = false;
-                bool isInner = curveloop.IsCounterclockwise(normal);
                 List<Curve> curve = new List<Curve>();
                 do
                 {
@@ -121,6 +123,27 @@ namespace Revit.GeometryConversion
         private static bool IsContainedIn(this IEnumerable<XYZ> curveLoop, BoundingBox boundingBox)
         {
             return curveLoop.All(x => boundingBox.Contains(x.ToPoint(false)));
+        }
+    }
+
+    public class CurvePartition
+    {
+        public List<Curve> OuterCurves;
+        public List<List<Curve>> InnerCurves;
+
+        public List<List<Curve>> AllCurves;
+
+        public CurvePartition()
+        {
+            OuterCurves = new List<Curve>();
+            InnerCurves = new List<List<Curve>>();
+            AllCurves = new List<List<Curve>>();
+        }
+
+        public void MergeAllCurves()
+        {
+            AllCurves.Add(OuterCurves);
+            AllCurves.AddRange(InnerCurves);
         }
     }
 }
