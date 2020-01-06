@@ -59,6 +59,11 @@ namespace Revit.Elements
             return DividedPath.FromExisting(ele, isRevitOwned);
         }
 
+        public static ElementType Wrap(Autodesk.Revit.DB.ElementType elementType, bool isRevitOwned)
+        {
+            return ElementType.FromExisting(elementType, isRevitOwned);
+        }
+
         public static DividedSurface Wrap(Autodesk.Revit.DB.DividedSurface ele, bool isRevitOwned)
         {
             return DividedSurface.FromExisting(ele, isRevitOwned);
@@ -329,6 +334,11 @@ namespace Revit.Elements
         public static PathOfTravel Wrap(Autodesk.Revit.DB.Analysis.PathOfTravel ele, bool isRevitOwned)
         {
             return PathOfTravel.FromExisting(ele, isRevitOwned);
+        }
+
+        public static RoofType Wrap(Autodesk.Revit.DB.RoofType ele, bool isRevitOwned)
+        {
+            return RoofType.FromExisting(ele, isRevitOwned);
         }
 
       #endregion

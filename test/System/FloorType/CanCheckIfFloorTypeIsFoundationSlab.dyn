@@ -1,0 +1,167 @@
+{
+  "Uuid": "dc9882a6-4ef6-4a7f-8965-5c943962c341",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanCheckIfFloorTypeIsFoundationSlab",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.ElementType",
+      "Id": "58d7bea0d39349cfbbadead4bc629d17",
+      "Inputs": [
+        {
+          "Id": "167a37a5becb46d0a04a7b3b5a4393be",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d0ea2ff98aff416c8f1d3239e7c2e3d4",
+          "Name": "ElementType",
+          "Description": "Element Type or Null.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the FamilyType for this Element. Returns null if the Element cannot have a FamilyType assigned.\n\nElement.ElementType: ElementType"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "08f6bb51-0409-4ad3-a474-2a5c958e962e-0004d2ea"
+      ],
+      "Id": "5576b80a36a74d7d8c318465d38b0f7b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bea0928dfca843b89dd52db160472262",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FloorType.IsFoundationSlab",
+      "Id": "4b5c27789bab4c43a6864e33786a2847",
+      "Inputs": [
+        {
+          "Id": "8b63228c84164484b5d350c3fd9e58f3",
+          "Name": "floorType",
+          "Description": "Revit.Elements.FloorType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "237baf44f9da4a0d97d5eea86fa17388",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns whether the element FloorAttributes type is FoundationSlab.\n\nFloorType.IsFoundationSlab: bool"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d0ea2ff98aff416c8f1d3239e7c2e3d4",
+      "End": "8b63228c84164484b5d350c3fd9e58f3",
+      "Id": "d8b6b8cb459746d38c20877d16e7a3c7"
+    },
+    {
+      "Start": "bea0928dfca843b89dd52db160472262",
+      "End": "167a37a5becb46d0a04a7b3b5a4393be",
+      "Id": "66a213e1b8f14ac8827e1d0e0260cda0"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Element.ElementType",
+        "Id": "58d7bea0d39349cfbbadead4bc629d17",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 409.158380927793,
+        "Y": 259.262120687376
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "5576b80a36a74d7d8c318465d38b0f7b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 219.438920618529,
+        "Y": 258.595454020709
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "FloorType.IsFoundationSlab",
+        "Id": "4b5c27789bab4c43a6864e33786a2847",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 703.99849176540306,
+        "Y": 258.73593995532849
+      }
+    ],
+    "Annotations": [],
+    "X": -761.92214768845975,
+    "Y": -32.309698442083686,
+    "Zoom": 1.2707722828069359
+  }
+}
