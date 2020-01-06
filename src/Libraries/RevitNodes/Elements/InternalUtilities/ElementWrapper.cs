@@ -100,6 +100,11 @@ namespace Revit.Elements
             return Grid.FromExisting(ele, isRevitOwned);
         }
 
+        public static Group Wrap(Autodesk.Revit.DB.Group ele, bool isRevitOwned)
+        {
+            return Group.FromExisting(ele, isRevitOwned);
+        }
+
         public static Level Wrap(Autodesk.Revit.DB.Level ele, bool isRevitOwned)
         {
             return Level.FromExisting(ele, isRevitOwned);

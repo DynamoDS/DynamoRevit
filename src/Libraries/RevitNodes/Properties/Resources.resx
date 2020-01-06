@@ -459,4 +459,7 @@
   <data name="NonIntersectingElements" xml:space="preserve">
     <value>Elements are not intersecting</value>
   </data>
+  <data name="InvalidGroupType" xml:space="preserve">
+    <value>{0} is not a valid GroupType.</value>
+  </data>
 </root>

@@ -574,6 +574,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is not a valid GroupType..
+        /// </summary>
+        internal static string InvalidGroupType {
+            get {
+                return ResourceManager.GetString("InvalidGroupType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Element does not have a host..
         /// </summary>
         internal static string InvalidHost {
