@@ -331,8 +331,13 @@ namespace Revit.Elements
             return PathOfTravel.FromExisting(ele, isRevitOwned);
         }
 
-      #endregion
+        public static Space Wrap(Autodesk.Revit.DB.Mechanical.Space ele, bool isRevitOwned)
+        {
+            return Space.FromExisting(ele, isRevitOwned);
+        }
 
-   }
+        #endregion
+
+    }
 
 }

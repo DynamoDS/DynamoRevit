@@ -194,6 +194,9 @@
                   "path": "RevitNodes.Revit.Elements.SketchPlane"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.Space"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.StructuralFraming"
                 },
                 {
