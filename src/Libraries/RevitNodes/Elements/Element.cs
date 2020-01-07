@@ -898,15 +898,23 @@ namespace Revit.Elements
             switch (builtInCategory)
             {
                 case BuiltInCategory.OST_StairsLandings:
-                    parent = GetParentComponentFromStairsLandings(element);
+                    parent = GetParentComponentFromStairElements(element);
+                    break;
+
+                case BuiltInCategory.OST_StairsRuns:
+                    parent = GetParentComponentFromStairElements(element);
                     break;
 
                 case BuiltInCategory.OST_StructuralFraming:
                     parent = GetParentElementFromStructuralFraming(element);
                     break;
 
-                case BuiltInCategory.OST_Railings:
-                    parent = GetParentElementFromRailings(element);
+                case BuiltInCategory.OST_RailingHandRail:
+                    parent = GetParentElementFromRailingElements(element);
+                    break;
+
+                case BuiltInCategory.OST_RailingTopRail:
+                    parent = GetParentElementFromRailingElements(element);
                     break;
 
                 default:
@@ -930,7 +938,7 @@ namespace Revit.Elements
             return parent;
         }
 
-        private static Autodesk.Revit.DB.Element GetParentElementFromRailings(Autodesk.Revit.DB.Element element)
+        private static Autodesk.Revit.DB.Element GetParentElementFromRailingElements(Autodesk.Revit.DB.Element element)
         {
             Autodesk.Revit.DB.Element parent;
             var railingElement = element as Autodesk.Revit.DB.Architecture.ContinuousRail;
@@ -957,7 +965,7 @@ namespace Revit.Elements
             return parent;
         }
 
-        private static Autodesk.Revit.DB.Element GetParentComponentFromStairsLandings(Autodesk.Revit.DB.Element element)
+        private static Autodesk.Revit.DB.Element GetParentComponentFromStairElements(Autodesk.Revit.DB.Element element)
         {
             Autodesk.Revit.DB.Element parent;
             var stairElement = element as Autodesk.Revit.DB.Architecture.StairsLanding;
@@ -965,7 +973,7 @@ namespace Revit.Elements
             if (stairElement == null)
                 throw new InvalidOperationException(Properties.Resources.NoParentElement);
 
-            // For StairLandings we use the GetStairs() to retrive the parent Stair
+            // For StairLandings and StairRuns we use the GetStairs() to retrive the parent Stair
             parent = stairElement.GetStairs();
             return parent;
         }
