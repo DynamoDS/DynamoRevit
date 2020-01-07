@@ -754,6 +754,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The provided input view is not a plan view..
+        /// </summary>
+        internal static string NotPlanView {
+            get {
+                return ResourceManager.GetString("NotPlanView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} must be a positive integer.
         /// </summary>
         internal static string NotPositiveIntegerError {

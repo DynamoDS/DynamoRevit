@@ -331,8 +331,13 @@ namespace Revit.Elements
             return PathOfTravel.FromExisting(ele, isRevitOwned);
         }
 
-      #endregion
+        public static ElevationMarker Wrap(Autodesk.Revit.DB.ElevationMarker ele, bool isRevitOwned)
+        {
+            return ElevationMarker.FromExisting(ele, isRevitOwned);
+        }
 
-   }
+        #endregion
+
+    }
 
 }

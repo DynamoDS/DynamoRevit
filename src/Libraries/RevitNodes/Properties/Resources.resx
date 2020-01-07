@@ -459,4 +459,7 @@
   <data name="NonIntersectingElements" xml:space="preserve">
     <value>Elements are not intersecting</value>
   </data>
+  <data name="NotPlanView" xml:space="preserve">
+    <value>The provided input view is not a plan view.</value>
+  </data>
 </root>
