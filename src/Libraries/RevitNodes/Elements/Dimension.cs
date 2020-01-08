@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
@@ -368,6 +369,108 @@ namespace Revit.Elements
             }
 
             TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        /// <summary>
+        /// The text shown above the segment's value.
+        /// </summary>
+        public List<string> AboveValue
+        {
+            get
+            {
+                if (this.InternalRevitElement.Segments.Size == 0)
+                {
+                    return new List<string>() { this.InternalRevitElement.Above };
+                }
+
+                List<string> aboveValues = new List<string>();
+                IEnumerator segmentEnumerator = this.InternalRevitElement.Segments.GetEnumerator();
+                while (segmentEnumerator.MoveNext())
+                {
+                    DimensionSegment segment = (DimensionSegment)segmentEnumerator.Current;
+                    aboveValues.Add(segment.Above);
+                }
+
+                return aboveValues;
+            } 
+        }
+
+        /// <summary>
+        /// The text shown below the segment's value.
+        /// </summary>
+        public List<string> BelowValue
+        {
+            get
+            {
+                if (this.InternalRevitElement.Segments.Size == 0)
+                {
+                    return new List<string>() { this.InternalRevitElement.Below };
+                }
+
+                List<string> aboveValues = new List<string>();
+                IEnumerator segmentEnumerator = this.InternalRevitElement.Segments.GetEnumerator();
+                while (segmentEnumerator.MoveNext())
+                {
+                    DimensionSegment segment = (DimensionSegment)segmentEnumerator.Current;
+                    aboveValues.Add(segment.Below);
+                }
+
+                return aboveValues;
+            }
+        }
+
+        #endregion
+
+        #region Public methods
+
+        /// <summary>
+        /// Sets the text shown above the segment's value.
+        /// </summary>
+        /// <param name="value">The value to set</param>
+        /// <returns>The dimension element</returns>
+        public Element SetAboveValue(string value)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+            if (this.InternalRevitElement.Segments.Size == 0)
+            {
+                this.InternalRevitElement.Above = value;
+            }
+            else
+            {
+                IEnumerator segmentEnumerator = this.InternalRevitElement.Segments.GetEnumerator();
+                while (segmentEnumerator.MoveNext())
+                {
+                    DimensionSegment segment = (DimensionSegment)segmentEnumerator.Current;
+                    segment.Above = value;
+                }
+            }
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the text shown below the segment's value.
+        /// </summary>
+        /// <param name="value">The value to set</param>
+        /// <returns>The dimension element</returns>
+        public Element SetBelowValue(string value)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+            if (this.InternalRevitElement.Segments.Size == 0)
+            {
+                this.InternalRevitElement.Below = value;
+            }
+            else
+            {
+                IEnumerator segmentEnumerator = this.InternalRevitElement.Segments.GetEnumerator();
+                while (segmentEnumerator.MoveNext())
+                {
+                    DimensionSegment segment = (DimensionSegment)segmentEnumerator.Current;
+                    segment.Below = value;
+                }
+            }
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
         }
 
         #endregion
