@@ -718,6 +718,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Elements to purge in the current document..
+        /// </summary>
+        internal static string NoElementsToPurge {
+            get {
+                return ResourceManager.GetString("NoElementsToPurge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No shared parameter file found..
         /// </summary>
         internal static string NoSharedParameterFileFound {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
 using NUnit.Framework;
 
 using RevitServices.Persistence;
@@ -12,7 +13,7 @@ using RTF.Framework;
 namespace RevitSystemTests
 {
     [TestFixture]
-    class DocumentTests : RevitSystemTestBase
+    public class DocumentTests : RevitSystemTestBase
     {
         [Test]
         [TestModel(@"./empty.rfa")]
@@ -141,12 +142,31 @@ namespace RevitSystemTests
             // Act
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
+
             string resultWorksharingPath = GetPreviewValue("3f5e9a8cb7344c52a3c4937455ee68b1") as string;
             var resultIsCloudPath = GetPreviewValue("1b62b04935b84f58a31bf45efe48955d");
 
             // Assert
             Assert.IsTrue(resultWorksharingPath.Contains(expectedWorksharingFilePath));
             Assert.AreEqual(expectedIsCloudPathResult, resultIsCloudPath);
+        }
+
+        [Test]
+        [TestModel(@".\Document\DocumentPurgeUnusedTest.rvt")]
+        public void CanPurgeUnusedElementsFromDocument()
+        {
+            // Arange
+            string samplePath = Path.Combine(workingDirectory, @".\Document\canPurgeUnusedElementsFromDocument.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            var expectedPurgedElementIds = new List<int>() { 217063, 221347, 216753, 416, 208080, 210695 };
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+            var purgeUnusedOutput = GetPreviewCollection("7997eedbf6bd4822b5ca8b8cf0819de2");
+
+            // Assert
+            CollectionAssert.AreEqual(purgeUnusedOutput, expectedPurgedElementIds);
         }
     }
 }

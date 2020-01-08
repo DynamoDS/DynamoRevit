@@ -462,4 +462,7 @@
   <data name="DocumentNotWorkshared" xml:space="preserve">
     <value>Current Document is not workshared</value>
   </data>
+  <data name="NoElementsToPurge" xml:space="preserve">
+    <value>No Elements to purge in the current document.</value>
+  </data>
 </root>
