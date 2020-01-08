@@ -103,7 +103,10 @@ namespace Revit.Elements
         public Autodesk.DesignScript.Geometry.Point Location
         {
             get 
-            { 
+            {
+                if (this.InternalGroup.IsAttached)
+                    throw new InvalidOperationException(Properties.Resources.AttachedGroupLocation);
+
                 var locationPt = this.InternalGroup.Location as LocationPoint;
                 return locationPt.Point.ToPoint();
             }
@@ -123,6 +126,18 @@ namespace Revit.Elements
         public bool IsAttached
         {
             get { return this.InternalGroup.IsAttached; }
+        }
+
+        /// <summary>
+        /// Returns the attached detail groups available for this group.
+        /// </summary>
+        public List<Element> AttachedDetailGroup
+        {
+            get 
+            {
+                var attachedGroupId = this.InternalGroup.GetAvailableAttachedDetailGroupTypeIds();
+                return attachedGroupId.Select(id => Document.GetElement(id).ToDSType(true)).ToList();
+            }
         }
 
         #endregion

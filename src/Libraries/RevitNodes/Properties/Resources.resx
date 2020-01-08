@@ -462,4 +462,7 @@
   <data name="InvalidGroupType" xml:space="preserve">
     <value>{0} is not a valid GroupType.</value>
   </data>
+  <data name="AttachedGroupLocation" xml:space="preserve">
+    <value>Cannot get location of attached group.</value>
+  </data>
 </root>
