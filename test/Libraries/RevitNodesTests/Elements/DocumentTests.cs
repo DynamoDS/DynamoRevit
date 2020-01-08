@@ -59,24 +59,6 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(expectedIsCloudPathResult, resultIsCloudPath);
         }
 
-        [Test]
-        [TestModel(@".\element.rvt")]
-        public void CanGetWorksharingModelPathOnNotWorksharedModel()
-        {
-            // Arrange
-            var doc = Document.Current;
-            string expectedNullReferenceExceptionMessage = Revit.Properties.Resources.DocumentNotWorkshared;
-            bool expectedIsCloudPathResult = false;
-
-            // Act
-            var resultWorksharingPath = Assert.Throws<System.NullReferenceException>(() => GetWorksharingPathThrowsNullReferenceInNonSharedDocument());
-            bool resultIsCloudPath = doc.IsCloudPath;
-
-            // Assert
-            Assert.AreEqual(resultWorksharingPath.Message, expectedNullReferenceExceptionMessage);
-            Assert.AreEqual(expectedIsCloudPathResult, resultIsCloudPath);
-        }
-
         private void GetWorksharingPathThrowsNullReferenceInNonSharedDocument()
         {
             string worksharePath = Document.Current.WorksharingPath;

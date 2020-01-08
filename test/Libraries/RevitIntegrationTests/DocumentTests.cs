@@ -121,7 +121,7 @@ namespace RevitSystemTests
             // Act
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
-            string resultWorksharingPath = GetPreviewValue("3f5e9a8cb7344c52a3c4937455ee68b1") as string;
+            var resultWorksharingPath = GetPreviewValue("c699cecf62434bcba194378b819af876") as string;
             var resultIsCloudPath = GetPreviewValue("1b62b04935b84f58a31bf45efe48955d");
 
             // Assert
@@ -143,7 +143,7 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            string resultWorksharingPath = GetPreviewValue("3f5e9a8cb7344c52a3c4937455ee68b1") as string;
+            var resultWorksharingPath = GetPreviewValue("c699cecf62434bcba194378b819af876") as string;
             var resultIsCloudPath = GetPreviewValue("1b62b04935b84f58a31bf45efe48955d");
 
             // Assert
