@@ -82,7 +82,25 @@ namespace RevitNodesTests.Elements
 
         [Test]
         [TestModel(@".\Group\GroupTest.rvt")]
-        public void CanGetGroupProperties()
+        public void CanGetAttachedDetailGroup()
+        {
+            // Arrange
+            var modelGroup = ElementSelector.ByElementId(316699, true) as Group;
+            var attachedGroup = ElementSelector.ByElementId(316701, true) as Group;
+
+            var expectedAttachedDetailGroup = new List<int>() { 316702 };
+
+            // Act
+            var attachedDetailGroup = modelGroup.AttachedDetailGroup;
+            var attachedDetailGroupId = attachedDetailGroup.Select(x => x.Id);
+
+            // Assert
+            Assert.AreEqual(expectedAttachedDetailGroup, attachedDetailGroupId);
+        }
+
+        [Test]
+        [TestModel(@".\Group\GroupTest.rvt")]
+        public void CanGetGroupType()
         {
             // Arrange
             var modelGroup = ElementSelector.ByElementId(316699, true) as Group;
@@ -91,34 +109,50 @@ namespace RevitNodesTests.Elements
             var expectedModelGroupTypeId = 316700;
             var expectedattachedGroupTypeId = 316702;
 
-            var expectedModelGroupLocation = Point.ByCoordinates(-5838.369, 4122.718, 0.000);
-            var expectedAttachedGroupLocationExceptionMessage = Revit.Properties.Resources.AttachedGroupLocation;
-
-            var expectedAttachedDetailGroup = new List<int>() { 316702 };
-
             // Act
             var modelGroupTypeId = modelGroup.GroupType.Id;
             var attachedGroupTypeId = attachedGroup.GroupType.Id;
 
-            var modelGroupLocation = modelGroup.Location;
-            var attachedGroupLocation = Assert.Throws<InvalidOperationException>(() => GetLocation(attachedGroup));
+            // Assert
+            Assert.AreEqual(expectedModelGroupTypeId, modelGroupTypeId);
+            Assert.AreEqual(expectedattachedGroupTypeId, attachedGroupTypeId);
 
-            var attachedDetailGroup = modelGroup.AttachedDetailGroup;
-            var attachedDetailGroupId = attachedDetailGroup.Select(x => x.Id);
+
+        }
+
+        [Test]
+        [TestModel(@".\Group\GroupTest.rvt")]
+        public void CanCheckIfGroupIsAttached()
+        {
+            // Arrange
+            var modelGroup = ElementSelector.ByElementId(316699, true) as Group;
+            var attachedGroup = ElementSelector.ByElementId(316701, true) as Group;
 
             // Assert
             Assert.AreEqual(false, modelGroup.IsAttached);
             Assert.AreEqual(true, attachedGroup.IsAttached);
+        }
 
-            Assert.AreEqual(expectedModelGroupTypeId, modelGroupTypeId);
-            Assert.AreEqual(expectedattachedGroupTypeId, attachedGroupTypeId);
+        [Test]
+        [TestModel(@".\Group\GroupTest.rvt")]
+        public void CanGetGroupLocation()
+        {
+            // Arrange
+            var modelGroup = ElementSelector.ByElementId(316699, true) as Group;
+            var attachedGroup = ElementSelector.ByElementId(316701, true) as Group;
 
+            var expectedModelGroupLocation = Point.ByCoordinates(-5838.369, 4122.718, 0.000);
+            var expectedAttachedGroupLocationExceptionMessage = Revit.Properties.Resources.AttachedGroupLocation;
+
+            // Act
+            var modelGroupLocation = modelGroup.Location;
+            var attachedGroupLocation = Assert.Throws<InvalidOperationException>(() => GetLocation(attachedGroup));
+
+            // Assert
             Assert.AreEqual(expectedModelGroupLocation.X, modelGroupLocation.X, Tolerance);
             Assert.AreEqual(expectedModelGroupLocation.Y, modelGroupLocation.Y, Tolerance);
             Assert.AreEqual(expectedModelGroupLocation.Z, modelGroupLocation.Z, Tolerance);
             Assert.AreEqual(expectedAttachedGroupLocationExceptionMessage, attachedGroupLocation.Message);
-
-            Assert.AreEqual(expectedAttachedDetailGroup, attachedDetailGroupId);
         }
 
         private static Point GetLocation(Group modelGroup)
