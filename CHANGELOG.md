@@ -1,5 +1,8 @@
 * Fix issue - Joined geometry does not convert correctly
 
+## 0.1.13
+* update DynamoCore to 2.5.0.7186
+
 ## 0.1.12
 * Remove transient elements in Revit doc when Dynamo shutdown
 * Fix test failure of JsonRestoresBinding
