@@ -301,22 +301,24 @@ namespace Revit.Elements
         /// Sets the name of the space.
         /// </summary>
         /// <param name="value">Name</param>
-        public void SetName(string value)
+        public Space SetName(string value)
         {
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
             this.InternalRevitElement.Name = value;
             TransactionManager.Instance.TransactionTaskDone();
+            return this;
         }
 
         /// <summary>
         /// Sets the number of the space.
         /// </summary>
         /// <param name="value">Number</param>
-        public void SetNumber(string value)
+        public Space SetNumber(string value)
         {
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
             this.InternalRevitElement.Number = value;
             TransactionManager.Instance.TransactionTaskDone();
+            return this;
         }
 
         #endregion

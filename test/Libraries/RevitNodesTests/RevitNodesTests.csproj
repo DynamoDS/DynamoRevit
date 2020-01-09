@@ -113,6 +113,7 @@
     <Compile Include="Elements\PerformanceAdvTests.cs" />
     <Compile Include="Elements\RoomTests.cs" />
     <Compile Include="Elements\RevisionTests.cs" />
+    <Compile Include="Elements\SpaceTests.cs" />
     <Compile Include="Elements\SunSettingsTests.cs" />
     <Compile Include="Elements\SketchPlaneTests.cs" />
     <Compile Include="Elements\StructuralFramingTests.cs" />
