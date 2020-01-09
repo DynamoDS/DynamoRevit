@@ -1,3 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Autodesk.DesignScript.Geometry;
+using NUnit.Framework;
+using Revit.Elements;
+using Revit.GeometryConversion;
+using RevitTestServices;
+using RTF.Framework;
+
+namespace RevitNodesTests.Elements
 {
     [TestFixture]
     class SpaceTests : RevitNodeTestBase
