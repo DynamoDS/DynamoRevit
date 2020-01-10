@@ -1,5 +1,6 @@
 ﻿using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
+using Autodesk.Revit.DB;
 using Revit.Elements.Views;
 using Revit.GeometryConversion;
 using RevitServices.Transactions;
@@ -82,7 +83,7 @@ namespace Revit.Elements
         /// <param name="location">The desired origin for the ElevationMarker.</param>
         /// <param name="initialViewScale">The view scale will be automatically applied to new elevations created on the ElevationMarker. The scale is the ratio of true model size to paper size.</param>
         /// <returns>The new ElevationMarker element.</returns>
-        public static ElevationMarker Create(Element viewFamilyType, Point location, int initialViewScale)
+        public static ElevationMarker Create(Element viewFamilyType, Autodesk.DesignScript.Geometry.Point location, int initialViewScale)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
             var elevationMarker = Autodesk.Revit.DB.ElevationMarker.CreateElevationMarker(Document, viewFamilyType.InternalElement.Id, location.ToXyz(), initialViewScale);
@@ -100,7 +101,7 @@ namespace Revit.Elements
         /// <param name="planView">The PlanView in which the ElevationMarker is visible. The new elevation ViewSection will derive its extents and inherit settings from the ViewPlan.</param>
         /// <param name="index">The index on the ElevationMarker where the new elevation ViewSection will be placed.</param>
         /// <returns>The new elevation ViewSection.</returns>
-        public SectionView CreateElevationByMarkerIndex(View planView, int index)
+        public SectionView CreateElevationByMarkerIndex(Revit.Elements.Views.View planView, int index)
         {
             var view = planView as PlanView;
             if (view == null)
@@ -110,6 +111,32 @@ namespace Revit.Elements
             Autodesk.Revit.DB.ViewSection sectionView = this.InternalMarker.CreateElevation(Document, view.InternalViewPlan.Id, index);
             TransactionManager.Instance.TransactionTaskDone();
             return sectionView.ToDSType(true) as SectionView;
+        }
+
+        /// <summary>
+        /// Gets the ViewSection for the index of the ElevationMarker.
+        /// </summary>
+        /// <param name="index">The index of the ElevationMarker for which a ViewSection will be returned.</param>
+        /// <returns>ViewSection at the ElevationMarker index</returns>
+        public SectionView GetView(int index)
+        {
+            ElementId viewId = this.InternalMarker.GetViewId(index);
+            if (viewId == null)
+                throw new InvalidOperationException("ElevationMarker has no views");
+
+            return Document.GetElement(viewId).ToDSType(true) as SectionView;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// The current number of views hosted by this ElevationMarker.
+        /// </summary>
+        public int CurrentViewCount
+        {
+            get { return this.InternalMarker.CurrentViewCount; }
         }
 
         #endregion

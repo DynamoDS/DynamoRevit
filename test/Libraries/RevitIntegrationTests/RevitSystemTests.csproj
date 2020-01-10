@@ -97,6 +97,7 @@
     <Compile Include="AnalysisDisplayTests.cs" />
     <Compile Include="AsynchronousModeTests.cs" />
     <Compile Include="ElementTests.cs" />
+    <Compile Include="ElevationMarkerTests.cs" />
     <Compile Include="GlobalParameterTests.cs" />
     <Compile Include="PerformanceAdviserTests.cs" />
     <Compile Include="SerializationTests.cs" />

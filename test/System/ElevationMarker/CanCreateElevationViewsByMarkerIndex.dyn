@@ -1,0 +1,309 @@
+{
+  "Uuid": "43e8c968-b233-46cf-b9ed-2d6a02d27b31",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanCreateElevationViewsByMarkerIndex",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "c0cc66a9-483b-4320-8f26-43b8f21877a2-0004feab"
+      ],
+      "Id": "409a34d3bd8b445ca673388ce7fb35e6",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6f85a0d478604a88bc3c857be81b562b",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.ElevationMarker.CreateElevationByMarkerIndex@Revit.Elements.Views.View,int",
+      "Id": "51a28b56fd8249e3b70d925af9fbce0b",
+      "Inputs": [
+        {
+          "Id": "d2e2e93927f4446f8545de89f78d8836",
+          "Name": "elevationMarker",
+          "Description": "Revit.Elements.ElevationMarker",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "098ab624230c42219aa6e2f3563444e8",
+          "Name": "planView",
+          "Description": "The PlanView in which the ElevationMarker is visible. The new elevation ViewSection will derive its extents and inherit settings from the ViewPlan.\n\nView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5a3713ebd3eb4082bae28ffce88d2390",
+          "Name": "index",
+          "Description": "The index on the ElevationMarker where the new elevation ViewSection will be placed.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "39dfa7faf0d24ce8b5e49c53d8a6e5be",
+          "Name": "SectionView",
+          "Description": "The new elevation ViewSection.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Creates a new elevation ViewSection on the ElevationMarker at the desired index.\n\nElevationMarker.CreateElevationByMarkerIndex (planView: View, index: int): SectionView"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "archilab.Revit.Selection.Select.ByElementId@var",
+      "Id": "6aae3a4486e94505ad14c10ffcc8ac0b",
+      "Inputs": [
+        {
+          "Id": "5ae5e570eadc46859437468b5c3950ce",
+          "Name": "id",
+          "Description": "ElementId, String, Guid or Integer id of the element.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "183e3a0961c44a4890b772306e92dec3",
+          "Name": "Element",
+          "Description": "Found element or null.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Select Element by Id\n\nSelect.ByElementId (id: var): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "312;",
+      "Id": "25bf897ba5824a198f2abda3c22560ea",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6cef1f6e62fb4460b619e1fcfd0a8164",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "0;",
+      "Id": "360ac6e4068b4cd398e621ad58483e6a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3012832174ca4142bd2e1d9218650333",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Id": "c0e547cb84b4483cb8b5a2cdd28970c0",
+      "Inputs": [
+        {
+          "Id": "70dc9a78dbcc473f8269a69deddc148b",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "21c705bee222403999464a5003bfbb59",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "6f85a0d478604a88bc3c857be81b562b",
+      "End": "d2e2e93927f4446f8545de89f78d8836",
+      "Id": "69ccad35e2b941639addb1e4f70ca079"
+    },
+    {
+      "Start": "39dfa7faf0d24ce8b5e49c53d8a6e5be",
+      "End": "70dc9a78dbcc473f8269a69deddc148b",
+      "Id": "6cd779896d2b4bf58f354a96cf698fac"
+    },
+    {
+      "Start": "183e3a0961c44a4890b772306e92dec3",
+      "End": "098ab624230c42219aa6e2f3563444e8",
+      "Id": "8040a3c8b3e5400b827ca93b1a3a8792"
+    },
+    {
+      "Start": "6cef1f6e62fb4460b619e1fcfd0a8164",
+      "End": "5ae5e570eadc46859437468b5c3950ce",
+      "Id": "888c09c8b8e14aa2b42a207769fca3f4"
+    },
+    {
+      "Start": "3012832174ca4142bd2e1d9218650333",
+      "End": "5a3713ebd3eb4082bae28ffce88d2390",
+      "Id": "812c1852d55847438b1225fb92e84429"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "archi-lab.net",
+      "Version": "2020.22.9",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "6aae3a4486e94505ad14c10ffcc8ac0b"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "409a34d3bd8b445ca673388ce7fb35e6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 39.194987706089591,
+        "Y": 379.04854880243886
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ElevationMarker.CreateElevationByMarkerIndex",
+        "Id": "51a28b56fd8249e3b70d925af9fbce0b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 352.28622601151005,
+        "Y": 445.4248933135184
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select.ByElementId",
+        "Id": "6aae3a4486e94505ad14c10ffcc8ac0b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 17.948228535997259,
+        "Y": 524.27104237803837
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "25bf897ba5824a198f2abda3c22560ea",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -121.75370102946431,
+        "Y": 529.62795926954038
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "360ac6e4068b4cd398e621ad58483e6a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 112.02292462624428,
+        "Y": 627.32100692865924
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.Name",
+        "Id": "c0e547cb84b4483cb8b5a2cdd28970c0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 768.45702526553634,
+        "Y": 451.55871587573426
+      }
+    ],
+    "Annotations": [],
+    "X": 303.44993079353418,
+    "Y": 8.8108983900212365,
+    "Zoom": 0.562571377685688
+  }
+}
