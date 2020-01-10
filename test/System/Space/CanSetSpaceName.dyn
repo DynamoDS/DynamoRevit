@@ -63,8 +63,8 @@
       "Outputs": [
         {
           "Id": "d6ea9f422c534aba9173e231ff43a201",
-          "Name": "void",
-          "Description": "void",
+          "Name": "Space",
+          "Description": "Space",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -72,7 +72,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Sets the name of the space.\n\nSpace.SetName (value: string): void"
+      "Description": "Sets the name of the space.\n\nSpace.SetName (value: string): Space"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
@@ -93,6 +93,36 @@
       ],
       "Replication": "Disabled",
       "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Space.Name",
+      "Id": "4aa69bb9c86b454a8d76b3d0e83cbc0c",
+      "Inputs": [
+        {
+          "Id": "3e9bcf604c2c4358a72f0a63847f3226",
+          "Name": "space",
+          "Description": "Revit.Elements.Space",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "685cec1062e244109918e200316b58f8",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the space name\n\nSpace.Name: string"
     }
   ],
   "Connectors": [
@@ -100,6 +130,11 @@
       "Start": "118f3b2ebfc24d4a8ccaa9bda3814341",
       "End": "3d452b5289b040d5abe725ceb2be809e",
       "Id": "8022644e436242ba8edc16be0669cc1a"
+    },
+    {
+      "Start": "d6ea9f422c534aba9173e231ff43a201",
+      "End": "3e9bcf604c2c4358a72f0a63847f3226",
+      "Id": "934d4f688c24490295e6770ca4ffab9e"
     },
     {
       "Start": "1b77546d696145ce8c0b31335e579e77",
@@ -161,6 +196,16 @@
         "Excluded": false,
         "X": -409.0,
         "Y": 659.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Space.Name",
+        "Id": "4aa69bb9c86b454a8d76b3d0e83cbc0c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 198.32558493121837,
+        "Y": 593.81556691665264
       }
     ],
     "Annotations": [],

@@ -209,8 +209,6 @@ namespace RevitNodesTests.Elements
                 }
             };
 
-
-
             // Act
             var boundaryLines = space.CenterBoundary;
 
@@ -218,18 +216,22 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(expectedBoundaries.Count(), boundaryLines.Count());
             for (int i = 0; i < boundaryLines.Count(); i++)
             {
-                AssertObjectsInList(expectedBoundaries.FirstOrDefault()[i], boundaryLines.FirstOrDefault().ToList()[i]);
-            }
-        }
+                var expected = expectedBoundaries.FirstOrDefault()[i];
+                var actual = boundaryLines.FirstOrDefault().ToList()[i];
 
-        private void AssertObjectsInList(object expected, object actual)
-        {
-            PropertyInfo[] properties = expected.GetType().GetProperties();
-            foreach (var prop in properties)
-            {
-                var expectedValue = prop.GetValue(expected, null);
-                var actualValue = prop.GetValue(actual, null);
-                Assert.AreEqual(expectedValue, actualValue);
+                var expectedStartPoint = expected.StartPoint;
+                var expectedEndPoint = expected.EndPoint;
+                var actualStartPoint = actual.StartPoint;
+                var actualEndPoint = actual.EndPoint;
+
+                Assert.AreEqual(expectedStartPoint.X, actualStartPoint.X, Tolerance);
+                Assert.AreEqual(expectedStartPoint.Y, actualStartPoint.Y, Tolerance);
+                Assert.AreEqual(expectedStartPoint.Z, actualStartPoint.Z, Tolerance);
+
+                Assert.AreEqual(expectedEndPoint.X, actualEndPoint.X, Tolerance);
+                Assert.AreEqual(expectedEndPoint.Y, actualEndPoint.Y, Tolerance);
+                Assert.AreEqual(expectedEndPoint.Z, actualEndPoint.Z, Tolerance);
+
             }
         }
 
@@ -239,27 +241,49 @@ namespace RevitNodesTests.Elements
         {
             // Arrange
             var space = ElementSelector.ByElementId(316365, true) as Space;
-            List<Curve> expectedBoundaries = new List<Curve>()
+            List<List<Curve>> expectedBoundaries = new List<List<Curve>>()
             {
-                Line.ByStartPointEndPoint(
-                    Point.ByCoordinates(-728.833, 3857.525, 0.000), 
-                    Point.ByCoordinates(-8463.833, 3857.525, 0.000)) as Curve ,
-                Line.ByStartPointEndPoint(
-                    Point.ByCoordinates(-8463.833, 3857.525, 0.000), 
-                    Point.ByCoordinates(-8463.833, -392.475, 0.000)) as Curve,
-                Line.ByStartPointEndPoint(
-                    Point.ByCoordinates(-8463.833, -392.475, 0.000), 
-                    Point.ByCoordinates (-728.833, -392.475, 0.000)) as Curve,
-                Line.ByStartPointEndPoint(
-                    Point.ByCoordinates(-728.833, -392.475, 0.000), 
-                    Point.ByCoordinates(-728.833, 3857.525, 0.000)) as Curve
+                new List<Curve>()
+                {
+                    Line.ByStartPointEndPoint(
+                        Point.ByCoordinates(-728.833, 3857.525, 0.000),
+                        Point.ByCoordinates(-8463.833, 3857.525, 0.000)) as Curve ,
+                    Line.ByStartPointEndPoint(
+                        Point.ByCoordinates(-8463.833, 3857.525, 0.000),
+                        Point.ByCoordinates(-8463.833, -392.475, 0.000)) as Curve,
+                    Line.ByStartPointEndPoint(
+                        Point.ByCoordinates(-8463.833, -392.475, 0.000),
+                        Point.ByCoordinates (-728.833, -392.475, 0.000)) as Curve,
+                    Line.ByStartPointEndPoint(
+                        Point.ByCoordinates(-728.833, -392.475, 0.000),
+                        Point.ByCoordinates(-728.833, 3857.525, 0.000)) as Curve
+                }
             };
 
             // Act
-            var boundaryLines = space.CoreBoundary.FirstOrDefault();
+            var boundaryLines = space.CoreBoundary;
 
             // Assert
-            CollectionAssert.AreEqual(expectedBoundaries, boundaryLines);
+            Assert.AreEqual(expectedBoundaries.Count(), boundaryLines.Count());
+            for (int i = 0; i < boundaryLines.Count(); i++)
+            {
+                var expected = expectedBoundaries.FirstOrDefault()[i];
+                var actual = boundaryLines.FirstOrDefault().ToList()[i];
+
+                var expectedStartPoint = expected.StartPoint;
+                var expectedEndPoint = expected.EndPoint;
+                var actualStartPoint = actual.StartPoint;
+                var actualEndPoint = actual.EndPoint;
+
+                Assert.AreEqual(expectedStartPoint.X, actualStartPoint.X, Tolerance);
+                Assert.AreEqual(expectedStartPoint.Y, actualStartPoint.Y, Tolerance);
+                Assert.AreEqual(expectedStartPoint.Z, actualStartPoint.Z, Tolerance);
+
+                Assert.AreEqual(expectedEndPoint.X, actualEndPoint.X, Tolerance);
+                Assert.AreEqual(expectedEndPoint.Y, actualEndPoint.Y, Tolerance);
+                Assert.AreEqual(expectedEndPoint.Z, actualEndPoint.Z, Tolerance);
+
+            }
         }
 
         [Test]
@@ -268,27 +292,49 @@ namespace RevitNodesTests.Elements
         {
             // Arrange
             var space = ElementSelector.ByElementId(316365, true) as Space;
-            List<Curve> expectedBoundaries = new List<Curve>()
+            List<List<Curve>> expectedBoundaries = new List<List<Curve>>()
             {
-                Line.ByStartPointEndPoint(
-                    Point.ByCoordinates(-678.833, 3907.525, 0.000), 
-                    Point.ByCoordinates(-8513.833, 3907.525, 0.000)) as Curve,
-                Line.ByStartPointEndPoint(
-                    Point.ByCoordinates(-8513.833, 3907.525, 0.000), 
-                    Point.ByCoordinates(-8513.833, -442.475, 0.000)) as Curve,
-                Line.ByStartPointEndPoint(
-                    Point.ByCoordinates(-8513.833, -442.475, 0.000), 
-                    Point.ByCoordinates(-678.833, -442.475, 0.000)) as Curve,
-                Line.ByStartPointEndPoint(
-                    Point.ByCoordinates(-678.833, -442.475, 0.000), 
-                    Point.ByCoordinates(-678.833, 3907.525, 0.000)) as Curve
+                new List<Curve>()
+                {
+                    Line.ByStartPointEndPoint(
+                        Point.ByCoordinates(-678.833, 3907.525, 0.000),
+                        Point.ByCoordinates(-8513.833, 3907.525, 0.000)) as Curve,
+                    Line.ByStartPointEndPoint(
+                        Point.ByCoordinates(-8513.833, 3907.525, 0.000),
+                        Point.ByCoordinates(-8513.833, -442.475, 0.000)) as Curve,
+                    Line.ByStartPointEndPoint(
+                        Point.ByCoordinates(-8513.833, -442.475, 0.000),
+                        Point.ByCoordinates(-678.833, -442.475, 0.000)) as Curve,
+                    Line.ByStartPointEndPoint(
+                        Point.ByCoordinates(-678.833, -442.475, 0.000),
+                        Point.ByCoordinates(-678.833, 3907.525, 0.000)) as Curve
+                }
             };
 
             // Act
-            var boundaryLines = space.CoreCenterBoundary.FirstOrDefault();
+            var boundaryLines = space.CoreCenterBoundary;
 
             // Assert
-            CollectionAssert.AreEqual(expectedBoundaries, boundaryLines);
+            Assert.AreEqual(expectedBoundaries.Count(), boundaryLines.Count());
+            for (int i = 0; i < boundaryLines.Count(); i++)
+            {
+                var expected = expectedBoundaries.FirstOrDefault()[i];
+                var actual = boundaryLines.FirstOrDefault().ToList()[i];
+
+                var expectedStartPoint = expected.StartPoint;
+                var expectedEndPoint = expected.EndPoint;
+                var actualStartPoint = actual.StartPoint;
+                var actualEndPoint = actual.EndPoint;
+
+                Assert.AreEqual(expectedStartPoint.X, actualStartPoint.X, Tolerance);
+                Assert.AreEqual(expectedStartPoint.Y, actualStartPoint.Y, Tolerance);
+                Assert.AreEqual(expectedStartPoint.Z, actualStartPoint.Z, Tolerance);
+
+                Assert.AreEqual(expectedEndPoint.X, actualEndPoint.X, Tolerance);
+                Assert.AreEqual(expectedEndPoint.Y, actualEndPoint.Y, Tolerance);
+                Assert.AreEqual(expectedEndPoint.Z, actualEndPoint.Z, Tolerance);
+
+            }
         }
 
         [Test]
@@ -297,27 +343,49 @@ namespace RevitNodesTests.Elements
         {
             // Arrange
             var space = ElementSelector.ByElementId(316365, true) as Space;
-            List<Curve> expectedBoundaries = new List<Curve>()
+            List<List<Curve>> expectedBoundaries = new List<List<Curve>>()
             {
-                Line.ByStartPointEndPoint(
-                    Point.ByCoordinates(-741.333, 3845.025, 0.000), 
-                    Point.ByCoordinates(-8451.333, 3845.025, 0.000)) as Curve,
-                Line.ByStartPointEndPoint(
-                    Point.ByCoordinates(-8451.333, 3845.025, 0.000), 
-                    Point.ByCoordinates(-8451.333, -214.975, 0.000)) as Curve,
-                Line.ByStartPointEndPoint(
-                    Point.ByCoordinates(-8451.333, -214.975, 0.000), 
-                    Point.ByCoordinates(-741.333, -214.975, 0.000)) as Curve,
-                Line.ByStartPointEndPoint(
-                    Point.ByCoordinates(-741.333, -214.975, 0.000), 
-                    Point.ByCoordinates(-741.333, 3845.025, 0.000)) as Curve 
+                new List<Curve>()
+                {
+                    Line.ByStartPointEndPoint(
+                        Point.ByCoordinates(-741.333, 3845.025, 0.000),
+                        Point.ByCoordinates(-8451.333, 3845.025, 0.000)) as Curve,
+                    Line.ByStartPointEndPoint(
+                        Point.ByCoordinates(-8451.333, 3845.025, 0.000),
+                        Point.ByCoordinates(-8451.333, -214.975, 0.000)) as Curve,
+                    Line.ByStartPointEndPoint(
+                        Point.ByCoordinates(-8451.333, -214.975, 0.000),
+                        Point.ByCoordinates(-741.333, -214.975, 0.000)) as Curve,
+                    Line.ByStartPointEndPoint(
+                        Point.ByCoordinates(-741.333, -214.975, 0.000),
+                        Point.ByCoordinates(-741.333, 3845.025, 0.000)) as Curve
+                }
             };
 
             // Act
-            var boundaryLines = space.FinishBoundary.FirstOrDefault();
+            var boundaryLines = space.FinishBoundary;
 
             // Assert
-            CollectionAssert.AreEqual(expectedBoundaries, boundaryLines);
+            Assert.AreEqual(expectedBoundaries.Count(), boundaryLines.Count());
+            for (int i = 0; i < boundaryLines.Count(); i++)
+            {
+                var expected = expectedBoundaries.FirstOrDefault()[i];
+                var actual = boundaryLines.FirstOrDefault().ToList()[i];
+
+                var expectedStartPoint = expected.StartPoint;
+                var expectedEndPoint = expected.EndPoint;
+                var actualStartPoint = actual.StartPoint;
+                var actualEndPoint = actual.EndPoint;
+
+                Assert.AreEqual(expectedStartPoint.X, actualStartPoint.X, Tolerance);
+                Assert.AreEqual(expectedStartPoint.Y, actualStartPoint.Y, Tolerance);
+                Assert.AreEqual(expectedStartPoint.Z, actualStartPoint.Z, Tolerance);
+
+                Assert.AreEqual(expectedEndPoint.X, actualEndPoint.X, Tolerance);
+                Assert.AreEqual(expectedEndPoint.Y, actualEndPoint.Y, Tolerance);
+                Assert.AreEqual(expectedEndPoint.Z, actualEndPoint.Z, Tolerance);
+
+            }
         }
     }
 }
