@@ -784,8 +784,13 @@ namespace Revit.Elements
         private IEnumerable<Element> GetElementChildren(Autodesk.Revit.DB.Element element)
         {
             List<Element> components = new List<Element>();
+            string categoryId = element.Category.Id.ToString();
+            if (!Enum.IsDefined(typeof(BuiltInCategory), categoryId))
+                throw new InvalidOperationException(Properties.Resources.NotBuiltInCategory);
+                
             BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
-                                                                                 element.Category.Id.ToString());
+                                                                                 categoryId);
+
 
             // By default we use the GetSubComponentIds() on the elements FamilyInstance, 
             // for now the node also handles special cases including Stairs, StructuralFramingSystems and Railings 

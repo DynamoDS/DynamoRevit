@@ -754,6 +754,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Element not valid. Use an element from a BuiltInCategory..
+        /// </summary>
+        internal static string NotBuiltInCategory {
+            get {
+                return ResourceManager.GetString("NotBuiltInCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You need at least two elements for a dimension..
         /// </summary>
         internal static string NotEnoughDataError {

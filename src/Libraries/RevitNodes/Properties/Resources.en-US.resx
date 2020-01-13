@@ -444,4 +444,7 @@
   <data name="ChildElementsNotSupported" xml:space="preserve">
     <value>Getting child elements is not supported for this type of Element.</value>
   </data>
+  <data name="NotBuiltInCategory" xml:space="preserve">
+    <value>Element not valid. Use an element from a BuiltInCategory.</value>
+  </data>
 </root>
