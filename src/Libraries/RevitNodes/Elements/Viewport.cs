@@ -81,6 +81,13 @@ namespace Revit.Elements
 
         #region Public static constructors
 
+        /// <summary>
+        /// Creates a new Viewport at a given location on a sheet.
+        /// </summary>
+        /// <param name="sheet">The Sheet on which the new Viewport will be placed.</param>
+        /// <param name="view">The view shown in the Viewport.</param>
+        /// <param name="location">The new Viewport will be centered on this point.</param>
+        /// <returns>The new Viewport.</returns>
         public static Viewport Create(Sheet sheet, Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location)
         {
             ElementId sheetId = sheet.InternalView.Id;
