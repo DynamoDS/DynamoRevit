@@ -119,6 +119,7 @@
     <Compile Include="Elements\TagTests.cs" />
     <Compile Include="Elements\TextNoteTests.cs" />
     <Compile Include="Elements\TopographyTests.cs" />
+    <Compile Include="Elements\ViewportTests.cs" />
     <Compile Include="Elements\Views\AreaPlanViewTests.cs" />
     <Compile Include="Elements\Views\AxonometricViewTests.cs" />
     <Compile Include="Elements\Views\CeilingPlanViewTests.cs" />

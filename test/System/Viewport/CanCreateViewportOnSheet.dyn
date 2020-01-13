@@ -1,0 +1,333 @@
+{
+  "Uuid": "d9477586-5b5c-425b-8699-406fac94ad32",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanCreateViewportOnSheet",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Revit.Elements.ElementSelector": {
+        "Key": "Revit.Elements.ElementSelector",
+        "Value": "RevitNodes.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Viewport.Create@Revit.Elements.Views.Sheet,Revit.Elements.Views.View,Autodesk.DesignScript.Geometry.Point",
+      "Id": "ffdddb5f24b54a5abd498b57b39f2d99",
+      "Inputs": [
+        {
+          "Id": "312ce5e33b2f4a229a8190622602237d",
+          "Name": "sheet",
+          "Description": "The sheet to place views on.\n\nSheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "baa8da1eb72544bc9c18b8119f495a7f",
+          "Name": "view",
+          "Description": "The view to place.\n\nView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "58f4e86d1faf4e1286d4123bc3894ec7",
+          "Name": "location",
+          "Description": "The location of the view.\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4dbffe04b7264cbd95c16fe1c8c4d404",
+          "Name": "Result",
+          "Description": "The result",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "This node will place the given view on the given sheet, if possible. For floor plan views: They cannot be on any other sheets. Now supports schedules!\n\nViewport.Create (sheet: Sheet, view: View, location: Point): Viewport"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 12,
+      "SelectedString": "Level 0",
+      "NodeType": "ExtensionNode",
+      "Id": "d7dfa984a24c442c837f26b2a7aa18e7",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "eea6d347085547bda62a117a62056f2a",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double",
+      "Id": "37b783b725e948e193eef58cfbe8f659",
+      "Inputs": [
+        {
+          "Id": "09c810e0168843e3a49259059313a9ae",
+          "Name": "x",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dd79ddeb34344b159e2750ee27eb103e",
+          "Name": "y",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6eca56f4708d4b948b0629414b684d71",
+          "Name": "z",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5a310f19d2984e0f9d32e9e1a934eaca",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Form a Point given 3 cartesian coordinates\n\nPoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "179432;",
+      "Id": "7de88c337a77491592b8c384df8dff97",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "483bba026928489baccfa2486702bc00",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "Revit.Elements.ElementSelector.ByElementId(id);",
+      "Id": "f23ebea8789d4439b966e697bfc97eb4",
+      "Inputs": [
+        {
+          "Id": "228645cf0b7d4fda95cfd8268f5123f4",
+          "Name": "id",
+          "Description": "id",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b1d89f1aaa714df09061de61a2347cfa",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Id",
+      "Id": "8e667727f45c4cd398963eca4a22dea5",
+      "Inputs": [
+        {
+          "Id": "26d67163143e452f82f80630e864b257",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "44c7426784c04cad8a7137e80f3b3e12",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Element Id for this element\n\nElement.Id: int"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4dbffe04b7264cbd95c16fe1c8c4d404",
+      "End": "26d67163143e452f82f80630e864b257",
+      "Id": "fd865e61c07046e68ee58314dd4598bb"
+    },
+    {
+      "Start": "eea6d347085547bda62a117a62056f2a",
+      "End": "baa8da1eb72544bc9c18b8119f495a7f",
+      "Id": "262bd6260f0d4dc09b85d57e5d7513f8"
+    },
+    {
+      "Start": "5a310f19d2984e0f9d32e9e1a934eaca",
+      "End": "58f4e86d1faf4e1286d4123bc3894ec7",
+      "Id": "e9b21b81ca9e47828d939627534d61d5"
+    },
+    {
+      "Start": "483bba026928489baccfa2486702bc00",
+      "End": "228645cf0b7d4fda95cfd8268f5123f4",
+      "Id": "69148e1689a04eefb7473bd04ed64a0b"
+    },
+    {
+      "Start": "b1d89f1aaa714df09061de61a2347cfa",
+      "End": "312ce5e33b2f4a229a8190622602237d",
+      "Id": "9f8ece0461c840cdb05e50d606965721"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Viewport.Create",
+        "Id": "ffdddb5f24b54a5abd498b57b39f2d99",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 891.99999999999989,
+        "Y": 329.33333333333348
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "d7dfa984a24c442c837f26b2a7aa18e7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 366.66666666666663,
+        "Y": 344.66666666666674
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Point.ByCoordinates",
+        "Id": "37b783b725e948e193eef58cfbe8f659",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 630.66666666666674,
+        "Y": 440.66666666666657
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "7de88c337a77491592b8c384df8dff97",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 233.33333333333337,
+        "Y": 200.33333333333331
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "f23ebea8789d4439b966e697bfc97eb4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 354.33333333333337,
+        "Y": 206.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.Id",
+        "Id": "8e667727f45c4cd398963eca4a22dea5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1187.333333333333,
+        "Y": 328.66666666666669
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

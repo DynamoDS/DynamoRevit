@@ -331,6 +331,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot place empty view on sheet..
+        /// </summary>
+        internal static string EmptyView {
+            get {
+                return ResourceManager.GetString("EmptyView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to End point list is empty.
         /// </summary>
         internal static string EndPointListEmpty {
@@ -1029,6 +1038,15 @@ namespace Revit.Properties {
         internal static string View_ExportAsImage_Path_Invalid {
             get {
                 return ResourceManager.GetString("View_ExportAsImage_Path_Invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannont place view on sheet as it is already on a sheet..
+        /// </summary>
+        internal static string ViewAlreadyPlacedOnSheet {
+            get {
+                return ResourceManager.GetString("ViewAlreadyPlacedOnSheet", resourceCulture);
             }
         }
         

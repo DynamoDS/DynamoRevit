@@ -206,9 +206,9 @@ namespace Revit.Elements.Views
                     else
                     {
                         //place the view on the sheet
-                        if (Viewport.CanAddViewToSheet(Document, sheet.Id, view.Id))
+                        if (Autodesk.Revit.DB.Viewport.CanAddViewToSheet(Document, sheet.Id, view.Id))
                         {
-                            var viewport = Viewport.Create(Document, sheet.Id, view.Id,
+                            var viewport = Autodesk.Revit.DB.Viewport.Create(Document, sheet.Id, view.Id,
                                                            new XYZ(placement.U + viewWidth / 2, placement.V + viewHeight / 2, 0));
                         }
                     }

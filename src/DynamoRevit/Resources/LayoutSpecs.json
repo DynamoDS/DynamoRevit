@@ -215,6 +215,9 @@
                   "path": "RevitNodes.Revit.Elements.Topography"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.Viewport"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.WallType"
                 }
               ],

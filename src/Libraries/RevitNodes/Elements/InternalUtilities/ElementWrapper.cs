@@ -331,8 +331,13 @@ namespace Revit.Elements
             return PathOfTravel.FromExisting(ele, isRevitOwned);
         }
 
-      #endregion
+        public static Viewport Wrap(Autodesk.Revit.DB.Viewport ele, bool isRevitOwned)
+        {
+            return Viewport.FromExisting(ele, isRevitOwned);
+        }
 
-   }
+        #endregion
+
+    }
 
 }

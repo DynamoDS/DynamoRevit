@@ -100,6 +100,7 @@
     <Compile Include="GlobalParameterTests.cs" />
     <Compile Include="PerformanceAdviserTests.cs" />
     <Compile Include="SerializationTests.cs" />
+    <Compile Include="ViewportTests.cs" />
     <Compile Include="WallTests.cs" />
     <Compile Include="CurtainSystemTests.cs" />
     <Compile Include="RoomTests.cs" />
