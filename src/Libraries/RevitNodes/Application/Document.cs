@@ -151,7 +151,7 @@ namespace Revit.Application
 
             for (int i = 0; i < elementTypes.Count; i++)
             {
-                nonPurgedElements.UnionWith(GetNonPurgeableMaterialIds(elementTypes[i]));
+                nonPurgedElements.UnionWith(GetUsedMaterialIds(elementTypes[i]));
             }
 
             List<ElementId> purgeableMaterials = materials.Except(nonPurgedElements).ToList();
@@ -163,7 +163,7 @@ namespace Revit.Application
             return purgeableMaterials.Concat(purgedMaterialAssets).ToList();
         }
 
-        private static HashSet<ElementId> GetNonPurgeableMaterialIds(Autodesk.Revit.DB.Element type)
+        private static HashSet<ElementId> GetUsedMaterialIds(Autodesk.Revit.DB.Element type)
         {
             HostObjAttributes hostObj = type as HostObjAttributes;
             HashSet<ElementId> usedMaterialIds = new HashSet<ElementId>();
