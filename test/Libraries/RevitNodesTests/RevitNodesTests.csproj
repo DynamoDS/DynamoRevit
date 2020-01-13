@@ -85,6 +85,7 @@
     <Compile Include="Elements\DividedPathTests.cs" />
     <Compile Include="Elements\DividedSurfaceTests.cs" />
     <Compile Include="Elements\DocumentTests.cs" />
+    <Compile Include="Elements\ElementTypeTests.cs" />
     <Compile Include="Elements\ElementTests.cs" />
     <Compile Include="Elements\FillPatternTests.cs" />
     <Compile Include="Elements\FilterTests.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Elements\ReferencePointTests.cs" />
     <Compile Include="Elements\ParseEnumTests.cs" />
     <Compile Include="Elements\PerformanceAdvTests.cs" />
+    <Compile Include="Elements\RoofTypeTests.cs" />
     <Compile Include="Elements\RoomTests.cs" />
     <Compile Include="Elements\RevisionTests.cs" />
     <Compile Include="Elements\SunSettingsTests.cs" />
