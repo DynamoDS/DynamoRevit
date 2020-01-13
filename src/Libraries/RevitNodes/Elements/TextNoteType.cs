@@ -8,25 +8,67 @@ namespace Revit.Elements
     /// <summary>
     /// A Revit TextNoteType
     /// </summary>
-    public class TextNoteType : ElementType
+    public class TextNoteType : Element
     {
         #region Internal properties
 
         /// <summary>
         /// Internal reference to the Revit Element
         /// </summary>
-        internal Autodesk.Revit.DB.TextNoteType InternalTextNoteType => InternalElementType as Autodesk.Revit.DB.TextNoteType;
+        internal Autodesk.Revit.DB.TextNoteType InternalTextNoteType
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Reference to the Element
+        /// </summary>
+        [SupressImportIntoVM]
+        public override Autodesk.Revit.DB.Element InternalElement
+        {
+            get { return InternalTextNoteType; }
+        }
 
         #endregion
 
         #region Private constructors
 
         /// <summary>
-        /// Private constructor for the Element
+        /// Construct from an existing Revit Element
         /// </summary>
-        /// <param name="textNoteType"></param>
-        private TextNoteType(Autodesk.Revit.DB.TextNoteType textNoteType) : base(textNoteType)
+        /// <param name="type"></param>
+        private TextNoteType(Autodesk.Revit.DB.TextNoteType type)
         {
+            SafeInit(() => InitTextNoteType(type));
+        }
+
+        #endregion
+
+        #region Helper for private constructors
+
+        /// <summary>
+        /// Initialize a ModelTextType element
+        /// </summary>
+        /// <param name="type"></param>
+        private void InitTextNoteType(Autodesk.Revit.DB.TextNoteType type)
+        {
+            InternalSetTextNoteType(type);
+        }
+
+        #endregion
+
+        #region Private mutators
+
+        /// <summary>
+        /// Set the internal Element, ElementId, and UniqueId
+        /// </summary>
+        /// <param name="type"></param>
+        private void InternalSetTextNoteType(Autodesk.Revit.DB.TextNoteType type)
+        {
+            this.InternalTextNoteType = type;
+            this.InternalElementId = type.Id;
+            this.InternalUniqueId = type.UniqueId;
         }
 
         #endregion
@@ -38,7 +80,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static new TextNoteType ByName(string name)
+        public static TextNoteType ByName(string name)
         {
             var type = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.TextNoteType>()
                 .FirstOrDefault(x => x.Name == name);
