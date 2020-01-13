@@ -49,6 +49,11 @@ namespace Revit.Elements
             return FamilyInstance.FromExisting(ele, isRevitOwned);
         }
 
+        public static Area Wrap(Autodesk.Revit.DB.Area ele, bool isRevitOwned)
+        {
+            return Area.FromExisting(ele, isRevitOwned);
+        }
+
         public static DirectShape Wrap(Autodesk.Revit.DB.DirectShape ele, bool isRevitOwned)
         {
             return DirectShape.FromExisting(ele, isRevitOwned);
