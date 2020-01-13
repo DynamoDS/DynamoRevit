@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using Autodesk.DesignScript.Runtime;
-using Autodesk.Revit.DB;
 using RevitServices.Persistence;
 
 namespace Revit.Elements
@@ -10,20 +7,25 @@ namespace Revit.Elements
     /// <summary>
     /// A Revit WallType
     /// </summary>
-    public class WallType : ElementType
+    public class WallType : Element
     {
-        private const string absorptanceOutputPort = "Absorptance";
-        private const string heatTransferCoefficientOutputPort = "HeatTransferCoefficient";
-        private const string roughnessOutputPort = "Roughness";
-        private const string thermalMassOutputPort = "ThermalMass";
-        private const string thermalResistanceOutputPort = "ThermalResistance";
-
         #region Internal properties
 
         /// <summary>
         /// Internal reference to the Revit Element
         /// </summary>
-        internal Autodesk.Revit.DB.WallType InternalWallType => InternalElementType as Autodesk.Revit.DB.WallType;
+        internal Autodesk.Revit.DB.WallType InternalWallType
+        {
+            get; private set;
+        }
+
+        /// <summary>
+        /// Reference to the Element
+        /// </summary>
+        public override Autodesk.Revit.DB.Element InternalElement
+        {
+            get { return InternalWallType; }
+        }
 
         #endregion
 
@@ -33,35 +35,51 @@ namespace Revit.Elements
         /// Construct from an existing Revit Element
         /// </summary>
         /// <param name="type"></param>
-        private WallType(Autodesk.Revit.DB.WallType type) : base(type)
+        private WallType(Autodesk.Revit.DB.WallType type)
         {
+            SafeInit(() => InitWallType(type));
+        }
+
+        #endregion
+
+        #region Helper for private constructors
+
+        /// <summary>
+        /// Initialize a WallType element
+        /// </summary>
+        /// <param name="type"></param>
+        private void InitWallType(Autodesk.Revit.DB.WallType type)
+        {
+            InternalSetWallType(type);
+        }
+
+        #endregion
+
+        #region Private mutators
+
+        /// <summary>
+        /// Set the internal Element, ElementId, and UniqueId
+        /// </summary>
+        /// <param name="wallType"></param>
+        private void InternalSetWallType(Autodesk.Revit.DB.WallType wallType)
+        {
+            this.InternalWallType = wallType;
+            this.InternalElementId = wallType.Id;
+            this.InternalUniqueId = wallType.UniqueId;
         }
 
         #endregion
 
         #region Public properties
-
         /// <summary>
-        /// The name of the WallType
+        /// Gets the name of the specified wall type
         /// </summary>
-        public new string Name
+        public new string Name 
         {
-            get { return InternalWallType.Name; }
-        }
-
-        public double Width
-        {
-            get { return InternalWallType.Width; }
-        }
-
-        public string Kind
-        {
-            get { return InternalWallType.Kind.ToString(); }
-        }
-
-        public string Function
-        {
-            get { return InternalWallType.Function.ToString(); }
+            get
+            {
+                return InternalWallType.Name;
+            }
         }
 
         #endregion
@@ -73,7 +91,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static new WallType ByName(string name)
+        public static WallType ByName(string name)
         {
             if (name == null)
             {
@@ -114,34 +132,9 @@ namespace Revit.Elements
 
         #endregion
 
-        #region Public Methods
-        /// <summary>
-        /// The calculated and settable thermal properties of the WallType
-        /// Returns null if the wall has no thermal properties. Curtain walls and stacked
-        /// walls do not store thermal properties.
-        /// </summary>
-        /// <returns name = "Absorptance">Value of absorptance.</returns>
-        /// <returns name = "HeatTransferCoefficient">The heat transfer coefficient value (U-Value).</returns>
-        /// <returns name = "Roughness">Value of roughness.</returns>
-        /// <returns name = "ThermalMass">The calculated thermal mass value.</returns>
-        /// <returns name = "ThermalResistance">The calculated thermal resistance value (R-Value).</returns>
-        [MultiReturn(new[] { absorptanceOutputPort, heatTransferCoefficientOutputPort, roughnessOutputPort, thermalMassOutputPort, thermalResistanceOutputPort})]
-        public Dictionary<string, object> GetThermalProperties()
+        public override string ToString()
         {
-            ThermalProperties thermalProperties = this.InternalWallType.ThermalProperties;
-            if (thermalProperties == null)
-                throw new InvalidOperationException(nameof(GetThermalProperties));
-
-            return new Dictionary<string, object>
-            {
-                { absorptanceOutputPort, thermalProperties.Absorptance },
-                { heatTransferCoefficientOutputPort, thermalProperties.HeatTransferCoefficient },
-                { roughnessOutputPort, thermalProperties.Roughness },
-                { thermalMassOutputPort, thermalProperties.ThermalMass },
-                { thermalResistanceOutputPort, thermalProperties.ThermalResistance }
-            };
+            return InternalWallType.Name;
         }
-
-        #endregion
     }
 }

@@ -248,7 +248,7 @@ namespace DSRevitNodesUI
             // and add type parameters to the list
             if (e.CanHaveTypeAssigned())
             {
-                Autodesk.Revit.DB.ElementType et = DocumentManager.Instance.CurrentDBDocument.GetElement(e.GetTypeId()) as Autodesk.Revit.DB.ElementType;
+                ElementType et = DocumentManager.Instance.CurrentDBDocument.GetElement(e.GetTypeId()) as ElementType;
                 if (et != null)
                 {
                     AddTypeParams(et);
@@ -256,7 +256,7 @@ namespace DSRevitNodesUI
             }
         }
 
-        private void AddTypeParams(Autodesk.Revit.DB.ElementType et)
+        private void AddTypeParams(ElementType et)
         {
             foreach (Parameter p in et.Parameters)
             {

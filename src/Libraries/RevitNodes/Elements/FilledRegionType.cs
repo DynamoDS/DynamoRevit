@@ -10,7 +10,7 @@ namespace Revit.Elements
     /// Revit filled Region Type
     /// </summary>
     [DynamoServices.RegisterForTrace]
-    public class FilledRegionType : ElementType
+    public class FilledRegionType : Element
     {
 
         #region Internal Properties
@@ -18,7 +18,34 @@ namespace Revit.Elements
         /// <summary>
         /// Internal reference to the Revit Element
         /// </summary>
-        internal Autodesk.Revit.DB.FilledRegionType InternalRevitElement => InternalElementType as Autodesk.Revit.DB.FilledRegionType;
+        internal Autodesk.Revit.DB.FilledRegionType InternalRevitElement
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Reference to the Element
+        /// </summary>
+        [SupressImportIntoVM]
+        public override Autodesk.Revit.DB.Element InternalElement
+        {
+            get { return InternalRevitElement; }
+        }
+
+        #endregion
+
+        #region Private mutators
+
+        /// <summary>
+        /// Set the internal Element, ElementId, and UniqueId
+        /// </summary>
+        private void InternalSetElement(Autodesk.Revit.DB.FilledRegionType element)
+        {
+            InternalRevitElement = element;
+            InternalElementId = element.Id;
+            InternalUniqueId = element.UniqueId;
+        }
 
         #endregion
 
@@ -28,8 +55,9 @@ namespace Revit.Elements
         /// FilledRegionType
         /// </summary>
         /// <param name="FilledRegion"></param>
-        private FilledRegionType(Autodesk.Revit.DB.FilledRegionType FilledRegion):base(FilledRegion)
+        private FilledRegionType(Autodesk.Revit.DB.FilledRegionType FilledRegion)
         {
+            SafeInit(() => InitElement(FilledRegion));
         }
 
 
@@ -42,7 +70,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static new FilledRegionType ByName(string name)
+        public static FilledRegionType ByName(string name)
         {
             var type = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.FilledRegionType>()
                 .FirstOrDefault(x => x.Name == name);
@@ -65,7 +93,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Name
         /// </summary>
-        public new string Name
+        public string Name
         {
             get { return this.InternalRevitElement.Name; }
         }
@@ -88,6 +116,18 @@ namespace Revit.Elements
 
         #endregion
 
+        #region Helpers for private constructors
+
+        /// <summary>
+        /// Init Element
+        /// </summary>
+        private void InitElement(Autodesk.Revit.DB.FilledRegionType element)
+        {
+            InternalSetElement(element);
+        }
+
+        #endregion
+
         #region Internal static constructors
 
         /// <summary>
@@ -105,6 +145,7 @@ namespace Revit.Elements
         }
 
         #endregion
+
 
     }
 
