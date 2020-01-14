@@ -74,6 +74,7 @@
     <Compile Include="AnalysisDisplay\PointAnalysisDisplay.cs" />
     <Compile Include="AnalysisDisplay\VectorAnalysisDisplay.cs" />
     <Compile Include="Application\Document.cs" />
+    <Compile Include="Application\Warning.cs" />
     <Compile Include="Elements\Category.cs" />
     <Compile Include="Elements\Coordinates.cs" />
     <Compile Include="Elements\CurtainGrid.cs" />

@@ -71,6 +71,12 @@
               "include": [
                 {
                   "path": "RevitNodes.Revit.Application.Document"
+                },
+                {
+                  "path": "RevitNodes.Revit.Application.Warning"
+                },
+                {
+                  "path": "Revit.Warning"
                 }
               ]
             },

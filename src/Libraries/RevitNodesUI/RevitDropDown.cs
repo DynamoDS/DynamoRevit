@@ -22,6 +22,7 @@ using Family = Autodesk.Revit.DB.Family;
 using FamilySymbol = Autodesk.Revit.DB.FamilySymbol;
 using Level = Autodesk.Revit.DB.Level;
 using Parameter = Autodesk.Revit.DB.Parameter;
+using Revit.Application;
 
 namespace DSRevitNodesUI
 {
@@ -929,5 +930,77 @@ namespace DSRevitNodesUI
         }
     }
 
-        
+    [NodeName("All Warnings of Type")]
+    [NodeCategory(BuiltinNodeCategories.REVIT_WARNING)]
+    [NodeDescription("AllWarningsOfTypeDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class AllWarningsOfType : RevitDropDownBase
+    {
+        private const string outputName = "Warning";
+
+        public AllWarningsOfType() : base(outputName) { }
+
+        [JsonConstructor]
+        public AllWarningsOfType(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
+
+        protected override SelectionState PopulateItemsCore(string currentSelection)
+        {
+            Items.Clear();
+            Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+            //find all unique warnings in the project
+            var warnings = DocumentManager.Instance.CurrentDBDocument
+                .GetWarnings()
+                .GroupBy(warn => warn.GetFailureDefinitionId().Guid.ToString())
+                .Select(group => group.First())
+                .ToList();
+
+            if (warnings.Count < 1)
+                throw new InvalidOperationException("No warnings in the current document");
+
+            for (int i = 0; i < warnings.Count; i++)
+            {
+                var warningText = TruncateString(warnings[i].GetDescriptionText(), 50);
+                Items.Add(new DynamoDropDownItem(warningText, warnings[i]));
+            }
+            Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+
+            return SelectionState.Restore;
+        }
+
+        private static string TruncateString(string str, int maxChars)
+        {
+            string subString = str.Substring(0, System.Math.Min(str.Length, maxChars));
+            return subString += "...";
+        }
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            AssociativeNode node;
+            if (!CanBuildOutputAst())
+            {
+                node = AstFactory.BuildNullNode();
+            }
+            else
+            {
+                var warning = Items[SelectedIndex].Item as Autodesk.Revit.DB.FailureMessage;
+                if (warning == null)
+                {
+                    node = AstFactory.BuildNullNode();
+                }
+                else
+                {
+
+                    var guidNode = AstFactory.BuildStringNode(warning.GetFailureDefinitionId().Guid.ToString());
+                    node =
+                        AstFactory.BuildFunctionCall(
+                            new Func<string, object>(Revit.Application.Warning.GetWarningByGuid),
+                            new List<AssociativeNode>() { guidNode });
+                }
+            }
+
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
+        }
+
+    }
 }
