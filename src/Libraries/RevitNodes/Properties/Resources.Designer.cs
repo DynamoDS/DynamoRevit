@@ -295,6 +295,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Document is not workshared.
+        /// </summary>
+        internal static string DocumentNotWorkshared {
+            get {
+                return ResourceManager.GetString("DocumentNotWorkshared", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dynamo Data.
         /// </summary>
         internal static string Dynamo_AVF_Data_Name {
@@ -705,6 +714,15 @@ namespace Revit.Properties {
         internal static string NonIntersectingElements {
             get {
                 return ResourceManager.GetString("NonIntersectingElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Elements to purge in the current document..
+        /// </summary>
+        internal static string NoElementsToPurge {
+            get {
+                return ResourceManager.GetString("NoElementsToPurge", resourceCulture);
             }
         }
         
