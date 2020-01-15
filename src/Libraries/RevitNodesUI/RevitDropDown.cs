@@ -988,15 +988,12 @@ namespace DSRevitNodesUI
                 {
                     node = AstFactory.BuildNullNode();
                 }
-                else
-                {
 
-                    var guidNode = AstFactory.BuildStringNode(warning.GetFailureDefinitionId().Guid.ToString());
-                    node =
-                        AstFactory.BuildFunctionCall(
-                            new Func<string, object>(Revit.Application.Warning.GetWarningByGuid),
-                            new List<AssociativeNode>() { guidNode });
-                }
+                var guidNode = AstFactory.BuildStringNode(warning.GetFailureDefinitionId().Guid.ToString());
+                node =
+                    AstFactory.BuildFunctionCall(
+                        new Func<string, object>(Revit.Application.Warning.GetWarningByGuid),
+                        new List<AssociativeNode>() { guidNode });
             }
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
