@@ -872,7 +872,7 @@ namespace RevitSystemTests
         #region New Sample Tests
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample_2020.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_Adaptive_Component_Placement()
         {
             var model = ViewModel.Model;
@@ -920,7 +920,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample_2020.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_Color()
         {
             var model = ViewModel.Model;
@@ -950,7 +950,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample_2020.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_Floors_and_Framing()
         {
             // this test marked as Ignore because on running it is throwing error from Revit side.
@@ -991,7 +991,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample_2020.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_ImportSolid()
         {
             var model = ViewModel.Model;
@@ -1018,7 +1018,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample_2020.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_PlaceFamiliesByLevel_Set_Parameters()
         {
             var model = ViewModel.Model;
@@ -1048,7 +1048,7 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests")]
-        [TestModel(@".\Samples\DynamoSample_2020.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_StructuralFraming()
         {
             var model = ViewModel.Model;
