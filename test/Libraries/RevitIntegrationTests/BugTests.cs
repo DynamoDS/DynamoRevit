@@ -762,7 +762,7 @@ namespace RevitSystemTests
 
         [Test]
         [Category("RegressionTests")]
-        [TestModel(@".\Samples\DynamoSample_2020.rvt")]
+        [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void GetParameterValueByNameWorksForSheetNumber()
         {
             string filePath = Path.Combine(workingDirectory, @".\Bugs\MAGN_5870.dyn");
