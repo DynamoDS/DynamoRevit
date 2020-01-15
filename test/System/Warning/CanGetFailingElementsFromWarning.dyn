@@ -1,0 +1,256 @@
+{
+  "Uuid": "ec7791f9-2078-4191-9076-cb44bdcd0dad",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetFailingElementsFromWarning",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Id": "9f963c6c0b784e0f916eefacccc5b796",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a7c2b932ad5c4ba787405f3929189f9c",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Warning.GetFailingElements",
+      "Id": "2075c6a0befd42a7b75c1716e1e2af48",
+      "Inputs": [
+        {
+          "Id": "1173b01ec4314e7cbdcffeaaaa86fe4e",
+          "Name": "warning",
+          "Description": "Revit.Application.Warning",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c0361355b08f49e3bb60bdc9fc1e3a99",
+          "Name": "Element[]",
+          "Description": "The elements that have caused the failure.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Retrieves a list of the elements that have caused the failure.\n\nWarning.GetFailingElements ( ): Element[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Id",
+      "Id": "5090b6b1e47f498e858a95e9e8a303fd",
+      "Inputs": [
+        {
+          "Id": "95895f8ad01b42dd9250a51452eada59",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4f10587a06da4f4a8eaf17fd69650c31",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Element Id for this element\n\nElement.Id: int"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Warning.GetWarnings@Revit.Application.Document",
+      "Id": "9a277e35eb0447bd93b2c097155c259e",
+      "Inputs": [
+        {
+          "Id": "7759ecde18cd4b90ac41601acde13ec6",
+          "Name": "document",
+          "Description": "The document to get the warnings from\n\nDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "482c15595f6442c78d62f873865ffd6e",
+          "Name": "Warning[]",
+          "Description": "List of all warnings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns a list of all warnings from the document.\n\nWarning.GetWarnings (document: Document): Warning[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
+      "Id": "2737364bb8c44178a817b1aca121305a",
+      "Inputs": [
+        {
+          "Id": "ed7fab0c20874cf2b713cda60b02b2a0",
+          "Name": "list",
+          "Description": "List to get the first item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2a78946e14894fd1972dd0ce56a1629f",
+          "Name": "item",
+          "Description": "First item in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "a7c2b932ad5c4ba787405f3929189f9c",
+      "End": "7759ecde18cd4b90ac41601acde13ec6",
+      "Id": "fd6508ce3fc047b2bf87c49d9fe28f1b"
+    },
+    {
+      "Start": "c0361355b08f49e3bb60bdc9fc1e3a99",
+      "End": "95895f8ad01b42dd9250a51452eada59",
+      "Id": "a81073588b7443388537632711524c37"
+    },
+    {
+      "Start": "4f10587a06da4f4a8eaf17fd69650c31",
+      "End": "ed7fab0c20874cf2b713cda60b02b2a0",
+      "Id": "ad6023e152fb4bf99b94f8da05220a0f"
+    },
+    {
+      "Start": "482c15595f6442c78d62f873865ffd6e",
+      "End": "1173b01ec4314e7cbdcffeaaaa86fe4e",
+      "Id": "7e3f96f02a6944b98d01310dce8064b4"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Current",
+        "Id": "9f963c6c0b784e0f916eefacccc5b796",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -242.70895043672618,
+        "Y": 135.64361037163712
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Warning.GetFailingElements",
+        "Id": "2075c6a0befd42a7b75c1716e1e2af48",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 264.53507403336556,
+        "Y": 136.32412925185824
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.Id",
+        "Id": "5090b6b1e47f498e858a95e9e8a303fd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 584.58906868251688,
+        "Y": 135.99588479451623
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Warning.GetWarnings",
+        "Id": "9a277e35eb0447bd93b2c097155c259e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -60.143478624363695,
+        "Y": 134.48285201561404
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.FirstItem",
+        "Id": "2737364bb8c44178a817b1aca121305a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 815.35356699137049,
+        "Y": 137.55119935026411
+      }
+    ],
+    "Annotations": [],
+    "X": 432.58997560986006,
+    "Y": 130.65636330657856,
+    "Zoom": 0.98900584672737946
+  }
+}

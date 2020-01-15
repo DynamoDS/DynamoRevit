@@ -134,6 +134,7 @@
     <Compile Include="Elements\WallTests.cs" />
     <Compile Include="Elements\WallTypeTests.cs" />
     <Compile Include="Elements\FilledRegionTests.cs" />
+    <Compile Include="Elements\WarningTests.cs" />
     <Compile Include="GeometryConversion\CurveUtilsTests.cs" />
     <Compile Include="GeometryConversion\ProtoToRevitCurveTests.cs" />
     <Compile Include="GeometryConversion\RevitSolidToProtoTests.cs" />

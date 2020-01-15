@@ -145,6 +145,7 @@
     <Compile Include="SunSettingsTests.cs" />
     <Compile Include="TopographyTests.cs" />
     <Compile Include="TransformTest.cs" />
+    <Compile Include="WarningTests.cs" />
     <Compile Include="WorkflowTest.cs" />
     <Compile Include="XYZTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
