@@ -71,6 +71,9 @@
               "include": [
                 {
                   "path": "RevitNodes.Revit.Application.Document"
+                },
+                {
+                  "path": "RevitNodes.Revit.Application.FamilyDocument"
                 }
               ]
             },

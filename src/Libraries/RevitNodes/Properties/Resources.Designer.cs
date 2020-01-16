@@ -709,20 +709,20 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Elements are not intersecting.
-        /// </summary>
-        internal static string NonIntersectingElements {
-            get {
-                return ResourceManager.GetString("NonIntersectingElements", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No Elements to purge in the current document..
         /// </summary>
         internal static string NoElementsToPurge {
             get {
                 return ResourceManager.GetString("NoElementsToPurge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elements are not intersecting.
+        /// </summary>
+        internal static string NonIntersectingElements {
+            get {
+                return ResourceManager.GetString("NonIntersectingElements", resourceCulture);
             }
         }
         
@@ -1101,6 +1101,15 @@ namespace Revit.Properties {
         internal static string WallTypeNotFound {
             get {
                 return ResourceManager.GetString("WallTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input value for this parameter needs to be of type {0}..
+        /// </summary>
+        internal static string WrongStorageType {
+            get {
+                return ResourceManager.GetString("WrongStorageType", resourceCulture);
             }
         }
     }
