@@ -22,7 +22,7 @@ namespace Revit.References
         /// <param name="view"></param>
         /// <returns></returns>
         [MultiReturn(new[] { "points", "elements" })]
-        public static Dictionary<string,object> ByOriginDirection(Point origin, Vector direction, int maxBounces, Elements.Views.View3D view)
+        public static Dictionary<string,object> ByOriginDirection(Point origin, Vector direction, int maxBounces, Elements.Views.AbstractView3D view)
         {
             var startpt = origin.ToXyz();
             var rayCount = 0;
