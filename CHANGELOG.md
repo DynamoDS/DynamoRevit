@@ -1,3 +1,7 @@
+## 0.1.14
+* Update DynamoCore to 2.5.0.7432
+* Update DynamoCore Runtime to 2.5.0.7460
+
 ## 0.1.13
 * update DynamoCore to 2.5.0.7186
 
