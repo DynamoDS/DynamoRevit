@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Autodesk.DesignScript.Geometry;
 using DynamoServices;
 using DynamoUnits;
 using Revit.Elements.InternalUtilities;
@@ -444,7 +445,25 @@ namespace Revit.Elements
                 .ToArray();
         }
 
+        /// <summary>
+        /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) and its coordinate system.
+        /// </summary>
+        /// <param name="familyType">Family Type. Also called Family Symbol.</param>
+        /// <param name="coordinateSystem">Coordinates system to place the new family instance in.</param>
+        /// <returns>New family instance.</returns>
+        public static FamilyInstance ByCoordinateSystem(FamilyType familyType, CoordinateSystem coordinateSystem)
+        {
+            var transform = coordinateSystem.ToTransform() as Autodesk.Revit.DB.Transform;
+            double[] newRotationAngles;
+            TransformUtils.ExtractEularAnglesFromTransform(transform, out newRotationAngles);
+            double rotation = ConvertEularToAngleDegrees(newRotationAngles.FirstOrDefault());
+            Point location = transform.ToCoordinateSystem().Origin;
 
+            FamilyInstance familyInstance = ByPoint(familyType, location);
+            familyInstance.SetRotation(rotation);
+
+            return familyInstance;
+        }
 
         #endregion
 
@@ -560,6 +579,50 @@ namespace Revit.Elements
             return InternalFamilyInstance.IsValidObject ? InternalFamilyInstance.GetTransform() : null;
         }
 
+        private double GetRotationFromCS(CoordinateSystem fromCS, CoordinateSystem contextCS)
+        {
+            var elementTransform = this.InternalFamilyInstance.GetTransform();
+            var newTransform = contextCS.ToTransform() as Autodesk.Revit.DB.Transform;
+
+            var oldTransform = fromCS.ToTransform() as Autodesk.Revit.DB.Transform;
+
+            double[] oldRotationAngles;
+            TransformUtils.ExtractEularAnglesFromTransform(oldTransform, out oldRotationAngles);
+            double[] newRotationAngles;
+            TransformUtils.ExtractEularAnglesFromTransform(newTransform, out newRotationAngles);
+            return ConvertEularToAngleDegrees(newRotationAngles.FirstOrDefault());
+        }
+
+        private static double ConvertEularToAngleDegrees(double newRotationAngles)
+        {
+            return (newRotationAngles / (2 * Math.PI)) * 360;
+        }
+
+        private void SetLocationFromCS(CoordinateSystem fromCS, CoordinateSystem contextCS)
+        {
+            var locationGeometry = this.InternalElement.Location;
+            if (locationGeometry is Autodesk.Revit.DB.LocationCurve)
+            {
+                var locationCurve = locationGeometry as Autodesk.Revit.DB.LocationCurve;
+                var dynamoCurve = locationCurve.Curve.ToProtoType();
+                var newLocation = dynamoCurve.Transform(fromCS, contextCS) as Curve;
+                locationCurve.Curve = newLocation.ToRevitType(true);
+                dynamoCurve.Dispose();
+                newLocation.Dispose();
+                return;
+            }
+            else if (locationGeometry is Autodesk.Revit.DB.LocationPoint)
+            {
+                var location = this.InternalElement.Location as Autodesk.Revit.DB.LocationPoint;
+                var dynamoPoint = location.Point.ToPoint(true);
+                var newLocation = dynamoPoint.Transform(fromCS, contextCS) as Autodesk.DesignScript.Geometry.Point;
+                location.Point = newLocation.ToRevitType(true);
+                dynamoPoint.Dispose();
+                newLocation.Dispose();
+                return;
+            }
+            throw new Exception(Properties.Resources.InvalidElementLocation);
+        }
         #endregion
     }
 
