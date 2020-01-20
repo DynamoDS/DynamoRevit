@@ -296,6 +296,28 @@ namespace Revit.Elements
             }
         }
 
+        /// <summary>
+        /// The room in which the instance is located.
+        /// </summary>
+        public Element Room
+        {
+            get
+            {
+                return this.InternalFamilyInstance.Room.ToDSType(true);
+            }
+        }
+
+        /// <summary>
+        /// The space in which the instance is located.
+        /// </summary>
+        public Element Space
+        {
+            get
+            {
+                return this.InternalFamilyInstance.Space.ToDSType(true);
+            }
+        }
+
         #endregion
 
         #region Public static constructors
