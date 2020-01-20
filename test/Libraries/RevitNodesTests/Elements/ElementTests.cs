@@ -262,6 +262,111 @@ namespace RevitNodesTests.Elements
 
         #endregion
 
+        [Test]
+        [TestModel((@".\Element\elementComponents.rvt"))]
+        public void CanGetElementChildElements()
+        {
+            // Arrange
+            var wall = ElementSelector.ByElementId(316153, true);
+            var window = ElementSelector.ByElementId(319481, true);
+            var beamSystem = ElementSelector.ByElementId(319537, true);
+            var stair = ElementSelector.ByElementId(316246, true);
+            var railing = ElementSelector.ByElementId(319643, true);
+
+            var expectedExceptionMessageWallChildElement = Revit.Properties.Resources.ChildElementsNotSupported;
+            var expectedWindowChildElement = new List<int>() { 319484, 319485 };
+            var expectedBeamChildElements = new List<int>() { 319563, 319575, 319577, 319579, 319581 };
+            var expectedStairChildElements = new List<int>() { 316286, 316288, 316289 };
+            var expectedRailingChildElements = new List<int>() { 319683 };
+
+            // Act
+            var resultWindowChildElements = window.GetChildElements().Select(x => x.Id).ToList();
+            var resultBeamSystemChildElements = beamSystem.GetChildElements().Select(x => x.Id).ToList();
+            var resultStairChildElements = stair.GetChildElements().Select(x => x.Id).ToList();
+            var resultRailingChildElements = railing.GetChildElements().Select(x => x.Id).ToList();
+            var wallChildElementsException = Assert.Throws<System.NullReferenceException>(() => wall.GetChildElements());
+
+            // Assert
+            Assert.AreEqual(wallChildElementsException.Message, expectedExceptionMessageWallChildElement);
+            CollectionAssert.AreEqual(expectedWindowChildElement, resultWindowChildElements);
+            CollectionAssert.AreEqual(expectedBeamChildElements, resultBeamSystemChildElements);
+            CollectionAssert.AreEqual(expectedStairChildElements, resultStairChildElements);
+            CollectionAssert.AreEqual(expectedRailingChildElements, resultRailingChildElements);
+
+        }
+
+        [Test]
+        [TestModel((@".\Element\elementComponents.rvt"))]
+        public void CanGetElementParentElement()
+        {
+            // Arrange
+            var wall = ElementSelector.ByElementId(316153, true);
+            var window = ElementSelector.ByElementId(319485, true);
+            var beam = ElementSelector.ByElementId(319579, true);
+
+            var expectedExceptionMessageWallSubComponents = Revit.Properties.Resources.NoParentElement;
+            var expectedWindowParentElement = 319481;
+            var expectedBeamParentElement = 319537;
+
+            // Act
+            var wallParentElementException = Assert.Throws<System.InvalidOperationException>(() => wall.GetParentElement());
+            var resultWindowParentElement = window.GetParentElement().Id;
+            var resultBeamParentElement = beam.GetParentElement().Id;
+
+            // Assert
+            Assert.AreEqual(wallParentElementException.Message, expectedExceptionMessageWallSubComponents);
+            Assert.AreEqual(expectedWindowParentElement, resultWindowParentElement);
+            Assert.AreEqual(expectedBeamParentElement, resultBeamParentElement);
+        }
+        
+        [Test]
+        [TestModel((@".\Element\elementTransform.rvt"))]
+        public void CanTransformElement()
+        {
+            // Arrange
+            var delta = 0.001;
+            var originPoint = Coordinates.BasePoint();  
+            var fromCS = CoordinateSystem.ByOrigin(originPoint);
+            var translatedOriginPoint = originPoint.Translate(Vector.XAxis(), 10000) as Autodesk.DesignScript.Geometry.Point;
+            var contextCS = CoordinateSystem.ByOrigin(translatedOriginPoint).Rotate(translatedOriginPoint,
+                                                                                    Vector.ZAxis(),
+                                                                                    25);
+
+            var wall = ElementSelector.ByElementId(316150) as Revit.Elements.FamilyInstance;
+            var rectangularColumn = ElementSelector.ByElementId(318266) as Revit.Elements.FamilyInstance;
+            var steelColumn = ElementSelector.ByElementId(316180) as Revit.Elements.FamilyInstance;
+            var lineBasedFamily = ElementSelector.ByElementId(317296) as Revit.Elements.FamilyInstance;
+
+            var expectedRectangularColumnLocation = Autodesk.DesignScript.Geometry.Point.ByCoordinates(4665.007,-2577.392,0);
+            var expectedLineBasedFamilyLocation = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(Autodesk.DesignScript.Geometry.Point.ByCoordinates(6030.576, -1719.941, 0),
+                                                                                                           Autodesk.DesignScript.Geometry.Point.ByCoordinates(7059.036, -494.270, 0));
+
+            var originalRectangularColumnLocation = Autodesk.DesignScript.Geometry.Point.ByCoordinates(-5924.398, -81.245, 0); ;
+            var originalLineBasedFamilyLocation = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(Autodesk.DesignScript.Geometry.Point.ByCoordinates(-4324.398, 118.755, 0),
+                                                                                                           Autodesk.DesignScript.Geometry.Point.ByCoordinates(-2724.398, 118.755, 0));
+
+            // Act
+            var transformlineBasedFamily = lineBasedFamily.Transform(fromCS, contextCS);
+            var transformedlineBasedFamilyLocation = transformlineBasedFamily.GetLocation() as Autodesk.DesignScript.Geometry.Line;
+            var transformRectangularColumn = rectangularColumn.Transform(fromCS, contextCS);
+            var transformedRectangularColumnLocation = transformRectangularColumn.GetLocation() as Autodesk.DesignScript.Geometry.Point;
+            var wallEx = Assert.Throws<System.NullReferenceException>(() => wall.Transform(fromCS, contextCS));
+            var steelColumnEx = Assert.Throws<System.NullReferenceException>(() => steelColumn.Transform(fromCS, contextCS));
+
+
+            // Assert - Elements have moved
+            Assert.AreNotEqual(originalRectangularColumnLocation.X, transformedRectangularColumnLocation.X);
+            Assert.AreNotEqual(originalRectangularColumnLocation.Y, transformedRectangularColumnLocation.Y);
+            Assert.AreNotEqual(originalLineBasedFamilyLocation.StartPoint.X, transformedlineBasedFamilyLocation.StartPoint.X);
+            Assert.AreNotEqual(originalLineBasedFamilyLocation.StartPoint.Y, transformedlineBasedFamilyLocation.StartPoint.Y);
+
+            // Assert - Elements are in correct position
+            Assert.AreEqual(expectedRectangularColumnLocation.X, transformedRectangularColumnLocation.X, delta);
+            Assert.AreEqual(expectedRectangularColumnLocation.Y, transformedRectangularColumnLocation.Y, delta);
+            Assert.AreEqual(expectedLineBasedFamilyLocation.StartPoint.X, transformedlineBasedFamilyLocation.StartPoint.X, delta);
+            Assert.AreEqual(expectedLineBasedFamilyLocation.StartPoint.Y, transformedlineBasedFamilyLocation.StartPoint.Y, delta);
+        }
+        
         #region Pin settings
         /// <summary>
         /// gets the pinned status of an element from the model

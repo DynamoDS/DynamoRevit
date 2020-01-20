@@ -584,6 +584,41 @@ namespace Revit.Elements
             return this;
         }
 
+        ///// <summary>
+        ///// Transforms this FamilyInstance from a source CoordinateSystem to a new context CoordinateSystem.
+        ///// </summary>
+        ///// <param name="fromCoordinateSystem">Source CoordinatSystem</param>
+        ///// <param name="contextCoordinateSystem">Context CordinateSystem</param>
+        ///// <returns>Transformed Element</returns>
+        public FamilyInstance Transform(CoordinateSystem fromCoordinateSystem, CoordinateSystem contextCoordinateSystem)
+        {
+
+            TransactionManager.Instance.EnsureInTransaction(Document);
+            var transManager = TransactionManager.Instance.TransactionWrapper;
+            var t = transManager.StartTransaction(Document);
+            var elementTransform = this.InternalGetTransform();
+            var contextTransform = contextCoordinateSystem.ToTransform();
+            try
+            {
+                if (elementTransform.BasisX.IsAlmostEqualTo(contextTransform.BasisX) &&
+                    elementTransform.BasisY.IsAlmostEqualTo(contextTransform.BasisY) &&
+                    elementTransform.BasisZ.IsAlmostEqualTo(contextTransform.BasisZ))
+                {
+                    return this;
+                }
+                double degrees = GetRotationFromCS(fromCoordinateSystem, contextCoordinateSystem);
+                this.SetRotation(degrees);
+                this.SetLocationFromCS(fromCoordinateSystem, contextCoordinateSystem);
+            }
+            catch (Exception ex)
+            {
+                t.CancelTransaction();
+                throw new Exception(ex.Message);
+            }
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
         #endregion
 
         #region Private helper methods
@@ -645,6 +680,7 @@ namespace Revit.Elements
             }
             throw new Exception(Properties.Resources.InvalidElementLocation);
         }
+
         #endregion
     }
 
