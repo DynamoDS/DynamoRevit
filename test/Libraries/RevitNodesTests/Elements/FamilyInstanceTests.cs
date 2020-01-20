@@ -135,7 +135,8 @@ namespace RevitNodesTests.Elements
         {
             // Arrange
             var famType = ElementSelector.ByElementId(131610, true) as FamilyType;
-            var coordinateSystem = CoordinateSystem.ByOrigin(0, 0);
+            var coordinateSystem = CoordinateSystem.ByOrigin(0, 0)
+                .Rotate(Autodesk.DesignScript.Geometry.Plane.ByOriginNormal(Point.ByCoordinates(0,0), Vector.ByCoordinates(0,0,1)), 45);
 
             var expectedFacingOrientation = Vector.ByCoordinates(-0.707, 0.707, 0.000);
 
@@ -147,6 +148,40 @@ namespace RevitNodesTests.Elements
             Assert.AreEqual(expectedFacingOrientation.X, facingOrientation.X, Tolerance);
             Assert.AreEqual(expectedFacingOrientation.Y, facingOrientation.Y, Tolerance);
             Assert.AreEqual(expectedFacingOrientation.Z, facingOrientation.Z, Tolerance);
+        }
+
+        [Test]
+        [TestModel(@".\FamilyInstance\familyInstanceTests.rvt")]
+        public void CanGetFamilyInstanceRoom()
+        {
+            // Arrange
+            var famInstance = ElementSelector.ByElementId(316162, true) as FamilyInstance;
+
+            var expectedRoomId = 316151;
+
+            // Act
+            var familyInstanceRoom = famInstance.Room;
+            var roomId = familyInstanceRoom.Id;
+
+            // Assert
+            Assert.AreEqual(expectedRoomId, roomId);
+        }
+
+        [Test]
+        [TestModel(@".\FamilyInstance\familyInstanceTests.rvt")]
+        public void CanGetFamilyInstanceSpace()
+        {
+            // Arrange
+            var famInstance = ElementSelector.ByElementId(316162, true) as FamilyInstance;
+
+            var expectedSpaceId = 316157;
+
+            // Act
+            var familyInstanceSpace = famInstance.Space;
+            var spaceId = familyInstanceSpace.Id;
+
+            // Assert
+            Assert.AreEqual(expectedSpaceId, spaceId);
         }
 
     }

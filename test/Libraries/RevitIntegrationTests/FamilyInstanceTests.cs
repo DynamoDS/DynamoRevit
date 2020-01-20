@@ -45,5 +45,46 @@ namespace RevitSystemTests
             Assert.AreEqual(expectedFacingOrientation.Y, (double)facingOrientationY, Tolerance);
             Assert.AreEqual(expectedFacingOrientation.Z, (double)facingOrientationZ, Tolerance);
         }
+
+        [Test]
+        [TestModel(@".\FamilyInstance\familyInstanceTests.rvt")]
+        public void CanGetFamilyInstanceRoom()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\FamilyInstance\CanGetFamilyInstanceRoom.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            var expectedRoomId = 316151;
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            var roomId = GetPreviewValue("e339c4ed230a46f891cb42504f1c63aa");
+
+            // Assert
+            Assert.AreEqual(expectedRoomId, roomId);
+        }
+
+        [Test]
+        [TestModel(@".\FamilyInstance\familyInstanceTests.rvt")]
+        public void CanGetFamilyInstanceSpace()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\FamilyInstance\CanGetFamilyInstanceSpace.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            var expectedRoomId = 316157;
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            var roomId = GetPreviewValue("ffb3880abe0049bdb6fc92cccdbb2866");
+
+            // Assert
+            Assert.AreEqual(expectedRoomId, roomId);
+        }
+
     }
 }
