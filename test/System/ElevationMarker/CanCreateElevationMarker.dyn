@@ -10,54 +10,6 @@
   "Outputs": [],
   "Nodes": [
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.ElevationMarker.Create@Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point,int",
-      "Id": "249552a06a7342bab0e04e366e5e56a0",
-      "Inputs": [
-        {
-          "Id": "78e62ffb902146eb95f0f76694a65734",
-          "Name": "viewFamilyType",
-          "Description": "The ViewFamilyType that will be used by all elevations hosted on the new ElevationMarker.\n\nElement",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "65a2f3d0ef474822a3eb4cd53dfece0c",
-          "Name": "location",
-          "Description": "The desired origin for the ElevationMarker.\n\nPoint",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "7a211dc4775d4666933aa972f78e80b1",
-          "Name": "initialViewScale",
-          "Description": "The view scale will be automatically applied to new elevations created on the ElevationMarker. The scale is the ratio of true model size to paper size.\n\nint",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "8e58d9043daf49acb106c1e05b7a3779",
-          "Name": "ElevationMarker",
-          "Description": "The new ElevationMarker element.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Creates a new ElevationMarker.\n\nElevationMarker.Create (viewFamilyType: Element, location: Point, initialViewScale: int): ElevationMarker"
-    },
-    {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
       "Code": "100;",
@@ -178,33 +130,81 @@
       ],
       "Replication": "Auto",
       "Description": "Returns the type of object represented as string.\n\nObject.Type (obj: var): string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.ElevationMarker.ByViewTypeLocation@Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point,int",
+      "Id": "c42a812a27de4487833432e3b11c6416",
+      "Inputs": [
+        {
+          "Id": "ef32900439584b64862d83ec9e39e067",
+          "Name": "viewFamilyType",
+          "Description": "The ViewFamilyType that will be used by all elevations hosted on the new ElevationMarker.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5127d1edddeb41289f1cef71926d4e16",
+          "Name": "location",
+          "Description": "The desired origin for the ElevationMarker.\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "772d1c57675549e784d54674a6a6acbe",
+          "Name": "initialViewScale",
+          "Description": "The view scale will be automatically applied to new elevations created on the ElevationMarker. The scale is the ratio of true model size to paper size (e.g. input 100 for 1:100 scale).\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "59684330bbbd4a88a7ed11d600b85220",
+          "Name": "ElevationMarker",
+          "Description": "The new ElevationMarker element.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Creates a new ElevationMarker.\n\nElevationMarker.ByViewTypeLocation (viewFamilyType: Element, location: Point, initialViewScale: int): ElevationMarker"
     }
   ],
   "Connectors": [
     {
-      "Start": "8e58d9043daf49acb106c1e05b7a3779",
-      "End": "ce7e3aab99944d0c92d4cf837dbc5130",
-      "Id": "1bbf06d9f1ef419dbcb3709c2e485363"
-    },
-    {
       "Start": "259e20a177794181bebc82c30cc43f24",
-      "End": "7a211dc4775d4666933aa972f78e80b1",
-      "Id": "3004924853c44437853de7527d902da0"
+      "End": "772d1c57675549e784d54674a6a6acbe",
+      "Id": "c767dfba62284b289175bebec57d0470"
     },
     {
       "Start": "ae897fe710334675bc5f0a7d64b105e9",
-      "End": "65a2f3d0ef474822a3eb4cd53dfece0c",
-      "Id": "009d9cdc7c954d09a343d4f436c28caf"
+      "End": "5127d1edddeb41289f1cef71926d4e16",
+      "Id": "fcec416b2f3e465384b29b3e3f76875f"
     },
     {
       "Start": "b007dd131ed64497bb9fb61e8d24c6fe",
-      "End": "78e62ffb902146eb95f0f76694a65734",
-      "Id": "d8dd6ce3cb9d4c1ba6bf3ed977826e95"
+      "End": "ef32900439584b64862d83ec9e39e067",
+      "Id": "d1a5d6591b994c908d055b23242b0b55"
     },
     {
       "Start": "6f85a0d478604a88bc3c857be81b562b",
       "End": "04f781a789f34496a793d5ec77840bb2",
       "Id": "9b775117e0e643469880013d7477ec7b"
+    },
+    {
+      "Start": "59684330bbbd4a88a7ed11d600b85220",
+      "End": "ce7e3aab99944d0c92d4cf837dbc5130",
+      "Id": "82fca5bcd9e3454994db881945703401"
     }
   ],
   "Dependencies": [],
@@ -241,16 +241,6 @@
       "UpZ": 0.0
     },
     "NodeViews": [
-      {
-        "ShowGeometry": true,
-        "Name": "ElevationMarker.Create",
-        "Id": "249552a06a7342bab0e04e366e5e56a0",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 557.57009518408438,
-        "Y": 488.01942644461695
-      },
       {
         "ShowGeometry": true,
         "Name": "Code Block",
@@ -298,8 +288,18 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 959.40228842084684,
-        "Y": 491.82858175982437
+        "X": 947.12304688014342,
+        "Y": 531.73611676711084
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ElevationMarker.ByViewTypeLocation",
+        "Id": "c42a812a27de4487833432e3b11c6416",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 532.223495801873,
+        "Y": 533.256981647325
       }
     ],
     "Annotations": [],

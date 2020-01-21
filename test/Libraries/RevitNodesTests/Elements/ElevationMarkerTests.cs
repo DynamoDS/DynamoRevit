@@ -31,10 +31,10 @@ namespace RevitNodesTests.Elements
 
             var expectedType = typeof(Revit.Elements.ElevationMarker);
             var expectedLocation = Autodesk.DesignScript.Geometry.Point.ByCoordinates(1392.616, 915.356, 0.000);
+            var elevationMarkerLocation = room.GetLocation() as Autodesk.DesignScript.Geometry.Point;
 
             // Act
-            var elevationMarkerLocation = room.GetLocation() as Autodesk.DesignScript.Geometry.Point;
-            var elevationMarker = Revit.Elements.ElevationMarker.Create(elevationViewFamilyType, elevationMarkerLocation, 100);
+            var elevationMarker = Revit.Elements.ElevationMarker.ByViewTypeLocation(elevationViewFamilyType, elevationMarkerLocation, 100);
 
             var newElevationMarkerType = elevationMarker.GetType();
 
@@ -50,14 +50,16 @@ namespace RevitNodesTests.Elements
             var elevationMarker = ElementSelector.ByElementId(327339, true) as Revit.Elements.ElevationMarker;
             var planView = ElementSelector.ByElementId(312, true) as Revit.Elements.Views.View;
 
-            var expectedViewName = "Elevation 8 - a";
+            var expectedViewName = "Elevation 8 - c";
+            var index = 2;
 
             // Act
-            var elevationView = elevationMarker.CreateElevationByMarkerIndex(planView, 0);
+            var elevationView = elevationMarker.CreateElevationByMarkerIndex(planView, index);
             var elevationViewName = elevationView.Name;
 
             // Assert
             Assert.AreEqual(expectedViewName, elevationViewName);
+            Assert.AreEqual(false, elevationMarker.InternalMarker.IsAvailableIndex(index));
         }
 
         [Test]
@@ -74,6 +76,7 @@ namespace RevitNodesTests.Elements
 
             // Assert
             Assert.AreEqual(expectedViewCount, elevationMarkerViewCount);
+            
         }
 
         [Test]

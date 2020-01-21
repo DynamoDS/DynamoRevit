@@ -81,9 +81,9 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="viewFamilyType">The ViewFamilyType that will be used by all elevations hosted on the new ElevationMarker.</param>
         /// <param name="location">The desired origin for the ElevationMarker.</param>
-        /// <param name="initialViewScale">The view scale will be automatically applied to new elevations created on the ElevationMarker. The scale is the ratio of true model size to paper size.</param>
+        /// <param name="initialViewScale">The view scale will be automatically applied to new elevations created on the ElevationMarker. The scale is the ratio of true model size to paper size (e.g. input 100 for 1:100 scale).</param>
         /// <returns>The new ElevationMarker element.</returns>
-        public static ElevationMarker Create(Element viewFamilyType, Autodesk.DesignScript.Geometry.Point location, int initialViewScale)
+        public static ElevationMarker ByViewTypeLocation(Element viewFamilyType, Autodesk.DesignScript.Geometry.Point location, int initialViewScale)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
             var elevationMarker = Autodesk.Revit.DB.ElevationMarker.CreateElevationMarker(Document, viewFamilyType.InternalElement.Id, location.ToXyz(), initialViewScale);
@@ -99,7 +99,7 @@ namespace Revit.Elements
         /// Creates a new elevation ViewSection on the ElevationMarker at the desired index.
         /// </summary>
         /// <param name="planView">The PlanView in which the ElevationMarker is visible. The new elevation ViewSection will derive its extents and inherit settings from the ViewPlan.</param>
-        /// <param name="index">The index on the ElevationMarker where the new elevation ViewSection will be placed.</param>
+        /// <param name="index">The index on the ElevationMarker where the new elevation ViewSection will be placed. The elevation marker can have up to four views, indexed from 0 to 3.</param>
         /// <returns>The new elevation ViewSection.</returns>
         public SectionView CreateElevationByMarkerIndex(Revit.Elements.Views.View planView, int index)
         {
