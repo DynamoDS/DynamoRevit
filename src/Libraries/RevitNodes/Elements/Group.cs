@@ -64,7 +64,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="elements">Revit elements to group.</param>
         /// <returns>The new group type</returns>
-        public static Group FromElements(List<Element> elements)
+        public static Group ByElements(List<Element> elements)
         {
             List<ElementId> elementIds = elements.Select(x => x.InternalElement.Id).ToList();
             TransactionManager.Instance.EnsureInTransaction(Document);
@@ -135,8 +135,8 @@ namespace Revit.Elements
         {
             get 
             {
-                var attachedGroupId = this.InternalGroup.GetAvailableAttachedDetailGroupTypeIds();
-                return attachedGroupId.Select(id => Document.GetElement(id).ToDSType(true)).ToList();
+                var attachedGroupIds = this.InternalGroup.GetAvailableAttachedDetailGroupTypeIds();
+                return attachedGroupIds.Select(id => Document.GetElement(id).ToDSType(true)).ToList();
             }
         }
 

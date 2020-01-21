@@ -34,36 +34,6 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.Group.FromElements@Revit.Elements.Element[]",
-      "Id": "4ccee21fdce24f80a508ab8181449316",
-      "Inputs": [
-        {
-          "Id": "80ab9053d46d48e3ad8005e883470b75",
-          "Name": "elements",
-          "Description": "Revit elements to group.\n\nElement[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "c7bdbd1032724a00832e2ea4914dff48",
-          "Name": "Group",
-          "Description": "The new group type",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Creates a new type of group, with all of the input elements.\n\nGroup.FromElements (elements: Element[]): Group"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
       "FunctionSignature": "Revit.Elements.Element.Id",
       "Id": "e5d988cdaac248f8982268110c84f596",
       "Inputs": [
@@ -90,18 +60,48 @@
       ],
       "Replication": "Auto",
       "Description": "Get the Element Id for this element\n\nElement.Id: int"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Group.ByElements@Revit.Elements.Element[]",
+      "Id": "2fe9623502d74664b023bb7cd90a6c83",
+      "Inputs": [
+        {
+          "Id": "65d8e3dccdec42659fefda85b3ade505",
+          "Name": "elements",
+          "Description": "Revit elements to group.\n\nElement[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "202713068d624c89817966ea69b3def8",
+          "Name": "Group",
+          "Description": "The new group type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Creates a new type of group, with all of the input elements.\n\nGroup.ByElements (elements: Element[]): Group"
     }
   ],
   "Connectors": [
     {
       "Start": "2ce41d6f43f84f50846834f4db70d461",
-      "End": "80ab9053d46d48e3ad8005e883470b75",
-      "Id": "0d8b62b823824e5cb280804e9cd24070"
+      "End": "65d8e3dccdec42659fefda85b3ade505",
+      "Id": "201aa4d03f68454ba3e583f56e277185"
     },
     {
-      "Start": "c7bdbd1032724a00832e2ea4914dff48",
+      "Start": "202713068d624c89817966ea69b3def8",
       "End": "a977fd7043374ea9a05d30173cf121c2",
-      "Id": "545eacf16a5b410b9890222d8394c8ad"
+      "Id": "436e59c2cdbd4c52a3491ca69cd846b8"
     }
   ],
   "Dependencies": [],
@@ -141,16 +141,6 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "Group.FromElements",
-        "Id": "4ccee21fdce24f80a508ab8181449316",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 405.41081508805678,
-        "Y": 241.33333333333331
-      },
-      {
-        "ShowGeometry": true,
         "Name": "Element.Id",
         "Id": "e5d988cdaac248f8982268110c84f596",
         "IsSetAsInput": false,
@@ -158,6 +148,16 @@
         "Excluded": false,
         "X": 659.644931098593,
         "Y": 250.52369998995866
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Group.ByElements",
+        "Id": "2fe9623502d74664b023bb7cd90a6c83",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 380.06875833470258,
+        "Y": 240.9422553237751
       }
     ],
     "Annotations": [],

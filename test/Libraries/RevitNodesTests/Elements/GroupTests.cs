@@ -23,10 +23,12 @@ namespace RevitNodesTests.Elements
             List<Element> elementsToGroup = elementIds.Select(id => ElementSelector.ByElementId(id, true)).ToList();
 
             // Act
-            var group = Group.FromElements(elementsToGroup);
+            var group = Group.ByElements(elementsToGroup);
+            var memberIds = group.InternalGroup.GetMemberIds().Select(id => id.IntegerValue).ToList();
 
             // Assert
-            Assert.AreEqual(207894, group.Id);
+            Assert.IsNotNull(group);
+            CollectionAssert.AreEqual(elementIds, memberIds);
         }
 
         [Test]
@@ -35,7 +37,7 @@ namespace RevitNodesTests.Elements
         {
             // Arrange
             Element groupType = ElementSelector.ByElementId(316699, true).ElementType;
-            var expectedLocationForNewGroup = Point.ByCoordinates(0, 0, 0);
+            var expectedLocationForNewGroup = Point.ByCoordinates(13, 17, 19);
 
             // Act
             var newGroup = Group.PlaceInstance(expectedLocationForNewGroup, groupType);
@@ -92,10 +94,10 @@ namespace RevitNodesTests.Elements
 
             // Act
             var attachedDetailGroup = modelGroup.AttachedDetailGroup;
-            var attachedDetailGroupId = attachedDetailGroup.Select(x => x.Id);
+            var attachedDetailGroupId = attachedDetailGroup.Select(x => x.Id).ToList();
 
             // Assert
-            Assert.AreEqual(expectedAttachedDetailGroup, attachedDetailGroupId);
+            CollectionAssert.AreEqual(expectedAttachedDetailGroup, attachedDetailGroupId);
         }
 
         [Test]
