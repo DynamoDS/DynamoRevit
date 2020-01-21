@@ -255,26 +255,7 @@ namespace RevitSystemTests
             var boundaryLines = GetFlattenedPreviewValues("43a8ecf7e1dd4b1495c2118a42c1b314");
 
             // Assert
-            Assert.AreEqual(expectedBoundaries.Count(), boundaryLines.Count());
-            for (int i = 0; i < boundaryLines.Count(); i++)
-            {
-                var expected = expectedBoundaries[i];
-                var actual = (Curve)boundaryLines[i];
-
-                var expectedStartPoint = expected.StartPoint;
-                var expectedEndPoint = expected.EndPoint;
-                var actualStartPoint = actual.StartPoint;
-                var actualEndPoint = actual.EndPoint;
-
-                Assert.AreEqual(expectedStartPoint.X, actualStartPoint.X, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Y, actualStartPoint.Y, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Z, actualStartPoint.Z, Tolerance);
-
-                Assert.AreEqual(expectedEndPoint.X, actualEndPoint.X, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Y, actualEndPoint.Y, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Z, actualEndPoint.Z, Tolerance);
-
-            }
+            AssertBoundaryLists(expectedBoundaries, boundaryLines);
         }
 
         [Test]
@@ -308,26 +289,7 @@ namespace RevitSystemTests
             var boundaryLines = GetFlattenedPreviewValues("846fe26bba7f4246b93181691fb02f34");
 
             // Assert
-            Assert.AreEqual(expectedBoundaries.Count(), boundaryLines.Count());
-            for (int i = 0; i < boundaryLines.Count(); i++)
-            {
-                var expected = expectedBoundaries[i];
-                var actual = (Curve)boundaryLines[i];
-
-                var expectedStartPoint = expected.StartPoint;
-                var expectedEndPoint = expected.EndPoint;
-                var actualStartPoint = actual.StartPoint;
-                var actualEndPoint = actual.EndPoint;
-
-                Assert.AreEqual(expectedStartPoint.X, actualStartPoint.X, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Y, actualStartPoint.Y, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Z, actualStartPoint.Z, Tolerance);
-
-                Assert.AreEqual(expectedEndPoint.X, actualEndPoint.X, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Y, actualEndPoint.Y, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Z, actualEndPoint.Z, Tolerance);
-
-            }
+            AssertBoundaryLists(expectedBoundaries, boundaryLines);
         }
 
         [Test]
@@ -361,26 +323,7 @@ namespace RevitSystemTests
             var boundaryLines = GetFlattenedPreviewValues("ee07e78a0ad24f6784c93d12780f1584");
 
             // Assert
-            Assert.AreEqual(expectedBoundaries.Count(), boundaryLines.Count());
-            for (int i = 0; i < boundaryLines.Count(); i++)
-            {
-                var expected = expectedBoundaries[i];
-                var actual = (Curve)boundaryLines[i];
-
-                var expectedStartPoint = expected.StartPoint;
-                var expectedEndPoint = expected.EndPoint;
-                var actualStartPoint = actual.StartPoint;
-                var actualEndPoint = actual.EndPoint;
-
-                Assert.AreEqual(expectedStartPoint.X, actualStartPoint.X, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Y, actualStartPoint.Y, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Z, actualStartPoint.Z, Tolerance);
-
-                Assert.AreEqual(expectedEndPoint.X, actualEndPoint.X, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Y, actualEndPoint.Y, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Z, actualEndPoint.Z, Tolerance);
-
-            }
+            AssertBoundaryLists(expectedBoundaries, boundaryLines);
         }
 
         [Test]
@@ -414,6 +357,11 @@ namespace RevitSystemTests
             var boundaryLines = GetFlattenedPreviewValues("455e735b1e9949c384e113361f14d42a");
 
             // Assert
+            AssertBoundaryLists(expectedBoundaries, boundaryLines);
+        }
+
+        private static void AssertBoundaryLists(List<Curve> expectedBoundaries, List<object> boundaryLines)
+        {
             Assert.AreEqual(expectedBoundaries.Count(), boundaryLines.Count());
             for (int i = 0; i < boundaryLines.Count(); i++)
             {

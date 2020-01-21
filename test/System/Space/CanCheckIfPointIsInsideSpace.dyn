@@ -2,7 +2,7 @@
   "Uuid": "2db7a67e-022c-467a-9a84-c52a3d465764",
   "IsCustomNode": false,
   "Description": null,
-  "Name": "CanCheckIfPointIsInsideSpace",
+  "Name": "CanCheckIfPointIsPointInsideSpace",
   "ElementResolver": {
     "ResolutionMap": {
       "Point": {
@@ -67,7 +67,7 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.Space.IsInsideSpace@Autodesk.DesignScript.Geometry.Point",
+      "FunctionSignature": "Revit.Elements.Space.IsPointInsideSpace@Autodesk.DesignScript.Geometry.Point",
       "Id": "9622164b8dcb4886a29c821c5bdd5737",
       "Inputs": [
         {
@@ -101,7 +101,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Check if a point is inside of a space.\n\nSpace.IsInsideSpace (point: Point): bool"
+      "Description": "Check if a point is inside of a space.\n\nSpace.IsPointInsideSpace (point: Point): bool"
     }
   ],
   "Connectors": [
@@ -163,7 +163,7 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "Space.IsInsideSpace",
+        "Name": "Space.IsPointInsideSpace",
         "Id": "9622164b8dcb4886a29c821c5bdd5737",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,

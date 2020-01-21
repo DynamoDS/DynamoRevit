@@ -27,7 +27,7 @@ namespace RevitNodesTests.Elements
             string number = "99";
 
             // Act
-            var newSpace = Space.ByLocation(level, spaceLocation, name, number);
+            var newSpace = Space.ByLevelLocation(level, spaceLocation, name, number);
             var internalElement = newSpace.InternalRevitElement;
 
             var newLocation = internalElement.Location as Autodesk.Revit.DB.LocationPoint;
@@ -49,8 +49,8 @@ namespace RevitNodesTests.Elements
             var point2 = Point.ByCoordinates(-6166.333, 383.025, 0.000);
 
             // Assert
-            Assert.AreEqual(false, space.IsInsideSpace(point1));
-            Assert.AreEqual(true, space.IsInsideSpace(point2));
+            Assert.AreEqual(false, space.IsPointInsideSpace(point1));
+            Assert.AreEqual(true, space.IsPointInsideSpace(point2));
         }
 
         [Test]
@@ -213,26 +213,7 @@ namespace RevitNodesTests.Elements
             var boundaryLines = space.CenterBoundary;
 
             // Assert
-            Assert.AreEqual(expectedBoundaries.Count(), boundaryLines.Count());
-            for (int i = 0; i < boundaryLines.Count(); i++)
-            {
-                var expected = expectedBoundaries.FirstOrDefault()[i];
-                var actual = boundaryLines.FirstOrDefault().ToList()[i];
-
-                var expectedStartPoint = expected.StartPoint;
-                var expectedEndPoint = expected.EndPoint;
-                var actualStartPoint = actual.StartPoint;
-                var actualEndPoint = actual.EndPoint;
-
-                Assert.AreEqual(expectedStartPoint.X, actualStartPoint.X, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Y, actualStartPoint.Y, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Z, actualStartPoint.Z, Tolerance);
-
-                Assert.AreEqual(expectedEndPoint.X, actualEndPoint.X, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Y, actualEndPoint.Y, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Z, actualEndPoint.Z, Tolerance);
-
-            }
+            AssertBoundaryLists(expectedBoundaries, boundaryLines);
         }
 
         [Test]
@@ -264,26 +245,7 @@ namespace RevitNodesTests.Elements
             var boundaryLines = space.CoreBoundary;
 
             // Assert
-            Assert.AreEqual(expectedBoundaries.Count(), boundaryLines.Count());
-            for (int i = 0; i < boundaryLines.Count(); i++)
-            {
-                var expected = expectedBoundaries.FirstOrDefault()[i];
-                var actual = boundaryLines.FirstOrDefault().ToList()[i];
-
-                var expectedStartPoint = expected.StartPoint;
-                var expectedEndPoint = expected.EndPoint;
-                var actualStartPoint = actual.StartPoint;
-                var actualEndPoint = actual.EndPoint;
-
-                Assert.AreEqual(expectedStartPoint.X, actualStartPoint.X, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Y, actualStartPoint.Y, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Z, actualStartPoint.Z, Tolerance);
-
-                Assert.AreEqual(expectedEndPoint.X, actualEndPoint.X, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Y, actualEndPoint.Y, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Z, actualEndPoint.Z, Tolerance);
-
-            }
+            AssertBoundaryLists(expectedBoundaries, boundaryLines);
         }
 
         [Test]
@@ -315,26 +277,7 @@ namespace RevitNodesTests.Elements
             var boundaryLines = space.CoreCenterBoundary;
 
             // Assert
-            Assert.AreEqual(expectedBoundaries.Count(), boundaryLines.Count());
-            for (int i = 0; i < boundaryLines.Count(); i++)
-            {
-                var expected = expectedBoundaries.FirstOrDefault()[i];
-                var actual = boundaryLines.FirstOrDefault().ToList()[i];
-
-                var expectedStartPoint = expected.StartPoint;
-                var expectedEndPoint = expected.EndPoint;
-                var actualStartPoint = actual.StartPoint;
-                var actualEndPoint = actual.EndPoint;
-
-                Assert.AreEqual(expectedStartPoint.X, actualStartPoint.X, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Y, actualStartPoint.Y, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Z, actualStartPoint.Z, Tolerance);
-
-                Assert.AreEqual(expectedEndPoint.X, actualEndPoint.X, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Y, actualEndPoint.Y, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Z, actualEndPoint.Z, Tolerance);
-
-            }
+            AssertBoundaryLists(expectedBoundaries, boundaryLines);
         }
 
         [Test]
@@ -366,6 +309,11 @@ namespace RevitNodesTests.Elements
             var boundaryLines = space.FinishBoundary;
 
             // Assert
+            AssertBoundaryLists(expectedBoundaries, boundaryLines);
+        }
+
+        private static void AssertBoundaryLists(List<List<Curve>> expectedBoundaries, IEnumerable<IEnumerable<Curve>> boundaryLines)
+        {
             Assert.AreEqual(expectedBoundaries.Count(), boundaryLines.Count());
             for (int i = 0; i < boundaryLines.Count(); i++)
             {

@@ -20,8 +20,7 @@ namespace Revit.Elements
         /// </summary>
         internal Autodesk.Revit.DB.Mechanical.Space InternalRevitElement
         {
-            get;
-            private set;
+            get; private set;
         }
 
         /// <summary>
@@ -74,12 +73,12 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            // Get existing room element if possible
+            // Get existing space element if possible
             var spaceElement = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Mechanical.Space>(Document);
 
             if (spaceElement == null)
             {
-                // Create new Room element
+                // Create new Space element
                 spaceElement = Document.Create.NewSpace(level, new Autodesk.Revit.DB.UV(location.X, location.Y));
             }
             else
@@ -170,7 +169,7 @@ namespace Revit.Elements
         /// <param name="name">Space name</param>
         /// <param name="number">Space number</param>
         /// <returns></returns>
-        public static Space ByLocation(Elements.Level level, Autodesk.DesignScript.Geometry.Point location, string name = "", string number = "")
+        public static Space ByLevelLocation(Elements.Level level, Autodesk.DesignScript.Geometry.Point location, string name = "", string number = "")
         {
             return new Space((Autodesk.Revit.DB.Level)level.InternalElement, location.ToRevitType(true), name, number);
         }
@@ -292,7 +291,7 @@ namespace Revit.Elements
         /// <summary>
         /// Check if a point is inside of a space.
         /// </summary>
-        public bool IsInsideSpace(Autodesk.DesignScript.Geometry.Point point)
+        public bool IsPointInsideSpace(Autodesk.DesignScript.Geometry.Point point)
         {
             return this.InternalRevitElement.IsPointInSpace(point.ToRevitType());
         }
