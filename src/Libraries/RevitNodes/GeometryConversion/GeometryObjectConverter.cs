@@ -28,6 +28,12 @@ namespace Revit.GeometryConversion
             try
             {
                 protoGeom = InternalConvert(dynGeom);
+                // if protoGeom is null, Transform will be ambiguous between 
+                // IEnumerable<Autodesk.DesignScript.Geometry.Geometry> Transform(IEnumerable<Autodesk.DesignScript.Geometry.Geometry> geom, CoordinateSystem coordinateSystem)
+                // and 
+                // Autodesk.DesignScript.Geometry.Geometry Transform(Autodesk.DesignScript.Geometry.Geometry geom, CoordinateSystem coordinateSystem)
+                if (protoGeom == null)  
+                    throw new ArgumentNullException();
                 return Tag(Transform(protoGeom, transform), reference);
             }
             catch (Exception e)

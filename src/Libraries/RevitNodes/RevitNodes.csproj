@@ -143,7 +143,7 @@
     <Compile Include="Elements\LinePatternElement.cs" />
     <Compile Include="Filter\OverrideGraphicSettings.cs" />
     <Compile Include="Filter\ParameterFilterElement.cs" />
-    <Compile Include="GeometryConversion\EdgeLoopPartition.cs" />
+    <Compile Include="GeometryConversion\CurveLoopPartition.cs" />
     <Compile Include="GeometryConversion\EnumerableExtensions.cs" />
     <Compile Include="GeometryConversion\GeometryDebugging.cs" />
     <Compile Include="GeometryConversion\CurveUtils.cs" />

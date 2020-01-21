@@ -142,6 +142,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting child elements is not supported for this type of Element..
+        /// </summary>
+        internal static string ChildElementsNotSupported {
+            get {
+                return ResourceManager.GetString("ChildElementsNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Element has no Curtain Grid..
         /// </summary>
         internal static string CurtainGridNotFound {
@@ -291,6 +300,15 @@ namespace Revit.Properties {
         internal static string DocumentDoesNotSupportGlobalParams {
             get {
                 return ResourceManager.GetString("DocumentDoesNotSupportGlobalParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Document is not workshared.
+        /// </summary>
+        internal static string DocumentNotWorkshared {
+            get {
+                return ResourceManager.GetString("DocumentNotWorkshared", resourceCulture);
             }
         }
         
@@ -700,11 +718,37 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Element has no child Elements.
+        /// </summary>
+        internal static string NoChildElements {
+            get {
+                return ResourceManager.GetString("NoChildElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Elements are not intersecting.
         /// </summary>
         internal static string NonIntersectingElements {
             get {
                 return ResourceManager.GetString("NonIntersectingElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Element has no parent component.
+        /// </summary>
+        internal static string NoParentElement {
+            get {
+                return ResourceManager.GetString("NoParentElement", resourceCulture);
+            }
+        }
+
+        ///   Looks up a localized string similar to No Elements to purge in the current document..
+        /// </summary>
+        internal static string NoElementsToPurge {
+            get {
+                return ResourceManager.GetString("NoElementsToPurge", resourceCulture);
             }
         }
         
@@ -723,6 +767,15 @@ namespace Revit.Properties {
         internal static string NotAdaptiveComponentError {
             get {
                 return ResourceManager.GetString("NotAdaptiveComponentError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Element not valid. Use an element from a BuiltInCategory..
+        /// </summary>
+        internal static string NotBuiltInCategory {
+            get {
+                return ResourceManager.GetString("NotBuiltInCategory", resourceCulture);
             }
         }
         
