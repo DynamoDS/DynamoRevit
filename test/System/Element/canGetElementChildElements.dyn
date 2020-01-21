@@ -1,0 +1,490 @@
+{
+  "Uuid": "ead17c92-af78-4588-bf3b-5a5e2913f794",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "canGetElementChildElements",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "4636e5fa-db23-45ca-95a4-863c77c16492-0004e031"
+      ],
+      "Id": "1efb0ee715b146d5bec8b70cc4fb2aef",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5e1695e45cf74003a9cb7731e04694ae",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "3dd65e64-bb72-4a5d-a65e-6d5dd0a805b1-0004d2f9"
+      ],
+      "Id": "c2c4a901fb3f4ef392691d4eae532a2a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e053958c6f834c528310083a19e4bd5e",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Count@var[]..[]",
+      "Id": "939d773907c94323b2abe1f1df69761c",
+      "Inputs": [
+        {
+          "Id": "88db67f6073f498f8639801def607463",
+          "Name": "list",
+          "Description": "List to get the item count of.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "64113b1faefc4b35868767168edc3402",
+          "Name": "count",
+          "Description": "List length.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the number of items stored in the given list.\n\nList.Count (list: var[]..[]): int"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.Object.Identity@var",
+      "Id": "ed85fef0a6e649dcb1384f8ec231b051",
+      "Inputs": [
+        {
+          "Id": "060f31ed377e4fb0b4fae8a77842df41",
+          "Name": "obj",
+          "Description": "An object.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f14edebda5b6461c9a130e1f6a80cc30",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns what is passed in, doing nothing.\n\nObject.Identity (obj: var): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.GetChildElements",
+      "Id": "d0d72824899e4a3cbb2bac20f06df0d3",
+      "Inputs": [
+        {
+          "Id": "842267066b6b4ddfacc153c84a19d64a",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9dedce9afcb94cfbae3ab787a5e3ab38",
+          "Name": "Element[]",
+          "Description": "Child Elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Gets the child Elements of the current Element.\n\nElement.GetChildElements ( ): Element[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.GetChildElements",
+      "Id": "2be80c00e2174a588d91e442da4fe4e0",
+      "Inputs": [
+        {
+          "Id": "c6247e978e634d67944f12ce1ddb519a",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ff11682678ba42879bb08cc20f5b609c",
+          "Name": "Element[]",
+          "Description": "Child Elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Gets the child Elements of the current Element.\n\nElement.GetChildElements ( ): Element[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "5e1695e45cf74003a9cb7731e04694ae",
+      "End": "842267066b6b4ddfacc153c84a19d64a",
+      "Id": "87f24a1b3ba24862abe67f49877b5add"
+    },
+    {
+      "Start": "e053958c6f834c528310083a19e4bd5e",
+      "End": "c6247e978e634d67944f12ce1ddb519a",
+      "Id": "4cefb2aca265457a9273773bd90e8324"
+    },
+    {
+      "Start": "9dedce9afcb94cfbae3ab787a5e3ab38",
+      "End": "88db67f6073f498f8639801def607463",
+      "Id": "a40b0a1434a845efa03e3dd6b4206c56"
+    },
+    {
+      "Start": "ff11682678ba42879bb08cc20f5b609c",
+      "End": "060f31ed377e4fb0b4fae8a77842df41",
+      "Id": "30d42a2ca85e41f7b87af70eedd17217"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7034",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "1efb0ee715b146d5bec8b70cc4fb2aef",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 26.463803069132382,
+        "Y": 89.592984583409844
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "c2c4a901fb3f4ef392691d4eae532a2a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 29.8525267381317,
+        "Y": 203.68001477305492
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.Count",
+        "Id": "939d773907c94323b2abe1f1df69761c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 788.70769961427925,
+        "Y": 90.564351344868385
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Object.Identity",
+        "Id": "ed85fef0a6e649dcb1384f8ec231b051",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 789.78766653100286,
+        "Y": 199.87358837498437
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.GetChildElements",
+        "Id": "d0d72824899e4a3cbb2bac20f06df0d3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 293.10226381072994,
+        "Y": 89.855177989992058
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.GetChildElements",
+        "Id": "2be80c00e2174a588d91e442da4fe4e0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 300.954643819612,
+        "Y": 206.91353792765528
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "43f4f49cecba4901af588ef02b1d0e92",
+        "Title": "",
+        "Nodes": [
+          "19adf9a39f0445e28954c1c2265d96d3"
+        ],
+        "Left": -427.65872416338607,
+        "Top": -20.325626545445274,
+        "Width": 314.0,
+        "Height": 146.66666666666669,
+        "FontSize": 14.0,
+        "InitialTop": 9.6743734545547255,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 20.0,
+        "Background": "#FFFFB8D8"
+      },
+      {
+        "Id": "5415984b6a454fc6a1b1a0da9154e5dd",
+        "Title": "",
+        "Nodes": [
+          "fa9d01cff9154bde8c059e187831882e"
+        ],
+        "Left": -427.75739761807631,
+        "Top": 138.01289364593845,
+        "Width": 314.0,
+        "Height": 146.66666666666669,
+        "FontSize": 14.0,
+        "InitialTop": 168.01289364593845,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 20.0,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "872dec700267479185ed0d1e33bbe6d1",
+        "Title": "DynamoRevit Test Graph                     \r\n",
+        "Nodes": [
+          "effcb9f4289d4dffa7ca98bd1c018446",
+          "838396890e4e444d8ebf5fa747017580",
+          "e033d28705a84e0ba7720b76190fd3c2"
+        ],
+        "Left": -765.91849352979989,
+        "Top": -117.60041757770927,
+        "Width": 314.0,
+        "Height": 553.23105678304523,
+        "FontSize": 48.0,
+        "InitialTop": 65.066249088957392,
+        "InitialHeight": 379.89772344971186,
+        "TextblockHeight": 172.66666666666666,
+        "Background": "#FFFFFFFF"
+      },
+      {
+        "Id": "515ddad6d73045aa80417ec48816f5d8",
+        "Title": "",
+        "Nodes": [
+          "cda83b3c60b74fe1911cf79eab8b67a5"
+        ],
+        "Left": -427.80900484398808,
+        "Top": 294.64009939149162,
+        "Width": 314.0,
+        "Height": 132.0,
+        "FontSize": 14.0,
+        "InitialTop": 324.64009939149162,
+        "InitialHeight": 140.0,
+        "TextblockHeight": 20.0,
+        "Background": "#FFFFC999"
+      },
+      {
+        "Id": "7fd30cc8071c4673b02c19a1f9640629",
+        "Title": "Inputs",
+        "Nodes": [
+          "1efb0ee715b146d5bec8b70cc4fb2aef",
+          "c2c4a901fb3f4ef392691d4eae532a2a"
+        ],
+        "Left": 16.463803069132382,
+        "Top": 36.259651250076509,
+        "Width": 192.05539033566598,
+        "Height": 287.08703018964508,
+        "FontSize": 36.0,
+        "InitialTop": 89.592984583409844,
+        "InitialHeight": 259.08703018964508,
+        "TextblockHeight": 43.333333333333336,
+        "Background": "#FFFFB8D8"
+      },
+      {
+        "Id": "7c9ce5ea853443b2817bb41cc29ab53d",
+        "Title": "Element.GetChildElements",
+        "Nodes": [
+          "d0d72824899e4a3cbb2bac20f06df0d3",
+          "2be80c00e2174a588d91e442da4fe4e0"
+        ],
+        "Left": 283.10226381072994,
+        "Top": 36.521844656658722,
+        "Width": 426.43333333333334,
+        "Height": 263.3916932709966,
+        "FontSize": 36.0,
+        "InitialTop": 89.855177989992058,
+        "InitialHeight": 274.71814601648884,
+        "TextblockHeight": 43.333333333333336,
+        "Background": "#FFB9F9E1"
+      },
+      {
+        "Id": "9fdd3387e2584789b903b6d7a87f9c6d",
+        "Title": "Outputs",
+        "Nodes": [
+          "939d773907c94323b2abe1f1df69761c",
+          "ed85fef0a6e649dcb1384f8ec231b051"
+        ],
+        "Left": 778.70769961427925,
+        "Top": 37.231018011535049,
+        "Width": 203.07996691672361,
+        "Height": 255.64257036344932,
+        "FontSize": 36.0,
+        "InitialTop": 90.564351344868385,
+        "InitialHeight": 254.30923703011598,
+        "TextblockHeight": 43.333333333333336,
+        "Background": "#FFFFAA45"
+      },
+      {
+        "Id": "19adf9a39f0445e28954c1c2265d96d3",
+        "Title": "Variables / Inputs\r\n_______________________________________________________\r\n\r\nRed indicates Variables that can be altered per project and must be set accordingly before running the script.",
+        "Nodes": [],
+        "Left": -417.65872416338607,
+        "Top": 9.6743734545547255,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "fa9d01cff9154bde8c059e187831882e",
+        "Title": "Working / Functions\r\n_______________________________________________________\r\n\r\nGreen indicates the working of the script. No changes should be made in these groups unless advised.",
+        "Nodes": [],
+        "Left": -417.75739761807631,
+        "Top": 168.01289364593845,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "effcb9f4289d4dffa7ca98bd1c018446",
+        "Title": "File Name\r\n_______________________________________________________\r\n\r\nCanGetElementSubComponents_SystemTest",
+        "Nodes": [],
+        "Left": -755.91849352979989,
+        "Top": 65.066249088957392,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "838396890e4e444d8ebf5fa747017580",
+        "Title": "Version\r\n_______________________________________________________\r\n\r\nScript Version - 001\r\nDynamo Version - 2.2.3\r\nRevit Model - rac_advanced_sample_project.rvt\r\nRevit Version - 2020",
+        "Nodes": [],
+        "Left": -755.91849352979989,
+        "Top": 163.51511081380909,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "e033d28705a84e0ba7720b76190fd3c2",
+        "Title": "Author\r\n_______________________________________________________\r\n\r\nSylvester Knudsen\r\n\r\nComputational Specialist\r\nmetaspace.co",
+        "Nodes": [],
+        "Left": -755.91849352979989,
+        "Top": 304.96397253866928,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "cda83b3c60b74fe1911cf79eab8b67a5",
+        "Title": "Checking / Outputs\r\n_______________________________________________________\r\n\r\nOrange indicates checking nodes to ensure the script has deployed correctly.",
+        "Nodes": [],
+        "Left": -417.80900484398808,
+        "Top": 324.64009939149162,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 144.42241751082997,
+    "Y": 177.66334541114958,
+    "Zoom": 1.1321728068677515
+  }
+}
