@@ -1042,7 +1042,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannont place view on sheet as it is already on a sheet..
+        ///   Looks up a localized string similar to Cannot place view on sheet as it is already on a sheet..
         /// </summary>
         internal static string ViewAlreadyPlacedOnSheet {
             get {

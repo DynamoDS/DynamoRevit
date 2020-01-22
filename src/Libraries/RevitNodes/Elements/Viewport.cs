@@ -88,7 +88,7 @@ namespace Revit.Elements
         /// <param name="view">The view shown in the Viewport.</param>
         /// <param name="location">The new Viewport will be centered on this point.</param>
         /// <returns>The new Viewport.</returns>
-        public static Viewport Create(Sheet sheet, Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location)
+        public static Viewport BySheetViewLocation(Sheet sheet, Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location)
         {
             ElementId sheetId = sheet.InternalView.Id;
             ElementId viewId = view.InternalView.Id;

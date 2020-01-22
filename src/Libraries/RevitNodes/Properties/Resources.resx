@@ -463,6 +463,6 @@
     <value>Cannot place empty view on sheet.</value>
   </data>
   <data name="ViewAlreadyPlacedOnSheet" xml:space="preserve">
-    <value>Cannont place view on sheet as it is already on a sheet.</value>
+    <value>Cannot place view on sheet as it is already on a sheet.</value>
   </data>
 </root>
