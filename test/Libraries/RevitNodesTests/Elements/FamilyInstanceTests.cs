@@ -156,15 +156,18 @@ namespace RevitNodesTests.Elements
         {
             // Arrange
             var famInstance = ElementSelector.ByElementId(316162, true) as FamilyInstance;
+            var famInstanceOutsideRoom = ElementSelector.ByElementId(316286, true) as FamilyInstance;
 
             var expectedRoomId = 316151;
 
             // Act
             var familyInstanceRoom = famInstance.Room;
             var roomId = familyInstanceRoom.Id;
+            var outsideRoom = famInstanceOutsideRoom.Room;
 
             // Assert
             Assert.AreEqual(expectedRoomId, roomId);
+            Assert.IsNull(outsideRoom);
         }
 
         [Test]
@@ -173,15 +176,18 @@ namespace RevitNodesTests.Elements
         {
             // Arrange
             var famInstance = ElementSelector.ByElementId(316162, true) as FamilyInstance;
+            var famInstanceOutsideSpace = ElementSelector.ByElementId(316286, true) as FamilyInstance;
 
             var expectedSpaceId = 316157;
 
             // Act
             var familyInstanceSpace = famInstance.Space;
             var spaceId = familyInstanceSpace.Id;
+            var outsideSpace = famInstanceOutsideSpace.Space;
 
             // Assert
             Assert.AreEqual(expectedSpaceId, spaceId);
+            Assert.IsNull(outsideSpace);
         }
 
     }

@@ -303,7 +303,10 @@ namespace Revit.Elements
         {
             get
             {
-                return this.InternalFamilyInstance.Room.ToDSType(true);
+                var room = this.InternalFamilyInstance.Room;
+                if (room == null)
+                    return null;
+                return room.ToDSType(true);
             }
         }
 
@@ -314,7 +317,10 @@ namespace Revit.Elements
         {
             get
             {
-                return this.InternalFamilyInstance.Space.ToDSType(true);
+                var space = this.InternalFamilyInstance.Space;
+                if (space == null)
+                    return null;
+                return space.ToDSType(true);
             }
         }
 
