@@ -90,14 +90,14 @@ namespace RevitNodesTests.Elements
 
 
             // Act
-            var oldDimensionAboveValue = dimension.BelowValue;
-            var oldDimensionWithSegmentsAboveValue = dimensionWithSegments.BelowValue;
+            var oldDimensionAboveValue = dimension.AboveValue;
+            var oldDimensionWithSegmentsAboveValue = dimensionWithSegments.AboveValue;
 
             var setNewAboveValueDimension = dimension.SetAboveValue("Above");
             var setNewAboveValueDimensionWithSegment = dimensionWithSegments.SetAboveValue("Above");
 
-            var newAboveValueDimension = dimension.BelowValue;
-            var newAboveValueDimensionWithSegment = dimensionWithSegments.BelowValue;
+            var newAboveValueDimension = dimension.AboveValue;
+            var newAboveValueDimensionWithSegment = dimensionWithSegments.AboveValue;
 
             // Assert
             Assert.AreNotEqual(oldDimensionAboveValue, newAboveValueDimension);

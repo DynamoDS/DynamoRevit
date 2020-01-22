@@ -372,7 +372,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// The text shown above the segment's value.
+        /// The text shown above the segment's value, if the dimension has multiple segments a list of values will be returned.
         /// </summary>
         public List<string> AboveValue
         {
@@ -383,15 +383,10 @@ namespace Revit.Elements
                     return new List<string>() { this.InternalRevitElement.Above };
                 }
 
-                List<string> aboveValues = new List<string>();
-                IEnumerator segmentEnumerator = this.InternalRevitElement.Segments.GetEnumerator();
-                while (segmentEnumerator.MoveNext())
-                {
-                    DimensionSegment segment = (DimensionSegment)segmentEnumerator.Current;
-                    aboveValues.Add(segment.Above);
-                }
-
-                return aboveValues;
+                return this.InternalRevitElement.Segments
+                    .Cast<DimensionSegment>()
+                    .Select(segment => segment.Above)
+                    .ToList();
             } 
         }
 
@@ -407,15 +402,10 @@ namespace Revit.Elements
                     return new List<string>() { this.InternalRevitElement.Below };
                 }
 
-                List<string> aboveValues = new List<string>();
-                IEnumerator segmentEnumerator = this.InternalRevitElement.Segments.GetEnumerator();
-                while (segmentEnumerator.MoveNext())
-                {
-                    DimensionSegment segment = (DimensionSegment)segmentEnumerator.Current;
-                    aboveValues.Add(segment.Below);
-                }
-
-                return aboveValues;
+                return this.InternalRevitElement.Segments
+                    .Cast<DimensionSegment>()
+                    .Select(segment => segment.Below)
+                    .ToList();
             }
         }
 
@@ -437,12 +427,10 @@ namespace Revit.Elements
             }
             else
             {
-                IEnumerator segmentEnumerator = this.InternalRevitElement.Segments.GetEnumerator();
-                while (segmentEnumerator.MoveNext())
-                {
-                    DimensionSegment segment = (DimensionSegment)segmentEnumerator.Current;
-                    segment.Above = value;
-                }
+                this.InternalRevitElement.Segments
+                    .Cast<DimensionSegment>()
+                    .Select(segment => segment.Above = value)
+                    .ToList();
             }
             TransactionManager.Instance.TransactionTaskDone();
             return this;
@@ -462,12 +450,10 @@ namespace Revit.Elements
             }
             else
             {
-                IEnumerator segmentEnumerator = this.InternalRevitElement.Segments.GetEnumerator();
-                while (segmentEnumerator.MoveNext())
-                {
-                    DimensionSegment segment = (DimensionSegment)segmentEnumerator.Current;
-                    segment.Below = value;
-                }
+                this.InternalRevitElement.Segments
+                    .Cast<DimensionSegment>()
+                    .Select(segment => segment.Below = value)
+                    .ToList();
             }
             TransactionManager.Instance.TransactionTaskDone();
             return this;
