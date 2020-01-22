@@ -1,0 +1,166 @@
+{
+  "Uuid": "d26fcadc-e0a4-4790-bea0-af619d9079bd",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "canGetWorksharingModelPath",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Document.IsCloudPath",
+      "Id": "1b62b04935b84f58a31bf45efe48955d",
+      "Inputs": [
+        {
+          "Id": "c5ecdc29ee3247aa9fbcfbbc977f099a",
+          "Name": "document",
+          "Description": "Revit.Application.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "622353a427454cdbba9762022cd4582c",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Whether the Worksharing path represents a path on an Autodesk server such as BIM360.\n\nDocument.IsCloudPath: bool"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Id": "78eec4279ad04643a64d46b634dd313e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "09257adc85d441d7aa32ea236cc038b9",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Document.WorksharingPath",
+      "Id": "c699cecf62434bcba194378b819af876",
+      "Inputs": [
+        {
+          "Id": "646eaa662ea747a29f75065da7ae614b",
+          "Name": "document",
+          "Description": "Revit.Application.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "09e095d5a7104f8c866ac71bee5eb1eb",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Gets the worksharing path of the current document\n\nDocument.WorksharingPath: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "09257adc85d441d7aa32ea236cc038b9",
+      "End": "c5ecdc29ee3247aa9fbcfbbc977f099a",
+      "Id": "696c6ccd878544cfa59c4e001f2610ed"
+    },
+    {
+      "Start": "09257adc85d441d7aa32ea236cc038b9",
+      "End": "646eaa662ea747a29f75065da7ae614b",
+      "Id": "bfacbbd59c634a2290195bbe0a876662"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7034",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Document.IsCloudPath",
+        "Id": "1b62b04935b84f58a31bf45efe48955d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 586.11755114788355,
+        "Y": 354.88513251864561
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Current",
+        "Id": "78eec4279ad04643a64d46b634dd313e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 331.96113932498434,
+        "Y": 283.79151898289558
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.WorksharingPath",
+        "Id": "c699cecf62434bcba194378b819af876",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 579.69066208670438,
+        "Y": 202.87939315322558
+      }
+    ],
+    "Annotations": [],
+    "X": -376.32406047454759,
+    "Y": -110.55205751018067,
+    "Zoom": 1.0857035604471861
+  }
+}
