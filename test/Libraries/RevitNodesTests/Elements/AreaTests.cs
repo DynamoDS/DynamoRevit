@@ -44,6 +44,11 @@ namespace RevitNodesTests.Elements
             var areaCurves = area.Boundaries;
 
             // Assert
+            AssertListOfCurves(expectedCurves, areaCurves);
+        }
+
+        private static void AssertListOfCurves(List<List<Curve>> expectedCurves, List<List<Curve>> areaCurves)
+        {
             Assert.AreEqual(expectedCurves.Count(), areaCurves.Count());
             for (int i = 0; i < areaCurves.Count(); i++)
             {

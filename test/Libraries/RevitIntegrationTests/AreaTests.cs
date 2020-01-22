@@ -51,6 +51,11 @@ namespace RevitSystemTests
             var areaBoundaries = GetFlattenedPreviewValues("295e59563b2c4f4fbed6e9fbeffb53ac");
 
             // Assert
+            AssertListOfCurves(expectedCurves, areaBoundaries);
+        }
+
+        private static void AssertListOfCurves(List<Autodesk.DesignScript.Geometry.Curve> expectedCurves, List<object> areaBoundaries)
+        {
             Assert.AreEqual(expectedCurves.Count(), areaBoundaries.Count());
             for (int i = 0; i < areaBoundaries.Count(); i++)
             {
