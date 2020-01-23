@@ -131,6 +131,9 @@
                   "path": "RevitNodes.Revit.Elements.FamilyInstance"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.FamilyParameter"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.FamilyType"
                 },
                 {

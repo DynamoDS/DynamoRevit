@@ -57,16 +57,16 @@ namespace Revit.Application
         /// <summary>
         /// All family parameters in this family.
         /// </summary>
-        public List<Parameter> Parameters
+        public List<FamilyParameter> Parameters
         {
             get 
             {
-                var parameters = new List<Parameter>();
+                var parameters = new List<FamilyParameter>();
                 var enumerator = FamilyManager.Parameters.GetEnumerator();
                 while (enumerator.MoveNext())
                 {
-                    var param = (Autodesk.Revit.DB.Parameter)enumerator.Current;
-                    parameters.Add(new Parameter(param));
+                    var param = (Autodesk.Revit.DB.FamilyParameter)enumerator.Current;
+                    parameters.Add(new FamilyParameter(param));
                 }
                 return parameters;
             }
@@ -81,12 +81,12 @@ namespace Revit.Application
         /// </summary>
         /// <param name="category"></param>
         /// <returns>The document family</returns>
-        public Family SetCategory(Category category)
+        public FamilyDocument SetCategory(Category category)
         {
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
             OwnerFamily.InternalFamily.FamilyCategory = category.InternalCategory;
             TransactionManager.Instance.TransactionTaskDone();
-            return OwnerFamily;
+            return this;
         }
 
         /// <summary>
@@ -95,16 +95,16 @@ namespace Revit.Application
         /// <param name="parameter">The family parameter.</param>
         /// <param name="formula">The formula string.</param>
         /// <returns>The document family</returns>
-        public Family SetFormula(string parameter, string formula)
+        public FamilyDocument SetFormula(string parameter, string formula)
         {
             Autodesk.Revit.DB.FamilyParameter familyParameter = FamilyManager.get_Parameter(parameter);
             if (familyParameter == null)
-                throw new InvalidOperationException("Parameter does not exist in the Family Document");
+                throw new InvalidOperationException(Properties.Resources.ParameterNotFound);
 
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
             FamilyManager.SetFormula(familyParameter, formula);
             TransactionManager.Instance.TransactionTaskDone();
-            return OwnerFamily;
+            return this;
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Revit.Application
         {
             Autodesk.Revit.DB.FamilyParameter familyParameter = FamilyManager.get_Parameter(parameter);
             if (familyParameter == null)
-                throw new InvalidOperationException("Parameter does not exist in the Family Document");
+                throw new InvalidOperationException(Properties.Resources.ParameterNotFound);
 
             return familyParameter.Formula;
         }
@@ -156,7 +156,7 @@ namespace Revit.Application
         /// <param name="parameter">A family parameter of the current type.</param>
         /// <param name="value">The new value for the family parameter.</param>
         /// <returns></returns>
-        public Family SetValue(string parameter, object value)
+        public FamilyDocument SetValue(string parameter, object value)
         {
             TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
             Autodesk.Revit.DB.FamilyParameter familyParameter = FamilyManager.get_Parameter(parameter);
@@ -225,7 +225,7 @@ namespace Revit.Application
                     throw new InvalidOperationException("sdlf");
             }
             TransactionManager.Instance.TransactionTaskDone();
-            return OwnerFamily;
+            return this;
         }
 
         /// <summary>
@@ -235,7 +235,8 @@ namespace Revit.Application
         /// <param name="parameterGroup">The name of the group to which the family parameter belongs.</param>
         /// <param name="parameterType">The name of the type of new family parameter.</param>
         /// <param name="instance">Indicates if the new family parameter is instance or type.</param>
-        public void AddParameter(string parameterName, string parameterGroup, string parameterType, bool instance)
+        /// <returns>The new family parameter.</returns>
+        public FamilyParameter AddParameter(string parameterName, string parameterGroup, string parameterType, bool instance)
         {
             // parse parameter type
             var type = Autodesk.Revit.DB.ParameterType.Text;
@@ -248,33 +249,37 @@ namespace Revit.Application
                 throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
             TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
-            FamilyManager.AddParameter(parameterName, group, type, instance);
+            var famParameter = FamilyManager.AddParameter(parameterName, group, type, instance);
             TransactionManager.Instance.TransactionTaskDone();
+            return new FamilyParameter(famParameter);
         }
 
         /// <summary>
         /// Remove an existing family parameter from the family.
         /// </summary>
         /// <param name="parameterName">The family parameter name.</param>
-        public void DeleteParameter(string parameterName)
+        /// <returns>The id of the deleted family parameter.</returns>
+        public int DeleteParameter(string parameterName)
         {
             Autodesk.Revit.DB.FamilyParameter familyParameter = FamilyManager.get_Parameter(parameterName);
             if (familyParameter == null)
                 throw new InvalidOperationException(Properties.Resources.ParameterNotFound);
 
+            int parameterId = familyParameter.Id.IntegerValue;
             TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
             FamilyManager.RemoveParameter(familyParameter);
             TransactionManager.Instance.TransactionTaskDone();
+            return parameterId;
         }
 
         #endregion
 
         #region Static Constructors
 
-        public static FamilyDocument ByDocment(Document document)
+        public static FamilyDocument ByDocument(Document document)
         {
             if (!document.InternalDocument.IsFamilyDocument)
-                throw new InvalidOperationException("Document is not a valid Family Document");
+                throw new InvalidOperationException(Properties.Resources.DocumentNotFamilyDocument);
             return new FamilyDocument(document.InternalDocument);
         }
 

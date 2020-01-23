@@ -468,4 +468,7 @@
   <data name="WrongStorageType" xml:space="preserve">
     <value>Input value for this parameter needs to be of type {0}.</value>
   </data>
+  <data name="DocumentNotFamilyDocument" xml:space="preserve">
+    <value>Document is not a valid Family Document.</value>
+  </data>
 </root>

@@ -295,6 +295,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Document is not a valid Family Document..
+        /// </summary>
+        internal static string DocumentNotFamilyDocument {
+            get {
+                return ResourceManager.GetString("DocumentNotFamilyDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Document is not workshared.
         /// </summary>
         internal static string DocumentNotWorkshared {
