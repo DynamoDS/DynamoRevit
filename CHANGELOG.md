@@ -1,3 +1,7 @@
+## 0.2.1
+* Element nodes third batch - contains 3 nodes related to Revit.Elements.Element.
+* Update DynamoCore Runtime to 2.5.0.7460
+
 ## 0.2.0
 * Fix issue - Joined geometry does not convert correctly
 * Document nodes - Add 3 node in the Application.Document category
