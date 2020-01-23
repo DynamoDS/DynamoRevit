@@ -47,14 +47,6 @@ namespace Revit.Application
         }
 
         /// <summary>
-        /// Get the Family of this Family Document.
-        /// </summary>
-        public Family Family
-        {
-            get { return OwnerFamily; }
-        }
-
-        /// <summary>
         /// All family parameters in this family.
         /// </summary>
         public List<FamilyParameter> Parameters
@@ -220,9 +212,8 @@ namespace Revit.Application
                     
                     FamilyManager.Set(familyParameter, id);
                     break;
-
                 default:
-                    throw new InvalidOperationException("sdlf");
+                    return null;
             }
             TransactionManager.Instance.TransactionTaskDone();
             return this;
@@ -284,22 +275,6 @@ namespace Revit.Application
         }
 
         #endregion
-
-        /// <summary>
-        /// sss
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<Family> GetNestedComponents()
-        {
-            var collector = new Autodesk.Revit.DB.FilteredElementCollector(this.InternalFamilyDocument)
-                .OfClass(typeof(Autodesk.Revit.DB.Family))
-                .WhereElementIsNotElementType()
-                .ToElements();
-
-            IEnumerable<Family> nestedFamilies = collector.Select(fam => fam.ToDSType(true) as Family);
-
-            return nestedFamilies;
-        }
 
     }
 }

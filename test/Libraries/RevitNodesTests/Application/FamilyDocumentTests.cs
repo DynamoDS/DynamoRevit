@@ -58,9 +58,9 @@ namespace RevitNodesTests.Application
             var expectedNewCategory = "Furniture";
 
             // Act
-            var currentCategory = famDoc.Family.InternalFamily.FamilyCategory.Name;
+            var currentCategory = famDoc.InternalFamilyDocument.OwnerFamily.FamilyCategory.Name;
             famDoc.SetCategory(Category.ByName(expectedNewCategory));
-            var newCategory = famDoc.Family.InternalFamily.FamilyCategory.Name;
+            var newCategory = famDoc.InternalFamilyDocument.OwnerFamily.FamilyCategory.Name;
 
             // Assert
             Assert.AreNotEqual(currentCategory, newCategory);
