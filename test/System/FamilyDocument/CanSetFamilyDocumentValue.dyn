@@ -91,7 +91,7 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Application.FamilyDocument.SetValue@string,var",
+      "FunctionSignature": "Revit.Application.FamilyDocument.SetParameterValueByName@string,var",
       "Id": "20842eae3d4a437bb19dbb4d17957e1b",
       "Inputs": [
         {
@@ -134,7 +134,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Set the value of a family parameter of the current family type.\n\nFamilyDocument.SetValue (parameter: string, value: var): FamilyDocument"
+      "Description": "Set the value of a family parameter of the current family type.\n\nFamilyDocument.SetParameterValueByName (parameter: string, value: var): FamilyDocument"
     }
   ],
   "Connectors": [
@@ -167,7 +167,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.0.7237",
+      "Version": "2.6.0.7534",
       "RunType": "Automatic",
       "RunPeriod": "1000"
     },
@@ -216,7 +216,7 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "FamilyDocument.SetValue",
+        "Name": "FamilyDocument.SetParameterValueByName",
         "Id": "20842eae3d4a437bb19dbb4d17957e1b",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -226,8 +226,8 @@
       }
     ],
     "Annotations": [],
-    "X": 61.830000000000041,
-    "Y": -35.808333333333337,
-    "Zoom": 0.8425
+    "X": 57.613340581185071,
+    "Y": 39.525061829882986,
+    "Zoom": 0.931811528498331
   }
 }

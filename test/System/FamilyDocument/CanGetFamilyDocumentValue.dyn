@@ -82,11 +82,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Application.FamilyDocument.GetValue@string",
-      "Id": "e0060322a59d4af4a735bbf241909f04",
+      "FunctionSignature": "Revit.Application.FamilyDocument.ParameterValueByName@string",
+      "Id": "b8235b48f9a74364865339f2f3e1b6a0",
       "Inputs": [
         {
-          "Id": "95824e3e502f460daf1e56724e3c8f70",
+          "Id": "ec4191912c33406a8a3ca1e39958822b",
           "Name": "familyDocument",
           "Description": "Revit.Application.FamilyDocument",
           "UsingDefaultValue": false,
@@ -95,7 +95,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "e5828ab31a2f419ca3e307be517c8fba",
+          "Id": "e57790abf272458b930932320fa18bf0",
           "Name": "parameter",
           "Description": "A family parameter of the current type.\n\nstring",
           "UsingDefaultValue": false,
@@ -106,7 +106,7 @@
       ],
       "Outputs": [
         {
-          "Id": "5fd2d3f0c1454daba6f6bcab1491ef07",
+          "Id": "8656ef61d1314c288fc90513c37a4fd5",
           "Name": "var[]..[]",
           "Description": "The parameter value.",
           "UsingDefaultValue": false,
@@ -116,14 +116,14 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Get's the value of a family parameter of the current family type.\n\nFamilyDocument.GetValue (parameter: string): var[]..[]"
+      "Description": "Get's the value of a family parameter of the current family type.\n\nFamilyDocument.ParameterValueByName (parameter: string): var[]..[]"
     }
   ],
   "Connectors": [
     {
       "Start": "df51653f7d794c7a84f3b3ae895215e9",
-      "End": "95824e3e502f460daf1e56724e3c8f70",
-      "Id": "7b2020afc7da4233892458d1f0f1e019"
+      "End": "ec4191912c33406a8a3ca1e39958822b",
+      "Id": "b9b2f53fdd9f4d78be94d021179639c8"
     },
     {
       "Start": "f7a31da1c4f349f887a48937db6e1774",
@@ -132,8 +132,8 @@
     },
     {
       "Start": "4dce4b7450514adc9dc9028325b10c89",
-      "End": "e5828ab31a2f419ca3e307be517c8fba",
-      "Id": "f6f5ecc07d6147a39c4629ab2acbf949"
+      "End": "e57790abf272458b930932320fa18bf0",
+      "Id": "982f3ced01ce4ec0b46e7f3ac9dc7eb9"
     }
   ],
   "Dependencies": [],
@@ -144,7 +144,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.0.7237",
+      "Version": "2.6.0.7534",
       "RunType": "Automatic",
       "RunPeriod": "1000"
     },
@@ -193,13 +193,13 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "FamilyDocument.GetValue",
-        "Id": "e0060322a59d4af4a735bbf241909f04",
+        "Name": "FamilyDocument.ParameterValueByName",
+        "Id": "b8235b48f9a74364865339f2f3e1b6a0",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 628.7378832838773,
-        "Y": 237.80415430267061
+        "X": 595.10781404549914,
+        "Y": 237.01285855588526
       }
     ],
     "Annotations": [],

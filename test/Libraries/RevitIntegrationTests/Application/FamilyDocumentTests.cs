@@ -146,7 +146,7 @@ namespace RevitSystemTests.Application
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            var value = GetPreviewValue("e0060322a59d4af4a735bbf241909f04");
+            var value = GetPreviewValue("b8235b48f9a74364865339f2f3e1b6a0");
 
             // Assert
             Assert.AreEqual(expectedValue, (double)value, Tolerance);
@@ -165,13 +165,13 @@ namespace RevitSystemTests.Application
             var expectedOldValue = 1000.0;
 
             var familyDoc = Revit.Application.FamilyDocument.ByDocument(Revit.Application.Document.Current);
-            var oldValue = familyDoc.GetValue(paramter);
+            var oldValue = familyDoc.ParameterValueByName(paramter);
 
             // Act
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            var newValue = familyDoc.GetValue(paramter);
+            var newValue = familyDoc.ParameterValueByName(paramter);
 
             // Assert
             Assert.AreNotEqual(oldValue, newValue);

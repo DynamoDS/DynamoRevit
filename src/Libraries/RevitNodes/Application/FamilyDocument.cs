@@ -118,7 +118,7 @@ namespace Revit.Application
         /// </summary>
         /// <param name="parameter">A family parameter of the current type.</param>
         /// <returns>The parameter value.</returns>
-        public object GetValue(string parameter)
+        public object ParameterValueByName(string parameter)
         {
             Autodesk.Revit.DB.FamilyParameter familyParameter = FamilyManager.get_Parameter(parameter);
             if (familyParameter == null)
@@ -148,7 +148,7 @@ namespace Revit.Application
         /// <param name="parameter">A family parameter of the current type.</param>
         /// <param name="value">The new value for the family parameter.</param>
         /// <returns></returns>
-        public FamilyDocument SetValue(string parameter, object value)
+        public FamilyDocument SetParameterValueByName(string parameter, object value)
         {
             TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
             Autodesk.Revit.DB.FamilyParameter familyParameter = FamilyManager.get_Parameter(parameter);
@@ -174,7 +174,10 @@ namespace Revit.Application
                     double doubleValue;
                     try
                     {
-                        doubleValue = (double)value;
+                        if (value.GetType() == typeof(int))
+                            doubleValue = Convert.ToDouble(value);
+                        else
+                            doubleValue = (double)value;
                     }
                     catch (Exception)
                     {
