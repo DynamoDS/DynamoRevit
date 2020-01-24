@@ -44,7 +44,7 @@ namespace Revit.Elements
         /// Private constructor for the Element.
         /// </summary>
         /// <param name="elementType"></param>
-        private protected ElementType(Autodesk.Revit.DB.ElementType elementType)
+        private ElementType(Autodesk.Revit.DB.ElementType elementType)
         {
             SafeInit(() => InitElementType(elementType));
         }
