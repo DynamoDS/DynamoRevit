@@ -700,38 +700,11 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Element has no child Elements.
-        /// </summary>
-        internal static string NoChildElements {
-            get {
-                return ResourceManager.GetString("NoChildElements", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No Elements to purge in the current document..
-        /// </summary>
-        internal static string NoElementsToPurge {
-            get {
-                return ResourceManager.GetString("NoElementsToPurge", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Elements are not intersecting.
         /// </summary>
         internal static string NonIntersectingElements {
             get {
                 return ResourceManager.GetString("NonIntersectingElements", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Element has no parent component.
-        /// </summary>
-        internal static string NoParentElement {
-            get {
-                return ResourceManager.GetString("NoParentElement", resourceCulture);
             }
         }
         
