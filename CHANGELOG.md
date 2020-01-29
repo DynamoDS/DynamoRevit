@@ -1,3 +1,6 @@
+## 0.2.2
+* Update .Net to 4.8.
+
 ## 0.2.1
 * Element nodes third batch - contains 3 nodes related to Revit.Elements.Element.
 * Update DynamoCore Runtime to 2.5.0.7460
