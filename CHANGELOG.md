@@ -1,3 +1,6 @@
+## 0.1.15
+* Update .Net to 4.8.
+
 ## 0.1.14
 * Update DynamoCore to 2.5.0.7432
 * Update DynamoCore Runtime to 2.5.0.7460
