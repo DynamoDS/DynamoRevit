@@ -2,7 +2,7 @@
   "Uuid": "4b9f4373-45d7-4899-83b3-bec019cf66d5",
   "IsCustomNode": false,
   "Description": null,
-  "Name": "CanSetFamilyDocumentValue",
+  "Name": "CanSetFamilyDocumentParameterValue",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -62,12 +62,12 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "\"Width\";\n2000.0;",
+      "Code": "\"Width\";\n2000;",
       "Id": "64ed3a7f9e24424894af93fe6ee448c0",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "842d1a7b8a3f475b89329f67141a7209",
+          "Id": "1b57176414f744b38a9c6a7f933cb1b7",
           "Name": "",
           "Description": "Value of expression at line 1",
           "UsingDefaultValue": false,
@@ -76,7 +76,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "8ac7566a5b11438bb4de06936c6a4add",
+          "Id": "fc7e79683dc0498fbaf41af1adbbb489",
           "Name": "",
           "Description": "Value of expression at line 2",
           "UsingDefaultValue": false,
@@ -92,10 +92,10 @@
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "Revit.Application.FamilyDocument.SetParameterValueByName@string,var",
-      "Id": "20842eae3d4a437bb19dbb4d17957e1b",
+      "Id": "332b1b6716ca42fc887ca5d841aba583",
       "Inputs": [
         {
-          "Id": "0379a11642cd4daeb25f1e28806e3c79",
+          "Id": "e36b38fc4cc346aa8b8196473fe4302a",
           "Name": "familyDocument",
           "Description": "Revit.Application.FamilyDocument",
           "UsingDefaultValue": false,
@@ -104,7 +104,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "2845ab39431242c988c7a13a687b8158",
+          "Id": "62e65c8cfb7d4f429a406d97d769441e",
           "Name": "parameter",
           "Description": "A family parameter of the current type.\n\nstring",
           "UsingDefaultValue": false,
@@ -113,7 +113,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "5f71ecd210a4453d944acff02e4c5810",
+          "Id": "2413355dcc264390880642c2df9ceefd",
           "Name": "value",
           "Description": "The new value for the family parameter.\n\nvar",
           "UsingDefaultValue": false,
@@ -124,9 +124,9 @@
       ],
       "Outputs": [
         {
-          "Id": "1af205c9322c4b1cacf4bd652b54a6d2",
+          "Id": "bd0db05ead7840d799d0d811c3ec11ab",
           "Name": "FamilyDocument",
-          "Description": "FamilyDocument",
+          "Description": "The family document with an updated value for the specified parameter.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -134,14 +134,14 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Set the value of a family parameter of the current family type.\n\nFamilyDocument.SetParameterValueByName (parameter: string, value: var): FamilyDocument"
+      "Description": "Set the value of a family parameter of the current family type, this applies to all family parameters (instance and type).\n\nFamilyDocument.SetParameterValueByName (parameter: string, value: var): FamilyDocument"
     }
   ],
   "Connectors": [
     {
       "Start": "df51653f7d794c7a84f3b3ae895215e9",
-      "End": "0379a11642cd4daeb25f1e28806e3c79",
-      "Id": "dad6c5a15d1b44a99f0683cc201c192d"
+      "End": "e36b38fc4cc346aa8b8196473fe4302a",
+      "Id": "b331c5c42bb2447aaa4458c4887eb198"
     },
     {
       "Start": "f7a31da1c4f349f887a48937db6e1774",
@@ -149,14 +149,14 @@
       "Id": "b220e1f6bfa242c4bd4135afc377485f"
     },
     {
-      "Start": "842d1a7b8a3f475b89329f67141a7209",
-      "End": "2845ab39431242c988c7a13a687b8158",
-      "Id": "30b65637ae974d6d9c7129e93c5b58c2"
+      "Start": "1b57176414f744b38a9c6a7f933cb1b7",
+      "End": "62e65c8cfb7d4f429a406d97d769441e",
+      "Id": "3be72aa272c1432fbf6e27a30a9f0172"
     },
     {
-      "Start": "8ac7566a5b11438bb4de06936c6a4add",
-      "End": "5f71ecd210a4453d944acff02e4c5810",
-      "Id": "57ee7cda365248d38ed92e4426104e2e"
+      "Start": "fc7e79683dc0498fbaf41af1adbbb489",
+      "End": "2413355dcc264390880642c2df9ceefd",
+      "Id": "e15e18547bc44a90b72e5dbc32cd04e6"
     }
   ],
   "Dependencies": [],
@@ -167,7 +167,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.0.7534",
+      "Version": "2.6.0.7593",
       "RunType": "Automatic",
       "RunPeriod": "1000"
     },
@@ -217,17 +217,17 @@
       {
         "ShowGeometry": true,
         "Name": "FamilyDocument.SetParameterValueByName",
-        "Id": "20842eae3d4a437bb19dbb4d17957e1b",
+        "Id": "332b1b6716ca42fc887ca5d841aba583",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 631.90306627101882,
-        "Y": 234.63897131552912
+        "X": 615.46764412847256,
+        "Y": 240.0089470477472
       }
     ],
     "Annotations": [],
-    "X": 57.613340581185071,
-    "Y": 39.525061829882986,
-    "Zoom": 0.931811528498331
+    "X": -212.56537754284011,
+    "Y": 62.495726724234061,
+    "Zoom": 0.74769281712332514
   }
 }

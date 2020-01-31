@@ -43,10 +43,7 @@ namespace RevitNodesTests.Application
             List<FamilyParameter> famParameters = famDoc.Parameters;
 
             // Assert
-            for (int i = 0; i < famParameters.Count; i++)
-            {
-                Assert.AreEqual(expectedParameterType, famParameters[i].GetType());
-            }
+            Assert.True(famParameters.All(param => param.GetType() == expectedParameterType));
         }
 
         [Test]
@@ -137,7 +134,7 @@ namespace RevitNodesTests.Application
 
         [Test]
         [TestModel(@".\FamilyDocument\familyDocumentTests.rfa")]
-        public void CanGetFamilyDocumentValue()
+        public void CanGetFamilyDocumentParameterValue()
         {
             // Arrange
             var famDoc = new FamilyDocument(Document.Current.InternalDocument);
@@ -150,9 +147,9 @@ namespace RevitNodesTests.Application
             var expectedStringValue = "N";
 
             // Act
-            var doubleValue = famDoc.ParameterValueByName(doubleParam);
-            var elementValue = famDoc.ParameterValueByName(elementParam) as Element;
-            var stringValue = famDoc.ParameterValueByName(stringParam);
+            var doubleValue = famDoc.GetParameterValueByName(doubleParam);
+            var elementValue = famDoc.GetParameterValueByName(elementParam) as Element;
+            var stringValue = famDoc.GetParameterValueByName(stringParam);
 
             // Assert
             Assert.AreEqual(expectedDoubleValue, doubleValue);
@@ -162,7 +159,7 @@ namespace RevitNodesTests.Application
 
         [Test]
         [TestModel(@".\FamilyDocument\familyDocumentTests.rfa")]
-        public void CanSetFamilyDocumentValue()
+        public void CanSetFamilyDocumentParameterValue()
         {
             // Arrange
             var famDoc = new FamilyDocument(Document.Current.InternalDocument);
@@ -177,17 +174,17 @@ namespace RevitNodesTests.Application
             
 
             // Act
-            var oldDoubleValue = famDoc.ParameterValueByName(doubleParam);
-            var oldElementValue = famDoc.ParameterValueByName(elementParam) as Element;
-            var oldStringValue = famDoc.ParameterValueByName(stringParam);
+            var oldDoubleValue = famDoc.GetParameterValueByName(doubleParam);
+            var oldElementValue = famDoc.GetParameterValueByName(elementParam) as Element;
+            var oldStringValue = famDoc.GetParameterValueByName(stringParam);
 
             famDoc.SetParameterValueByName(doubleParam, expectedDoubleValue);
             famDoc.SetParameterValueByName(elementParam, expectedElementValue);
             famDoc.SetParameterValueByName(stringParam, expectedStringValue);
 
-            var newDoubleValue = famDoc.ParameterValueByName(doubleParam);
-            var newElementValue = famDoc.ParameterValueByName(elementParam) as Element;
-            var newStringValue = famDoc.ParameterValueByName(stringParam);
+            var newDoubleValue = famDoc.GetParameterValueByName(doubleParam);
+            var newElementValue = famDoc.GetParameterValueByName(elementParam) as Element;
+            var newStringValue = famDoc.GetParameterValueByName(stringParam);
 
             // Assert
             Assert.AreNotEqual(oldDoubleValue, newDoubleValue);
@@ -201,24 +198,24 @@ namespace RevitNodesTests.Application
 
         [Test]
         [TestModel(@".\FamilyDocument\familyDocumentTests.rfa")]
-        public void CanSetFamilyDocumentDoubleValueWithInt()
+        public void CanSetFamilyDocumentParameterDoubleValueWithInt()
         {
             // Arrange
             var famDoc = new FamilyDocument(Document.Current.InternalDocument);
             var doubleParam = "Height";
 
-            var expectedSetDoubleWithIntValue = 2000;
+            var expectedIntValue = 2000;
 
             // Act
-            var oldDoubleValue = famDoc.ParameterValueByName(doubleParam);
+            var oldDoubleValue = famDoc.GetParameterValueByName(doubleParam);
 
-            famDoc.SetParameterValueByName(doubleParam, expectedSetDoubleWithIntValue);
+            famDoc.SetParameterValueByName(doubleParam, expectedIntValue);
 
-            var newDoubleValue = famDoc.ParameterValueByName(doubleParam);
+            var newDoubleValue = famDoc.GetParameterValueByName(doubleParam);
 
             // Assert
             Assert.AreNotEqual(oldDoubleValue, newDoubleValue);
-            Assert.AreEqual(expectedSetDoubleWithIntValue, (double)newDoubleValue, Tolerance);
+            Assert.AreEqual(expectedIntValue, (double)newDoubleValue, Tolerance);
         }
 
         [Test]
@@ -233,10 +230,10 @@ namespace RevitNodesTests.Application
             var instance = false;
 
             // Act - Check that the new parameter dosent exist by trying to get the value of it
-            Assert.Throws<InvalidOperationException>(() => famDoc.ParameterValueByName(paramName));
-            // add the new paramter and get the value to verify that it has been created.
+            Assert.Throws<InvalidOperationException>(() => famDoc.GetParameterValueByName(paramName));
+            // add the new parameter and get the value to verify that it has been created.
             famDoc.AddParameter(paramName, paramGroup, paramType, instance);
-            var newParamValue = famDoc.ParameterValueByName(paramName);
+            var newParamValue = famDoc.GetParameterValueByName(paramName);
 
             // Assert - the expected value of the new parameter is an empty string as we havent set it to anything
             Assert.AreEqual(string.Empty, newParamValue);
@@ -251,10 +248,10 @@ namespace RevitNodesTests.Application
             var paramName = "Top Material";
 
             // Act
-            var oldParamValue = famDoc.ParameterValueByName(paramName);
+            var oldParamValue = famDoc.GetParameterValueByName(paramName);
             famDoc.DeleteParameter(paramName);
             // Should throw as parameter no longer should exist
-            Assert.Throws<InvalidOperationException>(() => famDoc.ParameterValueByName(paramName));
+            Assert.Throws<InvalidOperationException>(() => famDoc.GetParameterValueByName(paramName));
 
             // Assert
             Assert.IsNotNull(oldParamValue);
@@ -272,6 +269,7 @@ namespace RevitNodesTests.Application
 
             // Assert
             Assert.IsNotNull(familyDocument);
+            Assert.AreEqual(typeof(FamilyDocument), familyDocument.GetType());
         }
     }
 }

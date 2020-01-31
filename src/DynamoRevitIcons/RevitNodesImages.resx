@@ -10160,7 +10160,7 @@
         fCTLr/QH5FYlABX3TiLy1bUrcQ5qaBs1tIvpfANXRrhp1upzogAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="Revit.Application.FamilyDocument.ParameterValueByName.Large" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Revit.Application.FamilyDocument.GetParameterValueByName.Large" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGEAAABhCAYAAADGBs+jAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EgAACxIB0t1+/AAABZpJREFUeF7t3E9rXFUYBvB+hPYbSD9BoaRqTFVoBSUt0kpAXJQGoehGIioTq9aI
@@ -10190,7 +10190,7 @@
         2ZKhs1Sc+BcN2kbxMFsErAAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="Revit.Application.FamilyDocument.ParameterValueByName.Small" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="Revit.Application.FamilyDocument.GetParameterValueByName.Small" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         EgAACxIB0t1+/AAAAgRJREFUWEfNls9KQkEUxnuEfIVeIYwCixY3CJQoo80lIlFECDQISoLCIsSNUOHC

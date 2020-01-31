@@ -134,10 +134,10 @@ namespace RevitSystemTests.Application
 
         [Test]
         [TestModel(@".\FamilyDocument\familyDocumentTests.rfa")]
-        public void CanGetFamilyDocumentValue()
+        public void CanGetFamilyDocumentParameterValue()
         {
             // Arrange
-            string samplePath = Path.Combine(workingDirectory, @".\FamilyDocument\CanGetFamilyDocumentValue.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\FamilyDocument\CanGetFamilyDocumentParameterValue.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
             var expectedValue = 914.0;
@@ -146,7 +146,7 @@ namespace RevitSystemTests.Application
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            var value = GetPreviewValue("b8235b48f9a74364865339f2f3e1b6a0");
+            var value = GetPreviewValue("f5ebbe4efbbc44779aaefd40f760899a");
 
             // Assert
             Assert.AreEqual(expectedValue, (double)value, Tolerance);
@@ -154,10 +154,10 @@ namespace RevitSystemTests.Application
 
         [Test]
         [TestModel(@".\FamilyDocument\familyDocumentTests.rfa")]
-        public void CanSetFamilyDocumentValue()
+        public void CanSetFamilyDocumentParameterValue()
         {
             // Arrange
-            string samplePath = Path.Combine(workingDirectory, @".\FamilyDocument\CanSetFamilyDocumentValue.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\FamilyDocument\CanSetFamilyDocumentParameterValue.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
             var paramter = "Width";
@@ -165,13 +165,13 @@ namespace RevitSystemTests.Application
             var expectedOldValue = 1000.0;
 
             var familyDoc = Revit.Application.FamilyDocument.ByDocument(Revit.Application.Document.Current);
-            var oldValue = familyDoc.ParameterValueByName(paramter);
+            var oldValue = familyDoc.GetParameterValueByName(paramter);
 
             // Act
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            var newValue = familyDoc.ParameterValueByName(paramter);
+            var newValue = familyDoc.GetParameterValueByName(paramter);
 
             // Assert
             Assert.AreNotEqual(oldValue, newValue);
