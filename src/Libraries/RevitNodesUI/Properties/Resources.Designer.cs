@@ -340,6 +340,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No warnings in the current document..
+        /// </summary>
+        internal static string NoWarningsInDocument {
+            get {
+                return ResourceManager.GetString("NoWarningsInDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a parameter type..
         /// </summary>
         internal static string ParameterTypeSelectorDescription {

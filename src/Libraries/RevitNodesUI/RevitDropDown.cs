@@ -936,7 +936,8 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class AllWarningsOfType : RevitDropDownBase
     {
-        private const string outputName = "Warning";
+        private const string outputName = "Warnings";
+        private const int MaxChars = 50;
 
         public AllWarningsOfType() : base(outputName) { }
 
@@ -948,7 +949,7 @@ namespace DSRevitNodesUI
             Items.Clear();
             Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
 
-            //find all unique warnings in the project
+            // find all unique warnings in the project
             var warnings = DocumentManager.Instance.CurrentDBDocument
                 .GetWarnings()
                 .GroupBy(warn => warn.GetFailureDefinitionId().Guid.ToString())
@@ -956,11 +957,11 @@ namespace DSRevitNodesUI
                 .ToList();
 
             if (warnings.Count < 1)
-                throw new InvalidOperationException("No warnings in the current document");
+                throw new InvalidOperationException(Properties.Resources.NoWarningsInDocument);
 
             for (int i = 0; i < warnings.Count; i++)
             {
-                var warningText = TruncateString(warnings[i].GetDescriptionText(), 50);
+                var warningText = TruncateString(warnings[i].GetDescriptionText(), MaxChars);
                 Items.Add(new DynamoDropDownItem(warningText, warnings[i]));
             }
             Items = Items.OrderBy(x => x.Name).ToObservableCollection();

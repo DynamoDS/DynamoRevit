@@ -16,23 +16,19 @@ namespace Revit.Application
         /// </summary>
         internal Autodesk.Revit.DB.FailureMessage InternalWarning { get; private set; }
 
-        internal Warning(Autodesk.Revit.DB.FailureMessage warning)
+        internal Warning(Autodesk.Revit.DB.FailureMessage failure)
         {
-            InternalWarning = warning;
+            InternalWarning = failure;
         }
 
         [IsVisibleInDynamoLibrary(false)]
         public static List<Warning> GetWarningByGuid(string guid)
         {
-            var warnings = DocumentManager.Instance.CurrentDBDocument
+            return DocumentManager.Instance.CurrentDBDocument
                 .GetWarnings()
-                .GroupBy(warn => warn.GetFailureDefinitionId().Guid.ToString())
+                .Where(warn => warn.GetFailureDefinitionId().Guid.ToString() == guid)
+                .Select(x => new Warning(x))
                 .ToList();
-
-            var keys = warnings.Select(key => key.First().GetFailureDefinitionId().Guid.ToString());
-            var dict = keys.Zip(warnings, (k, v) => new { Key = k, Value = v })
-                .ToDictionary(x => x.Key, x => x.Value);
-            return dict[guid].Select(warning => new Warning(warning)).ToList();
         }
 
         /// <summary>
