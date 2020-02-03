@@ -23,6 +23,7 @@ using FamilySymbol = Autodesk.Revit.DB.FamilySymbol;
 using Level = Autodesk.Revit.DB.Level;
 using Parameter = Autodesk.Revit.DB.Parameter;
 using Revit.Application;
+using System.Text.RegularExpressions;
 
 namespace DSRevitNodesUI
 {
@@ -961,7 +962,7 @@ namespace DSRevitNodesUI
 
             for (int i = 0; i < warnings.Count; i++)
             {
-                var warningText = TruncateString(warnings[i].GetDescriptionText(), MaxChars);
+                var warningText = WrapText(warnings[i].GetDescriptionText(), MaxChars);
                 Items.Add(new DynamoDropDownItem(warningText, warnings[i]));
             }
             Items = Items.OrderBy(x => x.Name).ToObservableCollection();
@@ -969,10 +970,30 @@ namespace DSRevitNodesUI
             return SelectionState.Restore;
         }
 
-        private static string TruncateString(string str, int maxChars)
+        /// <summary>
+        /// Wraps a string by inserting a newline af n amount if characters.
+        /// </summary>
+        /// <param name="inputText"></param>
+        /// <param name="lineLength"></param>
+        /// <returns></returns>
+        private static string WrapText(string inputText, int lineLength)
         {
-            string subString = str.Substring(0, System.Math.Min(str.Length, maxChars));
-            return subString += "...";
+            string[] stringSplit = inputText.Split(' ');
+            int charCounter = 0;
+            string finalString = "";
+
+            for (int i = 0; i < stringSplit.Length; i++)
+            {
+                finalString += stringSplit[i] + " ";
+                charCounter += stringSplit[i].Length;
+
+                if (charCounter > lineLength)
+                {
+                    finalString += "\n";
+                    charCounter = 0;
+                }
+            }
+            return finalString;
         }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
