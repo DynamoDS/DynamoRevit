@@ -54,14 +54,10 @@ namespace Revit.Application
         {
             get 
             {
-                var parameters = new List<Elements.FamilyParameter>();
-                var enumerator = FamilyManager.Parameters.GetEnumerator();
-                while (enumerator.MoveNext())
-                {
-                    var param = (Autodesk.Revit.DB.FamilyParameter)enumerator.Current;
-                    parameters.Add(new Elements.FamilyParameter(param));
-                }
-                return parameters;
+                return FamilyManager.Parameters
+                    .Cast<Autodesk.Revit.DB.FamilyParameter>()
+                    .Select(p => new Elements.FamilyParameter(p))
+                    .ToList();
             }
         }
 
