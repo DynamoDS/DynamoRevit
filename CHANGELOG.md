@@ -1,3 +1,6 @@
+## 0.0.48
+* Get a new revision number.
+
 ## 0.0.47
 * Revert the test RayBounce_SunStudy changes due to RevitAPI diff.
 
