@@ -98,7 +98,7 @@ namespace Revit.Elements
         #region public properties
 
         /// <summary>
-        /// 
+        /// Get the groups physical location whitin the project.
         /// </summary>
         public Autodesk.DesignScript.Geometry.Point Location
         {
@@ -113,7 +113,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// 
+        /// Get the group type.
         /// </summary>
         public Element GroupType
         {
