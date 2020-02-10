@@ -90,7 +90,7 @@ namespace Revit.Application
             if (familyParameter == null)
                 throw new InvalidOperationException(Properties.Resources.ParameterNotFound);
 
-            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+            TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
             FamilyManager.SetFormula(familyParameter, formula);
             TransactionManager.Instance.TransactionTaskDone();
             return this;
