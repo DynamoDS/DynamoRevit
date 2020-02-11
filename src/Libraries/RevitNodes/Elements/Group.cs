@@ -145,7 +145,7 @@ namespace Revit.Elements
         #region public methods
 
         /// <summary>
-        /// 
+        /// Retrieves all the element of the group.
         /// </summary>
         /// <returns></returns>
         public List<Element> GetMembers()
@@ -157,7 +157,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// 
+        /// Ungroups the group.
         /// </summary>
         /// <returns></returns>
         public List<Element> UngroupElements()
