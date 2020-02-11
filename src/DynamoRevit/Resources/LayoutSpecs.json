@@ -119,6 +119,9 @@
                   "path": "RevitNodes.Revit.Elements.Element"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.ElementType"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.FailureMessage"
                 },
                 {
