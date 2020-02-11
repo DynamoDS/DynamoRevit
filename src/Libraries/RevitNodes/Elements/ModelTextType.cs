@@ -7,26 +7,14 @@ namespace Revit.Elements
     /// <summary>
     /// A Revit ModelTextType
     /// </summary>
-    public class ModelTextType : Element
+    public class ModelTextType : ElementType
     {
         #region Internal properties
 
         /// <summary>
         /// Internal reference to the Revit Element
         /// </summary>
-        internal Autodesk.Revit.DB.ModelTextType InternalModelTextType
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// Reference to the Element
-        /// </summary>
-        public override Autodesk.Revit.DB.Element InternalElement
-        {
-            get { return InternalModelTextType; }
-        }
+        internal Autodesk.Revit.DB.ModelTextType InternalModelTextType => InternalElementType as Autodesk.Revit.DB.ModelTextType;
 
         #endregion
 
@@ -36,37 +24,8 @@ namespace Revit.Elements
         /// Construct from an existing Revit Element
         /// </summary>
         /// <param name="type"></param>
-        private ModelTextType(Autodesk.Revit.DB.ModelTextType type)
+        private ModelTextType(Autodesk.Revit.DB.ModelTextType type):base(type)
         {
-            SafeInit(() => InitModelTextType(type));
-        }
-
-        #endregion
-
-        #region Helper for private constructors
-
-        /// <summary>
-        /// Initialize a ModelTextType element
-        /// </summary>
-        /// <param name="type"></param>
-        private void InitModelTextType(Autodesk.Revit.DB.ModelTextType type)
-        {
-            InternalSetModelTextType(type);
-        }
-
-        #endregion
-
-        #region Private mutators
-
-        /// <summary>
-        /// Set the internal Element, ElementId, and UniqueId
-        /// </summary>
-        /// <param name="modelTextType"></param>
-        private void InternalSetModelTextType(Autodesk.Revit.DB.ModelTextType modelTextType)
-        {
-            this.InternalModelTextType = modelTextType;
-            this.InternalElementId = modelTextType.Id;
-            this.InternalUniqueId = modelTextType.UniqueId;
         }
 
         #endregion
@@ -78,7 +37,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static ModelTextType ByName(string name)
+        public static new ModelTextType ByName(string name)
         {
             if (name == null)
             {
