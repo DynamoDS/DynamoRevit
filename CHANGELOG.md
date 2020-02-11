@@ -1,3 +1,5 @@
+* Element Type nodes - introduces an ElementType category to the Dynamo library
+
 ## 0.2.2
 * Update .Net to 4.8.
 

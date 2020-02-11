@@ -38,16 +38,20 @@ namespace Revit.Elements
 
         #endregion
 
-        #region Private constructors
+        #region Protected constructors
 
         /// <summary>
-        /// Private constructor for the Element.
+        /// Protected constructor for the Element.
         /// </summary>
         /// <param name="elementType"></param>
-        private ElementType(Autodesk.Revit.DB.ElementType elementType)
+        protected ElementType(Autodesk.Revit.DB.ElementType elementType)
         {
             SafeInit(() => InitElementType(elementType));
         }
+
+        #endregion
+
+        #region Private constructors
 
         /// <summary>
         /// Initialize a ElementType element
