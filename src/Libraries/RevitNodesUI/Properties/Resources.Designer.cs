@@ -610,6 +610,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select multiple elements from the Revit document filtered by Category..
+        /// </summary>
+        internal static string SelectModelElementsByCategoryDescription {
+            get {
+                return ResourceManager.GetString("SelectModelElementsByCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select multiple elements from the Revit document..
         /// </summary>
         internal static string SelectModelElementsDescription {

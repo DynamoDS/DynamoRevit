@@ -389,4 +389,8 @@
   <data name="PortDataViewToolTip" xml:space="preserve">
     <value>The View</value>
   </data>
+  <data name="SelectModelElementsByCategoryDescription" xml:space="preserve">
+    <value>Select multiple elements from the Revit document filtered by Category.</value>
+    <comment>Description for Select Model Elements By Category</comment>
+  </data>
 </root>
