@@ -1,0 +1,397 @@
+{
+  "Uuid": "1fea1356-ac8b-4679-b9a7-2f3e12c284cf",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetElementTypePreviewImage",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "f49d6941-4497-43c3-9a52-fe4e5424e4e7-0002cf70"
+      ],
+      "Id": "cfc900e5e6734fb6829bd85de2f971f7",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3639d062ea134b3f8e5dec9bbaf7c2cb",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.ElementType",
+      "Id": "b17a36a187984408813f467f1d90959e",
+      "Inputs": [
+        {
+          "Id": "3e6bc9f99b2b4ac69154928ca0f6a9bc",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0657f62cea074e218aa9e0f802e5c83a",
+          "Name": "ElementType",
+          "Description": "Element Type or Null.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the FamilyType for this Element. Returns null if the Element cannot have a FamilyType assigned.\n\nElement.ElementType: ElementType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.ElementType.GetPreviewImage@int",
+      "Id": "4ddc4d0917ac4242b5b03239b9ee9677",
+      "Inputs": [
+        {
+          "Id": "9b2405cbb74e4be59a8aa3eca3625673",
+          "Name": "elementType",
+          "Description": "Revit.Elements.ElementType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8b9201e453f24ae5878abc93597c3e37",
+          "Name": "size",
+          "Description": "The width and height of the preview image in pixels.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a0fc0be1ab4948d491a6904d636f0e57",
+          "Name": "var",
+          "Description": "The preview image. null if there is no preview image.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the preview image of an element. This image is similar to what is seen in the Revit UI when selecting the type of an element.\n\nElementType.GetPreviewImage (size: int): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "500;",
+      "Id": "0189532d76934232b5a19e1cc1ff693d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1fb2f9d27c634a05b0fa5b4968336d50",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.IO.Image.Dimensions@var",
+      "Id": "4819307a68964b869cb0064a6916d0cd",
+      "Inputs": [
+        {
+          "Id": "bcd6fe3f65864838a0dde311268537c0",
+          "Name": "image",
+          "Description": "Image to get dimensions of.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "598e6d46ff834ab3893eb6c716230cb2",
+          "Name": "width",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c686d0a875c04fb69db21350237104f9",
+          "Name": "height",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the width and height of an image.\n\nImage.Dimensions (image: var): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "a9b4d5a3d4bc4293b141f8f93446b1d4",
+      "Inputs": [
+        {
+          "Id": "a0f7d9bc9eea4f7d8f85f7524afdc894",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8e1478dc465e424dba329c917bd453a1",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "522c3a4d6670498e995a9e593710d08e",
+      "Inputs": [
+        {
+          "Id": "97b9784d4763436199ddfde7cb1f0d2b",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "277e403135b342b9beb624a29f730b6a",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.WatchImageCore, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "dca884ccecd8451f831f80ea13b299e6",
+      "Inputs": [
+        {
+          "Id": "1c34a4ad0791418e90fff05c16f7bce7",
+          "Name": "image",
+          "Description": "image",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fbff8ba387894c04a942e778d1fca145",
+          "Name": "image",
+          "Description": "image",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Previews an image"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "3639d062ea134b3f8e5dec9bbaf7c2cb",
+      "End": "3e6bc9f99b2b4ac69154928ca0f6a9bc",
+      "Id": "cb5978288b0a45f885025cdf53f3292c"
+    },
+    {
+      "Start": "0657f62cea074e218aa9e0f802e5c83a",
+      "End": "9b2405cbb74e4be59a8aa3eca3625673",
+      "Id": "e066e6f013964dc098327ff101d9e269"
+    },
+    {
+      "Start": "a0fc0be1ab4948d491a6904d636f0e57",
+      "End": "bcd6fe3f65864838a0dde311268537c0",
+      "Id": "78101de400a6440f9bba6ee7f9e6d864"
+    },
+    {
+      "Start": "a0fc0be1ab4948d491a6904d636f0e57",
+      "End": "1c34a4ad0791418e90fff05c16f7bce7",
+      "Id": "6977b97d7d794d08a96cc6b2f2820aea"
+    },
+    {
+      "Start": "1fb2f9d27c634a05b0fa5b4968336d50",
+      "End": "8b9201e453f24ae5878abc93597c3e37",
+      "Id": "21f2bc0bb9674e70845d5c1084817c68"
+    },
+    {
+      "Start": "598e6d46ff834ab3893eb6c716230cb2",
+      "End": "a0f7d9bc9eea4f7d8f85f7524afdc894",
+      "Id": "6af7c5d1cd0d4db5bf3f77d5837d2943"
+    },
+    {
+      "Start": "c686d0a875c04fb69db21350237104f9",
+      "End": "97b9784d4763436199ddfde7cb1f0d2b",
+      "Id": "f5d2cecf490149e78478082baa914bcf"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "cfc900e5e6734fb6829bd85de2f971f7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 748.66666666666663,
+        "Y": 436.66666666666669
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.ElementType",
+        "Id": "b17a36a187984408813f467f1d90959e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 960.66666666666663,
+        "Y": 443.33333333333263
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ElementType.GetPreviewImage",
+        "Id": "4ddc4d0917ac4242b5b03239b9ee9677",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1266.4821495598806,
+        "Y": 443.76940996114877
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "0189532d76934232b5a19e1cc1ff693d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1126.5784189065305,
+        "Y": 533.85403415976
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Image.Dimensions",
+        "Id": "4819307a68964b869cb0064a6916d0cd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1520.6652937679987,
+        "Y": 443.76940996114877
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch - Width",
+        "Id": "a9b4d5a3d4bc4293b141f8f93446b1d4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1784.7985728172744,
+        "Y": 386.96976953756985
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch - Height",
+        "Id": "522c3a4d6670498e995a9e593710d08e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1786.7749971174508,
+        "Y": 513.62344412090886
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch Image",
+        "Id": "dca884ccecd8451f831f80ea13b299e6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1269.0010125317974,
+        "Y": 626.47881342674486
+      }
+    ],
+    "Annotations": [],
+    "X": -336.68372587315196,
+    "Y": -126.26556170793413,
+    "Zoom": 0.61228307854334507
+  }
+}
