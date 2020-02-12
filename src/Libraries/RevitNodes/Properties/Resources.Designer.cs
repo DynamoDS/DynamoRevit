@@ -106,6 +106,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot get location of attached group..
+        /// </summary>
+        internal static string AttachedGroupLocation {
+            get {
+                return ResourceManager.GetString("AttachedGroupLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot get base or survey point from document..
         /// </summary>
         internal static string CannotGetBaseOrSurveyPoint {
@@ -597,6 +606,15 @@ namespace Revit.Properties {
         internal static string InvalidFilterType {
             get {
                 return ResourceManager.GetString("InvalidFilterType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not a valid GroupType..
+        /// </summary>
+        internal static string InvalidGroupType {
+            get {
+                return ResourceManager.GetString("InvalidGroupType", resourceCulture);
             }
         }
         

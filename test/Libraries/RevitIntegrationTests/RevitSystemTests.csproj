@@ -101,6 +101,7 @@
     <Compile Include="ElementTests.cs" />
     <Compile Include="FloorTypeTests.cs" />
     <Compile Include="GlobalParameterTests.cs" />
+    <Compile Include="GroupTests.cs" />
     <Compile Include="PerformanceAdviserTests.cs" />
     <Compile Include="RoofTypeTests.cs" />
     <Compile Include="SerializationTests.cs" />
