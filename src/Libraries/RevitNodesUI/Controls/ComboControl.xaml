@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:DSRevitNodesUI.Controls"
              xmlns:converters="clr-namespace:CoreNodeModelsWpf.Converters;assembly=CoreNodeModelsWpf"
              mc:Ignorable="d"
              d:DesignHeight="100"
@@ -31,7 +30,7 @@
             </Button.ToolTip>
         </Button>
         <ComboBox Grid.Row="1"
-                  ItemsSource="{Binding Model.CategoriesNodeModel.Items}"
+                  ItemsSource="{Binding Model.DropDownNodeModel.Items}"
                   SelectedIndex="{Binding Model.SelectedIndex, Mode=TwoWay}"/>
 
         <TextBlock Text="{Binding Model.Text}"
