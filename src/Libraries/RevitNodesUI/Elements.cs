@@ -225,6 +225,34 @@ namespace DSRevitNodesUI
         }
     }
 
+    [NodeName("Element By Id"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription("ElementById", typeof(Properties.Resources)),
+     IsDesignScriptCompatible]
+    public class ElementById : ElementsQueryBase
+    {
+        public ElementById()
+        {
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Id", Properties.Resources.PortDataByElementId)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Element", Properties.Resources.PortDataElementsToolTip)));
+
+            RegisterAllPorts();
+        }
+
+        [JsonConstructor]
+        public ElementById(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
+        }
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(
+            List<AssociativeNode> inputAstNodes)
+        {
+            var func = new Func<object, Revit.Elements.Element>(ElementQueries.ById);
+            var functionCall = AstFactory.BuildFunctionCall(func, inputAstNodes);
+            return new[]
+            { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+        }
+    }
+
     [NodeName("All Elements In Active View"), NodeCategory(BuiltinNodeCategories.REVIT_VIEW),
      NodeDescription("ElementsInActiveViewDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]

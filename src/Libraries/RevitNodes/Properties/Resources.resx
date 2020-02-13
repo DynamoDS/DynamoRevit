@@ -465,4 +465,7 @@
   <data name="NoElementsToPurge" xml:space="preserve">
     <value>No Elements to purge in the current document.</value>
   </data>
+  <data name="InvalidElementId" xml:space="preserve">
+    <value>Id is not a valid ElementId, GUID, string or int.</value>
+  </data>
 </root>

@@ -116,6 +116,44 @@ namespace Revit.Elements.InternalUtilities
             return instances;
         }
 
+        public static Element ById(object id)
+        {
+            if (id == null)
+                return null;
+
+            // handle ElementId types first
+            if (id.GetType() == typeof(Autodesk.Revit.DB.ElementId))
+                return ElementSelector.ByElementId(((Autodesk.Revit.DB.ElementId)id).IntegerValue);
+
+
+            var idType = Type.GetTypeCode(id.GetType());
+            int intId;
+            Element element;
+
+            switch (idType)
+            {
+                case TypeCode.Int64:
+                    element = ElementSelector.ByElementId(Convert.ToInt32((long)id));
+                    break;
+
+                case TypeCode.String:
+                    string idString = (string)id;
+                    if (Int32.TryParse(idString, out intId))
+                    {
+                        element = ElementSelector.ByElementId(intId);
+                        break;
+                    }
+
+                    element = ElementSelector.ByUniqueId(idString);
+                    break;
+                    
+                default:
+                    throw new InvalidOperationException(Revit.Properties.Resources.InvalidElementId);
+            }
+                
+            return element;
+        }
+
         internal static IEnumerable<Autodesk.Revit.DB.Level> GetAllLevels()
         {
             var collector = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);

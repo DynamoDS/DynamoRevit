@@ -417,4 +417,10 @@
   <data name="RoomsByStatusDescription" xml:space="preserve">
     <value>Returns all rooms in the document grouped by status</value>
   </data>
+  <data name="ElementById" xml:space="preserve">
+    <value>Gets the Element with the specified Id</value>
+  </data>
+  <data name="PortDataByElementId" xml:space="preserve">
+    <value>Element Id as string, int or ElementId</value>
+  </data>
 </root>
