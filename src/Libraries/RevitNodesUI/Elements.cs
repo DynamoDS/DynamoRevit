@@ -450,4 +450,62 @@ namespace DSRevitNodesUI
             { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), elementList) };
         }
     }
+
+    [NodeName("Rooms by status"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription("RoomsByStatusDescription", typeof(Properties.Resources)),
+     IsDesignScriptCompatible]
+    public class RoomsByStatus : ElementsQueryBase
+    {
+        public RoomsByStatus()
+        {
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("PlacedRooms", Properties.Resources.PortDataPlacedRoomsToolTip)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("UnplacedRooms", Properties.Resources.PortDataUnplacedRoomsToolTip)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("NotEnclosedRooms", Properties.Resources.PortDataNotEnclosedRoomsToolTip)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("RedundantRooms", Properties.Resources.PortDataElementAtLevelToolTip)));
+
+            RegisterAllPorts();
+        }
+
+        [JsonConstructor]
+        public RoomsByStatus(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
+        }
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(
+        List<AssociativeNode> inputAstNodes)
+        {
+            var packedId = "__temp" + AstIdentifierGuid;
+            var func = new Func<List<List<Revit.Elements.Element>>>(ElementQueries.RoomsByStatus);
+            return new[]
+            {
+                AstFactory.BuildAssignment(
+                    AstFactory.BuildIdentifier(packedId),
+                    AstFactory.BuildFunctionCall(func, inputAstNodes)),
+                AstFactory.BuildAssignment(
+                    GetAstIdentifierForOutputIndex(0),
+                    new IdentifierNode(packedId)
+                    {
+                        ArrayDimensions = new ArrayNode{Expr = AstFactory.BuildIntNode(0)}
+                    }),
+                AstFactory.BuildAssignment(
+                    GetAstIdentifierForOutputIndex(1),
+                    new IdentifierNode(packedId)
+                    {
+                        ArrayDimensions = new ArrayNode{Expr = AstFactory.BuildIntNode(1)}
+                    }),
+                AstFactory.BuildAssignment(
+                    GetAstIdentifierForOutputIndex(2),
+                    new IdentifierNode(packedId)
+                    {
+                        ArrayDimensions = new ArrayNode{Expr = AstFactory.BuildIntNode(2)}
+                    }),
+                AstFactory.BuildAssignment(
+                    GetAstIdentifierForOutputIndex(3),
+                    new IdentifierNode(packedId)
+                    {
+                        ArrayDimensions = new ArrayNode{Expr = AstFactory.BuildIntNode(3)}
+                    })
+            };
+        }
+    }
 }
