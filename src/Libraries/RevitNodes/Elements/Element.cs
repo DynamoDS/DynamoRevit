@@ -780,12 +780,12 @@ namespace Revit.Elements
         private IEnumerable<Element> GetElementChildren(Autodesk.Revit.DB.Element element)
         {
             List<Element> components = new List<Element>();
-            string categoryId = element.Category.Id.ToString();
+            int categoryId = element.Category.Id.IntegerValue;
             if (!Enum.IsDefined(typeof(BuiltInCategory), categoryId))
                 throw new InvalidOperationException(Properties.Resources.NotBuiltInCategory);
-                
+
             BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
-                                                                                 categoryId);
+                                                                                 categoryId.ToString());
 
 
             // By default we use the GetSubComponentIds() on the elements FamilyInstance, 
@@ -891,8 +891,12 @@ namespace Revit.Elements
         private Element GetParentElementFromElement(Autodesk.Revit.DB.Element element)
         {
             Autodesk.Revit.DB.Element parent;
+            int categoryId = element.Category.Id.IntegerValue;
+            if (!Enum.IsDefined(typeof(BuiltInCategory), categoryId))
+                throw new InvalidOperationException(Properties.Resources.NotBuiltInCategory);
+
             BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
-                                                                                 element.Category.Id.ToString());
+                                                                                 categoryId.ToString());
 
             // By default we use the SuperComponent on the elements FamilyInstance to get the Parent Element, 
             // for now the node also handles special cases including Stairs, StructuralFramingSystems and Railings 
