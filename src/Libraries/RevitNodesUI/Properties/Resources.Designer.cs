@@ -511,6 +511,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All roof types in the current document..
+        /// </summary>
+        internal static string RoofTypesDescription {
+            get {
+                return ResourceManager.GetString("RoofTypesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A View Schedule Filter Type..
         /// </summary>
         internal static string ScheduleFilterTypeDescription {
@@ -646,6 +655,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All sheets available in the current document..
+        /// </summary>
+        internal static string SheetsDescription {
+            get {
+                return ResourceManager.GetString("SheetsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Returns the current Revit site location..
         /// </summary>
         internal static string SiteLocationDescription {
@@ -714,6 +732,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string ViewDetailLevelDescription {
             get {
                 return ResourceManager.GetString("ViewDetailLevelDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All view family types in the current document..
+        /// </summary>
+        internal static string ViewFamilyTypes {
+            get {
+                return ResourceManager.GetString("ViewFamilyTypes", resourceCulture);
             }
         }
         

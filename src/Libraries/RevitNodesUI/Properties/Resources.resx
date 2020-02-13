@@ -393,4 +393,13 @@
     <value>Select multiple elements from the Revit document filtered by Category.</value>
     <comment>Description for Select Model Elements By Category</comment>
   </data>
+  <data name="RoofTypesDescription" xml:space="preserve">
+    <value>All roof types in the current document.</value>
+  </data>
+  <data name="SheetsDescription" xml:space="preserve">
+    <value>All sheets available in the current document.</value>
+  </data>
+  <data name="ViewFamilyTypes" xml:space="preserve">
+    <value>All view family types in the current document.</value>
+  </data>
 </root>

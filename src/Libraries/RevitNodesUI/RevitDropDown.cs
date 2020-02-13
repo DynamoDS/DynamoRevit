@@ -464,6 +464,55 @@ namespace DSRevitNodesUI
         }
     }
 
+    [NodeName("Roof Types")]
+    [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
+    [NodeDescription("RoofTypesDescription", typeof(Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class RoofTypes : RevitDropDownBase
+    {
+        private const string outputName = "Roof Types";
+
+        public RoofTypes() : base(outputName) { }
+
+        [JsonConstructor]
+        public RoofTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
+
+        protected override SelectionState PopulateItemsCore(string currentSelection)
+        {
+            Items.Clear();
+
+            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
+
+            fec.OfClass(typeof(Autodesk.Revit.DB.RoofType));
+            var elements = fec.ToElements();
+            if (!elements.Any())
+            {
+                Items.Add(new DynamoDropDownItem(Properties.Resources.NoWallTypesAvailable, null));
+                SelectedIndex = 0;
+                return SelectionState.Done;
+            }
+
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
+        }
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            if (!CanBuildOutputAst(Properties.Resources.NoWallTypesAvailable))
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+
+            var args = new List<AssociativeNode>
+            {
+                AstFactory.BuildStringNode(((Autodesk.Revit.DB.RoofType) Items[SelectedIndex].Item).Name)
+            };
+            var functionCall = AstFactory.BuildFunctionCall("Revit.Elements.RoofType",
+                                                            "ByName",
+                                                            args);
+
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+        }
+    }
+
     [NodeName("Performance Adviser Rules")]
     [NodeCategory(BuiltinNodeCategories.REVIT_ELEMENTS_PERFORMANCEADVISER)]
     [NodeDescription("PerformanceAdviserDescription", typeof(Properties.Resources))]
@@ -929,5 +978,131 @@ namespace DSRevitNodesUI
         }
     }
 
-        
+    [NodeName("Sheets")]
+    [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
+    [NodeDescription("SheetsDescription", typeof(Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class Sheets : RevitDropDownBase
+    {
+        private const string outputName = "Sheets";
+
+        public Sheets() : base(outputName) { }
+
+        [JsonConstructor]
+        public Sheets(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
+
+        protected override SelectionState PopulateItemsCore(string currentSelection)
+        {
+            Items.Clear();
+
+            //find all views in the project
+            //exclude <RevisionSchedule> (revision tables on sheets) from list
+            var sheets = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(ViewSheet))
+                //.Where(x => !x.Name.Contains('<'))
+                .ToList();
+
+            //there must always be at least 1 view in a Revit document, so we can exclude the empty list check
+            foreach (var s in sheets)
+            {
+                Items.Add(new DynamoDropDownItem(s.Name, s));
+            }
+            Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+
+            return SelectionState.Restore;
+        }
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            AssociativeNode node;
+            if (!CanBuildOutputAst())
+            {
+                node = AstFactory.BuildNullNode();
+            }
+            else
+            {
+                var view = Items[SelectedIndex].Item as View;
+                if (view == null)
+                {
+                    node = AstFactory.BuildNullNode();
+                }
+                else
+                {
+                    var idNode = AstFactory.BuildStringNode(view.UniqueId);
+                    var falseNode = AstFactory.BuildBooleanNode(true);
+
+                    node =
+                        AstFactory.BuildFunctionCall(
+                            new Func<string, bool, object>(ElementSelector.ByUniqueId),
+                            new List<AssociativeNode>() { idNode, falseNode });
+                }
+            }
+
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
+        }
+    }
+
+    [NodeName("View Family Types")]
+    [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
+    [NodeDescription("ViewFamilyTypesDescription", typeof(Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class ViewFamilyTypes : RevitDropDownBase
+    {
+        private const string outputName = "Sheets";
+
+        public ViewFamilyTypes() : base(outputName) { }
+
+        [JsonConstructor]
+        public ViewFamilyTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
+
+        protected override SelectionState PopulateItemsCore(string currentSelection)
+        {
+            Items.Clear();
+
+            //find all views in the project
+            //exclude <RevisionSchedule> (revision tables on sheets) from list
+            var sheets = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(ViewFamilyType))
+                .ToList();
+
+            //there must always be at least 1 view in a Revit document, so we can exclude the empty list check
+            foreach (var s in sheets)
+            {
+                Items.Add(new DynamoDropDownItem(s.Name, s));
+            }
+            Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+
+            return SelectionState.Restore;
+        }
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            AssociativeNode node;
+            if (!CanBuildOutputAst())
+            {
+                node = AstFactory.BuildNullNode();
+            }
+            else
+            {
+                var view = Items[SelectedIndex].Item as View;
+                if (view == null)
+                {
+                    node = AstFactory.BuildNullNode();
+                }
+                else
+                {
+                    var idNode = AstFactory.BuildStringNode(view.UniqueId);
+                    var falseNode = AstFactory.BuildBooleanNode(true);
+
+                    node =
+                        AstFactory.BuildFunctionCall(
+                            new Func<string, bool, object>(ElementSelector.ByUniqueId),
+                            new List<AssociativeNode>() { idNode, falseNode });
+                }
+            }
+
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
+        }
+    }
+
 }
