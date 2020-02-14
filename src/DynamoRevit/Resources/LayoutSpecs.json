@@ -119,6 +119,9 @@
                   "path": "RevitNodes.Revit.Elements.Element"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.ElementType"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.FailureMessage"
                 },
                 {
@@ -150,6 +153,9 @@
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.Grid"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Group"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.ImportInstance"

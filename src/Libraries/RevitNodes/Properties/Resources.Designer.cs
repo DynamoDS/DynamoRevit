@@ -106,6 +106,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot get location of attached group..
+        /// </summary>
+        internal static string AttachedGroupLocation {
+            get {
+                return ResourceManager.GetString("AttachedGroupLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot get base or survey point from document..
         /// </summary>
         internal static string CannotGetBaseOrSurveyPoint {
@@ -138,6 +147,15 @@ namespace Revit.Properties {
         internal static string CellForPanelNotFound {
             get {
                 return ResourceManager.GetString("CellForPanelNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting child elements is not supported for this type of Element..
+        /// </summary>
+        internal static string ChildElementsNotSupported {
+            get {
+                return ResourceManager.GetString("ChildElementsNotSupported", resourceCulture);
             }
         }
         
@@ -295,6 +313,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Document is not workshared.
+        /// </summary>
+        internal static string DocumentNotWorkshared {
+            get {
+                return ResourceManager.GetString("DocumentNotWorkshared", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dynamo Data.
         /// </summary>
         internal static string Dynamo_AVF_Data_Name {
@@ -327,6 +354,15 @@ namespace Revit.Properties {
         internal static string ElementCannotBeAnnotatedError {
             get {
                 return ResourceManager.GetString("ElementCannotBeAnnotatedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no ElementType of the given name in the current Document.
+        /// </summary>
+        internal static string ElementTypeNameNotFound {
+            get {
+                return ResourceManager.GetString("ElementTypeNameNotFound", resourceCulture);
             }
         }
         
@@ -574,6 +610,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is not a valid GroupType..
+        /// </summary>
+        internal static string InvalidGroupType {
+            get {
+                return ResourceManager.GetString("InvalidGroupType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Element does not have a host..
         /// </summary>
         internal static string InvalidHost {
@@ -700,11 +745,38 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Element has no child Elements.
+        /// </summary>
+        internal static string NoChildElements {
+            get {
+                return ResourceManager.GetString("NoChildElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Elements to purge in the current document..
+        /// </summary>
+        internal static string NoElementsToPurge {
+            get {
+                return ResourceManager.GetString("NoElementsToPurge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Elements are not intersecting.
         /// </summary>
         internal static string NonIntersectingElements {
             get {
                 return ResourceManager.GetString("NonIntersectingElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Element has no parent component.
+        /// </summary>
+        internal static string NoParentElement {
+            get {
+                return ResourceManager.GetString("NoParentElement", resourceCulture);
             }
         }
         
@@ -718,11 +790,29 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FloorType has no structural material assigned.
+        /// </summary>
+        internal static string NoStructuralMaterialAssigned {
+            get {
+                return ResourceManager.GetString("NoStructuralMaterialAssigned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The FamilyInstance is not an adaptive component..
         /// </summary>
         internal static string NotAdaptiveComponentError {
             get {
                 return ResourceManager.GetString("NotAdaptiveComponentError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Element not valid. Use an element from a BuiltInCategory..
+        /// </summary>
+        internal static string NotBuiltInCategory {
+            get {
+                return ResourceManager.GetString("NotBuiltInCategory", resourceCulture);
             }
         }
         

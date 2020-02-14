@@ -11,7 +11,7 @@ namespace Revit.Elements
     /// A Revit FamilyType, the Revit API refers to this as a FamilySymbol
     /// </summary>
     [RegisterForTrace]
-    public class FamilyType: Element
+    public class FamilyType: ElementType
     {
 
         #region Internal Properties
@@ -19,19 +19,7 @@ namespace Revit.Elements
         /// <summary>
         /// Internal wrapper property
         /// </summary>
-        internal Autodesk.Revit.DB.FamilySymbol InternalFamilySymbol
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// Reference to the Element
-        /// </summary>
-        public override Autodesk.Revit.DB.Element InternalElement
-        {
-            get { return InternalFamilySymbol; }
-        }
+        internal Autodesk.Revit.DB.FamilySymbol InternalFamilySymbol => InternalElementType as Autodesk.Revit.DB.FamilySymbol;
 
         #endregion
 
@@ -41,37 +29,8 @@ namespace Revit.Elements
         /// Private constructor for building a DSFamilySymbol
         /// </summary>
         /// <param name="symbol"></param>
-        private FamilyType(Autodesk.Revit.DB.FamilySymbol symbol)
+        private FamilyType(Autodesk.Revit.DB.FamilySymbol symbol):base(symbol)
         {
-            SafeInit(() => InitFamilySymbol(symbol));
-        }
-
-        #endregion
-
-        #region Helper for private constructors
-
-        /// <summary>
-        /// Initialize a FamilySymbol element
-        /// </summary>
-        /// <param name="symbol"></param>
-        private void InitFamilySymbol(Autodesk.Revit.DB.FamilySymbol symbol)
-        {
-            InternalSetFamilySymbol(symbol);
-        }
-
-        #endregion
-
-        #region Private mutators
-
-        /// <summary>
-        /// Set the internal model of the family symbol along with its ElementId and UniqueId
-        /// </summary>
-        /// <param name="symbol"></param>
-        private void InternalSetFamilySymbol(Autodesk.Revit.DB.FamilySymbol symbol)
-        {
-            this.InternalFamilySymbol = symbol;
-            this.InternalElementId = symbol.Id;
-            this.InternalUniqueId = symbol.UniqueId;
         }
 
         #endregion
@@ -197,7 +156,7 @@ namespace Revit.Elements
         /// <search>
         /// symbol
         /// </search>
-        public static FamilyType ByName(string name)
+        public static new FamilyType ByName(string name)
         {
             if (name == null)
             {

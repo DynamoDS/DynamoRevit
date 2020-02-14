@@ -1,3 +1,20 @@
+* Element Type nodes - introduces an ElementType category to the Dynamo library
+
+## 0.2.2
+* Update .Net to 4.8.
+
+## 0.2.1
+* Element nodes third batch - contains 3 nodes related to Revit.Elements.Element.
+* Update DynamoCore Runtime to 2.5.0.7460
+
+## 0.2.0
+* Fix issue - Joined geometry does not convert correctly
+* Document nodes - Add 3 node in the Application.Document category
+* Update Dynamo Core to 2.5.0.7432
+
+## 0.1.13
+* update DynamoCore to 2.5.0.7186
+
 ## 0.1.12
 * Remove transient elements in Revit doc when Dynamo shutdown
 * Fix test failure of JsonRestoresBinding
