@@ -136,9 +136,10 @@ namespace Revit.Elements
         /// Gets the document of a loaded family.
         /// </summary>
         /// <returns>Reference of the document of the family.</returns>
-        public Document FamilyDocument()
+        public FamilyDocument FamilyDocument()
         {
-            return new Document(Document.EditFamily(this.InternalFamily));
+            TransactionManager.Instance.ForceCloseTransaction();
+            return new FamilyDocument(Document.EditFamily(this.InternalFamily));
         }
 
         #endregion
