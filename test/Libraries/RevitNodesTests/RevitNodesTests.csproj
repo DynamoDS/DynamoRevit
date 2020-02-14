@@ -88,6 +88,7 @@
     <Compile Include="Elements\DocumentTests.cs" />
     <Compile Include="Elements\ElementTypeTests.cs" />
     <Compile Include="Elements\ElementTests.cs" />
+    <Compile Include="Elements\ElevationMarkerTests.cs" />
     <Compile Include="Elements\FillPatternTests.cs" />
     <Compile Include="Elements\FilterTests.cs" />
     <Compile Include="Elements\GroupTests.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Elements\RoofTypeTests.cs" />
     <Compile Include="Elements\RoomTests.cs" />
     <Compile Include="Elements\RevisionTests.cs" />
+    <Compile Include="Elements\SpaceTests.cs" />
     <Compile Include="Elements\SunSettingsTests.cs" />
     <Compile Include="Elements\SketchPlaneTests.cs" />
     <Compile Include="Elements\StructuralFramingTests.cs" />

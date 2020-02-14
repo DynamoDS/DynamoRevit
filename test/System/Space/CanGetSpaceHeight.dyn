@@ -1,0 +1,122 @@
+{
+  "Uuid": "049d1b14-1092-4ae2-bfc3-0620fac8e05f",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetSpaceHeight",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "3211817e-6765-49b5-94dd-0238eb42a891-0004d3cd"
+      ],
+      "Id": "9457e638e2f74a1f89959b88a5445d97",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "44ef567feaac41a6bac240bbe59a14a7",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Space.Height",
+      "Id": "1d23c0bf90ae442dacee35ffd9909373",
+      "Inputs": [
+        {
+          "Id": "fa4ae8bb9987485b856707ec30ec3906",
+          "Name": "space",
+          "Description": "Revit.Elements.Space",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "76e909698d824b2497fd32241e097b48",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get height of the space.\n\nSpace.Height: double"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "44ef567feaac41a6bac240bbe59a14a7",
+      "End": "fa4ae8bb9987485b856707ec30ec3906",
+      "Id": "04d27c586a914a328bfc4361bb20c521"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": 5649.6045289864351,
+      "EyeY": 1026.6998054294991,
+      "EyeZ": 5331.6237150945835,
+      "LookX": 832.35360978481856,
+      "LookY": -901.71641060022034,
+      "LookZ": -4023.0424472932914,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "9457e638e2f74a1f89959b88a5445d97",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 136.66666666666663,
+        "Y": 334.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Space.Height",
+        "Id": "1d23c0bf90ae442dacee35ffd9909373",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 425.74599866339207,
+        "Y": 334.33728386853738
+      }
+    ],
+    "Annotations": [],
+    "X": 201.14677643128505,
+    "Y": -145.40126033198766,
+    "Zoom": 1.2484436539722306
+  }
+}

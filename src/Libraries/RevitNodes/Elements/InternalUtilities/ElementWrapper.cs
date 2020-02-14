@@ -341,13 +341,22 @@ namespace Revit.Elements
             return PathOfTravel.FromExisting(ele, isRevitOwned);
         }
 
+        public static ElevationMarker Wrap(Autodesk.Revit.DB.ElevationMarker ele, bool isRevitOwned)
+        {
+            return ElevationMarker.FromExisting(ele, isRevitOwned);
+        }
+
+        public static Space Wrap(Autodesk.Revit.DB.Mechanical.Space ele, bool isRevitOwned)
+        {
+            return Space.FromExisting(ele, isRevitOwned);
+        }
+
         public static RoofType Wrap(Autodesk.Revit.DB.RoofType ele, bool isRevitOwned)
         {
             return RoofType.FromExisting(ele, isRevitOwned);
         }
 
       #endregion
-
-   }
+    }
 
 }

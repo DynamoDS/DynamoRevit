@@ -1,0 +1,257 @@
+{
+  "Uuid": "049d1b14-1092-4ae2-bfc3-0620fac8e05f",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetSpaceLocation",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "3211817e-6765-49b5-94dd-0238eb42a891-0004d3cd"
+      ],
+      "Id": "9457e638e2f74a1f89959b88a5445d97",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "44ef567feaac41a6bac240bbe59a14a7",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Space.Location",
+      "Id": "f8fc8cfcc5554c5e9caf5e551f3d8132",
+      "Inputs": [
+        {
+          "Id": "151785ae5ef549de96279e4c5e86a8ad",
+          "Name": "space",
+          "Description": "Revit.Elements.Space",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ea8176c1f1de4a9885987e176d542026",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Location of the space.\n\nSpace.Location: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.X",
+      "Id": "1821c9e428a74b0cb3e7e6d55752879e",
+      "Inputs": [
+        {
+          "Id": "1721497cf85e4254bf70db553998a780",
+          "Name": "point",
+          "Description": "Autodesk.DesignScript.Geometry.Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ac74e15feeec4582b5978899645d163f",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the X component of a Point\n\nPoint.X: double"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.Y",
+      "Id": "57415ae7839f4b8c9204052fc65a5b24",
+      "Inputs": [
+        {
+          "Id": "5e3b80826c854e53b3f6b9830fad563e",
+          "Name": "point",
+          "Description": "Autodesk.DesignScript.Geometry.Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "262cf281a674453a83d51220a053effa",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Y component of a Point\n\nPoint.Y: double"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.Z",
+      "Id": "c8d89da660004dc1a4336b5636ec85f0",
+      "Inputs": [
+        {
+          "Id": "ce5ad000a07849e79a3e163b4cdd9bf3",
+          "Name": "point",
+          "Description": "Autodesk.DesignScript.Geometry.Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a8fa6300826a4ada889cf5fb0ee47b3b",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Z component of a Point\n\nPoint.Z: double"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "44ef567feaac41a6bac240bbe59a14a7",
+      "End": "151785ae5ef549de96279e4c5e86a8ad",
+      "Id": "dc1e4ed907ef4d4a99566e0537a4f75e"
+    },
+    {
+      "Start": "ea8176c1f1de4a9885987e176d542026",
+      "End": "1721497cf85e4254bf70db553998a780",
+      "Id": "4961411793f94249b7f07a24c5eb7d54"
+    },
+    {
+      "Start": "ea8176c1f1de4a9885987e176d542026",
+      "End": "5e3b80826c854e53b3f6b9830fad563e",
+      "Id": "cc1073b9de804edd9f31e1f9d89a6ede"
+    },
+    {
+      "Start": "ea8176c1f1de4a9885987e176d542026",
+      "End": "ce5ad000a07849e79a3e163b4cdd9bf3",
+      "Id": "d36906d64913441d881ab53a69a58c91"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": 5649.6045289864351,
+      "EyeY": 1026.6998054294991,
+      "EyeZ": 5331.6237150945835,
+      "LookX": 832.35360978481856,
+      "LookY": -901.71641060022034,
+      "LookZ": -4023.0424472932914,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "9457e638e2f74a1f89959b88a5445d97",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 137.73466307090234,
+        "Y": 362.83590291436633
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Space.Location",
+        "Id": "f8fc8cfcc5554c5e9caf5e551f3d8132",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 371.81218024948464,
+        "Y": 362.6391885807858
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Point.X",
+        "Id": "1821c9e428a74b0cb3e7e6d55752879e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 682.065135679982,
+        "Y": 236.6156128809626
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Point.Y",
+        "Id": "57415ae7839f4b8c9204052fc65a5b24",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 684.73512669057163,
+        "Y": 361.57119217655008
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Point.Z",
+        "Id": "c8d89da660004dc1a4336b5636ec85f0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 692.74509972233932,
+        "Y": 487.06076967425554
+      }
+    ],
+    "Annotations": [],
+    "X": 201.14677643128505,
+    "Y": -145.40126033198766,
+    "Zoom": 1.2484436539722306
+  }
+}

@@ -1,0 +1,310 @@
+{
+  "Uuid": "43e8c968-b233-46cf-b9ed-2d6a02d27b31",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanCreateElevationMarker",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "100;",
+      "Id": "e8fbda468d684f5596cb501875942084",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "259e20a177794181bebc82c30cc43f24",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.GetLocation",
+      "Id": "08f25370579b4f11bef90bc8733ab2ad",
+      "Inputs": [
+        {
+          "Id": "04f781a789f34496a793d5ec77840bb2",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ae897fe710334675bc5f0a7d64b105e9",
+          "Name": "Geometry",
+          "Description": "Location Geometry",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get an existing element's location\n\nElement.GetLocation ( ): Geometry"
+    },
+    {
+      "ConcreteType": "RhythmUI.ViewFamilyTypes, RhythmUI",
+      "SelectedIndex": 0,
+      "SelectedString": "10mm Circle",
+      "NodeType": "ExtensionNode",
+      "Id": "2217de32f4a148179c47c9ac1f8d8dcf",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b007dd131ed64497bb9fb61e8d24c6fe",
+          "Name": "ViewFamilyTypes",
+          "Description": "The selected ViewFamilyTypes",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a view family type from your file"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "5a65dfc3-f5f6-4928-b429-b952473671c5-0004d381"
+      ],
+      "Id": "409a34d3bd8b445ca673388ce7fb35e6",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6f85a0d478604a88bc3c857be81b562b",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.Object.Type@var",
+      "Id": "a59b9fc4ba14481f902ce8399ed8c3ca",
+      "Inputs": [
+        {
+          "Id": "ce7e3aab99944d0c92d4cf837dbc5130",
+          "Name": "obj",
+          "Description": "An object.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "00fc8cbff8ec493f95beccc9a4119bcf",
+          "Name": "string",
+          "Description": "Type of object.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the type of object represented as string.\n\nObject.Type (obj: var): string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.ElevationMarker.ByViewTypeLocation@Revit.Elements.Element,Autodesk.DesignScript.Geometry.Point,int",
+      "Id": "c42a812a27de4487833432e3b11c6416",
+      "Inputs": [
+        {
+          "Id": "ef32900439584b64862d83ec9e39e067",
+          "Name": "viewFamilyType",
+          "Description": "The ViewFamilyType that will be used by all elevations hosted on the new ElevationMarker.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5127d1edddeb41289f1cef71926d4e16",
+          "Name": "location",
+          "Description": "The desired origin for the ElevationMarker.\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "772d1c57675549e784d54674a6a6acbe",
+          "Name": "initialViewScale",
+          "Description": "The view scale will be automatically applied to new elevations created on the ElevationMarker. The scale is the ratio of true model size to paper size (e.g. input 100 for 1:100 scale).\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "59684330bbbd4a88a7ed11d600b85220",
+          "Name": "ElevationMarker",
+          "Description": "The new ElevationMarker element.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Creates a new ElevationMarker.\n\nElevationMarker.ByViewTypeLocation (viewFamilyType: Element, location: Point, initialViewScale: int): ElevationMarker"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "259e20a177794181bebc82c30cc43f24",
+      "End": "772d1c57675549e784d54674a6a6acbe",
+      "Id": "c767dfba62284b289175bebec57d0470"
+    },
+    {
+      "Start": "ae897fe710334675bc5f0a7d64b105e9",
+      "End": "5127d1edddeb41289f1cef71926d4e16",
+      "Id": "fcec416b2f3e465384b29b3e3f76875f"
+    },
+    {
+      "Start": "b007dd131ed64497bb9fb61e8d24c6fe",
+      "End": "ef32900439584b64862d83ec9e39e067",
+      "Id": "d1a5d6591b994c908d055b23242b0b55"
+    },
+    {
+      "Start": "6f85a0d478604a88bc3c857be81b562b",
+      "End": "04f781a789f34496a793d5ec77840bb2",
+      "Id": "9b775117e0e643469880013d7477ec7b"
+    },
+    {
+      "Start": "59684330bbbd4a88a7ed11d600b85220",
+      "End": "ce7e3aab99944d0c92d4cf837dbc5130",
+      "Id": "82fca5bcd9e3454994db881945703401"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Rhythm",
+      "Version": "2019.12.4",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "2217de32f4a148179c47c9ac1f8d8dcf"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "e8fbda468d684f5596cb501875942084",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 332.23915849068203,
+        "Y": 717.49750899667413
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.GetLocation",
+        "Id": "08f25370579b4f11bef90bc8733ab2ad",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 212.0472941600662,
+        "Y": 558.094764323202
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ViewFamilyTypes",
+        "Id": "2217de32f4a148179c47c9ac1f8d8dcf",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 221.46042728666896,
+        "Y": 424.25374402262457
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "409a34d3bd8b445ca673388ce7fb35e6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 26.306674878235356,
+        "Y": 557.21052024630615
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Object.Type",
+        "Id": "a59b9fc4ba14481f902ce8399ed8c3ca",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 947.12304688014342,
+        "Y": 531.73611676711084
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ElevationMarker.ByViewTypeLocation",
+        "Id": "c42a812a27de4487833432e3b11c6416",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 532.223495801873,
+        "Y": 533.256981647325
+      }
+    ],
+    "Annotations": [],
+    "X": 60.3445439626513,
+    "Y": 100.67122169464255,
+    "Zoom": 0.65150603752531488
+  }
+}

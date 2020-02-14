@@ -99,12 +99,14 @@
     <Compile Include="AsynchronousModeTests.cs" />
     <Compile Include="ElementTypeTests.cs" />
     <Compile Include="ElementTests.cs" />
+    <Compile Include="ElevationMarkerTests.cs" />
     <Compile Include="FloorTypeTests.cs" />
     <Compile Include="GlobalParameterTests.cs" />
     <Compile Include="GroupTests.cs" />
     <Compile Include="PerformanceAdviserTests.cs" />
     <Compile Include="RoofTypeTests.cs" />
     <Compile Include="SerializationTests.cs" />
+    <Compile Include="SpaceTests.cs" />
     <Compile Include="WallTests.cs" />
     <Compile Include="CurtainSystemTests.cs" />
     <Compile Include="RoomTests.cs" />
