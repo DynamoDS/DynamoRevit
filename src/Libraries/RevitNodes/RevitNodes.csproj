@@ -15,6 +15,7 @@
     <AssemblyName>RevitNodes</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
@@ -86,9 +87,11 @@
     <Compile Include="Elements\AbstractFamilyInstance.cs" />
     <Compile Include="Elements\CurveByPoints.cs" />
     <Compile Include="Elements\CurveElement.cs" />
+    <Compile Include="Elements\ElementType.cs" />
     <Compile Include="Elements\FilledRegion.cs" />
     <Compile Include="Elements\FilledRegionType.cs" />
     <Compile Include="Elements\GlobalParameter.cs" />
+    <Compile Include="Elements\Group.cs" />
     <Compile Include="Elements\PathOfTravel.cs" />
     <Compile Include="Elements\RoofType.cs" />
     <Compile Include="Elements\Roof.cs" />
