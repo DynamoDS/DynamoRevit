@@ -423,6 +423,12 @@
   <data name="VectorDataObsolete" xml:space="preserve">
     <value>Use VectorAnalysisDisplay.ByViewPointsAndVectorValues instead.</value>
   </data>
+  <data name="NoChildElements" xml:space="preserve">
+    <value>Element has no child Elements</value>
+  </data>
+  <data name="NoParentElement" xml:space="preserve">
+    <value>Element has no parent component</value>
+  </data>
   <data name="NotHostElement" xml:space="preserve">
     <value>Element is not a Host Element</value>
   </data>
@@ -434,6 +440,24 @@
   </data>
   <data name="NonIntersectingElements" xml:space="preserve">
     <value>Elements are not intersecting</value>
+  </data>
+  <data name="InvalidGroupType" xml:space="preserve">
+    <value>{0} is not a valid GroupType.</value>
+  </data>
+  <data name="AttachedGroupLocation" xml:space="preserve">
+    <value>Cannot get location of attached group.</value>
+  </data>
+  <data name="ElementTypeNameNotFound" xml:space="preserve">
+    <value>There is no ElementType of the given name in the current Document</value>
+  </data>
+  <data name="NoStructuralMaterialAssigned" xml:space="preserve">
+    <value>FloorType has no structural material assigned</value>
+  </data>
+  <data name="ChildElementsNotSupported" xml:space="preserve">
+    <value>Getting child elements is not supported for this type of Element.</value>
+  </data>
+  <data name="NotBuiltInCategory" xml:space="preserve">
+    <value>Element not valid. Use an element from a BuiltInCategory.</value>
   </data>
   <data name="DocumentNotWorkshared" xml:space="preserve">
     <value>Current Document is not workshared</value>

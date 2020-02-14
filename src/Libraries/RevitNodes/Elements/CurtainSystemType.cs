@@ -8,26 +8,14 @@ namespace Revit.Elements
     /// <summary>
     /// A Revit CurtainSystemType
     /// </summary>
-    public class CurtainSystemType : Element
+    public class CurtainSystemType : ElementType
     {
         #region Internal properties
 
         /// <summary>
         /// An internal reference to the CurtainSystemType
         /// </summary>
-        internal Autodesk.Revit.DB.CurtainSystemType InternalCurtainSystemType
-        {
-            get; private set;
-        }
-
-        /// <summary>
-        /// Reference to the Element
-        /// </summary>
-        [SupressImportIntoVM]
-        public override Autodesk.Revit.DB.Element InternalElement
-        {
-            get { return InternalCurtainSystemType; }
-        }
+        internal Autodesk.Revit.DB.CurtainSystemType InternalCurtainSystemType => InternalElementType as Autodesk.Revit.DB.CurtainSystemType;
 
         #endregion
 
@@ -36,38 +24,9 @@ namespace Revit.Elements
         /// <summary>
         /// Private constructor for the Element
         /// </summary>
-        /// <param name="CurtainSystemType"></param>
-        private CurtainSystemType(Autodesk.Revit.DB.CurtainSystemType curtainSystemType)
-        {
-            SafeInit(() => InitCurtainSystemType(curtainSystemType));
-        }
-
-        #endregion
-
-        #region Private constructors
-
-        /// <summary>
-        /// Initialize a CurtainSystemType element
-        /// </summary>
-        /// <param name="CurtainSystemType"></param>
-        private void InitCurtainSystemType(Autodesk.Revit.DB.CurtainSystemType curtainSystemType)
-        {
-            InternalSetCurtainSystemType(curtainSystemType);
-        }
-
-        #endregion
-
-        #region Private mutators
-
-        /// <summary>
-        /// Set the CurtainSystemType property, element id, and unique id
-        /// </summary>
         /// <param name="curtainSystemType"></param>
-        private void InternalSetCurtainSystemType( Autodesk.Revit.DB.CurtainSystemType curtainSystemType )
+        private CurtainSystemType(Autodesk.Revit.DB.CurtainSystemType curtainSystemType):base(curtainSystemType)
         {
-            this.InternalCurtainSystemType = curtainSystemType;
-            this.InternalElementId = curtainSystemType.Id;
-            this.InternalUniqueId = curtainSystemType.UniqueId;
         }
 
         #endregion
@@ -91,7 +50,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static CurtainSystemType ByName(string name)
+        public static new CurtainSystemType ByName(string name)
         {
             if (name == null)
             {
@@ -123,7 +82,7 @@ namespace Revit.Elements
         /// <summary>
         /// Create a CurtainSystemType from a user selected Element.
         /// </summary>
-        /// <param name="CurtainSystemType"></param>
+        /// <param name="curtainSystemType"></param>
         /// <param name="isRevitOwned"></param>
         /// <returns></returns>
         internal static CurtainSystemType FromExisting(Autodesk.Revit.DB.CurtainSystemType curtainSystemType, bool isRevitOwned)
