@@ -88,6 +88,7 @@
     <Compile Include="Elements\DocumentTests.cs" />
     <Compile Include="Elements\ElementTypeTests.cs" />
     <Compile Include="Elements\ElementTests.cs" />
+    <Compile Include="Elements\ElevationMarkerTests.cs" />
     <Compile Include="Elements\FillPatternTests.cs" />
     <Compile Include="Elements\FilterTests.cs" />
     <Compile Include="Elements\GroupTests.cs" />

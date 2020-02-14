@@ -99,6 +99,7 @@
     <Compile Include="AsynchronousModeTests.cs" />
     <Compile Include="ElementTypeTests.cs" />
     <Compile Include="ElementTests.cs" />
+    <Compile Include="ElevationMarkerTests.cs" />
     <Compile Include="FloorTypeTests.cs" />
     <Compile Include="GlobalParameterTests.cs" />
     <Compile Include="GroupTests.cs" />
