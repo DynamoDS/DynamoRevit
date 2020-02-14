@@ -984,7 +984,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class Sheets : RevitDropDownBase
     {
-        private const string outputName = "Sheets";
+        private const string outputName = "Sheet";
 
         public Sheets() : base(outputName) { }
 
@@ -1048,7 +1048,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ViewFamilyTypes : RevitDropDownBase
     {
-        private const string outputName = "Sheets";
+        private const string outputName = "ViewFamilyType";
 
         public ViewFamilyTypes() : base(outputName) { }
 
@@ -1084,7 +1084,7 @@ namespace DSRevitNodesUI
             }
             else
             {
-                var view = Items[SelectedIndex].Item as View;
+                var view = Items[SelectedIndex].Item as ViewFamilyType;
                 if (view == null)
                 {
                     node = AstFactory.BuildNullNode();
