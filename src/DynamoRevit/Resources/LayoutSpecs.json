@@ -83,6 +83,9 @@
                   "path": "RevitNodes.Revit.Elements.AdaptiveComponent"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.Area"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.Category"
                 },
                 {
