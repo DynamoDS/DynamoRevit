@@ -64,6 +64,11 @@ namespace Revit.Elements
             return DividedPath.FromExisting(ele, isRevitOwned);
         }
 
+        public static ElementType Wrap(Autodesk.Revit.DB.ElementType elementType, bool isRevitOwned)
+        {
+            return ElementType.FromExisting(elementType, isRevitOwned);
+        }
+
         public static DividedSurface Wrap(Autodesk.Revit.DB.DividedSurface ele, bool isRevitOwned)
         {
             return DividedSurface.FromExisting(ele, isRevitOwned);
@@ -103,6 +108,11 @@ namespace Revit.Elements
         public static Grid Wrap(Autodesk.Revit.DB.Grid ele, bool isRevitOwned)
         {
             return Grid.FromExisting(ele, isRevitOwned);
+        }
+
+        public static Group Wrap(Autodesk.Revit.DB.Group ele, bool isRevitOwned)
+        {
+            return Group.FromExisting(ele, isRevitOwned);
         }
 
         public static Level Wrap(Autodesk.Revit.DB.Level ele, bool isRevitOwned)
@@ -336,8 +346,22 @@ namespace Revit.Elements
             return PathOfTravel.FromExisting(ele, isRevitOwned);
         }
 
-      #endregion
+        public static ElevationMarker Wrap(Autodesk.Revit.DB.ElevationMarker ele, bool isRevitOwned)
+        {
+            return ElevationMarker.FromExisting(ele, isRevitOwned);
+        }
 
-   }
+        public static Space Wrap(Autodesk.Revit.DB.Mechanical.Space ele, bool isRevitOwned)
+        {
+            return Space.FromExisting(ele, isRevitOwned);
+        }
+
+        public static RoofType Wrap(Autodesk.Revit.DB.RoofType ele, bool isRevitOwned)
+        {
+            return RoofType.FromExisting(ele, isRevitOwned);
+        }
+
+      #endregion
+    }
 
 }

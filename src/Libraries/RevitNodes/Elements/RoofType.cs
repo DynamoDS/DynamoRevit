@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Autodesk.DesignScript.Runtime;
+using Autodesk.Revit.DB;
 using RevitServices.Persistence;
 
 namespace Revit.Elements
@@ -7,25 +10,20 @@ namespace Revit.Elements
     /// <summary>
     /// A Revit RoofType
     /// </summary>
-    public class RoofType : Element
+    public class RoofType : ElementType
     {
+        private const string absorptanceOutputPort = "Absorptance";
+        private const string heatTransferCoefficientOutputPort = "HeatTransferCoefficient";
+        private const string roughnessOutputPort = "Roughness";
+        private const string thermalMassOutputPort = "ThermalMass";
+        private const string thermalResistanceOutputPort = "ThermalResistance";
+
         #region Internal properties
 
         /// <summary>
         /// An internal reference to the RoofType
         /// </summary>
-        internal Autodesk.Revit.DB.RoofType InternalRoofType
-        {
-            get; private set;
-        }
-
-        /// <summary>
-        /// Reference to the Element
-        /// </summary>
-        public override Autodesk.Revit.DB.Element InternalElement
-        {
-            get { return InternalRoofType; }
-        }
+        internal Autodesk.Revit.DB.RoofType InternalRoofType => InternalElementType as Autodesk.Revit.DB.RoofType;
 
         #endregion
 
@@ -35,37 +33,8 @@ namespace Revit.Elements
         /// Private constructor for the Element
         /// </summary>
         /// <param name="roofType"></param>
-        private RoofType(Autodesk.Revit.DB.RoofType roofType)
+        private RoofType(Autodesk.Revit.DB.RoofType roofType) : base(roofType)
         {
-            SafeInit(() => InitRoofType(roofType));
-        }
-
-        #endregion
-
-        #region Private constructors
-
-        /// <summary>
-        /// Initialize a RoofType element
-        /// </summary>
-        /// <param name="roofType"></param>
-        private void InitRoofType(Autodesk.Revit.DB.RoofType roofType)
-        {
-            InternalSetRoofType(roofType);
-        }
-
-        #endregion
-
-        #region Private mutators
-
-        /// <summary>
-        /// Set the RoofType property, element id, and unique id
-        /// </summary>
-        /// <param name="RoofType"></param>
-        private void InternalSetRoofType(Autodesk.Revit.DB.RoofType roofType)
-        {
-            this.InternalRoofType = roofType;
-            this.InternalElementId = roofType.Id;
-            this.InternalUniqueId = roofType.UniqueId;
         }
 
         #endregion
@@ -89,7 +58,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static RoofType ByName(string name)
+        public static new RoofType ByName(string name)
         {
             if (name == null)
             {
@@ -129,6 +98,35 @@ namespace Revit.Elements
             return new RoofType(RoofType)
             {
                 IsRevitOwned = isRevitOwned
+            };
+        }
+
+        #endregion
+
+        #region Public methods
+
+        /// <summary>
+        /// The calculated and settable thermal properties of the RoofType.
+        /// </summary>
+        /// <returns name = "Absorptance">Value of absorptance.</returns>
+        /// <returns name = "HeatTransferCoefficient">The heat transfer coefficient value (U-Value).</returns>
+        /// <returns name = "Roughness">Value of roughness.</returns>
+        /// <returns name = "ThermalMass">The calculated thermal mass value.</returns>
+        /// <returns name = "ThermalResistance">The calculated thermal resistance value (R-Value).</returns>
+        [MultiReturn(new[] { absorptanceOutputPort, heatTransferCoefficientOutputPort, roughnessOutputPort, thermalMassOutputPort, thermalResistanceOutputPort })]
+        public Dictionary<string, object> GetThermalProperties()
+        {
+            ThermalProperties thermalProperties = this.InternalRoofType.ThermalProperties;
+            if (thermalProperties == null)
+                throw new InvalidOperationException(nameof(GetThermalProperties));
+
+            return new Dictionary<string, object>
+            {
+                { absorptanceOutputPort, thermalProperties.Absorptance },
+                { heatTransferCoefficientOutputPort, thermalProperties.HeatTransferCoefficient },
+                { roughnessOutputPort, thermalProperties.Roughness },
+                { thermalMassOutputPort, thermalProperties.ThermalMass },
+                { thermalResistanceOutputPort, thermalProperties.ThermalResistance }
             };
         }
 
