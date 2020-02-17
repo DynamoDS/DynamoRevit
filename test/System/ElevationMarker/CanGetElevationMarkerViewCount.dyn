@@ -1,0 +1,122 @@
+{
+  "Uuid": "43e8c968-b233-46cf-b9ed-2d6a02d27b31",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetElevationMarkerViewCount",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "834c566c-641b-48f0-b447-e8e27419f14b-0004fed9"
+      ],
+      "Id": "409a34d3bd8b445ca673388ce7fb35e6",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6f85a0d478604a88bc3c857be81b562b",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.ElevationMarker.CurrentViewCount",
+      "Id": "3c4da6eecf544216a574cdf6571aa8de",
+      "Inputs": [
+        {
+          "Id": "7c563c9ce77c48cbbdb21ce355d62bc3",
+          "Name": "elevationMarker",
+          "Description": "Revit.Elements.ElevationMarker",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d0fab14449104118b5dbe77e358d572d",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "ElevationMarker.CurrentViewCount: int"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "6f85a0d478604a88bc3c857be81b562b",
+      "End": "7c563c9ce77c48cbbdb21ce355d62bc3",
+      "Id": "736760adb2c04cdfa1d702a0a2fb08ce"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "409a34d3bd8b445ca673388ce7fb35e6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 6.7913898323926674,
+        "Y": 379.04854880243886
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ElevationMarker.CurrentViewCount",
+        "Id": "3c4da6eecf544216a574cdf6571aa8de",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 281.10125989777828,
+        "Y": 379.17346733446868
+      }
+    ],
+    "Annotations": [],
+    "X": 119.99579478241685,
+    "Y": -111.0268890445065,
+    "Zoom": 0.88467542334045435
+  }
+}

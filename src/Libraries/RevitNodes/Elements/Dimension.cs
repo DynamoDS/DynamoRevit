@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
@@ -368,6 +369,94 @@ namespace Revit.Elements
             }
 
             TransactionManager.Instance.TransactionTaskDone();
+        }
+
+        /// <summary>
+        /// The text shown above the segment's value, if the dimension has multiple segments a list of values will be returned.
+        /// </summary>
+        public List<string> AboveValue
+        {
+            get
+            {
+                if (this.InternalRevitElement.Segments.Size == 0)
+                {
+                    return new List<string>() { this.InternalRevitElement.Above };
+                }
+
+                return this.InternalRevitElement.Segments
+                    .Cast<DimensionSegment>()
+                    .Select(segment => segment.Above)
+                    .ToList();
+            } 
+        }
+
+        /// <summary>
+        /// The text shown below the segment's value.
+        /// </summary>
+        public List<string> BelowValue
+        {
+            get
+            {
+                if (this.InternalRevitElement.Segments.Size == 0)
+                {
+                    return new List<string>() { this.InternalRevitElement.Below };
+                }
+
+                return this.InternalRevitElement.Segments
+                    .Cast<DimensionSegment>()
+                    .Select(segment => segment.Below)
+                    .ToList();
+            }
+        }
+
+        #endregion
+
+        #region Public methods
+
+        /// <summary>
+        /// Sets the text shown above the segment's value.
+        /// </summary>
+        /// <param name="value">The value to set</param>
+        /// <returns>The dimension element</returns>
+        public Element SetAboveValue(string value)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+            if (this.InternalRevitElement.Segments.Size == 0)
+            {
+                this.InternalRevitElement.Above = value;
+            }
+            else
+            {
+                this.InternalRevitElement.Segments
+                    .Cast<DimensionSegment>()
+                    .Select(segment => segment.Above = value)
+                    .ToList();
+            }
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the text shown below the segment's value.
+        /// </summary>
+        /// <param name="value">The value to set</param>
+        /// <returns>The dimension element</returns>
+        public Element SetBelowValue(string value)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Document);
+            if (this.InternalRevitElement.Segments.Size == 0)
+            {
+                this.InternalRevitElement.Below = value;
+            }
+            else
+            {
+                this.InternalRevitElement.Segments
+                    .Cast<DimensionSegment>()
+                    .Select(segment => segment.Below = value)
+                    .ToList();
+            }
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
         }
 
         #endregion

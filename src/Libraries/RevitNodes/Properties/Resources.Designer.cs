@@ -106,6 +106,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot get location of attached group..
+        /// </summary>
+        internal static string AttachedGroupLocation {
+            get {
+                return ResourceManager.GetString("AttachedGroupLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot get base or survey point from document..
         /// </summary>
         internal static string CannotGetBaseOrSurveyPoint {
@@ -356,6 +365,15 @@ namespace Revit.Properties {
                 return ResourceManager.GetString("EmptyView", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to There is no ElementType of the given name in the current Document.
+        /// </summary>
+        internal static string ElementTypeNameNotFound {
+            get {
+                return ResourceManager.GetString("ElementTypeNameNotFound", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to End point list is empty.
@@ -601,6 +619,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is not a valid GroupType..
+        /// </summary>
+        internal static string InvalidGroupType {
+            get {
+                return ResourceManager.GetString("InvalidGroupType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Element does not have a host..
         /// </summary>
         internal static string InvalidHost {
@@ -736,6 +763,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Elements to purge in the current document..
+        /// </summary>
+        internal static string NoElementsToPurge {
+            get {
+                return ResourceManager.GetString("NoElementsToPurge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Elements are not intersecting.
         /// </summary>
         internal static string NonIntersectingElements {
@@ -752,14 +788,6 @@ namespace Revit.Properties {
                 return ResourceManager.GetString("NoParentElement", resourceCulture);
             }
         }
-
-        ///   Looks up a localized string similar to No Elements to purge in the current document..
-        /// </summary>
-        internal static string NoElementsToPurge {
-            get {
-                return ResourceManager.GetString("NoElementsToPurge", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to No shared parameter file found..
@@ -767,6 +795,15 @@ namespace Revit.Properties {
         internal static string NoSharedParameterFileFound {
             get {
                 return ResourceManager.GetString("NoSharedParameterFileFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FloorType has no structural material assigned.
+        /// </summary>
+        internal static string NoStructuralMaterialAssigned {
+            get {
+                return ResourceManager.GetString("NoStructuralMaterialAssigned", resourceCulture);
             }
         }
         
@@ -812,6 +849,15 @@ namespace Revit.Properties {
         internal static string NotJoinedElements {
             get {
                 return ResourceManager.GetString("NotJoinedElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The provided input view is not a plan view..
+        /// </summary>
+        internal static string NotPlanView {
+            get {
+                return ResourceManager.GetString("NotPlanView", resourceCulture);
             }
         }
         
