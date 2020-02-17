@@ -466,6 +466,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Family type does not exist in the document..
+        /// </summary>
+        internal static string FamilyTypeDoesNotExist {
+            get {
+                return ResourceManager.GetString("FamilyTypeDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The file could not be found at: {0}.
         /// </summary>
         internal static string FileNotFound {
@@ -727,19 +736,20 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Elements to purge in the current document..
-        /// </summary>
-        internal static string NoElementsToPurge {
-            get {
-                return ResourceManager.GetString("NoElementsToPurge", resourceCulture);
-            }
-        }
-
         ///   Looks up a localized string similar to Element has no child Elements.
         /// </summary>
         internal static string NoChildElements {
             get {
                 return ResourceManager.GetString("NoChildElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Elements to purge in the current document..
+        /// </summary>
+        internal static string NoElementsToPurge {
+            get {
+                return ResourceManager.GetString("NoElementsToPurge", resourceCulture);
             }
         }
         
@@ -752,6 +762,7 @@ namespace Revit.Properties {
             }
         }
         
+        /// <summary>
         ///   Looks up a localized string similar to Element has no parent component.
         /// </summary>
         internal static string NoParentElement {

@@ -61,6 +61,21 @@ namespace Revit.Application
             }
         }
 
+        /// <summary>
+        /// All family type names in the family document.
+        /// </summary>
+        public List<string> Types
+        {
+            get 
+            {
+                return this.FamilyManager
+                    .Types
+                    .Cast<Autodesk.Revit.DB.FamilyType>()
+                    .Select(f => f.Name)
+                    .ToList();
+            }
+        }
+
         #endregion
 
         #region Public Methods
@@ -114,16 +129,22 @@ namespace Revit.Application
         /// Gets the value of a family parameter of the current family type, this applies to all family parameters (instance and type).
         /// </summary>
         /// <param name="parameterName">A family parameter of the current type.</param>
+        /// <param name="familyTypeName">The name of the family type.</param>
         /// <returns>The parameter value.</returns>
-        public object GetParameterValueByName(string parameterName)
+        public object GetParameterValueByName(string familyTypeName, string parameterName)
         {
             Autodesk.Revit.DB.FamilyParameter familyParameter = FamilyManager.get_Parameter(parameterName);
             if (familyParameter == null)
                 throw new InvalidOperationException(Properties.Resources.ParameterNotFound);
+
+            TransactionManager.Instance.EnsureInTransaction(this.InternalFamilyDocument);
+            SetFamilyDocumentCurrentType(familyTypeName);
+            TransactionManager.Instance.TransactionTaskDone();
+
             switch (familyParameter.StorageType)
             {
                 case Autodesk.Revit.DB.StorageType.Integer:
-                    return FamilyManager.CurrentType.AsInteger(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.UnitType);   
+                    return FamilyManager.CurrentType.AsInteger(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.UnitType);
 
                 case Autodesk.Revit.DB.StorageType.Double:
                     return FamilyManager.CurrentType.AsDouble(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.UnitType);
@@ -145,12 +166,15 @@ namespace Revit.Application
         /// <param name="parameter">A family parameter of the current type.</param>
         /// <param name="value">The new value for the family parameter.</param>
         /// <returns>The family document with an updated value for the specified parameter.</returns>
-        public FamilyDocument SetParameterValueByName(string parameter, object value)
+        public FamilyDocument SetParameterValueByName(string familyTypeName, string parameter, object value)
         {
             TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
             Autodesk.Revit.DB.FamilyParameter familyParameter = FamilyManager.get_Parameter(parameter);
             if (familyParameter == null)
                 throw new InvalidOperationException(Properties.Resources.ParameterNotFound);
+
+            SetFamilyDocumentCurrentType(familyTypeName);
+
             switch (familyParameter.StorageType)
             {
                 case Autodesk.Revit.DB.StorageType.Integer:
@@ -170,10 +194,72 @@ namespace Revit.Application
                     break;
 
                 default:
-                    return null;
+                    break;
             }
             TransactionManager.Instance.TransactionTaskDone();
             return this;
+        }
+
+        /// <summary>
+        /// Add a new family parameter with a given name.
+        /// </summary>
+        /// <param name="parameterName">The name of the new family parameter.</param>
+        /// <param name="parameterGroup">The name of the group to which the family parameter belongs.</param>
+        /// <param name="parameterType">The name of the type of new family parameter.</param>
+        /// <param name="isInstance">Indicates if the new family parameter is instance or type (true if parameter should be instance).</param>
+        /// <returns>The new family parameter.</returns>
+        public Elements.FamilyParameter AddParameter(string parameterName, string parameterGroup, string parameterType, bool isInstance)
+        {
+            // parse parameter type
+            Autodesk.Revit.DB.ParameterType type;
+            if (!System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(parameterType, out type))
+                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
+
+            // parse parameter group
+            Autodesk.Revit.DB.BuiltInParameterGroup group;
+            if (!System.Enum.TryParse<Autodesk.Revit.DB.BuiltInParameterGroup>(parameterGroup, out group))
+                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
+
+            TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
+            var famParameter = FamilyManager.AddParameter(parameterName, group, type, isInstance);
+            TransactionManager.Instance.TransactionTaskDone();
+            return new Elements.FamilyParameter(famParameter);
+        }
+
+        /// <summary>
+        /// Remove an existing family parameter from the family.
+        /// </summary>
+        /// <param name="parameterName">The family parameter name.</param>
+        /// <returns>The id of the deleted family parameter.</returns>
+        public int DeleteParameter(string parameterName)
+        {
+            Autodesk.Revit.DB.FamilyParameter familyParameter = FamilyManager.get_Parameter(parameterName);
+            if (familyParameter == null)
+                throw new InvalidOperationException(Properties.Resources.ParameterNotFound);
+
+            int parameterId = familyParameter.Id.IntegerValue;
+            TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
+            FamilyManager.RemoveParameter(familyParameter);
+            TransactionManager.Instance.TransactionTaskDone();
+            return parameterId;
+        }
+
+        #endregion
+
+        #region Private Helpers
+
+        private void SetFamilyDocumentCurrentType(string familyTypeName)
+        {
+            List<Autodesk.Revit.DB.FamilyType> familyType = this.InternalFamilyDocument.FamilyManager.Types
+                .Cast<Autodesk.Revit.DB.FamilyType>()
+                .Where(x => x.Name == familyTypeName)
+                .Select(x => x)
+                .ToList();
+
+            if (familyType == null)
+                throw new InvalidOperationException(Properties.Resources.FamilyTypeDoesNotExist);
+
+            this.FamilyManager.CurrentType = familyType.FirstOrDefault();
         }
 
         private void SetElementIdValue(object value, Autodesk.Revit.DB.FamilyParameter familyParameter)
@@ -238,50 +324,6 @@ namespace Revit.Application
             }
             var intValueToSet = intValue * UnitConverter.DynamoToHostFactor(familyParameter.Definition.UnitType);
             FamilyManager.Set(familyParameter, intValueToSet);
-        }
-
-        /// <summary>
-        /// Add a new family parameter with a given name.
-        /// </summary>
-        /// <param name="parameterName">The name of the new family parameter.</param>
-        /// <param name="parameterGroup">The name of the group to which the family parameter belongs.</param>
-        /// <param name="parameterType">The name of the type of new family parameter.</param>
-        /// <param name="isInstance">Indicates if the new family parameter is instance or type (true if parameter should be instance).</param>
-        /// <returns>The new family parameter.</returns>
-        public Elements.FamilyParameter AddParameter(string parameterName, string parameterGroup, string parameterType, bool isInstance)
-        {
-            // parse parameter type
-            Autodesk.Revit.DB.ParameterType type;
-            if (!System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(parameterType, out type))
-                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
-
-            // parse parameter group
-            Autodesk.Revit.DB.BuiltInParameterGroup group;
-            if (!System.Enum.TryParse<Autodesk.Revit.DB.BuiltInParameterGroup>(parameterGroup, out group))
-                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
-
-            TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
-            var famParameter = FamilyManager.AddParameter(parameterName, group, type, isInstance);
-            TransactionManager.Instance.TransactionTaskDone();
-            return new Elements.FamilyParameter(famParameter);
-        }
-
-        /// <summary>
-        /// Remove an existing family parameter from the family.
-        /// </summary>
-        /// <param name="parameterName">The family parameter name.</param>
-        /// <returns>The id of the deleted family parameter.</returns>
-        public int DeleteParameter(string parameterName)
-        {
-            Autodesk.Revit.DB.FamilyParameter familyParameter = FamilyManager.get_Parameter(parameterName);
-            if (familyParameter == null)
-                throw new InvalidOperationException(Properties.Resources.ParameterNotFound);
-
-            int parameterId = familyParameter.Id.IntegerValue;
-            TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
-            FamilyManager.RemoveParameter(familyParameter);
-            TransactionManager.Instance.TransactionTaskDone();
-            return parameterId;
         }
 
         #endregion

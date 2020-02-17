@@ -483,4 +483,7 @@
   <data name="DocumentNotFamilyDocument" xml:space="preserve">
     <value>Document is not a valid Family Document.</value>
   </data>
+  <data name="FamilyTypeDoesNotExist" xml:space="preserve">
+    <value>Family type does not exist in the document.</value>
+  </data>
 </root>
