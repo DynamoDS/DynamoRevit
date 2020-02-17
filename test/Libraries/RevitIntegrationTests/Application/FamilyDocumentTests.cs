@@ -165,13 +165,15 @@ namespace RevitSystemTests.Application
             var expectedOldValue = 1000.0;
 
             var familyDoc = Revit.Application.FamilyDocument.ByDocument(Revit.Application.Document.Current);
-            var oldValue = familyDoc.GetParameterValueByName(paramter);
+            var familyType = "1525x762mm_Student";
+
+            var oldValue = familyDoc.GetParameterValueByName(familyType, paramter);
 
             // Act
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            var newValue = familyDoc.GetParameterValueByName(paramter);
+            var newValue = familyDoc.GetParameterValueByName(familyType, paramter);
 
             // Assert
             Assert.AreNotEqual(oldValue, newValue);

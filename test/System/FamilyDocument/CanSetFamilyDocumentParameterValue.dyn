@@ -62,12 +62,12 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "\"Width\";\n2000;",
+      "Code": "\"1525x762mm_Student\";\n\"Width\";\n2000;",
       "Id": "64ed3a7f9e24424894af93fe6ee448c0",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "1b57176414f744b38a9c6a7f933cb1b7",
+          "Id": "9fb1af829421449280156070c7414462",
           "Name": "",
           "Description": "Value of expression at line 1",
           "UsingDefaultValue": false,
@@ -76,9 +76,18 @@
           "KeepListStructure": false
         },
         {
-          "Id": "fc7e79683dc0498fbaf41af1adbbb489",
+          "Id": "09cff3b05e24441b96fc94bb50f7e29b",
           "Name": "",
           "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6e3ed5d396e740dfa999d957df4fa80c",
+          "Name": "",
+          "Description": "Value of expression at line 3",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -91,7 +100,7 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Application.FamilyDocument.SetParameterValueByName@string,var",
+      "FunctionSignature": "Revit.Application.FamilyDocument.SetParameterValueByName@string,string,var",
       "Id": "332b1b6716ca42fc887ca5d841aba583",
       "Inputs": [
         {
@@ -105,6 +114,15 @@
         },
         {
           "Id": "62e65c8cfb7d4f429a406d97d769441e",
+          "Name": "familyTypeName",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2413355dcc264390880642c2df9ceefd",
           "Name": "parameter",
           "Description": "A family parameter of the current type.\n\nstring",
           "UsingDefaultValue": false,
@@ -113,7 +131,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "2413355dcc264390880642c2df9ceefd",
+          "Id": "996456b9472b49f49f538b75b872700d",
           "Name": "value",
           "Description": "The new value for the family parameter.\n\nvar",
           "UsingDefaultValue": false,
@@ -134,7 +152,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Set the value of a family parameter of the current family type, this applies to all family parameters (instance and type).\n\nFamilyDocument.SetParameterValueByName (parameter: string, value: var): FamilyDocument"
+      "Description": "Set the value of a family parameter of the current family type, this applies to all family parameters (instance and type).\n\nFamilyDocument.SetParameterValueByName (familyTypeName: string, parameter: string, value: var): FamilyDocument"
     }
   ],
   "Connectors": [
@@ -149,14 +167,19 @@
       "Id": "b220e1f6bfa242c4bd4135afc377485f"
     },
     {
-      "Start": "1b57176414f744b38a9c6a7f933cb1b7",
+      "Start": "9fb1af829421449280156070c7414462",
       "End": "62e65c8cfb7d4f429a406d97d769441e",
-      "Id": "3be72aa272c1432fbf6e27a30a9f0172"
+      "Id": "7eea6251002d43bc8950a081debfb5d6"
     },
     {
-      "Start": "fc7e79683dc0498fbaf41af1adbbb489",
+      "Start": "09cff3b05e24441b96fc94bb50f7e29b",
       "End": "2413355dcc264390880642c2df9ceefd",
-      "Id": "e15e18547bc44a90b72e5dbc32cd04e6"
+      "Id": "2359ddc9c5764f1580db185a6e34fee6"
+    },
+    {
+      "Start": "6e3ed5d396e740dfa999d957df4fa80c",
+      "End": "996456b9472b49f49f538b75b872700d",
+      "Id": "5925363e117d457c8b4d5ef6dde41329"
     }
   ],
   "Dependencies": [],
@@ -167,7 +190,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.0.7593",
+      "Version": "2.6.0.7745",
       "RunType": "Automatic",
       "RunPeriod": "1000"
     },
@@ -211,8 +234,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 402.24332344213639,
-        "Y": 357.13056379821967
+        "X": 326.09471233854077,
+        "Y": 322.77780690937959
       },
       {
         "ShowGeometry": true,
@@ -226,8 +249,8 @@
       }
     ],
     "Annotations": [],
-    "X": -212.56537754284011,
-    "Y": 62.495726724234061,
-    "Zoom": 0.74769281712332514
+    "X": -339.79603428090928,
+    "Y": -124.81862698145386,
+    "Zoom": 1.164389808056264
   }
 }

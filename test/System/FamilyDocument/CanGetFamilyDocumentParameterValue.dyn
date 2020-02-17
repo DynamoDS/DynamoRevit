@@ -62,14 +62,23 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "\"Depth\";",
+      "Code": "\"1525x762mm_Student\";\n\"Depth\";",
       "Id": "64ed3a7f9e24424894af93fe6ee448c0",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "e7f2b2a554eb44209a9b38ece1f43c81",
+          "Id": "8fb66d47406d436284f83349020c295c",
           "Name": "",
           "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6878d1aeb2e74a6a8a9449e078e1d217",
+          "Name": "",
+          "Description": "Value of expression at line 2",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -82,7 +91,7 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Application.FamilyDocument.GetParameterValueByName@string",
+      "FunctionSignature": "Revit.Application.FamilyDocument.GetParameterValueByName@string,string",
       "Id": "f5ebbe4efbbc44779aaefd40f760899a",
       "Inputs": [
         {
@@ -96,6 +105,15 @@
         },
         {
           "Id": "018c7345274b43ceb9787f5cafb81f97",
+          "Name": "familyTypeName",
+          "Description": "The name of the family type.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7010f3eb4a754cbf9f9a3abda45eb41e",
           "Name": "parameterName",
           "Description": "A family parameter of the current type.\n\nstring",
           "UsingDefaultValue": false,
@@ -116,7 +134,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Gets the value of a family parameter of the current family type, this applies to all family parameters (instance and type).\n\nFamilyDocument.GetParameterValueByName (parameterName: string): var[]..[]"
+      "Description": "Gets the value of a family parameter of the current family type, this applies to all family parameters (instance and type).\n\nFamilyDocument.GetParameterValueByName (familyTypeName: string, parameterName: string): var[]..[]"
     }
   ],
   "Connectors": [
@@ -131,9 +149,14 @@
       "Id": "b220e1f6bfa242c4bd4135afc377485f"
     },
     {
-      "Start": "e7f2b2a554eb44209a9b38ece1f43c81",
+      "Start": "8fb66d47406d436284f83349020c295c",
       "End": "018c7345274b43ceb9787f5cafb81f97",
-      "Id": "b531f4a3a2154455baf2e4612d142bfc"
+      "Id": "c25332b257f8413c8bd36cab9d3872c8"
+    },
+    {
+      "Start": "6878d1aeb2e74a6a8a9449e078e1d217",
+      "End": "7010f3eb4a754cbf9f9a3abda45eb41e",
+      "Id": "ec200b523194431d9f1c441b50520aed"
     }
   ],
   "Dependencies": [],
@@ -144,7 +167,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.0.7593",
+      "Version": "2.6.0.7745",
       "RunType": "Automatic",
       "RunPeriod": "1000"
     },
@@ -188,8 +211,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 402.24332344213639,
-        "Y": 357.13056379821967
+        "X": 338.49748850252803,
+        "Y": 336.64083113905986
       },
       {
         "ShowGeometry": true,
@@ -203,8 +226,8 @@
       }
     ],
     "Annotations": [],
-    "X": -144.97959068357738,
-    "Y": 72.733814707072881,
-    "Zoom": 0.75227829102354549
+    "X": 555.954797516658,
+    "Y": 120.3894432280683,
+    "Zoom": 1.1713183573076469
   }
 }
