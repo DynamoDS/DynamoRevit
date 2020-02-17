@@ -106,6 +106,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot get location of attached group..
+        /// </summary>
+        internal static string AttachedGroupLocation {
+            get {
+                return ResourceManager.GetString("AttachedGroupLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot get base or survey point from document..
         /// </summary>
         internal static string CannotGetBaseOrSurveyPoint {
@@ -601,6 +610,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is not a valid GroupType..
+        /// </summary>
+        internal static string InvalidGroupType {
+            get {
+                return ResourceManager.GetString("InvalidGroupType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Element does not have a host..
         /// </summary>
         internal static string InvalidHost {
@@ -822,6 +840,15 @@ namespace Revit.Properties {
         internal static string NotJoinedElements {
             get {
                 return ResourceManager.GetString("NotJoinedElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The provided input view is not a plan view..
+        /// </summary>
+        internal static string NotPlanView {
+            get {
+                return ResourceManager.GetString("NotPlanView", resourceCulture);
             }
         }
         

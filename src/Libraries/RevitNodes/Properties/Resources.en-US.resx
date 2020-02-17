@@ -441,6 +441,12 @@
   <data name="NonIntersectingElements" xml:space="preserve">
     <value>Elements are not intersecting</value>
   </data>
+  <data name="InvalidGroupType" xml:space="preserve">
+    <value>{0} is not a valid GroupType.</value>
+  </data>
+  <data name="AttachedGroupLocation" xml:space="preserve">
+    <value>Cannot get location of attached group.</value>
+  </data>
   <data name="ElementTypeNameNotFound" xml:space="preserve">
     <value>There is no ElementType of the given name in the current Document</value>
   </data>
