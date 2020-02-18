@@ -346,6 +346,11 @@ namespace Revit.Elements
             return PathOfTravel.FromExisting(ele, isRevitOwned);
         }
 
+        public static Viewport Wrap(Autodesk.Revit.DB.Viewport ele, bool isRevitOwned)
+        {
+            return Viewport.FromExisting(ele, isRevitOwned);
+        }
+
         public static ElevationMarker Wrap(Autodesk.Revit.DB.ElevationMarker ele, bool isRevitOwned)
         {
             return ElevationMarker.FromExisting(ele, isRevitOwned);
