@@ -86,6 +86,9 @@
                   "path": "RevitNodes.Revit.Elements.AdaptiveComponent"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.Area"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.Category"
                 },
                 {
@@ -122,6 +125,12 @@
                   "path": "RevitNodes.Revit.Elements.Element"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.ElevationMarker"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.ElementType"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.FailureMessage"
                 },
                 {
@@ -156,6 +165,9 @@
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.Grid"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Group"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.ImportInstance"
@@ -200,6 +212,9 @@
                   "path": "RevitNodes.Revit.Elements.SketchPlane"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.Space"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.StructuralFraming"
                 },
                 {
@@ -219,6 +234,9 @@
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.Topography"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Viewport"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.WallType"

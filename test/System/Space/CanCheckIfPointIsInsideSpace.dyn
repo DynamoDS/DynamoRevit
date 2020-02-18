@@ -1,0 +1,180 @@
+{
+  "Uuid": "2db7a67e-022c-467a-9a84-c52a3d465764",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanCheckIfPointIsPointInsideSpace",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Point": {
+        "Key": "Autodesk.DesignScript.Geometry.Point",
+        "Value": "ProtoGeometry.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "3211817e-6765-49b5-94dd-0238eb42a891-0004d3cd"
+      ],
+      "Id": "395859a825ca41e285b3c564487ee846",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "118f3b2ebfc24d4a8ccaa9bda3814341",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "Point.ByCoordinates(-6166.333, 6435.025, 0.000);\nPoint.ByCoordinates(-6166.333, 383.025, 0.000);",
+      "Id": "876b37c1dd494d11b98bed7d2f497917",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "402db633c22e45738474d996ae753ea8",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c7f279efc12845f2a76e0bc481def580",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Space.IsPointInsideSpace@Autodesk.DesignScript.Geometry.Point",
+      "Id": "9622164b8dcb4886a29c821c5bdd5737",
+      "Inputs": [
+        {
+          "Id": "c0093371a955458ba78a93843d91e9f9",
+          "Name": "space",
+          "Description": "Revit.Elements.Space",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dbeabc17de3b467d961f13a039920b5b",
+          "Name": "point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3d18577ec9d841d0b67df3bbe5dc118a",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Check if a point is inside of a space.\n\nSpace.IsPointInsideSpace (point: Point): bool"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "118f3b2ebfc24d4a8ccaa9bda3814341",
+      "End": "c0093371a955458ba78a93843d91e9f9",
+      "Id": "b9a7c93f5c2d45ae97802740e1649d68"
+    },
+    {
+      "Start": "c7f279efc12845f2a76e0bc481def580",
+      "End": "dbeabc17de3b467d961f13a039920b5b",
+      "Id": "a0493aab908141428af5d7622351fd87"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "395859a825ca41e285b3c564487ee846",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -449.39243494167397,
+        "Y": 536.33972711909155
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "876b37c1dd494d11b98bed7d2f497917",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -531.99577675492208,
+        "Y": 700.26003581060172
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Space.IsPointInsideSpace",
+        "Id": "9622164b8dcb4886a29c821c5bdd5737",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -10.975497530565235,
+        "Y": 642.19381621197226
+      }
+    ],
+    "Annotations": [],
+    "X": 671.94039867541846,
+    "Y": -238.00186001673364,
+    "Zoom": 0.883851929302207
+  }
+}
