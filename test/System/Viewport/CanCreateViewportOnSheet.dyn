@@ -15,54 +15,6 @@
   "Outputs": [],
   "Nodes": [
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.Viewport.Create@Revit.Elements.Views.Sheet,Revit.Elements.Views.View,Autodesk.DesignScript.Geometry.Point",
-      "Id": "ffdddb5f24b54a5abd498b57b39f2d99",
-      "Inputs": [
-        {
-          "Id": "312ce5e33b2f4a229a8190622602237d",
-          "Name": "sheet",
-          "Description": "The sheet to place views on.\n\nSheet",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "baa8da1eb72544bc9c18b8119f495a7f",
-          "Name": "view",
-          "Description": "The view to place.\n\nView",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "58f4e86d1faf4e1286d4123bc3894ec7",
-          "Name": "location",
-          "Description": "The location of the view.\n\nPoint",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "4dbffe04b7264cbd95c16fe1c8c4d404",
-          "Name": "Result",
-          "Description": "The result",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "This node will place the given view on the given sheet, if possible. For floor plan views: They cannot be on any other sheets. Now supports schedules!\n\nViewport.Create (sheet: Sheet, view: View, location: Point): Viewport"
-    },
-    {
       "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
       "SelectedIndex": 12,
       "SelectedString": "Level 0",
@@ -210,23 +162,66 @@
       ],
       "Replication": "Auto",
       "Description": "Get the Element Id for this element\n\nElement.Id: int"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Viewport.BySheetViewLocation@Revit.Elements.Views.Sheet,Revit.Elements.Views.View,Autodesk.DesignScript.Geometry.Point",
+      "Id": "14e2cec0658e4a4883c5ceeb0db2c61b",
+      "Inputs": [
+        {
+          "Id": "8f442c219f5047ed99d1892aa7bd8489",
+          "Name": "sheet",
+          "Description": "The Sheet on which the new Viewport will be placed.\n\nSheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0c0a1aaf83dd4a9d8a019c9be7e204e2",
+          "Name": "view",
+          "Description": "The view shown in the Viewport.\n\nView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "12f174c92bd44c5dba00b8a1196f1121",
+          "Name": "location",
+          "Description": "The new Viewport will be centered on this point.\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5c0cfadb11364325aabda5510551e62d",
+          "Name": "Viewport",
+          "Description": "The new Viewport.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Creates a new Viewport at a given location on a sheet.\n\nViewport.BySheetViewLocation (sheet: Sheet, view: View, location: Point): Viewport"
     }
   ],
   "Connectors": [
     {
-      "Start": "4dbffe04b7264cbd95c16fe1c8c4d404",
-      "End": "26d67163143e452f82f80630e864b257",
-      "Id": "fd865e61c07046e68ee58314dd4598bb"
-    },
-    {
       "Start": "eea6d347085547bda62a117a62056f2a",
-      "End": "baa8da1eb72544bc9c18b8119f495a7f",
-      "Id": "262bd6260f0d4dc09b85d57e5d7513f8"
+      "End": "0c0a1aaf83dd4a9d8a019c9be7e204e2",
+      "Id": "b6cf0e938a154c69b6fe4721d29eaa4e"
     },
     {
       "Start": "5a310f19d2984e0f9d32e9e1a934eaca",
-      "End": "58f4e86d1faf4e1286d4123bc3894ec7",
-      "Id": "e9b21b81ca9e47828d939627534d61d5"
+      "End": "12f174c92bd44c5dba00b8a1196f1121",
+      "Id": "86897ac87faa4cdf82956b37693f03c7"
     },
     {
       "Start": "483bba026928489baccfa2486702bc00",
@@ -235,8 +230,13 @@
     },
     {
       "Start": "b1d89f1aaa714df09061de61a2347cfa",
-      "End": "312ce5e33b2f4a229a8190622602237d",
-      "Id": "9f8ece0461c840cdb05e50d606965721"
+      "End": "8f442c219f5047ed99d1892aa7bd8489",
+      "Id": "ec422fc4ebde4f4bacde34d998d59080"
+    },
+    {
+      "Start": "5c0cfadb11364325aabda5510551e62d",
+      "End": "26d67163143e452f82f80630e864b257",
+      "Id": "ab415beebbe04355a2e0e7c5a518d884"
     }
   ],
   "Dependencies": [],
@@ -247,7 +247,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.0.7237",
+      "Version": "2.6.0.7745",
       "RunType": "Automatic",
       "RunPeriod": "1000"
     },
@@ -264,16 +264,6 @@
       "UpZ": 0.0
     },
     "NodeViews": [
-      {
-        "ShowGeometry": true,
-        "Name": "Viewport.Create",
-        "Id": "ffdddb5f24b54a5abd498b57b39f2d99",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 891.99999999999989,
-        "Y": 329.33333333333348
-      },
       {
         "ShowGeometry": true,
         "Name": "Views",
@@ -323,11 +313,21 @@
         "Excluded": false,
         "X": 1187.333333333333,
         "Y": 328.66666666666669
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Viewport.BySheetViewLocation",
+        "Id": "14e2cec0658e4a4883c5ceeb0db2c61b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 893.75780658338851,
+        "Y": 326.33346293778345
       }
     ],
     "Annotations": [],
-    "X": 0.0,
-    "Y": 0.0,
-    "Zoom": 1.0
+    "X": -11.936877679977783,
+    "Y": 76.313223952341843,
+    "Zoom": 0.40518335336138761
   }
 }
