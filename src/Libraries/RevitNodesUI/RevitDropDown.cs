@@ -958,7 +958,12 @@ namespace DSRevitNodesUI
                 .ToList();
 
             if (warnings.Count < 1)
-                throw new InvalidOperationException(Properties.Resources.NoWarningsInDocument);
+            {
+                // if there are no warnings in the current document
+                // show "NoWarningsInDocument" string in the dropdown.
+                Items.Add(new DynamoDropDownItem(Properties.Resources.NoWarningsInDocument, null));
+                return SelectionState.Restore;
+            };
 
             for (int i = 0; i < warnings.Count; i++)
             {
@@ -1010,14 +1015,15 @@ namespace DSRevitNodesUI
                 {
                     node = AstFactory.BuildNullNode();
                 }
-
-                var guidNode = AstFactory.BuildStringNode(warning.GetFailureDefinitionId().Guid.ToString());
-                node =
-                    AstFactory.BuildFunctionCall(
-                        new Func<string, object>(Revit.Application.Warning.GetWarningByGuid),
-                        new List<AssociativeNode>() { guidNode });
+                else
+                {
+                    var guidNode = AstFactory.BuildStringNode(warning.GetFailureDefinitionId().Guid.ToString());
+                    node =
+                        AstFactory.BuildFunctionCall(
+                            new Func<string, object>(Revit.Application.Warning.GetWarningByGuid),
+                            new List<AssociativeNode>() { guidNode });
+                }
             }
-
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
         }
 
