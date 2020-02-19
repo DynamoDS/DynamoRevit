@@ -71,6 +71,9 @@
               "include": [
                 {
                   "path": "RevitNodes.Revit.Application.Document"
+                },
+                {
+                  "path": "RevitNodes.Revit.Application.FamilyDocument"
                 }
               ]
             },
@@ -135,6 +138,9 @@
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.FamilyInstance"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.FamilyParameter"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.FamilyType"

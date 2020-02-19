@@ -471,4 +471,13 @@
   <data name="NoElementsToPurge" xml:space="preserve">
     <value>No Elements to purge in the current document.</value>
   </data>
+  <data name="WrongStorageType" xml:space="preserve">
+    <value>Input value for this parameter needs to be of type {0}.</value>
+  </data>
+  <data name="DocumentNotFamilyDocument" xml:space="preserve">
+    <value>Document is not a valid Family Document.</value>
+  </data>
+  <data name="FamilyTypeDoesNotExist" xml:space="preserve">
+    <value>Family type does not exist in the document.</value>
+  </data>
 </root>

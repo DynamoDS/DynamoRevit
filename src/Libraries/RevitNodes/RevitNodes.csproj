@@ -75,6 +75,7 @@
     <Compile Include="AnalysisDisplay\PointAnalysisDisplay.cs" />
     <Compile Include="AnalysisDisplay\VectorAnalysisDisplay.cs" />
     <Compile Include="Application\Document.cs" />
+    <Compile Include="Application\FamilyDocument.cs" />
     <Compile Include="Elements\Area.cs" />
     <Compile Include="Elements\Category.cs" />
     <Compile Include="Elements\Coordinates.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Elements\FilledRegion.cs" />
     <Compile Include="Elements\FilledRegionType.cs" />
     <Compile Include="Elements\GlobalParameter.cs" />
+    <Compile Include="Elements\FamilyParameter.cs" />
     <Compile Include="Elements\Group.cs" />
     <Compile Include="Elements\PathOfTravel.cs" />
     <Compile Include="Elements\RoofType.cs" />

@@ -313,6 +313,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Document is not a valid Family Document..
+        /// </summary>
+        internal static string DocumentNotFamilyDocument {
+            get {
+                return ResourceManager.GetString("DocumentNotFamilyDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Document is not workshared.
         /// </summary>
         internal static string DocumentNotWorkshared {
@@ -480,6 +489,15 @@ namespace Revit.Properties {
         internal static string FamilySymbolNotFound3 {
             get {
                 return ResourceManager.GetString("FamilySymbolNotFound3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Family type does not exist in the document..
+        /// </summary>
+        internal static string FamilyTypeDoesNotExist {
+            get {
+                return ResourceManager.GetString("FamilyTypeDoesNotExist", resourceCulture);
             }
         }
         
@@ -1200,6 +1218,15 @@ namespace Revit.Properties {
         internal static string WallTypeNotFound {
             get {
                 return ResourceManager.GetString("WallTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input value for this parameter needs to be of type {0}..
+        /// </summary>
+        internal static string WrongStorageType {
+            get {
+                return ResourceManager.GetString("WrongStorageType", resourceCulture);
             }
         }
     }

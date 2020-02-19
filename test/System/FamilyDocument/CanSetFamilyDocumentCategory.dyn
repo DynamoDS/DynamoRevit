@@ -1,0 +1,211 @@
+{
+  "Uuid": "477fedac-daec-401c-9137-fc2ada4d4b1d",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanSetFamilyDocumentCategory",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Id": "bb002adaec40452d8c6f6f2d2582c4f5",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d6356ba607034defacb73df13e3f8254",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.FamilyDocument.ByDocument@Revit.Application.Document",
+      "Id": "c844b33c4b644da09f0dedc8c60369f6",
+      "Inputs": [
+        {
+          "Id": "ac517d2053a54179ad25ed301af54dc1",
+          "Name": "document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dd946792847e41029be85235d3522fe4",
+          "Name": "FamilyDocument",
+          "Description": "FamilyDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "FamilyDocument.ByDocument (document: Document): FamilyDocument"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.FamilyDocument.SetCategory@Revit.Elements.Category",
+      "Id": "4503ba3e0aca4d03b01376b85bb081b7",
+      "Inputs": [
+        {
+          "Id": "369a31161daf47b9b679662ac175abcf",
+          "Name": "familyDocument",
+          "Description": "Revit.Application.FamilyDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "33b7c8a935ed419687b8cbce49ef777b",
+          "Name": "category",
+          "Description": "Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8fb6d117943d4354a4a1657a7af0e796",
+          "Name": "FamilyDocument",
+          "Description": "The document family",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Sets the Category object that represents the category or sub category in which the elements ( this family could generate ) reside.\n\nFamilyDocument.SetCategory (category: Category): FamilyDocument"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 222,
+      "SelectedString": "OST_Furniture",
+      "NodeType": "ExtensionNode",
+      "Id": "2c2beaeca3f84f559a3cc2b122f7cf82",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fbab020bde9348bbb671a6e8fa520a9c",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d6356ba607034defacb73df13e3f8254",
+      "End": "ac517d2053a54179ad25ed301af54dc1",
+      "Id": "1ec29f7e3a2a47c28832fb70894e3165"
+    },
+    {
+      "Start": "dd946792847e41029be85235d3522fe4",
+      "End": "369a31161daf47b9b679662ac175abcf",
+      "Id": "20474b51dc264b668b1023ddab7949f2"
+    },
+    {
+      "Start": "fbab020bde9348bbb671a6e8fa520a9c",
+      "End": "33b7c8a935ed419687b8cbce49ef777b",
+      "Id": "28a702a343e1494d8799d1570252a39d"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Current",
+        "Id": "bb002adaec40452d8c6f6f2d2582c4f5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 140.6666666666666,
+        "Y": 248.66666666666669
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "FamilyDocument.ByDocument",
+        "Id": "c844b33c4b644da09f0dedc8c60369f6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 325.33333333333337,
+        "Y": 248.66666666666663
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "FamilyDocument.SetCategory",
+        "Id": "4503ba3e0aca4d03b01376b85bb081b7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 663.33333333333337,
+        "Y": 248.66666666666669
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "2c2beaeca3f84f559a3cc2b122f7cf82",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 445.33333333333326,
+        "Y": 371.33333333333326
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}
