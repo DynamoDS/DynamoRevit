@@ -1,0 +1,210 @@
+{
+  "Uuid": "4b9f4373-45d7-4899-83b3-bec019cf66d5",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetFamilyDocumentFormula",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.FamilyDocument.ByDocument@Revit.Application.Document",
+      "Id": "2e6e5ff57dfd4abdb56f4d5988c94915",
+      "Inputs": [
+        {
+          "Id": "f3dbe424885745a38a6484739ac21b7c",
+          "Name": "document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "df51653f7d794c7a84f3b3ae895215e9",
+          "Name": "FamilyDocument",
+          "Description": "FamilyDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "FamilyDocument.ByDocument (document: Document): FamilyDocument"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Id": "d7fe1664aa584039abb608ca7e61ef0e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f7a31da1c4f349f887a48937db6e1774",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"Depth\";",
+      "Id": "64ed3a7f9e24424894af93fe6ee448c0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4dce4b7450514adc9dc9028325b10c89",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.FamilyDocument.GetFormula@string",
+      "Id": "15316717b6554d2bbdc1c71523d95f3f",
+      "Inputs": [
+        {
+          "Id": "ee4d9a5802a44f149bd463cb69434cc0",
+          "Name": "familyDocument",
+          "Description": "Revit.Application.FamilyDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "06e47f3162774092bf0502188b6bac40",
+          "Name": "parameter",
+          "Description": "The family parameter.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0e93e21a60dc462e820bc50ed714e76b",
+          "Name": "string",
+          "Description": "The family parameter formula.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Gets the formula of a family parameter.\n\nFamilyDocument.GetFormula (parameter: string): string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "df51653f7d794c7a84f3b3ae895215e9",
+      "End": "ee4d9a5802a44f149bd463cb69434cc0",
+      "Id": "fd02ecd6d0c649cd9238cfc6b8707b65"
+    },
+    {
+      "Start": "f7a31da1c4f349f887a48937db6e1774",
+      "End": "f3dbe424885745a38a6484739ac21b7c",
+      "Id": "b220e1f6bfa242c4bd4135afc377485f"
+    },
+    {
+      "Start": "4dce4b7450514adc9dc9028325b10c89",
+      "End": "06e47f3162774092bf0502188b6bac40",
+      "Id": "b857161ad833485ca4dfca0d74bff339"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "FamilyDocument.ByDocument",
+        "Id": "2e6e5ff57dfd4abdb56f4d5988c94915",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 255.99999999999994,
+        "Y": 237.33333333333331
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Current",
+        "Id": "d7fe1664aa584039abb608ca7e61ef0e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 70.666666666666657,
+        "Y": 238.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "64ed3a7f9e24424894af93fe6ee448c0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 402.24332344213639,
+        "Y": 357.13056379821967
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "FamilyDocument.GetFormula",
+        "Id": "15316717b6554d2bbdc1c71523d95f3f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 635.06824925816,
+        "Y": 235.43026706231447
+      }
+    ],
+    "Annotations": [],
+    "X": 61.830000000000041,
+    "Y": -35.808333333333337,
+    "Zoom": 0.8425
+  }
+}
