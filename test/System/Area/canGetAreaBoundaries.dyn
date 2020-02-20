@@ -1,0 +1,166 @@
+{
+  "Uuid": "5d1524ec-3eaf-4e5e-8aff-37193b4153ee",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "canGetAreaBoundaries",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 75,
+      "SelectedString": "OST_Areas",
+      "NodeType": "ExtensionNode",
+      "Id": "4df7f050b58a4c1dbc3ac341eeae33a1",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "59eefecc74214c41bbf61010f53ab5bc",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "99d1ba4c64664c74bc2e80e7efa31722",
+      "Inputs": [
+        {
+          "Id": "6080c82d5c5b4934b991ca6c955caadd",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "57626f7869244ddb98149115a87821ff",
+          "Name": "Elements",
+          "Description": "An element type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Area.Boundaries",
+      "Id": "295e59563b2c4f4fbed6e9fbeffb53ac",
+      "Inputs": [
+        {
+          "Id": "517b050cad5e44e0b6d5a113449f07a7",
+          "Name": "area",
+          "Description": "Revit.Elements.Area",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6a24ee197dfc42698a2fa32060bf4965",
+          "Name": "Curve[][]",
+          "Description": "Curve[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Area.Boundaries: Curve[][]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "59eefecc74214c41bbf61010f53ab5bc",
+      "End": "6080c82d5c5b4934b991ca6c955caadd",
+      "Id": "008b43ea401b44c88baec864574f14f2"
+    },
+    {
+      "Start": "57626f7869244ddb98149115a87821ff",
+      "End": "517b050cad5e44e0b6d5a113449f07a7",
+      "Id": "a247f15525a74702882efd44de182bdb"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": 43252.823607550679,
+      "EyeY": 70157.767024962988,
+      "EyeZ": -46903.509945232639,
+      "LookX": -43257.823607550679,
+      "LookY": -70146.767024962988,
+      "LookZ": 46895.509945232639,
+      "UpX": -0.39212279907525804,
+      "UpY": 0.81580126804417319,
+      "UpZ": 0.42509763761153385
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "4df7f050b58a4c1dbc3ac341eeae33a1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 249.3873214053778,
+        "Y": 248.10015028429461
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "All Elements of Category",
+        "Id": "99d1ba4c64664c74bc2e80e7efa31722",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 467.33333333333326,
+        "Y": 248.10015028429461
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Area.Boundaries",
+        "Id": "295e59563b2c4f4fbed6e9fbeffb53ac",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 738.00000000000011,
+        "Y": 256.68833950650463
+      }
+    ],
+    "Annotations": [],
+    "X": 155.97268955630162,
+    "Y": 102.31277998055123,
+    "Zoom": 1.0360578756006076
+  }
+}

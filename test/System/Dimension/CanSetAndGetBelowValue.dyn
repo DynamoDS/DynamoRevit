@@ -1,0 +1,211 @@
+{
+  "Uuid": "fad95cef-e2d9-44c3-85d7-0a432bd25c26",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanSetAndGetBelowValue",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Dimension.BelowValue",
+      "Id": "c3c9b916e2624171a8f9819fc22d7519",
+      "Inputs": [
+        {
+          "Id": "ba2cf69ff58a4311832b76687ade1d15",
+          "Name": "dimension",
+          "Description": "Revit.Elements.Dimension",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0baba750533e47229511d28d6060fd35",
+          "Name": "string[]",
+          "Description": "string[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The text shown below the segment's value.\n\nDimension.BelowValue: string[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Dimension.SetBelowValue@string",
+      "Id": "4bc5a20f494d4d58ba911a51147ab9b9",
+      "Inputs": [
+        {
+          "Id": "43acebeecd824bc9adc6e1f46e8368e3",
+          "Name": "dimension",
+          "Description": "Revit.Elements.Dimension",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9683567f0a4a4d3d8ef5e274cc368d5f",
+          "Name": "value",
+          "Description": "The value to set\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "efe7abc0805142c492bfa147454fd6a7",
+          "Name": "Element",
+          "Description": "The dimension element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Sets the text shown below the segment's value.\n\nDimension.SetBelowValue (value: string): Element"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "0ea3d1be-c08f-4e6b-b798-451ab446df41-0004d361"
+      ],
+      "Id": "04f60688590f4bb780eaa37f8ab70cab",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0478ae23ef47422597b7bf657db7361b",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"Below\";",
+      "Id": "fe1d8d20a31749afb3f08ff51d7fc57d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d3ed336aef494d42808cb5a68972aec3",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "efe7abc0805142c492bfa147454fd6a7",
+      "End": "ba2cf69ff58a4311832b76687ade1d15",
+      "Id": "4a9f49601c9449d78a52c199276de72a"
+    },
+    {
+      "Start": "0478ae23ef47422597b7bf657db7361b",
+      "End": "43acebeecd824bc9adc6e1f46e8368e3",
+      "Id": "3b5dad5a2cc74414b4c094f402653829"
+    },
+    {
+      "Start": "d3ed336aef494d42808cb5a68972aec3",
+      "End": "9683567f0a4a4d3d8ef5e274cc368d5f",
+      "Id": "1f0aa9fc023540df9974fa91c3710b03"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Dimension.BelowValue",
+        "Id": "c3c9b916e2624171a8f9819fc22d7519",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 328.1160038384557,
+        "Y": -385.88371950741362
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Dimension.SetBelowValue",
+        "Id": "4bc5a20f494d4d58ba911a51147ab9b9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 29.228953421489337,
+        "Y": -385.69028275785149
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "04f60688590f4bb780eaa37f8ab70cab",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -228.33541522249732,
+        "Y": -386.33035260076497
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "fe1d8d20a31749afb3f08ff51d7fc57d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -157.44232202431294,
+        "Y": -261.98548819383575
+      }
+    ],
+    "Annotations": [],
+    "X": 492.234096736782,
+    "Y": 698.36323237965246,
+    "Zoom": 1.1313606400394045
+  }
+}

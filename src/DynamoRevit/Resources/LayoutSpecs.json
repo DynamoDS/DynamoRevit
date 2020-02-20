@@ -5,13 +5,13 @@
       "iconUrl": "",
       "elementType": "section",
       "showHeader": false,
-      "include": [ ],
+      "include": [],
       "childElements": [
         {
           "text": "Revit",
           "iconUrl": "/icons/Category.Revit.svg",
           "elementType": "category",
-          "include": [ ],
+          "include": [],
           "childElements": [
             {
               "text": "Analyze",
@@ -31,7 +31,7 @@
                 }
               ],
               "childElements": [
-				{
+                {
                   "text": "RouteAnalysis",
                   "iconUrl": "",
                   "elementType": "group",
@@ -77,6 +77,9 @@
                 },
                 {
                   "path": "Revit.Warning"
+                },
+                {
+                  "path": "RevitNodes.Revit.Application.FamilyDocument"
                 }
               ]
             },
@@ -87,6 +90,9 @@
               "include": [
                 {
                   "path": "RevitNodes.Revit.Elements.AdaptiveComponent"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Area"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.Category"
@@ -125,6 +131,12 @@
                   "path": "RevitNodes.Revit.Elements.Element"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.ElevationMarker"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.ElementType"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.FailureMessage"
                 },
                 {
@@ -132,6 +144,9 @@
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.FamilyInstance"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.FamilyParameter"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.FamilyType"
@@ -156,6 +171,9 @@
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.Grid"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Group"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.ImportInstance"
@@ -200,6 +218,9 @@
                   "path": "RevitNodes.Revit.Elements.SketchPlane"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.Space"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.StructuralFraming"
                 },
                 {
@@ -219,6 +240,9 @@
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.Topography"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Viewport"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.WallType"

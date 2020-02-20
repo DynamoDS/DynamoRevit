@@ -1,0 +1,122 @@
+{
+  "Uuid": "049d1b14-1092-4ae2-bfc3-0620fac8e05f",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetSpaceFinishBoundary",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "3211817e-6765-49b5-94dd-0238eb42a891-0004d3cd"
+      ],
+      "Id": "9457e638e2f74a1f89959b88a5445d97",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "44ef567feaac41a6bac240bbe59a14a7",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Space.FinishBoundary",
+      "Id": "455e735b1e9949c384e113361f14d42a",
+      "Inputs": [
+        {
+          "Id": "6c3c68cb01f94c2a91a7f8342a61e1fa",
+          "Name": "space",
+          "Description": "Revit.Elements.Space",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ae0cdfdf6e1e4bd28b7be0053fad50e5",
+          "Name": "Curve[][]",
+          "Description": "Curve[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Finish boundary of the space.\n\nSpace.FinishBoundary: Curve[][]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "44ef567feaac41a6bac240bbe59a14a7",
+      "End": "6c3c68cb01f94c2a91a7f8342a61e1fa",
+      "Id": "3cf4d8115be544fa82a575b344219221"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": 5649.6045289864351,
+      "EyeY": 1026.6998054294991,
+      "EyeZ": 5331.6237150945835,
+      "LookX": 832.35360978481856,
+      "LookY": -901.71641060022034,
+      "LookZ": -4023.0424472932914,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "9457e638e2f74a1f89959b88a5445d97",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 136.66666666666663,
+        "Y": 334.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Space.FinishBoundary",
+        "Id": "455e735b1e9949c384e113361f14d42a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 444.43593573751838,
+        "Y": 334.8712820706553
+      }
+    ],
+    "Annotations": [],
+    "X": 201.14677643128505,
+    "Y": -145.40126033198766,
+    "Zoom": 1.2484436539722306
+  }
+}

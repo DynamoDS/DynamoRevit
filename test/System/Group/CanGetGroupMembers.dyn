@@ -1,0 +1,167 @@
+{
+  "Uuid": "057f95df-c22a-4265-aaf3-b23ad2f30235",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetGroupMembers",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "1b2b77a9-1fef-41ae-94c1-51d5fc3cebe0-0004d51b"
+      ],
+      "Id": "4735ed15cf3d4f1692735e7eaae8b84b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b55ad0288c9244c69d7a9febe4d986d4",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Group.GetMembers",
+      "Id": "14d07c31ee8e415c8365f75fba2088ee",
+      "Inputs": [
+        {
+          "Id": "22c616cbfb734cf19941a4b193ea3e1e",
+          "Name": "group",
+          "Description": "Revit.Elements.Group",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "08e413e4c08d449fbe45bcfdea2d5fca",
+          "Name": "Element[]",
+          "Description": "Element[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Group.GetMembers ( ): Element[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Id",
+      "Id": "27623eaad92d442986aeb8e19b2a3e75",
+      "Inputs": [
+        {
+          "Id": "9bbf49852d444743b9d3214003b3f4ca",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e5a8d9f5161842bc94ea177fb5904809",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Element Id for this element\n\nElement.Id: int"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "b55ad0288c9244c69d7a9febe4d986d4",
+      "End": "22c616cbfb734cf19941a4b193ea3e1e",
+      "Id": "34e42d007339467493c06c6c7f28f96c"
+    },
+    {
+      "Start": "08e413e4c08d449fbe45bcfdea2d5fca",
+      "End": "9bbf49852d444743b9d3214003b3f4ca",
+      "Id": "778fb5f81fd94d4d87e3b08a473613c3"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "4735ed15cf3d4f1692735e7eaae8b84b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 354.17802565663862,
+        "Y": 512.66666666666674
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Group.GetMembers",
+        "Id": "14d07c31ee8e415c8365f75fba2088ee",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 612.91503187224043,
+        "Y": 516.41472971226847
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.Id",
+        "Id": "27623eaad92d442986aeb8e19b2a3e75",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 949.54457554176918,
+        "Y": 518.40781106811119
+      }
+    ],
+    "Annotations": [],
+    "X": -272.83577450153985,
+    "Y": -70.63346002918712,
+    "Zoom": 0.76582939285155194
+  }
+}

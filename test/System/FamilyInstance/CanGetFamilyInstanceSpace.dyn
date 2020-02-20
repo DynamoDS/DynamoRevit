@@ -1,0 +1,167 @@
+{
+  "Uuid": "831f98b1-e3fa-4bed-a957-2afff147f24c",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetFamilyInstanceSpace",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "fcce4414-9063-4ac3-a2ce-b37a6df47dcd-0004d302"
+      ],
+      "Id": "85d7d2fae6bf4572a548702616082171",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "73e9925d466341d0b620298a37ca723f",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyInstance.Space",
+      "Id": "e979fbc1f2b841419e8a38a3252fe59f",
+      "Inputs": [
+        {
+          "Id": "e25718f1424a4fd8aca933c7975dd9cc",
+          "Name": "familyInstance",
+          "Description": "Revit.Elements.FamilyInstance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "865848ac29dc43afa7d181b2901d6432",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The space in which the instance is located.\n\nFamilyInstance.Space: Element"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Id",
+      "Id": "ffb3880abe0049bdb6fc92cccdbb2866",
+      "Inputs": [
+        {
+          "Id": "6b66fc68773648fdbccba63238b485ce",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "97fc6fe9db404a23a04f8ce25aa262a8",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Element Id for this element\n\nElement.Id: int"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "73e9925d466341d0b620298a37ca723f",
+      "End": "e25718f1424a4fd8aca933c7975dd9cc",
+      "Id": "f13e8c53b9e1463eb1362195ac1350d9"
+    },
+    {
+      "Start": "865848ac29dc43afa7d181b2901d6432",
+      "End": "6b66fc68773648fdbccba63238b485ce",
+      "Id": "fb6a45c766e64320bcfff68aa8abc237"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "85d7d2fae6bf4572a548702616082171",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 89.333333333333371,
+        "Y": 129.33333333333331
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "FamilyInstance.Space",
+        "Id": "e979fbc1f2b841419e8a38a3252fe59f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 379.33333333333326,
+        "Y": 127.3333333333334
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.Id",
+        "Id": "ffb3880abe0049bdb6fc92cccdbb2866",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 733.33333333333326,
+        "Y": 126.66666666666666
+      }
+    ],
+    "Annotations": [],
+    "X": 139.33333333333326,
+    "Y": 172.0,
+    "Zoom": 1.0
+  }
+}

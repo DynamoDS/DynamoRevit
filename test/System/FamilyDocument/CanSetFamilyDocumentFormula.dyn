@@ -1,0 +1,233 @@
+{
+  "Uuid": "4b9f4373-45d7-4899-83b3-bec019cf66d5",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanSetFamilyDocumentFormula",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.FamilyDocument.ByDocument@Revit.Application.Document",
+      "Id": "2e6e5ff57dfd4abdb56f4d5988c94915",
+      "Inputs": [
+        {
+          "Id": "f3dbe424885745a38a6484739ac21b7c",
+          "Name": "document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "df51653f7d794c7a84f3b3ae895215e9",
+          "Name": "FamilyDocument",
+          "Description": "FamilyDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "FamilyDocument.ByDocument (document: Document): FamilyDocument"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Id": "d7fe1664aa584039abb608ca7e61ef0e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f7a31da1c4f349f887a48937db6e1774",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.FamilyDocument.SetFormula@string,string",
+      "Id": "a1dc0ef327a14e0da24a26a9e6f94821",
+      "Inputs": [
+        {
+          "Id": "1244f78062f94f77ba3c914beab9fd99",
+          "Name": "familyDocument",
+          "Description": "Revit.Application.FamilyDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e1b6906c5bce450883610b4578c92ac4",
+          "Name": "parameter",
+          "Description": "The family parameter.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "24c3b49a91864d65aac1e8983ef47528",
+          "Name": "formula",
+          "Description": "The formula string.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e41aa9b934ec4c85b1ae432e2a76615f",
+          "Name": "FamilyDocument",
+          "Description": "The document family",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Set the formula of a family parameter.\n\nFamilyDocument.SetFormula (parameter: string, formula: string): FamilyDocument"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"Width\";\n\"Depth * 2\";",
+      "Id": "64ed3a7f9e24424894af93fe6ee448c0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2cb3d1f67fa041718b8fdc534fe0028b",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2565d6cfbcbe43d4a89c741e98bed002",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "df51653f7d794c7a84f3b3ae895215e9",
+      "End": "1244f78062f94f77ba3c914beab9fd99",
+      "Id": "ec102bc0885a4cfaadb91f40d5ec439b"
+    },
+    {
+      "Start": "f7a31da1c4f349f887a48937db6e1774",
+      "End": "f3dbe424885745a38a6484739ac21b7c",
+      "Id": "b220e1f6bfa242c4bd4135afc377485f"
+    },
+    {
+      "Start": "2cb3d1f67fa041718b8fdc534fe0028b",
+      "End": "e1b6906c5bce450883610b4578c92ac4",
+      "Id": "d2af20c6f0c0422f8b24a3c3464cd253"
+    },
+    {
+      "Start": "2565d6cfbcbe43d4a89c741e98bed002",
+      "End": "24c3b49a91864d65aac1e8983ef47528",
+      "Id": "707830da904d4323b6dbf582e5320bc1"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "FamilyDocument.ByDocument",
+        "Id": "2e6e5ff57dfd4abdb56f4d5988c94915",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 255.99999999999994,
+        "Y": 237.33333333333331
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Current",
+        "Id": "d7fe1664aa584039abb608ca7e61ef0e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 70.666666666666657,
+        "Y": 238.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "FamilyDocument.SetFormula",
+        "Id": "a1dc0ef327a14e0da24a26a9e6f94821",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 635.06824925816034,
+        "Y": 240.96933728981202
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "64ed3a7f9e24424894af93fe6ee448c0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 402.24332344213639,
+        "Y": 357.13056379821967
+      }
+    ],
+    "Annotations": [],
+    "X": 61.830000000000041,
+    "Y": -35.808333333333337,
+    "Zoom": 0.8425
+  }
+}
