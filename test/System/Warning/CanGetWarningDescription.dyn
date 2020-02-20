@@ -1,0 +1,211 @@
+{
+  "Uuid": "ec7791f9-2078-4191-9076-cb44bdcd0dad",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetWarningDescription",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Warning.GetWarnings@Revit.Application.Document",
+      "Id": "08422b2f0a374986861861090bff5c3c",
+      "Inputs": [
+        {
+          "Id": "e8c98cf2784f43aea8437edc83063840",
+          "Name": "document",
+          "Description": "The document to get the warnings from\n\nDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e3db8080af0549b0b1c49a922b2a6676",
+          "Name": "Warning[]",
+          "Description": "List of all warnings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns a list of all warnings from the document.\n\nWarning.GetWarnings (document: Document): Warning[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Id": "9f963c6c0b784e0f916eefacccc5b796",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a7c2b932ad5c4ba787405f3929189f9c",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Application.Warning.Description",
+      "Id": "41aa7c05f7f14e08812a2cabfdedce19",
+      "Inputs": [
+        {
+          "Id": "031a4815f90641e9b9b2e3bc35bc4f8f",
+          "Name": "warning",
+          "Description": "Revit.Application.Warning",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b65cad5b6a504e348239f846c2809903",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Retrieves the description text of the warning.\n\nWarning.Description: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.UniqueItems@var[]..[]",
+      "Id": "7197c601d3b641ab8b475ec2a9f56f70",
+      "Inputs": [
+        {
+          "Id": "36794e805cfa4371918dc88ee7b4491e",
+          "Name": "list",
+          "Description": "List to filter duplicates out of.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "af80944880694aa9995549c2ea730ada",
+          "Name": "list",
+          "Description": "Filtered list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Creates a new list containing all unique items in the given list.\n\nList.UniqueItems (list: var[]..[]): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e3db8080af0549b0b1c49a922b2a6676",
+      "End": "031a4815f90641e9b9b2e3bc35bc4f8f",
+      "Id": "d17ca90f4ddd44feabe09a788ed7e117"
+    },
+    {
+      "Start": "a7c2b932ad5c4ba787405f3929189f9c",
+      "End": "e8c98cf2784f43aea8437edc83063840",
+      "Id": "0268969e75e54e978d719c31a0662977"
+    },
+    {
+      "Start": "b65cad5b6a504e348239f846c2809903",
+      "End": "36794e805cfa4371918dc88ee7b4491e",
+      "Id": "1b39a1bd979143d588831755bd6abebd"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Warning.GetWarnings",
+        "Id": "08422b2f0a374986861861090bff5c3c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -9.346966677527405,
+        "Y": 131.29640779589437
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Document.Current",
+        "Id": "9f963c6c0b784e0f916eefacccc5b796",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -185.62935611315561,
+        "Y": 132.57481497789684
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Warning.Description",
+        "Id": "41aa7c05f7f14e08812a2cabfdedce19",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 294.89478351342711,
+        "Y": 132.313330322028
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.UniqueItems",
+        "Id": "7197c601d3b641ab8b475ec2a9f56f70",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 636.1448312973547,
+        "Y": 132.31333032202789
+      }
+    ],
+    "Annotations": [],
+    "X": 289.68453885309987,
+    "Y": 56.947591974886905,
+    "Zoom": 1.0862025341059154
+  }
+}

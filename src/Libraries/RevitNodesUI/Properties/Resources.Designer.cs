@@ -61,6 +61,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Returns a list of all instances of the selected warning type..
+        /// </summary>
+        internal static string AllWarningsOfTypeDescription {
+            get {
+                return ResourceManager.GetString("AllWarningsOfTypeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a built-in parameter group..
         /// </summary>
         internal static string BuiltInParameterGroupSelectorDescription {
@@ -327,6 +336,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string NoWallTypesAvailable {
             get {
                 return ResourceManager.GetString("NoWallTypesAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No warnings in the current document..
+        /// </summary>
+        internal static string NoWarningsInDocument {
+            get {
+                return ResourceManager.GetString("NoWarningsInDocument", resourceCulture);
             }
         }
         

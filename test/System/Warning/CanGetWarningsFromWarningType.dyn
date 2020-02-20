@@ -1,0 +1,76 @@
+{
+  "Uuid": "ec7791f9-2078-4191-9076-cb44bdcd0dad",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetWarningsFromWarningType",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.AllWarningsOfType, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Highlighted walls overlap. One of them may be igno...",
+      "NodeType": "ExtensionNode",
+      "Id": "9dcb3039c7534bf494e5b16df19c33b2",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c3422ca6d9a546ccbd047c5feceecb3e",
+          "Name": "Warning",
+          "Description": "The selected Warning",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Returns a list of all instances of the selected warning type."
+    }
+  ],
+  "Connectors": [],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "All Warnings of Type",
+        "Id": "9dcb3039c7534bf494e5b16df19c33b2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 373.33333333333337,
+        "Y": 299.33333333333337
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}
