@@ -1,4 +1,8 @@
+## 0.2.3
 * Element Type nodes - introduces an ElementType category to the Dynamo library
+* Added some new Category Nodes - Group nodes, Space nodes, Elevation marker nodes, Dimension nodes, Area nodes, View port nodes, Family document nodes, Family instance nodes, Warning nodes.
+* Element.Geometry should provide geometry for FamilySymbols with no instances
+* Sig file generation has been included in CICD of D4R
 
 ## 0.2.2
 * Update .Net to 4.8.
