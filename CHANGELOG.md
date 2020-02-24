@@ -1,3 +1,5 @@
+* Update Assembly Shared Info for Revit Preview Release
+
 ## 0.2.3
 * Element Type nodes - introduces an ElementType category to the Dynamo library
 * Added some new Category Nodes - Group nodes, Space nodes, Elevation marker nodes, Dimension nodes, Area nodes, View port nodes, Family document nodes, Family instance nodes, Warning nodes.
