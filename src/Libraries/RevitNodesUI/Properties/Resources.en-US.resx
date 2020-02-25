@@ -389,4 +389,10 @@
   <data name="PortDataViewToolTip" xml:space="preserve">
     <value>The View</value>
   </data>
+  <data name="AllWarningsOfTypeDescription" xml:space="preserve">
+    <value>Returns a list of all instances of the selected warning type.</value>
+  </data>
+  <data name="NoWarningsInDocument" xml:space="preserve">
+    <value>No warnings in the current document.</value>
+  </data>
 </root>

@@ -296,6 +296,34 @@ namespace Revit.Elements
             }
         }
 
+        /// <summary>
+        /// The room in which the instance is located.
+        /// </summary>
+        public Element Room
+        {
+            get
+            {
+                var room = this.InternalFamilyInstance.Room;
+                if (room == null)
+                    return null;
+                return room.ToDSType(true);
+            }
+        }
+
+        /// <summary>
+        /// The space in which the instance is located.
+        /// </summary>
+        public Element Space
+        {
+            get
+            {
+                var space = this.InternalFamilyInstance.Space;
+                if (space == null)
+                    return null;
+                return space.ToDSType(true);
+            }
+        }
+
         #endregion
 
         #region Public static constructors
@@ -445,7 +473,25 @@ namespace Revit.Elements
                 .ToArray();
         }
 
+        /// <summary>
+        /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) and its coordinate system.
+        /// </summary>
+        /// <param name="familyType">Family Type. Also called Family Symbol.</param>
+        /// <param name="coordinateSystem">Coordinates system to place the new family instance in.</param>
+        /// <returns>New family instance.</returns>
+        public static FamilyInstance ByCoordinateSystem(FamilyType familyType, CoordinateSystem coordinateSystem)
+        {
+            var transform = coordinateSystem.ToTransform() as Autodesk.Revit.DB.Transform;
+            double[] newRotationAngles;
+            TransformUtils.ExtractEularAnglesFromTransform(transform, out newRotationAngles);
+            double rotation = ConvertEularToAngleDegrees(newRotationAngles.FirstOrDefault());
+            Point location = transform.ToCoordinateSystem().Origin;
 
+            FamilyInstance familyInstance = ByPoint(familyType, location);
+            familyInstance.SetRotation(rotation);
+
+            return familyInstance;
+        }
 
         #endregion
 
@@ -607,9 +653,12 @@ namespace Revit.Elements
             TransformUtils.ExtractEularAnglesFromTransform(oldTransform, out oldRotationAngles);
             double[] newRotationAngles;
             TransformUtils.ExtractEularAnglesFromTransform(newTransform, out newRotationAngles);
-            // Convert Eular angle to degrees
-            var rotationDegrees = (newRotationAngles.FirstOrDefault() / (2 * Math.PI)) * 360;
-            return rotationDegrees;
+            return ConvertEularToAngleDegrees(newRotationAngles.FirstOrDefault());
+        }
+
+        private static double ConvertEularToAngleDegrees(double newRotationAngles)
+        {
+            return (newRotationAngles / (2 * Math.PI)) * 360;
         }
 
         private void SetLocationFromCS(CoordinateSystem fromCS, CoordinateSystem contextCS)

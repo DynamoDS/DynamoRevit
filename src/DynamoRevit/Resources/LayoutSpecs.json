@@ -5,13 +5,13 @@
       "iconUrl": "",
       "elementType": "section",
       "showHeader": false,
-      "include": [ ],
+      "include": [],
       "childElements": [
         {
           "text": "Revit",
           "iconUrl": "/icons/Category.Revit.svg",
           "elementType": "category",
-          "include": [ ],
+          "include": [],
           "childElements": [
             {
               "text": "Analyze",
@@ -31,7 +31,7 @@
                 }
               ],
               "childElements": [
-				{
+                {
                   "text": "RouteAnalysis",
                   "iconUrl": "",
                   "elementType": "group",
@@ -71,6 +71,15 @@
               "include": [
                 {
                   "path": "RevitNodes.Revit.Application.Document"
+                },
+                {
+                  "path": "RevitNodes.Revit.Application.Warning"
+                },
+                {
+                  "path": "Revit.Warning"
+                },
+                {
+                  "path": "RevitNodes.Revit.Application.FamilyDocument"
                 }
               ]
             },
@@ -81,6 +90,9 @@
               "include": [
                 {
                   "path": "RevitNodes.Revit.Elements.AdaptiveComponent"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Area"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.Category"
@@ -132,6 +144,9 @@
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.FamilyInstance"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.FamilyParameter"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.FamilyType"
@@ -225,6 +240,9 @@
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.Topography"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.Viewport"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.WallType"

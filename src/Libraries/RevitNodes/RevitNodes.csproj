@@ -75,6 +75,9 @@
     <Compile Include="AnalysisDisplay\PointAnalysisDisplay.cs" />
     <Compile Include="AnalysisDisplay\VectorAnalysisDisplay.cs" />
     <Compile Include="Application\Document.cs" />
+    <Compile Include="Application\Warning.cs" />
+    <Compile Include="Application\FamilyDocument.cs" />
+    <Compile Include="Elements\Area.cs" />
     <Compile Include="Elements\Category.cs" />
     <Compile Include="Elements\Coordinates.cs" />
     <Compile Include="Elements\CurtainGrid.cs" />
@@ -92,6 +95,7 @@
     <Compile Include="Elements\FilledRegion.cs" />
     <Compile Include="Elements\FilledRegionType.cs" />
     <Compile Include="Elements\GlobalParameter.cs" />
+    <Compile Include="Elements\FamilyParameter.cs" />
     <Compile Include="Elements\Group.cs" />
     <Compile Include="Elements\PathOfTravel.cs" />
     <Compile Include="Elements\RoofType.cs" />
@@ -106,6 +110,7 @@
     <Compile Include="Elements\Room.cs" />
     <Compile Include="Elements\Revision.cs" />
     <Compile Include="Elements\RevisionCloud.cs" />
+    <Compile Include="Elements\Viewport.cs" />
     <Compile Include="Elements\Space.cs" />
     <Compile Include="Elements\Views\AreaPlanView.cs" />
     <Compile Include="Elements\Views\Legend.cs" />

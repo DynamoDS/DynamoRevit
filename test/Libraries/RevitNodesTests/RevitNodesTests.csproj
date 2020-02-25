@@ -74,9 +74,11 @@
     <Compile Include="AnalysisDisplay\FaceAnalysisDisplayTests.cs" />
     <Compile Include="AnalysisDisplay\PointAnalysisDisplayTests.cs" />
     <Compile Include="AnalysisDisplay\VectorAnalysisDisplayTests.cs" />
+    <Compile Include="Application\FamilyDocumentTests.cs" />
     <Compile Include="ApproximateAssertExtensions.cs" />
     <Compile Include="Elements\AbstractElementTests.cs" />
     <Compile Include="Elements\AdaptiveComponentTests.cs" />
+    <Compile Include="Elements\AreaTests.cs" />
     <Compile Include="Elements\CategoryTests.cs" />
     <Compile Include="Elements\CurtainSystemTests.cs" />
     <Compile Include="Elements\CurveByPointsTests.cs" />
@@ -125,6 +127,7 @@
     <Compile Include="Elements\TagTests.cs" />
     <Compile Include="Elements\TextNoteTests.cs" />
     <Compile Include="Elements\TopographyTests.cs" />
+    <Compile Include="Elements\ViewportTests.cs" />
     <Compile Include="Elements\Views\AreaPlanViewTests.cs" />
     <Compile Include="Elements\Views\AxonometricViewTests.cs" />
     <Compile Include="Elements\Views\CeilingPlanViewTests.cs" />
@@ -140,6 +143,7 @@
     <Compile Include="Elements\WallTests.cs" />
     <Compile Include="Elements\WallTypeTests.cs" />
     <Compile Include="Elements\FilledRegionTests.cs" />
+    <Compile Include="Elements\WarningTests.cs" />
     <Compile Include="GeometryConversion\CurveUtilsTests.cs" />
     <Compile Include="GeometryConversion\ProtoToRevitCurveTests.cs" />
     <Compile Include="GeometryConversion\RevitSolidToProtoTests.cs" />
