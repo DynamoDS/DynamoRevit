@@ -1,3 +1,4 @@
+## 0.2.4
 * Update Assembly Shared Info for Revit Preview Release
 
 ## 0.2.3
