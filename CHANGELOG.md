@@ -1,4 +1,5 @@
 * Update Assembly Shared Info for Revit 2021
+* Update RevitAPI folder name to net48.
 
 ## 0.1.15
 * Update .Net to 4.8.
