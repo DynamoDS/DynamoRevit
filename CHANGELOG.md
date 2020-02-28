@@ -1,3 +1,6 @@
+## 0.2.5
+* Update RevitAPI folder name to net48.
+
 ## 0.2.4
 * Update Assembly Shared Info for Revit Preview Release
 

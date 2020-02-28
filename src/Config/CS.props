@@ -4,7 +4,7 @@
     <Import Project="$(SolutionDir)Config/user_local.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
 	<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
 	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
@@ -13,7 +13,7 @@
 	<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
 	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOTESTAPI>
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</TestOutputPath>
-    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\net47</REVITAPI>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\net48</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Preview Release</REVITAPI>
@@ -27,7 +27,7 @@
     <UICulture>en-US</UICulture>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
 	<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
 	<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
 	<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
@@ -36,7 +36,7 @@
 	<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
 	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOTESTAPI>
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</TestOutputPath>
-    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\net47</REVITAPI>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\net48</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Preview Release</REVITAPI>
