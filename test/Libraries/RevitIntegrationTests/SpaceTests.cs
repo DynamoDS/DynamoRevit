@@ -25,18 +25,15 @@ namespace RevitSystemTests
             string samplePath = Path.Combine(workingDirectory, @".\Space\CanCreateSpaceFromLevelLocationNameNumber.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
-            int expectedElementId = 317174;
             string expectedElementType = "Revit.Elements.Space";
 
             // Act
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            var elementId = GetPreviewValue("d58d61787cb54c81b6c73cb210d1ebc8");
             var elementType = GetPreviewValue("27b8ddd75db840a1b75a830a32ea673b");
             
             // Assert
-            Assert.AreEqual(expectedElementId, elementId);
             Assert.AreEqual(expectedElementType, elementType);
         }
 
