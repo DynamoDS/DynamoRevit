@@ -34,36 +34,6 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.Element.Id",
-      "Id": "e5d988cdaac248f8982268110c84f596",
-      "Inputs": [
-        {
-          "Id": "a977fd7043374ea9a05d30173cf121c2",
-          "Name": "element",
-          "Description": "Revit.Elements.Element",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "2266f4296b4944e993c8dd650f19c769",
-          "Name": "int",
-          "Description": "int",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Get the Element Id for this element\n\nElement.Id: int"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
       "FunctionSignature": "Revit.Elements.Group.ByElements@Revit.Elements.Element[]",
       "Id": "2fe9623502d74664b023bb7cd90a6c83",
       "Inputs": [
@@ -90,6 +60,36 @@
       ],
       "Replication": "Auto",
       "Description": "Creates a new type of group, with all of the input elements.\n\nGroup.ByElements (elements: Element[]): Group"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Id": "288f4cd57e69493fb74ccfdc5eb704e0",
+      "Inputs": [
+        {
+          "Id": "6346794d4efa41eaabbbf208fee976ca",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "613fb6463dd7468a962e7fcd09175f8b",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
     }
   ],
   "Connectors": [
@@ -100,8 +100,8 @@
     },
     {
       "Start": "202713068d624c89817966ea69b3def8",
-      "End": "a977fd7043374ea9a05d30173cf121c2",
-      "Id": "436e59c2cdbd4c52a3491ca69cd846b8"
+      "End": "6346794d4efa41eaabbbf208fee976ca",
+      "Id": "311da1cb8f2b42d98b517e1c51330d09"
     }
   ],
   "Dependencies": [],
@@ -112,7 +112,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.0.7237",
+      "Version": "2.5.0.7460",
       "RunType": "Automatic",
       "RunPeriod": "1000"
     },
@@ -136,18 +136,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 107.33333333333326,
-        "Y": 240.0
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Element.Id",
-        "Id": "e5d988cdaac248f8982268110c84f596",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 659.644931098593,
-        "Y": 250.52369998995866
+        "X": 71.348726610708809,
+        "Y": 254.86390007218483
       },
       {
         "ShowGeometry": true,
@@ -156,13 +146,23 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 380.06875833470258,
-        "Y": 240.9422553237751
+        "X": 396.34872661070881,
+        "Y": 254.86390007218483
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.Name",
+        "Id": "288f4cd57e69493fb74ccfdc5eb704e0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 710.34872661070881,
+        "Y": 254.86390007218483
       }
     ],
     "Annotations": [],
-    "X": -20.507966591020363,
-    "Y": 29.138777859229037,
-    "Zoom": 0.60122796620338859
+    "X": -208.9085630617202,
+    "Y": -41.307269377135725,
+    "Zoom": 0.81314568217310068
   }
 }

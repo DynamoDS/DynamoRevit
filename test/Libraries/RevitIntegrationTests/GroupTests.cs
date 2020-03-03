@@ -24,16 +24,16 @@ namespace RevitSystemTests
             string samplePath = Path.Combine(workingDirectory, @".\Group\CanCreateGroupFromListOfElements.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
-            var expectedGroupId = 207894;
+            var expectedGroupName = "Group 1";
 
             // Act
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            var newGroupId = GetPreviewValue("e5d988cdaac248f8982268110c84f596");
+            var newGroupName = GetPreviewValue("288f4cd57e69493fb74ccfdc5eb704e0");
 
             // Assert
-            Assert.AreEqual(expectedGroupId, newGroupId);
+            Assert.AreEqual(expectedGroupName, newGroupName);
         }
 
         [Test]

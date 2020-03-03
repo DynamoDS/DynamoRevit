@@ -19,16 +19,16 @@ namespace RevitSystemTests
             string samplePath = Path.Combine(workingDirectory, @".\Viewport\CanCreateViewportOnSheet.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
-            int expectedViewportId = 307874;
+            string expectedViewportName = "Title w Line";
 
             // Act
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            var viewportId = GetPreviewValue("8e667727f45c4cd398963eca4a22dea5");
+            var viewportName = GetPreviewValue("e01a83242a3d4a2cb02789c3c90bb1a1");
 
             // Assert
-            Assert.AreEqual(expectedViewportId, viewportId);
+            Assert.AreEqual(expectedViewportName, viewportName);
         }
     }
 }

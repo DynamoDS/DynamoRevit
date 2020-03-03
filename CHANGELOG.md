@@ -1,3 +1,6 @@
+* Update some System tests and their dynamo files.
+* Rename "IncludeShadows" in node "Element.GetHostedElements".
+
 ## 0.2.5
 * Update RevitAPI folder name to net48.
 
