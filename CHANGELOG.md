@@ -1,3 +1,6 @@
+## 0.0.49
+* Bump a version for Revit 2020 latest release
+
 ## 0.0.48
 * Get a new revision number.
 
