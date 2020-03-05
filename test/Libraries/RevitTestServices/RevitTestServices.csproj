@@ -35,10 +35,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamoShapeManager">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\47\DynamoShapeManager.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Microsoft.Practices.Prism">
       <HintPath>$(PACKAGESPATH)\Prism\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
       <Private>False</Private>

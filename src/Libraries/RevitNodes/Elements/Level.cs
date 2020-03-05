@@ -14,7 +14,7 @@ namespace Revit.Elements
 
     /// <summary>
     /// This class acts as a representation of a Level constructor state, we can store it in trace
-    // it's used to keep track of what the user wanted to set the name of the level to
+    /// it's used to keep track of what the user wanted to set the name of the level to
     /// </summary>
     [SupressImportIntoVM]
     [Serializable]
@@ -207,7 +207,7 @@ namespace Revit.Elements
         /// </summary>
         public double Elevation
         {
-            get { return InternalLevel.Elevation*UnitConverter.HostToDynamoFactor(UnitType.UT_Length); }
+            get { return InternalLevel.Elevation*UnitConverter.HostToDynamoFactor(SpecTypeId.Length); }
         }
 
         /// <summary>
@@ -217,7 +217,7 @@ namespace Revit.Elements
         {
             get
             {
-                return InternalLevel.ProjectElevation * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
+                return InternalLevel.ProjectElevation * UnitConverter.HostToDynamoFactor(SpecTypeId.Length);
             }
         }
 
@@ -249,7 +249,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("name");
             }
 
-            return new Level(elevation * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), name);
+            return new Level(elevation * UnitConverter.DynamoToHostFactor(SpecTypeId.Length), name);
         }
 
         /// <summary>
@@ -260,7 +260,7 @@ namespace Revit.Elements
         /// <returns></returns>
         public static Level ByElevation(double elevation)
         {
-            return new Level(elevation * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), null);
+            return new Level(elevation * UnitConverter.DynamoToHostFactor(SpecTypeId.Length), null);
         }
 
         /// <summary>
@@ -276,7 +276,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("level");
             }
 
-            return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), null);
+            return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor(SpecTypeId.Length), null);
         }
 
         /// <summary>
@@ -299,7 +299,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("name");
             }
 
-            return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor(UnitType.UT_Length), name);
+            return new Level((level.Elevation + offset) * UnitConverter.DynamoToHostFactor(SpecTypeId.Length), name);
         }
 
         #endregion

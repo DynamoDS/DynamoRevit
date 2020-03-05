@@ -39,7 +39,7 @@ namespace Revit.Elements
         /// <summary>
         /// Private constructor for wrapping an existing Element
         /// </summary>
-        /// <param name="grid"></param>
+        /// <param name="parameter"></param>
         private GlobalParameter(Autodesk.Revit.DB.GlobalParameter parameter)
         {
             SafeInit(() => InitGlobalParameter(parameter));
@@ -64,15 +64,16 @@ namespace Revit.Elements
         /// Initialize a GlobalParameter element
         /// </summary>
         /// <param name="grid"></param>
-        private void InitGlobalParameter(Autodesk.Revit.DB.GlobalParameter g)
+        private void InitGlobalParameter(Autodesk.Revit.DB.GlobalParameter grid)
         {
-            InternalSetGlobalParameter(g);
+            InternalSetGlobalParameter(grid);
         }
 
         /// <summary>
         /// Initialize a GlobalParameter element
         /// </summary>
-        /// <param name="line"></param>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
         private void InitGlobalParameter(string name, Autodesk.Revit.DB.ParameterType type)
         {
             var existingId = Autodesk.Revit.DB.GlobalParametersManager.FindByName(Document, name);
@@ -104,11 +105,11 @@ namespace Revit.Elements
         /// Set the internal Element, ElementId, and UniqueId
         /// </summary>
         /// <param name="grid"></param>
-        private void InternalSetGlobalParameter(Autodesk.Revit.DB.GlobalParameter g)
+        private void InternalSetGlobalParameter(Autodesk.Revit.DB.GlobalParameter grid)
         {
-            this.InternalGlobalParameter = g;
-            this.InternalElementId = g.Id;
-            this.InternalUniqueId = g.UniqueId;
+            this.InternalGlobalParameter = grid;
+            this.InternalElementId = grid.Id;
+            this.InternalUniqueId = grid.UniqueId;
         }
 
         #endregion
@@ -188,7 +189,7 @@ namespace Revit.Elements
                         var valueDouble = valueWrapper as Autodesk.Revit.DB.DoubleParameterValue;
 
                         return valueDouble.Value * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(
-                            this.InternalGlobalParameter.GetDefinition().UnitType);
+                            this.InternalGlobalParameter.GetDefinition().GetSpecTypeId());
                     }
                     else
                     {
@@ -234,7 +235,7 @@ namespace Revit.Elements
                 }
                 else if (value.GetType() == typeof(double))
                 {
-                    var valueToSet = (double)value * UnitConverter.DynamoToHostFactor(parameter.InternalGlobalParameter.GetDefinition().UnitType);
+                    var valueToSet = (double)value * UnitConverter.DynamoToHostFactor(parameter.InternalGlobalParameter.GetDefinition().GetSpecTypeId());
 
                     parameter.InternalGlobalParameter.SetValue(
                         new Autodesk.Revit.DB.DoubleParameterValue(valueToSet));
@@ -330,7 +331,7 @@ namespace Revit.Elements
         /// <summary>
         /// Wrap an existing Element in the associated DS type
         /// </summary>
-        /// <param name="grid"></param>
+        /// <param name="parameter"></param>
         /// <param name="isRevitOwned"></param>
         /// <returns></returns>
         internal static GlobalParameter FromExisting(Autodesk.Revit.DB.GlobalParameter parameter, bool isRevitOwned)

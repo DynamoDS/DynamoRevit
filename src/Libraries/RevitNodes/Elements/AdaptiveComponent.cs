@@ -172,7 +172,7 @@ namespace Revit.Elements
         /// Update the placement points of the adaptive component instance to the given points
         /// </summary>
         /// <param name="fi"></param>
-        /// <param name="pnt"></param>
+        /// <param name="pnts"></param>
         private static void UpdatePlacementPoints(Autodesk.Revit.DB.FamilyInstance fi, XYZ[] pnts)
         {
             IList<ElementId> placePointIds = AdaptiveComponentInstanceUtils.GetInstancePlacementPointElementRefIds(fi);

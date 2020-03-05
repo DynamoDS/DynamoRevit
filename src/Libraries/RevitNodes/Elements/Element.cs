@@ -309,7 +309,6 @@ namespace Revit.Elements
         /// <summary>
         /// Get hash code.
         /// </summary>
-        /// <param name="obj"></param>
         /// <returns></returns>
         [IsVisibleInDynamoLibrary(false)]
         public override int GetHashCode()

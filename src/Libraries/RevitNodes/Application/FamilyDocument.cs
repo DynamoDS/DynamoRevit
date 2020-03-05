@@ -144,10 +144,10 @@ namespace Revit.Application
             switch (familyParameter.StorageType)
             {
                 case Autodesk.Revit.DB.StorageType.Integer:
-                    return FamilyManager.CurrentType.AsInteger(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.UnitType);
+                    return FamilyManager.CurrentType.AsInteger(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.GetSpecTypeId());
 
                 case Autodesk.Revit.DB.StorageType.Double:
-                    return FamilyManager.CurrentType.AsDouble(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.UnitType);
+                    return FamilyManager.CurrentType.AsDouble(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.GetSpecTypeId());
 
                 case Autodesk.Revit.DB.StorageType.String:
                     return FamilyManager.CurrentType.AsString(familyParameter);
@@ -163,6 +163,7 @@ namespace Revit.Application
         /// <summary>
         /// Set the value of a family parameter of the current family type, this applies to all family parameters (instance and type).
         /// </summary>
+        /// <param name="familyTypeName">The name of Family Type</param>
         /// <param name="parameter">A family parameter of the current type.</param>
         /// <param name="value">The new value for the family parameter.</param>
         /// <returns>The family document with an updated value for the specified parameter.</returns>
@@ -307,7 +308,7 @@ namespace Revit.Application
                 throw new InvalidOperationException(string.Format(Properties.Resources.WrongStorageType, familyParameter.StorageType));
             }
 
-            double doubleValueToSet = doubleValue * UnitConverter.DynamoToHostFactor(familyParameter.Definition.UnitType);
+            double doubleValueToSet = doubleValue * UnitConverter.DynamoToHostFactor(familyParameter.Definition.GetSpecTypeId());
             FamilyManager.Set(familyParameter, doubleValueToSet);
         }
 
@@ -322,7 +323,7 @@ namespace Revit.Application
             {
                 throw new InvalidOperationException(string.Format(Properties.Resources.WrongStorageType, familyParameter.StorageType)); ;
             }
-            var intValueToSet = intValue * UnitConverter.DynamoToHostFactor(familyParameter.Definition.UnitType);
+            var intValueToSet = intValue * UnitConverter.DynamoToHostFactor(familyParameter.Definition.GetSpecTypeId());
             FamilyManager.Set(familyParameter, intValueToSet);
         }
 
