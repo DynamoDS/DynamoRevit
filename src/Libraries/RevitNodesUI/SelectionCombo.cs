@@ -79,56 +79,6 @@ namespace Dynamo.ComboNodes
         }
     }
 
-    //[NodeName("Select Model Elements By Element Type"),
-    //NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
-    //NodeDescription("SelectModelElementsByCategoryDescription", typeof(DSRevitNodesUI.Properties.Resources)),
-    //IsDesignScriptCompatible]
-    //public class DSModelElementByElementTypeSelection : ElementFilterSelection<Element>
-    //{
-    //    private const string message = "Select Model Elements";
-    //    private const string prefix = "Element";
-
-    //    internal TypeElementSelectionFilter<Element> SelectionFilter { get; set; }
-
-    //    public ElementTypes DropDownNodeModel { get; set; }
-
-    //    public int SelectedIndex
-    //    {
-    //        get { return DropDownNodeModel.SelectedIndex; }
-    //        set
-    //        {
-    //            DropDownNodeModel.SelectedIndex = value;
-    //            SelectionFilter.ElementTypeName = DropDownNodeModel.Items[value].Name;
-    //        }
-    //    }
-
-    //    public DSModelElementByElementTypeSelection()
-    //        : base(
-    //            SelectionType.Many,
-    //            SelectionObjectType.None,
-    //            message,
-    //            prefix)
-    //    {
-    //        DropDownNodeModel = new ElementTypes();
-    //        SelectionFilter = new TypeElementSelectionFilter<Element>();
-    //        base.Filter = SelectionFilter;
-    //    }
-
-    //    [JsonConstructor]
-    //    public DSModelElementByElementTypeSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts,
-    //        IEnumerable<PortModel> outPorts)
-    //        : base(
-    //            SelectionType.Many,
-    //            SelectionObjectType.None,
-    //            message,
-    //            prefix,
-    //            selectionIdentifier,
-    //            inPorts,
-    //            outPorts)
-    //    {
-    //    }
-    //}
-
     #endregion
 
     #region Node View Customization
@@ -159,33 +109,6 @@ namespace Dynamo.ComboNodes
         {
         }
     }
-
-    //public class DSModelElementByElementTypeSelectionNodeViewCustomization : INodeViewCustomization<DSModelElementByElementTypeSelection>
-    //{
-    //    public DSModelElementByElementTypeSelection Model { get; set; }
-    //    public DelegateCommand SelectCommand { get; set; }
-
-    //    public void CustomizeView(DSModelElementByElementTypeSelection model, NodeView nodeView)
-    //    {
-    //        Model = model;
-    //        SelectCommand = new DelegateCommand(() => Model.Select(null), Model.CanBeginSelect);
-    //        Model.PropertyChanged += (s, e) => {
-    //            nodeView.Dispatcher.Invoke(new Action(() =>
-    //            {
-    //                if (e.PropertyName == "CanSelect")
-    //                {
-    //                    SelectCommand.RaiseCanExecuteChanged();
-    //                }
-    //            }));
-    //        };
-    //        var comboControl = new ComboControl { DataContext = this };
-    //        nodeView.inputGrid.Children.Add(comboControl);
-    //    }
-
-    //    public void Dispose()
-    //    {
-    //    }
-    //}
 
     #endregion
 
