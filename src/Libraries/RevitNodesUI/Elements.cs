@@ -479,7 +479,7 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("Rooms by status"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+    [NodeName("Rooms By Status"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("RoomsByStatusDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class RoomsByStatus : ElementsQueryBase

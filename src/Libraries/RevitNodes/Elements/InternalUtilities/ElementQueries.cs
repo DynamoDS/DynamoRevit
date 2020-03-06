@@ -125,7 +125,6 @@ namespace Revit.Elements.InternalUtilities
             if (id.GetType() == typeof(Autodesk.Revit.DB.ElementId))
                 return ElementSelector.ByElementId(((Autodesk.Revit.DB.ElementId)id).IntegerValue);
 
-
             var idType = Type.GetTypeCode(id.GetType());
             int intId;
             Element element;
@@ -134,6 +133,10 @@ namespace Revit.Elements.InternalUtilities
             {
                 case TypeCode.Int64:
                     element = ElementSelector.ByElementId(Convert.ToInt32((long)id));
+                    break;
+
+                case TypeCode.Int32:
+                    element = ElementSelector.ByElementId((int)id);
                     break;
 
                 case TypeCode.String:
@@ -163,41 +166,41 @@ namespace Revit.Elements.InternalUtilities
 
         public static List<List<Element>> RoomsByStatus()
         {
-            List<List<Element>> roomsByStatus = new List<List<Element>>();
+            var roomsByStatus = new List<List<Element>>();
             Document doc = DocumentManager.Instance.CurrentDBDocument;
-            var allRooms = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Rooms).WhereElementIsNotElementType().Cast<Autodesk.Revit.DB.Architecture.Room>();
+            var allRooms = new FilteredElementCollector(doc)
+                .OfCategory(BuiltInCategory.OST_Rooms)
+                .WhereElementIsNotElementType()
+                .Cast<Autodesk.Revit.DB.Architecture.Room>();
             
-            List<Revit.Elements.Element> placedRooms = new List<Revit.Elements.Element>();
-            List<Revit.Elements.Element> unplacedRooms = new List<Revit.Elements.Element>();
-            List<Revit.Elements.Element> notEnclosedRooms = new List<Revit.Elements.Element>();
-            List<Revit.Elements.Element> redundantRooms = new List<Revit.Elements.Element>();
+            var placedRooms = new List<Revit.Elements.Element>();
+            var unplacedRooms = new List<Revit.Elements.Element>();
+            var notEnclosedRooms = new List<Revit.Elements.Element>();
+            var redundantRooms = new List<Revit.Elements.Element>();
 
             SpatialElementBoundaryOptions opt = new SpatialElementBoundaryOptions();
 
             foreach (Autodesk.Revit.DB.Architecture.Room room in allRooms)
             {
+                var dsRoom = room.ToDSType(true);
                 if (room.Area > 0)
                 {
-                    placedRooms.Add(room.ToDSType(true));
+                    placedRooms.Add(dsRoom);
+                    continue;
                 }
-                else
+
+                if (room.Location == null)
                 {
-                    if (room.Location == null)
-                    {
-                        unplacedRooms.Add(room.ToDSType(true));
-                    }
-                    else
-                    {
-                        if (room.GetBoundarySegments(opt) == null || (room.GetBoundarySegments(opt)).Count == 0)
-                        {
-                            notEnclosedRooms.Add(room.ToDSType(true));
-                        }
-                        else
-                        {
-                            redundantRooms.Add(room.ToDSType(true));
-                        }
-                    }
+                    unplacedRooms.Add(dsRoom);
+                    continue;
                 }
+                if (room.GetBoundarySegments(opt) == null || (room.GetBoundarySegments(opt)).Count == 0)
+                {
+                    notEnclosedRooms.Add(dsRoom);
+                    continue;
+                }
+
+                redundantRooms.Add(dsRoom);
             }
 
             roomsByStatus.Add(placedRooms);

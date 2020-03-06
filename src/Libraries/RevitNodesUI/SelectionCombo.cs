@@ -155,7 +155,9 @@ namespace Dynamo.ComboNodes
         /// <param name="objectType">The selection object type.</param>
         /// <returns></returns>
         public IEnumerable<T> RequestSelectionOfType(
-            string selectionMessage, SelectionType selectionType, SelectionObjectType objectType)
+            string selectionMessage, 
+            SelectionType selectionType, 
+            SelectionObjectType objectType)
         {
             switch (selectionType)
             {

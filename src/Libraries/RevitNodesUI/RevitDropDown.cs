@@ -481,10 +481,10 @@ namespace DSRevitNodesUI
         {
             Items.Clear();
 
-            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
+            var elements = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(Autodesk.Revit.DB.RoofType))
+                .ToElements();
 
-            fec.OfClass(typeof(Autodesk.Revit.DB.RoofType));
-            var elements = fec.ToElements();
             if (!elements.Any())
             {
                 Items.Add(new DynamoDropDownItem(Properties.Resources.NoWallTypesAvailable, null));
@@ -492,7 +492,11 @@ namespace DSRevitNodesUI
                 return SelectionState.Done;
             }
 
-            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
+            Items = elements
+                .Select(x => new DynamoDropDownItem(x.Name, x))
+                .OrderBy(x => x.Name)
+                .ToObservableCollection();
+
             return SelectionState.Restore;
         }
 
@@ -999,7 +1003,6 @@ namespace DSRevitNodesUI
             //exclude <RevisionSchedule> (revision tables on sheets) from list
             var sheets = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
                 .OfClass(typeof(ViewSheet))
-                //.Where(x => !x.Name.Contains('<'))
                 .ToList();
 
             //there must always be at least 1 view in a Revit document, so we can exclude the empty list check
@@ -1014,29 +1017,22 @@ namespace DSRevitNodesUI
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            AssociativeNode node;
             if (!CanBuildOutputAst())
-            {
-                node = AstFactory.BuildNullNode();
-            }
-            else
-            {
-                var view = Items[SelectedIndex].Item as View;
-                if (view == null)
-                {
-                    node = AstFactory.BuildNullNode();
-                }
-                else
-                {
-                    var idNode = AstFactory.BuildStringNode(view.UniqueId);
-                    var falseNode = AstFactory.BuildBooleanNode(true);
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
 
-                    node =
-                        AstFactory.BuildFunctionCall(
-                            new Func<string, bool, object>(ElementSelector.ByUniqueId),
-                            new List<AssociativeNode>() { idNode, falseNode });
-                }
-            }
+
+            var view = Items[SelectedIndex].Item as View;
+            if (view == null)
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+
+
+            var idNode = AstFactory.BuildStringNode(view.UniqueId);
+            var falseNode = AstFactory.BuildBooleanNode(true);
+
+            AssociativeNode node =
+                AstFactory.BuildFunctionCall(
+                    new Func<string, bool, object>(ElementSelector.ByUniqueId),
+                    new List<AssociativeNode>() { idNode, falseNode });
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
         }
