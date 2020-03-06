@@ -10,25 +10,25 @@ namespace Revit.GeometryConversion
     [SupressImportIntoVM]
     public static class UnitConverter
     {
-        public static double DynamoToHostFactor(UnitType unitType)
+        public static double DynamoToHostFactor(ForgeTypeId specTypeId)
         {
-            var revitDisplayUnits =
+            var unitTypeId =
                 DocumentManager.Instance.CurrentDBDocument.GetUnits()
-                    .GetFormatOptions(unitType)
-                    .DisplayUnits;
-
+                    .GetFormatOptions(specTypeId)
+                    .GetUnitTypeId();
+           
             // Here we use the Revit API to return the conversion
             // factor between the display units in Revit and the internal
             // units (decimal feet). We are not converting a value, so 
             // we simply supply 1 to return the converstion factor.
-            return UnitUtils.ConvertToInternalUnits(1, revitDisplayUnits);
+            return UnitUtils.ConvertToInternalUnits(1, unitTypeId);
         }
 
-        public static double HostToDynamoFactor(UnitType unitType)
+        public static double HostToDynamoFactor(ForgeTypeId specTypeId)
         {
             // Here we invert the conversion factor to return
             // the conversion from internal units to display units.
-            return 1/DynamoToHostFactor(unitType);
+            return 1/DynamoToHostFactor(specTypeId);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Revit.GeometryConversion
                 throw new ArgumentNullException("geometry");
             }
 
-            var result = (T)geometry.Scale(HostToDynamoFactor(UnitType.UT_Length));
+            var result = (T)geometry.Scale(HostToDynamoFactor(SpecTypeId.Length));
             geometry.Dispose();
             return result;
         }
@@ -68,7 +68,7 @@ namespace Revit.GeometryConversion
                 throw new ArgumentNullException("geometry");
             }
 
-            var result = (T)geometry.Scale(DynamoToHostFactor(UnitType.UT_Length));
+            var result = (T)geometry.Scale(DynamoToHostFactor(SpecTypeId.Length));
             return result;
         }
         

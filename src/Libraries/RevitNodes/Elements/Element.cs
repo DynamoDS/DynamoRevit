@@ -309,7 +309,6 @@ namespace Revit.Elements
         /// <summary>
         /// Get hash code.
         /// </summary>
-        /// <param name="obj"></param>
         /// <returns></returns>
         [IsVisibleInDynamoLibrary(false)]
         public override int GetHashCode()
@@ -529,7 +528,7 @@ namespace Revit.Elements
         /// Gets all elements hosted by the supplied element
         /// </summary>
         /// <param name="includeOpenings">Include rectangular openings in output</param>
-        /// <param name="includeHostedElementsOfJoinedHosts">Include Hosted elements of joined hosts in output</param>
+        /// <param name="includeHostedElementsOfJoinedHosts">Include the hosted elements from the multiple joined hosts in output</param>
         /// <param name="includeEmbeddedWalls">Include embedded walls in output</param>
         /// <param name="includeSharedEmbeddedInserts">Include shared embedded elements in output</param>
         /// <returns>Hosted Elements</returns>

@@ -48,7 +48,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get the parameter's unit type
         /// </summary>
-        public string UnitType => InternalFamilyParameter.Definition.UnitType.ToString();
+        public string UnitType => InternalFamilyParameter.Definition.GetSpecTypeId().ToString();
 
         /// <summary>
         /// Get Parameter Storage Type

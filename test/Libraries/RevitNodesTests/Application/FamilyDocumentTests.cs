@@ -170,7 +170,6 @@ namespace RevitNodesTests.Application
             var stringParam = "Keynote";
 
             var expectedDoubleValue = 1000.0;
-            var expectedSetDoubleWithIntValue = 2000;
             var expectedElementValue = ElementSelector.ByElementId(10862);
             var expectedStringValue = "test";
             
