@@ -1,3 +1,6 @@
+## 0.2.7
+* Fix CI build error.
+
 ## 0.2.6
 * Update some System tests and their dynamo files.
 * Rename "IncludeShadows" in node "Element.GetHostedElements".
