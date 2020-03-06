@@ -1,3 +1,4 @@
+## 0.2.6
 * Update some System tests and their dynamo files.
 * Rename "IncludeShadows" in node "Element.GetHostedElements".
 * Upgrade some obsolete classed and functions for RevitAPI updated
