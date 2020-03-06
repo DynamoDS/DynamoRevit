@@ -91,7 +91,7 @@ namespace Revit.Elements
         /// </summary>
         public string UnitType
         {
-            get { return InternalParameter.Definition.UnitType.ToString(); }
+            get { return InternalParameter.Definition.GetSpecTypeId().ToString(); }
         }
 
 
