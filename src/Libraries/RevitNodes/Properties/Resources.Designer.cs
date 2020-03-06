@@ -313,6 +313,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Document is not a valid Family Document..
+        /// </summary>
+        internal static string DocumentNotFamilyDocument {
+            get {
+                return ResourceManager.GetString("DocumentNotFamilyDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Document is not workshared.
         /// </summary>
         internal static string DocumentNotWorkshared {
@@ -357,6 +366,15 @@ namespace Revit.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot place empty view on sheet..
+        /// </summary>
+        internal static string EmptyView {
+            get {
+                return ResourceManager.GetString("EmptyView", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to There is no ElementType of the given name in the current Document.
         /// </summary>
@@ -471,6 +489,15 @@ namespace Revit.Properties {
         internal static string FamilySymbolNotFound3 {
             get {
                 return ResourceManager.GetString("FamilySymbolNotFound3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Family type does not exist in the document..
+        /// </summary>
+        internal static string FamilyTypeDoesNotExist {
+            get {
+                return ResourceManager.GetString("FamilyTypeDoesNotExist", resourceCulture);
             }
         }
         
@@ -844,6 +871,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The provided input view is not a plan view..
+        /// </summary>
+        internal static string NotPlanView {
+            get {
+                return ResourceManager.GetString("NotPlanView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} must be a positive integer.
         /// </summary>
         internal static string NotPositiveIntegerError {
@@ -1123,6 +1159,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot place view on sheet as it is already on a sheet..
+        /// </summary>
+        internal static string ViewAlreadyPlacedOnSheet {
+            get {
+                return ResourceManager.GetString("ViewAlreadyPlacedOnSheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View does not support annotations..
         /// </summary>
         internal static string ViewDoesNotSupportAnnotations {
@@ -1173,6 +1218,15 @@ namespace Revit.Properties {
         internal static string WallTypeNotFound {
             get {
                 return ResourceManager.GetString("WallTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input value for this parameter needs to be of type {0}..
+        /// </summary>
+        internal static string WrongStorageType {
+            get {
+                return ResourceManager.GetString("WrongStorageType", resourceCulture);
             }
         }
     }

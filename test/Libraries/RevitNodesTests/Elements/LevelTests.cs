@@ -36,7 +36,7 @@ namespace RevitNodesTests.Elements
 
             // without unit conversion
             InternalElevation(level)
-                .ShouldBeApproximately(elevation * UnitConverter.DynamoToHostFactor(UnitType.UT_Length));
+                .ShouldBeApproximately(elevation * UnitConverter.DynamoToHostFactor(SpecTypeId.Length));
 
         }
 
@@ -106,7 +106,7 @@ namespace RevitNodesTests.Elements
 
             // without unit conversion
             InternalElevation(level)
-                .ShouldBeApproximately(elevation * UnitConverter.DynamoToHostFactor(UnitType.UT_Length));
+                .ShouldBeApproximately(elevation * UnitConverter.DynamoToHostFactor(SpecTypeId.Length));
         }
 
         [Test]
@@ -125,7 +125,7 @@ namespace RevitNodesTests.Elements
 
             // without unit conversion
             InternalElevation(level2)
-                .ShouldBeApproximately((elevation + offset) * UnitConverter.DynamoToHostFactor(UnitType.UT_Length));
+                .ShouldBeApproximately((elevation + offset) * UnitConverter.DynamoToHostFactor(SpecTypeId.Length));
         }
 
         [Test]
@@ -153,7 +153,7 @@ namespace RevitNodesTests.Elements
 
             // without unit conversion
             InternalElevation(level2)
-                .ShouldBeApproximately((elevation + offset) * UnitConverter.DynamoToHostFactor(UnitType.UT_Length));
+                .ShouldBeApproximately((elevation + offset) * UnitConverter.DynamoToHostFactor(SpecTypeId.Length));
         }
 
         [Test]

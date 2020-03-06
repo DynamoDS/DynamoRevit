@@ -1,0 +1,216 @@
+{
+  "Uuid": "2db7a67e-022c-467a-9a84-c52a3d465764",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanSetSpaceName",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Point": {
+        "Key": "Autodesk.DesignScript.Geometry.Point",
+        "Value": "ProtoGeometry.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "3211817e-6765-49b5-94dd-0238eb42a891-0004d3cd"
+      ],
+      "Id": "395859a825ca41e285b3c564487ee846",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "118f3b2ebfc24d4a8ccaa9bda3814341",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Space.SetName@string",
+      "Id": "409a02d045314e198f0671c2c73212d3",
+      "Inputs": [
+        {
+          "Id": "3d452b5289b040d5abe725ceb2be809e",
+          "Name": "space",
+          "Description": "Revit.Elements.Space",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "201f2e15fbbf4b1ab004d0e241d54ba5",
+          "Name": "value",
+          "Description": "Name\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d6ea9f422c534aba9173e231ff43a201",
+          "Name": "Space",
+          "Description": "Space",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Sets the name of the space.\n\nSpace.SetName (value: string): Space"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"newSpaceName\";",
+      "Id": "16cb8af0bd2e440a876d8b94f77a5fec",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1b77546d696145ce8c0b31335e579e77",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Space.Name",
+      "Id": "4aa69bb9c86b454a8d76b3d0e83cbc0c",
+      "Inputs": [
+        {
+          "Id": "3e9bcf604c2c4358a72f0a63847f3226",
+          "Name": "space",
+          "Description": "Revit.Elements.Space",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "685cec1062e244109918e200316b58f8",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the space name\n\nSpace.Name: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "118f3b2ebfc24d4a8ccaa9bda3814341",
+      "End": "3d452b5289b040d5abe725ceb2be809e",
+      "Id": "8022644e436242ba8edc16be0669cc1a"
+    },
+    {
+      "Start": "d6ea9f422c534aba9173e231ff43a201",
+      "End": "3e9bcf604c2c4358a72f0a63847f3226",
+      "Id": "934d4f688c24490295e6770ca4ffab9e"
+    },
+    {
+      "Start": "1b77546d696145ce8c0b31335e579e77",
+      "End": "201f2e15fbbf4b1ab004d0e241d54ba5",
+      "Id": "b7a7aa21d29e43719668383635217ede"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7237",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "395859a825ca41e285b3c564487ee846",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -410.17017890831823,
+        "Y": 509.1858575575377
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Space.SetName",
+        "Id": "409a02d045314e198f0671c2c73212d3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -93.392940548918318,
+        "Y": 593.50117406417166
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "16cb8af0bd2e440a876d8b94f77a5fec",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -409.0,
+        "Y": 659.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Space.Name",
+        "Id": "4aa69bb9c86b454a8d76b3d0e83cbc0c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 198.32558493121837,
+        "Y": 593.81556691665264
+      }
+    ],
+    "Annotations": [],
+    "X": 809.53761844236965,
+    "Y": -308.19783272230643,
+    "Zoom": 1.0242200888742825
+  }
+}

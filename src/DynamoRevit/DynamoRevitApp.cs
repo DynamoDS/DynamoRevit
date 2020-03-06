@@ -33,7 +33,6 @@ namespace Dynamo.Applications
     public class DynamoRevitApp : IExternalApplication
     {
         private static readonly string assemblyName = Assembly.GetExecutingAssembly().Location;
-        private static ResourceManager res;
         public static ControlledApplication ControlledApplication;
         public static UIControlledApplication UIControlledApplication;
         public static List<IUpdater> Updaters = new List<IUpdater>();

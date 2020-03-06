@@ -64,8 +64,6 @@ namespace Revit.AnalysisDisplay
         /// Create a Point Analysis Display in the current view
         /// </summary>
         /// <param name="view"></param>
-        /// <param name="sampleLocations"></param>
-        /// <param name="samples"></param>
         /// <param name="data"></param>
         /// <param name="resultsName"></param>
         /// <param name="description"></param>
@@ -96,8 +94,6 @@ namespace Revit.AnalysisDisplay
         /// Set the spatial field values for the current spatial field primitive.  The two 
         /// input sequences should be of the same length.
         /// </summary>
-        /// <param name="pointLocations"></param>
-        /// <param name="values"></param>
         /// <param name="data"></param>
         /// <param name="primitiveIds"></param>
         /// <param name="schemaName"></param>

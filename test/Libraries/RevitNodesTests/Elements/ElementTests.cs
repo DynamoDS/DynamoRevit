@@ -94,7 +94,7 @@ namespace RevitNodesTests.Elements
 
             // Change project to meters
             var units = DocumentManager.Instance.CurrentDBDocument.GetUnits();
-            units.SetFormatOptions(UnitType.UT_Length, new FormatOptions(DisplayUnitType.DUT_METERS));
+            units.SetFormatOptions(SpecTypeId.Length, new FormatOptions(UnitTypeId.Meters));
             DocumentManager.Instance.CurrentDBDocument.SetUnits(units);
 
             SetExpectedWallHeight(wall, 45.5);

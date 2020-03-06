@@ -114,11 +114,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.Element.SwitchGeometryJoinOrder@Revit.Elements.Element,Revit.Elements.Element",
-      "Id": "d61ea03f28d94a78a817ff0a031a4e36",
+      "FunctionSignature": "Revit.Elements.Element.SetGeometryJoinOrder@Revit.Elements.Element,Revit.Elements.Element",
+      "Id": "7cc4c292951846c1b20ac6faa95f12e4",
       "Inputs": [
         {
-          "Id": "6f6d0d45acb247e3a8d3ffef78149fc3",
+          "Id": "9c2416af7ddb4beb8e057a21b6bd2b93",
           "Name": "cuttingElement",
           "Description": "The element that should be cutting the other element\n\nElement",
           "UsingDefaultValue": false,
@@ -127,9 +127,9 @@
           "KeepListStructure": false
         },
         {
-          "Id": "0f605c7803894f8eb7e69da66c9d4223",
+          "Id": "83268b40f4484b489a679d30f7caa79c",
           "Name": "otherElement",
-          "Description": "The other element that are being cut by the cuttingElement\n\nElement",
+          "Description": "The other element that is being cut by the cuttingElement\n\nElement",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -138,9 +138,9 @@
       ],
       "Outputs": [
         {
-          "Id": "f51d7c1d544342c78a44160e1a547c8b",
+          "Id": "33d8af5c841a4eeba071db120d74236a",
           "Name": "Element[]",
-          "Description": "Joined elements",
+          "Description": "Input elements with the geometry join order updated.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -148,19 +148,19 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Switch the order of how two elements are joined\n\nElement.SwitchGeometryJoinOrder (cuttingElement: Element, otherElement: Element): Element[]"
+      "Description": "Sets the order in which the geometry of two elements is joined. If the order is already as desired, elements are not affected. Note that changing this will affect both 3D and 2D views and that it is not the recommended way of managing wall joins.\n\nElement.SetGeometryJoinOrder (cuttingElement: Element, otherElement: Element): Element[]"
     }
   ],
   "Connectors": [
     {
       "Start": "bc2e0632ff2a42bb8fbf5400b45f6341",
-      "End": "6f6d0d45acb247e3a8d3ffef78149fc3",
-      "Id": "40ed5eca414f4df598c667d1ea4b9e1c"
+      "End": "9c2416af7ddb4beb8e057a21b6bd2b93",
+      "Id": "340066c6b657499c86ade202aceefd8b"
     },
     {
       "Start": "11b09ee26cb7457786aa9f2fbdcc9565",
-      "End": "0f605c7803894f8eb7e69da66c9d4223",
-      "Id": "bbe5fc007a7c4a8c907d24d2d8b616f6"
+      "End": "83268b40f4484b489a679d30f7caa79c",
+      "Id": "1564f2777b39477689aa8eaf2bc07e8a"
     },
     {
       "Start": "4545cc8332a5425d9ec66cf9ecf1ca61",
@@ -168,9 +168,9 @@
       "Id": "2c6493ce871146d1be533e659cea8e23"
     },
     {
-      "Start": "f51d7c1d544342c78a44160e1a547c8b",
+      "Start": "33d8af5c841a4eeba071db120d74236a",
       "End": "6017394d5e6940c3b91f2691c05b958d",
-      "Id": "d3b643a96a3d492ea300a3f3a7cf5ce5"
+      "Id": "3ae4eabf5d49453385ed6b1ff3e8a083"
     }
   ],
   "Dependencies": [],
@@ -181,7 +181,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.5.0.5905",
+      "Version": "2.5.0.7460",
       "RunType": "Automatic",
       "RunPeriod": "1000"
     },
@@ -240,18 +240,18 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "Element.SwitchGeometryJoinOrder",
-        "Id": "d61ea03f28d94a78a817ff0a031a4e36",
+        "Name": "Element.SetGeometryJoinOrder",
+        "Id": "7cc4c292951846c1b20ac6faa95f12e4",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 384.51092292147149,
-        "Y": 247.64381410381185
+        "X": 366.90165235111067,
+        "Y": 246.28119197634351
       }
     ],
     "Annotations": [],
-    "X": 58.257928202468918,
-    "Y": -67.164974980876877,
+    "X": 191.25792820246897,
+    "Y": -65.164974980876877,
     "Zoom": 0.9540429248828125
   }
 }

@@ -205,7 +205,7 @@ namespace Revit.Elements
         {
             get
             {
-               return this.InternalRevitElement.Area * UnitConverter.HostToDynamoFactor(UnitType.UT_Area);
+               return this.InternalRevitElement.Area * UnitConverter.HostToDynamoFactor(SpecTypeId.Area);
             }
         }
 
@@ -216,7 +216,7 @@ namespace Revit.Elements
         {
             get
             {
-                return this.InternalRevitElement.UnboundedHeight * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
+                return this.InternalRevitElement.UnboundedHeight * UnitConverter.HostToDynamoFactor(SpecTypeId.Length);
             }
         }
 
@@ -227,7 +227,7 @@ namespace Revit.Elements
         {
             get
             {
-                return this.InternalRevitElement.Volume * UnitConverter.HostToDynamoFactor(UnitType.UT_Volume);
+                return this.InternalRevitElement.Volume * UnitConverter.HostToDynamoFactor(SpecTypeId.Volume);
             }
         }
 

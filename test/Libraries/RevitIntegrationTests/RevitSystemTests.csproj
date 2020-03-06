@@ -15,7 +15,6 @@
     <AssemblyName>RevitSystemTests</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -96,9 +95,13 @@
     </Compile>
     <Compile Include="AdaptiveComponentTests.cs" />
     <Compile Include="AnalysisDisplayTests.cs" />
+    <Compile Include="Application\FamilyDocumentTests.cs" />
+    <Compile Include="AreaTests.cs" />
     <Compile Include="AsynchronousModeTests.cs" />
     <Compile Include="ElementTypeTests.cs" />
     <Compile Include="ElementTests.cs" />
+    <Compile Include="FamilyInstanceTests.cs" />
+    <Compile Include="ElevationMarkerTests.cs" />
     <Compile Include="FloorTypeTests.cs" />
     <Compile Include="GlobalParameterTests.cs" />
     <Compile Include="GroupTests.cs" />
@@ -106,6 +109,8 @@
     <Compile Include="RoofTypeTests.cs" />
     <Compile Include="SerializationTests.cs" />
     <Compile Include="SheetTests.cs" />
+    <Compile Include="ViewportTests.cs" />
+    <Compile Include="SpaceTests.cs" />
     <Compile Include="WallTests.cs" />
     <Compile Include="CurtainSystemTests.cs" />
     <Compile Include="RoomTests.cs" />
@@ -151,6 +156,7 @@
     <Compile Include="SunSettingsTests.cs" />
     <Compile Include="TopographyTests.cs" />
     <Compile Include="TransformTest.cs" />
+    <Compile Include="WarningTests.cs" />
     <Compile Include="WallTypeTests.cs" />
     <Compile Include="WorkflowTest.cs" />
     <Compile Include="XYZTests.cs" />

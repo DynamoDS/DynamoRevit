@@ -2,7 +2,7 @@
 using System.Linq;
 
 using DynamoServices;
-
+using Revit.Application;
 using RevitServices.Transactions;
 
 namespace Revit.Elements
@@ -126,6 +126,20 @@ namespace Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
 
             return Family.FromExisting(family, true);
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Gets the document of a loaded family.
+        /// </summary>
+        /// <returns>Reference of the document of the family.</returns>
+        public FamilyDocument FamilyDocument()
+        {
+            TransactionManager.Instance.ForceCloseTransaction();
+            return new FamilyDocument(Document.EditFamily(this.InternalFamily));
         }
 
         #endregion
