@@ -165,11 +165,11 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Initialize a Sheet element
+        /// Initialize a Sheet element with a name, number and specific titleblock.
         /// </summary>
-        /// <param name="sheetName"></param>
-        /// <param name="sheetNumber"></param>
-        /// <param name="titleBlockFamilySymbol"></param>
+        /// <param name="sheetName">name of the sheet.</param>
+        /// <param name="sheetNumber">sheet number.</param>
+        /// <param name="titleBlockFamilySymbol">sheet titleblock.</param>
         private void InitSheet(string sheetName, string sheetNumber, Autodesk.Revit.DB.FamilySymbol titleBlockFamilySymbol)
         {
             //Phase 1 - Check to see if the object exists
@@ -432,13 +432,13 @@ namespace Revit.Elements.Views
         public static Sheet ByNameNumberTitleBlock(string sheetName, string sheetNumber, FamilyType titleBlockFamilyType)
         {
             if (sheetName == null)
-                throw new ArgumentNullException("sheetName");
+                throw new ArgumentNullException(nameof(sheetName));
 
             if (sheetNumber == null)
-                throw new ArgumentNullException("sheetNumber");
+                throw new ArgumentNullException(nameof(sheetNumber));
 
             if (titleBlockFamilyType == null)
-                throw new ArgumentNullException("titleBlockFamilyType");
+                throw new ArgumentNullException(nameof(titleBlockFamilyType));
 
             return new Sheet(sheetName, sheetNumber, titleBlockFamilyType.InternalFamilySymbol);
         }

@@ -129,37 +129,40 @@ namespace RevitNodesTests.Elements.Views
         [TestModel(@".\Empty.rvt")]
         public void ByNameNumberTitleBlock_ValidArgs()
         {
+            // Arrange
             ElementBinder.IsEnabled = false;
 
             var famSymName = "E1 30x42 Horizontal";
             var famName = "E1 30 x 42 Horizontal";
             var titleBlock = FamilyType.ByFamilyAndName(Family.ByName(famName), famSymName);
 
-            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
-
             var sheetName = "Poodle";
             var sheetNumber = "A1";
 
+            // Act
             var ele = Sheet.ByNameNumberTitleBlock(sheetName, sheetNumber, titleBlock);
 
+            // Assert
             Assert.NotNull(ele);
+            Assert.AreEqual(sheetName, ele.SheetName);
+            Assert.AreEqual(sheetNumber, ele.SheetNumber);
         }
 
         [Test]
         [TestModel(@".\Empty.rvt")]
         public void ByNameNumberTitleBlock_BadArgs()
         {
+            // Arrange
             ElementBinder.IsEnabled = false;
 
             var famSymName = "E1 30x42 Horizontal";
             var famName = "E1 30 x 42 Horizontal";
             var titleBlock = FamilyType.ByFamilyAndName(Family.ByName(famName), famSymName);
 
-            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
-
             var sheetName = "Poodle";
             var sheetNumber = "A1";
 
+            // Assert
             Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlock(null, sheetNumber, titleBlock));
             Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlock(sheetName, null, titleBlock));
             Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlock(sheetName, sheetNumber, null));
