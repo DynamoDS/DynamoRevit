@@ -441,6 +441,12 @@
   <data name="NonIntersectingElements" xml:space="preserve">
     <value>Elements are not intersecting</value>
   </data>
+  <data name="EmptyView" xml:space="preserve">
+    <value>Cannot place empty view on sheet.</value>
+  </data>
+  <data name="ViewAlreadyPlacedOnSheet" xml:space="preserve">
+    <value>Cannot place view on sheet as it is already on a sheet.</value>
+  </data>
   <data name="InvalidGroupType" xml:space="preserve">
     <value>{0} is not a valid GroupType.</value>
   </data>
@@ -467,5 +473,14 @@
   </data>
   <data name="InvalidElementId" xml:space="preserve">
     <value>Id is not a valid ElementId, GUID, string or int.</value>
+  </data>
+  <data name="WrongStorageType" xml:space="preserve">
+    <value>Input value for this parameter needs to be of type {0}.</value>
+  </data>
+  <data name="DocumentNotFamilyDocument" xml:space="preserve">
+    <value>Document is not a valid Family Document.</value>
+  </data>
+  <data name="FamilyTypeDoesNotExist" xml:space="preserve">
+    <value>Family type does not exist in the document.</value>
   </data>
 </root>

@@ -49,6 +49,11 @@ namespace Revit.Elements
             return FamilyInstance.FromExisting(ele, isRevitOwned);
         }
 
+        public static Area Wrap(Autodesk.Revit.DB.Area ele, bool isRevitOwned)
+        {
+            return Area.FromExisting(ele, isRevitOwned);
+        }
+
         public static DirectShape Wrap(Autodesk.Revit.DB.DirectShape ele, bool isRevitOwned)
         {
             return DirectShape.FromExisting(ele, isRevitOwned);
@@ -341,13 +346,27 @@ namespace Revit.Elements
             return PathOfTravel.FromExisting(ele, isRevitOwned);
         }
 
+        public static Viewport Wrap(Autodesk.Revit.DB.Viewport ele, bool isRevitOwned)
+        {
+            return Viewport.FromExisting(ele, isRevitOwned);
+        }
+
+        public static ElevationMarker Wrap(Autodesk.Revit.DB.ElevationMarker ele, bool isRevitOwned)
+        {
+            return ElevationMarker.FromExisting(ele, isRevitOwned);
+        }
+
+        public static Space Wrap(Autodesk.Revit.DB.Mechanical.Space ele, bool isRevitOwned)
+        {
+            return Space.FromExisting(ele, isRevitOwned);
+        }
+
         public static RoofType Wrap(Autodesk.Revit.DB.RoofType ele, bool isRevitOwned)
         {
             return RoofType.FromExisting(ele, isRevitOwned);
         }
 
       #endregion
-
-   }
+    }
 
 }

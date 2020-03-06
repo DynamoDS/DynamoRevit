@@ -215,7 +215,7 @@ namespace Revit.Elements
                   lengthVal += crv.Length;
                }
             }
-            return lengthVal * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
+            return lengthVal * UnitConverter.HostToDynamoFactor(SpecTypeId.Length);
          }
       }
 
@@ -279,7 +279,7 @@ namespace Revit.Elements
                    throw new Exception(Properties.Resources.CurtainPanelIsNotRectangular);
                result = cLoop.GetRectangularWidth(cLoop.GetPlane());
             }
-            return result * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
+            return result * UnitConverter.HostToDynamoFactor(SpecTypeId.Length);
          }
       }
        /// <summary>
@@ -311,7 +311,7 @@ namespace Revit.Elements
                    throw new Exception(Properties.Resources.CurtainPanelIsNotRectangular);
                result = cLoop.GetRectangularHeight(cLoop.GetPlane());
             }
-            return result * UnitConverter.HostToDynamoFactor(UnitType.UT_Length);
+            return result * UnitConverter.HostToDynamoFactor(SpecTypeId.Length);
          }
       }
 

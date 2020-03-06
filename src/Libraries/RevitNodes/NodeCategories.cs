@@ -4,6 +4,7 @@
     {
         public const string REVIT = "Revit";
         public const string REVIT_DOCUMENT = "Revit.Document";
+        public const string REVIT_WARNING = "Revit.Warning";
         public const string REVIT_DATUMS = "Revit.Datums";
         public const string REVIT_FAMILIES = "Revit.Families";
         public const string REVIT_SELECTION = "Revit.Selection";

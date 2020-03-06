@@ -97,7 +97,7 @@ namespace Revit.Elements.InternalUtilities
                     result = param.AsInteger();
                     break;
                 case StorageType.Double:
-                    result = param.AsDouble() * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(param.Definition.UnitType);
+                    result = param.AsDouble() * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(param.Definition.GetSpecTypeId());
                     break;
                 default:
                     throw new Exception(string.Format(Properties.Resources.ParameterWithoutStorageType, param));
@@ -114,7 +114,7 @@ namespace Revit.Elements.InternalUtilities
             if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
                 throw new Exception(Properties.Resources.ParameterStorageNotNumber);
 
-            var valueToSet = value * UnitConverter.DynamoToHostFactor(param.Definition.UnitType);
+            var valueToSet = value * UnitConverter.DynamoToHostFactor(param.Definition.GetSpecTypeId());
 
             param.Set(valueToSet);
         }
@@ -134,7 +134,7 @@ namespace Revit.Elements.InternalUtilities
             if (param.StorageType != StorageType.Integer && param.StorageType != StorageType.Double)
                 throw new Exception(Properties.Resources.ParameterStorageNotNumber);
 
-            var valueToSet = value * UnitConverter.DynamoToHostFactor(param.Definition.UnitType);
+            var valueToSet = value * UnitConverter.DynamoToHostFactor(param.Definition.GetSpecTypeId());
 
             param.Set(valueToSet);
         }

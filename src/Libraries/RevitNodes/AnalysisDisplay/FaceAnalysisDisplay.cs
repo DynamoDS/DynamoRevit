@@ -29,6 +29,9 @@ namespace Revit.AnalysisDisplay
         /// </summary>
         /// <param name="view"></param>
         /// <param name="data"></param>
+        /// <param name="resultsName"></param>
+        /// <param name="description"></param>
+        /// <param name="unitType"></param>
         protected FaceAnalysisDisplay(
             Autodesk.Revit.DB.View view, ISurfaceData<Autodesk.DesignScript.Geometry.UV, double> data, string resultsName, string description,Type unitType)
         {
@@ -122,6 +125,7 @@ namespace Revit.AnalysisDisplay
         /// Show a colored Face Analysis Display in the Revit view.
         /// </summary>
         /// <param name="view">The view into which you want to draw the analysis results.</param>
+        /// <param name="surface">The surface which you want to show color.</param>
         /// <param name="sampleLocations">The locations at which you want to create analysis values.</param>
         /// <param name="samples">The analysis values at the given locations.</param>
         /// <param name="name">An optional analysis results name to show on the results legend.</param>

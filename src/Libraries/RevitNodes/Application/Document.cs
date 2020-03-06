@@ -6,7 +6,6 @@ using Revit.GeometryConversion;
 using System;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;

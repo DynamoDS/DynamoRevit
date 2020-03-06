@@ -309,7 +309,6 @@ namespace Revit.Elements
         /// <summary>
         /// Get hash code.
         /// </summary>
-        /// <param name="obj"></param>
         /// <returns></returns>
         [IsVisibleInDynamoLibrary(false)]
         public override int GetHashCode()
@@ -529,13 +528,13 @@ namespace Revit.Elements
         /// Gets all elements hosted by the supplied element
         /// </summary>
         /// <param name="includeOpenings">Include rectangular openings in output</param>
-        /// <param name="includeShadows">Include shadows in output</param>
+        /// <param name="includeHostedElementsOfJoinedHosts">Include the hosted elements from the multiple joined hosts in output</param>
         /// <param name="includeEmbeddedWalls">Include embedded walls in output</param>
         /// <param name="includeSharedEmbeddedInserts">Include shared embedded elements in output</param>
         /// <returns>Hosted Elements</returns>
         public IEnumerable<Element> GetHostedElements(
             bool includeOpenings = false,
-            bool includeShadows = false,
+            bool includeHostedElementsOfJoinedHosts = false,
             bool includeEmbeddedWalls = false,
             bool includeSharedEmbeddedInserts = false)
         {
@@ -546,7 +545,7 @@ namespace Revit.Elements
 
             IList<ElementId> inserts = hostObject
                 .FindInserts(includeOpenings,
-                             includeShadows,
+                             includeHostedElementsOfJoinedHosts,
                              includeEmbeddedWalls,
                              includeSharedEmbeddedInserts);
 
@@ -604,6 +603,19 @@ namespace Revit.Elements
                     };
                     geomElement = thisElement.get_Geometry(goptions1);
                 }
+            }
+
+            // FamilySymbol is a special case: the symbol must be activated before geometry is available, unless an instance is already present in the model
+            else if ((thisElement is FamilySymbol) && (geomElement == null || !geomElement.Any()))
+            {
+                var fs = (FamilySymbol)thisElement;
+                if (!fs.IsActive)
+                {
+                    fs.Activate();
+                    DocumentManager.Regenerate();
+                    geomElement = fs.get_Geometry(goptions0);
+                }
+
             }
 
             return CollectConcreteGeometry(geomElement, useSymbolGeometry);
@@ -780,12 +792,12 @@ namespace Revit.Elements
         private IEnumerable<Element> GetElementChildren(Autodesk.Revit.DB.Element element)
         {
             List<Element> components = new List<Element>();
-            string categoryId = element.Category.Id.ToString();
+            int categoryId = element.Category.Id.IntegerValue;
             if (!Enum.IsDefined(typeof(BuiltInCategory), categoryId))
                 throw new InvalidOperationException(Properties.Resources.NotBuiltInCategory);
-                
+
             BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
-                                                                                 categoryId);
+                                                                                 categoryId.ToString());
 
 
             // By default we use the GetSubComponentIds() on the elements FamilyInstance, 
@@ -891,8 +903,12 @@ namespace Revit.Elements
         private Element GetParentElementFromElement(Autodesk.Revit.DB.Element element)
         {
             Autodesk.Revit.DB.Element parent;
+            int categoryId = element.Category.Id.IntegerValue;
+            if (!Enum.IsDefined(typeof(BuiltInCategory), categoryId))
+                throw new InvalidOperationException(Properties.Resources.NotBuiltInCategory);
+
             BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
-                                                                                 element.Category.Id.ToString());
+                                                                                 categoryId.ToString());
 
             // By default we use the SuperComponent on the elements FamilyInstance to get the Parent Element, 
             // for now the node also handles special cases including Stairs, StructuralFramingSystems and Railings 

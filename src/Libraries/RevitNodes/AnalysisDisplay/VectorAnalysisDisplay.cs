@@ -60,6 +60,7 @@ namespace Revit.AnalysisDisplay
         /// Set the spatial field values for the current spatial field primitive.  The two 
         /// input sequences should be of the same length.
         /// </summary>
+        /// <param name="primitiveId"></param>
         /// <param name="data"></param>
         /// <param name="schemaName"></param>
         /// <param name="description"></param>
@@ -91,7 +92,7 @@ namespace Revit.AnalysisDisplay
         /// Show a Vector Analysis Display in the Revit view.
         /// </summary>
         /// <param name="view">The view into which you want to draw the analysis results.</param>
-        /// <param name="samplePoints">The locations at which you want to create analysis values.</param>
+        /// <param name="sampleLocations">The locations at which you want to create analysis values.</param>
         /// <param name="samples">The analysis values at the given locations.</param>
         /// <param name="name">An optional analysis results name to show on the results legend.</param>
         /// <param name="description">An optional analysis results description to show on the results legend.</param>

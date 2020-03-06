@@ -412,7 +412,7 @@ namespace Revit.Elements
             }
 
             return new ReferencePoint(ElementCurveReference.TryGetCurveReference(elementCurveReference).InternalReference,
-                UnitConverter.DynamoToHostFactor(UnitType.UT_Length) * length, PointOnCurveMeasurementType.SegmentLength, PointOnCurveMeasureFrom.Beginning);
+                UnitConverter.DynamoToHostFactor(SpecTypeId.Length) * length, PointOnCurveMeasurementType.SegmentLength, PointOnCurveMeasureFrom.Beginning);
         }
 
         /// <summary>

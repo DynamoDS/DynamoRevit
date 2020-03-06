@@ -105,12 +105,6 @@ namespace Revit.AnalysisDisplay
         #region Static helper methods
 
         /// <summary>
-        /// The unique name for Dynamo's Analysis Results.  Used to identify
-        /// the results scheme.
-        /// </summary>
-        //protected static string ResultsSchemaName = "Dynamo Analysis Results";
-
-        /// <summary>
         /// Get the AnalysisResultsSchemaIndex for the SpatialFieldManager
         /// </summary>
         /// <returns></returns>
@@ -242,7 +236,7 @@ namespace Revit.AnalysisDisplay
         /// Set the SpatialFieldManager and PrimitiveId in Thread Local Storage
         /// </summary>
         /// <param name="manager"></param>
-        /// <param name="map"></param>
+        /// <param name="primitiveIds"></param>
         protected void SetElementAndPrimitiveIdsForTrace(SpatialFieldManager manager, List<int> primitiveIds)
         {
             if (manager == null)
