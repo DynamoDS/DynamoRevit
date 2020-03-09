@@ -57,7 +57,7 @@
         {
           "Id": "5a3713ebd3eb4082bae28ffce88d2390",
           "Name": "index",
-          "Description": "The index on the ElevationMarker where the new elevation ViewSection will be placed.\n\nint",
+          "Description": "The index on the ElevationMarker where the new elevation ViewSection will be placed. The elevation marker can have up to four views, indexed from 0 to 3.\n\nint",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -77,56 +77,6 @@
       ],
       "Replication": "Auto",
       "Description": "Creates a new elevation ViewSection on the ElevationMarker at the desired index.\n\nElevationMarker.CreateElevationByMarkerIndex (planView: View, index: int): SectionView"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "archilab.Revit.Selection.Select.ByElementId@var",
-      "Id": "6aae3a4486e94505ad14c10ffcc8ac0b",
-      "Inputs": [
-        {
-          "Id": "5ae5e570eadc46859437468b5c3950ce",
-          "Name": "id",
-          "Description": "ElementId, String, Guid or Integer id of the element.\n\nvar",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "183e3a0961c44a4890b772306e92dec3",
-          "Name": "Element",
-          "Description": "Found element or null.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Select Element by Id\n\nSelect.ByElementId (id: var): var[]..[]"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "NodeType": "CodeBlockNode",
-      "Code": "312;",
-      "Id": "25bf897ba5824a198f2abda3c22560ea",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "6cef1f6e62fb4460b619e1fcfd0a8164",
-          "Name": "",
-          "Description": "Value of expression at line 1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
@@ -177,6 +127,27 @@
       ],
       "Replication": "Auto",
       "Description": "Get the Name of the Element\n\nElement.Name: string"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 15,
+      "SelectedString": "Level 0",
+      "NodeType": "ExtensionNode",
+      "Id": "3de70e2ae9b04aa3b85ca25070d35d90",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f0e3091ed2c342b5975b8ac5ad2c26f3",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
     }
   ],
   "Connectors": [
@@ -191,39 +162,25 @@
       "Id": "6cd779896d2b4bf58f354a96cf698fac"
     },
     {
-      "Start": "183e3a0961c44a4890b772306e92dec3",
-      "End": "098ab624230c42219aa6e2f3563444e8",
-      "Id": "8040a3c8b3e5400b827ca93b1a3a8792"
-    },
-    {
-      "Start": "6cef1f6e62fb4460b619e1fcfd0a8164",
-      "End": "5ae5e570eadc46859437468b5c3950ce",
-      "Id": "888c09c8b8e14aa2b42a207769fca3f4"
-    },
-    {
       "Start": "3012832174ca4142bd2e1d9218650333",
       "End": "5a3713ebd3eb4082bae28ffce88d2390",
       "Id": "812c1852d55847438b1225fb92e84429"
+    },
+    {
+      "Start": "f0e3091ed2c342b5975b8ac5ad2c26f3",
+      "End": "098ab624230c42219aa6e2f3563444e8",
+      "Id": "e5ee369d53194839b2ea38ae4fa95e12"
     }
   ],
   "Dependencies": [],
-  "NodeLibraryDependencies": [
-    {
-      "Name": "archi-lab.net",
-      "Version": "2020.22.9",
-      "ReferenceType": "Package",
-      "Nodes": [
-        "6aae3a4486e94505ad14c10ffcc8ac0b"
-      ]
-    }
-  ],
+  "NodeLibraryDependencies": [],
   "Bindings": [],
   "View": {
     "Dynamo": {
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.0.7237",
+      "Version": "2.5.0.7460",
       "RunType": "Manual",
       "RunPeriod": "1000"
     },
@@ -262,26 +219,6 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "Select.ByElementId",
-        "Id": "6aae3a4486e94505ad14c10ffcc8ac0b",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 17.948228535997259,
-        "Y": 524.27104237803837
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Code Block",
-        "Id": "25bf897ba5824a198f2abda3c22560ea",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": -121.75370102946431,
-        "Y": 529.62795926954038
-      },
-      {
-        "ShowGeometry": true,
         "Name": "Code Block",
         "Id": "360ac6e4068b4cd398e621ad58483e6a",
         "IsSetAsInput": false,
@@ -299,11 +236,21 @@
         "Excluded": false,
         "X": 768.45702526553634,
         "Y": 451.55871587573426
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "3de70e2ae9b04aa3b85ca25070d35d90",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 32.745178750408456,
+        "Y": 506.70998211529945
       }
     ],
     "Annotations": [],
-    "X": 303.44993079353418,
-    "Y": 8.8108983900212365,
+    "X": 173.44993079353418,
+    "Y": -38.189101609978763,
     "Zoom": 0.562571377685688
   }
 }
