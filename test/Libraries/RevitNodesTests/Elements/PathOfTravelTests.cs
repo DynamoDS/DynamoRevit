@@ -15,6 +15,61 @@ namespace RevitNodesTests.Elements
    {
       [Test]
       [TestModel(@".\Empty.rvt")]
+      public void LongestOfShortestExitPaths_NullView()
+      {
+         Assert.Throws(
+            typeof(System.ArgumentNullException),
+            () => PathOfTravel.LongestOfShortestExitPaths(
+               null,
+               new Point[] { Point.ByCoordinates(0, 0, 0) }));
+      }
+
+      [Test]
+      [TestModel(@".\Empty.rvt")]
+      public void LongestOfShortestExitPaths_NullExitPointsArray()
+      {
+         Assert.Throws(
+            typeof(System.ArgumentNullException),
+            () => PathOfTravel.LongestOfShortestExitPaths(
+               GetFloorPlan(),
+               null));
+      }
+
+      [Test]
+      [TestModel(@".\Empty.rvt")]
+      public void LongestOfShortestExitPaths_EmptyExitPointsArray()
+      {
+         Assert.Throws(
+            typeof(System.ArgumentException),
+            () => PathOfTravel.LongestOfShortestExitPaths(
+               GetFloorPlan(),
+               new Point[] { }));
+      }
+
+      [Test]
+      [TestModel(@".\Empty.rvt")]
+      public void LongestOfShortestExitPaths_NullsInExitPointsArray()
+      {
+         Assert.Throws(
+            typeof(System.ArgumentException),
+            () => PathOfTravel.LongestOfShortestExitPaths(
+               GetFloorPlan(),
+               new Point[] { Point.ByCoordinates(0, 0, 0), null }));
+      }
+
+      [Test]
+      [TestModel(@".\Empty.rvt")]
+      public void LongestOfShortestExitPaths_NoRoomsInFloor()
+      {
+         Assert.Throws(
+            typeof(System.ArgumentException),
+            () => PathOfTravel.LongestOfShortestExitPaths(
+               GetFloorPlan(),
+               new Point[] { Point.ByCoordinates(0, 0, 0) }));
+      }
+
+      [Test]
+      [TestModel(@".\Empty.rvt")]
       public void Create_ValidArgs()
       {
          var pathOfTravelOneToOne = PathOfTravel.ByFloorPlanPoints(

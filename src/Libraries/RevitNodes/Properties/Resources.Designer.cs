@@ -1042,6 +1042,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot find Rooms for longest path computaion.
+        /// </summary>
+        internal static string RoomsForLongestPathNotFound {
+            get {
+                return ResourceManager.GetString("RoomsForLongestPathNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The number of sample points and number of samples must be the same..
         /// </summary>
         internal static string SamplePointsMismatchError {
