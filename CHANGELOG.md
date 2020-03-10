@@ -1,5 +1,7 @@
+## 0.1.16
 * Update Assembly Shared Info for Revit 2021
 * Update RevitAPI folder name to net48.
+* Update DynamoCore Runtime to 2.5.2.7915
 
 ## 0.1.15
 * Update .Net to 4.8.
