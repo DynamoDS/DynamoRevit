@@ -1042,7 +1042,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot find Rooms for longest path computaion.
+        ///   Looks up a localized string similar to Rooms are required to compute longest Paths of Travel.
         /// </summary>
         internal static string RoomsForLongestPathNotFound {
             get {

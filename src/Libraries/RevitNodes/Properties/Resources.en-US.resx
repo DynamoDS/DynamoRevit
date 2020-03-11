@@ -481,6 +481,6 @@
     <value>Family type does not exist in the document.</value>
   </data>
   <data name="RoomsForLongestPathNotFound" xml:space="preserve">
-    <value>Cannot find Rooms for longest path computaion</value>
+    <value>Rooms are required to compute longest Paths of Travel.</value>
   </data>
 </root>
