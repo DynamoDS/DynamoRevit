@@ -19,8 +19,8 @@ git clone https://github.com/DynamoDS/DynamoRevit.git
 ```
 - Get the branch for the version of Revit you want to use. For the latest release of Revit or a preview release, master may be fine. Otherwise, run `git checkout Revit2019` or similar.
 - Make sure you have the following installed on your computer:
-   - [.Net Framework 4.7 SDK](https://www.microsoft.com/en-us/download/details.aspx?id=55168) 
-   - [IronPython 2.7](
+   - [.Net Framework 4.8 SDK](https://dotnet.microsoft.com/download) 
+   - [IronPython 2.7]
 - Run `restorepackages.bat` from a command prompt with administrative privileges.
 - Set the `RevitVersionNumber` environment variable to the Revit version you're building against (e.g. `2020`) either in the system environment or in the [user_locals.props](https://github.com/DynamoDS/DynamoRevit/blob/Revit2017/src/Config/user_local.props) file in your build folder.
 - Open `DynamoRevit.All.sln` in Visual Studio, and select a build configuration (Debug | Release)
