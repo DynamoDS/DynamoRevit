@@ -1137,4 +1137,66 @@ namespace DSRevitNodesUI
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
         }
     }
+
+    [NodeName("View Family Types")]
+    [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
+    [NodeDescription("ViewFamilyTypesDescription", typeof(Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class ViewFamilyTypes : RevitDropDownBase
+    {
+        private const string outputName = "ViewFamilyType";
+
+        public ViewFamilyTypes() : base(outputName) { }
+
+        [JsonConstructor]
+        public ViewFamilyTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
+
+        protected override SelectionState PopulateItemsCore(string currentSelection)
+        {
+            Items.Clear();
+
+            //find all views in the project
+            //exclude <RevisionSchedule> (revision tables on sheets) from list
+            var viewFamilyTypes = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(ViewFamilyType))
+                .ToList();
+
+            //there must always be at least 1 view in a Revit document, so we can exclude the empty list check
+            foreach (var i in viewFamilyTypes)
+            {
+                Items.Add(new DynamoDropDownItem(i.Name, i));
+            }
+            Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+
+            return SelectionState.Restore;
+        }
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            AssociativeNode node;
+            if (!CanBuildOutputAst())
+            {
+                node = AstFactory.BuildNullNode();
+            }
+            else
+            {
+                var view = Items[SelectedIndex].Item as ViewFamilyType;
+                if (view == null)
+                {
+                    node = AstFactory.BuildNullNode();
+                }
+                else
+                {
+                    var idNode = AstFactory.BuildStringNode(view.UniqueId);
+                    var falseNode = AstFactory.BuildBooleanNode(true);
+
+                    node =
+                        AstFactory.BuildFunctionCall(
+                            new Func<string, bool, object>(ElementSelector.ByUniqueId),
+                            new List<AssociativeNode>() { idNode, falseNode });
+                }
+            }
+
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
+        }
+    }
 }

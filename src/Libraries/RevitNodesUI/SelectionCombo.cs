@@ -42,13 +42,19 @@ namespace Dynamo.ComboNodes
 
         public DSRevitNodesUI.Categories DropDownNodeModel { get; set; }
 
-        public int SelectedIndex 
+        private int selectedIndex;
+
+        [JsonProperty(PropertyName = "SelectedIndex")]
+        public int SelectedIndex
         {
-            get { return DropDownNodeModel.SelectedIndex; }
-            set 
-            { 
+            get { return selectedIndex; }
+            set
+            {
+                selectedIndex = value;
                 DropDownNodeModel.SelectedIndex = value;
-                SelectionFilter.Category = (BuiltInCategory)DropDownNodeModel.Items[value].Item;
+                if (value >= 0)
+                    SelectionFilter.Category = (BuiltInCategory)DropDownNodeModel.Items[SelectedIndex].Item;
+                
             }
         }
 
@@ -60,6 +66,7 @@ namespace Dynamo.ComboNodes
                 prefix)
         {
             DropDownNodeModel = new DSRevitNodesUI.Categories();
+            SelectedIndex = DropDownNodeModel.SelectedIndex;
             SelectionFilter = new CategoryElementSelectionFilter<Element>();
             base.Filter = SelectionFilter;
         }
@@ -76,10 +83,18 @@ namespace Dynamo.ComboNodes
                 inPorts,
                 outPorts)
         {
+            DropDownNodeModel = new DSRevitNodesUI.Categories();
+            SelectionFilter = new CategoryElementSelectionFilter<Element>();
+            base.Filter = SelectionFilter;
         }
     }
 
     #endregion
+
+    public class CategoryDropDown : DSRevitNodesUI.Categories
+    {
+        public CategoryDropDown() : base() { }
+    }
 
     #region Node View Customization
 
