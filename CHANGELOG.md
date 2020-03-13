@@ -1,3 +1,6 @@
+## 0.2.8
+* Update DynamoCore Runtime to 2.5.2.7915
+
 ## 0.2.7
 * Fix CI build error.
 
