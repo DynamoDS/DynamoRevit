@@ -1,3 +1,5 @@
+* Update RayBounce_SunStudy test.
+
 ## 0.2.8
 * Update DynamoCore Runtime to 2.5.2.7915
 
