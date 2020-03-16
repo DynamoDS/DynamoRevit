@@ -1,4 +1,7 @@
 * Update RayBounce_SunStudy test.
+* Update some system test which category is failure.
+* Add new Sheet nodes.
+* Add new Selection Nodes.
 
 ## 0.2.8
 * Update DynamoCore Runtime to 2.5.2.7915
