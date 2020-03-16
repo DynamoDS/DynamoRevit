@@ -6,12 +6,13 @@ using Autodesk.DesignScript.Geometry;
 using Autodesk.Revit.DB;
 using CoreNodeModels;
 using DSRevitNodesUI;
+using Dynamo.Applications.Models;
+using Dynamo.ComboNodes;
 using Dynamo.Graph.Nodes;
 using Dynamo.Interfaces;
 using Dynamo.Models;
 using Dynamo.Nodes;
 using Dynamo.Tests;
-
 using NUnit.Framework;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
@@ -612,6 +613,115 @@ namespace RevitSystemTests
         }
 
 
+        [Test]
+        [TestModel(@".\Selection\DynamoSample.rvt")]
+        public void SelectModelElementsByCategory()
+        {
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectModelElementsByCategory.dyn"));
+            TestMultipleCategorySelection<Element, Element>();
+        }
+ 
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void SelectRoomsByStatus()
+        {
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectRoomsByStatus.dyn"));
+
+            RunCurrentModel();
+
+            var selectNode =
+                ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<RevitNodeModel>();
+            Assert.NotNull(selectNode);
+
+            var expectedElementsCategoryString = "Rooms";
+            var outputDictionary = GetPreviewValue(selectNode.GUID.ToString());
+            Assert.NotNull(outputDictionary);
+
+            var placedRooms = GetPreviewCollection("e512c62255eb4a349ce7126af54ef03d");
+            var unplacedRooms = GetPreviewCollection("ae185814931b4acfbe92d38a9abfc79b");
+            var notEnclosedRooms = GetPreviewCollection("b3959f94df634a3787ae421dc8e5f409");
+            var redundantRooms = GetPreviewCollection("bc195cf9592b4e7bb8574414ae149f1b");
+
+            Assert.NotNull(placedRooms);
+            Assert.NotNull(unplacedRooms);
+            Assert.NotNull(notEnclosedRooms);
+            Assert.NotNull(redundantRooms);
+
+            AssertElementCategoryOnCollection(placedRooms, expectedElementsCategoryString);
+            AssertElementCategoryOnCollection(unplacedRooms, expectedElementsCategoryString);
+            AssertElementCategoryOnCollection(notEnclosedRooms, expectedElementsCategoryString);
+            AssertElementCategoryOnCollection(redundantRooms, expectedElementsCategoryString);
+
+        }
+
+
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void SelectModelElementById()
+        {
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectModelElementById.dyn"));
+
+            RunCurrentModel();
+
+            var selectNode =
+                ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<RevitNodeModel>();
+            Assert.NotNull(selectNode);
+
+            var expectedId = 184176;
+            var element = GetPreviewValue(selectNode.GUID.ToString()) as Revit.Elements.Element;
+            Assert.NotNull(element);
+            Assert.AreEqual(expectedId, element.Id);
+        }
+
+
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void RoofTypesDropDown()
+        {
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\RoofTypesDropDown.dyn"));
+
+            RunCurrentModel();
+
+            var selectNode =
+                ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<RevitDropDownBase>();
+            Assert.NotNull(selectNode);
+
+            var element = GetPreviewValue(selectNode.GUID.ToString()) as Revit.Elements.RoofType;
+            Assert.NotNull(element);
+        }
+
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void SheetsDropDown()
+        {
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SheetsDropDown.dyn"));
+
+            RunCurrentModel();
+
+            var selectNode =
+                ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<RevitDropDownBase>();
+            Assert.NotNull(selectNode);
+
+            var element = GetPreviewValue(selectNode.GUID.ToString()) as Revit.Elements.Views.Sheet;
+            Assert.NotNull(element);
+        }
+
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void ViewFamilyTypesDropDown()
+        {
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\ViewFamilyTypesDropDown.dyn"));
+
+            RunCurrentModel();
+
+            var selectNode =
+                ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<RevitDropDownBase>();
+            Assert.NotNull(selectNode);
+
+            var element = GetPreviewValue(selectNode.GUID.ToString());
+            Assert.NotNull(element);
+        }
+
         # region Private Methods
 
         private int DeleteWallAndRun<T>(string testGuid)
@@ -649,7 +759,15 @@ namespace RevitSystemTests
             return fec.ToElements().Cast<Wall>().ToList();
         }
 
-
+        private void AssertElementCategoryOnCollection(List<object> collection, string expectedCategory)
+        {
+            for (int i = 0; i < collection.Count(); i++)
+            {
+                // assert all selected elements are of the selected category
+                var elem = collection[i] as Revit.Elements.Element;
+                Assert.AreEqual(expectedCategory, elem.GetCategory.Name);
+            }
+        }
 
         /// <summary>
         /// Find the first selection node in a graph, run the graph
@@ -715,6 +833,33 @@ namespace RevitSystemTests
             Assert.NotNull(elements);
             Assert.IsTrue(selectNode.State != ElementState.Warning);
             Assert.Greater(elements.Count(), 0);
+            selectNode.ClearSelections();
+            RunCurrentModel();
+            elements = GetPreviewCollection(selectNode.GUID.ToString());
+            Assert.Null(elements);
+            Assert.IsTrue(selectNode.State == ElementState.Warning);
+        }
+
+        private void TestMultipleCategorySelection<T1, T2>()
+        {
+            RunCurrentModel();
+
+            var selectNode =
+                ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<RevitSelection<T1, T2>>();
+            Assert.NotNull(selectNode);
+
+            string expectedCategoryString = "Walls";
+
+            var elements = GetPreviewCollection(selectNode.GUID.ToString());
+            Assert.NotNull(elements);
+            Assert.IsTrue(selectNode.State != ElementState.Warning);
+            Assert.Greater(elements.Count(), 0);
+            for (int i = 0; i < elements.Count(); i++)
+            {
+                // assert all selected elements are of the selected category
+                var elem = elements[i] as Revit.Elements.Element;
+                Assert.AreEqual(expectedCategoryString, elem.GetCategory.Name);
+            }
             selectNode.ClearSelections();
             RunCurrentModel();
             elements = GetPreviewCollection(selectNode.GUID.ToString());
