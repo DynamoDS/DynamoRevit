@@ -71,6 +71,9 @@
     <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs">
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
+    <Compile Include="Controls\ComboControl.xaml.cs">
+      <DependentUpon>ComboControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Elements.cs" />
     <Compile Include="FamilyInstanceParametersNodeViewCustomization.cs" />
     <Compile Include="GenericClasses.cs" />
@@ -88,6 +91,7 @@
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
     <Compile Include="RevitTypes.cs" />
+    <Compile Include="SelectionCombo.cs" />
     <Compile Include="SelectionNodeViewCustomizations.cs" />
     <Compile Include="SiteLocation.cs" />
     <Compile Include="RevitDropDown.cs" />
@@ -131,6 +135,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\ComboControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LocationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

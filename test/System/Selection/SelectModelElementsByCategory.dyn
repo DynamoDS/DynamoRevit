@@ -1,0 +1,113 @@
+{
+  "Uuid": "b6d48342-2344-4124-839d-457c27c20338",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "SelectModelElementsByCategory",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.ComboNodes.DSModelElementByCategorySelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "ef57b02a-5e81-49e7-93bb-ae5f002d921c-00030826",
+        "ef57b02a-5e81-49e7-93bb-ae5f002d921c-0003085d",
+        "88b03b05-80d3-484f-8022-471f61604c8d-00039575",
+        "72678df9-14a3-4aee-a80e-94a8e55a0926-0006611f",
+        "59371552-5800-43eb-9ba3-609565158fc5-00067163",
+        "59371552-5800-43eb-9ba3-609565158fc5-000674bb",
+        "59371552-5800-43eb-9ba3-609565158fc5-00067bda",
+        "7fcc8dca-3132-4323-9d41-faf5184b4f26-00067f11",
+        "c85e5be0-d8d5-4148-836f-b55e711ef373-00068a2c",
+        "c85e5be0-d8d5-4148-836f-b55e711ef373-00068ac9",
+        "c85e5be0-d8d5-4148-836f-b55e711ef373-00068afd",
+        "17836a3c-e764-47fa-a2e0-08216444f621-0007882c",
+        "17836a3c-e764-47fa-a2e0-08216444f621-00078881",
+        "17836a3c-e764-47fa-a2e0-08216444f621-000788de",
+        "17836a3c-e764-47fa-a2e0-08216444f621-00078937",
+        "c95e858d-9206-4eac-9a88-fccee0e2b73b-00081702",
+        "fe746f97-9f89-4685-8fa8-a4525719f180-00092721",
+        "fe746f97-9f89-4685-8fa8-a4525719f180-00092762",
+        "fe746f97-9f89-4685-8fa8-a4525719f180-0009278f",
+        "5b7ac240-e9a7-43b2-b6bf-246956549a40-00099178",
+        "5b7ac240-e9a7-43b2-b6bf-246956549a40-00099411",
+        "5b7ac240-e9a7-43b2-b6bf-246956549a40-0009972b",
+        "e2eeab38-f437-4dce-846b-cb64191c9fcc-000acc8a",
+        "e2eeab38-f437-4dce-846b-cb64191c9fcc-000acdf8",
+        "e2eeab38-f437-4dce-846b-cb64191c9fcc-000ad27d",
+        "a03add59-4d19-48e3-b25b-2f947f402211-000b620d",
+        "a03add59-4d19-48e3-b25b-2f947f402211-000b62fb",
+        "a03add59-4d19-48e3-b25b-2f947f402211-000b645d",
+        "a03add59-4d19-48e3-b25b-2f947f402211-000b648a",
+        "a03add59-4d19-48e3-b25b-2f947f402211-000b650e",
+        "c82e0dd9-31e8-407e-a294-c30431c2fda3-000bae53",
+        "c82e0dd9-31e8-407e-a294-c30431c2fda3-000baeb4",
+        "f565bef9-7d27-4781-b8d4-60f4a6034d87-000ce5d2",
+        "98e2f96c-ccbd-4abb-a697-e7e5136106ee-000cec5b",
+        "98e2f96c-ccbd-4abb-a697-e7e5136106ee-000cee4c",
+        "b3a4a465-08e5-441a-bd3e-d967e546d52e-000dd685",
+        "ab343b7e-3705-4b87-bacc-33c06a6cee1d-000ee76a",
+        "ab343b7e-3705-4b87-bacc-33c06a6cee1d-000ee9e1"
+      ],
+      "Id": "e45593c060334ac6af02a58f113d7d91",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "be08b53c66204bc697a5ef835afae6fd",
+          "Name": "Elements",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    }
+  ],
+  "Connectors": [],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7733",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Elements By Category",
+        "Id": "e45593c060334ac6af02a58f113d7d91",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 145.33333333333331,
+        "Y": 241.33333333333331
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}
