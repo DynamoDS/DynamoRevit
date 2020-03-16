@@ -60,27 +60,6 @@
       "Description": "Get an existing element's location\n\nElement.GetLocation ( ): Geometry"
     },
     {
-      "ConcreteType": "RhythmUI.ViewFamilyTypes, RhythmUI",
-      "SelectedIndex": 0,
-      "SelectedString": "10mm Circle",
-      "NodeType": "ExtensionNode",
-      "Id": "2217de32f4a148179c47c9ac1f8d8dcf",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "b007dd131ed64497bb9fb61e8d24c6fe",
-          "Name": "ViewFamilyTypes",
-          "Description": "The selected ViewFamilyTypes",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Allows you to select a view family type from your file"
-    },
-    {
       "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
       "NodeType": "ExtensionNode",
       "InstanceId": [
@@ -178,6 +157,27 @@
       ],
       "Replication": "Auto",
       "Description": "Creates a new ElevationMarker.\n\nElevationMarker.ByViewTypeLocation (viewFamilyType: Element, location: Point, initialViewScale: int): ElevationMarker"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ViewFamilyTypes, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "10mm Circle",
+      "NodeType": "ExtensionNode",
+      "Id": "d2f59ff63fa0428e80fca06a673db82b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "17485a5ac462496192bef504937827c2",
+          "Name": "ViewFamilyType",
+          "Description": "The selected ViewFamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "ViewFamilyTypesDescription"
     }
   ],
   "Connectors": [
@@ -192,11 +192,6 @@
       "Id": "fcec416b2f3e465384b29b3e3f76875f"
     },
     {
-      "Start": "b007dd131ed64497bb9fb61e8d24c6fe",
-      "End": "ef32900439584b64862d83ec9e39e067",
-      "Id": "d1a5d6591b994c908d055b23242b0b55"
-    },
-    {
       "Start": "6f85a0d478604a88bc3c857be81b562b",
       "End": "04f781a789f34496a793d5ec77840bb2",
       "Id": "9b775117e0e643469880013d7477ec7b"
@@ -205,26 +200,22 @@
       "Start": "59684330bbbd4a88a7ed11d600b85220",
       "End": "ce7e3aab99944d0c92d4cf837dbc5130",
       "Id": "82fca5bcd9e3454994db881945703401"
+    },
+    {
+      "Start": "17485a5ac462496192bef504937827c2",
+      "End": "ef32900439584b64862d83ec9e39e067",
+      "Id": "cb928945a328412aa99cd8f45eaf8ca9"
     }
   ],
   "Dependencies": [],
-  "NodeLibraryDependencies": [
-    {
-      "Name": "Rhythm",
-      "Version": "2019.12.4",
-      "ReferenceType": "Package",
-      "Nodes": [
-        "2217de32f4a148179c47c9ac1f8d8dcf"
-      ]
-    }
-  ],
+  "NodeLibraryDependencies": [],
   "Bindings": [],
   "View": {
     "Dynamo": {
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.0.7237",
+      "Version": "2.5.2.7915",
       "RunType": "Manual",
       "RunPeriod": "1000"
     },
@@ -263,16 +254,6 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "ViewFamilyTypes",
-        "Id": "2217de32f4a148179c47c9ac1f8d8dcf",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 221.46042728666896,
-        "Y": 424.25374402262457
-      },
-      {
-        "ShowGeometry": true,
         "Name": "Select Model Element",
         "Id": "409a34d3bd8b445ca673388ce7fb35e6",
         "IsSetAsInput": false,
@@ -300,6 +281,16 @@
         "Excluded": false,
         "X": 532.223495801873,
         "Y": 533.256981647325
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View Family Types",
+        "Id": "d2f59ff63fa0428e80fca06a673db82b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 236.49842869659665,
+        "Y": 404.06912793784005
       }
     ],
     "Annotations": [],
