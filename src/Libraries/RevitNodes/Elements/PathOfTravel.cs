@@ -76,14 +76,14 @@ namespace Revit.Elements
             throw new ArgumentException(Properties.Resources.EndPointListHasNulls, "endPtList");
 
          // Check that floor has some rooms
-         Rvt.Document doc = RevitServices.Persistence.DocumentManager.Instance.CurrentDBDocument;
+         Rvt.Document doc = DocumentManager.Instance.CurrentDBDocument;
 
          if(doc == null)
          {
             throw new ArgumentException(Properties.Resources.RoomsForLongestPathNotFound);
          }
 
-         Autodesk.Revit.DB.FilteredElementCollector collector = new Rvt.FilteredElementCollector(doc).OfCategory(Rvt.BuiltInCategory.OST_Rooms);
+         FilteredElementCollector collector = new Rvt.FilteredElementCollector(doc).OfCategory(Rvt.BuiltInCategory.OST_Rooms);
 
          if(collector.ToElements().Count() == 0)
          {
