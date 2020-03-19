@@ -18,7 +18,7 @@ namespace RevitSystemTests
     class ElevationMarkerTests : RevitSystemTestBase
     {
         
-        [Test, Ignore, Category("Failure")]
+        [Test]
         [TestModel(@".\ElevationMarker\elevationMarkerTests.rvt")]
         public void CanCreateElevationMarker()
         {

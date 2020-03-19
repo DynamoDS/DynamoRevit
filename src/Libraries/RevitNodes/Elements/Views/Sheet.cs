@@ -68,6 +68,11 @@ namespace Revit.Elements.Views
             SafeInit(() => InitSheet(sheetName, sheetNumber, titleBlockFamilySymbol, views));
         }
 
+        private Sheet(string sheetName, string sheetNumber, Autodesk.Revit.DB.FamilySymbol titleBlockFamilySymbol)
+        {
+            SafeInit(() => InitSheet(sheetName, sheetNumber, titleBlockFamilySymbol));
+        }
+
         #endregion
 
         #region Helpers for private constructors
@@ -157,6 +162,44 @@ namespace Revit.Elements.Views
 
             ElementBinder.SetElementForTrace(this.InternalElement);
 
+        }
+
+        /// <summary>
+        /// Initialize a Sheet element with a name, number and specific titleblock.
+        /// </summary>
+        /// <param name="sheetName">name of the sheet.</param>
+        /// <param name="sheetNumber">sheet number.</param>
+        /// <param name="titleBlockFamilySymbol">sheet titleblock.</param>
+        private void InitSheet(string sheetName, string sheetNumber, Autodesk.Revit.DB.FamilySymbol titleBlockFamilySymbol)
+        {
+            //Phase 1 - Check to see if the object exists
+            var oldEle =
+                ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.ViewSheet>(Document);
+
+            // Rebind to Element
+            if (oldEle != null)
+            {
+                InternalSetViewSheet(oldEle);
+                InternalSetSheetName(sheetName);
+                InternalSetSheetNumber(sheetNumber);
+                InternalSetTitleBlock(titleBlockFamilySymbol.Id);
+
+                return;
+            }
+
+            //Phase 2 - There was no existing Element, create new one
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            // create sheet with title block ID
+            var sheet = Autodesk.Revit.DB.ViewSheet.Create(Document, titleBlockFamilySymbol.Id);
+
+            InternalSetViewSheet(sheet);
+            InternalSetSheetName(sheetName);
+            InternalSetSheetNumber(sheetNumber);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            ElementBinder.SetElementForTrace(this.InternalElement);
         }
 
         #endregion
@@ -377,6 +420,27 @@ namespace Revit.Elements.Views
             }
 
             return Sheet.ByNameNumberTitleBlockAndViews(sheetName, sheetNumber, titleBlockFamilyType, new[] { view });
+        }
+
+        /// <summary>
+        /// Create a Revit Sheet by the sheet name, number and a title block FamilyType.
+        /// </summary>
+        /// <param name="sheetName">Sheet Name as String.</param>
+        /// <param name="sheetNumber">Sheet Number as String.</param>
+        /// <param name="titleBlockFamilyType">Titleblock that will be assigned to created Sheet.</param>
+        /// <returns>The new empty Revit sheet.</returns>
+        public static Sheet ByNameNumberTitleBlock(string sheetName, string sheetNumber, FamilyType titleBlockFamilyType)
+        {
+            if (sheetName == null)
+                throw new ArgumentNullException(nameof(sheetName));
+
+            if (sheetNumber == null)
+                throw new ArgumentNullException(nameof(sheetNumber));
+
+            if (titleBlockFamilyType == null)
+                throw new ArgumentNullException(nameof(titleBlockFamilyType));
+
+            return new Sheet(sheetName, sheetNumber, titleBlockFamilyType.InternalFamilySymbol);
         }
 
         #endregion

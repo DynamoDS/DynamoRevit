@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Autodesk.DesignScript.Runtime;
+using Autodesk.Revit.DB;
 using Revit.Elements.Views;
 using RevitServices.Persistence;
 
@@ -83,7 +84,7 @@ namespace Revit.Elements.InternalUtilities
                 .ToList();
         }
 
-        public static IList<Element> OfCategory(Category category, View view = null)
+        public static IList<Element> OfCategory(Category category, Revit.Elements.Views.View view = null)
         {
             if (category == null) return null;
 
@@ -115,11 +116,99 @@ namespace Revit.Elements.InternalUtilities
             return instances;
         }
 
+        public static Element ById(object id)
+        {
+            if (id == null)
+                return null;
+
+            // handle ElementId types first
+            if (id.GetType() == typeof(Autodesk.Revit.DB.ElementId))
+                return ElementSelector.ByElementId(((Autodesk.Revit.DB.ElementId)id).IntegerValue);
+
+            var idType = Type.GetTypeCode(id.GetType());
+            int intId;
+            Element element;
+
+            switch (idType)
+            {
+                case TypeCode.Int64:
+                    element = ElementSelector.ByElementId(Convert.ToInt32((long)id));
+                    break;
+
+                case TypeCode.Int32:
+                    element = ElementSelector.ByElementId((int)id);
+                    break;
+
+                case TypeCode.String:
+                    string idString = (string)id;
+                    if (Int32.TryParse(idString, out intId))
+                    {
+                        element = ElementSelector.ByElementId(intId);
+                        break;
+                    }
+
+                    element = ElementSelector.ByUniqueId(idString);
+                    break;
+                    
+                default:
+                    throw new InvalidOperationException(Revit.Properties.Resources.InvalidElementId);
+            }
+                
+            return element;
+        }
+
         internal static IEnumerable<Autodesk.Revit.DB.Level> GetAllLevels()
         {
             var collector = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             collector.OfClass(typeof(Autodesk.Revit.DB.Level));
             return collector.ToElements().Cast<Autodesk.Revit.DB.Level>();
+        }
+
+        public static List<List<Element>> RoomsByStatus()
+        {
+            var roomsByStatus = new List<List<Element>>();
+            Document doc = DocumentManager.Instance.CurrentDBDocument;
+            var allRooms = new FilteredElementCollector(doc)
+                .OfCategory(BuiltInCategory.OST_Rooms)
+                .WhereElementIsNotElementType()
+                .Cast<Autodesk.Revit.DB.Architecture.Room>();
+            
+            var placedRooms = new List<Revit.Elements.Element>();
+            var unplacedRooms = new List<Revit.Elements.Element>();
+            var notEnclosedRooms = new List<Revit.Elements.Element>();
+            var redundantRooms = new List<Revit.Elements.Element>();
+
+            SpatialElementBoundaryOptions opt = new SpatialElementBoundaryOptions();
+
+            foreach (Autodesk.Revit.DB.Architecture.Room room in allRooms)
+            {
+                var dsRoom = room.ToDSType(true);
+                if (room.Area > 0)
+                {
+                    placedRooms.Add(dsRoom);
+                    continue;
+                }
+
+                if (room.Location == null)
+                {
+                    unplacedRooms.Add(dsRoom);
+                    continue;
+                }
+                if (room.GetBoundarySegments(opt) == null || (room.GetBoundarySegments(opt)).Count == 0)
+                {
+                    notEnclosedRooms.Add(dsRoom);
+                    continue;
+                }
+
+                redundantRooms.Add(dsRoom);
+            }
+
+            roomsByStatus.Add(placedRooms);
+            roomsByStatus.Add(unplacedRooms);
+            roomsByStatus.Add(notEnclosedRooms);
+            roomsByStatus.Add(redundantRooms);
+
+            return roomsByStatus;
         }
     }
 }

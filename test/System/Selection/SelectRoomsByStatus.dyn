@@ -1,0 +1,278 @@
+{
+  "Uuid": "40e14767-0794-4e52-8197-5cbd487801f3",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "SelectRoomsByStatus",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.RoomsByStatus, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "ff3c4fe741d744549fe50e29abaac703",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6865d314d88c453a810029aeb82190fa",
+          "Name": "PlacedRooms",
+          "Description": "Placed Rooms in the document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "aac29da0da0f4e9e92cbc23ece26c65f",
+          "Name": "UnplacedRooms",
+          "Description": "Unplaced Rooms in the document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e4fec2543b85480bbd828050e2d7bad4",
+          "Name": "NotEnclosedRooms",
+          "Description": "Not Enclosed Rooms in the document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5c532c10b4534b41ae1987e1460e7291",
+          "Name": "RedundantRooms",
+          "Description": "Elements at the given level.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Returns all rooms in the document grouped by status"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "e512c62255eb4a349ce7126af54ef03d",
+      "Inputs": [
+        {
+          "Id": "67066bf07aed4f41a15a1e63cc164601",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1483ed842a8d4bb3a40aa4831addde17",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "ae185814931b4acfbe92d38a9abfc79b",
+      "Inputs": [
+        {
+          "Id": "deff0231fdd143cfb66464320cd90785",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "31774b12535141f8ac230e7952f9cadd",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "b3959f94df634a3787ae421dc8e5f409",
+      "Inputs": [
+        {
+          "Id": "bf6f062501384bcc851071b20facbb73",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "350f20e4f4a047c8adee85e885aad29d",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "bc195cf9592b4e7bb8574414ae149f1b",
+      "Inputs": [
+        {
+          "Id": "df2c67a5577f475bb3454ea907c9e697",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3446b2d8450f430e80d0ea79bb300f1c",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "6865d314d88c453a810029aeb82190fa",
+      "End": "67066bf07aed4f41a15a1e63cc164601",
+      "Id": "f836051734a74fef82e3fbd5eb6ae37a"
+    },
+    {
+      "Start": "aac29da0da0f4e9e92cbc23ece26c65f",
+      "End": "deff0231fdd143cfb66464320cd90785",
+      "Id": "d137a9a8a2364b108765f81076e7798d"
+    },
+    {
+      "Start": "e4fec2543b85480bbd828050e2d7bad4",
+      "End": "bf6f062501384bcc851071b20facbb73",
+      "Id": "4794264d5f8040f89b9ca1a4a3290a7d"
+    },
+    {
+      "Start": "5c532c10b4534b41ae1987e1460e7291",
+      "End": "df2c67a5577f475bb3454ea907c9e697",
+      "Id": "a5c1983da4254173a4560feb280f1e60"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.0.7736",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "ff3c4fe741d744549fe50e29abaac703",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Rooms by status",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 130.66666666666674,
+        "Y": 274.0
+      },
+      {
+        "Id": "e512c62255eb4a349ce7126af54ef03d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Watch",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 359.3333333333332,
+        "Y": 275.3333333333332
+      },
+      {
+        "Id": "ae185814931b4acfbe92d38a9abfc79b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Watch",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 562.0,
+        "Y": 296.66666666666657
+      },
+      {
+        "Id": "b3959f94df634a3787ae421dc8e5f409",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Watch",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 755.333333333333,
+        "Y": 313.99999999999989
+      },
+      {
+        "Id": "bc195cf9592b4e7bb8574414ae149f1b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Watch",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 955.59050445103844,
+        "Y": 352.62512363996035
+      }
+    ],
+    "Annotations": [],
+    "X": 31.88842770771555,
+    "Y": 6.1096919386747572,
+    "Zoom": 0.97676875
+  }
+}
