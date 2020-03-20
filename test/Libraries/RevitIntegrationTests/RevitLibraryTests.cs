@@ -38,8 +38,8 @@ namespace RevitSystemTests
             Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.Wall") == ProtoCore.DSASM.Constants.kInvalidIndex);
             Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.WallType") == ProtoCore.DSASM.Constants.kInvalidIndex);
             Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.Mullion") == ProtoCore.DSASM.Constants.kInvalidIndex);
-            //Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.View3D") == ProtoCore.DSASM.Constants.kInvalidIndex);
-            Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.ViewPlan") == ProtoCore.DSASM.Constants.kInvalidIndex);
+            Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.View3D") == ProtoCore.DSASM.Constants.kInvalidIndex);
+            //Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.ViewPlan") == ProtoCore.DSASM.Constants.kInvalidIndex);
             Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.ViewSection") == ProtoCore.DSASM.Constants.kInvalidIndex);
             Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.ViewSheet") == ProtoCore.DSASM.Constants.kInvalidIndex);
             Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.ViewDrafting") == ProtoCore.DSASM.Constants.kInvalidIndex);
