@@ -447,6 +447,9 @@
     <data name="RoofTypeNotFound" xml:space="preserve">
         <value>Roof type not found.</value>
     </data>
+    <data name="RoomsForLongestPathNotFound" xml:space="preserve">
+        <value>Rooms are required to compute longest Paths of Travel.</value>
+    </data>
     <data name="SamplePointsMismatchError" xml:space="preserve">
         <value>The number of sample points and number of samples must be the same.</value>
     </data>

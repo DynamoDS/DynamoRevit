@@ -54,6 +54,48 @@ namespace Revit.Elements
       #region Public constructors
 
       /// <summary>
+      /// Calculates the longest Path of Travel of all shortest paths from rooms in the floor plan to given exit points.
+      /// </summary>
+      /// <param name="floorPlan">Floor plan view for which rooms will be used to retrieve longest paths to the given exit points.</param>
+      /// <param name="endPtsList">List of end (exit) points.</param>
+      /// <returns>List of Path of Travel elements corresponding to the longest of shortest exit paths from rooms.</returns>
+      [NodeCategory("Create")]
+      [AllowRankReduction]
+      public static PathOfTravel[] LongestOfShortestExitPaths(Revit.Elements.Views.FloorPlanView floorPlan, Autodesk.DesignScript.Geometry.Point[] endPtsList)
+      {
+         if (floorPlan == null)
+            throw new ArgumentNullException("floorPlan", Properties.Resources.InvalidView);
+
+         if (endPtsList == null)
+            throw new ArgumentNullException("endPtList", Properties.Resources.InvalidEndPointList);
+
+         if (!endPtsList.Any())
+            throw new ArgumentException(Properties.Resources.EndPointListEmpty, "endPtList");
+
+         if (endPtsList.Any(x => x == null))
+            throw new ArgumentException(Properties.Resources.EndPointListHasNulls, "endPtList");
+
+         // Check that floor has some rooms
+         Rvt.Document doc = DocumentManager.Instance.CurrentDBDocument;
+
+         if(doc == null)
+         {
+            throw new ArgumentException(Properties.Resources.RoomsForLongestPathNotFound);
+         }
+
+         FilteredElementCollector collector = new Rvt.FilteredElementCollector(doc).OfCategory(Rvt.BuiltInCategory.OST_Rooms);
+
+         if(collector.ToElements().Count() == 0)
+         {
+            throw new ArgumentException(Properties.Resources.RoomsForLongestPathNotFound);
+         }
+
+         return InternalLongestOfShortestExitPaths(
+            (Rvt.View)floorPlan.InternalElement,
+            endPtsList.Select(x => x.ToXyz()));
+      }
+
+      /// <summary>
       /// Construct a list of Path of Travel elements in a floor plan view between the specified start points and end points
       /// </summary>
       /// <param name="floorPlan">Floor plan view to place paths of travel on</param>
@@ -168,6 +210,73 @@ namespace Revit.Elements
          };
       }
 
+      /// <summary>
+      /// [INTERNAL]: Calculates the longest Path of Travel of all shortest paths from rooms in the floor plan to given exit points.
+      /// </summary>
+      /// <param name="rvtView">Floor plan view for which rooms will be used to retrieve longest paths to the given exit points.</param>
+      /// <param name="endPoints">List of end (exit) points.</param>
+      /// <returns>List of Path of Travel elements corresponding to the longest of shortest exit paths from rooms.</returns>
+      /// 
+      private static PathOfTravel[] InternalLongestOfShortestExitPaths(Rvt.View rvtView, IEnumerable<XYZ> endPoints)
+      {
+         List<PathOfTravel> pathsOfTravel = new List<PathOfTravel>();
+
+         TransactionManager.Instance.EnsureInTransaction(Document);
+
+         try
+         {
+            IList<XYZ> startsOfLongestPathsFromRooms = RvtAnalysis.PathOfTravel.FindStartsOfLongestPathsFromRooms(
+               rvtView,
+               endPoints.ToList());
+
+            if (startsOfLongestPathsFromRooms.Count() != 0)
+            {
+               IList<XYZ> endsOfShortestPaths = RvtAnalysis.PathOfTravel.FindEndsOfShortestPaths(
+                  rvtView,
+                  endPoints.ToList(),
+                  startsOfLongestPathsFromRooms);
+
+               IList<RvtAnalysis.PathOfTravel> newRvtPathOfTravels = RvtAnalysis.PathOfTravel.CreateMultiple(
+                  rvtView,
+                  startsOfLongestPathsFromRooms.ToList(),
+                  endsOfShortestPaths.ToList());
+
+               foreach (RvtAnalysis.PathOfTravel rvtPathOfTravel in newRvtPathOfTravels)
+               {
+                  if (rvtPathOfTravel != null)
+                  {
+                     pathsOfTravel.Add(new PathOfTravel(rvtPathOfTravel));
+                  }
+               }
+
+               ElementBinder.SetElementsForTrace(pathsOfTravel.Where(x => x != null).Select(x => x.InternalElement));
+            } 
+         }
+         catch (Exception e)
+         {
+            //unregister the elements from the element life cycle manager and delete the elements
+            var elementManager = ElementIDLifecycleManager<int>.GetInstance();
+            if (pathsOfTravel != null)
+            {
+               foreach (var path in pathsOfTravel)
+               {
+                  if (path != null)
+                  {
+                     elementManager.UnRegisterAssociation(path.InternalElementId.IntegerValue, path);
+                     Document.Delete(path.InternalElementId);
+                  }
+               }
+            }
+
+            throw e;
+         }
+         finally
+         {
+            TransactionManager.Instance.TransactionTaskDone();
+         }
+
+         return pathsOfTravel.ToArray();
+      }
 
       /// <summary>
       /// Construct a new Revit PathOfTravel in a floor plan view between the specified start point and end point
@@ -195,7 +304,7 @@ namespace Revit.Elements
             DeleteExtraElements(existingRvtElements, startPoints, endPoints);
 
             // create additional elements
-            IList<PathOfTravel> newPathsOfTravel = CreateAdditionalElements(rvtView, existingRvtElements, startPoints, endPoints);            
+            IList<PathOfTravel> newPathsOfTravel = CreateAdditionalElements(rvtView, existingRvtElements, startPoints, endPoints);
             pathsOfTravel.AddRange(newPathsOfTravel);
 
             ElementBinder.SetElementsForTrace(pathsOfTravel.Where(x => x != null).Select(x => x.InternalElement));

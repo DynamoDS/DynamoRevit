@@ -1,43 +1,31 @@
-## 0.2.9
+## 0.1.17
+* Fix issue - Joined geometry does not convert correctly
+* Document nodes - Add 3 node in the Application.Document category
+* Element nodes third batch - contains 3 nodes related to Revit.Elements.Element.
+* Element Type nodes - introduces an ElementType category to the Dynamo library
+* Added some new Category Nodes - Group nodes, Space nodes, Elevation marker nodes, Dimension nodes, Area nodes, View port nodes, Family document nodes, Family instance nodes, Warning nodes.
+* Element.Geometry should provide geometry for FamilySymbols with no instances
+* Update some System tests and their dynamo files.
+* Rename "IncludeShadows" in node "Element.GetHostedElements".
+* Upgrade some obsolete classed and functions for RevitAPI updated
 * Update RayBounce_SunStudy test.
 * Update some system test which category is failure.
 * Add new Sheet nodes.
 * Add new Selection Nodes.
+* Add PathofTravel node - LongestOfShortestExitPaths.
+* Update RevitAPI to Revit2021.1
 
-## 0.2.8
+## 0.1.16
+* Update Assembly Shared Info for Revit 2021
+* Update RevitAPI folder name to net48.
 * Update DynamoCore Runtime to 2.5.2.7915
 
-## 0.2.7
-* Fix CI build error.
-
-## 0.2.6
-* Update some System tests and their dynamo files.
-* Rename "IncludeShadows" in node "Element.GetHostedElements".
-* Upgrade some obsolete classed and functions for RevitAPI updated
-
-## 0.2.5
-* Update RevitAPI folder name to net48.
-
-## 0.2.4
-* Update Assembly Shared Info for Revit Preview Release
-
-## 0.2.3
-* Element Type nodes - introduces an ElementType category to the Dynamo library
-* Added some new Category Nodes - Group nodes, Space nodes, Elevation marker nodes, Dimension nodes, Area nodes, View port nodes, Family document nodes, Family instance nodes, Warning nodes.
-* Element.Geometry should provide geometry for FamilySymbols with no instances
-* Sig file generation has been included in CICD of D4R
-
-## 0.2.2
+## 0.1.15
 * Update .Net to 4.8.
 
-## 0.2.1
-* Element nodes third batch - contains 3 nodes related to Revit.Elements.Element.
+## 0.1.14
+* Update DynamoCore to 2.5.0.7432
 * Update DynamoCore Runtime to 2.5.0.7460
-
-## 0.2.0
-* Fix issue - Joined geometry does not convert correctly
-* Document nodes - Add 3 node in the Application.Document category
-* Update Dynamo Core to 2.5.0.7432
 
 ## 0.1.13
 * update DynamoCore to 2.5.0.7186
