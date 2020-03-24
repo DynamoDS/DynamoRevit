@@ -483,4 +483,7 @@
   <data name="FamilyTypeDoesNotExist" xml:space="preserve">
     <value>Family type does not exist in the document.</value>
   </data>
+  <data name="RoomsForLongestPathNotFound" xml:space="preserve">
+    <value>Rooms are required to compute longest Paths of Travel.</value>
+  </data>
 </root>

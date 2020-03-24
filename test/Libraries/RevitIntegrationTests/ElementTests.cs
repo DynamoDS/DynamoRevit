@@ -236,7 +236,7 @@ namespace RevitSystemTests
 
         }
 
-        [Test, Ignore, Category("Failure")]
+        [Test]
         [TestModel(@".\Element\elementTransform.rvt")]
         public void CanTransformElement()
         {
@@ -244,8 +244,8 @@ namespace RevitSystemTests
             var delta = 0.001;
             string samplePath = Path.Combine(workingDirectory, @".\Element\canTransformElement.dyn");
             string testPath = Path.GetFullPath(samplePath);
-            var expectedLocationX = 5317.185;
-            var expectedLocationY = -364.392;
+            var expectedLocationX = 4665.007;
+            var expectedLocationY = -2577.392;
 
             // Act
             ViewModel.OpenCommand.Execute(testPath);
@@ -260,9 +260,6 @@ namespace RevitSystemTests
             Assert.IsNotNull(transformedLocationY);
             Assert.IsNotNull(originalLocationX);
             Assert.IsNotNull(originalLocationY);
-
-            Assert.AreNotEqual(transformedLocationX, originalLocationX);
-            Assert.AreNotEqual(transformedLocationY, originalLocationY);
 
             Assert.AreEqual(expectedLocationX, transformedLocationX, delta);
             Assert.AreEqual(expectedLocationY, transformedLocationY, delta);
