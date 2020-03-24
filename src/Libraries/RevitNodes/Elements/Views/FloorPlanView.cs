@@ -22,6 +22,14 @@ namespace Revit.Elements.Views
             SafeInit(() => InitFloorPlanView(level));
         }
 
+        /// <summary>
+        /// Create a Revit Floor Plan from Autodesk View Plan
+        /// </summary>
+        private FloorPlanView(Autodesk.Revit.DB.ViewPlan view)
+        {
+            SafeInit(() => InitFloorPlanView(view));
+        }
+
         #endregion
 
         #region Helpers for private constructors
@@ -48,18 +56,6 @@ namespace Revit.Elements.Views
             TransactionManager.Instance.TransactionTaskDone();
 
             ElementBinder.CleanupAndSetElementForTrace(Document, InternalElement);
-        }
-
-        #endregion
-
-        #region Public constructors
-
-        /// <summary>
-        /// Create a Revit Floor Plan from Autodesk View Plan
-        /// </summary>
-        public  FloorPlanView(Autodesk.Revit.DB.ViewPlan view)
-        {
-           SafeInit(() => InitFloorPlanView(view));
         }
 
         #endregion
