@@ -1,3 +1,6 @@
+## 0.1.18
+* Fix TestNonBrowsableClasses regression failure.
+
 ## 0.1.17
 * Fix issue - Joined geometry does not convert correctly
 * Document nodes - Add 3 node in the Application.Document category
