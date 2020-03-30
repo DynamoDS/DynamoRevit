@@ -289,7 +289,7 @@ namespace Revit.Elements.Views
         /// Export View Schedule to CSV, TSV etc.
         /// </summary>
         /// <param name="path">A valid file path with file extension.</param>
-        /// <param name="exportOptions">Export Options. If null, default will be used.</param>
+        /// <param name="exportOptions">Export Options.</param>
         /// <returns name="scheduleView">Schedule View.</returns>
         public ScheduleView Export(string path, ScheduleExportOptions exportOptions)
         {
