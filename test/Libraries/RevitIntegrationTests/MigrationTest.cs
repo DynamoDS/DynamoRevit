@@ -68,7 +68,7 @@ namespace RevitSystemTests
         [Test, Category("Failure")]
         [TestModel(@".\empty.rfa")]
         public void TestMigration_Analyze_Render()
-        {
+        {   //There are some obsolete node in dyn script.
             TestMigration(@".\Migration\TestMigration_Analyze_Render.dyn");
         }
 
@@ -83,6 +83,7 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void TestMigration_Geometry_Curve()
         {
+            //There are some obsolete node in dyn script.
             TestMigration(@".\Migration\TestMigration_Geometry_Curve.dyn");
         }
 
@@ -111,6 +112,7 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void TestMigration_Geometry_Surface()
         {
+            //There are some obsolete node in dyn script.
             TestMigration(@".\Migration\TestMigration_Geometry_Surface.dyn");
         }
 

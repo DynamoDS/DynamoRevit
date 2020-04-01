@@ -241,24 +241,24 @@ namespace RevitSystemTests
         }
          * */
 
-        [Test, Category("Failure")]
-        [TestModel(@".\empty.rfa")]
-        public void CurvebyPointsEllipse()
-        {
-            string samplePath = Path.Combine(workingDirectory, @".\Curve\CurvebyPointsEllipse.dyn");
-            string testPath = Path.GetFullPath(samplePath);
+        //[Test, Category("Failure")]
+        //[TestModel(@".\empty.rfa")]
+        //public void CurvebyPointsEllipse()
+        //{
+        //    string samplePath = Path.Combine(workingDirectory, @".\Curve\CurvebyPointsEllipse.dyn");  \\There are some obsolete node in dyn script.
+        //    string testPath = Path.GetFullPath(samplePath);
 
-            ViewModel.OpenCommand.Execute(testPath);
+        //    ViewModel.OpenCommand.Execute(testPath);
 
-            RunCurrentModel();
+        //    RunCurrentModel();
 
-            FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-            fec.OfClass(typeof(CurveElement));
+        //    FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+        //    fec.OfClass(typeof(CurveElement));
 
-            Assert.AreEqual(fec.ToElements().Count(), 1);
+        //    Assert.AreEqual(fec.ToElements().Count(), 1);
 
-            CurveByPoints mc = (CurveByPoints)fec.ToElements().ElementAt(0);
-        }
+        //    CurveByPoints mc = (CurveByPoints)fec.ToElements().ElementAt(0);
+        //}
 
         [Test]
         [TestModel(@".\Curve\GetCurveDomain.rfa")]
