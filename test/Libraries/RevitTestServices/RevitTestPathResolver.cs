@@ -26,7 +26,6 @@ namespace RevitTestServices
             AddPreloadLibraryPath("DynamoUnits.dll");
             AddPreloadLibraryPath("Tessellation.dll");
             AddPreloadLibraryPath("Analysis.dll");
-            AddPreloadLibraryPath("SimplexNoise.dll");
 
             var assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var nodesDirectory = Path.Combine(assemblyDirectory, "nodes");

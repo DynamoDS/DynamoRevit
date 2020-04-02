@@ -28,8 +28,8 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertNoDummyNodes();
 
-            Assert.AreEqual(9, ViewModel.Model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(12, ViewModel.Model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(8, ViewModel.Model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(11, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Topography.ByPoint
             var topographyID = "a0b02f6c-a144-4267-b62c-31983661aefa";

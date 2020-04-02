@@ -423,8 +423,8 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(39, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(47, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(42, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(50, model.CurrentWorkspace.Connectors.Count());
 
             //check Floor.ByOutLineTypeAndLevel
             var floor = "1bcce36c-7ea3-4c70-9271-544fd378ec41";
@@ -436,9 +436,9 @@ namespace RevitSystemTests
             }
 
             //check Element.OverrideColorInView
-            var ele = "d986daac-eae1-4e80-9430-44527fcb133e";
-            AssertPreviewCount(ele, 126);
-            for (int i = 0; i < 126; i++)
+            var ele = "25aa4d1ca1db434db40a90bbef69a027";
+            AssertPreviewCount(ele, 81);
+            for (int i = 0; i < 81; i++)
             {
                 var element = GetPreviewValueAtIndex(ele, i) as Element;
                 Assert.IsNotNull(element); //This node get error with the latest Dynamo
@@ -458,8 +458,8 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(45, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(56, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(48, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(59, model.CurrentWorkspace.Connectors.Count());
 
             //check Floor.ByOutLineTypeAndLevel
             var floor = "1bcce36c-7ea3-4c70-9271-544fd378ec41";
@@ -471,9 +471,9 @@ namespace RevitSystemTests
             }
 
             //check Element.OverrideColorInView
-            var ele = "d986daac-eae1-4e80-9430-44527fcb133e";
-            AssertPreviewCount(ele, 126);
-            for (int i = 0; i < 126; i++)
+            var ele = "3b24760ecf804ef5b4006db08a25edb8";
+            AssertPreviewCount(ele, 81);
+            for (int i = 0; i < 81; i++)
             {
                 var element = GetPreviewValueAtIndex(ele, i) as Element;
                 Assert.IsNotNull(element); //This node get error with the latest Dynamo
