@@ -99,7 +99,8 @@ namespace Revit.Elements
             {
                 var wallLocation = wallElem.Location as Autodesk.Revit.DB.LocationCurve;
                 if ((wallLocation.Curve is Autodesk.Revit.DB.Line == curve is Autodesk.Revit.DB.Line) ||
-                    (wallLocation.Curve is Autodesk.Revit.DB.Arc == curve is Autodesk.Revit.DB.Arc))
+                    (wallLocation.Curve is Autodesk.Revit.DB.Arc == curve is Autodesk.Revit.DB.Arc) ||
+                    (wallLocation.Curve is Autodesk.Revit.DB.Ellipse == curve is Autodesk.Revit.DB.Ellipse))
                 {
                     if(!CurveUtils.CurvesAreSimilar(wallLocation.Curve, curve))
                         wallLocation.Curve = curve;
