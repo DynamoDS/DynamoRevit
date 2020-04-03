@@ -49,16 +49,23 @@ namespace Revit.Elements
             get { return InternalWallType.Name; }
         }
 
+        /// <summary>
+        /// The width of the WallType
+        /// </summary>
         public double Width
         {
             get { return InternalWallType.Width; }
         }
-
+        /// <summary>
+        /// The kind of the WallType
+        /// </summary>
         public string Kind
         {
             get { return InternalWallType.Kind.ToString(); }
         }
-
+        /// <summary>
+        /// The function of the WallType
+        /// </summary>
         public string Function
         {
             get { return InternalWallType.Function.ToString(); }
@@ -117,8 +124,6 @@ namespace Revit.Elements
         #region Public Methods
         /// <summary>
         /// The calculated and settable thermal properties of the WallType
-        /// Returns null if the wall has no thermal properties. Curtain walls and stacked
-        /// walls do not store thermal properties.
         /// </summary>
         /// <returns name = "Absorptance">Value of absorptance.</returns>
         /// <returns name = "HeatTransferCoefficient">The heat transfer coefficient value (U-Value).</returns>

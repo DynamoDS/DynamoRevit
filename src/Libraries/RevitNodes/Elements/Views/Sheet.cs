@@ -365,8 +365,8 @@ namespace Revit.Elements.Views
         #region Public static constructors
 
         /// <summary>
-        /// Create a Revit Sheet by the sheet name, number, a title block FamilyType, and a collection of views.  This method will automatically
-        /// pack the views onto the sheet. 
+        /// Create a Revit Sheet.  
+        /// This method will automatically pack the views onto the sheet. 
         /// </summary>
         /// <param name="sheetName">Sheet Name as String.</param>
         /// <param name="sheetNumber">Sheet Number as String.</param>
@@ -404,8 +404,8 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Create a Revit Sheet by the sheet name, number, a title block FamilyType, and a collection of views.  This method will automatically
-        /// pack the view onto the sheet.
+        /// Create a Revit Sheet.  
+        /// This method will automatically pack the view onto the sheet.
         /// </summary>
         /// <param name="sheetName">Sheet Name as String.</param>
         /// <param name="sheetNumber">Sheet Number as String.</param>

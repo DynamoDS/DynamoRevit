@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,365 +59,377 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
-        <xsd:element name="root" msdata:IsDataSet="true">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
             <xsd:complexType>
-                <xsd:choice maxOccurs="unbounded">
-                    <xsd:element name="metadata">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" use="required" type="xsd:string"/>
-                            <xsd:attribute name="type" type="xsd:string"/>
-                            <xsd:attribute name="mimetype" type="xsd:string"/>
-                            <xsd:attribute ref="xml:space"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="assembly">
-                        <xsd:complexType>
-                            <xsd:attribute name="alias" type="xsd:string"/>
-                            <xsd:attribute name="name" type="xsd:string"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="data">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-                            <xsd:attribute ref="xml:space"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="resheader">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                </xsd:choice>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
-        </xsd:element>
-    </xsd:schema>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>2.0</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <data name="AllWarningsOfTypeDescription" xml:space="preserve">
-        <value>Returns a list of all instances of the selected warning type.</value>
-    </data>
-    <data name="BuiltInParameterGroupSelectorDescription" xml:space="preserve">
-        <value>Select a built-in parameter group.</value>
-        <comment>Description for BuiltIn Parameter Group</comment>
-    </data>
-    <data name="CategoriesDescription" xml:space="preserve">
-        <value>All built-in categories.</value>
-        <comment>Description for Categories</comment>
-    </data>
-    <data name="DirectShapeRoomBoundingOptionSelectorDescription" xml:space="preserve">
-        <value>Select a Direct Shape Room Bounding Option.</value>
-        <comment>Description for Direct Shape Room Bounding Option</comment>
-    </data>
-    <data name="DropDownNoColumnType" xml:space="preserve">
-        <value>No structural column types available.</value>
-    </data>
-    <data name="DropDownNoFramingType" xml:space="preserve">
-        <value>No structural framing types available.</value>
-    </data>
-    <data name="ElementById" xml:space="preserve">
-        <value>Gets the Element with the specified Id</value>
-    </data>
-    <data name="ElementsatLevelDescription" xml:space="preserve">
-        <value>Get all the elements at the specified Level from the model.</value>
-        <comment>Description for All Elements at Level</comment>
-    </data>
-    <data name="ElementsInActiveViewDescription" xml:space="preserve">
-        <value>Get all the elements which are visible in the active view.</value>
-        <comment>Description for All Elements In Active View</comment>
-    </data>
-    <data name="ElementsofCategoryDescription" xml:space="preserve">
-        <value>Get all elements of the specified category from the model.</value>
-        <comment>Description for All Elements of Category</comment>
-    </data>
-    <data name="ElementsofCategoryInViewDescription" xml:space="preserve">
-        <value>Get all elements of the specified category in the specified view from the model.</value>
-        <comment>Description for All Elements of Category in View</comment>
-    </data>
-    <data name="ElementsofFamilyTypeDescription" xml:space="preserve">
-        <value>Get all elements of the specified family type from the model.</value>
-        <comment>Description for All Elements of Family Type</comment>
-    </data>
-    <data name="ElementsofTypeDescription" xml:space="preserve">
-        <value>All elements in the active document of a given type.</value>
-        <comment>Description for All Elements of Type</comment>
-    </data>
-    <data name="ElementTypesDescription" xml:space="preserve">
-        <value>All element subtypes.</value>
-        <comment>Description for Element Types</comment>
-    </data>
-    <data name="ExportColumnHeadersDescription" xml:space="preserve">
-        <value>How to export column headers. Default is MultipleRows.</value>
-    </data>
-    <data name="ExportTextQualifierDescription" xml:space="preserve">
-        <value>How to qualify text fields. Default is DoubleQuote.</value>
-    </data>
-    <data name="FamilyTypesDescription" xml:space="preserve">
-        <value>All family types available in the document.</value>
-        <comment>Description for Family Types</comment>
-    </data>
-    <data name="FilledRegionTypeSelectorDescription" xml:space="preserve">
-        <value>Select an existing Filled Region Type from the active document.</value>
-        <comment>Description for Filled Region Type Selector</comment>
-    </data>
-    <data name="FillPatternsDescription" xml:space="preserve">
-        <value>All available fill patterns.</value>
-    </data>
-    <data name="FillPatternTargetDescription" xml:space="preserve">
-        <value>The type of the fill pattern.</value>
-        <comment>Description for Fill Pattern Target</comment>
-    </data>
-    <data name="FilterTypeSelectorDescription" xml:space="preserve">
-        <value>Filter Types for Revit Filters</value>
-    </data>
-    <data name="FloorTypesDescription" xml:space="preserve">
-        <value>All floor types available in the document.</value>
-        <comment>Description for Floor Types</comment>
-    </data>
-    <data name="GetFamilyParameterDescription" xml:space="preserve">
-        <value>Given a Family Instance or Type allows the user to select a parameter as a string.</value>
-        <comment>Description for Get Family Parameter</comment>
-    </data>
-    <data name="HorizontalTextAlignmentStyleSelectorDescription" xml:space="preserve">
-        <value>Select the horizontal text alignment style.</value>
-        <comment>Description for Horizontal Text Alignment Style</comment>
-    </data>
-    <data name="LevelsDescription" xml:space="preserve">
-        <value>Select a level in the active document</value>
-        <comment>Description for Levels</comment>
-    </data>
-    <data name="LinePatternsDescription" xml:space="preserve">
-        <value>All available line patterns.</value>
-    </data>
-    <data name="NoActiveDocumentFound" xml:space="preserve">
-        <value>No active Revit document found.</value>
-        <comment>Description for missing document</comment>
-    </data>
-    <data name="NoFamilyInstancesInDividedSurfaceWarning" xml:space="preserve">
-        <value>No family instances found in the divided surface.</value>
-    </data>
-    <data name="NoFloorTypesAvailable" xml:space="preserve">
-        <value>No floor types available.</value>
-    </data>
-    <data name="None" xml:space="preserve">
-        <value>None</value>
-        <comment>Description for null value</comment>
-    </data>
-    <data name="NoTypesFound" xml:space="preserve">
-        <value>No types found.</value>
-        <comment>Description for missing types</comment>
-    </data>
-    <data name="NoWallTypesAvailable" xml:space="preserve">
-        <value>No wall types available.</value>
-    </data>
-    <data name="NoWarningsInDocument" xml:space="preserve">
-        <value>No warnings in the current document.</value>
-    </data>
-    <data name="ParameterTypeSelectorDescription" xml:space="preserve">
-        <value>Select a parameter type.</value>
-        <comment>Description for Parameter Type</comment>
-    </data>
-    <data name="PerformanceAdviserDescription" xml:space="preserve">
-        <value>All Performance Adviser rules.</value>
-    </data>
-    <data name="PhaseSelectorDescription" xml:space="preserve">
-        <value>Select an existing Revit Phase from the active document.</value>
-        <comment>Description for Phase Selector</comment>
-    </data>
-    <data name="PortDataALevelToolTip" xml:space="preserve">
-        <value>A Level</value>
-    </data>
-    <data name="PortDataAllElementsInDocumentToolTip" xml:space="preserve">
-        <value>All elements in the active document of a given type.</value>
-    </data>
-    <data name="PortDataAllVisibleElementsToolTip" xml:space="preserve">
-        <value>All visible elements in the active view.</value>
-    </data>
-    <data name="PortDataByElementId" xml:space="preserve">
-        <value>Element Id as string, int or ElementId</value>
-    </data>
-    <data name="PortDataCategoriesToolTip" xml:space="preserve">
-        <value>The selected Category.</value>
-    </data>
-    <data name="PortDataCategoryToolTip" xml:space="preserve">
-        <value>The Category</value>
-    </data>
-    <data name="PortDataElementAtLevelToolTip" xml:space="preserve">
-        <value>Elements at the given level.</value>
-    </data>
-    <data name="PortDataElementsToolTip" xml:space="preserve">
-        <value>The list of elements matching the query.</value>
-    </data>
-    <data name="PortDataElementTypeToolTip" xml:space="preserve">
-        <value>An element type.</value>
-    </data>
-    <data name="PortDataFamilTypeToolTip" xml:space="preserve">
-        <value>The Family Type.</value>
-    </data>
-    <data name="PortDataFamilySymbolToolTip" xml:space="preserve">
-        <value>Family Type or Instance</value>
-    </data>
-    <data name="PortDataLocationToolTip" xml:space="preserve">
-        <value>The location of the current Revit project.</value>
-    </data>
-    <data name="PortDataNotEnclosedRoomsToolTip" xml:space="preserve">
-        <value>Not Enclosed Rooms in the document</value>
-    </data>
-    <data name="PortDataPlacedRoomsToolTip" xml:space="preserve">
-        <value>Placed Rooms in the document</value>
-    </data>
-    <data name="PortDataRedundantRoomsToolTip" xml:space="preserve">
-        <value>Redundant Rooms in the document</value>
-    </data>
-    <data name="PortDataSunSettingToolTip" xml:space="preserve">
-        <value>SunSettings element.</value>
-    </data>
-    <data name="PortDataUnplacedRoomsToolTip" xml:space="preserve">
-        <value>Unplaced Rooms in the document</value>
-    </data>
-    <data name="PortDataViewToolTip" xml:space="preserve">
-        <value>The View</value>
-    </data>
-    <data name="RevisionNumberingSelectorDescription" xml:space="preserve">
-        <value>Select an way to number the revisions.</value>
-        <comment>Description for Revision Numbering Style</comment>
-    </data>
-    <data name="RevisionNumberTypeSelectorDescription" xml:space="preserve">
-        <value>Select a revision number type.</value>
-        <comment>Description for Revision Number Type</comment>
-    </data>
-    <data name="RevisionSelectorDescription" xml:space="preserve">
-        <value>Select an existing Revit Revision from the active document.</value>
-        <comment>Description for Revision Selector</comment>
-    </data>
-    <data name="RevisionVisibilitySelectorDescription" xml:space="preserve">
-        <value>Select the revision visilibity type.</value>
-        <comment>Description for Revision Visibility Type</comment>
-    </data>
-    <data name="RoomsByStatusDescription" xml:space="preserve">
-        <value>Returns all rooms in the document grouped by status</value>
-    </data>
-    <data name="ScheduleFilterTypeDescription" xml:space="preserve">
-        <value>A View Schedule Filter Type.</value>
-        <comment>Description for Filter Type</comment>
-    </data>
-    <data name="ScheduleTypeSelectorDescription" xml:space="preserve">
-        <value>Select a Schedule Type.</value>
-        <comment>Description Schedule Types</comment>
-    </data>
-    <data name="SelectAnalysisResultsDescription" xml:space="preserve">
-        <value>Select analysis results from the document.</value>
-        <comment>Description for Select Analysis Results</comment>
-    </data>
-    <data name="SelectDividedSurfaceFamiliesDescription" xml:space="preserve">
-        <value>Select a divided surface and get its family instances.</value>
-        <comment>Description for Select Divided Surface Families</comment>
-    </data>
-    <data name="SelectEdgeDescription" xml:space="preserve">
-        <value>Select an edge.</value>
-        <comment>Description for Select Edge</comment>
-    </data>
-    <data name="SelectEdgesDescription" xml:space="preserve">
-        <value>Select multiple edges.</value>
-        <comment>Description for multiple edge selector</comment>
-    </data>
-    <data name="SelectEdgesPrefix" xml:space="preserve">
-        <value>Edges</value>
-        <comment>Prefix for edge selector</comment>
-    </data>
-    <data name="SelectFaceDescription" xml:space="preserve">
-        <value>Select a face.</value>
-        <comment>Description for Select Face</comment>
-    </data>
-    <data name="SelectFacesDescription" xml:space="preserve">
-        <value>Select multiple faces from the Revit document.</value>
-        <comment>Description for Select Faces</comment>
-    </data>
-    <data name="SelectionIsDisabledDescription" xml:space="preserve">
-        <value>Selection is disabled when Dynamo run is disabled.</value>
-    </data>
-    <data name="SelectModelElementDescription" xml:space="preserve">
-        <value>Select a model element from the document.</value>
-        <comment>Description for Select Model Element</comment>
-    </data>
-    <data name="SelectModelElementsByCategoryDescription" xml:space="preserve">
-        <value>Select multiple elements from the Revit document filtered by Category.</value>
-        <comment>Description for Select Model Elements By Category</comment>
-    </data>
-    <data name="SelectModelElementsDescription" xml:space="preserve">
-        <value>Select multiple elements from the Revit document.</value>
-        <comment>Description for Select Model Elements</comment>
-    </data>
-    <data name="SelectPointonFaceDescription" xml:space="preserve">
-        <value>Select a point on a face.</value>
-        <comment>Description for Select Point on Face</comment>
-    </data>
-    <data name="SelectUVonFaceDescription" xml:space="preserve">
-        <value>Select a UV on a face.</value>
-        <comment>Description for Select UV on Face</comment>
-    </data>
-    <data name="SiteLocationDescription" xml:space="preserve">
-        <value>Returns the current Revit site location.</value>
-        <comment>Desciption for SiteLocation</comment>
-    </data>
-    <data name="SiteLocationFamilyDocumentWarning" xml:space="preserve">
-        <value>Site Location is not available in a family document.</value>
-    </data>
-    <data name="SpacingRuleLayoutDescription" xml:space="preserve">
-        <value>A spacing rule layout for calculating divided paths.</value>
-        <comment>Description for Spacing Rule Layout</comment>
-    </data>
-    <data name="StructuralColumnTypesDescription" xml:space="preserve">
-        <value>Select a structural column type in the active document</value>
-        <comment>Description for Structural Column Types</comment>
-    </data>
-    <data name="StructuralFramingTypesDescription" xml:space="preserve">
-        <value>Select a structural framing type in the active document</value>
-        <comment>Description for Structural Framing Types</comment>
-    </data>
-    <data name="SunSettingsCurrentDescription" xml:space="preserve">
-        <value>Returns the SunSettings of the current View.</value>
-        <comment>Description for SunSettings.Current</comment>
-    </data>
-    <data name="VerticalTextAlignmentStyleSelectorDescription" xml:space="preserve">
-        <value>Select the vertical text alignment style.</value>
-        <comment>Description for Vertical Text Alignment Style</comment>
-    </data>
-    <data name="ViewDetailLevelDescription" xml:space="preserve">
-        <value>View Detail Level</value>
-    </data>
-    <data name="ViewsDescription" xml:space="preserve">
-        <value>All views available in the current document.</value>
-        <comment>Description for Views</comment>
-    </data>
-    <data name="WallLocationLineDescription" xml:space="preserve">
-        <value>Wall locations.</value>
-    </data>
-    <data name="WallTypesDescription" xml:space="preserve">
-        <value>All wall types available in the document.</value>
-        <comment>Description for Wall Types</comment>
-    </data>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllWarningsOfTypeDescription" xml:space="preserve">
+    <value>Returns a list of all instances of the selected warning type.</value>
+  </data>
+  <data name="BuiltInParameterGroupSelectorDescription" xml:space="preserve">
+    <value>Select a built-in parameter group.</value>
+    <comment>Description for BuiltIn Parameter Group</comment>
+  </data>
+  <data name="CategoriesDescription" xml:space="preserve">
+    <value>All built-in categories.</value>
+    <comment>Description for Categories</comment>
+  </data>
+  <data name="DirectShapeRoomBoundingOptionSelectorDescription" xml:space="preserve">
+    <value>Select a Direct Shape Room Bounding Option.</value>
+    <comment>Description for Direct Shape Room Bounding Option</comment>
+  </data>
+  <data name="DropDownNoColumnType" xml:space="preserve">
+    <value>No structural column types available.</value>
+  </data>
+  <data name="DropDownNoFramingType" xml:space="preserve">
+    <value>No structural framing types available.</value>
+  </data>
+  <data name="ElementById" xml:space="preserve">
+    <value>Gets the Element with the specified Id</value>
+  </data>
+  <data name="ElementsatLevelDescription" xml:space="preserve">
+    <value>Get all the elements at the specified Level from the model.</value>
+    <comment>Description for All Elements at Level</comment>
+  </data>
+  <data name="ElementsInActiveViewDescription" xml:space="preserve">
+    <value>Get all the elements which are visible in the active view.</value>
+    <comment>Description for All Elements In Active View</comment>
+  </data>
+  <data name="ElementsofCategoryDescription" xml:space="preserve">
+    <value>Get all elements of the specified category from the model.</value>
+    <comment>Description for All Elements of Category</comment>
+  </data>
+  <data name="ElementsofCategoryInViewDescription" xml:space="preserve">
+    <value>Get all elements of the specified category in the specified view from the model.</value>
+    <comment>Description for All Elements of Category in View</comment>
+  </data>
+  <data name="ElementsofFamilyTypeDescription" xml:space="preserve">
+    <value>Get all elements of the specified family type from the model.</value>
+    <comment>Description for All Elements of Family Type</comment>
+  </data>
+  <data name="ElementsofTypeDescription" xml:space="preserve">
+    <value>All elements in the active document of a given type.</value>
+    <comment>Description for All Elements of Type</comment>
+  </data>
+  <data name="ElementTypesDescription" xml:space="preserve">
+    <value>All element subtypes.</value>
+    <comment>Description for Element Types</comment>
+  </data>
+  <data name="ExportColumnHeadersDescription" xml:space="preserve">
+    <value>How to export column headers. Default is MultipleRows.</value>
+  </data>
+  <data name="ExportTextQualifierDescription" xml:space="preserve">
+    <value>How to qualify text fields. Default is DoubleQuote.</value>
+  </data>
+  <data name="FamilyTypesDescription" xml:space="preserve">
+    <value>All family types available in the document.</value>
+    <comment>Description for Family Types</comment>
+  </data>
+  <data name="FilledRegionTypeSelectorDescription" xml:space="preserve">
+    <value>Select an existing Filled Region Type from the active document.</value>
+    <comment>Description for Filled Region Type Selector</comment>
+  </data>
+  <data name="FillPatternsDescription" xml:space="preserve">
+    <value>All available fill patterns.</value>
+  </data>
+  <data name="FillPatternTargetDescription" xml:space="preserve">
+    <value>The type of the fill pattern.</value>
+    <comment>Description for Fill Pattern Target</comment>
+  </data>
+  <data name="FilterTypeSelectorDescription" xml:space="preserve">
+    <value>Filter Types for Revit Filters</value>
+  </data>
+  <data name="FloorTypesDescription" xml:space="preserve">
+    <value>All floor types available in the document.</value>
+    <comment>Description for Floor Types</comment>
+  </data>
+  <data name="GetFamilyParameterDescription" xml:space="preserve">
+    <value>Given a Family Instance or Type allows the user to select a parameter as a string.</value>
+    <comment>Description for Get Family Parameter</comment>
+  </data>
+  <data name="HorizontalTextAlignmentStyleSelectorDescription" xml:space="preserve">
+    <value>Select the horizontal text alignment style.</value>
+    <comment>Description for Horizontal Text Alignment Style</comment>
+  </data>
+  <data name="LevelsDescription" xml:space="preserve">
+    <value>Select a level in the active document</value>
+    <comment>Description for Levels</comment>
+  </data>
+  <data name="LinePatternsDescription" xml:space="preserve">
+    <value>All available line patterns.</value>
+  </data>
+  <data name="NoActiveDocumentFound" xml:space="preserve">
+    <value>No active Revit document found.</value>
+    <comment>Description for missing document</comment>
+  </data>
+  <data name="NoFamilyInstancesInDividedSurfaceWarning" xml:space="preserve">
+    <value>No family instances found in the divided surface.</value>
+  </data>
+  <data name="NoFloorTypesAvailable" xml:space="preserve">
+    <value>No floor types available.</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+    <comment>Description for null value</comment>
+  </data>
+  <data name="NoTypesFound" xml:space="preserve">
+    <value>No types found.</value>
+    <comment>Description for missing types</comment>
+  </data>
+  <data name="NoWallTypesAvailable" xml:space="preserve">
+    <value>No wall types available.</value>
+  </data>
+  <data name="NoWarningsInDocument" xml:space="preserve">
+    <value>No warnings in the current document.</value>
+  </data>
+  <data name="ParameterTypeSelectorDescription" xml:space="preserve">
+    <value>Select a parameter type.</value>
+    <comment>Description for Parameter Type</comment>
+  </data>
+  <data name="PerformanceAdviserDescription" xml:space="preserve">
+    <value>All Performance Adviser rules.</value>
+  </data>
+  <data name="PhaseSelectorDescription" xml:space="preserve">
+    <value>Select an existing Revit Phase from the active document.</value>
+    <comment>Description for Phase Selector</comment>
+  </data>
+  <data name="PortDataALevelToolTip" xml:space="preserve">
+    <value>A Level</value>
+  </data>
+  <data name="PortDataAllElementsInDocumentToolTip" xml:space="preserve">
+    <value>All elements in the active document of a given type.</value>
+  </data>
+  <data name="PortDataAllVisibleElementsToolTip" xml:space="preserve">
+    <value>All visible elements in the active view.</value>
+  </data>
+  <data name="PortDataByElementId" xml:space="preserve">
+    <value>Element Id as string, int or ElementId</value>
+  </data>
+  <data name="PortDataCategoriesToolTip" xml:space="preserve">
+    <value>The selected Category.</value>
+  </data>
+  <data name="PortDataCategoryToolTip" xml:space="preserve">
+    <value>The Category</value>
+  </data>
+  <data name="PortDataElementAtLevelToolTip" xml:space="preserve">
+    <value>Elements at the given level.</value>
+  </data>
+  <data name="PortDataElementsToolTip" xml:space="preserve">
+    <value>The list of elements matching the query.</value>
+  </data>
+  <data name="PortDataElementTypeToolTip" xml:space="preserve">
+    <value>An element type.</value>
+  </data>
+  <data name="PortDataFamilTypeToolTip" xml:space="preserve">
+    <value>The Family Type.</value>
+  </data>
+  <data name="PortDataFamilySymbolToolTip" xml:space="preserve">
+    <value>Family Type or Instance</value>
+  </data>
+  <data name="PortDataLocationToolTip" xml:space="preserve">
+    <value>The location of the current Revit project.</value>
+  </data>
+  <data name="PortDataNotEnclosedRoomsToolTip" xml:space="preserve">
+    <value>Not Enclosed Rooms in the document</value>
+  </data>
+  <data name="PortDataPlacedRoomsToolTip" xml:space="preserve">
+    <value>Placed Rooms in the document</value>
+  </data>
+  <data name="PortDataRedundantRoomsToolTip" xml:space="preserve">
+    <value>Redundant Rooms in the document</value>
+  </data>
+  <data name="PortDataSunSettingToolTip" xml:space="preserve">
+    <value>SunSettings element.</value>
+  </data>
+  <data name="PortDataUnplacedRoomsToolTip" xml:space="preserve">
+    <value>Unplaced Rooms in the document</value>
+  </data>
+  <data name="PortDataViewToolTip" xml:space="preserve">
+    <value>The View</value>
+  </data>
+  <data name="RevisionNumberingSelectorDescription" xml:space="preserve">
+    <value>Select an way to number the revisions.</value>
+    <comment>Description for Revision Numbering Style</comment>
+  </data>
+  <data name="RevisionNumberTypeSelectorDescription" xml:space="preserve">
+    <value>Select a revision number type.</value>
+    <comment>Description for Revision Number Type</comment>
+  </data>
+  <data name="RevisionSelectorDescription" xml:space="preserve">
+    <value>Select an existing Revit Revision from the active document.</value>
+    <comment>Description for Revision Selector</comment>
+  </data>
+  <data name="RevisionVisibilitySelectorDescription" xml:space="preserve">
+    <value>Select the revision visilibity type.</value>
+    <comment>Description for Revision Visibility Type</comment>
+  </data>
+  <data name="RoomsByStatusDescription" xml:space="preserve">
+    <value>Returns all rooms in the document grouped by status</value>
+  </data>
+  <data name="ScheduleFilterTypeDescription" xml:space="preserve">
+    <value>A View Schedule Filter Type.</value>
+    <comment>Description for Filter Type</comment>
+  </data>
+  <data name="ScheduleTypeSelectorDescription" xml:space="preserve">
+    <value>Select a Schedule Type.</value>
+    <comment>Description Schedule Types</comment>
+  </data>
+  <data name="SelectAnalysisResultsDescription" xml:space="preserve">
+    <value>Select analysis results from the document.</value>
+    <comment>Description for Select Analysis Results</comment>
+  </data>
+  <data name="SelectDividedSurfaceFamiliesDescription" xml:space="preserve">
+    <value>Select a divided surface and get its family instances.</value>
+    <comment>Description for Select Divided Surface Families</comment>
+  </data>
+  <data name="SelectEdgeDescription" xml:space="preserve">
+    <value>Select an edge.</value>
+    <comment>Description for Select Edge</comment>
+  </data>
+  <data name="SelectEdgesDescription" xml:space="preserve">
+    <value>Select multiple edges.</value>
+    <comment>Description for multiple edge selector</comment>
+  </data>
+  <data name="SelectEdgesPrefix" xml:space="preserve">
+    <value>Edges</value>
+    <comment>Prefix for edge selector</comment>
+  </data>
+  <data name="SelectFaceDescription" xml:space="preserve">
+    <value>Select a face.</value>
+    <comment>Description for Select Face</comment>
+  </data>
+  <data name="SelectFacesDescription" xml:space="preserve">
+    <value>Select multiple faces from the Revit document.</value>
+    <comment>Description for Select Faces</comment>
+  </data>
+  <data name="SelectionIsDisabledDescription" xml:space="preserve">
+    <value>Selection is disabled when Dynamo run is disabled.</value>
+  </data>
+  <data name="SelectModelElementDescription" xml:space="preserve">
+    <value>Select a model element from the document.</value>
+    <comment>Description for Select Model Element</comment>
+  </data>
+  <data name="SelectModelElementsByCategoryDescription" xml:space="preserve">
+    <value>Select multiple elements from the Revit document filtered by Category.</value>
+    <comment>Description for Select Model Elements By Category</comment>
+  </data>
+  <data name="SelectModelElementsDescription" xml:space="preserve">
+    <value>Select multiple elements from the Revit document.</value>
+    <comment>Description for Select Model Elements</comment>
+  </data>
+  <data name="SelectPointonFaceDescription" xml:space="preserve">
+    <value>Select a point on a face.</value>
+    <comment>Description for Select Point on Face</comment>
+  </data>
+  <data name="SelectUVonFaceDescription" xml:space="preserve">
+    <value>Select a UV on a face.</value>
+    <comment>Description for Select UV on Face</comment>
+  </data>
+  <data name="SiteLocationDescription" xml:space="preserve">
+    <value>Returns the current Revit site location.</value>
+    <comment>Desciption for SiteLocation</comment>
+  </data>
+  <data name="SiteLocationFamilyDocumentWarning" xml:space="preserve">
+    <value>Site Location is not available in a family document.</value>
+  </data>
+  <data name="SpacingRuleLayoutDescription" xml:space="preserve">
+    <value>A spacing rule layout for calculating divided paths.</value>
+    <comment>Description for Spacing Rule Layout</comment>
+  </data>
+  <data name="StructuralColumnTypesDescription" xml:space="preserve">
+    <value>Select a structural column type in the active document</value>
+    <comment>Description for Structural Column Types</comment>
+  </data>
+  <data name="StructuralFramingTypesDescription" xml:space="preserve">
+    <value>Select a structural framing type in the active document</value>
+    <comment>Description for Structural Framing Types</comment>
+  </data>
+  <data name="SunSettingsCurrentDescription" xml:space="preserve">
+    <value>Returns the SunSettings of the current View.</value>
+    <comment>Description for SunSettings.Current</comment>
+  </data>
+  <data name="VerticalTextAlignmentStyleSelectorDescription" xml:space="preserve">
+    <value>Select the vertical text alignment style.</value>
+    <comment>Description for Vertical Text Alignment Style</comment>
+  </data>
+  <data name="ViewDetailLevelDescription" xml:space="preserve">
+    <value>View Detail Level</value>
+  </data>
+  <data name="ViewsDescription" xml:space="preserve">
+    <value>All views available in the current document.</value>
+    <comment>Description for Views</comment>
+  </data>
+  <data name="WallLocationLineDescription" xml:space="preserve">
+    <value>Wall locations.</value>
+  </data>
+  <data name="WallTypesDescription" xml:space="preserve">
+    <value>All wall types available in the document.</value>
+    <comment>Description for Wall Types</comment>
+  </data>
+  <data name="RoofTypesDescription" xml:space="preserve">
+    <value>All roof types in the current document.</value>
+    <comment>Description for Roof Type</comment>
+  </data>
+  <data name="SheetsDescription" xml:space="preserve">
+    <value>All sheets available in the current document.</value>
+    <comment>Description for Sheets</comment>
+  </data>
+  <data name="ViewFamilyTypesDescription" xml:space="preserve">
+    <value>All view family types in the current document.</value>
+    <comment>Description for View Family Types</comment>
+  </data>
 </root>
