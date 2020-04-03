@@ -36,8 +36,8 @@ namespace RevitSystemTests
             //ViewModel.Model.RunExpression();
 
             //check DividedSurface
-            var dividedSurfaceID = "729a8380-11f0-4700-80df-14d70accc5ba";
-            var dividedSurface = GetPreviewValueAtIndex(dividedSurfaceID, 0) as Revit.Elements.DividedSurface;
+            var dividedSurfaceID = "10a90d634ca948cabf7f683ee0adc68a";
+             var dividedSurface = GetPreviewValueAtIndex(dividedSurfaceID, 0) as Revit.Elements.DividedSurface;
             Assert.IsNotNull(dividedSurface);
 
             FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
