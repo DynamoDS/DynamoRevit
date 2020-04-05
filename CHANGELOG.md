@@ -1,3 +1,5 @@
+* Fix All Elements of Element Type supporting less element types than before
+
 ## 0.2.9
 * Update RayBounce_SunStudy test.
 * Update some system test which category is failure.

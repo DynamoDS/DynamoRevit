@@ -61,7 +61,6 @@ namespace RevitSystemTests
 
         }
 
-        [Test,Category("Failure")]
         [TestModel(@".\DirectShape\singleDirectShape.rvt")]
         public void CanUpdateDirectShapeGeo()
         {

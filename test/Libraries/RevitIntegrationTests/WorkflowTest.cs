@@ -146,65 +146,65 @@ namespace RevitSystemTests
             Assert.AreEqual(map.Count, 100);
         }
 
-        [Test, Category("Failure")]// should add lunchbox package before this test can pass
-        [TestModel(@".\Workflow\Definitions\Panels.rvt")]
-        public void Test_Panels()
-        {
-            // Create automation for Dynamo files running in Dynamo Revit
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7346
-            string samplePath = Path.Combine(workingDirectory, @".\Workflow\Definitions\Panels.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-            ViewModel.OpenCommand.Execute(testPath);
-            RunCurrentModel();
-            AssertNoDummyNodes();
-            var model = ViewModel.Model;
-            Assert.AreEqual(32, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(41, model.CurrentWorkspace.Connectors.Count());
+        //[Test, Category("Failure")]// should add lunchbox package before this test can pass
+        //[TestModel(@".\Workflow\Definitions\Panels.rvt")]
+        //public void Test_Panels()
+        //{
+        //    // Create automation for Dynamo files running in Dynamo Revit
+        //    // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7346
+        //    string samplePath = Path.Combine(workingDirectory, @".\Workflow\Definitions\Panels.dyn");
+        //    string testPath = Path.GetFullPath(samplePath);
+        //    ViewModel.OpenCommand.Execute(testPath);
+        //    RunCurrentModel();
+        //    AssertNoDummyNodes();
+        //    var model = ViewModel.Model;
+        //    Assert.AreEqual(32, model.CurrentWorkspace.Nodes.Count());
+        //    Assert.AreEqual(41, model.CurrentWorkspace.Connectors.Count());
 
-            //check Element.OverrideColorInView
-            var color = "4845d25a-c7bd-4e61-8e5d-9dffee11d532";
-            AssertPreviewCount(color, 6);
-            for (int i = 0; i < 6; i++)
-            {
-                var element = GetPreviewValueAtIndex(color, i) as Element;
-                Assert.IsNotNull(element);
-            }
-        }
+        //    //check Element.OverrideColorInView
+        //    var color = "4845d25a-c7bd-4e61-8e5d-9dffee11d532";
+        //    AssertPreviewCount(color, 6);
+        //    for (int i = 0; i < 6; i++)
+        //    {
+        //        var element = GetPreviewValueAtIndex(color, i) as Element;
+        //        Assert.IsNotNull(element);
+        //    }
+        //}
 
-        [Test, Category("Failure")]// should add lunchbox package before this test can pass
-        [TestModel(@".\Workflow\PerforatedScreenByImage\PanelWall.rvt")]
-        public void Test_PanelWall()
-        {
-            // Create automation for Dynamo files running in Dynamo Revit
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7346
-            string samplePath = Path.Combine(workingDirectory, @".\Workflow\PerforatedScreenByImage\PanelWall.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-            ViewModel.OpenCommand.Execute(testPath);
-            RunCurrentModel();
-            AssertNoDummyNodes();
+        //[Test, Category("Failure")]// should add lunchbox package before this test can pass
+        //[TestModel(@".\Workflow\PerforatedScreenByImage\PanelWall.rvt")]
+        //public void Test_PanelWall()
+        //{
+        //    // Create automation for Dynamo files running in Dynamo Revit
+        //    // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-7346
+        //    string samplePath = Path.Combine(workingDirectory, @".\Workflow\PerforatedScreenByImage\PanelWall.dyn");
+        //    string testPath = Path.GetFullPath(samplePath);
+        //    ViewModel.OpenCommand.Execute(testPath);
+        //    RunCurrentModel();
+        //    AssertNoDummyNodes();
 
-            var model = ViewModel.Model;
-            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(21, model.CurrentWorkspace.Connectors.Count());
+        //    var model = ViewModel.Model;
+        //    Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
+        //    Assert.AreEqual(21, model.CurrentWorkspace.Connectors.Count());
 
-            //check Element.SetParamterByName
-            var elementsID = "4ad86c1b-2e41-4374-b72b-467b3551c401";
-            AssertPreviewCount(elementsID, 60);
-            for (int i = 0; i < 60; i++)
-            {
-                var element = GetPreviewValueAtIndex(elementsID, i) as Element;
-                Assert.IsNotNull(element);
-            }
+        //    //check Element.SetParamterByName
+        //    var elementsID = "4ad86c1b-2e41-4374-b72b-467b3551c401";
+        //    AssertPreviewCount(elementsID, 60);
+        //    for (int i = 0; i < 60; i++)
+        //    {
+        //        var element = GetPreviewValueAtIndex(elementsID, i) as Element;
+        //        Assert.IsNotNull(element);
+        //    }
 
-            //check AdaptiveComponent.ByPoint
-            var acID = "85e957b8-90b7-46a5-823c-18aaa4155c98";
-            AssertPreviewCount(acID, 60);
-            for (int i = 0; i < 60; i++)
-            {
-                var element = GetPreviewValueAtIndex(acID, i) as AdaptiveComponent;
-                Assert.IsNotNull(element);
-            }
-        }
+        //    //check AdaptiveComponent.ByPoint
+        //    var acID = "85e957b8-90b7-46a5-823c-18aaa4155c98";
+        //    AssertPreviewCount(acID, 60);
+        //    for (int i = 0; i < 60; i++)
+        //    {
+        //        var element = GetPreviewValueAtIndex(acID, i) as AdaptiveComponent;
+        //        Assert.IsNotNull(element);
+        //    }
+        //}
 
         [Test]
         [TestModel(@".\Workflow\PerforatedScreenByImage\PanelWall.rvt")]
@@ -423,8 +423,8 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(39, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(47, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(42, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(50, model.CurrentWorkspace.Connectors.Count());
 
             //check Floor.ByOutLineTypeAndLevel
             var floor = "1bcce36c-7ea3-4c70-9271-544fd378ec41";
@@ -436,9 +436,9 @@ namespace RevitSystemTests
             }
 
             //check Element.OverrideColorInView
-            var ele = "d986daac-eae1-4e80-9430-44527fcb133e";
-            AssertPreviewCount(ele, 126);
-            for (int i = 0; i < 126; i++)
+            var ele = "25aa4d1ca1db434db40a90bbef69a027";
+            AssertPreviewCount(ele, 81);
+            for (int i = 0; i < 81; i++)
             {
                 var element = GetPreviewValueAtIndex(ele, i) as Element;
                 Assert.IsNotNull(element); //This node get error with the latest Dynamo
@@ -458,8 +458,8 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(45, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(56, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(48, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(59, model.CurrentWorkspace.Connectors.Count());
 
             //check Floor.ByOutLineTypeAndLevel
             var floor = "1bcce36c-7ea3-4c70-9271-544fd378ec41";
@@ -471,9 +471,9 @@ namespace RevitSystemTests
             }
 
             //check Element.OverrideColorInView
-            var ele = "d986daac-eae1-4e80-9430-44527fcb133e";
-            AssertPreviewCount(ele, 126);
-            for (int i = 0; i < 126; i++)
+            var ele = "3b24760ecf804ef5b4006db08a25edb8";
+            AssertPreviewCount(ele, 81);
+            for (int i = 0; i < 81; i++)
             {
                 var element = GetPreviewValueAtIndex(ele, i) as Element;
                 Assert.IsNotNull(element); //This node get error with the latest Dynamo

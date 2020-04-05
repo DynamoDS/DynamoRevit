@@ -217,7 +217,7 @@ namespace RevitSystemTests
             }
         }
 
-        [Test, Ignore, Category("Failure")]
+        [Test]
         [TestModel(@".\AdaptiveComponent\AdaptiveComponent.rfa")]
         public void AdaptiveComponent()
         {

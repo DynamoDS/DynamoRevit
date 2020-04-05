@@ -710,36 +710,36 @@ namespace RevitSystemTests
 
         }
 
-        [Test, Category("Failure")]
-        [TestModel(@".\Samples\AllCurves.rfa")]
-        public void ArcAndLine()
-        {
-            var model = ViewModel.Model;
+        //[Test, Category("Failure")]
+        //[TestModel(@".\Samples\AllCurves.rfa")]
+        //public void ArcAndLine()
+        //{
+        //    var model = ViewModel.Model;
 
-            string samplePath = Path.Combine(workingDirectory, @".\Samples\Arc and Line.dyn");
-            string testPath = Path.GetFullPath(samplePath);
+        //    string samplePath = Path.Combine(workingDirectory, @".\Samples\Arc and Line.dyn");
+        //    string testPath = Path.GetFullPath(samplePath);
 
-            ViewModel.OpenCommand.Execute(testPath);
+        //    ViewModel.OpenCommand.Execute(testPath);
             
-            AssertNoDummyNodes();
+        //    AssertNoDummyNodes();
 
-            // check all the nodes and connectors are loaded
-            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(18, model.CurrentWorkspace.Connectors.Count());
+        //    // check all the nodes and connectors are loaded
+        //    Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
+        //    Assert.AreEqual(18, model.CurrentWorkspace.Connectors.Count());
 
-            RunCurrentModel();
+        //    RunCurrentModel();
 
-            var nodeID = "6de77be2-fa0f-41ec-a494-151d47ad8274";
+        //    var nodeID = "6de77be2-fa0f-41ec-a494-151d47ad8274";
 
-            var arc = GetPreviewValueAtIndex(nodeID, 0) as Arc;
-            Assert.IsNotNull(arc);
+        //    var arc = GetPreviewValueAtIndex(nodeID, 0) as Arc;
+        //    Assert.IsNotNull(arc);
 
-            var circle = GetPreviewValueAtIndex(nodeID, 1) as Line;
-            Assert.IsNotNull(circle);
+        //    var circle = GetPreviewValueAtIndex(nodeID, 1) as Line;
+        //    Assert.IsNotNull(circle);
 
-            var modelCurve = GetPreviewValue("a91af17e-111e-4945-9f74-9ac09d168ad4") as ModelCurve;
-            Assert.IsNotNull(modelCurve);
-        }
+        //    var modelCurve = GetPreviewValue("a91af17e-111e-4945-9f74-9ac09d168ad4") as ModelCurve;
+        //    Assert.IsNotNull(modelCurve);
+        //}
 
         [Test]
         [TestModel(@".\Samples\AllCurves.rfa")]
@@ -1140,7 +1140,7 @@ namespace RevitSystemTests
             }
         }
 
-        [Test, Ignore, Category("Failure"), Category("SmokeTests")]
+        [Test, Category("SmokeTests")]
         [TestModel(@".\empty.rfa")]
         public void Geometry_Solids()
         {
@@ -1216,32 +1216,7 @@ namespace RevitSystemTests
             Assert.IsNotNull(surface2);
 
         }
-
-        [Test, Ignore, Category("Failure")] // This dyn file should connect nodes manully
-        [TestModel(@".\empty.rfa")]
-        public void Basics_Basic01()
-        {
-            var model = ViewModel.Model;
-
-            string samplePath = Path.Combine(workingDirectory, @".\Samples\Basics_Basic01.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            AssertNoDummyNodes();
-
-            // check all the nodes and connectors are loaded
-            Assert.AreEqual(4, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(3, model.CurrentWorkspace.Connectors.Count());
-
-            RunCurrentModel();
-
-            // get the result of add operation
-            var addOperation = "0d2e1e9d21dc4e5bb105e3bedca3b1f9";
-            var result = GetPreviewValue(addOperation);
-            Assert.AreEqual(8, result);
-        }
-
+                
         [Test, Category("SmokeTests")]
         [TestModel(@".\empty.rfa")]
         public void Basics_Basic02()
