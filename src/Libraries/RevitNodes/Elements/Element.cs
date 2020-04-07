@@ -1028,9 +1028,6 @@ namespace Revit.Elements
 
         /// <summary>
         /// Unjoin the geometry of two Elements.
-        /// This node provides control over two specific elements whose geometry is unjoined and will 
-        /// perform a transaction in Revit for each of the input Elements. 
-        /// Consider using the UnjoinAllGeometry node for batch unjoin operations.
         /// </summary>
         /// <param name="otherElement">Other element to unjoin from the element.</param>
         /// <returns>The input elements with their geometry unjoined.</returns>
@@ -1078,8 +1075,7 @@ namespace Revit.Elements
         }
         
         /// <summary>
-        /// Sets the order in which the geometry of two elements is joined. If the order is already as desired, elements are not affected. 
-        /// Note that changing this will affect both 3D and 2D views and that it is not the recommended way of managing wall joins.
+        /// Sets the order in which the geometry of two elements is joined.
         /// </summary>
         /// <param name="cuttingElement">The element that should be cutting the other element</param>
         /// <param name="otherElement">The other element that is being cut by the cuttingElement</param>

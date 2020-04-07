@@ -331,6 +331,12 @@ namespace Revit.Application
 
         #region Static Constructors
 
+        /// <summary>
+        /// Get FamilyDocument from a Document 
+        /// if this document is a Family Document.
+        /// </summary>
+        /// <param name="document"></param>
+        /// <returns></returns>
         public static FamilyDocument ByDocument(Document document)
         {
             if (!document.InternalDocument.IsFamilyDocument)
