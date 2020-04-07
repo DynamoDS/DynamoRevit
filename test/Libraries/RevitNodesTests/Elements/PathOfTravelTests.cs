@@ -73,7 +73,7 @@ namespace RevitNodesTests.Elements
          Autodesk.Revit.DB.ViewPlan defaultView = (Autodesk.Revit.DB.ViewPlan) GetDefaultViewPlan();
 
          var longestOfShortestPaths = PathOfTravel.LongestOfShortestExitPaths(
-               new FloorPlanView(defaultView),
+               defaultView.ToDSType(true) as FloorPlanView,
                new Point[] { Point.ByCoordinates(23.340, 2.494, 3.625),
                              Point.ByCoordinates(12.883, -7.299, 3.625) });
 
@@ -94,7 +94,7 @@ namespace RevitNodesTests.Elements
          Autodesk.Revit.DB.ViewPlan defaultView = (Autodesk.Revit.DB.ViewPlan) GetDefaultViewPlan();
 
          var longestOfShortestPaths = PathOfTravel.LongestOfShortestExitPaths(
-               new FloorPlanView(defaultView),
+               defaultView.ToDSType(true) as FloorPlanView,
                new Point[] { Point.ByCoordinates(12.883, -7.299, 3.625),
                              Point.ByCoordinates(33.796, -7.299, 3.625) });
 
