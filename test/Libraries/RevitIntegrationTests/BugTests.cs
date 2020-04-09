@@ -738,6 +738,7 @@ namespace RevitSystemTests
             //There should be no infinite loop, otherwise, there will be an error with this test case.
         }
 
+        [Test]
         [Category("RegressionTests")]
         [TestModel(@".\empty.rfa")]
         public void SelectionButtonShouldBeDisabledAfterOpeningNewDocument()
