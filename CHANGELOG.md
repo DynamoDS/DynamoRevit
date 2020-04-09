@@ -1,3 +1,6 @@
+## 0.2.12
+* Fix some tests was deleted by mistake.
+
 ## 0.2.11
 * Bump a new version due to package mistake.
 
