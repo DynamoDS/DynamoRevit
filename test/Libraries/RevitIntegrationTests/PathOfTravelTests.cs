@@ -29,7 +29,7 @@ namespace RevitSystemTests
          Document doc = DocumentManager.Instance.CurrentDBDocument;
          var collector = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_PathOfTravelLines);
 
-         // Two longest paths of ravel are created in this test
+         // Two longest paths of travel are created in this test
          Assert.AreEqual(2, collector.ToElements().Count());
       }
    }

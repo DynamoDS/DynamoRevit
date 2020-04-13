@@ -74,15 +74,15 @@ namespace RevitNodesTests.Elements
 
          var longestOfShortestPaths = PathOfTravel.LongestOfShortestExitPaths(
                defaultView.ToDSType(true) as FloorPlanView,
-               new Point[] { Point.ByCoordinates(23.349, 2.508, 3.625),
-                             Point.ByCoordinates(12.892, 7.285, 3.625) });
+               new Point[] { Point.ByCoordinates(23.340, 2.494, 3.625),
+                             Point.ByCoordinates(12.883, -7.299, 3.625) });
 
          Assert.NotNull(longestOfShortestPaths);
          Assert.AreEqual(1, longestOfShortestPaths.Length);
          Assert.NotNull(longestOfShortestPaths[0]);
 
          int boudingBoxTest = longestOfShortestPaths[0].BoundingBox.ToString().CompareTo(
-            "BoundingBox(MinPoint = Point(X = 23.349, Y = -46.619, Z = 0.000), MaxPoint = Point(X = 62.349, Y = 2.508, Z = 0.000))");
+            "BoundingBox(MinPoint = Point(X = 12.883, Y = -46.633, Z = 0.000), MaxPoint = Point(X = 62.340, Y = -7.299, Z = 0.000))");
 
          Assert.AreEqual(0, boudingBoxTest);
       }
@@ -95,8 +95,8 @@ namespace RevitNodesTests.Elements
 
          var longestOfShortestPaths = PathOfTravel.LongestOfShortestExitPaths(
                defaultView.ToDSType(true) as FloorPlanView,
-               new Point[] { Point.ByCoordinates(12.892, -7.285, 3.625),
-                             Point.ByCoordinates(33.806, -7.285, 3.625) });
+               new Point[] { Point.ByCoordinates(12.883, -7.299, 3.625),
+                             Point.ByCoordinates(33.796, -7.299, 3.625) });
 
          Assert.NotNull(longestOfShortestPaths);
          Assert.AreEqual(2, longestOfShortestPaths.Length);
@@ -104,10 +104,10 @@ namespace RevitNodesTests.Elements
          Assert.NotNull(longestOfShortestPaths[1]);
 
          int boudingBoxTest1 = longestOfShortestPaths[0].BoundingBox.ToString().CompareTo(
-            "BoundingBox(MinPoint = Point(X = 33.806, Y = -7.285, Z = 0.000), MaxPoint = Point(X = 62.349, Y = 31.965, Z = 0.000))");
+            "BoundingBox(MinPoint = Point(X = 33.796, Y = -7.299, Z = 0.000), MaxPoint = Point(X = 62.340, Y = 31.951, Z = 0.000))");
 
          int boudingBoxTest2 = longestOfShortestPaths[1].BoundingBox.ToString().CompareTo(
-            "BoundingBox(MinPoint = Point(X = -16.235, Y = -7.285, Z = 0.000), MaxPoint = Point(X = 12.892, Y = 31.965, Z = 0.000))");
+            "BoundingBox(MinPoint = Point(X = -16.244, Y = -7.299, Z = 0.000), MaxPoint = Point(X = 12.883, Y = 31.951, Z = 0.000))");
 
          Assert.AreEqual(0, boudingBoxTest1);
          Assert.AreEqual(0, boudingBoxTest2);

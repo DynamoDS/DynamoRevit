@@ -67,13 +67,13 @@ namespace Revit.Elements
             throw new ArgumentNullException("floorPlan", Properties.Resources.InvalidView);
 
          if (endPtsList == null)
-            throw new ArgumentNullException("endPtList", Properties.Resources.InvalidEndPointList);
+            throw new ArgumentNullException("endPtsList", Properties.Resources.InvalidEndPointList);
 
          if (!endPtsList.Any())
-            throw new ArgumentException(Properties.Resources.EndPointListEmpty, "endPtList");
+            throw new ArgumentException(Properties.Resources.EndPointListEmpty, "endPtsList");
 
          if (endPtsList.Any(x => x == null))
-            throw new ArgumentException(Properties.Resources.EndPointListHasNulls, "endPtList");
+            throw new ArgumentException(Properties.Resources.EndPointListHasNulls, "endPtsList");
 
          // Check that floor has some rooms
          Rvt.Document doc = DocumentManager.Instance.CurrentDBDocument;
