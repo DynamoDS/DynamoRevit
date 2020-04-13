@@ -39,7 +39,7 @@ It's also possible to use the prebuilt Dynamo that ships with Revit, or to retri
 After DynamoRevit is built, you will notice that there is a `Dynamo.config` file in DynamoRevit\bin\AnyCPU\Debug[Or Release]. With this file you must specify which DynamoCore you want to run with the DynamoRevit build.
 
 For example, if you specify
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <appSettings>
@@ -55,7 +55,7 @@ Starting in Revit 2020, there is a version of DynamoCore and the DynamoRevit add
 
 For development, you'll have to manually create an addin file that instructs Revit to load the plugin on startup. A DynamoRevit addin file looks like this:
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RevitAddIns>
   <AddIn Type="Application">
@@ -96,7 +96,7 @@ Now you should be able to launch Revit and see the Dynamo and Dynamo Player icon
 
 * Revit 2020 and later do not use the DynamoVersionSelector by default, but it's still in the DynamoRevit build. If you'd like to try using it, you can create a Dynamo.addin file that looks like this:
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RevitAddIns>
   <AddIn Type="Application">
