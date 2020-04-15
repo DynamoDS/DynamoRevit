@@ -1,3 +1,8 @@
+## 0.1.20
+* Update CICD for Revit 2021
+
+* 0.1.17 - 0.1.19 belong to RC2.5.2_Revit2021.1
+
 ## 0.1.16
 * Update Assembly Shared Info for Revit 2021
 * Update RevitAPI folder name to net48.
