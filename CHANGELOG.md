@@ -1,3 +1,6 @@
+## 0.1.19
+* Update CICD for Revit 2021.1
+
 ## 0.1.18
 * Fix TestNonBrowsableClasses regression failure.
 
