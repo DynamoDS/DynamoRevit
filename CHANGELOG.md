@@ -1,3 +1,6 @@
+## 0.0.50
+* Update CICD for Revit 2020
+
 ## 0.0.49
 * Bump a version for Revit 2020 latest release
 
