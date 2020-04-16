@@ -513,4 +513,7 @@
     <data name="WrongStorageType" xml:space="preserve">
         <value>Input value for this parameter needs to be of type {0}.</value>
     </data>
+    <data name="InvalidPathOfTravel" xml:space="preserve">
+      <value>Invalid PathOfTravel element.</value>
+    </data>
 </root>

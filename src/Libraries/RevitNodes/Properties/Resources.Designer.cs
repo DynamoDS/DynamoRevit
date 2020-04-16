@@ -664,6 +664,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid PathOfTravel element..
+        /// </summary>
+        internal static string InvalidPathOfTravel {
+            get {
+                return ResourceManager.GetString("InvalidPathOfTravel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Floor Shape cannot be edited..
         /// </summary>
         internal static string InvalidShapeEditor {
@@ -1051,7 +1060,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rooms are required to compute longest Paths of Travel.
+        ///   Looks up a localized string similar to Rooms are required to compute longest Paths of Travel..
         /// </summary>
         internal static string RoomsForLongestPathNotFound {
             get {
