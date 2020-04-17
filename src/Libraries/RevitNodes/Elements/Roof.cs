@@ -182,9 +182,9 @@ namespace Revit.Elements
         public static Roof ByOutlineExtrusionTypeAndLevel(PolyCurve outline, RoofType roofType, Level level, ReferencePlane plane, double extrusionStart, double extrusionEnd)
         {
 
-            if (!outline.IsClosed)
+            if (outline.IsClosed)
             {
-                throw new ArgumentException(Properties.Resources.OpenInputPolyCurveError);
+                throw new ArgumentException(Properties.Resources.CloseInputPolyCurveError);
             }
 
             var ca = new CurveArray();
