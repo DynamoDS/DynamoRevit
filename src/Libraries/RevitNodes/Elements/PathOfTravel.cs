@@ -15,7 +15,7 @@ using RvtAnalysis = Autodesk.Revit.DB.Analysis;
 namespace Revit.Elements
 {
    /// <summary>
-   /// Revit Path of Travel Element
+   /// PathOfTravel Element.
    /// </summary>
    [DynamoServices.RegisterForTrace]
    public class PathOfTravel : Element
@@ -23,12 +23,12 @@ namespace Revit.Elements
       #region Internal properties
 
       /// <summary>
-      /// An internal handle on the Revit path of travel
+      /// An internal handle on the Revit PathOfTravel element.
       /// </summary>
       RvtAnalysis.PathOfTravel m_rvtPathOfTravel = null;
 
       /// <summary>
-      /// Reference to the Element
+      /// Reference to Revit PathOfTravel Element.
       /// </summary>
       [SupressImportIntoVM]
       public override Rvt.Element InternalElement
@@ -54,11 +54,11 @@ namespace Revit.Elements
       #region Public constructors
 
       /// <summary>
-      /// Calculates the longest PathofTravel(s) of all shortest paths from rooms in the floor plan to the specified exit points.
+      /// Calculates the longest PathOfTravel(s) of all shortest paths from rooms in the floor plan to the specified exit points.
       /// </summary>
       /// <param name="floorPlan">Floor plan view for which rooms will be used to retrieve longest paths to the specified exit points.</param>
       /// <param name="endPtsList">List of end (exit) points.</param>
-      /// <returns>List of PathofTravel elements corresponding to the longest of shortest exit paths from rooms.</returns>
+      /// <returns>List of PathOfTravel elements corresponding to the longest of shortest exit paths from rooms.</returns>
       [NodeCategory("Create")]
       [AllowRankReduction]
       public static PathOfTravel[] LongestOfShortestExitPaths(Revit.Elements.Views.FloorPlanView floorPlan, Autodesk.DesignScript.Geometry.Point[] endPtsList)
@@ -96,13 +96,13 @@ namespace Revit.Elements
       }
 
       /// <summary>
-      /// Constructs a list of PathofTravel elements in a floor plan view between the specified start points and end points.
+      /// Constructs a list of PathOfTravel elements in a floor plan view between the specified start points and end points.
       /// </summary>
       /// <param name="floorPlan">Floor plan view to place paths of travel on</param>
       /// <param name="startPtsList">List of start points</param>
       /// <param name="endPtsList">List of end points</param>
       /// <param name="manyToMany">If true, paths are created from every point in the start point list to all points in the end point list. If false, a path is created from every point in the start point list to a corresponding point in the end point list with the same index. The two lists must have the same size when not creating many-to-many paths.</param>
-      /// <returns>List of PathofTravel elements; can contain null elements if there is no path between some points.</returns>
+      /// <returns>List of PathOfTravel elements; can contain null elements if there is no path between some points.</returns>
       [NodeCategory("Create")]
       [AllowRankReduction]
       public static PathOfTravel[] ByFloorPlanPoints(Revit.Elements.Views.FloorPlanView floorPlan, Autodesk.DesignScript.Geometry.Point[] startPtsList, Autodesk.DesignScript.Geometry.Point[] endPtsList, bool manyToMany)
@@ -163,9 +163,9 @@ namespace Revit.Elements
       #region Public methods
 
       /// <summary>
-      /// Returns the WayPoints set from PathofTravel element.
+      /// Returns the WayPoints set from PathOfTravel element.
       /// </summary>
-      /// <returns>List of WayPoints for the given PathofTravel element.</returns>
+      /// <returns>List of WayPoints for the given PathOfTravel element.</returns>
       [NodeCategory("Query")]
       [AllowRankReduction]
       public IList<XYZ> GetWayPoints()
@@ -177,10 +177,10 @@ namespace Revit.Elements
       }
 
       /// <summary>
-      /// Removes WayPoint at the specified index from PathofTravel element.
+      /// Removes WayPoint at the specified index from PathOfTravel element.
       /// </summary>
-      /// <param name="index">Index of the WayPoint to be removed from the PathofTravel element.</param>
-      /// <returns>The PathofTravel element after the WayPoint was rmnoved.</returns>
+      /// <param name="index">Index of the WayPoint to be removed from the PathOfTravel element.</param>
+      /// <returns>The PathOfTravel element after the WayPoint was rmnoved.</returns>
       [NodeCategory("Action")]
       [AllowRankReduction]
       public PathOfTravel RemoveWayPoint(int index)
@@ -198,11 +198,11 @@ namespace Revit.Elements
       }
 
       /// <summary>
-      /// Inserts a WayPoint to PathofTravel element at the specified index.
+      /// Inserts a WayPoint to PathOfTravel element at the specified index.
       /// </summary>
       /// <param name="wayPoint">The waypoint to insert.</param>
       /// <param name="index">The index to insert the waypoint at.</param>
-      /// <returns>The PathofTravel element after the WayPoint was inserted.</returns>
+      /// <returns>The PathOfTravel element after the WayPoint was inserted.</returns>
       [NodeCategory("Action")]
       [AllowRankReduction]
       public PathOfTravel InsertWayPoint(Autodesk.DesignScript.Geometry.Point wayPoint, int index)
@@ -227,7 +227,7 @@ namespace Revit.Elements
       /// </summary>
       /// <param name="newPosition">The position to which WayPoint will be set.</param>
       /// <param name="index">The index of WayPoint to update.</param>
-      /// <returns>The PathofTravel element after the WayPoint was set.</returns>
+      /// <returns>The PathOfTravel element after the WayPoint was set.</returns>
       [NodeCategory("Action")]
       [AllowRankReduction]
       public PathOfTravel SetWayPoint(Autodesk.DesignScript.Geometry.Point newPosition, int index)
@@ -296,11 +296,11 @@ namespace Revit.Elements
       }
 
       /// <summary>
-      /// [INTERNAL]: Calculates the longest Path of Travel of all shortest paths from rooms in the floor plan to given exit points.
+      /// [INTERNAL]: Calculates the longest PathOfTravel of all shortest paths from rooms in the floor plan to given exit points.
       /// </summary>
       /// <param name="rvtView">Floor plan view for which rooms will be used to retrieve longest paths to the given exit points.</param>
       /// <param name="endPoints">List of end (exit) points.</param>
-      /// <returns>List of Path of Travel elements corresponding to the longest of shortest exit paths from rooms.</returns>
+      /// <returns>List of PathOfTravel elements corresponding to the longest of shortest exit paths from rooms.</returnsO
       /// 
       private static PathOfTravel[] InternalLongestOfShortestExitPaths(Rvt.View rvtView, IEnumerable<XYZ> endPoints)
       {
@@ -523,7 +523,7 @@ namespace Revit.Elements
       }
 
       /// <summary>
-      /// Initialize a Path of Travel element from existing Revit element
+      /// Initialize a PathOfTravel element from existing Revit element.
       /// </summary>
       private void InitPathOfTravel(RvtAnalysis.PathOfTravel rvtPathOfTravel)
       {

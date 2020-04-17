@@ -275,15 +275,15 @@ namespace RevitNodesTests.Elements
             new Point[] { Point.ByCoordinates(100, 100, 0) },
             false);
 
-         // Assert created Path of Travel is valid.
+         // Assert created PathOfTravel element is valid.
          Assert.NotNull(pathOfTravelOneToOne);
          Assert.AreEqual(1, pathOfTravelOneToOne.GetLength(0));
          Assert.NotNull(pathOfTravelOneToOne[0]);
 
-         // Current Path of Travel.
+         // Current PathOfTravel element.
          var pathOfTravel = pathOfTravelOneToOne[0];
 
-         // Assert there is no way points on current Path of Travel.
+         // Assert there is no way points on current PathOfTravel element.
          var listWayPointsEmpty = pathOfTravel.GetWayPoints();
          Assert.NotNull(listWayPointsEmpty);
          Assert.AreEqual(0, listWayPointsEmpty.Count);
@@ -334,12 +334,12 @@ namespace RevitNodesTests.Elements
             new Point[] { Point.ByCoordinates(100, 100, 0) },
             false);
 
-         // Assert created Path of Travel is valid.
+         // Assert created PathOfTravel element is valid.
          Assert.NotNull(pathOfTravelOneToOne);
          Assert.AreEqual(1, pathOfTravelOneToOne.GetLength(0));
          Assert.NotNull(pathOfTravelOneToOne[0]);
 
-         // Current Path of Travel.
+         // Current PathOfTravel element.
          var pathOfTravel = pathOfTravelOneToOne[0];
 
          // Assert we can insert a way point at valid index
@@ -382,12 +382,12 @@ namespace RevitNodesTests.Elements
             new Point[] { Point.ByCoordinates(100, 100, 0) },
             false);
 
-         // Assert created Path of Travel is valid.
+         // Assert created PathOfTravel element is valid.
          Assert.NotNull(pathOfTravelOneToOne);
          Assert.AreEqual(1, pathOfTravelOneToOne.GetLength(0));
          Assert.NotNull(pathOfTravelOneToOne[0]);
 
-         // Current Path of Travel.
+         // Current PathOfTravel element.
          var pathOfTravel = pathOfTravelOneToOne[0];
 
          // Assert we can insert a way point at valid index
