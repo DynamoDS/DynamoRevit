@@ -16,7 +16,7 @@ namespace RevitSystemTests
     [TestFixture]
     class RayBounceTests : RevitSystemTestBase
     {
-        [Test, Category("Failure")]
+        [Test]
         [TestModel(@".\RayBounce\RayBounce.rvt")]
         public void RayBounce()
         {

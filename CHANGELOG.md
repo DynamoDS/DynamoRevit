@@ -1,3 +1,16 @@
+## 0.2.12
+* Fix some tests was deleted by mistake.
+
+## 0.2.11
+* Bump a new version due to package mistake.
+
+## 0.2.10
+* Fix All Elements of Element Type supporting less element types than before
+* Update ScheduleView.Export comment
+* Update some system tests which category is failure.
+* Update Wall node to allow creation from ellipses
+* Update New Nodes Descriptions
+
 ## 0.2.9
 * Update RayBounce_SunStudy test.
 * Update some system test which category is failure.
@@ -25,7 +38,6 @@
 * Element Type nodes - introduces an ElementType category to the Dynamo library
 * Added some new Category Nodes - Group nodes, Space nodes, Elevation marker nodes, Dimension nodes, Area nodes, View port nodes, Family document nodes, Family instance nodes, Warning nodes.
 * Element.Geometry should provide geometry for FamilySymbols with no instances
-* Sig file generation has been included in CICD of D4R
 
 ## 0.2.2
 * Update .Net to 4.8.

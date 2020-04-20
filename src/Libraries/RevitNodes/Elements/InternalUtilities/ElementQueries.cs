@@ -13,9 +13,6 @@ namespace Revit.Elements.InternalUtilities
     {
         private static readonly HashSet<Type> ClassFilterExceptions = new HashSet<Type>
         {
-            typeof(Autodesk.Revit.DB.Material),
-            typeof(Autodesk.Revit.DB.CurveElement),
-            typeof(Autodesk.Revit.DB.ConnectorElement),
             typeof(Autodesk.Revit.DB.HostedSweep),
             typeof(Autodesk.Revit.DB.Architecture.Room),
             typeof(Autodesk.Revit.DB.Mechanical.Space),
@@ -23,7 +20,6 @@ namespace Revit.Elements.InternalUtilities
             typeof(Autodesk.Revit.DB.Architecture.RoomTag),
             typeof(Autodesk.Revit.DB.Mechanical.SpaceTag),
             typeof(Autodesk.Revit.DB.AreaTag),
-            typeof(Autodesk.Revit.DB.CombinableElement),
             typeof(Autodesk.Revit.DB.Mullion),
             typeof(Autodesk.Revit.DB.Panel),
             typeof(Autodesk.Revit.DB.AnnotationSymbol),
@@ -33,8 +29,37 @@ namespace Revit.Elements.InternalUtilities
             typeof(Autodesk.Revit.DB.Architecture.RoomTagType),
             typeof(Autodesk.Revit.DB.Mechanical.SpaceTagType),
             typeof(Autodesk.Revit.DB.AreaTagType),
-            typeof(Autodesk.Revit.DB.Structure.TrussType)
+            typeof(Autodesk.Revit.DB.Structure.TrussType),
+            typeof(Autodesk.Revit.DB.Structure.AreaReinforcementCurve),
+            typeof(Autodesk.Revit.DB.CurveByPoints),
+            typeof(Autodesk.Revit.DB.DetailArc),
+            typeof(Autodesk.Revit.DB.DetailCurve),
+            typeof(Autodesk.Revit.DB.DetailEllipse),
+            typeof(Autodesk.Revit.DB.DetailLine),
+            typeof(Autodesk.Revit.DB.DetailNurbSpline),
+            typeof(Autodesk.Revit.DB.Architecture.Fascia),
+            typeof(Autodesk.Revit.DB.Architecture.Gutter),
+            typeof(Autodesk.Revit.DB.ModelArc),
+            typeof(Autodesk.Revit.DB.ModelCurve),
+            typeof(Autodesk.Revit.DB.ModelEllipse),
+            typeof(Autodesk.Revit.DB.ModelHermiteSpline),
+            typeof(Autodesk.Revit.DB.ModelLine),
+            typeof(Autodesk.Revit.DB.ModelNurbSpline),
+            typeof(Autodesk.Revit.DB.SlabEdge),
+            typeof(Autodesk.Revit.DB.SymbolicCurve)
         };
+
+        private static Type GetClassFilterExceptionsValidType(Type elementType)
+        {
+            if(ClassFilterExceptions.Contains(elementType.BaseType))
+            {
+                return GetClassFilterExceptionsValidType(elementType.BaseType);
+            }
+            else
+            {
+                return elementType.BaseType;
+            }
+        }
 
         public static IList<Element> OfFamilyType(FamilyType familyType)
         {
@@ -69,8 +94,9 @@ namespace Revit.Elements.InternalUtilities
 
             if (ClassFilterExceptions.Contains(elementType))
             {
+                var type = GetClassFilterExceptionsValidType(elementType);
                 return new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
-                    .OfClass(elementType.BaseType)
+                    .OfClass(type)
                     .Where(x => x.GetType() == elementType)
                     .Select(x => ElementSelector.ByElementId(x.Id.IntegerValue))
                     .ToList();
