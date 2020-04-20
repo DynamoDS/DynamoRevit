@@ -28,5 +28,21 @@ namespace RevitSystemTests
             var type = GetPreviewValue("9daa9b583bdf4659901779b540fdeecc");
             Assert.AreEqual(type.GetType(), typeof(Revit.Elements.Roof));
         }
+
+        [Test]
+        [TestModel(@".\empty.rvt")]
+        public void ByOutlineTypeAndLevel()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Roof\ByOutlineTypeAndLevel.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+
+            var type = GetPreviewValue("c6d16ef7c551467a8d46cd307b2a465b");
+            Assert.AreEqual(type.GetType(), typeof(Revit.Elements.Roof));
+        }
     }
 }
