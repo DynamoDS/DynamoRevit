@@ -1,0 +1,533 @@
+{
+  "Uuid": "dc9882a6-4ef6-4a7f-8965-5c943962c341",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "ByOutLineExtrusionTypeAndLevel",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Point": {
+        "Key": "Autodesk.DesignScript.Geometry.Point",
+        "Value": "ProtoGeometry.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.PolyCurve.ByPoints@Autodesk.DesignScript.Geometry.Point[],bool",
+      "Id": "3969348aa77a4303a1fbfba21804428a",
+      "Inputs": [
+        {
+          "Id": "0ecf348cb4964f0b82cb77f3945ba207",
+          "Name": "points",
+          "Description": "Points to make polycurve\n\nPoint[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f6365ff0f23c4ec88242960e5c67df0f",
+          "Name": "connectLastToFirst",
+          "Description": "make close or open polycurve\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8f59161ac23b4e8ba9617135b0ae29fd",
+          "Name": "PolyCurve",
+          "Description": "PolyCurve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Make PolyCurve by connecting points. Set the 'connectLastToFirst' input to true to close the PolyCurve.\n\nPolyCurve.ByPoints (points: Point[], connectLastToFirst: bool = false): PolyCurve"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Roof.ByOutlineExtrusionTypeAndLevel@Autodesk.DesignScript.Geometry.PolyCurve,Revit.Elements.RoofType,Revit.Elements.Level,Revit.Elements.ReferencePlane,double,double",
+      "Id": "9daa9b583bdf4659901779b540fdeecc",
+      "Inputs": [
+        {
+          "Id": "9aeb1080fdeb453a8cc2251682118e51",
+          "Name": "outline",
+          "Description": "PolyCurve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "170bc28042634f299c367415a9ba0068",
+          "Name": "roofType",
+          "Description": "RoofType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "579cdad1b334497ba9163ae76894c56b",
+          "Name": "level",
+          "Description": "Level",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "21b93114a35b4914a2d1fa428d8efe4a",
+          "Name": "plane",
+          "Description": "ReferencePlane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ff6e42df0e1448b68ca8dbbb9a2b0b45",
+          "Name": "extrusionStart",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b7fc932d6fdc4fd9aea5007e5b94f9c7",
+          "Name": "extrusionEnd",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d4f6f48de6f242b6ae81cc3ecd8f9fb3",
+          "Name": "Roof",
+          "Description": "Roof",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Extrude Roof by Outline, Referenceplane\n\nRoof.ByOutlineExtrusionTypeAndLevel (outline: PolyCurve, roofType: RoofType, level: Level, plane: ReferencePlane, extrusionStart: double, extrusionEnd: double): Roof"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "Point.ByCoordinates(0,0,0);\nPoint.ByCoordinates(0,100,0);\nPoint.ByCoordinates(0,0,100);\nPoint.ByCoordinates(0,100,100);\ntrue;",
+      "Id": "be43060cdcff4cc0b96af2d9218006bf",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "92a9445c06c14979bb2356aa8cd49f44",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c054e9d8c41341ab8f4525b8de2a738e",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b790e72f83d348e086e038b96fb41170",
+          "Name": "",
+          "Description": "Value of expression at line 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b81cda2cf7494780ba0d3b213d019d45",
+          "Name": "",
+          "Description": "Value of expression at line 4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4b6f253e4fa04dd985ae26c160c23544",
+          "Name": "",
+          "Description": "Value of expression at line 5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "NodeType": "ExtensionNode",
+      "Id": "b00af734448b4a4ea516cb4b36c28a12",
+      "Inputs": [
+        {
+          "Id": "67f338006e434c819be8e338ae8394b1",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "876c2403fde54d14a141ea466cd4c0da",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "16452c68701242fa8d3fbf1d82b45e56",
+          "Name": "item2",
+          "Description": "Item Index #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a46324d790c34f46a1e3e065500de813",
+          "Name": "item3",
+          "Description": "Item Index #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6a38d350ed2643adb7bc05a62a6013ad",
+          "Name": "list",
+          "Description": "A list",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list out of the given inputs"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.RoofTypes, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Roof_Flat-4Felt-150Ins-50Scr-150Conc-12Plr",
+      "NodeType": "ExtensionNode",
+      "Id": "b1e6e7fe4e214598a64a815d4230f80a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "332b75cb411145cc9adec7f8da7d2572",
+          "Name": "Roof Types",
+          "Description": "The selected Roof Types",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All roof types in the current document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Level 01 - B.O. Footing",
+      "NodeType": "ExtensionNode",
+      "Id": "10073855d30b48aba7bd5264b7811f06",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "23aab56d956345c8901e33478bfd81c1",
+          "Name": "Levels",
+          "Description": "The selected Levels",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a level in the active document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "50.0;\n200.0;",
+      "Id": "b73294689834449a88b9d4be53300011",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e2424d808078449f9602f53c7c1d3e87",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3adcc493f85b4b08a5e2f48d04d654ed",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.ReferencePlane.ByStartPointEndPoint@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point",
+      "Id": "da804445d5364561b9bf339ff140fedc",
+      "Inputs": [
+        {
+          "Id": "604ae3ca5ece44ef8f260fa83b9a1d8b",
+          "Name": "start",
+          "Description": "The location where the bubble will be located\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bbe7e2582c1f46858b505509f330c6b7",
+          "Name": "end",
+          "Description": "The other end\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "afcc03e2f8c0402ea756a108eab26d78",
+          "Name": "ReferencePlane",
+          "Description": "ReferencePlane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Form a Refernece plane from two end points in the Active view. The cut vector is the Z Axis.\n\nReferencePlane.ByStartPointEndPoint (start: Point, end: Point): ReferencePlane"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "8f59161ac23b4e8ba9617135b0ae29fd",
+      "End": "9aeb1080fdeb453a8cc2251682118e51",
+      "Id": "8e10151a7b5e4afb984278c054e4006c"
+    },
+    {
+      "Start": "92a9445c06c14979bb2356aa8cd49f44",
+      "End": "67f338006e434c819be8e338ae8394b1",
+      "Id": "9d83d1f45def486f8a60e64f6850140b"
+    },
+    {
+      "Start": "92a9445c06c14979bb2356aa8cd49f44",
+      "End": "604ae3ca5ece44ef8f260fa83b9a1d8b",
+      "Id": "1825c1aa1ee54fbead3f1683d1e1422c"
+    },
+    {
+      "Start": "c054e9d8c41341ab8f4525b8de2a738e",
+      "End": "876c2403fde54d14a141ea466cd4c0da",
+      "Id": "3b4fcfac3de2428ba56f29c90981922f"
+    },
+    {
+      "Start": "c054e9d8c41341ab8f4525b8de2a738e",
+      "End": "bbe7e2582c1f46858b505509f330c6b7",
+      "Id": "2531f5c621584853b557159e9ec11bf6"
+    },
+    {
+      "Start": "b790e72f83d348e086e038b96fb41170",
+      "End": "a46324d790c34f46a1e3e065500de813",
+      "Id": "4956b093a62446cc8db693fd966859e1"
+    },
+    {
+      "Start": "b81cda2cf7494780ba0d3b213d019d45",
+      "End": "16452c68701242fa8d3fbf1d82b45e56",
+      "Id": "66129724728a4cdebf8004ffc97a5f07"
+    },
+    {
+      "Start": "6a38d350ed2643adb7bc05a62a6013ad",
+      "End": "0ecf348cb4964f0b82cb77f3945ba207",
+      "Id": "f0452348207045fcb2aaa2d44b528259"
+    },
+    {
+      "Start": "332b75cb411145cc9adec7f8da7d2572",
+      "End": "170bc28042634f299c367415a9ba0068",
+      "Id": "555feec429ba4305a9610680ff1854fb"
+    },
+    {
+      "Start": "23aab56d956345c8901e33478bfd81c1",
+      "End": "579cdad1b334497ba9163ae76894c56b",
+      "Id": "e9a7ff029c0d454fb8ba29a3c7f83b58"
+    },
+    {
+      "Start": "e2424d808078449f9602f53c7c1d3e87",
+      "End": "ff6e42df0e1448b68ca8dbbb9a2b0b45",
+      "Id": "c6bad52612af41d1adc4154861e84cfd"
+    },
+    {
+      "Start": "3adcc493f85b4b08a5e2f48d04d654ed",
+      "End": "b7fc932d6fdc4fd9aea5007e5b94f9c7",
+      "Id": "ee3ea80adb914ead8e3f31f11026d47c"
+    },
+    {
+      "Start": "afcc03e2f8c0402ea756a108eab26d78",
+      "End": "21b93114a35b4914a2d1fa428d8efe4a",
+      "Id": "d369c5ea3cce49f0a52a36c83718a680"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.5.2.7915",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "PolyCurve.ByPoints",
+        "Id": "3969348aa77a4303a1fbfba21804428a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 589.4302707268223,
+        "Y": 241.38270317308985
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Roof.ByOutlineExtrusionTypeAndLevel",
+        "Id": "9daa9b583bdf4659901779b540fdeecc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1083.6432433470052,
+        "Y": 247.62270368498173
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "be43060cdcff4cc0b96af2d9218006bf",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 85.0,
+        "Y": 407.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List Create",
+        "Id": "b00af734448b4a4ea516cb4b36c28a12",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 421.0,
+        "Y": 340.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Roof Types",
+        "Id": "b1e6e7fe4e214598a64a815d4230f80a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 567.0,
+        "Y": 446.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Levels",
+        "Id": "10073855d30b48aba7bd5264b7811f06",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 384.0,
+        "Y": 567.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "b73294689834449a88b9d4be53300011",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 561.0,
+        "Y": 675.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ReferencePlane.ByStartPointEndPoint",
+        "Id": "da804445d5364561b9bf339ff140fedc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 779.61405271206718,
+        "Y": 545.45297313207448
+      }
+    ],
+    "Annotations": [],
+    "X": -309.62286940759623,
+    "Y": -35.734858256428168,
+    "Zoom": 0.67900743610005732
+  }
+}

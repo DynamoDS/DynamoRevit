@@ -146,7 +146,7 @@ namespace Revit.Elements
         /// Create a Revit Roof given its curve outline and Level
         /// </summary>
         /// <param name="outline"></param>
-        /// <param name="RoofType"></param>
+        /// <param name="roofType"></param>
         /// <param name="level"></param>
         /// <returns>The Roof</returns>
         public static Roof ByOutlineTypeAndLevel(Curve[] outline, RoofType roofType, Level level)
