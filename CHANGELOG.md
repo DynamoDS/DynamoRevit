@@ -1,3 +1,5 @@
+* Fix Roof.ByOutlineExtrusionTypeAndLevel bug - the input outline should not be closed.
+
 ## 0.2.12
 * Fix some tests was deleted by mistake.
 
