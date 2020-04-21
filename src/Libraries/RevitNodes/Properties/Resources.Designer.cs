@@ -19,7 +19,7 @@ namespace Revit.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -156,6 +156,15 @@ namespace Revit.Properties {
         internal static string ChildElementsNotSupported {
             get {
                 return ResourceManager.GetString("ChildElementsNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The input PolyCurve is closed..
+        /// </summary>
+        internal static string CloseInputPolyCurveError {
+            get {
+                return ResourceManager.GetString("CloseInputPolyCurveError", resourceCulture);
             }
         }
         
@@ -367,20 +376,20 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot place empty view on sheet..
-        /// </summary>
-        internal static string EmptyView {
-            get {
-                return ResourceManager.GetString("EmptyView", resourceCulture);
-            }
-        }
-
-        /// <summary>
         ///   Looks up a localized string similar to There is no ElementType of the given name in the current Document.
         /// </summary>
         internal static string ElementTypeNameNotFound {
             get {
                 return ResourceManager.GetString("ElementTypeNameNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot place empty view on sheet..
+        /// </summary>
+        internal static string EmptyView {
+            get {
+                return ResourceManager.GetString("EmptyView", resourceCulture);
             }
         }
         
