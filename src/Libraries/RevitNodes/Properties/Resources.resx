@@ -516,4 +516,7 @@
   <data name="CloseInputPolyCurveError" xml:space="preserve">
     <value>The input PolyCurve is closed.</value>
   </data>
+  <data name="InvalidPathOfTravel" xml:space="preserve">
+    <value>Invalid PathOfTravel element.</value>
+  </data>
 </root>
