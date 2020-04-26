@@ -1,4 +1,7 @@
+## 0.2.13
 * Fix Roof.ByOutlineExtrusionTypeAndLevel bug - the input outline should not be closed.
+* Longest of shortest exit paths node
+* Add Get Remove Insert and Set waypoints nodes on a PathOfTravel element
 
 ## 0.2.12
 * Fix some tests was deleted by mistake.
