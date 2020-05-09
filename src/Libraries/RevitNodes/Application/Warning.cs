@@ -63,9 +63,11 @@ namespace Revit.Application
         /// <returns>The elements that have caused the failure.</returns>
         public List<Element> GetFailingElements()
         {
-            return this.InternalWarning
-                .GetFailingElements()
-                .Select(x => DocumentManager.Instance.CurrentDBDocument.GetElement(x).ToDSType(true))
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            List<Autodesk.Revit.DB.ElementId> FailingElements = new List<Autodesk.Revit.DB.ElementId>(this.InternalWarning.GetFailingElements());
+            FailingElements.AddRange(this.InternalWarning.GetAdditionalElements());
+            return FailingElements
+                .Select(x => doc.GetElement(x).ToDSType(true))
                 .ToList();
         }
 
