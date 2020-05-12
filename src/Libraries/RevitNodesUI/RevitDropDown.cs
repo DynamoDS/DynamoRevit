@@ -25,6 +25,9 @@ using Parameter = Autodesk.Revit.DB.Parameter;
 using Revit.Application;
 using System.Text.RegularExpressions;
 
+using RevitServices.Elements;
+using RevitServices.Transactions;
+
 namespace DSRevitNodesUI
 {
     public class DropDownItemEqualityComparer : IEqualityComparer<DynamoDropDownItem>
@@ -42,15 +45,16 @@ namespace DSRevitNodesUI
 
     public abstract class RevitDropDownBase : DSDropDownBase
     {
-
         protected RevitDropDownBase(string value) : base(value)
         {
+            RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
         [JsonConstructor]
         public RevitDropDownBase(string value, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(value, inPorts, outPorts)
         {
+            RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
@@ -59,8 +63,29 @@ namespace DSRevitNodesUI
             PopulateItems();
         }
 
+        private void Updater_ElementsUpdated(object sender, ElementUpdateEventArgs e)
+        {
+            switch (e.Operation)
+            {
+                case ElementUpdateEventArgs.UpdateType.Added:
+                    break;
+                case ElementUpdateEventArgs.UpdateType.Modified:
+                    bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
+                    if (!dynamoTransaction)
+                    {
+                        Updater_ElementsModified(e.GetUniqueIds());
+                    }
+                    break;
+                case ElementUpdateEventArgs.UpdateType.Deleted:
+                    break;
+                default:
+                    break;
+            }
+        }
+
         public override void Dispose()
         {
+            RevitServicesUpdater.Instance.ElementsUpdated -= Updater_ElementsUpdated;
             DynamoRevitApp.EventHandlerProxy.DocumentOpened -= Controller_RevitDocumentChanged;
             base.Dispose();
         }
@@ -80,6 +105,24 @@ namespace DSRevitNodesUI
             if (!string.IsNullOrEmpty(selectedValueToIgnore) && Items[SelectedIndex].Name == selectedValueToIgnore)
                 return false;
             return true;
+        }
+
+        void Updater_ElementsModified(IEnumerable<string> updated)
+        {
+            // If nothing has been updated, then return
+
+            if (!updated.Any())
+                return;
+
+            // If the updated list doesn't include any objects in the current selection
+            // then return;
+            if (!Items.Where(x => ((Element)(x.Item)).IsValidObject).Select(x => ((Element)(x.Item)).UniqueId).Any(updated.Contains))
+            {
+                return;
+            }
+
+            PopulateItems();
+            OnNodeModified(true);
         }
     }
 
