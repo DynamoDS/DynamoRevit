@@ -13,6 +13,7 @@ using ProtoCore.AST.AssociativeAST;
 using RevitServices.Elements;
 using RevitServices.Persistence;
 using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
+using RevitServices.Transactions;
 
 namespace DSRevitNodesUI
 {
@@ -67,6 +68,10 @@ namespace DSRevitNodesUI
         private void Updater_ElementsUpdated(object sender, ElementUpdateEventArgs e)
         {
             if (e.Operation != ElementUpdateEventArgs.UpdateType.Modified) return;
+
+            bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
+            if (dynamoTransaction)
+                return;
 
             if (e.GetUniqueIds().Contains(settingsID))
             {

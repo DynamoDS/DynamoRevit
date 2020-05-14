@@ -65,18 +65,22 @@ namespace DSRevitNodesUI
 
         private void Updater_ElementsUpdated(object sender, ElementUpdateEventArgs e)
         {
+            bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
             switch (e.Operation)
             {
                 case ElementUpdateEventArgs.UpdateType.Added:
                     break;
-                case ElementUpdateEventArgs.UpdateType.Modified:
-                    bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
+                case ElementUpdateEventArgs.UpdateType.Modified:                    
                     if (!dynamoTransaction)
                     {
                         Updater_ElementsModified(e.GetUniqueIds());
                     }
                     break;
                 case ElementUpdateEventArgs.UpdateType.Deleted:
+                    if (!dynamoTransaction)
+                    {
+                        Updater_ElementsDeleted(e.RevitDocument, e.Elements);
+                    }
                     break;
                 default:
                     break;
@@ -117,6 +121,18 @@ namespace DSRevitNodesUI
             // If the updated list doesn't include any objects in the current selection
             // then return;
             if (!Items.Where(x => ((Element)(x.Item)).IsValidObject).Select(x => ((Element)(x.Item)).UniqueId).Any(updated.Contains))
+            {
+                return;
+            }
+
+            PopulateItems();
+            OnNodeModified(true);
+        }
+        void Updater_ElementsDeleted(Autodesk.Revit.DB.Document document, IEnumerable<ElementId> deleted)
+        {
+            if (!deleted.Any())
+                return;
+            if(!Items.Select(x => !((Element)(x.Item)).IsValidObject).Any())
             {
                 return;
             }

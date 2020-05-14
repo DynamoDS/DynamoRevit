@@ -24,6 +24,7 @@ using Autodesk.Revit.DB.Events;
 using Dynamo.Applications;
 using Dynamo.Graph.Nodes;
 using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
+using RevitServices.Transactions;
 
 namespace DSRevitNodesUI
 {
@@ -126,7 +127,9 @@ namespace DSRevitNodesUI
         {
             if (e.Operation != ElementUpdateEventArgs.UpdateType.Modified)
                 return;
-
+            bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
+            if (dynamoTransaction)
+                return;
             var locUuid = DocumentManager.Instance.CurrentDBDocument.SiteLocation.UniqueId;
 
             if (e.GetUniqueIds().Contains(locUuid))
