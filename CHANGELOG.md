@@ -1,3 +1,6 @@
+* Implemented Additional Elements for Warning.GetFailingElements
+* Add a listener for changes in Revit
+
 ## 0.2.13
 * Fix Roof.ByOutlineExtrusionTypeAndLevel bug - the input outline should not be closed.
 * Longest of shortest exit paths node

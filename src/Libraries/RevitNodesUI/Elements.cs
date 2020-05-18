@@ -27,6 +27,7 @@ using ReferencePlane = Autodesk.Revit.DB.ReferencePlane;
 using ReferencePoint = Autodesk.Revit.DB.ReferencePoint;
 using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 using View = Revit.Elements.Views.View;
+using RevitServices.Transactions;
 
 namespace DSRevitNodesUI
 {
@@ -52,7 +53,9 @@ namespace DSRevitNodesUI
         void OnElementsUpdated(object sender, ElementUpdateEventArgs e)
         {
             if (!e.Elements.Any()) return;
-
+            bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
+            if (dynamoTransaction)
+                return;
 #if DEBUG
             Debug.WriteLine("There are {0} elements {1}", e.Elements.Count(), e.Operation.ToString());
             DebugElements(e.Elements);
@@ -296,16 +299,20 @@ namespace DSRevitNodesUI
 
         void RevitServicesUpdaterOnElementsUpdated(object sender, ElementUpdateEventArgs e)
         {
+            bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
             switch (e.Operation)
             {
                 case ElementUpdateEventArgs.UpdateType.Added:
-                    RevitServicesUpdaterOnElementsAdded(e.GetUniqueIds());
+                    if (!dynamoTransaction)
+                        RevitServicesUpdaterOnElementsAdded(e.GetUniqueIds());
                     break;
                 case ElementUpdateEventArgs.UpdateType.Modified:
-                    RevitServicesUpdaterOnElementsModified(e.GetUniqueIds());
+                    if (!dynamoTransaction)
+                        RevitServicesUpdaterOnElementsModified(e.GetUniqueIds());
                     break;
                 case ElementUpdateEventArgs.UpdateType.Deleted:
-                    RevitServicesUpdaterOnElementsDeleted(e.RevitDocument, e.Elements);
+                    if (!dynamoTransaction)
+                        RevitServicesUpdaterOnElementsDeleted(e.RevitDocument, e.Elements);
                     break;
                 default:
                     break;
