@@ -127,9 +127,7 @@ namespace DSRevitNodesUI
         {
             if (e.Operation != ElementUpdateEventArgs.UpdateType.Modified)
                 return;
-            bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
-            if (dynamoTransaction)
-                return;
+
             var locUuid = DocumentManager.Instance.CurrentDBDocument.SiteLocation.UniqueId;
 
             if (e.GetUniqueIds().Contains(locUuid))
