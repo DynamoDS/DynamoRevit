@@ -53,9 +53,7 @@ namespace DSRevitNodesUI
         void OnElementsUpdated(object sender, ElementUpdateEventArgs e)
         {
             if (!e.Elements.Any()) return;
-            bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
-            if (dynamoTransaction)
-                return;
+
 #if DEBUG
             Debug.WriteLine("There are {0} elements {1}", e.Elements.Count(), e.Operation.ToString());
             DebugElements(e.Elements);
@@ -299,20 +297,16 @@ namespace DSRevitNodesUI
 
         void RevitServicesUpdaterOnElementsUpdated(object sender, ElementUpdateEventArgs e)
         {
-            bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
             switch (e.Operation)
             {
                 case ElementUpdateEventArgs.UpdateType.Added:
-                    if (!dynamoTransaction)
-                        RevitServicesUpdaterOnElementsAdded(e.GetUniqueIds());
+                    RevitServicesUpdaterOnElementsAdded(e.GetUniqueIds());
                     break;
                 case ElementUpdateEventArgs.UpdateType.Modified:
-                    if (!dynamoTransaction)
-                        RevitServicesUpdaterOnElementsModified(e.GetUniqueIds());
+                    RevitServicesUpdaterOnElementsModified(e.GetUniqueIds());
                     break;
                 case ElementUpdateEventArgs.UpdateType.Deleted:
-                    if (!dynamoTransaction)
-                        RevitServicesUpdaterOnElementsDeleted(e.RevitDocument, e.Elements);
+                    RevitServicesUpdaterOnElementsDeleted(e.RevitDocument, e.Elements);
                     break;
                 default:
                     break;

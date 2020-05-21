@@ -69,10 +69,6 @@ namespace DSRevitNodesUI
         {
             if (e.Operation != ElementUpdateEventArgs.UpdateType.Modified) return;
 
-            bool dynamoTransaction = e.Transactions.Contains(TransactionWrapper.TransactionName);
-            if (dynamoTransaction)
-                return;
-
             if (e.GetUniqueIds().Contains(settingsID))
             {
                 OnNodeModified(forceExecute:true);
