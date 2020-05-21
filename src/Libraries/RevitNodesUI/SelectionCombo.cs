@@ -89,6 +89,66 @@ namespace Dynamo.ComboNodes
         }
     }
 
+    [NodeName("Select Model Element By Category"),
+    NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
+    NodeDescription("SelectModelElementByCategoryDescription", typeof(DSRevitNodesUI.Properties.Resources)),
+    IsDesignScriptCompatible]
+    public class DSModelElementByCategorySelection : ElementFilterSelection<Element>
+    {
+        private const string message = "Select Model Element";
+        private const string prefix = "Element";
+
+        internal CategoryElementSelectionFilter<Element> SelectionFilter { get; set; }
+
+        public DSRevitNodesUI.Categories DropDownNodeModel { get; set; }
+
+        private int selectedIndex;
+
+        [JsonProperty(PropertyName = "SelectedIndex")]
+        public int SelectedIndex
+        {
+            get { return selectedIndex; }
+            set
+            {
+                selectedIndex = value;
+                DropDownNodeModel.SelectedIndex = value;
+                if (value >= 0)
+                    SelectionFilter.Category = (BuiltInCategory)DropDownNodeModel.Items[SelectedIndex].Item;
+
+            }
+        }
+
+        public DSModelElementByCategorySelection()
+            : base(
+                SelectionType.One,
+                SelectionObjectType.None,
+                message,
+                prefix)
+        {
+            DropDownNodeModel = new DSRevitNodesUI.Categories();
+            SelectedIndex = DropDownNodeModel.SelectedIndex;
+            SelectionFilter = new CategoryElementSelectionFilter<Element>();
+            base.Filter = SelectionFilter;
+        }
+
+        [JsonConstructor]
+        public DSModelElementByCategorySelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts,
+            IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.One,
+                SelectionObjectType.None,
+                message,
+                prefix,
+                selectionIdentifier,
+                inPorts,
+                outPorts)
+        {
+            DropDownNodeModel = new DSRevitNodesUI.Categories();
+            SelectionFilter = new CategoryElementSelectionFilter<Element>();
+            base.Filter = SelectionFilter;
+        }
+    }
+
     #endregion
 
     public class CategoryDropDown : DSRevitNodesUI.Categories
@@ -125,6 +185,32 @@ namespace Dynamo.ComboNodes
         }
     }
 
+    public class DSModelElementByCategorySelectionNodeViewCustomization : INodeViewCustomization<DSModelElementByCategorySelection>
+    {
+        public DSModelElementByCategorySelection Model { get; set; }
+        public DelegateCommand SelectCommand { get; set; }
+
+        public void CustomizeView(DSModelElementByCategorySelection model, NodeView nodeView)
+        {
+            Model = model;
+            SelectCommand = new DelegateCommand(() => Model.Select(null), Model.CanBeginSelect);
+            Model.PropertyChanged += (s, e) => {
+                nodeView.Dispatcher.Invoke(new Action(() =>
+                {
+                    if (e.PropertyName == "CanSelect")
+                    {
+                        SelectCommand.RaiseCanExecuteChanged();
+                    }
+                }));
+            };
+            var comboControl = new ComboControl { DataContext = this };
+            nodeView.inputGrid.Children.Add(comboControl);
+        }
+
+        public void Dispose()
+        {
+        }
+    }
     #endregion
 
     #region Selection Helpers

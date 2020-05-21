@@ -363,6 +363,10 @@
   <data name="SelectionIsDisabledDescription" xml:space="preserve">
     <value>Selection is disabled when Dynamo run is disabled.</value>
   </data>
+  <data name="SelectModelElementByCategoryDescription" xml:space="preserve">
+    <value>Select a model element from the Revit document filtered by Category.</value>
+    <comment>Description for Select Model Element By Category</comment>
+  </data>
   <data name="SelectModelElementDescription" xml:space="preserve">
     <value>Select a model element from the document.</value>
     <comment>Description for Select Model Element</comment>
