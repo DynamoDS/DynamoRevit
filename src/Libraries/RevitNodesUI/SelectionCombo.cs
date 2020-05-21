@@ -33,7 +33,7 @@ namespace Dynamo.ComboNodes
     NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
     NodeDescription("SelectModelElementsByCategoryDescription", typeof(DSRevitNodesUI.Properties.Resources)),
     IsDesignScriptCompatible]
-    public class DSModelElementByCategorySelection : ElementFilterSelection<Element>
+    public class DSModelElementsByCategorySelection : ElementFilterSelection<Element>
     {
         private const string message = "Select Model Elements";
         private const string prefix = "Element";
@@ -58,7 +58,7 @@ namespace Dynamo.ComboNodes
             }
         }
 
-        public DSModelElementByCategorySelection()
+        public DSModelElementsByCategorySelection()
             : base(
                 SelectionType.Many,
                 SelectionObjectType.None,
@@ -72,7 +72,7 @@ namespace Dynamo.ComboNodes
         }
 
         [JsonConstructor]
-        public DSModelElementByCategorySelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts,
+        public DSModelElementsByCategorySelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts,
             IEnumerable<PortModel> outPorts)
             : base(
                 SelectionType.Many,
@@ -98,12 +98,12 @@ namespace Dynamo.ComboNodes
 
     #region Node View Customization
 
-    public class DSModelElementByCategorySelectionNodeViewCustomization : INodeViewCustomization<DSModelElementByCategorySelection>
+    public class DSModelElementsByCategorySelectionNodeViewCustomization : INodeViewCustomization<DSModelElementsByCategorySelection>
     {
-        public DSModelElementByCategorySelection Model { get; set; }
+        public DSModelElementsByCategorySelection Model { get; set; }
         public DelegateCommand SelectCommand { get; set; }
 
-        public void CustomizeView(DSModelElementByCategorySelection model, NodeView nodeView)
+        public void CustomizeView(DSModelElementsByCategorySelection model, NodeView nodeView)
         {
             Model = model;
             SelectCommand = new DelegateCommand(() => Model.Select(null), Model.CanBeginSelect);

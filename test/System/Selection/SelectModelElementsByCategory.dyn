@@ -10,7 +10,7 @@
   "Outputs": [],
   "Nodes": [
     {
-      "ConcreteType": "Dynamo.ComboNodes.DSModelElementByCategorySelection, DSRevitNodesUI",
+      "ConcreteType": "Dynamo.ComboNodes.DSModelElementsByCategorySelection, DSRevitNodesUI",
       "NodeType": "ExtensionNode",
       "InstanceId": [
         "ef57b02a-5e81-49e7-93bb-ae5f002d921c-00030826",
