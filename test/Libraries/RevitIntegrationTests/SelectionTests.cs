@@ -620,6 +620,14 @@ namespace RevitSystemTests
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectModelElementsByCategory.dyn"));
             TestMultipleCategorySelection<Element, Element>();
         }
+
+        [Test]
+        [TestModel(@".\Selection\DynamoSample.rvt")]
+        public void SelectModelElementByCategory()
+        {
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectModelElementByCategory.dyn"));
+            TestMultipleCategorySelection<Element, Element>();
+        }
  
         [Test]
         [TestModel(@".\SampleModel.rvt")]
