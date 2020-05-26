@@ -1,3 +1,6 @@
+## 0.2.15
+* Update DynamoCore version to 2.6.
+
 ## 0.2.14
 * Implemented Additional Elements for Warning.GetFailingElements
 * Add a listener of changes in Revit for DropDown list nodes
