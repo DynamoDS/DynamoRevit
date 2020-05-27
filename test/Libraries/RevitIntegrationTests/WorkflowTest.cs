@@ -517,10 +517,12 @@ namespace RevitSystemTests
             var pScript3 = "5a3b301c-632b-4ec1-9fcb-c2623f04c53c";
             AssertPreviewCount(pScript3, 2);
             var flatvalue3 = GetFlattenedPreviewValues(pScript3);
-            for (int i = 0; i < 187; i++)
-            {
-                Assert.IsNotNull(flatvalue3[i]);
-            }
+            Assert.IsTrue(flatvalue3.Contains("BoundingBox"));
+            Assert.IsTrue(flatvalue3.Contains("ByCurveAndHeight"));
+            Assert.IsTrue(flatvalue3.Contains("ByCurveAndLevels"));
+            Assert.IsTrue(flatvalue3.Contains("Curves"));
+            Assert.IsTrue(flatvalue3.Contains("Dispose"));
+            Assert.IsTrue(flatvalue3.Contains("Document"));
         }
 
 
