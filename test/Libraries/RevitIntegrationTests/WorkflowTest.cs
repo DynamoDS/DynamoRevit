@@ -499,7 +499,7 @@ namespace RevitSystemTests
             var pScript1 = "4caa3a16-50d9-4416-ae45-b5ad06d74c94";
             AssertPreviewCount(pScript1, 2);
             var flatvalue1 = GetFlattenedPreviewValues(pScript1);
-            for (int i = 0; i < 6; i++) 
+            for (int i = 0; i < 6; i++) // the expected count of flatvalue1 is 6
             {
                 Assert.IsNotNull(flatvalue1[i]);
             }
