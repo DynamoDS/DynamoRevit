@@ -1,3 +1,5 @@
+* Update Test_Python to avoid test results that will vary with API changes
+
 ## 0.2.15
 * Update DynamoCore version to 2.6.
 
