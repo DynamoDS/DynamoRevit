@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyCompany("Autodesk, Inc")]
-[assembly: AssemblyProduct("Dynamo For Revit Preview Release")]
+[assembly: AssemblyProduct("Dynamo For Revit 2021")]
 [assembly: AssemblyCopyright("Copyright © Autodesk, Inc 2017-2018")]
 [assembly: AssemblyTrademark("")]
 

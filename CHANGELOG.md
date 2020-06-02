@@ -1,72 +1,54 @@
-## 0.2.16
+## 0.1.20
 * Update Test_Python to avoid test results that will vary with API changes
 * Update DynamoCoreRuntime version due to emergency fix
-
-## 0.2.15
 * Update DynamoCore version to 2.6.
-
-## 0.2.14
 * Implemented Additional Elements for Warning.GetFailingElements
 * Add a listener of changes in Revit for DropDown list nodes
-
-## 0.2.13
 * Fix Roof.ByOutlineExtrusionTypeAndLevel bug - the input outline should not be closed.
 * Longest of shortest exit paths node
 * Add Get Remove Insert and Set waypoints nodes on a PathOfTravel element
-
-## 0.2.12
 * Fix some tests was deleted by mistake.
-
-## 0.2.11
 * Bump a new version due to package mistake.
-
-## 0.2.10
 * Fix All Elements of Element Type supporting less element types than before
 * Update ScheduleView.Export comment
 * Update some system tests which category is failure.
 * Update Wall node to allow creation from ellipses
 * Update New Nodes Descriptions
 
-## 0.2.9
+## 0.1.19
+* Update CICD for Revit 2021.1
+
+## 0.1.18
+* Fix TestNonBrowsableClasses regression failure.
+
+## 0.1.17
+* Fix issue - Joined geometry does not convert correctly
+* Document nodes - Add 3 node in the Application.Document category
+* Element nodes third batch - contains 3 nodes related to Revit.Elements.Element.
+* Element Type nodes - introduces an ElementType category to the Dynamo library
+* Added some new Category Nodes - Group nodes, Space nodes, Elevation marker nodes, Dimension nodes, Area nodes, View port nodes, Family document nodes, Family instance nodes, Warning nodes.
+* Element.Geometry should provide geometry for FamilySymbols with no instances
+* Update some System tests and their dynamo files.
+* Rename "IncludeShadows" in node "Element.GetHostedElements".
+* Upgrade some obsolete classed and functions for RevitAPI updated
 * Update RayBounce_SunStudy test.
 * Update some system test which category is failure.
 * Add new Sheet nodes.
 * Add new Selection Nodes.
+* Add PathofTravel node - LongestOfShortestExitPaths.
+* Update RevitAPI to Revit2021.1
 
-## 0.2.8
+## 0.1.16
+* Update Assembly Shared Info for Revit 2021
+* Update RevitAPI folder name to net48.
 * Update DynamoCore Runtime to 2.5.2.7915
 
-## 0.2.7
-* Fix CI build error.
-
-## 0.2.6
-* Update some System tests and their dynamo files.
-* Rename "IncludeShadows" in node "Element.GetHostedElements".
-* Upgrade some obsolete classed and functions for RevitAPI updated
-
-## 0.2.5
-* Update RevitAPI folder name to net48.
-
-## 0.2.4
-* Update Assembly Shared Info for Revit Preview Release
-
-## 0.2.3
-* Element Type nodes - introduces an ElementType category to the Dynamo library
-* Added some new Category Nodes - Group nodes, Space nodes, Elevation marker nodes, Dimension nodes, Area nodes, View port nodes, Family document nodes, Family instance nodes, Warning nodes.
-* Element.Geometry should provide geometry for FamilySymbols with no instances
-
-## 0.2.2
+## 0.1.15
 * Update .Net to 4.8.
 
-## 0.2.1
-* Element nodes third batch - contains 3 nodes related to Revit.Elements.Element.
+## 0.1.14
+* Update DynamoCore to 2.5.0.7432
 * Update DynamoCore Runtime to 2.5.0.7460
-
-## 0.2.0
-* Fix issue - Joined geometry does not convert correctly
-* Document nodes - Add 3 node in the Application.Document category
-* Update Dynamo Core to 2.5.0.7432
-
 ## 0.1.13
 * update DynamoCore to 2.5.0.7186
 
