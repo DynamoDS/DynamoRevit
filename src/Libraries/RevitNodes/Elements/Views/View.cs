@@ -19,7 +19,8 @@ namespace Revit.Elements.Views
         {
             get
             {
-                return (Autodesk.Revit.DB.View) InternalElement;
+                Autodesk.Revit.DB.View internalElement = (Autodesk.Revit.DB.View)InternalElement;
+                return internalElement.IsValidObject ? internalElement : null;
             }
         }
 
@@ -176,7 +177,7 @@ namespace Revit.Elements.Views
 
         public override string ToString()
         {
-            return GetType().Name + "(Name = " + InternalView.Name + " )";
+            return GetType().Name + "(Name = " + InternalView?.Name + " )";
         }
 
         #region Filter
