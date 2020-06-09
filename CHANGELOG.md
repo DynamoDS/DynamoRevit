@@ -1,5 +1,6 @@
 ## 0.2.17
 * Check if InternalElement is valid Revit Element to avoid calling funcitons or get properties of an invalid object and cause Dynamo crash.
+* Add some new nodes to Viewport.
 
 ## 0.2.16
 * Update Test_Python to avoid test results that will vary with API changes
