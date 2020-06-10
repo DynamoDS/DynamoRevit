@@ -45,6 +45,12 @@ namespace Revit.Elements
             SafeInit(() => InitViewport(viewport));
         }
 
+        /// <summary>
+        /// Create a new Viewport by Sheet, View and Location
+        /// </summary>
+        /// <param name="sheet"></param>
+        /// <param name="view"></param>
+        /// <param name="location"></param>
         private Viewport(Sheet sheet, Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location)
         {
             SafeInit(() => InitViewport(sheet, view, location));
@@ -63,6 +69,12 @@ namespace Revit.Elements
             InternalSetViewport(viewport);
         }
 
+        /// <summary>
+        /// Initialize a Viewport element
+        /// </summary>
+        /// <param name="sheet"></param>
+        /// <param name="view"></param>
+        /// <param name="location"></param>
         private void InitViewport(Sheet sheet, Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location)
         {
             ElementId sheetId = sheet.InternalView.Id;
