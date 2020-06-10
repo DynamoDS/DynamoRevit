@@ -23,25 +23,35 @@ namespace RevitNodesTests.Elements
         public void CanCreateViewportOnSheet()
         {
             // Arrange
-            var sheet = ElementSelector.ByElementId(179432) as Sheet;
-            var view = ElementSelector.ByElementId(312) as View;
+            var sheet = ElementSelector.ByType<Autodesk.Revit.DB.ViewSheet>(true).First() as Sheet;
+            var view = CreateTestView();
             var point = Point.ByCoordinates(250,250);
 
-            var expectedViewportId = 307874;
             var expectedExceptionMessage = Revit.Properties.Resources.ViewAlreadyPlacedOnSheet;
 
             // Act
             var viewport = Viewport.BySheetViewLocation(sheet, view, point);
-            var viewportId = viewport.Id;
             var viewportLocation = viewport.InternalViewport.GetBoxCenter().ToPoint() as Point;
             var exceptionViewport = Assert.Throws<InvalidOperationException>(() => Viewport.BySheetViewLocation(sheet, view, point));
             
             // Assert
             Assert.AreEqual(viewport.GetType(), typeof(Viewport));
-            Assert.AreEqual(expectedViewportId, viewportId);
             Assert.AreEqual(point.X, viewportLocation.X, Tolerance);
             Assert.AreEqual(point.Y, viewportLocation.Y, Tolerance);
             Assert.AreEqual(expectedExceptionMessage, exceptionViewport.Message);
+        }
+
+        private static View CreateTestView()
+        {
+            var eye = Point.ByCoordinates(100, 100, 100);
+            var target = Point.ByCoordinates(0, 1, 2);
+
+            var v = AxonometricView.ByEyePointAndTarget(eye, target);
+            var view = (Autodesk.Revit.DB.View3D)v.InternalElement;
+            Assert.AreEqual(view.Name, View3D.DEFAULT_VIEW_NAME);
+            Assert.False(view.CropBoxActive);
+
+            return v;
         }
     }
 }
