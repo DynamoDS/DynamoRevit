@@ -12,6 +12,7 @@
 ## 0.2.14
 * Implemented Additional Elements for Warning.GetFailingElements
 * Add a listener of changes in Revit for DropDown list nodes
+* Add new node - SelectModelElementByCategory 
 
 ## 0.2.13
 * Fix Roof.ByOutlineExtrusionTypeAndLevel bug - the input outline should not be closed.
