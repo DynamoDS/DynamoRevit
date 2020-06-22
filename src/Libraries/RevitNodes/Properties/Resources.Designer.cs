@@ -385,6 +385,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot place empty schedule on sheet..
+        /// </summary>
+        internal static string EmptySchedule {
+            get {
+                return ResourceManager.GetString("EmptySchedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot place empty view on sheet..
         /// </summary>
         internal static string EmptyView {

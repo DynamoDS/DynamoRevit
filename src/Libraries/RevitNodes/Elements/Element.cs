@@ -126,6 +126,10 @@ namespace Revit.Elements
                 TransactionManager.Instance.EnsureInTransaction(Document);
                 DocumentManager.Regenerate();
                 var bb = InternalElement.get_BoundingBox(null);
+                if (bb == null) 
+                {
+                    bb = InternalElement.get_BoundingBox(Document.GetElement(InternalElement.OwnerViewId) as Autodesk.Revit.DB.View);
+                }
                 TransactionManager.Instance.TransactionTaskDone();
                 return bb.ToProtoType();
             }

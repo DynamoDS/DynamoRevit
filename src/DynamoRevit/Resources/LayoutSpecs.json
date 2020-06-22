@@ -245,6 +245,9 @@
                   "path": "RevitNodes.Revit.Elements.Viewport"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.ScheduleOnSheet"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.WallType"
                 }
               ],

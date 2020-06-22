@@ -109,6 +109,7 @@
     <Compile Include="PerformanceAdviserTests.cs" />
     <Compile Include="RoofTests.cs" />
     <Compile Include="RoofTypeTests.cs" />
+    <Compile Include="ScheduleOnSheetTests.cs" />
     <Compile Include="SerializationTests.cs" />
     <Compile Include="SheetTests.cs" />
     <Compile Include="ViewportTests.cs" />
