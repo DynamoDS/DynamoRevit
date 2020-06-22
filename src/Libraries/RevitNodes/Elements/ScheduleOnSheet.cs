@@ -136,6 +136,9 @@ namespace Revit.Elements
             return this;
         }
 
+        /// <summary>
+        /// Get ViewSheet on which the ScheduleView appears
+        /// </summary>
         public Revit.Elements.Views.Sheet Sheet
         {
             get
@@ -145,6 +148,9 @@ namespace Revit.Elements
             }
         }
 
+        /// <summary>
+        /// The "master" schedule that generates this ScheduleInstance. 
+        /// </summary>
         public Revit.Elements.Views.ScheduleView ScheduleView
         {
             get
