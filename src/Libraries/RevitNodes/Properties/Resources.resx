@@ -519,4 +519,7 @@
   <data name="InvalidPathOfTravel" xml:space="preserve">
     <value>Invalid PathOfTravel element.</value>
   </data>
+  <data name="EmptySchedule" xml:space="preserve">
+    <value>Cannot place empty schedule on sheet.</value>
+  </data>
 </root>
