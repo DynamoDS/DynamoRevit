@@ -347,6 +347,28 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
+        /// Set the SheetNumber of the Sheet
+        /// </summary>
+        /// <param name="sheetNumber"></param>
+        /// <returns></returns>
+        public Sheet SetSheetNumber(string sheetNumber)
+        {            
+            InternalSetSheetNumber(sheetNumber);
+            return this;
+        }
+
+        /// <summary>
+        /// Set the SheetName of the Sheet
+        /// </summary>
+        /// <param name="sheetName"></param>
+        /// <returns></returns>
+        public Sheet SetSheetName(string sheetName)
+        {
+            InternalSetSheetName(sheetName);
+            return this;
+        }
+
+        /// <summary>
         /// Get the Views on a Sheet
         /// </summary>
         public View[] Views
@@ -357,6 +379,44 @@ namespace Revit.Elements.Views
                     InternalViewSheet.GetAllPlacedViews().Select(x => Document.GetElement(x)).OfType<Autodesk.Revit.DB.View>()
                         .Select(x => (View) ElementWrapper.ToDSType(x, true))
                         .ToArray();
+            }
+        }
+
+        /// <summary>
+        /// Get Viewports from a given sheet
+        /// </summary>
+        public Viewport[] Viewports
+        {
+            get
+            {
+                return InternalViewSheet.GetAllViewports().Select(x => Document.GetElement(x)).OfType<Autodesk.Revit.DB.Viewport>()
+                        .Select(x => (Viewport)ElementWrapper.ToDSType(x, true))
+                        .ToArray();
+            }
+        }
+
+        /// <summary>
+        /// Get ScheduleGraphics from a given sheet
+        /// </summary>
+        public ScheduleOnSheet[] Schedules
+        {
+            get
+            {
+                var elements = new FilteredElementCollector(Document, this.InternalViewSheet.Id).OfType<Autodesk.Revit.DB.ScheduleSheetInstance>();
+                return elements.Select(x => (ScheduleOnSheet)ElementWrapper.ToDSType(x, true))
+                        .ToArray();
+            }
+        }
+        
+        /// <summary>
+        /// Get TitleBlocks of the Sheet
+        /// </summary>
+        public FamilyType[] TitleBlock
+        {
+            get
+            {
+                var elements = new FilteredElementCollector(Document, InternalElementId).OfCategory(BuiltInCategory.OST_TitleBlocks);
+                return elements.ToElements().Select(e => e.ToDSType(true) as FamilyType).ToArray();
             }
         }
 
