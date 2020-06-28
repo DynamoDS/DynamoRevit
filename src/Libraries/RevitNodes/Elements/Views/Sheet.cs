@@ -411,12 +411,12 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Get TitleBlocks of the Sheet
         /// </summary>
-        public FamilyType[] TitleBlock
+        public Element[] TitleBlock
         {
             get
             {
                 var elements = new FilteredElementCollector(Document, InternalElementId).OfCategory(BuiltInCategory.OST_TitleBlocks);
-                return elements.ToElements().Select(e => e.ToDSType(true) as FamilyType).ToArray();
+                return elements.ToElements().Select(e => e.ToDSType(true)).ToArray();
             }
         }
 
