@@ -407,10 +407,11 @@ namespace Revit.Elements.Views
                         .ToArray();
             }
         }
-        
+
         /// <summary>
         /// Get TitleBlocks of the Sheet
         /// </summary>
+        /// <returns name="titleblock">The sheet's titleblock.</returns>
         public Element[] TitleBlock
         {
             get
