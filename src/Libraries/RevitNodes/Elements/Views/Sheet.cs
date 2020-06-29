@@ -287,7 +287,8 @@ namespace Revit.Elements.Views
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalViewSheet.Name = name;
+            var param = InternalViewSheet.get_Parameter(BuiltInParameter.SHEET_NAME);
+            param.Set(name);
 
             TransactionManager.Instance.TransactionTaskDone();
         }
@@ -300,7 +301,8 @@ namespace Revit.Elements.Views
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            InternalViewSheet.SheetNumber = number;
+            var param = InternalViewSheet.get_Parameter(BuiltInParameter.SHEET_NUMBER);
+            param.Set(number);
 
             TransactionManager.Instance.TransactionTaskDone();
         }
