@@ -1,0 +1,212 @@
+{
+  "Uuid": "59d4bae3-b979-400c-b71b-34e130f474e6",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetSheetProperties",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Sheets, DSRevitNodesUI",
+      "SelectedIndex": 5,
+      "SelectedString": "Title Sheet",
+      "NodeType": "ExtensionNode",
+      "Id": "6c8dcb983a5b4a259ab76ae9187f997b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fc456e91294a4ac9a8a26bb8873ea7d3",
+          "Name": "Sheet",
+          "Description": "The selected Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All sheets available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.Sheet.TitleBlock",
+      "Id": "79ba6b1087a147d591e5e9c7e650ef8d",
+      "Inputs": [
+        {
+          "Id": "44117db30ef547e7bd34994bcb4e2961",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "50bc0e52b99e4f979f0e8564f79b1c17",
+          "Name": "Element[]",
+          "Description": "Element[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Sheet.TitleBlock: Element[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.Sheet.Viewports",
+      "Id": "6d45f04305a845fea459400737406301",
+      "Inputs": [
+        {
+          "Id": "cb3aca48b2f44b53918f7f4e9e7fd5e3",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bbe9afb3e0834c99a95e5c75bf8027f0",
+          "Name": "Viewport[]",
+          "Description": "Viewport[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Sheet.Viewports: Viewport[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.Sheet.Schedules",
+      "Id": "f94fa1de83564759a08ea6f0ac6246f6",
+      "Inputs": [
+        {
+          "Id": "d51af28c4b1a4377ac4283928f0d89e1",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5391c5a7eeff4ebb9582c5e7d4e86e41",
+          "Name": "ScheduleOnSheet[]",
+          "Description": "ScheduleOnSheet[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Sheet.Schedules: ScheduleOnSheet[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "fc456e91294a4ac9a8a26bb8873ea7d3",
+      "End": "44117db30ef547e7bd34994bcb4e2961",
+      "Id": "ea0f3ed73398422e91ac55ba2dd4e642"
+    },
+    {
+      "Start": "fc456e91294a4ac9a8a26bb8873ea7d3",
+      "End": "cb3aca48b2f44b53918f7f4e9e7fd5e3",
+      "Id": "8cd4cc42a1554356aa4ad41f3a7a7e79"
+    },
+    {
+      "Start": "fc456e91294a4ac9a8a26bb8873ea7d3",
+      "End": "d51af28c4b1a4377ac4283928f0d89e1",
+      "Id": "261ca76527e042e4b29a90581035c39e"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.8772",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Sheets",
+        "Id": "6c8dcb983a5b4a259ab76ae9187f997b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 50.5,
+        "Y": 158.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Sheet.TitleBlock",
+        "Id": "79ba6b1087a147d591e5e9c7e650ef8d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 354.5,
+        "Y": 76.191351586544926
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Sheet.Viewports",
+        "Id": "6d45f04305a845fea459400737406301",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 342.21459467760417,
+        "Y": 216.80972978506935
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Sheet.Schedules",
+        "Id": "f94fa1de83564759a08ea6f0ac6246f6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 336.02432446267346,
+        "Y": 363.26162154552958
+      }
+    ],
+    "Annotations": [],
+    "X": -18.014809885014813,
+    "Y": -14.043622255192844,
+    "Zoom": 0.97676875
+  }
+}

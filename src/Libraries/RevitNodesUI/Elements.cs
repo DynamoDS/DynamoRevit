@@ -384,6 +384,8 @@ namespace DSRevitNodesUI
             var fPathReinforcement = new ElementClassFilter(typeof(PathReinforcement));
             var fRebar = new ElementClassFilter(typeof(Rebar));
             var fTruss = new ElementClassFilter(typeof(Truss));
+            var fViewport = new ElementClassFilter(typeof(Autodesk.Revit.DB.Viewport));
+            var fScheduleSheetInstance = new ElementClassFilter(typeof(ScheduleSheetInstance));
 
             filterList.Add(fContinuousRail);
             filterList.Add(fRailing);
@@ -414,6 +416,8 @@ namespace DSRevitNodesUI
             filterList.Add(fRebar);
             filterList.Add(fTruss);
             filterList.Add(fSpatialElement);
+            filterList.Add(fViewport);
+            filterList.Add(fScheduleSheetInstance);
 
             var cRvtLinks = new ElementCategoryFilter(BuiltInCategory.OST_RvtLinks);
             filterList.Add(cRvtLinks);

@@ -173,6 +173,18 @@ namespace Revit.Elements
         /// <returns>The new ScheduleOnSheet</returns>
         public static ScheduleOnSheet BySheetScheduleLocation(Sheet sheet, Revit.Elements.Views.ScheduleView scheduleView, Autodesk.DesignScript.Geometry.Point location)
         {
+            if (sheet == null)
+            {
+                throw new ArgumentNullException("sheet");
+            }
+            if (scheduleView == null)
+            {
+                throw new ArgumentNullException("scheduleView");
+            }
+            if (location == null)
+            {
+                throw new ArgumentNullException("location");
+            }
             if(IsScheduleEmpty(scheduleView.InternalViewSchedule))
             {
                 throw new InvalidOperationException(Properties.Resources.EmptySchedule);

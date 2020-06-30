@@ -211,6 +211,18 @@ namespace Revit.Elements
         /// <returns>The new Viewport.</returns>
         public static Viewport BySheetViewLocation(Sheet sheet, Revit.Elements.Views.View view, Autodesk.DesignScript.Geometry.Point location)
         {
+            if (sheet == null)
+            {
+                throw new ArgumentNullException("sheet");
+            }
+            if (view == null) 
+            {
+                throw new ArgumentNullException("view");
+            }
+            if (location == null)
+            {
+                throw new ArgumentNullException("location");
+            }
             if (IsViewEmpty(view.InternalView))
                 throw new InvalidOperationException(Properties.Resources.EmptyView);
 
