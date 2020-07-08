@@ -340,6 +340,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please use Sheet.Duplicate node to Duplicate sheets.
+        /// </summary>
+        internal static string DuplicateViewCantApplySheet {
+            get {
+                return ResourceManager.GetString("DuplicateViewCantApplySheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dynamo Data.
         /// </summary>
         internal static string Dynamo_AVF_Data_Name {
@@ -372,6 +381,15 @@ namespace Revit.Properties {
         internal static string ElementCannotBeAnnotatedError {
             get {
                 return ResourceManager.GetString("ElementCannotBeAnnotatedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This Element {0} {1} cannot be deleted.
+        /// </summary>
+        internal static string ElementCantDelete {
+            get {
+                return ResourceManager.GetString("ElementCantDelete", resourceCulture);
             }
         }
         
@@ -1123,6 +1141,24 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must set a prefix or suffix to avoid duplicate sheet number.
+        /// </summary>
+        internal static string SheetDuplicateNeedFix {
+            get {
+                return ResourceManager.GetString("SheetDuplicateNeedFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Sheet number {0} exists, please change your prefix or suffix.
+        /// </summary>
+        internal static string SheetNumberExists {
+            get {
+                return ResourceManager.GetString("SheetNumberExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Size of start point array doesn&apos;t match size of end point array.
         /// </summary>
         internal static string StartEndListSizeMismatch {
@@ -1213,11 +1249,38 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This View {0} can&apos;t be duplicated.
+        /// </summary>
+        internal static string ViewCantBeDuplicated {
+            get {
+                return ResourceManager.GetString("ViewCantBeDuplicated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View {0} could not be packed on the Sheet.  The sheet is {1} x {2} and the view to be added is {3} x {4}.
+        /// </summary>
+        internal static string ViewCantPackOnSheet {
+            get {
+                return ResourceManager.GetString("ViewCantPackOnSheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View does not support annotations..
         /// </summary>
         internal static string ViewDoesNotSupportAnnotations {
             get {
                 return ResourceManager.GetString("ViewDoesNotSupportAnnotations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ViewDuplicateOption is invalid, please set input number should be 0, 1, 2.
+        /// </summary>
+        internal static string ViewDuplicateOptionOutofRange {
+            get {
+                return ResourceManager.GetString("ViewDuplicateOptionOutofRange", resourceCulture);
             }
         }
         
@@ -1236,6 +1299,15 @@ namespace Revit.Properties {
         internal static string ViewExportImageLockedError {
             get {
                 return ResourceManager.GetString("ViewExportImageLockedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The View name {0} exists, please change your prefix or suffix.
+        /// </summary>
+        internal static string ViewNameExists {
+            get {
+                return ResourceManager.GetString("ViewNameExists", resourceCulture);
             }
         }
         

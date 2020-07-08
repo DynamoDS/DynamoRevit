@@ -522,4 +522,28 @@
   <data name="EmptySchedule" xml:space="preserve">
     <value>Cannot place empty schedule on sheet.</value>
   </data>
+  <data name="DuplicateViewCantApplySheet" xml:space="preserve">
+    <value>Please use Sheet.Duplicate node to Duplicate sheets</value>
+  </data>
+  <data name="ElementCantDelete" xml:space="preserve">
+    <value>This Element {0} {1} cannot be deleted</value>
+  </data>
+  <data name="SheetDuplicateNeedFix" xml:space="preserve">
+    <value>You must set a prefix or suffix to avoid duplicate sheet number</value>
+  </data>
+  <data name="SheetNumberExists" xml:space="preserve">
+    <value>The Sheet number {0} exists, please change your prefix or suffix</value>
+  </data>
+  <data name="ViewCantBeDuplicated" xml:space="preserve">
+    <value>This View {0} can't be duplicated</value>
+  </data>
+  <data name="ViewCantPackOnSheet" xml:space="preserve">
+    <value>View {0} could not be packed on the Sheet.  The sheet is {1} x {2} and the view to be added is {3} x {4}</value>
+  </data>
+  <data name="ViewDuplicateOptionOutofRange" xml:space="preserve">
+    <value>ViewDuplicateOption is invalid, please set input number should be 0, 1, 2</value>
+  </data>
+  <data name="ViewNameExists" xml:space="preserve">
+    <value>The View name {0} exists, please change your prefix or suffix</value>
+  </data>
 </root>

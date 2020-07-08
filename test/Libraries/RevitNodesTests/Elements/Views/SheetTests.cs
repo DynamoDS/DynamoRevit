@@ -1,5 +1,7 @@
 ﻿using System;
 
+using System.Linq;
+
 using Autodesk.DesignScript.Geometry;
 
 using NUnit.Framework;
@@ -166,6 +168,33 @@ namespace RevitNodesTests.Elements.Views
             Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlock(null, sheetNumber, titleBlock));
             Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlock(sheetName, null, titleBlock));
             Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlock(sheetName, sheetNumber, null));
+        }
+
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void DuplicateSheet_ValidArgs()
+        {
+            var sheets = ElementSelector.ByType<Autodesk.Revit.DB.ViewSheet>(true).Where(x => (x as Sheet).SheetNumber.Equals("A001"));
+            var sheet = sheets.First() as Sheet;
+
+            var newSheetNumber = "Test" + sheet.SheetNumber;
+
+            var duplicateSheet = Sheet.DuplicateSheet(sheet, 0, "Test");
+
+            Assert.NotNull(duplicateSheet);
+            Assert.AreEqual(duplicateSheet.SheetNumber, newSheetNumber);
+        }
+
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void DuplicateSheet_BadArgs()
+        {
+            var sheets = ElementSelector.ByType<Autodesk.Revit.DB.ViewSheet>(true).Where(x => (x as Sheet).SheetNumber.Equals("A001"));
+            var sheet = sheets.First() as Sheet;
+
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.DuplicateSheet(null, 0, "Test"));
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.DuplicateSheet(sheet, 0));
+            Assert.Throws(typeof(ArgumentException), () => Sheet.DuplicateSheet(sheet, 3));
         }
     }
 }

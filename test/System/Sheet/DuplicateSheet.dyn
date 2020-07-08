@@ -1,0 +1,229 @@
+{
+  "Uuid": "71c3c8f1-4ccc-43d1-9ff4-fb6405eb51bf",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "DuplicateSheet",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Sheets, DSRevitNodesUI",
+      "SelectedIndex": 5,
+      "SelectedString": "Title Sheet",
+      "NodeType": "ExtensionNode",
+      "Id": "129af38fda2a4a96b1ccd3a009f89501",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d32517e8741d49efbb3141fd1153ea61",
+          "Name": "Sheet",
+          "Description": "The selected Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All sheets available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.Sheet.DuplicateSheet@Revit.Elements.Views.Sheet,int,string,string",
+      "Id": "a5f649718c57476ca77807b153ebb4b9",
+      "Inputs": [
+        {
+          "Id": "a8afc8bdc5914f10a1f0ee033b774e64",
+          "Name": "sheet",
+          "Description": "The Sheet to be Duplicated\n\nSheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3fa1dd722ec14c9f85cb3cc6bac34e1b",
+          "Name": "viewDuplicateOption",
+          "Description": "Enter View Duplicate Option: 0 = Duplicate. 1 = AsDependent. 2 = WithDetailing.\n\nint\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bb268d4b73b34ff6910c84f449c41825",
+          "Name": "prefix",
+          "Description": "string\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bd69198a52eb479f93ac9de7e09f8bbd",
+          "Name": "suffix",
+          "Description": "string\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e7a81b297f6f493a84b64b657dbc93d7",
+          "Name": "Sheet",
+          "Description": "Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Duplicates A Sheet.\n\nSheet.DuplicateSheet (sheet: Sheet, viewDuplicateOption: int = 0, prefix: string = \"\", suffix: string = \"\"): Sheet"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Test",
+      "Id": "b35ba7c0df714594bf5507c5c7fca188",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4ed85b08bc434aea9185f9ad91fff31d",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.Sheet.Views",
+      "Id": "1c6ca6cc7c2b47fdb200ba3175886864",
+      "Inputs": [
+        {
+          "Id": "c8e42b3c6f68485a98e72afb42be95bb",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b7eed53aeff2412fb6aa657a36a0a0c8",
+          "Name": "View[]",
+          "Description": "View[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Views on a Sheet\n\nSheet.Views: View[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d32517e8741d49efbb3141fd1153ea61",
+      "End": "a8afc8bdc5914f10a1f0ee033b774e64",
+      "Id": "8d1302592c4c4f82a3d34ae90326fc6c"
+    },
+    {
+      "Start": "e7a81b297f6f493a84b64b657dbc93d7",
+      "End": "c8e42b3c6f68485a98e72afb42be95bb",
+      "Id": "37cbb76085644e0ca4036934fec1822f"
+    },
+    {
+      "Start": "4ed85b08bc434aea9185f9ad91fff31d",
+      "End": "bb268d4b73b34ff6910c84f449c41825",
+      "Id": "f36043097a8e4fd39a9594634a3c4d43"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.9130",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Sheets",
+        "Id": "129af38fda2a4a96b1ccd3a009f89501",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 93.25,
+        "Y": 148.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Sheet.DuplicateSheet",
+        "Id": "a5f649718c57476ca77807b153ebb4b9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 339.25,
+        "Y": 176.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "b35ba7c0df714594bf5507c5c7fca188",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 93.25,
+        "Y": 256.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Sheet.Views",
+        "Id": "1c6ca6cc7c2b47fdb200ba3175886864",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 710.25,
+        "Y": 176.0
+      }
+    ],
+    "Annotations": [],
+    "X": -277.0,
+    "Y": -41.0,
+    "Zoom": 1.0
+  }
+}
