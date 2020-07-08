@@ -179,7 +179,7 @@ namespace RevitNodesTests.Elements.Views
 
             var newSheetNumber = "Test" + sheet.SheetNumber;
 
-            var duplicateSheet = Sheet.DuplicateSheet(sheet, 0, "Test");
+            var duplicateSheet = Sheet.DuplicateSheet(sheet, true, 0, "Test");
 
             Assert.NotNull(duplicateSheet);
             Assert.AreEqual(duplicateSheet.SheetNumber, newSheetNumber);
@@ -192,9 +192,9 @@ namespace RevitNodesTests.Elements.Views
             var sheets = ElementSelector.ByType<Autodesk.Revit.DB.ViewSheet>(true).Where(x => (x as Sheet).SheetNumber.Equals("A001"));
             var sheet = sheets.First() as Sheet;
 
-            Assert.Throws(typeof(ArgumentNullException), () => Sheet.DuplicateSheet(null, 0, "Test"));
-            Assert.Throws(typeof(ArgumentNullException), () => Sheet.DuplicateSheet(sheet, 0));
-            Assert.Throws(typeof(ArgumentException), () => Sheet.DuplicateSheet(sheet, 3));
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.DuplicateSheet(null, true, 0, "Test"));
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.DuplicateSheet(sheet, true, 0));
+            Assert.Throws(typeof(ArgumentException), () => Sheet.DuplicateSheet(sheet, true, 3));
         }
     }
 }

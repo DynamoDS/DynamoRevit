@@ -519,4 +519,7 @@
   <data name="ViewNameExists" xml:space="preserve">
     <value>The View name {0} exists, please change your prefix or suffix</value>
   </data>
+  <data name="CantCloseLastOpenView" xml:space="preserve">
+    <value>This is the last opened view {0} , can't be delete</value>
+  </data>
 </root>

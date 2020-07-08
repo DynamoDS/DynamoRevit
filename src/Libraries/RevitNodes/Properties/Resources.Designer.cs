@@ -124,6 +124,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is the last opened view {0} , can&apos;t be delete.
+        /// </summary>
+        internal static string CantCloseLastOpenView {
+            get {
+                return ResourceManager.GetString("CantCloseLastOpenView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must supply a Category..
         /// </summary>
         internal static string CategoryArgumentException {

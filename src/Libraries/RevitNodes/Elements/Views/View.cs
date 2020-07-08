@@ -402,7 +402,12 @@ namespace Revit.Elements.Views
                         if (shouldClosedViews.Count > 0)
                         {
                             foreach (var v in shouldClosedViews)
-                                v.Close();
+                            {
+                                if (uIDocument.GetOpenUIViews().ToList().Count() > 1)
+                                    v.Close();
+                                else
+                                    throw new InvalidOperationException(string.Format(Properties.Resources.CantCloseLastOpenView, viewElement.ToString()));
+                            }
                         }
                     }                    
                 }                

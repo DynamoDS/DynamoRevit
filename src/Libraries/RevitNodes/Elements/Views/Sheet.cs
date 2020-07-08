@@ -525,11 +525,12 @@ namespace Revit.Elements.Views
         /// Duplicates A Sheet. 
         /// </summary>
         /// <param name="sheet">The Sheet to be Duplicated</param>
+        /// <param name="DuplicateWithView">Set to true that Duplicate sheet with views</param>
         /// <param name="viewDuplicateOption">Enter View Duplicate Option: 0 = Duplicate. 1 = AsDependent. 2 = WithDetailing.</param>
         /// <param name="prefix"></param>
         /// <param name="suffix"></param>
         /// <returns></returns>
-        public static Sheet DuplicateSheet(Sheet sheet, int viewDuplicateOption = 0, string prefix = "", string suffix = "")
+        public static Sheet DuplicateSheet(Sheet sheet, bool DuplicateWithView = false, int viewDuplicateOption = 0, string prefix = "", string suffix = "")
         {            
             if (sheet == null)
                 throw new ArgumentNullException(nameof(sheet));
@@ -563,52 +564,73 @@ namespace Revit.Elements.Views
 
                 var oldElements = ElementBinder.GetElementsFromTrace<Autodesk.Revit.DB.Element>(Document);
                 List<ElementId> elementIds = new List<ElementId>();
+                var newSheetNumber = prefix + sheet.SheetNumber + suffix;
+                var newSheetName = sheet.SheetName;
+                List<Autodesk.Revit.DB.Element> TraceElements = new List<Autodesk.Revit.DB.Element>();
 
                 if (oldElements != null)
                 {
                     foreach (var element in oldElements)
                     {
                         elementIds.Add(element.Id);
+                        if(element is ViewSheet)
+                        {
+                            var oldSheet = (element as ViewSheet).ToDSType(false) as Sheet;
+                            if (oldSheet.SheetNumber.Equals(newSheetNumber))
+                            {
+                                newSheet = oldSheet;
+                                TraceElements.AddRange(oldElements);
+                            }                                
+                        }
                     }
-                    Autodesk.Revit.UI.UIDocument uIDocument = new Autodesk.Revit.UI.UIDocument(Document);
-                    var openedViews = uIDocument.GetOpenUIViews().ToList();
-                    var shouldClosedViews = openedViews.FindAll(x => elementIds.Contains(x.ViewId));
-                    if (shouldClosedViews.Count > 0)
+                    if(newSheet == null)
                     {
-                        foreach (var v in shouldClosedViews)
-                            v.Close();
-                    }
-                    Document.Delete(elementIds);
+                        Autodesk.Revit.UI.UIDocument uIDocument = new Autodesk.Revit.UI.UIDocument(Document);
+                        var openedViews = uIDocument.GetOpenUIViews().ToList();
+                        var shouldClosedViews = openedViews.FindAll(x => elementIds.Contains(x.ViewId));
+                        if (shouldClosedViews.Count > 0)
+                        {
+                            foreach (var v in shouldClosedViews)
+                            {
+                                if (uIDocument.GetOpenUIViews().ToList().Count() > 1)
+                                    v.Close();
+                                else
+                                    throw new InvalidOperationException(string.Format(Properties.Resources.CantCloseLastOpenView, v.ToString()));
+                            }
+                        }
+                        Document.Delete(elementIds);
+                    }                    
                 }
 
-                List<Autodesk.Revit.DB.Element> TraceElements = new List<Autodesk.Revit.DB.Element>();
-                // Create a new Sheet with different SheetNumber
-                var titleBlockElement = sheet.TitleBlock.First() as FamilyInstance;
-                FamilySymbol TitleBlock = titleBlockElement.InternalFamilyInstance.Symbol;
-                FamilyType titleBlockFamilyType = ElementWrapper.Wrap(TitleBlock, true);
-                var newSheetNumber = prefix + sheet.SheetNumber + suffix;
-                var newSheetName = sheet.SheetName;
-
-                if(!CheckUniqueSheetNumber(newSheetNumber))
+                if (newSheet == null && TraceElements.Count == 0)
                 {
-                    throw new ArgumentException(String.Format(Properties.Resources.SheetNumberExists, newSheetNumber));
-                }
+                    // Create a new Sheet with different SheetNumber
+                    var titleBlockElement = sheet.TitleBlock.First() as FamilyInstance;
+                    FamilySymbol TitleBlock = titleBlockElement.InternalFamilyInstance.Symbol;
+                    FamilyType titleBlockFamilyType = ElementWrapper.Wrap(TitleBlock, true);
 
-                var viewSheet = Autodesk.Revit.DB.ViewSheet.Create(Document, TitleBlock.Id);
-                newSheet = new Sheet(viewSheet);
-                newSheet.InternalSetSheetName(newSheetName);
-                newSheet.InternalSetSheetNumber(newSheetNumber);
+                    if (!CheckUniqueSheetNumber(newSheetNumber))
+                    {
+                        throw new ArgumentException(String.Format(Properties.Resources.SheetNumberExists, newSheetNumber));
+                    }
 
-                TraceElements.Add(newSheet.InternalElement);
+                    var viewSheet = Autodesk.Revit.DB.ViewSheet.Create(Document, TitleBlock.Id);
+                    newSheet = new Sheet(viewSheet);
+                    newSheet.InternalSetSheetName(newSheetName);
+                    newSheet.InternalSetSheetNumber(newSheetNumber);
 
-                // Copy Annotation Elements from sheet to new sheet by ElementTransformUtils.CopyElements
-                DuplicateSheetAnnotations(sheet, newSheet);
+                    TraceElements.Add(newSheet.InternalElement);
 
-                // Copy ScheduleSheetInstance except RevisionSchedule from sheet to new sheet by ElementTransformUtils.CopyElements
-                DuplicateScheduleSheetInstance(sheet, newSheet);
+                    // Copy Annotation Elements from sheet to new sheet by ElementTransformUtils.CopyElements
+                    DuplicateSheetAnnotations(sheet, newSheet);
 
-                // Duplicate Viewport in sheet and place on new sheet
-                TraceElements.AddRange(DuplicateViewport(sheet, newSheet, Option, prefix, suffix));
+                    // Copy ScheduleSheetInstance except RevisionSchedule from sheet to new sheet by ElementTransformUtils.CopyElements
+                    DuplicateScheduleSheetInstance(sheet, newSheet);
+
+                    // Duplicate Viewport in sheet and place on new sheet
+                    if (DuplicateWithView)
+                        TraceElements.AddRange(DuplicateViewport(sheet, newSheet, Option, prefix, suffix));
+                }                
                                 
                 ElementBinder.SetElementsForTrace(TraceElements);
                 RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
