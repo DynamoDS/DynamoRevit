@@ -578,8 +578,11 @@ namespace Revit.Elements.Views
                             var oldSheet = (element as ViewSheet).ToDSType(false) as Sheet;
                             if (oldSheet.SheetNumber.Equals(newSheetNumber))
                             {
-                                newSheet = oldSheet;
-                                TraceElements.AddRange(oldElements);
+                                if ((DuplicateWithView && oldElements.Count() > 1) || (!DuplicateWithView && oldElements.Count() == 1))  
+                                {
+                                    newSheet = oldSheet;
+                                    TraceElements.AddRange(oldElements);
+                                }                                
                             }                                
                         }
                     }
