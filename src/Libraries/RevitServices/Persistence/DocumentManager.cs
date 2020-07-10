@@ -68,8 +68,15 @@ namespace RevitServices.Persistence
             if (null != id)
             {
                 TransactionManager.Instance.EnsureInTransaction(CurrentDBDocument);
-
-                CurrentDBDocument.Delete(id);
+                try
+                {
+                    CurrentDBDocument.Delete(id);
+                }
+                catch (Exception e)
+                {
+                    var ele =  CurrentDBDocument.GetElement(id);
+                    throw new ArgumentException(String.Format("This Element {0} {1} cannot be deleted",ele.ToString(), ele.Name));
+                }
 
                 TransactionManager.Instance.TransactionTaskDone();
             }

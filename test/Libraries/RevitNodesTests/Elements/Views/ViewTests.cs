@@ -33,7 +33,7 @@ namespace RevitNodesTests.Elements.Views
         public void ExportAsImage_BadArgs()
         {
             var testView = CreateTestView();
-            Assert.Throws<System.ArgumentException>(()=>testView.ExportAsImage(""));
+            Assert.Throws<System.ArgumentException>(() => testView.ExportAsImage(""));
         }
 
         private static View CreateTestView()
@@ -48,6 +48,46 @@ namespace RevitNodesTests.Elements.Views
 
             return v;
         }
-        
+
+        [Test, TestModel(@".\Empty.rvt")]
+        public void DuplicateView_GoodArgs()
+        {
+            var testView = CreateTestView();
+            var newName = "Test" + testView.Name;
+
+            var duplicateView = View.DuplicateView(testView, 0, "Test");
+
+            Assert.NotNull(duplicateView);
+            Assert.AreEqual(duplicateView.Name, newName);
+        }
+
+        [Test, TestModel(@".\Empty.rvt")]
+        public void DuplicateView_BadArgs()
+        {
+            var testView = CreateTestView();
+
+            Assert.Throws<System.ArgumentNullException>(() => View.DuplicateView(null));
+            Assert.Throws<System.ArgumentException>(() => View.DuplicateView(testView, 3));
+
+            var testSheet = CreateTestSheet();
+            Assert.Throws<System.ArgumentException>(() => View.DuplicateView(testSheet));
+        }
+
+        private static Sheet CreateTestSheet()
+        {
+            RevitServices.Persistence.ElementBinder.IsEnabled = false;
+
+            var famSymName = "E1 30x42 Horizontal";
+            var famName = "E1 30 x 42 Horizontal";
+            var titleBlock = Revit.Elements.FamilyType.ByFamilyAndName(Revit.Elements.Family.ByName(famName), famSymName);
+
+            var sheetName = "Poodle";
+            var sheetNumber = "A1";
+
+            // Act
+            var ele = Sheet.ByNameNumberTitleBlock(sheetName, sheetNumber, titleBlock);
+
+            return ele;
+        }
     }
 }

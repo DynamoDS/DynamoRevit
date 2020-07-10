@@ -36,6 +36,21 @@ namespace Revit.Elements.Views
             get { return InternalViewSheet; }
         }
 
+        public override void Dispose()
+        {
+            if (DuplicateViews != null) 
+            {
+                if (this.DuplicateViews.Any())
+                {
+                    foreach (var view in DuplicateViews)
+                        view.Dispose();
+                }
+            }
+            
+            DuplicateViews = null;
+            base.Dispose();
+        }
+
         #endregion
 
         #region Private constructors
@@ -258,7 +273,7 @@ namespace Revit.Elements.Views
                 }
                 else
                 {
-                    throw new Exception( String.Format("View {0} could not be packed on the Sheet.  The sheet is {1} x {2} and the view to be added is {3} x {4}", 
+                    throw new Exception(String.Format(Properties.Resources.ViewCantPackOnSheet,
                         count, width, height, viewWidth, viewHeight));
                 }
 
@@ -354,7 +369,7 @@ namespace Revit.Elements.Views
         /// <param name="sheetNumber"></param>
         /// <returns></returns>
         public Sheet SetSheetNumber(string sheetNumber)
-        {            
+        {
             InternalSetSheetNumber(sheetNumber);
             return this;
         }
@@ -379,7 +394,7 @@ namespace Revit.Elements.Views
             {
                 return
                     InternalViewSheet.GetAllPlacedViews().Select(x => Document.GetElement(x)).OfType<Autodesk.Revit.DB.View>()
-                        .Select(x => (View) ElementWrapper.ToDSType(x, true))
+                        .Select(x => (View)ElementWrapper.ToDSType(x, true))
                         .ToArray();
             }
         }
@@ -506,6 +521,135 @@ namespace Revit.Elements.Views
             return new Sheet(sheetName, sheetNumber, titleBlockFamilyType.InternalFamilySymbol);
         }
 
+        /// <summary>
+        /// Duplicates A Sheet. 
+        /// </summary>
+        /// <param name="sheet">The Sheet to be Duplicated</param>
+        /// <param name="DuplicateWithView">Set to true that Duplicate sheet with views</param>
+        /// <param name="viewDuplicateOption">Enter View Duplicate Option: 0 = Duplicate. 1 = AsDependent. 2 = WithDetailing.</param>
+        /// <param name="prefix"></param>
+        /// <param name="suffix"></param>
+        /// <returns></returns>
+        public static Sheet DuplicateSheet(Sheet sheet, bool DuplicateWithView = false, int viewDuplicateOption = 0, string prefix = "", string suffix = "")
+        {            
+            if (sheet == null)
+                throw new ArgumentNullException(nameof(sheet));
+
+            ViewDuplicateOption Option = 0;
+            switch (viewDuplicateOption)
+            {
+                case 0:
+                    Option = ViewDuplicateOption.Duplicate;
+                    break;
+                case 1:
+                    Option = ViewDuplicateOption.AsDependent;
+                    break;
+                case 2:
+                    Option = ViewDuplicateOption.WithDetailing;
+                    break;
+                default:
+                    throw new ArgumentException(Properties.Resources.ViewDuplicateOptionOutofRange);
+            }
+
+            if (String.IsNullOrEmpty(prefix) && String.IsNullOrEmpty(suffix))
+            {
+                throw new ArgumentNullException(Properties.Resources.SheetDuplicateNeedFix);
+            }
+
+            Sheet newSheet = null;
+
+            try
+            {
+                RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);                
+
+                var oldElements = ElementBinder.GetElementsFromTrace<Autodesk.Revit.DB.Element>(Document);
+                List<ElementId> elementIds = new List<ElementId>();
+                var newSheetNumber = prefix + sheet.SheetNumber + suffix;
+                var newSheetName = sheet.SheetName;
+                List<Autodesk.Revit.DB.Element> TraceElements = new List<Autodesk.Revit.DB.Element>();
+
+                if (oldElements != null)
+                {
+                    foreach (var element in oldElements)
+                    {
+                        elementIds.Add(element.Id);
+                        if(element is ViewSheet)
+                        {
+                            var oldSheet = (element as ViewSheet).ToDSType(false) as Sheet;
+                            if (oldSheet.SheetNumber.Equals(newSheetNumber))
+                            {
+                                if ((DuplicateWithView && oldElements.Count() > 1) || (!DuplicateWithView && oldElements.Count() == 1))  
+                                {
+                                    newSheet = oldSheet;
+                                    TraceElements.AddRange(oldElements);
+                                }                                
+                            }                                
+                        }
+                    }
+                    if(newSheet == null)
+                    {
+                        Autodesk.Revit.UI.UIDocument uIDocument = new Autodesk.Revit.UI.UIDocument(Document);
+                        var openedViews = uIDocument.GetOpenUIViews().ToList();
+                        var shouldClosedViews = openedViews.FindAll(x => elementIds.Contains(x.ViewId));
+                        if (shouldClosedViews.Count > 0)
+                        {
+                            foreach (var v in shouldClosedViews)
+                            {
+                                if (uIDocument.GetOpenUIViews().ToList().Count() > 1)
+                                    v.Close();
+                                else
+                                    throw new InvalidOperationException(string.Format(Properties.Resources.CantCloseLastOpenView, v.ToString()));
+                            }
+                        }
+                        Document.Delete(elementIds);
+                    }                    
+                }
+
+                if (newSheet == null && TraceElements.Count == 0)
+                {
+                    // Create a new Sheet with different SheetNumber
+                    var titleBlockElement = sheet.TitleBlock.First() as FamilyInstance;
+                    FamilySymbol TitleBlock = titleBlockElement.InternalFamilyInstance.Symbol;
+                    FamilyType titleBlockFamilyType = ElementWrapper.Wrap(TitleBlock, true);
+
+                    if (!CheckUniqueSheetNumber(newSheetNumber))
+                    {
+                        throw new ArgumentException(String.Format(Properties.Resources.SheetNumberExists, newSheetNumber));
+                    }
+
+                    var viewSheet = Autodesk.Revit.DB.ViewSheet.Create(Document, TitleBlock.Id);
+                    newSheet = new Sheet(viewSheet);
+                    newSheet.InternalSetSheetName(newSheetName);
+                    newSheet.InternalSetSheetNumber(newSheetNumber);
+
+                    TraceElements.Add(newSheet.InternalElement);
+
+                    // Copy Annotation Elements from sheet to new sheet by ElementTransformUtils.CopyElements
+                    DuplicateSheetAnnotations(sheet, newSheet);
+
+                    // Copy ScheduleSheetInstance except RevisionSchedule from sheet to new sheet by ElementTransformUtils.CopyElements
+                    DuplicateScheduleSheetInstance(sheet, newSheet);
+
+                    // Duplicate Viewport in sheet and place on new sheet
+                    if (DuplicateWithView)
+                        TraceElements.AddRange(DuplicateViewport(sheet, newSheet, Option, prefix, suffix));
+                }                
+                                
+                ElementBinder.SetElementsForTrace(TraceElements);
+                RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+            }
+            catch (Exception e)
+            {
+                if(newSheet != null)
+                {
+                    newSheet.Dispose();
+                }
+                throw e;
+            }
+            
+            return newSheet;
+        }
+
         #endregion
 
         #region Internal static constructors
@@ -526,5 +670,133 @@ namespace Revit.Elements.Views
 
         #endregion
 
+        private static void DuplicateSheetAnnotations(Sheet oldSheet, Sheet newSheet)
+        {
+            List<BuiltInCategory> Filters = new List<BuiltInCategory>
+            {
+                BuiltInCategory.OST_IOSDetailGroups,
+                BuiltInCategory.OST_Dimensions,
+                BuiltInCategory.OST_GenericAnnotation,
+                BuiltInCategory.OST_Lines,
+                BuiltInCategory.OST_TextNotes
+            };
+            List<ElementId> list = new List<ElementId>();
+            foreach(var category in Filters)
+            {
+                list.AddRange(new FilteredElementCollector(Document, oldSheet.InternalElementId).OfCategory(category).ToElementIds());
+            }
+            if(list.Any<ElementId>())
+            {
+                ElementTransformUtils.CopyElements(oldSheet.InternalViewSheet, list, newSheet.InternalViewSheet, null, null);
+            }
+        }
+
+        private static void DuplicateScheduleSheetInstance(Sheet oldSheet, Sheet newSheet)
+        {
+            List<ElementId> list = new List<ElementId>();
+            foreach(var schedule in oldSheet.Schedules)
+            {
+                if(!schedule.InternalScheduleOnSheet.IsTitleblockRevisionSchedule)
+                {
+                    list.Add(schedule.InternalElement.Id);
+                }
+            }
+            if (list.Any<ElementId>())
+            {
+                ElementTransformUtils.CopyElements(oldSheet.InternalViewSheet, list, newSheet.InternalViewSheet, null, null);                
+            }
+        }
+
+        /// <summary>
+        /// A list that temporarily stores Views generated by Duplicate, will dispose when sheet disposing.
+        /// </summary>
+        private List<Revit.Elements.Views.View> DuplicateViews = null;
+
+        private static List<Autodesk.Revit.DB.Element> DuplicateViewport(Sheet oldSheet, Sheet newSheet, ViewDuplicateOption viewDuplicateOption, string prefix, string suffix)
+        {
+            var Viewports = oldSheet.Viewports.ToList();
+            List<Revit.Elements.Views.View> viewList = new List<View>();
+            List<Autodesk.Revit.DB.Element> elements = new List<Autodesk.Revit.DB.Element>();
+            List<Autodesk.DesignScript.Geometry.Point> locationList = new List<Autodesk.DesignScript.Geometry.Point>();
+            foreach (var viewport in Viewports) 
+            {                
+                if (viewport.View.InternalView.CanViewBeDuplicated(viewDuplicateOption))
+                {
+                    var newViewName = prefix + viewport.View.Name + suffix;
+                    if (!CheckUniqueViewName(newViewName))
+                        throw new ArgumentException(String.Format(Properties.Resources.ViewNameExists, newViewName));
+                    var newViewId = viewport.View.InternalView.Duplicate(viewDuplicateOption);
+                    var newView = (Document.GetElement(newViewId) as Autodesk.Revit.DB.View).ToDSType(false) as View;
+                    var param = newView.InternalView.get_Parameter(BuiltInParameter.VIEW_NAME);
+                    param.Set(prefix + viewport.View.Name + suffix);
+                    viewList.Add(newView);
+                    elements.Add(newView.InternalElement);
+                }
+                else
+                {
+                    throw new Exception(String.Format(Properties.Resources.ViewCantBeDuplicated, viewport.View.Name));
+                }
+
+                locationList.Add(viewport.BoxCenter);
+            }
+
+            newSheet.DuplicateViews = viewList;
+
+            if (viewList.Count() == locationList.Count() && viewList.Any())
+            {
+                for (int i = 0; i < viewList.Count(); i++)
+                {
+                    ElementId sheetId = newSheet.InternalView.Id;
+                    ElementId viewId = viewList[i].InternalView.Id;
+                    XYZ viewLocation = Revit.GeometryConversion.GeometryPrimitiveConverter.ToRevitType(locationList[i]);
+
+                    if (!Autodesk.Revit.DB.Viewport.CanAddViewToSheet(Document, sheetId, viewId))
+                    {
+                        throw new InvalidOperationException(Properties.Resources.ViewAlreadyPlacedOnSheet);
+                    }
+                    Autodesk.Revit.DB.Viewport.Create(Document, sheetId, viewId, viewLocation);
+                }
+            }
+
+            return elements;
+        }
+
+        private static Boolean CheckUniqueSheetNumber(String SheetNumber)
+        {
+            bool IsUnique = true;
+
+            var sheets = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(ViewSheet))
+                .ToList();
+            foreach (var s in sheets)
+            {
+                if((s as ViewSheet).SheetNumber.Equals(SheetNumber))
+                {
+                    IsUnique = false;
+                    break;
+                }
+            }
+
+            return IsUnique;
+        }
+
+        private static Boolean CheckUniqueViewName(String ViewName)
+        {
+            bool IsUnique = true;
+
+            var views = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(Autodesk.Revit.DB.View))
+                .ToList();
+            foreach (var v in views)
+            {
+                if (v.Name.Equals(ViewName))
+                {
+                    IsUnique = false;
+                    break;
+                }
+            }
+
+            return IsUnique;
+        }
     }
 }

@@ -89,5 +89,35 @@ namespace RevitSystemTests
             var sheetNumber = GetPreviewValue("723ce0df917a443aa410891e01bdc0aa");
             Assert.AreEqual(newSheetNumber, sheetNumber);
         }
+
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void DuplicateSheet()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\Sheet\DuplicateSheet.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            string newSheetName = "Title Sheet";
+            string newSheetNumber = "TestA001";
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var newSheet = GetPreviewValue("a5f649718c57476ca77807b153ebb4b9") as Revit.Elements.Views.Sheet;
+            Assert.AreEqual(newSheetName, newSheet.SheetName);
+            Assert.AreEqual(newSheetNumber, newSheet.SheetNumber);
+
+            var ViewsID = "1c6ca6cc7c2b47fdb200ba3175886864";
+            AssertPreviewCount(ViewsID, 5);
+            for (int i = 0; i < 5; i++)
+            {
+                var view = GetPreviewValueAtIndex(ViewsID, i) as Revit.Elements.Views.View;
+                Assert.IsNotNull(view);
+                Assert.IsTrue(view.Name.StartsWith("Test"));
+            }
+        }
     }
 }

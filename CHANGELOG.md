@@ -1,5 +1,6 @@
 * Add a Category ScheduleOnSheet and its nodes - ScheduleOnSheet.Sheet, ScheduleOnSheet.Schedule, ScheduleOnSheet.BySheetViewLocation, ScheduleOnSheet.Location and ScheduleOnSheet.SetLocation
 * Add some new nodes for Sheet - Sheet.Schedules, Sheet.Viewports, Sheet.TitleBlock, Sheet.SetSheetName, Sheet.SetSheetNumber
+* Add 2 new nodes - View.DuplicateView and Sheet.DuplicateSheet.
 
 ## 0.2.17
 * Check if InternalElement is valid Revit Element to avoid calling funcitons or get properties of an invalid object and cause Dynamo crash.
