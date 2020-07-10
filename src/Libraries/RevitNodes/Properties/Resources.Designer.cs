@@ -1141,11 +1141,29 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Must supply more than 0 locations..
+        /// </summary>
+        internal static string Sheet_NoLocationSet {
+            get {
+                return ResourceManager.GetString("Sheet_NoLocationSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Must supply more than 0 views.
         /// </summary>
         internal static string Sheet_NoViewsError {
             get {
                 return ResourceManager.GetString("Sheet_NoViewsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View count should Equals location count..
+        /// </summary>
+        internal static string Sheet_ViewLocationMismatch {
+            get {
+                return ResourceManager.GetString("Sheet_ViewLocationMismatch", resourceCulture);
             }
         }
         

@@ -196,5 +196,124 @@ namespace RevitNodesTests.Elements.Views
             Assert.Throws(typeof(ArgumentNullException), () => Sheet.DuplicateSheet(sheet, true, 0));
             Assert.Throws(typeof(ArgumentException), () => Sheet.DuplicateSheet(sheet, true, 3));
         }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void ByNameNumberTitleBlockViewsAndLocations_ValidArgs()
+        {
+            ElementBinder.IsEnabled = false;
+
+            var famSymName = "E1 30x42 Horizontal";
+            var famName = "E1 30 x 42 Horizontal";
+            var titleBlock = FamilyType.ByFamilyAndName(Family.ByName(famName), famSymName);
+
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
+            var pt = Point.ByCoordinates(0, 1, 2);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
+
+            var pt2 = Point.ByCoordinates(100, 100, 0);
+            var famInst2 = FamilyInstance.ByPoint(famTyp, pt2);
+
+            var view = SectionView.ByBoundingBox(famInst.BoundingBox);
+            var view2 = SectionView.ByBoundingBox(famInst2.BoundingBox);
+
+            var location = Point.ByCoordinates(0, 0, 0);
+            var location2 = Point.ByCoordinates(0, 1, 0);
+
+            var sheetName = "Poodle";
+            var sheetNumber = "A1";
+
+            var ele = Sheet.ByNameNumberTitleBlockViewsAndLocations(sheetName, sheetNumber, titleBlock, new[] { view, view2 }, new[] { location, location2 });
+
+            Assert.NotNull(ele);
+        }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void ByNameNumberTitleBlockViewsAndLocations_BadArgs()
+        {
+            ElementBinder.IsEnabled = false;
+
+            var famSymName = "E1 30x42 Horizontal";
+            var famName = "E1 30 x 42 Horizontal";
+            var titleBlock = FamilyType.ByFamilyAndName(Family.ByName(famName), famSymName);
+
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
+            var pt = Point.ByCoordinates(0, 1, 2);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
+
+            var pt2 = Point.ByCoordinates(100, 100, 0);
+            var famInst2 = FamilyInstance.ByPoint(famTyp, pt2);
+
+            var view = SectionView.ByBoundingBox(famInst.BoundingBox);
+            var view2 = SectionView.ByBoundingBox(famInst2.BoundingBox);
+
+            var location = Point.ByCoordinates(0, 0, 0);
+            var location2 = Point.ByCoordinates(0, 1, 0);
+
+            var sheetName = "Poodle";
+            var sheetNumber = "A1";
+
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlockViewsAndLocations(null, sheetNumber, titleBlock, new[] { view, view2 }, new[] { location, location2 }));
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlockViewsAndLocations(sheetName, null, titleBlock, new[] { view, view2 }, new[] { location, location2 }));
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlockViewsAndLocations(sheetName, sheetNumber, null, new[] { view, view2 }, new[] { location, location2 }));
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlockViewsAndLocations(sheetName, sheetNumber, titleBlock, null, new[] { location, location2 }));
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlockViewsAndLocations(sheetName, sheetNumber, titleBlock, new[] { view, view2 }, null));
+            Assert.Throws(typeof(ArgumentException), () => Sheet.ByNameNumberTitleBlockViewsAndLocations(sheetName, sheetNumber, titleBlock, new[] { view, view2 }, new[] { location }));
+        }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void ByNameNumberTitleBlockViewAndLocation_ValidArgs()
+        {
+            ElementBinder.IsEnabled = false;
+
+            var famSymName = "E1 30x42 Horizontal";
+            var famName = "E1 30 x 42 Horizontal";
+            var titleBlock = FamilyType.ByFamilyAndName(Family.ByName(famName), famSymName);
+
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
+            var pt = Point.ByCoordinates(0, 1, 2);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
+
+            var view = SectionView.ByBoundingBox(famInst.BoundingBox);
+
+            var location = Point.ByCoordinates(0, 0, 0);
+
+            var sheetName = "Poodle";
+            var sheetNumber = "A1";
+
+            var ele = Sheet.ByNameNumberTitleBlockViewAndLocation(sheetName, sheetNumber, titleBlock, view, location);
+
+            Assert.NotNull(ele);
+        }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void ByNameNumberTitleBlockViewAndLocation_BadArgs()
+        {
+            ElementBinder.IsEnabled = false;
+
+            var famSymName = "E1 30x42 Horizontal";
+            var famName = "E1 30 x 42 Horizontal";
+            var titleBlock = FamilyType.ByFamilyAndName(Family.ByName(famName), famSymName);
+
+            var famTyp = FamilyType.ByName("Kousa Dogwood - 10'");
+            var pt = Point.ByCoordinates(0, 1, 2);
+            var famInst = FamilyInstance.ByPoint(famTyp, pt);
+
+            var view = SectionView.ByBoundingBox(famInst.BoundingBox);
+
+            var location = Point.ByCoordinates(0, 0, 0);
+
+            var sheetName = "Poodle";
+            var sheetNumber = "A1";
+
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlockViewAndLocation(null, sheetNumber, titleBlock, view, location));
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlockViewAndLocation(sheetName, null, titleBlock, view, location));
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlockViewAndLocation(sheetName, sheetNumber, null, view, location));
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlockViewAndLocation(sheetName, sheetNumber, titleBlock, null, location));
+            Assert.Throws(typeof(ArgumentNullException), () => Sheet.ByNameNumberTitleBlockViewAndLocation(sheetName, sheetNumber, titleBlock, view, null));
+        }
     }
 }

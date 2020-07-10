@@ -7,6 +7,7 @@ using DynamoServices;
 using Nuclex.Game.Packing;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+using Revit.GeometryConversion;
 
 namespace Revit.Elements.Views
 {
@@ -86,6 +87,11 @@ namespace Revit.Elements.Views
         private Sheet(string sheetName, string sheetNumber, Autodesk.Revit.DB.FamilySymbol titleBlockFamilySymbol)
         {
             SafeInit(() => InitSheet(sheetName, sheetNumber, titleBlockFamilySymbol));
+        }
+
+        private Sheet(string sheetName, string sheetNumber, Autodesk.Revit.DB.FamilySymbol titleBlockFamilySymbol, IEnumerable<Autodesk.Revit.DB.View> views, IEnumerable<XYZ> locations)
+        {
+            SafeInit(() => InitSheet(sheetName,sheetNumber,titleBlockFamilySymbol,views,locations));
         }
 
         #endregion
@@ -217,9 +223,115 @@ namespace Revit.Elements.Views
             ElementBinder.SetElementForTrace(this.InternalElement);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sheetName"></param>
+        /// <param name="sheetNumber"></param>
+        /// <param name="titleBlockFamilySymbol"></param>
+        /// <param name="views"></param>
+        /// <param name="locations"></param>
+        private void InitSheet(string sheetName, string sheetNumber, Autodesk.Revit.DB.FamilySymbol titleBlockFamilySymbol, IEnumerable<Autodesk.Revit.DB.View> views, IEnumerable<XYZ> locations)
+        {
+            //Phase 1 - Check to see if the object exists
+            var oldEles =
+                ElementBinder.GetElementsFromTrace<Autodesk.Revit.DB.ViewSheet>(Document);
+
+            List<Autodesk.Revit.DB.Element> TraceElements = new List<Autodesk.Revit.DB.Element>();
+            List<Autodesk.Revit.DB.Viewport> BindingViewports = new List<Autodesk.Revit.DB.Viewport>();
+            if (ElementBinder.GetElementsFromTrace<Autodesk.Revit.DB.Viewport>(Document) != null)
+                BindingViewports.AddRange(ElementBinder.GetElementsFromTrace<Autodesk.Revit.DB.Viewport>(Document).ToList());
+
+            // Rebind to Element
+            if (oldEles != null)
+            {
+                var oldEle = oldEles.First();
+                InternalSetViewSheet(oldEle);
+                InternalSetSheetName(sheetName);
+                InternalSetSheetNumber(sheetNumber);
+                InternalSetTitleBlock(titleBlockFamilySymbol.Id);
+                TraceElements.Add(oldEle);
+                TraceElements.AddRange(InternalSetViewsToSheetView(views, locations, BindingViewports));
+
+                ElementBinder.SetElementsForTrace(TraceElements);
+
+                return;
+            }
+
+            //Phase 2 - There was no existing Element, create new one
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            // create sheet with title block ID
+            var sheet = Autodesk.Revit.DB.ViewSheet.Create(Document, titleBlockFamilySymbol.Id);
+
+            InternalSetViewSheet(sheet);
+            InternalSetSheetName(sheetName);
+            InternalSetSheetNumber(sheetNumber);
+            TraceElements.Add(this.InternalElement);
+            TraceElements.AddRange(InternalSetViewsToSheetView(views, locations, BindingViewports));
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            ElementBinder.SetElementsForTrace(TraceElements);
+        }
+
         #endregion
 
         #region Private mutators
+
+        /// <summary>
+        /// This method sets the collection of views with locations to the existing ViewSheet
+        /// </summary>
+        /// <param name="views"></param>
+        /// <param name="locations"></param>
+        /// <param name="currentViewports"></param>
+        private List<Autodesk.Revit.DB.Element> InternalSetViewsToSheetView(IEnumerable<Autodesk.Revit.DB.View> views, IEnumerable<XYZ> locations, List<Autodesk.Revit.DB.Viewport> currentViewports)
+        {
+            var dict = new Dictionary<Autodesk.Revit.DB.ElementId, XYZ>();
+            for (int i = 0; i < views.Count(); i++)
+            {
+                dict.Add(views.ElementAt(i).Id, locations.ElementAt(i));
+            }
+
+            var sheet = InternalViewSheet;
+            List<Autodesk.Revit.DB.Element> TraceViewports = new List<Autodesk.Revit.DB.Element>();
+            //var currentViewports = InternalViewSheet.GetAllViewports().Select(x => Document.GetElement(x)).OfType<Autodesk.Revit.DB.Viewport>().ToList();
+            var viewsId = views.Select(x => x.Id);
+            var currentViewId = currentViewports.Select(x => x.ViewId);
+            var shouldDeleteViewports = currentViewports.FindAll(x => !viewsId.Contains(x.ViewId));
+            var shouldResetLocationViewports = currentViewports.FindAll(x => viewsId.Contains(x.ViewId));
+            var shouldAddViews = views.ToList().FindAll(x => !currentViewId.Contains(x.Id)).Select(x => x.Id);
+
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            if (shouldDeleteViewports != null && shouldDeleteViewports.Any())
+            {
+                foreach (var viewport in shouldDeleteViewports)
+                    Document.Delete(viewport.Id);
+            }
+            if (shouldResetLocationViewports != null && shouldResetLocationViewports.Any())
+            {
+                foreach (var viewport in shouldResetLocationViewports)
+                {
+                    var boxCenter = dict[viewport.ViewId];
+                    viewport.SetBoxCenter(boxCenter);
+                    TraceViewports.Add(viewport);
+                }
+            }
+            if (shouldAddViews != null && shouldAddViews.Any())
+            {
+                foreach (var viewId in shouldAddViews)
+                {
+                    var boxCenter = dict[viewId];
+                    var viewport = Autodesk.Revit.DB.Viewport.Create(Document, sheet.Id, viewId, boxCenter);
+                    TraceViewports.Add(viewport);
+                }
+            }
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return TraceViewports;
+        }
 
         /// <summary>
         /// This method adds the collection of views to the existing ViewSheet and packs them 
@@ -522,10 +634,90 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
+        /// Create a Revit Sheet.
+        /// This method will automatically set the views with locations onto the sheet.
+        /// </summary>
+        /// <param name="sheetName">Sheet Name as String.</param>
+        /// <param name="sheetNumber">Sheet Number as String.</param>
+        /// <param name="titleBlockFamilyType">Titleblock that will be assigned to created Sheet.</param>
+        /// <param name="views">Views to be placed on Sheet.</param>
+        /// <param name="locations">View's location on Sheet.</param>
+        /// <returns></returns>
+        public static Sheet ByNameNumberTitleBlockViewsAndLocations(string sheetName, string sheetNumber, FamilyType titleBlockFamilyType, View[] views, Autodesk.DesignScript.Geometry.Point[] locations)
+        {
+            if (sheetName == null)
+            {
+                throw new ArgumentNullException("sheetName");
+            }
+
+            if (sheetNumber == null)
+            {
+                throw new ArgumentNullException("sheetNumber");
+            }
+
+            if (titleBlockFamilyType == null)
+            {
+                throw new ArgumentNullException("titleBlockFamilyType");
+            }
+
+            if (views == null)
+            {
+                throw new ArgumentNullException("views");
+            }
+
+            if (locations == null)
+            {
+                throw new ArgumentNullException("locations");
+            }
+
+            if (views.Length == 0)
+            {
+                throw new ArgumentException(Properties.Resources.Sheet_NoViewsError);
+            }
+
+            if (locations.Length == 0)
+            {
+                throw new ArgumentException(Properties.Resources.Sheet_NoLocationSet);
+            }
+
+            if (views.Length != locations.Length)
+            {
+                throw new ArgumentException(Properties.Resources.Sheet_ViewLocationMismatch);
+            }
+
+            return new Sheet(sheetName, sheetNumber, titleBlockFamilyType.InternalFamilySymbol, views.Select(x => x.InternalView), locations.Select(x =>x.ToXyz()));
+        }
+
+        /// <summary>
+        /// Create a Revit Sheet.
+        /// This method will automatically set the view with location onto the sheet.
+        /// </summary>
+        /// <param name="sheetName">Sheet Name as String.</param>
+        /// <param name="sheetNumber">Sheet Number as String.</param>
+        /// <param name="titleBlockFamilyType">Titleblock that will be assigned to created Sheet.</param>
+        /// <param name="view">View to be placed on Sheet.</param>
+        /// <param name="location">iew's location on Sheet.</param>
+        /// <returns></returns>
+        public static Sheet ByNameNumberTitleBlockViewAndLocation(string sheetName, string sheetNumber, FamilyType titleBlockFamilyType, View view, Autodesk.DesignScript.Geometry.Point location)
+        {
+            if (view == null)
+            {
+                throw new ArgumentNullException("view");
+            }
+
+            if (location == null) 
+            {
+                throw new ArgumentNullException("location");
+            }
+
+            return ByNameNumberTitleBlockViewsAndLocations(sheetName, sheetNumber, titleBlockFamilyType, new[] { view }, new[] { location });
+        }
+
+        /// <summary>
         /// Duplicates A Sheet. 
         /// </summary>
-        /// <param name="sheet">The Sheet to be Duplicated</param>
-        /// <param name="DuplicateWithView">Set to true that Duplicate sheet with views</param>
+        /// <param name="sheet">The Sheet to be Duplicated.</param>
+        /// <param name="DuplicateWithView">Set to true that Duplicate sheet with views.</param>
         /// <param name="viewDuplicateOption">Enter View Duplicate Option: 0 = Duplicate. 1 = AsDependent. 2 = WithDetailing.</param>
         /// <param name="prefix"></param>
         /// <param name="suffix"></param>
