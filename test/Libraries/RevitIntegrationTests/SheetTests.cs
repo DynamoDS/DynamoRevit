@@ -119,5 +119,43 @@ namespace RevitSystemTests
                 Assert.IsTrue(view.Name.StartsWith("Test"));
             }
         }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void ByNameNumberTitleBlockViewsAndLocations()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\Sheet\ByNameNumberTitleBlockViewsAndLocations.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            var sheet = GetPreviewValue("01424f3d42114052a03a3425939d8dcb") as Revit.Elements.Views.Sheet;
+
+            // Assert
+            Assert.NotNull(sheet);
+        }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void ByNameNumberTitleBlockViewAndLocation()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\Sheet\ByNameNumberTitleBlockViewAndLocation.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            var sheet = GetPreviewValue("87af4800424340929c4c329ef67d32a8") as Revit.Elements.Views.Sheet;
+
+            // Assert
+            Assert.NotNull(sheet);
+        }
     }
 }
