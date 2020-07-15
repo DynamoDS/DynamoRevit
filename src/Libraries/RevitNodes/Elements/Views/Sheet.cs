@@ -243,7 +243,7 @@ namespace Revit.Elements.Views
                 BindingViewports.AddRange(ElementBinder.GetElementsFromTrace<Autodesk.Revit.DB.Viewport>(Document).ToList());
 
             // Rebind to Element
-            if (oldEles != null)
+            if (oldEles != null && oldEles.Any())
             {
                 var oldEle = oldEles.First();
                 InternalSetViewSheet(oldEle);
