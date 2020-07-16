@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using Autodesk.Revit.DB;
 using RevitServices.Persistence;
+using System.Linq;
 
 namespace Revit.Elements.Views
 {
@@ -19,7 +20,8 @@ namespace Revit.Elements.Views
         {
             get
             {
-                return (Autodesk.Revit.DB.View) InternalElement;
+                Autodesk.Revit.DB.View internalElement = (Autodesk.Revit.DB.View)InternalElement;
+                return internalElement.IsValidObject ? internalElement : null;
             }
         }
 
@@ -176,7 +178,7 @@ namespace Revit.Elements.Views
 
         public override string ToString()
         {
-            return GetType().Name + "(Name = " + InternalView.Name + " )";
+            return GetType().Name + "(Name = " + InternalView?.Name + " )";
         }
 
         #region Filter
@@ -314,5 +316,139 @@ namespace Revit.Elements.Views
         }
 
         #endregion
+
+        #region Duplicate
+
+        /// <summary>
+        /// Duplicates A view. 
+        /// </summary>
+        /// <param name="view">The View to be Duplicated</param>
+        /// <param name="viewDuplicateOption">Enter View Duplicate Option: 0 = Duplicate. 1 = AsDependent. 2 = WithDetailing.</param>
+        /// <param name="prefix"></param>
+        /// <param name="suffix"></param>
+        /// <returns></returns>
+        public static Revit.Elements.Views.View DuplicateView(View view, int viewDuplicateOption = 0, string prefix = "", string suffix = "")
+        {
+            View newView = null;
+
+            if (view == null)
+                throw new ArgumentNullException(nameof(view));
+            if (view is Sheet)
+                throw new ArgumentException(Properties.Resources.DuplicateViewCantApplySheet);
+
+            ViewDuplicateOption Option = 0;
+            switch(viewDuplicateOption)
+            {
+                case 0:
+                    Option = ViewDuplicateOption.Duplicate;
+                    break;
+                case 1:
+                    Option = ViewDuplicateOption.AsDependent;
+                    break;
+                case 2:
+                    Option = ViewDuplicateOption.WithDetailing;                    
+                    break;
+                default:
+                    throw new ArgumentException(Properties.Resources.ViewDuplicateOptionOutofRange);
+            }
+
+            try
+            {
+                RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+                var viewElement = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.View>(Document);
+
+                int count = 0;
+                string newViewName = "";
+                if (!String.IsNullOrEmpty(prefix) || !String.IsNullOrEmpty(suffix))
+                {
+                    newViewName = prefix + view.Name + suffix;                    
+                }
+                Autodesk.Revit.UI.UIDocument uIDocument = new Autodesk.Revit.UI.UIDocument(Document);
+                var openedViews = uIDocument.GetOpenUIViews().ToList();
+
+                if (viewElement != null)
+                {
+                    count++;
+                    var oldViewName = viewElement.Name;
+                    if (oldViewName.Equals(newViewName))
+                        newView = viewElement.ToDSType(false) as View;
+                    else
+                        count--;
+                }
+                
+                if (count == 0) 
+                {
+                    if (!CheckUniqueViewName(newViewName))
+                        throw new ArgumentException(String.Format(Properties.Resources.ViewNameExists, newViewName));
+                    if (view.InternalView.CanViewBeDuplicated(Option))
+                    {
+                        var viewID = view.InternalView.Duplicate(Option);
+                        var viewEle = Document.GetElement(viewID) as Autodesk.Revit.DB.View;
+                        newView = ElementWrapper.ToDSType(viewEle, false) as View;
+                    }
+                    else
+                    {
+                        throw new Exception(String.Format(Properties.Resources.ViewCantBeDuplicated, view.Name));
+                    }
+
+                    if (!String.IsNullOrEmpty(newViewName))
+                    {
+                        var param = newView.InternalView.get_Parameter(BuiltInParameter.VIEW_NAME);
+                        param.Set(newViewName);
+                    }
+                    if (viewElement != null)
+                    {
+                        var shouldClosedViews = openedViews.FindAll(x => viewElement.Id == x.ViewId);
+                        if (shouldClosedViews.Count > 0)
+                        {
+                            foreach (var v in shouldClosedViews)
+                            {
+                                if (uIDocument.GetOpenUIViews().ToList().Count() > 1)
+                                    v.Close();
+                                else
+                                    throw new InvalidOperationException(string.Format(Properties.Resources.CantCloseLastOpenView, viewElement.ToString()));
+                            }
+                        }
+                    }                    
+                }                
+
+                ElementBinder.CleanupAndSetElementForTrace(Document, newView.InternalElement);
+
+                RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+            }
+            catch (Exception e)
+            {
+                //if (e is Autodesk.Revit.Exceptions.InvalidOperationException)
+                //    throw e;
+                if (newView != null) 
+                {
+                    newView.Dispose();
+                }
+                throw e;
+            }            
+
+            return newView;
+        }
+
+        #endregion
+
+        private static Boolean CheckUniqueViewName(String ViewName)
+        {
+            bool IsUnique = true;
+
+            var views = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+                .OfClass(typeof(Autodesk.Revit.DB.View))
+                .ToList();
+            foreach (var v in views)
+            {
+                if(v.Name.Equals(ViewName))
+                {
+                    IsUnique = false;
+                    break;
+                }
+            }
+
+            return IsUnique;
+        }
     }
 }

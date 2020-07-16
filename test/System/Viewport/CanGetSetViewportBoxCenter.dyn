@@ -1,0 +1,288 @@
+{
+  "Uuid": "d9477586-5b5c-425b-8699-406fac94ad32",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetSetViewportBoxCenter",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "a7579931-305d-4c46-854a-2238a8b9293f-0004b304"
+      ],
+      "Id": "9b67ec3ce30d4ca583730c85f4df413f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0a5e3830a0e240b48a516c90ca8bcd74",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Viewport.SetBoxCenter@Autodesk.DesignScript.Geometry.Point",
+      "Id": "24fb8308047f48a3b98a1f0a96cfff1b",
+      "Inputs": [
+        {
+          "Id": "9df310cf392c48d19737767740ee1c54",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a2b596007c3e4f27abf1c4f3276559f3",
+          "Name": "point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "17b341327306423d9223ee8a7e5b81c8",
+          "Name": "Viewport",
+          "Description": "Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Moves this viewport so that the center of the box outline (excluding the viewport label) is at a given point.\n\nViewport.SetBoxCenter (point: Point): Viewport"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double",
+      "Id": "53cde758340e46c695df2f75124407b1",
+      "Inputs": [
+        {
+          "Id": "c90436de3223403abf6b948af37bcf22",
+          "Name": "x",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fce14276acb64c4f8ad16a4bfba9d03a",
+          "Name": "y",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8d43b6942ece4183bed8f4cb84b13146",
+          "Name": "z",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8c027c7dcaee4abe9df712d3dee97e69",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Form a Point given 3 cartesian coordinates\n\nPoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "250;\n500;",
+      "Id": "c8945a7d752d479186bf2bfb164aac0f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "490dec80a63040128b16b6275928d015",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8ba75afa773946268a089266c8901f01",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Viewport.BoxCenter",
+      "Id": "0f460e212a8b40f2b7edcfee66a8db6e",
+      "Inputs": [
+        {
+          "Id": "25b22db7aa514cd0b3a2876009dc0e2f",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cfc330551f7e4857b62c2c120daff75e",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the center of the outline of the viewport on the sheet, excluding the viewport label.\n\nViewport.BoxCenter: Point"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0a5e3830a0e240b48a516c90ca8bcd74",
+      "End": "9df310cf392c48d19737767740ee1c54",
+      "Id": "482e5d8ac3ff4f0ca31b30d34b0a02a1"
+    },
+    {
+      "Start": "17b341327306423d9223ee8a7e5b81c8",
+      "End": "25b22db7aa514cd0b3a2876009dc0e2f",
+      "Id": "3453424be33d4c0eb033f71b3f3b6f32"
+    },
+    {
+      "Start": "8c027c7dcaee4abe9df712d3dee97e69",
+      "End": "a2b596007c3e4f27abf1c4f3276559f3",
+      "Id": "a651cb34c37d4a50a9db0bdb84dddd94"
+    },
+    {
+      "Start": "490dec80a63040128b16b6275928d015",
+      "End": "c90436de3223403abf6b948af37bcf22",
+      "Id": "3e13160d1b7e4d559cf30271dbbf787f"
+    },
+    {
+      "Start": "8ba75afa773946268a089266c8901f01",
+      "End": "fce14276acb64c4f8ad16a4bfba9d03a",
+      "Id": "7fd4f348b8b84196b90e86e1823ec57d"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.8772",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "9b67ec3ce30d4ca583730c85f4df413f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 133.75,
+        "Y": 144.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Viewport.SetBoxCenter",
+        "Id": "24fb8308047f48a3b98a1f0a96cfff1b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 402.75,
+        "Y": 198.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Point.ByCoordinates",
+        "Id": "53cde758340e46c695df2f75124407b1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 133.75,
+        "Y": 278.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "c8945a7d752d479186bf2bfb164aac0f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -51.25,
+        "Y": 286.92666666666662
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Viewport.BoxCenter",
+        "Id": "0f460e212a8b40f2b7edcfee66a8db6e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 728.75,
+        "Y": 198.5
+      }
+    ],
+    "Annotations": [],
+    "X": -101.39820464604423,
+    "Y": -21.880114843043543,
+    "Zoom": 0.78436932804482717
+  }
+}

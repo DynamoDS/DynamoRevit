@@ -1,0 +1,441 @@
+{
+  "Uuid": "f59235ba-1642-4800-b61c-0e1c89dc4e5e",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanSetGetLocation",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.ScheduleOnSheet.BySheetScheduleLocation@Revit.Elements.Views.Sheet,Revit.Elements.Views.ScheduleView,Autodesk.DesignScript.Geometry.Point",
+      "Id": "c478375524de4e5f9e5850f02af2537e",
+      "Inputs": [
+        {
+          "Id": "cfd4b2a3a20840f7aa2f0fd3cbe9d7be",
+          "Name": "sheet",
+          "Description": "The Sheet on which the new ScheduleOnSheet will be placed.\n\nSheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "54079d79c4b848858932e652db5a40e3",
+          "Name": "scheduleView",
+          "Description": "The scheduleView shown in the ScheduleOnSheet.\n\nScheduleView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b13e026e7dd14cfab820c7ee494b6714",
+          "Name": "location",
+          "Description": "The new ScheduleOnSheet will be centered on this point.\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f0f6fb63f65e43f5a6dd0b35a2297b7a",
+          "Name": "ScheduleOnSheet",
+          "Description": "The new ScheduleOnSheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Creates a new ScheduleOnSheet at a given location on a sheet.\n\nScheduleOnSheet.BySheetScheduleLocation (sheet: Sheet, scheduleView: ScheduleView, location: Point): ScheduleOnSheet"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Sheets, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Unnamed",
+      "NodeType": "ExtensionNode",
+      "Id": "5d2eae7cd94440d2801cf3c3b7e5749d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "62c0b32bdc7a41cda060e33e72df5eff",
+          "Name": "Sheet",
+          "Description": "The selected Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All sheets available in the current document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 29,
+      "SelectedString": "View List",
+      "NodeType": "ExtensionNode",
+      "Id": "e8849ba5b6d040b0969bf3a467099da6",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "17f8f207db80467b849e340546a905d7",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double",
+      "Id": "456ccb76362044a2a9dbf894be39f051",
+      "Inputs": [
+        {
+          "Id": "0cfaadb9a3c94031835095326307bbe2",
+          "Name": "x",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "06b2032bcb8146fca789170bb5e798d5",
+          "Name": "y",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e62b21f3d2554969b26d32706b8ab45d",
+          "Name": "z",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f2bf3d1add4346c8bc52e5fe2cbc0d4c",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Form a Point given 3 cartesian coordinates\n\nPoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.ScheduleOnSheet.Location",
+      "Id": "d3f0f9480674418b8f987290176b2353",
+      "Inputs": [
+        {
+          "Id": "49ca3b5e3747453495ce84d89f7518a1",
+          "Name": "scheduleOnSheet",
+          "Description": "Revit.Elements.ScheduleOnSheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fcf506559b444cf0a32022f518d83280",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Location on the sheet where the ScheduleInstance is placed (in sheet coordinates).\n\nScheduleOnSheet.Location: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.ScheduleOnSheet.SetLocation@Autodesk.DesignScript.Geometry.Point",
+      "Id": "72517f6a69e44c8f8bef7e7cdbfeb2c9",
+      "Inputs": [
+        {
+          "Id": "f4c64acdbb424130a23ce473ded52640",
+          "Name": "scheduleOnSheet",
+          "Description": "Revit.Elements.ScheduleOnSheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a28e01069e39406d82903b948f3d54b8",
+          "Name": "point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fabe0e6ee12e4044931aaeee2beda8c6",
+          "Name": "ScheduleOnSheet",
+          "Description": "ScheduleOnSheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Set the Location on the sheet where the ScheduleInstance is placed (in sheet coordinates).\n\nScheduleOnSheet.SetLocation (point: Point): ScheduleOnSheet"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double",
+      "Id": "1d8450efad8947ea8c6111139dbcea8b",
+      "Inputs": [
+        {
+          "Id": "10a0c372007548dda3fa5440532b4d4d",
+          "Name": "x",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "87c032a36f5b4d6ebc1893668a7d8c21",
+          "Name": "y",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8c9e3135d39f4e0a84b82c980a0dbf74",
+          "Name": "z",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f327c4e0a4e24c3384b90744571c1d24",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Form a Point given 3 cartesian coordinates\n\nPoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "250;",
+      "Id": "582e0c3dd11c462e885e7fd90875e779",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "efbbce9adb9b4a939b954d37cbcc658d",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "f0f6fb63f65e43f5a6dd0b35a2297b7a",
+      "End": "f4c64acdbb424130a23ce473ded52640",
+      "Id": "ad6fcc4e2c1d4f639492fca529f54ec3"
+    },
+    {
+      "Start": "62c0b32bdc7a41cda060e33e72df5eff",
+      "End": "cfd4b2a3a20840f7aa2f0fd3cbe9d7be",
+      "Id": "3fa2f80ce7ad48feb7a8d15511add084"
+    },
+    {
+      "Start": "17f8f207db80467b849e340546a905d7",
+      "End": "54079d79c4b848858932e652db5a40e3",
+      "Id": "96a27375847a4787bc869fdc8fa8df54"
+    },
+    {
+      "Start": "f2bf3d1add4346c8bc52e5fe2cbc0d4c",
+      "End": "b13e026e7dd14cfab820c7ee494b6714",
+      "Id": "5be34e3d566d4b8b8e05800cc2fa5147"
+    },
+    {
+      "Start": "fabe0e6ee12e4044931aaeee2beda8c6",
+      "End": "49ca3b5e3747453495ce84d89f7518a1",
+      "Id": "efe359ad406f4e3c86abbc1715b66e6b"
+    },
+    {
+      "Start": "f327c4e0a4e24c3384b90744571c1d24",
+      "End": "a28e01069e39406d82903b948f3d54b8",
+      "Id": "ec02c3281efa441a915b914deaa2a506"
+    },
+    {
+      "Start": "efbbce9adb9b4a939b954d37cbcc658d",
+      "End": "10a0c372007548dda3fa5440532b4d4d",
+      "Id": "88997e6e1fd04561944bc7e618a4734c"
+    },
+    {
+      "Start": "efbbce9adb9b4a939b954d37cbcc658d",
+      "End": "87c032a36f5b4d6ebc1893668a7d8c21",
+      "Id": "0f4c8ec8ed9546ecbf75ea229947f899"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.8772",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "ScheduleOnSheet.BySheetScheduleLocation",
+        "Id": "c478375524de4e5f9e5850f02af2537e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 313.5,
+        "Y": 173.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Sheets",
+        "Id": "5d2eae7cd94440d2801cf3c3b7e5749d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 94.0,
+        "Y": 90.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "e8849ba5b6d040b0969bf3a467099da6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 64.0,
+        "Y": 187.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Point.ByCoordinates",
+        "Id": "456ccb76362044a2a9dbf894be39f051",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 107.0,
+        "Y": 296.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ScheduleOnSheet.Location",
+        "Id": "d3f0f9480674418b8f987290176b2353",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1124.5457517321677,
+        "Y": 238.15260644460369
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ScheduleOnSheet.SetLocation",
+        "Id": "72517f6a69e44c8f8bef7e7cdbfeb2c9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 731.85522411561328,
+        "Y": 180.36041558782776
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Point.ByCoordinates",
+        "Id": "1d8450efad8947ea8c6111139dbcea8b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 541.05442887904678,
+        "Y": 380.02737139640135
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "582e0c3dd11c462e885e7fd90875e779",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 365.39291390418805,
+        "Y": 397.36297904780724
+      }
+    ],
+    "Annotations": [],
+    "X": -376.12065753964731,
+    "Y": 9.5454987129644451,
+    "Zoom": 0.67483165842686477
+  }
+}

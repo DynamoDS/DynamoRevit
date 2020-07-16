@@ -1,0 +1,345 @@
+{
+  "Uuid": "59d4bae3-b979-400c-b71b-34e130f474e6",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "GetSetSheetNameNumber",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.Sheet.SheetName",
+      "Id": "cdfa7ee24c9c4387af9ade23f7ea28f3",
+      "Inputs": [
+        {
+          "Id": "cb4321748ae945318cb39cd1fd3392dd",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "acd02ee421f54a0cbaf5db485c6f3698",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the SheetName of the Sheet\n\nSheet.SheetName: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.Sheet.SheetNumber",
+      "Id": "723ce0df917a443aa410891e01bdc0aa",
+      "Inputs": [
+        {
+          "Id": "4c7b278f51ba45fd918942d19384154b",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dca518c4aca4469395f8664586a17b72",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the SheetNumber of the Sheet\n\nSheet.SheetNumber: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.Sheet.SetSheetName@string",
+      "Id": "d2579f84316a4023a9b426d08e48fef6",
+      "Inputs": [
+        {
+          "Id": "7cf4ce4a3cf647ca8142583796c1ec2b",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d0cfaee767794345a0f8c5abab9a81c2",
+          "Name": "sheetName",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "221bf2786df84d608257dad5fd0f8739",
+          "Name": "Sheet",
+          "Description": "Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Sheet.SetSheetName (sheetName: string): Sheet"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.Sheet.SetSheetNumber@string",
+      "Id": "f0a61fd3edd0471cadf03ebf370799cc",
+      "Inputs": [
+        {
+          "Id": "3292487303a54713acfb19f030254449",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5c3c418b83f64aab90687f98a3630aa8",
+          "Name": "sheetNumber",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f6acb36ee5704f919d63d48987af7fc9",
+          "Name": "Sheet",
+          "Description": "Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Sheet.SetSheetNumber (sheetNumber: string): Sheet"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Sheets, DSRevitNodesUI",
+      "SelectedIndex": 5,
+      "SelectedString": "Title Sheet",
+      "NodeType": "ExtensionNode",
+      "Id": "65f78b68f76a46b2b2e0b554a5c7af31",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "73b9df06004d4d2ca302d01e47d0eeca",
+          "Name": "Sheet",
+          "Description": "The selected Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All sheets available in the current document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Test",
+      "Id": "f5ba0647d2544d47941dbe7a00db4f43",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f49c738527ce4acab0d703b49586eeae",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "A002",
+      "Id": "f42737fa8464478f881cb25e5a5abd00",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ec0f3a2cd7194cc68f8d67c38157febe",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "221bf2786df84d608257dad5fd0f8739",
+      "End": "cb4321748ae945318cb39cd1fd3392dd",
+      "Id": "1367e5d01e2e43289d79842f7708ea93"
+    },
+    {
+      "Start": "f6acb36ee5704f919d63d48987af7fc9",
+      "End": "4c7b278f51ba45fd918942d19384154b",
+      "Id": "87c8263d57b04613a9935afc576f793e"
+    },
+    {
+      "Start": "73b9df06004d4d2ca302d01e47d0eeca",
+      "End": "7cf4ce4a3cf647ca8142583796c1ec2b",
+      "Id": "d58c5b9f632641c9a95c2939e264b49f"
+    },
+    {
+      "Start": "73b9df06004d4d2ca302d01e47d0eeca",
+      "End": "3292487303a54713acfb19f030254449",
+      "Id": "1c14370024ff43559221860b9fa7df95"
+    },
+    {
+      "Start": "f49c738527ce4acab0d703b49586eeae",
+      "End": "d0cfaee767794345a0f8c5abab9a81c2",
+      "Id": "85608544cfb84a9cbf055be1b2e942fb"
+    },
+    {
+      "Start": "ec0f3a2cd7194cc68f8d67c38157febe",
+      "End": "5c3c418b83f64aab90687f98a3630aa8",
+      "Id": "8b9acd9acb2c41429410e494eec4365c"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.8772",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Sheet.SheetName",
+        "Id": "cdfa7ee24c9c4387af9ade23f7ea28f3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 647.216575550309,
+        "Y": 8.1550559027182317
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Sheet.SheetNumber",
+        "Id": "723ce0df917a443aa410891e01bdc0aa",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 688.29601405731887,
+        "Y": 271.31719089117792
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Sheet.SetSheetName",
+        "Id": "d2579f84316a4023a9b426d08e48fef6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 345.96735983223641,
+        "Y": 33.493484051120276
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Sheet.SetSheetNumber",
+        "Id": "f0a61fd3edd0471cadf03ebf370799cc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 345.96735983223641,
+        "Y": 275.49348405112028
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Sheets",
+        "Id": "65f78b68f76a46b2b2e0b554a5c7af31",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 99.967359832236411,
+        "Y": 207.49348405112028
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "SheetName",
+        "Id": "f5ba0647d2544d47941dbe7a00db4f43",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 99.967359832236411,
+        "Y": 59.493484051120276
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "SheetNumber",
+        "Id": "f42737fa8464478f881cb25e5a5abd00",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 99.967359832236411,
+        "Y": 315.49348405112028
+      }
+    ],
+    "Annotations": [],
+    "X": -84.502127486741642,
+    "Y": 87.978409154339886,
+    "Zoom": 0.8033215934625979
+  }
+}

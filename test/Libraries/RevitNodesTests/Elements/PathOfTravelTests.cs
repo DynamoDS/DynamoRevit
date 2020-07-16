@@ -265,10 +265,149 @@ namespace RevitNodesTests.Elements
          Assert.Null(pathOfTravelManyToMany[0]);
       }
 
+      [Test]
+      [TestModel(@".\Empty.rvt")]
+      public void WayPointInsertGet_ValidArgs()
+      {
+         var pathOfTravelOneToOne = PathOfTravel.ByFloorPlanPoints(
+            GetFloorPlan(),
+            new Point[] { Point.ByCoordinates(0, 0, 0) },
+            new Point[] { Point.ByCoordinates(100, 100, 0) },
+            false);
+
+         // Assert created PathOfTravel element is valid.
+         Assert.NotNull(pathOfTravelOneToOne);
+         Assert.AreEqual(1, pathOfTravelOneToOne.GetLength(0));
+         Assert.NotNull(pathOfTravelOneToOne[0]);
+
+         // Current PathOfTravel element.
+         var pathOfTravel = pathOfTravelOneToOne[0];
+
+         // Assert there is no way points on current PathOfTravel element.
+         var listWayPointsEmpty = pathOfTravel.GetWayPoints();
+         Assert.NotNull(listWayPointsEmpty);
+         Assert.AreEqual(0, listWayPointsEmpty.Count);
+
+         // Assert only 0 index can be used to insert a way point.
+         Assert.Throws(
+            typeof(Autodesk.Revit.Exceptions.InvalidOperationException),
+            () => pathOfTravel.InsertWayPoint( Point.ByCoordinates(50, 50, 0), -1));
+         Assert.Throws(
+            typeof(Autodesk.Revit.Exceptions.InvalidOperationException),
+            () => pathOfTravel.InsertWayPoint( Point.ByCoordinates(50, 50, 0), 1));
+
+         // Assert we can insert a way point at valid index
+         pathOfTravel.InsertWayPoint(Point.ByCoordinates(50, 50, 0), 0);
+         var listWayPointsOneElem = pathOfTravel.GetWayPoints();
+         Assert.NotNull(listWayPointsOneElem);
+         Assert.AreEqual(1, listWayPointsOneElem.Count);
+         Assert.NotNull(listWayPointsOneElem[0]);
+         Assert.AreEqual("(50.000000000, 50.000000000, 0.000000000)", listWayPointsOneElem[0].ToString());
+
+         // Assert valid indices to insert way points are 0 and 1.
+         Assert.Throws(
+            typeof(Autodesk.Revit.Exceptions.InvalidOperationException),
+            () => pathOfTravel.InsertWayPoint( Point.ByCoordinates(25, 25, 0), -1));
+         Assert.Throws(
+            typeof(Autodesk.Revit.Exceptions.InvalidOperationException),
+            () => pathOfTravel.InsertWayPoint( Point.ByCoordinates(25, 25, 0), 2));
+
+         // Assert way point is inserted at index 0.
+         // inserting at index 1 is tested in WayPointSetGet_ValidArgs.
+         pathOfTravel.InsertWayPoint( Point.ByCoordinates(25, 25, 0), 0);
+         var listWayPointsTwoElems = pathOfTravel.GetWayPoints();
+         Assert.NotNull(listWayPointsTwoElems);
+         Assert.AreEqual(2, listWayPointsTwoElems.Count);
+         Assert.NotNull(listWayPointsTwoElems[0]);
+         Assert.NotNull(listWayPointsTwoElems[1]);
+         Assert.AreEqual("(25.000000000, 25.000000000, 0.000000000)", listWayPointsTwoElems[0].ToString());
+         Assert.AreEqual("(50.000000000, 50.000000000, 0.000000000)", listWayPointsTwoElems[1].ToString());
+      }
+
+      [Test]
+      [TestModel(@".\Empty.rvt")]
+      public void WayPointSetGet_ValidArgs()
+      {
+         var pathOfTravelOneToOne = PathOfTravel.ByFloorPlanPoints(
+            GetFloorPlan(),
+            new Point[] { Point.ByCoordinates(0, 0, 0) },
+            new Point[] { Point.ByCoordinates(100, 100, 0) },
+            false);
+
+         // Assert created PathOfTravel element is valid.
+         Assert.NotNull(pathOfTravelOneToOne);
+         Assert.AreEqual(1, pathOfTravelOneToOne.GetLength(0));
+         Assert.NotNull(pathOfTravelOneToOne[0]);
+
+         // Current PathOfTravel element.
+         var pathOfTravel = pathOfTravelOneToOne[0];
+
+         // Assert we can insert a way point at valid index
+         pathOfTravel.InsertWayPoint(Point.ByCoordinates(50, 50, 0), 0);
+         var listWayPointsOneElem = pathOfTravel.GetWayPoints();
+         Assert.NotNull(listWayPointsOneElem);
+         Assert.AreEqual(1, listWayPointsOneElem.Count);
+         Assert.NotNull(listWayPointsOneElem[0]);
+         Assert.AreEqual("(50.000000000, 50.000000000, 0.000000000)", listWayPointsOneElem[0].ToString());
+
+         // Assert way point is inserted at index 1
+         // inserting at index 0 is tested in WayPointInsertGet_ValidArgs.
+         pathOfTravel.InsertWayPoint(Point.ByCoordinates(75, 75, 0), 1);
+         var listWayPointsTwoElems = pathOfTravel.GetWayPoints();
+         Assert.NotNull(listWayPointsTwoElems);
+         Assert.AreEqual(2, listWayPointsTwoElems.Count);
+         Assert.NotNull(listWayPointsTwoElems[0]);
+         Assert.NotNull(listWayPointsTwoElems[1]);
+         Assert.AreEqual("(50.000000000, 50.000000000, 0.000000000)", listWayPointsTwoElems[0].ToString());
+         Assert.AreEqual("(75.000000000, 75.000000000, 0.000000000)", listWayPointsTwoElems[1].ToString());
+
+         //Assert we can modify a way point
+         pathOfTravel.SetWayPoint(Point.ByCoordinates(90, 90, 0), 1);
+         var listWayPointsTwoElemsAfterSet = pathOfTravel.GetWayPoints();
+         Assert.NotNull(listWayPointsTwoElemsAfterSet);
+         Assert.AreEqual(2, listWayPointsTwoElemsAfterSet.Count);
+         Assert.NotNull(listWayPointsTwoElemsAfterSet[0]);
+         Assert.NotNull(listWayPointsTwoElemsAfterSet[1]);
+         Assert.AreEqual("(50.000000000, 50.000000000, 0.000000000)", listWayPointsTwoElemsAfterSet[0].ToString());
+         Assert.AreEqual("(90.000000000, 90.000000000, 0.000000000)", listWayPointsTwoElemsAfterSet[1].ToString());
+      }
+
+      [Test]
+      [TestModel(@".\Empty.rvt")]
+      public void WayPointRemoveGet_ValidArgs()
+      {
+         var pathOfTravelOneToOne = PathOfTravel.ByFloorPlanPoints(
+            GetFloorPlan(),
+            new Point[] { Point.ByCoordinates(0, 0, 0) },
+            new Point[] { Point.ByCoordinates(100, 100, 0) },
+            false);
+
+         // Assert created PathOfTravel element is valid.
+         Assert.NotNull(pathOfTravelOneToOne);
+         Assert.AreEqual(1, pathOfTravelOneToOne.GetLength(0));
+         Assert.NotNull(pathOfTravelOneToOne[0]);
+
+         // Current PathOfTravel element.
+         var pathOfTravel = pathOfTravelOneToOne[0];
+
+         // Assert we can insert a way point at valid index
+         pathOfTravel.InsertWayPoint(Point.ByCoordinates(50, 50, 0), 0);
+         var listWayPointsOneElem = pathOfTravel.GetWayPoints();
+         Assert.NotNull(listWayPointsOneElem);
+         Assert.AreEqual(1, listWayPointsOneElem.Count);
+         Assert.NotNull(listWayPointsOneElem[0]);
+         Assert.AreEqual("(50.000000000, 50.000000000, 0.000000000)", listWayPointsOneElem[0].ToString());
+
+         // Assert way point is removed
+         pathOfTravel.RemoveWayPoint(0);
+         var listWayPointsEmpty = pathOfTravel.GetWayPoints();
+         Assert.NotNull(listWayPointsEmpty);
+         Assert.AreEqual(0, listWayPointsEmpty.Count);
+      }
+
       FloorPlanView GetFloorPlan()
       {
-         var elevation = 0;
-         var level = Level.ByElevation(elevation);
+         var level = Level.ByElevation(0);
          Assert.NotNull(level);
 
          var view = FloorPlanView.ByLevel(level);

@@ -432,4 +432,8 @@
     <value>All view family types in the current document.</value>
     <comment>Description for View Family Types</comment>
   </data>
+  <data name="SelectModelElementByCategoryDescription" xml:space="preserve">
+    <value>Select a model element from the Revit document filtered by Category.</value>
+    <comment>Description for Select Model Element By Category</comment>
+  </data>
 </root>

@@ -691,6 +691,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a model element from the Revit document filtered by Category..
+        /// </summary>
+        internal static string SelectModelElementByCategoryDescription {
+            get {
+                return ResourceManager.GetString("SelectModelElementByCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a model element from the document..
         /// </summary>
         internal static string SelectModelElementDescription {

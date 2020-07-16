@@ -1,0 +1,184 @@
+{
+  "Uuid": "ef500d8d-0f13-4fa2-b56d-82534e05cbdd",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "DuplicateView",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 10,
+      "SelectedString": "East",
+      "NodeType": "ExtensionNode",
+      "Id": "6891ace8f0294ad898cae4de0aee3a66",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "38e23e76323249b6930366e5d3c6addb",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.DuplicateView@Revit.Elements.Views.View,int,string,string",
+      "Id": "615443943b9b492986c7ad29f5bb5358",
+      "Inputs": [
+        {
+          "Id": "b284dca4342247e09219bb0c3046d2a6",
+          "Name": "view",
+          "Description": "The View to be Duplicated\n\nView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "902236352415433db663e1ae34cbb1eb",
+          "Name": "viewDuplicateOption",
+          "Description": "Enter View Duplicate Option: 0 = Duplicate. 1 = AsDependent. 2 = WithDetailing.\n\nint\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3c6d238a3e1b48fea9860126bc37ae13",
+          "Name": "prefix",
+          "Description": "string\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "901e5d35af9c44a69bdb2a94f617d469",
+          "Name": "suffix",
+          "Description": "string\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7c5fb9a88e0a4a57a99a1bd9736eb671",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Duplicates A view.\n\nView.DuplicateView (view: View, viewDuplicateOption: int = 0, prefix: string = \"\", suffix: string = \"\"): View"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Test",
+      "Id": "fc1e82e0253241a5a58576f60f88e8f9",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "433e369c1db84637a90e9a98ea240733",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "38e23e76323249b6930366e5d3c6addb",
+      "End": "b284dca4342247e09219bb0c3046d2a6",
+      "Id": "60933d216c5a4c3987bc589a5aa7d971"
+    },
+    {
+      "Start": "433e369c1db84637a90e9a98ea240733",
+      "End": "3c6d238a3e1b48fea9860126bc37ae13",
+      "Id": "488f983cf05f495c98498681b2bb7ccc"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.9130",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "6891ace8f0294ad898cae4de0aee3a66",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 112.5,
+        "Y": 132.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.DuplicateView",
+        "Id": "615443943b9b492986c7ad29f5bb5358",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 359.5,
+        "Y": 160.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "fc1e82e0253241a5a58576f60f88e8f9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 112.5,
+        "Y": 240.00000000000003
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

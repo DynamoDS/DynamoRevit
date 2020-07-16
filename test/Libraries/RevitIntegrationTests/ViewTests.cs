@@ -103,5 +103,24 @@ namespace RevitSystemTests
             Assert.Greater(tmp2Info.Length, 0);
 
         }
+
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void DuplicateView()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\View\DuplicateView.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            string viewName = "TestEast";
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var view = GetPreviewValue("615443943b9b492986c7ad29f5bb5358") as Revit.Elements.Views.View;
+            Assert.AreEqual(viewName, view.Name);
+        }
     }
 }

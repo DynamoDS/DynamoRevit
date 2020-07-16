@@ -590,12 +590,12 @@ namespace Revit.Elements
             return this;
         }
 
-        ///// <summary>
-        ///// Transforms this FamilyInstance from a source CoordinateSystem to a new context CoordinateSystem.
-        ///// </summary>
-        ///// <param name="fromCoordinateSystem">Source CoordinatSystem</param>
-        ///// <param name="contextCoordinateSystem">Context CordinateSystem</param>
-        ///// <returns>Transformed Element</returns>
+        /// <summary>
+        /// Transforms this FamilyInstance from a source CoordinateSystem to a new context CoordinateSystem.
+        /// </summary>
+        /// <param name="fromCoordinateSystem">Source CoordinatSystem</param>
+        /// <param name="contextCoordinateSystem">Context CordinateSystem</param>
+        /// <returns>Transformed Element</returns>
         public FamilyInstance Transform(CoordinateSystem fromCoordinateSystem, CoordinateSystem contextCoordinateSystem)
         {
 

@@ -33,7 +33,7 @@ namespace Dynamo.ComboNodes
     NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
     NodeDescription("SelectModelElementsByCategoryDescription", typeof(DSRevitNodesUI.Properties.Resources)),
     IsDesignScriptCompatible]
-    public class DSModelElementByCategorySelection : ElementFilterSelection<Element>
+    public class DSModelElementsByCategorySelection : ElementFilterSelection<Element>
     {
         private const string message = "Select Model Elements";
         private const string prefix = "Element";
@@ -58,9 +58,69 @@ namespace Dynamo.ComboNodes
             }
         }
 
-        public DSModelElementByCategorySelection()
+        public DSModelElementsByCategorySelection()
             : base(
                 SelectionType.Many,
+                SelectionObjectType.None,
+                message,
+                prefix)
+        {
+            DropDownNodeModel = new DSRevitNodesUI.Categories();
+            SelectedIndex = DropDownNodeModel.SelectedIndex;
+            SelectionFilter = new CategoryElementSelectionFilter<Element>();
+            base.Filter = SelectionFilter;
+        }
+
+        [JsonConstructor]
+        public DSModelElementsByCategorySelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts,
+            IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.Many,
+                SelectionObjectType.None,
+                message,
+                prefix,
+                selectionIdentifier,
+                inPorts,
+                outPorts)
+        {
+            DropDownNodeModel = new DSRevitNodesUI.Categories();
+            SelectionFilter = new CategoryElementSelectionFilter<Element>();
+            base.Filter = SelectionFilter;
+        }
+    }
+
+    [NodeName("Select Model Element By Category"),
+    NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
+    NodeDescription("SelectModelElementByCategoryDescription", typeof(DSRevitNodesUI.Properties.Resources)),
+    IsDesignScriptCompatible]
+    public class DSModelElementByCategorySelection : ElementFilterSelection<Element>
+    {
+        private const string message = "Select Model Element";
+        private const string prefix = "Element";
+
+        internal CategoryElementSelectionFilter<Element> SelectionFilter { get; set; }
+
+        public DSRevitNodesUI.Categories DropDownNodeModel { get; set; }
+
+        private int selectedIndex;
+
+        [JsonProperty(PropertyName = "SelectedIndex")]
+        public int SelectedIndex
+        {
+            get { return selectedIndex; }
+            set
+            {
+                selectedIndex = value;
+                DropDownNodeModel.SelectedIndex = value;
+                if (value >= 0)
+                    SelectionFilter.Category = (BuiltInCategory)DropDownNodeModel.Items[SelectedIndex].Item;
+
+            }
+        }
+
+        public DSModelElementByCategorySelection()
+            : base(
+                SelectionType.One,
                 SelectionObjectType.None,
                 message,
                 prefix)
@@ -75,7 +135,7 @@ namespace Dynamo.ComboNodes
         public DSModelElementByCategorySelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts,
             IEnumerable<PortModel> outPorts)
             : base(
-                SelectionType.Many,
+                SelectionType.One,
                 SelectionObjectType.None,
                 message,
                 prefix,
@@ -97,6 +157,33 @@ namespace Dynamo.ComboNodes
     }
 
     #region Node View Customization
+
+    public class DSModelElementsByCategorySelectionNodeViewCustomization : INodeViewCustomization<DSModelElementsByCategorySelection>
+    {
+        public DSModelElementsByCategorySelection Model { get; set; }
+        public DelegateCommand SelectCommand { get; set; }
+
+        public void CustomizeView(DSModelElementsByCategorySelection model, NodeView nodeView)
+        {
+            Model = model;
+            SelectCommand = new DelegateCommand(() => Model.Select(null), Model.CanBeginSelect);
+            Model.PropertyChanged += (s, e) => {
+                nodeView.Dispatcher.Invoke(new Action(() =>
+                {
+                    if (e.PropertyName == "CanSelect")
+                    {
+                        SelectCommand.RaiseCanExecuteChanged();
+                    }
+                }));
+            };
+            var comboControl = new ComboControl { DataContext = this };
+            nodeView.inputGrid.Children.Add(comboControl);
+        }
+
+        public void Dispose()
+        {
+        }
+    }
 
     public class DSModelElementByCategorySelectionNodeViewCustomization : INodeViewCustomization<DSModelElementByCategorySelection>
     {
@@ -124,7 +211,6 @@ namespace Dynamo.ComboNodes
         {
         }
     }
-
     #endregion
 
     #region Selection Helpers

@@ -1,3 +1,29 @@
+* Add a Category ScheduleOnSheet and its nodes - ScheduleOnSheet.Sheet, ScheduleOnSheet.Schedule, ScheduleOnSheet.BySheetViewLocation, ScheduleOnSheet.Location and ScheduleOnSheet.SetLocation
+* Add some new nodes for Sheet - Sheet.Schedules, Sheet.Viewports, Sheet.TitleBlock, Sheet.SetSheetName, Sheet.SetSheetNumber
+* Add 2 new nodes - View.DuplicateView and Sheet.DuplicateSheet.
+* Add 2 new nodes - Sheet.ByNameNumberTitleBlockViewsAndLocations and Sheet.ByNameNumberTitleBlockViewAndLocation
+
+## 0.2.17
+* Check if InternalElement is valid Revit Element to avoid calling funcitons or get properties of an invalid object and cause Dynamo crash.
+* Add some new nodes to Viewport - Viewport.Sheet, Viewport.View, Viewport.BoxCenter, Viewport.SetBoxCenter, Viewport.BoxOutline and Viewport.LabelOutline.
+
+## 0.2.16
+* Update Test_Python to avoid test results that will vary with API changes
+* Update DynamoCoreRuntime version due to emergency fix
+
+## 0.2.15
+* Update DynamoCore version to 2.6.
+
+## 0.2.14
+* Implemented Additional Elements for Warning.GetFailingElements
+* Add a listener of changes in Revit for DropDown list nodes
+* Add new node - SelectModelElementByCategory 
+
+## 0.2.13
+* Fix Roof.ByOutlineExtrusionTypeAndLevel bug - the input outline should not be closed.
+* Longest of shortest exit paths node
+* Add Get Remove Insert and Set waypoints nodes on a PathOfTravel element
+
 ## 0.2.12
 * Fix some tests was deleted by mistake.
 

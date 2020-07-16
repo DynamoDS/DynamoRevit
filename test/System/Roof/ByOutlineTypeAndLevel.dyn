@@ -1,0 +1,220 @@
+{
+  "Uuid": "21bd368f-6bc4-4452-9a37-b35b5d562eb8",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "ByOutlineTypeAndLevel",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Line": {
+        "Key": "Autodesk.DesignScript.Geometry.Line",
+        "Value": "ProtoGeometry.dll"
+      },
+      "Point": {
+        "Key": "Autodesk.DesignScript.Geometry.Point",
+        "Value": "ProtoGeometry.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Roof.ByOutlineTypeAndLevel@Autodesk.DesignScript.Geometry.Curve[],Revit.Elements.RoofType,Revit.Elements.Level",
+      "Id": "c6d16ef7c551467a8d46cd307b2a465b",
+      "Inputs": [
+        {
+          "Id": "8804e2ed1d3246a3a7937696c4259dca",
+          "Name": "outline",
+          "Description": "Curve[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e05c6c80f7b04cae981a6f8e0aab5164",
+          "Name": "roofType",
+          "Description": "RoofType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a36803c023ae42bbacecff1843c19068",
+          "Name": "level",
+          "Description": "Level",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "67a929467a4545db9156a876a97ecda2",
+          "Name": "Roof",
+          "Description": "The Roof",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create a Revit Roof given its curve outline and Level\n\nRoof.ByOutlineTypeAndLevel (outline: Curve[], roofType: RoofType, level: Level): Roof"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.RoofTypes, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Generic - 12\"",
+      "NodeType": "ExtensionNode",
+      "Id": "f632a3a086664abeb2ff75560bf699e6",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8afc41eea73547acba0d9e93fa5283fa",
+          "Name": "Roof Types",
+          "Description": "The selected Roof Types",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All roof types in the current document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Level 1",
+      "NodeType": "ExtensionNode",
+      "Id": "a4078cc43ffe4f91a41ea8fbb2d45151",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "03aeff89305543e5afc92fe91284e409",
+          "Name": "Levels",
+          "Description": "The selected Levels",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a level in the active document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[Line.ByStartPointEndPoint(Point.ByCoordinates(0, 0, 0), Point.ByCoordinates(100, 0, 0)),\n                Line.ByStartPointEndPoint(Point.ByCoordinates(100, 0, 0), Point.ByCoordinates(100, 100, 0)),\n                Line.ByStartPointEndPoint(Point.ByCoordinates(100, 100, 0), Point.ByCoordinates(0, 100, 0)),\n                Line.ByStartPointEndPoint(Point.ByCoordinates(0, 100, 0), Point.ByCoordinates(0, 0, 0))];",
+      "Id": "6f9423a2874a4de6a25761fb591f65d4",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fd27a53b392a4d82a32c283b43a7ded4",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "8afc41eea73547acba0d9e93fa5283fa",
+      "End": "e05c6c80f7b04cae981a6f8e0aab5164",
+      "Id": "4ee87c31a6854a6daee1c41a04db7678"
+    },
+    {
+      "Start": "03aeff89305543e5afc92fe91284e409",
+      "End": "a36803c023ae42bbacecff1843c19068",
+      "Id": "537bbf0ecc194103b384e1ec5bf2fefb"
+    },
+    {
+      "Start": "fd27a53b392a4d82a32c283b43a7ded4",
+      "End": "8804e2ed1d3246a3a7937696c4259dca",
+      "Id": "20eb38206ace496d895e22b7570ae55a"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.5.2.7915",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Roof.ByOutlineTypeAndLevel",
+        "Id": "c6d16ef7c551467a8d46cd307b2a465b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 321.481082395398,
+        "Y": 78.990631184027279
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Roof Types",
+        "Id": "f632a3a086664abeb2ff75560bf699e6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -476.518917604602,
+        "Y": 126.99063118402728
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Levels",
+        "Id": "a4078cc43ffe4f91a41ea8fbb2d45151",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -476.518917604602,
+        "Y": 234.99063118402725
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "6f9423a2874a4de6a25761fb591f65d4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -476.518917604602,
+        "Y": -42.796035482639383
+      }
+    ],
+    "Annotations": [],
+    "X": 273.53185178041542,
+    "Y": 168.21913264094957,
+    "Zoom": 0.97676875
+  }
+}

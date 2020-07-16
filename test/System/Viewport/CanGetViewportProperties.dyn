@@ -1,0 +1,302 @@
+{
+  "Uuid": "4bb3e01a-edf4-4280-b9be-d05ee2b4341c",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetViewportProperties",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "a7579931-305d-4c46-854a-2238a8b9293f-0004b304"
+      ],
+      "Id": "8563a4832bca44dd8571082181aa92b1",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "45d4ea9e3f07477ea04e83310522a2af",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Viewport.BoxCenter",
+      "Id": "07fd4f5267904e51a2041a34d9406398",
+      "Inputs": [
+        {
+          "Id": "30d3422258f04fbdbd8f2e2b2bfc0303",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6ef72b2a088d4016a4f43e6c3d2b265c",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the center of the outline of the viewport on the sheet, excluding the viewport label.\n\nViewport.BoxCenter: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Viewport.BoxOutline",
+      "Id": "fadd22b09d164db19547b18dc955b25e",
+      "Inputs": [
+        {
+          "Id": "11f5355dc7034979bce7336f2fcf29b0",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "665bb9c5031d44cea0353b2294fcf433",
+          "Name": "BoundingBox",
+          "Description": "BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the outline of the viewport on the sheet, excluding the viewport label.\n\nViewport.BoxOutline: BoundingBox"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Viewport.LabelOutline",
+      "Id": "d6bac18f3a7e4f249f07722a259b4105",
+      "Inputs": [
+        {
+          "Id": "e8251bb54e38468cb4767d46fc6201cc",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4a15df4d44c24c58be24cf873bf97ce4",
+          "Name": "BoundingBox",
+          "Description": "BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Gets the outline viewport's label on the sheet.\n\nViewport.LabelOutline: BoundingBox"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Viewport.Sheet",
+      "Id": "c5d386d2b2ca4fddaf0e4de3eca8e98e",
+      "Inputs": [
+        {
+          "Id": "beb0850079924c9e9b7d33df8d930bf2",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d8ef21b9443246228ef10c81d853155a",
+          "Name": "Sheet",
+          "Description": "Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get ViewSheet on which the viewport appears\n\nViewport.Sheet: Sheet"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Viewport.View",
+      "Id": "493993d2bd5a419ca32e0e2722662e85",
+      "Inputs": [
+        {
+          "Id": "1f3164b1af1c4d449149a10d5bd8df1d",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a7fb67f8c36b46cfa5c34c9ee8bbf6a2",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the associated View\n\nViewport.View: View"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "45d4ea9e3f07477ea04e83310522a2af",
+      "End": "30d3422258f04fbdbd8f2e2b2bfc0303",
+      "Id": "a06d0ae6feca483f93ea66530e8c9941"
+    },
+    {
+      "Start": "45d4ea9e3f07477ea04e83310522a2af",
+      "End": "11f5355dc7034979bce7336f2fcf29b0",
+      "Id": "4d1e879407e947c196006ab52b83c94f"
+    },
+    {
+      "Start": "45d4ea9e3f07477ea04e83310522a2af",
+      "End": "e8251bb54e38468cb4767d46fc6201cc",
+      "Id": "a0218701753b4b58b54b9abed4014a92"
+    },
+    {
+      "Start": "45d4ea9e3f07477ea04e83310522a2af",
+      "End": "beb0850079924c9e9b7d33df8d930bf2",
+      "Id": "69a05336079644b79a65f7f0c199f57a"
+    },
+    {
+      "Start": "45d4ea9e3f07477ea04e83310522a2af",
+      "End": "1f3164b1af1c4d449149a10d5bd8df1d",
+      "Id": "9587fecb8fab4d5daf73ea88bf30ef4d"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.8772",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "8563a4832bca44dd8571082181aa92b1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 72.0,
+        "Y": 224.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Viewport.BoxCenter",
+        "Id": "07fd4f5267904e51a2041a34d9406398",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 322.5,
+        "Y": 121.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Viewport.BoxOutline",
+        "Id": "fadd22b09d164db19547b18dc955b25e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 317.5,
+        "Y": 241.23891914027757
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Viewport.LabelOutline",
+        "Id": "d6bac18f3a7e4f249f07722a259b4105",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 324.5,
+        "Y": 367.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Viewport.Sheet",
+        "Id": "c5d386d2b2ca4fddaf0e4de3eca8e98e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 320.5,
+        "Y": 481.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Viewport.View",
+        "Id": "493993d2bd5a419ca32e0e2722662e85",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 256.5,
+        "Y": 612.0
+      }
+    ],
+    "Annotations": [],
+    "X": -60.275612500000079,
+    "Y": -149.34741874999997,
+    "Zoom": 0.97676875
+  }
+}

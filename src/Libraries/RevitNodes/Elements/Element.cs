@@ -126,6 +126,10 @@ namespace Revit.Elements
                 TransactionManager.Instance.EnsureInTransaction(Document);
                 DocumentManager.Regenerate();
                 var bb = InternalElement.get_BoundingBox(null);
+                if (bb == null) 
+                {
+                    bb = InternalElement.get_BoundingBox(Document.GetElement(InternalElement.OwnerViewId) as Autodesk.Revit.DB.View);
+                }
                 TransactionManager.Instance.TransactionTaskDone();
                 return bb.ToProtoType();
             }
@@ -267,6 +271,19 @@ namespace Revit.Elements
             // Do not delete Revit owned elements
             if (!IsRevitOwned && remainingBindings == 0 && !didRevitDelete)
             {
+                if(this.InternalElement is View && InternalElement.IsValidObject)
+                {
+                    Autodesk.Revit.UI.UIDocument uIDocument = new Autodesk.Revit.UI.UIDocument(Document);
+                    var openedViews = uIDocument.GetOpenUIViews().ToList();
+                    var shouldClosedViews = openedViews.FindAll(x => InternalElement.Id == x.ViewId);
+                    foreach (var v in shouldClosedViews)
+                    {
+                        if (uIDocument.GetOpenUIViews().ToList().Count() > 1)
+                            v.Close();
+                        else
+                            throw new InvalidOperationException(string.Format(Properties.Resources.CantCloseLastOpenView, this.ToString()));
+                    }
+                }
                 DocumentManager.Instance.DeleteElement(new ElementUUID(InternalUniqueId));
             }
             else
