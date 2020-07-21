@@ -198,6 +198,7 @@ namespace Revit.Elements
                 Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
 
                 List<Parameter> appearances = new List<Parameter>();
+                List<Parameter> invalidAppearances = new List<Parameter>();
                 if (this.InternalMaterial.AppearanceAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
                 {
                     Autodesk.Revit.DB.AppearanceAssetElement appearance = document.GetElement(this.InternalMaterial.AppearanceAssetId) as Autodesk.Revit.DB.AppearanceAssetElement;
@@ -206,11 +207,22 @@ namespace Revit.Elements
                         foreach (var parameter in appearance.Parameters)
                         {
                             Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
-                            if (!appearances.Contains(p)) appearances.Add(p);
+                            if (!appearances.Contains(p) && p.InternalParameter.Definition != null) appearances.Add(p);
+                            if (!invalidAppearances.Contains(p) && p.InternalParameter.Definition == null)
+                                invalidAppearances.Add(p);
                         }
                     }
                 }
-
+#if DEBUG
+                if (invalidAppearances.Any())
+                {
+                    Debug.WriteLine("There are {0} invalid structural parameters", invalidAppearances.Count);
+                    foreach (var p in invalidAppearances)
+                    {
+                        Debug.WriteLine(string.Format("\t{0}", p.Id));
+                    }
+                }
+#endif
                 return appearances;
             }
         }
@@ -225,6 +237,7 @@ namespace Revit.Elements
                 Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
 
                 List<Parameter> thermals = new List<Parameter>();
+                List<Parameter> invalidThermals = new List<Parameter>();
                 if (this.InternalMaterial.ThermalAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
                 {
                     Autodesk.Revit.DB.PropertySetElement thermal = document.GetElement(this.InternalMaterial.ThermalAssetId) as Autodesk.Revit.DB.PropertySetElement;
@@ -233,10 +246,23 @@ namespace Revit.Elements
                         foreach (var parameter in thermal.Parameters)
                         {
                             Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
-                            if (!thermals.Contains(p)) thermals.Add(p);
+                            if (!thermals.Contains(p) && p.InternalParameter.Definition != null) thermals.Add(p);
+                            if (!invalidThermals.Contains(p) && p.InternalParameter.Definition == null)
+                                invalidThermals.Add(p);
                         }
                     }
                 }
+
+#if DEBUG
+                if (invalidThermals.Any())
+                {
+                    Debug.WriteLine("There are {0} invalid structural parameters", invalidThermals.Count);
+                    foreach (var p in invalidThermals)
+                    {
+                        Debug.WriteLine(string.Format("\t{0}", p.Id));
+                    }
+                }
+#endif
 
                 return thermals;
             }
