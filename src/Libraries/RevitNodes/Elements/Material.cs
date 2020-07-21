@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DynamoServices;
 using RevitServices.Persistence;
+using System.Diagnostics;
 
 namespace Revit.Elements
 {
@@ -251,6 +252,7 @@ namespace Revit.Elements
                 Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
 
                 List<Parameter> structurals = new List<Parameter>();
+                List<Parameter> invalidStructurals = new List<Parameter>();
                 if (this.InternalMaterial.StructuralAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
                 {
                     Autodesk.Revit.DB.PropertySetElement structural = document.GetElement(this.InternalMaterial.StructuralAssetId) as Autodesk.Revit.DB.PropertySetElement;
@@ -259,11 +261,22 @@ namespace Revit.Elements
                         foreach (var parameter in structural.Parameters)
                         {
                             Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
-                            if (!structurals.Contains(p)) structurals.Add(p);
+                            if (!structurals.Contains(p) && p.InternalParameter.Definition != null) structurals.Add(p);
+                            if (!invalidStructurals.Contains(p) && p.InternalParameter.Definition == null)
+                                invalidStructurals.Add(p);
                         }
                     }
                 }
-
+#if DEBUG
+                if(invalidStructurals.Any())
+                {
+                    Debug.WriteLine("There are {0} invalid structural parameters", invalidStructurals.Count);
+                    foreach(var p in invalidStructurals)
+                    {
+                        Debug.WriteLine(string.Format("\t{0}", p.Id));
+                    }
+                }
+#endif
                 return structurals;
             }
         }
