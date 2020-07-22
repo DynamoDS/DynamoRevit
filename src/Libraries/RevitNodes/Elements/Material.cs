@@ -204,13 +204,7 @@ namespace Revit.Elements
                     Autodesk.Revit.DB.AppearanceAssetElement appearance = document.GetElement(this.InternalMaterial.AppearanceAssetId) as Autodesk.Revit.DB.AppearanceAssetElement;
                     if (appearance != null)
                     {
-                        foreach (var parameter in appearance.Parameters)
-                        {
-                            Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
-                            if (!appearances.Contains(p) && p.InternalParameter.Definition != null) appearances.Add(p);
-                            if (!invalidAppearances.Contains(p) && p.InternalParameter.Definition == null)
-                                invalidAppearances.Add(p);
-                        }
+                        GetValidParameter(appearance.Parameters, ref appearances, ref invalidAppearances);
                     }
                 }
 #if DEBUG
@@ -243,13 +237,7 @@ namespace Revit.Elements
                     Autodesk.Revit.DB.PropertySetElement thermal = document.GetElement(this.InternalMaterial.ThermalAssetId) as Autodesk.Revit.DB.PropertySetElement;
                     if (thermal != null)
                     {
-                        foreach (var parameter in thermal.Parameters)
-                        {
-                            Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
-                            if (!thermals.Contains(p) && p.InternalParameter.Definition != null) thermals.Add(p);
-                            if (!invalidThermals.Contains(p) && p.InternalParameter.Definition == null)
-                                invalidThermals.Add(p);
-                        }
+                        GetValidParameter(thermal.Parameters, ref thermals, ref invalidThermals);
                     }
                 }
 
@@ -284,13 +272,7 @@ namespace Revit.Elements
                     Autodesk.Revit.DB.PropertySetElement structural = document.GetElement(this.InternalMaterial.StructuralAssetId) as Autodesk.Revit.DB.PropertySetElement;
                     if (structural != null)
                     {
-                        foreach (var parameter in structural.Parameters)
-                        {
-                            Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
-                            if (!structurals.Contains(p) && p.InternalParameter.Definition != null) structurals.Add(p);
-                            if (!invalidStructurals.Contains(p) && p.InternalParameter.Definition == null)
-                                invalidStructurals.Add(p);
-                        }
+                        GetValidParameter(structural.Parameters, ref structurals, ref invalidStructurals);
                     }
                 }
 #if DEBUG
@@ -321,6 +303,22 @@ namespace Revit.Elements
         private DSCore.Color ToDSColor(Autodesk.Revit.DB.Color color)
         {
             return DSCore.Color.ByARGB(255, color.Red, color.Green, color.Blue);
+        }
+
+        private void GetValidParameter(Autodesk.Revit.DB.ParameterSet parameters, ref List<Parameter> ValidParameters, ref List<Parameter> InvalidParameters)
+        {
+            foreach (var parameter in parameters)
+            {
+                Parameter p = new Parameter(parameter as Autodesk.Revit.DB.Parameter);
+                if (p.InternalParameter.Definition == null)
+                {
+                    if (!InvalidParameters.Contains(p))
+                        InvalidParameters.Add(p);
+                    continue;
+                }
+                if (!ValidParameters.Contains(p))
+                    ValidParameters.Add(p);
+            }                
         }
 
         #endregion
