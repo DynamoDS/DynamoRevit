@@ -305,7 +305,7 @@ namespace Revit.Elements
             return DSCore.Color.ByARGB(255, color.Red, color.Green, color.Blue);
         }
 
-        private void GetValidParameter(Autodesk.Revit.DB.ParameterSet parameters, ref List<Parameter> ValidParameters, ref List<Parameter> InvalidParameters)
+        private void GetValidParameters(Autodesk.Revit.DB.ParameterSet parameters, ref List<Parameter> ValidParameters, ref List<Parameter> InvalidParameters)
         {
             foreach (var parameter in parameters)
             {
