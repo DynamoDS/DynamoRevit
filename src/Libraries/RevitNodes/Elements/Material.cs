@@ -204,7 +204,7 @@ namespace Revit.Elements
                     Autodesk.Revit.DB.AppearanceAssetElement appearance = document.GetElement(this.InternalMaterial.AppearanceAssetId) as Autodesk.Revit.DB.AppearanceAssetElement;
                     if (appearance != null)
                     {
-                        GetValidParameter(appearance.Parameters, ref appearances, ref invalidAppearances);
+                        FilterParameters(appearance.Parameters, ref appearances, ref invalidAppearances);
                     }
                 }
 #if DEBUG
@@ -237,7 +237,7 @@ namespace Revit.Elements
                     Autodesk.Revit.DB.PropertySetElement thermal = document.GetElement(this.InternalMaterial.ThermalAssetId) as Autodesk.Revit.DB.PropertySetElement;
                     if (thermal != null)
                     {
-                        GetValidParameter(thermal.Parameters, ref thermals, ref invalidThermals);
+                        FilterParameters(thermal.Parameters, ref thermals, ref invalidThermals);
                     }
                 }
 
@@ -272,7 +272,7 @@ namespace Revit.Elements
                     Autodesk.Revit.DB.PropertySetElement structural = document.GetElement(this.InternalMaterial.StructuralAssetId) as Autodesk.Revit.DB.PropertySetElement;
                     if (structural != null)
                     {
-                        GetValidParameter(structural.Parameters, ref structurals, ref invalidStructurals);
+                        FilterParameters(structural.Parameters, ref structurals, ref invalidStructurals);
                     }
                 }
 #if DEBUG
@@ -305,7 +305,7 @@ namespace Revit.Elements
             return DSCore.Color.ByARGB(255, color.Red, color.Green, color.Blue);
         }
 
-        private void GetValidParameters(Autodesk.Revit.DB.ParameterSet parameters, ref List<Parameter> ValidParameters, ref List<Parameter> InvalidParameters)
+        private void FilterParameters(Autodesk.Revit.DB.ParameterSet parameters, ref List<Parameter> ValidParameters, ref List<Parameter> InvalidParameters)
         {
             foreach (var parameter in parameters)
             {
