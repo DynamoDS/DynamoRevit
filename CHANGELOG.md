@@ -1,3 +1,5 @@
+* Fix a bug - filter out unavailable Parameters from Material.
+
 ## 0.2.18
 * Add a Category ScheduleOnSheet and its nodes - ScheduleOnSheet.Sheet, ScheduleOnSheet.Schedule, ScheduleOnSheet.BySheetViewLocation, ScheduleOnSheet.Location and ScheduleOnSheet.SetLocation
 * Add some new nodes for Sheet - Sheet.Schedules, Sheet.Viewports, Sheet.TitleBlock, Sheet.SetSheetName, Sheet.SetSheetNumber
