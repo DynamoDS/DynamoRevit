@@ -5,6 +5,7 @@ using System.IO;
 using Autodesk.Revit.DB;
 using RevitServices.Persistence;
 using System.Linq;
+using Revit.GeometryConversion;
 
 namespace Revit.Elements.Views
 {
@@ -181,6 +182,34 @@ namespace Revit.Elements.Views
             return GetType().Name + "(Name = " + InternalView?.Name + " )";
         }
 
+        /// <summary>
+        /// The bounds of the view in paper space (in feet).
+        /// </summary>
+        public Autodesk.DesignScript.Geometry.BoundingBox Outline
+        {
+            get
+            {
+                var outline = InternalView.Outline;
+                var Min = outline.Min.ToProtoType();
+                var Max = outline.Max.ToProtoType();
+                var minPoint = Autodesk.DesignScript.Geometry.Point.ByCoordinates(Min.U, Min.V);
+                var maxPoint = Autodesk.DesignScript.Geometry.Point.ByCoordinates(Max.U, Max.V);
+
+                return Autodesk.DesignScript.Geometry.BoundingBox.ByCorners(minPoint, maxPoint);
+            }
+        }
+
+        /// <summary>
+        /// Returns the origin of the screen.
+        /// </summary>
+        public Autodesk.DesignScript.Geometry.Point Origin
+        {
+            get
+            {
+                return InternalView.Origin.ToPoint();
+            }
+        }
+
         #region Filter
 
         /// <summary>
@@ -315,6 +344,17 @@ namespace Revit.Elements.Views
             }
         }
 
+        /// <summary>
+        /// The scale of the view.
+        /// </summary>
+        public int Scale
+        {
+            get
+            {
+                return InternalView.Scale;
+            }
+        }
+
         #endregion
 
         #region Duplicate
@@ -430,8 +470,6 @@ namespace Revit.Elements.Views
             return newView;
         }
 
-        #endregion
-
         private static Boolean CheckUniqueViewName(String ViewName)
         {
             bool IsUnique = true;
@@ -441,7 +479,7 @@ namespace Revit.Elements.Views
                 .ToList();
             foreach (var v in views)
             {
-                if(v.Name.Equals(ViewName))
+                if (v.Name.Equals(ViewName))
                 {
                     IsUnique = false;
                     break;
@@ -450,5 +488,121 @@ namespace Revit.Elements.Views
 
             return IsUnique;
         }
+
+        #endregion
+
+        #region CropBox
+
+        /// <summary>
+        /// The Crop Box applied to the view, or an outline encompassing the crop region applied to the view.
+        /// </summary>
+        public Autodesk.DesignScript.Geometry.BoundingBox CropBox
+        {
+            get
+            {
+                var cropBox = InternalView.CropBox;
+
+                return Autodesk.DesignScript.Geometry.BoundingBox.ByCorners(cropBox.Min.ToPoint(), cropBox.Max.ToPoint());
+            }
+        }
+
+        /// <summary>
+        /// Whether or not the Crop Box/Region is active for the view.
+        /// </summary>
+        public bool CropBoxActive
+        {
+            get
+            {
+                return InternalView.CropBoxActive;
+            }
+        }
+
+        /// <summary>
+        /// Whether or not the Crop Box/Region is visible for the view.
+        /// </summary>
+        public bool CropBoxVisible
+        {
+            get
+            {
+                return InternalView.CropBoxVisible;
+            }
+        }
+
+        /// <summary>
+        /// Set CropBox Active status
+        /// </summary>
+        /// <param name="IsActive"></param>
+        /// <returns></returns>
+        public View SetCropBoxActive(bool IsActive)
+        {
+            if (this.InternalView.CropBoxActive == IsActive)
+                return this;
+            else
+            {
+                RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+                InternalView.CropBoxActive = IsActive;
+                RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+                return this;
+            }
+        }
+
+        /// <summary>
+        /// Set CropBox visible status
+        /// </summary>
+        /// <param name="IsVisible"></param>
+        /// <returns></returns>
+        public View SetCropBoxVisible(bool IsVisible)
+        {
+            if (this.InternalView.CropBoxVisible == IsVisible)
+                return this;
+            else
+            {
+                RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+                InternalView.CropBoxVisible = IsVisible;
+                RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+                return this;
+            }
+        }
+
+        /// <summary>
+        /// Set CropBox for a view
+        /// </summary>
+        /// <param name="boundingBox"></param>
+        /// <returns></returns>
+        public View SetCropBox(Autodesk.DesignScript.Geometry.BoundingBox boundingBox)
+        {
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            InternalView.CropBox = boundingBox.ToRevitType();
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
+        #endregion
+
+        #region Direction
+
+        /// <summary>
+        /// The direction towards the viewer.
+        /// </summary>
+        public Autodesk.DesignScript.Geometry.Vector ViewDirection
+        {
+            get
+            {
+                return InternalView.ViewDirection.ToVector();
+            }
+        }
+
+        /// <summary>
+        /// The direction towards the right side of the screen.
+        /// </summary>
+        public Autodesk.DesignScript.Geometry.Vector RightDirection
+        {
+            get
+            {
+                return InternalView.RightDirection.ToVector();
+            }
+        }
+
+        #endregion
     }
 }
