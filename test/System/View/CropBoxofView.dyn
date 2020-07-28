@@ -1,0 +1,464 @@
+{
+  "Uuid": "fd41b230-41ae-4334-bb0c-925ce6a41a50",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CropBoxofView",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.SetCropBox@Autodesk.DesignScript.Geometry.BoundingBox",
+      "Id": "dacf4b8546dd4e46a8d4e7ac11cd9fde",
+      "Inputs": [
+        {
+          "Id": "f5074ac4ba4741ed90f9f03b4a9d215e",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cc0192aabb4741bcb81cea96cdd35756",
+          "Name": "boundingBox",
+          "Description": "BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f5611f861efa4ce9a4d2f98911257150",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Set CropBox for a view\n\nView.SetCropBox (boundingBox: BoundingBox): View"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 20,
+      "SelectedString": "Level 1",
+      "NodeType": "ExtensionNode",
+      "Id": "83b40ef355eb49b8a57093dfad6a9d31",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2bdb2727b314459db6fe38f74af4ef33",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.SetCropBoxActive@bool",
+      "Id": "ad565209ab9c4ca590a1361aafd4e05a",
+      "Inputs": [
+        {
+          "Id": "e254f4a3d29b48978de0aea50fe85337",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d6c1cc02f1b44fa79f96127ad6d8d676",
+          "Name": "IsActive",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "95391f3ecf12468482b3906ad2cdab5f",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Set CropBox Active status\n\nView.SetCropBoxActive (IsActive: bool): View"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.SetCropBoxVisible@bool",
+      "Id": "ab6412daf88c4d1a81a1c5a6c9081251",
+      "Inputs": [
+        {
+          "Id": "6e1425e6c4a54a61a748cad08833c451",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "def0f548b591464da6a18ffaca0d4685",
+          "Name": "IsVisible",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0bbc265cb244406cabf89269b33b14be",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Set CropBox visible status\n\nView.SetCropBoxVisible (IsVisible: bool): View"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.BoundingBox",
+      "Id": "3ce93561745d4927885e59a6ede3aafa",
+      "Inputs": [
+        {
+          "Id": "356123baadc4422fac84defd214e069e",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "12462f838b194266b993deb5eceb4e4b",
+          "Name": "BoundingBox",
+          "Description": "BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get an Axis-aligned BoundingBox of the Element\n\nElement.BoundingBox: BoundingBox"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.CropBox",
+      "Id": "8695703491164e5bb007157631b13638",
+      "Inputs": [
+        {
+          "Id": "40b9f065046c41ffaa911c3141127873",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "94bb946fa40d426a9c6dec43141dab62",
+          "Name": "BoundingBox",
+          "Description": "BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The Crop Box applied to the view, or an outline encompassing the crop region applied to the view.\n\nView.CropBox: BoundingBox"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.CropBoxActive",
+      "Id": "9973abd4f58f4467bdcd136b03a46fd4",
+      "Inputs": [
+        {
+          "Id": "8f269a8665a04c309ead0a503691d686",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0ccd440bc3d941c8803ae3ebc2c98da8",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Whether or not the Crop Box/Region is active for the view.\n\nView.CropBoxActive: bool"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.CropBoxVisible",
+      "Id": "4a6ebc027a5c401aba16541a3ef668db",
+      "Inputs": [
+        {
+          "Id": "99bc3e9a01aa4039bdbd1c9c621b6f0d",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2e415f2f65fc4fa093507c0a4b53dc17",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Whether or not the Crop Box/Region is visible for the view.\n\nView.CropBoxVisible: bool"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "0fe01ce094874f8387a84c9a65f5bc24",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bf8a5e15bae247c899bfe271287ba87b",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "f5611f861efa4ce9a4d2f98911257150",
+      "End": "40b9f065046c41ffaa911c3141127873",
+      "Id": "8ecf5db43a014ffba4abfc9d19a52bb9"
+    },
+    {
+      "Start": "2bdb2727b314459db6fe38f74af4ef33",
+      "End": "356123baadc4422fac84defd214e069e",
+      "Id": "611b542382524eaeb9d01165e58b6536"
+    },
+    {
+      "Start": "2bdb2727b314459db6fe38f74af4ef33",
+      "End": "f5074ac4ba4741ed90f9f03b4a9d215e",
+      "Id": "c00f83fe2ecf49ebb9dd9486c1045d49"
+    },
+    {
+      "Start": "2bdb2727b314459db6fe38f74af4ef33",
+      "End": "e254f4a3d29b48978de0aea50fe85337",
+      "Id": "8575b72c7dda4a7cbe975910e30759bc"
+    },
+    {
+      "Start": "2bdb2727b314459db6fe38f74af4ef33",
+      "End": "6e1425e6c4a54a61a748cad08833c451",
+      "Id": "08fe63ebfa494c2c9aa7e5ff59df5b5d"
+    },
+    {
+      "Start": "95391f3ecf12468482b3906ad2cdab5f",
+      "End": "8f269a8665a04c309ead0a503691d686",
+      "Id": "f6dad56feeaf4ed783ddea89606a44e7"
+    },
+    {
+      "Start": "0bbc265cb244406cabf89269b33b14be",
+      "End": "99bc3e9a01aa4039bdbd1c9c621b6f0d",
+      "Id": "afdc51420d5747948c6324f4d1b98c32"
+    },
+    {
+      "Start": "12462f838b194266b993deb5eceb4e4b",
+      "End": "cc0192aabb4741bcb81cea96cdd35756",
+      "Id": "6953da77d3264c6c9024614aae6f8382"
+    },
+    {
+      "Start": "bf8a5e15bae247c899bfe271287ba87b",
+      "End": "d6c1cc02f1b44fa79f96127ad6d8d676",
+      "Id": "fd128693662741b2a091622fe9b6ef1a"
+    },
+    {
+      "Start": "bf8a5e15bae247c899bfe271287ba87b",
+      "End": "def0f548b591464da6a18ffaca0d4685",
+      "Id": "0dd098950259400298b971940cece2c4"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.9130",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "View.SetCropBox",
+        "Id": "dacf4b8546dd4e46a8d4e7ac11cd9fde",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 458.0,
+        "Y": 210.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "83b40ef355eb49b8a57093dfad6a9d31",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -140.0,
+        "Y": 290.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.SetCropBoxActive",
+        "Id": "ad565209ab9c4ca590a1361aafd4e05a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 458.0,
+        "Y": 344.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.SetCropBoxVisible",
+        "Id": "ab6412daf88c4d1a81a1c5a6c9081251",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 458.0,
+        "Y": 478.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.BoundingBox",
+        "Id": "3ce93561745d4927885e59a6ede3aafa",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 107.0,
+        "Y": 236.00000000000003
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.CropBox",
+        "Id": "8695703491164e5bb007157631b13638",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 786.0,
+        "Y": 236.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.CropBoxActive",
+        "Id": "9973abd4f58f4467bdcd136b03a46fd4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 786.0,
+        "Y": 344.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.CropBoxVisible",
+        "Id": "4a6ebc027a5c401aba16541a3ef668db",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 786.0,
+        "Y": 452.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Boolean",
+        "Id": "0fe01ce094874f8387a84c9a65f5bc24",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 107.0,
+        "Y": 437.0
+      }
+    ],
+    "Annotations": [],
+    "X": 78.952764555399142,
+    "Y": 7.7286213063255786,
+    "Zoom": 0.55152031146487834
+  }
+}

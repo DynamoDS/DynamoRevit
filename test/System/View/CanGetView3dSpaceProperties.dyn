@@ -1,0 +1,302 @@
+{
+  "Uuid": "fd41b230-41ae-4334-bb0c-925ce6a41a50",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetView3dSpaceProperties",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.Origin",
+      "Id": "d6feec0d3c5247af874496eca0a60015",
+      "Inputs": [
+        {
+          "Id": "96d2ab557ca74b79b337f5b0c1660754",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "93494cd363ee4d1ab648cda0fe5ff967",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the origin of the screen.\n\nView.Origin: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.Outline",
+      "Id": "3346ceebd2ed460abb5a2d5f9891aac1",
+      "Inputs": [
+        {
+          "Id": "e3f7c59fedc64a13be4ef4c6b5be09dd",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "66206837b71648ccbb4914aaec11f8a4",
+          "Name": "BoundingBox",
+          "Description": "BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The bounds of the view in paper space (in feet).\n\nView.Outline: BoundingBox"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.RightDirection",
+      "Id": "169e149c912143a0b211a6060745e4df",
+      "Inputs": [
+        {
+          "Id": "1d7728fd28ea4f95b2f8e46d782e8e0c",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e74020cac2f24bea90719c17f2c6dd89",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The direction towards the right side of the screen.\n\nView.RightDirection: Vector"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.Scale",
+      "Id": "15c8e8f6bffb46bfad5a65900114dc5f",
+      "Inputs": [
+        {
+          "Id": "5afc510231da46eeb3251cb8d2721c82",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8f66f0dac4e142bdacd89e6af57d7daf",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The scale of the view.\n\nView.Scale: int"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.ViewDirection",
+      "Id": "593868bf4d5b4bd3bbe53cdf25340198",
+      "Inputs": [
+        {
+          "Id": "9e4bb07bf96d42e6a08393f99f34a7c7",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "71b05251ca594c1ea69b0a9b085fd841",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The direction towards the viewer.\n\nView.ViewDirection: Vector"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "{3D}",
+      "NodeType": "ExtensionNode",
+      "Id": "5455f22b019b48789eeafe52bd43110b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1e87a77b13db4edf922d63be3385c880",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1e87a77b13db4edf922d63be3385c880",
+      "End": "96d2ab557ca74b79b337f5b0c1660754",
+      "Id": "d997bd1347d94a98846bf42cae2a7c3c"
+    },
+    {
+      "Start": "1e87a77b13db4edf922d63be3385c880",
+      "End": "e3f7c59fedc64a13be4ef4c6b5be09dd",
+      "Id": "b2dfd6c7ae844c76bc7abfeeac06bc84"
+    },
+    {
+      "Start": "1e87a77b13db4edf922d63be3385c880",
+      "End": "1d7728fd28ea4f95b2f8e46d782e8e0c",
+      "Id": "ab210d539c634db990e7e3adbbcb8fe0"
+    },
+    {
+      "Start": "1e87a77b13db4edf922d63be3385c880",
+      "End": "9e4bb07bf96d42e6a08393f99f34a7c7",
+      "Id": "82aa455c93ba417d984542836b717534"
+    },
+    {
+      "Start": "1e87a77b13db4edf922d63be3385c880",
+      "End": "5afc510231da46eeb3251cb8d2721c82",
+      "Id": "ad13ae9491a047dbae8342bc734122d0"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.9130",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "View.Origin",
+        "Id": "d6feec0d3c5247af874496eca0a60015",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 271.0,
+        "Y": 113.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.Outline",
+        "Id": "3346ceebd2ed460abb5a2d5f9891aac1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 279.0,
+        "Y": 220.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.RightDirection",
+        "Id": "169e149c912143a0b211a6060745e4df",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 288.0,
+        "Y": 329.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.Scale",
+        "Id": "15c8e8f6bffb46bfad5a65900114dc5f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 293.0,
+        "Y": 539.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.ViewDirection",
+        "Id": "593868bf4d5b4bd3bbe53cdf25340198",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 290.0,
+        "Y": 436.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "5455f22b019b48789eeafe52bd43110b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 9.0,
+        "Y": 304.0
+      }
+    ],
+    "Annotations": [],
+    "X": 12.0,
+    "Y": -64.0,
+    "Zoom": 1.0
+  }
+}
