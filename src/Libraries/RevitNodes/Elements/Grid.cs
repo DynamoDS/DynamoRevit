@@ -43,7 +43,7 @@ namespace Revit.Elements
         /// <param name="grid"></param>
         private Grid(Autodesk.Revit.DB.Grid grid)
         {
-            SafeInit(() => InitGrid(grid));
+            SafeInit(() => InitGrid(grid), true);
         }
 
         /// <summary>

@@ -42,7 +42,7 @@ namespace Revit.Elements
         /// </summary>
         private Group(Autodesk.Revit.DB.Group group)
         {
-            SafeInit(() => InitGroup(group));
+            SafeInit(() => InitGroup(group), true);
         }
 
         /// <summary>

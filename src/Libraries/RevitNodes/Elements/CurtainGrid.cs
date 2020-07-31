@@ -183,12 +183,12 @@ namespace Revit.Elements
       /// <param name="curtainHolderElement"></param>
       private CurtainGrid(Autodesk.Revit.DB.Element curtainHolderElement)
       {
-          SafeInit(() => InitCurtainGrid(curtainHolderElement));
+          SafeInit(() => InitCurtainGrid(curtainHolderElement), true);
       }
 
       private CurtainGrid(Autodesk.Revit.DB.Element curtainHolderElement, Autodesk.Revit.DB.Reference faceReference)
       {
-          SafeInit(() => InitCurtainGrid(curtainHolderElement, faceReference));
+          SafeInit(() => InitCurtainGrid(curtainHolderElement, faceReference), true);
       }
 
       #endregion

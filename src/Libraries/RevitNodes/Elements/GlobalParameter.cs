@@ -43,7 +43,7 @@ namespace Revit.Elements
         /// <param name="parameter"></param>
         private GlobalParameter(Autodesk.Revit.DB.GlobalParameter parameter)
         {
-            SafeInit(() => InitGlobalParameter(parameter));
+            SafeInit(() => InitGlobalParameter(parameter), true);
         }
 
         /// <summary>

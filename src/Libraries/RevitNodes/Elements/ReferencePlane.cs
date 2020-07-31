@@ -48,7 +48,7 @@ namespace Revit.Elements
         /// <param name="referencePlane"></param>
         private ReferencePlane( Autodesk.Revit.DB.ReferencePlane referencePlane)
         {
-            SafeInit(() => InitReferencePlane(referencePlane));
+            SafeInit(() => InitReferencePlane(referencePlane), true);
         }
 
         /// <summary>

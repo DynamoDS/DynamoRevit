@@ -52,7 +52,7 @@ namespace Revit.Elements.Views
         /// </summary>
         private ScheduleView(Autodesk.Revit.DB.ViewSchedule view)
         {
-            SafeInit(() => InitScheduleView(view));
+            SafeInit(() => InitScheduleView(view), true);
         }
 
         /// <summary>

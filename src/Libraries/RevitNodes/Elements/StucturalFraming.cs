@@ -25,7 +25,7 @@ namespace Revit.Elements
         /// <param name="instance"></param>
         private StructuralFraming(Autodesk.Revit.DB.FamilyInstance instance)
         {
-            SafeInit(() => InitStructuralFraming(instance));
+            SafeInit(() => InitStructuralFraming(instance), true);
         }
 
         /// <summary>

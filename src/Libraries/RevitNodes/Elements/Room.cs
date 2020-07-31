@@ -44,7 +44,7 @@ namespace Revit.Elements
         /// <param name="Room"></param>
         internal Room(Autodesk.Revit.DB.Architecture.Room Room)
         {
-            SafeInit(() => InitElement(Room));
+            SafeInit(() => InitElement(Room), true);
         }
 
         /// <summary>

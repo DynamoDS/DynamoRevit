@@ -38,7 +38,7 @@ namespace Revit.Elements
       /// <param name="mullionElement"></param>
       protected Mullion(Autodesk.Revit.DB.Mullion mullionElement)
       {
-          SafeInit(() => InitMullion(mullionElement));
+          SafeInit(() => InitMullion(mullionElement), true);
       }
       #endregion
 

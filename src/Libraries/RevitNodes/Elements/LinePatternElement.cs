@@ -55,7 +55,7 @@ namespace Revit.Elements
         /// <param name="e"></param>
         private LinePatternElement(Autodesk.Revit.DB.LinePatternElement e)
         {
-            SafeInit(() => InitElement(e));
+            SafeInit(() => InitElement(e), true);
         }
 
         #endregion

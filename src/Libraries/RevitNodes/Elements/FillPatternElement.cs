@@ -55,7 +55,7 @@ namespace Revit.Elements
         /// <param name="e"></param>
         private FillPatternElement(Autodesk.Revit.DB.FillPatternElement e)
         {
-            SafeInit(() => InitElement(e));
+            SafeInit(() => InitElement(e), true);
         }
 
         #endregion

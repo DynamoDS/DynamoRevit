@@ -325,7 +325,7 @@ namespace Revit.Elements
       /// <param name="panelElement"></param>
       protected CurtainPanel(Autodesk.Revit.DB.Panel panelElement)
       {
-          SafeInit(() => InitCurtainPanel(panelElement));
+          SafeInit(() => InitCurtainPanel(panelElement), true);
       }
 
       #endregion

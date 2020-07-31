@@ -24,7 +24,7 @@ namespace Revit.Elements.Views
         /// </summary>
         private AxonometricView(Autodesk.Revit.DB.View3D view)
         {
-            SafeInit(() => InitAxonometricView(view));
+            SafeInit(() => InitAxonometricView(view), true);
         }
 
         /// <summary>

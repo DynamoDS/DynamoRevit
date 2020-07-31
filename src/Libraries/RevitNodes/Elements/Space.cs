@@ -42,7 +42,7 @@ namespace Revit.Elements
         /// <param name="space"></param>
         internal Space(Autodesk.Revit.DB.Mechanical.Space space)
         {
-            SafeInit(() => InitElement(space));
+            SafeInit(() => InitElement(space), true);
         }
 
         /// <summary>

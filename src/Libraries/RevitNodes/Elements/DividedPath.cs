@@ -69,7 +69,7 @@ namespace Revit.Elements
         /// <param name="divPath"></param>
         private DividedPath(Autodesk.Revit.DB.DividedPath divPath)
         {
-            SafeInit(() => InitDividedPath(divPath));
+            SafeInit(() => InitDividedPath(divPath), true);
         }
 
         /// <summary>

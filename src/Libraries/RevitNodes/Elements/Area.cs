@@ -32,7 +32,7 @@ namespace Revit.Elements
 
         private Area(Autodesk.Revit.DB.Area area)
         {
-            SafeInit(() => InitArea(area));
+            SafeInit(() => InitArea(area), true);
         }
 
         #endregion

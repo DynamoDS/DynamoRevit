@@ -42,7 +42,7 @@ namespace Revit.Elements
         /// <param name="viewport"></param>
         private Viewport(Autodesk.Revit.DB.Viewport viewport)
         {
-            SafeInit(() => InitViewport(viewport));
+            SafeInit(() => InitViewport(viewport), true);
         }
 
         /// <summary>

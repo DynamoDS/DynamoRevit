@@ -46,7 +46,7 @@ namespace Revit.Elements
       /// <param name="rvtPathOfTravel">Revit PathOfTavel element</param>
       private PathOfTravel(RvtAnalysis.PathOfTravel rvtPathOfTravel)
       {
-         SafeInit(() => InitPathOfTravel(rvtPathOfTravel));
+         SafeInit(() => InitPathOfTravel(rvtPathOfTravel), true);
       }
 
       #endregion

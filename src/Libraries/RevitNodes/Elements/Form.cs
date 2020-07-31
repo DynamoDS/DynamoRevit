@@ -40,7 +40,7 @@ namespace Revit.Elements
         /// <param name="form"></param>
         private Form(Autodesk.Revit.DB.Form form)
         {
-            SafeInit(() => InitForm(form));
+            SafeInit(() => InitForm(form), true);
         }
 
         /// <summary>

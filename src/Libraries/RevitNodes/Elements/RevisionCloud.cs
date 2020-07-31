@@ -45,7 +45,7 @@ namespace Revit.Elements
         /// <param name="RevisionCloud"></param>
         private RevisionCloud(Autodesk.Revit.DB.RevisionCloud RevisionCloud)
         {
-            SafeInit(() => InitElement(RevisionCloud));
+            SafeInit(() => InitElement(RevisionCloud), true);
         }
 
         /// <summary>

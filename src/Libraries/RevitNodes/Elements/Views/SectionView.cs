@@ -47,7 +47,7 @@ namespace Revit.Elements.Views
         /// </summary>
         private SectionView(Autodesk.Revit.DB.ViewSection view)
         {
-            SafeInit(() => InitSectionView(view));
+            SafeInit(() => InitSectionView(view), true);
         }
 
         /// <summary>

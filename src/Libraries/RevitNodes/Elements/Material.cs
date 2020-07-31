@@ -38,7 +38,7 @@ namespace Revit.Elements
         /// <param name="material"></param>
         private Material(Autodesk.Revit.DB.Material material)
         {
-            SafeInit(() => InitMaterial(material));
+            SafeInit(() => InitMaterial(material), true);
         }
 
         #endregion
