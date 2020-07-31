@@ -17,6 +17,8 @@ namespace RevitServices.Transactions
                 handler(obj);
         }
 
+        public static bool ReadOnlyMode { get; set; }
+
         private static TransactionManager manager;
         
         /// <summary>
@@ -96,6 +98,7 @@ namespace RevitServices.Transactions
             Strategy = strategy;
             TransactionWrapper = new TransactionWrapper();
             DoAssertInIdleThread = true;
+            ReadOnlyMode = false;
         }
 
         /// <summary>
@@ -103,6 +106,8 @@ namespace RevitServices.Transactions
         /// </summary>
         public void EnsureInTransaction(Document document)
         {
+            if (ReadOnlyMode)
+                throw new Exception("Dynamo For Revit is in read-only mode");
             //Hand off the behaviour to the strategy
             handle = Strategy.EnsureInTransaction(TransactionWrapper, document);
         }
