@@ -32,6 +32,24 @@ namespace Revit.Elements
         {
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
 
+            SafeInitImpl(init);
+        }
+
+        /// <summary>
+        /// Handling exceptions when calling the initializing function
+        /// </summary>
+        /// <param name="init"></param>
+        /// <param name="fromExistingElement"></param>
+        protected void SafeInit(Action init, bool fromExistingElement)
+        {
+            if (!fromExistingElement)
+                TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+
+            SafeInitImpl(init);
+        }
+
+        private void SafeInitImpl(Action init)
+        {
             var elementManager = ElementIDLifecycleManager<int>.GetInstance();
             var element = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Element>(Document);
             int count = 0;
