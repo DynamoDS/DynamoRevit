@@ -156,6 +156,7 @@ namespace Revit.Elements.Views
             return bmp;
         }
 
+        #region ViewType
         private static string ViewTypeString(ViewType vt)
         {
             switch (vt)
@@ -176,6 +177,195 @@ namespace Revit.Elements.Views
                     return "Section View";
             }
         }
+        #endregion
+
+        #region Discipline
+
+        private static string ViewDisciplineString(ViewDiscipline vd)
+        {
+            string discipline = "";
+            switch(vd)
+            {
+                case ViewDiscipline.Architectural:
+                    discipline = "Architectural";
+                    break;
+                case ViewDiscipline.Coordination:
+                    discipline = "Coordination";
+                    break;
+                case ViewDiscipline.Electrical:
+                    discipline = "Electrical";
+                    break;
+                case ViewDiscipline.Mechanical:
+                    discipline = "Mechanical";
+                    break;
+                case ViewDiscipline.Plumbing:
+                    discipline = "Plumbing";
+                    break;
+                case ViewDiscipline.Structural:
+                    discipline = "Structural";
+                    break;
+                default:
+                    discipline = "Invalid Discipline";
+                    break;
+            }
+
+            return discipline;
+        }
+
+        /// <summary>
+        ///  The Discipline of the view. 
+        /// </summary>
+        public string Discipline
+        {
+            get
+            {
+                return ViewDisciplineString(InternalView.Discipline);
+            }
+        }
+
+        /// <summary>
+        ///  Set Discipline of View.
+        /// </summary>
+        /// <param name="discipline"></param>
+        /// <returns></returns>
+        public View SetDiscipline(string discipline)
+        {
+            ViewDiscipline viewDiscipline;
+            switch(discipline.ToLower())
+            {
+                case "architectural":
+                    viewDiscipline = ViewDiscipline.Architectural;
+                    break;
+                case "coordination":
+                    viewDiscipline = ViewDiscipline.Coordination;
+                    break;
+                case "electrical":
+                    viewDiscipline = ViewDiscipline.Electrical;
+                    break;
+                case "mechanical":
+                    viewDiscipline = ViewDiscipline.Mechanical;
+                    break;
+                case "plumbing":
+                    viewDiscipline = ViewDiscipline.Plumbing;
+                    break;
+                case "structural":
+                    viewDiscipline = ViewDiscipline.Structural;
+                    break;
+                default:
+                    throw new Exception("Please input valid Discipline");
+            }
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            var param = InternalView.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE);
+            param.Set((int)viewDiscipline);
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        #endregion
+
+        #region View DisplayStyle
+
+        private static string DisplayStyleString(DisplayStyle ds)
+        {
+            string displaystyle = "";
+            switch (ds)
+            {
+                case DisplayStyle.FlatColors:
+                    displaystyle = "FlatColors";
+                    break;
+                case DisplayStyle.HLR:
+                    displaystyle = "HLR";
+                    break;
+                case DisplayStyle.Realistic:
+                    displaystyle = "Realistic";
+                    break;
+                case DisplayStyle.RealisticWithEdges:
+                    displaystyle = "RealisticWithEdges";
+                    break;
+                case DisplayStyle.Rendering:
+                    displaystyle = "Rendering";
+                    break;
+                case DisplayStyle.Shading:
+                    displaystyle = "Shading";
+                    break;
+                case DisplayStyle.ShadingWithEdges:
+                    displaystyle = "ShadingWithEdges";
+                    break;
+                case DisplayStyle.Undefined:
+                    displaystyle = "Undefined";
+                    break;
+                case DisplayStyle.Wireframe:
+                    displaystyle = "Wireframe";
+                    break;
+                default:
+                    displaystyle = "Invalid DisplayStyle";
+                    break;
+            }
+
+            return displaystyle;
+        }
+
+        /// <summary>
+        ///  The DisplayStyle of the view. Returns DisplayStyle.Wireframe if the view has no display style.
+        /// </summary>
+        public string Displaystyle
+        {
+            get
+            {
+                return DisplayStyleString(InternalView.DisplayStyle);
+            }
+        }
+
+        /// <summary>
+        ///  Set DisplayStyle of View.
+        /// </summary>
+        /// <param name="displayStyle"></param>
+        /// <returns></returns>
+        public View SetDisplayStyle(string displayStyle)
+        {
+            DisplayStyle displaystyle;
+
+            switch(displayStyle.ToLower())
+            {
+                case "flatcolors":
+                    displaystyle = DisplayStyle.FlatColors;
+                    break;
+                case "hlr":
+                    displaystyle = DisplayStyle.HLR;
+                    break;
+                case "realistic":
+                    displaystyle = DisplayStyle.Realistic;
+                    break;
+                case "realisticwithedges":
+                    displaystyle = DisplayStyle.RealisticWithEdges;
+                    break;
+                case "rendering":
+                    displaystyle = DisplayStyle.Rendering;
+                    break;
+                case "shading":
+                    displaystyle = DisplayStyle.Shading;
+                    break;
+                case "shadingwithedges":
+                    displaystyle = DisplayStyle.ShadingWithEdges;
+                    break;
+                case "undefined":
+                    displaystyle = DisplayStyle.Undefined;
+                    break;
+                case "wireframe":
+                    displaystyle = DisplayStyle.Wireframe;
+                    break;
+                default:
+                    throw new Exception("Please input valid DisplayStyle");
+            }
+
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            InternalView.DisplayStyle = displaystyle;
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
+        #endregion
 
         public override string ToString()
         {
@@ -321,7 +511,7 @@ namespace Revit.Elements.Views
         #region Scale
 
         /// <summary>
-        ///     Set View Scale
+        ///     Set View Scale.
         /// </summary>
         /// <param name="scale">View scale is the ration of true model size to paper size.</param>
         /// <returns name="view">View</returns>
@@ -529,7 +719,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Set CropBox Active status
+        /// Set CropBox Active status.
         /// </summary>
         /// <param name="IsActive"></param>
         /// <returns></returns>
@@ -547,7 +737,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Set CropBox visible status
+        /// Set CropBox visible status.
         /// </summary>
         /// <param name="IsVisible"></param>
         /// <returns></returns>
@@ -565,7 +755,7 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
-        /// Set CropBox for a view
+        /// Set CropBox for a view.
         /// </summary>
         /// <param name="boundingBox"></param>
         /// <returns></returns>
@@ -601,6 +791,38 @@ namespace Revit.Elements.Views
             {
                 return InternalView.RightDirection.ToVector();
             }
+        }
+
+        #endregion
+
+        #region View SketchPlane
+
+        /// <summary>
+        ///  The sketch plane assigned to the view for model curve creation. 
+        /// </summary>
+        public SketchPlane SketchPlane
+        {
+            get
+            {
+                if (InternalView.SketchPlane != null)
+                    return InternalView.SketchPlane.ToDSType(true) as SketchPlane;
+                else
+                    return null;
+            }
+        }
+
+        /// <summary>
+        ///  Set SketchPlane of View.
+        /// </summary>
+        /// <param name="sketchPlane"></param>
+        /// <returns></returns>
+        public View SetSketchPlane(SketchPlane sketchPlane)
+        {
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            InternalView.SketchPlane = sketchPlane.InternalSketchPlane;
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
         }
 
         #endregion

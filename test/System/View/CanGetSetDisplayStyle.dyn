@@ -1,0 +1,211 @@
+{
+  "Uuid": "1b5ce79f-2528-4537-8d47-fc94b4a45350",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetSetDisplayStyle",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "{3D}",
+      "NodeType": "ExtensionNode",
+      "Id": "33059ebe4d8c4f82be83be3883a56f69",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b9bc4f7a3fb2402d9642caa529a6c05f",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.Displaystyle",
+      "Id": "269cd16b16ee4b80a8fe6195374c884a",
+      "Inputs": [
+        {
+          "Id": "1b076726722646bd82687d2d5940ec26",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d47bae7098cd4df29ae7e404a70d275f",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The DisplayStyle of the view. Returns DisplayStyle.Wireframe if the view has no display style.\n\nView.Displaystyle: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.SetDisplayStyle@string",
+      "Id": "17340268e2e3499a9d3f6a147a67c17b",
+      "Inputs": [
+        {
+          "Id": "fffa392097c14c7aa65b039364512190",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cf626768cc854082bdc6094330f42315",
+          "Name": "displayStyle",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "97766dbf2f7a4d148d6bf3789494439b",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Set DisplayStyle of View.\n\nView.SetDisplayStyle (displayStyle: string): View"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Shading",
+      "Id": "fdbbad04fd4c4a42a829ab79d5933ece",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "377dd919bff8420290cf35183062f15c",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "b9bc4f7a3fb2402d9642caa529a6c05f",
+      "End": "fffa392097c14c7aa65b039364512190",
+      "Id": "af8b7d3e1c5345bda8f7e2abee8ee846"
+    },
+    {
+      "Start": "97766dbf2f7a4d148d6bf3789494439b",
+      "End": "1b076726722646bd82687d2d5940ec26",
+      "Id": "d386eb9adf144d028600566f04293eb0"
+    },
+    {
+      "Start": "377dd919bff8420290cf35183062f15c",
+      "End": "cf626768cc854082bdc6094330f42315",
+      "Id": "6037ca5324b546519eee428ae9288aa8"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.9130",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "33059ebe4d8c4f82be83be3883a56f69",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 49.0,
+        "Y": 162.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.Displaystyle",
+        "Id": "269cd16b16ee4b80a8fe6195374c884a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 614.0,
+        "Y": 203.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.SetDisplayStyle",
+        "Id": "17340268e2e3499a9d3f6a147a67c17b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 296.0,
+        "Y": 203.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "fdbbad04fd4c4a42a829ab79d5933ece",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 49.0,
+        "Y": 270.5
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

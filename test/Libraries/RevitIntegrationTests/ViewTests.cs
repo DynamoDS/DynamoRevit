@@ -177,5 +177,59 @@ namespace RevitSystemTests
             var scale = GetPreviewValue("15c8e8f6bffb46bfad5a65900114dc5f");
             Assert.AreEqual(expectedScale, scale);
         }
+
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void CanGetSetDiscipline()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\View\CanGetSetDiscipline.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var discipline = GetPreviewValue("60c8ce7365214955967367cf21b85762");
+            Assert.AreEqual("Structural", discipline);
+        }
+
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void CanGetSetDisplayStyle()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\View\CanGetSetDisplayStyle.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var displayStyle = GetPreviewValue("269cd16b16ee4b80a8fe6195374c884a");
+            Assert.AreEqual("Shading", displayStyle);
+        }
+
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void CanGetSetSketchPlane()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\View\CanGetSetSketchPlane.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var sketchPlane = GetPreviewValue("bc12df8c2efc44d19a208a83b16e1709") as SketchPlane;
+            var plane = sketchPlane.Plane;
+            Assert.AreEqual(0.000, plane.Origin.X, Tolerance);
+            Assert.AreEqual(0.000, plane.Origin.Y, Tolerance);
+            Assert.AreEqual(2.000, plane.Origin.Z, Tolerance);
+        }
     }
 }
