@@ -555,10 +555,4 @@
   <data name="Sheet_ViewLocationMismatch" xml:space="preserve">
     <value>View count should Equals location count.</value>
   </data>
-  <data name="InvalidDiscipline" xml:space="preserve">
-    <value>Invalid Discipline.</value>
-  </data>
-  <data name="InvalidDisplayStyle" xml:space="preserve">
-    <value>Invalid DisplayStyle.</value>
-  </data>
 </root>

@@ -646,24 +646,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid Discipline..
-        /// </summary>
-        internal static string InvalidDiscipline {
-            get {
-                return ResourceManager.GetString("InvalidDiscipline", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid DisplayStyle..
-        /// </summary>
-        internal static string InvalidDisplayStyle {
-            get {
-                return ResourceManager.GetString("InvalidDisplayStyle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Id is not a valid ElementId, GUID, string or int..
         /// </summary>
         internal static string InvalidElementId {

@@ -181,27 +181,6 @@ namespace Revit.Elements.Views
 
         #region Discipline
 
-        private static string ViewDisciplineString(ViewDiscipline vd)
-        {
-            string discipline = "";
-            switch(vd)
-            {
-                case ViewDiscipline.Architectural:
-                case ViewDiscipline.Coordination:
-                case ViewDiscipline.Electrical:
-                case ViewDiscipline.Mechanical:
-                case ViewDiscipline.Plumbing:
-                case ViewDiscipline.Structural:
-                    discipline = vd.ToString();
-                    break;
-                default:
-                    discipline = Properties.Resources.InvalidDiscipline;
-                    break;
-            }
-
-            return discipline;
-        }
-
         /// <summary>
         ///  The Discipline of the view. 
         /// </summary>
@@ -209,7 +188,7 @@ namespace Revit.Elements.Views
         {
             get
             {
-                return ViewDisciplineString(InternalView.Discipline);
+                return InternalView.Discipline.ToString();
             }
         }
 
@@ -235,30 +214,6 @@ namespace Revit.Elements.Views
 
         #region View DisplayStyle
 
-        private static string DisplayStyleString(DisplayStyle ds)
-        {
-            string displaystyle = "";
-            switch (ds)
-            {
-                case DisplayStyle.FlatColors:
-                case DisplayStyle.HLR:
-                case DisplayStyle.Realistic:
-                case DisplayStyle.RealisticWithEdges:
-                case DisplayStyle.Rendering:
-                case DisplayStyle.Shading:
-                case DisplayStyle.ShadingWithEdges:
-                case DisplayStyle.Undefined:
-                case DisplayStyle.Wireframe:
-                    displaystyle = ds.ToString();
-                    break;
-                default:
-                    displaystyle = Properties.Resources.InvalidDisplayStyle;
-                    break;
-            }
-
-            return displaystyle;
-        }
-
         /// <summary>
         ///  The DisplayStyle of the view. Returns DisplayStyle.Wireframe if the view has no display style.
         /// </summary>
@@ -266,7 +221,7 @@ namespace Revit.Elements.Views
         {
             get
             {
-                return DisplayStyleString(InternalView.DisplayStyle);
+                return InternalView.DisplayStyle.ToString();
             }
         }
 
