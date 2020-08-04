@@ -742,6 +742,11 @@ namespace Revit.Elements.Views
             }
         }
 
+        /// <summary>
+        ///  Set PartsVisibility of view
+        /// </summary>
+        /// <param name="partsVisibility"></param>
+        /// <returns></returns>
         public View SetPartsVisibility(string partsVisibility)
         {
             PartsVisibility parts;
