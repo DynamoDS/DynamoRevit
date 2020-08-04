@@ -187,25 +187,15 @@ namespace Revit.Elements.Views
             switch(vd)
             {
                 case ViewDiscipline.Architectural:
-                    discipline = "Architectural";
-                    break;
                 case ViewDiscipline.Coordination:
-                    discipline = "Coordination";
-                    break;
                 case ViewDiscipline.Electrical:
-                    discipline = "Electrical";
-                    break;
                 case ViewDiscipline.Mechanical:
-                    discipline = "Mechanical";
-                    break;
                 case ViewDiscipline.Plumbing:
-                    discipline = "Plumbing";
-                    break;
                 case ViewDiscipline.Structural:
-                    discipline = "Structural";
+                    discipline = vd.ToString();
                     break;
                 default:
-                    discipline = "Invalid Discipline";
+                    discipline = Properties.Resources.InvalidDiscipline;
                     break;
             }
 
@@ -231,29 +221,8 @@ namespace Revit.Elements.Views
         public View SetDiscipline(string discipline)
         {
             ViewDiscipline viewDiscipline;
-            switch(discipline.ToLower())
-            {
-                case "architectural":
-                    viewDiscipline = ViewDiscipline.Architectural;
-                    break;
-                case "coordination":
-                    viewDiscipline = ViewDiscipline.Coordination;
-                    break;
-                case "electrical":
-                    viewDiscipline = ViewDiscipline.Electrical;
-                    break;
-                case "mechanical":
-                    viewDiscipline = ViewDiscipline.Mechanical;
-                    break;
-                case "plumbing":
-                    viewDiscipline = ViewDiscipline.Plumbing;
-                    break;
-                case "structural":
-                    viewDiscipline = ViewDiscipline.Structural;
-                    break;
-                default:
-                    throw new Exception("Please input valid Discipline");
-            }
+            viewDiscipline = (ViewDiscipline)Enum.Parse(typeof(ViewDiscipline), discipline);
+
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
             var param = InternalView.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE);
             param.Set((int)viewDiscipline);
@@ -272,34 +241,18 @@ namespace Revit.Elements.Views
             switch (ds)
             {
                 case DisplayStyle.FlatColors:
-                    displaystyle = "FlatColors";
-                    break;
                 case DisplayStyle.HLR:
-                    displaystyle = "HLR";
-                    break;
                 case DisplayStyle.Realistic:
-                    displaystyle = "Realistic";
-                    break;
                 case DisplayStyle.RealisticWithEdges:
-                    displaystyle = "RealisticWithEdges";
-                    break;
                 case DisplayStyle.Rendering:
-                    displaystyle = "Rendering";
-                    break;
                 case DisplayStyle.Shading:
-                    displaystyle = "Shading";
-                    break;
                 case DisplayStyle.ShadingWithEdges:
-                    displaystyle = "ShadingWithEdges";
-                    break;
                 case DisplayStyle.Undefined:
-                    displaystyle = "Undefined";
-                    break;
                 case DisplayStyle.Wireframe:
-                    displaystyle = "Wireframe";
+                    displaystyle = ds.ToString();
                     break;
                 default:
-                    displaystyle = "Invalid DisplayStyle";
+                    displaystyle = Properties.Resources.InvalidDisplayStyle;
                     break;
             }
 
@@ -325,39 +278,7 @@ namespace Revit.Elements.Views
         public View SetDisplayStyle(string displayStyle)
         {
             DisplayStyle displaystyle;
-
-            switch(displayStyle.ToLower())
-            {
-                case "flatcolors":
-                    displaystyle = DisplayStyle.FlatColors;
-                    break;
-                case "hlr":
-                    displaystyle = DisplayStyle.HLR;
-                    break;
-                case "realistic":
-                    displaystyle = DisplayStyle.Realistic;
-                    break;
-                case "realisticwithedges":
-                    displaystyle = DisplayStyle.RealisticWithEdges;
-                    break;
-                case "rendering":
-                    displaystyle = DisplayStyle.Rendering;
-                    break;
-                case "shading":
-                    displaystyle = DisplayStyle.Shading;
-                    break;
-                case "shadingwithedges":
-                    displaystyle = DisplayStyle.ShadingWithEdges;
-                    break;
-                case "undefined":
-                    displaystyle = DisplayStyle.Undefined;
-                    break;
-                case "wireframe":
-                    displaystyle = DisplayStyle.Wireframe;
-                    break;
-                default:
-                    throw new Exception("Please input valid DisplayStyle");
-            }
+            displaystyle = (DisplayStyle)Enum.Parse(typeof(DisplayStyle), displayStyle);
 
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
             InternalView.DisplayStyle = displaystyle;
