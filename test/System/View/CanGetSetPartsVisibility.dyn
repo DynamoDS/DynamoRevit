@@ -1,0 +1,211 @@
+{
+  "Uuid": "048e1b9a-11fd-46fb-afa8-3e7b42fe12eb",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetSetPartsVisibility",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "{3D}",
+      "NodeType": "ExtensionNode",
+      "Id": "04188a1ceed54897bb03090427bd42d5",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2fdee38f4827408a9f178d0a72e43fa2",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.Partsvisibility",
+      "Id": "22843a82efe942b2b89437e4a115e69a",
+      "Inputs": [
+        {
+          "Id": "726bc2d7e4db424692ac0d71cdc8840b",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f841b74a636944318202506f11b828d7",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The visibility setting for parts in this view.\n\nView.Partsvisibility: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.SetPartsVisibility@string",
+      "Id": "dae4646a32f54e9580d717bf03415fa8",
+      "Inputs": [
+        {
+          "Id": "160e86a714c44075bfabaf9ab93351ea",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0b91b5c81cc441ecbc111d0021fbc5f1",
+          "Name": "partsVisibility",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0f19c6b704c346f993047aae82130d87",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "View.SetPartsVisibility (partsVisibility: string): View"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "ShowPartsAndOriginal",
+      "Id": "ec5c1c1e02b54545b4ba2dd5f7723d4e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ef617e85660a48b295253bdd3e1c3a96",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "2fdee38f4827408a9f178d0a72e43fa2",
+      "End": "160e86a714c44075bfabaf9ab93351ea",
+      "Id": "d7b7135c0a8941c4b1699aa4c4ab06d8"
+    },
+    {
+      "Start": "0f19c6b704c346f993047aae82130d87",
+      "End": "726bc2d7e4db424692ac0d71cdc8840b",
+      "Id": "2272c908601a4200aad9e198696b1072"
+    },
+    {
+      "Start": "ef617e85660a48b295253bdd3e1c3a96",
+      "End": "0b91b5c81cc441ecbc111d0021fbc5f1",
+      "Id": "7382a19e56374271a9f9b60d2e7de5f9"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.9130",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "04188a1ceed54897bb03090427bd42d5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 35.0,
+        "Y": 137.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.Partsvisibility",
+        "Id": "22843a82efe942b2b89437e4a115e69a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 620.0,
+        "Y": 178.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.SetPartsVisibility",
+        "Id": "dae4646a32f54e9580d717bf03415fa8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 292.0,
+        "Y": 178.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "ec5c1c1e02b54545b4ba2dd5f7723d4e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 35.0,
+        "Y": 245.50000000000003
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}
