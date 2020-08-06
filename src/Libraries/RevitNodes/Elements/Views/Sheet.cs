@@ -696,7 +696,7 @@ namespace Revit.Elements.Views
         /// <param name="sheetNumber">Sheet Number as String.</param>
         /// <param name="titleBlockFamilyType">Titleblock that will be assigned to created Sheet.</param>
         /// <param name="view">View to be placed on Sheet.</param>
-        /// <param name="location">iew's location on Sheet.</param>
+        /// <param name="location">View's location on Sheet.</param>
         /// <returns></returns>
         public static Sheet ByNameNumberTitleBlockViewAndLocation(string sheetName, string sheetNumber, FamilyType titleBlockFamilyType, View view, Autodesk.DesignScript.Geometry.Point location)
         {
@@ -717,12 +717,12 @@ namespace Revit.Elements.Views
         /// Duplicates A Sheet. 
         /// </summary>
         /// <param name="sheet">The Sheet to be Duplicated.</param>
-        /// <param name="DuplicateWithView">Set to true that Duplicate sheet with views.</param>
+        /// <param name="duplicateWithView">Set to true that Duplicate sheet with views.</param>
         /// <param name="viewDuplicateOption">Enter View Duplicate Option: 0 = Duplicate. 1 = AsDependent. 2 = WithDetailing.</param>
         /// <param name="prefix"></param>
         /// <param name="suffix"></param>
         /// <returns></returns>
-        public static Sheet DuplicateSheet(Sheet sheet, bool DuplicateWithView = false, int viewDuplicateOption = 0, string prefix = "", string suffix = "")
+        public static Sheet DuplicateSheet(Sheet sheet, bool duplicateWithView = false, int viewDuplicateOption = 0, string prefix = "", string suffix = "")
         {            
             if (sheet == null)
                 throw new ArgumentNullException(nameof(sheet));
@@ -770,7 +770,7 @@ namespace Revit.Elements.Views
                             var oldSheet = (element as ViewSheet).ToDSType(false) as Sheet;
                             if (oldSheet.SheetNumber.Equals(newSheetNumber))
                             {
-                                if ((DuplicateWithView && oldElements.Count() > 1) || (!DuplicateWithView && oldElements.Count() == 1))  
+                                if ((duplicateWithView && oldElements.Count() > 1) || (!duplicateWithView && oldElements.Count() == 1))  
                                 {
                                     newSheet = oldSheet;
                                     TraceElements.AddRange(oldElements);
@@ -823,7 +823,7 @@ namespace Revit.Elements.Views
                     DuplicateScheduleSheetInstance(sheet, newSheet);
 
                     // Duplicate Viewport in sheet and place on new sheet
-                    if (DuplicateWithView)
+                    if (duplicateWithView)
                         TraceElements.AddRange(DuplicateViewport(sheet, newSheet, Option, prefix, suffix));
                 }                
                                 
