@@ -426,6 +426,32 @@ namespace Revit.Elements.Views
         #region Duplicate
 
         /// <summary>
+        /// Identifies if this view can be duplicated with specified viewDuplicateOption
+        /// </summary>
+        /// <param name="viewDuplicateOption">Enter View Duplicate Option: 0 = Duplicate. 1 = AsDependent. 2 = WithDetailing.</param>
+        /// <returns></returns>
+        public Boolean CanViewBeDuplicated(int viewDuplicateOption = 0)
+        {
+            ViewDuplicateOption Option = 0;
+            switch (viewDuplicateOption)
+            {
+                case 0:
+                    Option = ViewDuplicateOption.Duplicate;
+                    break;
+                case 1:
+                    Option = ViewDuplicateOption.AsDependent;
+                    break;
+                case 2:
+                    Option = ViewDuplicateOption.WithDetailing;
+                    break;
+                default:
+                    throw new ArgumentException(Properties.Resources.ViewDuplicateOptionOutofRange);
+            }
+
+            return InternalView.CanViewBeDuplicated(Option);
+        }
+
+        /// <summary>
         /// Duplicates A view. 
         /// </summary>
         /// <param name="view">The View to be Duplicated</param>
@@ -696,6 +722,39 @@ namespace Revit.Elements.Views
         {
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
             InternalView.SketchPlane = sketchPlane.InternalSketchPlane;
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        #endregion
+
+        #region PartsVisibility
+        
+        /// <summary>
+        /// The visibility setting for parts in this view. 
+        /// </summary>
+        public string Partsvisibility
+        {
+            get
+            {
+                return InternalView.PartsVisibility.ToString();
+            }
+        }
+
+        /// <summary>
+        ///  Set PartsVisibility of view
+        /// </summary>
+        /// <param name="partsVisibility"></param>
+        /// <returns></returns>
+        public View SetPartsVisibility(string partsVisibility)
+        {
+            PartsVisibility parts;
+            parts = (PartsVisibility)Enum.Parse(typeof(PartsVisibility), partsVisibility);
+
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            var param = InternalView.get_Parameter(BuiltInParameter.VIEW_PARTS_VISIBILITY);
+            param.Set((int)parts);
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
 
             return this;

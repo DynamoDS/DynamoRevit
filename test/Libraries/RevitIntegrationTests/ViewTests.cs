@@ -231,5 +231,22 @@ namespace RevitSystemTests
             Assert.AreEqual(0.000, plane.Origin.Y, Tolerance);
             Assert.AreEqual(2.000, plane.Origin.Z, Tolerance);
         }
+
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void CanGetSetPartsVisibility()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\View\CanGetSetPartsVisibility.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var partsVisibility = GetPreviewValue("22843a82efe942b2b89437e4a115e69a");
+            Assert.AreEqual("ShowPartsAndOriginal", partsVisibility);
+        }
     }
 }
