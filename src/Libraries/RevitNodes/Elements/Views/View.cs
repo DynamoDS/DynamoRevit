@@ -188,7 +188,10 @@ namespace Revit.Elements.Views
         {
             get
             {
-                return InternalView.Discipline.ToString();
+                if (InternalView.HasViewDiscipline())
+                    return InternalView.Discipline.ToString();
+                else
+                    return null;
             }
         }
 
@@ -203,8 +206,16 @@ namespace Revit.Elements.Views
             viewDiscipline = (ViewDiscipline)Enum.Parse(typeof(ViewDiscipline), discipline);
 
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
-            var param = InternalView.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE);
-            param.Set((int)viewDiscipline);
+            if(InternalView.CanModifyViewDiscipline())
+            {
+                var param = InternalView.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE);
+                param.Set((int)viewDiscipline);
+            }
+            else
+            {
+                throw new Exception("Can't modify Discipline of this view");
+            }
+            
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
 
             return this;
@@ -221,7 +232,10 @@ namespace Revit.Elements.Views
         {
             get
             {
-                return InternalView.DisplayStyle.ToString();
+                if (InternalView.HasDisplayStyle())
+                    return InternalView.DisplayStyle.ToString();
+                else
+                    return null;
             }
         }
 
@@ -236,7 +250,12 @@ namespace Revit.Elements.Views
             displaystyle = (DisplayStyle)Enum.Parse(typeof(DisplayStyle), displayStyle);
 
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
-            InternalView.DisplayStyle = displaystyle;
+            if(InternalView.CanModifyDisplayStyle())
+                InternalView.DisplayStyle = displaystyle;
+            else
+            {
+                throw new Exception("Can't modify DisplayStyle of this view");
+            }
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
             return this;
         }
