@@ -555,4 +555,7 @@
   <data name="Sheet_ViewLocationMismatch" xml:space="preserve">
     <value>View count should Equals location count.</value>
   </data>
+  <data name="CantModifyInView" xml:space="preserve">
+    <value>Can't modify {0} of this view</value>
+  </data>
 </root>

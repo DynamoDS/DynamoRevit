@@ -133,6 +133,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t modify {0} of this view.
+        /// </summary>
+        internal static string CantModifyInView {
+            get {
+                return ResourceManager.GetString("CantModifyInView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must supply a Category..
         /// </summary>
         internal static string CategoryArgumentException {

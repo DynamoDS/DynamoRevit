@@ -213,7 +213,7 @@ namespace Revit.Elements.Views
             }
             else
             {
-                throw new Exception("Can't modify Discipline of this view");
+                throw new Exception(String.Format(Properties.Resources.CantModifyInView, "ViewDiscipline"));
             }
             
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
@@ -254,7 +254,7 @@ namespace Revit.Elements.Views
                 InternalView.DisplayStyle = displaystyle;
             else
             {
-                throw new Exception("Can't modify DisplayStyle of this view");
+                throw new Exception(String.Format(Properties.Resources.CantModifyInView, "DisplayStyle"));
             }
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
             return this;
