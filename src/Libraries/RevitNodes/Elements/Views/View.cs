@@ -188,7 +188,10 @@ namespace Revit.Elements.Views
         {
             get
             {
-                return InternalView.Discipline.ToString();
+                if (InternalView.HasViewDiscipline())
+                    return InternalView.Discipline.ToString();
+                else
+                    return null;
             }
         }
 
@@ -203,8 +206,16 @@ namespace Revit.Elements.Views
             viewDiscipline = (ViewDiscipline)Enum.Parse(typeof(ViewDiscipline), discipline);
 
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
-            var param = InternalView.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE);
-            param.Set((int)viewDiscipline);
+            if(InternalView.CanModifyViewDiscipline())
+            {
+                var param = InternalView.get_Parameter(BuiltInParameter.VIEW_DISCIPLINE);
+                param.Set((int)viewDiscipline);
+            }
+            else
+            {
+                throw new Exception(String.Format(Properties.Resources.CantModifyInView, "ViewDiscipline"));
+            }
+            
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
 
             return this;
@@ -221,7 +232,10 @@ namespace Revit.Elements.Views
         {
             get
             {
-                return InternalView.DisplayStyle.ToString();
+                if (InternalView.HasDisplayStyle())
+                    return InternalView.DisplayStyle.ToString();
+                else
+                    return null;
             }
         }
 
@@ -236,7 +250,12 @@ namespace Revit.Elements.Views
             displaystyle = (DisplayStyle)Enum.Parse(typeof(DisplayStyle), displayStyle);
 
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
-            InternalView.DisplayStyle = displaystyle;
+            if(InternalView.CanModifyDisplayStyle())
+                InternalView.DisplayStyle = displaystyle;
+            else
+            {
+                throw new Exception(String.Format(Properties.Resources.CantModifyInView, "DisplayStyle"));
+            }
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
             return this;
         }
@@ -562,7 +581,7 @@ namespace Revit.Elements.Views
             return newView;
         }
 
-        private static Boolean CheckUniqueViewName(String ViewName)
+        private static Boolean CheckUniqueViewName(String viewName)
         {
             bool IsUnique = true;
 
@@ -571,7 +590,7 @@ namespace Revit.Elements.Views
                 .ToList();
             foreach (var v in views)
             {
-                if (v.Name.Equals(ViewName))
+                if (v.Name.Equals(viewName))
                 {
                     IsUnique = false;
                     break;
@@ -623,16 +642,16 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Set CropBox Active status.
         /// </summary>
-        /// <param name="IsActive"></param>
+        /// <param name="isActive"></param>
         /// <returns></returns>
-        public View SetCropBoxActive(bool IsActive)
+        public View SetCropBoxActive(bool isActive)
         {
-            if (this.InternalView.CropBoxActive == IsActive)
+            if (this.InternalView.CropBoxActive == isActive)
                 return this;
             else
             {
                 RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
-                InternalView.CropBoxActive = IsActive;
+                InternalView.CropBoxActive = isActive;
                 RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
                 return this;
             }
@@ -641,16 +660,16 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Set CropBox visible status.
         /// </summary>
-        /// <param name="IsVisible"></param>
+        /// <param name="isVisible"></param>
         /// <returns></returns>
-        public View SetCropBoxVisible(bool IsVisible)
+        public View SetCropBoxVisible(bool isVisible)
         {
-            if (this.InternalView.CropBoxVisible == IsVisible)
+            if (this.InternalView.CropBoxVisible == isVisible)
                 return this;
             else
             {
                 RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
-                InternalView.CropBoxVisible = IsVisible;
+                InternalView.CropBoxVisible = isVisible;
                 RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
                 return this;
             }

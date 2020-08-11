@@ -149,7 +149,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// The "master" schedule that generates this ScheduleInstance. 
+        /// The schedule that generates this ScheduleInstance. 
         /// </summary>
         public Revit.Elements.Views.ScheduleView ScheduleView
         {
