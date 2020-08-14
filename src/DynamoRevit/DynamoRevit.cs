@@ -438,6 +438,8 @@ namespace Dynamo.Applications
             var revitUpdateManager = new DynUpdateManager(umConfig);
             revitUpdateManager.HostVersion = dynRevitVersion; // update RevitUpdateManager with the current DynamoRevit Version
             revitUpdateManager.HostName = "Dynamo Revit";
+            if(revitUpdateManager.Configuration is IDisableUpdateConfig)
+                (revitUpdateManager.Configuration as IDisableUpdateConfig).DisableUpdates=true;
 
             Debug.Assert(umConfig.DynamoLookUp != null);
 
