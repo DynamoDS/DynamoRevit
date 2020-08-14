@@ -1,0 +1,534 @@
+{
+  "Uuid": "f7c043a5-9ecd-43f5-bc70-09990cf6a752",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "canGetSetOverrideHiddenInActiveView",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "fd3a4d17-47e3-4720-b3a9-b8f28e80f6d1-0002d004"
+      ],
+      "Id": "2642644b2dbd44e9b35d27ec6ebdead7",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0ba21414bdbb4702b5335d16c1dccd99",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.IsHiddeninView@Revit.Elements.Views.View",
+      "Id": "d79db509ece946f390c686651f53b735",
+      "Inputs": [
+        {
+          "Id": "1541875788fc48f58a752d6544b12d13",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e284605315af46b48243e801a80bfa20",
+          "Name": "view",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9f2be0a6c55547e0875336c968a2ba88",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Element.IsHiddeninView (view: View): bool"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.OverrideInView@Revit.Filter.OverrideGraphicSettings,bool",
+      "Id": "64cdd9a8cd60435ca98b7e48eb60d969",
+      "Inputs": [
+        {
+          "Id": "8997385c7e0a4b44a8cce1a70cbb3cbc",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5069a5f2f0af4c8c9e930149f1be22a5",
+          "Name": "overrides",
+          "Description": "Override Graphics Settings.\n\nOverrideGraphicSettings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b5a3b5934859494cb1dc4819bd0f2e75",
+          "Name": "hide",
+          "Description": "If True given Element will be hidden.\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2b20e962bdcc40f784075bb884495392",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Override Elements Graphics Settings in Active View.\n\nElement.OverrideInView (overrides: OverrideGraphicSettings, hide: bool = false): Element"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Filter.OverrideGraphicSettings.ByProperties@DSCore.Color,DSCore.Color,DSCore.Color,DSCore.Color,Revit.Elements.FillPatternElement,Revit.Elements.FillPatternElement,Revit.Elements.LinePatternElement,Revit.Elements.LinePatternElement,int,int,int,string,bool",
+      "Id": "6fd45cb859294e4cb9dfe50ec45edf54",
+      "Inputs": [
+        {
+          "Id": "dbb176763d144f2f8b9db61470071f9b",
+          "Name": "cutFillColor",
+          "Description": "Fill color\n\nColor\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "983dbaad0f224715a95c609a96c75a00",
+          "Name": "projectionFillColor",
+          "Description": "Projection color\n\nColor\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "289f11be41fc4d3faec436fb99d899d9",
+          "Name": "cutLineColor",
+          "Description": "Cut line color\n\nColor\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3205d07c07734d8091c391a3f343753c",
+          "Name": "projectionLineColor",
+          "Description": "Projection line color\n\nColor\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2bbe169cc8ff46dfb66930eefc7651ec",
+          "Name": "cutFillPattern",
+          "Description": "Cut fill pattern\n\nFillPatternElement\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f5d4187be0be47dfafbd687c2b1d3fb1",
+          "Name": "projectionFillPattern",
+          "Description": "Projection fill pattern\n\nFillPatternElement\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bb313da542484bcbaf2702dce64da1a7",
+          "Name": "cutLinePattern",
+          "Description": "Cut line pattern\n\nLinePatternElement\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cbe56bb9995143b297eb063461e06317",
+          "Name": "projectionLinePattern",
+          "Description": "Projection line pattern\n\nLinePatternElement\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f525ba95f0e145c2b3e3a16b1c77a297",
+          "Name": "cutLineWeight",
+          "Description": "Cut line weight\n\nint\nDefault value : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "aa31a61e9eae4ad4bbcf24ff2d6895b4",
+          "Name": "projectionLineWeight",
+          "Description": "Projection line weight\n\nint\nDefault value : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5a0510cba939434db573bd83b949cced",
+          "Name": "transparency",
+          "Description": "Transparency as integer between 1-100.\n\nint\nDefault value : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e5030c322da64d508d611de0c586453d",
+          "Name": "detailLevel",
+          "Description": "Detail Level setting, ex: Coarse, Fine etc.\n\nstring\nDefault value : \"Undefined\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9921d31925434def9546971391092ecb",
+          "Name": "halftone",
+          "Description": "Halftone. True = halftone.\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "93b8e34d6851428096a34a816892fc86",
+          "Name": "overrides",
+          "Description": "Override Graphic Settings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create a OverrideGraphicSettings Element.\n\nOverrideGraphicSettings.ByProperties (cutFillColor: Color = null, projectionFillColor: Color = null, cutLineColor: Color = null, projectionLineColor: Color = null, cutFillPattern: FillPatternElement = null, projectionFillPattern: FillPatternElement = null, cutLinePattern: LinePatternElement = null, projectionLinePattern: LinePatternElement = null, cutLineWeight: int = -1, projectionLineWeight: int = -1, transparency: int = -1, detailLevel: string = \"Undefined\", halftone: bool = false): OverrideGraphicSettings"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.DetailLevel, DSRevitNodesUI",
+      "SelectedIndex": 2,
+      "SelectedString": "Medium",
+      "NodeType": "ExtensionNode",
+      "Id": "70fffd99002948e889d5503db97a8d8b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c5eaa72746ae4552ab9863a09f36a27f",
+          "Name": "Detail Level",
+          "Description": "The selected Detail Level",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "View Detail Level"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "50;",
+      "Id": "0047dd5d9e9f481680de4e3055f3d2b2",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3ff753339317443b9373acf43bece54b",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "f0deac6ea57e489c8e5797d57e119054",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "aefc7d21d0284f508271024f3a214301",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.OverridesInView",
+      "Id": "608bd27fa5d2484bab4354d96eb4979b",
+      "Inputs": [
+        {
+          "Id": "2d45912212ba489c993b2b3553304a93",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3f9d17ee4eec4b34bcca330ecc07c2ac",
+          "Name": "OverrideGraphicSettings",
+          "Description": "OverrideGraphicSettings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Element.OverridesInView: OverrideGraphicSettings"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "{3D}",
+      "NodeType": "ExtensionNode",
+      "Id": "ae766cd50b79453d80a72e828da0f4b9",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "04244a6490744fb78a231f82a72c5434",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0ba21414bdbb4702b5335d16c1dccd99",
+      "End": "8997385c7e0a4b44a8cce1a70cbb3cbc",
+      "Id": "9d0b1ac39f4e4343bb3340daf123ec99"
+    },
+    {
+      "Start": "2b20e962bdcc40f784075bb884495392",
+      "End": "2d45912212ba489c993b2b3553304a93",
+      "Id": "3d2dc5f6eda941a29ea40fa869caa1cb"
+    },
+    {
+      "Start": "2b20e962bdcc40f784075bb884495392",
+      "End": "1541875788fc48f58a752d6544b12d13",
+      "Id": "6581cd3222b44a5a9f75e703828183b0"
+    },
+    {
+      "Start": "93b8e34d6851428096a34a816892fc86",
+      "End": "5069a5f2f0af4c8c9e930149f1be22a5",
+      "Id": "e10bc08c0397438c94006ee0eb490e69"
+    },
+    {
+      "Start": "c5eaa72746ae4552ab9863a09f36a27f",
+      "End": "e5030c322da64d508d611de0c586453d",
+      "Id": "7a857970cedc45f586a02b3896e7676f"
+    },
+    {
+      "Start": "3ff753339317443b9373acf43bece54b",
+      "End": "5a0510cba939434db573bd83b949cced",
+      "Id": "9555ee3550644889a2c2db1a5c1da57a"
+    },
+    {
+      "Start": "aefc7d21d0284f508271024f3a214301",
+      "End": "b5a3b5934859494cb1dc4819bd0f2e75",
+      "Id": "5c67eb221c54427db5452d369113bd47"
+    },
+    {
+      "Start": "04244a6490744fb78a231f82a72c5434",
+      "End": "e284605315af46b48243e801a80bfa20",
+      "Id": "f6641b068fc24a1ca27667336d51184b"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.9130",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "2642644b2dbd44e9b35d27ec6ebdead7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 29.5,
+        "Y": 104.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.IsHiddeninView",
+        "Id": "d79db509ece946f390c686651f53b735",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 754.5,
+        "Y": 402.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.OverrideInView",
+        "Id": "64cdd9a8cd60435ca98b7e48eb60d969",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 428.5,
+        "Y": 308.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "OverrideGraphicSettings.ByProperties",
+        "Id": "6fd45cb859294e4cb9dfe50ec45edf54",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 29.5,
+        "Y": 239.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Detail Level",
+        "Id": "70fffd99002948e889d5503db97a8d8b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -252.5,
+        "Y": 569.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "0047dd5d9e9f481680de4e3055f3d2b2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -252.5,
+        "Y": 459.21333333333331
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Boolean",
+        "Id": "f0deac6ea57e489c8e5797d57e119054",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 29.5,
+        "Y": 659.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.OverridesInView",
+        "Id": "608bd27fa5d2484bab4354d96eb4979b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 754.5,
+        "Y": 294.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "ae766cd50b79453d80a72e828da0f4b9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 428.5,
+        "Y": 468.0
+      }
+    ],
+    "Annotations": [],
+    "X": -401.75464207869061,
+    "Y": -96.478340160759188,
+    "Zoom": 0.84761857199822688
+  }
+}

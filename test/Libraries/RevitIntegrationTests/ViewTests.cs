@@ -248,5 +248,24 @@ namespace RevitSystemTests
             var partsVisibility = GetPreviewValue("22843a82efe942b2b89437e4a115e69a");
             Assert.AreEqual("ShowPartsAndOriginal", partsVisibility);
         }
+
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void CanGetSetCategoryOverridesAndHidden()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\View\CanGetSetCategoryOverridesAndHidden.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var categoryOverrides = GetPreviewValue("66dc72c413124c57a8416d0f97bca1de") as Revit.Filter.OverrideGraphicSettings;
+            Assert.IsNotNull(categoryOverrides);
+
+            Assert.IsTrue((bool)GetPreviewValue("c07c8e0e57ab42769fa86b8df7b6056c"));
+        }
     }
 }

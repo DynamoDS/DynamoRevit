@@ -487,6 +487,29 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Gets graphic overrides for an element in the view. 
+        /// </summary>
+        public Revit.Filter.OverrideGraphicSettings OverridesInView
+        {
+            get
+            {
+                var view = DocumentManager.Instance.CurrentUIDocument.ActiveView;
+
+                return new Filter.OverrideGraphicSettings(view.GetElementOverrides(InternalElementId));
+            }
+        }
+
+        /// <summary>
+        /// Identifies if the element has been permanently hidden in the view.
+        /// </summary>
+        /// <param name="view"></param>
+        /// <returns></returns>
+        public bool IsHiddeninView(Revit.Elements.Views.View view)
+        {
+            return InternalElement.IsHidden(view.InternalView);
+        }
+
+        /// <summary>
         /// Set one of the element's parameters.
         /// </summary>
         /// <param name="parameterName">The name of the parameter to set.</param>
