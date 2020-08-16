@@ -401,6 +401,34 @@ namespace Revit.Elements.Views
             return this;
         }
 
+        /// <summary>
+        /// Gets graphic overrides for a category in view.
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public Revit.Filter.OverrideGraphicSettings GetCategoryOverrides(Category category)
+        {
+            Autodesk.Revit.DB.ElementId catId = category.InternalCategory.Id;
+            if (!this.InternalView.IsCategoryOverridable(catId))
+            {
+                throw new ArgumentException(Properties.Resources.CategoryVisibilityOverrideError);
+            }
+
+            return new Filter.OverrideGraphicSettings(InternalView.GetCategoryOverrides(catId));
+        }
+
+        /// <summary>
+        /// Checks if elements of the given category are set to be invisible (hidden) in this view. 
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public bool IsCategoryHidden(Category category)
+        {
+            Autodesk.Revit.DB.ElementId catId = category.InternalCategory.Id;
+
+            return InternalView.GetCategoryHidden(catId);
+        }
+
         #endregion
 
         #region Scale

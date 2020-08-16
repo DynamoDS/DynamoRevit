@@ -328,5 +328,24 @@ namespace RevitSystemTests
             Assert.AreEqual(expectedElementId, firstJoinedElementId);
             Assert.IsNull(nonIntersectingElementsResult);
         }
+
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void CanGetSetOverrideHiddenInActiveView()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\Element\canGetSetOverrideHiddenInActiveView.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var elementOverrides = GetPreviewValue("608bd27fa5d2484bab4354d96eb4979b") as Revit.Filter.OverrideGraphicSettings;
+            Assert.IsNotNull(elementOverrides);
+
+            Assert.IsTrue((bool)GetPreviewValue("d79db509ece946f390c686651f53b735"));
+        }
     }
 }
