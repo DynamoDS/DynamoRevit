@@ -1,0 +1,226 @@
+{
+  "Uuid": "f4050012-aa7b-4fd5-a1c8-f57c6716e7b4",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "HideCategoryTemporary",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "{3D}",
+      "NodeType": "ExtensionNode",
+      "Id": "fb9789edd248438f8c8f1f252a7e4e97",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ab1d7ad2d45d48398681f45112935ae6",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 659,
+      "SelectedString": "OST_Walls",
+      "NodeType": "ExtensionNode",
+      "Id": "baf837ce8b4e47e79ad29d13450b386b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "68a492ac1c164b44ad75f5ff46e45bb7",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.HideCategoriesTemporary@Revit.Elements.Category[]",
+      "Id": "b1da33f02c9649bc958299b723222a2c",
+      "Inputs": [
+        {
+          "Id": "1261ea0c2e9248728458e7d3423c2cf1",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c711a9f91dfa445e891158e38a97405e",
+          "Name": "categories",
+          "Description": "Category[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "15e351caa3934e6a8af85f06e44303d7",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "View.HideCategoriesTemporary (categories: Category[]): View"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.IsCategoryHidden@Revit.Elements.Category",
+      "Id": "3bd57778cfb14469bbacd88a81b59341",
+      "Inputs": [
+        {
+          "Id": "5aa17b5f55a04b8aa3ee1746c68acbaa",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1934c75c359149fdb71a406c7cb90af2",
+          "Name": "category",
+          "Description": "Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3f81ab29cff147358237b50a0ab38df4",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Checks if elements of the given category are set to be invisible (hidden) in this view.\n\nView.IsCategoryHidden (category: Category): bool"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ab1d7ad2d45d48398681f45112935ae6",
+      "End": "1261ea0c2e9248728458e7d3423c2cf1",
+      "Id": "61a03740cfda4fb08979729b942d698e"
+    },
+    {
+      "Start": "68a492ac1c164b44ad75f5ff46e45bb7",
+      "End": "c711a9f91dfa445e891158e38a97405e",
+      "Id": "6459d2055cee446e8697fdaae7e67e44"
+    },
+    {
+      "Start": "68a492ac1c164b44ad75f5ff46e45bb7",
+      "End": "1934c75c359149fdb71a406c7cb90af2",
+      "Id": "dd0608710a914639a058abe46b7f1397"
+    },
+    {
+      "Start": "15e351caa3934e6a8af85f06e44303d7",
+      "End": "5aa17b5f55a04b8aa3ee1746c68acbaa",
+      "Id": "d11d5ee06f4043de8445ee61e7a27d2c"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.9130",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "fb9789edd248438f8c8f1f252a7e4e97",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -41.5526231658157,
+        "Y": 303.85840280337322
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "baf837ce8b4e47e79ad29d13450b386b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -41.5526231658157,
+        "Y": 411.85840280337322
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.HideCategoriesTemporary",
+        "Id": "b1da33f02c9649bc958299b723222a2c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 224.4473768341843,
+        "Y": 344.85840280337322
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.IsCategoryHidden",
+        "Id": "3bd57778cfb14469bbacd88a81b59341",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 538.4473768341843,
+        "Y": 344.85840280337322
+      }
+    ],
+    "Annotations": [],
+    "X": 67.6034960296247,
+    "Y": -104.84516103686923,
+    "Zoom": 0.82269535937499993
+  }
+}

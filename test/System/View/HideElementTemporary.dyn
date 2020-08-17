@@ -1,0 +1,226 @@
+{
+  "Uuid": "f4050012-aa7b-4fd5-a1c8-f57c6716e7b4",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "HideElementTemporary",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "f49d6941-4497-43c3-9a52-fe4e5424e4e7-0002cf70"
+      ],
+      "Id": "23a73f372f6e43ad8cd560c2dfe48a9d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e89c6d5170d24464989d0104d105ad0f",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "{3D}",
+      "NodeType": "ExtensionNode",
+      "Id": "fb9789edd248438f8c8f1f252a7e4e97",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ab1d7ad2d45d48398681f45112935ae6",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.HideElementsTemporary@Revit.Elements.Element[]",
+      "Id": "1fe4f90c6cc044bd91bee7a61258f83b",
+      "Inputs": [
+        {
+          "Id": "3d6d32316b1942c8802ebca50f33f3e8",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "467d5887a87546fdbd3db306ac9757d4",
+          "Name": "elements",
+          "Description": "Element[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8ea155a63578434a937d70a5478b3a9a",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "View.HideElementsTemporary (elements: Element[]): View"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.IsHiddeninView@Revit.Elements.Views.View",
+      "Id": "0c1c543858f343b89d659f2b537b66dc",
+      "Inputs": [
+        {
+          "Id": "463b627e832a4db38874fc83f8d9ca5c",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ba5defed212d4970b47795a52f667136",
+          "Name": "view",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8f4a99df1a394c8690caeb6bc00fd6b5",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Identifies if the element has been permanently hidden in the view.\n\nElement.IsHiddeninView (view: View): bool"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e89c6d5170d24464989d0104d105ad0f",
+      "End": "467d5887a87546fdbd3db306ac9757d4",
+      "Id": "ebd4aa2e09a5486abcec5eb8740bb97a"
+    },
+    {
+      "Start": "e89c6d5170d24464989d0104d105ad0f",
+      "End": "463b627e832a4db38874fc83f8d9ca5c",
+      "Id": "45b00083b960408daeb14c27cc9eb1de"
+    },
+    {
+      "Start": "ab1d7ad2d45d48398681f45112935ae6",
+      "End": "3d6d32316b1942c8802ebca50f33f3e8",
+      "Id": "aac3916af3db4f13963c4243f37e7d1e"
+    },
+    {
+      "Start": "8ea155a63578434a937d70a5478b3a9a",
+      "End": "ba5defed212d4970b47795a52f667136",
+      "Id": "ed91d0d2f5a94dd781c32c8ba4c6baf0"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.9130",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "23a73f372f6e43ad8cd560c2dfe48a9d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -5.97621622313369,
+        "Y": 398.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "fb9789edd248438f8c8f1f252a7e4e97",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -5.97621622313369,
+        "Y": 290.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.HideElementsTemporary",
+        "Id": "1fe4f90c6cc044bd91bee7a61258f83b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 263.02378377686631,
+        "Y": 344.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.IsHiddeninView",
+        "Id": "0c1c543858f343b89d659f2b537b66dc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 568.02378377686637,
+        "Y": 318.0
+      }
+    ],
+    "Annotations": [],
+    "X": -215.71092475890208,
+    "Y": -218.15522409124623,
+    "Zoom": 0.97676875
+  }
+}
