@@ -3,6 +3,8 @@
 * Add some view properties - View.Discipline, View.SetDiscipline, View.DisplayStyle, View.SetDisplayStyle, View.SketchPlane, View.SetSketchPlane.
 * Add some view properties - View.CanViewBeDuplicated, View.Partsvisibility, View.SetPartsVisibility
 * Add some new nodes - View.GetCategoryOverrides, View.IsCategoryHidden, Element.OverridesInView, Element.IsHiddeninView
+* Update DynamoCore to 2.8.0 for Dynamo CPython3 engine.
+* Add some View Nodes - View.HideCategoriesTemporary, View.HideElementsTemporary, View.IsolateCategoriesTemporary, View.IsolateElementsTemporary.
 
 ## 0.2.18
 * Add a Category ScheduleOnSheet and its nodes - ScheduleOnSheet.Sheet, ScheduleOnSheet.Schedule, ScheduleOnSheet.BySheetViewLocation, ScheduleOnSheet.Location and ScheduleOnSheet.SetLocation

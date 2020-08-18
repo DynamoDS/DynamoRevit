@@ -431,6 +431,94 @@ namespace Revit.Elements.Views
 
         #endregion
 
+        #region Hide Temporary
+
+        /// <summary>
+        /// Set categories to be temporarily hidden in the view. 
+        /// </summary>
+        /// <param name="categories"></param>
+        /// <returns></returns>
+        public Revit.Elements.Views.View HideCategoriesTemporary(IEnumerable<Category> categories)
+        {
+            List<ElementId> CatIds = new List<ElementId>();
+            foreach (var cat in categories)
+            {
+                CatIds.Add(cat.InternalCategory.Id);
+            }
+
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            this.InternalView.HideCategoriesTemporary(CatIds);
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Set elements to be temporarily hidden in the view. To hide a group completely, you must also include all members of all groups and nested groups in your input. 
+        /// </summary>
+        /// <param name="elements"></param>
+        /// <returns></returns>
+        public Revit.Elements.Views.View HideElementsTemporary(IEnumerable<Element> elements)
+        {
+            List<ElementId> EleIds = new List<ElementId>();
+            foreach (var ele in elements)
+            {
+                EleIds.Add(ele.InternalElement.Id);
+            }
+
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            this.InternalView.HideElementsTemporary(EleIds);
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        #endregion
+
+        #region Isolate Temporary
+
+        /// <summary>
+        /// Set categories to be temporarily isolated in the view.
+        /// </summary>
+        /// <param name="categories"></param>
+        /// <returns></returns>
+        public Revit.Elements.Views.View IsolateCategoriesTemporary(IEnumerable<Category> categories)
+        {
+            List<ElementId> CatIds = new List<ElementId>();
+            foreach (var cat in categories)
+            {
+                CatIds.Add(cat.InternalCategory.Id);
+            }
+
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            this.InternalView.IsolateCategoriesTemporary(CatIds);
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Set elements to be temporarily isolated in the view. To isolate a group completely, you must also include all members of all groups and nested groups in your input. 
+        /// </summary>
+        /// <param name="elements"></param>
+        /// <returns></returns>
+        public Revit.Elements.Views.View IsolateElementsTemporary(IEnumerable<Element> elements)
+        {
+            List<ElementId> EleIds = new List<ElementId>();
+            foreach (var ele in elements)
+            {
+                EleIds.Add(ele.InternalElement.Id);
+            }
+
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            this.InternalView.IsolateElementsTemporary(EleIds);
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        #endregion
+
         #region Scale
 
         /// <summary>

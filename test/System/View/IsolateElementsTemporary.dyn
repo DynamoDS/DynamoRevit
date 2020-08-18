@@ -1,0 +1,168 @@
+{
+  "Uuid": "3ded9653-2ba3-4948-bfcb-09ada8dfd185",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "IsolateElementsTemporary",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "{3D}",
+      "NodeType": "ExtensionNode",
+      "Id": "6aac09eae7f14b0d885b161d9d8f42cb",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "98c6ed2791d14397b3c7226c8f3d52da",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementsSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "f49d6941-4497-43c3-9a52-fe4e5424e4e7-0002cf70",
+        "fd3a4d17-47e3-4720-b3a9-b8f28e80f6d1-0002d004"
+      ],
+      "Id": "ee6ec85881ae4d30acf27622b0f76b69",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2d394d90b5544d4aa15eb0b1ca510295",
+          "Name": "Elements",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Views.View.IsolateElementsTemporary@Revit.Elements.Element[]",
+      "Id": "f516cb1302f549e3b5eb62b80a7688a7",
+      "Inputs": [
+        {
+          "Id": "65f05804cae44f828e978de1c6062988",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a362c94c99e64e7d9f535a5cb28d5171",
+          "Name": "elements",
+          "Description": "Element[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "77b22c6ef16f4609b869b7379b3fae3a",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "View.IsolateElementsTemporary (elements: Element[]): View"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "98c6ed2791d14397b3c7226c8f3d52da",
+      "End": "65f05804cae44f828e978de1c6062988",
+      "Id": "75e166b72060495688a006d24c5ed862"
+    },
+    {
+      "Start": "2d394d90b5544d4aa15eb0b1ca510295",
+      "End": "a362c94c99e64e7d9f535a5cb28d5171",
+      "Id": "c356c83726d2427ea4b9c7e3929a4fd1"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.1.9130",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "6aac09eae7f14b0d885b161d9d8f42cb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 173.0,
+        "Y": 134.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Elements",
+        "Id": "ee6ec85881ae4d30acf27622b0f76b69",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 173.0,
+        "Y": 242.00000000000003
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "View.IsolateElementsTemporary",
+        "Id": "f516cb1302f549e3b5eb62b80a7688a7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 498.0,
+        "Y": 175.0
+      }
+    ],
+    "Annotations": [],
+    "X": -121.0,
+    "Y": -29.0,
+    "Zoom": 1.0
+  }
+}

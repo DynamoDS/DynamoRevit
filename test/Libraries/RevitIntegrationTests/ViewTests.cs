@@ -267,5 +267,77 @@ namespace RevitSystemTests
 
             Assert.IsTrue((bool)GetPreviewValue("c07c8e0e57ab42769fa86b8df7b6056c"));
         }
+
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void HideElementTemporary()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\View\HideElementTemporary.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var view = GetPreviewValue("1fe4f90c6cc044bd91bee7a61258f83b") as Revit.Elements.Views.View;
+            Assert.IsNotNull(view);
+            
+            Assert.IsFalse((bool)GetPreviewValue("0c1c543858f343b89d659f2b537b66dc"));
+        }
+
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void HideCategoryTemporary()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\View\HideCategoryTemporary.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var view = GetPreviewValue("b1da33f02c9649bc958299b723222a2c") as Revit.Elements.Views.View;
+            Assert.IsNotNull(view);
+
+            Assert.IsFalse((bool)GetPreviewValue("3bd57778cfb14469bbacd88a81b59341"));
+        }
+
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void IsolateCategoriesTemporary()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\View\IsolateCategoriesTemporary.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var view = GetPreviewValue("4cf1acfe08fa406b9fa6977185ef07ac") as Revit.Elements.Views.View;
+            Assert.IsNotNull(view);
+        }
+
+        [Test]
+        [TestModel(@".\element.rvt")]
+        public void IsolateElementsTemporary()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\View\IsolateElementsTemporary.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var view = GetPreviewValue("f516cb1302f549e3b5eb62b80a7688a7") as Revit.Elements.Views.View;
+            Assert.IsNotNull(view);
+        }
     }
 }
