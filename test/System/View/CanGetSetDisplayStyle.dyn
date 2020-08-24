@@ -100,16 +100,17 @@
       "Description": "Set DisplayStyle of View.\n\nView.SetDisplayStyle (displayStyle: string): View"
     },
     {
-      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
-      "NodeType": "StringInputNode",
-      "InputValue": "Shading",
-      "Id": "fdbbad04fd4c4a42a829ab79d5933ece",
+      "ConcreteType": "DSRevitNodesUI.ViewDisplayStyles, DSRevitNodesUI",
+      "SelectedIndex": 5,
+      "SelectedString": "Shading",
+      "NodeType": "ExtensionNode",
+      "Id": "95515c19f0a1493c99225268e8c051ed",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "377dd919bff8420290cf35183062f15c",
-          "Name": "",
-          "Description": "String",
+          "Id": "6c1ad31f3fa04471a9e340720448be48",
+          "Name": "DisplayStyle",
+          "Description": "The selected DisplayStyle",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -117,7 +118,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Creates a string."
+      "Description": "View DisplayStyle"
     }
   ],
   "Connectors": [
@@ -132,9 +133,9 @@
       "Id": "d386eb9adf144d028600566f04293eb0"
     },
     {
-      "Start": "377dd919bff8420290cf35183062f15c",
+      "Start": "6c1ad31f3fa04471a9e340720448be48",
       "End": "cf626768cc854082bdc6094330f42315",
-      "Id": "6037ca5324b546519eee428ae9288aa8"
+      "Id": "be97cdfe7baf41708659688753488d15"
     }
   ],
   "Dependencies": [],
@@ -145,7 +146,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.1.9130",
+      "Version": "2.8.0.2195",
       "RunType": "Manual",
       "RunPeriod": "1000"
     },
@@ -194,13 +195,13 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "String",
-        "Id": "fdbbad04fd4c4a42a829ab79d5933ece",
+        "Name": "View DisplayStyles",
+        "Id": "95515c19f0a1493c99225268e8c051ed",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 49.0,
-        "Y": 270.5
+        "X": 26.0,
+        "Y": 279.0
       }
     ],
     "Annotations": [],

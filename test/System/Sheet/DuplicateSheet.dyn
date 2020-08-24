@@ -11,7 +11,7 @@
   "Nodes": [
     {
       "ConcreteType": "DSRevitNodesUI.Sheets, DSRevitNodesUI",
-      "SelectedIndex": 6,
+      "SelectedIndex": 5,
       "SelectedString": "Title Sheet",
       "NodeType": "ExtensionNode",
       "Id": "129af38fda2a4a96b1ccd3a009f89501",
@@ -33,7 +33,7 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.Views.Sheet.DuplicateSheet@Revit.Elements.Views.Sheet,bool,bool,int,string,string",
+      "FunctionSignature": "Revit.Elements.Views.Sheet.DuplicateSheet@Revit.Elements.Views.Sheet,bool,bool,string,string,string",
       "Id": "a5f649718c57476ca77807b153ebb4b9",
       "Inputs": [
         {
@@ -66,7 +66,7 @@
         {
           "Id": "bd69198a52eb479f93ac9de7e09f8bbd",
           "Name": "viewDuplicateOption",
-          "Description": "Enter View Duplicate Option: 0 = Duplicate. 1 = AsDependent. 2 = WithDetailing.\n\nint\nDefault value : 0",
+          "Description": "Enter View Duplicate Option: Duplicate, AsDependent or WithDetailing.\n\nstring\nDefault value : \"Duplicate\"",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -84,7 +84,7 @@
         {
           "Id": "90fc8d96793543d1a81b7c7c21c7eda7",
           "Name": "suffix",
-          "Description": "string\nDefault value : \"\"",
+          "Description": "When prefix and suffix are both empty, suffix will set a default value - \" - Copy\".\n\nstring\nDefault value : \"\"",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -103,7 +103,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Duplicates A Sheet.\n\nSheet.DuplicateSheet (sheet: Sheet, duplicateWithContents: bool = false, duplicateWithView: bool = false, viewDuplicateOption: int = 0, prefix: string = \"\", suffix: string = \"\"): Sheet"
+      "Description": "Duplicates A Sheet.\n\nSheet.DuplicateSheet (sheet: Sheet, duplicateWithContents: bool = false, duplicateWithView: bool = false, viewDuplicateOption: string = \"Duplicate\", prefix: string = \"\", suffix: string = \"\"): Sheet"
     },
     {
       "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
@@ -174,6 +174,27 @@
       ],
       "Replication": "Disabled",
       "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ViewDuplicateOptions, DSRevitNodesUI",
+      "SelectedIndex": 1,
+      "SelectedString": "Duplicate",
+      "NodeType": "ExtensionNode",
+      "Id": "85d6adc03ce14cc7b7aa85c9df14c3a2",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3980e5845cf64a21abbea32cb24e2c63",
+          "Name": "DuplicateOption",
+          "Description": "The selected DuplicateOption",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "View Duplicate Option"
     }
   ],
   "Connectors": [
@@ -201,18 +222,16 @@
       "Start": "4aba2c84fa4e46bfbb3f3d20182827c8",
       "End": "3fa1dd722ec14c9f85cb3cc6bac34e1b",
       "Id": "64dc66b9dd94447aabc5b6a119d3b46a"
+    },
+    {
+      "Start": "3980e5845cf64a21abbea32cb24e2c63",
+      "End": "bd69198a52eb479f93ac9de7e09f8bbd",
+      "Id": "f749810c0c434698be22bc6fcddbb326"
     }
   ],
   "Dependencies": [],
   "NodeLibraryDependencies": [],
-  "Bindings": [
-    {
-      "NodeId": "a5f64971-8c57-476c-a778-07b153ebb4b9",
-      "Binding": {
-        "DuplicateSheet_InClassDecl-1_InFunctionScope-1_Instance0_a5f64971-8c57-476c-a778-07b153ebb4b9": "PFNPQVAtRU5WOkVudmVsb3BlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOlNPQVAtRU5DPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1sbnM6U09BUC1FTlY9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpjbHI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc29hcC9lbmNvZGluZy9jbHIvMS4wIiBTT0FQLUVOVjplbmNvZGluZ1N0eWxlPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyI+DQo8U09BUC1FTlY6Qm9keT4NCjxhMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXIgaWQ9InJlZi0xIiB4bWxuczphMT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9jbHIvbnNhc3NlbS9Qcm90b0NvcmUvUHJvdG9Db3JlJTJDJTIwVmVyc2lvbiUzRDIuOC4wLjIxOTUlMkMlMjBDdWx0dXJlJTNEbmV1dHJhbCUyQyUyMFB1YmxpY0tleVRva2VuJTNEbnVsbCI+DQo8TnVtYmVyT2ZFbGVtZW50cz4xPC9OdW1iZXJPZkVsZW1lbnRzPg0KPEJhc2UtMF9IYXNEYXRhPnRydWU8L0Jhc2UtMF9IYXNEYXRhPg0KPEJhc2UtMF9EYXRhIGlkPSJyZWYtMyI+UEZOUFFWQXRSVTVXT2tWdWRtVnNiM0JsSUhodGJHNXpPbmh6YVQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0V0YVc1emRHRnVZMlVpSUhodGJHNXpPbmh6WkQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0VpSUhodGJHNXpPbE5QUVZBdFJVNURQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SWdlRzFzYm5NNlUwOUJVQzFGVGxZOUltaDBkSEE2THk5elkyaGxiV0Z6TG5odGJITnZZWEF1YjNKbkwzTnZZWEF2Wlc1MlpXeHZjR1V2SWlCNGJXeHVjenBqYkhJOUltaDBkSEE2THk5elkyaGxiV0Z6TG0xcFkzSnZjMjltZEM1amIyMHZjMjloY0M5bGJtTnZaR2x1Wnk5amJISXZNUzR3SWlCVFQwRlFMVVZPVmpwbGJtTnZaR2x1WjFOMGVXeGxQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SStEUW84VTA5QlVDMUZUbFk2UW05a2VUNE5DanhoTVRwTmRXeDBhWEJzWlZObGNtbGhiR2w2WVdKc1pVbGtJR2xrUFNKeVpXWXRNU0lnZUcxc2JuTTZZVEU5SW1oMGRIQTZMeTl6WTJobGJXRnpMbTFwWTNKdmMyOW1kQzVqYjIwdlkyeHlMMjV6WVhOelpXMHZVbVYyYVhSVFpYSjJhV05sY3k1UVpYSnphWE4wWlc1alpTOVNaWFpwZEZObGNuWnBZMlZ6SlRKREpUSXdWbVZ5YzJsdmJpVXpSREl1Tmk0eExqazJNREFsTWtNbE1qQkRkV3gwZFhKbEpUTkVibVYxZEhKaGJDVXlReVV5TUZCMVlteHBZMHRsZVZSdmEyVnVKVE5FYm5Wc2JDSStEUW84Ym5WdFltVnlUMlpGYkdWdFpXNTBjejQyUEM5dWRXMWlaWEpQWmtWc1pXMWxiblJ6UGcwS1BITjBjbWx1WjBsRUxUQWdhV1E5SW5KbFppMHpJajQ0Tm1VM09EWTFaQzFoTTJNMExUUmtNekV0T0dWbVlpMWhNRGt3TkRFMFpHVmxabVV0TURBeE1EbGhaVE04TDNOMGNtbHVaMGxFTFRBK0RRbzhhVzUwU1VRdE1ENHhNRGc0TWpJM1BDOXBiblJKUkMwd1BnMEtQSE4wY21sdVowbEVMVEVnYVdROUluSmxaaTAwSWo0NE5tVTNPRFkxWkMxaE0yTTBMVFJrTXpFdE9HVm1ZaTFoTURrd05ERTBaR1ZsWm1VdE1EQXhNRGxoWmpNOEwzTjBjbWx1WjBsRUxURStEUW84YVc1MFNVUXRNVDR4TURnNE1qUXpQQzlwYm5SSlJDMHhQZzBLUEhOMGNtbHVaMGxFTFRJZ2FXUTlJbkpsWmkwMUlqNDRObVUzT0RZMVpDMWhNMk0wTFRSa016RXRPR1ZtWWkxaE1Ea3dOREUwWkdWbFptVXRNREF4TURsaFptSThMM04wY21sdVowbEVMVEkrRFFvOGFXNTBTVVF0TWo0eE1EZzRNalV4UEM5cGJuUkpSQzB5UGcwS1BITjBjbWx1WjBsRUxUTWdhV1E5SW5KbFppMDJJajQ0Tm1VM09EWTFaQzFoTTJNMExUUmtNekV0T0dWbVlpMWhNRGt3TkRFMFpHVmxabVV0TURBeE1EbGlNRE04TDNOMGNtbHVaMGxFTFRNK0RRbzhhVzUwU1VRdE16NHhNRGc0TWpVNVBDOXBiblJKUkMwelBnMEtQSE4wY21sdVowbEVMVFFnYVdROUluSmxaaTAzSWo0NE5tVTNPRFkxWkMxaE0yTTBMVFJrTXpFdE9HVm1ZaTFoTURrd05ERTBaR1ZsWm1VdE1EQXhNRGxpTUdJOEwzTjBjbWx1WjBsRUxUUStEUW84YVc1MFNVUXRORDR4TURnNE1qWTNQQzlwYm5SSlJDMDBQZzBLUEhOMGNtbHVaMGxFTFRVZ2FXUTlJbkpsWmkwNElqNDRObVUzT0RZMVpDMWhNMk0wTFRSa016RXRPR1ZtWWkxaE1Ea3dOREUwWkdWbFptVXRNREF4TURsaU1UTThMM04wY21sdVowbEVMVFUrRFFvOGFXNTBTVVF0TlQ0eE1EZzRNamMxUEM5cGJuUkpSQzAxUGcwS1BDOWhNVHBOZFd4MGFYQnNaVk5sY21saGJHbDZZV0pzWlVsa1BnMEtQQzlUVDBGUUxVVk9WanBDYjJSNVBnMEtQQzlUVDBGUUxVVk9WanBGYm5abGJHOXdaVDROQ2c9PTwvQmFzZS0wX0RhdGE+DQo8QmFzZS0wX0hhc05lc3RlZERhdGE+ZmFsc2U8L0Jhc2UtMF9IYXNOZXN0ZWREYXRhPg0KPC9hMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXI+DQo8L1NPQVAtRU5WOkJvZHk+DQo8L1NPQVAtRU5WOkVudmVsb3BlPg0K"
-      }
-    }
-  ],
+  "Bindings": [],
   "View": {
     "Dynamo": {
       "ScaleFactor": 1.0,
@@ -236,54 +255,64 @@
     },
     "NodeViews": [
       {
-        "ShowGeometry": true,
-        "Name": "Sheets",
         "Id": "129af38fda2a4a96b1ccd3a009f89501",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "Sheets",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 93.25,
         "Y": 136.0
       },
       {
-        "ShowGeometry": true,
-        "Name": "Sheet.DuplicateSheet",
         "Id": "a5f649718c57476ca77807b153ebb4b9",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "Sheet.DuplicateSheet",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 339.25,
         "Y": 202.0
       },
       {
-        "ShowGeometry": true,
-        "Name": "String",
         "Id": "b35ba7c0df714594bf5507c5c7fca188",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "String",
+        "ShowGeometry": true,
         "Excluded": false,
-        "X": 93.25,
-        "Y": 329.0
+        "X": 106.30637982195844,
+        "Y": 410.89910979228489
       },
       {
-        "ShowGeometry": true,
-        "Name": "Sheet.Views",
         "Id": "1c6ca6cc7c2b47fdb200ba3175886864",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "Sheet.Views",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 710.25,
         "Y": 202.0
       },
       {
-        "ShowGeometry": true,
-        "Name": "Boolean",
         "Id": "e9718d850a20480fab2029dec15db719",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "Boolean",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 93.25,
         "Y": 245.00000000000003
+      },
+      {
+        "Id": "85d6adc03ce14cc7b7aa85c9df14c3a2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "View Duplicate Options",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 27.231454005934665,
+        "Y": 315.91097922848667
       }
     ],
     "Annotations": [],

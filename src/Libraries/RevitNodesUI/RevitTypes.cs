@@ -336,4 +336,64 @@ namespace DSRevitNodesUI
         public ScheduleFilterType(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
             : base(outputName, typeof(Autodesk.Revit.DB.ScheduleFilterType), inPorts, outPorts) { }
     }
+
+    [NodeName("View Duplicate Options")]
+    [NodeCategory("Revit.View")]
+    [NodeDescription("ViewDuplicateOptionsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class ViewDuplicateOptions : CustomGenericEnumerationDropDown
+    {
+        private const string outputName = "DuplicateOption";
+
+        public ViewDuplicateOptions() : base(outputName, typeof(Autodesk.Revit.DB.ViewDuplicateOption)) { }
+
+        [JsonConstructor]
+        public ViewDuplicateOptions(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(outputName, typeof(Autodesk.Revit.DB.ViewDuplicateOption), inPorts, outPorts) { }
+    }
+
+    [NodeName("View Disciplines")]
+    [NodeCategory("Revit.View")]
+    [NodeDescription("ViewDisciplinesDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class ViewDisciplines : CustomGenericEnumerationDropDown
+    {
+        private const string outputName = "Discipline";
+
+        public ViewDisciplines() : base(outputName, typeof(Autodesk.Revit.DB.ViewDiscipline)) { }
+
+        [JsonConstructor]
+        public ViewDisciplines(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(outputName, typeof(Autodesk.Revit.DB.ViewDiscipline), inPorts, outPorts) { }
+    }
+
+    [NodeName("View DisplayStyles")]
+    [NodeCategory("Revit.View")]
+    [NodeDescription("ViewDisplayStylesDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class ViewDisplayStyles : CustomGenericEnumerationDropDown
+    {
+        private const string outputName = "DisplayStyle";
+
+        public ViewDisplayStyles() : base(outputName, typeof(Autodesk.Revit.DB.DisplayStyle)) { }
+
+        [JsonConstructor]
+        public ViewDisplayStyles(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(outputName, typeof(Autodesk.Revit.DB.DisplayStyle), inPorts, outPorts) { }
+    }
+
+    [NodeName("View PartsVisibilitys")]
+    [NodeCategory("Revit.View")]
+    [NodeDescription("ViewPartsVisibilitysDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class ViewPartsVisibilitys : CustomGenericEnumerationDropDown
+    {
+        private const string outputName = "PartsVisibility";
+
+        public ViewPartsVisibilitys() : base(outputName, typeof(Autodesk.Revit.DB.PartsVisibility)) { }
+
+        [JsonConstructor]
+        public ViewPartsVisibilitys(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(outputName, typeof(Autodesk.Revit.DB.PartsVisibility), inPorts, outPorts) { }
+    }
 }

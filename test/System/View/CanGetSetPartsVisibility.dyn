@@ -97,19 +97,20 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "View.SetPartsVisibility (partsVisibility: string): View"
+      "Description": "Set PartsVisibility of view\n\nView.SetPartsVisibility (partsVisibility: string): View"
     },
     {
-      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
-      "NodeType": "StringInputNode",
-      "InputValue": "ShowPartsAndOriginal",
-      "Id": "ec5c1c1e02b54545b4ba2dd5f7723d4e",
+      "ConcreteType": "DSRevitNodesUI.ViewPartsVisibilitys, DSRevitNodesUI",
+      "SelectedIndex": 1,
+      "SelectedString": "ShowPartsAndOriginal",
+      "NodeType": "ExtensionNode",
+      "Id": "c23e2f54c009414683d2e1cd1241a8f7",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "ef617e85660a48b295253bdd3e1c3a96",
-          "Name": "",
-          "Description": "String",
+          "Id": "56e2f7beab33472991f15986770c6019",
+          "Name": "PartsVisibility",
+          "Description": "The selected PartsVisibility",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -117,7 +118,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Creates a string."
+      "Description": "View PartsVisibility"
     }
   ],
   "Connectors": [
@@ -132,9 +133,9 @@
       "Id": "2272c908601a4200aad9e198696b1072"
     },
     {
-      "Start": "ef617e85660a48b295253bdd3e1c3a96",
+      "Start": "56e2f7beab33472991f15986770c6019",
       "End": "0b91b5c81cc441ecbc111d0021fbc5f1",
-      "Id": "7382a19e56374271a9f9b60d2e7de5f9"
+      "Id": "871485652d10445cbbf8cee8f2215bae"
     }
   ],
   "Dependencies": [],
@@ -145,7 +146,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.1.9130",
+      "Version": "2.8.0.2195",
       "RunType": "Automatic",
       "RunPeriod": "1000"
     },
@@ -194,13 +195,13 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "String",
-        "Id": "ec5c1c1e02b54545b4ba2dd5f7723d4e",
+        "Name": "View PartsVisibilitys",
+        "Id": "c23e2f54c009414683d2e1cd1241a8f7",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 35.0,
-        "Y": 245.50000000000003
+        "X": -39.0,
+        "Y": 248.0
       }
     ],
     "Annotations": [],

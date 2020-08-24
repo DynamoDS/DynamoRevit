@@ -826,11 +826,47 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View Discipline..
+        /// </summary>
+        internal static string ViewDisciplinesDescription {
+            get {
+                return ResourceManager.GetString("ViewDisciplinesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View DisplayStyle..
+        /// </summary>
+        internal static string ViewDisplayStylesDescription {
+            get {
+                return ResourceManager.GetString("ViewDisplayStylesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Duplicate Option..
+        /// </summary>
+        internal static string ViewDuplicateOptionsDescription {
+            get {
+                return ResourceManager.GetString("ViewDuplicateOptionsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All view family types in the current document..
         /// </summary>
         internal static string ViewFamilyTypesDescription {
             get {
                 return ResourceManager.GetString("ViewFamilyTypesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View PartsVisibility..
+        /// </summary>
+        internal static string ViewPartsVisibilitysDescription {
+            get {
+                return ResourceManager.GetString("ViewPartsVisibilitysDescription", resourceCulture);
             }
         }
         
