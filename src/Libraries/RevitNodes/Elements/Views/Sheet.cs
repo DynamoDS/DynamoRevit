@@ -719,30 +719,16 @@ namespace Revit.Elements.Views
         /// <param name="sheet">The Sheet to be Duplicated.</param>
         /// <param name="duplicateWithContents">Set to true that Duplicate sheet with contents</param>
         /// <param name="duplicateWithView">Set to true that Duplicate sheet with views.</param>
-        /// <param name="viewDuplicateOption">Enter View Duplicate Option: 0 = Duplicate. 1 = AsDependent. 2 = WithDetailing.</param>
+        /// <param name="viewDuplicateOption">Enter View Duplicate Option: Duplicate, AsDependent or WithDetailing.</param>
         /// <param name="prefix"></param>
         /// <param name="suffix">When prefix and suffix are both empty, suffix will set a default value - " - Copy".</param>
         /// <returns></returns>
-        public static Sheet DuplicateSheet(Sheet sheet, bool duplicateWithContents = false, bool duplicateWithView = false, int viewDuplicateOption = 0, string prefix = "", string suffix = "")
+        public static Sheet DuplicateSheet(Sheet sheet, bool duplicateWithContents = false, bool duplicateWithView = false, string viewDuplicateOption = "Duplicate", string prefix = "", string suffix = "")
         {            
             if (sheet == null)
                 throw new ArgumentNullException(nameof(sheet));
 
-            ViewDuplicateOption Option = 0;
-            switch (viewDuplicateOption)
-            {
-                case 0:
-                    Option = ViewDuplicateOption.Duplicate;
-                    break;
-                case 1:
-                    Option = ViewDuplicateOption.AsDependent;
-                    break;
-                case 2:
-                    Option = ViewDuplicateOption.WithDetailing;
-                    break;
-                default:
-                    throw new ArgumentException(Properties.Resources.ViewDuplicateOptionOutofRange);
-            }
+            ViewDuplicateOption Option = (ViewDuplicateOption)Enum.Parse(typeof(ViewDuplicateOption), viewDuplicateOption);
 
             if (String.IsNullOrEmpty(prefix) && String.IsNullOrEmpty(suffix))
             {

@@ -55,7 +55,7 @@ namespace RevitNodesTests.Elements.Views
             var testView = CreateTestView();
             var newName = "Test" + testView.Name;
 
-            var duplicateView = View.DuplicateView(testView, 0, "Test");
+            var duplicateView = View.DuplicateView(testView, "Duplicate", "Test");
 
             Assert.NotNull(duplicateView);
             Assert.AreEqual(duplicateView.Name, newName);
@@ -67,7 +67,7 @@ namespace RevitNodesTests.Elements.Views
             var testView = CreateTestView();
 
             Assert.Throws<System.ArgumentNullException>(() => View.DuplicateView(null));
-            Assert.Throws<System.ArgumentException>(() => View.DuplicateView(testView, 3));
+            Assert.Throws<System.ArgumentException>(() => View.DuplicateView(testView, "duplicate"));
 
             var testSheet = CreateTestSheet();
             Assert.Throws<System.ArgumentException>(() => View.DuplicateView(testSheet));

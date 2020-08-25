@@ -97,19 +97,20 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Set Discipline of View\n\nView.SetDiscipline (discipline: string): View"
+      "Description": "Set Discipline of View.\n\nView.SetDiscipline (discipline: string): View"
     },
     {
-      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
-      "NodeType": "StringInputNode",
-      "InputValue": "Structural",
-      "Id": "53ec34aca296415ea0d971e784a46a5d",
+      "ConcreteType": "DSRevitNodesUI.ViewDisciplines, DSRevitNodesUI",
+      "SelectedIndex": 5,
+      "SelectedString": "Structural",
+      "NodeType": "ExtensionNode",
+      "Id": "4b404f0f45d24a138cb881ef6920fc90",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "dac69db5190b46158ab462a209922596",
-          "Name": "",
-          "Description": "String",
+          "Id": "64f1ecb75b82437b94a5c55ffb5f6982",
+          "Name": "Discipline",
+          "Description": "The selected Discipline",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -117,7 +118,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Creates a string."
+      "Description": "View Discipline"
     }
   ],
   "Connectors": [
@@ -132,9 +133,9 @@
       "Id": "6602c90aeec248c9b0fd95708561a837"
     },
     {
-      "Start": "dac69db5190b46158ab462a209922596",
+      "Start": "64f1ecb75b82437b94a5c55ffb5f6982",
       "End": "e072c27a52dc4badb20061ac20e419ca",
-      "Id": "f1a65adef0ec4d12b29fb0ab568bc6c0"
+      "Id": "4d06514e9eb545e9ae9bc2dcdeb41b54"
     }
   ],
   "Dependencies": [],
@@ -145,7 +146,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.1.9130",
+      "Version": "2.8.0.2195",
       "RunType": "Manual",
       "RunPeriod": "1000"
     },
@@ -194,12 +195,12 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "String",
-        "Id": "53ec34aca296415ea0d971e784a46a5d",
+        "Name": "View Disciplines",
+        "Id": "4b404f0f45d24a138cb881ef6920fc90",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 31.5,
+        "X": 4.0,
         "Y": 233.0
       }
     ],

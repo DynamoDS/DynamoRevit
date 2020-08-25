@@ -33,7 +33,7 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.Views.View.DuplicateView@Revit.Elements.Views.View,int,string,string",
+      "FunctionSignature": "Revit.Elements.Views.View.DuplicateView@Revit.Elements.Views.View,string,string,string",
       "Id": "615443943b9b492986c7ad29f5bb5358",
       "Inputs": [
         {
@@ -48,7 +48,7 @@
         {
           "Id": "902236352415433db663e1ae34cbb1eb",
           "Name": "viewDuplicateOption",
-          "Description": "Enter View Duplicate Option: 0 = Duplicate. 1 = AsDependent. 2 = WithDetailing.\n\nint\nDefault value : 0",
+          "Description": "Enter View Duplicate Option: Duplicate, AsDependent or WithDetailing.\n\nstring\nDefault value : \"Duplicate\"",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -85,7 +85,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Duplicates A view.\n\nView.DuplicateView (view: View, viewDuplicateOption: int = 0, prefix: string = \"\", suffix: string = \"\"): View"
+      "Description": "Duplicates A view.\n\nView.DuplicateView (view: View, viewDuplicateOption: string = \"Duplicate\", prefix: string = \"\", suffix: string = \"\"): View"
     },
     {
       "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
@@ -106,6 +106,27 @@
       ],
       "Replication": "Disabled",
       "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ViewDuplicateOptions, DSRevitNodesUI",
+      "SelectedIndex": 2,
+      "SelectedString": "WithDetailing",
+      "NodeType": "ExtensionNode",
+      "Id": "306adc2927154aac8eb94f936b8ddea9",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1d47dd861d4540479a19b720a6da0a51",
+          "Name": "DuplicateOption",
+          "Description": "The selected DuplicateOption",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "View Duplicate Option"
     }
   ],
   "Connectors": [
@@ -118,6 +139,11 @@
       "Start": "433e369c1db84637a90e9a98ea240733",
       "End": "3c6d238a3e1b48fea9860126bc37ae13",
       "Id": "488f983cf05f495c98498681b2bb7ccc"
+    },
+    {
+      "Start": "1d47dd861d4540479a19b720a6da0a51",
+      "End": "902236352415433db663e1ae34cbb1eb",
+      "Id": "6b34103ac972456eaf25495c58cfdb4d"
     }
   ],
   "Dependencies": [],
@@ -128,7 +154,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.1.9130",
+      "Version": "2.8.0.2195",
       "RunType": "Manual",
       "RunPeriod": "1000"
     },
@@ -146,34 +172,44 @@
     },
     "NodeViews": [
       {
-        "ShowGeometry": true,
-        "Name": "Views",
         "Id": "6891ace8f0294ad898cae4de0aee3a66",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "Views",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 112.5,
         "Y": 132.0
       },
       {
-        "ShowGeometry": true,
-        "Name": "View.DuplicateView",
         "Id": "615443943b9b492986c7ad29f5bb5358",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "View.DuplicateView",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 359.5,
         "Y": 160.0
       },
       {
-        "ShowGeometry": true,
-        "Name": "String",
         "Id": "fc1e82e0253241a5a58576f60f88e8f9",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "String",
+        "ShowGeometry": true,
         "Excluded": false,
-        "X": 112.5,
-        "Y": 240.00000000000003
+        "X": 122.5,
+        "Y": 305.0
+      },
+      {
+        "Id": "306adc2927154aac8eb94f936b8ddea9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "View Duplicate Options",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 41.0,
+        "Y": 218.0
       }
     ],
     "Annotations": [],

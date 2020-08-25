@@ -549,6 +549,22 @@
                     {
                       "path": "Revit.View.All Elements In Active View",
                       "inclusive": false
+                    },
+                    {
+                      "path": "Revit.View.View Duplicate Options",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.View.View Disciplines",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.View.View DisplayStyles",
+                      "inclusive": false
+                    },
+                    {
+                      "path": "Revit.View.View PartsVisibilitys",
+                      "inclusive": false
                     }
                   ]
                 },

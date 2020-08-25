@@ -563,25 +563,11 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Identifies if this view can be duplicated with specified viewDuplicateOption
         /// </summary>
-        /// <param name="viewDuplicateOption">Enter View Duplicate Option: 0 = Duplicate. 1 = AsDependent. 2 = WithDetailing.</param>
+        /// <param name="viewDuplicateOption">Enter View Duplicate Option: Duplicate, AsDependent or WithDetailing.</param>
         /// <returns></returns>
-        public Boolean CanViewBeDuplicated(int viewDuplicateOption = 0)
+        public Boolean CanViewBeDuplicated(string viewDuplicateOption = "Duplicate")
         {
-            ViewDuplicateOption Option = 0;
-            switch (viewDuplicateOption)
-            {
-                case 0:
-                    Option = ViewDuplicateOption.Duplicate;
-                    break;
-                case 1:
-                    Option = ViewDuplicateOption.AsDependent;
-                    break;
-                case 2:
-                    Option = ViewDuplicateOption.WithDetailing;
-                    break;
-                default:
-                    throw new ArgumentException(Properties.Resources.ViewDuplicateOptionOutofRange);
-            }
+            ViewDuplicateOption Option = (ViewDuplicateOption)Enum.Parse(typeof(ViewDuplicateOption),viewDuplicateOption);
 
             return InternalView.CanViewBeDuplicated(Option);
         }
@@ -590,11 +576,11 @@ namespace Revit.Elements.Views
         /// Duplicates A view. 
         /// </summary>
         /// <param name="view">The View to be Duplicated</param>
-        /// <param name="viewDuplicateOption">Enter View Duplicate Option: 0 = Duplicate. 1 = AsDependent. 2 = WithDetailing.</param>
+        /// <param name="viewDuplicateOption">Enter View Duplicate Option: Duplicate, AsDependent or WithDetailing.</param>
         /// <param name="prefix"></param>
         /// <param name="suffix"></param>
         /// <returns></returns>
-        public static Revit.Elements.Views.View DuplicateView(View view, int viewDuplicateOption = 0, string prefix = "", string suffix = "")
+        public static Revit.Elements.Views.View DuplicateView(View view, string viewDuplicateOption = "Duplicate", string prefix = "", string suffix = "")
         {
             View newView = null;
 
@@ -603,21 +589,7 @@ namespace Revit.Elements.Views
             if (view is Sheet)
                 throw new ArgumentException(Properties.Resources.DuplicateViewCantApplySheet);
 
-            ViewDuplicateOption Option = 0;
-            switch(viewDuplicateOption)
-            {
-                case 0:
-                    Option = ViewDuplicateOption.Duplicate;
-                    break;
-                case 1:
-                    Option = ViewDuplicateOption.AsDependent;
-                    break;
-                case 2:
-                    Option = ViewDuplicateOption.WithDetailing;                    
-                    break;
-                default:
-                    throw new ArgumentException(Properties.Resources.ViewDuplicateOptionOutofRange);
-            }
+            ViewDuplicateOption Option = (ViewDuplicateOption)Enum.Parse(typeof(ViewDuplicateOption), viewDuplicateOption);
 
             try
             {

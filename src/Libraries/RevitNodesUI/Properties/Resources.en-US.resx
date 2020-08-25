@@ -436,4 +436,20 @@
     <value>Select a model element from the Revit document filtered by Category.</value>
     <comment>Description for Select Model Element By Category</comment>
   </data>
+  <data name="ViewDuplicateOptionsDescription" xml:space="preserve">
+    <value>View Duplicate Option.</value>
+    <comment>Description for View Duplicate Options</comment>
+  </data>
+  <data name="ViewDisciplinesDescription" xml:space="preserve">
+    <value>View Discipline.</value>
+    <comment>Description for View Discipline</comment>
+  </data>
+  <data name="ViewDisplayStylesDescription" xml:space="preserve">
+    <value>View DisplayStyle.</value>
+    <comment>Description for View DisplayStyle</comment>
+  </data>
+  <data name="ViewPartsVisibilitysDescription" xml:space="preserve">
+    <value>View PartsVisibility.</value>
+    <comment>Description for View PartsVisibility</comment>
+  </data>
 </root>
