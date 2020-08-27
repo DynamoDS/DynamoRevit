@@ -550,21 +550,6 @@ namespace Revit.Elements.Views
             }
         }
 
-        public Revision[] Revisions
-        {
-            get
-            {
-                foreach(var id in InternalViewSheet.GetAllRevisionIds())
-                {
-                    string str = InternalViewSheet.GetRevisionNumberOnSheet(id);
-                }
-                var elements = InternalViewSheet.GetAllRevisionIds().Select(x => Document.GetElement(x)).OfType<Autodesk.Revit.DB.Revision>();
-
-                return elements.Select(x => (Revision)ElementWrapper.ToDSType(x, true))
-                        .ToArray();
-            }
-        }
-
         #endregion
 
         #region Public static constructors
