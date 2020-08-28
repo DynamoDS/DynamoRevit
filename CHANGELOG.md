@@ -7,6 +7,7 @@
 * Add some View Nodes - View.HideCategoriesTemporary, View.HideElementsTemporary, View.IsolateCategoriesTemporary, View.IsolateElementsTemporary.
 * Improve DuplicateSheet Node - add "duplicateWithContents" option, add default suffix value when prefix & suffix are both empty.
 * Improve DuplicateSheet Node - Set Sheet information when duplicating; Improve View Temporary Nodes.
+* Fix bug - Element.GetParentElement can't get StairsRun Parent Element.
 
 ## 0.2.18
 * Add a Category ScheduleOnSheet and its nodes - ScheduleOnSheet.Sheet, ScheduleOnSheet.Schedule, ScheduleOnSheet.BySheetViewLocation, ScheduleOnSheet.Location and ScheduleOnSheet.SetLocation
