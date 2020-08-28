@@ -447,6 +447,10 @@ namespace Revit.Elements.Views
             }
 
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            if (this.InternalView.IsTemporaryHideIsolateActive())
+            {
+                this.InternalView.DisableTemporaryViewMode(TemporaryViewMode.TemporaryHideIsolate);
+            }
             this.InternalView.HideCategoriesTemporary(CatIds);
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
 
@@ -467,6 +471,10 @@ namespace Revit.Elements.Views
             }
 
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            if (this.InternalView.IsTemporaryHideIsolateActive())
+            {
+                this.InternalView.DisableTemporaryViewMode(TemporaryViewMode.TemporaryHideIsolate);
+            }
             this.InternalView.HideElementsTemporary(EleIds);
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
 
@@ -491,6 +499,10 @@ namespace Revit.Elements.Views
             }
 
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            if (this.InternalView.IsTemporaryHideIsolateActive())
+            {
+                this.InternalView.DisableTemporaryViewMode(TemporaryViewMode.TemporaryHideIsolate);
+            }
             this.InternalView.IsolateCategoriesTemporary(CatIds);
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
 
@@ -511,6 +523,10 @@ namespace Revit.Elements.Views
             }
 
             RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            if (this.InternalView.IsTemporaryHideIsolateActive())
+            {
+                this.InternalView.DisableTemporaryViewMode(TemporaryViewMode.TemporaryHideIsolate);
+            }
             this.InternalView.IsolateElementsTemporary(EleIds);
             RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
 

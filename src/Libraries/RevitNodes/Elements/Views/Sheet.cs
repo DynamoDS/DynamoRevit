@@ -808,6 +808,7 @@ namespace Revit.Elements.Views
                     newSheet = new Sheet(viewSheet);
                     newSheet.InternalSetSheetName(newSheetName);
                     newSheet.InternalSetSheetNumber(newSheetNumber);
+                    SetSheetInformation(sheet, newSheet);
 
                     TraceElements.Add(newSheet.InternalElement);
 
@@ -860,6 +861,26 @@ namespace Revit.Elements.Views
         }
 
         #endregion
+
+        #region Private Helper
+
+        private static void SetSheetInformation(Sheet oldSheet, Sheet newSheet)
+        {
+            List<BuiltInParameter> Filters = new List<BuiltInParameter>
+            {
+                BuiltInParameter.SHEET_APPROVED_BY,
+                BuiltInParameter.SHEET_DESIGNED_BY,
+                BuiltInParameter.SHEET_CHECKED_BY,
+                BuiltInParameter.SHEET_DRAWN_BY
+            };
+            foreach(var parameter in Filters)
+            {
+                var oldParam = oldSheet.InternalViewSheet.get_Parameter(parameter);
+                var value = oldParam.AsString();
+                var newParam = newSheet.InternalViewSheet.get_Parameter(parameter);
+                newParam.Set(value);
+            }
+        }
 
         private static void DuplicateSheetAnnotations(Sheet oldSheet, Sheet newSheet)
         {
@@ -1019,5 +1040,7 @@ namespace Revit.Elements.Views
 
             return IsUnique;
         }
+
+        #endregion
     }
 }
