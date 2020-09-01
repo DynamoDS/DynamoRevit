@@ -1,3 +1,4 @@
+## 0.2.19
 * Fix a bug - filter out unavailable Parameters from Material.
 * Add some view 3d properties - View.Outline, View.Origin, View.Scale, View.CropBox, View.SetCropBox, View.CropBoxActive, View.SetCropBoxActive, View.CropBoxVisible, View.SetCropBoxVisible, View.ViewDirection, View.RightDirection.
 * Add some view properties - View.Discipline, View.SetDiscipline, View.DisplayStyle, View.SetDisplayStyle, View.SketchPlane, View.SetSketchPlane.
