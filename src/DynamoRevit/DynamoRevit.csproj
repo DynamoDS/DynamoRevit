@@ -49,20 +49,16 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DSCPython">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DSCPython.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DynamoApplications">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DynamoApplications.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\DynamoApplications.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\net48\DynamoServices.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\net47\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Greg">
-      <HintPath>$(PACKAGESPATH)\Greg\lib\net48\Greg.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\Greg\lib\net47\Greg.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GregRevitAuth">
@@ -97,11 +93,7 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="ProtoGeometry">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net48\ProtoGeometry.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Python.Runtime">
-      <HintPath>$(PACKAGESPATH)\pythonnet\lib\net40\Python.Runtime.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net47\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RestSharp">
@@ -166,31 +158,31 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="ProtoCore">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\ProtoCore.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DSIronPython">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DSIronPython.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\DSIronPython.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCoreWpf">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net48\DynamoCoreWpf.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net47\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCore">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DynamoCore.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUtilities">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DynamoUtilities.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoShapeManager">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DynamoShapeManager.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\DynamoShapeManager.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoInstallDetective">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DynamoInstallDetective.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\DynamoInstallDetective.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

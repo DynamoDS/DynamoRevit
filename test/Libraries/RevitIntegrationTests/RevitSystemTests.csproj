@@ -44,7 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoCoreWpf">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net48\DynamoCoreWpf.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net47\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Prism">
@@ -58,11 +58,11 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ProtoGeometry">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net48\ProtoGeometry.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net47\ProtoGeometry.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoServices">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\net48\DynamoServices.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\net47\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
@@ -80,11 +80,11 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml" />
     <Reference Include="SystemTestServices">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\net48\SystemTestServices.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\net47\SystemTestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TestServices">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\net48\TestServices.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\net47\TestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -180,15 +180,15 @@
       <Private>False</Private>
     </ProjectReference>
     <Reference Include="ProtoCore">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\ProtoCore.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CoreNodeModels">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net48\CoreNodeModels.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net47\CoreNodeModels.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoUnits">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net48\DynamoUnits.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net47\DynamoUnits.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="$(SolutionDir)Libraries\RevitNodesUI\RevitNodesUI.csproj">
@@ -207,7 +207,7 @@
       <Private>False</Private>
     </ProjectReference>
     <Reference Include="DynamoCore">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DynamoCore.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net47\DynamoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj">

@@ -1,23 +1,22 @@
 {
   "nuget": {
     "references": {
-      "DynamicLanguageRuntime": "1.2.2",
-      "DynamoVisualProgramming.Core": "2.8.0-beta2195",
-      "DynamoVisualProgramming.DynamoCoreNodes": "2.8.0-beta2195",
-      "DynamoVisualProgramming.DynamoServices": "2.8.0-beta2195",
-      "DynamoVisualProgramming.Tests": "2.8.0-beta2195",
-      "DynamoVisualProgramming.WpfUILibrary": "2.8.0-beta2195",
-      "DynamoVisualProgramming.ZeroTouchLibrary": "2.8.0-beta2195",
-      "DynamoVisualProgramming.DynamoSamples": "2.8.0-beta2195",
-      "Greg": "2.0.7507.22529",
-      "GregRevitAuth": "1.0.7057.20655",
-      "IronPython": "2.7.9",
-      "pythonnet_py38_win": "2.5.1",
-      "Newtonsoft.Json": "8.0.3",
-      "NUnit": "2.6.3",
-      "Prism": "4.1.0",
-      "RestSharp": "105.2.3",
-      "Unofficial.Ionic.Zip": "1.9.1.8"
+      "DynamicLanguageRuntime" : "1.2.2",
+      "DynamoVisualProgramming.Core" : "2.6.0.8481",
+      "DynamoVisualProgramming.DynamoCoreNodes" : "2.6.0.8481",
+      "DynamoVisualProgramming.DynamoServices" : "2.6.0.8481",
+      "DynamoVisualProgramming.Tests" : "2.6.0.8481",
+      "DynamoVisualProgramming.WpfUILibrary" : "2.6.0.8481",
+      "DynamoVisualProgramming.ZeroTouchLibrary" : "2.6.0.8481",
+      "DynamoVisualProgramming.DynamoSamples" : "2.6.0.8481",
+      "Greg" : "1.2.7177.24952",
+      "GregRevitAuth" : "1.0.7057.20655",
+      "IronPython" : "2.7.9",
+      "Newtonsoft.Json" : "8.0.3",
+      "NUnit" : "2.6.3",
+      "Prism" : "4.1.0",
+      "RestSharp" : "105.2.3",
+      "Unofficial.Ionic.Zip" : "1.9.1.8"
     }
   }
 }

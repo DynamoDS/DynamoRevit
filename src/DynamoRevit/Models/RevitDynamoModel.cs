@@ -8,7 +8,6 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
-using DSCPython;
 using DSIronPython;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Nodes.ZeroTouch;
@@ -390,29 +389,16 @@ namespace Dynamo.Applications.Models
                 (a, b, c, d, e) => ElementBinder.IsEnabled = false;
             IronPythonEvaluator.EvaluationEnd += (a, b, c, d, e) => ElementBinder.IsEnabled = true;
 
-            var marshaler = new DataMarshaler();
-            marshaler.RegisterMarshaler(
-                (Revit.Elements.Element element) => element.InternalElement);
-            marshaler.RegisterMarshaler((Category element) => element.InternalCategory);
-            Func<object, object> unwrap = marshaler.Marshal;
             // register UnwrapElement method in ironpython
             IronPythonEvaluator.EvaluationBegin += (a, b, scope, d, e) =>
             {
+                var marshaler = new DataMarshaler();
+                marshaler.RegisterMarshaler(
+                    (Revit.Elements.Element element) => element.InternalElement);
+                marshaler.RegisterMarshaler((Category element) => element.InternalCategory);
+
+                Func<object, object> unwrap = marshaler.Marshal;
                 scope.SetVariable("UnwrapElement", unwrap);
-            };
-
-            CPythonEvaluator.OutputMarshaler.RegisterMarshaler(
-                (Element element) => element.ToDSType(true));
-
-            // Turn off element binding during cpython script execution
-            CPythonEvaluator.EvaluationBegin +=
-                (a, b, c, d) => ElementBinder.IsEnabled = false;
-            CPythonEvaluator.EvaluationEnd += (a, b, c, d) => ElementBinder.IsEnabled = true;
-
-            // register UnwrapElement method in cpython
-            CPythonEvaluator.EvaluationBegin += (a, scope, c, d) =>
-            {
-                scope.Set("UnwrapElement", unwrap);
             };
 
             setupPython = true;

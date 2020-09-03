@@ -27,7 +27,7 @@ set NugetConfig=%ConfigDir%\dynamo-nuget.config
 
 REM 2. download 3rdParty packages by Aget.exe
     echo Running Python script from %AgetFile% using dynamo-nuget.config file
-    set PythonAget="%AgetFile%" -os win -config release -iset intel64 -toolchain v140 -linkage shared -packagesDir "%DynamoPackages%" -nuget "%NugetExe%" -framework net48 -nugetConfig "%NugetConfig%"
+    set PythonAget="%AgetFile%" -os win -config release -iset intel64 -toolchain v140 -linkage shared -packagesDir "%DynamoPackages%" -nuget "%NugetExe%" -framework net47 -nugetConfig "%NugetConfig%"
 
     call :TrackTime "[Aget] Downloading NuGet packages from the NuGet Gallery and the Artifactory server, might take a while if running for the first time."
     echo If any package is not found in the NuGet Gallery, redirect to look up in the Artifactory server...
