@@ -1,10 +1,9 @@
-## 0.2.19
+## 0.2.19.1
 * Fix a bug - filter out unavailable Parameters from Material.
 * Add some view 3d properties - View.Outline, View.Origin, View.Scale, View.CropBox, View.SetCropBox, View.CropBoxActive, View.SetCropBoxActive, View.CropBoxVisible, View.SetCropBoxVisible, View.ViewDirection, View.RightDirection.
 * Add some view properties - View.Discipline, View.SetDiscipline, View.DisplayStyle, View.SetDisplayStyle, View.SketchPlane, View.SetSketchPlane.
 * Add some view properties - View.CanViewBeDuplicated, View.Partsvisibility, View.SetPartsVisibility
 * Add some new nodes - View.GetCategoryOverrides, View.IsCategoryHidden, Element.OverridesInView, Element.IsHiddeninView
-* Update DynamoCore to 2.8.0 for Dynamo CPython3 engine.
 * Add some View Nodes - View.HideCategoriesTemporary, View.HideElementsTemporary, View.IsolateCategoriesTemporary, View.IsolateElementsTemporary.
 * Improve DuplicateSheet Node - add "duplicateWithContents" option, add default suffix value when prefix & suffix are both empty.
 * Improve DuplicateSheet Node - Set Sheet information when duplicating; Improve View Temporary Nodes.
