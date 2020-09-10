@@ -78,5 +78,54 @@ namespace RevitSystemTests
             // Assert
             CollectionAssert.AreEqual(expectedDimensionValue, valueAbove);
         }
+
+        [Test]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
+        public void ByFaces()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Dimension\ByFaces.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            var dim = GetPreviewValue("66a566b566b8414ca68ef7db7420558a");
+
+            Assert.AreEqual(dim.GetType(), typeof(Revit.Elements.Dimension));
+        }
+
+        [Test]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
+        public void ByEdges()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Dimension\ByEdges.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            var dim = GetPreviewValue("68633628abac49948b493965b3654c84");
+
+            Assert.AreEqual(dim.GetType(), typeof(Revit.Elements.Dimension));
+        }
+
+
+        [Test]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
+        public void ByReferences()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Dimension\ByReferences.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            var dim = GetPreviewValue("a0f302a9a4be4335903dafd93f9939db");
+
+            Assert.AreEqual(dim.GetType(), typeof(Revit.Elements.Dimension));
+        }
     }
 }

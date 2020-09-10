@@ -1,0 +1,464 @@
+{
+  "Uuid": "641cfe8c-8c76-4c25-a4ea-9a4919520d92",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "ByReferences",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Dimension.ByReferences@Revit.Elements.Views.View,Revit.GeometryReferences.ElementGeometryReference[],Autodesk.DesignScript.Geometry.Line,string,string",
+      "Id": "a0f302a9a4be4335903dafd93f9939db",
+      "Inputs": [
+        {
+          "Id": "c4b643537bda473b9e9fb55533b48e50",
+          "Name": "view",
+          "Description": "View to place dimension in\n\nView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d8f6690f68ca4b499e9aa5563f21ce37",
+          "Name": "referenceGeometries",
+          "Description": "References to dimension, e.g. ElementCurveReference and ElementFaceReference\n\nElementGeometryReference[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "80ea8d1a01084aaea359b40141e1df80",
+          "Name": "line",
+          "Description": "location of the dimension\n\nLine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0e5fde7289274309916b69b7b0fc692a",
+          "Name": "suffix",
+          "Description": "Suffix\n\nstring\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ef30e01335d44825a40b3e2116e700e4",
+          "Name": "prefix",
+          "Description": "Prefix\n\nstring\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7b573b0bb16549669809a9d204821a3f",
+          "Name": "Dimension",
+          "Description": "Dimension",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Construct a Revit Linear Dimension from at least two ElementGeometryReference\n\nDimension.ByReferences (view: View, referenceGeometries: ElementGeometryReference[], line: Line, suffix: string = \"\", prefix: string = \"\"): Dimension"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 9,
+      "SelectedString": "Level 1",
+      "NodeType": "ExtensionNode",
+      "Id": "54530b803d99481c8663ccc9eb2570ca",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c92fe8419a734b5f93f6033d85ccba05",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSFaceSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "b8ad3e32-ec88-4c4d-bf3c-2bdc878c97c6-000321e0:10:SURFACE"
+      ],
+      "Id": "628e0bd156a1409abd388864e6d66d1a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7653d1bc0e274d7a9cb7bdedde4468f4",
+          "Name": "Surface",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSEdgeSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "b8ad3e32-ec88-4c4d-bf3c-2bdc878c97c6-000321e0:21:LINEAR"
+      ],
+      "Id": "ff13578e08614b91a6f808acb5056d15",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "840507c31cfd4d389870a44a56fa27d1",
+          "Name": "Curve",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSEdgeSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "b8ad3e32-ec88-4c4d-bf3c-2bdc878c97c6-000321e0:16:LINEAR"
+      ],
+      "Id": "c82031d03fb247eb97f8bca60ae0381b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "587507fbb304435eb6c36a87a95320da",
+          "Name": "Curve",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.GeometryReferences.ElementCurveReference.ByCurve@Autodesk.DesignScript.Geometry.Curve",
+      "Id": "8ee6398fef5b45028812d62492933bf8",
+      "Inputs": [
+        {
+          "Id": "115444c608204f9d8538083b0bf986ed",
+          "Name": "curve",
+          "Description": "A curve from Revit\n\nCurve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a6e4e416c4cd4e39abdfdb24087faad8",
+          "Name": "ElementCurveReference",
+          "Description": "ElementCurveReference",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Try get ElementCurveReference for a Revit Curve\n\nElementCurveReference.ByCurve (curve: Curve): ElementCurveReference"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.GeometryReferences.ElementFaceReference.BySurface@Autodesk.DesignScript.Geometry.Surface",
+      "Id": "8b3192a4ce61464386e7ec1bed0b4595",
+      "Inputs": [
+        {
+          "Id": "b8767781f4704971815e060b48e65f96",
+          "Name": "surface",
+          "Description": "A face from Revit\n\nSurface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d0bd08aaf41c42d9a10e0640ba84b472",
+          "Name": "ElementFaceReference",
+          "Description": "ElementFaceReference",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Try get ElementFaceReference from a Revit Face.\n\nElementFaceReference.BySurface (surface: Surface): ElementFaceReference"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "NodeType": "ExtensionNode",
+      "Id": "2c8de7dd53554a89a66a01054cc12a8b",
+      "Inputs": [
+        {
+          "Id": "814baf428a0241cf97dda5aed5500abd",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "67412e8a5c9149ebbb929071be713497",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "db7a9aea603a4de9877cd9a0e2eee47d",
+          "Name": "list",
+          "Description": "A list",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list out of the given inputs"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Flatten@var[]..[],int",
+      "Id": "f41940fc48aa417d8ee8a23bb8e99bf0",
+      "Inputs": [
+        {
+          "Id": "9e70a8d2d6404054bd5cedeed8850ba5",
+          "Name": "list",
+          "Description": "List to flatten.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "222f34a45318472a8dcda723ddcf5687",
+          "Name": "amt",
+          "Description": "Layers of nesting to remove.\n\nint\nDefault value : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7ca15cf2086b4fb5bb274d138a8a043a",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Flattens a nested list of lists by a certain amount.\n\nList.Flatten (list: var[]..[], amt: int = -1): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "c92fe8419a734b5f93f6033d85ccba05",
+      "End": "c4b643537bda473b9e9fb55533b48e50",
+      "Id": "867b296815b2450b83bf857cd3b6a21a"
+    },
+    {
+      "Start": "7653d1bc0e274d7a9cb7bdedde4468f4",
+      "End": "b8767781f4704971815e060b48e65f96",
+      "Id": "0c70466f035f4595ad1effd05c864546"
+    },
+    {
+      "Start": "840507c31cfd4d389870a44a56fa27d1",
+      "End": "115444c608204f9d8538083b0bf986ed",
+      "Id": "7d770815817743fcaa2958a65c7eff36"
+    },
+    {
+      "Start": "587507fbb304435eb6c36a87a95320da",
+      "End": "80ea8d1a01084aaea359b40141e1df80",
+      "Id": "3ddefcb0afbb4eabbe740c6547a888c4"
+    },
+    {
+      "Start": "a6e4e416c4cd4e39abdfdb24087faad8",
+      "End": "67412e8a5c9149ebbb929071be713497",
+      "Id": "7c0916d0e6c649ebb8b24cdfd0d36d20"
+    },
+    {
+      "Start": "d0bd08aaf41c42d9a10e0640ba84b472",
+      "End": "814baf428a0241cf97dda5aed5500abd",
+      "Id": "4cebfda1dc1e4d84bcc3ae344bb52d2d"
+    },
+    {
+      "Start": "db7a9aea603a4de9877cd9a0e2eee47d",
+      "End": "9e70a8d2d6404054bd5cedeed8850ba5",
+      "Id": "6d63a30ff64042dcaa870551f20ee83e"
+    },
+    {
+      "Start": "7ca15cf2086b4fb5bb274d138a8a043a",
+      "End": "d8f6690f68ca4b499e9aa5563f21ce37",
+      "Id": "ec669c0ca64b49199cc085ce84e87af7"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.8.0.2195",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Dimension.ByReferences",
+        "Id": "a0f302a9a4be4335903dafd93f9939db",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 841.0,
+        "Y": 304.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "54530b803d99481c8663ccc9eb2570ca",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 529.0,
+        "Y": 213.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Face",
+        "Id": "628e0bd156a1409abd388864e6d66d1a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -414.0,
+        "Y": 267.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Edge",
+        "Id": "ff13578e08614b91a6f808acb5056d15",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -414.0,
+        "Y": 401.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Edge",
+        "Id": "c82031d03fb247eb97f8bca60ae0381b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 529.0,
+        "Y": 456.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ElementCurveReference.ByCurve",
+        "Id": "8ee6398fef5b45028812d62492933bf8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -93.0,
+        "Y": 388.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ElementFaceReference.BySurface",
+        "Id": "8b3192a4ce61464386e7ec1bed0b4595",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -93.0,
+        "Y": 280.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List Create",
+        "Id": "2c8de7dd53554a89a66a01054cc12a8b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 309.0,
+        "Y": 321.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.Flatten",
+        "Id": "f41940fc48aa417d8ee8a23bb8e99bf0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 529.0,
+        "Y": 321.5
+      }
+    ],
+    "Annotations": [],
+    "X": -369.0,
+    "Y": -198.0,
+    "Zoom": 1.0
+  }
+}

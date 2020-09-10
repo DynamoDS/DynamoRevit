@@ -1,0 +1,231 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "ByEdges",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Dimension.ByEdges@Revit.Elements.Views.View,Autodesk.DesignScript.Geometry.Curve[],Autodesk.DesignScript.Geometry.Line,string,string",
+      "Id": "68633628abac49948b493965b3654c84",
+      "Inputs": [
+        {
+          "Id": "b344a78c87da4fa5a3b250ed0a629ef3",
+          "Name": "view",
+          "Description": "View to place dimension in\n\nView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "159ee76431774a6da366ebf4a9fb04f5",
+          "Name": "referenceCurves",
+          "Description": "Edges to dimension\n\nCurve[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "560bfab31e664cbd9b6907209f250154",
+          "Name": "line",
+          "Description": "location of the dimension\n\nLine\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3b0278ae5f4e4938a5943b6d420721fd",
+          "Name": "suffix",
+          "Description": "Suffix\n\nstring\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b3528e8b300b487b851e568f5472fa14",
+          "Name": "prefix",
+          "Description": "Prefix\n\nstring\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "23b588eb363447c791103729214cee57",
+          "Name": "Dimension",
+          "Description": "Dimension",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Construct a Revit Linear Dimension from at least two Edges\n\nDimension.ByEdges (view: View, referenceCurves: Curve[], line: Line = null, suffix: string = \"\", prefix: string = \"\"): Dimension"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 9,
+      "SelectedString": "Level 1",
+      "NodeType": "ExtensionNode",
+      "Id": "efec0e552149452aba297d68effc78dd",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "91abc197b6504ebb9cd8d03af6aca01f",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.SelectEdges, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "b8ad3e32-ec88-4c4d-bf3c-2bdc878c97c6-000321e0:17:LINEAR",
+        "b8ad3e32-ec88-4c4d-bf3c-2bdc878c97c6-000321e0:21:LINEAR"
+      ],
+      "Id": "086a8d8ffe7642a19f23509498d456ea",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9157ed482680420f89fe70be429030da",
+          "Name": "Curves",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSEdgeSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "b8ad3e32-ec88-4c4d-bf3c-2bdc878c97c6-000321e0:16:LINEAR"
+      ],
+      "Id": "2283f325380a4877b566286456d9dd53",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e732917ef2d045d69e6bfc2c2582057d",
+          "Name": "Curve",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "91abc197b6504ebb9cd8d03af6aca01f",
+      "End": "b344a78c87da4fa5a3b250ed0a629ef3",
+      "Id": "fdc8af42eba543ca8ffb514592107a30"
+    },
+    {
+      "Start": "9157ed482680420f89fe70be429030da",
+      "End": "159ee76431774a6da366ebf4a9fb04f5",
+      "Id": "df9b50cbd9864fecb132f7005562fe07"
+    },
+    {
+      "Start": "e732917ef2d045d69e6bfc2c2582057d",
+      "End": "560bfab31e664cbd9b6907209f250154",
+      "Id": "daebc4970d5f48b5a1ad1c22eed4185f"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.8.0.2195",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Dimension.ByEdges",
+        "Id": "68633628abac49948b493965b3654c84",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 479.5,
+        "Y": 202.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "efec0e552149452aba297d68effc78dd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 167.5,
+        "Y": 111.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Edges",
+        "Id": "086a8d8ffe7642a19f23509498d456ea",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 167.5,
+        "Y": 219.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Edge",
+        "Id": "2283f325380a4877b566286456d9dd53",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 167.5,
+        "Y": 354.5
+      }
+    ],
+    "Annotations": [],
+    "X": -117.0,
+    "Y": -23.0,
+    "Zoom": 1.0
+  }
+}

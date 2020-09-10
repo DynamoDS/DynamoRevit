@@ -453,12 +453,12 @@
               ]
             },
             {
-              "text": "References",
+              "text": "GeometryReferences",
               "iconUrl": "",
               "elementType": "group",
               "include": [
                 {
-                  "path": "RevitNodes.Revit.References",
+                  "path": "RevitNodes.Revit.GeometryReferences",
                   "inclusive": false
                 }
               ]

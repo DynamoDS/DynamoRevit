@@ -87,6 +87,16 @@ namespace Revit.GeometryReferences
             throw new ArgumentException(string.Format(Properties.Resources.FaceReferenceExtractionFailure, nodeTypeString) +
                 string.Format(Properties.Resources.FaceReferenceHint, "ImportInstance.ByGeometry"));
         }
+
+        /// <summary>
+        /// Try get ElementFaceReference from a Revit Face.
+        /// </summary>
+        /// <param name="surface">A face from Revit</param>
+        /// <returns></returns>
+        public static ElementFaceReference BySurface(Autodesk.DesignScript.Geometry.Surface surface)
+        {
+            return TryGetFaceReference(surface);
+        }
     }
 
 }
