@@ -92,6 +92,24 @@ namespace Revit.GeometryConversion
             return geom.Transform(coordinateSystem);
         }
 
+        private static Autodesk.DesignScript.Geometry.Curve Transform(Autodesk.DesignScript.Geometry.Curve curve, CoordinateSystem coordinateSystem)
+        {
+            if (coordinateSystem == null) return curve;
+            return (curve as Autodesk.DesignScript.Geometry.Geometry).Transform(coordinateSystem) as Autodesk.DesignScript.Geometry.Curve;
+        }
+
+        private static Autodesk.DesignScript.Geometry.Surface Transform(Autodesk.DesignScript.Geometry.Surface surface, CoordinateSystem coordinateSystem)
+        {
+            if (coordinateSystem == null) return surface;
+            return (surface as Autodesk.DesignScript.Geometry.Geometry).Transform(coordinateSystem) as Autodesk.DesignScript.Geometry.Surface;
+        }
+
+        private static IEnumerable<Autodesk.DesignScript.Geometry.Surface> Transform(IEnumerable<Autodesk.DesignScript.Geometry.Surface> surfaces, CoordinateSystem coordinateSystem)
+        {
+            if (coordinateSystem == null) return surfaces;
+            return surfaces.Select(x => Transform(x, coordinateSystem)).ToList();
+        }
+
         private static object Transform(object geom, CoordinateSystem coordinateSystem)
         {
             return geom;

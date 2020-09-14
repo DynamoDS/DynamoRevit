@@ -73,7 +73,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Construct a Revit Linear Dimension from at least two Edges\n\nDimension.ByEdges (view: View, referenceCurves: Curve[], line: Line = null, suffix: string = \"\", prefix: string = \"\"): Dimension"
+      "Description": "Construct a Revit Linear Dimension from at least two Edges.\n\nDimension.ByEdges (view: View, referenceCurves: Curve[], line: Line = null, suffix: string = \"\", prefix: string = \"\"): Dimension"
     },
     {
       "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
@@ -100,8 +100,10 @@
       "ConcreteType": "Dynamo.Nodes.SelectEdges, DSRevitNodesUI",
       "NodeType": "ExtensionNode",
       "InstanceId": [
-        "b8ad3e32-ec88-4c4d-bf3c-2bdc878c97c6-000321e0:17:LINEAR",
-        "b8ad3e32-ec88-4c4d-bf3c-2bdc878c97c6-000321e0:21:LINEAR"
+        "018b34e9-589e-42b1-9993-a62744e95bcb-00056ee6:0:INSTANCE:018b34e9-589e-42b1-9993-a62744e95bcb-00056f40:98:LINEAR",
+        "018b34e9-589e-42b1-9993-a62744e95bcb-00056ee6:0:INSTANCE:018b34e9-589e-42b1-9993-a62744e95bcb-00056f40:122:LINEAR",
+        "018b34e9-589e-42b1-9993-a62744e95bcb-00056ff1:0:INSTANCE:018b34e9-589e-42b1-9993-a62744e95bcb-00056fe5:65:LINEAR",
+        "018b34e9-589e-42b1-9993-a62744e95bcb-00056ff1:0:INSTANCE:018b34e9-589e-42b1-9993-a62744e95bcb-00056fe5:95:LINEAR"
       ],
       "Id": "086a8d8ffe7642a19f23509498d456ea",
       "Inputs": [],
@@ -122,7 +124,7 @@
       "ConcreteType": "Dynamo.Nodes.DSEdgeSelection, DSRevitNodesUI",
       "NodeType": "ExtensionNode",
       "InstanceId": [
-        "b8ad3e32-ec88-4c4d-bf3c-2bdc878c97c6-000321e0:16:LINEAR"
+        "018b34e9-589e-42b1-9993-a62744e95bcb-00056e88:15:LINEAR"
       ],
       "Id": "2283f325380a4877b566286456d9dd53",
       "Inputs": [],
@@ -138,6 +140,142 @@
         }
       ],
       "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Geometry.Translate@Autodesk.DesignScript.Geometry.Vector,double",
+      "Id": "ccdc1844931a48eea6b62c4b58648aa6",
+      "Inputs": [
+        {
+          "Id": "dc665619872747f984d82983fb9041da",
+          "Name": "geometry",
+          "Description": "Autodesk.DesignScript.Geometry.Geometry",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f3cfb51e9a2e4d0a881bdd665b313d03",
+          "Name": "direction",
+          "Description": "Displacement direction.\n\nVector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "808b7f08fe3247e389be74caebbb464d",
+          "Name": "distance",
+          "Description": "Displacement distance along given direction.\n\ndouble",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3a39cbe633bd4f29b56cf7e6f4b66d96",
+          "Name": "Geometry",
+          "Description": "Transformed Geometry.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Translates any geometry type by the given distance in the given direction.\n\nGeometry.Translate (direction: Vector, distance: double): Geometry"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Vector.ByCoordinates@double,double,double",
+      "Id": "ad78c548da714f788a82270eb95a5394",
+      "Inputs": [
+        {
+          "Id": "7de5ec48d0814543be51c435a6786f93",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fbe2ea1e080e4a768335530072ae8bcd",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fb1fb922a8ae4e2aa6a4e55678dc42cf",
+          "Name": "z",
+          "Description": "Z coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e8efc4ad942a40e0a6708fdf6851cefb",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Form a Vector by 3 Euclidean coordinates\n\nVector.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Vector"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "-1;",
+      "Id": "283f75965bd24610ba34a074af4c81f6",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "82f7622f40fe4f3692e3e475dfbf81c2",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "3;",
+      "Id": "1082a1e98d9549cdac7edaf1e241a6d0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3bf4cc46a62747dc9a099177c09a1d2e",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
     }
   ],
   "Connectors": [
@@ -153,13 +291,40 @@
     },
     {
       "Start": "e732917ef2d045d69e6bfc2c2582057d",
+      "End": "dc665619872747f984d82983fb9041da",
+      "Id": "47bfe5a2bd204c1daa9f970db6023b98"
+    },
+    {
+      "Start": "3a39cbe633bd4f29b56cf7e6f4b66d96",
       "End": "560bfab31e664cbd9b6907209f250154",
-      "Id": "daebc4970d5f48b5a1ad1c22eed4185f"
+      "Id": "4e8129339cdf42eb81d3e46ca204681d"
+    },
+    {
+      "Start": "e8efc4ad942a40e0a6708fdf6851cefb",
+      "End": "f3cfb51e9a2e4d0a881bdd665b313d03",
+      "Id": "61a8a808905341af871bad7959dd2c77"
+    },
+    {
+      "Start": "82f7622f40fe4f3692e3e475dfbf81c2",
+      "End": "7de5ec48d0814543be51c435a6786f93",
+      "Id": "5274d73e4dd1408094fe8d5d13e92260"
+    },
+    {
+      "Start": "3bf4cc46a62747dc9a099177c09a1d2e",
+      "End": "808b7f08fe3247e389be74caebbb464d",
+      "Id": "e75ff92eee3644f49627d4ce5c90dc61"
     }
   ],
   "Dependencies": [],
   "NodeLibraryDependencies": [],
-  "Bindings": [],
+  "Bindings": [
+    {
+      "NodeId": "68633628-abac-4994-8b49-3965b3654c84",
+      "Binding": {
+        "ByEdges_InClassDecl-1_InFunctionScope-1_Instance0_68633628-abac-4994-8b49-3965b3654c84": "PFNPQVAtRU5WOkVudmVsb3BlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOlNPQVAtRU5DPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1sbnM6U09BUC1FTlY9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpjbHI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc29hcC9lbmNvZGluZy9jbHIvMS4wIiBTT0FQLUVOVjplbmNvZGluZ1N0eWxlPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyI+DQo8U09BUC1FTlY6Qm9keT4NCjxhMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXIgaWQ9InJlZi0xIiB4bWxuczphMT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9jbHIvbnNhc3NlbS9Qcm90b0NvcmUvUHJvdG9Db3JlJTJDJTIwVmVyc2lvbiUzRDIuOC4wLjIxOTUlMkMlMjBDdWx0dXJlJTNEbmV1dHJhbCUyQyUyMFB1YmxpY0tleVRva2VuJTNEbnVsbCI+DQo8TnVtYmVyT2ZFbGVtZW50cz4xPC9OdW1iZXJPZkVsZW1lbnRzPg0KPEJhc2UtMF9IYXNEYXRhPnRydWU8L0Jhc2UtMF9IYXNEYXRhPg0KPEJhc2UtMF9EYXRhIGlkPSJyZWYtMyI+UEZOUFFWQXRSVTVXT2tWdWRtVnNiM0JsSUhodGJHNXpPbmh6YVQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0V0YVc1emRHRnVZMlVpSUhodGJHNXpPbmh6WkQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0VpSUhodGJHNXpPbE5QUVZBdFJVNURQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SWdlRzFzYm5NNlUwOUJVQzFGVGxZOUltaDBkSEE2THk5elkyaGxiV0Z6TG5odGJITnZZWEF1YjNKbkwzTnZZWEF2Wlc1MlpXeHZjR1V2SWlCNGJXeHVjenBqYkhJOUltaDBkSEE2THk5elkyaGxiV0Z6TG0xcFkzSnZjMjltZEM1amIyMHZjMjloY0M5bGJtTnZaR2x1Wnk5amJISXZNUzR3SWlCVFQwRlFMVVZPVmpwbGJtTnZaR2x1WjFOMGVXeGxQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SStEUW84VTA5QlVDMUZUbFk2UW05a2VUNE5DanhoTVRwVFpYSnBZV3hwZW1GaWJHVkpaQ0JwWkQwaWNtVm1MVEVpSUhodGJHNXpPbUV4UFNKb2RIUndPaTh2YzJOb1pXMWhjeTV0YVdOeWIzTnZablF1WTI5dEwyTnNjaTl1YzJGemMyVnRMMUpsZG1sMFUyVnlkbWxqWlhNdVVHVnljMmx6ZEdWdVkyVXZVbVYyYVhSVFpYSjJhV05sY3lVeVF5VXlNRlpsY25OcGIyNGxNMFF5TGpndU1DNHlOVGN3SlRKREpUSXdRM1ZzZEhWeVpTVXpSRzVsZFhSeVlXd2xNa01sTWpCUWRXSnNhV05MWlhsVWIydGxiaVV6Ukc1MWJHd2lQZzBLUEhOMGNtbHVaMGxFSUdsa1BTSnlaV1l0TXlJK09HUXdOemN5WTJRdE1qSXpOeTAwTlRWakxUaG1NakV0WW1JM05UbGpaVGt6WldVekxUQXdNRFUzTVRRNFBDOXpkSEpwYm1kSlJENE5DanhwYm5SSlJENHpOVFkyT0RBOEwybHVkRWxFUGcwS1BDOWhNVHBUWlhKcFlXeHBlbUZpYkdWSlpENE5Dand2VTA5QlVDMUZUbFk2UW05a2VUNE5Dand2VTA5QlVDMUZUbFk2Ulc1MlpXeHZjR1UrRFFvPTwvQmFzZS0wX0RhdGE+DQo8QmFzZS0wX0hhc05lc3RlZERhdGE+ZmFsc2U8L0Jhc2UtMF9IYXNOZXN0ZWREYXRhPg0KPC9hMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXI+DQo8L1NPQVAtRU5WOkJvZHk+DQo8L1NPQVAtRU5WOkVudmVsb3BlPg0K"
+      }
+    }
+  ],
   "View": {
     "Dynamo": {
       "ScaleFactor": 1.0,
@@ -171,15 +336,15 @@
     },
     "Camera": {
       "Name": "Background Preview",
-      "EyeX": -17.0,
-      "EyeY": 24.0,
-      "EyeZ": 50.0,
-      "LookX": 12.0,
-      "LookY": -13.0,
-      "LookZ": -58.0,
-      "UpX": 0.0,
-      "UpY": 1.0,
-      "UpZ": 0.0
+      "EyeX": 1.8036873340606689,
+      "EyeY": 79.676422119140625,
+      "EyeZ": 57.057258605957031,
+      "LookX": -1.8036873340606689,
+      "LookY": -79.676422119140625,
+      "LookZ": -57.057258605957031,
+      "UpX": -0.021141761913895607,
+      "UpY": 0.74314498901367188,
+      "UpZ": -0.66879642009735107
     },
     "NodeViews": [
       {
@@ -189,8 +354,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 479.5,
-        "Y": 202.5
+        "X": 685.71982543261049,
+        "Y": 294.14333333333332
       },
       {
         "ShowGeometry": true,
@@ -199,8 +364,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 167.5,
-        "Y": 111.5
+        "X": 348.71982543261049,
+        "Y": 197.14333333333332
       },
       {
         "ShowGeometry": true,
@@ -209,8 +374,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 167.5,
-        "Y": 219.5
+        "X": 348.71982543261049,
+        "Y": 306.14333333333332
       },
       {
         "ShowGeometry": true,
@@ -219,13 +384,77 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 167.5,
-        "Y": 354.5
+        "X": 36.719825432610492,
+        "Y": 341.14333333333332
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Geometry.Translate",
+        "Id": "ccdc1844931a48eea6b62c4b58648aa6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 348.71982543261049,
+        "Y": 457.14333333333332
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Vector.ByCoordinates",
+        "Id": "ad78c548da714f788a82270eb95a5394",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 36.719825432610492,
+        "Y": 476.14333333333332
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "283f75965bd24610ba34a074af4c81f6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -148.28017456738951,
+        "Y": 480.35666666666668
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "1082a1e98d9549cdac7edaf1e241a6d0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 36.719825432610492,
+        "Y": 636.35666666666668
       }
     ],
-    "Annotations": [],
-    "X": -117.0,
-    "Y": -23.0,
-    "Zoom": 1.0
+    "Annotations": [
+      {
+        "Id": "f70d209a8b2b4fa4ba36c7e100b603d5",
+        "Title": "Create Dimension with window and door in Different Wall",
+        "Nodes": [
+          "68633628abac49948b493965b3654c84",
+          "efec0e552149452aba297d68effc78dd",
+          "086a8d8ffe7642a19f23509498d456ea",
+          "2283f325380a4877b566286456d9dd53",
+          "ccdc1844931a48eea6b62c4b58648aa6",
+          "ad78c548da714f788a82270eb95a5394",
+          "283f75965bd24610ba34a074af4c81f6",
+          "1082a1e98d9549cdac7edaf1e241a6d0"
+        ],
+        "Left": -158.28017456738951,
+        "Top": 144.14333333333332,
+        "Width": 1138.0,
+        "Height": 585.21333333333337,
+        "FontSize": 36.0,
+        "InitialTop": 197.14333333333332,
+        "InitialHeight": 562.21333333333337,
+        "TextblockHeight": 43.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 63.943852213475395,
+    "Y": -138.4790058167103,
+    "Zoom": 0.77051684820224542
   }
 }

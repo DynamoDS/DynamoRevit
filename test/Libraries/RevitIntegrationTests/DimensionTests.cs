@@ -80,7 +80,7 @@ namespace RevitSystemTests
         }
 
         [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
+        [TestModel(@".\Dimension\DimensionCreation.rvt")]
         public void ByFaces()
         {
             string samplePath = Path.Combine(workingDirectory, @".\Dimension\ByFaces.dyn");
@@ -90,13 +90,15 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            var dim = GetPreviewValue("66a566b566b8414ca68ef7db7420558a");
+            var dim1 = GetPreviewValue("0f6d28f0d11045d39ebaec1f6b75951c");
+            var dim2 = GetPreviewValue("242a8771b20b48f397b0f89fb075f05d");
 
-            Assert.AreEqual(dim.GetType(), typeof(Revit.Elements.Dimension));
+            Assert.AreEqual(dim1.GetType(), typeof(Revit.Elements.Dimension));
+            Assert.AreEqual(dim2.GetType(), typeof(Revit.Elements.Dimension));
         }
 
         [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
+        [TestModel(@".\Dimension\DimensionCreation.rvt")]
         public void ByEdges()
         {
             string samplePath = Path.Combine(workingDirectory, @".\Dimension\ByEdges.dyn");
@@ -113,7 +115,7 @@ namespace RevitSystemTests
 
 
         [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
+        [TestModel(@".\Dimension\DimensionCreation.rvt")]
         public void ByReferences()
         {
             string samplePath = Path.Combine(workingDirectory, @".\Dimension\ByReferences.dyn");
