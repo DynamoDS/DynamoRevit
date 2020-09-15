@@ -78,5 +78,56 @@ namespace RevitSystemTests
             // Assert
             CollectionAssert.AreEqual(expectedDimensionValue, valueAbove);
         }
+
+        [Test]
+        [TestModel(@".\Dimension\DimensionCreation.rvt")]
+        public void ByFaces()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Dimension\ByFaces.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            var dim1 = GetPreviewValue("0f6d28f0d11045d39ebaec1f6b75951c");
+            var dim2 = GetPreviewValue("242a8771b20b48f397b0f89fb075f05d");
+
+            Assert.AreEqual(dim1.GetType(), typeof(Revit.Elements.Dimension));
+            Assert.AreEqual(dim2.GetType(), typeof(Revit.Elements.Dimension));
+        }
+
+        [Test]
+        [TestModel(@".\Dimension\DimensionCreation.rvt")]
+        public void ByEdges()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Dimension\ByEdges.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            var dim = GetPreviewValue("68633628abac49948b493965b3654c84");
+
+            Assert.AreEqual(dim.GetType(), typeof(Revit.Elements.Dimension));
+        }
+
+
+        [Test]
+        [TestModel(@".\Dimension\DimensionCreation.rvt")]
+        public void ByReferences()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Dimension\ByReferences.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            var dim = GetPreviewValue("a0f302a9a4be4335903dafd93f9939db");
+
+            Assert.AreEqual(dim.GetType(), typeof(Revit.Elements.Dimension));
+        }
     }
 }

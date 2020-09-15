@@ -175,7 +175,7 @@
     <value>A Curve Reference can only be obtained from an Element.</value>
   </data>
   <data name="CurveReferenceHint" xml:space="preserve">
-    <value>You can use the {0} or {1} to turn this Curve into a Revit Element.</value>
+    <value>The input curves should come from a Revit Element. You can use the {0} or {1} to turn this Curve into a Revit Element.</value>
   </data>
   <data name="FaceReferenceExtractionDetail" xml:space="preserve">
     <value>You supplied an {0}, but we could not extract a ElementFaceReference from it!</value>
@@ -187,7 +187,7 @@
     <value>A Face Reference can only be obtained from an Element.</value>
   </data>
   <data name="FaceReferenceHint" xml:space="preserve">
-    <value>You can use the {0} to turn this Surface into a Revit Element, then extract a ElementFaceReference from it.</value>
+    <value>The input surfaces should come from a Revit Element. You can use the {0} to turn this Surface into a Revit Element, then extract a ElementFaceReference from it.</value>
   </data>
   <data name="FamilyInstanceCreationFailure" xml:space="preserve">
     <value>Could not create the FamilyInstance</value>
@@ -334,7 +334,7 @@
     <value>Cannot get base or survey point from document.</value>
   </data>
   <data name="NotEnoughDataError" xml:space="preserve">
-    <value>You need at least two elements for a dimension.</value>
+    <value>You need at least two {0} for a dimension.</value>
   </data>
   <data name="CurveLoopNotClosed" xml:space="preserve">
     <value>Curves do not form a closed loop.</value>

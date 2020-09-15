@@ -101,5 +101,14 @@ namespace Revit.GeometryReferences
                 string.Format(Properties.Resources.CurveReferenceHint, "ModelCurve.ByCurve", "ImportInstance.ByGeometry"));
         }
 
+        /// <summary>
+        /// Try get ElementCurveReference for a Revit Curve
+        /// </summary>
+        /// <param name="curve">A curve from Revit</param>
+        /// <returns></returns>
+        public static ElementCurveReference ByCurve(Autodesk.DesignScript.Geometry.Curve curve)
+        {
+            return TryGetCurveReference(curve);
+        }
     }
 }

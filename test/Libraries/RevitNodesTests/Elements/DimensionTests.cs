@@ -107,5 +107,42 @@ namespace RevitNodesTests.Elements
             CollectionAssert.AreEqual(expectedDimensionWithSegmentsValue, newAboveValueDimensionWithSegment);
         }
 
+        [Test]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
+        public void CreateByFace_InvalidArgs()
+        {
+            var p1 = Point.ByCoordinates(0.0, 0.0, 0.0);
+            var p2 = Point.ByCoordinates(1.0, 1.0, 0);
+            var p3 = Point.ByCoordinates(2.0, 0, 0);
+
+            var surf1 = Surface.ByPerimeterPoints(new List<Point>() { p1, p2, p3 });
+
+            var q1 = Point.ByCoordinates(0.0, 0.0, 2.0);
+            var q2 = Point.ByCoordinates(1.0, 1.0, 2);
+            var q3 = Point.ByCoordinates(2.0, 0, 2);
+
+            var surf2 = Surface.ByPerimeterPoints(new List<Point>() { q1, q2, q3 });
+
+            System.Collections.Generic.List<Surface> surfaces = new System.Collections.Generic.List<Surface>() { surf1, surf2 };
+
+            var line = Line.ByStartPointEndPoint(p1, q1);
+
+            Assert.Throws(typeof(System.ArgumentException), () => Dimension.ByFaces(Revit.Application.Document.Current.ActiveView, surfaces, line));
+        }
+
+        [Test]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
+        public void CreateByLine_InvalidArgs()
+        {
+            var line1 = Line.ByStartPointEndPoint(Point.ByCoordinates(0, 0, 0), Point.ByCoordinates(0, 6, 0));
+
+            var line2 = Line.ByStartPointEndPoint(Point.ByCoordinates(2, 0, 0), Point.ByCoordinates(2, 6, 0));
+
+            System.Collections.Generic.List<Curve> curves = new System.Collections.Generic.List<Curve>() { line1, line2 };
+
+            var line3 = Line.ByStartPointEndPoint(Point.ByCoordinates(0, 3, 0), Point.ByCoordinates(2, 3, 0));
+
+            Assert.Throws(typeof(System.ArgumentException), () => Dimension.ByEdges(Revit.Application.Document.Current.ActiveView, curves, line3));
+        }
     }
 }
