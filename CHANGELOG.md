@@ -1,4 +1,6 @@
+## 0.2.20
 * Add some new Nodes - Dimension.ByFaces, Dimension.ByEdges, Dimension.ByReferences, ElementCurveReference.ByCurve, ElementFaceReference.BySurface.
+* Emergency Upgrade - Hide Dimension new nodes temporary.
 
 ## 0.2.19
 * Fix a bug - filter out unavailable Parameters from Material.

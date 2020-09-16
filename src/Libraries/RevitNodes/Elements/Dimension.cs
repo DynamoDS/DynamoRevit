@@ -211,6 +211,7 @@ namespace Revit.Elements
         /// <param name="suffix">Suffix</param>
         /// <param name="prefix">Prefix</param>
         /// <returns></returns>
+        [IsVisibleInDynamoLibrary(false)]
         public static Dimension ByFaces(Revit.Elements.Views.View view, IEnumerable<Autodesk.DesignScript.Geometry.Surface> referenceSurfaces, [DefaultArgument("null")]Autodesk.DesignScript.Geometry.Line line, string suffix = "", string prefix = "")
         {
             var surfaces = referenceSurfaces.ToList();
@@ -257,6 +258,7 @@ namespace Revit.Elements
         /// <param name="suffix">Suffix</param>
         /// <param name="prefix">Prefix</param>
         /// <returns></returns>
+        [IsVisibleInDynamoLibrary(false)]
         public static Dimension ByEdges(Revit.Elements.Views.View view, IEnumerable<Autodesk.DesignScript.Geometry.Curve> referenceCurves, [DefaultArgument("null")]Autodesk.DesignScript.Geometry.Line line, string suffix = "", string prefix = "")
         {
             var curves = referenceCurves.ToList();
@@ -302,6 +304,7 @@ namespace Revit.Elements
         /// <param name="suffix">Suffix</param>
         /// <param name="prefix">Prefix</param>
         /// <returns></returns>
+        [IsVisibleInDynamoLibrary(false)]
         public static Dimension ByReferences(Revit.Elements.Views.View view, IEnumerable<Revit.GeometryReferences.ElementGeometryReference> referenceGeometries, Autodesk.DesignScript.Geometry.Line line, string suffix = "", string prefix = "")
         {
             var geometries = referenceGeometries.ToList();
