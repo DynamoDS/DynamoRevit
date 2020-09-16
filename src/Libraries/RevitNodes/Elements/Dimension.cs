@@ -154,7 +154,7 @@ namespace Revit.Elements
         #region Public static constructors
 
         /// <summary>
-        /// Construct a Revit Linear Dimension from at least two elements
+        /// Construct a Revit Linear Dimension from at least two elements.
         /// </summary>
         /// <param name="view">View to place dimension in</param>
         /// <param name="referenceElements">Elements to dimension</param>
@@ -203,7 +203,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Construct a Revit Linear Dimension from at least two Faces
+        /// Construct a Revit Linear Dimension from at least two Faces.
         /// </summary>
         /// <param name="view">View to place dimension in</param>
         /// <param name="referenceSurfaces">Faces to dimension</param>
@@ -249,7 +249,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Construct a Revit Linear Dimension from at least two Edges
+        /// Construct a Revit Linear Dimension from at least two Edges.
         /// </summary>
         /// <param name="view">View to place dimension in</param>
         /// <param name="referenceCurves">Edges to dimension</param>
@@ -294,7 +294,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Construct a Revit Linear Dimension from at least two ElementGeometryReference
+        /// Construct a Revit Linear Dimension from at least two ElementGeometryReference.
         /// </summary>
         /// <param name="view">View to place dimension in</param>
         /// <param name="referenceGeometries">References to dimension, e.g. ElementCurveReference and ElementFaceReference</param>
@@ -317,6 +317,50 @@ namespace Revit.Elements
             }
 
             return new Dimension(revitView, revitLine, array, suffix, prefix);
+        }
+
+        /// <summary>
+        /// Create a Dimension for a Element in the specified direction and view.
+        /// </summary>
+        /// <param name="view">View to place dimension in</param>
+        /// <param name="element">The element of generated Dimension</param>
+        /// <param name="direction">The direction to create Dimension</param>
+        /// <param name="line">location of the dimension</param>
+        /// <param name="suffix">Suffix</param>
+        /// <param name="prefix">Prefix</param>
+        /// <returns></returns>
+        public static Dimension ByElementViewDirection(Revit.Elements.Views.View view, Revit.Elements.Element element, Autodesk.DesignScript.Geometry.Vector direction, [DefaultArgument("null")]Autodesk.DesignScript.Geometry.Line line, string suffix = "", string prefix = "")
+        {
+            var revitDirection = direction.ToRevitType();
+
+            List<Autodesk.Revit.DB.PlanarFace> planars = new List<PlanarFace>();
+
+            ReferenceArray array = new ReferenceArray();
+
+            var opt = new Options();
+            opt.ComputeReferences = true;
+
+            var faces = element.InternalGeometry(false).OfType<Autodesk.Revit.DB.Solid>().SelectMany(x => x.Faces.OfType<Autodesk.Revit.DB.PlanarFace>());
+            var references = faces.Select(x => x.Reference);
+            Line revitLine = null;
+            
+            foreach (var face in faces)
+            {
+                if (IsParallel(face.FaceNormal, revitDirection))
+                {
+                    array.Append(face.Reference);
+                    planars.Add(face);
+                }
+            }
+
+            if (planars.Count < 2) throw new Exception(string.Format(Properties.Resources.NotEnoughDataError, "Surface on this Direction"));
+
+            if (line == null)
+                revitLine = Line.CreateBound(planars[0].Origin, planars[0].Origin.Add(direction.ToXyz()));
+            else
+                revitLine = (Line)line.ToRevitType(true);
+
+            return new Dimension(view.InternalView,revitLine,array,"","");
         }
 
         #endregion
@@ -606,6 +650,44 @@ namespace Revit.Elements
         private static Autodesk.Revit.DB.XYZ GetMidpoint(Autodesk.Revit.DB.BoundingBoxXYZ box)
         {
             return box.Min + ((box.Max - box.Min) / 2);
+        }
+
+        /// <summary>
+        /// Whether the two vectors are perpendicular
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
+        private static bool IsVertical(Autodesk.Revit.DB.XYZ v1, Autodesk.Revit.DB.XYZ v2)
+        {
+            var m = v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
+
+            if (m == 0)
+                return true;
+            else
+                return false;
+        }
+        private const double Tolerance = 0.000001;
+        /// <summary>
+        /// Whether the two vectors are parallel
+        /// </summary>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <returns></returns>
+        private static bool IsParallel(Autodesk.Revit.DB.XYZ v1, Autodesk.Revit.DB.XYZ v2)
+        {
+            if (Math.Abs((v1.X * v2.Y) - (v1.Y * v2.X)) < Tolerance)  
+            {
+                if (Math.Abs(v1.X * v2.Z - v1.Z * v2.X) < Tolerance)
+                    if (Math.Abs(v1.Y * v2.Z - v1.Z * v2.Y) < Tolerance)
+                        return true;
+                    else
+                        return false;
+                else
+                    return false;
+            }
+            else
+                return false;
         }
 
         #endregion
