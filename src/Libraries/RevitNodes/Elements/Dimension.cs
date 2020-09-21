@@ -329,7 +329,7 @@ namespace Revit.Elements
         /// <param name="suffix">Suffix</param>
         /// <param name="prefix">Prefix</param>
         /// <returns></returns>
-        public static Dimension ByElementViewDirection(Revit.Elements.Views.View view, Revit.Elements.Element element, Autodesk.DesignScript.Geometry.Vector direction, [DefaultArgument("null")]Autodesk.DesignScript.Geometry.Line line, string suffix = "", string prefix = "")
+        public static Dimension ByElementDirection(Revit.Elements.Views.View view, Revit.Elements.Element element, Autodesk.DesignScript.Geometry.Vector direction, [DefaultArgument("null")]Autodesk.DesignScript.Geometry.Line line, string suffix = "", string prefix = "")
         {
             var revitDirection = direction.ToRevitType();
 
