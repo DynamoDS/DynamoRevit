@@ -346,7 +346,8 @@ namespace Revit.Elements
             
             foreach (var face in faces)
             {
-                if (IsParallel(face.FaceNormal, revitDirection))
+                var isParallel = direction.IsParallel(face.FaceNormal.ToVector());
+                if (isParallel)
                 {
                     array.Append(face.Reference);
                     planars.Add(face);
@@ -650,44 +651,6 @@ namespace Revit.Elements
         private static Autodesk.Revit.DB.XYZ GetMidpoint(Autodesk.Revit.DB.BoundingBoxXYZ box)
         {
             return box.Min + ((box.Max - box.Min) / 2);
-        }
-
-        /// <summary>
-        /// Whether the two vectors are perpendicular
-        /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
-        private static bool IsVertical(Autodesk.Revit.DB.XYZ v1, Autodesk.Revit.DB.XYZ v2)
-        {
-            var m = v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
-
-            if (m == 0)
-                return true;
-            else
-                return false;
-        }
-        private const double Tolerance = 0.000001;
-        /// <summary>
-        /// Whether the two vectors are parallel
-        /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
-        private static bool IsParallel(Autodesk.Revit.DB.XYZ v1, Autodesk.Revit.DB.XYZ v2)
-        {
-            if (Math.Abs((v1.X * v2.Y) - (v1.Y * v2.X)) < Tolerance)  
-            {
-                if (Math.Abs(v1.X * v2.Z - v1.Z * v2.X) < Tolerance)
-                    if (Math.Abs(v1.Y * v2.Z - v1.Z * v2.Y) < Tolerance)
-                        return true;
-                    else
-                        return false;
-                else
-                    return false;
-            }
-            else
-                return false;
         }
 
         #endregion
