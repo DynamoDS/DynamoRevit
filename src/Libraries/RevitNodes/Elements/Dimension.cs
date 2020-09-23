@@ -154,7 +154,7 @@ namespace Revit.Elements
         #region Public static constructors
 
         /// <summary>
-        /// Construct a Revit Linear Dimension from at least two elements
+        /// Construct a Revit Linear Dimension from at least two elements.
         /// </summary>
         /// <param name="view">View to place dimension in</param>
         /// <param name="referenceElements">Elements to dimension</param>
@@ -203,7 +203,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Construct a Revit Linear Dimension from at least two Faces
+        /// Construct a Revit Linear Dimension from at least two Faces.
         /// </summary>
         /// <param name="view">View to place dimension in</param>
         /// <param name="referenceSurfaces">Faces to dimension</param>
@@ -211,7 +211,6 @@ namespace Revit.Elements
         /// <param name="suffix">Suffix</param>
         /// <param name="prefix">Prefix</param>
         /// <returns></returns>
-        [IsVisibleInDynamoLibrary(false)]
         public static Dimension ByFaces(Revit.Elements.Views.View view, IEnumerable<Autodesk.DesignScript.Geometry.Surface> referenceSurfaces, [DefaultArgument("null")]Autodesk.DesignScript.Geometry.Line line, string suffix = "", string prefix = "")
         {
             var surfaces = referenceSurfaces.ToList();
@@ -250,7 +249,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Construct a Revit Linear Dimension from at least two Edges
+        /// Construct a Revit Linear Dimension from at least two Edges.
         /// </summary>
         /// <param name="view">View to place dimension in</param>
         /// <param name="referenceCurves">Edges to dimension</param>
@@ -258,7 +257,6 @@ namespace Revit.Elements
         /// <param name="suffix">Suffix</param>
         /// <param name="prefix">Prefix</param>
         /// <returns></returns>
-        [IsVisibleInDynamoLibrary(false)]
         public static Dimension ByEdges(Revit.Elements.Views.View view, IEnumerable<Autodesk.DesignScript.Geometry.Curve> referenceCurves, [DefaultArgument("null")]Autodesk.DesignScript.Geometry.Line line, string suffix = "", string prefix = "")
         {
             var curves = referenceCurves.ToList();
@@ -296,7 +294,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Construct a Revit Linear Dimension from at least two ElementGeometryReference
+        /// Construct a Revit Linear Dimension from at least two ElementGeometryReference.
         /// </summary>
         /// <param name="view">View to place dimension in</param>
         /// <param name="referenceGeometries">References to dimension, e.g. ElementCurveReference and ElementFaceReference</param>
@@ -304,7 +302,6 @@ namespace Revit.Elements
         /// <param name="suffix">Suffix</param>
         /// <param name="prefix">Prefix</param>
         /// <returns></returns>
-        [IsVisibleInDynamoLibrary(false)]
         public static Dimension ByReferences(Revit.Elements.Views.View view, IEnumerable<Revit.GeometryReferences.ElementGeometryReference> referenceGeometries, Autodesk.DesignScript.Geometry.Line line, string suffix = "", string prefix = "")
         {
             var geometries = referenceGeometries.ToList();
@@ -320,6 +317,51 @@ namespace Revit.Elements
             }
 
             return new Dimension(revitView, revitLine, array, suffix, prefix);
+        }
+
+        /// <summary>
+        /// Create a Dimension for a Element in the specified direction and view.
+        /// </summary>
+        /// <param name="view">View to place dimension in</param>
+        /// <param name="element">The element of generated Dimension</param>
+        /// <param name="direction">The direction to create Dimension</param>
+        /// <param name="line">location of the dimension</param>
+        /// <param name="suffix">Suffix</param>
+        /// <param name="prefix">Prefix</param>
+        /// <returns></returns>
+        public static Dimension ByElementDirection(Revit.Elements.Views.View view, Revit.Elements.Element element, Autodesk.DesignScript.Geometry.Vector direction, [DefaultArgument("null")]Autodesk.DesignScript.Geometry.Line line, string suffix = "", string prefix = "")
+        {
+            var revitDirection = direction.ToRevitType();
+
+            List<Autodesk.Revit.DB.PlanarFace> planars = new List<PlanarFace>();
+
+            ReferenceArray array = new ReferenceArray();
+
+            var opt = new Options();
+            opt.ComputeReferences = true;
+
+            var faces = element.InternalGeometry(false).OfType<Autodesk.Revit.DB.Solid>().SelectMany(x => x.Faces.OfType<Autodesk.Revit.DB.PlanarFace>());
+            var references = faces.Select(x => x.Reference);
+            Line revitLine = null;
+            
+            foreach (var face in faces)
+            {
+                var isParallel = direction.IsParallel(face.FaceNormal.ToVector());
+                if (isParallel)
+                {
+                    array.Append(face.Reference);
+                    planars.Add(face);
+                }
+            }
+
+            if (planars.Count < 2) throw new Exception(string.Format(Properties.Resources.NotEnoughDataError, "Surface on this Direction"));
+
+            if (line == null)
+                revitLine = Line.CreateBound(planars[0].Origin, planars[0].Origin.Add(direction.ToXyz()));
+            else
+                revitLine = (Line)line.ToRevitType(true);
+
+            return new Dimension(view.InternalView, revitLine, array, suffix, prefix);
         }
 
         #endregion

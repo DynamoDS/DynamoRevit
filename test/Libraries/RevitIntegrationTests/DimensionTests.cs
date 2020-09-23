@@ -129,5 +129,21 @@ namespace RevitSystemTests
 
             Assert.AreEqual(dim.GetType(), typeof(Revit.Elements.Dimension));
         }
+
+        [Test]
+        [TestModel(@".\Dimension\DimensionCreation.rvt")]
+        public void ByElementDirection()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Dimension\ByElementDirection.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            var dim = GetPreviewValue("466efabbc778432688496497d4a86c0c");
+
+            Assert.AreEqual(dim.GetType(), typeof(Revit.Elements.Dimension));
+        }
     }
 }

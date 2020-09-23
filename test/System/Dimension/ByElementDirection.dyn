@@ -1,0 +1,438 @@
+{
+  "Uuid": "8bdc0b2e-535b-450f-b046-11a0419cd24e",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "ByElementDirection",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Dimension.ByElementDirection@Revit.Elements.Views.View,Revit.Elements.Element,Autodesk.DesignScript.Geometry.Vector,Autodesk.DesignScript.Geometry.Line,string,string",
+      "Id": "466efabbc778432688496497d4a86c0c",
+      "Inputs": [
+        {
+          "Id": "1c2e1937ae6c42e7bff364bad3892ada",
+          "Name": "view",
+          "Description": "View to place dimension in\n\nView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "84947a8b7fae4c238a42fe65e523debc",
+          "Name": "element",
+          "Description": "The element of generated Dimension\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ac9221b115e24b0a9f71c81a0747db02",
+          "Name": "direction",
+          "Description": "The direction to create Dimension\n\nVector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bdb3e77f9c5441e98b7ae2daef04a693",
+          "Name": "line",
+          "Description": "location of the dimension\n\nLine\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b0216835831046d5957e06e7e195db00",
+          "Name": "suffix",
+          "Description": "Suffix\n\nstring\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "817d709dc7734ea4995a3dbdc0004f84",
+          "Name": "prefix",
+          "Description": "Prefix\n\nstring\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4e41ed95e86d43c0a5e5883d23cefebb",
+          "Name": "Dimension",
+          "Description": "Dimension",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create a Dimension for a Element in the specified direction and view.\n\nDimension.ByElementDirection (view: View, element: Element, direction: Vector, line: Line = null, suffix: string = \"\", prefix: string = \"\"): Dimension"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 9,
+      "SelectedString": "Level 1",
+      "NodeType": "ExtensionNode",
+      "Id": "f91695c57e3a4b739008181c00721245",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b9ad3d0d005b41d2a48273b381803777",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "018b34e9-589e-42b1-9993-a62744e95bcb-00056e10"
+      ],
+      "Id": "3b92f626e5264816a9d7db60e9352b37",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "97ae1cc6639949678a05c2ebd7a5e5c0",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.GetLocation",
+      "Id": "3ba205de00be406ba503b3fbf0a2fdc8",
+      "Inputs": [
+        {
+          "Id": "8bca2d06d6a343b8966ee32af72e4b9f",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4f88ce85dd874cf2a7b1c1671b76d1b3",
+          "Name": "Geometry",
+          "Description": "Location Geometry",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get an existing element's location\n\nElement.GetLocation ( ): Geometry"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Vector.Rotate@Autodesk.DesignScript.Geometry.Vector,double",
+      "Id": "9922bd4ef45049edb341118f5834438e",
+      "Inputs": [
+        {
+          "Id": "763296dd75574d0abd2cb7807a244787",
+          "Name": "vector",
+          "Description": "Autodesk.DesignScript.Geometry.Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "34845fd4acc546ee8c14c8289e05e283",
+          "Name": "axis",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cf61a11816c74884b5f90abfe7145d5c",
+          "Name": "degrees",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ab7cdc9fde8a481e812d302a01fc2774",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Rotates a Vector around an axis by a specified number of degrees\n\nVector.Rotate (axis: Vector, degrees: double = 0): Vector"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Line.Direction",
+      "Id": "fac2a9b2a43f4048a69c58a6a56c4ede",
+      "Inputs": [
+        {
+          "Id": "a37e6f444ea045a2b34b9392a5aa2aa5",
+          "Name": "line",
+          "Description": "Autodesk.DesignScript.Geometry.Line",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "51833c29fdb74d7cb69a586f06bf1c4d",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The direction of the Curve\n\nLine.Direction: Vector"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "0;",
+      "Id": "bef56d3735a7435594e05dfde35744bd",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "48be2f4156df46c88a06ccbb41603505",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Vector.ZAxis",
+      "Id": "241060423935481b80da3e7ec373686c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "62b5aabf427c4c1dba373c07c447540e",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the canonical Z axis Vector (0,0,1)\n\nVector.ZAxis ( ): Vector"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "b9ad3d0d005b41d2a48273b381803777",
+      "End": "1c2e1937ae6c42e7bff364bad3892ada",
+      "Id": "be10e71408d5461dacff98fc39c278e2"
+    },
+    {
+      "Start": "97ae1cc6639949678a05c2ebd7a5e5c0",
+      "End": "8bca2d06d6a343b8966ee32af72e4b9f",
+      "Id": "153fa5e5c6594871b3f2bb8ba116d433"
+    },
+    {
+      "Start": "97ae1cc6639949678a05c2ebd7a5e5c0",
+      "End": "84947a8b7fae4c238a42fe65e523debc",
+      "Id": "2cebd0543ded43e69e55339b11c044e4"
+    },
+    {
+      "Start": "4f88ce85dd874cf2a7b1c1671b76d1b3",
+      "End": "a37e6f444ea045a2b34b9392a5aa2aa5",
+      "Id": "ee1ad6cd2145436582f7f98acedbae27"
+    },
+    {
+      "Start": "ab7cdc9fde8a481e812d302a01fc2774",
+      "End": "ac9221b115e24b0a9f71c81a0747db02",
+      "Id": "b29d8069894140e38c0d2b060c0f7ea9"
+    },
+    {
+      "Start": "51833c29fdb74d7cb69a586f06bf1c4d",
+      "End": "763296dd75574d0abd2cb7807a244787",
+      "Id": "5ee80afecddc4ad383bc519553670592"
+    },
+    {
+      "Start": "48be2f4156df46c88a06ccbb41603505",
+      "End": "cf61a11816c74884b5f90abfe7145d5c",
+      "Id": "ec8fea9563664d9ab96dbcd3a5d4a10b"
+    },
+    {
+      "Start": "62b5aabf427c4c1dba373c07c447540e",
+      "End": "34845fd4acc546ee8c14c8289e05e283",
+      "Id": "ae3f521535884323b0a16c6108c55fd1"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [
+    {
+      "NodeId": "466efabb-c778-4326-8849-6497d4a86c0c",
+      "Binding": {
+        "ByElementDirection_InClassDecl-1_InFunctionScope-1_Instance0_466efabb-c778-4326-8849-6497d4a86c0c": "PFNPQVAtRU5WOkVudmVsb3BlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOlNPQVAtRU5DPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1sbnM6U09BUC1FTlY9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpjbHI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc29hcC9lbmNvZGluZy9jbHIvMS4wIiBTT0FQLUVOVjplbmNvZGluZ1N0eWxlPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyI+DQo8U09BUC1FTlY6Qm9keT4NCjxhMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXIgaWQ9InJlZi0xIiB4bWxuczphMT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9jbHIvbnNhc3NlbS9Qcm90b0NvcmUvUHJvdG9Db3JlJTJDJTIwVmVyc2lvbiUzRDIuOC4wLjIxOTUlMkMlMjBDdWx0dXJlJTNEbmV1dHJhbCUyQyUyMFB1YmxpY0tleVRva2VuJTNEbnVsbCI+DQo8TnVtYmVyT2ZFbGVtZW50cz4xPC9OdW1iZXJPZkVsZW1lbnRzPg0KPEJhc2UtMF9IYXNEYXRhPnRydWU8L0Jhc2UtMF9IYXNEYXRhPg0KPEJhc2UtMF9EYXRhIGlkPSJyZWYtMyI+UEZOUFFWQXRSVTVXT2tWdWRtVnNiM0JsSUhodGJHNXpPbmh6YVQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0V0YVc1emRHRnVZMlVpSUhodGJHNXpPbmh6WkQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0VpSUhodGJHNXpPbE5QUVZBdFJVNURQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SWdlRzFzYm5NNlUwOUJVQzFGVGxZOUltaDBkSEE2THk5elkyaGxiV0Z6TG5odGJITnZZWEF1YjNKbkwzTnZZWEF2Wlc1MlpXeHZjR1V2SWlCNGJXeHVjenBqYkhJOUltaDBkSEE2THk5elkyaGxiV0Z6TG0xcFkzSnZjMjltZEM1amIyMHZjMjloY0M5bGJtTnZaR2x1Wnk5amJISXZNUzR3SWlCVFQwRlFMVVZPVmpwbGJtTnZaR2x1WjFOMGVXeGxQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SStEUW84VTA5QlVDMUZUbFk2UW05a2VUNE5DanhoTVRwVFpYSnBZV3hwZW1GaWJHVkpaQ0JwWkQwaWNtVm1MVEVpSUhodGJHNXpPbUV4UFNKb2RIUndPaTh2YzJOb1pXMWhjeTV0YVdOeWIzTnZablF1WTI5dEwyTnNjaTl1YzJGemMyVnRMMUpsZG1sMFUyVnlkbWxqWlhNdVVHVnljMmx6ZEdWdVkyVXZVbVYyYVhSVFpYSjJhV05sY3lVeVF5VXlNRlpsY25OcGIyNGxNMFF5TGpndU1DNHlOakF4SlRKREpUSXdRM1ZzZEhWeVpTVXpSRzVsZFhSeVlXd2xNa01sTWpCUWRXSnNhV05MWlhsVWIydGxiaVV6Ukc1MWJHd2lQZzBLUEhOMGNtbHVaMGxFSUdsa1BTSnlaV1l0TXlJK1pUTXhOek00T1RRdFl6ZzJNUzAwT1dWbUxUZzNNekV0TjJWaFkyVTNaVEEwWXprd0xUQXdNRFUzTVRSbFBDOXpkSEpwYm1kSlJENE5DanhwYm5SSlJENHpOVFkyT0RZOEwybHVkRWxFUGcwS1BDOWhNVHBUWlhKcFlXeHBlbUZpYkdWSlpENE5Dand2VTA5QlVDMUZUbFk2UW05a2VUNE5Dand2VTA5QlVDMUZUbFk2Ulc1MlpXeHZjR1UrRFFvPTwvQmFzZS0wX0RhdGE+DQo8QmFzZS0wX0hhc05lc3RlZERhdGE+ZmFsc2U8L0Jhc2UtMF9IYXNOZXN0ZWREYXRhPg0KPC9hMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXI+DQo8L1NPQVAtRU5WOkJvZHk+DQo8L1NPQVAtRU5WOkVudmVsb3BlPg0K"
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.8.0.2195",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "466efabbc778432688496497d4a86c0c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Dimension.ByElementDirection",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 726.84464114642856,
+        "Y": 336.90746703279615
+      },
+      {
+        "Id": "f91695c57e3a4b739008181c00721245",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Views",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 424.8446411464285,
+        "Y": 308.90746703279615
+      },
+      {
+        "Id": "3b92f626e5264816a9d7db60e9352b37",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Select Model Element",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -453.1553588535715,
+        "Y": 349.40746703279615
+      },
+      {
+        "Id": "3ba205de00be406ba503b3fbf0a2fdc8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Element.GetLocation",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -184.1553588535715,
+        "Y": 335.90746703279615
+      },
+      {
+        "Id": "9922bd4ef45049edb341118f5834438e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Vector.Rotate",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 424.8446411464285,
+        "Y": 416.90746703279615
+      },
+      {
+        "Id": "fac2a9b2a43f4048a69c58a6a56c4ede",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Line.Direction",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 144.8446411464285,
+        "Y": 335.90746703279615
+      },
+      {
+        "Id": "bef56d3735a7435594e05dfde35744bd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 144.8446411464285,
+        "Y": 553.12080036612952
+      },
+      {
+        "Id": "241060423935481b80da3e7ec373686c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Vector.ZAxis",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 144.8446411464285,
+        "Y": 443.90746703279615
+      }
+    ],
+    "Annotations": [],
+    "X": -15.607655292497611,
+    "Y": -57.550744249541253,
+    "Zoom": 0.71259483262848833
+  }
+}
