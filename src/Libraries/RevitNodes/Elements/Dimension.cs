@@ -361,7 +361,7 @@ namespace Revit.Elements
             else
                 revitLine = (Line)line.ToRevitType(true);
 
-            return new Dimension(view.InternalView,revitLine,array,"","");
+            return new Dimension(view.InternalView, revitLine, array, suffix, prefix);
         }
 
         #endregion
