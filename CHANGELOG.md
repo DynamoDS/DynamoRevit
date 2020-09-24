@@ -1,3 +1,4 @@
+## 0.2.21
 * Restore the Hide Dimension nodes and Add Dimension.ByElementDirection
 * Add icons for some view nodes.
 
