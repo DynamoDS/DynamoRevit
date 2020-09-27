@@ -1,3 +1,5 @@
+* Improve a Systemtests, CanPurgeUnusedElementsFromDocument, which use lots of element id and will fail due to changes in RevitAPI.
+
 ## 0.2.21
 * Restore the Hide Dimension nodes and Add Dimension.ByElementDirection
 * Add icons for some view nodes.
