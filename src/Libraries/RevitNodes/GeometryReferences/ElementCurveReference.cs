@@ -102,7 +102,7 @@ namespace Revit.GeometryReferences
         }
 
         /// <summary>
-        /// Try get ElementCurveReference for a Revit Curve
+        /// Try get ElementCurveReference for a Revit Curve.
         /// </summary>
         /// <param name="curve">A curve from Revit</param>
         /// <returns></returns>

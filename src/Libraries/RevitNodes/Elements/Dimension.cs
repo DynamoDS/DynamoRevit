@@ -320,7 +320,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Create a Dimension for a Element in the specified direction and view.
+        /// Create a Dimension for an Element in the specified direction and view.
         /// </summary>
         /// <param name="view">View to place dimension in</param>
         /// <param name="element">The element of generated Dimension</param>
