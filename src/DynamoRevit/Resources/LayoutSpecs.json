@@ -383,6 +383,17 @@
                   ]
                 },
                 {
+                  "text": "Tag",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "Revit.Elements.Tag",
+                      "inclusive": false
+                    }
+                  ]
+                },
+                {
                   "text": "Text",
                   "iconUrl": "",
                   "elementType": "group",

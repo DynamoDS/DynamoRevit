@@ -367,6 +367,135 @@ namespace Revit.Elements
             }
         }
 
+        /// <summary>
+        /// The position of the head of tag in model coordinates.
+        /// </summary>
+        public Autodesk.DesignScript.Geometry.Point HeadLocation
+        {
+            get
+            {
+                return (this.InternalTextNote.TagHeadPosition is null) ? null : this.InternalTextNote.TagHeadPosition.ToPoint(true);
+            }
+        }
+
+        /// <summary>
+        /// Set the position of the head of tag.
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
+        public Tag SetHeadLocation(Autodesk.DesignScript.Geometry.Point location)
+        {
+            Autodesk.Revit.DB.XYZ point = location.ToRevitType(true);
+            Autodesk.Revit.DB.IndependentTag tagElem = this.InternalTextNote;
+            Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+            TransactionManager.Instance.EnsureInTransaction(document);
+
+            tagElem.TagHeadPosition = point;
+            
+            double rotation = (tagElem.TagOrientation == TagOrientation.Horizontal) ? 0 : 90;
+            InternalSetType(tagElem.TagText, tagElem.TagHeadPosition, rotation);
+
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
+        /// <summary>
+        /// The position of the elbow of the tag's leader. 
+        /// </summary>
+        public Autodesk.DesignScript.Geometry.Point LeaderElbow
+        {
+            get
+            {
+                if (this.InternalTextNote.HasLeader)
+                {
+                    if (this.InternalTextNote.HasElbow)
+                        return this.InternalTextNote.LeaderElbow.ToPoint(true);
+                }
+
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Set the position of the elbow of the tag's leader
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
+        public Tag SetLeaderElbow(Autodesk.DesignScript.Geometry.Point location)
+        {
+            Autodesk.Revit.DB.XYZ point = location.ToRevitType(true);
+            Autodesk.Revit.DB.IndependentTag tagElem = this.InternalTextNote;
+            Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+            TransactionManager.Instance.EnsureInTransaction(document);
+            
+            tagElem.LeaderElbow = point;
+            
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
+        /// <summary>
+        /// The position of the leader end for a tag using free end leader behavior. 
+        /// </summary>
+        public Autodesk.DesignScript.Geometry.Point LeaderEnd
+        {
+            get
+            {
+                if (this.InternalTextNote.HasLeader)
+                    if(this.InternalTextNote.LeaderEndCondition.Equals(LeaderEndCondition.Free))
+                        return this.InternalTextNote.LeaderEnd.ToPoint(true);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Set the position of the leader end for a tag using free end leader behavior.
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
+        public Tag SetLeaderEnd(Autodesk.DesignScript.Geometry.Point location)
+        {
+            Autodesk.Revit.DB.XYZ point = location.ToRevitType(true);
+            Autodesk.Revit.DB.IndependentTag tagElem = this.InternalTextNote;
+            Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
+
+            TransactionManager.Instance.EnsureInTransaction(document);
+
+            tagElem.LeaderEnd = point;
+
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
+        /// <summary>
+        /// Get Tag's leaderEnd condition
+        /// </summary>
+        public string GetLeaderEndCondition
+        {
+            get
+            {
+                if (this.InternalTextNote.HasLeader)
+                    return this.InternalTextNote.LeaderEndCondition.ToString();
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Set Tag's LeaderEnd condition
+        /// </summary>
+        /// <param name="leaderEndCondition"></param>
+        /// <returns></returns>
+        public Tag SetLeaderEndCondition(string leaderEndCondition)
+        {
+            LeaderEndCondition endCondition = (LeaderEndCondition)Enum.Parse(typeof(LeaderEndCondition), leaderEndCondition);
+            RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            InternalTextNote.LeaderEndCondition = endCondition;
+            RevitServices.Transactions.TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
         #endregion
 
         #region Internal static constructors
