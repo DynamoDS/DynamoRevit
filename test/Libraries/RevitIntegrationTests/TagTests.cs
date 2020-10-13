@@ -33,9 +33,7 @@ namespace RevitSystemTests
 
             Assert.AreEqual(typeof(Revit.Elements.Tag), tagelement.GetType());
 
-        }
-
-     
+        }     
 
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
@@ -56,6 +54,87 @@ namespace RevitSystemTests
                 .InternalElement as IndependentTag)
                 .TagHeadPosition.IsAlmostEqualTo(new XYZ(10, 25, 0)));
 
+        }
+
+        private const double Tolerance = 0.001;
+
+        [Test]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
+        public void HeadLocation()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Tag\CanGetSetHeadPositionLeaderElbow.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+            var headlocation1 = GetPreviewValue("f3c8840d0da14da5afac692216eb3019") as Autodesk.DesignScript.Geometry.Point;
+            var headlocation2 = GetPreviewValue("442ca4337e1d45fba00989e0db3182e8") as Autodesk.DesignScript.Geometry.Point;
+
+            Assert.IsNotNull(headlocation1);
+            Assert.IsNotNull(headlocation2);
+            Assert.AreEqual(5, (headlocation2.Y - headlocation1.Y), Tolerance);
+        }
+
+        [Test]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
+        public void LeaderElbow()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Tag\CanGetSetHeadPositionLeaderElbow.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+            var headlocation = GetPreviewValue("f3c8840d0da14da5afac692216eb3019") as Autodesk.DesignScript.Geometry.Point;
+            var leaderElbow = GetPreviewValue("0c58b6a42ea4447cad6bcd9936d85b93") as Autodesk.DesignScript.Geometry.Point;
+
+            Assert.IsNotNull(headlocation);
+            Assert.IsNotNull(leaderElbow);
+            Assert.AreEqual(headlocation.X, leaderElbow.X, Tolerance);
+            Assert.AreEqual(headlocation.Y, leaderElbow.Y, Tolerance);
+            Assert.AreEqual(headlocation.Z, leaderElbow.Z, Tolerance);
+        }
+
+        [Test]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
+        public void LeaderEndCondition()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Tag\CanGetSetConditionAndLocationOfLeaderEnd.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+            var leaderEndCondition = GetPreviewValue("316f8fd5b05441cda070c36a1e122c81");
+
+            Assert.AreEqual("Free", leaderEndCondition);
+        }
+
+        [Test]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
+        public void LeaderEnd()
+        {
+            var model = ViewModel.Model;
+
+            string samplePath = Path.Combine(workingDirectory, @".\Tag\CanGetSetConditionAndLocationOfLeaderEnd.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+            var leaderEnd1 = GetPreviewValue("780005166f264fbbaf6018dd12bd8ba6") as Autodesk.DesignScript.Geometry.Point;
+            var leaderEnd2 = GetPreviewValue("a067b0ce7a234d34905d23b5e31e49cf") as Autodesk.DesignScript.Geometry.Point;
+
+            Assert.IsNotNull(leaderEnd1);
+            Assert.IsNotNull(leaderEnd2);
+            Assert.AreEqual(2, (leaderEnd2.Y - leaderEnd1.Y), Tolerance);
         }
     }
 }

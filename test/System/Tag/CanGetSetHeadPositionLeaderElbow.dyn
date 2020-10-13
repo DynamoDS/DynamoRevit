@@ -1,0 +1,825 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "CanGetSetHeadPositionLeaderElbow",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Tag.ByElement@Revit.Elements.Views.View,Revit.Elements.Element,bool,bool,string,string,Autodesk.DesignScript.Geometry.Vector,bool",
+      "Id": "58d62fc31f314e21b93725264484c1fb",
+      "Inputs": [
+        {
+          "Id": "e4b0e27deee74ffab45dbd89ff8f5399",
+          "Name": "view",
+          "Description": "View to Tag in\n\nView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a0ca2101d9c24fe0be7576e699a0caca",
+          "Name": "element",
+          "Description": "Element to tag\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "386dd3404d634329867b55607e509354",
+          "Name": "horizontal",
+          "Description": "Place tag horizontal\n\nbool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "052fb69a152b47d39208620d54110de4",
+          "Name": "addLeader",
+          "Description": "Add a leader\n\nbool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4da51721362441e7b9bab699b4fb8163",
+          "Name": "horizontalAlignment",
+          "Description": "Horizontal Alignment within the element's extents\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "619550d2f5804cf09a982cd1c2f6e920",
+          "Name": "verticalAlignment",
+          "Description": "Vertical Alignment within the element's extents\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ecf6808f480441c0b3b07247ccf4153a",
+          "Name": "offset",
+          "Description": "Optional: Offset Vector or Tag Location, defaults to 0,0,0\n\nVector\nDefault value : Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0, 0, 0)",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "78bf4fc1a9c1466d8ba6a0e62d078a4e",
+          "Name": "isOffset",
+          "Description": "Optional: Specifies if the point is being used as an offset vector or if it specifies the tags location, defaults to true\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3243882d61bc4867967b9bbc1b302f29",
+          "Name": "Tag",
+          "Description": "Tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create a Revit Tag for a Revit Element\n\nTag.ByElement (view: View, element: Element, horizontal: bool, addLeader: bool, horizontalAlignment: string, verticalAlignment: string, offset: Vector = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0, 0, 0), isOffset: bool = true): Tag"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 9,
+      "SelectedString": "Level 1",
+      "NodeType": "ExtensionNode",
+      "Id": "deb0f534670e4a77938278aa252a089e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2eb1d75b01f746f9b2bebfa897650ab1",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "b8ad3e32-ec88-4c4d-bf3c-2bdc878c97c6-000321e0"
+      ],
+      "Id": "a800156c25cf44fe836db2c5d988990d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bdbbf088f13a41c8a29c5ce899febfdb",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "f418004da5be441b9af22f711c0b3c43",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a46e5c38c4cd4d73b4908ce3b2c8b645",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"Middle\";\n\"Center\";",
+      "Id": "f9718c000d7a401aa3eab8e69542b682",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "31e0ef17138247ef80c457e6df942862",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1640dc310edc4a058fd87ce0f0ab6107",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Vector.ByCoordinates@double,double,double",
+      "Id": "657aa915efed4725954a054827b45380",
+      "Inputs": [
+        {
+          "Id": "3326f5ad3c62484e9b8b43355f005abc",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5f7f53a1e27e43cda0881ba30c7bda63",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f579e214561d43d59c8956997402117f",
+          "Name": "z",
+          "Description": "Z coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0d74a711ad164922b0b72eb5423933c5",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Form a Vector by 3 Euclidean coordinates\n\nVector.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Vector"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "10;",
+      "Id": "6914ea5f7a074bb695c8a1d5dad0db30",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ad01b1cade6043e9914b6fce450f42ce",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Tag.HeadLocation",
+      "Id": "f3c8840d0da14da5afac692216eb3019",
+      "Inputs": [
+        {
+          "Id": "cae3f01aabf845baa13a65d0208b4238",
+          "Name": "tag",
+          "Description": "Revit.Elements.Tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3e3b51d55b744633a4b914e380c6d307",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The position of the head of tag in model coordinates.\n\nTag.HeadLocation: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.Add@Autodesk.DesignScript.Geometry.Vector",
+      "Id": "d7ba74ec0aff46a390ac8b8a7b5c7c30",
+      "Inputs": [
+        {
+          "Id": "a7583a20eb0c473abbe1f071eb9491ca",
+          "Name": "point",
+          "Description": "Autodesk.DesignScript.Geometry.Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6450cf24f0f3442288b72608d41a0f76",
+          "Name": "vectorToAdd",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bebf74d2b37241d3a043610cb0caf755",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Add a vector to a point. The same as Translate(Vector).\n\nPoint.Add (vectorToAdd: Vector): Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Vector.ByCoordinates@double,double,double",
+      "Id": "70670c535d6549b48c2852d85db5a980",
+      "Inputs": [
+        {
+          "Id": "4a75a4c374134239a1649848b531d39e",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8e9d0f3dfe4e4b698d47a30fbbd7ee3d",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f5ad25e4742a480e814bb58b30cc8760",
+          "Name": "z",
+          "Description": "Z coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b396999ac0e644789f85b6812e595750",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Form a Vector by 3 Euclidean coordinates\n\nVector.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Vector"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "5;",
+      "Id": "27769a11bdcc457cb0e0906c76cdb461",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "197430360026439194bd7012959b5a08",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Tag.SetHeadLocation@Autodesk.DesignScript.Geometry.Point",
+      "Id": "476c8151e62d47d48df20c5269747bda",
+      "Inputs": [
+        {
+          "Id": "16ddbfa01fff4f32b3c68630a8f5cff1",
+          "Name": "tag",
+          "Description": "Revit.Elements.Tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8a300879a19b448db77865cfaa9a61dd",
+          "Name": "location",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "59f29e254e754a90bf06539c5274e552",
+          "Name": "Tag",
+          "Description": "Tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Set the position of the head of tag.\n\nTag.SetHeadLocation (location: Point): Tag"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Tag.HeadLocation",
+      "Id": "442ca4337e1d45fba00989e0db3182e8",
+      "Inputs": [
+        {
+          "Id": "24721cf152f642e4875f6e269a19e1d6",
+          "Name": "tag",
+          "Description": "Revit.Elements.Tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "accabeaf5711445bad8c88fda27e4fde",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The position of the head of tag in model coordinates.\n\nTag.HeadLocation: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Tag.SetLeaderElbow@Autodesk.DesignScript.Geometry.Point",
+      "Id": "f472c201152a46c3898462af0d39c42c",
+      "Inputs": [
+        {
+          "Id": "c1450473010c49abbce08e1db179fa41",
+          "Name": "tag",
+          "Description": "Revit.Elements.Tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c3d436c37d4948a59984217a8f9aa18c",
+          "Name": "location",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "273dd0a092e74ad3aa6aa88b55e0cb61",
+          "Name": "Tag",
+          "Description": "Tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Set the position of the elbow of the tag's leader\n\nTag.SetLeaderElbow (location: Point): Tag"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Tag.LeaderElbow",
+      "Id": "0c58b6a42ea4447cad6bcd9936d85b93",
+      "Inputs": [
+        {
+          "Id": "47687e5d7c24421fa7b216f424facfa6",
+          "Name": "tag",
+          "Description": "Revit.Elements.Tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6c4a23b8a3dc4ccf89d630657420e043",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The position of the elbow of the tag's leader.\n\nTag.LeaderElbow: Point"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "3243882d61bc4867967b9bbc1b302f29",
+      "End": "cae3f01aabf845baa13a65d0208b4238",
+      "Id": "be3c6b3cfc5445a1933dfeeb6c8dfa40"
+    },
+    {
+      "Start": "3243882d61bc4867967b9bbc1b302f29",
+      "End": "16ddbfa01fff4f32b3c68630a8f5cff1",
+      "Id": "fa5825a1e92d4073b4aeb68603ec091e"
+    },
+    {
+      "Start": "2eb1d75b01f746f9b2bebfa897650ab1",
+      "End": "e4b0e27deee74ffab45dbd89ff8f5399",
+      "Id": "27043dfefa1749ff8b9d4e83bd35ec73"
+    },
+    {
+      "Start": "bdbbf088f13a41c8a29c5ce899febfdb",
+      "End": "a0ca2101d9c24fe0be7576e699a0caca",
+      "Id": "81cdb423d03145b3957fe076102a0bc8"
+    },
+    {
+      "Start": "a46e5c38c4cd4d73b4908ce3b2c8b645",
+      "End": "386dd3404d634329867b55607e509354",
+      "Id": "a4b39a0c846b42bfb287f045e95cbfe1"
+    },
+    {
+      "Start": "a46e5c38c4cd4d73b4908ce3b2c8b645",
+      "End": "052fb69a152b47d39208620d54110de4",
+      "Id": "b6f03b17888043b7887b9896e91c14d2"
+    },
+    {
+      "Start": "31e0ef17138247ef80c457e6df942862",
+      "End": "4da51721362441e7b9bab699b4fb8163",
+      "Id": "9f9da7b82f7a4e8c90930d5a6484bdf9"
+    },
+    {
+      "Start": "1640dc310edc4a058fd87ce0f0ab6107",
+      "End": "619550d2f5804cf09a982cd1c2f6e920",
+      "Id": "5c31ee97420e40999f9ffcd444ffcf4d"
+    },
+    {
+      "Start": "0d74a711ad164922b0b72eb5423933c5",
+      "End": "ecf6808f480441c0b3b07247ccf4153a",
+      "Id": "b42b1b2731114c1b862ed4a805bc085b"
+    },
+    {
+      "Start": "ad01b1cade6043e9914b6fce450f42ce",
+      "End": "3326f5ad3c62484e9b8b43355f005abc",
+      "Id": "7a291dd9ceac44bfadf415398d7de1a6"
+    },
+    {
+      "Start": "ad01b1cade6043e9914b6fce450f42ce",
+      "End": "5f7f53a1e27e43cda0881ba30c7bda63",
+      "Id": "119ab8f98d3f426b9570092c3c9c5e57"
+    },
+    {
+      "Start": "3e3b51d55b744633a4b914e380c6d307",
+      "End": "a7583a20eb0c473abbe1f071eb9491ca",
+      "Id": "a266b66ddbdc4fcb8aa925084b85738a"
+    },
+    {
+      "Start": "3e3b51d55b744633a4b914e380c6d307",
+      "End": "c3d436c37d4948a59984217a8f9aa18c",
+      "Id": "48abd5b7db094f4b80df343a3fbbc640"
+    },
+    {
+      "Start": "bebf74d2b37241d3a043610cb0caf755",
+      "End": "8a300879a19b448db77865cfaa9a61dd",
+      "Id": "a61b536ff5d44f638b3221fe3a4d3ae9"
+    },
+    {
+      "Start": "b396999ac0e644789f85b6812e595750",
+      "End": "6450cf24f0f3442288b72608d41a0f76",
+      "Id": "050f46524a9b4e10af46b479fce58ff4"
+    },
+    {
+      "Start": "197430360026439194bd7012959b5a08",
+      "End": "8e9d0f3dfe4e4b698d47a30fbbd7ee3d",
+      "Id": "2bc5550329994c53a3270d4f52ce0c79"
+    },
+    {
+      "Start": "59f29e254e754a90bf06539c5274e552",
+      "End": "24721cf152f642e4875f6e269a19e1d6",
+      "Id": "f9769f7227974b17af88c43a1fa0122b"
+    },
+    {
+      "Start": "59f29e254e754a90bf06539c5274e552",
+      "End": "c1450473010c49abbce08e1db179fa41",
+      "Id": "38d7be5db4614991a4dd603e2150aac9"
+    },
+    {
+      "Start": "273dd0a092e74ad3aa6aa88b55e0cb61",
+      "End": "47687e5d7c24421fa7b216f424facfa6",
+      "Id": "d6f6b95f2f884997a719332094f1a631"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [
+    {
+      "NodeId": "58d62fc3-1f31-4e21-b937-25264484c1fb",
+      "Binding": {
+        "ByElement_InClassDecl-1_InFunctionScope-1_Instance0_58d62fc3-1f31-4e21-b937-25264484c1fb": "PFNPQVAtRU5WOkVudmVsb3BlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOlNPQVAtRU5DPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1sbnM6U09BUC1FTlY9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpjbHI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc29hcC9lbmNvZGluZy9jbHIvMS4wIiBTT0FQLUVOVjplbmNvZGluZ1N0eWxlPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyI+DQo8U09BUC1FTlY6Qm9keT4NCjxhMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXIgaWQ9InJlZi0xIiB4bWxuczphMT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9jbHIvbnNhc3NlbS9Qcm90b0NvcmUvUHJvdG9Db3JlJTJDJTIwVmVyc2lvbiUzRDIuOC4wLjIxOTUlMkMlMjBDdWx0dXJlJTNEbmV1dHJhbCUyQyUyMFB1YmxpY0tleVRva2VuJTNEbnVsbCI+DQo8TnVtYmVyT2ZFbGVtZW50cz4xPC9OdW1iZXJPZkVsZW1lbnRzPg0KPEJhc2UtMF9IYXNEYXRhPnRydWU8L0Jhc2UtMF9IYXNEYXRhPg0KPEJhc2UtMF9EYXRhIGlkPSJyZWYtMyI+UEZOUFFWQXRSVTVXT2tWdWRtVnNiM0JsSUhodGJHNXpPbmh6YVQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0V0YVc1emRHRnVZMlVpSUhodGJHNXpPbmh6WkQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0VpSUhodGJHNXpPbE5QUVZBdFJVNURQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SWdlRzFzYm5NNlUwOUJVQzFGVGxZOUltaDBkSEE2THk5elkyaGxiV0Z6TG5odGJITnZZWEF1YjNKbkwzTnZZWEF2Wlc1MlpXeHZjR1V2SWlCNGJXeHVjenBqYkhJOUltaDBkSEE2THk5elkyaGxiV0Z6TG0xcFkzSnZjMjltZEM1amIyMHZjMjloY0M5bGJtTnZaR2x1Wnk5amJISXZNUzR3SWlCVFQwRlFMVVZPVmpwbGJtTnZaR2x1WjFOMGVXeGxQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SStEUW84VTA5QlVDMUZUbFk2UW05a2VUNE5DanhoTVRwVFpYSnBZV3hwZW1GaWJHVkpaQ0JwWkQwaWNtVm1MVEVpSUhodGJHNXpPbUV4UFNKb2RIUndPaTh2YzJOb1pXMWhjeTV0YVdOeWIzTnZablF1WTI5dEwyTnNjaTl1YzJGemMyVnRMMUpsZG1sMFUyVnlkbWxqWlhNdVVHVnljMmx6ZEdWdVkyVXZVbVYyYVhSVFpYSjJhV05sY3lVeVF5VXlNRlpsY25OcGIyNGxNMFF5TGpndU1DNHlPREl5SlRKREpUSXdRM1ZzZEhWeVpTVXpSRzVsZFhSeVlXd2xNa01sTWpCUWRXSnNhV05MWlhsVWIydGxiaVV6Ukc1MWJHd2lQZzBLUEhOMGNtbHVaMGxFSUdsa1BTSnlaV1l0TXlJK05UZGlaV1kyTURrdE5Ua3dOeTAwWVRka0xUbGpNR0l0TVRjMk4yUTBOVE0wTURVd0xUQXdNRE15WWpOaVBDOXpkSEpwYm1kSlJENE5DanhwYm5SSlJENHlNRGMyTnpVOEwybHVkRWxFUGcwS1BDOWhNVHBUWlhKcFlXeHBlbUZpYkdWSlpENE5Dand2VTA5QlVDMUZUbFk2UW05a2VUNE5Dand2VTA5QlVDMUZUbFk2Ulc1MlpXeHZjR1UrRFFvPTwvQmFzZS0wX0RhdGE+DQo8QmFzZS0wX0hhc05lc3RlZERhdGE+ZmFsc2U8L0Jhc2UtMF9IYXNOZXN0ZWREYXRhPg0KPC9hMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXI+DQo8L1NPQVAtRU5WOkJvZHk+DQo8L1NPQVAtRU5WOkVudmVsb3BlPg0K"
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.8.0.2195",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Tag.ByElement",
+        "Id": "58d62fc31f314e21b93725264484c1fb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 554.17985072227361,
+        "Y": 207.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Views",
+        "Id": "deb0f534670e4a77938278aa252a089e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 285.17985072227361,
+        "Y": 54.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "a800156c25cf44fe836db2c5d988990d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 285.17985072227361,
+        "Y": 163.49999999999997
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Boolean",
+        "Id": "f418004da5be441b9af22f711c0b3c43",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 285.17985072227361,
+        "Y": 297.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "f9718c000d7a401aa3eab8e69542b682",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 285.17985072227361,
+        "Y": 380.92666666666662
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Vector.ByCoordinates",
+        "Id": "657aa915efed4725954a054827b45380",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 285.17985072227361,
+        "Y": 500.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "6914ea5f7a074bb695c8a1d5dad0db30",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 100.17985072227361,
+        "Y": 517.71333333333337
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Tag.HeadLocation",
+        "Id": "f3c8840d0da14da5afac692216eb3019",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 918.17985072227361,
+        "Y": 252.00000000000003
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Point.Add",
+        "Id": "d7ba74ec0aff46a390ac8b8a7b5c7c30",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1188.1798507222736,
+        "Y": 145.00000000000003
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Vector.ByCoordinates",
+        "Id": "70670c535d6549b48c2852d85db5a980",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 918.17985072227361,
+        "Y": 91.000000000000028
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "27769a11bdcc457cb0e0906c76cdb461",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 554.17985072227361,
+        "Y": 99.2133333333334
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Tag.SetHeadLocation",
+        "Id": "476c8151e62d47d48df20c5269747bda",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1516.1798507222736,
+        "Y": 119.00000000000003
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Tag.HeadLocation",
+        "Id": "442ca4337e1d45fba00989e0db3182e8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2094.1798507222738,
+        "Y": 65.000000000000028
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Tag.SetLeaderElbow",
+        "Id": "f472c201152a46c3898462af0d39c42c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1805.1798507222736,
+        "Y": 173.00000000000003
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Tag.LeaderElbow",
+        "Id": "0c58b6a42ea4447cad6bcd9936d85b93",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2094.1798507222738,
+        "Y": 173.00000000000003
+      }
+    ],
+    "Annotations": [],
+    "X": -712.00656689836217,
+    "Y": 111.41713906847963,
+    "Zoom": 0.658674852158215
+  }
+}

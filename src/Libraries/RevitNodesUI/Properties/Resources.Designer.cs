@@ -277,6 +277,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tag LeaderEnd Condition.
+        /// </summary>
+        internal static string LeaderEndConditionDescription {
+            get {
+                return ResourceManager.GetString("LeaderEndConditionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a level in the active document.
         /// </summary>
         internal static string LevelsDescription {

@@ -382,7 +382,7 @@ namespace DSRevitNodesUI
             : base(outputName, typeof(Autodesk.Revit.DB.DisplayStyle), inPorts, outPorts) { }
     }
 
-    [NodeName("View PartsVisibilitys")]
+    [NodeName("View Parts Visibilities")]
     [NodeCategory("Revit.View")]
     [NodeDescription("ViewPartsVisibilitysDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
@@ -395,5 +395,20 @@ namespace DSRevitNodesUI
         [JsonConstructor]
         public ViewPartsVisibilitys(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(outputName, typeof(Autodesk.Revit.DB.PartsVisibility), inPorts, outPorts) { }
+    }
+
+    [NodeName("LeaderEnd Condition")]
+    [NodeCategory("Revit.Elements.Tag")]
+    [NodeDescription("LeaderEndConditionDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class LeaderEndCondition : CustomGenericEnumerationDropDown
+    {
+        private const string outputName = "LeaderEndCondition";
+
+        public LeaderEndCondition() : base(outputName, typeof(Autodesk.Revit.DB.LeaderEndCondition)) { }
+
+        [JsonConstructor]
+        public LeaderEndCondition(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(outputName, typeof(Autodesk.Revit.DB.LeaderEndCondition), inPorts, outPorts) { }
     }
 }

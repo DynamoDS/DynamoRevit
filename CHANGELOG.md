@@ -1,5 +1,6 @@
 * Improve a Systemtests, CanPurgeUnusedElementsFromDocument, which use lots of element id and will fail due to changes in RevitAPI.
 * Fix a issue that it will have an offset when select a face or faces from Mass FamilyInstance into Dynamo.
+* Add some new Tag nodes - Tag.HeadLocation, Tag.LeaderElbow, Tag.LeaderEnd, Tag.SetHeadLocation, Tag.SetLeaderElbow, Tag.SetLeaderEnd, Tag.LeaderEndCondition, Tag.SetLeaderEndCondition, LeaderEnd Condition
 
 ## 0.2.21
 * Restore the Hide Dimension nodes and Add Dimension.ByElementDirection

@@ -452,4 +452,8 @@
     <value>View PartsVisibility.</value>
     <comment>Description for View PartsVisibility</comment>
   </data>
+  <data name="LeaderEndConditionDescription" xml:space="preserve">
+    <value>Tag LeaderEnd Condition</value>
+    <comment>Description for Tag LeaderEnd Condition</comment>
+  </data>
 </root>
