@@ -947,7 +947,7 @@ namespace DSRevitNodesUI
         public SpacingRuleLayouts(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
     }
 
-    [NodeName("Element Types")]
+    [NodeName("Element Classes")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("ElementTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
