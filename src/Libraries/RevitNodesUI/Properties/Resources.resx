@@ -251,7 +251,7 @@
     <value>A Level</value>
   </data>
   <data name="PortDataAllElementsInDocumentToolTip" xml:space="preserve">
-    <value>All elements in the active document of a given type.</value>
+    <value>All elements in the active document of a given class.</value>
   </data>
   <data name="PortDataAllVisibleElementsToolTip" xml:space="preserve">
     <value>All visible elements in the active view.</value>
@@ -272,7 +272,7 @@
     <value>The list of elements matching the query.</value>
   </data>
   <data name="PortDataElementTypeToolTip" xml:space="preserve">
-    <value>An element type.</value>
+    <value>An element class.</value>
   </data>
   <data name="PortDataFamilTypeToolTip" xml:space="preserve">
     <value>The Family Type.</value>

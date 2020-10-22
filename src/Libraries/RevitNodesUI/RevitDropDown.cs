@@ -953,10 +953,10 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     public class ElementTypes : AllChildrenOfType<Element>
     {
-        public ElementTypes() { }
+        public ElementTypes() : base("Classes") { }
 
         [JsonConstructor]
-        public ElementTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts) { }
+        public ElementTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base("Classes", inPorts, outPorts) { }
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
