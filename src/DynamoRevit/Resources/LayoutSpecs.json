@@ -164,6 +164,12 @@
                   "path": "RevitNodes.Revit.Elements.FloorType"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.Ceiling"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.CeilingType"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.Form"
                 },
                 {

@@ -50,9 +50,9 @@ namespace Revit.Elements
         /// <summary>
         /// Private constructor
         /// </summary>
-        private Floor(CurveArray curveArray, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level)
+        private Floor(List<CurveLoop> profiles, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level)
         {
-            SafeInit(() => InitFloor(curveArray, floorType, level));
+            SafeInit(() => InitFloor(profiles, floorType, level));
         }
 
         #endregion
@@ -70,20 +70,12 @@ namespace Revit.Elements
         /// <summary>
         /// Initialize a floor element
         /// </summary>
-        private void InitFloor(CurveArray curveArray, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level)
+        private void InitFloor(List<CurveLoop> profiles, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            Autodesk.Revit.DB.Floor floor = null;
-            if (floorType.IsFoundationSlab)
-            {
-                floor = Document.Create.NewFoundationSlab(curveArray, floorType, level, false, XYZ.BasisZ);
-            }
-            else
-            {
-                // we assume the floor is not structural here, this may be a bad assumption
-                floor = Document.Create.NewFloor(curveArray, floorType, level, false);
-            }
+            // we assume the floor is not structural here, this may be a bad assumption
+            Autodesk.Revit.DB.Floor floor = Autodesk.Revit.DB.Floor.Create(Document, profiles, floorType.Id, level.Id);
 
             InternalSetFloor(floor);
 
@@ -160,10 +152,17 @@ namespace Revit.Elements
                 throw new ArgumentException(Properties.Resources.OpenInputPolyCurveError);
             }
 
-            var ca = new CurveArray();
-            outline.Curves().ForEach(x => ca.Append(x.ToRevitType())); 
+            CurveLoop loop = new CurveLoop();
+            outline.Curves().ForEach(x => loop.Append(x.ToRevitType()));
 
-            var floor = new Floor(ca, floorType.InternalFloorType, level.InternalLevel);
+            List<CurveLoop> loops = new List<CurveLoop> { loop };
+
+            if (!BoundaryValidation.IsValidHorizontalBoundary(loops))
+            {
+                throw new ArgumentException(Properties.Resources.NotHorizontalInputPolyCurveError);
+            }
+
+            var floor = new Floor(loops, floorType.InternalFloorType, level.InternalLevel);
             DocumentManager.Regenerate();
             return floor;
         }

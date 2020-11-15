@@ -94,6 +94,16 @@ namespace Revit.Elements
             return FloorType.FromExisting(ele, isRevitOwned);
         }
 
+        public static Ceiling Wrap(Autodesk.Revit.DB.Ceiling ele, bool isRevitOwned)
+        {
+            return Ceiling.FromExisting(ele, isRevitOwned);
+        }
+
+        public static CeilingType Wrap(Autodesk.Revit.DB.CeilingType ele, bool isRevitOwned)
+        {
+            return CeilingType.FromExisting(ele, isRevitOwned);
+        }
+
         public static Form Wrap(Autodesk.Revit.DB.Form ele, bool isRevitOwned)
         {
             return Form.FromExisting(ele, isRevitOwned);

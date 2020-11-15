@@ -476,6 +476,55 @@ namespace DSRevitNodesUI
         }
     }
 
+    [NodeName("Ceiling Types")]
+    [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
+    [NodeDescription("CeilingTypesDescription", typeof(Properties.Resources))]
+    [IsDesignScriptCompatible]
+    public class CeilingTypes : RevitDropDownBase
+    {
+        private const string outputName = "Ceiling Type";
+
+        public CeilingTypes() : base(outputName) { }
+
+        [JsonConstructor]
+        public CeilingTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(outputName, inPorts, outPorts) { }
+
+        protected override SelectionState PopulateItemsCore(string currentSelection)
+        {
+            Items.Clear();
+
+            var fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
+            fec.OfClass(typeof(Autodesk.Revit.DB.CeilingType));
+            var elements = fec.ToElements();
+            if (!elements.Any())
+            {
+                Items.Add(new DynamoDropDownItem(Properties.Resources.NoCeilingTypesAvailable, null));
+                SelectedIndex = 0;
+                return SelectionState.Done;
+            }
+
+            Items = elements.Select(x => new DynamoDropDownItem(x.Name, x)).OrderBy(x => x.Name).ToObservableCollection();
+            return SelectionState.Restore;
+        }
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            if (!CanBuildOutputAst(Properties.Resources.NoCeilingTypesAvailable))
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+
+            var args = new List<AssociativeNode>
+            {
+                AstFactory.BuildStringNode(((Autodesk.Revit.DB.CeilingType) Items[SelectedIndex].Item).Name)
+            };
+
+            var functionCall = AstFactory.BuildFunctionCall
+                <System.String, Revit.Elements.CeilingType>
+                (Revit.Elements.CeilingType.ByName, args);
+
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
+        }
+    }
+
     [NodeName("Wall Types")]
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("WallTypesDescription", typeof(Properties.Resources))]

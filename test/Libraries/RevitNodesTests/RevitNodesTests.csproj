@@ -79,6 +79,8 @@
     <Compile Include="Elements\AdaptiveComponentTests.cs" />
     <Compile Include="Elements\AreaTests.cs" />
     <Compile Include="Elements\CategoryTests.cs" />
+    <Compile Include="Elements\CeilingTests.cs" />
+    <Compile Include="Elements\CeilingTypeTests.cs" />
     <Compile Include="Elements\CurtainSystemTests.cs" />
     <Compile Include="Elements\CurveByPointsTests.cs" />
     <Compile Include="Elements\DimensionTests.cs" />

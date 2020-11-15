@@ -456,4 +456,7 @@
     <value>Tag LeaderEnd Condition</value>
     <comment>Description for Tag LeaderEnd Condition</comment>
   </data>
+  <data name="NoCeilingTypesAvailable" xml:space="preserve">
+    <value>No ceiling types available.</value>
+  </data>
 </root>
