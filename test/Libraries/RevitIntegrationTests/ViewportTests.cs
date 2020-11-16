@@ -70,8 +70,8 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
-            IntegerSlider slider = model.CurrentWorkspace.NodeFromWorkspace
-                ("d443e82fd58143f5a30fd35f41ca0426") as IntegerSlider;
+            IntegerSlider64Bit slider = model.CurrentWorkspace.NodeFromWorkspace
+                ("d443e82fd58143f5a30fd35f41ca0426") as IntegerSlider64Bit;
             slider.Value = 100;
 
             RunCurrentModel();
