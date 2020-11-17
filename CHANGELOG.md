@@ -1,3 +1,6 @@
+## 0.2.23
+* Upgrade DynamoCore version to 2.9.0 with ASM 227.
+
 ## 0.2.22
 * Improve a Systemtests, CanPurgeUnusedElementsFromDocument, which use lots of element id and will fail due to changes in RevitAPI.
 * Fix a issue that it will have an offset when select a face or faces from Mass FamilyInstance into Dynamo.
