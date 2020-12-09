@@ -1,3 +1,7 @@
+## 0.2.24
+* Add icons for new TagNodes.
+* Upgrade DynamoCore version to 2.10.0.
+
 ## 0.2.23
 * Upgrade DynamoCore version to 2.9.0 with ASM 227.
 
