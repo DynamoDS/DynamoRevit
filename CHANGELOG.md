@@ -1,3 +1,7 @@
+
+## 0.2.25
+* Update DynamoCore version 2.10.0 to updated nuget packages.
+
 ## 0.2.24
 * Add icons for new TagNodes.
 * Upgrade DynamoCore version to 2.10.0.
