@@ -44,6 +44,32 @@ namespace Revit.AnalysisDisplay
         }
     }
 
+    [SupressImportIntoVM]
+    [Serializable]
+    public class SpmRefPrimitiveIdListPair : ISerializable
+    {
+        public int SpatialFieldManagerID { get; set; }
+        public Dictionary<Reference, int> RefIdPairs { get; set; }
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("SpatialFieldManagerID", SpatialFieldManagerID, typeof(int));
+            info.AddValue("ReferencePrimitiveIds", RefIdPairs, typeof(Dictionary<Reference, int>));
+        }
+        public SpmRefPrimitiveIdListPair()
+        {
+            SpatialFieldManagerID = int.MinValue;
+            RefIdPairs = new Dictionary<Reference, int>();
+        }
+
+        public SpmRefPrimitiveIdListPair(SerializationInfo info, StreamingContext context)
+        {
+            SpatialFieldManagerID = (int)info.GetValue("SpatialFieldManagerID", typeof(int));
+            RefIdPairs =
+                (Dictionary<Reference, int>)
+                    info.GetValue("ReferencePrimitiveIds", typeof(Dictionary<Reference, int>));
+        }
+    }
+
     /// <summary>
     /// Superclass for all Revit Analysis Display types
     /// 
