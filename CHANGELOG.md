@@ -1,3 +1,15 @@
+
+## 0.2.25
+* Update DynamoCore version 2.10.0 to updated nuget packages.
+
+## 0.2.24
+* Add icons for new TagNodes.
+* Upgrade DynamoCore version to 2.10.0.
+
+## 0.2.23
+* Upgrade DynamoCore version to 2.9.0 with ASM 227.
+
+## 0.2.22
 * Improve a Systemtests, CanPurgeUnusedElementsFromDocument, which use lots of element id and will fail due to changes in RevitAPI.
 * Fix a issue that it will have an offset when select a face or faces from Mass FamilyInstance into Dynamo.
 * Add some new Tag nodes - Tag.HeadLocation, Tag.LeaderElbow, Tag.LeaderEnd, Tag.SetHeadLocation, Tag.SetLeaderElbow, Tag.SetLeaderEnd, Tag.LeaderEndCondition, Tag.SetLeaderEndCondition, LeaderEnd Condition
