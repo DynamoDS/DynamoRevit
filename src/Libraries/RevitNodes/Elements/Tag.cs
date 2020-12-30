@@ -418,7 +418,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Set the position of the elbow of the tag's leader
+        /// Set the position of the elbow of the tag's leader.
         /// </summary>
         /// <param name="location"></param>
         /// <returns></returns>
@@ -470,7 +470,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get Tag's leaderEnd condition
+        /// Get Tag's leaderEnd condition.
         /// </summary>
         public string GetLeaderEndCondition
         {
@@ -483,7 +483,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Set Tag's LeaderEnd condition
+        /// Set Tag's LeaderEnd condition.
         /// </summary>
         /// <param name="leaderEndCondition"></param>
         /// <returns></returns>

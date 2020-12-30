@@ -111,14 +111,14 @@ namespace DSRevitNodesUI
         }
     }
 
-    [NodeName("All Elements of Type"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
+    [NodeName("All Elements of Class"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("ElementsofTypeDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
     public class ElementsOfType : ElementsQueryBase
     {
         public ElementsOfType()
         {
-            InPorts.Add(new PortModel(PortType.Input, this, new PortData("element type", Properties.Resources.PortDataElementTypeToolTip)));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("element class", Properties.Resources.PortDataElementTypeToolTip)));
             OutPorts.Add(new PortModel(PortType.Output, this, new PortData("elements", Properties.Resources.PortDataAllElementsInDocumentToolTip)));
             RegisterAllPorts();
         }
