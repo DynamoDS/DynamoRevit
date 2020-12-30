@@ -34,23 +34,37 @@ namespace Revit.AnalysisDisplay
         private VectorAnalysisDisplay(Autodesk.Revit.DB.View view, VectorData data, 
             string resultsName, string description, Type unitType)
         {
-            var sfm = GetSpatialFieldManagerFromView(view);
+            SpatialFieldManager sfm;
+            var primitiveIds = new List<int>();
 
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            sfm.Clear();
+            var TraceData = GetElementAndPrimitiveIdFromTrace();
+            if (TraceData != null)
+            {
+                sfm = TraceData.Item1;
+                primitiveIds = TraceData.Item2;
+                foreach (var idx in primitiveIds)
+                {
+                    sfm.RemoveSpatialFieldPrimitive(idx);
+                }
+                primitiveIds.Clear();
+            }
+            else
+            {
+                sfm = GetSpatialFieldManagerFromView(view);
 
-            sfm.SetMeasurementNames(new List<string>() { Properties.Resources.Dynamo_AVF_Data_Name });
-
-            var primitiveIds = new List<int>();
+                sfm.SetMeasurementNames(new List<string>() { Properties.Resources.Dynamo_AVF_Data_Name });
+            }
 
             InternalSetSpatialFieldManager(sfm);
 
             var primitiveId = SpatialFieldManager.AddSpatialFieldPrimitive();
             InternalSetSpatialFieldValues(primitiveId, data, resultsName, description, unitType);
             primitiveIds.Add(primitiveId);
-
+            InternalSetSpatialPrimitiveIds(primitiveIds);
             TransactionManager.Instance.TransactionTaskDone();
+            SetElementAndPrimitiveIdsForTrace(sfm, primitiveIds);
         }
 
         #endregion
