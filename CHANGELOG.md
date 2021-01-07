@@ -1,4 +1,7 @@
+## 0.3.0
 * Rename "Element Types" to "Element Classes" distinguished from "ElementType".
+* Improve AnalysisDisplay Nodes.
+* Upgrade DynamoSample file to Revit 2022.
 
 ## 0.2.25
 * Update DynamoCore version 2.10.0 to updated nuget packages.
