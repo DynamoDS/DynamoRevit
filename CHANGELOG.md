@@ -1,3 +1,5 @@
+## 0.2.26
+* Update Dynamo Sample file to Revit 2022
 
 ## 0.2.25
 * Update DynamoCore version 2.10.0 to updated nuget packages.
