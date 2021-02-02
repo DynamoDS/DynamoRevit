@@ -2,6 +2,8 @@
 * Rename "Element Types" to "Element Classes" distinguished from "ElementType".
 * Improve AnalysisDisplay Nodes.
 * Upgrade DynamoSample file to Revit 2022.
+* Upgrade DynamoCore to 2.10.1 to fix CPython3 issues.
+* Upgrade Tag Nodes with New Revit API (Preview Release), and only support one tag with one element.
 
 ## 0.2.25
 * Update DynamoCore version 2.10.0 to updated nuget packages.
