@@ -1,3 +1,6 @@
+## 0.3.1
+* Fix CICD issue with nuget.
+
 ## 0.3.0
 * Rename "Element Types" to "Element Classes" distinguished from "ElementType".
 * Improve AnalysisDisplay Nodes.
