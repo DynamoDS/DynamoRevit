@@ -1,3 +1,6 @@
+## 0.2.27
+* Update DynamoCore version to 2.10.1 to fix Cpython3 node issues.
+
 ## 0.2.26
 * Update Dynamo Sample file to Revit 2022
 
