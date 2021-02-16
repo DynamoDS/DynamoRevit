@@ -4,6 +4,8 @@ using Autodesk.Revit.DB;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Revit.Elements
 {
@@ -108,10 +110,19 @@ namespace Revit.Elements
 
             var tagElem = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.IndependentTag>(document);
 
+            var hostElementIds = new List<ElementId>();
+            var linkedElementIds = new List<ElementId>();
+
+            if(tagElem != null)
+            {
+                hostElementIds.AddRange(tagElem.GetTaggedElementIds().Select(x => x.HostElementId));
+                linkedElementIds.AddRange(tagElem.GetTaggedElementIds().Select(x => x.LinkedElementId));
+            }
+
             // create a new tag if the existing tag is null or its host view is not the selected one
             // or the host is neither set a host or linked element.
             if (tagElem == null || view.Id != tagElem.OwnerViewId ||
-                (tagElem.TaggedElementId.HostElementId != host.Id && tagElem.TaggedElementId.LinkedElementId != host.Id))
+                (!hostElementIds.Contains(host.Id) && !linkedElementIds.Contains(host.Id)))
             {
                 tagElem = IndependentTag.Create(Document, view.Id, new Autodesk.Revit.DB.Reference(host), addLeader, mode, orientation, vector);
             }
@@ -363,7 +374,11 @@ namespace Revit.Elements
         public Revit.Elements.Element TaggedElement
         {
             get {
-                return (Revit.Elements.Element)ElementWrapper.Wrap(this.InternalTextNote.GetTaggedLocalElement(), true);                
+                var eles = this.InternalTextNote.GetTaggedLocalElements();
+                if (eles.Count == 1)
+                    return (Revit.Elements.Element)ElementWrapper.Wrap(eles.First(), true);
+                else
+                    throw new Exception(Properties.Resources.GetTaggedLocalElements);
             }
         }
 
@@ -409,8 +424,14 @@ namespace Revit.Elements
             {
                 if (this.InternalTextNote.HasLeader)
                 {
-                    if (this.InternalTextNote.HasElbow)
-                        return this.InternalTextNote.LeaderElbow.ToPoint(true);
+                    var refs = InternalTextNote.GetTaggedReferences();
+                    if (refs.Count == 1)
+                    {
+                        if (this.InternalTextNote.HasLeaderElbow(refs.First()))
+                            return this.InternalTextNote.GetLeaderElbow(refs.First()).ToPoint(true);
+                    }
+                    else
+                        throw new Exception(Properties.Resources.GetTaggedReferences);
                 }
 
                 return null;
@@ -418,7 +439,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Set the position of the elbow of the tag's leader
+        /// Set the position of the elbow of the tag's leader.
         /// </summary>
         /// <param name="location"></param>
         /// <returns></returns>
@@ -429,9 +450,13 @@ namespace Revit.Elements
             Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
 
             TransactionManager.Instance.EnsureInTransaction(document);
-            
-            tagElem.LeaderElbow = point;
-            
+
+            var refs = InternalTextNote.GetTaggedReferences();
+            if (refs.Count == 1)
+                tagElem.SetLeaderElbow(refs.First(), point);
+            else
+                throw new Exception(Properties.Resources.GetTaggedReferences);
+
             TransactionManager.Instance.TransactionTaskDone();
             return this;
         }
@@ -445,7 +470,14 @@ namespace Revit.Elements
             {
                 if (this.InternalTextNote.HasLeader)
                     if(this.InternalTextNote.LeaderEndCondition.Equals(LeaderEndCondition.Free))
-                        return this.InternalTextNote.LeaderEnd.ToPoint(true);
+                    {
+                        var refs = InternalTextNote.GetTaggedReferences();
+                        if (refs.Count == 1)
+                            return this.InternalTextNote.GetLeaderEnd(refs.First()).ToPoint(true);
+                        else
+                            throw new Exception(Properties.Resources.GetTaggedReferences);
+                    }
+                        
                 return null;
             }
         }
@@ -463,14 +495,18 @@ namespace Revit.Elements
 
             TransactionManager.Instance.EnsureInTransaction(document);
 
-            tagElem.LeaderEnd = point;
+            var refs = InternalTextNote.GetTaggedReferences();
+            if (refs.Count == 1)
+                tagElem.SetLeaderEnd(refs.First(), point);
+            else
+                throw new Exception(Properties.Resources.GetTaggedReferences);
 
             TransactionManager.Instance.TransactionTaskDone();
             return this;
         }
 
         /// <summary>
-        /// Get Tag's leaderEnd condition
+        /// Get Tag's leaderEnd condition.
         /// </summary>
         public string GetLeaderEndCondition
         {
@@ -483,7 +519,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Set Tag's LeaderEnd condition
+        /// Set Tag's LeaderEnd condition.
         /// </summary>
         /// <param name="leaderEndCondition"></param>
         /// <returns></returns>

@@ -18,6 +18,7 @@ namespace Revit.AnalysisDisplay
 {
     [SupressImportIntoVM]
     [Serializable]
+    [Obsolete("Please use Revit.AnalysisDisplay.SpmPrimitiveIdPair instead")]
     public class SpmPrimitiveIdListPair : ISerializable
     {
         public int SpatialFieldManagerID { get; set; }
@@ -70,21 +71,35 @@ namespace Revit.AnalysisDisplay
         /// <param name="unitType"></param>
         private PointAnalysisDisplay(Autodesk.Revit.DB.View view, PointData data, string resultsName, string description, Type unitType)
         {
-            var sfm = GetSpatialFieldManagerFromView(view);
+            SpatialFieldManager sfm;
+            var primitiveIds = new List<int>();
 
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            sfm.Clear();
+            var TraceData = GetElementAndPrimitiveIdFromTrace();
+            if (TraceData != null)
+            {
+                sfm = TraceData.Item1;
+                primitiveIds = TraceData.Item2;
+                foreach(var idx in primitiveIds)
+                {
+                    sfm.RemoveSpatialFieldPrimitive(idx);
+                }
+                primitiveIds.Clear();
+            }
+            else
+            {
+                sfm = GetSpatialFieldManagerFromView(view);
 
-            sfm.SetMeasurementNames(new List<string>() { Properties.Resources.Dynamo_AVF_Data_Name });
-
-            var primitiveIds = new List<int>();
-
+                sfm.SetMeasurementNames(new List<string>() { Properties.Resources.Dynamo_AVF_Data_Name });
+            }
+            
             InternalSetSpatialFieldManager(sfm);
 
             InternalSetSpatialFieldValues(data, ref primitiveIds, resultsName, description, unitType);
-
+            InternalSetSpatialPrimitiveIds(primitiveIds);
             TransactionManager.Instance.TransactionTaskDone();
+            SetElementAndPrimitiveIdsForTrace(sfm, primitiveIds);
         }
 
         #endregion
@@ -230,6 +245,7 @@ namespace Revit.AnalysisDisplay
 
         #endregion
 
+        [Obsolete("Please use Revit.AnalysisDisplay.AbstractAnalysisDisplay instead")]
         protected Tuple<SpatialFieldManager, List<int>> GetElementAndPrimitiveIdListFromTrace()
         {
             // This is a provisional implementation until we can store both items in trace
@@ -251,7 +267,7 @@ namespace Revit.AnalysisDisplay
 
             return new Tuple<SpatialFieldManager, List<int>>(sfm, primitiveIds);
         }
-
+        [Obsolete("Please use Revit.AnalysisDisplay.AbstractAnalysisDisplay.SetElementAndPrimitiveIdsForTrace.GetElementAndPrimitiveIdFromTrace instead")]
         protected void SetElementAndPrimitiveIdListTrace(SpatialFieldManager manager, List<int> primitiveIds)
         {
             if (manager == null)

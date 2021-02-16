@@ -169,7 +169,7 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All elements in the active document of a given type..
+        ///   Looks up a localized string similar to All elements in the active document of a given class..
         /// </summary>
         internal static string ElementsofTypeDescription {
             get {
@@ -178,7 +178,7 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All element subtypes..
+        ///   Looks up a localized string similar to All element subclasses..
         /// </summary>
         internal static string ElementTypesDescription {
             get {
@@ -412,7 +412,7 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All elements in the active document of a given type..
+        ///   Looks up a localized string similar to All elements in the active document of a given class..
         /// </summary>
         internal static string PortDataAllElementsInDocumentToolTip {
             get {
@@ -475,7 +475,7 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An element type..
+        ///   Looks up a localized string similar to An element class..
         /// </summary>
         internal static string PortDataElementTypeToolTip {
             get {

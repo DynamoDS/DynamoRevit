@@ -558,6 +558,12 @@
   <data name="CantModifyInView" xml:space="preserve">
     <value>Can't modify {0} of this view</value>
   </data>
+  <data name="GetTaggedLocalElements" xml:space="preserve">
+    <value>There are more than one Tagged Local Elements.</value>
+  </data>
+  <data name="GetTaggedReferences" xml:space="preserve">
+    <value>There are more than one Tagged References.</value>
+  </data>
   <data name="CeilingTypeNotFound" xml:space="preserve">
     <value>A Revit CeilingType with that name could not be located in the document.</value>
   </data>

@@ -601,6 +601,24 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are more than one Tagged Local Elements..
+        /// </summary>
+        internal static string GetTaggedLocalElements {
+            get {
+                return ResourceManager.GetString("GetTaggedLocalElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are more than one Tagged References..
+        /// </summary>
+        internal static string GetTaggedReferences {
+            get {
+                return ResourceManager.GetString("GetTaggedReferences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Grid Element can only be created in a Revit Project..
         /// </summary>
         internal static string GridCreationFailure {

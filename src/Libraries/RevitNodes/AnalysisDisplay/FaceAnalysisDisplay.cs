@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using Analysis;
 using Dynamo.Graph.Nodes;
+using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Analysis;
 using Revit.GeometryConversion;
+using RevitServices.Elements;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
@@ -22,6 +25,15 @@ namespace Revit.AnalysisDisplay
     {
         internal const string DefaultTag = "RevitFaceReference";
 
+        #region Protected Property
+        protected Dictionary<Reference, int> RefIdPairs { get; set; }
+
+        protected void InternalSetReferencePrimitiveIdPairs(Dictionary<Reference, int> keyValuePairs)
+        {
+            RefIdPairs = keyValuePairs;
+        }
+        #endregion
+
         #region Private constructors
 
         /// <summary>
@@ -35,16 +47,13 @@ namespace Revit.AnalysisDisplay
         protected FaceAnalysisDisplay(
             Autodesk.Revit.DB.View view, ISurfaceData<Autodesk.DesignScript.Geometry.UV, double> data, string resultsName, string description,Type unitType)
         {
-            var sfm = GetSpatialFieldManagerFromView(view);
+
+            SpatialFieldManager sfm;
 
             // create a new spatial field primitive
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            sfm.Clear();
-
-            sfm.SetMeasurementNames(new List<string>(){Properties.Resources.Dynamo_AVF_Data_Name});
-
-            InternalSetSpatialFieldManager(sfm);
+            var refPriIds = new Dictionary<Reference, int>();
             var primitiveIds = new List<int>();
 
             var reference = data.Surface.Tags.LookupTag(DefaultTag) as Reference;
@@ -54,12 +63,59 @@ namespace Revit.AnalysisDisplay
                 // in the static constructor.
                 return;
             }
-                
-            var primitiveId = SpatialFieldManager.AddSpatialFieldPrimitive(reference);
-            primitiveIds.Add(primitiveId);
-            InternalSetSpatialFieldValues(primitiveId, data, resultsName, description, unitType);
+
+            var TraceData = GetElementAndRefPrimitiveIdFromTrace();
+            if (TraceData != null)
+            {
+                sfm = TraceData.Item1;
+                refPriIds = TraceData.Item2;
+
+                InternalSetSpatialFieldManager(sfm);
+                int primitiveId;
+                if (refPriIds.TryGetValue(reference, out primitiveId))
+                {
+                    InternalSetSpatialFieldValues(primitiveId, data, resultsName, description, unitType);
+
+                    TransactionManager.Instance.TransactionTaskDone();
+
+                    return;
+                }
+                else
+                {
+                    foreach(var refPriId in refPriIds)
+                    {
+                        sfm.RemoveSpatialFieldPrimitive(refPriId.Value);
+                    }
+                    refPriIds.Clear();
+
+                    primitiveId = SpatialFieldManager.AddSpatialFieldPrimitive(reference);
+                    primitiveIds.Add(primitiveId);
+                    refPriIds.Add(reference, primitiveId);
+                    InternalSetSpatialPrimitiveIds(primitiveIds);
+                    InternalSetReferencePrimitiveIdPairs(refPriIds);
+
+                    InternalSetSpatialFieldValues(primitiveId, data, resultsName, description, unitType);
+                }
+            }
+            else
+            {
+                sfm = GetSpatialFieldManagerFromView(view);
+
+                sfm.SetMeasurementNames(new List<string>() { Properties.Resources.Dynamo_AVF_Data_Name });
+
+                InternalSetSpatialFieldManager(sfm);
+
+                var primitiveId = SpatialFieldManager.AddSpatialFieldPrimitive(reference);
+                primitiveIds.Add(primitiveId);
+                refPriIds.Add(reference, primitiveId);
+                InternalSetSpatialPrimitiveIds(primitiveIds);
+                InternalSetReferencePrimitiveIdPairs(refPriIds);
+
+                InternalSetSpatialFieldValues(primitiveId, data, resultsName, description, unitType);
+            }
 
             TransactionManager.Instance.TransactionTaskDone();
+            SetElementAndRefPrimitiveIdsForTrace();
         }
 
         #endregion
@@ -213,6 +269,60 @@ namespace Revit.AnalysisDisplay
         }
 
         #endregion
+        #region Trace management
 
+        /// <summary>
+        /// Get the SpatialFieldManager PrimitiveId from Thread Local Storage
+        /// </summary>
+        /// <returns></returns>
+        protected Tuple<SpatialFieldManager, Dictionary<Reference, int>> GetElementAndRefPrimitiveIdFromTrace()
+        {
+            // This is a provisional implementation until we can store both items in trace
+            var id = ElementBinder.GetRawDataFromTrace();
+            if (id == null)
+                return null;
+
+            var idPair = id as SpmRefPrimitiveIdListPair;
+            if (idPair == null)
+                return null;
+
+            var sfmId = idPair.SpatialFieldManagerID;
+            var keyValues = idPair.RefIdPairs;
+
+            SpatialFieldManager sfm = null;
+
+            // if we can't get the sfm, return null
+            if (!Document.TryGetElement(new ElementId(sfmId), out sfm))
+                return null;
+
+            return new Tuple<SpatialFieldManager, Dictionary<Reference, int>>(sfm, keyValues);
+        }
+
+        /// <summary>
+        /// Set the SpatialFieldManager and PrimitiveId in Thread Local Storage
+        /// </summary>
+        /// <param name="manager"></param>
+        /// <param name="keyValues"></param>
+        protected void SetElementAndRefPrimitiveIdsForTrace(SpatialFieldManager manager, Dictionary<Reference, int> keyValues)
+        {
+            if (manager == null)
+            {
+                throw new Exception();
+            }
+
+            var idPair = new SpmRefPrimitiveIdListPair
+            {
+                SpatialFieldManagerID = manager.Id.IntegerValue,
+                RefIdPairs = keyValues
+            };
+            ElementBinder.SetRawDataForTrace(idPair);
+        }
+
+        protected void SetElementAndRefPrimitiveIdsForTrace()
+        {
+            SetElementAndRefPrimitiveIdsForTrace(SpatialFieldManager, RefIdPairs);
+        }
+
+        #endregion
     }
 }
