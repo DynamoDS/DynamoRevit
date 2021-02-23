@@ -966,8 +966,8 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(28, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(32, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(30, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(35, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
@@ -979,6 +979,16 @@ namespace RevitSystemTests
             {
                 var floors = GetPreviewValueAtIndex(floorByTypeAndLevel, i) as Floor;
                 Assert.IsNotNull(floors);
+            }
+
+            var ceilingByTypeAndLevel = "1bdc9891d77e4c71af849ceec712b066";
+            AssertPreviewCount(ceilingByTypeAndLevel, 5);
+
+            // get all Ceilings.
+            for (int i = 0; i <= 4; i++)
+            {
+                var ceiling = GetPreviewValueAtIndex(ceilingByTypeAndLevel, i) as Ceiling;
+                Assert.IsNotNull(ceiling);
             }
 
             var structuralFraming = "e779956e-198b-4518-96fb-e95c79a15dbf";

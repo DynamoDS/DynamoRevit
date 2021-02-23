@@ -458,8 +458,8 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             var model = ViewModel.Model;
-            Assert.AreEqual(48, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(59, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(50, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(62, model.CurrentWorkspace.Connectors.Count());
 
             //check Floor.ByOutLineTypeAndLevel
             var floor = "1bcce36c-7ea3-4c70-9271-544fd378ec41";
@@ -468,6 +468,15 @@ namespace RevitSystemTests
             {
                 var floors = GetPreviewValueAtIndex(floor, i) as Floor;
                 Assert.IsNotNull(floors);
+            }
+            
+            //check Ceiling.ByOutLineTypeAndLevel
+            var ceiling = "f279488700274f23ba1786e895cb8f37";
+            AssertPreviewCount(ceiling, 14);
+            for (int i = 0; i < 14; i++)
+            {
+                var ceilings = GetPreviewValueAtIndex(ceiling, i) as Ceiling;
+                Assert.IsNotNull(ceilings);
             }
 
             //check Element.OverrideColorInView

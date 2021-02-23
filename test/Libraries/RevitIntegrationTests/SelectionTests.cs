@@ -497,6 +497,9 @@ namespace RevitSystemTests
             var floor = GetPreviewValueAtIndex(allElementAtLevelNodeID, 2) as Revit.Elements.Floor;
             Assert.IsNotNull(floor);
 
+            var ceiling = GetPreviewValueAtIndex(allElementAtLevelNodeID, 2) as Revit.Elements.Ceiling;
+            Assert.IsNotNull(ceiling);
+
             // ElementsOfCategories & Adaptive Points, as output of Categories 
             // passed to ElementsOFCategory
             var elementsOfCategoryNodeID = "24f225e1-8883-48c3-a8ba-773b2734336c";

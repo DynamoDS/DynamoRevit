@@ -18,6 +18,8 @@ namespace RevitSystemTests
             Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.Document") == ProtoCore.DSASM.Constants.kInvalidIndex);
             Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.Category") == ProtoCore.DSASM.Constants.kInvalidIndex);
             
+            Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.Ceiling") == ProtoCore.DSASM.Constants.kInvalidIndex);
+            Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.CeilingType") == ProtoCore.DSASM.Constants.kInvalidIndex);
             Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.DividedPath") == ProtoCore.DSASM.Constants.kInvalidIndex);
             Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.DividedSurface") == ProtoCore.DSASM.Constants.kInvalidIndex);
             Assert.IsTrue(GetClassIndex("Autodesk.Revit.DB.FamilyInstance") == ProtoCore.DSASM.Constants.kInvalidIndex);
