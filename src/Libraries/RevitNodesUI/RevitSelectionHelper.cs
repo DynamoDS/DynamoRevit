@@ -60,7 +60,7 @@ namespace Revit.Interactivity
                 case SelectionObjectType.Edge:
                     reference = doc.Selection.PickObject(ObjectType.Edge, message);
                     break;
-                case SelectionObjectType.PointOnFace:                
+                case SelectionObjectType.PointOnFace:
                     reference = doc.Selection.PickObject(ObjectType.PointOnElement, message);
                     break;
                 case SelectionObjectType.None:
