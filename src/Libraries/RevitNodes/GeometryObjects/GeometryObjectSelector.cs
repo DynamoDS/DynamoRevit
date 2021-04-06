@@ -86,5 +86,24 @@ namespace Revit.GeometryObjects
                 .Any(x => x.GetInstanceGeometry().Any());
         }
 
+        public static GeometryReferences.ElementGeometryReference GetPointByReference(string referenceString)
+        {
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var elRef =
+                Reference.ParseFromStableRepresentation(doc, referenceString);
+
+            if(elRef.ElementReferenceType == ElementReferenceType.REFERENCE_TYPE_LINEAR)
+            {
+                return new Revit.GeometryReferences.ElementCurveReference(elRef);
+            }
+            else if(elRef.ElementReferenceType == ElementReferenceType.REFERENCE_TYPE_SURFACE)
+            {
+                return new Revit.GeometryReferences.ElementFaceReference(elRef);
+            }
+            else
+            {
+                throw new Exception(Properties.Resources.ReferenceSelectFailure);
+            }
+        }
     }
 }

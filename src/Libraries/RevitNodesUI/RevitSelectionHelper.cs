@@ -60,8 +60,11 @@ namespace Revit.Interactivity
                 case SelectionObjectType.Edge:
                     reference = doc.Selection.PickObject(ObjectType.Edge, message);
                     break;
-                case SelectionObjectType.PointOnFace:
+                case SelectionObjectType.PointOnFace:                
                     reference = doc.Selection.PickObject(ObjectType.PointOnElement, message);
+                    break;
+                case SelectionObjectType.None:
+                    reference = doc.Selection.PickObject(ObjectType.PointOnElement, new ReferenceSelectionFilter(), message);
                     break;
             }
 
@@ -228,4 +231,19 @@ namespace Revit.Interactivity
         }
     }
 
+    internal class ReferenceSelectionFilter : ISelectionFilter
+    {
+        public bool AllowElement(Element elem)
+        {
+            return true;
+        }
+
+        public bool AllowReference(Reference reference, XYZ position)
+        {
+            if (reference.ElementReferenceType == ElementReferenceType.REFERENCE_TYPE_SURFACE 
+                || reference.ElementReferenceType == ElementReferenceType.REFERENCE_TYPE_LINEAR)
+                return true;
+            return false;
+        }
+    }
 }

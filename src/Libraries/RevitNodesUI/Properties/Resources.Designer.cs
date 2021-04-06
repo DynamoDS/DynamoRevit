@@ -745,6 +745,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a face or curve reference on an Element.
+        /// </summary>
+        internal static string SelectReferenceOnElement {
+            get {
+                return ResourceManager.GetString("SelectReferenceOnElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a UV on a face..
         /// </summary>
         internal static string SelectUVonFaceDescription {

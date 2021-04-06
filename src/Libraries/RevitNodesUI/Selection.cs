@@ -676,6 +676,71 @@ namespace Dynamo.Nodes
                 outPorts) { }
     }
 
+    [NodeName("Select Reference on Element"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
+     NodeDescription("SelectReferenceOnElement", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    public class DSRevitPointSelection : ReferenceSelection
+    {
+        private const string message = "Select a Reference on an element.";
+        private const string prefix = "Reference of Element Id";
+
+        public DSRevitPointSelection()
+            : base(
+                  SelectionType.One,
+                  SelectionObjectType.None,
+                  message,
+                  prefix) { }
+
+        [JsonConstructor]
+        public DSRevitPointSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.One,
+                SelectionObjectType.None,
+                message,
+                prefix,
+                selectionIdentifier,
+                inPorts,
+                outPorts)
+        { }
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(
+            List<AssociativeNode> inputAstNodes)
+        {
+            AssociativeNode node;
+            Func<string, object> func = GeometryObjectSelector.GetPointByReference;
+
+            if (SelectionResults == null || !SelectionResults.Any())
+            {
+                node = AstFactory.BuildNullNode();
+            }
+            else
+            {
+                var newInputs = new List<AssociativeNode>();
+
+                foreach (var reference in SelectionResults)
+                {
+                    var stableRef = GetIdentifierFromModelObject(reference);
+
+                    //this is a selected point on a face
+                    var ptArgs = new List<AssociativeNode>
+                    {
+                        AstFactory.BuildStringNode(stableRef)
+                    };
+
+                    var functionCallNode =
+                        AstFactory.BuildFunctionCall(
+                            func,
+                            ptArgs);
+
+                    newInputs.Add(functionCallNode);
+                }
+
+                node = AstFactory.BuildExprList(newInputs);
+            }
+
+            return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
+        }
+    }
+
     [NodeName("Select Point on Face"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectPointonFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
     public class DSPointOnElementSelection : ReferenceSelection
