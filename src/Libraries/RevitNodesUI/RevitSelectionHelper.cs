@@ -63,6 +63,9 @@ namespace Revit.Interactivity
                 case SelectionObjectType.PointOnFace:
                     reference = doc.Selection.PickObject(ObjectType.PointOnElement, message);
                     break;
+                case SelectionObjectType.None:
+                    reference = doc.Selection.PickObject(ObjectType.PointOnElement, new ReferenceSelectionFilter(), message);
+                    break;
             }
 
             return reference == null ? null : new List<Reference> { reference };
@@ -228,4 +231,19 @@ namespace Revit.Interactivity
         }
     }
 
+    internal class ReferenceSelectionFilter : ISelectionFilter
+    {
+        public bool AllowElement(Element elem)
+        {
+            return true;
+        }
+
+        public bool AllowReference(Reference reference, XYZ position)
+        {
+            if (reference.ElementReferenceType == ElementReferenceType.REFERENCE_TYPE_SURFACE 
+                || reference.ElementReferenceType == ElementReferenceType.REFERENCE_TYPE_LINEAR)
+                return true;
+            return false;
+        }
+    }
 }

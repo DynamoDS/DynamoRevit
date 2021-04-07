@@ -308,6 +308,12 @@ namespace Revit.Elements
             if (geometries.Count < 2) throw new Exception(string.Format(Properties.Resources.NotEnoughDataError, "ElementGeometryReference"));
 
             Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
+
+            if (!view.IsAnnotationView())
+            {
+                throw new Exception(Properties.Resources.ViewDoesNotSupportAnnotations);
+            }
+
             Line revitLine = (Line)line.ToRevitType(true);
 
             ReferenceArray array = new ReferenceArray();
@@ -331,6 +337,12 @@ namespace Revit.Elements
         /// <returns></returns>
         public static Dimension ByElementDirection(Revit.Elements.Views.View view, Revit.Elements.Element element, Autodesk.DesignScript.Geometry.Vector direction, [DefaultArgument("null")]Autodesk.DesignScript.Geometry.Line line, string suffix = "", string prefix = "")
         {
+            Autodesk.Revit.DB.View revitView = (Autodesk.Revit.DB.View)view.InternalElement;
+            if (!view.IsAnnotationView())
+            {
+                throw new Exception(Properties.Resources.ViewDoesNotSupportAnnotations);
+            }
+
             var revitDirection = direction.ToRevitType();
 
             List<Autodesk.Revit.DB.PlanarFace> planars = new List<PlanarFace>();
@@ -361,7 +373,7 @@ namespace Revit.Elements
             else
                 revitLine = (Line)line.ToRevitType(true);
 
-            return new Dimension(view.InternalView, revitLine, array, suffix, prefix);
+            return new Dimension(revitView, revitLine, array, suffix, prefix);
         }
 
         #endregion
@@ -656,7 +668,4 @@ namespace Revit.Elements
         #endregion
 
     }
-
-
-
 }

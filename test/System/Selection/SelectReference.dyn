@@ -1,0 +1,121 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "SelectReference",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSRevitPointSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "1138e571-33c0-4877-b081-60227ba49502-0000c7ba:3:LINEAR"
+      ],
+      "Id": "1e3792fe2363462d83756baa529db36f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0e37967449f541faa45b6ddcccd4a050",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "ce6b8c1a70b347f49322ba844e1f4ef8",
+      "Inputs": [
+        {
+          "Id": "ae3df20c7e3b4953b4ec5555056a5ab9",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "97926925bcd949ffbd27c7f1f1d51965",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0e37967449f541faa45b6ddcccd4a050",
+      "End": "ae3df20c7e3b4953b4ec5555056a5ab9",
+      "Id": "5f16d80ed7b243e3ab4f9ae541261452"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.10.1.3976",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Reference on Element",
+        "Id": "1e3792fe2363462d83756baa529db36f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 130.5,
+        "Y": 159.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "ce6b8c1a70b347f49322ba844e1f4ef8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 479.5,
+        "Y": 159.0
+      }
+    ],
+    "Annotations": [],
+    "X": -113.0,
+    "Y": -24.0,
+    "Zoom": 1.0
+  }
+}

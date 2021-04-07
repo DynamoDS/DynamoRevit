@@ -22,6 +22,7 @@ using RevitTestServices;
 using RTF.Framework;
 using ReferencePoint = Revit.Elements.ReferencePoint;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
+using ElementGeometryReference = Revit.GeometryReferences.ElementGeometryReference;
 
 namespace RevitSystemTests
 {
@@ -728,6 +729,33 @@ namespace RevitSystemTests
 
             var element = GetPreviewValue(selectNode.GUID.ToString());
             Assert.NotNull(element);
+        }
+
+        [Test]
+        [Category("SmokeTests")]
+        [TestModel(@".\Selection\Selection.rfa")]
+        public void SelectReference()
+        {
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectReference.dyn"));
+
+            RunCurrentModel();
+
+            // Get the selection node
+            var selectNode = (ReferenceSelection)(ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(x => x is ReferenceSelection));
+            Assert.NotNull(selectNode);
+
+            // The select reference node returns a list of lists
+            var list = GetFlattenedPreviewValues(selectNode.GUID.ToString());
+            Assert.AreEqual(1, list.Count());
+            Assert.IsInstanceOf<ElementGeometryReference>(list[0]);
+
+            // Clear the selection
+            selectNode.ClearSelections();
+
+            RunCurrentModel();
+
+            list = GetFlattenedPreviewValues(selectNode.GUID.ToString());
+            Assert.AreEqual(0, list.Count);
         }
 
         # region Private Methods

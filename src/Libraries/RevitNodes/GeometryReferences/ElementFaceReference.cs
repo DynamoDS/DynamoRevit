@@ -56,9 +56,9 @@ namespace Revit.GeometryReferences
             }
         }
 
-        private static ElementFaceReference TryGetFaceReference(ElementFaceReference curveObject)
+        private static ElementFaceReference TryGetFaceReference(ElementFaceReference surfaceObject)
         {
-            return curveObject;
+            return surfaceObject;
         }
 
         private static ElementFaceReference TryGetFaceReference(Revit.Elements.Element geometryObject, string nodeTypeString = "This node")
