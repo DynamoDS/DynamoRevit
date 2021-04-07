@@ -456,4 +456,8 @@
     <value>Tag LeaderEnd Condition</value>
     <comment>Description for Tag LeaderEnd Condition</comment>
   </data>
+  <data name="SelectReferenceOnElement" xml:space="preserve">
+    <value>Select a face or curve reference on an Element</value>
+    <comment>Description for Select Reference on Element</comment>
+  </data>
 </root>

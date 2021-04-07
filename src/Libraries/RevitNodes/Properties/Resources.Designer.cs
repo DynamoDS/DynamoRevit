@@ -1105,6 +1105,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select a surface or edge on an element..
+        /// </summary>
+        internal static string ReferenceSelectFailure {
+            get {
+                return ResourceManager.GetString("ReferenceSelectFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Roof type not found..
         /// </summary>
         internal static string RoofTypeNotFound {

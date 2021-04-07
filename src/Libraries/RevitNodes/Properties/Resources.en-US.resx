@@ -531,4 +531,13 @@
   <data name="CantModifyInView" xml:space="preserve">
     <value>Can't modify {0} of this view</value>
   </data>
+  <data name="GetTaggedLocalElements" xml:space="preserve">
+    <value>There are more than one Tagged Local Elements.</value>
+  </data>
+  <data name="GetTaggedReferences" xml:space="preserve">
+    <value>There are more than one Tagged References.</value>
+  </data>
+  <data name="ReferenceSelectFailure" xml:space="preserve">
+    <value>Please select a surface or edge on an element.</value>
+  </data>
 </root>
