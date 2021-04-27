@@ -212,6 +212,11 @@ namespace Revit.Elements
             }
         }
 
+        /// <summary>
+        /// Set LabelOffset of Viewport
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
         public Viewport SetLabelOffset(Autodesk.DesignScript.Geometry.Point point)
         {
             TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
@@ -231,6 +236,11 @@ namespace Revit.Elements
             }
         }
 
+        /// <summary>
+        /// Set LabelLineLength of Viewport
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public Viewport SetLabelLineLength(double length)
         {
             TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
