@@ -1,0 +1,279 @@
+{
+  "Uuid": "87d9df10-6ab5-4709-9217-5ec918622be3",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetSetViewportLabelOffset",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "a7579931-305d-4c46-854a-2238a8b9293f-0004b304"
+      ],
+      "Id": "4277d8ac6a6447d38925c35e02bb8c7b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "62b123e3b9cf42afa1b7ff3da4581502",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Viewport.SetLabelOffset@Autodesk.DesignScript.Geometry.Point",
+      "Id": "56eb0006148641388cd1cbff17c4a041",
+      "Inputs": [
+        {
+          "Id": "9ce580da2f5d44e9938bbed9b32636a2",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3ad259428f724fcfa0a342b51bbb86d3",
+          "Name": "point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d0587f83225343958c653d5ccd56524c",
+          "Name": "Viewport",
+          "Description": "Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Viewport.SetLabelOffset (point: Point): Viewport"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "x=23;\ny=-10;",
+      "Id": "0202586398184ca68676826e296597f6",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bd37d310b3b747cda952af49fcafd2f1",
+          "Name": "",
+          "Description": "x",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a9100285164d492d9afb6c1164f9b271",
+          "Name": "",
+          "Description": "y",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double",
+      "Id": "e9b508acf62743d79d06013690f2c9cf",
+      "Inputs": [
+        {
+          "Id": "2a491ac1e00746d6aa78b28f0e579a71",
+          "Name": "x",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e66c7295f0c24768a41b70c3cb7a9be7",
+          "Name": "y",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1a2923e84743453eaa26bee864e3085c",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Form a Point in the XY plane given two 2 cartesian coordinates. The Z component is 0.\n\nPoint.ByCoordinates (x: double = 0, y: double = 0): Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Viewport.LabelOffset",
+      "Id": "c508619ef62747e6a7eb764ffe8c74a7",
+      "Inputs": [
+        {
+          "Id": "ad71b8d3284a47f184be53c88b07664a",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4c9cf00a21bd4b86b0ec8b90287ac04a",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The offset is a two-dimensional vector from left bottom corner of the viewport with Rotation set to None to the left end of the viewport label line. The Z coordinate is ignored.\n\nViewport.LabelOffset: Point"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "62b123e3b9cf42afa1b7ff3da4581502",
+      "End": "9ce580da2f5d44e9938bbed9b32636a2",
+      "Id": "091c50b52c0348e5861aa00c6314d57e"
+    },
+    {
+      "Start": "d0587f83225343958c653d5ccd56524c",
+      "End": "ad71b8d3284a47f184be53c88b07664a",
+      "Id": "050225b170404f8f8be5790ebeed02de"
+    },
+    {
+      "Start": "bd37d310b3b747cda952af49fcafd2f1",
+      "End": "2a491ac1e00746d6aa78b28f0e579a71",
+      "Id": "1c60944a993f4e8e8703c989f59321b5"
+    },
+    {
+      "Start": "a9100285164d492d9afb6c1164f9b271",
+      "End": "e66c7295f0c24768a41b70c3cb7a9be7",
+      "Id": "cf27fb16c55a4971b01b31d57dac056c"
+    },
+    {
+      "Start": "1a2923e84743453eaa26bee864e3085c",
+      "End": "3ad259428f724fcfa0a342b51bbb86d3",
+      "Id": "634725c4538d4559a6ef57620a478ea0"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.10.1.3976",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "4277d8ac6a6447d38925c35e02bb8c7b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 198.0,
+        "Y": 157.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Viewport.SetLabelOffset",
+        "Id": "56eb0006148641388cd1cbff17c4a041",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 467.0,
+        "Y": 211.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "0202586398184ca68676826e296597f6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -2.0,
+        "Y": 299.92666666666662
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Point.ByCoordinates",
+        "Id": "e9b508acf62743d79d06013690f2c9cf",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 198.0,
+        "Y": 291.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Viewport.LabelOffset",
+        "Id": "c508619ef62747e6a7eb764ffe8c74a7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 793.0,
+        "Y": 211.5
+      }
+    ],
+    "Annotations": [],
+    "X": -356.45207760741994,
+    "Y": 21.239237509595853,
+    "Zoom": 0.822695359375
+  }
+}
