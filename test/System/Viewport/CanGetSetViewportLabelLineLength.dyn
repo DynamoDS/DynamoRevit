@@ -1,0 +1,212 @@
+{
+  "Uuid": "87d9df10-6ab5-4709-9217-5ec918622be3",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetSetViewportLabelLineLength",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "a7579931-305d-4c46-854a-2238a8b9293f-0004b304"
+      ],
+      "Id": "22e3694ceb584916aa62338332094767",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "941562e1d478414792a1acbaa7cd7b6e",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Viewport.LabelLineLength",
+      "Id": "f939542380fd4b9d8bb1091c76ce3004",
+      "Inputs": [
+        {
+          "Id": "01e339b5df5444ef8454d10b040e90ed",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "481ff013b222413a821abad85f8d7f57",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The length of the viewport label line in sheet space, measured in feet.\n\nViewport.LabelLineLength: double"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Viewport.SetLabelLineLength@double",
+      "Id": "e694d49d34e24f1588f267655a4a55d0",
+      "Inputs": [
+        {
+          "Id": "070baf5887dd40c78b3143a01f9baf61",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fe8cd48efaac4585bc68c3ebb6abf921",
+          "Name": "length",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "88ac819411674306832080def5815009",
+          "Name": "Viewport",
+          "Description": "Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Viewport.SetLabelLineLength (length: double): Viewport"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 1.0,
+      "Id": "f9b71e6c55dd4533ab43fcbb17584e17",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4e0a635994544adfa5985475a1d8a3de",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "941562e1d478414792a1acbaa7cd7b6e",
+      "End": "070baf5887dd40c78b3143a01f9baf61",
+      "Id": "c776b6f44ebf4f3384213c90e49b2ce2"
+    },
+    {
+      "Start": "88ac819411674306832080def5815009",
+      "End": "01e339b5df5444ef8454d10b040e90ed",
+      "Id": "4c37e16fa60e4fb59afa53f3efc0be24"
+    },
+    {
+      "Start": "4e0a635994544adfa5985475a1d8a3de",
+      "End": "fe8cd48efaac4585bc68c3ebb6abf921",
+      "Id": "e831b24e5437420eb3bb89f109bf7df6"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.10.1.3976",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "22e3694ceb584916aa62338332094767",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 160.0,
+        "Y": 225.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Viewport.LabelLineLength",
+        "Id": "f939542380fd4b9d8bb1091c76ce3004",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 755.0,
+        "Y": 279.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Viewport.SetLabelLineLength",
+        "Id": "e694d49d34e24f1588f267655a4a55d0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 429.0,
+        "Y": 279.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "f9b71e6c55dd4533ab43fcbb17584e17",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 160.0,
+        "Y": 359.0
+      }
+    ],
+    "Annotations": [],
+    "X": -145.08395133531161,
+    "Y": -61.495085293026705,
+    "Zoom": 0.97676875
+  }
+}

@@ -117,5 +117,43 @@ namespace RevitSystemTests
             Assert.AreEqual(sheetName, sheet.Name);
             Assert.AreEqual(viewName, view.Name);
         }
+
+        [Test]
+        [TestModel(@".\Viewport\viewportTests.rvt")]
+        public void CanGetSetViewportLabelOffset()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Viewport\CanGetSetViewportLabelOffset.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            double x = 23.00;
+            double y = -10.00;
+
+            var LabelOffsetPoint = GetPreviewValue("c508619ef62747e6a7eb764ffe8c74a7") as Point;
+
+            Assert.AreEqual(x, LabelOffsetPoint.X, Tolerance);
+            Assert.AreEqual(y, LabelOffsetPoint.Y, Tolerance);
+        }
+
+        [Test]
+        [TestModel(@".\Viewport\viewportTests.rvt")]
+        public void CanGetSetViewportLabelLineLength()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Viewport\CanGetSetViewportLabelLineLength.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            double length = 1.00;
+
+            var lineLength = double.Parse(GetPreviewValue("f939542380fd4b9d8bb1091c76ce3004").ToString());
+
+            Assert.AreEqual(length, lineLength, Tolerance);
+        }
     }
 }

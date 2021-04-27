@@ -1,5 +1,7 @@
 ## 0.2.27
 * Update DynamoCore version to 2.10.1 to fix Cpython3 node issues.
+* Add new selection node  - "Select Reference on Element" which can select a reference on an element (contains linked element).
+* Add new Viewport nodes - Viewport.LabelOffset, Viewport.SetLabelOffset, Viewport.LabelLineLength, Viewport.SetLabelLineLength.
 
 ## 0.2.26
 * Update Dynamo Sample file to Revit 2022
