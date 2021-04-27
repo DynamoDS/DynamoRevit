@@ -198,6 +198,46 @@ namespace Revit.Elements
                 return BoundingBox.ByCorners(outline.MinimumPoint.ToPoint(), outline.MaximumPoint.ToPoint());
             }
         }
+
+        /// <summary>
+        ///     The offset is a two-dimensional vector from left bottom corner of the viewport
+        ///     with Rotation set to None to the left end of the viewport label line. The Z coordinate
+        ///     is ignored.
+        /// </summary>
+        public Autodesk.DesignScript.Geometry.Point LabelOffset
+        {
+            get
+            {
+                return this.InternalViewport.LabelOffset.ToPoint();
+            }
+        }
+
+        public Viewport SetLabelOffset(Autodesk.DesignScript.Geometry.Point point)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            this.InternalViewport.LabelOffset = point.ToXyz();
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
+        /// <summary>
+        /// The length of the viewport label line in sheet space, measured in feet.
+        /// </summary>
+        public double LabelLineLength
+        {
+            get
+            {
+                return InternalViewport.LabelLineLength;
+            }
+        }
+
+        public Viewport SetLabelLineLength(double length)
+        {
+            TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
+            this.InternalViewport.LabelLineLength = length;
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
         #endregion
 
         #region Public static constructors

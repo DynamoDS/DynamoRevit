@@ -1,5 +1,7 @@
 ## 0.3.1
 * Fix CICD issue with nuget.
+* Add new selection node  - "Select Reference on Element" which can select a reference on an element (contains linked element).
+* Add new Viewport nodes - Viewport.LabelOffset, Viewport.SetLabelOffset, Viewport.LabelLineLength, Viewport.SetLabelLineLength.
 
 ## 0.3.0
 * Rename "Element Types" to "Element Classes" distinguished from "ElementType".
