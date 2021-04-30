@@ -1,0 +1,423 @@
+{
+  "Uuid": "cf7a6074-7eb1-4861-bd11-02703ee029f6",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "CanGetCeilingTypeThermal",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "d811a4be-356c-41e9-8b52-fb46071a1f39-0005741c"
+      ],
+      "Id": "26cdd66cf6d24db68f4e52640fa823cd",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "84b47567e4ee4646af09f358bca06d73",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.ElementType",
+      "Id": "c041f815794e41e086dd6b6801927ec2",
+      "Inputs": [
+        {
+          "Id": "d6d42abaa4ad4a5a91af54d0bdb1b4a8",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a6de885f78b54e6382bdbd5565362237",
+          "Name": "ElementType",
+          "Description": "Element Type or Null.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the ElementType for this Element. Returns null if the Element cannot have an ElementType assigned.\n\nElement.ElementType: ElementType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.CeilingType.GetThermalProperties",
+      "Id": "c6fe2793b6b440738e49bcffd21d8913",
+      "Inputs": [
+        {
+          "Id": "faf8eaa3d5904ed483782ec644a62a81",
+          "Name": "ceilingType",
+          "Description": "Revit.Elements.CeilingType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "88fed37565554c32b3d2e137813fa08d",
+          "Name": "Absorptance",
+          "Description": "Value of absorptance.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ed2f29ddf11f4b45b955de146dc662b3",
+          "Name": "HeatTransferCoefficient",
+          "Description": "The heat transfer coefficient value (U-Value).",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d44aeb1baa6f405ebfe96baaad96ad71",
+          "Name": "Roughness",
+          "Description": "Value of roughness.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "34da9f464a9f4fa68a80b744d803fb43",
+          "Name": "ThermalMass",
+          "Description": "The calculated thermal mass value.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a20853c20d8e4682a006fbd0843c19a9",
+          "Name": "ThermalResistance",
+          "Description": "The calculated thermal resistance value (R-Value).",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The calculated and settable thermal properties of the CeilingType\n\nCeilingType.GetThermalProperties ( ): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "1c4a77ba20dc48f689f4935a93d0550e",
+      "Inputs": [
+        {
+          "Id": "e5940cec2e7d4d2a930145e641a23ba5",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "25ad9cc4df4d49df85727a58b96ae32a",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "ba2eef6c8d4c4b99ae7669acf29a22b4",
+      "Inputs": [
+        {
+          "Id": "bacedc4fdb724fabbce8f2cc93e687b6",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4296dc312e8a4ce890a0051eae78eff9",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "8b2f11cc1c9c469d9f1ccfd6e732ceb0",
+      "Inputs": [
+        {
+          "Id": "b4315460858140fcb5fc900c5b6c9686",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f330a727a2f841ea96d1054f3b1b63a0",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "106b74b022304826b587879ce515f547",
+      "Inputs": [
+        {
+          "Id": "e7e5fab5345d4baeafd318e3a0276e14",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "80fb74844fbd494596f37a35e82e9596",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "7eeea37764ad40bc94a9fdda0ceca0eb",
+      "Inputs": [
+        {
+          "Id": "f31d770cae4c43fd9aba5f94f60090df",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e33bbe2e5c2a45f8a826657f6979edef",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "84b47567e4ee4646af09f358bca06d73",
+      "End": "d6d42abaa4ad4a5a91af54d0bdb1b4a8",
+      "Id": "797300e959f04f03a984b5ecb55f86d7"
+    },
+    {
+      "Start": "a6de885f78b54e6382bdbd5565362237",
+      "End": "faf8eaa3d5904ed483782ec644a62a81",
+      "Id": "c84bb3fac48848799d47b46c4a626243"
+    },
+    {
+      "Start": "88fed37565554c32b3d2e137813fa08d",
+      "End": "e5940cec2e7d4d2a930145e641a23ba5",
+      "Id": "133d2255977c4384abfff6a6d7fcb6aa"
+    },
+    {
+      "Start": "ed2f29ddf11f4b45b955de146dc662b3",
+      "End": "bacedc4fdb724fabbce8f2cc93e687b6",
+      "Id": "1ea5f37179c044e384fa7790f1f49e05"
+    },
+    {
+      "Start": "d44aeb1baa6f405ebfe96baaad96ad71",
+      "End": "b4315460858140fcb5fc900c5b6c9686",
+      "Id": "d0cb1557f84346ad8d5094f241a08483"
+    },
+    {
+      "Start": "34da9f464a9f4fa68a80b744d803fb43",
+      "End": "e7e5fab5345d4baeafd318e3a0276e14",
+      "Id": "8638e59c351f423abef600617955327c"
+    },
+    {
+      "Start": "a20853c20d8e4682a006fbd0843c19a9",
+      "End": "f31d770cae4c43fd9aba5f94f60090df",
+      "Id": "1389ead72b7140728ed91c02cf4cdfa6"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.10.1.3976",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Select Model Element",
+        "Id": "26cdd66cf6d24db68f4e52640fa823cd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 158.70767640174779,
+        "Y": 371.29679985301226
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element.ElementType",
+        "Id": "c041f815794e41e086dd6b6801927ec2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 427.70767640174779,
+        "Y": 371.29679985301226
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "CeilingType.GetThermalProperties",
+        "Id": "c6fe2793b6b440738e49bcffd21d8913",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 775.70767640174779,
+        "Y": 371.29679985301226
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Absorptance",
+        "Id": "1c4a77ba20dc48f689f4935a93d0550e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1205.7076764017479,
+        "Y": 190.29679985301226
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "HeatTransferCoefficient",
+        "Id": "ba2eef6c8d4c4b99ae7669acf29a22b4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1205.7076764017479,
+        "Y": 314.29679985301226
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Roughness",
+        "Id": "8b2f11cc1c9c469d9f1ccfd6e732ceb0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1205.7076764017479,
+        "Y": 423.29679985301226
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ThermalMass",
+        "Id": "106b74b022304826b587879ce515f547",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1205.7076764017479,
+        "Y": 532.29679985301232
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ThermalResistance",
+        "Id": "7eeea37764ad40bc94a9fdda0ceca0eb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1205.7076764017479,
+        "Y": 641.29679985301232
+      }
+    ],
+    "Annotations": [],
+    "X": -728.35671759004867,
+    "Y": -240.92045703837567,
+    "Zoom": 0.931811528498331
+  }
+}
