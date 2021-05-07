@@ -98,6 +98,12 @@
                   "path": "RevitNodes.Revit.Elements.Category"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.Ceiling"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.CeilingType"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.Coordinates"
                 },
                 {

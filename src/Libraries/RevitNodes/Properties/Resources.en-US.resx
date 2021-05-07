@@ -540,4 +540,10 @@
   <data name="ReferenceSelectFailure" xml:space="preserve">
     <value>Please select a surface or edge on an element.</value>
   </data>
+  <data name="CeilingTypeNotFound" xml:space="preserve">
+    <value>A Revit CeilingType with that name could not be located in the document.</value>
+  </data>
+  <data name="NotHorizontalInputPolyCurveError" xml:space="preserve">
+    <value>Curves does not create closed horizontal loop.</value>
+  </data>
 </root>

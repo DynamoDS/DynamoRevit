@@ -78,6 +78,8 @@
     <Compile Include="Application\FamilyDocument.cs" />
     <Compile Include="Elements\Area.cs" />
     <Compile Include="Elements\Category.cs" />
+    <Compile Include="Elements\Ceiling.cs" />
+    <Compile Include="Elements\CeilingType.cs" />
     <Compile Include="Elements\Coordinates.cs" />
     <Compile Include="Elements\CurtainGrid.cs" />
     <Compile Include="Elements\CurtainPanel.cs" />
