@@ -313,6 +313,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No ceiling types available..
+        /// </summary>
+        internal static string NoCeilingTypesAvailable {
+            get {
+                return ResourceManager.GetString("NoCeilingTypesAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No family instances found in the divided surface..
         /// </summary>
         internal static string NoFamilyInstancesInDividedSurfaceWarning {

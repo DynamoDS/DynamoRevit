@@ -460,4 +460,7 @@
     <value>Select a face or curve reference on an Element</value>
     <comment>Description for Select Reference on Element</comment>
   </data>
+  <data name="NoCeilingTypesAvailable" xml:space="preserve">
+    <value>No ceiling types available.</value>
+  </data>
 </root>

@@ -160,6 +160,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A Revit CeilingType with that name could not be located in the document..
+        /// </summary>
+        internal static string CeilingTypeNotFound {
+            get {
+                return ResourceManager.GetString("CeilingTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find cell for panel.
         /// </summary>
         internal static string CellForPanelNotFound {
@@ -921,6 +930,15 @@ namespace Revit.Properties {
         internal static string NotEnoughDataError {
             get {
                 return ResourceManager.GetString("NotEnoughDataError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curves does not create closed horizontal loop..
+        /// </summary>
+        internal static string NotHorizontalInputPolyCurveError {
+            get {
+                return ResourceManager.GetString("NotHorizontalInputPolyCurveError", resourceCulture);
             }
         }
         

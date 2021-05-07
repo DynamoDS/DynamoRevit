@@ -54,6 +54,16 @@ namespace Revit.Elements
             return Area.FromExisting(ele, isRevitOwned);
         }
 
+        public static Ceiling Wrap(Autodesk.Revit.DB.Ceiling ele, bool isRevitOwned)
+        {
+            return Ceiling.FromExisting(ele, isRevitOwned);
+        }
+
+        public static CeilingType Wrap(Autodesk.Revit.DB.CeilingType ele, bool isRevitOwned)
+        {
+            return CeilingType.FromExisting(ele, isRevitOwned);
+        }
+
         public static DirectShape Wrap(Autodesk.Revit.DB.DirectShape ele, bool isRevitOwned)
         {
             return DirectShape.FromExisting(ele, isRevitOwned);

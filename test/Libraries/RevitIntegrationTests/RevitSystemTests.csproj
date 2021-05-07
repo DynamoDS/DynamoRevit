@@ -98,6 +98,8 @@
     <Compile Include="Application\FamilyDocumentTests.cs" />
     <Compile Include="AreaTests.cs" />
     <Compile Include="AsynchronousModeTests.cs" />
+    <Compile Include="CeilingTests.cs" />
+    <Compile Include="CeilingTypeTests.cs" />
     <Compile Include="ElementTypeTests.cs" />
     <Compile Include="ElementTests.cs" />
     <Compile Include="FamilyInstanceTests.cs" />
