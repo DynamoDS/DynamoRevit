@@ -2,6 +2,8 @@
 * Fix CICD issue with nuget.
 * Add new selection node  - "Select Reference on Element" which can select a reference on an element (contains linked element).
 * Add new Viewport nodes - Viewport.LabelOffset, Viewport.SetLabelOffset, Viewport.LabelLineLength, Viewport.SetLabelLineLength.
+* Update Floor API with new RevitAPI.
+* Add new Ceiling&CeilingType nodes - Ceiling.ByOutlineTypeAndLevel, Ceiling.ByOutlineTypeAndLevel(polycurve), Ceiling Types, CeilingType.ByName, CeilingType.Name, CeilingTypeGetThermalProperties.
 
 ## 0.3.0
 * Rename "Element Types" to "Element Classes" distinguished from "ElementType".
