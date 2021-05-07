@@ -1280,6 +1280,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("CeilingTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.CeilingType")]
     public class CeilingTypes : RevitDropDownBase
     {
         private const string outputName = "Ceiling Type";
