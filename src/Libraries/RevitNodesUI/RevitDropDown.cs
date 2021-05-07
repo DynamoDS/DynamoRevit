@@ -146,6 +146,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("FamilyTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.FamilyType")]
     public class FamilyTypes : RevitDropDownBase
     {
         private const string NO_FAMILY_TYPES = "No family types available.";
@@ -210,6 +211,8 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("GetFamilyParameterDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [InPortTypes("Revit.Elements.FamilyType")]
+    [OutPortTypes("string")]
     public class FamilyInstanceParameters : RevitDropDownBase 
     {
         private const string noFamilyParameters = "No family parameters available.";
@@ -431,6 +434,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("FloorTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.FloorType")]
     public class FloorTypes : RevitDropDownBase
     {
         private const string outputName = "Floor Type";
@@ -480,6 +484,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("WallTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.WallType")]
     public class WallTypes : RevitDropDownBase
     {
         private const string outputName = "Wall Type";
@@ -529,6 +534,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("RoofTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.RoofType")]
     public class RoofTypes : RevitDropDownBase
     {
         private const string outputName = "Roof Types";
@@ -582,6 +588,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_ELEMENTS_PERFORMANCEADVISER)]
     [NodeDescription("PerformanceAdviserDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.PerformanceAdviserRule")]
     public class PerformanceAdviserRules : RevitDropDownBase
     {
         private const string outputName = "Performance Adviser Rules";
@@ -638,6 +645,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("CategoriesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Category")]
     public class Categories : EnumBase<BuiltInCategory>
     {
         public Categories()
@@ -795,6 +803,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("LevelsDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Element")]
     public class Levels : RevitDropDownBase
     {
         private const string noLevels = "No levels available.";
@@ -907,6 +916,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("StructuralFramingTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.FamilyType")]
     public class StructuralFramingTypes : AllElementsInBuiltInCategory
     {
         private const string outputName = "Framing Types";
@@ -923,6 +933,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("StructuralColumnTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.FamilyType")]
     public class StructuralColumnTypes : AllElementsInBuiltInCategory
     {
         private const string outputName = "Column Types";
@@ -939,6 +950,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_ELEMENTS_DIVIDEDPATH_ACTION)]
     [NodeDescription("SpacingRuleLayoutDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("int")]
     public class SpacingRuleLayouts : EnumAsInt<SpacingRuleLayout>
     {
         public SpacingRuleLayouts() { }
@@ -951,6 +963,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("ElementTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("System.RuntimeType")]
     public class ElementTypes : AllChildrenOfType<Element>
     {
         public ElementTypes() : base("Classes") { }
@@ -983,6 +996,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("ViewsDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Views.View")]
     public class Views : RevitDropDownBase
     {
         private const string outputName = "Views";
@@ -1047,6 +1061,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_WARNING)]
     [NodeDescription("AllWarningsOfTypeDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Application.Warning")]
     public class AllWarningsOfType : RevitDropDownBase
     {
         private const string outputName = "Warnings";
@@ -1145,6 +1160,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("SheetsDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Views.Sheet")]
     public class Sheets : RevitDropDownBase
     {
         private const string outputName = "Sheet";
@@ -1201,6 +1217,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("ViewFamilyTypesDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.ElementType")]
     public class ViewFamilyTypes : RevitDropDownBase
     {
         private const string outputName = "ViewFamilyType";

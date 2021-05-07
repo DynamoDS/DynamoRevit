@@ -600,6 +600,7 @@ namespace Dynamo.Nodes
 
     [NodeName("Select Model Element"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectModelElementDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Element")]
     public class DSModelElementSelection : ElementSelection<Element>
     {
         private const string message = "Select Model Element";
@@ -626,11 +627,12 @@ namespace Dynamo.Nodes
 
     [NodeName("Select Face"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [OutPortTypes("Autodesk.DesignScript.Geometry.Surface")]
     public class DSFaceSelection : ReferenceSelection
     {
         private const string message = "Select a face.";
         private const string prefix = "Face of Element Id";
-
+        
         public DSFaceSelection()
             : base(
                 SelectionType.One,
@@ -652,11 +654,12 @@ namespace Dynamo.Nodes
 
     [NodeName("Select Edge"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectEdgeDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [OutPortTypes("Autodesk.DesignScript.Geometry.Curve")]
     public class DSEdgeSelection : ReferenceSelection
     {
         private const string message = "Select an edge.";
         private const string prefix = "Edge of Element Id";
-
+        
         public DSEdgeSelection()
             : base(
                 SelectionType.One,
@@ -678,6 +681,7 @@ namespace Dynamo.Nodes
 
     [NodeName("Select Reference on Element"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectReferenceOnElement", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [OutPortTypes("Revit.GeometryReferences.ElementGeometryReference")]
     public class DSRevitPointSelection : ReferenceSelection
     {
         private const string message = "Select a Reference on an element.";
@@ -743,11 +747,12 @@ namespace Dynamo.Nodes
 
     [NodeName("Select Point on Face"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectPointonFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [OutPortTypes("Autodesk.DesignScript.Geometry.Point")]
     public class DSPointOnElementSelection : ReferenceSelection
     {
         private const string message = "Select a point on a face.";
         private const string prefix = "Point on Element";
-
+        
         public DSPointOnElementSelection()
             : base(
                 SelectionType.One,
@@ -818,6 +823,7 @@ namespace Dynamo.Nodes
 
     [NodeName("Select UV on Face"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectUVonFaceDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [OutPortTypes("Autodesk.DesignScript.Geometry.UV")]
     public class DSUvOnElementSelection : ReferenceSelection
     {
         private const string message = "Select a point on a face.";
@@ -894,6 +900,7 @@ namespace Dynamo.Nodes
      NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectDividedSurfaceFamiliesDescription", typeof(DSRevitNodesUI.Properties.Resources)),
      IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Element")]
     public class DSDividedSurfaceFamiliesSelection : ElementSelection<DividedSurface>
     {
         private const string message = "Select a divided surface.";
@@ -948,6 +955,7 @@ namespace Dynamo.Nodes
 
     [NodeName("Select Model Elements"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectModelElementsDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Element[]")]
     public class DSModelElementsSelection : ElementSelection<Element>
     {
         private const string message = "Select elements.";
@@ -975,6 +983,7 @@ namespace Dynamo.Nodes
 
     [NodeName("Select Faces"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectFacesDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [OutPortTypes("Autodesk.DesignScript.Geometry.Surface[]")]
     public class SelectFaces : ReferenceSelection
     {
         private const string message = "Select faces.";
@@ -1002,6 +1011,7 @@ namespace Dynamo.Nodes
 
     [NodeName("Select Edges"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("SelectEdgesDescription", typeof(DSRevitNodesUI.Properties.Resources)), IsDesignScriptCompatible]
+    [OutPortTypes("Autodesk.DesignScript.Geometry.Curve[]")]
     public class SelectEdges : ReferenceSelection
     {
         public SelectEdges()

@@ -44,6 +44,7 @@ namespace DSRevitNodesUI
 
     [NodeName("SiteLocation"), NodeCategory(BuiltinNodeCategories.ANALYZE),
      NodeDescription("SiteLocationDescription", typeof(Properties.Resources)), IsDesignScriptCompatible]
+    [OutPortTypes("DynamoUnits.Location")]
     public class SiteLocation : RevitNodeModel
     {
         private readonly RevitDynamoModel model;
