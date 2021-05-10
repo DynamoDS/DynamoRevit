@@ -19,6 +19,7 @@ namespace DSRevitNodesUI
 {
     [NodeName("SunSettings.Current"), NodeCategory(BuiltinNodeCategories.REVIT_VIEW),
      NodeDescription("SunSettingsCurrentDescription", typeof(Properties.Resources)), IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.SunSettings")]
     public class SunSettings : RevitNodeModel
     {
         private string settingsID;

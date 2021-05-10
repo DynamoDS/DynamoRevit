@@ -33,6 +33,7 @@ namespace Dynamo.ComboNodes
     NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
     NodeDescription("SelectModelElementsByCategoryDescription", typeof(DSRevitNodesUI.Properties.Resources)),
     IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Element[]")]
     public class DSModelElementsByCategorySelection : ElementFilterSelection<Element>
     {
         private const string message = "Select Model Elements";
@@ -93,6 +94,7 @@ namespace Dynamo.ComboNodes
     NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
     NodeDescription("SelectModelElementByCategoryDescription", typeof(DSRevitNodesUI.Properties.Resources)),
     IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Element")]
     public class DSModelElementByCategorySelection : ElementFilterSelection<Element>
     {
         private const string message = "Select Model Element";

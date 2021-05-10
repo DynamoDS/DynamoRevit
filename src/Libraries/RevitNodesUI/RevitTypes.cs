@@ -24,6 +24,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.Phase")]
     [NodeDescription("PhaseSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Phase")]
     public class RevitPhases : CustomRevitElementDropDown
     {
         private const string outputName = "Phase";
@@ -39,6 +40,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.Revision")]
     [NodeDescription("RevisionSelectorDescription",typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Revision")]
     public class RevitRevisions : CustomRevitElementDropDown
     {
         private const string outputName = "Revision";
@@ -54,6 +56,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.FilledRegionType")]
     [NodeDescription("FilledRegionTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.FilledRegionType")]
     public class FilledRegionTypes : CustomRevitElementDropDown
     {
         private const string outputName = "FilledRegionType";
@@ -69,6 +72,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Filter.RuleType")]
     [NodeDescription("FilterTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class RuleTypes : CustomGenericEnumerationDropDown
     {
         private const string outputName = "RuleType";
@@ -84,6 +88,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.Revision")]
     [NodeDescription("RevisionNumberingSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class RevisionNumbering : CustomGenericEnumerationDropDown
     {
         private const string outputName = "Revision Numbering";
@@ -99,6 +104,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.Revision")]
     [NodeDescription("RevisionNumberTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class RevisionNumberType : CustomGenericEnumerationDropDown
     {
         private const string outputName = "Revision Number Type";
@@ -115,6 +121,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.Parameter")]
     [NodeDescription("ParameterTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class ParameterType : CustomGenericEnumerationDropDown
     {
         private const string outputName = "Parameter Type";
@@ -130,6 +137,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.Parameter")]
     [NodeDescription("BuiltInParameterGroupSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class BuiltInParameterGroup : CustomGenericEnumerationDropDown
     {
         private const string outputName = "BuiltIn Parameter Group";
@@ -145,6 +153,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.Revision")]
     [NodeDescription("RevisionVisibilitySelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class RevisionVisibility : CustomGenericEnumerationDropDown
     {
         private const string outputName = "Revision Visibility";
@@ -160,6 +169,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.DirectShape")]
     [NodeDescription("DirectShapeRoomBoundingOptionSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class DirectShapeRoomBoundingOption : CustomGenericEnumerationDropDown
     {
         private const string outputName = "Direct Shape Room Bounding Option";
@@ -175,6 +185,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Filter.OverrideGraphicSettings")]
     [NodeDescription("ViewDetailLevelDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class DetailLevel : CustomGenericEnumerationDropDown
     {
         private const string outputName = "Detail Level";
@@ -190,6 +201,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.Text")]
     [NodeDescription("HorizontalTextAlignmentStyleSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class HorizontalAlignment : CustomGenericEnumerationDropDown
     {
         private const string outputName = "Horizontal Alignment";
@@ -205,6 +217,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.Text")]
     [NodeDescription("VerticalTextAlignmentStyleSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class VerticalAlignment : CustomGenericEnumerationDropDown
     {
         private const string outputName = "Vertical Alignment";
@@ -220,6 +233,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.Wall")]
     [NodeDescription("WallLocationLineDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class WallLocation : CustomGenericEnumerationDropDown
     {
         private const string outputName = "Wall Location";
@@ -236,6 +250,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Views.ScheduleView")]
     [NodeDescription("ScheduleTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class ScheduleTypes : CustomGenericEnumerationDropDown
     {
         private const string outputName = "ScheduleType";
@@ -251,6 +266,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Views.ScheduleView")]
     [NodeDescription("ExportColumnHeadersDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class ExportColumnHeaders : CustomGenericEnumerationDropDown
     {
         private const string outputName = "ColumnHeaders";
@@ -266,6 +282,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Views.ScheduleView")]
     [NodeDescription("ExportTextQualifierDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class ExportTextQualifier : CustomGenericEnumerationDropDown
     {
         private const string outputName = "TextQualifier";
@@ -281,6 +298,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.FillPatternElement")]
     [NodeDescription("FillPatternsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.FillPatternElement")]
     public class FillPatterns : CustomRevitElementDropDown
     {
         private const string outputName = "FillPattern";
@@ -296,6 +314,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.FillPatternElement")]
     [NodeDescription("FillPatternTargetDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class FillPatternTargets : CustomGenericEnumerationDropDown
     {
         private const string outputName = "FillPatternTarget";
@@ -311,6 +330,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.LinePatternElement")]
     [NodeDescription("LinePatternsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.LinePatternElement")]
     public class LinePatterns : CustomRevitElementDropDown
     {
         private const string outputName = "LinePattern";
@@ -326,6 +346,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Views.ScheduleView")]
     [NodeDescription("ScheduleFilterTypeDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class ScheduleFilterType : CustomGenericEnumerationDropDown
     {
         private const string outputName = "FilterType";
@@ -341,6 +362,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.View")]
     [NodeDescription("ViewDuplicateOptionsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class ViewDuplicateOptions : CustomGenericEnumerationDropDown
     {
         private const string outputName = "DuplicateOption";
@@ -356,6 +378,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.View")]
     [NodeDescription("ViewDisciplinesDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class ViewDisciplines : CustomGenericEnumerationDropDown
     {
         private const string outputName = "Discipline";
@@ -371,6 +394,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.View")]
     [NodeDescription("ViewDisplayStylesDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class ViewDisplayStyles : CustomGenericEnumerationDropDown
     {
         private const string outputName = "DisplayStyle";
@@ -386,6 +410,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.View")]
     [NodeDescription("ViewPartsVisibilitysDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class ViewPartsVisibilitys : CustomGenericEnumerationDropDown
     {
         private const string outputName = "PartsVisibility";
@@ -401,6 +426,7 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.Tag")]
     [NodeDescription("LeaderEndConditionDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
+    [OutPortTypes("string")]
     public class LeaderEndCondition : CustomGenericEnumerationDropDown
     {
         private const string outputName = "LeaderEndCondition";

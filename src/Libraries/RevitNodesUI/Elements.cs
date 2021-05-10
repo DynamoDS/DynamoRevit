@@ -84,6 +84,8 @@ namespace DSRevitNodesUI
      NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("ElementsofFamilyTypeDescription",typeof(Properties.Resources)),
      IsDesignScriptCompatible]
+    [InPortTypes("Revit.Elements.FamilyType")]
+    [OutPortTypes("Revit.Elements.Element[]")]
     public class ElementsOfFamilyType : ElementsQueryBase
     {
         public ElementsOfFamilyType()
@@ -114,6 +116,8 @@ namespace DSRevitNodesUI
     [NodeName("All Elements of Class"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("ElementsofTypeDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
+    [InPortTypes("System.RuntimeType")]
+    [OutPortTypes("Revit.Elements.Element[]")]
     public class ElementsOfType : ElementsQueryBase
     {
         public ElementsOfType()
@@ -142,6 +146,8 @@ namespace DSRevitNodesUI
     [NodeName("All Elements of Category"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("ElementsofCategoryDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
+    [InPortTypes("Revit.Elements.Category")]
+    [OutPortTypes("Revit.Elements.Element[]")]
     public class ElementsOfCategory : ElementsQueryBase
     {
         public ElementsOfCategory()
@@ -171,6 +177,8 @@ namespace DSRevitNodesUI
     [NodeName("All Elements of Category in View"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("ElementsofCategoryInViewDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
+    [InPortTypes("Revit.Elements.Category", "Revit.Elements.Views.View")]
+    [OutPortTypes("Revit.Elements.Element[]")]
     public class ElementsOfCategoryInView : ElementsQueryBase
     {
         public ElementsOfCategoryInView()
@@ -201,6 +209,8 @@ namespace DSRevitNodesUI
     [NodeName("All Elements at Level"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("ElementsatLevelDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
+    [InPortTypes("Revit.Elements.Level")]
+    [OutPortTypes("Revit.Elements.Element[]")]
     public class ElementsAtLevel : ElementsQueryBase
     {
         public ElementsAtLevel()
@@ -229,6 +239,8 @@ namespace DSRevitNodesUI
     [NodeName("Element By Id"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("ElementById", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
+    [InPortTypes("int")]
+    [OutPortTypes("Revit.Elements.Element")]
     public class ElementById : ElementsQueryBase
     {
         public ElementById()
@@ -257,6 +269,7 @@ namespace DSRevitNodesUI
     [NodeName("All Elements In Active View"), NodeCategory(BuiltinNodeCategories.REVIT_VIEW),
      NodeDescription("ElementsInActiveViewDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Element[]")]
     public class ElementsInView : RevitNodeModel
     {
         private Document doc;
@@ -487,6 +500,7 @@ namespace DSRevitNodesUI
     [NodeName("Rooms By Status"), NodeCategory(BuiltinNodeCategories.REVIT_SELECTION),
      NodeDescription("RoomsByStatusDescription", typeof(Properties.Resources)),
      IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Element[]")]
     public class RoomsByStatus : ElementsQueryBase
     {
         public RoomsByStatus()
