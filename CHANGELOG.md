@@ -2,6 +2,7 @@
 * Add new Viewport nodes - Viewport.LabelOffset, Viewport.SetLabelOffset, Viewport.LabelLineLength, Viewport.SetLabelLineLength.
 * Update Floor API with new RevitAPI.
 * Add new Ceiling&CeilingType nodes - Ceiling.ByOutlineTypeAndLevel, Ceiling.ByOutlineTypeAndLevel(polycurve), Ceiling Types, CeilingType.ByName, CeilingType.Name, CeilingTypeGetThermalProperties.
+* Update ParameterType and some related contents because of RevitAPI changed.
 
 ## 0.3.1
 * Fix CICD issue with nuget.

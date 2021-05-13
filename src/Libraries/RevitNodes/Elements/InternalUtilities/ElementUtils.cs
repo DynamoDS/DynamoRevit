@@ -226,30 +226,6 @@ namespace Revit.Elements.InternalUtilities
             if (expected != null)
                 return expected.Name;
 
-            //if (SpecTypeId.Acceleration == forgeType)
-            //    result = "Acceleration";
-            //else if (SpecTypeId.AirFlow == forgeType)
-            //    result = "AirFlow";
-            //else if (SpecTypeId.AirFlowDensity == forgeType)
-            //    result = "Text";
-            //else if (SpecTypeId.AirFlowDividedByCoolingLoad == forgeType)
-            //    result = "Text";
-            //else if (SpecTypeId.AirFlowDividedByVolume == forgeType)
-            //    result = "Text";
-            //else if (SpecTypeId.Angle == forgeType)
-            //    result = "Text";
-            //else if (SpecTypeId.String.Text == forgeType)
-            //    result = "Text";
-            //else if (SpecTypeId.String.Text == forgeType)
-            //    result = "Text";
-            //else if (SpecTypeId.String.Text == forgeType)
-            //    result = "Text";
-            //else if (SpecTypeId.String.Text == forgeType)
-            //    result = "Text";
-            //else if (SpecTypeId.String.Text == forgeType)
-            //    result = "Text";
-            //else
-            //    result = null;
             return null;
         }
     }
