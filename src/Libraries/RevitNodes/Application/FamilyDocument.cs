@@ -144,10 +144,10 @@ namespace Revit.Application
             switch (familyParameter.StorageType)
             {
                 case Autodesk.Revit.DB.StorageType.Integer:
-                    return FamilyManager.CurrentType.AsInteger(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.GetSpecTypeId());
+                    return FamilyManager.CurrentType.AsInteger(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.GetDataType());
 
                 case Autodesk.Revit.DB.StorageType.Double:
-                    return FamilyManager.CurrentType.AsDouble(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.GetSpecTypeId());
+                    return FamilyManager.CurrentType.AsDouble(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.GetDataType());
 
                 case Autodesk.Revit.DB.StorageType.String:
                     return FamilyManager.CurrentType.AsString(familyParameter);
@@ -212,13 +212,15 @@ namespace Revit.Application
         public Elements.FamilyParameter AddParameter(string parameterName, string parameterGroup, string parameterType, bool isInstance)
         {
             // parse parameter type
-            Autodesk.Revit.DB.ParameterType type;
-            if (!System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(parameterType, out type))
+            Autodesk.Revit.DB.ForgeTypeId type = Revit.Elements.InternalUtilities.ElementUtils.ParseParameterType(parameterType);
+            if (type == null) 
+            {
                 throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
+            }
 
             // parse parameter group
-            Autodesk.Revit.DB.BuiltInParameterGroup group;
-            if (!System.Enum.TryParse<Autodesk.Revit.DB.BuiltInParameterGroup>(parameterGroup, out group))
+            var group = Revit.Elements.InternalUtilities.ElementUtils.ParseBuiltInParameterGroup(parameterGroup);
+            if (group == null)
                 throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
             TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
@@ -308,7 +310,7 @@ namespace Revit.Application
                 throw new InvalidOperationException(string.Format(Properties.Resources.WrongStorageType, familyParameter.StorageType));
             }
 
-            double doubleValueToSet = doubleValue * UnitConverter.DynamoToHostFactor(familyParameter.Definition.GetSpecTypeId());
+            double doubleValueToSet = doubleValue * UnitConverter.DynamoToHostFactor(familyParameter.Definition.GetDataType());
             FamilyManager.Set(familyParameter, doubleValueToSet);
         }
 
@@ -323,7 +325,7 @@ namespace Revit.Application
             {
                 throw new InvalidOperationException(string.Format(Properties.Resources.WrongStorageType, familyParameter.StorageType)); ;
             }
-            var intValueToSet = intValue * UnitConverter.DynamoToHostFactor(familyParameter.Definition.GetSpecTypeId());
+            var intValueToSet = intValue * UnitConverter.DynamoToHostFactor(familyParameter.Definition.GetDataType());
             FamilyManager.Set(familyParameter, intValueToSet);
         }
 

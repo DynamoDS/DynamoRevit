@@ -38,7 +38,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get the parameter type
         /// </summary>
-        public string ParameterType => InternalFamilyParameter.Definition.ParameterType.ToString();
+        public string ParameterType => InternalUtilities.ElementUtils.ParseForgeId(InternalFamilyParameter.Definition.GetDataType());
 
         /// <summary>
         /// Get the parameter's element Id
@@ -48,7 +48,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get the parameter's unit type
         /// </summary>
-        public string UnitType => InternalFamilyParameter.Definition.GetSpecTypeId().ToString();
+        public string UnitType => InternalFamilyParameter.Definition.GetDataType().TypeId;
 
         /// <summary>
         /// Get Parameter Storage Type

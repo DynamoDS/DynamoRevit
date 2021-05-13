@@ -75,7 +75,7 @@ namespace Revit.Elements
         /// </summary>
         public string ParameterType
         {
-            get { return InternalParameter.Definition.ParameterType.ToString(); }
+            get { return InternalUtilities.ElementUtils.ParseForgeId(InternalParameter.Definition.GetDataType()); }
         }
 
         /// <summary>
@@ -91,7 +91,10 @@ namespace Revit.Elements
         /// </summary>
         public string UnitType
         {
-            get { return InternalParameter.Definition.GetSpecTypeId().ToString(); }
+            get
+            {
+                return InternalParameter.Definition.GetDataType().TypeId.ToString();
+            }
         }
 
 
@@ -200,8 +203,8 @@ namespace Revit.Elements
         public static void CreateSharedParameter(string parameterName, string groupName, string type, string group, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
         {
             // parse parameter type
-            var parameterType = Autodesk.Revit.DB.ParameterType.Text;
-            if (!System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(type, out parameterType))
+            var parameterType = Revit.Elements.InternalUtilities.ElementUtils.ParseParameterType(type); 
+            if (parameterType == null)
                 throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
             // parse parameter group
@@ -292,8 +295,8 @@ namespace Revit.Elements
         public static void CreateProjectParameter(string parameterName, string groupName, string type, string group, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
         {
             // parse parameter type
-            var parameterType = Autodesk.Revit.DB.ParameterType.Text;
-            if (!System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(type, out parameterType))
+            var parameterType = Revit.Elements.InternalUtilities.ElementUtils.ParseParameterType(type);
+            if(parameterType == null)
                 throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
 
             // parse parameter group

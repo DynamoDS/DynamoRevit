@@ -15,17 +15,17 @@ namespace RevitNodesTests.Elements
         public void SetAndGetGlobalParameterByName()
         {
 
-            var gpString = Revit.Elements.GlobalParameter.ByName("MyGlobal", Autodesk.Revit.DB.ParameterType.Text.ToString());
+            var gpString = Revit.Elements.GlobalParameter.ByName("MyGlobal", "Text");
             Assert.IsNotNull(gpString.InternalGlobalParameter);
             Revit.Elements.GlobalParameter.SetValue(gpString, "4711");
             Assert.AreEqual("4711", gpString.Value);
 
-            var gpInt = Revit.Elements.GlobalParameter.ByName("MyGlobalInt", Autodesk.Revit.DB.ParameterType.Integer.ToString());
+            var gpInt = Revit.Elements.GlobalParameter.ByName("MyGlobalInt", "Integer");
             Assert.IsNotNull(gpInt.InternalGlobalParameter);
             Revit.Elements.GlobalParameter.SetValue(gpInt, 4711);
             Assert.AreEqual(4711, gpInt.Value);
 
-            var gpLen = Revit.Elements.GlobalParameter.ByName("MyGlobalDouble", Autodesk.Revit.DB.ParameterType.Length.ToString());
+            var gpLen = Revit.Elements.GlobalParameter.ByName("MyGlobalDouble", "Length");
             Assert.IsNotNull(gpLen.InternalGlobalParameter);
             Revit.Elements.GlobalParameter.SetValue(gpLen, 47.11);
             double val = (double)gpLen.Value;

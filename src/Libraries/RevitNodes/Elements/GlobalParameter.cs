@@ -50,7 +50,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="name"></param>
         /// <param name="type"></param>
-        private GlobalParameter(string name, Autodesk.Revit.DB.ParameterType type)
+        private GlobalParameter(string name, Autodesk.Revit.DB.ForgeTypeId type)
         {
             SafeInit(() => InitGlobalParameter(name, type));
         }
@@ -74,7 +74,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="name"></param>
         /// <param name="type"></param>
-        private void InitGlobalParameter(string name, Autodesk.Revit.DB.ParameterType type)
+        private void InitGlobalParameter(string name, Autodesk.Revit.DB.ForgeTypeId type)
         {
             var existingId = Autodesk.Revit.DB.GlobalParametersManager.FindByName(Document, name);
 
@@ -189,7 +189,7 @@ namespace Revit.Elements
                         var valueDouble = valueWrapper as Autodesk.Revit.DB.DoubleParameterValue;
 
                         return valueDouble.Value * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(
-                            this.InternalGlobalParameter.GetDefinition().GetSpecTypeId());
+                            this.InternalGlobalParameter.GetDefinition().GetDataType());
                     }
                     else
                     {
@@ -235,7 +235,7 @@ namespace Revit.Elements
                 }
                 else if (value.GetType() == typeof(double))
                 {
-                    var valueToSet = (double)value * UnitConverter.DynamoToHostFactor(parameter.InternalGlobalParameter.GetDefinition().GetSpecTypeId());
+                    var valueToSet = (double)value * UnitConverter.DynamoToHostFactor(parameter.InternalGlobalParameter.GetDefinition().GetDataType());
 
                     parameter.InternalGlobalParameter.SetValue(
                         new Autodesk.Revit.DB.DoubleParameterValue(valueToSet));
@@ -295,7 +295,9 @@ namespace Revit.Elements
         {
             get
             {
-                return this.InternalGlobalParameter.GetDefinition().ParameterType.ToString();
+                var type = this.InternalGlobalParameter.GetDefinition().GetDataType();
+                var result = InternalUtilities.ElementUtils.ParseForgeId(type);
+                return result;
             }
         }
 
@@ -312,16 +314,19 @@ namespace Revit.Elements
         /// <returns></returns>
         public static GlobalParameter ByName(string name, string parameterType)
         {
-            Autodesk.Revit.DB.ParameterType ptype = Autodesk.Revit.DB.ParameterType.Text;
-            if (!Enum.TryParse<Autodesk.Revit.DB.ParameterType>(parameterType, out ptype))
-                ptype = Autodesk.Revit.DB.ParameterType.Text;
+            Autodesk.Revit.DB.ForgeTypeId type = Autodesk.Revit.DB.SpecTypeId.String.Text;
+
+            type = Revit.Elements.InternalUtilities.ElementUtils.ParseParameterType(parameterType);
+
+            if (type == null)
+                type = Autodesk.Revit.DB.SpecTypeId.String.Text;
 
             if (!Autodesk.Revit.DB.GlobalParametersManager.AreGlobalParametersAllowed(Document))
             {
                 throw new Exception(Properties.Resources.DocumentDoesNotSupportGlobalParams);
             }
 
-            return new GlobalParameter(name, ptype);
+            return new GlobalParameter(name, type);
         }
 
         #endregion

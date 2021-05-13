@@ -122,15 +122,15 @@ namespace DSRevitNodesUI
     [NodeDescription("ParameterTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     [OutPortTypes("string")]
-    public class ParameterType : CustomGenericEnumerationDropDown
+    public class ParameterType : CustomGenericNestedClassDropDown
     {
         private const string outputName = "Parameter Type";
 
-        public ParameterType() : base(outputName, typeof(Autodesk.Revit.DB.ParameterType)) { }
+        public ParameterType() : base(outputName, typeof(Autodesk.Revit.DB.SpecTypeId)) { }
 
         [JsonConstructor]
         public ParameterType(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
-            : base(outputName, typeof(Autodesk.Revit.DB.ParameterType), inPorts, outPorts) { }
+            : base(outputName, typeof(Autodesk.Revit.DB.SpecTypeId), inPorts, outPorts) { }
     }
 
     [NodeName("Select BuiltIn Parameter Group")]

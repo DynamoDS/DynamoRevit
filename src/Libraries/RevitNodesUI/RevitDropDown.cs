@@ -803,7 +803,7 @@ namespace DSRevitNodesUI
     [NodeCategory(BuiltinNodeCategories.REVIT_SELECTION)]
     [NodeDescription("LevelsDescription", typeof(Properties.Resources))]
     [IsDesignScriptCompatible]
-    [OutPortTypes("Revit.Elements.Element")]
+    [OutPortTypes("Revit.Elements.Level")]
     public class Levels : RevitDropDownBase
     {
         private const string noLevels = "No levels available.";

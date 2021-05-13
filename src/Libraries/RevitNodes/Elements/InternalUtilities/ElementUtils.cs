@@ -3,6 +3,8 @@ using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Revit.Elements.InternalUtilities
 {
@@ -157,5 +159,98 @@ namespace Revit.Elements.InternalUtilities
             param.Set(value == false ? 0 : 1);
         }
         #endregion
+
+        public static Autodesk.Revit.DB.ForgeTypeId ParseParameterType(string parameterType)
+        {
+            Autodesk.Revit.DB.ForgeTypeId type = null;
+            var property = typeof(Autodesk.Revit.DB.SpecTypeId).GetProperty(parameterType);
+            if (property == null)
+            {
+                var nesttypes = typeof(Autodesk.Revit.DB.SpecTypeId).GetNestedTypes();
+                foreach (var nesttype in nesttypes)
+                {
+                    property = nesttype.GetProperty(parameterType);
+                    if (property != null)
+                    {
+                        type = (Autodesk.Revit.DB.ForgeTypeId)property.GetValue(null, null);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                type = (Autodesk.Revit.DB.ForgeTypeId)property.GetValue(null, null);
+            }
+
+            return type;
+        }
+
+        public static Autodesk.Revit.DB.ForgeTypeId ParseBuiltInParameterGroup(string parameterGroup)
+        {
+            var split = parameterGroup.Split('_');
+            var propertyName = "";
+            for (int i = 1; i < split.Length; i++)
+            {
+                string temp = split[i].ToLower();
+                propertyName += temp.Substring(0, 1).ToUpper() + temp.Substring(1);
+            }
+
+            Autodesk.Revit.DB.ForgeTypeId type = null;
+            var property = typeof(Autodesk.Revit.DB.GroupTypeId).GetProperty(propertyName);
+            if(property !=null)
+                type = (Autodesk.Revit.DB.ForgeTypeId)property.GetValue(null, null);
+            return type;
+        }
+
+        public static string ParseForgeId(ForgeTypeId forgeType)
+        {
+            System.Reflection.PropertyInfo expected = null;
+            
+            var list = new List<System.Reflection.PropertyInfo>();
+            var nesttypes = typeof(Autodesk.Revit.DB.SpecTypeId).GetNestedTypes();
+            foreach(var nesttype in nesttypes)
+            {
+                var props = nesttype.GetProperties();
+                list.AddRange(props);
+            }
+            expected = list.Find(x => (ForgeTypeId)x.GetValue(null, null) == forgeType);
+            if (expected != null)
+                return expected.Name;
+
+            expected = null;
+            list.Clear();
+
+            var properties = typeof(SpecTypeId).GetProperties();
+            list.AddRange(properties);
+            expected = list.Find(x => (ForgeTypeId)x.GetValue(null, null) == forgeType);
+            if (expected != null)
+                return expected.Name;
+
+            //if (SpecTypeId.Acceleration == forgeType)
+            //    result = "Acceleration";
+            //else if (SpecTypeId.AirFlow == forgeType)
+            //    result = "AirFlow";
+            //else if (SpecTypeId.AirFlowDensity == forgeType)
+            //    result = "Text";
+            //else if (SpecTypeId.AirFlowDividedByCoolingLoad == forgeType)
+            //    result = "Text";
+            //else if (SpecTypeId.AirFlowDividedByVolume == forgeType)
+            //    result = "Text";
+            //else if (SpecTypeId.Angle == forgeType)
+            //    result = "Text";
+            //else if (SpecTypeId.String.Text == forgeType)
+            //    result = "Text";
+            //else if (SpecTypeId.String.Text == forgeType)
+            //    result = "Text";
+            //else if (SpecTypeId.String.Text == forgeType)
+            //    result = "Text";
+            //else if (SpecTypeId.String.Text == forgeType)
+            //    result = "Text";
+            //else if (SpecTypeId.String.Text == forgeType)
+            //    result = "Text";
+            //else
+            //    result = null;
+            return null;
+        }
     }
 }
