@@ -170,6 +170,9 @@
                   "path": "RevitNodes.Revit.Elements.FloorType"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.ForgeType"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.Form"
                 },
                 {

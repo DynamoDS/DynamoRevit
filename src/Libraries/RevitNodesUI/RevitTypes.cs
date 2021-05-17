@@ -122,15 +122,33 @@ namespace DSRevitNodesUI
     [NodeDescription("ParameterTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     [OutPortTypes("string")]
+    [IsVisibleInDynamoLibrary(false)]
+    [Obsolete("This node may remove in future version. Use SpecTypes instead.")]
     public class ParameterType : CustomGenericEnumerationDropDown
     {
         private const string outputName = "Parameter Type";
-
+        
         public ParameterType() : base(outputName, typeof(Autodesk.Revit.DB.ParameterType)) { }
 
         [JsonConstructor]
         public ParameterType(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
             : base(outputName, typeof(Autodesk.Revit.DB.ParameterType), inPorts, outPorts) { }
+    }
+
+    [NodeName("Spec Types")]
+    [NodeCategory("Revit.Elements.Parameter")]
+    [NodeDescription("SpecTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.ForgeType")]
+    public class SpecTypes : CustomGenericNestedClassDropDown
+    {
+        private const string outputName = "ForgeType";
+
+        public SpecTypes() : base(outputName, typeof(Autodesk.Revit.DB.SpecTypeId)) { }
+
+        [JsonConstructor]
+        public SpecTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(outputName, typeof(Autodesk.Revit.DB.SpecTypeId), inPorts, outPorts) { }
     }
 
     [NodeName("Select BuiltIn Parameter Group")]
@@ -147,6 +165,22 @@ namespace DSRevitNodesUI
         [JsonConstructor]
         public BuiltInParameterGroup(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
             : base(outputName, typeof(Autodesk.Revit.DB.BuiltInParameterGroup), inPorts, outPorts) { }
+    }
+
+    [NodeName("Group Types")]
+    [NodeCategory("Revit.Elements.Parameter")]
+    [NodeDescription("GroupTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.ForgeType")]
+    public class GroupTypes : CustomGenericNestedClassDropDown
+    {
+        private const string outputName = "ForgeType";
+
+        public GroupTypes() : base(outputName, typeof(Autodesk.Revit.DB.GroupTypeId)) { }
+
+        [JsonConstructor]
+        public GroupTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(outputName, typeof(Autodesk.Revit.DB.GroupTypeId), inPorts, outPorts) { }
     }
 
     [NodeName("Select Revision Visibility")]

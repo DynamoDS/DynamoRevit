@@ -196,6 +196,42 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This node may remove in future version. Use CreateProjectParameterForAllCategories(string, string, ForgeType, ForgeType, bool) instead..
+        /// </summary>
+        internal static string CreateProjectParameterForAllCategoriesObsolete {
+            get {
+                return ResourceManager.GetString("CreateProjectParameterForAllCategoriesObsolete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This node may remove in future version. Use CreateProjectParameter(string, string, ForgeType, ForgeType, bool, IEnumerable&lt;Category&gt;) instead..
+        /// </summary>
+        internal static string CreateProjectParameterObsolete {
+            get {
+                return ResourceManager.GetString("CreateProjectParameterObsolete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This node may remove in future version. Use CreateSharedParameterForAllCategories(string, string, ForgeType, ForgeType, bool) instead..
+        /// </summary>
+        internal static string CreateSharedParameterForAllCategoriesObsolete {
+            get {
+                return ResourceManager.GetString("CreateSharedParameterForAllCategoriesObsolete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This node may remove in future version. Use CreateSharedParameter(string, string, ForgeType, ForgeType, bool, IEnumerable&lt;Category&gt;) instead..
+        /// </summary>
+        internal static string CreateSharedParameterObsolete {
+            get {
+                return ResourceManager.GetString("CreateSharedParameterObsolete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Element has no Curtain Grid..
         /// </summary>
         internal static string CurtainGridNotFound {
@@ -511,6 +547,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This node may remove in future version. Use FamilyDocument.AddParameter(string, ForgeType, ForgeType, bool) instead..
+        /// </summary>
+        internal static string FamilyDocumentAddParameterObsolete {
+            get {
+                return ResourceManager.GetString("FamilyDocumentAddParameterObsolete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not create the FamilyInstance.
         /// </summary>
         internal static string FamilyInstanceCreationFailure {
@@ -619,11 +664,29 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This node may remove in future version. Use GlobalParameter.ByName(string, ForgeType).
+        /// </summary>
+        internal static string GlobalParameterByNameObsolete {
+            get {
+                return ResourceManager.GetString("GlobalParameterByNameObsolete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Grid Element can only be created in a Revit Project..
         /// </summary>
         internal static string GridCreationFailure {
             get {
                 return ResourceManager.GetString("GridCreationFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This property may remove in future version. Use GroupType instead..
+        /// </summary>
+        internal static string GroupObsolete {
+            get {
+                return ResourceManager.GetString("GroupObsolete", resourceCulture);
             }
         }
         
@@ -1087,6 +1150,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This property may remove in future version. Use SpecType instead..
+        /// </summary>
+        internal static string ParameterTypeObsolete {
+            get {
+                return ResourceManager.GetString("ParameterTypeObsolete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parameter {0} has no storage type..
         /// </summary>
         internal static string ParameterWithoutStorageType {
@@ -1299,6 +1371,15 @@ namespace Revit.Properties {
         internal static string TypeNotFound {
             get {
                 return ResourceManager.GetString("TypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This property may remove in future version. Use SpecType instead..
+        /// </summary>
+        internal static string UnitTypeObsolete {
+            get {
+                return ResourceManager.GetString("UnitTypeObsolete", resourceCulture);
             }
         }
         

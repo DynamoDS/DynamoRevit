@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dynamo.Graph.Nodes;
 
 namespace Revit.Application
 {
@@ -144,10 +145,10 @@ namespace Revit.Application
             switch (familyParameter.StorageType)
             {
                 case Autodesk.Revit.DB.StorageType.Integer:
-                    return FamilyManager.CurrentType.AsInteger(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.GetSpecTypeId());
+                    return FamilyManager.CurrentType.AsInteger(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.GetDataType());
 
                 case Autodesk.Revit.DB.StorageType.Double:
-                    return FamilyManager.CurrentType.AsDouble(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.GetSpecTypeId());
+                    return FamilyManager.CurrentType.AsDouble(familyParameter) * UnitConverter.HostToDynamoFactor(familyParameter.Definition.GetDataType());
 
                 case Autodesk.Revit.DB.StorageType.String:
                     return FamilyManager.CurrentType.AsString(familyParameter);
@@ -209,6 +210,7 @@ namespace Revit.Application
         /// <param name="parameterType">The name of the type of new family parameter.</param>
         /// <param name="isInstance">Indicates if the new family parameter is instance or type (true if parameter should be instance).</param>
         /// <returns>The new family parameter.</returns>
+        [NodeObsolete("FamilyDocumentAddParameterObsolete", typeof(Properties.Resources))]
         public Elements.FamilyParameter AddParameter(string parameterName, string parameterGroup, string parameterType, bool isInstance)
         {
             // parse parameter type
@@ -223,6 +225,22 @@ namespace Revit.Application
 
             TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
             var famParameter = FamilyManager.AddParameter(parameterName, group, type, isInstance);
+            TransactionManager.Instance.TransactionTaskDone();
+            return new Elements.FamilyParameter(famParameter);
+        }
+
+        /// <summary>
+        /// Add a new family parameter with a given name.
+        /// </summary>
+        /// <param name="parameterName">The name of the new family parameter.</param>
+        /// <param name="group">The name of the group to which the family parameter belongs.</param>
+        /// <param name="spec">The name of the type of new family parameter.</param>
+        /// <param name="isInstance">Indicates if the new family parameter is instance or type (true if parameter should be instance).</param>
+        /// <returns></returns>
+        public Elements.FamilyParameter AddParameter(string parameterName, ForgeType group, ForgeType spec, bool isInstance)
+        {
+            TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
+            var famParameter = FamilyManager.AddParameter(parameterName, group.InternalForgeTypeId, spec.InternalForgeTypeId, isInstance);
             TransactionManager.Instance.TransactionTaskDone();
             return new Elements.FamilyParameter(famParameter);
         }
@@ -308,7 +326,7 @@ namespace Revit.Application
                 throw new InvalidOperationException(string.Format(Properties.Resources.WrongStorageType, familyParameter.StorageType));
             }
 
-            double doubleValueToSet = doubleValue * UnitConverter.DynamoToHostFactor(familyParameter.Definition.GetSpecTypeId());
+            double doubleValueToSet = doubleValue * UnitConverter.DynamoToHostFactor(familyParameter.Definition.GetDataType());
             FamilyManager.Set(familyParameter, doubleValueToSet);
         }
 
@@ -323,7 +341,7 @@ namespace Revit.Application
             {
                 throw new InvalidOperationException(string.Format(Properties.Resources.WrongStorageType, familyParameter.StorageType)); ;
             }
-            var intValueToSet = intValue * UnitConverter.DynamoToHostFactor(familyParameter.Definition.GetSpecTypeId());
+            var intValueToSet = intValue * UnitConverter.DynamoToHostFactor(familyParameter.Definition.GetDataType());
             FamilyManager.Set(familyParameter, intValueToSet);
         }
 
