@@ -380,7 +380,7 @@ namespace Revit.Elements
         /// Create a new Global Parameter by Name and Type
         /// </summary>
         /// <param name="name">Name fo the parameter</param>
-        /// <param name="specType">Spec Type</param>
+        /// <param name="specType">The type of new global parameter.</param>
         /// <returns></returns>
         public static GlobalParameter ByName(string name, ForgeType specType)
         {

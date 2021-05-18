@@ -99,7 +99,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get SpecType
+        /// Get the parameter's SpecType
         /// </summary>
         public ForgeType SpecType
         {
@@ -107,7 +107,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get Parameter Group Type
+        /// Get the Parameter's Group Type
         /// </summary>
         public ForgeType GroupType
         {
@@ -201,7 +201,7 @@ namespace Revit.Elements
         /// <param name="groupName">Group of the parameter for shared parameters</param>
         /// <param name="type">Parameter Type</param>
         /// <param name="group">Parameter Group</param>
-        /// <param name="instance">Is instance parameter, otherwise it's a type parameter</param>
+        /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
         [NodeObsolete("CreateSharedParameterForAllCategoriesObsolete", typeof(Properties.Resources))]
         public static void CreateSharedParameterForAllCategories(string parameterName, string groupName, string type, string group, bool instance)
         {
@@ -215,8 +215,8 @@ namespace Revit.Elements
         /// <param name="groupName">Group of the parameter for shared parameters</param>
         /// <param name="type">Parameter Type</param>
         /// <param name="group">Parameter Group</param>
-        /// <param name="instance">Is instance parameter, otherwise it's a type parameter</param>
-        /// <param name="categoryList">List of categories this parameter applies to, If no category is supplied, all possible categories are selected</param>
+        /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
+        /// <param name="categoryList">A list of categories this parameter applies to. If no category is supplied, all possible categories are selected</param>
         [NodeObsolete("CreateSharedParameterObsolete", typeof(Properties.Resources))]
         public static void CreateSharedParameter(string parameterName, string groupName, string type, string group, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
         {
@@ -288,12 +288,12 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="parameterName">Name</param>
         /// <param name="groupName">Group of the parameter for shared parameters</param>
-        /// <param name="specType">Spec Type</param>
-        /// <param name="group">Group Type</param>
-        /// <param name="instance">Is instance parameter, otherwise it's a type parameter</param>
-        public static void CreateSharedParameterForAllCategories(string parameterName, string groupName, ForgeType specType, ForgeType group, bool instance)
+        /// <param name="specType">The type of new parameter.</param>
+        /// <param name="groupType">The type of the group to which the parameter belongs.</param>
+        /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
+        public static void CreateSharedParameterForAllCategories(string parameterName, string groupName, ForgeType specType, ForgeType groupType, bool instance)
         {
-            CreateSharedParameter(parameterName, groupName, specType, group, instance, null);
+            CreateSharedParameter(parameterName, groupName, specType, groupType, instance, null);
         }
 
         /// <summary>
@@ -301,11 +301,11 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="parameterName">Name</param>
         /// <param name="groupName">Group of the parameter for shared parameters</param>
-        /// <param name="specType">Spec Type</param>
-        /// <param name="group">Group Type</param>
-        /// <param name="instance">Is instance parameter, otherwise it's a type parameter</param>
-        /// <param name="categoryList">List of categories this parameter applies to, If no category is supplied, all possible categories are selected</param>
-        public static void CreateSharedParameter(string parameterName, string groupName, ForgeType specType, ForgeType group, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
+        /// <param name="specType">The type of new parameter.</param>
+        /// <param name="groupType">The type of the group to which the parameter belongs.</param>
+        /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
+        /// <param name="categoryList">A list of categories this parameter applies to. If no category is supplied, all possible categories are selected</param>
+        public static void CreateSharedParameter(string parameterName, string groupName, ForgeType specType, ForgeType groupType, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
         {
             // get document and open transaction
             Document document = Application.Document.Current.InternalDocument;
@@ -347,7 +347,7 @@ namespace Revit.Elements
                         (Binding)document.Application.Create.NewInstanceBinding(categories) :
                         (Binding)document.Application.Create.NewTypeBinding(categories);
 
-                    document.ParameterBindings.Insert(def, bin, group.InternalForgeTypeId);
+                    document.ParameterBindings.Insert(def, bin, groupType.InternalForgeTypeId);
                 }
 
             }
@@ -371,7 +371,7 @@ namespace Revit.Elements
         /// <param name="groupName">Group of the parameter for shared parameters</param>
         /// <param name="type">Parameter Type</param>
         /// <param name="group">Parameter Group</param>
-        /// <param name="instance">Is instance parameter, otherwise it's a type parameter</param>
+        /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
         [NodeObsolete("CreateProjectParameterForAllCategoriesObsolete", typeof(Properties.Resources))]
         public static void CreateProjectParameterForAllCategories(string parameterName, string groupName, string type, string group, bool instance)
         {
@@ -385,8 +385,8 @@ namespace Revit.Elements
         /// <param name="groupName">Group of the parameter for shared parameters</param>
         /// <param name="type">Parameter Type</param>
         /// <param name="group">Parameter Group</param>
-        /// <param name="instance">Is instance parameter, otherwise it's a type parameter</param>
-        /// <param name="categoryList">List of categories this parameter applies to. If no category is supplied, all possible categories are selected</param>
+        /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
+        /// <param name="categoryList">A list of categories this parameter applies to. If no category is supplied, all possible categories are selected</param>
         [NodeObsolete("CreateProjectParameterObsolete", typeof(Properties.Resources))]
         public static void CreateProjectParameter(string parameterName, string groupName, string type, string group, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
         {
@@ -451,12 +451,12 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="parameterName">Name</param>
         /// <param name="groupName">Group of the parameter for shared parameters</param>
-        /// <param name="specType">Parameter Type</param>
-        /// <param name="group">Parameter Group</param>
-        /// <param name="instance">Is instance parameter, otherwise it's a type parameter</param>
-        public static void CreateProjectParameterForAllCategories(string parameterName, string groupName, ForgeType specType, ForgeType group, bool instance)
+        /// <param name="specType">The type of new parameter.</param>
+        /// <param name="groupType">The type of the group to which the parameter belongs.</param>
+        /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
+        public static void CreateProjectParameterForAllCategories(string parameterName, string groupName, ForgeType specType, ForgeType groupType, bool instance)
         {
-            CreateProjectParameter(parameterName, groupName, specType, group, instance, null);
+            CreateProjectParameter(parameterName, groupName, specType, groupType, instance, null);
         }
 
         /// <summary>
@@ -464,11 +464,11 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="parameterName">Name</param>
         /// <param name="groupName">Group of the parameter for shared parameters</param>
-        /// <param name="specType">Spec Type</param>
-        /// <param name="group">Group Type</param>
-        /// <param name="instance">Is instance parameter, otherwise it's a type parameter</param>
-        /// <param name="categoryList">List of categories this parameter applies to. If no category is supplied, all possible categories are selected</param>
-        public static void CreateProjectParameter(string parameterName, string groupName, ForgeType specType, ForgeType group, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
+        /// <param name="specType">The type of new parameter.</param>
+        /// <param name="groupType">The type of the group to which the parameter belongs.</param>
+        /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
+        /// <param name="categoryList">A list of categories this parameter applies to. If no category is supplied, all possible categories are selected</param>
+        public static void CreateProjectParameter(string parameterName, string groupName, ForgeType specType, ForgeType groupType, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
         {
             // get document and open transaction
             Document document = Application.Document.Current.InternalDocument;
@@ -497,7 +497,7 @@ namespace Revit.Elements
                     (Binding)document.Application.Create.NewTypeBinding(categories);
 
                 // Apply parameter bindings
-                document.ParameterBindings.Insert(def, bin, group.InternalForgeTypeId);
+                document.ParameterBindings.Insert(def, bin, groupType.InternalForgeTypeId);
 
                 // apply old shared parameter file
                 document.Application.SharedParametersFilename = sharedParameterFile;

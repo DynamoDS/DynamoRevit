@@ -123,7 +123,7 @@ namespace DSRevitNodesUI
     [IsDesignScriptCompatible]
     [OutPortTypes("string")]
     [IsVisibleInDynamoLibrary(false)]
-    [Obsolete("This node may remove in future version. Use SpecTypes instead.")]
+    [Obsolete("This node may be removed in future version. Use Spec Types instead.")]
     public class ParameterType : CustomGenericEnumerationDropDown
     {
         private const string outputName = "Parameter Type";
@@ -156,6 +156,8 @@ namespace DSRevitNodesUI
     [NodeDescription("BuiltInParameterGroupSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     [OutPortTypes("string")]
+    [IsVisibleInDynamoLibrary(false)]
+    [Obsolete("This node may be removed in future version. Use Group Types instead.")]
     public class BuiltInParameterGroup : CustomGenericEnumerationDropDown
     {
         private const string outputName = "BuiltIn Parameter Group";
