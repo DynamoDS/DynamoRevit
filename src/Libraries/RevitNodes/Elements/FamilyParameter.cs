@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Autodesk.Revit.DB;
 using RevitServices.Transactions;
+using Dynamo.Graph.Nodes;
 
 namespace Revit.Elements
 {
@@ -33,11 +34,13 @@ namespace Revit.Elements
         /// <summary>
         /// Get the parameter's group
         /// </summary>
+        [NodeObsolete("GroupObsolete", typeof(Properties.Resources))]
         public string Group => InternalFamilyParameter.Definition.ParameterGroup.ToString();
 
         /// <summary>
         /// Get the parameter type
         /// </summary>
+        [NodeObsolete("ParameterTypeObsolete", typeof(Properties.Resources))]
         public string ParameterType => InternalFamilyParameter.Definition.ParameterType.ToString();
 
         /// <summary>
@@ -48,7 +51,18 @@ namespace Revit.Elements
         /// <summary>
         /// Get the parameter's unit type
         /// </summary>
+        [NodeObsolete("UnitTypeObsolete", typeof(Properties.Resources))]
         public string UnitType => InternalFamilyParameter.Definition.GetSpecTypeId().ToString();
+
+        /// <summary>
+        /// Get the parameter's spec type
+        /// </summary>
+        public ForgeType SpecType => ForgeType.FromExisting(InternalFamilyParameter.Definition.GetDataType());
+
+        /// <summary>
+        /// Get the parameter's group type
+        /// </summary>
+        public ForgeType GroupType => ForgeType.FromExisting(InternalFamilyParameter.Definition.GetGroupTypeId());
 
         /// <summary>
         /// Get Parameter Storage Type

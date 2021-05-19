@@ -1,33 +1,308 @@
-<Workspace Version="1.2.1.2802" X="15.9109978299614" Y="64.5931612167346" zoom="0.612283078543345" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
-  <NamespaceResolutionMap />
-  <Elements>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="c165d4d4-2a9e-4893-8b1c-1fcd4fcc9971" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="GlobalParameter.ByName" x="348.5" y="167.5" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.GlobalParameter.ByName@string,string">
-      <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="2686aa52-2a95-4d9d-b637-9bbc63e40f98" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="91" y="87" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="&quot;MyGlobalParameter&quot;;" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="89205379-97aa-4d39-bbf1-390e9342f7d3" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="204" y="253" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="&quot;Text&quot;;" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="bb83a545-0c80-4f34-b987-da1d3d0dc2b7" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="GlobalParameter.Visible" x="702.248458777932" y="16.8103369451022" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.GlobalParameter.Visible">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="97d5b4ba-76e4-40e9-b1b2-8ce98e642a40" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="GlobalParameter.Name" x="697.348764330819" y="315.691698218987" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.GlobalParameter.Name">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="04ccd2fc-45bb-4953-9306-b7eb21d991a0" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="GlobalParameter.ParameterType" x="690.815838401335" y="167.06763332323" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.GlobalParameter.ParameterType">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-  </Elements>
-  <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="c165d4d4-2a9e-4893-8b1c-1fcd4fcc9971" start_index="0" end="bb83a545-0c80-4f34-b987-da1d3d0dc2b7" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="c165d4d4-2a9e-4893-8b1c-1fcd4fcc9971" start_index="0" end="04ccd2fc-45bb-4953-9306-b7eb21d991a0" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="c165d4d4-2a9e-4893-8b1c-1fcd4fcc9971" start_index="0" end="97d5b4ba-76e4-40e9-b1b2-8ce98e642a40" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="2686aa52-2a95-4d9d-b637-9bbc63e40f98" start_index="0" end="c165d4d4-2a9e-4893-8b1c-1fcd4fcc9971" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="89205379-97aa-4d39-bbf1-390e9342f7d3" start_index="0" end="c165d4d4-2a9e-4893-8b1c-1fcd4fcc9971" end_index="1" portType="0" />
-  </Connectors>
-  <Notes />
-  <Annotations />
-  <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
-  </Cameras>
-</Workspace>
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "GlobalParameter",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"MyGlobalParameter\";",
+      "Id": "2686aa522a954d9db6379bbc63e40f98",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ad0603b502b944d5b53be29ff4694280",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.GlobalParameter.Visible",
+      "Id": "bb83a5450c804f34b987da1d3d0dc2b7",
+      "Inputs": [
+        {
+          "Id": "d10974dd38f148e3b522079c1cadaf92",
+          "Name": "globalParameter",
+          "Description": "Revit.Elements.GlobalParameter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8fa44d377cfb4b66a2c260763e092ab9",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get Parameter Visibility\n\nGlobalParameter.Visible: bool"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.GlobalParameter.Name",
+      "Id": "97d5b4ba76e440e9b1b28ce98e642a40",
+      "Inputs": [
+        {
+          "Id": "98162f850b8747a2b74a95f9ce833bfb",
+          "Name": "globalParameter",
+          "Description": "Revit.Elements.GlobalParameter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4256bcc9f8eb462cbe314640f7fc8d0d",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get Name\n\nGlobalParameter.Name: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.GlobalParameter.ByName@string,Revit.Elements.ForgeType",
+      "Id": "3a826db236c24f0ab94c25d2674b73fe",
+      "Inputs": [
+        {
+          "Id": "7edf6d6cffd24c6e938bc0e9928eec5f",
+          "Name": "name",
+          "Description": "Name fo the parameter\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "40a3bcb24bd34746974b0f1f0f69a369",
+          "Name": "forgeType",
+          "Description": "ForgeType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "df5a989b95a44e41a42e2349d10c7c9f",
+          "Name": "GlobalParameter",
+          "Description": "GlobalParameter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Create a new Global Parameter by Name and Type\n\nGlobalParameter.ByName (name: string, forgeType: ForgeType): GlobalParameter"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.SpecTypes, DSRevitNodesUI",
+      "SelectedIndex": 143,
+      "SelectedString": "Text",
+      "NodeType": "ExtensionNode",
+      "Id": "74898c78c73a414a8411749214197af3",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "59dba8442136452cbff929c86a322ffb",
+          "Name": "ForgeType",
+          "Description": "The selected ForgeType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a Spec type."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.GlobalParameter.SpecType",
+      "Id": "d058906178b3446d941d176123ff3ffd",
+      "Inputs": [
+        {
+          "Id": "5e6ea064a9424f3daa340cb5448c2875",
+          "Name": "globalParameter",
+          "Description": "Revit.Elements.GlobalParameter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "55163bd749b64430823bec8840ee4ec7",
+          "Name": "ForgeType",
+          "Description": "ForgeType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get SpecType\n\nGlobalParameter.SpecType: ForgeType"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ad0603b502b944d5b53be29ff4694280",
+      "End": "7edf6d6cffd24c6e938bc0e9928eec5f",
+      "Id": "00dc54d891e7485eb68f864075b85af2"
+    },
+    {
+      "Start": "df5a989b95a44e41a42e2349d10c7c9f",
+      "End": "d10974dd38f148e3b522079c1cadaf92",
+      "Id": "3dab2f85aee94fdab6bcc53cf63d449e"
+    },
+    {
+      "Start": "df5a989b95a44e41a42e2349d10c7c9f",
+      "End": "5e6ea064a9424f3daa340cb5448c2875",
+      "Id": "d4155d707656403b8eb88572be172078"
+    },
+    {
+      "Start": "df5a989b95a44e41a42e2349d10c7c9f",
+      "End": "98162f850b8747a2b74a95f9ce833bfb",
+      "Id": "f328d55feaca4546ae63f3400e68cdf8"
+    },
+    {
+      "Start": "59dba8442136452cbff929c86a322ffb",
+      "End": "40a3bcb24bd34746974b0f1f0f69a369",
+      "Id": "c1df3657677a4befaf61203016b24b6a"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [
+    {
+      "NodeId": "3a826db2-36c2-4f0a-b94c-25d2674b73fe",
+      "Binding": {
+        "ByName_InClassDecl-1_InFunctionScope-1_Instance0_3a826db2-36c2-4f0a-b94c-25d2674b73fe": "PFNPQVAtRU5WOkVudmVsb3BlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOlNPQVAtRU5DPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1sbnM6U09BUC1FTlY9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpjbHI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc29hcC9lbmNvZGluZy9jbHIvMS4wIiBTT0FQLUVOVjplbmNvZGluZ1N0eWxlPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyI+DQo8U09BUC1FTlY6Qm9keT4NCjxhMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXIgaWQ9InJlZi0xIiB4bWxuczphMT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9jbHIvbnNhc3NlbS9Qcm90b0NvcmUvUHJvdG9Db3JlJTJDJTIwVmVyc2lvbiUzRDIuMTAuMS4zOTc2JTJDJTIwQ3VsdHVyZSUzRG5ldXRyYWwlMkMlMjBQdWJsaWNLZXlUb2tlbiUzRG51bGwiPg0KPE51bWJlck9mRWxlbWVudHM+MTwvTnVtYmVyT2ZFbGVtZW50cz4NCjxCYXNlLTBfSGFzRGF0YT50cnVlPC9CYXNlLTBfSGFzRGF0YT4NCjxCYXNlLTBfRGF0YSBpZD0icmVmLTMiPlBGTlBRVkF0UlU1V09rVnVkbVZzYjNCbElIaHRiRzV6T25oemFUMGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TVM5WVRVeFRZMmhsYldFdGFXNXpkR0Z1WTJVaUlIaHRiRzV6T25oelpEMGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TVM5WVRVeFRZMmhsYldFaUlIaHRiRzV6T2xOUFFWQXRSVTVEUFNKb2RIUndPaTh2YzJOb1pXMWhjeTU0Yld4emIyRndMbTl5Wnk5emIyRndMMlZ1WTI5a2FXNW5MeUlnZUcxc2JuTTZVMDlCVUMxRlRsWTlJbWgwZEhBNkx5OXpZMmhsYldGekxuaHRiSE52WVhBdWIzSm5MM052WVhBdlpXNTJaV3h2Y0dVdklpQjRiV3h1Y3pwamJISTlJbWgwZEhBNkx5OXpZMmhsYldGekxtMXBZM0p2YzI5bWRDNWpiMjB2YzI5aGNDOWxibU52WkdsdVp5OWpiSEl2TVM0d0lpQlRUMEZRTFVWT1ZqcGxibU52WkdsdVoxTjBlV3hsUFNKb2RIUndPaTh2YzJOb1pXMWhjeTU0Yld4emIyRndMbTl5Wnk5emIyRndMMlZ1WTI5a2FXNW5MeUkrRFFvOFUwOUJVQzFGVGxZNlFtOWtlVDROQ2p4aE1UcFRaWEpwWVd4cGVtRmliR1ZKWkNCcFpEMGljbVZtTFRFaUlIaHRiRzV6T21FeFBTSm9kSFJ3T2k4dmMyTm9aVzFoY3k1dGFXTnliM052Wm5RdVkyOXRMMk5zY2k5dWMyRnpjMlZ0TDFKbGRtbDBVMlZ5ZG1salpYTXVVR1Z5YzJsemRHVnVZMlV2VW1WMmFYUlRaWEoyYVdObGN5VXlReVV5TUZabGNuTnBiMjRsTTBReUxqRXdMakV1TkRrNE1DVXlReVV5TUVOMWJIUjFjbVVsTTBSdVpYVjBjbUZzSlRKREpUSXdVSFZpYkdsalMyVjVWRzlyWlc0bE0wUnVkV3hzSWo0TkNqeHpkSEpwYm1kSlJDQnBaRDBpY21WbUxUTWlQak0zTUdJMllqTmhMV0k1WlRBdE5ETTFZaTFoTnpVd0xURXlZV0l6WmpCaE9URTJZUzB3TURBek1tRmpZVHd2YzNSeWFXNW5TVVErRFFvOGFXNTBTVVErTWpBM05UWXlQQzlwYm5SSlJENE5Dand2WVRFNlUyVnlhV0ZzYVhwaFlteGxTV1ErRFFvOEwxTlBRVkF0UlU1V09rSnZaSGsrRFFvOEwxTlBRVkF0UlU1V09rVnVkbVZzYjNCbFBnMEs8L0Jhc2UtMF9EYXRhPg0KPEJhc2UtMF9IYXNOZXN0ZWREYXRhPmZhbHNlPC9CYXNlLTBfSGFzTmVzdGVkRGF0YT4NCjwvYTE6Q2FsbFNpdGVfeDAwMkJfVHJhY2VTZXJpYWxpc2VySGVscGVyPg0KPC9TT0FQLUVOVjpCb2R5Pg0KPC9TT0FQLUVOVjpFbnZlbG9wZT4NCg=="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.10.1.3976",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "2686aa522a954d9db6379bbc63e40f98",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 91.0,
+        "Y": 87.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "GlobalParameter.Visible",
+        "Id": "bb83a5450c804f34b987da1d3d0dc2b7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 702.248458777932,
+        "Y": 16.8103369451022
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "GlobalParameter.Name",
+        "Id": "97d5b4ba76e440e9b1b28ce98e642a40",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 697.348764330819,
+        "Y": 315.691698218987
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "GlobalParameter.ByName",
+        "Id": "3a826db236c24f0ab94c25d2674b73fe",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 366.54494099703993,
+        "Y": 143.79605341322281
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Spec Types",
+        "Id": "74898c78c73a414a8411749214197af3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 124.1693840732446,
+        "Y": 226.41646678901813
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "GlobalParameter.SpecType",
+        "Id": "d058906178b3446d941d176123ff3ffd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 721.74499775570064,
+        "Y": 148.628707246674
+      }
+    ],
+    "Annotations": [],
+    "X": -154.775318367524,
+    "Y": 68.594508448517274,
+    "Zoom": 0.82770257044119033
+  }
+}

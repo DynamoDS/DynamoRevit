@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using DSRevitNodesUI;
+using Autodesk.Revit.DB;
 using RVT = Autodesk.Revit.DB;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
@@ -202,6 +203,107 @@ namespace DSRevitNodesUI
 
             // assign the selected name to an actual enumeration value
             var assign = AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), stringNode);
+
+            // return the enumeration value
+            return new List<AssociativeNode> { assign };
+        }
+    }
+
+    public abstract class CustomGenericNestedClassDropDown : RevitDropDownBase
+    {
+        public CustomGenericNestedClassDropDown(string name, Type type) : base(name)
+        {
+            this.EnumerationType = type;
+            PopulateDropDownItems();
+        }
+
+        [JsonConstructor]
+        public CustomGenericNestedClassDropDown(string name, Type type, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(name, inPorts, outPorts)
+        {
+            this.EnumerationType = type;
+            PopulateDropDownItems();
+        }
+
+        /// <summary>
+        /// Type of Class
+        /// </summary>
+        private Type EnumerationType
+        {
+            get;
+            set;
+        }
+
+        protected override CoreNodeModels.DSDropDownBase.SelectionState PopulateItemsCore(string currentSelection)
+        {
+            PopulateDropDownItems();
+            return SelectionState.Done;
+        }
+
+        /// <summary>
+        /// Populate Items in Dropdown menu
+        /// </summary>
+        public void PopulateDropDownItems()
+        {
+            if (this.EnumerationType != null)
+            {
+                // Clear the dropdown list
+                Items.Clear();
+
+                var properties = EnumerationType.GetProperties();
+                foreach (var property in properties)
+                {
+                    string name = property.Name;
+                    Items.Add(new CoreNodeModels.DynamoDropDownItem(name, property.GetValue(null,null)));
+                }
+
+                var types = this.EnumerationType.GetNestedTypes();
+                foreach (var type in types)
+                {
+                    var nestProperties = type.GetProperties();
+                    foreach (var nestProperty in nestProperties)
+                    {
+                        Items.Add(new CoreNodeModels.DynamoDropDownItem(nestProperty.Name, nestProperty.GetValue(null,null)));
+                    }
+                }
+
+                if (Items.Count <= 0)
+                {
+                    Items.Add(new CoreNodeModels.DynamoDropDownItem(Properties.Resources.NoTypesFound, null));
+                    SelectedIndex = 0;
+                    return;
+                }
+                Items = Items.OrderBy(x => x.Name).ToObservableCollection();
+            }
+        }
+
+        /// <summary>
+        /// Assign the selected Enumeration value to the output
+        /// </summary>
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            // If the dropdown is still empty try to populate it again          
+            if (Items.Count == 0 || Items.Count == -1)
+            {
+                if (this.EnumerationType != null)
+                {
+                    PopulateItems();
+                }
+            }
+
+            // If there are no elements in the dropdown or the selected Index is invalid return a Null node.
+            if (!CanBuildOutputAst(Properties.Resources.NoTypesFound, Properties.Resources.None))
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+            
+            var args = new List<AssociativeNode>
+            {
+                AstFactory.BuildStringNode(((Autodesk.Revit.DB.ForgeTypeId) Items[SelectedIndex].Item).TypeId)
+            };
+
+            var functionCall = AstFactory.BuildFunctionCall<String, Revit.Elements.ForgeType>(Revit.Elements.ForgeType.ByTypeId, args);
+
+            // assign the selected name to an actual enumeration value
+            var assign = AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall);
 
             // return the enumeration value
             return new List<AssociativeNode> { assign };

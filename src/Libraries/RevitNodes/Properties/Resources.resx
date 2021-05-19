@@ -573,4 +573,31 @@
   <data name="NotHorizontalInputPolyCurveError" xml:space="preserve">
     <value>Curves does not create closed horizontal loop.</value>
   </data>
+  <data name="CreateProjectParameterForAllCategoriesObsolete" xml:space="preserve">
+    <value>This node may be removed in future version. Use CreateProjectParameterForAllCategories(string, string, ForgeType, ForgeType, bool) instead.</value>
+  </data>
+  <data name="CreateProjectParameterObsolete" xml:space="preserve">
+    <value>This node may be removed in future version. Use CreateProjectParameter(string, string, ForgeType, ForgeType, bool, IEnumerable&lt;Category&gt;) instead.</value>
+  </data>
+  <data name="CreateSharedParameterForAllCategoriesObsolete" xml:space="preserve">
+    <value>This node may be removed in future version. Use CreateSharedParameterForAllCategories(string, string, ForgeType, ForgeType, bool) instead.</value>
+  </data>
+  <data name="CreateSharedParameterObsolete" xml:space="preserve">
+    <value>This node may be removed in future version. Use CreateSharedParameter(string, string, ForgeType, ForgeType, bool, IEnumerable&lt;Category&gt;) instead.</value>
+  </data>
+  <data name="FamilyDocumentAddParameterObsolete" xml:space="preserve">
+    <value>This node may be removed in future version. Use FamilyDocument.AddParameter(string, ForgeType, ForgeType, bool) instead.</value>
+  </data>
+  <data name="GlobalParameterByNameObsolete" xml:space="preserve">
+    <value>This node may be removed in future version. Use GlobalParameter.ByName(string, ForgeType)</value>
+  </data>
+  <data name="GroupObsolete" xml:space="preserve">
+    <value>This property may be removed in future version. Use GroupType instead.</value>
+  </data>
+  <data name="ParameterTypeObsolete" xml:space="preserve">
+    <value>This property may be removed in future version. Use SpecType instead.</value>
+  </data>
+  <data name="UnitTypeObsolete" xml:space="preserve">
+    <value>This property may be removed in future version. Use SpecType instead.</value>
+  </data>
 </root>

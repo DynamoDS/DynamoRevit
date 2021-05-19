@@ -121,7 +121,7 @@
     <value>Returns a list of all instances of the selected warning type.</value>
   </data>
   <data name="BuiltInParameterGroupSelectorDescription" xml:space="preserve">
-    <value>Select a built-in parameter group.</value>
+    <value>Select a built-in parameter group. This node may be removed in future version. Use 'Group Types' instead.</value>
     <comment>Description for BuiltIn Parameter Group</comment>
   </data>
   <data name="CategoriesDescription" xml:space="preserve">
@@ -237,7 +237,7 @@
     <value>No warnings in the current document.</value>
   </data>
   <data name="ParameterTypeSelectorDescription" xml:space="preserve">
-    <value>Select a parameter type.</value>
+    <value>Select a parameter type. This node may be removed in future version. Use 'Spec Types' instead.</value>
     <comment>Description for Parameter Type</comment>
   </data>
   <data name="PerformanceAdviserDescription" xml:space="preserve">
@@ -462,5 +462,13 @@
   </data>
   <data name="NoCeilingTypesAvailable" xml:space="preserve">
     <value>No ceiling types available.</value>
+  </data>
+  <data name="GroupTypeSelectorDescription" xml:space="preserve">
+    <value>Select a Group Type.</value>
+    <comment>Description for Group Types</comment>
+  </data>
+  <data name="SpecTypeSelectorDescription" xml:space="preserve">
+    <value>Select a Spec type.</value>
+    <comment>Description for Spec Types</comment>
   </data>
 </root>

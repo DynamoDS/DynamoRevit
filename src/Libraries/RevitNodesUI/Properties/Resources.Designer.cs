@@ -70,7 +70,7 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a built-in parameter group..
+        ///   Looks up a localized string similar to Select a built-in parameter group. This node may be removed in future version. Use &apos;Group Types&apos; instead..
         /// </summary>
         internal static string BuiltInParameterGroupSelectorDescription {
             get {
@@ -268,6 +268,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a Group Type..
+        /// </summary>
+        internal static string GroupTypeSelectorDescription {
+            get {
+                return ResourceManager.GetString("GroupTypeSelectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select the horizontal text alignment style..
         /// </summary>
         internal static string HorizontalTextAlignmentStyleSelectorDescription {
@@ -376,7 +385,7 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a parameter type..
+        ///   Looks up a localized string similar to Select a parameter type. This node may be removed in future version. Use &apos;Spec Types&apos; instead..
         /// </summary>
         internal static string ParameterTypeSelectorDescription {
             get {
@@ -804,6 +813,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string SpacingRuleLayoutDescription {
             get {
                 return ResourceManager.GetString("SpacingRuleLayoutDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Spec type..
+        /// </summary>
+        internal static string SpecTypeSelectorDescription {
+            get {
+                return ResourceManager.GetString("SpecTypeSelectorDescription", resourceCulture);
             }
         }
         

@@ -4,6 +4,7 @@ using DynamoServices;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
+using Dynamo.Graph.Nodes;
 
 namespace Revit.Elements
 {
@@ -55,6 +56,11 @@ namespace Revit.Elements
             SafeInit(() => InitGlobalParameter(name, type));
         }
 
+        private GlobalParameter(string name, Autodesk.Revit.DB.ForgeTypeId forgeTypeId)
+        {
+            SafeInit(() => InitGlobalParameter(name, forgeTypeId));
+        }
+
         #endregion
 
 
@@ -89,6 +95,28 @@ namespace Revit.Elements
                 // Create a new GP
                 TransactionManager.Instance.EnsureInTransaction(Document);
                 Autodesk.Revit.DB.GlobalParameter newParameter = Autodesk.Revit.DB.GlobalParameter.Create(Document, name, type);
+                InternalSetGlobalParameter(newParameter);
+                TransactionManager.Instance.TransactionTaskDone();
+            }
+
+            ElementBinder.CleanupAndSetElementForTrace(Document, InternalGlobalParameter);
+        }
+
+        private void InitGlobalParameter(string name, Autodesk.Revit.DB.ForgeTypeId forgeTypeId)
+        {
+            var existingId = Autodesk.Revit.DB.GlobalParametersManager.FindByName(Document, name);
+
+            if (existingId != null && existingId != Autodesk.Revit.DB.ElementId.InvalidElementId)
+            {
+                // GP already exists
+                var existingParameter = Document.GetElement(existingId) as Autodesk.Revit.DB.GlobalParameter;
+                InternalSetGlobalParameter(existingParameter);
+            }
+            else
+            {
+                // Create a new GP
+                TransactionManager.Instance.EnsureInTransaction(Document);
+                Autodesk.Revit.DB.GlobalParameter newParameter = Autodesk.Revit.DB.GlobalParameter.Create(Document, name, forgeTypeId);
                 InternalSetGlobalParameter(newParameter);
                 TransactionManager.Instance.TransactionTaskDone();
             }
@@ -189,7 +217,7 @@ namespace Revit.Elements
                         var valueDouble = valueWrapper as Autodesk.Revit.DB.DoubleParameterValue;
 
                         return valueDouble.Value * Revit.GeometryConversion.UnitConverter.HostToDynamoFactor(
-                            this.InternalGlobalParameter.GetDefinition().GetSpecTypeId());
+                            this.InternalGlobalParameter.GetDefinition().GetDataType());
                     }
                     else
                     {
@@ -235,7 +263,7 @@ namespace Revit.Elements
                 }
                 else if (value.GetType() == typeof(double))
                 {
-                    var valueToSet = (double)value * UnitConverter.DynamoToHostFactor(parameter.InternalGlobalParameter.GetDefinition().GetSpecTypeId());
+                    var valueToSet = (double)value * UnitConverter.DynamoToHostFactor(parameter.InternalGlobalParameter.GetDefinition().GetDataType());
 
                     parameter.InternalGlobalParameter.SetValue(
                         new Autodesk.Revit.DB.DoubleParameterValue(valueToSet));
@@ -269,6 +297,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Parameter Group
         /// </summary>
+        [NodeObsolete("GroupObsolete", typeof(Properties.Resources))]
         public string ParameterGroup
         {
             get
@@ -291,6 +320,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Parameter Type
         /// </summary>
+        [NodeObsolete("ParameterTypeObsolete", typeof(Properties.Resources))]
         public string ParameterType
         {
             get
@@ -299,6 +329,27 @@ namespace Revit.Elements
             }
         }
 
+        /// <summary>
+        /// Get SpecType
+        /// </summary>
+        public ForgeType SpecType
+        {
+            get
+            {
+                return ForgeType.FromExisting(this.InternalGlobalParameter.GetDefinition().GetDataType());
+            }
+        }
+
+        /// <summary>
+        /// Get Parameter Group Type
+        /// </summary>
+        public ForgeType GroupType
+        {
+            get
+            {
+                return ForgeType.FromExisting(this.InternalGlobalParameter.GetDefinition().GetGroupTypeId());
+            }
+        }
 
         #endregion
 
@@ -310,6 +361,7 @@ namespace Revit.Elements
         /// <param name="name">Name fo the parameter</param>
         /// <param name="parameterType">Parameter type</param>
         /// <returns></returns>
+        [NodeObsolete("GlobalParameterByNameObsolete", typeof(Properties.Resources))]
         public static GlobalParameter ByName(string name, string parameterType)
         {
             Autodesk.Revit.DB.ParameterType ptype = Autodesk.Revit.DB.ParameterType.Text;
@@ -322,6 +374,22 @@ namespace Revit.Elements
             }
 
             return new GlobalParameter(name, ptype);
+        }
+
+        /// <summary>
+        /// Create a new Global Parameter by Name and Type
+        /// </summary>
+        /// <param name="name">Name fo the parameter</param>
+        /// <param name="specType">The type of new global parameter.</param>
+        /// <returns></returns>
+        public static GlobalParameter ByName(string name, ForgeType specType)
+        {
+            if (!Autodesk.Revit.DB.GlobalParametersManager.AreGlobalParametersAllowed(Document))
+            {
+                throw new Exception(Properties.Resources.DocumentDoesNotSupportGlobalParams);
+            }
+
+            return new GlobalParameter(name, specType.InternalForgeTypeId);
         }
 
         #endregion
