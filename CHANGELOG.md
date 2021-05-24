@@ -2,6 +2,7 @@
 * Add new Viewport nodes - Viewport.LabelOffset, Viewport.SetLabelOffset, Viewport.LabelLineLength, Viewport.SetLabelLineLength.
 * Update Floor API with new RevitAPI.
 * Add new Ceiling&CeilingType nodes - Ceiling.ByOutlineTypeAndLevel, Ceiling.ByOutlineTypeAndLevel(polycurve), Ceiling Types, CeilingType.ByName, CeilingType.Name, CeilingTypeGetThermalProperties.
+* Add new FamilyInstance node - FamilyInstance.ByHostAndPoint.
 
 ## 0.2.27
 * Update DynamoCore version to 2.10.1 to fix Cpython3 node issues.
