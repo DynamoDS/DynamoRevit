@@ -11,6 +11,7 @@ using FamilyInstance = Revit.Elements.FamilyInstance;
 using FamilyType = Revit.Elements.FamilyType;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using Vector = Autodesk.DesignScript.Geometry.Vector;
+using System.Linq;
 
 namespace RevitNodesTests.Elements
 {
@@ -190,5 +191,22 @@ namespace RevitNodesTests.Elements
             Assert.IsNull(outsideSpace);
         }
 
+        [Test]
+        [TestModel(@".\FamilyInstance\familyInstanceTests.rvt")]
+        public void CanCreateFamilyInstanceWithHost()
+        {
+            Autodesk.Revit.DB.FilteredElementCollector collector = new Autodesk.Revit.DB.FilteredElementCollector(Revit.Application.Document.Current.InternalDocument).OfClass(typeof(Autodesk.Revit.DB.Wall));
+            Revit.Elements.Wall wall = Revit.Elements.Wall.FromExisting((Autodesk.Revit.DB.Wall)collector.FirstOrDefault(), true);
+
+            var familySym = FamilyType.ByName("1510x2110mm");
+            var familyInstance = FamilyInstance.ByHostAndPoint(familySym, wall, Point.ByCoordinates(0, 0, 0));
+            var internalPos =
+                InternalLocation(familyInstance.InternalElement as Autodesk.Revit.DB.FamilyInstance);
+
+            var pos = internalPos * UnitConverter.HostToDynamoFactor(SpecTypeId.Length);
+            Assert.AreEqual(-24.25, pos.X, Tolerance);
+            Assert.AreEqual(0, pos.Y, Tolerance);
+            Assert.AreEqual(0, pos.Z, Tolerance);
+        }
     }
 }

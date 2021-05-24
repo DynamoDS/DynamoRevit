@@ -58,6 +58,11 @@ namespace Revit.Elements
         {
             SafeInit(() => InitFamilyInstance(fs, reference, location, referenceDirection));
         }
+
+        internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.Element host, Autodesk.Revit.DB.XYZ location)
+        {
+            SafeInit(() => InitFamilyInstance(fs, host, location));
+        }
         #endregion
 
         #region Helpers for private constructors
@@ -213,6 +218,39 @@ namespace Revit.Elements
             var fi = Document.IsFamilyDocument 
                 ? Document.FamilyCreate.NewFamilyInstance(reference,  location, referenceDirection, fs) 
                 : Document.Create.NewFamilyInstance(reference, location, referenceDirection, fs);
+
+            InternalSetFamilyInstance(fi);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            ElementBinder.SetElementForTrace(InternalElement);
+        }
+
+        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.Element host, Autodesk.Revit.DB.XYZ location)
+        {
+            //Phase 1 - Check to see if the object exists and should be rebound
+            var oldFam =
+                ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
+
+            //There was an existing family instance, rebind to that, and adjust its position
+            if (oldFam != null && oldFam.Host.Id == host.Id)
+            {
+                InternalSetFamilyInstance(oldFam);
+                InternalSetFamilySymbol(fs);
+                InternalSetPosition(location);
+                return;
+            }
+
+            //Phase 2- There was no existing point, create one
+            TransactionManager.Instance.EnsureInTransaction(Document);
+
+            //If the symbol is not active, then activate it
+            if (!fs.IsActive)
+                fs.Activate();
+            var level = Document.GetElement(host.LevelId) as Autodesk.Revit.DB.Level;
+            var fi = Document.IsFamilyDocument
+                ? Document.FamilyCreate.NewFamilyInstance(location, fs, host, Autodesk.Revit.DB.Structure.StructuralType.NonStructural)
+                : Document.Create.NewFamilyInstance(location, fs, host, level, Autodesk.Revit.DB.Structure.StructuralType.NonStructural);
 
             InternalSetFamilyInstance(fi);
 
@@ -493,6 +531,22 @@ namespace Revit.Elements
             return familyInstance;
         }
 
+        /// <summary>
+        /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) and its host element and location.
+        /// </summary>
+        /// <param name="familyType"></param>
+        /// <param name="host"></param>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public static FamilyInstance ByHostAndPoint(FamilyType familyType, Element host, Point point)
+        {
+            if (familyType == null)
+            {
+                throw new ArgumentNullException("familyType");
+            }
+
+            return new FamilyInstance(familyType.InternalFamilySymbol, host.InternalElement, point.ToXyz());
+        }
         #endregion
 
         #region Internal static constructors 
