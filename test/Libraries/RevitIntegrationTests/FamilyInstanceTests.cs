@@ -86,5 +86,21 @@ namespace RevitSystemTests
             Assert.AreEqual(expectedRoomId, roomId);
         }
 
+        [Test]
+        [TestModel(@".\FamilyInstance\familyInstanceTests.rvt")]
+        public void CanCreateFamilyInstanceWithHost()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\FamilyInstance\CanCreateFamilyInstanceWithHost.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            var location = GetPreviewValue("bc0ad50226644e6e8ad1e0b1c603a257") as Autodesk.DesignScript.Geometry.Point;
+            Assert.AreEqual(0, location.X, Tolerance);
+            Assert.AreEqual(3143.910, location.Y, Tolerance);
+            Assert.AreEqual(0, location.Z, Tolerance);
+        }
     }
 }
