@@ -534,9 +534,9 @@ namespace Revit.Elements
         /// <summary>
         /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) and its host element and location.
         /// </summary>
-        /// <param name="familyType"></param>
-        /// <param name="host"></param>
-        /// <param name="point"></param>
+        /// <param name="familyType">Family Type. Also called Family Symbol.</param>
+        /// <param name="host">The object into which the FamilyInstance is to be inserted, often known as the host.</param>
+        /// <param name="point">The physical location where the instance is to be placed.</param>
         /// <returns></returns>
         public static FamilyInstance ByHostAndPoint(FamilyType familyType, Element host, Point point)
         {
