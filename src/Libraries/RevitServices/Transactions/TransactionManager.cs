@@ -17,7 +17,7 @@ namespace RevitServices.Transactions
                 handler(obj);
         }
 
-        public static bool ReadOnlyMode { get; set; }
+        internal static bool ReadOnlyMode { get; set; }
 
         private static TransactionManager manager;
         
