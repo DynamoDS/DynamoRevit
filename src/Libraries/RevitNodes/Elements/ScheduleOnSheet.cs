@@ -41,7 +41,7 @@ namespace Revit.Elements
         /// <param name="ScheduleOnSheet"></param>
         private ScheduleOnSheet(Autodesk.Revit.DB.ScheduleSheetInstance ScheduleOnSheet)
         {
-            SafeInit(() => InitScheduleOnSheet(ScheduleOnSheet));
+            SafeInit(() => InitScheduleOnSheet(ScheduleOnSheet), true);
         }
 
         /// <summary>
