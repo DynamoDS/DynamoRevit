@@ -19,7 +19,7 @@ namespace Revit.Elements
         /// <param name="element">Revit element</param>
         private DetailCurve(Autodesk.Revit.DB.DetailCurve element)
         {
-            SafeInit(() => InitElement(element));
+            SafeInit(() => InitElement(element), true);
         }
 
         /// <summary>

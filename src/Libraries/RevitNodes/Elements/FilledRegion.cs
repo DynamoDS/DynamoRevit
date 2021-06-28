@@ -59,7 +59,7 @@ namespace Revit.Elements
         /// <param name="FilledRegion"></param>
         private FilledRegion(Autodesk.Revit.DB.FilledRegion FilledRegion)
         {
-            SafeInit(() => InitElement(FilledRegion));
+            SafeInit(() => InitElement(FilledRegion), true);
         }
 
         /// <summary>

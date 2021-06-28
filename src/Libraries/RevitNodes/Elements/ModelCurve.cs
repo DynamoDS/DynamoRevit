@@ -28,7 +28,7 @@ namespace Revit.Elements
         /// <param name="curve"></param>
         private ModelCurve(Autodesk.Revit.DB.ModelCurve curve)
         {
-            SafeInit(() => InitModelCurve(curve));
+            SafeInit(() => InitModelCurve(curve), true);
         }
 
         // PB: This implementation borrows the somewhat risky notions from the original Dynamo

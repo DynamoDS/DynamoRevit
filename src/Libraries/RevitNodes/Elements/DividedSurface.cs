@@ -44,7 +44,7 @@ namespace Revit.Elements
         /// <param name="divSurf"></param>
         private DividedSurface(Autodesk.Revit.DB.DividedSurface divSurf)
         {
-            SafeInit(() => InitDividedSurface(divSurf));
+            SafeInit(() => InitDividedSurface(divSurf), true);
         }
 
         /// <summary>

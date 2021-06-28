@@ -51,7 +51,7 @@ namespace Revit.Elements
         /// <param name="element"></param>
         private ModelText(Autodesk.Revit.DB.ModelText element)
         {
-            SafeInit(() => InitModelText(element));
+            SafeInit(() => InitModelText(element), true);
         }
 
         /// <summary>

@@ -34,7 +34,7 @@ namespace Revit.Elements
 
         private Family(Autodesk.Revit.DB.Family family)
         {
-            SafeInit(() => InitFamily(family));
+            SafeInit(() => InitFamily(family), true);
         }
 
         #endregion

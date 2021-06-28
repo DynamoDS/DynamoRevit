@@ -88,7 +88,7 @@ namespace Revit.Elements
         /// <param name="level"></param>
         private Level(Autodesk.Revit.DB.Level level)
         {
-            SafeInit(() => InitLevel(level));
+            SafeInit(() => InitLevel(level), true);
         }
 
         #endregion

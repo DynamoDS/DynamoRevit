@@ -29,7 +29,7 @@ namespace Revit.Elements
         /// <param name="instance"></param>
         protected FamilyInstance(Autodesk.Revit.DB.FamilyInstance instance)
         {
-            SafeInit(() => InitFamilyInstance(instance));
+            SafeInit(() => InitFamilyInstance(instance), true);
         }
 
         /// <summary>

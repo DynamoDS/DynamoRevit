@@ -45,7 +45,7 @@ namespace Revit.Elements
         /// <param name="existingSketchPlane"></param>
         private SketchPlane(Autodesk.Revit.DB.SketchPlane existingSketchPlane)
         {
-            SafeInit(() => InitSketchPlane(existingSketchPlane));
+            SafeInit(() => InitSketchPlane(existingSketchPlane), true);
         }
 
         /// <summary>

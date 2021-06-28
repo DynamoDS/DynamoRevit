@@ -42,7 +42,7 @@ namespace Revit.Elements
         /// <param name="wall"></param>
         private FaceWall(Autodesk.Revit.DB.FaceWall wall)
         {
-            SafeInit(() => InitFaceWall(wall));
+            SafeInit(() => InitFaceWall(wall), true);
         }
 
         /// <summary>

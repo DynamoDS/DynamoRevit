@@ -96,7 +96,7 @@ namespace Revit.Elements
         /// <param name="shape"></param>
         protected DirectShape(Autodesk.Revit.DB.DirectShape shape)
         {
-            SafeInit(() => InitDirectShape(shape));
+            SafeInit(() => InitDirectShape(shape), true);
         }
 
         /// <summary>

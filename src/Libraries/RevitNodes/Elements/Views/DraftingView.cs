@@ -44,7 +44,7 @@ namespace Revit.Elements.Views
         /// </summary>
         private DraftingView(Autodesk.Revit.DB.ViewDrafting view)
         {
-            SafeInit(() => InitDraftingView(view));
+            SafeInit(() => InitDraftingView(view), true);
         }
       
         /// <summary>

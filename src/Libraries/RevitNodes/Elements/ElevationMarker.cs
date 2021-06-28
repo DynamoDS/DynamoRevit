@@ -42,7 +42,7 @@ namespace Revit.Elements
         /// </summary>
         private ElevationMarker(Autodesk.Revit.DB.ElevationMarker marker)
         {
-            SafeInit(() => InitElevationMarker(marker));
+            SafeInit(() => InitElevationMarker(marker), true);
         }
 
         #endregion

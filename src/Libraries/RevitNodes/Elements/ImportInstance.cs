@@ -52,7 +52,7 @@ namespace Revit.Elements
         /// <param name="element"></param>
         private ImportInstance(Autodesk.Revit.DB.ImportInstance element)
         {
-            SafeInit(() => InternalSetImportInstance(element));
+            SafeInit(() => InternalSetImportInstance(element),true);
         }
 
         #endregion

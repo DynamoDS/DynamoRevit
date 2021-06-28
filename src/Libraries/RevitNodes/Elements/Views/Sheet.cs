@@ -61,7 +61,7 @@ namespace Revit.Elements.Views
         /// </summary>
         private Sheet(Autodesk.Revit.DB.ViewSheet view)
         {
-            SafeInit(() => InitSheet(view));
+            SafeInit(() => InitSheet(view), true);
         }
 
         /// <summary>

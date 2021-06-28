@@ -27,7 +27,7 @@ namespace Revit.Elements.Views
         /// </summary>
         private FloorPlanView(Autodesk.Revit.DB.ViewPlan view)
         {
-            SafeInit(() => InitFloorPlanView(view));
+            SafeInit(() => InitFloorPlanView(view), true);
         }
 
         #endregion

@@ -56,7 +56,7 @@ namespace Revit.Elements
         /// <param name="element"></param>
         private DimensionType(Autodesk.Revit.DB.DimensionType element)
         {
-            SafeInit(() => InitElement(element));
+            SafeInit(() => InitElement(element), true);
         }
 
         /// <summary>

@@ -43,7 +43,7 @@ namespace Revit.Elements
         /// </summary>
         private Revision(Autodesk.Revit.DB.Revision Revision)
         {
-            SafeInit(() => InitElement(Revision));
+            SafeInit(() => InitElement(Revision), true);
         }
 
         /// <summary>

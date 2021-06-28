@@ -41,7 +41,7 @@ namespace Revit.Elements
         /// </summary>
         private CurtainSystem(Autodesk.Revit.DB.CurtainSystem curtainSystem)
         {
-            SafeInit(() => InitCurtainSystem(curtainSystem));
+            SafeInit(() => InitCurtainSystem(curtainSystem), true);
         }
       
         /// <summary>

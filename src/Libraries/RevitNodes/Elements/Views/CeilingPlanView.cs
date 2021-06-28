@@ -20,7 +20,7 @@ namespace Revit.Elements.Views
         /// </summary>
         private CeilingPlanView(Autodesk.Revit.DB.ViewPlan view)
         {
-            SafeInit(() => InitCeilingPlanView(view));
+            SafeInit(() => InitCeilingPlanView(view), true);
         }
 
         /// <summary>

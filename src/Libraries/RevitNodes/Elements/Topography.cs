@@ -67,7 +67,7 @@ namespace Revit.Elements
         [SupressImportIntoVM]
         private Topography(TopographySurface topoSurface)
         {
-            SafeInit(() => InitTopography(topoSurface));
+            SafeInit(() => InitTopography(topoSurface), true);
         }
 
         #endregion

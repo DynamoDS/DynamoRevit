@@ -20,7 +20,7 @@ namespace Revit.Elements.Views
         /// </summary>
         private StructuralPlanView(Autodesk.Revit.DB.ViewPlan view)
         {
-            SafeInit(() => InitStructuralPlanView(view));
+            SafeInit(() => InitStructuralPlanView(view), true);
         }
 
         /// <summary>

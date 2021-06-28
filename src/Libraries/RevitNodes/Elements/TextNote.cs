@@ -35,7 +35,7 @@ namespace Revit.Elements
         /// <param name="TextNote"></param>
         internal TextNote(Autodesk.Revit.DB.TextNote TextNote)
         {
-            SafeInit(() => InitElement(TextNote));
+            SafeInit(() => InitElement(TextNote), true);
         }
 
         /// <summary>

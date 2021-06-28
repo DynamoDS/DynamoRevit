@@ -59,7 +59,7 @@ namespace Revit.Filter
         /// <param name="elem"></param>
         private ParameterFilterElement(Autodesk.Revit.DB.ParameterFilterElement elem)
         {
-            SafeInit(() => InitElement(elem));
+            SafeInit(() => InitElement(elem),true);
         }
 
         /// <summary>

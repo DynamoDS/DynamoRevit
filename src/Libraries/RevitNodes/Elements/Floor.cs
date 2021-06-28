@@ -44,7 +44,7 @@ namespace Revit.Elements
         /// </summary>
         private Floor(Autodesk.Revit.DB.Floor floor)
         {
-            SafeInit(() => InitFloor(floor));
+            SafeInit(() => InitFloor(floor), true);
         }
       
         /// <summary>

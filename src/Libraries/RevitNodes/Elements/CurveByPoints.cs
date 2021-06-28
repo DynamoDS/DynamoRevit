@@ -50,7 +50,7 @@ namespace Revit.Elements
         /// <param name="curveByPoints"></param>
         private CurveByPoints(Autodesk.Revit.DB.CurveByPoints curveByPoints)
         {
-            SafeInit(() => InitCurveByPoints(curveByPoints));
+            SafeInit(() => InitCurveByPoints(curveByPoints), true);
         }
 
         private CurveByPoints(IEnumerable<Autodesk.Revit.DB.ReferencePoint> refPoints, bool isReferenceLine)
