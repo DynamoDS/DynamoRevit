@@ -1,0 +1,7 @@
+# To learn more about .editorconfig see https://aka.ms/editorconfigdocs
+root = true
+
+# TT files
+[*.tt]
+insert_final_newline = false
+trim_trailing_whitespace = true
