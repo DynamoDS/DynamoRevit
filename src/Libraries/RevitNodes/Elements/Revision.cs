@@ -157,6 +157,10 @@ namespace Revit.Elements
         private static ElementId GetRevisionNumberingSequence(RevisionNumberType numberType)
         {
             ElementId revisionNumberingSequenceId = ElementId.InvalidElementId;
+
+            if (numberType != RevisionNumberType.Alphanumeric && numberType != RevisionNumberType.Numeric)
+                return revisionNumberingSequenceId;
+
             var doc = DocumentManager.Instance.CurrentDBDocument;
             var elementids = RevisionNumberingSequence.GetAllRevisionNumberingSequences(doc);
 
@@ -168,7 +172,6 @@ namespace Revit.Elements
                     revisionNumberingSequenceId = seqElem.Id;
                     break;
                 }
-                    
             }
             
             return revisionNumberingSequenceId;
