@@ -1,6 +1,8 @@
+## 0.3.3
 * Add new FamilyInstance node - FamilyInstance.ByHostAndPoint.
 * Update DynamoCore to 2.10.0,
 * Update Revision and FamilyDocument API due to Revit API changed.
+* Fix a bug - Toggling "Show Edges" or "Revit Background Preview" setting causes blank Geometry View until regeneration.
 
 ## 0.3.2
 * Add new selection node  - "Select Reference on Element" which can select a reference on an element (contains linked element).
