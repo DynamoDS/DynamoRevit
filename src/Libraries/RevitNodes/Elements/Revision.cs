@@ -164,7 +164,11 @@ namespace Revit.Elements
             {
                 var seqElem = doc.GetElement(id) as RevisionNumberingSequence;
                 if (seqElem.NumberType == numberType)
+                {
                     revisionNumberingSequenceId = seqElem.Id;
+                    break;
+                }
+                    
             }
             
             return revisionNumberingSequenceId;
