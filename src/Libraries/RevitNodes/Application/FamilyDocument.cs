@@ -206,33 +206,6 @@ namespace Revit.Application
         /// Add a new family parameter with a given name.
         /// </summary>
         /// <param name="parameterName">The name of the new family parameter.</param>
-        /// <param name="parameterGroup">The name of the group to which the family parameter belongs.</param>
-        /// <param name="parameterType">The name of the type of new family parameter.</param>
-        /// <param name="isInstance">Indicates if the new family parameter is instance or type (true if parameter should be instance).</param>
-        /// <returns>The new family parameter.</returns>
-        [NodeObsolete("FamilyDocumentAddParameterObsolete", typeof(Properties.Resources))]
-        public Elements.FamilyParameter AddParameter(string parameterName, string parameterGroup, string parameterType, bool isInstance)
-        {
-            // parse parameter type
-            Autodesk.Revit.DB.ParameterType type;
-            if (!System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(parameterType, out type))
-                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
-
-            // parse parameter group
-            Autodesk.Revit.DB.BuiltInParameterGroup group;
-            if (!System.Enum.TryParse<Autodesk.Revit.DB.BuiltInParameterGroup>(parameterGroup, out group))
-                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
-
-            TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
-            var famParameter = FamilyManager.AddParameter(parameterName, group, type, isInstance);
-            TransactionManager.Instance.TransactionTaskDone();
-            return new Elements.FamilyParameter(famParameter);
-        }
-
-        /// <summary>
-        /// Add a new family parameter with a given name.
-        /// </summary>
-        /// <param name="parameterName">The name of the new family parameter.</param>
         /// <param name="groupType">The type of the group to which the family parameter belongs.</param>
         /// <param name="specType">The type of new family parameter.</param>
         /// <param name="isInstance">Indicates if the new family parameter is instance or type (true if parameter should be instance).</param>
