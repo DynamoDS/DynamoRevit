@@ -59,6 +59,24 @@ namespace Dynamo.Applications.ViewModel
                 });
         }
 
+        public override bool Active
+        {
+            get => base.Active;
+            set
+            {
+                if (active == value)
+                {
+                    return;
+                }
+
+                active = value;
+                preferences.SetIsBackgroundPreviewActive(PreferenceWatchName, value);
+                RaisePropertyChanged("Active");
+
+                OnActiveStateChanged();
+            }
+        }
+
         protected override void OnActiveStateChanged()
         {
             if (active)
