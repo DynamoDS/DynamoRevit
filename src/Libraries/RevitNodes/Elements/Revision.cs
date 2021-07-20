@@ -141,9 +141,10 @@ namespace Revit.Elements
                 RevisionElem.IssuedTo = issuedTo;
             }
 
-            if (RevisionElem.NumberType != numberType)
+            var seqElem = document.GetElement(RevisionElem.RevisionNumberingSequenceId) as RevisionNumberingSequence;
+            if (seqElem.NumberType != numberType)
             {
-                RevisionElem.NumberType = numberType;
+                RevisionElem.RevisionNumberingSequenceId = GetRevisionNumberingSequence(numberType);
             }
 
             InternalSetElement(RevisionElem);
@@ -151,6 +152,22 @@ namespace Revit.Elements
             // commit transaction and set element for trace
             TransactionManager.Instance.TransactionTaskDone();
             ElementBinder.SetElementForTrace(this.InternalElement);
+        }
+
+        private static ElementId GetRevisionNumberingSequence(RevisionNumberType numberType)
+        {
+            ElementId revisionNumberingSequenceId = ElementId.InvalidElementId;
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var elementids = RevisionNumberingSequence.GetAllRevisionNumberingSequences(doc);
+
+            foreach (var id in elementids)
+            {
+                var seqElem = doc.GetElement(id) as RevisionNumberingSequence;
+                if (seqElem.NumberType == numberType)
+                    revisionNumberingSequenceId = seqElem.Id;
+            }
+            
+            return revisionNumberingSequenceId;
         }
 
         #endregion

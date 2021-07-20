@@ -1,4 +1,6 @@
 * Add new FamilyInstance node - FamilyInstance.ByHostAndPoint.
+* Update DynamoCore to 2.10.0,
+* Update Revision and FamilyDocument API due to Revit API changed.
 
 ## 0.3.2
 * Add new selection node  - "Select Reference on Element" which can select a reference on an element (contains linked element).
