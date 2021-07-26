@@ -3,6 +3,8 @@
 * Update Floor API with new RevitAPI.
 * Add new Ceiling&CeilingType nodes - Ceiling.ByOutlineTypeAndLevel, Ceiling.ByOutlineTypeAndLevel(polycurve), Ceiling Types, CeilingType.ByName, CeilingType.Name, CeilingTypeGetThermalProperties.
 * Add new FamilyInstance node - FamilyInstance.ByHostAndPoint.
+* Update DynamoCore to 2.12.0.
+* Fix a bug - Toggling "Show Edges" or "Revit Background Preview" setting causes blank Geometry View until regeneration.
 
 ## 0.2.27
 * Update DynamoCore version to 2.10.1 to fix Cpython3 node issues.
