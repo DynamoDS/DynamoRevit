@@ -46,13 +46,13 @@ namespace Revit.Elements
         {
             SafeInit(() => InitFloor(floor));
         }
-      
+
         /// <summary>
         /// Private constructor
         /// </summary>
-        private Floor(List<CurveLoop> profiles, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level)
+        private Floor(CurveArray curveArray, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level)
         {
-            SafeInit(() => InitFloor(profiles, floorType, level));
+            SafeInit(() => InitFloor(curveArray, floorType, level));
         }
 
         #endregion
@@ -70,12 +70,20 @@ namespace Revit.Elements
         /// <summary>
         /// Initialize a floor element
         /// </summary>
-        private void InitFloor(List<CurveLoop> profiles, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level)
+        private void InitFloor(CurveArray curveArray, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            // we assume the floor is not structural here, this may be a bad assumption
-            Autodesk.Revit.DB.Floor floor = Autodesk.Revit.DB.Floor.Create(Document, profiles, floorType.Id, level.Id);
+            Autodesk.Revit.DB.Floor floor = null;
+            if (floorType.IsFoundationSlab)
+            {
+                floor = Document.Create.NewFoundationSlab(curveArray, floorType, level, false, XYZ.BasisZ);
+            }
+            else
+            {
+                // we assume the floor is not structural here, this may be a bad assumption
+                floor = Document.Create.NewFloor(curveArray, floorType, level, false);
+            }
 
             InternalSetFloor(floor);
 
@@ -142,7 +150,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("floorType");
             }
 
-            if ( level == null )
+            if (level == null)
             {
                 throw new ArgumentNullException("level");
             }
@@ -152,17 +160,10 @@ namespace Revit.Elements
                 throw new ArgumentException(Properties.Resources.OpenInputPolyCurveError);
             }
 
-            CurveLoop loop = new CurveLoop();
-            outline.Curves().ForEach(x => loop.Append(x.ToRevitType()));
+            var ca = new CurveArray();
+            outline.Curves().ForEach(x => ca.Append(x.ToRevitType()));
 
-            List<CurveLoop> loops = new List<CurveLoop> { loop };
-
-            if (!BoundaryValidation.IsValidHorizontalBoundary(loops))
-            {
-                throw new ArgumentException(Properties.Resources.NotHorizontalInputPolyCurveError);
-            }
-
-            var floor = new Floor(loops, floorType.InternalFloorType, level.InternalLevel);
+            var floor = new Floor(ca, floorType.InternalFloorType, level.InternalLevel);
             DocumentManager.Regenerate();
             return floor;
         }
@@ -177,7 +178,7 @@ namespace Revit.Elements
         /// </summary>
         public IEnumerable<Pt> Points
         {
-            get 
+            get
             {
                 if (this.InternalFloor.SlabShapeEditor == null)
                 {
@@ -188,7 +189,7 @@ namespace Revit.Elements
                 this.InternalFloor.SlabShapeEditor.Enable();
                 TransactionManager.Instance.TransactionTaskDone();
 
-                List<Pt> points = new List<Pt>();              
+                List<Pt> points = new List<Pt>();
                 foreach (SlabShapeVertex v in this.InternalFloor.SlabShapeEditor.SlabShapeVertices)
                 {
                     points.Add(v.Position.ToPoint());
