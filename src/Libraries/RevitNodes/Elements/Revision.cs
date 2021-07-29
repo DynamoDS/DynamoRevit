@@ -142,7 +142,7 @@ namespace Revit.Elements
             }
 
             var seqElem = document.GetElement(RevisionElem.RevisionNumberingSequenceId) as RevisionNumberingSequence;
-            if (seqElem.NumberType != numberType)
+            if (!seqElem.Name.StartsWith("Dynamo_") || seqElem.NumberType != numberType)
             {
                 RevisionElem.RevisionNumberingSequenceId = GetRevisionNumberingSequence(numberType);
             }
@@ -167,11 +167,27 @@ namespace Revit.Elements
             foreach (var id in elementids)
             {
                 var seqElem = doc.GetElement(id) as RevisionNumberingSequence;
-                if (seqElem.NumberType == numberType)
+                if (seqElem.Name.StartsWith("Dynamo_") && seqElem.NumberType == numberType)
                 {
                     revisionNumberingSequenceId = seqElem.Id;
                     break;
                 }
+            }
+            if(revisionNumberingSequenceId == ElementId.InvalidElementId)
+            {
+                RevisionNumberingSequence revisionNumberingSequence;
+                switch (numberType)
+                {
+                    case RevisionNumberType.Alphanumeric:
+                        revisionNumberingSequence = RevisionNumberingSequence.CreateAlphanumericSequence(doc, "Dynamo_Alphanumeric", new AlphanumericRevisionSettings());
+                        revisionNumberingSequenceId = revisionNumberingSequence.Id;
+                        break;
+                    case RevisionNumberType.Numeric:
+                        revisionNumberingSequence = RevisionNumberingSequence.CreateNumericSequence(doc, "Dynamo_Numeric", new NumericRevisionSettings());
+                        revisionNumberingSequenceId = revisionNumberingSequence.Id;
+                        break;
+                }
+                
             }
             
             return revisionNumberingSequenceId;
