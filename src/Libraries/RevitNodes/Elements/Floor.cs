@@ -77,8 +77,8 @@ namespace Revit.Elements
             // we assume the floor is not structural here, this may be a bad assumption
             Autodesk.Revit.DB.Floor floor = Autodesk.Revit.DB.Floor.Create(Document, profiles, floorType.Id, level.Id);
             var param = floor.get_Parameter(BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM);
-            var paramName = param.ToString();
-            if(param.AsDouble() == 0 && offset != 0)
+            
+            if(param !=null && offset != 0)
             {
                 InternalUtilities.ElementUtils.SetParameterValue(param, offset);
             }
