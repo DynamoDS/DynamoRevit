@@ -35,6 +35,8 @@ namespace Revit.Elements
             get { return InternalFloor; }
         }
 
+        private static readonly double Tolerance = 1e-6;
+
         #endregion
 
         #region Private constructors
@@ -73,12 +75,12 @@ namespace Revit.Elements
         private void InitFloor(List<CurveLoop> profiles, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level, double offset = 0)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
-
+            
             // we assume the floor is not structural here, this may be a bad assumption
             Autodesk.Revit.DB.Floor floor = Autodesk.Revit.DB.Floor.Create(Document, profiles, floorType.Id, level.Id);
             var param = floor.get_Parameter(BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM);
             
-            if(param !=null && offset != 0)
+            if(param !=null && Math.Abs(offset - 0) > Tolerance)
             {
                 InternalUtilities.ElementUtils.SetParameterValue(param, offset);
             }
