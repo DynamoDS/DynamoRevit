@@ -238,8 +238,10 @@ namespace Revit.GeometryConversion
 
         public static Surface ExtractSurface(Autodesk.Revit.DB.RuledFace face, IEnumerable<PolyCurve> edgeLoops)
         {
-            var c0 = face.get_Curve(0).ToProtoType(false);
-            var c1 = face.get_Curve(1).ToProtoType(false);
+            var rc0 = face.get_Curve(0);
+            var rc1 = face.get_Curve(1);
+            var c0 = rc0?.ToProtoType(false);
+            var c1 = rc1?.ToProtoType(false);
 
             var result = Surface.ByLoft(new[] {c0, c1});
             c0.Dispose();

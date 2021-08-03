@@ -140,6 +140,31 @@ namespace RevitNodesTests.Elements
             floor.Points.First().Z.ShouldBeApproximately(elev + 10);
 
         }
+
+        [Test]
+        [TestModel(@".\Empty.rvt")]
+        public void ByOutlineTypeAndLevel_PolyCurveFloorTypeLevel_ProducesFloorWithCorrectOffset()
+        {
+            var elevation = 100;
+            var level = Level.ByElevation(elevation);
+
+            var outline = new[]
+            {
+                Line.ByStartPointEndPoint(Point.ByCoordinates(0, 0, 50), Point.ByCoordinates(100, 0, 50)),
+                Line.ByStartPointEndPoint(Point.ByCoordinates(100, 0, 50), Point.ByCoordinates(100, 100, 50)),
+                Line.ByStartPointEndPoint(Point.ByCoordinates(100, 100, 50), Point.ByCoordinates(0, 100, 50)),
+                Line.ByStartPointEndPoint(Point.ByCoordinates(0, 100, 50), Point.ByCoordinates(0, 0, 50))
+            };
+
+            var polyCurveOutline = PolyCurve.ByJoinedCurves(outline);
+
+            var floorType = FloorType.ByName("Generic - 12\"");
+
+            var floor = Floor.ByOutlineTypeAndLevel(polyCurveOutline, floorType, level);
+
+            var param = floor.GetParameterValueByName("Height Offset From Level");
+            ((double)param).ShouldBeApproximately(-50);
+        }
     }
 }
 

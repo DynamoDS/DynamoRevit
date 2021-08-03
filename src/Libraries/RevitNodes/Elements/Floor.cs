@@ -35,6 +35,8 @@ namespace Revit.Elements
             get { return InternalFloor; }
         }
 
+        private static readonly double Tolerance = 1e-6;
+
         #endregion
 
         #region Private constructors
@@ -50,9 +52,9 @@ namespace Revit.Elements
         /// <summary>
         /// Private constructor
         /// </summary>
-        private Floor(List<CurveLoop> profiles, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level)
+        private Floor(List<CurveLoop> profiles, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level, double offset = 0)
         {
-            SafeInit(() => InitFloor(profiles, floorType, level));
+            SafeInit(() => InitFloor(profiles, floorType, level, offset));
         }
 
         #endregion
@@ -70,13 +72,18 @@ namespace Revit.Elements
         /// <summary>
         /// Initialize a floor element
         /// </summary>
-        private void InitFloor(List<CurveLoop> profiles, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level)
+        private void InitFloor(List<CurveLoop> profiles, Autodesk.Revit.DB.FloorType floorType, Autodesk.Revit.DB.Level level, double offset = 0)
         {
             TransactionManager.Instance.EnsureInTransaction(Document);
-
+            
             // we assume the floor is not structural here, this may be a bad assumption
             Autodesk.Revit.DB.Floor floor = Autodesk.Revit.DB.Floor.Create(Document, profiles, floorType.Id, level.Id);
-
+            var param = floor.get_Parameter(BuiltInParameter.FLOOR_HEIGHTABOVELEVEL_PARAM);
+            
+            if(param !=null && Math.Abs(offset - 0) > Tolerance)
+            {
+                InternalUtilities.ElementUtils.SetParameterValue(param, offset);
+            }
             InternalSetFloor(floor);
 
             TransactionManager.Instance.TransactionTaskDone();
@@ -152,6 +159,9 @@ namespace Revit.Elements
                 throw new ArgumentException(Properties.Resources.OpenInputPolyCurveError);
             }
 
+            var levelHeight = level.Elevation;
+            var outlineHeight = (outline.BoundingBox.MinPoint.Z + outline.BoundingBox.MaxPoint.Z) / 2;
+            var offset = outlineHeight - levelHeight;
             CurveLoop loop = new CurveLoop();
             outline.Curves().ForEach(x => loop.Append(x.ToRevitType()));
 
@@ -162,7 +172,7 @@ namespace Revit.Elements
                 throw new ArgumentException(Properties.Resources.NotHorizontalInputPolyCurveError);
             }
 
-            var floor = new Floor(loops, floorType.InternalFloorType, level.InternalLevel);
+            var floor = new Floor(loops, floorType.InternalFloorType, level.InternalLevel, offset);
             DocumentManager.Regenerate();
             return floor;
         }
