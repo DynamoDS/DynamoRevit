@@ -1,3 +1,6 @@
+* Improve Floor creation node and Revision creation node API.
+* Improve 2 DocumentTests.
+
 ## 0.3.3
 * Add new FamilyInstance node - FamilyInstance.ByHostAndPoint.
 * Update DynamoCore to 2.10.0,
