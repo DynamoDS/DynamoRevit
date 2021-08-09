@@ -292,7 +292,7 @@ namespace Dynamo.Applications
 
                     // Let the host (e.g. Revit) control the rendering mode
                     var save = RenderOptions.ProcessRenderMode;
-                    InitializeCoreView().Show();
+                    InitializeCoreView(extCommandData).Show();
                     RenderOptions.ProcessRenderMode = save;
                     revitDynamoModel.Logger.Log(Dynamo.Applications.Properties.Resources.WPFRenderMode + RenderOptions.ProcessRenderMode.ToString());
 
@@ -542,9 +542,9 @@ namespace Dynamo.Applications
             return viewModel;
         }
 
-        private static DynamoView InitializeCoreView()
+        private static DynamoView InitializeCoreView(DynamoRevitCommandData commandData)
         {
-            IntPtr mwHandle = Process.GetCurrentProcess().MainWindowHandle;
+            IntPtr mwHandle = commandData.Application.MainWindowHandle;
             var dynamoView = new DynamoView(dynamoViewModel);
             new WindowInteropHelper(dynamoView).Owner = mwHandle;
 
