@@ -125,7 +125,7 @@ namespace Revit.GeometryConversion
         }
     }
 
-    public class CurvePartition
+    internal class CurvePartition
     {
         public List<Curve> OuterCurves;
         public List<List<Curve>> InnerCurves;
