@@ -143,13 +143,12 @@ namespace Revit.Elements
         private static Autodesk.Revit.DB.Category GetCategory(String name)
         {
             Autodesk.Revit.DB.Category category = null;
-            Settings documentSettings = DocumentManager.Instance.CurrentDBDocument.Settings;
-            var groups = documentSettings.Categories;
             
             var splits = name.Split('-');
-            if(groups.Contains(name))
+            if(FindCategory(name,ref category))
             {
-                category = groups.get_Item(name);                
+                if (category != null)
+                    return category;
             }
             else if (splits.Count() > 1)
             {
@@ -158,9 +157,9 @@ namespace Revit.Elements
                 {
                     var parentName = name.Substring(0, index).TrimEnd(' ');
                     var subName = name.Substring(index + 1).TrimStart(' ');
-                    if(groups.Contains(parentName))
+                    Autodesk.Revit.DB.Category parentCategory = null;
+                    if (FindCategory(parentName, ref parentCategory))
                     {
-                        var parentCategory = groups.get_Item(parentName);
                         if(parentCategory != null)
                         {
                             if(parentCategory.SubCategories.Contains(subName))
@@ -181,7 +180,7 @@ namespace Revit.Elements
                 if(System.Array.Exists(names, entry => entry == fullName))
                 {
                     var builtInCat = (BuiltInCategory)Enum.Parse(typeof(BuiltInCategory), fullName);
-                    category = groups.get_Item(builtInCat);
+                    category = Autodesk.Revit.DB.Category.GetCategory(DocumentManager.Instance.CurrentDBDocument, builtInCat);
                 }
             }
 
@@ -201,6 +200,34 @@ namespace Revit.Elements
             }
 
             return CharIndex;
+        }
+
+        private static Boolean FindCategory(String name, ref Autodesk.Revit.DB.Category category)
+        {
+            var document = DocumentManager.Instance.CurrentDBDocument;
+
+            foreach (BuiltInCategory categoryId in Enum.GetValues(typeof(BuiltInCategory)))
+            {
+                Autodesk.Revit.DB.Category tempCategory;
+
+                try
+                {
+                    tempCategory = Autodesk.Revit.DB.Category.GetCategory(document, categoryId);
+                }
+                catch
+                {
+                    // We get here for internal/deprecated categories
+                    continue;
+                }
+
+                if(tempCategory != null && name.Equals(tempCategory.Name))
+                {
+                    category = tempCategory;
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
