@@ -145,10 +145,10 @@ namespace Revit.Elements
             Autodesk.Revit.DB.Category category = null;
             
             var splits = name.Split('-');
-            if(FindCategory(name,ref category))
+            category = FindCategory(name);
+            if(category != null)
             {
-                if (category != null)
-                    return category;
+                return category;
             }
             else if (splits.Count() > 1)
             {
@@ -157,16 +157,13 @@ namespace Revit.Elements
                 {
                     var parentName = name.Substring(0, index).TrimEnd(' ');
                     var subName = name.Substring(index + 1).TrimStart(' ');
-                    Autodesk.Revit.DB.Category parentCategory = null;
-                    if (FindCategory(parentName, ref parentCategory))
+                    Autodesk.Revit.DB.Category parentCategory = FindCategory(parentName);
+                    if(parentCategory != null)
                     {
-                        if(parentCategory != null)
+                        if(parentCategory.SubCategories.Contains(subName))
                         {
-                            if(parentCategory.SubCategories.Contains(subName))
-                            {
-                                category = parentCategory.SubCategories.get_Item(subName);
-                                break;
-                            }
+                            category = parentCategory.SubCategories.get_Item(subName);
+                            break;
                         }
                     }
                 }                
@@ -202,7 +199,7 @@ namespace Revit.Elements
             return CharIndex;
         }
 
-        private static Boolean FindCategory(String name, ref Autodesk.Revit.DB.Category category)
+        private static Autodesk.Revit.DB.Category FindCategory(String name)
         {
             var document = DocumentManager.Instance.CurrentDBDocument;
 
@@ -222,12 +219,11 @@ namespace Revit.Elements
 
                 if(tempCategory != null && name.Equals(tempCategory.Name))
                 {
-                    category = tempCategory;
-                    return true;
+                    return tempCategory;
                 }
             }
 
-            return false;
+            return null;
         }
     }
 }
