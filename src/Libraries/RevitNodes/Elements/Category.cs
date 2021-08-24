@@ -143,13 +143,12 @@ namespace Revit.Elements
         private static Autodesk.Revit.DB.Category GetCategory(String name)
         {
             Autodesk.Revit.DB.Category category = null;
-            Settings documentSettings = DocumentManager.Instance.CurrentDBDocument.Settings;
-            var groups = documentSettings.Categories;
             
             var splits = name.Split('-');
-            if(groups.Contains(name))
+            category = FindCategory(name);
+            if(category != null)
             {
-                category = groups.get_Item(name);                
+                return category;
             }
             else if (splits.Count() > 1)
             {
@@ -158,16 +157,13 @@ namespace Revit.Elements
                 {
                     var parentName = name.Substring(0, index).TrimEnd(' ');
                     var subName = name.Substring(index + 1).TrimStart(' ');
-                    if(groups.Contains(parentName))
+                    Autodesk.Revit.DB.Category parentCategory = FindCategory(parentName);
+                    if(parentCategory != null)
                     {
-                        var parentCategory = groups.get_Item(parentName);
-                        if(parentCategory != null)
+                        if(parentCategory.SubCategories.Contains(subName))
                         {
-                            if(parentCategory.SubCategories.Contains(subName))
-                            {
-                                category = parentCategory.SubCategories.get_Item(subName);
-                                break;
-                            }
+                            category = parentCategory.SubCategories.get_Item(subName);
+                            break;
                         }
                     }
                 }                
@@ -181,7 +177,7 @@ namespace Revit.Elements
                 if(System.Array.Exists(names, entry => entry == fullName))
                 {
                     var builtInCat = (BuiltInCategory)Enum.Parse(typeof(BuiltInCategory), fullName);
-                    category = groups.get_Item(builtInCat);
+                    category = Autodesk.Revit.DB.Category.GetCategory(DocumentManager.Instance.CurrentDBDocument, builtInCat);
                 }
             }
 
@@ -201,6 +197,33 @@ namespace Revit.Elements
             }
 
             return CharIndex;
+        }
+
+        private static Autodesk.Revit.DB.Category FindCategory(String name)
+        {
+            var document = DocumentManager.Instance.CurrentDBDocument;
+
+            foreach (BuiltInCategory categoryId in Enum.GetValues(typeof(BuiltInCategory)))
+            {
+                Autodesk.Revit.DB.Category tempCategory;
+
+                try
+                {
+                    tempCategory = Autodesk.Revit.DB.Category.GetCategory(document, categoryId);
+                }
+                catch
+                {
+                    // We get here for internal/deprecated categories
+                    continue;
+                }
+
+                if(tempCategory != null && name.Equals(tempCategory.Name))
+                {
+                    return tempCategory;
+                }
+            }
+
+            return null;
         }
     }
 }
