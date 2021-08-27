@@ -50,12 +50,7 @@ namespace Revit.Elements
         /// GlobalParameter
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="type"></param>
-        private GlobalParameter(string name, Autodesk.Revit.DB.ParameterType type)
-        {
-            SafeInit(() => InitGlobalParameter(name, type));
-        }
-
+        /// <param name="forgeTypeId"></param>
         private GlobalParameter(string name, Autodesk.Revit.DB.ForgeTypeId forgeTypeId)
         {
             SafeInit(() => InitGlobalParameter(name, forgeTypeId));
@@ -79,29 +74,7 @@ namespace Revit.Elements
         /// Initialize a GlobalParameter element
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="type"></param>
-        private void InitGlobalParameter(string name, Autodesk.Revit.DB.ParameterType type)
-        {
-            var existingId = Autodesk.Revit.DB.GlobalParametersManager.FindByName(Document, name);
-
-            if (existingId != null && existingId != Autodesk.Revit.DB.ElementId.InvalidElementId)
-            {
-                // GP already exists
-                var existingParameter = Document.GetElement(existingId) as Autodesk.Revit.DB.GlobalParameter;
-                InternalSetGlobalParameter(existingParameter);
-            }
-            else
-            {        
-                // Create a new GP
-                TransactionManager.Instance.EnsureInTransaction(Document);
-                Autodesk.Revit.DB.GlobalParameter newParameter = Autodesk.Revit.DB.GlobalParameter.Create(Document, name, type);
-                InternalSetGlobalParameter(newParameter);
-                TransactionManager.Instance.TransactionTaskDone();
-            }
-
-            ElementBinder.CleanupAndSetElementForTrace(Document, InternalGlobalParameter);
-        }
-
+        /// <param name="forgeTypeId"></param>
         private void InitGlobalParameter(string name, Autodesk.Revit.DB.ForgeTypeId forgeTypeId)
         {
             var existingId = Autodesk.Revit.DB.GlobalParametersManager.FindByName(Document, name);
@@ -295,18 +268,6 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get Parameter Group
-        /// </summary>
-        [NodeObsolete("GroupObsolete", typeof(Properties.Resources))]
-        public string ParameterGroup
-        {
-            get
-            {
-                return this.InternalGlobalParameter.GetDefinition().ParameterGroup.ToString();
-            }
-        }
-
-        /// <summary>
         /// Get Parameter Visibility
         /// </summary>
         public bool Visible
@@ -314,18 +275,6 @@ namespace Revit.Elements
             get
             {
                 return this.InternalGlobalParameter.GetDefinition().Visible;
-            }
-        }
-
-        /// <summary>
-        /// Get Parameter Type
-        /// </summary>
-        [NodeObsolete("ParameterTypeObsolete", typeof(Properties.Resources))]
-        public string ParameterType
-        {
-            get
-            {
-                return this.InternalGlobalParameter.GetDefinition().ParameterType.ToString();
             }
         }
 
@@ -354,28 +303,7 @@ namespace Revit.Elements
         #endregion
 
         #region Public static constructors
-
-        /// <summary>
-        /// Create a new Global Parameter by Name and Type
-        /// </summary>
-        /// <param name="name">Name fo the parameter</param>
-        /// <param name="parameterType">Parameter type</param>
-        /// <returns></returns>
-        [NodeObsolete("GlobalParameterByNameObsolete", typeof(Properties.Resources))]
-        public static GlobalParameter ByName(string name, string parameterType)
-        {
-            Autodesk.Revit.DB.ParameterType ptype = Autodesk.Revit.DB.ParameterType.Text;
-            if (!Enum.TryParse<Autodesk.Revit.DB.ParameterType>(parameterType, out ptype))
-                ptype = Autodesk.Revit.DB.ParameterType.Text;
-
-            if (!Autodesk.Revit.DB.GlobalParametersManager.AreGlobalParametersAllowed(Document))
-            {
-                throw new Exception(Properties.Resources.DocumentDoesNotSupportGlobalParams);
-            }
-
-            return new GlobalParameter(name, ptype);
-        }
-
+        
         /// <summary>
         /// Create a new Global Parameter by Name and Type
         /// </summary>
