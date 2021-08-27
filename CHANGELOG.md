@@ -1,5 +1,6 @@
 * Improve Floor creation node and Revision creation node API.
 * Improve 2 DocumentTests.
+* Improve Category.ByName Nodes due to the current way can't get Views cateory in non-English languages.
 
 ## 0.3.3
 * Add new FamilyInstance node - FamilyInstance.ByHostAndPoint.
