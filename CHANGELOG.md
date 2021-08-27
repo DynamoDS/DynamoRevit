@@ -1,6 +1,8 @@
+## 0.3.4
 * Improve Floor creation node and Revision creation node API.
 * Improve 2 DocumentTests.
 * Improve Category.ByName Nodes due to the current way can't get Views cateory in non-English languages.
+* Add Performance tests for Revit.
 
 ## 0.3.3
 * Add new FamilyInstance node - FamilyInstance.ByHostAndPoint.
