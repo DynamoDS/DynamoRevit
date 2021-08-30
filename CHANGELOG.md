@@ -1,3 +1,6 @@
+## 0.3.5
+* Remove Obsolete code due to the API was removed from Revit side.
+
 ## 0.3.4
 * Improve Floor creation node and Revision creation node API.
 * Improve 2 DocumentTests.
