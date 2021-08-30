@@ -115,26 +115,7 @@ namespace DSRevitNodesUI
         public RevisionNumberType(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
             : base(outputName, typeof(Autodesk.Revit.DB.RevisionNumberType), inPorts, outPorts) { }
     }
-
-
-    [NodeName("Select Parameter Type")]
-    [NodeCategory("Revit.Elements.Parameter")]
-    [NodeDescription("ParameterTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
-    [IsDesignScriptCompatible]
-    [OutPortTypes("string")]
-    [IsVisibleInDynamoLibrary(false)]
-    [Obsolete("This node may be removed in future version. Use Spec Types instead.")]
-    public class ParameterType : CustomGenericEnumerationDropDown
-    {
-        private const string outputName = "Parameter Type";
-        
-        public ParameterType() : base(outputName, typeof(Autodesk.Revit.DB.ParameterType)) { }
-
-        [JsonConstructor]
-        public ParameterType(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
-            : base(outputName, typeof(Autodesk.Revit.DB.ParameterType), inPorts, outPorts) { }
-    }
-
+    
     [NodeName("Spec Types")]
     [NodeCategory("Revit.Elements.Parameter")]
     [NodeDescription("SpecTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
@@ -149,24 +130,6 @@ namespace DSRevitNodesUI
         [JsonConstructor]
         public SpecTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(outputName, typeof(Autodesk.Revit.DB.SpecTypeId), inPorts, outPorts) { }
-    }
-
-    [NodeName("Select BuiltIn Parameter Group")]
-    [NodeCategory("Revit.Elements.Parameter")]
-    [NodeDescription("BuiltInParameterGroupSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
-    [IsDesignScriptCompatible]
-    [OutPortTypes("string")]
-    [IsVisibleInDynamoLibrary(false)]
-    [Obsolete("This node may be removed in future version. Use Group Types instead.")]
-    public class BuiltInParameterGroup : CustomGenericEnumerationDropDown
-    {
-        private const string outputName = "BuiltIn Parameter Group";
-
-        public BuiltInParameterGroup() : base(outputName, typeof(Autodesk.Revit.DB.BuiltInParameterGroup)) { }
-
-        [JsonConstructor]
-        public BuiltInParameterGroup(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) 
-            : base(outputName, typeof(Autodesk.Revit.DB.BuiltInParameterGroup), inPorts, outPorts) { }
     }
 
     [NodeName("Group Types")]

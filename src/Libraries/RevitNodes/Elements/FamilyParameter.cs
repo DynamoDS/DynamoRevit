@@ -32,27 +32,9 @@ namespace Revit.Elements
         public bool IsShared => InternalFamilyParameter.IsShared;
 
         /// <summary>
-        /// Get the parameter's group
-        /// </summary>
-        [NodeObsolete("GroupObsolete", typeof(Properties.Resources))]
-        public string Group => InternalFamilyParameter.Definition.ParameterGroup.ToString();
-
-        /// <summary>
-        /// Get the parameter type
-        /// </summary>
-        [NodeObsolete("ParameterTypeObsolete", typeof(Properties.Resources))]
-        public string ParameterType => InternalFamilyParameter.Definition.ParameterType.ToString();
-
-        /// <summary>
         /// Get the parameter's element Id
         /// </summary>
         public int Id => InternalFamilyParameter.Id.IntegerValue;
-
-        /// <summary>
-        /// Get the parameter's unit type
-        /// </summary>
-        [NodeObsolete("UnitTypeObsolete", typeof(Properties.Resources))]
-        public string UnitType => InternalFamilyParameter.Definition.GetSpecTypeId().ToString();
 
         /// <summary>
         /// Get the parameter's spec type

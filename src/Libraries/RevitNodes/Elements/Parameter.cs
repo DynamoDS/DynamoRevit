@@ -62,40 +62,13 @@ namespace Revit.Elements
         {
             get { return InternalParameter.IsShared; }
         }
-
-        /// <summary>
-        /// Get the parameter's group
-        /// </summary>
-        [NodeObsolete("GroupObsolete", typeof(Properties.Resources))]
-        public string Group
-        {
-            get { return InternalParameter.Definition.ParameterGroup.ToString(); }
-        }
-
-        /// <summary>
-        /// Get the parameter type
-        /// </summary>
-        [NodeObsolete("ParameterTypeObsolete", typeof(Properties.Resources))]
-        public string ParameterType
-        {
-            get { return InternalParameter.Definition.ParameterType.ToString(); }
-        }
-
+        
         /// <summary>
         /// Get the parameter's element Id
         /// </summary>
         public int Id
         {
             get { return InternalParameter.Id.IntegerValue; }
-        }
-
-        /// <summary>
-        /// Get the parameter's unit type
-        /// </summary>
-        [NodeObsolete("UnitTypeObsolete", typeof(Properties.Resources))]
-        public string UnitType
-        {
-            get { return InternalParameter.Definition.GetSpecTypeId().ToString(); }
         }
 
         /// <summary>
@@ -199,95 +172,6 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="parameterName">Name</param>
         /// <param name="groupName">Group of the parameter for shared parameters</param>
-        /// <param name="type">Parameter Type</param>
-        /// <param name="group">Parameter Group</param>
-        /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
-        [NodeObsolete("CreateSharedParameterForAllCategoriesObsolete", typeof(Properties.Resources))]
-        public static void CreateSharedParameterForAllCategories(string parameterName, string groupName, string type, string group, bool instance)
-        {
-            CreateSharedParameter(parameterName, groupName, type, group, instance, null); 
-        }
-
-        /// <summary>
-        /// Create a new Shared Parameter in the current Revit document
-        /// </summary>
-        /// <param name="parameterName">Name</param>
-        /// <param name="groupName">Group of the parameter for shared parameters</param>
-        /// <param name="type">Parameter Type</param>
-        /// <param name="group">Parameter Group</param>
-        /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
-        /// <param name="categoryList">A list of categories this parameter applies to. If no category is supplied, all possible categories are selected</param>
-        [NodeObsolete("CreateSharedParameterObsolete", typeof(Properties.Resources))]
-        public static void CreateSharedParameter(string parameterName, string groupName, string type, string group, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
-        {
-            // parse parameter type
-            var parameterType = Autodesk.Revit.DB.ParameterType.Text;
-            if (!System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(type, out parameterType))
-                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
-
-            // parse parameter group
-            var parameterGroup = Autodesk.Revit.DB.BuiltInParameterGroup.PG_DATA;
-            if (!System.Enum.TryParse<Autodesk.Revit.DB.BuiltInParameterGroup>(group, out parameterGroup))
-                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
-
-            // get document and open transaction
-            Document document = Application.Document.Current.InternalDocument;
-            TransactionManager.Instance.EnsureInTransaction(document);
-
-            try
-            {
-                // get current shared parameter file
-                string sharedParameterFile = document.Application.SharedParametersFilename;
-
-                // if the file does not exist, throw an error
-                if (sharedParameterFile == null || !System.IO.File.Exists(sharedParameterFile))
-                    throw new System.Exception(Properties.Resources.NoSharedParameterFileFound);
-
-                // Apply selected parameter categories
-                CategorySet categories = (categoryList == null) ? AllCategories() : ToCategorySet(categoryList);
-
-                // Create new parameter group if it does not exist yet
-                DefinitionGroup groupDef = 
-                    document.Application.OpenSharedParameterFile()
-                    .Groups.get_Item(groupName);
-
-                if (groupDef == null)
-                {
-                    groupDef = 
-                        document.Application.OpenSharedParameterFile()
-                        .Groups.Create(groupName);
-                }
-
-                // If the parameter definition does not exist yet, create it
-                if (groupDef.Definitions.get_Item(parameterName) == null)
-                {
-                    ExternalDefinition def = 
-                        groupDef.Definitions.Create
-                        (new ExternalDefinitionCreationOptions(parameterName, parameterType)) as ExternalDefinition;
-
-                    // Apply instance or type binding
-                    Binding bin = (instance) ? 
-                        (Binding)document.Application.Create.NewInstanceBinding(categories) : 
-                        (Binding)document.Application.Create.NewTypeBinding(categories);
-
-                    document.ParameterBindings.Insert(def, bin, parameterGroup);
-                }
-
-            }
-            catch (System.Exception e)
-            {
-                TransactionManager.Instance.ForceCloseTransaction();
-                throw e;
-            }
-
-            TransactionManager.Instance.TransactionTaskDone();
-        }
-
-        /// <summary>
-        /// Create a new Shared Parameter in the current Revit document for all applicable categories
-        /// </summary>
-        /// <param name="parameterName">Name</param>
-        /// <param name="groupName">Group of the parameter for shared parameters</param>
         /// <param name="specType">The type of new parameter.</param>
         /// <param name="groupType">The type of the group to which the parameter belongs.</param>
         /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
@@ -363,89 +247,7 @@ namespace Revit.Elements
         #endregion
 
         #region Project Parameters
-
-        /// <summary>
-        /// Create a new Project Parameter in this current Revit document for all applicable categories
-        /// </summary>
-        /// <param name="parameterName">Name</param>
-        /// <param name="groupName">Group of the parameter for shared parameters</param>
-        /// <param name="type">Parameter Type</param>
-        /// <param name="group">Parameter Group</param>
-        /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
-        [NodeObsolete("CreateProjectParameterForAllCategoriesObsolete", typeof(Properties.Resources))]
-        public static void CreateProjectParameterForAllCategories(string parameterName, string groupName, string type, string group, bool instance)
-        {
-            CreateProjectParameter(parameterName, groupName, type, group, instance, null);
-        }
-
-        /// <summary>
-        /// Create a new Project Parameter in this current Revit document
-        /// </summary>
-        /// <param name="parameterName">Name</param>
-        /// <param name="groupName">Group of the parameter for shared parameters</param>
-        /// <param name="type">Parameter Type</param>
-        /// <param name="group">Parameter Group</param>
-        /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
-        /// <param name="categoryList">A list of categories this parameter applies to. If no category is supplied, all possible categories are selected</param>
-        [NodeObsolete("CreateProjectParameterObsolete", typeof(Properties.Resources))]
-        public static void CreateProjectParameter(string parameterName, string groupName, string type, string group, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
-        {
-            // parse parameter type
-            var parameterType = Autodesk.Revit.DB.ParameterType.Text;
-            if (!System.Enum.TryParse<Autodesk.Revit.DB.ParameterType>(type, out parameterType))
-                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
-
-            // parse parameter group
-            var parameterGroup = Autodesk.Revit.DB.BuiltInParameterGroup.PG_DATA;
-            if (!System.Enum.TryParse<Autodesk.Revit.DB.BuiltInParameterGroup>(group, out parameterGroup))
-                throw new System.Exception(Properties.Resources.ParameterTypeNotFound);
-
-            // get document and open transaction
-            Document document = Application.Document.Current.InternalDocument;
-            TransactionManager.Instance.EnsureInTransaction(document);
-
-            try
-            {
-                // buffer the current shared parameter file name and apply a new empty parameter file instead
-                string sharedParameterFile = document.Application.SharedParametersFilename;
-                string tempSharedParameterFile = System.IO.Path.GetTempFileName() + ".txt";
-                using (System.IO.File.Create(tempSharedParameterFile)) { }
-                document.Application.SharedParametersFilename = tempSharedParameterFile;
-
-                // Apply selected parameter categories
-                CategorySet categories = (categoryList == null) ? AllCategories() : ToCategorySet(categoryList);
-
-                // create a new shared parameter, since the file is empty everything has to be created from scratch
-                ExternalDefinition def = 
-                    document.Application.OpenSharedParameterFile()
-                    .Groups.Create(groupName).Definitions.Create(
-                    new ExternalDefinitionCreationOptions(parameterName, parameterType)) as ExternalDefinition;
-
-                // Create an instance or type binding
-                Binding bin = (instance) ? 
-                    (Binding)document.Application.Create.NewInstanceBinding(categories) : 
-                    (Binding)document.Application.Create.NewTypeBinding(categories);
-
-                // Apply parameter bindings
-                document.ParameterBindings.Insert(def, bin, parameterGroup);
-
-                // apply old shared parameter file
-                document.Application.SharedParametersFilename = sharedParameterFile;
-
-                // delete temp shared parameter file
-                System.IO.File.Delete(tempSharedParameterFile);
-
-
-            }
-            catch (System.Exception e)
-            {
-                TransactionManager.Instance.ForceCloseTransaction();
-                throw e;
-            }
-
-            TransactionManager.Instance.TransactionTaskDone();
-        }
-
+                
         /// <summary>
         /// Create a new Project Parameter in this current Revit document for all applicable categories
         /// </summary>
