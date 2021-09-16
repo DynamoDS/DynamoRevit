@@ -1,3 +1,6 @@
+## 0.3.6
+* Upgrade DynamoRevit to 2.13.0.
+
 ## 0.3.5
 * Remove Obsolete code due to the API was removed from Revit side.
 
