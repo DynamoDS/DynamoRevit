@@ -46,7 +46,7 @@ namespace Revit.Elements
         /// <param name="elementType"></param>
         protected ElementType(Autodesk.Revit.DB.ElementType elementType)
         {
-            SafeInit(() => InitElementType(elementType));
+            SafeInit(() => InitElementType(elementType), true);
         }
 
         #endregion

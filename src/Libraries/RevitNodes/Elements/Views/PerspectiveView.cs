@@ -25,7 +25,7 @@ namespace Revit.Elements.Views
         /// </summary>
         private PerspectiveView(Autodesk.Revit.DB.View3D view)
         {
-            SafeInit(() => InitPerspectiveView(view));
+            SafeInit(() => InitPerspectiveView(view), true);
         }
 
         /// <summary>

@@ -41,7 +41,7 @@ namespace Revit.Elements
         /// <param name="wall"></param>
         private Wall(Autodesk.Revit.DB.Wall wall)
         {
-            SafeInit(() => InitWall(wall));
+            SafeInit(() => InitWall(wall), true);
         }
 
         /// <summary>

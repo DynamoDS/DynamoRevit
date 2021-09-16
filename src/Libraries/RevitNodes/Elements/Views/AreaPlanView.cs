@@ -19,7 +19,7 @@ namespace Revit.Elements.Views
         /// </summary>
         private AreaPlanView(Autodesk.Revit.DB.ViewPlan view)
         {
-            SafeInit(() => InitAreaPlanView(view));
+            SafeInit(() => InitAreaPlanView(view), true);
         }
 
         /// <summary>

@@ -52,7 +52,7 @@ namespace Revit.Elements
         /// <param name="refPt"></param>
         private ReferencePoint(Autodesk.Revit.DB.ReferencePoint refPt)
         {
-            SafeInit(() => InitReferencePoint(refPt));
+            SafeInit(() => InitReferencePoint(refPt), true);
         }
 
         /// <summary>

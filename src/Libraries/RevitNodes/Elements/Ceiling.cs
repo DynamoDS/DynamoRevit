@@ -43,7 +43,7 @@ namespace Revit.Elements
         /// </summary>
         private Ceiling(Autodesk.Revit.DB.Ceiling ceiling)
         {
-            SafeInit(() => InitCeiling(ceiling));
+            SafeInit(() => InitCeiling(ceiling), true);
         }
 
         /// <summary>

@@ -47,7 +47,7 @@ namespace Revit.Elements
         [SupressImportIntoVM]
         private FreeForm(Autodesk.Revit.DB.FreeFormElement ele)
         {
-            SafeInit(() => InitFreeForm(ele));
+            SafeInit(() => InitFreeForm(ele), true);
         }
 
         /// <summary>

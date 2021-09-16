@@ -44,7 +44,7 @@ namespace Revit.Elements
         /// </summary>
         private Roof(Autodesk.Revit.DB.RoofBase roof)
         {
-            SafeInit(() => InitRoof(roof));
+            SafeInit(() => InitRoof(roof), true);
         }
       
         /// <summary>

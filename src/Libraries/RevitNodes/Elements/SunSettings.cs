@@ -20,7 +20,7 @@ namespace Revit.Elements
 
         private SunSettings(SunAndShadowSettings settings)
         {
-            SafeInit(() => InitSunSettings(settings));
+            SafeInit(() => InitSunSettings(settings), true);
         }
 
         private void InitSunSettings(SunAndShadowSettings settings)

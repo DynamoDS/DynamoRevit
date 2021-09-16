@@ -36,7 +36,7 @@ namespace Revit.Elements.Views
         /// </summary>
         private Legend(Autodesk.Revit.DB.View view)
         {
-            SafeInit(() => InitLegend(view));
+            SafeInit(() => InitLegend(view), true);
         }
 
         #endregion

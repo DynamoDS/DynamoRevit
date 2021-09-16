@@ -17,6 +17,8 @@ namespace RevitServices.Transactions
                 handler(obj);
         }
 
+        internal static bool DisableTransactions { get; set; }
+
         private static TransactionManager manager;
         
         /// <summary>
@@ -96,6 +98,7 @@ namespace RevitServices.Transactions
             Strategy = strategy;
             TransactionWrapper = new TransactionWrapper();
             DoAssertInIdleThread = true;
+            DisableTransactions = false;
         }
 
         /// <summary>
@@ -103,6 +106,8 @@ namespace RevitServices.Transactions
         /// </summary>
         public void EnsureInTransaction(Document document)
         {
+            if (DisableTransactions)
+                throw new Exception(Properties.Resources.TransactionsDisabled);
             //Hand off the behaviour to the strategy
             handle = Strategy.EnsureInTransaction(TransactionWrapper, document);
         }

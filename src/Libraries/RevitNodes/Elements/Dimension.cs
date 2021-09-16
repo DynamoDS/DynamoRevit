@@ -62,7 +62,7 @@ namespace Revit.Elements
         /// <param name="element"></param>
         private Dimension(Autodesk.Revit.DB.Dimension element)
         {
-            SafeInit(() => InitElement(element));
+            SafeInit(() => InitElement(element), true);
         }
 
         /// <summary>
