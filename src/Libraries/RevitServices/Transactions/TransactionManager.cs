@@ -17,7 +17,25 @@ namespace RevitServices.Transactions
                 handler(obj);
         }
 
-        internal static bool DisableTransactions { get; set; }
+        private bool disableTransactions = false;
+        public bool DisableTransactions
+        {
+            get { return disableTransactions; }
+            set
+            {
+                if (disableTransactions == value)
+                    return;
+
+                disableTransactions = value;
+                OnDisableTransactionsChanged(EventArgs.Empty);
+            }
+        }
+
+        public event EventHandler<EventArgs> DisableTransactionsChanged;
+        private void OnDisableTransactionsChanged(EventArgs e)
+        {
+            DisableTransactionsChanged?.Invoke(this, e);
+        }
 
         private static TransactionManager manager;
         

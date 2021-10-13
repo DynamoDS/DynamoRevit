@@ -19,7 +19,7 @@ namespace Dynamo.Applications.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -186,6 +186,24 @@ namespace Dynamo.Applications.Properties {
         public static string RevitValidContextMessage {
             get {
                 return ResourceManager.GetString("RevitValidContextMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync with Revit.
+        /// </summary>
+        public static string SyncWithRevit {
+            get {
+                return ResourceManager.GetString("SyncWithRevit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable/disable graph update syncing in Revit.
+        /// </summary>
+        public static string SyncWithRevitToolTip {
+            get {
+                return ResourceManager.GetString("SyncWithRevitToolTip", resourceCulture);
             }
         }
         
