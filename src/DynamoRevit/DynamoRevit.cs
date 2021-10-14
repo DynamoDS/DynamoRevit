@@ -549,7 +549,7 @@ namespace Dynamo.Applications
         {
             IntPtr mwHandle = commandData.Application.MainWindowHandle;
             var dynamoView = new DynamoView(dynamoViewModel);
-            ModifyDynamoView(dynamoView);
+            AddSyncWithRevitControls(dynamoView);
             new WindowInteropHelper(dynamoView).Owner = mwHandle;
 
             handledCrash = false;
@@ -561,7 +561,7 @@ namespace Dynamo.Applications
             return dynamoView;
         }
 
-        private static void ModifyDynamoView(DynamoView dynamoView)
+        private static void AddSyncWithRevitControls(DynamoView dynamoView)
         {
             // Get the RunSettingsControl field from the DynamoWindow
             var runsettingField = dynamoView.GetType().GetField("RunSettingsControl", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -607,7 +607,7 @@ namespace Dynamo.Applications
         {
             var toggle = sender as System.Windows.Controls.Primitives.ToggleButton;
             if (!toggle.IsChecked.HasValue ||
-                toggle.IsChecked.Value == !TransactionManager.Instance.DisableTransactions)
+                toggle.IsChecked.Value != TransactionManager.Instance.DisableTransactions)
                 return;
             TransactionManager.Instance.DisableTransactions = !toggle.IsChecked.Value;
         }
