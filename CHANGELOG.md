@@ -1,3 +1,6 @@
+## 0.3.7
+* Upgrade Greg, GregRevitOAuth, and RestSharp to RestSharp 106.12.0 to address a security issue.
+
 ## 0.3.6
 * Upgrade DynamoRevit to 2.13.0.
 
