@@ -165,4 +165,10 @@ Would you like to download the latest version of DynamoCore.msi from http://dyna
   <data name="WPFRenderMode" xml:space="preserve">
     <value>WPF Render Mode: </value>
   </data>
+  <data name="SyncWithRevit" xml:space="preserve">
+    <value>Sync with Revit</value>
+  </data>
+  <data name="SyncWithRevitToolTip" xml:space="preserve">
+    <value>Enable/disable graph update syncing in Revit</value>
+  </data>
 </root>
