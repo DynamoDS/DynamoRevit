@@ -1,5 +1,10 @@
-## 0.3.7
+
+
+## 0.3.8
 * Upgrade Greg, GregRevitOAuth, and RestSharp to RestSharp 106.12.0 to address a security issue.
+
+## 0.3.7
+* Add Transaction controls - "Sync with Revit" Toggle button.
 
 ## 0.3.6
 * Upgrade DynamoRevit to 2.13.0.
