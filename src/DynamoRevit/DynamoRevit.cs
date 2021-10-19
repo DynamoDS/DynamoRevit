@@ -582,7 +582,8 @@ namespace Dynamo.Applications
                 Width = 40,
                 Height = 20,
                 IsChecked = true,
-                VerticalContentAlignment = System.Windows.VerticalAlignment.Center
+                VerticalContentAlignment = System.Windows.VerticalAlignment.Center,
+                ToolTip = Resources.SyncWithRevitToolTip
             };
             
             toggleItem.SetValue(System.Windows.Controls.Primitives.ToggleButton.StyleProperty, srcDic["EllipseToggleButton1"]);

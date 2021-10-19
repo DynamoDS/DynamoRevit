@@ -1,3 +1,5 @@
+* Add Transaction controls - "Sync with Revit" Toggle button.
+
 ## 0.3.6
 * Upgrade DynamoRevit to 2.13.0.
 
