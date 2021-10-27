@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
+using System.Windows.Controls;
 using System.Xml;
 using System.Xml.Serialization;
 using Autodesk.Revit.Attributes;
@@ -33,8 +34,10 @@ using Microsoft.Win32;
 using Newtonsoft.Json;
 using RevitServices.Persistence;
 using RevitServices.Threading;
+using RevitServices.Transactions;
 using DynUpdateManager = Dynamo.Updates.UpdateManager;
 using MessageBox = System.Windows.Forms.MessageBox;
+using Resources = Dynamo.Applications.Properties.Resources;
 
 namespace RevitServices.Threading
 {
@@ -546,6 +549,7 @@ namespace Dynamo.Applications
         {
             IntPtr mwHandle = commandData.Application.MainWindowHandle;
             var dynamoView = new DynamoView(dynamoViewModel);
+            AddSyncWithRevitControls(dynamoView);
             new WindowInteropHelper(dynamoView).Owner = mwHandle;
 
             handledCrash = false;
@@ -555,6 +559,58 @@ namespace Dynamo.Applications
             dynamoView.Loaded += (o, e) => UpdateLibraryLayoutSpec();
 
             return dynamoView;
+        }
+
+        private static void AddSyncWithRevitControls(DynamoView dynamoView)
+        {
+            // Get the RunSettingsControl field from the DynamoWindow
+            var runsettingField = dynamoView.GetType().GetField("RunSettingsControl", BindingFlags.Instance | BindingFlags.NonPublic);
+            
+            // Get the value from the field, this should be of type UserControl
+            var runsettingsValue = runsettingField.GetValue(dynamoView) as UserControl;
+
+            // Get the grid from the RunSettingsControl
+            var runsettingsGrid = runsettingsValue.Content as System.Windows.Controls.Grid;
+
+            // Get StackPanel from the RunSettingsControls main grid, this is where all of its UIElements are defined
+            var runsettingStackPanel = runsettingsGrid.Children.OfType<StackPanel>().FirstOrDefault();
+
+            var srcDic = Dynamo.UI.SharedDictionaryManager.DynamoModernDictionary;
+
+            var toggleItem = new System.Windows.Controls.Primitives.ToggleButton
+            {
+                Width = 40,
+                Height = 20,
+                IsChecked = true,
+                VerticalContentAlignment = System.Windows.VerticalAlignment.Center,
+                ToolTip = Resources.SyncWithRevitToolTip
+            };
+            
+            toggleItem.SetValue(System.Windows.Controls.Primitives.ToggleButton.StyleProperty, srcDic["EllipseToggleButton1"]);
+
+            toggleItem.Click += OnReadOnlyModeToggleChecked;
+
+            var toggleLabel = new Label
+            {
+                Content = Resources.SyncWithRevit,
+                VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                Margin = new System.Windows.Thickness(0, 0, 0, 0),
+                ToolTip = Resources.SyncWithRevitToolTip
+            };
+            toggleLabel.SetValue(Label.ForegroundProperty, srcDic["PreferencesWindowFontColor"]);
+
+            // Add a new control to the RunSettingsControls StackPanel
+            runsettingStackPanel.Children.Add(toggleItem);
+            runsettingStackPanel.Children.Add(toggleLabel);
+        }
+
+        private static void OnReadOnlyModeToggleChecked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var toggle = sender as System.Windows.Controls.Primitives.ToggleButton;
+            if (!toggle.IsChecked.HasValue ||
+                toggle.IsChecked.Value != TransactionManager.Instance.DisableTransactions)
+                return;
+            TransactionManager.Instance.DisableTransactions = !toggle.IsChecked.Value;
         }
 
         /// <summary>
