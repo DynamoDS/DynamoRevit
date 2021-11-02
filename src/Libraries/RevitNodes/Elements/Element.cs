@@ -217,18 +217,21 @@ namespace Revit.Elements
         /// A reference to the element
         /// </summary>
         [SupressImportIntoVM]
-        public abstract Autodesk.Revit.DB.Element InternalElement
+        public virtual Autodesk.Revit.DB.Element InternalElement
         {
             get;
+            set;
         }
 
         /// <summary>
-        /// 
+        /// Set Internal Element from a exsiting element.
         /// </summary>
         /// <param name="element"></param>
-        internal virtual void SetInternalElement(Autodesk.Revit.DB.Element element)
+        internal void SetInternalElement(Autodesk.Revit.DB.Element element)
         {
-            // Implement in subclass
+            InternalElement = element;
+            InternalElementId = element.Id;
+            InternalUniqueId = element.UniqueId;
         }
 
         private ElementId internalId;

@@ -67,16 +67,7 @@ namespace Revit.Elements
         {
             get { return InternalRevitElement; }
         }
-
-        /// <summary>
-        /// Set Internal Element from a exsiting element.
-        /// </summary>
-        /// <param name="element"></param>
-        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
-        {
-            InternalSetElement(element);
-        }
-
+        
         /// <summary>
         /// Reference to the Element
         /// </summary>

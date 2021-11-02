@@ -35,15 +35,6 @@ namespace Revit.Elements.Views
             get { return InternalViewDrafting; }
         }
 
-        /// <summary>
-        /// Set Internal Element from a exsiting element.
-        /// </summary>
-        /// <param name="element"></param>
-        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
-        {
-            InternalSetDraftingView(element as Autodesk.Revit.DB.ViewDrafting);
-        }
-
         #endregion
 
         #region Private constructors

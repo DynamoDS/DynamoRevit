@@ -42,15 +42,6 @@ namespace Revit.Elements
             get { return InternalReferencePoint; }
         }
 
-        /// <summary>
-        /// Set Internal Element from a exsiting element.
-        /// </summary>
-        /// <param name="element"></param>
-        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
-        {
-            InternalSetReferencePoint(element as Autodesk.Revit.DB.ReferencePoint);
-        }
-
         #endregion
 
         #region Private constructors

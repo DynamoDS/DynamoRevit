@@ -32,15 +32,6 @@ namespace Revit.Elements
             get { return InternalViewPlan; }
         }
 
-        /// <summary>
-        /// Set Internal Element from a exsiting element.
-        /// </summary>
-        /// <param name="element"></param>
-        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
-        {
-            InternalSetPlanView(element as Autodesk.Revit.DB.ViewPlan);
-        }
-
         #endregion
 
         #region Protected mutators

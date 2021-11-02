@@ -27,15 +27,6 @@ namespace Revit.Elements.Views
             get { return InternalLegend; }
         }
 
-        /// <summary>
-        /// Set Internal Element from a exsiting element.
-        /// </summary>
-        /// <param name="element"></param>
-        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
-        {
-            InternalSetLegend(element as Autodesk.Revit.DB.View);
-        }
-
         #endregion
 
         #region Private constructors

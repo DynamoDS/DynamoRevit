@@ -35,15 +35,6 @@ namespace Revit.Elements
             get { return InternalRoof; }
         }
 
-        /// <summary>
-        /// Set Internal Element from a exsiting element.
-        /// </summary>
-        /// <param name="element"></param>
-        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
-        {
-            InternalSetRoof(element as Autodesk.Revit.DB.RoofBase);
-        }
-
         #endregion
 
         #region Private constructors

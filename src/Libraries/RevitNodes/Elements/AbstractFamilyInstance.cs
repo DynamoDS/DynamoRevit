@@ -34,15 +34,6 @@ namespace Revit.Elements
             get { return InternalFamilyInstance; }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="element"></param>
-        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
-        {
-            InternalSetFamilyInstance(element as Autodesk.Revit.DB.FamilyInstance);
-        }
-
         #endregion
 
         #region Protected mutators

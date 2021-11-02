@@ -36,15 +36,6 @@ namespace Revit.Elements
          get { return m_rvtPathOfTravel; }
       }
 
-      /// <summary>
-      /// Set Internal Element from a exsiting element.
-      /// </summary>
-      /// <param name="element"></param>
-      internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
-      {
-         InitPathOfTravel(element as RvtAnalysis.PathOfTravel);
-      }
-
       #endregion
 
       #region Private constructors

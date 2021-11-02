@@ -33,15 +33,6 @@ namespace Revit.Elements
             get { return InternalGroup; }
         }
 
-        /// <summary>
-        /// Set Internal Element from a exsiting element.
-        /// </summary>
-        /// <param name="element"></param>
-        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
-        {
-            InitGroup(element as Autodesk.Revit.DB.Group);
-        }
-
         #endregion
 
         #region Private constructors

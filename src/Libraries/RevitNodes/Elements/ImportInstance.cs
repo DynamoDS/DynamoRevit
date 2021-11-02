@@ -27,15 +27,6 @@ namespace Revit.Elements
             get { return InternalImportInstance; }
         }
 
-        /// <summary>
-        /// Set Internal Element from a exsiting element.
-        /// </summary>
-        /// <param name="element"></param>
-        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
-        {
-            InternalSetImportInstance(element as Autodesk.Revit.DB.ImportInstance);
-        }
-
         internal Autodesk.Revit.DB.ImportInstance InternalImportInstance
         {
             get;

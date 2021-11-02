@@ -19,15 +19,6 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Set Internal Element from a exsiting element.
-        /// </summary>
-        /// <param name="element"></param>
-        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
-        {
-            InternalSetElement(element);
-        }
-
-        /// <summary>
         /// Private constructor
         /// </summary>
         /// <param name="element"></param>
