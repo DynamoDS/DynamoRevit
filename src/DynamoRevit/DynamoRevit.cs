@@ -472,7 +472,7 @@ namespace Dynamo.Applications
                     Context = GetRevitContext(commandData),
                     SchedulerThread = new RevitSchedulerThread(commandData.Application),
                     StartInTestMode = isAutomationMode,
-                    AuthProvider = new RevitOxygenProvider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
+                    AuthProvider = new RevitOAuth2Provider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
                     ExternalCommandData = commandData,
                     UpdateManager = revitUpdateManager,
                     ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
@@ -690,15 +690,9 @@ namespace Dynamo.Applications
             sb.Append(revitLocale.Replace("-", "_"));
             _putenv(sb.ToString());
 
-            InitializeAssemblies();
             InitializeDocumentManager(commandData);
 
             initializedCore = true;
-        }
-
-        private static void InitializeAssemblies()
-        {
-            RevitAssemblyLoader.LoadAll();
         }
 
         private static void InitializeDocumentManager(DynamoRevitCommandData commandData)
