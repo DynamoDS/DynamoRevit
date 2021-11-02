@@ -35,6 +35,15 @@ namespace Revit.Elements
             get { return InternalFloor; }
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetFloor(element as Autodesk.Revit.DB.Floor);
+        }
+
         private static readonly double Tolerance = 1e-6;
 
         #endregion
@@ -126,7 +135,8 @@ namespace Revit.Elements
             }
 
             var floor = ByOutlineTypeAndLevel(PolyCurve.ByJoinedCurves(outlineCurves), floorType, level);
-            DocumentManager.Regenerate();
+            if (!TransactionManager.Instance.DisableTransactions)
+                DocumentManager.Regenerate();
             return floor;
         }
 
@@ -173,7 +183,8 @@ namespace Revit.Elements
             }
 
             var floor = new Floor(loops, floorType.InternalFloorType, level.InternalLevel, offset);
-            DocumentManager.Regenerate();
+            if(!TransactionManager.Instance.DisableTransactions)
+                DocumentManager.Regenerate();
             return floor;
         }
 

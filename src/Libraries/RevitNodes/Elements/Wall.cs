@@ -31,6 +31,15 @@ namespace Revit.Elements
             get { return InternalWall; }
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetWall(element as Autodesk.Revit.DB.Wall);
+        }
+
         #endregion
 
         #region Private constructors

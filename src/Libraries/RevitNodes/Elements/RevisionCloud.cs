@@ -35,6 +35,15 @@ namespace Revit.Elements
             get { return InternalRevitElement; }
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetElement(element as Autodesk.Revit.DB.RevisionCloud);
+        }
+
         #endregion
 
         #region Private constructors
@@ -66,7 +75,7 @@ namespace Revit.Elements
         /// <summary>
         /// Set the internal Element, ElementId, and UniqueId
         /// </summary>
-        /// <param name="wall"></param>
+        /// <param name="element"></param>
         private void InternalSetElement(Autodesk.Revit.DB.RevisionCloud element)
         {
             InternalRevitElement = element;

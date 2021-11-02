@@ -35,6 +35,15 @@ namespace Revit.Elements.Views
         }
 
         /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetScheduleView(element as Autodesk.Revit.DB.ViewSchedule);
+        }
+
+        /// <summary>
         /// Reference to Schedule Filters
         /// </summary>
         internal IList<Autodesk.Revit.DB.ScheduleFilter> InternalScheduleFilters

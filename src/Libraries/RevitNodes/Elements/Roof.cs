@@ -35,6 +35,15 @@ namespace Revit.Elements
             get { return InternalRoof; }
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetRoof(element as Autodesk.Revit.DB.RoofBase);
+        }
+
         #endregion
 
         #region Private constructors
@@ -130,7 +139,7 @@ namespace Revit.Elements
         /// <summary>
         /// Set the InternalRoof property and the associated element id and unique id
         /// </summary>
-        /// <param name="Roof"></param>
+        /// <param name="roof"></param>
         private void InternalSetRoof(Autodesk.Revit.DB.RoofBase roof)
         {
             InternalRoof = roof;
@@ -165,7 +174,8 @@ namespace Revit.Elements
                 });
             
             var roof = new Roof(ca, level.InternalLevel,roofType.InternalRoofType);
-            DocumentManager.Regenerate();
+            if (!TransactionManager.Instance.DisableTransactions)
+                DocumentManager.Regenerate();
             return roof;
         }
 
@@ -194,7 +204,8 @@ namespace Revit.Elements
                 });
 
             var roof = new Roof(ca, plane.InternalReferencePlane, level.InternalLevel, roofType.InternalRoofType, extrusionStart, extrusionEnd);
-            DocumentManager.Regenerate();
+            if (!TransactionManager.Instance.DisableTransactions)
+                DocumentManager.Regenerate();
             return roof;
         }
 

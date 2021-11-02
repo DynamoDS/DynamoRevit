@@ -1,4 +1,5 @@
 ﻿using Autodesk.DesignScript.Runtime;
+using Autodesk.Revit.DB;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
@@ -31,6 +32,15 @@ namespace Revit.Elements
         public override Autodesk.Revit.DB.Element InternalElement
         {
             get { return InternalFamilyInstance; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetFamilyInstance(element as Autodesk.Revit.DB.FamilyInstance);
         }
 
         #endregion

@@ -36,6 +36,15 @@ namespace Revit.Elements
             get { return InternalFreeFormElement; }
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetFreeFormElement(element as Autodesk.Revit.DB.FreeFormElement);
+        }
+
         #endregion
 
         #region Private constructors

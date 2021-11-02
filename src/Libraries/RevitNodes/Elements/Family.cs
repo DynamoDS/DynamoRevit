@@ -28,6 +28,15 @@ namespace Revit.Elements
             get { return InternalFamily; }
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetFamily(element as Autodesk.Revit.DB.Family);
+        }
+
         #endregion
 
         #region Private constructors

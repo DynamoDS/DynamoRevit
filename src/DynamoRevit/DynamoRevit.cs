@@ -576,16 +576,18 @@ namespace Dynamo.Applications
             var runsettingStackPanel = runsettingsGrid.Children.OfType<StackPanel>().FirstOrDefault();
 
             var srcDic = Dynamo.UI.SharedDictionaryManager.DynamoModernDictionary;
+            if (TransactionManager.Instance.DisableTransactions)
+                TransactionManager.Instance.DisableTransactions = false;
 
             var toggleItem = new System.Windows.Controls.Primitives.ToggleButton
             {
                 Width = 40,
                 Height = 20,
-                IsChecked = true,
+                IsChecked = !TransactionManager.Instance.DisableTransactions,
                 VerticalContentAlignment = System.Windows.VerticalAlignment.Center,
                 ToolTip = Resources.SyncWithRevitToolTip
             };
-            
+
             toggleItem.SetValue(System.Windows.Controls.Primitives.ToggleButton.StyleProperty, srcDic["EllipseToggleButton1"]);
 
             toggleItem.Click += OnReadOnlyModeToggleChecked;

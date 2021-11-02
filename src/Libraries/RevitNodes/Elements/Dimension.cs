@@ -37,6 +37,15 @@ namespace Revit.Elements
             get { return InternalRevitElement; }
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetElement(element as Autodesk.Revit.DB.Dimension);
+        }
+
         #endregion
 
         #region Private mutators

@@ -32,6 +32,15 @@ namespace Revit.Elements.Views
             get { return InternalView3D; }
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetView3D(element as Autodesk.Revit.DB.View3D);
+        }
+
         #endregion
 
         #region Private helper methods

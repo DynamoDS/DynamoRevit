@@ -37,6 +37,15 @@ namespace Revit.Elements.Views
             get { return InternalViewSheet; }
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetViewSheet(element as Autodesk.Revit.DB.ViewSheet);
+        }
+
         public override void Dispose()
         {
             if (DuplicateViews != null) 
@@ -398,12 +407,12 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Set the InternalViewSheet property and the associated element id and unique id
         /// </summary>
-        /// <param name="floor"></param>
-        private void InternalSetViewSheet(Autodesk.Revit.DB.ViewSheet floor)
+        /// <param name="viewSheet"></param>
+        private void InternalSetViewSheet(Autodesk.Revit.DB.ViewSheet viewSheet)
         {
-            this.InternalViewSheet = floor;
-            this.InternalElementId = floor.Id;
-            this.InternalUniqueId = floor.UniqueId;
+            this.InternalViewSheet = viewSheet;
+            this.InternalElementId = viewSheet.Id;
+            this.InternalUniqueId = viewSheet.UniqueId;
         }
 
         /// <summary>
@@ -737,9 +746,20 @@ namespace Revit.Elements.Views
 
             Sheet newSheet = null;
 
+            if(TransactionManager.Instance.DisableTransactions)
+            {
+                var oldSheet = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.ViewSheet>(Document);
+                if(oldSheet != null)
+                {
+                    newSheet = new Sheet(oldSheet);
+
+                    return newSheet;
+                }
+            }
+
             try
             {
-                RevitServices.Transactions.TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);                
+                TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
 
                 var oldElements = ElementBinder.GetElementsFromTrace<Autodesk.Revit.DB.Element>(Document);
                 List<ElementId> elementIds = new List<ElementId>();

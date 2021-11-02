@@ -48,6 +48,15 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetDividedPath(element as Autodesk.Revit.DB.DividedPath);
+        }
+
+        /// <summary>
         /// All points along the DividedPath.
         /// </summary>
         public IEnumerable<Autodesk.DesignScript.Geometry.Point> Points

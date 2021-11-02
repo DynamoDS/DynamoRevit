@@ -28,6 +28,15 @@ namespace Revit.Elements
             private set;
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetCurveElement(element as Autodesk.Revit.DB.CurveElement);
+        }
+
         #region public properties
 
         /// <summary>

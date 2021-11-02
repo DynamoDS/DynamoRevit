@@ -33,6 +33,15 @@ namespace Revit.Elements
             get { return InternalGlobalParameter; }
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetGlobalParameter(element as Autodesk.Revit.DB.GlobalParameter);
+        }
+
         #endregion
 
         #region Private constructors

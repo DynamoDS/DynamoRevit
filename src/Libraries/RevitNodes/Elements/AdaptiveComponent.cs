@@ -29,7 +29,7 @@ namespace Revit.Elements
         /// <param name="familyInstance"></param>
         private AdaptiveComponent(Autodesk.Revit.DB.FamilyInstance familyInstance)
         {
-            SafeInit(() => InitAdaptiveComponent(familyInstance));
+            SafeInit(() => InitAdaptiveComponent(familyInstance), true);
         }
 
         /// <summary>
@@ -64,9 +64,7 @@ namespace Revit.Elements
         /// <param name="familyInstance"></param>
         private void InitAdaptiveComponent(Autodesk.Revit.DB.FamilyInstance familyInstance)
         {
-            TransactionManager.Instance.EnsureInTransaction(Document);
             InternalSetFamilyInstance(familyInstance);
-            TransactionManager.Instance.TransactionTaskDone();
         }
 
         /// <summary>
@@ -511,10 +509,23 @@ namespace Revit.Elements
             if (oldInstances != null) countOfOldInstances = oldInstances.Count();
             int reusableCount = Math.Min(countToBeCreated, countOfOldInstances);
 
-            TransactionManager.Instance.EnsureInTransaction(Document);
-
             List<Autodesk.Revit.DB.FamilyInstance> instances = new List<Autodesk.Revit.DB.FamilyInstance>();
             List<AdaptiveComponent> components = new List<AdaptiveComponent>();
+
+            if (TransactionManager.Instance.DisableTransactions)
+            {
+                if(oldInstances != null)
+                {
+                    foreach (var instance in oldInstances)
+                    {
+                        var adpCom = new AdaptiveComponent(instance);
+                        components.Add(adpCom);
+                    }
+                    return components.ToArray();
+                }
+            }
+
+            TransactionManager.Instance.EnsureInTransaction(Document);
 
             try
             {

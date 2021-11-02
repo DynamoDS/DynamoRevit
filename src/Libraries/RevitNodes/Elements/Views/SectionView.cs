@@ -38,6 +38,15 @@ namespace Revit.Elements.Views
             get { return InternalViewSection; }
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetSectionView(element as Autodesk.Revit.DB.ViewSection);
+        }
+
         #endregion
 
         #region Private constructors

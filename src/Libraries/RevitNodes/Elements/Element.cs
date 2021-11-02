@@ -30,6 +30,18 @@ namespace Revit.Elements
         /// <param name="init"></param>
         protected void SafeInit(Action init)
         {
+            if(TransactionManager.Instance.DisableTransactions)
+            {
+                var elementManager = ElementIDLifecycleManager<int>.GetInstance();
+                var element = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Element>(Document);
+                
+                if (element != null)
+                {
+                    SetInternalElement(element);
+                    elementManager.UnRegisterAssociation(element.Id.IntegerValue, this);
+                    return;
+                }
+            }
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
 
             SafeInitImpl(init);
@@ -210,6 +222,15 @@ namespace Revit.Elements
             get;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="element"></param>
+        internal virtual void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            // Implement in subclass
+        }
+
         private ElementId internalId;
 
         /// <summary>
@@ -280,7 +301,8 @@ namespace Revit.Elements
             // closing homeworkspace or the element itself is frozen.
             if (DisposeLogic.IsShuttingDown || DisposeLogic.IsClosingHomeworkspace || IsFrozen)
                 return;
-            
+            if (TransactionManager.Instance.DisableTransactions)
+                return;
             bool didRevitDelete = ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(Id);
 
             var elementManager = ElementIDLifecycleManager<int>.GetInstance();
@@ -302,7 +324,8 @@ namespace Revit.Elements
                             throw new InvalidOperationException(string.Format(Properties.Resources.CantCloseLastOpenView, this.ToString()));
                     }
                 }
-                DocumentManager.Instance.DeleteElement(new ElementUUID(InternalUniqueId));
+                if(!TransactionManager.Instance.DisableTransactions)
+                    DocumentManager.Instance.DeleteElement(new ElementUUID(InternalUniqueId));
             }
             else
             {

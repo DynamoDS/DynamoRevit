@@ -32,6 +32,15 @@ namespace Revit.Elements
             get { return InternalViewport; }
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetViewport(element as Autodesk.Revit.DB.Viewport);
+        }
+
         #endregion
 
         #region Private constructors

@@ -100,8 +100,13 @@ namespace RevitServices.Persistence
                 //ID already existed, check we're not over adding
                 if (existingWrappers.Contains(wrapper))
                 {
-                    int index = existingWrappers.FindIndex((x) => object.ReferenceEquals(x, wrapper));
-                    existingWrappers.RemoveAt(index);
+                    var removeList = existingWrappers.FindAll((x) => object.ReferenceEquals(x, wrapper));
+                    for (int i = 0; i < removeList.Count; i++)
+                    {
+                        int index = existingWrappers.FindIndex((x) => object.ReferenceEquals(x, wrapper));
+                        existingWrappers.RemoveAt(index);
+                    }
+                    
                     if (existingWrappers.Count == 0)
                     {
                         wrappers.Remove(elementID);

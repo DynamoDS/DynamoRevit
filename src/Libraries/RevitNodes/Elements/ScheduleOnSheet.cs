@@ -31,6 +31,15 @@ namespace Revit.Elements
         {
             get { return InternalScheduleOnSheet; }
         }
+
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetScheduleOnSheet(element as Autodesk.Revit.DB.ScheduleSheetInstance);
+        }
         #endregion
 
         #region Private constructors

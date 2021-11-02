@@ -41,6 +41,15 @@ namespace Revit.Elements
             get { return InternalModelText; }
         }
 
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalSetModelText(element as Autodesk.Revit.DB.ModelText);
+        }
+
         #endregion
 
         #region Private constructors

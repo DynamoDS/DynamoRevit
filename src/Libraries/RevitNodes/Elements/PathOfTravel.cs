@@ -36,6 +36,15 @@ namespace Revit.Elements
          get { return m_rvtPathOfTravel; }
       }
 
+      /// <summary>
+      /// Set Internal Element from a exsiting element.
+      /// </summary>
+      /// <param name="element"></param>
+      internal override void SetInternalElement(Autodesk.Revit.DB.Element element)
+      {
+         InitPathOfTravel(element as RvtAnalysis.PathOfTravel);
+      }
+
       #endregion
 
       #region Private constructors
@@ -373,6 +382,21 @@ namespace Revit.Elements
       private static PathOfTravel[] InternalByViewEndPoints(Rvt.View rvtView, IEnumerable<XYZ> startPoints, IEnumerable<XYZ> endPoints)
       {
          List<PathOfTravel> pathsOfTravel = new List<PathOfTravel>();
+
+         if(TransactionManager.Instance.DisableTransactions)
+         {
+            IEnumerable<RvtAnalysis.PathOfTravel> persistRvtElements = ElementBinder.GetElementsFromTrace<RvtAnalysis.PathOfTravel>(Document);
+            if(persistRvtElements != null)
+            {
+               foreach (var ele in persistRvtElements)
+               {
+                  var persisEle = new PathOfTravel(ele);
+                  pathsOfTravel.Add(persisEle);
+               }
+
+               return pathsOfTravel.ToArray();
+            }   
+         }
 
          TransactionManager.Instance.EnsureInTransaction(Document);
 
