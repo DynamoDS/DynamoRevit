@@ -34,11 +34,13 @@ namespace Revit.Elements
             {
                 var elementManager = ElementIDLifecycleManager<int>.GetInstance();
                 var element = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Element>(Document);
+                int count = elementManager.GetRegisteredCount(element.Id.IntegerValue);
                 
                 if (element != null)
                 {
                     SetInternalElement(element);
-                    elementManager.UnRegisterAssociation(element.Id.IntegerValue, this);
+                    if (count > 0)
+                        elementManager.UnRegisterAssociation(Id, this);
                     return;
                 }
             }
@@ -304,11 +306,18 @@ namespace Revit.Elements
             // closing homeworkspace or the element itself is frozen.
             if (DisposeLogic.IsShuttingDown || DisposeLogic.IsClosingHomeworkspace || IsFrozen)
                 return;
-            if (TransactionManager.Instance.DisableTransactions)
-                return;
+            
             bool didRevitDelete = ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(Id);
 
             var elementManager = ElementIDLifecycleManager<int>.GetInstance();
+
+            if (TransactionManager.Instance.DisableTransactions)
+            {
+                int count = elementManager.GetRegisteredCount(Id);
+                if(count > 0)
+                    elementManager.UnRegisterAssociation(Id, this);
+                return;
+            }
             int remainingBindings = elementManager.UnRegisterAssociation(Id, this);
 
             // Do not delete Revit owned elements

@@ -67,7 +67,7 @@ namespace Revit.Elements
         {
             get { return InternalRevitElement; }
         }
-        
+
         /// <summary>
         /// Reference to the Element
         /// </summary>
