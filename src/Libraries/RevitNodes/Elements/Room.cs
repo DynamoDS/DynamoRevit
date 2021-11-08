@@ -33,7 +33,7 @@ namespace Revit.Elements
         {
             get { return InternalRevitElement; }
         }
-       
+
         #endregion
 
         #region Private constructors

@@ -101,7 +101,9 @@ namespace RevitServices.Persistence
                 if (existingWrappers.Contains(wrapper))
                 {
                     int index = existingWrappers.FindIndex((x) => object.ReferenceEquals(x, wrapper));
-                    existingWrappers.RemoveAt(index);
+                    if(index != -1)
+                        existingWrappers.RemoveAt(index);
+
                     if (existingWrappers.Count == 0)
                     {
                         wrappers.Remove(elementID);

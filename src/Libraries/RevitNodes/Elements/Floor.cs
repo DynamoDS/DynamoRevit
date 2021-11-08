@@ -126,7 +126,8 @@ namespace Revit.Elements
             }
 
             var floor = ByOutlineTypeAndLevel(PolyCurve.ByJoinedCurves(outlineCurves), floorType, level);
-            DocumentManager.Regenerate();
+            if (!TransactionManager.Instance.DisableTransactions)
+                DocumentManager.Regenerate();
             return floor;
         }
 
@@ -173,7 +174,8 @@ namespace Revit.Elements
             }
 
             var floor = new Floor(loops, floorType.InternalFloorType, level.InternalLevel, offset);
-            DocumentManager.Regenerate();
+            if(!TransactionManager.Instance.DisableTransactions)
+                DocumentManager.Regenerate();
             return floor;
         }
 

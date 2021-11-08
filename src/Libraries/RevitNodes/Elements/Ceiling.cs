@@ -117,7 +117,8 @@ namespace Revit.Elements
             }
 
             var ceiling = ByOutlineTypeAndLevel(PolyCurve.ByJoinedCurves(outlineCurves), ceilingType, level);
-            DocumentManager.Regenerate();
+            if (!TransactionManager.Instance.DisableTransactions)
+                DocumentManager.Regenerate();
             return ceiling;
         }
 
@@ -161,7 +162,8 @@ namespace Revit.Elements
             }
 
             var ceiling = new Ceiling(loops, ceilingType.InternalCeilingType, level.InternalLevel);
-            DocumentManager.Regenerate();
+            if (!TransactionManager.Instance.DisableTransactions)
+                DocumentManager.Regenerate();
             return ceiling;
         }
 

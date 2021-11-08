@@ -30,6 +30,20 @@ namespace Revit.Elements
         /// <param name="init"></param>
         protected void SafeInit(Action init)
         {
+            if(TransactionManager.Instance.DisableTransactions)
+            {
+                var elementManager = ElementIDLifecycleManager<int>.GetInstance();
+                var element = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Element>(Document);
+                int count = elementManager.GetRegisteredCount(element.Id.IntegerValue);
+                
+                if (element != null)
+                {
+                    SetInternalElement(element);
+                    if (count > 0)
+                        elementManager.UnRegisterAssociation(Id, this);
+                    return;
+                }
+            }
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
 
             SafeInitImpl(init);
@@ -205,9 +219,21 @@ namespace Revit.Elements
         /// A reference to the element
         /// </summary>
         [SupressImportIntoVM]
-        public abstract Autodesk.Revit.DB.Element InternalElement
+        public virtual Autodesk.Revit.DB.Element InternalElement
         {
             get;
+            set;
+        }
+
+        /// <summary>
+        /// Set Internal Element from a exsiting element.
+        /// </summary>
+        /// <param name="element"></param>
+        internal void SetInternalElement(Autodesk.Revit.DB.Element element)
+        {
+            InternalElement = element;
+            InternalElementId = element.Id;
+            InternalUniqueId = element.UniqueId;
         }
 
         private ElementId internalId;
@@ -284,6 +310,14 @@ namespace Revit.Elements
             bool didRevitDelete = ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(Id);
 
             var elementManager = ElementIDLifecycleManager<int>.GetInstance();
+
+            if (TransactionManager.Instance.DisableTransactions)
+            {
+                int count = elementManager.GetRegisteredCount(Id);
+                if(count > 0)
+                    elementManager.UnRegisterAssociation(Id, this);
+                return;
+            }
             int remainingBindings = elementManager.UnRegisterAssociation(Id, this);
 
             // Do not delete Revit owned elements
@@ -302,7 +336,8 @@ namespace Revit.Elements
                             throw new InvalidOperationException(string.Format(Properties.Resources.CantCloseLastOpenView, this.ToString()));
                     }
                 }
-                DocumentManager.Instance.DeleteElement(new ElementUUID(InternalUniqueId));
+                if(!TransactionManager.Instance.DisableTransactions)
+                    DocumentManager.Instance.DeleteElement(new ElementUUID(InternalUniqueId));
             }
             else
             {

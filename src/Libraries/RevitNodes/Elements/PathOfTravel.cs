@@ -300,12 +300,26 @@ namespace Revit.Elements
       /// </summary>
       /// <param name="rvtView">Floor plan view for which rooms will be used to retrieve longest paths to the given exit points.</param>
       /// <param name="endPoints">List of end (exit) points.</param>
-      /// <returns>List of PathOfTravel elements corresponding to the longest of shortest exit paths from rooms.</returnsO
+      /// <returns>List of PathOfTravel elements corresponding to the longest of shortest exit paths from rooms.</returns>
       /// 
       private static PathOfTravel[] InternalLongestOfShortestExitPaths(Rvt.View rvtView, IEnumerable<XYZ> endPoints)
       {
          List<PathOfTravel> pathsOfTravel = new List<PathOfTravel>();
 
+         if(TransactionManager.Instance.DisableTransactions)
+         {
+            IEnumerable<RvtAnalysis.PathOfTravel> persistRvtElements = ElementBinder.GetElementsFromTrace<RvtAnalysis.PathOfTravel>(Document);
+            if(persistRvtElements != null)
+            {
+               foreach (var ele in persistRvtElements)
+               {
+                  var persisEle = new PathOfTravel(ele);
+                  pathsOfTravel.Add(persisEle);
+               }
+
+               return pathsOfTravel.ToArray();
+            }   
+         }
          TransactionManager.Instance.EnsureInTransaction(Document);
 
          try
@@ -373,6 +387,21 @@ namespace Revit.Elements
       private static PathOfTravel[] InternalByViewEndPoints(Rvt.View rvtView, IEnumerable<XYZ> startPoints, IEnumerable<XYZ> endPoints)
       {
          List<PathOfTravel> pathsOfTravel = new List<PathOfTravel>();
+
+         if(TransactionManager.Instance.DisableTransactions)
+         {
+            IEnumerable<RvtAnalysis.PathOfTravel> persistRvtElements = ElementBinder.GetElementsFromTrace<RvtAnalysis.PathOfTravel>(Document);
+            if(persistRvtElements != null)
+            {
+               foreach (var ele in persistRvtElements)
+               {
+                  var persisEle = new PathOfTravel(ele);
+                  pathsOfTravel.Add(persisEle);
+               }
+
+               return pathsOfTravel.ToArray();
+            }   
+         }
 
          TransactionManager.Instance.EnsureInTransaction(Document);
 
