@@ -547,7 +547,7 @@ namespace Dynamo.Applications
         {
             IntPtr mwHandle = commandData.Application.MainWindowHandle;
             var dynamoView = new DynamoView(RevitDynamoViewModel);
-            AddSyncWithRevitControls(dynamoView);
+            
             new WindowInteropHelper(dynamoView).Owner = mwHandle;
 
             handledCrash = false;
