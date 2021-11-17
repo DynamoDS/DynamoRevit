@@ -1,10 +1,11 @@
 
-
-## 0.3.8
-* Upgrade Greg, GregRevitOAuth, and RestSharp to RestSharp 106.12.0 to address a security issue.
-
 ## 0.3.7
 * Add Transaction controls - "Sync with Revit" Toggle button.
+* Upgrade Greg, GregRevitOAuth, and RestSharp to RestSharp 106.12.0 to address a security issue.
+* Use OAuth2 provider to communicate with package manager.
+* Expose DynamoViewModel property.
+* Upgrade DynamoCore Lib to 2.13.0-beta2845, and use the latest DynamoCoreRuntime with ASM 228.
+* Hide Transaction Control button.
 
 ## 0.3.6
 * Upgrade DynamoRevit to 2.13.0.
