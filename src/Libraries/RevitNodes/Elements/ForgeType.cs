@@ -1,4 +1,6 @@
-﻿using Autodesk.Revit.DB;
+﻿using System;
+using System.Collections.Generic;
+using Autodesk.Revit.DB;
 using Autodesk.DesignScript.Runtime;
 
 namespace Revit.Elements
@@ -18,12 +20,12 @@ namespace Revit.Elements
         #endregion
 
         #region Private Construction
-        
+
         /// <summary>
         /// Init ForgeType with typeId of a ForgeTypeId
         /// </summary>
         /// <param name="typeId"></param>
-        private ForgeType(string typeId)
+        private protected ForgeType(string typeId)
         {
             ForgeTypeId forgeTypeId = new ForgeTypeId(typeId);
             InternalSetForgeType(forgeTypeId);
@@ -33,7 +35,7 @@ namespace Revit.Elements
         /// Init ForgeType with an existing ForgeTypeId
         /// </summary>
         /// <param name="forgeTypeId"></param>
-        private ForgeType(ForgeTypeId forgeTypeId)
+        private protected ForgeType(ForgeTypeId forgeTypeId)
         {
             InternalSetForgeType(forgeTypeId);
         }
@@ -79,38 +81,34 @@ namespace Revit.Elements
 
         #endregion
 
-        #region Public static constructors
-
-        /// <summary>
-        /// Get a ForgeTypeId by schema identifier.
-        /// </summary>
-        /// <param name="typeId">a schema identifier</param>
-        /// <returns></returns>
-        public static ForgeType ByTypeId(string typeId)
-        {
-            return new ForgeType(typeId);
-        }
-
-        #endregion
-
         [IsVisibleInDynamoLibrary(false)]
         public override string ToString()
         {
             return InternalForgeTypeId.TypeId;
         }
 
-        #region Internal static constructor
-
-        /// <summary>
-        /// Wrap an exsiting ForgeTypeId to ForgeType
-        /// </summary>
-        /// <param name="forgeTypeId"></param>
-        /// <returns></returns>
-        internal static ForgeType FromExisting(ForgeTypeId forgeTypeId)
+        protected static void GetForgeTypeIdNamesFromType(Type enumerationType, Dictionary<string,string> dictionary)
         {
-            return new ForgeType(forgeTypeId);
-        }
+            var properties = enumerationType.GetProperties();
 
-        #endregion
+            foreach (var property in properties)
+            {
+                string name = property.Name;
+                ForgeTypeId forgeTypeID = property.GetValue(null, null) as ForgeTypeId;
+                dictionary[forgeTypeID.TypeId] = name;
+            }
+
+            var types = enumerationType.GetNestedTypes();
+            foreach (var type in types)
+            {
+                var nestProperties = type.GetProperties();
+                foreach (var nestProperty in nestProperties)
+                {
+                    string name = nestProperty.Name;
+                    ForgeTypeId forgeTypeID = nestProperty.GetValue(null, null) as ForgeTypeId;
+                    dictionary[forgeTypeID.TypeId] = name;
+                }
+            }
+        }
     }
 }

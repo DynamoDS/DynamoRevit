@@ -39,12 +39,12 @@ namespace Revit.Elements
         /// <summary>
         /// Get the parameter's spec type
         /// </summary>
-        public ForgeType SpecType => ForgeType.FromExisting(InternalFamilyParameter.Definition.GetDataType());
+        public SpecType SpecType => SpecType.FromExisting(InternalFamilyParameter.Definition.GetDataType());
 
         /// <summary>
         /// Get the parameter's group type
         /// </summary>
-        public ForgeType GroupType => ForgeType.FromExisting(InternalFamilyParameter.Definition.GetGroupTypeId());
+        public GroupType GroupType => GroupType.FromExisting(InternalFamilyParameter.Definition.GetGroupTypeId());
 
         /// <summary>
         /// Get Parameter Storage Type

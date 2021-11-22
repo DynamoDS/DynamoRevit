@@ -300,7 +300,7 @@ namespace DSRevitNodesUI
                 AstFactory.BuildStringNode(((Autodesk.Revit.DB.ForgeTypeId) Items[SelectedIndex].Item).TypeId)
             };
 
-            var functionCall = AstFactory.BuildFunctionCall<String, Revit.Elements.ForgeType>(Revit.Elements.ForgeType.ByTypeId, args);
+            var functionCall = GetAstFunction(args);
 
             // assign the selected name to an actual enumeration value
             var assign = AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall);
@@ -308,5 +308,10 @@ namespace DSRevitNodesUI
             // return the enumeration value
             return new List<AssociativeNode> { assign };
         }
+
+        public abstract AssociativeNode GetAstFunction(List<AssociativeNode> args);
+        //{
+        //    return AstFactory.BuildFunctionCall<String, Revit.Elements.ForgeType>(<<DerivedType>>.ByTypeId, args);
+        //}
     }
 }

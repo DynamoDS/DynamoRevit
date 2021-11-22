@@ -210,7 +210,7 @@ namespace Revit.Application
         /// <param name="specType">The type of new family parameter.</param>
         /// <param name="isInstance">Indicates if the new family parameter is instance or type (true if parameter should be instance).</param>
         /// <returns></returns>
-        public Elements.FamilyParameter AddParameter(string parameterName, ForgeType groupType, ForgeType specType, bool isInstance)
+        public Elements.FamilyParameter AddParameter(string parameterName, Revit.Elements.GroupType groupType, SpecType specType, bool isInstance)
         {
             TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
             var famParameter = FamilyManager.AddParameter(parameterName, groupType.InternalForgeTypeId, specType.InternalForgeTypeId, isInstance);
