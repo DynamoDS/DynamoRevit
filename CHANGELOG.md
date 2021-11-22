@@ -1,3 +1,4 @@
+* Upgrade Paramater.CreateProjectParameter due to Definition will sometimes be null.
 
 ## 0.3.7
 * Add Transaction controls - "Sync with Revit" Toggle button.

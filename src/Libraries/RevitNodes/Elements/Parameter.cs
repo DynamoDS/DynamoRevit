@@ -288,10 +288,9 @@ namespace Revit.Elements
                 CategorySet categories = (categoryList == null) ? AllCategories() : ToCategorySet(categoryList);
 
                 // create a new shared parameter, since the file is empty everything has to be created from scratch
-                ExternalDefinition def =
-                    document.Application.OpenSharedParameterFile()
+                document.Application.OpenSharedParameterFile()
                     .Groups.Create(groupName).Definitions.Create(
-                    new ExternalDefinitionCreationOptions(parameterName, specType.InternalForgeTypeId)) as ExternalDefinition;
+                    new ExternalDefinitionCreationOptions(parameterName, specType.InternalForgeTypeId));
 
                 // Create an instance or type binding
                 Binding bin = (instance) ?
@@ -299,6 +298,8 @@ namespace Revit.Elements
                     (Binding)document.Application.Create.NewTypeBinding(categories);
 
                 // Apply parameter bindings
+                var def = document.Application.OpenSharedParameterFile()
+                    .Groups.get_Item(groupName).Definitions.get_Item(parameterName);
                 document.ParameterBindings.Insert(def, bin, groupType.InternalForgeTypeId);
 
                 // apply old shared parameter file
