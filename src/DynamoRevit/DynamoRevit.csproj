@@ -49,10 +49,6 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DSCPython">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DSCPython.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DynamoApplications">
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DynamoApplications.dll</HintPath>
       <Private>False</Private>
@@ -167,10 +163,6 @@
   <ItemGroup>
     <Reference Include="ProtoCore">
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\ProtoCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DSIronPython">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DSIronPython.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DynamoCoreWpf">

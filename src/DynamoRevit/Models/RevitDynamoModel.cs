@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,8 +9,6 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
-using DSCPython;
-using DSIronPython;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Nodes.ZeroTouch;
 using Dynamo.Graph.Workspaces;
@@ -382,37 +381,36 @@ namespace Dynamo.Applications.Models
         {
             if (setupPython) return;
 
-            IronPythonEvaluator.OutputMarshaler.RegisterMarshaler(
-                (Element element) => element.ToDSType(true));
-
-            // Turn off element binding during iron python script execution
-            IronPythonEvaluator.EvaluationBegin +=
-                (a, b, c, d, e) => ElementBinder.IsEnabled = false;
-            IronPythonEvaluator.EvaluationEnd += (a, b, c, d, e) => ElementBinder.IsEnabled = true;
-
             var marshaler = new DataMarshaler();
             marshaler.RegisterMarshaler(
                 (Revit.Elements.Element element) => element.InternalElement);
             marshaler.RegisterMarshaler((Category element) => element.InternalCategory);
             Func<object, object> unwrap = marshaler.Marshal;
-            // register UnwrapElement method in ironpython
-            IronPythonEvaluator.EvaluationBegin += (a, b, scope, d, e) =>
+
+
+            Action<PythonServices.PythonEngine> setupPythonEngine = (PythonServices.PythonEngine engine) =>
             {
-                scope.SetVariable("UnwrapElement", unwrap);
+                (engine.OutputDataMarshaler as DataMarshaler).RegisterMarshaler((Element element) => element.ToDSType(true));
+
+                // Turn off element binding during python script execution
+                engine.EvaluationStarted += (a, b, c) => ElementBinder.IsEnabled = false;
+                // register UnwrapElement method
+                engine.EvaluationStarted += (a, b, scopeSet) => scopeSet("UnwrapElement", unwrap);
+                // Turn on element binding after python script execution
+                engine.EvaluationFinished += (a, b, c, d) => ElementBinder.IsEnabled = true;
             };
-
-            CPythonEvaluator.OutputMarshaler.RegisterMarshaler(
-                (Element element) => element.ToDSType(true));
-
-            // Turn off element binding during cpython script execution
-            CPythonEvaluator.EvaluationBegin +=
-                (a, b, c, d) => ElementBinder.IsEnabled = false;
-            CPythonEvaluator.EvaluationEnd += (a, b, c, d) => ElementBinder.IsEnabled = true;
-
-            // register UnwrapElement method in cpython
-            CPythonEvaluator.EvaluationBegin += (a, scope, c, d) =>
+            // Setup engines for all existing python engines
+            PythonServices.PythonEngineManager.Instance.AvailableEngines.ToList().ForEach(engine => setupPythonEngine(engine));
+            // Setup engines for any python engines that might be registered later on
+            PythonServices.PythonEngineManager.Instance.AvailableEngines.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) =>
             {
-                scope.Set("UnwrapElement", unwrap);
+                if (e.Action == NotifyCollectionChangedAction.Add)
+                {
+                    foreach (var item in e.NewItems)
+                    {
+                        setupPythonEngine(item as PythonServices.PythonEngine);
+                    }
+                }
             };
 
             setupPython = true;
