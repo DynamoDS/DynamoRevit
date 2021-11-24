@@ -19,7 +19,6 @@ namespace RevitTestServices
             AddPreloadLibraryPath("DesignScriptBuiltin.dll");
             AddPreloadLibraryPath("DSCoreNodes.dll");
             AddPreloadLibraryPath("DSOffice.dll");
-            AddPreloadLibraryPath("DSIronPython.dll");
             AddPreloadLibraryPath("FunctionObject.ds");
             AddPreloadLibraryPath("BuiltIn.ds");
             AddPreloadLibraryPath("DynamoConversions.dll");

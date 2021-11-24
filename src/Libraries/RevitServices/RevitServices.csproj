@@ -54,10 +54,6 @@ limitations under the License.
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\net48\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Prism">
-      <HintPath>$(PACKAGESPATH)\Prism\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
       <Private>False</Private>
