@@ -88,6 +88,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All ceiling types available in the document..
+        /// </summary>
+        internal static string CeilingTypesDescription {
+            get {
+                return ResourceManager.GetString("CeilingTypesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a Direct Shape Room Bounding Option..
         /// </summary>
         internal static string DirectShapeRoomBoundingOptionSelectorDescription {
