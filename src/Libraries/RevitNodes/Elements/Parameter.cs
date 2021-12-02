@@ -88,6 +88,14 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Get the Parameter's Unit Type
+        /// </summary>
+        public DynamoUnits.Unit Unit
+        {
+            get { return DynamoUnits.Unit.ByTypeID(InternalParameter.GetUnitTypeId().TypeId); }
+        }
+
+        /// <summary>
         /// Get Element's Parameter by Name
         /// </summary>
         /// <param name="element">Element</param>

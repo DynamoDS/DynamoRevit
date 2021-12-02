@@ -47,6 +47,14 @@ namespace Revit.Elements
         public ForgeType GroupType => ForgeType.FromExisting(InternalFamilyParameter.Definition.GetGroupTypeId());
 
         /// <summary>
+        /// Get the Parameter's Unit Type
+        /// </summary>
+        public DynamoUnits.Unit Unit
+        {
+            get { return DynamoUnits.Unit.ByTypeID(InternalFamilyParameter.GetUnitTypeId().TypeId); }
+        }
+
+        /// <summary>
         /// Get Parameter Storage Type
         /// </summary>
         public string StorageType => InternalFamilyParameter.StorageType.ToString();
