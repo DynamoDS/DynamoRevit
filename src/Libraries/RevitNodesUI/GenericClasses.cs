@@ -7,6 +7,7 @@ using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using DSRevitNodesUI;
 using Autodesk.Revit.DB;
+using CoreNodeModels;
 using RVT = Autodesk.Revit.DB;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
@@ -209,16 +210,16 @@ namespace DSRevitNodesUI
         }
     }
 
-    public abstract class CustomGenericNestedClassDropDown : RevitDropDownBase
+    public abstract class CustomForgeTypeIdDropDown : RevitDropDownBase
     {
-        public CustomGenericNestedClassDropDown(string name, Type type) : base(name)
+        public CustomForgeTypeIdDropDown(string name, Type type) : base(name)
         {
             this.EnumerationType = type;
             PopulateDropDownItems();
         }
 
         [JsonConstructor]
-        public CustomGenericNestedClassDropDown(string name, Type type, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+        public CustomForgeTypeIdDropDown(string name, Type type, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(name, inPorts, outPorts)
         {
             this.EnumerationType = type;
@@ -250,20 +251,27 @@ namespace DSRevitNodesUI
                 // Clear the dropdown list
                 Items.Clear();
 
-                var properties = EnumerationType.GetProperties();
-                foreach (var property in properties)
-                {
-                    string name = property.Name;
-                    Items.Add(new CoreNodeModels.DynamoDropDownItem(name, property.GetValue(null,null)));
-                }
+                var forgeTypeIds = new List<ForgeTypeId>();
+                Func<ForgeTypeId,string> getLabelFunc = null;
 
-                var types = this.EnumerationType.GetNestedTypes();
-                foreach (var type in types)
+                if (this.EnumerationType == typeof(SpecTypeId))
                 {
-                    var nestProperties = type.GetProperties();
-                    foreach (var nestProperty in nestProperties)
+                    forgeTypeIds = SpecUtils.GetAllSpecs().ToList();
+                    getLabelFunc = LabelUtils.GetLabelForSpec;
+                }
+                else if (this.EnumerationType == typeof(GroupTypeId))
+                {
+                    forgeTypeIds = ParameterUtils.GetAllBuiltInGroups().ToList();
+                    getLabelFunc = LabelUtils.GetLabelForGroup;
+                }
+                //Future handlers can be added when other types are exposed in the Dynamo UI
+                
+                foreach (var forgeTypeId in forgeTypeIds)
+                {
+                    if (getLabelFunc != null)
                     {
-                        Items.Add(new CoreNodeModels.DynamoDropDownItem(nestProperty.Name, nestProperty.GetValue(null,null)));
+                        string name = getLabelFunc(forgeTypeId);
+                        Items.Add(new CoreNodeModels.DynamoDropDownItem(name, forgeTypeId.TypeId));
                     }
                 }
 
@@ -275,6 +283,17 @@ namespace DSRevitNodesUI
                 }
                 Items = Items.OrderBy(x => x.Name).ToObservableCollection();
             }
+        }
+
+        /// <summary>
+        /// Override the default behavior to serialize typeID 
+        /// instead of ForgeTypeId name.
+        /// </summary>
+        /// <param name="item">Selected DynamoDropDownItem</param>
+        /// <returns></returns>
+        protected override string GetSelectedStringFromItem(DynamoDropDownItem item)
+        {
+            return item == null ? string.Empty : item.Item.ToString();
         }
 
         /// <summary>
@@ -297,7 +316,7 @@ namespace DSRevitNodesUI
             
             var args = new List<AssociativeNode>
             {
-                AstFactory.BuildStringNode(((Autodesk.Revit.DB.ForgeTypeId) Items[SelectedIndex].Item).TypeId)
+                AstFactory.BuildStringNode((string) Items[SelectedIndex].Item)
             };
 
             var functionCall = GetAstFunction(args);

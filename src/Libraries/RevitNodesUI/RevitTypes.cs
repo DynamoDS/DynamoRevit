@@ -121,7 +121,7 @@ namespace DSRevitNodesUI
     [NodeDescription("SpecTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     [OutPortTypes("Revit.Elements.SpecType")]
-    public class SpecTypes : CustomGenericNestedClassDropDown
+    public class SpecTypes : CustomForgeTypeIdDropDown
     {
         private const string outputName = "SpecType";
 
@@ -142,7 +142,7 @@ namespace DSRevitNodesUI
     [NodeDescription("GroupTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     [OutPortTypes("Revit.Elements.GroupType")]
-    public class GroupTypes : CustomGenericNestedClassDropDown
+    public class GroupTypes : CustomForgeTypeIdDropDown
     {
         private const string outputName = "GroupType";
 
