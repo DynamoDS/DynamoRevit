@@ -471,4 +471,8 @@
     <value>Select a Spec type.</value>
     <comment>Description for Spec Types</comment>
   </data>
+  <data name="CeilingTypesDescription" xml:space="preserve">
+    <value>All ceiling types available in the document.</value>
+    <comment>Description for Ceiling Types</comment>
+  </data>
 </root>
