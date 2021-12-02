@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
@@ -15,6 +16,7 @@ using Dynamo.Graph.Workspaces;
 using Dynamo.Interfaces;
 using Dynamo.Logging;
 using Dynamo.Models;
+using Dynamo.PythonServices;
 using Dynamo.Scheduler;
 using Dynamo.Updates;
 using Dynamo.Utilities;
@@ -376,26 +378,31 @@ namespace Dynamo.Applications.Models
         }
 
         /// <summary>
-        /// This functions will setup the python engine so that it can manage Revit data
+        /// Setup the python engine so that it can manage Revit data
         /// </summary>
         /// <param name="engine"></param>
-        private void setupPythonEngine(PythonServices.PythonEngine engine)
+        private void SetupPythonEngine(PythonEngine engine)
         {
-            if (pythonDataMarshaler == null)
+            if (engine != null)
             {
-                pythonDataMarshaler = new DataMarshaler();
-                pythonDataMarshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
-                pythonDataMarshaler.RegisterMarshaler((Category element) => element.InternalCategory);
+                (engine.OutputDataMarshaler as DataMarshaler).RegisterMarshaler((Element element) => element.ToDSType(true));
+                engine.EvaluationStarted += OnPythonEvalStart;
+                engine.EvaluationFinished += OnPythonEvalFinished;
             }
-            Func<object, object> unwrap = pythonDataMarshaler.Marshal;
+        }
 
-            (engine.OutputDataMarshaler as DataMarshaler).RegisterMarshaler((Element element) => element.ToDSType(true));
-            // Turn off element binding during python script execution
-            engine.EvaluationStarted += (a, b, c) => ElementBinder.IsEnabled = false;
-            // register UnwrapElement method
-            engine.EvaluationStarted += (a, b, scopeSet) => scopeSet("UnwrapElement", unwrap);
-            // Turn on element binding after python script execution
-            engine.EvaluationFinished += (a, b, c, d) => ElementBinder.IsEnabled = true;
+        /// <summary>
+        /// Cleanup all subscribed events and registered marshalers
+        /// </summary>
+        /// <param name="engine"></param>
+        private void CleanUpPythonEngine(PythonEngine engine)
+        {
+            if (engine != null)
+            {
+                (engine.OutputDataMarshaler as DataMarshaler).UnregisterMarshalerOfType<Element>();
+                engine.EvaluationStarted -= OnPythonEvalStart;
+                engine.EvaluationFinished -= OnPythonEvalFinished;
+            }
         }
 
         /// <summary>
@@ -409,13 +416,34 @@ namespace Dynamo.Applications.Models
             {
                 foreach (var item in e.NewItems)
                 {
-                    setupPythonEngine(item as PythonServices.PythonEngine);
+                    SetupPythonEngine(item as PythonEngine);
                 }
             }
         }
 
-        // Python data marshaler
-        DataMarshaler pythonDataMarshaler;
+        // Python evaluation start event handler
+        private DataMarshaler UnwrapElementMarshaler;
+        private void OnPythonEvalStart(string code, IList bindingValues, PythonServices.EventHandlers.ScopeSetAction scopeSet)
+        {
+            if (UnwrapElementMarshaler == null)
+            {
+                UnwrapElementMarshaler = new DataMarshaler();
+                UnwrapElementMarshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
+                UnwrapElementMarshaler.RegisterMarshaler((Category element) => element.InternalCategory);
+            }
+            // Turn off element binding during python script execution
+            ElementBinder.IsEnabled = false;
+            // register UnwrapElement method
+            scopeSet("UnwrapElement", UnwrapElementMarshaler);
+        }
+
+        // Python evaluation finished event handler
+        private void OnPythonEvalFinished(EvaluationState state, string code, IList bindingValues, PythonServices.EventHandlers.ScopeGetAction scopeGet)
+        {
+            // Turn on element binding after python script execution
+            ElementBinder.IsEnabled = true;
+        }
+
         private bool setupPython;
 
         private void SetupPython()
@@ -423,9 +451,9 @@ namespace Dynamo.Applications.Models
             if (setupPython) return;
 
             // Setup engines for all existing python engines
-            PythonServices.PythonEngineManager.Instance.AvailableEngines.ToList().ForEach(engine => setupPythonEngine(engine));
+            PythonEngineManager.Instance.AvailableEngines.ToList().ForEach(engine => SetupPythonEngine(engine));
             // Setup engines for any python engines that might be registered later on
-            PythonServices.PythonEngineManager.Instance.AvailableEngines.CollectionChanged += OnPythonEngineCollectionChanged;
+            PythonEngineManager.Instance.AvailableEngines.CollectionChanged += OnPythonEngineCollectionChanged;
 
             setupPython = true;
         }
@@ -624,7 +652,8 @@ namespace Dynamo.Applications.Models
             UnsubscribeDocumentManagerEvents();
             UnsubscribeRevitServicesUpdaterEvents();
             UnsubscribeTransactionManagerEvents();
-            PythonServices.PythonEngineManager.Instance.AvailableEngines.CollectionChanged -= OnPythonEngineCollectionChanged;
+            PythonEngineManager.Instance.AvailableEngines.ToList().ForEach(engine => CleanUpPythonEngine(engine));
+            PythonEngineManager.Instance.AvailableEngines.CollectionChanged -= OnPythonEngineCollectionChanged;
 
             ElementIDLifecycleManager<int>.DisposeInstance();
         }
