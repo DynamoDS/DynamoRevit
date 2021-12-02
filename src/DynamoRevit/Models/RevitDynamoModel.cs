@@ -375,43 +375,57 @@ namespace Dynamo.Applications.Models
             InitializeMaterials(); // Initialize materials for preview.
         }
 
+        /// <summary>
+        /// This functions will setup the python engine so that it can manage Revit data
+        /// </summary>
+        /// <param name="engine"></param>
+        private void setupPythonEngine(PythonServices.PythonEngine engine)
+        {
+            if (pythonDataMarshaler == null)
+            {
+                pythonDataMarshaler = new DataMarshaler();
+                pythonDataMarshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
+                pythonDataMarshaler.RegisterMarshaler((Category element) => element.InternalCategory);
+            }
+            Func<object, object> unwrap = pythonDataMarshaler.Marshal;
+
+            (engine.OutputDataMarshaler as DataMarshaler).RegisterMarshaler((Element element) => element.ToDSType(true));
+            // Turn off element binding during python script execution
+            engine.EvaluationStarted += (a, b, c) => ElementBinder.IsEnabled = false;
+            // register UnwrapElement method
+            engine.EvaluationStarted += (a, b, scopeSet) => scopeSet("UnwrapElement", unwrap);
+            // Turn on element binding after python script execution
+            engine.EvaluationFinished += (a, b, c, d) => ElementBinder.IsEnabled = true;
+        }
+
+        /// <summary>
+        /// Sets up new python engines registered in the available PythonEngine collection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPythonEngineCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (var item in e.NewItems)
+                {
+                    setupPythonEngine(item as PythonServices.PythonEngine);
+                }
+            }
+        }
+
+        // Python data marshaler
+        DataMarshaler pythonDataMarshaler;
         private bool setupPython;
 
         private void SetupPython()
         {
             if (setupPython) return;
 
-            var marshaler = new DataMarshaler();
-            marshaler.RegisterMarshaler(
-                (Revit.Elements.Element element) => element.InternalElement);
-            marshaler.RegisterMarshaler((Category element) => element.InternalCategory);
-            Func<object, object> unwrap = marshaler.Marshal;
-
-
-            Action<PythonServices.PythonEngine> setupPythonEngine = (PythonServices.PythonEngine engine) =>
-            {
-                (engine.OutputDataMarshaler as DataMarshaler).RegisterMarshaler((Element element) => element.ToDSType(true));
-
-                // Turn off element binding during python script execution
-                engine.EvaluationStarted += (a, b, c) => ElementBinder.IsEnabled = false;
-                // register UnwrapElement method
-                engine.EvaluationStarted += (a, b, scopeSet) => scopeSet("UnwrapElement", unwrap);
-                // Turn on element binding after python script execution
-                engine.EvaluationFinished += (a, b, c, d) => ElementBinder.IsEnabled = true;
-            };
             // Setup engines for all existing python engines
             PythonServices.PythonEngineManager.Instance.AvailableEngines.ToList().ForEach(engine => setupPythonEngine(engine));
             // Setup engines for any python engines that might be registered later on
-            PythonServices.PythonEngineManager.Instance.AvailableEngines.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) =>
-            {
-                if (e.Action == NotifyCollectionChangedAction.Add)
-                {
-                    foreach (var item in e.NewItems)
-                    {
-                        setupPythonEngine(item as PythonServices.PythonEngine);
-                    }
-                }
-            };
+            PythonServices.PythonEngineManager.Instance.AvailableEngines.CollectionChanged += OnPythonEngineCollectionChanged;
 
             setupPython = true;
         }
@@ -610,6 +624,7 @@ namespace Dynamo.Applications.Models
             UnsubscribeDocumentManagerEvents();
             UnsubscribeRevitServicesUpdaterEvents();
             UnsubscribeTransactionManagerEvents();
+            PythonServices.PythonEngineManager.Instance.AvailableEngines.CollectionChanged -= OnPythonEngineCollectionChanged;
 
             ElementIDLifecycleManager<int>.DisposeInstance();
         }
