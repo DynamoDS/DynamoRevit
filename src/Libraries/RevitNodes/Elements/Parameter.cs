@@ -76,7 +76,12 @@ namespace Revit.Elements
         /// </summary>
         public SpecType SpecType
         {
-            get { return SpecType.FromExisting(InternalParameter.Definition.GetDataType()); }
+            get
+            {
+                var forgeTypeId = InternalParameter.Definition.GetDataType();
+
+                return string.IsNullOrEmpty(forgeTypeId.TypeId)? null : SpecType.FromExisting(forgeTypeId);
+            }
         }
 
         /// <summary>
@@ -84,7 +89,12 @@ namespace Revit.Elements
         /// </summary>
         public GroupType GroupType
         {
-            get { return GroupType.FromExisting(InternalParameter.Definition.GetGroupTypeId()); }
+            get
+            {
+                var forgeTypeId = InternalParameter.Definition.GetGroupTypeId();
+
+                return string.IsNullOrEmpty(forgeTypeId.TypeId) ? null : GroupType.FromExisting(forgeTypeId);
+            }
         }
 
         /// <summary>

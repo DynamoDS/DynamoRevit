@@ -285,7 +285,9 @@ namespace Revit.Elements
         {
             get
             {
-                return SpecType.FromExisting(this.InternalGlobalParameter.GetDefinition().GetDataType());
+                var forgeTypeId = this.InternalGlobalParameter.GetDefinition().GetDataType();
+
+                return string.IsNullOrEmpty(forgeTypeId.TypeId) ? null : SpecType.FromExisting(forgeTypeId);
             }
         }
 
@@ -296,7 +298,9 @@ namespace Revit.Elements
         {
             get
             {
-                return GroupType.FromExisting(this.InternalGlobalParameter.GetDefinition().GetGroupTypeId());
+                var forgeTypeId = this.InternalGlobalParameter.GetDefinition().GetGroupTypeId();
+
+                return string.IsNullOrEmpty(forgeTypeId.TypeId) ? null : GroupType.FromExisting(forgeTypeId);
             }
         }
 

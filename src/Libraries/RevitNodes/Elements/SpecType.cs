@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Autodesk.Revit.DB;
 using Autodesk.DesignScript.Runtime;
 
@@ -7,39 +6,25 @@ namespace Revit.Elements
 {
     public class SpecType : ForgeType
     {
-        private static Dictionary<string, string> forgeTypeIdToNameDictionary = new Dictionary<string, string>();
-
-        /// <summary>
-        /// Internal reference to Revit ForgeTypeId
-        /// </summary>
-        internal static Dictionary<string, string> ForgeTypeIdToNameDictionary
-        {
-            get
-            {
-                if (forgeTypeIdToNameDictionary.Count == 0)
-                {
-                    var enumerationType = typeof(SpecTypeId);
-
-                    GetForgeTypeIdNamesFromType(enumerationType, forgeTypeIdToNameDictionary);
-                }
-
-                return forgeTypeIdToNameDictionary;
-            }
-        }
-
         #region Private Construction
 
         /// <summary>
         /// Init SpecType with typeId of a ForgeTypeId
         /// </summary>
         /// <param name="typeId"></param>
-        private SpecType(string typeId) :base(typeId) {}
+        private SpecType(string typeId) : base(typeId)
+        {
+            CheckForValidForgeIdType();
+        }
 
         /// <summary>
         /// Init SpecType with an existing ForgeTypeId
         /// </summary>
         /// <param name="forgeTypeId"></param>
-        private SpecType(ForgeTypeId forgeTypeId): base(forgeTypeId) {}
+        private SpecType(ForgeTypeId forgeTypeId) : base(forgeTypeId)
+        {
+            CheckForValidForgeIdType();
+        }
 
         #endregion
 
@@ -60,12 +45,9 @@ namespace Revit.Elements
         [IsVisibleInDynamoLibrary(false)]
         public override string ToString()
         {
-            if (ForgeTypeIdToNameDictionary.TryGetValue(InternalForgeTypeId.TypeId, out var name))
-            {
-                return name;
-            }
+            var specName = LabelUtils.GetLabelForSpec(InternalForgeTypeId);
 
-            return InternalForgeTypeId.TypeId;
+            return "SpecType(Name = " + specName + ")";
         }
 
         #region Internal static constructor
@@ -81,5 +63,13 @@ namespace Revit.Elements
         }
 
         #endregion
+
+        private void CheckForValidForgeIdType()
+        {
+            if (!SpecUtils.IsSpec(InternalForgeTypeId))
+            {
+                throw new Exception("This id string is not valid for a " + nameof(SpecType));
+            }
+        }
     }
 }

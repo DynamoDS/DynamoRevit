@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Autodesk.Revit.DB;
 using Autodesk.DesignScript.Runtime;
 
@@ -6,39 +6,25 @@ namespace Revit.Elements
 {
     public class GroupType : ForgeType
     {
-        private static Dictionary<string, string> forgeTypeIdToNameDictionary = new Dictionary<string, string>();
-
-        /// <summary>
-        /// Internal reference to Revit ForgeTypeId
-        /// </summary>
-        internal static Dictionary<string, string> ForgeTypeIdToNameDictionary
-        {
-            get
-            {
-                if (forgeTypeIdToNameDictionary.Count == 0)
-                {
-                    var enumerationType = typeof(GroupTypeId);
-
-                    GetForgeTypeIdNamesFromType(enumerationType, forgeTypeIdToNameDictionary);
-                }
-
-                return forgeTypeIdToNameDictionary;
-            }
-        }
-
         #region Private Construction
 
         /// <summary>
         /// Init SpecType with typeId of a ForgeTypeId
         /// </summary>
         /// <param name="typeId"></param>
-        private GroupType(string typeId) :base(typeId) {}
+        private GroupType(string typeId) : base(typeId)
+        {
+            CheckForValidForgeIdType();
+        }
 
         /// <summary>
         /// Init SpecType with an existing ForgeTypeId
         /// </summary>
         /// <param name="forgeTypeId"></param>
-        private GroupType(ForgeTypeId forgeTypeId): base(forgeTypeId) {}
+        private GroupType(ForgeTypeId forgeTypeId) : base(forgeTypeId)
+        {
+            CheckForValidForgeIdType();
+        }
 
         #endregion
 
@@ -59,12 +45,9 @@ namespace Revit.Elements
         [IsVisibleInDynamoLibrary(false)]
         public override string ToString()
         {
-            if (ForgeTypeIdToNameDictionary.TryGetValue(InternalForgeTypeId.TypeId, out var name))
-            {
-                return name;
-            }
+            var groupName = LabelUtils.GetLabelForGroup(InternalForgeTypeId);
 
-            return InternalForgeTypeId.TypeId;
+            return "GroupType(Name = " + groupName + ")";
         }
 
         #region Internal static constructor
@@ -80,5 +63,13 @@ namespace Revit.Elements
         }
 
         #endregion
+
+        private void CheckForValidForgeIdType()
+        {
+            if (!ParameterUtils.IsBuiltInGroup(InternalForgeTypeId))
+            {
+                throw new Exception("This id string is not valid for a " + nameof(SpecType));
+            }
+        }
     }
 }

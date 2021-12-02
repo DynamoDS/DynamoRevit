@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Autodesk.Revit.DB;
+﻿using Autodesk.Revit.DB;
 using Autodesk.DesignScript.Runtime;
 
 namespace Revit.Elements
@@ -85,30 +83,6 @@ namespace Revit.Elements
         public override string ToString()
         {
             return InternalForgeTypeId.TypeId;
-        }
-
-        protected static void GetForgeTypeIdNamesFromType(Type enumerationType, Dictionary<string,string> dictionary)
-        {
-            var properties = enumerationType.GetProperties();
-
-            foreach (var property in properties)
-            {
-                string name = property.Name;
-                ForgeTypeId forgeTypeID = property.GetValue(null, null) as ForgeTypeId;
-                dictionary[forgeTypeID.TypeId] = name;
-            }
-
-            var types = enumerationType.GetNestedTypes();
-            foreach (var type in types)
-            {
-                var nestProperties = type.GetProperties();
-                foreach (var nestProperty in nestProperties)
-                {
-                    string name = nestProperty.Name;
-                    ForgeTypeId forgeTypeID = nestProperty.GetValue(null, null) as ForgeTypeId;
-                    dictionary[forgeTypeID.TypeId] = name;
-                }
-            }
         }
     }
 }
