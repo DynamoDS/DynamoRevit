@@ -66,7 +66,6 @@ sys.path.append(path)
 sys.path.append(exec_path)
 clr.AddReference('LibGNet')
 from Autodesk.LibG import *
-sys.path.append(r'C:\Program Files (x86)\IronPython 2.7\Lib')
 import random
 #The input to this node will be stored in the IN variable.
 nothing = IN
