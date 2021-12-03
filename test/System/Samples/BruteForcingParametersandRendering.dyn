@@ -123,7 +123,6 @@ sys.path.append(path)
 sys.path.append(exec_path)
 clr.AddReference('LibGNet')
 from Autodesk.LibG import *
-sys.path.append(r'C:\Program Files (x86)\IronPython 2.7\Lib')
 from os.path import join, abspath
 clr.AddReference('DynamoPython')
 clr.AddReference('DynamoCore')
@@ -159,7 +158,6 @@ sys.path.append(path)
 sys.path.append(exec_path)
 clr.AddReference('LibGNet')
 from Autodesk.LibG import *
-sys.path.append(r'C:\Program Files (x86)\IronPython 2.7\Lib')
 from os.path import join, abspath
 clr.AddReference('DynamoPython')
 clr.AddReference('DynamoCore')
