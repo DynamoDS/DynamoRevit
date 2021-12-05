@@ -241,6 +241,8 @@ namespace DSRevitNodesUI
             return SelectionState.Done;
         }
 
+        private Dictionary<string, string> ShortForgeIdMap = new Dictionary<string, string>();
+
         /// <summary>
         /// Populate Items in Dropdown menu
         /// </summary>
@@ -250,28 +252,72 @@ namespace DSRevitNodesUI
             {
                 // Clear the dropdown list
                 Items.Clear();
+                ShortForgeIdMap.Clear();
 
-                var forgeTypeIds = new List<ForgeTypeId>();
                 Func<ForgeTypeId,string> getLabelFunc = null;
 
                 if (this.EnumerationType == typeof(SpecTypeId))
                 {
-                    forgeTypeIds = SpecUtils.GetAllSpecs().ToList();
                     getLabelFunc = LabelUtils.GetLabelForSpec;
                 }
                 else if (this.EnumerationType == typeof(GroupTypeId))
                 {
-                    forgeTypeIds = ParameterUtils.GetAllBuiltInGroups().ToList();
                     getLabelFunc = LabelUtils.GetLabelForGroup;
                 }
                 //Future handlers can be added when other types are exposed in the Dynamo UI
-                
-                foreach (var forgeTypeId in forgeTypeIds)
+
+                var properties = EnumerationType.GetProperties();
+                foreach (var property in properties)
                 {
-                    if (getLabelFunc != null)
+                    var obj = property.GetValue(null, null);
+                    if (obj is ForgeTypeId forgeTypeId && getLabelFunc != null)
                     {
-                        string name = getLabelFunc(forgeTypeId);
-                        Items.Add(new CoreNodeModels.DynamoDropDownItem(name, forgeTypeId.TypeId));
+                        try
+                        {
+                            var name = getLabelFunc(forgeTypeId);
+                            var shortTypeId = GetShortForgeTypeId(forgeTypeId.TypeId);
+                            if (String.IsNullOrEmpty(shortTypeId))
+                            {
+                                continue;
+                            }
+
+                            ShortForgeIdMap[shortTypeId] = forgeTypeId.TypeId;
+                            Items.Add(new CoreNodeModels.DynamoDropDownItem(name, shortTypeId));
+                        }
+                        catch
+                        {
+                            //Continue to next property
+                        }
+                        
+                    }
+                }
+
+                var types = this.EnumerationType.GetNestedTypes();
+                foreach (var type in types)
+                {
+                    var nestProperties = type.GetProperties();
+                    foreach (var nestProperty in nestProperties)
+                    {
+                        var obj = nestProperty.GetValue(null, null);
+                        if (obj is ForgeTypeId forgeTypeId && getLabelFunc != null)
+                        {
+                            try
+                            {
+                                var name = getLabelFunc(forgeTypeId);
+                                var shortTypeId = GetShortForgeTypeId(forgeTypeId.TypeId);
+                                if (String.IsNullOrEmpty(shortTypeId))
+                                {
+                                    continue;
+                                }
+
+                                ShortForgeIdMap[shortTypeId] = forgeTypeId.TypeId;
+                                Items.Add(new CoreNodeModels.DynamoDropDownItem(name, shortTypeId));
+                            }
+                            catch
+                            {
+                                //Continue to next property
+                            }
+                        }
                     }
                 }
 
@@ -283,6 +329,13 @@ namespace DSRevitNodesUI
                 }
                 Items = Items.OrderBy(x => x.Name).ToObservableCollection();
             }
+        }
+
+        private string GetShortForgeTypeId(string TypeId)
+        {
+            var strings = TypeId.Split('-');
+
+            return strings.Length == 2 ? strings[0] : String.Empty;
         }
 
         /// <summary>
