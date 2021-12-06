@@ -9,7 +9,7 @@ namespace Revit.Elements
         #region Private Construction
 
         /// <summary>
-        /// Init SpecType with typeId of a ForgeTypeId
+        /// Init GroupType with typeId of a ForgeTypeId
         /// </summary>
         /// <param name="typeId"></param>
         private GroupType(string typeId) : base(typeId)
@@ -18,7 +18,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Init SpecType with an existing ForgeTypeId
+        /// Init GroupType with an existing ForgeTypeId
         /// </summary>
         /// <param name="forgeTypeId"></param>
         private GroupType(ForgeTypeId forgeTypeId) : base(forgeTypeId)
@@ -31,7 +31,7 @@ namespace Revit.Elements
         #region Public static constructors
 
         /// <summary>
-        /// Get a ForgeTypeId by schema identifier.
+        /// Get a GroupType by forge schema identifier.
         /// </summary>
         /// <param name="typeId">a schema identifier</param>
         /// <returns></returns>
@@ -53,7 +53,7 @@ namespace Revit.Elements
         #region Internal static constructor
 
         /// <summary>
-        /// Wrap an exsiting ForgeTypeId to ForgeType
+        /// Wrap an existing ForgeTypeId to GroupType
         /// </summary>
         /// <param name="forgeTypeId"></param>
         /// <returns></returns>
@@ -68,7 +68,7 @@ namespace Revit.Elements
         {
             if (!ParameterUtils.IsBuiltInGroup(InternalForgeTypeId))
             {
-                throw new Exception("This id string is not valid for a " + nameof(SpecType));
+                throw new InvalidOperationException(string.Format(Properties.Resources.InvalidForgeTypeId, nameof(GroupType)));
             }
         }
     }
