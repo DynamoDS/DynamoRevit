@@ -74,17 +74,27 @@ namespace Revit.Elements
         /// <summary>
         /// Get the parameter's SpecType
         /// </summary>
-        public ForgeType SpecType
+        public SpecType SpecType
         {
-            get { return ForgeType.FromExisting(InternalParameter.Definition.GetDataType()); }
+            get
+            {
+                var forgeTypeId = InternalParameter.Definition.GetDataType();
+
+                return string.IsNullOrEmpty(forgeTypeId.TypeId)? null : SpecType.FromExisting(forgeTypeId);
+            }
         }
 
         /// <summary>
         /// Get the Parameter's Group Type
         /// </summary>
-        public ForgeType GroupType
+        public GroupType GroupType
         {
-            get { return ForgeType.FromExisting(InternalParameter.Definition.GetGroupTypeId()); }
+            get
+            {
+                var forgeTypeId = InternalParameter.Definition.GetGroupTypeId();
+
+                return string.IsNullOrEmpty(forgeTypeId.TypeId) ? null : GroupType.FromExisting(forgeTypeId);
+            }
         }
 
         /// <summary>
@@ -183,7 +193,7 @@ namespace Revit.Elements
         /// <param name="specType">The type of new parameter.</param>
         /// <param name="groupType">The type of the group to which the parameter belongs.</param>
         /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
-        public static void CreateSharedParameterForAllCategories(string parameterName, string groupName, ForgeType specType, ForgeType groupType, bool instance)
+        public static void CreateSharedParameterForAllCategories(string parameterName, string groupName, SpecType specType, GroupType groupType, bool instance)
         {
             CreateSharedParameter(parameterName, groupName, specType, groupType, instance, null);
         }
@@ -197,7 +207,7 @@ namespace Revit.Elements
         /// <param name="groupType">The type of the group to which the parameter belongs.</param>
         /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
         /// <param name="categoryList">A list of categories this parameter applies to. If no category is supplied, all possible categories are selected</param>
-        public static void CreateSharedParameter(string parameterName, string groupName, ForgeType specType, ForgeType groupType, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
+        public static void CreateSharedParameter(string parameterName, string groupName, SpecType specType, GroupType groupType, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
         {
             // get document and open transaction
             Document document = Application.Document.Current.InternalDocument;
@@ -264,7 +274,7 @@ namespace Revit.Elements
         /// <param name="specType">The type of new parameter.</param>
         /// <param name="groupType">The type of the group to which the parameter belongs.</param>
         /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
-        public static void CreateProjectParameterForAllCategories(string parameterName, string groupName, ForgeType specType, ForgeType groupType, bool instance)
+        public static void CreateProjectParameterForAllCategories(string parameterName, string groupName, SpecType specType, GroupType groupType, bool instance)
         {
             CreateProjectParameter(parameterName, groupName, specType, groupType, instance, null);
         }
@@ -278,7 +288,7 @@ namespace Revit.Elements
         /// <param name="groupType">The type of the group to which the parameter belongs.</param>
         /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
         /// <param name="categoryList">A list of categories this parameter applies to. If no category is supplied, all possible categories are selected</param>
-        public static void CreateProjectParameter(string parameterName, string groupName, ForgeType specType, ForgeType groupType, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
+        public static void CreateProjectParameter(string parameterName, string groupName, SpecType specType, GroupType groupType, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
         {
             // get document and open transaction
             Document document = Application.Document.Current.InternalDocument;

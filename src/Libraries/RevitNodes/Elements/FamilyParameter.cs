@@ -39,12 +39,28 @@ namespace Revit.Elements
         /// <summary>
         /// Get the parameter's spec type
         /// </summary>
-        public ForgeType SpecType => ForgeType.FromExisting(InternalFamilyParameter.Definition.GetDataType());
+        public SpecType SpecType
+        {
+            get
+            {
+                var forgeTypeId = InternalFamilyParameter.Definition.GetDataType();
+
+                return string.IsNullOrEmpty(forgeTypeId.TypeId)? null : SpecType.FromExisting(forgeTypeId);
+            }
+        }
 
         /// <summary>
         /// Get the parameter's group type
         /// </summary>
-        public ForgeType GroupType => ForgeType.FromExisting(InternalFamilyParameter.Definition.GetGroupTypeId());
+        public GroupType GroupType
+        {
+            get
+            {
+                var forgeTypeId = InternalFamilyParameter.Definition.GetGroupTypeId();
+
+                return string.IsNullOrEmpty(forgeTypeId.TypeId) ? null : GroupType.FromExisting(forgeTypeId);
+            }
+        }
 
         /// <summary>
         /// Get the Parameter's Unit Type

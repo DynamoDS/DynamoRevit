@@ -120,32 +120,42 @@ namespace DSRevitNodesUI
     [NodeCategory("Revit.Elements.Parameter")]
     [NodeDescription("SpecTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
-    [OutPortTypes("Revit.Elements.ForgeType")]
-    public class SpecTypes : CustomGenericNestedClassDropDown
+    [OutPortTypes("Revit.Elements.SpecType")]
+    public class SpecTypes : CustomForgeTypeIdDropDown
     {
-        private const string outputName = "ForgeType";
+        private const string outputName = "SpecType";
 
         public SpecTypes() : base(outputName, typeof(Autodesk.Revit.DB.SpecTypeId)) { }
 
         [JsonConstructor]
         public SpecTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(outputName, typeof(Autodesk.Revit.DB.SpecTypeId), inPorts, outPorts) { }
+
+        public override AssociativeNode GetAstFunction(List<AssociativeNode> args)
+        {
+            return AstFactory.BuildFunctionCall<String, Revit.Elements.SpecType>(Revit.Elements.SpecType.ByTypeId, args);
+        }
     }
 
     [NodeName("Group Types")]
     [NodeCategory("Revit.Elements.Parameter")]
     [NodeDescription("GroupTypeSelectorDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
-    [OutPortTypes("Revit.Elements.ForgeType")]
-    public class GroupTypes : CustomGenericNestedClassDropDown
+    [OutPortTypes("Revit.Elements.GroupType")]
+    public class GroupTypes : CustomForgeTypeIdDropDown
     {
-        private const string outputName = "ForgeType";
+        private const string outputName = "GroupType";
 
         public GroupTypes() : base(outputName, typeof(Autodesk.Revit.DB.GroupTypeId)) { }
 
         [JsonConstructor]
         public GroupTypes(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
             : base(outputName, typeof(Autodesk.Revit.DB.GroupTypeId), inPorts, outPorts) { }
+
+        public override AssociativeNode GetAstFunction(List<AssociativeNode> args)
+        {
+            return AstFactory.BuildFunctionCall<String, Revit.Elements.GroupType>(Revit.Elements.GroupType.ByTypeId, args);
+        }
     }
 
     [NodeName("Select Revision Visibility")]

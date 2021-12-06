@@ -18,12 +18,12 @@ namespace Revit.Elements
         #endregion
 
         #region Private Construction
-        
+
         /// <summary>
         /// Init ForgeType with typeId of a ForgeTypeId
         /// </summary>
         /// <param name="typeId"></param>
-        private ForgeType(string typeId)
+        private protected ForgeType(string typeId)
         {
             ForgeTypeId forgeTypeId = new ForgeTypeId(typeId);
             InternalSetForgeType(forgeTypeId);
@@ -33,7 +33,7 @@ namespace Revit.Elements
         /// Init ForgeType with an existing ForgeTypeId
         /// </summary>
         /// <param name="forgeTypeId"></param>
-        private ForgeType(ForgeTypeId forgeTypeId)
+        private protected ForgeType(ForgeTypeId forgeTypeId)
         {
             InternalSetForgeType(forgeTypeId);
         }
@@ -79,38 +79,10 @@ namespace Revit.Elements
 
         #endregion
 
-        #region Public static constructors
-
-        /// <summary>
-        /// Get a ForgeTypeId by schema identifier.
-        /// </summary>
-        /// <param name="typeId">a schema identifier</param>
-        /// <returns></returns>
-        public static ForgeType ByTypeId(string typeId)
-        {
-            return new ForgeType(typeId);
-        }
-
-        #endregion
-
         [IsVisibleInDynamoLibrary(false)]
         public override string ToString()
         {
             return InternalForgeTypeId.TypeId;
         }
-
-        #region Internal static constructor
-
-        /// <summary>
-        /// Wrap an exsiting ForgeTypeId to ForgeType
-        /// </summary>
-        /// <param name="forgeTypeId"></param>
-        /// <returns></returns>
-        internal static ForgeType FromExisting(ForgeTypeId forgeTypeId)
-        {
-            return new ForgeType(forgeTypeId);
-        }
-
-        #endregion
     }
 }

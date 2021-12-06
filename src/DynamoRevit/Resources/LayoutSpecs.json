@@ -185,6 +185,9 @@
                   "path": "RevitNodes.Revit.Elements.Group"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.GroupType"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.ImportInstance"
                 },
                 {
@@ -228,6 +231,9 @@
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.Space"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.SpecType"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.StructuralFraming"

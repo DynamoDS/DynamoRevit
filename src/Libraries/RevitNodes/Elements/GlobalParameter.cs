@@ -281,22 +281,26 @@ namespace Revit.Elements
         /// <summary>
         /// Get SpecType
         /// </summary>
-        public ForgeType SpecType
+        public SpecType SpecType
         {
             get
             {
-                return ForgeType.FromExisting(this.InternalGlobalParameter.GetDefinition().GetDataType());
+                var forgeTypeId = this.InternalGlobalParameter.GetDefinition().GetDataType();
+
+                return string.IsNullOrEmpty(forgeTypeId.TypeId) ? null : SpecType.FromExisting(forgeTypeId);
             }
         }
 
         /// <summary>
         /// Get Parameter Group Type
         /// </summary>
-        public ForgeType GroupType
+        public GroupType GroupType
         {
             get
             {
-                return ForgeType.FromExisting(this.InternalGlobalParameter.GetDefinition().GetGroupTypeId());
+                var forgeTypeId = this.InternalGlobalParameter.GetDefinition().GetGroupTypeId();
+
+                return string.IsNullOrEmpty(forgeTypeId.TypeId) ? null : GroupType.FromExisting(forgeTypeId);
             }
         }
 
@@ -310,7 +314,7 @@ namespace Revit.Elements
         /// <param name="name">Name fo the parameter</param>
         /// <param name="specType">The type of new global parameter.</param>
         /// <returns></returns>
-        public static GlobalParameter ByName(string name, ForgeType specType)
+        public static GlobalParameter ByName(string name, SpecType specType)
         {
             if (!Autodesk.Revit.DB.GlobalParametersManager.AreGlobalParametersAllowed(Document))
             {
