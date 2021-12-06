@@ -11,6 +11,8 @@
   "Nodes": [
     {
       "ConcreteType": "Dynamo.ComboNodes.DSModelElementByCategorySelection, DSRevitNodesUI",
+      "SelectedIndex": 686,
+      "SelectedString": "OST_Walls",
       "NodeType": "ExtensionNode",
       "InstanceId": [
         "ef57b02a-5e81-49e7-93bb-ae5f002d921c-00030826"
