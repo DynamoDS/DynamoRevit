@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,14 +10,13 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
-using DSCPython;
-using DSIronPython;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Nodes.ZeroTouch;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Interfaces;
 using Dynamo.Logging;
 using Dynamo.Models;
+using Dynamo.PythonServices;
 using Dynamo.Scheduler;
 using Dynamo.Updates;
 using Dynamo.Utilities;
@@ -376,44 +377,83 @@ namespace Dynamo.Applications.Models
             InitializeMaterials(); // Initialize materials for preview.
         }
 
+        /// <summary>
+        /// Setup the python engine so that it can manage Revit data
+        /// </summary>
+        /// <param name="engine"></param>
+        private void SetupPythonEngine(PythonEngine engine)
+        {
+            if (engine != null)
+            {
+                (engine.OutputDataMarshaler as DataMarshaler).RegisterMarshaler((Element element) => element.ToDSType(true));
+                engine.EvaluationStarted += OnPythonEvalStart;
+                engine.EvaluationFinished += OnPythonEvalFinished;
+            }
+        }
+
+        /// <summary>
+        /// Cleanup all subscribed events and registered marshalers
+        /// </summary>
+        /// <param name="engine"></param>
+        private void CleanUpPythonEngine(PythonEngine engine)
+        {
+            if (engine != null)
+            {
+                (engine.OutputDataMarshaler as DataMarshaler).UnregisterMarshalerOfType<Element>();
+                engine.EvaluationStarted -= OnPythonEvalStart;
+                engine.EvaluationFinished -= OnPythonEvalFinished;
+            }
+        }
+
+        /// <summary>
+        /// Sets up new python engines registered in the available PythonEngine collection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPythonEngineCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (var item in e.NewItems)
+                {
+                    SetupPythonEngine(item as PythonEngine);
+                }
+            }
+        }
+
+        // Python evaluation start event handler
+        private DataMarshaler UnwrapElementMarshaler;
+        private void OnPythonEvalStart(string code, IList bindingValues, PythonServices.EventHandlers.ScopeSetAction scopeSet)
+        {
+            if (UnwrapElementMarshaler == null)
+            {
+                UnwrapElementMarshaler = new DataMarshaler();
+                UnwrapElementMarshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
+                UnwrapElementMarshaler.RegisterMarshaler((Category element) => element.InternalCategory);
+            }
+            // Turn off element binding during python script execution
+            ElementBinder.IsEnabled = false;
+            // register UnwrapElement method
+            scopeSet("UnwrapElement", UnwrapElementMarshaler);
+        }
+
+        // Python evaluation finished event handler
+        private void OnPythonEvalFinished(EvaluationState state, string code, IList bindingValues, PythonServices.EventHandlers.ScopeGetAction scopeGet)
+        {
+            // Turn on element binding after python script execution
+            ElementBinder.IsEnabled = true;
+        }
+
         private bool setupPython;
 
         private void SetupPython()
         {
             if (setupPython) return;
 
-            IronPythonEvaluator.OutputMarshaler.RegisterMarshaler(
-                (Element element) => element.ToDSType(true));
-
-            // Turn off element binding during iron python script execution
-            IronPythonEvaluator.EvaluationBegin +=
-                (a, b, c, d, e) => ElementBinder.IsEnabled = false;
-            IronPythonEvaluator.EvaluationEnd += (a, b, c, d, e) => ElementBinder.IsEnabled = true;
-
-            var marshaler = new DataMarshaler();
-            marshaler.RegisterMarshaler(
-                (Revit.Elements.Element element) => element.InternalElement);
-            marshaler.RegisterMarshaler((Category element) => element.InternalCategory);
-            Func<object, object> unwrap = marshaler.Marshal;
-            // register UnwrapElement method in ironpython
-            IronPythonEvaluator.EvaluationBegin += (a, b, scope, d, e) =>
-            {
-                scope.SetVariable("UnwrapElement", unwrap);
-            };
-
-            CPythonEvaluator.OutputMarshaler.RegisterMarshaler(
-                (Element element) => element.ToDSType(true));
-
-            // Turn off element binding during cpython script execution
-            CPythonEvaluator.EvaluationBegin +=
-                (a, b, c, d) => ElementBinder.IsEnabled = false;
-            CPythonEvaluator.EvaluationEnd += (a, b, c, d) => ElementBinder.IsEnabled = true;
-
-            // register UnwrapElement method in cpython
-            CPythonEvaluator.EvaluationBegin += (a, scope, c, d) =>
-            {
-                scope.Set("UnwrapElement", unwrap);
-            };
+            // Setup engines for all existing python engines
+            PythonEngineManager.Instance.AvailableEngines.ToList().ForEach(engine => SetupPythonEngine(engine));
+            // Setup engines for any python engines that might be registered later on
+            PythonEngineManager.Instance.AvailableEngines.CollectionChanged += OnPythonEngineCollectionChanged;
 
             setupPython = true;
         }
@@ -612,6 +652,8 @@ namespace Dynamo.Applications.Models
             UnsubscribeDocumentManagerEvents();
             UnsubscribeRevitServicesUpdaterEvents();
             UnsubscribeTransactionManagerEvents();
+            PythonEngineManager.Instance.AvailableEngines.ToList().ForEach(engine => CleanUpPythonEngine(engine));
+            PythonEngineManager.Instance.AvailableEngines.CollectionChanged -= OnPythonEngineCollectionChanged;
 
             ElementIDLifecycleManager<int>.DisposeInstance();
         }

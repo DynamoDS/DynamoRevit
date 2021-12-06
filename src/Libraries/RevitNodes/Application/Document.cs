@@ -9,6 +9,7 @@ using RevitServices.Transactions;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using DynamoUnits;
 using View = Revit.Elements.Views.View;
 
 namespace Revit.Application
@@ -309,6 +310,17 @@ namespace Revit.Application
             familyDocument.SaveAs(filePath);
             familyDocument.Close(false);
             return filePath;
+        }
+
+        /// <summary>
+        /// Provide the Unit type from the associated with the SpecType in the Revit Document.
+        /// </summary>
+        /// <param name="specType"></param>
+        /// <returns></returns>
+        public DynamoUnits.Unit UnitTypeBySpecType(ForgeType specType)
+        {
+            var units = InternalDocument.GetUnits();
+            return Unit.ByTypeID(units.GetFormatOptions(specType.InternalForgeTypeId).GetUnitTypeId().TypeId);
         }
     }
 
