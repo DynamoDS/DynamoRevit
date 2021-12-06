@@ -92,7 +92,7 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Elements.GlobalParameter.ByName@string,Revit.Elements.ForgeType",
+      "FunctionSignature": "Revit.Elements.GlobalParameter.ByName@string,Revit.Elements.SpecType",
       "Id": "3a826db236c24f0ab94c25d2674b73fe",
       "Inputs": [
         {
@@ -106,8 +106,8 @@
         },
         {
           "Id": "40a3bcb24bd34746974b0f1f0f69a369",
-          "Name": "forgeType",
-          "Description": "ForgeType",
+          "Name": "specType",
+          "Description": "The type of new global parameter.\n\nSpecType",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -126,20 +126,20 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Create a new Global Parameter by Name and Type\n\nGlobalParameter.ByName (name: string, forgeType: ForgeType): GlobalParameter"
+      "Description": "Create a new Global Parameter by Name and Type\n\nGlobalParameter.ByName (name: string, specType: SpecType): GlobalParameter"
     },
     {
       "ConcreteType": "DSRevitNodesUI.SpecTypes, DSRevitNodesUI",
-      "SelectedIndex": 143,
-      "SelectedString": "Text",
+      "SelectedIndex": 138,
+      "SelectedString": "autodesk.spec:spec.string",
       "NodeType": "ExtensionNode",
       "Id": "74898c78c73a414a8411749214197af3",
       "Inputs": [],
       "Outputs": [
         {
           "Id": "59dba8442136452cbff929c86a322ffb",
-          "Name": "ForgeType",
-          "Description": "The selected ForgeType",
+          "Name": "SpecType",
+          "Description": "The selected SpecType",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -168,8 +168,8 @@
       "Outputs": [
         {
           "Id": "55163bd749b64430823bec8840ee4ec7",
-          "Name": "ForgeType",
-          "Description": "ForgeType",
+          "Name": "SpecType",
+          "Description": "SpecType",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -177,7 +177,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Get SpecType\n\nGlobalParameter.SpecType: ForgeType"
+      "Description": "Get SpecType\n\nGlobalParameter.SpecType: SpecType"
     }
   ],
   "Connectors": [

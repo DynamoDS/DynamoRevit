@@ -121,7 +121,7 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "Revit.Application.FamilyDocument.AddParameter@string,Revit.Elements.ForgeType,Revit.Elements.ForgeType,bool",
+      "FunctionSignature": "Revit.Application.FamilyDocument.AddParameter@string,Revit.Elements.GroupType,Revit.Elements.SpecType,bool",
       "Id": "e3ff897029664fd1a162b5b6ddd866a6",
       "Inputs": [
         {
@@ -144,8 +144,8 @@
         },
         {
           "Id": "bdc819d40c104c5d8e219ea41ebdfe3b",
-          "Name": "group",
-          "Description": "The name of the group to which the family parameter belongs.\n\nForgeType",
+          "Name": "groupType",
+          "Description": "The type of the group to which the family parameter belongs.\n\nGroupType",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -153,8 +153,8 @@
         },
         {
           "Id": "ac6b45cf8076477eb119d4d845bb9fd8",
-          "Name": "spec",
-          "Description": "The name of the type of new family parameter.\n\nForgeType",
+          "Name": "specType",
+          "Description": "The type of new family parameter.\n\nSpecType",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -182,20 +182,20 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "FamilyDocument.AddParameter (parameterName: string, group: ForgeType, spec: ForgeType, isInstance: bool): FamilyParameter"
+      "Description": "Add a new family parameter with a given name.\n\nFamilyDocument.AddParameter (parameterName: string, groupType: GroupType, specType: SpecType, isInstance: bool): FamilyParameter"
     },
     {
       "ConcreteType": "DSRevitNodesUI.GroupTypes, DSRevitNodesUI",
-      "SelectedIndex": 25,
-      "SelectedString": "Data",
+      "SelectedIndex": 16,
+      "SelectedString": "autodesk.parameter.group:data",
       "NodeType": "ExtensionNode",
       "Id": "f93126a37b454f4bafecd8cff3157b4e",
       "Inputs": [],
       "Outputs": [
         {
           "Id": "ef6acd0d31b14b639eaba2f8cd37b70d",
-          "Name": "ForgeType",
-          "Description": "The selected ForgeType",
+          "Name": "GroupType",
+          "Description": "The selected GroupType",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -207,16 +207,16 @@
     },
     {
       "ConcreteType": "DSRevitNodesUI.SpecTypes, DSRevitNodesUI",
-      "SelectedIndex": 143,
-      "SelectedString": "Text",
+      "SelectedIndex": 138,
+      "SelectedString": "autodesk.spec:spec.string",
       "NodeType": "ExtensionNode",
       "Id": "6c03bda4ab124399ab32071522c88ff3",
       "Inputs": [],
       "Outputs": [
         {
           "Id": "f2fc0006556f4f10bc563709db973874",
-          "Name": "ForgeType",
-          "Description": "The selected ForgeType",
+          "Name": "SpecType",
+          "Description": "The selected SpecType",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,

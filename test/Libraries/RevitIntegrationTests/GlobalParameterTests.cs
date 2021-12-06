@@ -31,7 +31,7 @@ namespace RevitSystemTests
 
             Assert.AreEqual(GetPreviewValue("97d5b4ba-76e4-40e9-b1b2-8ce98e642a40"), "MyGlobalParameter");
             Assert.AreEqual(GetPreviewValue("bb83a545-0c80-4f34-b987-da1d3d0dc2b7"), true);
-            Assert.AreEqual(GetPreviewValue("d058906178b3446d941d176123ff3ffd").GetType(), typeof(Revit.Elements.ForgeType));
+            Assert.AreEqual(GetPreviewValue("d058906178b3446d941d176123ff3ffd").GetType(), typeof(Revit.Elements.SpecType));
         }
 
 

@@ -228,8 +228,8 @@ namespace RevitNodesTests.Application
             var famDoc = new FamilyDocument(Document.Current.InternalDocument);
             var familyType = famDoc.InternalFamilyDocument.FamilyManager.CurrentType.Name;
             var paramName = "TestParam";
-            var paramGroup = ForgeType.FromExisting(Autodesk.Revit.DB.GroupTypeId.Data);
-            var paramType = ForgeType.FromExisting(Autodesk.Revit.DB.SpecTypeId.String.Text);
+            var paramGroup = GroupType.FromExisting(Autodesk.Revit.DB.GroupTypeId.Data);
+            var paramType = SpecType.FromExisting(Autodesk.Revit.DB.SpecTypeId.String.Text);
             var instance = false;
 
             // Act - Check that the new parameter dosent exist by trying to get the value of it

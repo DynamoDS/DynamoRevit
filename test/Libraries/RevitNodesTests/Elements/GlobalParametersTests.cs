@@ -15,17 +15,17 @@ namespace RevitNodesTests.Elements
         public void SetAndGetGlobalParameterByName()
         {
 
-            var gpString = Revit.Elements.GlobalParameter.ByName("MyGlobal", Revit.Elements.ForgeType.FromExisting(Autodesk.Revit.DB.SpecTypeId.String.Text));
+            var gpString = Revit.Elements.GlobalParameter.ByName("MyGlobal", Revit.Elements.SpecType.FromExisting(Autodesk.Revit.DB.SpecTypeId.String.Text));
             Assert.IsNotNull(gpString.InternalGlobalParameter);
             Revit.Elements.GlobalParameter.SetValue(gpString, "4711");
             Assert.AreEqual("4711", gpString.Value);
 
-            var gpInt = Revit.Elements.GlobalParameter.ByName("MyGlobalInt", Revit.Elements.ForgeType.FromExisting(Autodesk.Revit.DB.SpecTypeId.Int.Integer));
+            var gpInt = Revit.Elements.GlobalParameter.ByName("MyGlobalInt", Revit.Elements.SpecType.FromExisting(Autodesk.Revit.DB.SpecTypeId.Int.Integer));
             Assert.IsNotNull(gpInt.InternalGlobalParameter);
             Revit.Elements.GlobalParameter.SetValue(gpInt, 4711);
             Assert.AreEqual(4711, gpInt.Value);
 
-            var gpLen = Revit.Elements.GlobalParameter.ByName("MyGlobalDouble", Revit.Elements.ForgeType.FromExisting(Autodesk.Revit.DB.SpecTypeId.Length));
+            var gpLen = Revit.Elements.GlobalParameter.ByName("MyGlobalDouble", Revit.Elements.SpecType.FromExisting(Autodesk.Revit.DB.SpecTypeId.Length));
             Assert.IsNotNull(gpLen.InternalGlobalParameter);
             Revit.Elements.GlobalParameter.SetValue(gpLen, 47.11);
             double val = (double)gpLen.Value;
@@ -37,7 +37,7 @@ namespace RevitNodesTests.Elements
         public void SetAndGetGlobalParameterValue()
         {
 
-            var gp = Revit.Elements.GlobalParameter.ByName("MyGlobal", Revit.Elements.ForgeType.FromExisting(Autodesk.Revit.DB.SpecTypeId.String.Text));
+            var gp = Revit.Elements.GlobalParameter.ByName("MyGlobal", Revit.Elements.SpecType.FromExisting(Autodesk.Revit.DB.SpecTypeId.String.Text));
             Assert.IsNotNull(gp);
             Assert.IsTrue(typeof(Revit.Elements.GlobalParameter) == gp.GetType());
             Assert.IsTrue("MyGlobal" == gp.Name);
