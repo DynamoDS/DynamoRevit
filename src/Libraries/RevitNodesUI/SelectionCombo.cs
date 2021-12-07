@@ -43,19 +43,27 @@ namespace Dynamo.ComboNodes
 
         public DSRevitNodesUI.Categories DropDownNodeModel { get; set; }
 
-        private int selectedIndex;
-
         [JsonProperty(PropertyName = "SelectedIndex")]
         public int SelectedIndex
         {
-            get { return selectedIndex; }
+            get { return DropDownNodeModel.SelectedIndex; }
             set
             {
-                selectedIndex = value;
                 DropDownNodeModel.SelectedIndex = value;
-                if (value >= 0)
+                if (DropDownNodeModel.SelectedIndex >= 0)
+                {
                     SelectionFilter.Category = (BuiltInCategory)DropDownNodeModel.Items[SelectedIndex].Item;
-                
+                }
+            }
+        }
+
+        [JsonProperty(PropertyName = "SelectedString")]
+        public string SelectedString
+        {
+            get { return DropDownNodeModel.SelectedString; }
+            set
+            {
+                DropDownNodeModel.SelectedString = value;
             }
         }
 
@@ -104,19 +112,27 @@ namespace Dynamo.ComboNodes
 
         public DSRevitNodesUI.Categories DropDownNodeModel { get; set; }
 
-        private int selectedIndex;
-
         [JsonProperty(PropertyName = "SelectedIndex")]
         public int SelectedIndex
         {
-            get { return selectedIndex; }
+            get { return DropDownNodeModel.SelectedIndex; }
             set
             {
-                selectedIndex = value;
                 DropDownNodeModel.SelectedIndex = value;
-                if (value >= 0)
+                if (DropDownNodeModel.SelectedIndex >= 0)
+                {
                     SelectionFilter.Category = (BuiltInCategory)DropDownNodeModel.Items[SelectedIndex].Item;
+                }
+            }
+        }
 
+        [JsonProperty(PropertyName = "SelectedString")]
+        public string SelectedString
+        {
+            get { return DropDownNodeModel.SelectedString; }
+            set
+            {
+                DropDownNodeModel.SelectedString = value;
             }
         }
 
