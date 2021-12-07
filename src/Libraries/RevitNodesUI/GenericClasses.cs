@@ -369,7 +369,7 @@ namespace DSRevitNodesUI
             
             var args = new List<AssociativeNode>
             {
-                AstFactory.BuildStringNode((string) Items[SelectedIndex].Item)
+                AstFactory.BuildStringNode(ShortForgeIdMap[(string)Items[SelectedIndex].Item])
             };
 
             var functionCall = GetAstFunction(args);

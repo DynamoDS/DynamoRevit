@@ -20,7 +20,7 @@ namespace RevitNodesTests.Elements
         {
             List<Category> categories = new List<Category>() { Category.ByName("Walls") };
 
-            Parameter.CreateProjectParameter("MyParameter", "MyGroup", ForgeType.FromExisting(Autodesk.Revit.DB.SpecTypeId.String.Text), ForgeType.FromExisting(Autodesk.Revit.DB.GroupTypeId.Data), true, categories);
+            Parameter.CreateProjectParameter("MyParameter", "MyGroup", SpecType.FromExisting(Autodesk.Revit.DB.SpecTypeId.String.Text), GroupType.FromExisting(Autodesk.Revit.DB.GroupTypeId.Data), true, categories);
 
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument).OfClass(typeof(Autodesk.Revit.DB.Wall));
             var wall = fec.FirstElement(); 
@@ -46,7 +46,7 @@ namespace RevitNodesTests.Elements
 
             List<Category> categories = new List<Category>() { Category.ByName("Walls") };
 
-            Parameter.CreateSharedParameter("MySharedParameter", "MySharedGroup", ForgeType.FromExisting(Autodesk.Revit.DB.SpecTypeId.String.Text), ForgeType.FromExisting(Autodesk.Revit.DB.GroupTypeId.Data), true, categories);
+            Parameter.CreateSharedParameter("MySharedParameter", "MySharedGroup", SpecType.FromExisting(Autodesk.Revit.DB.SpecTypeId.String.Text), GroupType.FromExisting(Autodesk.Revit.DB.GroupTypeId.Data), true, categories);
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument).OfClass(typeof(Autodesk.Revit.DB.Wall));
             var wall = fec.FirstElement();
             Assert.IsNotNull(wall.LookupParameter("MySharedParameter"));

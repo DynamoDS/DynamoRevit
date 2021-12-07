@@ -19,7 +19,7 @@ namespace Revit.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -196,7 +196,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This node may be removed in future version. Use CreateProjectParameterForAllCategories(string, string, ForgeType, ForgeType, bool) instead..
+        ///   Looks up a localized string similar to This node may be removed in future version. Use CreateProjectParameterForAllCategories(string, string, SpecType, GroupType, bool) instead..
         /// </summary>
         internal static string CreateProjectParameterForAllCategoriesObsolete {
             get {
@@ -205,7 +205,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This node may be removed in future version. Use CreateProjectParameter(string, string, ForgeType, ForgeType, bool, IEnumerable&lt;Category&gt;) instead..
+        ///   Looks up a localized string similar to This node may be removed in future version. Use CreateProjectParameter(string, string, SpecType, GroupType, bool, IEnumerable&lt;Category&gt;) instead..
         /// </summary>
         internal static string CreateProjectParameterObsolete {
             get {
@@ -214,7 +214,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This node may be removed in future version. Use CreateSharedParameterForAllCategories(string, string, ForgeType, ForgeType, bool) instead..
+        ///   Looks up a localized string similar to This node may be removed in future version. Use CreateSharedParameterForAllCategories(string, string, SpecType, GroupType, bool) instead..
         /// </summary>
         internal static string CreateSharedParameterForAllCategoriesObsolete {
             get {
@@ -223,7 +223,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This node may be removed in future version. Use CreateSharedParameter(string, string, ForgeType, ForgeType, bool, IEnumerable&lt;Category&gt;) instead..
+        ///   Looks up a localized string similar to This node may be removed in future version. Use CreateSharedParameter(string, string, SpecType, GroupType, bool, IEnumerable&lt;Category&gt;) instead..
         /// </summary>
         internal static string CreateSharedParameterObsolete {
             get {
@@ -547,7 +547,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This node may be removed in future version. Use FamilyDocument.AddParameter(string, ForgeType, ForgeType, bool) instead..
+        ///   Looks up a localized string similar to This node may be removed in future version. Use FamilyDocument.AddParameter(string, GroupType, SpecType, bool) instead..
         /// </summary>
         internal static string FamilyDocumentAddParameterObsolete {
             get {
@@ -664,7 +664,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This node may be removed in future version. Use GlobalParameter.ByName(string, ForgeType).
+        ///   Looks up a localized string similar to This node may be removed in future version. Use GlobalParameter.ByName(string, SpecType).
         /// </summary>
         internal static string GlobalParameterByNameObsolete {
             get {
@@ -786,6 +786,15 @@ namespace Revit.Properties {
         internal static string InvalidFilterType {
             get {
                 return ResourceManager.GetString("InvalidFilterType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The id string is not valid for object of type {0}..
+        /// </summary>
+        internal static string InvalidForgeTypeId {
+            get {
+                return ResourceManager.GetString("InvalidForgeTypeId", resourceCulture);
             }
         }
         
