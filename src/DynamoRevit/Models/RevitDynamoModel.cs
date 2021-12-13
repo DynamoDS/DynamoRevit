@@ -431,10 +431,11 @@ namespace Dynamo.Applications.Models
                 UnwrapElementMarshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
                 UnwrapElementMarshaler.RegisterMarshaler((Category element) => element.InternalCategory);
             }
+            Func<object, object> unwrap = UnwrapElementMarshaler.Marshal;
             // Turn off element binding during python script execution
             ElementBinder.IsEnabled = false;
             // register UnwrapElement method
-            scopeSet("UnwrapElement", UnwrapElementMarshaler);
+            scopeSet("UnwrapElement", unwrap);
         }
 
         // Python evaluation finished event handler
