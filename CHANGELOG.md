@@ -1,4 +1,10 @@
+## 0.3.8
 * Upgrade Paramater.CreateProjectParameter due to Definition will sometimes be null.
+* Update dynamo python for 2.13.
+* Add Unit nodes to Document, Parameter, and FamilyParameter
+* ForgeType Refactor.
+* Fix bug - SelectModelElementByCategory and SelectModelElementsByCategory are set to the wrong Category if opened in a different language.
+* Upgrade DynamoCore lib to 2.13.0.3485.
 
 ## 0.3.7
 * Add Transaction controls - "Sync with Revit" Toggle button.

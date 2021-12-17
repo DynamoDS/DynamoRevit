@@ -35,8 +35,8 @@
       "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
       "NodeType": "PythonScriptNode",
       "Code": "import clr\r\n\r\nclr.AddReference('RevitAPI')\r\nfrom Autodesk.Revit.DB import *\r\n\r\nclr.AddReference(\"RevitServices\")\r\nimport RevitServices\r\nfrom RevitServices.Persistence import DocumentManager\r\n\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\nitems = UnwrapElement(IN[0])\r\nincopenings = IN[1]\r\nincshadows = IN[2]\r\nincwalls = IN[3]\r\nincshared = IN[4]\r\nelementlist = list()\r\n\r\nfor item in items:\r\n\titemlist = list()\r\n\tfor insert in item.FindInserts(incopenings,incshadows,incwalls,incshared):\r\n\t\titemlist.append(doc.GetElement(insert))\r\n\telementlist.append(itemlist)\r\nOUT = elementlist",
-      "VariableInputPorts": true,
       "Engine": "CPython3",
+      "VariableInputPorts": true,
       "Id": "4caa3a1650d94416ae45b5ad06d74c94",
       "Inputs": [
         {
@@ -97,7 +97,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Runs an embedded CPython3 script."
+      "Description": "Runs an embedded Python script."
     },
     {
       "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
@@ -145,8 +145,8 @@
       "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
       "NodeType": "PythonScriptNode",
       "Code": "import clr\r\nclr.AddReference('RevitAPI')\r\nfrom Autodesk.Revit.DB import *\r\n\r\nfaminsts = UnwrapElement(IN[0])\r\nelementlist = list()\r\nfor item in faminsts:\r\n\ttry:\r\n\t\telementlist.append(item.Host)\r\n\texcept:\r\n\t\telementlist.append(list())\r\nOUT = elementlist",
-      "VariableInputPorts": true,
       "Engine": "CPython3",
+      "VariableInputPorts": true,
       "Id": "fe96aff27e024e72b11ccc20582a48ea",
       "Inputs": [
         {
@@ -171,7 +171,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Runs an embedded CPython3 script."
+      "Description": "Runs an embedded Python script."
     },
     {
       "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
@@ -200,7 +200,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Visualize the output of node."
+      "Description": "Visualize the node's output"
     },
     {
       "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
@@ -229,7 +229,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Visualize the output of node."
+      "Description": "Visualize the node's output"
     },
     {
       "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
@@ -294,9 +294,9 @@
     {
       "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
       "NodeType": "PythonScriptNode",
-      "Code": "import clr\r\n\r\nitem1=dir(IN[0])\r\nitem2=dir(UnwrapElement(IN[0]))\r\n\r\nstr1 = \"AreJoined,BoundingBox,ByCurveAndHeight,ByCurveAndLevels,ByFace,Curves,Delete,Dispose,ElementCurveReferences,ElementFaceReferences,ElementType,Equals,Faces,Geometry,GetCategory,GetChildElements,GetHashCode,GetHostedElements,GetIntersectingElementsOfCategory,GetJoinedElements,GetLocation,GetMaterials,GetParameterValueByName,GetParentElement,GetType,Id,InternalElement,InternalElementId,InternalUniqueId,IsAlive,IsFrozen,IsPinned,JoinGeometry,MemberwiseClone,MoveByVector,Name,OverrideColorInView,OverrideInView,Parameters,ReferenceEquals,SafeInit,SetGeometryJoinOrder,SetLocation,SetParameterByName,SetPinnedStatus,Solids,Tessellate,ToString,UniqueId,UnjoinAllGeometry,UnjoinGeometry,__class__,__delattr__,__doc__,__enter__,__eq__,__exit__,__format__,__getattribute__,__hash__,__init__,__ne__,__new__,__reduce__,__reduce_ex__,__repr__,__setattr__,__sizeof__,__str__,__subclasshook__\"\r\nstr2 = \"ArePhasesModifiable,AssemblyInstanceId,BoundingBox,CanBeHidden,CanBeLocked,CanDeleteSubelement,CanHaveAnalyticalModel,CanHaveTypeAssigned,Category,ChangeTypeId,Create,CreatedPhaseId,CrossSection,CurtainGrid,DeleteEntity,DeleteSubelement,DeleteSubelements,DemolishedPhaseId,DesignOption,Dispose,Document,Equals,FindInserts,Flip,Flipped,Geometry,GetAnalyticalModel,GetAnalyticalModelId,GetChangeTypeAny,GetChangeTypeElementAddition,GetChangeTypeElementDeletion,GetChangeTypeGeometry,GetChangeTypeParameter,GetDependentElements,GetEntity,GetEntitySchemaGuids,GetExternalFileReference,GetExternalResourceReference,GetExternalResourceReferences,GetGeneratingElementIds,GetGeometryObjectFromReference,GetHashCode,GetMaterialArea,GetMaterialIds,GetMaterialVolume,GetMonitoredLinkElementIds,GetMonitoredLocalElementIds,GetOrderedParameters,GetParameterFormatOptions,GetParameters,GetPhaseStatus,GetStackedWallMemberIds,GetSubelements,GetType,GetTypeId,GetValidTypes,GroupId,HasPhases,Id,IsCreatedPhaseOrderValid,IsDemolishedPhaseOrderValid,IsExternalFileReference,IsHidden,IsMonitoringLinkElement,IsMonitoringLocalElement,IsPhaseCreatedValid,IsPhaseDemolishedValid,IsStackedWall,IsStackedWallMember,IsTransient,IsValidObject,IsValidType,IsWallCrossSectionValid,LevelId,Location,LookupParameter,MemberwiseClone,Name,Orientation,OwnerViewId,Parameter,Parameters,ParametersMap,Pinned,ReferenceEquals,RefersToExternalResourceReference,RefersToExternalResourceReferences,ReleaseUnmanagedResources,SetEntity,StackedWallOwnerId,StructuralUsage,ToString,UniqueId,VersionGuid,ViewSpecific,WallType,Width,WorksetId,__class__,__delattr__,__doc__,__enter__,__exit__,__format__,__getattribute__,__hash__,__init__,__new__,__reduce__,__reduce_ex__,__repr__,__setattr__,__sizeof__,__str__,__subclasshook__,getBoundingBox,setElementType\"\r\n\r\nlist1 = str1.Split(\",\")\r\nlist2 = str2.Split(\",\")\r\n\r\nisContained = True\r\n\r\nfor str in list1:\r\n\tif str not in item1:\r\n\t\tisContained = False\r\n\t\tbreak\r\nif isContained:\r\n\tfor str in list2:\r\n\t\tif str not in item2:\r\n\t\t\tisContained = False\r\n\t\t\tbreak\r\n\r\nOUT = isContained",
-      "VariableInputPorts": true,
+      "Code": "import clr\r\n\r\nitem1=dir(IN[0])\r\nitem2=dir(UnwrapElement(IN[0]))\r\n\r\nstr1 = \"AreJoined,BoundingBox,ByCurveAndHeight,ByCurveAndLevels,ByFace,Curves,Delete,Dispose,ElementCurveReferences,ElementFaceReferences,ElementType,Equals,Faces,Geometry,GetCategory,GetChildElements,GetHashCode,GetHostedElements,GetIntersectingElementsOfCategory,GetJoinedElements,GetLocation,GetMaterials,GetParameterValueByName,GetParentElement,GetType,Id,InternalElement,InternalElementId,InternalUniqueId,IsAlive,IsFrozen,IsPinned,JoinGeometry,MemberwiseClone,MoveByVector,Name,OverrideColorInView,OverrideInView,Parameters,ReferenceEquals,SafeInit,SetGeometryJoinOrder,SetLocation,SetParameterByName,SetPinnedStatus,Solids,Tessellate,ToString,UniqueId,UnjoinAllGeometry,UnjoinGeometry,__class__,__delattr__,__doc__,__enter__,__eq__,__exit__,__format__,__getattribute__,__hash__,__init__,__ne__,__new__,__reduce__,__reduce_ex__,__repr__,__setattr__,__sizeof__,__str__,__subclasshook__\"\r\nstr2 = \"ArePhasesModifiable,AssemblyInstanceId,CanBeHidden,CanBeLocked,CanDeleteSubelement,CanHaveTypeAssigned,Category,ChangeTypeId,Create,CreatedPhaseId,CrossSection,CurtainGrid,DeleteEntity,DeleteSubelement,DeleteSubelements,DemolishedPhaseId,DesignOption,Dispose,Document,Equals,FindInserts,Flip,Flipped,GetChangeTypeAny,GetChangeTypeElementAddition,GetChangeTypeElementDeletion,GetChangeTypeGeometry,GetChangeTypeParameter,GetDependentElements,GetEntity,GetEntitySchemaGuids,GetExternalFileReference,GetExternalResourceReference,GetExternalResourceReferences,GetGeneratingElementIds,GetGeometryObjectFromReference,GetHashCode,GetMaterialArea,GetMaterialIds,GetMaterialVolume,GetMonitoredLinkElementIds,GetMonitoredLocalElementIds,GetOrderedParameters,GetParameterFormatOptions,GetParameters,GetPhaseStatus,GetStackedWallMemberIds,GetSubelements,GetType,GetTypeId,GetValidTypes,GroupId,HasPhases,Id,IsCreatedPhaseOrderValid,IsDemolishedPhaseOrderValid,IsExternalFileReference,IsHidden,IsMonitoringLinkElement,IsMonitoringLocalElement,IsPhaseCreatedValid,IsPhaseDemolishedValid,IsStackedWall,IsStackedWallMember,IsTransient,IsValidObject,IsValidType,IsWallCrossSectionValid,LevelId,Location,LookupParameter,MemberwiseClone,Name,Orientation,OwnerViewId,Parameters,ParametersMap,Pinned,ReferenceEquals,RefersToExternalResourceReference,RefersToExternalResourceReferences,ReleaseUnmanagedResources,SetEntity,StackedWallOwnerId,StructuralUsage,ToString,UniqueId,VersionGuid,ViewSpecific,WallType,Width,WorksetId,__class__,__delattr__,__doc__,__enter__,__exit__,__format__,__getattribute__,__hash__,__init__,__new__,__reduce__,__reduce_ex__,__repr__,__setattr__,__sizeof__,__str__,__subclasshook__,getBoundingBox,setElementType\"\r\n\r\nlist1 = str1.split(\",\")\r\nlist2 = str2.split(\",\")\r\n\r\nisContained = True\r\nfor str in list1:\r\n\tif str not in item1:\r\n\t\tisContained = False\r\n\t\tbreak\r\nif isContained:\r\n\tfor str in list2:\r\n\t\tif str not in item2:\r\n\t\t\tisContained = False\r\n\t\t\tbreak\r\n\r\nOUT = isContained",
       "Engine": "CPython3",
+      "VariableInputPorts": true,
       "Id": "5a3b301c632b4ec19fcbc2623f04c53c",
       "Inputs": [
         {
@@ -321,7 +321,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Runs an embedded CPython3 script."
+      "Description": "Runs an embedded Python script."
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -380,75 +380,103 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Visualize the output of node."
+      "Description": "Visualize the node's output"
     }
   ],
   "Connectors": [
     {
       "Start": "7eeb575e41f64b93b68ea9e3a379214b",
       "End": "e2c16099a6134b10b6b7cfab7c85d394",
-      "Id": "66eecb2c82344f14b0cf2c5dbf9cea3a"
+      "Id": "66eecb2c82344f14b0cf2c5dbf9cea3a",
+      "IsHidden": "False"
     },
     {
       "Start": "7eeb575e41f64b93b68ea9e3a379214b",
       "End": "ec31e35e577d4b06af8035d20e88496f",
-      "Id": "84a32b0e45e44891845e21f8ff0e51f5"
+      "Id": "84a32b0e45e44891845e21f8ff0e51f5",
+      "IsHidden": "False"
     },
     {
       "Start": "53f6b6c21df64e508466dbc2f53cf2ad",
       "End": "8c9b08984b534bafa726adc45be1f6f7",
-      "Id": "ff0d498e3b734a70b3f037cd08d6ba24"
+      "Id": "ff0d498e3b734a70b3f037cd08d6ba24",
+      "IsHidden": "False"
     },
     {
       "Start": "dfa24657de8444e3bf8b5f8282a701fd",
       "End": "68f90840640544ca9a616d504d45d933",
-      "Id": "716fe770a25d40cb9c39144dad190090"
+      "Id": "716fe770a25d40cb9c39144dad190090",
+      "IsHidden": "False"
     },
     {
       "Start": "a786136d548342cbaa333e8d2c6a7ff5",
       "End": "0a9cb0e9881b4cd792fafbd06c8030d9",
-      "Id": "2b214a0af8954312a400048d64dc9bc2"
+      "Id": "2b214a0af8954312a400048d64dc9bc2",
+      "IsHidden": "False"
     },
     {
       "Start": "6fdc78fd25c64c3e911046dbfafb8f79",
       "End": "62cd5370a8da48b6954b3a1b89cd51b3",
-      "Id": "73a201e348ef4430a9be20ef5778bb68"
+      "Id": "73a201e348ef4430a9be20ef5778bb68",
+      "IsHidden": "False"
     },
     {
       "Start": "c3f4a93409ef4cfaa296ea588685f85e",
       "End": "2dbf301cbafb4b63b9f15a22ffeb8361",
-      "Id": "1644b9f0bc9b454d9c5a14e7a6b96c98"
+      "Id": "1644b9f0bc9b454d9c5a14e7a6b96c98",
+      "IsHidden": "False"
     },
     {
       "Start": "bdbb9e8ddf93489ab1cccc84d7eca4ba",
       "End": "863499047420458ea14d0558c6ad8cc9",
-      "Id": "e62be2a994cb4c45af31c13e66798ff4"
+      "Id": "e62be2a994cb4c45af31c13e66798ff4",
+      "IsHidden": "False"
     },
     {
       "Start": "2148b8ed44b84946a886c31121618b20",
       "End": "c36fd8a9c96d4898b9e19396769a672a",
-      "Id": "98611207bfb54663bf26f7c2ffec0136"
+      "Id": "98611207bfb54663bf26f7c2ffec0136",
+      "IsHidden": "False"
     },
     {
       "Start": "8ebcc9076eb54ed9882335ddd4a45e00",
       "End": "d921b2f7226c4a9da4138b6b29d815a3",
-      "Id": "d99cbcc727034063bb2c2fba74584763"
+      "Id": "d99cbcc727034063bb2c2fba74584763",
+      "IsHidden": "False"
     },
     {
       "Start": "370d92715933454ca33c0d2fe6f08e14",
       "End": "83e2d04425464a318752b050d7676f12",
-      "Id": "11b9bbe9f9764d418f2af99e90a91fc4"
+      "Id": "11b9bbe9f9764d418f2af99e90a91fc4",
+      "IsHidden": "False"
     }
   ],
   "Dependencies": [],
   "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.13",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
   "Bindings": [],
   "View": {
     "Dynamo": {
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.6.1.8727",
+      "Version": "2.13.0.3437",
       "RunType": "Manual",
       "RunPeriod": "1000"
     },
@@ -464,10 +492,11 @@
       "UpY": 1.0,
       "UpZ": 0.0
     },
+    "ConnectorPins": [],
     "NodeViews": [
       {
-        "ShowGeometry": true,
         "Name": "Select Model Elements",
+        "ShowGeometry": true,
         "Id": "708e8212038f493c8e08954cdd9b1d65",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -476,8 +505,8 @@
         "Y": 434.5
       },
       {
-        "ShowGeometry": true,
         "Name": "Python Script",
+        "ShowGeometry": true,
         "Id": "4caa3a1650d94416ae45b5ad06d74c94",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -486,8 +515,8 @@
         "Y": 184.0
       },
       {
-        "ShowGeometry": true,
         "Name": "Include Openings",
+        "ShowGeometry": true,
         "Id": "0d0243956c1e4d2caa8d49b1c875f3e7",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -496,8 +525,8 @@
         "Y": 101.0
       },
       {
-        "ShowGeometry": true,
         "Name": "Select Model Elements",
+        "ShowGeometry": true,
         "Id": "a1ceb58358784b9ab7b285045eeb64b3",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -506,8 +535,8 @@
         "Y": 0.0
       },
       {
-        "ShowGeometry": true,
         "Name": "Python Script",
+        "ShowGeometry": true,
         "Id": "fe96aff27e024e72b11ccc20582a48ea",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -516,8 +545,8 @@
         "Y": 39.0
       },
       {
-        "ShowGeometry": true,
         "Name": "Watch",
+        "ShowGeometry": true,
         "Id": "62197f39933746d3b25badf965340aa4",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -526,8 +555,8 @@
         "Y": 184.0
       },
       {
-        "ShowGeometry": true,
         "Name": "Watch",
+        "ShowGeometry": true,
         "Id": "c19b28ba30a543c7af474420e37bbb85",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -536,8 +565,8 @@
         "Y": 39.0
       },
       {
-        "ShowGeometry": true,
         "Name": "Include Shadows",
+        "ShowGeometry": true,
         "Id": "a877f9bac0c84a06a37976500d8d9316",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -546,8 +575,8 @@
         "Y": 185.0
       },
       {
-        "ShowGeometry": true,
         "Name": "Include Embedded Walls",
+        "ShowGeometry": true,
         "Id": "0d893b43c64447f3bfd0d4a51f594339",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -556,8 +585,8 @@
         "Y": 268.0
       },
       {
-        "ShowGeometry": true,
         "Name": "Include Shared Embedded Inserts",
+        "ShowGeometry": true,
         "Id": "0db9887b1d264e2fa4603cb7a8c93b1a",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -566,8 +595,8 @@
         "Y": 351.0
       },
       {
-        "ShowGeometry": true,
         "Name": "Python Script",
+        "ShowGeometry": true,
         "Id": "5a3b301c632b4ec19fcbc2623f04c53c",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -576,8 +605,8 @@
         "Y": 491.51216022889849
       },
       {
-        "ShowGeometry": true,
         "Name": "List.FirstItem",
+        "ShowGeometry": true,
         "Id": "464ab590c3034d698432a05945afc718",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -586,8 +615,8 @@
         "Y": 425.0
       },
       {
-        "ShowGeometry": true,
         "Name": "Watch",
+        "ShowGeometry": true,
         "Id": "9cf8555c0ac84873a1a2cbe1532953f8",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -600,7 +629,12 @@
       {
         "Id": "aa54d7a9d5964de9ae3bc8b1e6b13d15",
         "Title": "Get Inserts",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
         "Nodes": [],
+        "HasNestedGroups": false,
         "Left": 569.868037525093,
         "Top": 121.163800719978,
         "Width": 0.0,
@@ -614,7 +648,12 @@
       {
         "Id": "78dad0bc2d7b4ff1a33761064519032c",
         "Title": "Get Host",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
         "Nodes": [],
+        "HasNestedGroups": false,
         "Left": 525.256587190793,
         "Top": -78.6806520095867,
         "Width": 0.0,
@@ -626,8 +665,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": -230.817258883249,
-    "Y": -83.0,
-    "Zoom": 0.887055837563452
+    "X": 226.341378337553,
+    "Y": -232.51138940941655,
+    "Zoom": 1.0900876946861722
   }
 }
