@@ -575,7 +575,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Gets the host of this fmaily instance (if any). Eg. returns the wall of a window or door family instance.
+        /// Gets the host of this family instance (if any). Eg. returns the wall of a window or door family instance.
         /// </summary>
         public Element GetHost
         {
