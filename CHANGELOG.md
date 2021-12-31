@@ -1,3 +1,6 @@
+## 0.3.9
+* Upgrade DynamoCore Lib to involve new version of Sample rvt file.
+
 ## 0.3.8
 * Upgrade Paramater.CreateProjectParameter due to Definition will sometimes be null.
 * Update dynamo python for 2.13.
