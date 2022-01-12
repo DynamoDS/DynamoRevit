@@ -1,5 +1,8 @@
-
+## 0.3.10
 * Create RC2.13.0_Revit2023 branch.
+
+## 0.3.9
+* Upgrade DynamoCore Lib to involve new version of Sample rvt file.
 
 ## 0.3.8
 * Upgrade Paramater.CreateProjectParameter due to Definition will sometimes be null.
