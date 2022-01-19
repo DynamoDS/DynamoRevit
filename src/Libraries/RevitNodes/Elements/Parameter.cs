@@ -2,6 +2,7 @@
 using Autodesk.Revit.DB;
 using RevitServices.Transactions;
 using Dynamo.Graph.Nodes;
+using Revit.GeometryConversion;
 
 namespace Revit.Elements
 {
@@ -102,7 +103,13 @@ namespace Revit.Elements
         /// </summary>
         public DynamoUnits.Unit Unit
         {
-            get { return DynamoUnits.Unit.ByTypeID(InternalParameter.GetUnitTypeId().TypeId); }
+            get
+            {
+                var unitTypeId = InternalParameter.GetUnitTypeId();
+                var cleanUnitTypeId = UnitConverter.ConvertRevitInternalUnitTypeIdToSupportedUnitTypeId(unitTypeId);
+
+                return DynamoUnits.Unit.ByTypeID(cleanUnitTypeId.TypeId);
+            }
         }
 
         /// <summary>

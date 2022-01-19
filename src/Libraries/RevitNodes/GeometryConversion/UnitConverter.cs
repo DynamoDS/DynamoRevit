@@ -24,6 +24,41 @@ namespace Revit.GeometryConversion
             return UnitUtils.ConvertToInternalUnits(1, unitTypeId);
         }
 
+        public static ForgeTypeId ConvertRevitInternalUnitTypeIdToSupportedUnitTypeId(ForgeTypeId forgeTypeId)
+        {
+            //Handle conversion of the Revit Handwritten units to UnitsSDK equivalents
+
+            if (forgeTypeId.Equals(UnitTypeId.FeetFractionalInches)
+                || forgeTypeId.Equals(UnitTypeId.StationingFeet))
+            {
+                return UnitTypeId.Feet;
+            }
+
+            if (forgeTypeId.Equals(UnitTypeId.StationingSurveyFeet))
+            {
+                return UnitTypeId.UsSurveyFeet;
+            }
+
+            if (forgeTypeId.Equals(UnitTypeId.FeetFractionalInches))
+            {
+                return UnitTypeId.Inches;
+            }
+
+            if (forgeTypeId.Equals(UnitTypeId.MetersCentimeters)
+                || forgeTypeId.Equals(UnitTypeId.StationingMeters))
+            {
+                return UnitTypeId.Meters;
+            }
+
+            if (forgeTypeId.Equals(UnitTypeId.DegreesMinutes)
+                || forgeTypeId.Equals(UnitTypeId.SlopeDegrees))
+            {
+                return UnitTypeId.Degrees;
+            }
+
+            return forgeTypeId;
+        }
+
         public static double HostToDynamoFactor(ForgeTypeId specTypeId)
         {
             // Here we invert the conversion factor to return
