@@ -275,7 +275,7 @@ namespace DSRevitNodesUI
                         try
                         {
                             // For SpecTypeId.Custom, it is "Unrecognized custom spec", and not be identified.
-                            // It don't need to display in DropDown List.
+                            // It doesn't need to display in DropDown List.
                             if (forgeTypeId.Equals(SpecTypeId.Custom))
                             {
                                 continue;
