@@ -24,6 +24,48 @@ namespace Revit.GeometryConversion
             return UnitUtils.ConvertToInternalUnits(1, unitTypeId);
         }
 
+        /// <summary>
+        /// Converts a Revit ForgeTypeId of type UnitTypeID to the subset of supported types that are available
+        /// in the ForgeUnitSDK.  There are a few special cases hardcoded into the Revit API that require a conversion.
+        /// For example, FeetFractionalInches would be converted to the ForgeUnitCLR.Unit type of Feet.
+        /// </summary>
+        /// <param name="forgeTypeId">The UnitTypeId to convert</param>
+        /// <returns>A UnitTypeId supported in ForgeUnitSDK</returns>
+        public static ForgeTypeId ConvertRevitInternalUnitTypeIdToSupportedUnitTypeId(ForgeTypeId forgeTypeId)
+        {
+            //Handle conversion of the Revit Handwritten units to UnitsSDK equivalents
+
+            if (forgeTypeId.Equals(UnitTypeId.FeetFractionalInches)
+                || forgeTypeId.Equals(UnitTypeId.StationingFeet))
+            {
+                return UnitTypeId.Feet;
+            }
+
+            if (forgeTypeId.Equals(UnitTypeId.StationingSurveyFeet))
+            {
+                return UnitTypeId.UsSurveyFeet;
+            }
+
+            if (forgeTypeId.Equals(UnitTypeId.FractionalInches))
+            {
+                return UnitTypeId.Inches;
+            }
+
+            if (forgeTypeId.Equals(UnitTypeId.MetersCentimeters)
+                || forgeTypeId.Equals(UnitTypeId.StationingMeters))
+            {
+                return UnitTypeId.Meters;
+            }
+
+            if (forgeTypeId.Equals(UnitTypeId.DegreesMinutes)
+                || forgeTypeId.Equals(UnitTypeId.SlopeDegrees))
+            {
+                return UnitTypeId.Degrees;
+            }
+
+            return forgeTypeId;
+        }
+
         public static double HostToDynamoFactor(ForgeTypeId specTypeId)
         {
             // Here we invert the conversion factor to return
