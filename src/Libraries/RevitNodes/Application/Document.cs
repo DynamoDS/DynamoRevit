@@ -320,7 +320,10 @@ namespace Revit.Application
         public DynamoUnits.Unit UnitTypeBySpecType(ForgeType specType)
         {
             var units = InternalDocument.GetUnits();
-            return Unit.ByTypeID(units.GetFormatOptions(specType.InternalForgeTypeId).GetUnitTypeId().TypeId);
+            var unitTypeId = units.GetFormatOptions(specType.InternalForgeTypeId).GetUnitTypeId();
+            var cleanUnitTypeId = UnitConverter.ConvertRevitInternalUnitTypeIdToSupportedUnitTypeId(unitTypeId);
+
+            return Unit.ByTypeID(cleanUnitTypeId.TypeId);
         }
     }
 
