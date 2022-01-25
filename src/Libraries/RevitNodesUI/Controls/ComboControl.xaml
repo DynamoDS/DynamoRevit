@@ -39,7 +39,8 @@
                    Grid.Row="2"
                    Margin="5"
                    MaxWidth="200"
-                   MaxHeight="200">
+                   MaxHeight="200"
+                   Foreground="#F5F5F5">
             <TextBlock.ToolTip>
                 <TextBlock Text="{Binding Model.Text}"
                            MaxHeight="200"
