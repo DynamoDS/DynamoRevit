@@ -1,3 +1,5 @@
+* Update Foreground Color For Selection by Category Nodes.
+
 ## 0.3.11
 * Create RC2.13.1_Revit2023 branch to involve Dynamo 2.13.1.
 * Fix ForgeUnit converter between some internal Revit Unit Types and ForgeUnit SDK.
