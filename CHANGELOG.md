@@ -1,3 +1,4 @@
+## 0.3.12
 * Update Foreground Color For Selection by Category Nodes.
 
 ## 0.3.11
