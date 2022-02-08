@@ -22,6 +22,7 @@ namespace DSRevitNodesUI.Controls
     {
         public ComboControl()
         {
+            Resources.MergedDictionaries.Add(Dynamo.UI.SharedDictionaryManager.DynamoModernDictionary);
             InitializeComponent();
         }
     }
