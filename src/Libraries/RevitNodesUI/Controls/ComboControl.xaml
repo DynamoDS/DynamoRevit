@@ -23,8 +23,9 @@
             Grid.Row="0"
                 Command="{Binding SelectCommand}"
                 IsEnabled="{Binding Model.CanSelect}"
-                Height="Auto"
-                Margin="0,0,0,0">
+                Background="#3c3c3c"
+                Margin="0,0,0,0"
+                Style="{StaticResource SelectionButtonStyle}">
             <Button.ToolTip>
                 <TextBlock Text="{Binding Model.SelectionSuggestion}" />
             </Button.ToolTip>
