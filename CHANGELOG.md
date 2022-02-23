@@ -1,5 +1,7 @@
+## 0.4.1
 * Update Foreground Color For Selection by Category Nodes.
 * Update ComboBox Style for Selection by Category Nodes.
+* Update Select Button for Selection by Category Nodes..
 
 ## 0.4.0
 * Update master branch to 2.14.0.
