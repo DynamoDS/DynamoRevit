@@ -23,8 +23,8 @@
             Grid.Row="0"
                 Command="{Binding SelectCommand}"
                 IsEnabled="{Binding Model.CanSelect}"
-                Height="Auto"
-                Margin="0,0,0,0">
+                Background="#3c3c3c"
+                Style="{StaticResource SelectionButtonStyle}">
             <Button.ToolTip>
                 <TextBlock Text="{Binding Model.SelectionSuggestion}" />
             </Button.ToolTip>
@@ -33,7 +33,7 @@
                   ItemsSource="{Binding Model.DropDownNodeModel.Items}"
                   SelectedIndex="{Binding Model.SelectedIndex, Mode=TwoWay}"
                   Style="{StaticResource RefreshComboBox}"
-                  Margin="0,0,0,0"/>
+                  Margin="4,0,4,0"/>
 
         <TextBlock Text="{Binding Model.Text}"
                    TextTrimming="WordEllipsis"
@@ -42,6 +42,7 @@
                    Margin="5"
                    MaxWidth="200"
                    MaxHeight="200"
+                   HorizontalAlignment="Left"
                    Foreground="#F5F5F5">
             <TextBlock.ToolTip>
                 <TextBlock Text="{Binding Model.Text}"
