@@ -42,6 +42,7 @@
                    Margin="5"
                    MaxWidth="200"
                    MaxHeight="200"
+                   HorizontalAlignment="Left"
                    Foreground="#F5F5F5">
             <TextBlock.ToolTip>
                 <TextBlock Text="{Binding Model.Text}"
