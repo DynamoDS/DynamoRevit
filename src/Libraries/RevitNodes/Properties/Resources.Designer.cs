@@ -88,6 +88,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input value for propertyPath is invalid..
+        /// </summary>
+        internal static string AppearanceAssetElementPropertyPathInvalid {
+            get {
+                return ResourceManager.GetString("AppearanceAssetElementPropertyPathInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must supply an Area Scheme..
         /// </summary>
         internal static string AreaSchemeArgumentException {

@@ -76,6 +76,7 @@
     <Compile Include="Application\Document.cs" />
     <Compile Include="Application\Warning.cs" />
     <Compile Include="Application\FamilyDocument.cs" />
+    <Compile Include="Elements\AppearanceAssetElement.cs" />
     <Compile Include="Elements\Area.cs" />
     <Compile Include="Elements\Category.cs" />
     <Compile Include="Elements\Ceiling.cs" />

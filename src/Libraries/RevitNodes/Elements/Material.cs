@@ -289,7 +289,28 @@ namespace Revit.Elements
             }
         }
 
+        /// <summary>
+        /// Get AppearanceAssetElement of this Material.
+        /// </summary>
+        public AppearanceAssetElement AppearanceAssetElement
+        {
+            get
+            {
+                // Get the active Document
+                Autodesk.Revit.DB.Document document = DocumentManager.Instance.CurrentDBDocument;
 
+                if (this.InternalMaterial.AppearanceAssetId != Autodesk.Revit.DB.ElementId.InvalidElementId)
+                {
+                    Autodesk.Revit.DB.AppearanceAssetElement appearance = document.GetElement(this.InternalMaterial.AppearanceAssetId) as Autodesk.Revit.DB.AppearanceAssetElement;
+
+                    return (AppearanceAssetElement)appearance.ToDSType(true);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
 
         #endregion
 

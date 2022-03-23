@@ -381,6 +381,11 @@ namespace Revit.Elements
             return ScheduleOnSheet.FromExisting(ele, isRevitOwned);
         }
 
+        public static AppearanceAssetElement Wrap(Autodesk.Revit.DB.AppearanceAssetElement ele, bool isRevitOwned)
+        {
+            return AppearanceAssetElement.FromExisting(ele, isRevitOwned);
+        }
+
         #endregion
     }
 
