@@ -189,7 +189,7 @@ namespace Revit.Application
         private List<Autodesk.Revit.DB.ElementId> PurgeMaterialAssets(List<Autodesk.Revit.DB.ElementId> elementIds)
         {
             List<ElementId> appearanceAssetIds = new FilteredElementCollector(this.InternalDocument)
-                .OfClass(typeof(AppearanceAssetElement))
+                .OfClass(typeof(Autodesk.Revit.DB.AppearanceAssetElement))
                 .ToElementIds()
                 .ToList();
 
