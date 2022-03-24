@@ -1,3 +1,5 @@
+* Add 3 new nodes - Material.AppearanceAssetElement, AppearanceAssetElement.GetRenderingAssetTextureImages, AppearanceAssetElement.SetRenderingAssetTextureImage
+
 ## 0.4.1
 * Update Foreground Color For Selection by Category Nodes.
 * Update ComboBox Style for Selection by Category Nodes.
