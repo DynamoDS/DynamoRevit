@@ -1,3 +1,4 @@
+## 0.4.2
 * Add 3 new nodes - Material.AppearanceAssetElement, AppearanceAssetElement.GetRenderingAssetTextureImages, AppearanceAssetElement.SetRenderingAssetTextureImage
 
 ## 0.4.1
