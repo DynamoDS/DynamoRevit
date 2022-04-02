@@ -300,7 +300,7 @@ namespace Revit.Elements
       /// </summary>
       /// <param name="rvtView">Floor plan view for which rooms will be used to retrieve longest paths to the given exit points.</param>
       /// <param name="endPoints">List of end (exit) points.</param>
-      /// <returns>List of PathOfTravel elements corresponding to the longest of shortest exit paths from rooms.</returnsO
+      /// <returns>List of PathOfTravel elements corresponding to the longest of shortest exit paths from rooms.</returns>
       /// 
       private static PathOfTravel[] InternalLongestOfShortestExitPaths(Rvt.View rvtView, IEnumerable<XYZ> endPoints)
       {
