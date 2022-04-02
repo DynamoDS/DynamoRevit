@@ -486,10 +486,14 @@
               "iconUrl": "",
               "elementType": "group",
               "include": [
-                {
+               {
                   "path": "RevitNodes.Revit.GeometryReferences",
                   "inclusive": false
-                }
+               },
+               {
+                  "path": "RevitNodes.Revit.References",
+                  "inclusive": false
+               }
               ]
             },
             {

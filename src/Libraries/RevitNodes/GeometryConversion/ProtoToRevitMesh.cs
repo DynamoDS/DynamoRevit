@@ -212,7 +212,7 @@ namespace Revit.GeometryConversion
 
         /// <summary>
         /// this method converts a ProtoGeometry IndexGroup and Points to a Revit tessellated face, and adds it
-        //  to the TessellatedShape Builder that is passed in.
+        /// to the TessellatedShape Builder that is passed in.
         /// </summary>
         /// <param name="tsb">a Revit TessellatedShapeBuilder which we wish to add a face to </param>
         /// <param name="f"> a ProtoGeometry indexGroup defining a Mesh face</param>
