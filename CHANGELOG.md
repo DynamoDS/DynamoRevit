@@ -1,6 +1,3 @@
-## 0.2.30
-* Update DynamoCore to 2.12.1.
-
 ## 0.2.29
 * Revert Floor API Update which for Revit next version.
 
