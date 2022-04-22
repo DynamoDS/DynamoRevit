@@ -1,3 +1,6 @@
+## 0.0.52
+* Bump dynamo core version to 2.3.2
+
 ## 0.0.50
 * Update CICD for Revit 2020
 
