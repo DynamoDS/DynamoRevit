@@ -1,3 +1,6 @@
+## 0.1.22
+* Update Dynamo Core version to 2.6.2
+
 ## 0.1.21
 * Update Test_Python for Revit 2021.1 to avoid test results that will vary with API changes
 * Update DynamoCoreRuntime version due to emergency fix
