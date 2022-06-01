@@ -1,3 +1,6 @@
+## 0.4.3
+*Fix bug cannot set parameter value of integer type in Dynamo
+
 ## 0.4.2
 * Add 3 new nodes - Material.AppearanceAssetElement, AppearanceAssetElement.GetRenderingAssetTextureImages, AppearanceAssetElement.SetRenderingAssetTextureImage
 
