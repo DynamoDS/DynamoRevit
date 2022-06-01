@@ -12,13 +12,24 @@ namespace Revit.GeometryConversion
     {
         public static double DynamoToHostFactor(ForgeTypeId specTypeId)
         {
+<<<<<<< Updated upstream
             var units = DocumentManager.Instance.CurrentDBDocument.GetUnits();
+=======
+>>>>>>> Stashed changes
             if (!UnitUtils.IsMeasurableSpec(specTypeId))
             {
                 return 1;
             }
+<<<<<<< Updated upstream
 
             var unitTypeId = units.GetFormatOptions(specTypeId).GetUnitTypeId();
+=======
+            var unitTypeId =
+                DocumentManager.Instance.CurrentDBDocument.GetUnits()
+                    .GetFormatOptions(specTypeId)
+                    .GetUnitTypeId();
+           
+>>>>>>> Stashed changes
             // Here we use the Revit API to return the conversion
             // factor between the display units in Revit and the internal
             // units (decimal feet). We are not converting a value, so 
