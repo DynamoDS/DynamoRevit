@@ -14,7 +14,7 @@ namespace Revit.GeometryConversion
         {
             if (!UnitUtils.IsMeasurableSpec(specTypeId))
             {
-                return 1;
+                return 1.0;
             }
             var unitTypeId =
                 DocumentManager.Instance.CurrentDBDocument.GetUnits()
