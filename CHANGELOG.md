@@ -1,3 +1,6 @@
+## 0.3.13
+* Fix the bug that cannot set unmeasurable parameter value in Dynamo.
+
 ## 0.3.12
 * Update Foreground Color For Selection by Category Nodes.
 
