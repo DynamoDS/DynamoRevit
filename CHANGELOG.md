@@ -1,3 +1,6 @@
+## 0.4.4
+* Fix bug cannot set parameter value of integer type in Dynamo.
+
 ## 0.4.3
 * Fix bug cannot set parameter value of integer type in Dynamo.
 
