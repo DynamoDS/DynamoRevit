@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DynamoServices;
 using RevitServices.Transactions;
+using Autodesk.DesignScript.Runtime;
+using System.Reflection;
 
 namespace Revit.Elements
 {
@@ -70,50 +72,57 @@ namespace Revit.Elements
             this.InternalUniqueId = appearanceAssetElement.UniqueId;
         }
 
-        #endregion
+      #endregion
 
-        #region Properties
+      #region public methods
 
-        /// <summary>
-        /// Get RenderingAsset Texture Images
-        /// </summary>
-        public Dictionary<string, string> GetRenderingAssetTextureImages
+      /// <summary>
+      /// Get texture image path of the appearance asset
+      /// </summary>
+      /// <returns name = "imageProperties">The list of all the properties that have images connected. A property's meaning can be queried in Revit API documentation, e.g., for "GenericDiffuse.UnifiedbitmapBitmap", it means property "GenericDiffuse" connects a texture asset which has a "UnifiedbitmapBitmap" property</returns>
+      /// <returns name = "imagePaths">The list of all the image path</returns>
+      [MultiReturn(new[] { "imageProperties", "imagePaths" })]
+        public Dictionary<string, object> GetRenderingAssetTextureImages()
         {
-            get
+            var asset = this.InternalAppearanceAssetElement.GetRenderingAsset();
+            List<string> keys = new List<string>();
+            List<string> values = new List<string>();
+            List<string> KeyValue = new List<string>();
+            KeyValue.AddRange(GetAssetProperties(asset, ""));
+            foreach(var value in KeyValue)
             {
-                var asset = this.InternalAppearanceAssetElement.GetRenderingAsset();
-
-                List<string> KeyValue = new List<string>();
-                Dictionary<string, string> keyValues = new Dictionary<string, string>();
-                KeyValue.AddRange(GetAssetProperties(asset, ""));
-                foreach(var value in KeyValue)
-                {
-                    var strs = value.Split(new Char[] { ':' }, 2);
-                    if (strs.Length == 2)
-                    { 
-                        keyValues.Add(strs[0], strs[1]); 
-                    }
-                }
-                return keyValues;
+               var strs = value.Split(new Char[] { ':' }, 2);
+               if (strs.Length == 2)
+               {
+                  keys.Add(strs[0]);
+                  values.Add(strs[1]); 
+               }
             }
+            Dictionary<string, object> keyValues = new Dictionary<string, object>();
+            keyValues.Add("imageProperties", keys);
+            keyValues.Add("imagePaths", values);
+            return keyValues;
         }
 
-        /// <summary>
-        /// Set ImagePath for a Texture Asset.
-        /// </summary>
-        /// <param name="propertyPath"></param>
-        /// <param name="imagePath"></param>
-        /// <returns></returns>
-        public AppearanceAssetElement SetRenderingAssetTextureImage(string propertyPath, string imagePath)
+      /// <summary>
+      /// Set texture image path of the appearance asset
+      /// </summary>
+      /// <param name="imageProperty">A property that has a image connected. This can be queried by calling GetRenderingAssetTextureImages first</param>
+      /// <param name="imagePath">File path of the image</param>
+      /// <returns>AppearanceAssetElement</returns>
+      public AppearanceAssetElement SetRenderingAssetTextureImage(string imageProperty, string imagePath)
         {
-            var properties = propertyPath.Split('.');
+            var properties = imageProperty.Split('.');
             TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
             {
                 using (Autodesk.Revit.DB.Visual.AppearanceAssetEditScope editScope =
                     new Autodesk.Revit.DB.Visual.AppearanceAssetEditScope(Application.Document.Current.InternalDocument))
                 {
                     Autodesk.Revit.DB.Visual.Asset editableAsset = editScope.Start(InternalElementId);
-                    Autodesk.Revit.DB.Visual.AssetProperty assetProperty = editableAsset.FindByName(properties[0]);
+                    Type assetClass = GetAssetClass(editableAsset);
+                    PropertyInfo pinfo = assetClass.GetProperty(properties[0]);
+                    object internalProp = pinfo.GetValue(null);
+                    Autodesk.Revit.DB.Visual.AssetProperty assetProperty = editableAsset.FindByName(internalProp.ToString());
                     if(assetProperty == null)
                     {
                         throw new ArgumentException(Properties.Resources.AppearanceAssetElementPropertyPathInvalid);
@@ -125,7 +134,10 @@ namespace Revit.Elements
                         {
                             throw new ArgumentException(Properties.Resources.AppearanceAssetElementPropertyPathInvalid);
                         }
-                        assetProperty = connentedAsset.FindByName(properties[i]);
+                        Type connentedAssetClass = GetAssetClass(connentedAsset);
+                        PropertyInfo connentedPinfo = connentedAssetClass.GetProperty(properties[i]);
+                        object connentedInternalProp = connentedPinfo.GetValue(null);
+                        assetProperty = connentedAsset.FindByName(connentedInternalProp.ToString());
                         if (assetProperty == null)
                         {
                             throw new ArgumentException(Properties.Resources.AppearanceAssetElementPropertyPathInvalid);
@@ -154,17 +166,28 @@ namespace Revit.Elements
 
         private List<string> GetAssetProperties(Autodesk.Revit.DB.Visual.Asset asset, string keyName)
         {
+            Type assetClass = GetAssetClass(asset);
+            Dictionary<string, string> InternalPropertiesMap = new Dictionary<string, string>();
+            foreach (var p in assetClass.GetProperties())
+            {
+               var v = p.GetValue(null);
+               InternalPropertiesMap.Add(v.ToString(), p.Name);
+            }
             List<string> AssetProps = new List<string>();
-
-            if(asset.Name == "UnifiedBitmapSchema")
+            Autodesk.Revit.DB.Visual.AssetProperty nameProperty = asset.FindByName("BaseSchema");
+            string assetSchema = (nameProperty as Autodesk.Revit.DB.Visual.AssetPropertyString).Value;
+            if (assetSchema == "UnifiedBitmapSchema")
             {
                 var path = asset.FindByName(Autodesk.Revit.DB.Visual.UnifiedBitmap.UnifiedbitmapBitmap) as Autodesk.Revit.DB.Visual.AssetPropertyString;
                 if (path != null) 
                 {
-                    string newKeyName = keyName + "." + path.Name;
-
-                    AssetProps.Add(newKeyName + ":" + path.Value);
-                    return AssetProps;
+                    string APIProperty;
+                    if (InternalPropertiesMap.TryGetValue(path.Name, out APIProperty))
+                    {
+                        string newKeyName = keyName + "." + APIProperty;
+                        AssetProps.Add(newKeyName + ":" + path.Value);
+                        return AssetProps;
+                    }
                 }
             }
 
@@ -176,8 +199,12 @@ namespace Revit.Elements
                     var connProps = assetProperty.GetAllConnectedProperties();
                     foreach(var prop in connProps)
                     {
-                        string newKeyName = String.IsNullOrEmpty(keyName) ? assetProperty.Name : keyName + "." + assetProperty.Name;
-                        AssetProps.AddRange(GetAssetProperties(prop as Autodesk.Revit.DB.Visual.Asset, newKeyName));
+                        string APIProperty;
+                        if (InternalPropertiesMap.TryGetValue(assetProperty.Name, out APIProperty))
+                        {
+                           string newKeyName = String.IsNullOrEmpty(keyName) ? APIProperty : keyName + "." + APIProperty;
+                           AssetProps.AddRange(GetAssetProperties(prop as Autodesk.Revit.DB.Visual.Asset, newKeyName));
+                        }
                     }
                 }
             }
@@ -185,6 +212,17 @@ namespace Revit.Elements
             return AssetProps;
         }
 
+        private Type GetAssetClass(Autodesk.Revit.DB.Visual.Asset asset)
+        {
+            Autodesk.Revit.DB.Visual.AssetProperty nameProperty = asset.FindByName("BaseSchema");
+            string assetSchema = (nameProperty as Autodesk.Revit.DB.Visual.AssetPropertyString).Value;
+            string assetType = "Autodesk.Revit.DB.Visual." + assetSchema.Substring(0, assetSchema.Length - 6);
+            // Get Revit Assembly
+            var revitAssembly = System.Reflection.Assembly.GetAssembly(typeof(Autodesk.Revit.DB.Visual.Asset));
+            // Get Type from Assembly by string
+            Type assetClass = revitAssembly.GetType(assetType);
+            return assetClass;
+        }
         #endregion
 
         #region Internal static constructors
