@@ -93,7 +93,7 @@ namespace Dynamo.Applications
             return parent != null ? Path.Combine(Path.GetDirectoryName(parent.FullName), @"Dynamo", path) : dynamoRevitRoot;
         }
 
-        private static string dynamopath;
+        private static string dynamopath = "D://dev//dynamo//DynamoDS//bin//AnyCPU//Debug";
         private static readonly Queue<Action> idleActionQueue = new Queue<Action>(10);
         private static EventHandlerProxy proxy;
         private AddInCommandBinding dynamoCommand;
