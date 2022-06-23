@@ -47,7 +47,7 @@
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net48\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
-	<Reference Include="DynamoUtilities">
+    <Reference Include="DynamoUtilities">
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DynamoUtilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
