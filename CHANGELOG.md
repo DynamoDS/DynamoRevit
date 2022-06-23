@@ -1,5 +1,5 @@
 ## 0.4.5
-* Fix bug cannot set parameter value of integer type in Dynamo and delete the useless DynamoServices.deps.json file.
+* Upgrade DynamoCore  to 2.15.0.5383.
 
 ## 0.4.4
 * Fix bug cannot set parameter value of integer type in Dynamo.
