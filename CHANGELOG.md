@@ -1,3 +1,6 @@
+## 0.4.5
+* Upgrade DynamoCore  to 2.15.0.5383.
+
 ## 0.4.4
 * Fix bug cannot set parameter value of integer type in Dynamo.
 

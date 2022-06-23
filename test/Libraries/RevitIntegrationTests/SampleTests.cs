@@ -71,7 +71,10 @@ namespace RevitSystemTests
 
             // test copying and pasting the workflow
             DynamoSelection.Instance.ClearSelection();
-            DynamoSelection.Instance.Selection.AddRange(ViewModel.Model.CurrentWorkspace.Nodes);
+	
+            foreach(var item in ViewModel.Model.CurrentWorkspace.Nodes)
+                DynamoSelection.Instance.Selection.Add(item);
+		
             model.Copy();
             model.Paste();
 
