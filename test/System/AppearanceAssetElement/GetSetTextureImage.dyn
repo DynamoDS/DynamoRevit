@@ -108,8 +108,17 @@
       "Outputs": [
         {
           "Id": "48507e83b7be432da905c4efe5e89c33",
-          "Name": "var[]..[]",
-          "Description": "var[]..[]",
+          "Name": "imageProperties",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0f0e746039374f0483e4bef532ff5eb5",
+          "Name": "imagePaths",
+          "Description": "var",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -117,37 +126,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Get RenderingAsset Texture Images\n\nAppearanceAssetElement.GetRenderingAssetTextureImages: var[]..[]"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "DesignScript.Builtin.Dictionary.Keys",
-      "Id": "ec4229c63d9e440b9fa9747d573b726d",
-      "Inputs": [
-        {
-          "Id": "606f99bc9cda4764bc166f7a1d32d7e8",
-          "Name": "dictionary",
-          "Description": "DesignScript.Builtin.Dictionary",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "d5ec3ad9ef974dd5bc7b87fe41daa2cb",
-          "Name": "keys",
-          "Description": "Keys of the Dictionary",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Produces the keys in a Dictionary.\n\nDictionary.Keys: string[]"
+      "Description": "Get RenderingAsset Texture Images\n\nAppearanceAssetElement.GetRenderingAssetTextureImages ( ): var[]..[]"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -166,7 +145,7 @@
         },
         {
           "Id": "a124e09714744106a0b0e000703b0bfe",
-          "Name": "propertyPath",
+          "Name": "imageProperty",
           "Description": "string",
           "UsingDefaultValue": false,
           "Level": 2,
@@ -195,7 +174,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Set ImagePath for a Texture Asset.\n\nAppearanceAssetElement.SetRenderingAssetTextureImage (propertyPath: string, imagePath: string): AppearanceAssetElement"
+      "Description": "Set ImagePath for a Texture Asset.\n\nAppearanceAssetElement.SetRenderingAssetTextureImage (imageProperty: string, imagePath: string): AppearanceAssetElement"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
@@ -246,8 +225,17 @@
       "Outputs": [
         {
           "Id": "774cff0af0eb493ab5903118ce91ea9a",
-          "Name": "var[]..[]",
-          "Description": "var[]..[]",
+          "Name": "imageProperties",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e6cfc94806ff4ae4bdf082a97688d246",
+          "Name": "imagePaths",
+          "Description": "var",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -255,37 +243,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Get RenderingAsset Texture Images\n\nAppearanceAssetElement.GetRenderingAssetTextureImages: var[]..[]"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "DesignScript.Builtin.Dictionary.Values",
-      "Id": "303c4c7b95344c5ca57ddbe215660229",
-      "Inputs": [
-        {
-          "Id": "409f3a8a67ae49fc98875a58c10d1af6",
-          "Name": "dictionary",
-          "Description": "DesignScript.Builtin.Dictionary",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "1238b769d725476cab6eb17a2f97198f",
-          "Name": "values",
-          "Description": "Values of the dictionary",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Produces the values in a Dictionary.\n\nDictionary.Values: var[]"
+      "Description": "Get RenderingAsset Texture Images\n\nAppearanceAssetElement.GetRenderingAssetTextureImages ( ): var[]..[]"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -366,14 +324,8 @@
     },
     {
       "Start": "48507e83b7be432da905c4efe5e89c33",
-      "End": "606f99bc9cda4764bc166f7a1d32d7e8",
-      "Id": "4b34d9a6fb694a53b9db440b8e9e4b55",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "d5ec3ad9ef974dd5bc7b87fe41daa2cb",
       "End": "e2d850a8ce5b4e75b908ef2b89c4a510",
-      "Id": "f14360adf8414628ad9b2c9c2970eed7",
+      "Id": "0472bfb98a2a412581fe2a930a869ac8",
       "IsHidden": "False"
     },
     {
@@ -389,15 +341,9 @@
       "IsHidden": "False"
     },
     {
-      "Start": "774cff0af0eb493ab5903118ce91ea9a",
-      "End": "409f3a8a67ae49fc98875a58c10d1af6",
-      "Id": "3e17252d2a5a46b6baec4d94c708cdc9",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "1238b769d725476cab6eb17a2f97198f",
+      "Start": "e6cfc94806ff4ae4bdf082a97688d246",
       "End": "fb70e68250a8489cb6c2beab85541afa",
-      "Id": "8d2c7770ef7746c4b422577a42cc6e6c",
+      "Id": "9bd6b618f4aa40aab505c0a3f9282717",
       "IsHidden": "False"
     },
     {
@@ -408,16 +354,7 @@
     }
   ],
   "Dependencies": [],
-  "NodeLibraryDependencies": [
-    {
-      "Name": "TextureImageTest.txt",
-      "ReferenceType": "External",
-      "Nodes": [
-        "6808334fdedf4e9984d8a57a0675fb0f",
-        "8e9bb0fc48104604bedd6b3a6ec7a812"
-      ]
-    }
-  ],
+  "NodeLibraryDependencies": [],
   "Thumbnail": "",
   "GraphDocumentationURL": null,
   "ExtensionWorkspaceData": [
@@ -441,7 +378,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.14.0.4187",
+      "Version": "2.14.0.4641",
       "RunType": "Manual",
       "RunPeriod": "1000"
     },
@@ -500,16 +437,6 @@
         "Y": 103.21923078390384
       },
       {
-        "Name": "Dictionary.Keys",
-        "ShowGeometry": true,
-        "Id": "ec4229c63d9e440b9fa9747d573b726d",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 1234.3936636655339,
-        "Y": 103.21923078390381
-      },
-      {
         "Name": "AppearanceAssetElement.SetRenderingAssetTextureImage",
         "ShowGeometry": true,
         "Id": "e800bfcabe34455cbbe26fe337a43ffd",
@@ -540,16 +467,6 @@
         "Y": 126.39173078390382
       },
       {
-        "Name": "Dictionary.Values",
-        "ShowGeometry": true,
-        "Id": "303c4c7b95344c5ca57ddbe215660229",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 3095.3936636655339,
-        "Y": 126.39173078390385
-      },
-      {
         "Name": "List.FirstItem",
         "ShowGeometry": true,
         "Id": "6808334fdedf4e9984d8a57a0675fb0f",
@@ -571,8 +488,8 @@
       }
     ],
     "Annotations": [],
-    "X": -6103.244025297302,
-    "Y": -194.51207629568924,
-    "Zoom": 1.8946414429334379
+    "X": -1223.9068155508792,
+    "Y": 189.96365078900152,
+    "Zoom": 0.67483165842686454
   }
 }
