@@ -1,3 +1,6 @@
+## 0.4.6
+* keep AssemblySharedInfo version same with dynamo core
+
 ## 0.4.5
 * Upgrade DynamoCore  to 2.15.0.5383.
 
