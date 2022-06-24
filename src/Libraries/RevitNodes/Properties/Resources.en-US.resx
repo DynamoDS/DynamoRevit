@@ -577,6 +577,6 @@
     <value>The id string is not valid for object of type {0}.</value>
   </data>
   <data name="AppearanceAssetElementPropertyPathInvalid" xml:space="preserve">
-    <value>Input value for propertyPath is invalid.</value>
+    <value>Input value for imageProperty is invalid.</value>
   </data>
 </root>
