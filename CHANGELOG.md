@@ -1,3 +1,6 @@
+## 0.4.7
+* Make dynamo nodes for material texture easier for end users to use
+
 ## 0.4.6
 * keep AssemblySharedInfo version same with dynamo core
 
