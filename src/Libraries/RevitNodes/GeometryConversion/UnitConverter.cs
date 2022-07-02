@@ -12,6 +12,10 @@ namespace Revit.GeometryConversion
     {
         public static double DynamoToHostFactor(ForgeTypeId specTypeId)
         {
+            if (!UnitUtils.IsMeasurableSpec(specTypeId))
+            {
+                return 1.0;
+            }
             var unitTypeId =
                 DocumentManager.Instance.CurrentDBDocument.GetUnits()
                     .GetFormatOptions(specTypeId)
