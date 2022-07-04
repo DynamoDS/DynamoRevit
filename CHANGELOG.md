@@ -1,3 +1,7 @@
+## 0.3.13
+* Upgrade DynamoCore  to 2.15.0.5383.
+* Fix bug cannot set parameter value of integer type in Dynamo.
+
 ## 0.3.12
 * Update Foreground Color For Selection by Category Nodes.
 
