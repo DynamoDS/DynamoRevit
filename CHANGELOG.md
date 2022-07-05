@@ -1,3 +1,5 @@
+## 0.3.14
+* Upgrade D4R version
 ## 0.3.13
 * Fix the bug that cannot set unmeasurable parameter value in Dynamo.
 
