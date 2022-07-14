@@ -49,11 +49,11 @@ namespace Revit.Elements
         /// <summary>
         /// The Id of the category.
         /// </summary>
-        public int Id
+        public long Id
         {
             get
             {
-                return InternalCategory.Id.IntegerValue;
+                return InternalCategory.Id.Value;
             }
         }
 
@@ -96,7 +96,7 @@ namespace Revit.Elements
         /// <param name="id">Category Id as Integer value</param>
         /// <returns>Category if present in current document.</returns>
         [IsVisibleInDynamoLibrary(false)]
-        public static Category ById(int id)
+        public static Category ById(long id)
         {
             try
             {

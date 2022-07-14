@@ -107,7 +107,7 @@ namespace Revit.Elements
         /// Get Material Name
         /// </summary>
         /// <returns></returns>
-        public string Name
+        new public string Name
         {
             get { return this.InternalMaterial.Name; }
         }
@@ -179,11 +179,11 @@ namespace Revit.Elements
         /// <summary>
         /// Get cut pattern id
         /// </summary>
-        public int CutPatternId
+        public long CutPatternId
         {
             get
             {
-                return this.InternalMaterial.CutForegroundPatternId.IntegerValue;
+                return this.InternalMaterial.CutForegroundPatternId.Value;
             }
         }
 

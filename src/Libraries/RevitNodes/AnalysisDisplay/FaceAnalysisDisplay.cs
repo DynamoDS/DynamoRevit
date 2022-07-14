@@ -312,7 +312,7 @@ namespace Revit.AnalysisDisplay
 
             var idPair = new SpmRefPrimitiveIdListPair
             {
-                SpatialFieldManagerID = manager.Id.IntegerValue,
+                SpatialFieldManagerID = manager.Id.Value,
                 RefIdPairs = keyValues
             };
             ElementBinder.SetRawDataForTrace(idPair);

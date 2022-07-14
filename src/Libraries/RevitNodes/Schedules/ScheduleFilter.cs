@@ -110,7 +110,7 @@ namespace Revit.Schedules
                 }
                 else if (this.InternalScheduleFilter.IsElementIdValue)
                 {
-                    return this.InternalScheduleFilter.GetElementIdValue().IntegerValue;
+                    return this.InternalScheduleFilter.GetElementIdValue().Value;
                 }
                 else
                 {

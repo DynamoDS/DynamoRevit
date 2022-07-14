@@ -181,7 +181,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get the space name
         /// </summary>
-        public string Name
+        new public string Name
         {
             get { return this.InternalRevitElement.get_Parameter(BuiltInParameter.ROOM_NAME).AsString(); }
         }

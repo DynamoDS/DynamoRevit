@@ -160,7 +160,7 @@ namespace RevitSystemTests
                     var wallLocation = wall.Location as LocationCurve;
                     wallLocation.Curve = spline;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     hasError = true;
                     trans.RollBack();

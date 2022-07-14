@@ -325,7 +325,7 @@ namespace Revit.Elements.Views
                 List<Revit.Filter.ParameterFilterElement> filters = new List<Filter.ParameterFilterElement>();
                 foreach (ElementId id in this.InternalView.GetFilters())
                 {
-                    Element element = Revit.Elements.ElementSelector.ByElementId(id.IntegerValue);
+                    Element element = Revit.Elements.ElementSelector.ByElementId(id.Value);
                     filters.Add((Revit.Filter.ParameterFilterElement)element);
                 }
                 return filters;

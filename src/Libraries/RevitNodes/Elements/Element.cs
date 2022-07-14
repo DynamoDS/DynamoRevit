@@ -50,13 +50,13 @@ namespace Revit.Elements
 
         private void SafeInitImpl(Action init)
         {
-            var elementManager = ElementIDLifecycleManager<int>.GetInstance();
+            var elementManager = ElementIDLifecycleManager<long>.GetInstance();
             var element = ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.Element>(Document);
             int count = 0;
-            int id = 0;
+            long id = 0;
             if (null != element)
             {
-                id = element.Id.IntegerValue;
+                id = element.Id.Value;
                 count = elementManager.GetRegisteredCount(id);
             }
             try
@@ -156,11 +156,11 @@ namespace Revit.Elements
         /// <summary>
         /// Get the Element Id for this element
         /// </summary>
-        public int Id
+        public long Id
         {
             get
             {
-                return InternalElementId.IntegerValue;
+                return InternalElementId.Value;
             }
         }
 
@@ -252,7 +252,7 @@ namespace Revit.Elements
             {
                 internalId = value;
 
-                var elementManager = ElementIDLifecycleManager<int>.GetInstance();
+                var elementManager = ElementIDLifecycleManager<long>.GetInstance();
                 elementManager.RegisterAsssociation(Id, this);
 
             }
@@ -281,9 +281,9 @@ namespace Revit.Elements
             if (DisposeLogic.IsShuttingDown || DisposeLogic.IsClosingHomeworkspace || IsFrozen)
                 return;
             
-            bool didRevitDelete = ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(Id);
+            bool didRevitDelete = ElementIDLifecycleManager<long>.GetInstance().IsRevitDeleted(Id);
 
-            var elementManager = ElementIDLifecycleManager<int>.GetInstance();
+            var elementManager = ElementIDLifecycleManager<long>.GetInstance();
             int remainingBindings = elementManager.UnRegisterAssociation(Id, this);
 
             // Do not delete Revit owned elements
@@ -372,7 +372,7 @@ namespace Revit.Elements
         /// <param name="element">The element to delete.</param>
         /// <returns>The list of element id's deleted, including any dependent elements.</returns>
         /// <exception cref="System.ArgumentNullException">Thrown if element is null.</exception>
-        public static int[] Delete(Element element)
+        public static long[] Delete(Element element)
         {
             if (element == null)
             {
@@ -380,7 +380,7 @@ namespace Revit.Elements
             }
 
             // Collection of elements deleted
-            int[] deletedElements = null;
+            long[] deletedElements = null;
 
             try
             {
@@ -392,7 +392,7 @@ namespace Revit.Elements
 
                 // Delete the element, collecting the id's deleted.
                 deletedElements = document.Delete(element.InternalElementId)
-                        .Select(x => x.IntegerValue).ToArray<int>();
+                        .Select(x => x.Value).ToArray<long>();
             }
             finally
             {
@@ -441,7 +441,7 @@ namespace Revit.Elements
             var allParams =
             InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
                 .Where(x => string.CompareOrdinal(x.Definition.Name, parameterName) == 0)
-                .OrderBy(x => x.Id.IntegerValue);
+                .OrderBy(x => x.Id.Value);
 
             var param = allParams.FirstOrDefault(x => x.IsReadOnly == false) ?? allParams.FirstOrDefault();
 
@@ -836,7 +836,7 @@ namespace Revit.Elements
                 if (null == InternalElementId)
                     return false;
 
-                return !ElementIDLifecycleManager<int>.GetInstance().IsRevitDeleted(InternalElementId.IntegerValue);
+                return !ElementIDLifecycleManager<long>.GetInstance().IsRevitDeleted(InternalElementId.Value);
             }
         }
 
@@ -854,13 +854,9 @@ namespace Revit.Elements
         private IEnumerable<Element> GetElementChildren(Autodesk.Revit.DB.Element element)
         {
             List<Element> components = new List<Element>();
-            int categoryId = element.Category.Id.IntegerValue;
-            if (!Enum.IsDefined(typeof(BuiltInCategory), categoryId))
+            BuiltInCategory builtInCategory = element.Category.BuiltInCategory;
+            if (builtInCategory == BuiltInCategory.INVALID)
                 throw new InvalidOperationException(Properties.Resources.NotBuiltInCategory);
-
-            BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
-                                                                                 categoryId.ToString());
-
 
             // By default we use the GetSubComponentIds() on the elements FamilyInstance, 
             // for now the node also handles special cases including Stairs, StructuralFramingSystems and Railings 
@@ -967,12 +963,9 @@ namespace Revit.Elements
         private Element GetParentElementFromElement(Autodesk.Revit.DB.Element element)
         {
             Autodesk.Revit.DB.Element parent;
-            int categoryId = element.Category.Id.IntegerValue;
-            if (!Enum.IsDefined(typeof(BuiltInCategory), categoryId))
+            BuiltInCategory builtInCategory = element.Category.BuiltInCategory;
+            if (builtInCategory == BuiltInCategory.INVALID)
                 throw new InvalidOperationException(Properties.Resources.NotBuiltInCategory);
-
-            BuiltInCategory builtInCategory = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
-                                                                                 categoryId.ToString());
 
             // By default we use the SuperComponent on the elements FamilyInstance to get the Parent Element, 
             // for now the node also handles special cases including Stairs, StructuralFramingSystems and Railings 

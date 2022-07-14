@@ -20,7 +20,7 @@ namespace Revit.AnalysisDisplay
     [Serializable]
     public class SpmPrimitiveIdPair : ISerializable
     {
-        public int SpatialFieldManagerID { get; set; }
+        public long SpatialFieldManagerID { get; set; }
         public List<int> PrimitiveIds { get; set; }
  
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -48,7 +48,7 @@ namespace Revit.AnalysisDisplay
     [Serializable]
     public class SpmRefPrimitiveIdListPair : ISerializable
     {
-        public int SpatialFieldManagerID { get; set; }
+        public long SpatialFieldManagerID { get; set; }
         public Dictionary<Reference, int> RefIdPairs { get; set; }
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -151,7 +151,8 @@ namespace Revit.AnalysisDisplay
                 
                 if (unitType != null)
                 {
-                    if (typeof(SIUnit).IsAssignableFrom(unitType))
+#pragma warning disable CS0618
+               if (typeof(SIUnit).IsAssignableFrom(unitType))
                     {
                         var prop = unitType.GetProperty("Conversions");
                         var conversions = (Dictionary<string, double>)prop.GetValue(null, new object[] { });
@@ -163,9 +164,10 @@ namespace Revit.AnalysisDisplay
                             ars.CurrentUnits = 0;
                         }
                     }
-                }
+#pragma warning restore CS6018
+            }
 
-                schemaIndex = SpatialFieldManager.RegisterResult(ars);
+            schemaIndex = SpatialFieldManager.RegisterResult(ars);
             }
 
             return schemaIndex;
@@ -272,7 +274,7 @@ namespace Revit.AnalysisDisplay
 
             var idPair = new SpmPrimitiveIdPair
             {
-                SpatialFieldManagerID = manager.Id.IntegerValue,
+                SpatialFieldManagerID = manager.Id.Value,
                 PrimitiveIds = primitiveIds
             };
             ElementBinder.SetRawDataForTrace(idPair);

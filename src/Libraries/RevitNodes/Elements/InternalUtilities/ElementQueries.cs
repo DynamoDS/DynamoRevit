@@ -76,7 +76,7 @@ namespace Revit.Elements.InternalUtilities
             var matches = familyInstances.Where(x => x.Symbol.Id == familyType.InternalFamilySymbol.Id);
 
             var instances = matches
-                .Select(x => ElementSelector.ByElementId(x.Id.IntegerValue)).ToList();
+                .Select(x => ElementSelector.ByElementId(x.Id.Value)).ToList();
             return instances;
         }
 
@@ -98,7 +98,7 @@ namespace Revit.Elements.InternalUtilities
                 return new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
                     .OfClass(type)
                     .Where(x => x.GetType() == elementType)
-                    .Select(x => ElementSelector.ByElementId(x.Id.IntegerValue))
+                    .Select(x => ElementSelector.ByElementId(x.Id.Value))
                     .ToList();
             }
 
@@ -106,7 +106,7 @@ namespace Revit.Elements.InternalUtilities
             return new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
                 .WherePasses(classFilter)
                 .ToElementIds()
-                .Select(x => ElementSelector.ByElementId(x.IntegerValue))
+                .Select(x => ElementSelector.ByElementId(x.Value))
                 .ToList();
         }
 
@@ -122,7 +122,7 @@ namespace Revit.Elements.InternalUtilities
                 fec.WherePasses(catFilter)
                     .WhereElementIsNotElementType()
                     .ToElementIds()
-                    .Select(id => ElementSelector.ByElementId(id.IntegerValue))
+                    .Select(id => ElementSelector.ByElementId(id.Value))
                     .ToList();
             return instances;
         }
@@ -137,7 +137,7 @@ namespace Revit.Elements.InternalUtilities
                 fec.WherePasses(levFilter)
                     .WhereElementIsNotElementType()
                     .ToElementIds()
-                    .Select(id => ElementSelector.ByElementId(id.IntegerValue))
+                    .Select(id => ElementSelector.ByElementId(id.Value))
                     .ToList();
             return instances;
         }
@@ -149,16 +149,15 @@ namespace Revit.Elements.InternalUtilities
 
             // handle ElementId types first
             if (id.GetType() == typeof(Autodesk.Revit.DB.ElementId))
-                return ElementSelector.ByElementId(((Autodesk.Revit.DB.ElementId)id).IntegerValue);
+                return ElementSelector.ByElementId(((Autodesk.Revit.DB.ElementId)id).Value);
 
             var idType = Type.GetTypeCode(id.GetType());
-            int intId;
             Element element;
 
             switch (idType)
             {
                 case TypeCode.Int64:
-                    element = ElementSelector.ByElementId(Convert.ToInt32((long)id));
+                    element = ElementSelector.ByElementId((long)id);
                     break;
 
                 case TypeCode.Int32:
@@ -167,7 +166,8 @@ namespace Revit.Elements.InternalUtilities
 
                 case TypeCode.String:
                     string idString = (string)id;
-                    if (Int32.TryParse(idString, out intId))
+                    long intId;
+                    if (Int64.TryParse(idString, out intId))
                     {
                         element = ElementSelector.ByElementId(intId);
                         break;

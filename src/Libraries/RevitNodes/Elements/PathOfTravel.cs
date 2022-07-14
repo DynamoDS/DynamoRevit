@@ -340,14 +340,14 @@ namespace Revit.Elements
          catch (Exception e)
          {
             //unregister the elements from the element life cycle manager and delete the elements
-            var elementManager = ElementIDLifecycleManager<int>.GetInstance();
+            var elementManager = ElementIDLifecycleManager<long>.GetInstance();
             if (pathsOfTravel != null)
             {
                foreach (var path in pathsOfTravel)
                {
                   if (path != null)
                   {
-                     elementManager.UnRegisterAssociation(path.InternalElementId.IntegerValue, path);
+                     _ = elementManager.UnRegisterAssociation(path.InternalElementId.Value, path);
                      Document.Delete(path.InternalElementId);
                   }
                }
@@ -397,14 +397,14 @@ namespace Revit.Elements
          catch (Exception e)
          {
             // unregister the elements from the element life cycle manager and delete the elements
-            var elementManager = ElementIDLifecycleManager<int>.GetInstance();
+            var elementManager = ElementIDLifecycleManager<long>.GetInstance();
             if (pathsOfTravel != null)
             {
                foreach (var path in pathsOfTravel)
                {
                   if (path != null)
                   {
-                     elementManager.UnRegisterAssociation(path.InternalElementId.IntegerValue, path);
+                     _ = elementManager.UnRegisterAssociation(path.InternalElementId.Value, path);
                      Document.Delete(path.InternalElementId);
                   }
                }

@@ -29,7 +29,7 @@ namespace Revit.Elements
         /// <param name="elementId">The id of the element to select</param>
         /// <param name="isRevitOwned">Whether the returned object should be revit owned or not</param>
         /// <returns></returns>
-        public static Element ByElementId(int elementId, bool isRevitOwned)
+        public static Element ByElementId(long elementId, bool isRevitOwned)
         {
             var ele = InternalGetElementById(elementId);
 
@@ -41,7 +41,7 @@ namespace Revit.Elements
             throw new Exception("Could not get the element from the document.");
         }
 
-        public static Element ByElementId(int elementId)
+        public static Element ByElementId(long elementId)
         {
             var ele = InternalGetElementById(elementId);
 
@@ -77,7 +77,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private static Autodesk.Revit.DB.Element InternalGetElementById(int id)
+        private static Autodesk.Revit.DB.Element InternalGetElementById(long id)
         {
             Autodesk.Revit.DB.Element ele;
             var eleId = new ElementId(id);

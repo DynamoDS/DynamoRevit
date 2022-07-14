@@ -64,7 +64,7 @@ namespace Revit.Elements.InternalUtilities
             switch (param.StorageType)
             {
                 case StorageType.ElementId:
-                    int valueId = param.AsElementId().IntegerValue;
+                    long valueId = param.AsElementId().Value;
                     if (valueId > 0)
                     {
                         // When the element is obtained here, to convert it to our element wrapper, it
@@ -72,13 +72,13 @@ namespace Revit.Elements.InternalUtilities
                         // element wrappers will be checked. If there is one, its property to specify
                         // whether it is created by us will be followed. If there is none, it means the
                         // element is not created by us.
-                        var elem = ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(valueId) as Element;
+                        var elem = ElementIDLifecycleManager<long>.GetInstance().GetFirstWrapper(valueId) as Element;
                         result = ElementSelector.ByElementId(valueId, elem == null ? true : elem.IsRevitOwned);
                     }
                     else
                     {
-                        int paramId = param.Id.IntegerValue;
-                        if (paramId == (int)BuiltInParameter.ELEM_CATEGORY_PARAM || paramId == (int)BuiltInParameter.ELEM_CATEGORY_PARAM_MT)
+                        long paramId = param.Id.Value;
+                        if (paramId == (long)BuiltInParameter.ELEM_CATEGORY_PARAM || paramId == (long)BuiltInParameter.ELEM_CATEGORY_PARAM_MT)
                         {
                             var categories = DocumentManager.Instance.CurrentDBDocument.Settings.Categories;
                             result = new Category(categories.get_Item((BuiltInCategory)valueId));

@@ -22,7 +22,7 @@ namespace Revit.Elements
     public class DirectShapeState : SerializableId
     {
         public string syncId { get; set; }
-        public int materialId { get; set; }
+        public long materialId { get; set; }
 
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -35,10 +35,10 @@ namespace Revit.Elements
         public DirectShapeState(DirectShape ds, string syncId, ElementId materialId) :
             base()
         {
-            this.IntID = ds.InternalElement.Id.IntegerValue;
+            this.IntID = ds.InternalElement.Id.Value;
             this.StringID = ds.UniqueId;
             this.syncId = syncId;
-            this.materialId = materialId.IntegerValue;
+            this.materialId = materialId.Value;
         }
 
         public DirectShapeState(SerializationInfo info, StreamingContext context) :
@@ -135,7 +135,7 @@ namespace Revit.Elements
 
                 //if the cateogryID has changed, we cannot continue to rebind and instead
                 //will make a new directShape
-                if (category.Id == this.InternalElement.Category.Id.IntegerValue)
+                if (category.Id == this.InternalElement.Category.Id.Value)
                 {
                     //set the shape geometry of the directshape, this method passes in the actual input geo
                     //and checks the directShapeState object at the elementId key in the input geo tags dictionary. 
@@ -290,7 +290,7 @@ namespace Revit.Elements
             //first lookup the state on the input geometry
             var previousState = shapeReference.Tags.LookupTag(this.InternalElementId.ToString()) as DirectShapeState;
             //then compare values
-            if (previousState != null && previousState.materialId == materialId.IntegerValue && previousState.syncId == currentSyncId)
+            if (previousState != null && previousState.materialId == materialId.Value && previousState.syncId == currentSyncId)
             {
                 return;
             }

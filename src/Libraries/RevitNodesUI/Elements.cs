@@ -532,25 +532,25 @@ namespace DSRevitNodesUI
                     GetAstIdentifierForOutputIndex(0),
                     new IdentifierNode(packedId)
                     {
-                        ArrayDimensions = new ArrayNode{Expr = AstFactory.BuildIntNode(0)}
+                        ArrayDimensions = new ArrayNode{Expr = AstFactory.BuildIntNode(0L)}
                     }),
                 AstFactory.BuildAssignment(
                     GetAstIdentifierForOutputIndex(1),
                     new IdentifierNode(packedId)
                     {
-                        ArrayDimensions = new ArrayNode{Expr = AstFactory.BuildIntNode(1)}
+                        ArrayDimensions = new ArrayNode{Expr = AstFactory.BuildIntNode(1L)}
                     }),
                 AstFactory.BuildAssignment(
                     GetAstIdentifierForOutputIndex(2),
                     new IdentifierNode(packedId)
                     {
-                        ArrayDimensions = new ArrayNode{Expr = AstFactory.BuildIntNode(2)}
+                        ArrayDimensions = new ArrayNode{Expr = AstFactory.BuildIntNode(2L)}
                     }),
                 AstFactory.BuildAssignment(
                     GetAstIdentifierForOutputIndex(3),
                     new IdentifierNode(packedId)
                     {
-                        ArrayDimensions = new ArrayNode{Expr = AstFactory.BuildIntNode(3)}
+                        ArrayDimensions = new ArrayNode{Expr = AstFactory.BuildIntNode(3L)}
                     })
             };
         }

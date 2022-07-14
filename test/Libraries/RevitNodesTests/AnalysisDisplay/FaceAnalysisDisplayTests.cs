@@ -31,7 +31,7 @@ namespace RevitNodesTests.AnalysisDisplay
             var fi = fec.ToElements().FirstOrDefault();
             if (fi == null) return null;
 
-            var inst = (Revit.Elements.FamilyInstance)ElementSelector.ByElementId(fi.Id.IntegerValue);
+            var inst = (Revit.Elements.FamilyInstance)ElementSelector.ByElementId(fi.Id.Value);
             var geom = inst.Geometry();
             var solid = (Autodesk.DesignScript.Geometry.Solid)geom.FirstOrDefault(g => g is Autodesk.DesignScript.Geometry.Solid);
 

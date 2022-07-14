@@ -11,7 +11,7 @@ namespace RevitSystemTests
     public class RevitWatch3DViewModelTests : RevitSystemTestBase
     {
         [SetUp]
-        public void Setup()
+        public override void Setup()
         {
             var vm3D = ViewModel.Watch3DViewModels.FirstOrDefault(vm => vm is RevitWatch3DViewModel);
             vm3D.Active = true;

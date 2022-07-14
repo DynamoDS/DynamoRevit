@@ -138,17 +138,19 @@ namespace Revit.GeometryConversion
             string tempFamilyFile = System.IO.Path.Combine(tempDir, name + ".rfa");
 
             // scale the incoming geometry
-            solidGeometry = solidGeometry.InHostUnits();
+            using (solidGeometry = solidGeometry.InHostUnits())
+            {
 
-            // get a displacement vector
-            Vector vector = Vector.ByTwoPoints(Autodesk.DesignScript.Geometry.BoundingBox.ByGeometry(solidGeometry).MinPoint, Autodesk.DesignScript.Geometry.Point.Origin());
+                // get a displacement vector
+                Geometry[] solidGeoms = new Geometry[] { solidGeometry };
+                Vector vector = Vector.ByTwoPoints(Autodesk.DesignScript.Geometry.BoundingBox.ByGeometry(solidGeoms).MinPoint, Autodesk.DesignScript.Geometry.Point.Origin());
 
-            // translate the geometry to origin
-            solidGeometry = solidGeometry.Translate(vector) as Autodesk.DesignScript.Geometry.Solid;
+                // translate the geometry to origin
+                solidGeoms[0] = solidGeoms[0].Translate(vector) as Autodesk.DesignScript.Geometry.Solid;
 
-            // export geometry to SAT
-            solidGeometry.ExportToSAT(tempFile);
-            solidGeometry.Dispose();
+                // export geometry to SAT
+                Geometry.ExportToSAT(solidGeoms, tempFile);
+            }
 
             // create a new family document using the supplied template
             Autodesk.Revit.DB.Document familyDocument = document.Application.NewFamilyDocument(templatePath);

@@ -53,7 +53,7 @@ namespace RevitNodesTests.Elements
         public void CanSuccessfullyDeleteElement()
         {
             // Id of wall
-            const int wallId = 184176;
+            const long wallId = 184176L;
 
             // Get element from document
             using (Element wall = ElementSelector.ByElementId(wallId, true))
@@ -61,7 +61,7 @@ namespace RevitNodesTests.Elements
                 Assert.IsNotNull(wall);
 
                 // Delete Element
-                int[] deleted = Element.Delete(wall);
+                long[] deleted = Element.Delete(wall);
 
                 // Confirm list of elements represent the wall requested to delete. 
                 Assert.AreEqual(1, deleted.Length);
@@ -159,7 +159,7 @@ namespace RevitNodesTests.Elements
 
             foreach (var refer in refs)
             {
-                Assert.AreEqual(46874, refer.InternalReference.ElementId.IntegerValue);
+                Assert.AreEqual(46874L, refer.InternalReference.ElementId.Value);
             }
         }
 
@@ -191,7 +191,7 @@ namespace RevitNodesTests.Elements
 
             foreach (var refer in refs)
             {
-                Assert.AreEqual(46874, refer.InternalReference.ElementId.IntegerValue);
+                Assert.AreEqual(46874L, refer.InternalReference.ElementId.Value);
             }
         }
 
@@ -218,7 +218,7 @@ namespace RevitNodesTests.Elements
 
             foreach (var refer in refs)
             {
-                Assert.AreEqual(186006, refer.InternalReference.ElementId.IntegerValue);
+                Assert.AreEqual(186006L, refer.InternalReference.ElementId.Value);
             }
         }
 
@@ -241,7 +241,7 @@ namespace RevitNodesTests.Elements
 
             foreach (var refer in refs)
             {
-                Assert.AreEqual(32107, refer.InternalReference.ElementId.IntegerValue);
+                Assert.AreEqual(32107L, refer.InternalReference.ElementId.Value);
             }
         }
 
@@ -256,7 +256,7 @@ namespace RevitNodesTests.Elements
 
             foreach (var refer in refs)
             {
-                Assert.AreEqual(32107, refer.InternalReference.ElementId.IntegerValue);
+                Assert.AreEqual(32107L, refer.InternalReference.ElementId.Value);
             }
         }
 
@@ -267,17 +267,17 @@ namespace RevitNodesTests.Elements
         public void CanGetElementChildElements()
         {
             // Arrange
-            var wall = ElementSelector.ByElementId(316153, true);
-            var window = ElementSelector.ByElementId(319481, true);
-            var beamSystem = ElementSelector.ByElementId(319537, true);
-            var stair = ElementSelector.ByElementId(316246, true);
-            var railing = ElementSelector.ByElementId(319643, true);
+            var wall = ElementSelector.ByElementId(316153L, true);
+            var window = ElementSelector.ByElementId(319481L, true);
+            var beamSystem = ElementSelector.ByElementId(319537L, true);
+            var stair = ElementSelector.ByElementId(316246L, true);
+            var railing = ElementSelector.ByElementId(319643L, true);
 
             var expectedExceptionMessageWallChildElement = Revit.Properties.Resources.ChildElementsNotSupported;
-            var expectedWindowChildElement = new List<int>() { 319484, 319485 };
-            var expectedBeamChildElements = new List<int>() { 319563, 319575, 319577, 319579, 319581 };
-            var expectedStairChildElements = new List<int>() { 316286, 316288, 316289 };
-            var expectedRailingChildElements = new List<int>() { 319683 };
+            var expectedWindowChildElement = new List<long>() { 319484L, 319485L };
+            var expectedBeamChildElements = new List<long>() { 319563L, 319575L, 319577L, 319579L, 319581L };
+            var expectedStairChildElements = new List<long>() { 316286L, 316288L, 316289L };
+            var expectedRailingChildElements = new List<long>() { 319683L };
 
             // Act
             var resultWindowChildElements = window.GetChildElements().Select(x => x.Id).ToList();
@@ -300,13 +300,13 @@ namespace RevitNodesTests.Elements
         public void CanGetElementParentElement()
         {
             // Arrange
-            var wall = ElementSelector.ByElementId(316153, true);
-            var window = ElementSelector.ByElementId(319485, true);
-            var beam = ElementSelector.ByElementId(319579, true);
+            var wall = ElementSelector.ByElementId(316153L, true);
+            var window = ElementSelector.ByElementId(319485L, true);
+            var beam = ElementSelector.ByElementId(319579L, true);
 
             var expectedExceptionMessageWallSubComponents = Revit.Properties.Resources.NoParentElement;
-            var expectedWindowParentElement = 319481;
-            var expectedBeamParentElement = 319537;
+            var expectedWindowParentElement = 319481L;
+            var expectedBeamParentElement = 319537L;
 
             // Act
             var wallParentElementException = Assert.Throws<System.InvalidOperationException>(() => wall.GetParentElement());
@@ -332,10 +332,10 @@ namespace RevitNodesTests.Elements
                                                                                     Vector.ZAxis(),
                                                                                     25);
 
-            var wall = ElementSelector.ByElementId(316150) as Revit.Elements.FamilyInstance;
-            var rectangularColumn = ElementSelector.ByElementId(318266) as Revit.Elements.FamilyInstance;
-            var steelColumn = ElementSelector.ByElementId(316180) as Revit.Elements.FamilyInstance;
-            var lineBasedFamily = ElementSelector.ByElementId(317296) as Revit.Elements.FamilyInstance;
+            var wall = ElementSelector.ByElementId(316150L) as Revit.Elements.FamilyInstance;
+            var rectangularColumn = ElementSelector.ByElementId(318266L) as Revit.Elements.FamilyInstance;
+            var steelColumn = ElementSelector.ByElementId(316180L) as Revit.Elements.FamilyInstance;
+            var lineBasedFamily = ElementSelector.ByElementId(317296L) as Revit.Elements.FamilyInstance;
 
             var expectedRectangularColumnLocation = Autodesk.DesignScript.Geometry.Point.ByCoordinates(4665.007,-2577.392,0);
             var expectedLineBasedFamilyLocation = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(Autodesk.DesignScript.Geometry.Point.ByCoordinates(6030.576, -1719.941, 0),
@@ -419,8 +419,8 @@ namespace RevitNodesTests.Elements
         public void CanSuccessfullyGetJoinedElementsFromElement()
         {
             // Arrange - get element from model
-            var element = ElementSelector.ByElementId(184176, true);
-            int[] expectedIds = new int[] { 207960, 208259, 208422 };
+            var element = ElementSelector.ByElementId(184176L, true);
+            long[] expectedIds = new long[] { 207960L, 208259L, 208422L };
 
             // Act
             IEnumerable<Element> joinedElements = element.GetJoinedElements();
@@ -436,7 +436,7 @@ namespace RevitNodesTests.Elements
         public void CanSuccessfullyGetHostedElements()
         {
             // Arrange - Select the wall element in revit by it Id
-            var elem = ElementSelector.ByElementId(261723, true);
+            var elem = ElementSelector.ByElementId(261723L, true);
             // Model element names
             string windowFamName = "600 x 3100";
             string curtainWallFamName = "Curtain Wall";
@@ -512,11 +512,11 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\Element\elementJoin.rvt")]
         public void CanSuccessfullyCheckIfTwoElementsAreJoined()
         {
-            var wall1 = ElementSelector.ByElementId(184176, true);
-            var wall2 = ElementSelector.ByElementId(207960, true);
-            var floor = ElementSelector.ByElementId(208259, true);
-            var beam1 = ElementSelector.ByElementId(208422, true);
-            var beam2 = ElementSelector.ByElementId(208572, true);
+            var wall1 = ElementSelector.ByElementId(184176L, true);
+            var wall2 = ElementSelector.ByElementId(207960L, true);
+            var floor = ElementSelector.ByElementId(208259L, true);
+            var beam1 = ElementSelector.ByElementId(208422L, true);
+            var beam2 = ElementSelector.ByElementId(208572L, true);
 
             // Check if different kinds of elements are joined
             // wall1 and wall2 are joined
@@ -544,9 +544,9 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\Element\elementJoin.rvt")]
         public void CanUnjoinListOfElements()
         {
-            var wall1 = ElementSelector.ByElementId(184176, true);
-            var wall2 = ElementSelector.ByElementId(207960, true);
-            var floor = ElementSelector.ByElementId(208259, true);
+            var wall1 = ElementSelector.ByElementId(184176L, true);
+            var wall2 = ElementSelector.ByElementId(207960L, true);
+            var floor = ElementSelector.ByElementId(208259L, true);
             var doc = DocumentManager.Instance.CurrentDBDocument;
 
             // Are joined
@@ -585,9 +585,9 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\Element\elementJoin.rvt")]
         public void CanUnjoinTwoElements()
         {
-            var wall1 = ElementSelector.ByElementId(184176, true);
-            var wall2 = ElementSelector.ByElementId(207960, true);
-            var floor = ElementSelector.ByElementId(208259, true);
+            var wall1 = ElementSelector.ByElementId(184176L, true);
+            var wall2 = ElementSelector.ByElementId(207960L, true);
+            var floor = ElementSelector.ByElementId(208259L, true);
             var doc = DocumentManager.Instance.CurrentDBDocument;
             string expectedNotJoinedExceptionMessages = Revit.Properties.Resources.NotJoinedElements;
 
@@ -617,11 +617,11 @@ namespace RevitNodesTests.Elements
         [TestModel(@".\Element\elementJoin.rvt")]
         public void CanSetOrderOfTwoJoinedElements()
         {
-            int cuttingElementId = 208422;
-            int cutElementId = 208572;
-            int unjoinedElementId = 208259;
+            long cuttingElementId = 208422L;
+            long cutElementId = 208572L;
+            long unjoinedElementId = 208259L;
 
-            List<int> unchangedOrder = new List<int>() { cuttingElementId, cutElementId };
+            List<long> unchangedOrder = new List<long>() { cuttingElementId, cutElementId };
             string invalidSwitchJoinOrderMessages = Revit.Properties.Resources.InvalidSwitchJoinOrder;
 
             // Joined elements
@@ -633,12 +633,12 @@ namespace RevitNodesTests.Elements
 
             // Elements already in the wanted join order
             IEnumerable<Element> orderedElements = Element.SetGeometryJoinOrder(cuttingFraming, cutFraming);
-            List<int> orderedElementIds = orderedElements.Select(elem => elem.Id).ToList();
+            List<long> orderedElementIds = orderedElements.Select(elem => elem.Id).ToList();
             CollectionAssert.AreEqual(unchangedOrder, orderedElementIds);
 
             // Elements not in wanted join order
             IEnumerable<Element> switchedElements = Element.SetGeometryJoinOrder(cutFraming, cuttingFraming);
-            List<int> changedElementIds = switchedElements.Select(elem => elem.Id).ToList();
+            List<long> changedElementIds = switchedElements.Select(elem => elem.Id).ToList();
             unchangedOrder.Reverse();
             CollectionAssert.AreEqual(unchangedOrder, changedElementIds);
 
@@ -653,18 +653,18 @@ namespace RevitNodesTests.Elements
         {
             // Arrange
             Document doc = DocumentManager.Instance.CurrentDBDocument;
-            var primaryBeam = ElementSelector.ByElementId(208422, true);
-            var nonIntersectingBeam = ElementSelector.ByElementId(209681, true);
-            var joinedBeam = ElementSelector.ByElementId(208572, true);
-            var notJoinedWall = ElementSelector.ByElementId(207960, true);
-            var notJoinedFloor = ElementSelector.ByElementId(208259, true);
+            var primaryBeam = ElementSelector.ByElementId(208422L, true);
+            var nonIntersectingBeam = ElementSelector.ByElementId(209681L, true);
+            var joinedBeam = ElementSelector.ByElementId(208572L, true);
+            var notJoinedWall = ElementSelector.ByElementId(207960L, true);
+            var notJoinedFloor = ElementSelector.ByElementId(208259L, true);
 
             var nonIntersectingTestExpectedExceptionType = typeof(System.NullReferenceException);
             string nonIntersectingTestExpectedExceptionString = "Elements are not intersecting";
 
             // Act
-            List<int> joinedTestExpectedOutcome = new List<int> { 208422, 208572 };
-            List<int> notJoinedTestExpectedOutcome = new List<int> { 207960, 208259 };
+            List<long> joinedTestExpectedOutcome = new List<long> { 208422L, 208572L };
+            List<long> notJoinedTestExpectedOutcome = new List<long> { 207960L, 208259L };
 
             var alreadyJoinedOutcome = primaryBeam.JoinGeometry(joinedBeam).Select(elem => elem.Id).ToList();
             var notJoinedIntersectingOutcome = notJoinedWall.JoinGeometry(notJoinedFloor).Select(elem => elem.Id).ToList();
@@ -685,31 +685,31 @@ namespace RevitNodesTests.Elements
         public void CanGetIntersectingElementsOfSpecificCategory()
         {
             // Element to check intersections on
-            int intersectionElementId = 316167;
+            long intersectionElementId = 316167L;
             var intersectionElement = ElementSelector.ByElementId(intersectionElementId, true);
 
             // Element intersecting
-            int structuralFramingId = 316318;
+            long structuralFramingId = 316318L;
             var structuralFramingElement = ElementSelector.ByElementId(structuralFramingId, true);
-            int floorId = 316539;
+            long floorId = 316539L;
             var floorElement = ElementSelector.ByElementId(floorId, true);
-            int wallId = 316246;
+            long wallId = 316246L;
             var wallElement = ElementSelector.ByElementId(wallId, true);
 
             // Expected outcomes
-            var expectedStructuralFramingIds = new List<int>() { structuralFramingId };
-            var expectedFloorIds = new List<int>() { floorId };
-            var expectedWallIds = new List<int>() { wallId };
+            var expectedStructuralFramingIds = new List<long>() { structuralFramingId };
+            var expectedFloorIds = new List<long>() { floorId };
+            var expectedWallIds = new List<long>() { wallId };
 
             // Get intersecting elements of category
             var structuralFrameCategory = Revit.Elements.Category.ByName("StructuralFraming");
-            List<int> intersectedFraming = GetIntersectingElementIds(intersectionElement, structuralFrameCategory);
+            List<long> intersectedFraming = GetIntersectingElementIds(intersectionElement, structuralFrameCategory);
 
             var floorCategory = Revit.Elements.Category.ByName("Floors");
-            List<int> intersectedFloorId = GetIntersectingElementIds(intersectionElement, floorCategory);
+            List<long> intersectedFloorId = GetIntersectingElementIds(intersectionElement, floorCategory);
 
             var wallCategory = Revit.Elements.Category.ByName("Walls");
-            List<int> intersectedWallId = GetIntersectingElementIds(intersectionElement, wallCategory);
+            List<long> intersectedWallId = GetIntersectingElementIds(intersectionElement, wallCategory);
 
             // Check if method returns null if there are no intersecting elements of the specified category
             var windowCategory = Revit.Elements.Category.ByName("Windows");
@@ -722,7 +722,7 @@ namespace RevitNodesTests.Elements
             CollectionAssert.AreEqual(new List<Element>(), intersectedWindow);
         }
 
-        private static List<int> GetIntersectingElementIds(Element intersectionElement, Revit.Elements.Category category)
+        private static List<long> GetIntersectingElementIds(Element intersectionElement, Revit.Elements.Category category)
         {
             return intersectionElement.GetIntersectingElementsOfCategory(category)
                                       .Select(elem => elem.Id)

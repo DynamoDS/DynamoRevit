@@ -234,7 +234,6 @@ namespace Dynamo.Applications.Models
             SetupPython();
         }
 
-        private bool isFirstEvaluation = true;
 
         #endregion
 
@@ -616,7 +615,7 @@ namespace Dynamo.Applications.Models
 
         public override void OnEvaluationCompleted(object sender, EvaluationCompletedEventArgs e)
         {
-            Debug.WriteLine(ElementIDLifecycleManager<int>.GetInstance());
+            Debug.WriteLine(ElementIDLifecycleManager<long>.GetInstance());
 
             // finally close the transaction!
             TransactionManager.Instance.ForceCloseTransaction();
@@ -656,7 +655,7 @@ namespace Dynamo.Applications.Models
             PythonEngineManager.Instance.AvailableEngines.ToList().ForEach(engine => CleanUpPythonEngine(engine));
             PythonEngineManager.Instance.AvailableEngines.CollectionChanged -= OnPythonEngineCollectionChanged;
 
-            ElementIDLifecycleManager<int>.DisposeInstance();
+            ElementIDLifecycleManager<long>.DisposeInstance();
         }
 
         protected override void PostShutdownCore(bool shutdownHost)
