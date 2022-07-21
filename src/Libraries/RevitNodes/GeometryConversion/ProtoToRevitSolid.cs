@@ -48,7 +48,7 @@ namespace Revit.GeometryConversion
         /// </summary>
         /// <param name="familyDocument"></param>
         /// <param name="material"></param>
-        /// <param name="element"></param>
+        /// <param name="freeform"></param>
         private static void ApplyMaterialToFreeForm(
             Autodesk.Revit.DB.Document familyDocument, 
             Revit.Elements.Material material,
