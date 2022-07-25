@@ -44,7 +44,7 @@ namespace Revit.Application
             get
             {
                 Autodesk.Revit.DB.Category internalCategory = OwnerFamily.InternalFamily.FamilyCategory;
-                return Elements.Category.ById(internalCategory.Id.IntegerValue);
+                return Elements.Category.ById(internalCategory.Id.Value);
             }
         }
 
@@ -154,7 +154,7 @@ namespace Revit.Application
                     return FamilyManager.CurrentType.AsString(familyParameter);
 
                 case Autodesk.Revit.DB.StorageType.ElementId:
-                    Elements.Element element = ElementSelector.ByElementId(FamilyManager.CurrentType.AsElementId(familyParameter).IntegerValue);
+                    Elements.Element element = ElementSelector.ByElementId(FamilyManager.CurrentType.AsElementId(familyParameter).Value);
                     return element;
                 default:
                     return null;
@@ -223,13 +223,13 @@ namespace Revit.Application
         /// </summary>
         /// <param name="parameterName">The family parameter name.</param>
         /// <returns>The id of the deleted family parameter.</returns>
-        public int DeleteParameter(string parameterName)
+        public long DeleteParameter(string parameterName)
         {
             Autodesk.Revit.DB.FamilyParameter familyParameter = FamilyManager.get_Parameter(parameterName);
             if (familyParameter == null)
                 throw new InvalidOperationException(Properties.Resources.ParameterNotFound);
 
-            int parameterId = familyParameter.Id.IntegerValue;
+            long parameterId = familyParameter.Id.Value;
             TransactionManager.Instance.EnsureInTransaction(this.InternalDocument);
             FamilyManager.RemoveParameter(familyParameter);
             TransactionManager.Instance.TransactionTaskDone();

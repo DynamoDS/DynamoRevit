@@ -81,13 +81,13 @@ namespace RevitNodesTests.Elements
             string elementTypeName = "24\" x 24\"";
             string emptyTypeName = "";
             string notFoundTypeName = "wallTypeTest";
-            int expectedId = 60411;
+            long expectedId = 60411L;
 
             // Act
             var typeElement = Revit.Elements.ElementType.ByName(elementTypeName);
             Assert.Throws<System.ArgumentNullException>(() => Revit.Elements.ElementType.ByName(emptyTypeName));
             Assert.Throws<KeyNotFoundException>(() => Revit.Elements.ElementType.ByName(notFoundTypeName));
-            int typeId = typeElement.InternalElement.Id.IntegerValue;
+            long typeId = typeElement.InternalElement.Id.Value;
 
             // Assert
             Assert.AreEqual(expectedId, typeId);

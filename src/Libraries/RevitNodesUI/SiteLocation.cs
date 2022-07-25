@@ -1,34 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
-
-using Autodesk.Revit.Creation;
-
-using Dynamo.Applications;
+﻿using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Controls;
-using Dynamo.Models;
-using Dynamo.Nodes;
-
-using Dynamo.UI;
+using Dynamo.Graph.Nodes;
 using Dynamo.Wpf;
-
+using Newtonsoft.Json;
 using ProtoCore.AST.AssociativeAST;
 using Revit.GeometryConversion;
-
-using Revit.Elements;
 using RevitServices.Elements;
 using RevitServices.Persistence;
-using Autodesk.Revit.DB.Events;
-using Dynamo.Applications;
-using Dynamo.Graph.Nodes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
-using RevitServices.Transactions;
 
 namespace DSRevitNodesUI
 {
-    public class SiteLocationNodeViewCustomization : INodeViewCustomization<SiteLocation>
+   public class SiteLocationNodeViewCustomization : INodeViewCustomization<SiteLocation>
     {
         public void CustomizeView(SiteLocation model, NodeView nodeView)
         {
@@ -47,8 +34,6 @@ namespace DSRevitNodesUI
     [OutPortTypes("DynamoUnits.Location")]
     public class SiteLocation : RevitNodeModel
     {
-        private readonly RevitDynamoModel model;
-
         [JsonIgnore]
         public DynamoUnits.Location Location { get; set; }
 

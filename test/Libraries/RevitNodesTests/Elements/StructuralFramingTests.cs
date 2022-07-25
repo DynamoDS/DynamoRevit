@@ -21,12 +21,12 @@ namespace RevitNodesTests.Elements
             var line = Line.ByStartPointEndPoint(start, end);
             
             var level = Level.ByElevation(3);
-            var up = Vector.ByCoordinates(0, 0, 1);
-
-            var structuralType = StructuralType.Beam;
+            
             var famTyp = FamilyType.ByName("W12X26");
 
-            var structure = StructuralFraming.ByCurveLevelUpVectorAndType(line, level, up, structuralType, famTyp);
+            var structure = StructuralFraming.BeamByCurve(line, level, famTyp);
+
+         
 
             Assert.NotNull(structure);
             Assert.NotNull(structure.InternalElement);
@@ -43,16 +43,13 @@ namespace RevitNodesTests.Elements
             var line = Line.ByStartPointEndPoint(start, end);
 
             var level = Level.ByElevation(3);
-            var up = Vector.ByCoordinates(0, 0, 1);
 
-            var structuralType = StructuralType.Beam;
             var famTyp = FamilyType.ByName("W12X26");
 
-            Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.ByCurveLevelUpVectorAndType(null, level, up, structuralType, famTyp));
-            Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.ByCurveLevelUpVectorAndType(line, null, up, structuralType, famTyp));
-            Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.ByCurveLevelUpVectorAndType(line, level, null, structuralType, famTyp));
-            Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.ByCurveLevelUpVectorAndType(line, level, up, structuralType, null));
-        }
+            Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.BeamByCurve(null, level, famTyp));
+            Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.BeamByCurve(line, null, famTyp));
+            Assert.Throws(typeof(System.ArgumentNullException), () => StructuralFraming.BeamByCurve(line, level, null));
+         }
 
         [Test]
         [TestModel(@".\StructuralFramingLocationTest.rvt")]

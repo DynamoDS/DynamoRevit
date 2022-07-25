@@ -114,7 +114,7 @@ namespace DSRevitNodesUI
             
             // Select the element using the elementIds Integer Value
             var node = AstFactory.BuildFunctionCall("Revit.Elements.ElementSelector", "ByElementId",
-                new List<AssociativeNode> { AstFactory.BuildIntNode(Id.IntegerValue) });
+                new List<AssociativeNode> { AstFactory.BuildIntNode(Id.Value) });
 
             // Return the selected element
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };

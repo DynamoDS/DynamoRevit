@@ -33,7 +33,7 @@ namespace Dynamo.Applications.ViewModel
             RegisterWatch3DViewModel(watch3DVm, new DefaultRenderPackageFactory());
         }
 
-        public static DynamoRevitViewModel Start(StartConfiguration startConfiguration)
+        new public static DynamoRevitViewModel Start(StartConfiguration startConfiguration)
         {
             if (startConfiguration.DynamoModel == null)
             {

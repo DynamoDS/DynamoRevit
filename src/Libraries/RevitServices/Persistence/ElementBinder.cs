@@ -20,18 +20,18 @@ namespace RevitServices.Persistence
     public class SerializableId : ISerializable
     {
         public String StringID { get; set; }
-        public int IntID { get; set; }
+        public long IntID { get; set; }
 
         public virtual void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("stringID", StringID, typeof(string));
-            info.AddValue("intID", IntID, typeof(int));
+            info.AddValue("intID", IntID, typeof(long));
         }
 
         public SerializableId()
         {
             StringID = "";
-            IntID = int.MinValue;
+            IntID = long.MinValue;
 
         }
 
@@ -43,7 +43,7 @@ namespace RevitServices.Persistence
         public SerializableId(SerializationInfo info, StreamingContext context)
         {
             StringID = (string) info.GetValue("stringID", typeof (string));
-            IntID = (int)info.GetValue("intID", typeof(int));
+            IntID = (long)info.GetValue("intID", typeof(long));
         }
 
         public override bool Equals(object other)
@@ -70,7 +70,7 @@ namespace RevitServices.Persistence
     public class MultipleSerializableId : ISerializable
     {
         public List<String> StringIDs { get; set; }
-        public List<int> IntIDs { get; set; }
+        public List<long> IntIDs { get; set; }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -83,7 +83,7 @@ namespace RevitServices.Persistence
             for (int i = 0; i < numberOfElements; i++)
             {
                 info.AddValue("stringID-" + i, StringIDs[i], typeof(string));
-                info.AddValue("intID-" + i, IntIDs[i], typeof(int));
+                info.AddValue("intID-" + i, IntIDs[i], typeof(long));
             }
         }
 
@@ -99,7 +99,7 @@ namespace RevitServices.Persistence
             foreach (Element element in elements)
             {
                 StringIDs.Add(element.UniqueId);
-                IntIDs.Add(element.Id.IntegerValue);
+                IntIDs.Add(element.Id.Value);
             }
         }
 
@@ -117,7 +117,7 @@ namespace RevitServices.Persistence
             for (int i = 0; i < numberOfElements; i++)
             {
                 string stringID = (string)info.GetValue("stringID-" + i, typeof(string));
-                int intID = (int)info.GetValue("intID-" + i, typeof(int));
+                long intID = (long)info.GetValue("intID-" + i, typeof(long));
 
                 StringIDs.Add(stringID);
                 IntIDs.Add(intID);
@@ -128,7 +128,7 @@ namespace RevitServices.Persistence
         private void InitializeDataMembers()
         {
             StringIDs = new List<String>();
-            IntIDs = new List<int>();
+            IntIDs = new List<long>();
         }
 
         public override bool Equals(object other)
@@ -318,7 +318,7 @@ namespace RevitServices.Persistence
             if (!IsEnabled) return;
 
             SerializableId id = new SerializableId();
-            id.IntID = elementId.IntegerValue;
+            id.IntID = elementId.Value;
             id.StringID = elementUUID.UUID;
 
             // if we're mutating the current Element id, that means we need to 
@@ -504,7 +504,7 @@ namespace RevitServices.Persistence
                             {
                                 foreach (var id in ids)
                                 {
-                                    if (sid.IntID == id.IntegerValue)
+                                    if (sid.IntID == id.Value)
                                     {
                                         areElementsFoundForThisNode = true;
                                         break;
@@ -586,7 +586,7 @@ namespace RevitServices.Persistence
             }
         }
 
-        private static void setEachElementFreezeState(bool frozen, int elementId)
+        private static void setEachElementFreezeState(bool frozen, long elementId)
         {
             //Get the Autodesk.Revit.Element.
             Element el;
@@ -597,7 +597,7 @@ namespace RevitServices.Persistence
             if (el != null)
             {
                 dynamic elem =
-                    ElementIDLifecycleManager<int>.GetInstance().GetFirstWrapper(el.Id.IntegerValue);
+                    ElementIDLifecycleManager<long>.GetInstance().GetFirstWrapper(el.Id.Value);
                 if (elem != null)
                 {
                     elem.IsFrozen = frozen;

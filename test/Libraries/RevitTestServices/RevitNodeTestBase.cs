@@ -80,11 +80,13 @@ namespace RevitTestServices
             }
         }
 
-        private static void SetUpHostUnits()
+#pragma warning disable CS0618
+      private static void SetUpHostUnits()
         {
             BaseUnit.HostApplicationInternalAreaUnit = AreaUnit.SquareFoot;
             BaseUnit.HostApplicationInternalLengthUnit = LengthUnit.DecimalFoot;
             BaseUnit.HostApplicationInternalVolumeUnit = VolumeUnit.CubicFoot;
         }
-    }
+#pragma warning restore CS0618
+   }
 }

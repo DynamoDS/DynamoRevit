@@ -73,7 +73,7 @@ namespace RevitNodesTests.Elements
             var floorType = floor.ElementType as FloorType;
             var foundationType = foundationSlab.ElementType as FloorType;
             var structuralMaterial = floorType.GetStructuralMaterial();
-            int structuralMaterailId = structuralMaterial.Id;
+            long structuralMaterailId = structuralMaterial.Id;
             var foundationSlabException = Assert.Throws<System.InvalidOperationException>(() => foundationType.GetStructuralMaterial());
 
             // Assert

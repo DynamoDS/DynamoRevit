@@ -656,7 +656,7 @@ namespace Dynamo.Applications
                     var revitCategoryToExtend = elements.First(elem => elem.text == "Revit");
                     revitCategoryToExtend.childElements.AddRange(revitCategory.childElements);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     Console.WriteLine(string.Format("Exception while trying to load {0}", layoutSpecsFile));
                 }
@@ -1033,7 +1033,7 @@ namespace Dynamo.Applications
                         internalPackages.Add(intPackage);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     Console.WriteLine(string.Format("Exception while trying to parse internalPackage file {0}", internalPackageFile));
                 }

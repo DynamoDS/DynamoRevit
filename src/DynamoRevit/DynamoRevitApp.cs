@@ -116,7 +116,7 @@ namespace Dynamo.Applications
                         }
                     }
                 }
-                catch(Exception ex)
+                catch(Exception)
                 {
                     return Result.Failed;
                 }

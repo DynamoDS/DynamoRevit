@@ -45,7 +45,7 @@ namespace Revit.GeometryObjects
 
                 return geob.Convert(elRef);
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 throw new Exception(Properties.Resources.GeometryObjectReferenceFailure);
             }
@@ -67,7 +67,7 @@ namespace Revit.GeometryObjects
         /// <returns></returns>
         private static bool RequiresTransform(Autodesk.Revit.DB.FamilyInstance familyInstance)
         {
-            if (familyInstance.Category.Id.IntegerValue == (int)BuiltInCategory.OST_Mass)
+            if (familyInstance.Category.BuiltInCategory == BuiltInCategory.OST_Mass)
                 return false;
             var geom = familyInstance.get_Geometry(new Options());
             return geom.OfType<Autodesk.Revit.DB.GeometryInstance>()

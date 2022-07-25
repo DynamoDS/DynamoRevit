@@ -377,7 +377,7 @@ namespace DSRevitNodesUI
             if (this.storedId != null)
             {
                 XmlElement outEl = nodeElement.OwnerDocument.CreateElement("familyid");
-                outEl.SetAttribute("value", this.storedId.IntegerValue.ToString(CultureInfo.InvariantCulture));
+                outEl.SetAttribute("value", this.storedId.Value.ToString(CultureInfo.InvariantCulture));
                 nodeElement.AppendChild(outEl);
 
                 XmlElement param = nodeElement.OwnerDocument.CreateElement("index");
@@ -398,10 +398,10 @@ namespace DSRevitNodesUI
             {
                 if (subNode.Name.Equals("familyid"))
                 {
-                    int id;
+                    long id;
                     try
                     {
-                        id = Convert.ToInt32(subNode.Attributes[0].Value);
+                        id = Convert.ToInt64(subNode.Attributes[0].Value);
                     }
                     catch
                     {
@@ -713,10 +713,10 @@ namespace DSRevitNodesUI
 
             var args = new List<AssociativeNode>
             {
-                AstFactory.BuildIntNode((int)categoryId)
+                AstFactory.BuildIntNode((long)categoryId)
             };
 
-            var func = new Func<int, Category>(Revit.Elements.Category.ById);
+            var func = new Func<long, Category>(Revit.Elements.Category.ById);
             var functionCall = AstFactory.BuildFunctionCall(func, args);
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall) };
@@ -843,7 +843,7 @@ namespace DSRevitNodesUI
                 "ByElementId",
                 new List<AssociativeNode>
                 {
-                    AstFactory.BuildIntNode(((Level)Items[SelectedIndex].Item).Id.IntegerValue)
+                    AstFactory.BuildIntNode(((Level)Items[SelectedIndex].Item).Id.Value)
                 });
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
@@ -905,7 +905,7 @@ namespace DSRevitNodesUI
                 "ByElementId",
                 new List<AssociativeNode>
                 {
-                    AstFactory.BuildIntNode(((Element)Items[SelectedIndex].Item).Id.IntegerValue)
+                    AstFactory.BuildIntNode(((Element)Items[SelectedIndex].Item).Id.Value)
                 });
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };

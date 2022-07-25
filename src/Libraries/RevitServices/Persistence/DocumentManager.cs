@@ -72,7 +72,7 @@ namespace RevitServices.Persistence
                 {
                     CurrentDBDocument.Delete(id);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     var ele =  CurrentDBDocument.GetElement(id);
                     throw new ArgumentException(String.Format("This Element {0} {1} cannot be deleted",ele.ToString(), ele.Name));

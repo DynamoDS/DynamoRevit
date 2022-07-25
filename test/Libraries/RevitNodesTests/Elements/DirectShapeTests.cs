@@ -96,7 +96,7 @@ namespace RevitNodesTests.Elements
             // Check number of Edges
             Assert.AreEqual(24, geo.Edges.Size);
             // Check that material is set
-            Assert.AreNotEqual(-1, geo.Faces.get_Item(0).MaterialElementId.IntegerValue);
+            Assert.AreNotEqual(-1L, geo.Faces.get_Item(0).MaterialElementId.Value);
 
             // Check bounding box to make sure we got unit conversion right
             ds.BoundingBox.MaxPoint.ShouldBeApproximately(10.0, 10.0, 10.0);
@@ -132,7 +132,7 @@ namespace RevitNodesTests.Elements
             // Check number of Edges
             Assert.AreEqual(6, geo.Edges.Size);
             // Check that material is set
-            Assert.AreNotEqual(-1, geo.Faces.get_Item(0).MaterialElementId.IntegerValue);
+            Assert.AreNotEqual(-1L, geo.Faces.get_Item(0).MaterialElementId.Value);
 
             // Check bounding box to make sure we got unit conversion right
             ds.BoundingBox.MaxPoint.ShouldBeApproximately(10.0, 10.0, 0.0);
@@ -151,7 +151,7 @@ namespace RevitNodesTests.Elements
             
             Assert.NotNull(ds);
             Assert.AreEqual("a sphere", ds.Name);
-            Assert.AreEqual((sphere.Tags.LookupTag(ds.InternalElement.Id.ToString()) as DirectShapeState).materialId, mat.Id.IntegerValue);
+            Assert.AreEqual((sphere.Tags.LookupTag(ds.InternalElement.Id.ToString()) as DirectShapeState).materialId, mat.Id.Value);
             BoundingBoxCentroid(ds).DistanceTo(Point.Origin()).ShouldBeApproximately(0);
             sphere.Dispose();
         }
@@ -172,7 +172,7 @@ namespace RevitNodesTests.Elements
 
             Assert.NotNull(ds);
             Assert.AreEqual("a polysurface", ds.Name);
-            Assert.AreEqual((surf.Tags.LookupTag(ds.InternalElement.Id.ToString())as DirectShapeState).materialId, mat.Id.IntegerValue);
+            Assert.AreEqual((surf.Tags.LookupTag(ds.InternalElement.Id.ToString())as DirectShapeState).materialId, mat.Id.Value);
             BoundingBoxCentroid(ds).DistanceTo(Point.Origin()).ShouldBeApproximately(0);
             surf.Dispose();
             surfs.ForEach(x => x.Dispose());
@@ -198,7 +198,7 @@ namespace RevitNodesTests.Elements
 
             Assert.NotNull(ds);
             Assert.AreEqual("a mesh", ds.Name);
-            Assert.AreEqual((mesh.Tags.LookupTag(ds.InternalElement.Id.ToString()) as DirectShapeState).materialId, mat.Id.IntegerValue);
+            Assert.AreEqual((mesh.Tags.LookupTag(ds.InternalElement.Id.ToString()) as DirectShapeState).materialId, mat.Id.Value);
             BoundingBoxCentroid(ds).DistanceTo(Point.Origin()).ShouldBeApproximately(0);
             mesh.Dispose();
         }

@@ -141,7 +141,7 @@ namespace Revit.Elements
                 System.Globalization.CultureInfo.GetCultureInfo("en-us"),
                 FlowDirection.LeftToRight,
                 new Typeface(family, fontStyle,fontWeight,FontStretches.Normal),
-                size, System.Windows.Media.Brushes.Black 
+                size, System.Windows.Media.Brushes.Black, VisualTreeHelper.GetDpi(new System.Windows.Media.DrawingVisual()).PixelsPerDip
                 );
 
             Geometry textGeometry = formattedText.BuildGeometry(location);

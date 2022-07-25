@@ -148,7 +148,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Name
         /// </summary>
-        public string Name
+        new public string Name
         {
             get
             {
@@ -174,7 +174,7 @@ namespace Revit.Elements
                     else if (valueWrapper.GetType() == typeof(Autodesk.Revit.DB.ElementIdParameterValue))
                     {
                         var valueElementId = valueWrapper as Autodesk.Revit.DB.ElementIdParameterValue;
-                        return valueElementId.Value.IntegerValue;
+                        return valueElementId.Value.Value;
                     }
                     else if (valueWrapper.GetType() == typeof(Autodesk.Revit.DB.NullParameterValue))
                     {
@@ -252,7 +252,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="parameter"></param>
         /// <param name="elementId"></param>
-        public static void SetValueToElementId(GlobalParameter parameter, int elementId)
+        public static void SetValueToElementId(GlobalParameter parameter, long elementId)
         {
             if (!parameter.InternalGlobalParameter.IsReporting)
             {

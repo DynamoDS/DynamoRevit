@@ -161,7 +161,7 @@ namespace Revit.Elements
         /// <summary>
         /// Get Revision cloud's curves
         /// </summary>
-        public IEnumerable<Autodesk.DesignScript.Geometry.Curve> Curves
+        new public IEnumerable<Autodesk.DesignScript.Geometry.Curve> Curves
         { 
             get
             {

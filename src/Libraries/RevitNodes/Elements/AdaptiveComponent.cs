@@ -595,10 +595,10 @@ namespace Revit.Elements
             catch(Exception e)
             {
                 // Unregister the elements from the element life cycle manager and delete the elements
-                var elementManager = ElementIDLifecycleManager<int>.GetInstance();
+                var elementManager = ElementIDLifecycleManager<long>.GetInstance();
                 foreach (var component in components)
                 {
-                    elementManager.UnRegisterAssociation(component.InternalElementId.IntegerValue, component);
+                    elementManager.UnRegisterAssociation(component.InternalElementId.Value, component);
                 }
                 foreach (var instance in instances)
                 {

@@ -19,12 +19,12 @@ namespace RevitNodesTests.Elements
         public void CanCreateGroupFromListOfElements()
         {
             // Arrange
-            List<int> elementIds = new List<int>() { 184176, 184324 };
+            List<long> elementIds = new List<long>() { 184176L, 184324L };
             List<Element> elementsToGroup = elementIds.Select(id => ElementSelector.ByElementId(id, true)).ToList();
 
             // Act
             var group = Group.ByElements(elementsToGroup);
-            var memberIds = group.InternalGroup.GetMemberIds().Select(id => id.IntegerValue).ToList();
+            var memberIds = group.InternalGroup.GetMemberIds().Select(id => id.Value).ToList();
 
             // Assert
             Assert.IsNotNull(group);
