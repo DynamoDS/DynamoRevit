@@ -1,3 +1,6 @@
+## 0.4.8
+* Update Dynamo For Revit to support 64-bit ElementId
+
 ## 0.4.7
 * Make dynamo nodes for material texture easier for end users to use
 
