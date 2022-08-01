@@ -121,41 +121,48 @@ namespace Revit.Elements
                     Autodesk.Revit.DB.Visual.Asset editableAsset = editScope.Start(InternalElementId);
                     Type assetClass = GetAssetClass(editableAsset);
                     PropertyInfo pinfo = assetClass.GetProperty(properties[0]);
+                    if (pinfo == null)
+                    {
+                        throw new ArgumentException(string.Format(Properties.Resources.AppearanceAssetElementPropertyPathInvalid, imageProperty, properties[0], assetClass.Name));
+                    }
                     object internalProp = pinfo.GetValue(null);
                     Autodesk.Revit.DB.Visual.AssetProperty assetProperty = editableAsset.FindByName(internalProp.ToString());
-                    if(assetProperty == null)
-                    {
-                        throw new ArgumentException(Properties.Resources.AppearanceAssetElementPropertyPathInvalid);
-                    }
                     Autodesk.Revit.DB.Visual.Asset connentedAsset = assetProperty.GetSingleConnectedAsset();
                     for (int i = 1; i < properties.Length; i++)
                     {
                         if(connentedAsset == null)
                         {
-                            throw new ArgumentException(Properties.Resources.AppearanceAssetElementPropertyPathInvalid);
+                            throw new ArgumentException(string.Format(Properties.Resources.AppearanceAssetElementPropertyPathNoConnect, imageProperty, properties[0], assetClass.Name));
                         }
                         Type connentedAssetClass = GetAssetClass(connentedAsset);
                         PropertyInfo connentedPinfo = connentedAssetClass.GetProperty(properties[i]);
+                        if (connentedPinfo == null)
+                        {
+                           throw new ArgumentException(string.Format(Properties.Resources.AppearanceAssetElementPropertyPathInvalid, imageProperty, properties[i], connentedAssetClass.Name));
+                        }
                         object connentedInternalProp = connentedPinfo.GetValue(null);
                         assetProperty = connentedAsset.FindByName(connentedInternalProp.ToString());
-                        if (assetProperty == null)
-                        {
-                            throw new ArgumentException(Properties.Resources.AppearanceAssetElementPropertyPathInvalid);
-                        }
                         connentedAsset = assetProperty.GetSingleConnectedAsset();
                     }
-                    if (assetProperty != null && assetProperty.Name == Autodesk.Revit.DB.Visual.UnifiedBitmap.UnifiedbitmapBitmap)
+                    if (assetProperty != null)
                     {
-                        (assetProperty as Autodesk.Revit.DB.Visual.AssetPropertyString).Value = imagePath;
+                        if (assetProperty.Name == Autodesk.Revit.DB.Visual.UnifiedBitmap.UnifiedbitmapBitmap)
+                        {
+                           (assetProperty as Autodesk.Revit.DB.Visual.AssetPropertyString).Value = imagePath;
+                        }
+                        else
+                        {
+                           throw new ArgumentException(string.Format(Properties.Resources.AppearanceAssetElementPropertyPathNoConnect, imageProperty, properties.Last(), "UnifiedBitmap"));
+                        }
+
                     }
                     else
                     {
-                        throw new ArgumentException(Properties.Resources.AppearanceAssetElementPropertyPathInvalid);
+                        throw new ArgumentException(string.Format(Properties.Resources.AppearanceAssetElementPropertyPathInvalid, imageProperty, properties.Last(), "UnifiedBitmap"));
                     }
                     editScope.Commit(true);
                 }
             }
-
             TransactionManager.Instance.TransactionTaskDone();
             return this;
         }
