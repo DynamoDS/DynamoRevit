@@ -1,3 +1,6 @@
+## 0.4.9
+* Make exception message of SetRenderingAssetTextureImage more friendly
+
 ## 0.4.8
 * Update Dynamo For Revit to support 64-bit ElementId
 
