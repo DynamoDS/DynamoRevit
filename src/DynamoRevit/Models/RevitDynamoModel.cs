@@ -451,8 +451,7 @@ namespace Dynamo.Applications.Models
                                             return dict;
                                         }
                                     }
-                                    var unmarshalled = pyObj.AsManagedObject(typeof(object));
-                                    return UnwrapElementMarshaler.Marshal(unmarshalled);
+                                    return UnwrapElementMarshaler.Marshal(pyObj);
                                 }
                             }
                             catch (Exception e)
