@@ -1,3 +1,11 @@
+## 0.3.15
+* Add 3 new nodes - Material.AppearanceAssetElement, AppearanceAssetElement.GetRenderingAssetTextureImages, AppearanceAssetElement.SetRenderingAssetTextureImage
+* Make dynamo nodes for material texture easier for end users to use
+* Make exception message of SetRenderingAssetTextureImage more friendly
+
+## 0.3.14
+* Upgrade D4R version
+
 ## 0.3.13
 * Fix the bug that cannot set unmeasurable parameter value in Dynamo.
 
