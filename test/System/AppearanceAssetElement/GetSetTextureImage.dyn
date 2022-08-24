@@ -1,0 +1,495 @@
+{
+  "Uuid": "4fb13d0e-34c9-45d5-9aa3-f9376c72bc73",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "GetSetTextureImage",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Acoustic Ceiling Tile 24 x 24",
+      "Id": "533c04039ef3479882feb02f45ea014a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bbd6c6f6d02a485d89a6000f8d813483",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Material.ByName@string",
+      "Id": "527d5e8db90243a2a8350a64d2d998f3",
+      "Inputs": [
+        {
+          "Id": "2acde843d6cb43be95c54fe231824a53",
+          "Name": "name",
+          "Description": "The name of the material\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dec2c849f1024d4ab3cc045b835ca545",
+          "Name": "Material",
+          "Description": "Material",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Select a material from the current document by the name\n\nMaterial.ByName (name: string): Material"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Material.AppearanceAssetElement",
+      "Id": "e149081d71d64440bc9b129cd794021f",
+      "Inputs": [
+        {
+          "Id": "5fbc4913b37847d6b3e7cced629c1e70",
+          "Name": "material",
+          "Description": "Revit.Elements.Material",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e949f567c0f44e3fbc8b6966a967dc01",
+          "Name": "AppearanceAssetElement",
+          "Description": "AppearanceAssetElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get AppearanceAssetElement of this Material.\n\nMaterial.AppearanceAssetElement: AppearanceAssetElement"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.AppearanceAssetElement.GetRenderingAssetTextureImages",
+      "Id": "6fe3edd0db0b45a8846a97385e3439e6",
+      "Inputs": [
+        {
+          "Id": "c5f78086fcd2489d9170193ade1d29e1",
+          "Name": "appearanceAssetElement",
+          "Description": "Revit.Elements.AppearanceAssetElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "48507e83b7be432da905c4efe5e89c33",
+          "Name": "imageProperties",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0f0e746039374f0483e4bef532ff5eb5",
+          "Name": "imagePaths",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get RenderingAsset Texture Images\n\nAppearanceAssetElement.GetRenderingAssetTextureImages ( ): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.AppearanceAssetElement.SetRenderingAssetTextureImage@string,string",
+      "Id": "e800bfcabe34455cbbe26fe337a43ffd",
+      "Inputs": [
+        {
+          "Id": "f21dd12e7e224fb58b9ecd0812e55d43",
+          "Name": "appearanceAssetElement",
+          "Description": "Revit.Elements.AppearanceAssetElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a124e09714744106a0b0e000703b0bfe",
+          "Name": "imageProperty",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "04b8fff394f148fd8ae9298b6e48fdd9",
+          "Name": "imagePath",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "440f8b01af454289b3bf028b7ea7ae67",
+          "Name": "AppearanceAssetElement",
+          "Description": "AppearanceAssetElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Set ImagePath for a Texture Asset.\n\nAppearanceAssetElement.SetRenderingAssetTextureImage (imageProperty: string, imagePath: string): AppearanceAssetElement"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "a[0];",
+      "Id": "0c4d33c8914844728dd6f23a5469c6f4",
+      "Inputs": [
+        {
+          "Id": "e2d850a8ce5b4e75b908ef2b89c4a510",
+          "Name": "a",
+          "Description": "a",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e3275a56b1ec439898d34db32c48fd21",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.AppearanceAssetElement.GetRenderingAssetTextureImages",
+      "Id": "9d8d962b2e274e04a3493caada66efdb",
+      "Inputs": [
+        {
+          "Id": "4c7c02c07c8946379b1e4a3b38ee4d28",
+          "Name": "appearanceAssetElement",
+          "Description": "Revit.Elements.AppearanceAssetElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "774cff0af0eb493ab5903118ce91ea9a",
+          "Name": "imageProperties",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e6cfc94806ff4ae4bdf082a97688d246",
+          "Name": "imagePaths",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get RenderingAsset Texture Images\n\nAppearanceAssetElement.GetRenderingAssetTextureImages ( ): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
+      "Id": "6808334fdedf4e9984d8a57a0675fb0f",
+      "Inputs": [
+        {
+          "Id": "fb70e68250a8489cb6c2beab85541afa",
+          "Name": "list",
+          "Description": "List to get the first item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "37bcc435b0434b489541a8f41ef633de",
+          "Name": "item",
+          "Description": "First item in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "HintPath": "D:\\projects\\D4R_Forked\\DynamoRevit\\test\\System\\AppearanceAssetElement\\TextureImageTest.txt",
+      "InputValue": ".\\TextureImageTest.txt",
+      "NodeType": "ExtensionNode",
+      "Id": "8e9bb0fc48104604bedd6b3a6ec7a812",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e4c13beb18034b709ccee0f236cfb097",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system to get its file path."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "bbd6c6f6d02a485d89a6000f8d813483",
+      "End": "2acde843d6cb43be95c54fe231824a53",
+      "Id": "e050d095241146568b5482bccf6fcf43",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dec2c849f1024d4ab3cc045b835ca545",
+      "End": "5fbc4913b37847d6b3e7cced629c1e70",
+      "Id": "4706bab3390a4cf7a4b9f35a11e09ef7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e949f567c0f44e3fbc8b6966a967dc01",
+      "End": "c5f78086fcd2489d9170193ade1d29e1",
+      "Id": "f8311e0e28f14302b23d74295c1485ea",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e949f567c0f44e3fbc8b6966a967dc01",
+      "End": "f21dd12e7e224fb58b9ecd0812e55d43",
+      "Id": "94b1b43af2854228abd6578fb89ca4d3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "48507e83b7be432da905c4efe5e89c33",
+      "End": "e2d850a8ce5b4e75b908ef2b89c4a510",
+      "Id": "0472bfb98a2a412581fe2a930a869ac8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "440f8b01af454289b3bf028b7ea7ae67",
+      "End": "4c7c02c07c8946379b1e4a3b38ee4d28",
+      "Id": "0b0141044e644617aa03782bd3d04f5f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e3275a56b1ec439898d34db32c48fd21",
+      "End": "a124e09714744106a0b0e000703b0bfe",
+      "Id": "1596b32b32b64d4491a5529e56cb4669",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e6cfc94806ff4ae4bdf082a97688d246",
+      "End": "fb70e68250a8489cb6c2beab85541afa",
+      "Id": "9bd6b618f4aa40aab505c0a3f9282717",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e4c13beb18034b709ccee0f236cfb097",
+      "End": "04b8fff394f148fd8ae9298b6e48fdd9",
+      "Id": "3524f81db3164be18c00c736e61bf03b",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.14",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.14.0.4641",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Name": "String",
+        "ShowGeometry": true,
+        "Id": "533c04039ef3479882feb02f45ea014a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -458.60633633446605,
+        "Y": 114.80548078390385
+      },
+      {
+        "Name": "Material.ByName",
+        "ShowGeometry": true,
+        "Id": "527d5e8db90243a2a8350a64d2d998f3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -127.60633633446605,
+        "Y": 114.80548078390385
+      },
+      {
+        "Name": "Material.AppearanceAssetElement",
+        "ShowGeometry": true,
+        "Id": "e149081d71d64440bc9b129cd794021f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 178.39366366553395,
+        "Y": 114.80548078390385
+      },
+      {
+        "Name": "AppearanceAssetElement.GetRenderingAssetTextureImages",
+        "ShowGeometry": true,
+        "Id": "6fe3edd0db0b45a8846a97385e3439e6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 609.393663665534,
+        "Y": 103.21923078390384
+      },
+      {
+        "Name": "AppearanceAssetElement.SetRenderingAssetTextureImage",
+        "ShowGeometry": true,
+        "Id": "e800bfcabe34455cbbe26fe337a43ffd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1854.3936636655339,
+        "Y": 126.39173078390382
+      },
+      {
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Id": "0c4d33c8914844728dd6f23a5469c6f4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1544.3936636655339,
+        "Y": 103.21923078390381
+      },
+      {
+        "Name": "AppearanceAssetElement.GetRenderingAssetTextureImages",
+        "ShowGeometry": true,
+        "Id": "9d8d962b2e274e04a3493caada66efdb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2470.3936636655339,
+        "Y": 126.39173078390382
+      },
+      {
+        "Name": "List.FirstItem",
+        "ShowGeometry": true,
+        "Id": "6808334fdedf4e9984d8a57a0675fb0f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3417.3936636655339,
+        "Y": 126.39173078390385
+      },
+      {
+        "Name": "File Path",
+        "ShowGeometry": true,
+        "Id": "8e9bb0fc48104604bedd6b3a6ec7a812",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1544.3936636655339,
+        "Y": 251.39173078390385
+      }
+    ],
+    "Annotations": [],
+    "X": -1223.9068155508792,
+    "Y": 189.96365078900152,
+    "Zoom": 0.67483165842686454
+  }
+}

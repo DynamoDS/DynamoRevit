@@ -92,6 +92,9 @@
                   "path": "RevitNodes.Revit.Elements.AdaptiveComponent"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.AppearanceAssetElement"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.Area"
                 },
                 {
