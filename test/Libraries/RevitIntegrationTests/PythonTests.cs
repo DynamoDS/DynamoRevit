@@ -93,7 +93,7 @@ namespace RevitSystemTests
 
         [Test]
         [TestModel(@".\Python\unwrapElement.rvt")]
-        public void CanDeleteElement()
+        public void UnwrapElement_WithCPythonDictionary()
         {
             string samplePath = Path.Combine(workingDirectory, @".\Python\unwrapElement.dyn");
             string testPath = Path.GetFullPath(samplePath);
