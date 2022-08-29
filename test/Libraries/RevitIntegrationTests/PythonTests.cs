@@ -3,6 +3,7 @@
 using NUnit.Framework;
 
 using RevitTestServices;
+using RTF.Framework;
 
 namespace RevitSystemTests
 {
@@ -88,6 +89,20 @@ namespace RevitSystemTests
             //ViewModel.RunExpressionCommand.Execute(true);
 
             Assert.Inconclusive("Python examples do not play well with testing.");
+        }
+
+        [Test]
+        [TestModel(@".\Python\unwrapElement.rvt")]
+        public void UnwrapElement_WithCPythonDictionary()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Python\unwrapElement.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            Assert.AreEqual(new string[] { "Autodesk.Revit.DB.FootPrintRoof" }, GetPreviewValue("e1d5a65df6364196bcba7a21bf69f5ac"));
         }
 
         //[Test]
