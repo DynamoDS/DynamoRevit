@@ -1,3 +1,6 @@
+## 0.4.10
+* Add support to UnwrapElement for marshaling CPython dictionary
+
 ## 0.4.9
 * Make exception message of SetRenderingAssetTextureImage more friendly
 
