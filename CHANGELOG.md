@@ -1,3 +1,6 @@
+## 0.3.16
+* Add support to UnwrapElement for marshaling CPython dictionary
+
 ## 0.3.15
 * Add 3 new nodes - Material.AppearanceAssetElement, AppearanceAssetElement.GetRenderingAssetTextureImages, AppearanceAssetElement.SetRenderingAssetTextureImage
 * Make dynamo nodes for material texture easier for end users to use
