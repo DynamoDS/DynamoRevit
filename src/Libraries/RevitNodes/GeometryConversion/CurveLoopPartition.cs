@@ -31,7 +31,7 @@ namespace Revit.GeometryConversion
                     curves.Add(curve.ToProtoType(false));
                 }
                 var geom = new List<Autodesk.DesignScript.Geometry.Geometry>();
-                geom.Add(PolyCurve.ByJoinedCurves(curves));
+                geom.Add(PolyCurve.ByJoinedCurves(curves, 0.001, false));
                 tesselatedCurveLoops.Add(new Tuple<BoundingBox, List<XYZ>, List<Curve>>(BoundingBox.ByGeometry(geom), verts, curveLoop));
                 curves.ForEach(x => x.Dispose());
                 curves.Clear();

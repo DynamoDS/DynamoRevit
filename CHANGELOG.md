@@ -1,3 +1,6 @@
+## 0.4.11
+* Upgrade DynamoCore  to 2.16.0.2501.
+
 ## 0.4.10
 * Add support to UnwrapElement for marshaling CPython dictionary
 
