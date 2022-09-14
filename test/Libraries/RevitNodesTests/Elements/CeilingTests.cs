@@ -53,7 +53,7 @@ namespace RevitNodesTests.Elements
                 Line.ByStartPointEndPoint(Point.ByCoordinates(0, 100, 0), Point.ByCoordinates(0, 0, 0))
             };
 
-            var polyCurveOutline = PolyCurve.ByJoinedCurves(outline);
+            var polyCurveOutline = PolyCurve.ByJoinedCurves(outline, 0.001, false);
 
             var ceilingType = CeilingType.ByName("Generic");
 
