@@ -55,7 +55,7 @@ namespace RevitNodesTests.Elements
                 Line.ByStartPointEndPoint(Point.ByCoordinates(0, 100, 0), Point.ByCoordinates(0, 0, 0))
             };
 
-            var polyCurveOutline = PolyCurve.ByJoinedCurves(outline);
+            var polyCurveOutline = PolyCurve.ByJoinedCurves(outline, 0.001, false);
 
             var floorType = FloorType.ByName("Generic - 12\"");
 
@@ -156,7 +156,7 @@ namespace RevitNodesTests.Elements
                 Line.ByStartPointEndPoint(Point.ByCoordinates(0, 100, 50), Point.ByCoordinates(0, 0, 50))
             };
 
-            var polyCurveOutline = PolyCurve.ByJoinedCurves(outline);
+            var polyCurveOutline = PolyCurve.ByJoinedCurves(outline, 0.001, false);
 
             var floorType = FloorType.ByName("Generic - 12\"");
 

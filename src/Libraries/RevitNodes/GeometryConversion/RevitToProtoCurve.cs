@@ -47,7 +47,7 @@ namespace Revit.GeometryConversion
             }
 
             var protoCurves = revitCurves.Cast<Autodesk.Revit.DB.Curve>().Select(x => x.ToProtoType(false));
-            var converted = PolyCurve.ByJoinedCurves(protoCurves.ToArray());
+            var converted = PolyCurve.ByJoinedCurves(protoCurves.ToArray(), 0.001, false);
             foreach (var curve in protoCurves)
             {
                 curve.Dispose();

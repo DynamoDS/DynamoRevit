@@ -83,7 +83,7 @@ namespace Revit.GeometryConversion
                 {
                     curves.Add(curve.ToProtoType(false));
                 }
-                result.Add(PolyCurve.ByJoinedCurves(curves));
+                result.Add(PolyCurve.ByJoinedCurves(curves, 0.001, false));
                 curves.ForEach(x => x.Dispose());
                 curves.Clear();
             }

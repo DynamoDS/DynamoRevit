@@ -125,7 +125,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("outlineCurves");
             }
 
-            var floor = ByOutlineTypeAndLevel(PolyCurve.ByJoinedCurves(outlineCurves), floorType, level);
+            var floor = ByOutlineTypeAndLevel(PolyCurve.ByJoinedCurves(outlineCurves, 0.001, false), floorType, level);
             DocumentManager.Regenerate();
             return floor;
         }

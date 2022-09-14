@@ -151,7 +151,7 @@ namespace Revit.Elements
         /// <returns>The Roof</returns>
         public static Roof ByOutlineTypeAndLevel(Curve[] outline, RoofType roofType, Level level)
         {
-            var polycurve = PolyCurve.ByJoinedCurves(outline);
+            var polycurve = PolyCurve.ByJoinedCurves(outline, 0.001, false);
 
             if (!polycurve.IsClosed)
             {
