@@ -41,6 +41,7 @@ namespace Revit.Elements
         {
             SafeInit(() => InitFamilyInstance(fs, pos, level));
         }
+
         /// <summary>
         /// Internal constructor for a FamilyInstance
         /// </summary>
@@ -49,6 +50,7 @@ namespace Revit.Elements
         {
             SafeInit(() => InitFamilyInstance(fs, pos, view));
         }
+
         /// <summary>
         /// Internal constructor for a FamilyInstance
         /// </summary>
