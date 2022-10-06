@@ -4,7 +4,6 @@ using Autodesk.DesignScript.Geometry;
 using DynamoServices;
 using DynamoUnits;
 using Revit.Elements.InternalUtilities;
-using Revit.Elements.Views;
 using Revit.GeometryConversion;
 using Revit.GeometryReferences;
 using RevitServices.Persistence;
@@ -41,14 +40,7 @@ namespace Revit.Elements
         {
             SafeInit(() => InitFamilyInstance(fs, pos, level));
         }
-        /// <summary>
-        /// Internal constructor for a FamilyInstance
-        /// </summary>
-        internal FamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.XYZ pos,
-            Autodesk.Revit.DB.View view)
-        {
-            SafeInit(() => InitFamilyInstance(fs, pos, view));
-        }
+
         /// <summary>
         /// Internal constructor for a FamilyInstance
         /// </summary>
@@ -130,51 +122,7 @@ namespace Revit.Elements
 
             ElementBinder.SetElementForTrace(InternalElement);
         }
-        /// <summary>
-        /// Initialize a FamilyInstance element
-        /// </summary>
-        private void InitFamilyInstance(Autodesk.Revit.DB.FamilySymbol fs, Autodesk.Revit.DB.XYZ pos,
-            Autodesk.Revit.DB.View view)
-        {
-            //Phase 1 - Check to see if the object exists and should be rebound
-            var oldFam =
-                ElementBinder.GetElementFromTrace<Autodesk.Revit.DB.FamilyInstance>(Document);
 
-            //There was a point, rebind to that, and adjust its position
-            if (oldFam != null)
-            {
-                InternalSetFamilyInstance(oldFam);
-                InternalSetView(view);
-                InternalSetFamilySymbol(fs);
-                InternalSetPosition(pos);
-                return;
-            }
-
-            //Phase 2- There was no existing point, create one
-            TransactionManager.Instance.EnsureInTransaction(Document);
-
-            //If the symbol is not active, then activate it
-            if (!fs.IsActive)
-                fs.Activate();
-
-            Autodesk.Revit.DB.FamilyInstance fi;
-
-            if (Document.IsFamilyDocument)
-            {
-                fi = Document.FamilyCreate.NewFamilyInstance(pos, fs, view);
-            }
-            else
-            {
-                fi = Document.Create.NewFamilyInstance(
-                    pos, fs, view);
-            }
-
-            InternalSetFamilyInstance(fi);
-
-            TransactionManager.Instance.TransactionTaskDone();
-
-            ElementBinder.SetElementForTrace(InternalElement);
-        }
         /// <summary>
         /// Initialize a FamilyInstance element
         /// </summary>
@@ -325,12 +273,6 @@ namespace Revit.Elements
             InternalFamilyInstance.get_Parameter(Autodesk.Revit.DB.BuiltInParameter.FAMILY_LEVEL_PARAM).Set(level.Id);
 
             TransactionManager.Instance.TransactionTaskDone();
-        }
-
-        private void InternalSetView(Autodesk.Revit.DB.View view)
-        {
-            if (InternalFamilyInstance.OwnerViewId.Compare(view.Id) == 0)
-                return;
         }
 
         private void InternalSetPosition(Autodesk.Revit.DB.XYZ fi)
@@ -548,23 +490,6 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API), it's coordinates in world space, and the view. (Typically used for symbols and detail components)
-        /// </summary>
-        /// <param name="familyType">Family Type. Also called Family Symbol.</param>
-        /// <param name="point">Point in meters.</param>
-        /// <param name="view">View to place the Family Instance in.</param>
-        /// <returns></returns>
-        public static FamilyInstance ByPointAndView(FamilyType familyType, Point point, View view)
-        {
-            if (familyType == null)
-            {
-                throw new ArgumentNullException("familyType");
-            }
-
-            return new FamilyInstance(familyType.InternalFamilySymbol, point.ToXyz(), view.InternalView);
-        }
-
-        /// <summary>
         /// Obtain a collection of FamilyInstances from the Revit Document and use them in the Dynamo graph
         /// </summary>
         /// <param name="familyType">Family Type. Also called Family Symbol.</param>
@@ -711,7 +636,7 @@ namespace Revit.Elements
             {
                 var rotateAngle = newRotationAngle - oldRotationAngles[0];
                 var axis = Autodesk.Revit.DB.Line.CreateUnbound(oldTransform.Origin, oldTransform.BasisZ);
-                Autodesk.Revit.DB.ElementTransformUtils.RotateElement(Document, InternalElementId, axis, -rotateAngle);
+                Autodesk.Revit.DB.ElementTransformUtils.RotateElement(Document, new Autodesk.Revit.DB.ElementId(Id), axis, -rotateAngle);
             }
 
             TransactionManager.Instance.TransactionTaskDone();
