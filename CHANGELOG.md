@@ -1,3 +1,7 @@
+## 0.3.17
+* Upgrade DynamoCore version to 2.16.1.
+* Update Greg version to 2.3.0.1646.
+
 ## 0.3.16
 * Add support to UnwrapElement for marshaling CPython dictionary
 
