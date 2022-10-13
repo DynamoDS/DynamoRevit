@@ -116,7 +116,7 @@ namespace Revit.Elements
                 throw new ArgumentNullException("outlineCurves");
             }
 
-            var ceiling = ByOutlineTypeAndLevel(PolyCurve.ByJoinedCurves(outlineCurves), ceilingType, level);
+            var ceiling = ByOutlineTypeAndLevel(PolyCurve.ByJoinedCurves(outlineCurves, 0.001, false), ceilingType, level);
             DocumentManager.Regenerate();
             return ceiling;
         }
