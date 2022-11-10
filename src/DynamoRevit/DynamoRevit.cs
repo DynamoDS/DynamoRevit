@@ -7,11 +7,10 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
-using System.Windows.Controls;
-using System.Xml;
 using System.Xml.Serialization;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
@@ -202,6 +201,8 @@ namespace Dynamo.Applications
         private static bool handledCrash;
         private static List<Exception> preLoadExceptions;
         private static Action shutdownHandler;
+        private Stopwatch startupTimer;
+        private Dynamo.UI.Views.SplashScreen splashScreen;
 
         /// <summary>
         /// The modelState tels us if the RevitDynamoModel was started and if has the
@@ -248,7 +249,7 @@ namespace Dynamo.Applications
 
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
         {   
-            var startupTimer = Stopwatch.StartNew();
+            startupTimer = Stopwatch.StartNew();
             if (ModelState == RevitDynamoModelState.StartedUIless)
             {
                 if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, true) ||
@@ -289,44 +290,9 @@ namespace Dynamo.Applications
 
                 UpdateSystemPathForProcess();
 
-                // create core data models
-                RevitDynamoModel = InitializeCoreModel(extCommandData);
-                RevitDynamoModel.UpdateManager.RegisterExternalApplicationProcessId(Process.GetCurrentProcess().Id);
-                RevitDynamoModel.Logger.Log("SYSTEM", string.Format("Environment Path:{0}", Environment.GetEnvironmentVariable("PATH")));
-
-                // handle initialization steps after RevitDynamoModel is created.
-                RevitDynamoModel.HandlePostInitialization();
-                ModelState = RevitDynamoModelState.StartedUIless;
-
-                // show the window
-                if (CheckJournalForKey(extCommandData, JournalKeys.ShowUiKey, true))
-                {
-                    RevitDynamoViewModel = InitializeCoreViewModel(RevitDynamoModel);
-
-                    // Let the host (e.g. Revit) control the rendering mode
-                    var save = RenderOptions.ProcessRenderMode;
-                    InitializeCoreView(extCommandData).Show();
-                    RenderOptions.ProcessRenderMode = save;
-                    RevitDynamoModel.Logger.Log(Dynamo.Applications.Properties.Resources.WPFRenderMode + RenderOptions.ProcessRenderMode.ToString());
-
-                    ModelState = RevitDynamoModelState.StartedUI;
-                    // Disable the Dynamo button to prevent a re-run
-                    DynamoRevitApp.DynamoButtonEnabled = false;
-                }
-
-                //foreach preloaded exception send a notification to the Dynamo Logger
-                //these are messages we want the user to notice.
-                preLoadExceptions.ForEach(x => RevitDynamoModel.Logger.LogNotification
-                (RevitDynamoModel.GetType().ToString(),
-                x.GetType().ToString(),
-                DynamoApplications.Properties.Resources.MismatchedAssemblyVersionShortMessage,
-                x.Message));
-
-                TryOpenAndExecuteWorkspaceInCommandData(extCommandData);
-
-                //unsubscribe to the assembly load
-                AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
-                Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed, ModelState.ToString());
+                var splashScreen = new Dynamo.UI.Views.SplashScreen();
+                splashScreen.DynamicSplashScreenReady += LoadDynamoView;
+                splashScreen.Show();
             }
             catch (Exception ex)
             {
@@ -348,6 +314,53 @@ namespace Dynamo.Applications
             }
 
             return Result.Succeeded;
+        }
+
+        private void LoadDynamoView()
+        {
+            // create core data models
+            RevitDynamoModel = InitializeCoreModel(extCommandData);
+            RevitDynamoModel.UpdateManager.RegisterExternalApplicationProcessId(Process.GetCurrentProcess().Id);
+            RevitDynamoModel.Logger.Log("SYSTEM", string.Format("Environment Path:{0}", Environment.GetEnvironmentVariable("PATH")));
+
+            // handle initialization steps after RevitDynamoModel is created.
+            RevitDynamoModel.HandlePostInitialization();
+            ModelState = RevitDynamoModelState.StartedUIless;
+
+            // show the window
+            if (CheckJournalForKey(extCommandData, JournalKeys.ShowUiKey, true))
+            {
+                RevitDynamoViewModel = InitializeCoreViewModel(RevitDynamoModel);
+
+                // Let the host (e.g. Revit) control the rendering mode
+                var save = RenderOptions.ProcessRenderMode;
+
+                splashScreen.DynamoView = InitializeCoreView(extCommandData);
+
+                RenderOptions.ProcessRenderMode = save;
+                RevitDynamoModel.Logger.Log(Dynamo.Applications.Properties.Resources.WPFRenderMode + RenderOptions.ProcessRenderMode.ToString());
+
+                ModelState = RevitDynamoModelState.StartedUI;
+                // Disable the Dynamo button to prevent a re-run
+                DynamoRevitApp.DynamoButtonEnabled = false;
+            }
+
+            //foreach preloaded exception send a notification to the Dynamo Logger
+            //these are messages we want the user to notice.
+            preLoadExceptions.ForEach(x => RevitDynamoModel.Logger.LogNotification
+            (RevitDynamoModel.GetType().ToString(),
+            x.GetType().ToString(),
+            DynamoApplications.Properties.Resources.MismatchedAssemblyVersionShortMessage,
+            x.Message));
+
+            TryOpenAndExecuteWorkspaceInCommandData(extCommandData);
+
+            //unsubscribe to the assembly load
+            AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
+            Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed, ModelState.ToString());
+
+            splashScreen.OnRequestStaticSplashScreen();
+            splashScreen.DynamicSplashScreenReady -= LoadDynamoView;
         }
 
         /// <summary>
