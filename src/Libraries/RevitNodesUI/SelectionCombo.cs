@@ -64,6 +64,11 @@ namespace Dynamo.ComboNodes
             set
             {
                 DropDownNodeModel.SelectedString = value;
+
+                if (DropDownNodeModel.SelectedIndex >= 0)
+                {
+                    SelectionFilter.Category = (BuiltInCategory)DropDownNodeModel.Items[SelectedIndex].Item;
+                }
             }
         }
 
@@ -133,6 +138,11 @@ namespace Dynamo.ComboNodes
             set
             {
                 DropDownNodeModel.SelectedString = value;
+
+                if (DropDownNodeModel.SelectedIndex >= 0)
+                {
+                    SelectionFilter.Category = (BuiltInCategory)DropDownNodeModel.Items[SelectedIndex].Item;
+                }
             }
         }
 
