@@ -7,11 +7,10 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
-using System.Windows.Controls;
-using System.Xml;
 using System.Xml.Serialization;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
@@ -73,6 +72,24 @@ namespace RevitServices.Threading
 
             scheduler.ScheduleForExecution(task);
         }
+    }
+}
+public class DynamoExternalEventHandler : IExternalEventHandler
+{
+    private Action callback;
+    public void Execute(UIApplication app)
+    {
+        callback();
+    }
+
+    public string GetName()
+    {
+        return nameof(DynamoExternalEventHandler);
+    }
+
+    internal DynamoExternalEventHandler(Action callback)
+    {
+        this.callback = callback;
     }
 }
 
@@ -187,7 +204,8 @@ namespace Dynamo.Applications
      Regeneration(RegenerationOption.Manual)]
     public class DynamoRevit : IExternalCommand
     {
-
+        public static ExternalEvent SplashScreenExternalEvent { get; set; }
+        public static ExternalEvent DynamoAppExternalEvent { get; set; }
         /// <summary>
         /// Based on the RevitDynamoModelState a dependent component can take certain 
         /// decisions regarding its UI and functionality.
@@ -202,6 +220,8 @@ namespace Dynamo.Applications
         private static bool handledCrash;
         private static List<Exception> preLoadExceptions;
         private static Action shutdownHandler;
+        private Stopwatch startupTimer;
+        private Dynamo.UI.Views.SplashScreen splashScreen;
 
         /// <summary>
         /// The modelState tels us if the RevitDynamoModel was started and if has the
@@ -247,8 +267,16 @@ namespace Dynamo.Applications
         }
 
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
-        {   
-            var startupTimer = Stopwatch.StartNew();
+        {
+            var ssEventHandler = new DynamoExternalEventHandler(new Action(() =>
+            {
+                LoadDynamoView();
+            }));
+            //Register DynamoExternalEventHandler so Revit will call our callback
+            //we requested with API access.
+            SplashScreenExternalEvent = ExternalEvent.Create(ssEventHandler);
+
+            startupTimer = Stopwatch.StartNew();
             if (ModelState == RevitDynamoModelState.StartedUIless)
             {
                 if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, true) ||
@@ -271,7 +299,7 @@ namespace Dynamo.Applications
                 }
             }
 
-            if(ModelState == RevitDynamoModelState.StartedUI)
+            if (ModelState == RevitDynamoModelState.StartedUI)
             {
                 TryOpenAndExecuteWorkspaceInCommandData(commandData);
                 return Result.Succeeded;
@@ -289,44 +317,14 @@ namespace Dynamo.Applications
 
                 UpdateSystemPathForProcess();
 
-                // create core data models
-                RevitDynamoModel = InitializeCoreModel(extCommandData);
-                RevitDynamoModel.UpdateManager.RegisterExternalApplicationProcessId(Process.GetCurrentProcess().Id);
-                RevitDynamoModel.Logger.Log("SYSTEM", string.Format("Environment Path:{0}", Environment.GetEnvironmentVariable("PATH")));
-
-                // handle initialization steps after RevitDynamoModel is created.
-                RevitDynamoModel.HandlePostInitialization();
-                ModelState = RevitDynamoModelState.StartedUIless;
-
-                // show the window
-                if (CheckJournalForKey(extCommandData, JournalKeys.ShowUiKey, true))
+                splashScreen = new Dynamo.UI.Views.SplashScreen();
+                //when the splashscreen is ready, raise a request to revit to call
+                //our callback within an api context.
+                splashScreen.DynamicSplashScreenReady += () =>
                 {
-                    RevitDynamoViewModel = InitializeCoreViewModel(RevitDynamoModel);
-
-                    // Let the host (e.g. Revit) control the rendering mode
-                    var save = RenderOptions.ProcessRenderMode;
-                    InitializeCoreView(extCommandData).Show();
-                    RenderOptions.ProcessRenderMode = save;
-                    RevitDynamoModel.Logger.Log(Dynamo.Applications.Properties.Resources.WPFRenderMode + RenderOptions.ProcessRenderMode.ToString());
-
-                    ModelState = RevitDynamoModelState.StartedUI;
-                    // Disable the Dynamo button to prevent a re-run
-                    DynamoRevitApp.DynamoButtonEnabled = false;
-                }
-
-                //foreach preloaded exception send a notification to the Dynamo Logger
-                //these are messages we want the user to notice.
-                preLoadExceptions.ForEach(x => RevitDynamoModel.Logger.LogNotification
-                (RevitDynamoModel.GetType().ToString(),
-                x.GetType().ToString(),
-                DynamoApplications.Properties.Resources.MismatchedAssemblyVersionShortMessage,
-                x.Message));
-
-                TryOpenAndExecuteWorkspaceInCommandData(extCommandData);
-
-                //unsubscribe to the assembly load
-                AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
-                Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed, ModelState.ToString());
+                    SplashScreenExternalEvent.Raise();
+                };
+                splashScreen.Show();
             }
             catch (Exception ex)
             {
@@ -336,7 +334,7 @@ namespace Dynamo.Applications
                 MessageBox.Show(ex.ToString());
 
                 DynamoRevitApp.DynamoButtonEnabled = true;
-                
+
                 //If for some reason Dynamo has crashed while startup make sure the Dynamo Model is properly shutdown.
                 if (RevitDynamoModel != null)
                 {
@@ -348,6 +346,53 @@ namespace Dynamo.Applications
             }
 
             return Result.Succeeded;
+        }
+
+        private void LoadDynamoView()
+        {
+            // create core data models
+            RevitDynamoModel = InitializeCoreModel(extCommandData);
+            RevitDynamoModel.UpdateManager.RegisterExternalApplicationProcessId(Process.GetCurrentProcess().Id);
+            RevitDynamoModel.Logger.Log("SYSTEM", string.Format("Environment Path:{0}", Environment.GetEnvironmentVariable("PATH")));
+
+            // handle initialization steps after RevitDynamoModel is created.
+            RevitDynamoModel.HandlePostInitialization();
+            ModelState = RevitDynamoModelState.StartedUIless;
+
+            // show the window
+            if (CheckJournalForKey(extCommandData, JournalKeys.ShowUiKey, true))
+            {
+                RevitDynamoViewModel = InitializeCoreViewModel(RevitDynamoModel);
+
+                // Let the host (e.g. Revit) control the rendering mode
+                var save = RenderOptions.ProcessRenderMode;
+
+                splashScreen.DynamoView = InitializeCoreView(extCommandData);
+
+                RenderOptions.ProcessRenderMode = save;
+                RevitDynamoModel.Logger.Log(Dynamo.Applications.Properties.Resources.WPFRenderMode + RenderOptions.ProcessRenderMode.ToString());
+
+                ModelState = RevitDynamoModelState.StartedUI;
+                // Disable the Dynamo button to prevent a re-run
+                DynamoRevitApp.DynamoButtonEnabled = false;
+            }
+
+            //foreach preloaded exception send a notification to the Dynamo Logger
+            //these are messages we want the user to notice.
+            preLoadExceptions.ForEach(x => RevitDynamoModel.Logger.LogNotification
+            (RevitDynamoModel.GetType().ToString(),
+            x.GetType().ToString(),
+            DynamoApplications.Properties.Resources.MismatchedAssemblyVersionShortMessage,
+            x.Message));
+
+            TryOpenAndExecuteWorkspaceInCommandData(extCommandData);
+
+            //unsubscribe to the assembly load
+            AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
+            Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed, ModelState.ToString());
+
+            splashScreen.OnRequestStaticSplashScreen();
+            splashScreen.DynamicSplashScreenReady -= LoadDynamoView;
         }
 
         /// <summary>
@@ -389,11 +434,11 @@ namespace Dynamo.Applications
 
             //if old method is called default to 224.4.0
             return (getGeometryFactoryPath.Invoke(null,
-                new object[] { corePath, new Version(224,4,0)  }) as string);
+                new object[] { corePath, new Version(224, 4, 0) }) as string);
         }
 
 
-        public static string GetGeometryFactoryPath(string corePath,Version version)
+        public static string GetGeometryFactoryPath(string corePath, Version version)
         {
             var dynamoAsmPath = Path.Combine(corePath, "DynamoShapeManager.dll");
             var assembly = Assembly.LoadFrom(dynamoAsmPath);
@@ -420,7 +465,7 @@ namespace Dynamo.Applications
             foreach (var assembly in assemblyList)
             {
                 var assemblyPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, assembly);
-                if(File.Exists(assemblyPath))
+                if (File.Exists(assemblyPath))
                     Assembly.LoadFrom(assemblyPath);
             }
         }
@@ -441,40 +486,40 @@ namespace Dynamo.Applications
             var revitUpdateManager = new DynUpdateManager(umConfig);
             revitUpdateManager.HostVersion = dynRevitVersion; // update RevitUpdateManager with the current DynamoRevit Version
             revitUpdateManager.HostName = "Dynamo Revit";
-            if(revitUpdateManager.Configuration is IDisableUpdateConfig)
-                (revitUpdateManager.Configuration as IDisableUpdateConfig).DisableUpdates=true;
+            if (revitUpdateManager.Configuration is IDisableUpdateConfig)
+                (revitUpdateManager.Configuration as IDisableUpdateConfig).DisableUpdates = true;
 
             Debug.Assert(umConfig.DynamoLookUp != null);
 
             var userDataFolder = Path.Combine(Environment.GetFolderPath(
-                Environment.SpecialFolder.ApplicationData), 
+                Environment.SpecialFolder.ApplicationData),
                 "Dynamo", "Dynamo Revit");
             var commonDataFolder = Path.Combine(Environment.GetFolderPath(
                 Environment.SpecialFolder.CommonApplicationData),
                 "Autodesk", "RVT " + commandData.Application.Application.VersionNumber, "Dynamo");
 
-            bool isAutomationMode = CheckJournalForKey(extCommandData,JournalKeys.AutomationModeKey);
+            bool isAutomationMode = CheckJournalForKey(extCommandData, JournalKeys.AutomationModeKey);
 
             // when Dynamo runs on top of Revit we must load the same version of ASM as revit
             // so tell Dynamo core we've loaded that version.
             var loadedLibGVersion = PreloadAsmFromRevit();
 
 
-                return RevitDynamoModel.Start(
-                new RevitDynamoModel.RevitStartConfiguration()
-                {
-                    DynamoCorePath = corePath,
-                    DynamoHostPath = dynamoRevitRoot,
-                    GeometryFactoryPath = GetGeometryFactoryPath(corePath, loadedLibGVersion),
-                    PathResolver = new RevitPathResolver(userDataFolder, commonDataFolder),
-                    Context = GetRevitContext(commandData),
-                    SchedulerThread = new RevitSchedulerThread(commandData.Application),
-                    StartInTestMode = isAutomationMode,
-                    AuthProvider = new RevitOAuth2Provider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
-                    ExternalCommandData = commandData,
-                    UpdateManager = revitUpdateManager,
-                    ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
-                });
+            return RevitDynamoModel.Start(
+            new RevitDynamoModel.RevitStartConfiguration()
+            {
+                DynamoCorePath = corePath,
+                DynamoHostPath = dynamoRevitRoot,
+                GeometryFactoryPath = GetGeometryFactoryPath(corePath, loadedLibGVersion),
+                PathResolver = new RevitPathResolver(userDataFolder, commonDataFolder),
+                Context = GetRevitContext(commandData),
+                SchedulerThread = new RevitSchedulerThread(commandData.Application),
+                StartInTestMode = isAutomationMode,
+                AuthProvider = new RevitOAuth2Provider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
+                ExternalCommandData = commandData,
+                UpdateManager = revitUpdateManager,
+                ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
+            });
         }
 
         internal static Version PreloadAsmFromRevit()
@@ -547,14 +592,24 @@ namespace Dynamo.Applications
         {
             IntPtr mwHandle = commandData.Application.MainWindowHandle;
             var dynamoView = new DynamoView(RevitDynamoViewModel);
-            
+
             new WindowInteropHelper(dynamoView).Owner = mwHandle;
 
             handledCrash = false;
 
+            //Register DynamoExternalEventHandler so Revit will call our callback
+            //we requested with API access.
+
+            var appEventHandler = new DynamoExternalEventHandler(new Action(() =>
+            {
+                UpdateLibraryLayoutSpec();
+            }));
+
+            DynamoAppExternalEvent = ExternalEvent.Create(appEventHandler);
+
             dynamoView.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
             dynamoView.Closed += OnDynamoViewClosed;
-            dynamoView.Loaded += (o, e) => UpdateLibraryLayoutSpec();
+            dynamoView.Loaded += (o, e) => DynamoAppExternalEvent.Raise();
 
             return dynamoView;
         }
@@ -563,7 +618,7 @@ namespace Dynamo.Applications
         {
             // Get the RunSettingsControl field from the DynamoWindow
             var runsettingField = dynamoView.GetType().GetField("RunSettingsControl", BindingFlags.Instance | BindingFlags.NonPublic);
-            
+
             // Get the value from the field, this should be of type UserControl
             var runsettingsValue = runsettingField.GetValue(dynamoView) as UserControl;
 
@@ -583,7 +638,7 @@ namespace Dynamo.Applications
                 VerticalContentAlignment = System.Windows.VerticalAlignment.Center,
                 ToolTip = Resources.SyncWithRevitToolTip
             };
-            
+
             toggleItem.SetValue(System.Windows.Controls.Primitives.ToggleButton.StyleProperty, srcDic["EllipseToggleButton1"]);
 
             toggleItem.Click += OnReadOnlyModeToggleChecked;
@@ -621,7 +676,7 @@ namespace Dynamo.Applications
             var customization = RevitDynamoModel.ExtensionManager.Service<ILibraryViewCustomization>();
             if (customization == null) return;
 
-            if(shutdownHandler == null && extCommandData != null)
+            if (shutdownHandler == null && extCommandData != null)
             {
                 //Make sure to notify customization for application closing, so that 
                 //the CEF can be shutdown for clean Revit exit
@@ -630,7 +685,7 @@ namespace Dynamo.Applications
             }
 
             //Register the icon resource
-            customization.RegisterResourceStream("/icons/Category.Revit.svg", 
+            customization.RegisterResourceStream("/icons/Category.Revit.svg",
                 GetResourceStream("Dynamo.Applications.Resources.Category.Revit.svg"));
 
             //Read the revitspec from the resource stream
@@ -745,7 +800,7 @@ namespace Dynamo.Applications
                 if (CheckJournalForKey(commandData, JournalKeys.DynPathCheckExisting))
                 {
                     WorkspaceModel currentWorkspace = RevitDynamoModel.CurrentWorkspace;
-                    if (currentWorkspace.FileName.Equals(commandData.JournalData[JournalKeys.DynPathKey], 
+                    if (currentWorkspace.FileName.Equals(commandData.JournalData[JournalKeys.DynPathKey],
                         StringComparison.OrdinalIgnoreCase))
                     {
                         useExistingWorkspace = true;
@@ -775,12 +830,12 @@ namespace Dynamo.Applications
                         {
                             foreach (var nodeInfo in allNodesInfo)
                             {
-                                if (nodeInfo.ContainsKey(JournalNodeKeys.Id) && 
-                                    nodeInfo.ContainsKey(JournalNodeKeys.Name) && 
+                                if (nodeInfo.ContainsKey(JournalNodeKeys.Id) &&
+                                    nodeInfo.ContainsKey(JournalNodeKeys.Name) &&
                                     nodeInfo.ContainsKey(JournalNodeKeys.Value))
                                 {
-                                    var modelCommand = new DynamoModel.UpdateModelValueCommand(nodeInfo[JournalNodeKeys.Id], 
-                                                                                               nodeInfo[JournalNodeKeys.Name], 
+                                    var modelCommand = new DynamoModel.UpdateModelValueCommand(nodeInfo[JournalNodeKeys.Id],
+                                                                                               nodeInfo[JournalNodeKeys.Name],
                                                                                                nodeInfo[JournalNodeKeys.Value]);
                                     modelCommand.Execute(RevitDynamoModel);
                                 }
@@ -949,7 +1004,7 @@ namespace Dynamo.Applications
             {
                 paths.AddRange(Directory.EnumerateDirectories(dynamoFolder));
             }
-            
+
             //From 1.0 onwards Dynamo Studio user data is stored at %appdata%\Dynamo\Dynamo Revit\
             var revitFolder = Path.Combine(dynamoFolder, "Dynamo Revit");
             if (Directory.Exists(revitFolder))
