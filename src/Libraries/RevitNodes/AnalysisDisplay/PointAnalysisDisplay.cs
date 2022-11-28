@@ -21,12 +21,12 @@ namespace Revit.AnalysisDisplay
     [Obsolete("Please use Revit.AnalysisDisplay.SpmPrimitiveIdPair instead")]
     public class SpmPrimitiveIdListPair : ISerializable
     {
-        public int SpatialFieldManagerID { get; set; }
+        public long SpatialFieldManagerID { get; set; }
         public List<int> PrimitiveIDs { get; set; }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("SpatialFieldManagerID", SpatialFieldManagerID, typeof(int));
+            info.AddValue("SpatialFieldManagerID", SpatialFieldManagerID, typeof(long));
             info.AddValue("PrimitiveIDCount", PrimitiveIDs.Count, typeof(int));
             foreach (var id in PrimitiveIDs)
             {
@@ -36,13 +36,13 @@ namespace Revit.AnalysisDisplay
 
         public SpmPrimitiveIdListPair()
         {
-            SpatialFieldManagerID = int.MinValue;
+            SpatialFieldManagerID = long.MinValue;
             PrimitiveIDs = new List<int>();
         }
 
         public SpmPrimitiveIdListPair(SerializationInfo info, StreamingContext context)
         {
-            SpatialFieldManagerID = (int)info.GetValue("SpatialFieldManagerID", typeof(int));
+            SpatialFieldManagerID = (long)info.GetValue("SpatialFieldManagerID", typeof(long));
 
             int count = (int)info.GetValue("PrimitiveIDCount", typeof(int));
             PrimitiveIDs = new List<int>();
@@ -277,7 +277,7 @@ namespace Revit.AnalysisDisplay
 
             var idPair = new SpmPrimitiveIdListPair
             {
-                SpatialFieldManagerID = manager.Id.IntegerValue,
+                SpatialFieldManagerID = manager.Id.Value,
                 PrimitiveIDs = primitiveIds
             };
             ElementBinder.SetRawDataForTrace(idPair);

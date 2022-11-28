@@ -423,7 +423,7 @@ namespace RevitSystemTests
             var selNodes = model.CurrentWorkspace.Nodes.Where(x => x is ElementSelection<Autodesk.Revit.DB.Element>);
             var selNode = selNodes.First() as ElementSelection<Autodesk.Revit.DB.Element>;
 
-            var elId = new ElementId(184273);
+            var elId = new ElementId(184273L);
             var el = DocumentManager.Instance.CurrentDBDocument.GetElement(elId);
             //selNode.SelectionResults.Add(el);
 

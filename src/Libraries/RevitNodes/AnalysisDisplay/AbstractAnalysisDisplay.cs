@@ -25,19 +25,19 @@ namespace Revit.AnalysisDisplay
  
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("SpatialFieldManagerID", SpatialFieldManagerID, typeof(int));
+            info.AddValue("SpatialFieldManagerID", SpatialFieldManagerID, typeof(long));
             info.AddValue("PrimitiveIds", PrimitiveIds, typeof(List<int>));
         }
 
         public SpmPrimitiveIdPair()
         {
-            SpatialFieldManagerID = int.MinValue;
+            SpatialFieldManagerID = long.MinValue;
             PrimitiveIds = new List<int>();
         }
 
         public SpmPrimitiveIdPair(SerializationInfo info, StreamingContext context)
         {
-            SpatialFieldManagerID = (int) info.GetValue("SpatialFieldManagerID", typeof (int));
+            SpatialFieldManagerID = (long) info.GetValue("SpatialFieldManagerID", typeof (long));
             PrimitiveIds =
                 (List<int>)
                     info.GetValue("PrimitiveIds", typeof(List<int>));
@@ -52,18 +52,18 @@ namespace Revit.AnalysisDisplay
         public Dictionary<Reference, int> RefIdPairs { get; set; }
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("SpatialFieldManagerID", SpatialFieldManagerID, typeof(int));
+            info.AddValue("SpatialFieldManagerID", SpatialFieldManagerID, typeof(long));
             info.AddValue("ReferencePrimitiveIds", RefIdPairs, typeof(Dictionary<Reference, int>));
         }
         public SpmRefPrimitiveIdListPair()
         {
-            SpatialFieldManagerID = int.MinValue;
+            SpatialFieldManagerID = long.MinValue;
             RefIdPairs = new Dictionary<Reference, int>();
         }
 
         public SpmRefPrimitiveIdListPair(SerializationInfo info, StreamingContext context)
         {
-            SpatialFieldManagerID = (int)info.GetValue("SpatialFieldManagerID", typeof(int));
+            SpatialFieldManagerID = (long)info.GetValue("SpatialFieldManagerID", typeof(long));
             RefIdPairs =
                 (Dictionary<Reference, int>)
                     info.GetValue("ReferencePrimitiveIds", typeof(Dictionary<Reference, int>));
