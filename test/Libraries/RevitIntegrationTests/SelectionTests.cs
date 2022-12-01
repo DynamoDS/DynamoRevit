@@ -619,7 +619,7 @@ namespace RevitSystemTests
         public void SelectModelElementsByCategory()
         {
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectModelElementsByCategory.dyn"));
-            TestMultipleCategorySelection<Element, Element>();
+            TestMultipleCategorySelection<Element>();
         }
 
         [Test]
@@ -627,9 +627,17 @@ namespace RevitSystemTests
         public void SelectModelElementByCategory()
         {
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectModelElementByCategory.dyn"));
-            TestMultipleCategorySelection<Element, Element>();
+            TestMultipleCategorySelection<Element>();
         }
- 
+
+        [Test]
+        [TestModel(@".\Selection\DynamoSample.rvt")]
+        public void SelectModelElementByCategoryChangeLanguage()
+        {
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectModelElementByCategory_ESP.dyn"));
+            TestMultipleCategorySelection<Element>();
+        }
+
         [Test]
         [TestModel(@".\SampleModel.rvt")]
         public void SelectRoomsByStatus()
@@ -876,12 +884,12 @@ namespace RevitSystemTests
             Assert.IsTrue(selectNode.State == ElementState.Warning);
         }
 
-        private void TestMultipleCategorySelection<T1, T2>()
+        private void TestMultipleCategorySelection<T>() where T : Element
         {
             RunCurrentModel();
 
             var selectNode =
-                ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<RevitSelection<T1, T2>>();
+                ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<ElementFilterSelection<T>>();
             Assert.NotNull(selectNode);
 
             string expectedCategoryString = "Walls";
@@ -896,6 +904,10 @@ namespace RevitSystemTests
                 var elem = elements[i] as Revit.Elements.Element;
                 Assert.AreEqual(expectedCategoryString, elem.GetCategory.Name);
             }
+
+            var selectionFilter = selectNode.Filter as CategoryElementSelectionFilter<Element>;
+            Assert.IsTrue(selectionFilter.Category == BuiltInCategory.OST_Walls);
+
             selectNode.ClearSelections();
             RunCurrentModel();
             elements = GetPreviewCollection(selectNode.GUID.ToString());
