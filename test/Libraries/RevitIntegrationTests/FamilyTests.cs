@@ -141,7 +141,7 @@ namespace RevitSystemTests
            ViewModel.OpenCommand.Execute(testPath);
 
            RunCurrentModel();
-           var elId = new Autodesk.Revit.DB.ElementId(187030);
+           var elId = new Autodesk.Revit.DB.ElementId(187030L);
            var famInst = RevitServices.Persistence.DocumentManager.Instance.CurrentDBDocument.GetElement(elId) as Autodesk.Revit.DB.FamilyInstance;
            var transform = famInst.GetTransform();
            double[] rotationAngles;
@@ -174,7 +174,7 @@ namespace RevitSystemTests
             Assert.AreEqual(pnt.Z, pos.Z, Epsilon, "Z property does not match");
 
             // Element ID of Revit face selected in DYN file
-            var elId = new Autodesk.Revit.DB.ElementId(250730);
+            var elId = new Autodesk.Revit.DB.ElementId(250730L);
             var internalFamInst = famInst.InternalElement as Autodesk.Revit.DB.FamilyInstance;
             Assert.IsNotNull(internalFamInst);
 
@@ -223,7 +223,7 @@ namespace RevitSystemTests
             Assert.AreEqual(pnt.Z, pos.Z, Epsilon, "Z property does not match");
 
             // Element ID of Revit face selected in DYN file
-            var elId = new Autodesk.Revit.DB.ElementId(250730);
+            var elId = new Autodesk.Revit.DB.ElementId(250730L);
             var internalFamInst = famInst2.InternalElement as Autodesk.Revit.DB.FamilyInstance;
             Assert.IsNotNull(internalFamInst);
 
@@ -273,7 +273,7 @@ namespace RevitSystemTests
             Assert.AreEqual(endPnt.Z, ep.Z, Epsilon, "Z property does not match");
 
             // Element ID of Revit face selected in DYN file
-            var elId = new Autodesk.Revit.DB.ElementId(250730);
+            var elId = new Autodesk.Revit.DB.ElementId(250730L);
             var internalFamInst = famInst.InternalElement as Autodesk.Revit.DB.FamilyInstance;
             Assert.IsNotNull(internalFamInst);
 
@@ -335,7 +335,7 @@ namespace RevitSystemTests
             Assert.AreEqual(endPnt.Z, ep.Z, Epsilon, "Z property does not match");
 
             // Element ID of Revit face selected in DYN file
-            var elId = new Autodesk.Revit.DB.ElementId(250730);
+            var elId = new Autodesk.Revit.DB.ElementId(250730L);
             var internalFamInst = famInst.InternalElement as Autodesk.Revit.DB.FamilyInstance;
             Assert.IsNotNull(internalFamInst);
 
