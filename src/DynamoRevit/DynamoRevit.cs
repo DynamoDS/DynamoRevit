@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -324,6 +325,7 @@ namespace Dynamo.Applications
                 {
                     SplashScreenExternalEvent.Raise();
                 };
+                splashScreen.Closed += OnSplashScreenClosed;
                 splashScreen.Show();
             }
             catch (Exception ex)
@@ -952,6 +954,24 @@ namespace Dynamo.Applications
             DynamoRevitApp.DynamoButtonEnabled = true;
 
             //the model is shutdown when DynamoView is closed
+            ModelState = RevitDynamoModelState.NotStarted;
+        }
+
+        /// <summary>
+        ///     Executes after the splash screen closes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnSplashScreenClosed(object sender, EventArgs e)
+        {
+            var view = (Window)sender;
+
+            view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
+            view.Closed -= OnSplashScreenClosed;
+
+            DynamoRevitApp.DynamoButtonEnabled = true;
+
+            //the model is shutdown when splash screen is closed
             ModelState = RevitDynamoModelState.NotStarted;
         }
 
