@@ -10,3 +10,4 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("0d13866c-102d-48bd-b591-ae999355c428")]
+[assembly: InternalsVisibleTo("RevitSystemTests")]
