@@ -1,3 +1,7 @@
+## 0.4.15
+* Create RC2.17.0_Revit2024 branch.
+* Upgrade DynamoCore version to 2.17.0.3472.
+
 ## 0.4.14
 * Upgrade DynamoCore version to 2.17.0-beta3141.
 
