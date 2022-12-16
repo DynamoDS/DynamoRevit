@@ -58,7 +58,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Greg">
-      <HintPath>$(PACKAGESPATH)\Greg\lib\net47\Greg.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\Greg\lib\net452\Greg.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GregRevitAuth">
@@ -97,7 +97,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="RestSharp">
-      <HintPath>$(PACKAGESPATH)\RestSharp\lib\net45\RestSharp.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\RestSharp\lib\net452\RestSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
