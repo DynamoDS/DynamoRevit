@@ -9,13 +9,13 @@
       "DynamoVisualProgramming.WpfUILibrary" : "2.3.2.15696",
       "DynamoVisualProgramming.ZeroTouchLibrary" : "2.3.2.15696",
       "DynamoVisualProgramming.DynamoSamples" : "2.3.2.15696",
-      "Greg" : "1.1.7040.19960",
-      "GregRevitAuth" : "1.0.7057.20655",
+      "Greg" : "2.2.0.1080",
+      "GregRevitAuth" : "1.2.8382.31161",
       "IronPython" : "2.7.8.1",
       "Newtonsoft.Json" : "8.0.3",
       "NUnit" : "2.6.2",
       "Prism" : "4.1.0",
-      "RestSharp" : "105.2.3",
+      "RestSharp" : "106.12.0",
       "Unofficial.Ionic.Zip" : "1.9.1.8"
     }
   }
