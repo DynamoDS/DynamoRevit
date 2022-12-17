@@ -1,3 +1,7 @@
+## 0.1.23
+* Upgrade Greg, GregRevitOAuth, and RestSharp version
+* Unify newtonsoft references
+
 ## 0.1.22
 * Update Dynamo Core version to 2.6.2
 
