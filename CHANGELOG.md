@@ -1,3 +1,6 @@
+## 0.4.16
+* Upgrade DynamoSamples to 2.18.0-beta3734 to involve new version of Sample rvt file.
+
 ## 0.4.15
 * Create RC2.17.0_Revit2024 branch.
 * Upgrade DynamoCore version to 2.17.0.3472.
