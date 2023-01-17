@@ -1,3 +1,6 @@
+## 0.0.54
+* Bump version to trigger new signing for d4r package.
+
 ## 0.0.53
 * Upgrade Greg, GregRevitOAuth, and RestSharp version
 * Unify newtonsoft references
