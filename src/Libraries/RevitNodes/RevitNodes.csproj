@@ -73,6 +73,7 @@
     <Compile Include="AnalysisDisplay\FaceAnalysisDisplay.cs" />
     <Compile Include="AnalysisDisplay\PointAnalysisDisplay.cs" />
     <Compile Include="AnalysisDisplay\VectorAnalysisDisplay.cs" />
+    <Compile Include="Elements\LinkElement.cs" />
     <Compile Include="Elements\LinkInstance.cs" />
     <Compile Include="Application\Document.cs" />
     <Compile Include="Application\Warning.cs" />
