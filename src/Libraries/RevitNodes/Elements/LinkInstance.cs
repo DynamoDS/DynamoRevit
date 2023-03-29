@@ -22,13 +22,14 @@ namespace Revit.Elements
         /// <summary>
         /// Return the Document of the given Link Instance
         /// </summary>
+        /// <param name="linkInstance"> Link Instance </param>>
         /// <returns name="linkDocument">linkDocument</returns>
-        public static Revit.Application.Document Document(RevitLinkInstance revitLinkInstance)
+        public static Revit.Application.Document Document(RevitLinkInstance linkInstance)
         {
            
-            var elementDocument = revitLinkInstance.GetLinkDocument();
+            var linkDocument = linkInstance.GetLinkDocument();
 
-            return new Revit.Application.Document(elementDocument);
+            return new Revit.Application.Document(linkDocument);
         }
 
 
@@ -37,7 +38,7 @@ namespace Revit.Elements
         /// <param name="linkInstance">Linked Element Instance </param>>
         /// <param name="category">Element Category to look up in the linked file </param>>
         /// <returns name="linkedElements">Linked Elements of Category</returns>
-        public static List<Revit.Elements.Element> AllElementsOfCategory(RevitLinkInstance linkInstance, Revit.Elements.Category category)
+        public static List<Element> AllElementsOfCategory(RevitLinkInstance linkInstance, Revit.Elements.Category category)
         {
             BuiltInCategory bic = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
                                                                                  category.InternalCategory.Id.ToString());
@@ -48,6 +49,7 @@ namespace Revit.Elements
                 .Select(el => el.ToDSType(true))
                 .ToList();
 
+
             return linkedElements;
         }
                
@@ -57,22 +59,26 @@ namespace Revit.Elements
         /// </summary>>
         /// <param name="linkInstance">Linked Element Instance </param>>
         /// <param name="category">Linked Element Category</param>>
-        /// <param name="view">Active Document View </param>>
-        /// <returns name="linkedElementsInView"> Link Elements of Category in Active Document View</returns>
+        /// <param name="view">Link View </param>>
+        /// <returns name="linkedElements"> Link Elements of Category in View</returns>
         public static List<Revit.Elements.Element> AllElementsOfCategoryInView(RevitLinkInstance linkInstance, Elements.Category category, Elements.Views.View view)
         {
             
             var currentDocument = Application.Document.Current.InternalDocument;
             Autodesk.Revit.DB.View revitView = view.InternalView as Autodesk.Revit.DB.View;
             
-            if(revitView != null)
+            if(revitView != null && revitView.IsTemplate== false)
             {
                 Solid solidForFilter;
 
                 // When the View is a Section or Elevation, use the Crop Region
                 if (revitView is ViewSection)
                 {
-                    solidForFilter = CreateSolidFromSectionCropRegion(revitView as ViewSection);
+                    if (revitView.CropBoxActive == true)
+                    {
+                        solidForFilter = CreateSolidFromSectionCropRegion(revitView as ViewSection);
+                    }
+                    else { solidForFilter = null; }
                 }
                 // When the View is a 3D View, use the Section Box or return null is no section box is enabled
        
@@ -84,15 +90,21 @@ namespace Revit.Elements
                     {
                         solidForFilter = CreateSolidFromSectionBox(revitView as View3D);
                     }
-                    else
-                    {
-                        solidForFilter = null;
-                    }
+                    else { solidForFilter = null; }
                 }
-                else
+                
+                else if (revitView is ViewPlan)
                 {
-                    solidForFilter = CreateSolidFromCropRegion(currentDocument,revitView as ViewPlan);
+                    if (revitView.CropBoxActive == true)
+                    {
+                        solidForFilter = CreateSolidFromCropRegion(currentDocument, revitView as ViewPlan);
+                    }
+                    else { solidForFilter = null; }
                 }
+
+                else
+                { return null; }
+
 
                 BuiltInCategory bic = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
                                                                                          category.InternalCategory.Id.ToString());
@@ -132,15 +144,34 @@ namespace Revit.Elements
         {
 
             PlanViewRange planViewRange = viewPlan.GetViewRange();
+            ViewType viewType = viewPlan.ViewType;
             ElementId cutPlaneLevelId = planViewRange.GetLevelId(PlanViewPlane.CutPlane);
             ElementId viewDepthLevelId = planViewRange.GetLevelId(PlanViewPlane.ViewDepthPlane);
             Autodesk.Revit.DB.Level cutPlaneLevel = doc.GetElement(cutPlaneLevelId) as Autodesk.Revit.DB.Level;
             double cutPlaneLevelElevation = cutPlaneLevel.Elevation;
             Autodesk.Revit.DB.Level viewDepthPlaneLevel = doc.GetElement(viewDepthLevelId) as Autodesk.Revit.DB.Level;
-            double viewDepthPlaneLevelElevation = viewDepthPlaneLevel.Elevation;
+
+            double viewDepthPlaneLevelElevation;
+            // check if the View Depth is set to a Level, in which case get the level elevation
+            if (viewDepthPlaneLevel != null)
+                {
+                viewDepthPlaneLevelElevation = viewDepthPlaneLevel.Elevation;
+                }
+            // if View Depth is set to Unlimited or Level Below (where no level below exists), use the Bounding Box Max (for RCP) or Min (for downward-looking plan views)
+            else
+            {
+                if (viewType == ViewType.CeilingPlan)
+                {
+                    viewDepthPlaneLevelElevation = viewPlan.get_BoundingBox(null).Max.Z;
+                }
+                else
+                {
+                    viewDepthPlaneLevelElevation = viewPlan.get_BoundingBox(null).Min.Z;
+                }
+            }
             double cutPlaneOffset = planViewRange.GetOffset(PlanViewPlane.CutPlane);
             double viewDepthOffset = planViewRange.GetOffset(PlanViewPlane.ViewDepthPlane);
-            ViewType viewType = viewPlan.ViewType;
+            
 
             double solidBottomZ;
             double solidTopZ;
@@ -244,11 +275,11 @@ namespace Revit.Elements
 
 
         /// <summary>
-        /// Returns a list of elements in the given Revit Link Instance by a given Category and in a given View
+        /// Returns a list of elements in the Revit Link Instance by a given Class
         /// </summary>>
         /// <param name="linkInstance">Linked Element Instance </param>>
         /// <param name="elementClass">Linked Element Class </param>>
-        /// <returns>LinkInstanceElementsOfCategoryInView</returns>
+        /// <returns name="linkElements">Linked Elements of Class</returns>
         public static List<Revit.Elements.Element> AllElementsOfClass(RevitLinkInstance linkInstance, System.Type elementClass)
         {
 
@@ -262,6 +293,12 @@ namespace Revit.Elements
         }
 
 
+        /// <summary>
+        /// Returns a list of elements in the Revit Link Instance by a link's Level.
+        /// </summary>>
+        /// <param name="linkInstance">Linked Element Instance </param>>
+        /// <param name="level">Linked Element Level </param>>
+        /// <returns name="linkElements">
         public static List<Revit.Elements.Element> AllElementsAtLevel(RevitLinkInstance linkInstance, Level level) 
         {
             Autodesk.Revit.DB.Level revitLevel = level.InternalLevel;
@@ -275,7 +312,11 @@ namespace Revit.Elements
             return linkedAtLevel;
         }
 
-
+        /// <summary>
+        /// Link Instances by Name paramter
+        /// </summary>>
+        /// <param name="name">Name parameter of the Link Instance </param>>
+        /// <returns name="linkInstance">Link Instances</returns>
         public static List<RevitLinkInstance> ByName (string name)
         {
             ElementId paramId =  new ElementId(BuiltInParameter.RVT_LINK_INSTANCE_NAME);
@@ -293,6 +334,11 @@ namespace Revit.Elements
             return linkInstancesByName;
         }
 
+
+        /// <summary>
+        /// </summary>>
+        /// <param name="title">The Title of the Link Document (the revit file name without the extension) </param>>
+        /// <returns name="linkInstance">Link Instances</returns>
         public static List<RevitLinkInstance> ByTitle(string title)
         {
             var currentDocument = Application.Document.Current.InternalDocument;
