@@ -4,6 +4,7 @@ using Revit.Elements;
 using System.Collections.Generic;
 using System.Linq;
 using DynamoUnits;
+using Dynamo.Graph.Nodes;
 using View = Revit.Elements.Views.View;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using Autodesk.DesignScript.Geometry;
 using Revit.GeometryConversion;
 using System.Windows.Media.Imaging;
 using Point = Autodesk.DesignScript.Geometry.Point;
+
 
 namespace Revit.Elements
 { 
@@ -62,32 +64,33 @@ namespace Revit.Elements
             return matchingLinkInstances;
         }
 
-        public static List<Transform> LinkTransform(Element element) 
+        public static Autodesk.Revit.DB.Transform LinkTransform(Element element) 
         {
             var revitLinkInstances = GetLinkInstancesContainingLinkElement(element);
-            
-            List<Transform> listOfTransforms = new List<Transform>();
+                        
             foreach (var revitLinkInstance in revitLinkInstances)
             {
-                listOfTransforms.Add(revitLinkInstance.GetTotalTransform());
+                return revitLinkInstance.GetTotalTransform();
             }
-            return listOfTransforms;
+            return null;
         }
       
       
-        public static List<Transform> LinkInverseTransform(Element element)
+        public static Autodesk.Revit.DB.Transform LinkInverseTransform(Element element)
         {
             List<RevitLinkInstance> revitLinkInstances = GetLinkInstancesContainingLinkElement(element);
-            List<Transform> listOfInverseTransforms = new List<Transform>();
+
             foreach (RevitLinkInstance revitLinkInstance in revitLinkInstances) 
             {
-                listOfInverseTransforms.Add(revitLinkInstance.GetTotalTransform().Inverse);         
+                return revitLinkInstance.GetTotalTransform().Inverse;
             }
-            return listOfInverseTransforms;
+            return null;
+                
         }
         
         public static BoundingBox BoundingBox (Element linkElement)
         {
+            
             Autodesk.Revit.DB.Element revitElement =linkElement.InternalElement;
             BoundingBoxXYZ boundingBox = revitElement.get_BoundingBox(null);
 
@@ -96,31 +99,87 @@ namespace Revit.Elements
 
         public static object GetGeometry(Element linkElement)
         {
+            // how to set the info state? 
+            var info = Dynamo.Graph.Nodes.ElementState.Info;
+            info = ElementState.Info;
+            Autodesk.Revit.DB.Transform linkTransform = LinkTransform(linkElement);
+            var geoSet = new List<object>();
             Autodesk.Revit.DB.Element revitElement = linkElement.InternalElement;
             Options options = new Options();
-            GeometryObject linkElementGeometry = revitElement.get_Geometry(options);
-            object dSGeometry = linkElementGeometry.Convert();
+            GeometryElement linkElementGeometry = revitElement.get_Geometry(options);
 
-            return dSGeometry;
+            foreach (var geometryInstance in linkElementGeometry)
+            {
+                if (geometryInstance is PolyLine)
+                {
+                    geoSet.Add((geometryInstance as PolyLine).ToProtoType());
+                }
+                else if (geometryInstance is Autodesk.Revit.DB.Mesh)
+                {
+                    var mesh = geometryInstance as Autodesk.Revit.DB.Mesh;
+
+                    geoSet.Add(mesh.ToProtoType());
+                }
+                else if (geometryInstance is GeometryInstance)
+                {
+                    var instanceGeometry = (geometryInstance as GeometryInstance).GetInstanceGeometry(linkTransform);
+                    foreach (var geo in instanceGeometry)
+                    {
+                        if (geo is Autodesk.Revit.DB.Solid)
+                        {
+                            var solid = geo as Autodesk.Revit.DB.Solid;
+                            if ((int)solid.Id != -1)
+                            {
+
+                                geoSet.Add(solid.ToProtoType());
+                            }
+                        }
+
+                        else if (geo is Autodesk.Revit.DB.Curve)
+                        {
+                            var curve = geo as Autodesk.Revit.DB.Curve;
+
+                            geoSet.Add(curve.ToProtoType());
+                        }
+
+                        else if (geo is Autodesk.Revit.DB.Mesh)
+                        {
+                            var mesh = geo as Autodesk.Revit.DB.Mesh;
+
+                            geoSet.Add(mesh.ToProtoType());
+                        }
+                    }
+                }
+                else
+                {
+                    if ((geometryInstance is Autodesk.Revit.DB.Solid) && !(geometryInstance.Id == -1))
+                        { geoSet.Add(geometryInstance); }
+                    
+                }
+                    
+            }
+
+
+            return geoSet;
         }
 
-        public static Geometry GetLocation(Element linkElement) 
+        public static Autodesk.DesignScript.Geometry.Geometry GetLocation(Element linkElement) 
         {
             Autodesk.Revit.DB.Element revitElement = linkElement.InternalElement;
             Autodesk.Revit.DB.Location location = revitElement.Location;
             if (location is Autodesk.Revit.DB.LocationPoint)
             {
-                XYZ pt = (location as LocationPoint).Point;
+                var pt = (location as LocationPoint).Point;
                 return pt.ToPoint();
             }
             else if (location is Autodesk.Revit.DB.LocationCurve)
             {
-                Autodesk.Revit.DB.Curve curve = (location as LocationCurve).Curve;
+                var curve = (location as LocationCurve).Curve;
                 return curve.ToProtoType();
             }
             else
             {
-                // IS THIS RIGHT? 
+            
                 return null;
             }
             
