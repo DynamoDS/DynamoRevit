@@ -359,25 +359,47 @@ namespace Revit.Elements
         }
 
 
-        public static ElementId Id (RevitLinkInstance revitLinkInstance)
+        /// <summary>
+        /// </summary>>       
+        /// <param name="linkInstance">Link Instance</param>>
+        /// <returns name="id">Unique Id</returns>
+        public static ElementId Id (RevitLinkInstance linkInstance)
         {
-            ElementId id = revitLinkInstance.Id;
+            ElementId id = linkInstance.Id;
             return id;
         }
 
 
-        public static string UniqueId(RevitLinkInstance revitLinkInstance)
+        /// <summary>
+        /// </summary>>       
+        /// <param name="linkInstance">Link Instance</param>>
+        /// <returns name="uniqueId">Unique Id</returns>
+        public static string UniqueId(RevitLinkInstance linkInstance)
         {
-            string uniqueId = revitLinkInstance.UniqueId;
+            string uniqueId = linkInstance.UniqueId;
             return uniqueId;
         }
 
 
-        public static Element ElementById(string idAsString, RevitLinkInstance revitLinkInstance)
+        /// <summary>
+        /// </summary>>
+        /// <param name="id">The Id of the linked element, either as Integer, String or ElementId</param>>
+        /// <param name="linkInstance">Link Instance</param>>
+        /// <returns name="linkElement">Link Element</returns>
+        public static Element ElementById(object id, RevitLinkInstance linkInstance)
         {
-            int idAsInt = int.Parse(idAsString);
-            Document linkDocument = revitLinkInstance.GetLinkDocument();
-            ElementId elementId = new ElementId(idAsInt);
+            int idAsInteger;
+            if (id is ElementId)
+            {
+                idAsInteger = (id as ElementId).IntegerValue;
+            }
+            else
+            { 
+                idAsInteger = int.Parse(id.ToString());
+            }
+            
+            Document linkDocument = linkInstance.GetLinkDocument();
+            ElementId elementId = new ElementId(idAsInteger);
             Autodesk.Revit.DB.Element linkElementById = linkDocument.GetElement((elementId));
             return linkElementById.ToDSType(true);
         }
