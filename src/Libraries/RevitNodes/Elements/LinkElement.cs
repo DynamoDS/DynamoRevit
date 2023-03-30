@@ -25,19 +25,8 @@ namespace Revit.Elements
     /// </summary>
     public static class LinkElement
     {
-        /// <summary>
-        /// Return the Document of the given Linked element
-        /// </summary>
-        /// <returns name="linkDocument">linkDocument</returns>
-        public static Revit.Application.Document Document(Element element)
-        {
-            Autodesk.Revit.DB.Element revitElement = element.InternalElement;
 
-            var elementDocument = revitElement.Document;
-
-            return new Revit.Application.Document(elementDocument); 
-        }
-
+        #region Helpers
         private static List<RevitLinkInstance> GetLinkInstancesContainingLinkElement(Element linkElement)
         {
             Autodesk.Revit.DB.Element revitElement = linkElement.InternalElement;
@@ -50,51 +39,90 @@ namespace Revit.Elements
                 .ToElements()
                 .Cast<RevitLinkInstance>()
                 .ToList();
-              
+
             // list to store all instances that match the linked element's document
             List<RevitLinkInstance> matchingLinkInstances = new List<RevitLinkInstance>();
             foreach (RevitLinkInstance linkInstance in allLinkInstances)
             {
-                Document linkDoc = linkInstance.GetLinkDocument();              
+                Document linkDoc = linkInstance.GetLinkDocument();
                 if (linkDoc.Equals(linkDocToMatch))
-                {                   
+                {
                     matchingLinkInstances.Add(linkInstance);
                 }
-            }         
+            }
             return matchingLinkInstances;
         }
 
-        public static Autodesk.Revit.DB.Transform LinkTransform(Element element) 
-        {
-            var revitLinkInstances = GetLinkInstancesContainingLinkElement(element);
-                        
-            foreach (var revitLinkInstance in revitLinkInstances)
-            {
-                return revitLinkInstance.GetTotalTransform();
-            }
-            return null;
-        }
-      
-      
-        public static Autodesk.Revit.DB.Transform LinkInverseTransform(Element element)
-        {
-            List<RevitLinkInstance> revitLinkInstances = GetLinkInstancesContainingLinkElement(element);
 
-            foreach (RevitLinkInstance revitLinkInstance in revitLinkInstances) 
-            {
-                return revitLinkInstance.GetTotalTransform().Inverse;
-            }
-            return null;
-                
-        }
-        
-        public static BoundingBox BoundingBox (Element linkElement)
+        // return element location with transform
+        internal static object GetLinkElementLocation(Element linkElement)
         {
-            
-            Autodesk.Revit.DB.Element revitElement =linkElement.InternalElement;
-            BoundingBoxXYZ boundingBox = revitElement.get_BoundingBox(null);
+            Autodesk.Revit.DB.Element revitElement = linkElement.InternalElement;
+            Autodesk.Revit.DB.Location location = revitElement.Location;
+            Autodesk.Revit.DB.Transform linkTransform = LinkTransform(linkElement);
 
-            return boundingBox.ToProtoType();
+            if (location is Autodesk.Revit.DB.LocationPoint)
+            {
+                var xyz = (location as LocationPoint).Point;
+                var transformedxyz = TransformPoint(xyz, linkTransform);
+                return transformedxyz;
+            }
+            else if (location is Autodesk.Revit.DB.LocationCurve)
+            {
+                var curve = (location as LocationCurve).Curve;
+                var transformedCurve = curve.CreateTransformed(linkTransform);
+                return transformedCurve;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        // helper method for transforming a point
+        internal static XYZ TransformPoint(XYZ point, Transform transform)
+        {
+            double x = point.X;
+            double y = point.Y;
+            double z = point.Z;
+
+            //transform basis of the old coordinate system in the new coordinate // system
+            XYZ b0 = transform.get_Basis(0);
+            XYZ b1 = transform.get_Basis(1);
+            XYZ b2 = transform.get_Basis(2);
+            XYZ origin = transform.Origin;
+
+            //transform the origin of the old coordinate system in the new 
+            //coordinate system
+            double xTemp = x * b0.X + y * b1.X + z * b2.X + origin.X;
+            double yTemp = x * b0.Y + y * b1.Y + z * b2.Y + origin.Y;
+            double zTemp = x * b0.Z + y * b1.Z + z * b2.Z + origin.Z;
+
+            return new XYZ(xTemp, yTemp, zTemp);
+        }
+        #endregion
+
+
+        #region Public methods
+        // Action nodes
+        public static Autodesk.DesignScript.Geometry.Geometry GetLocation(Element linkElement)
+        {
+            // get location (point or curve) with transform
+            var location = GetLinkElementLocation(linkElement);
+            if (location is XYZ)
+            {
+                return (location as XYZ).ToPoint();
+            }
+            else if (location is Autodesk.Revit.DB.Curve)
+            {
+
+                return (location as Autodesk.Revit.DB.Curve).ToProtoType();
+
+            }
+            else { return null; }
+
+
         }
 
         public static object GetGeometry(Element linkElement)
@@ -153,36 +181,90 @@ namespace Revit.Elements
                 else
                 {
                     if ((geometryInstance is Autodesk.Revit.DB.Solid) && !(geometryInstance.Id == -1))
-                        { geoSet.Add(geometryInstance); }
-                    
+                    { geoSet.Add(geometryInstance); }
+
                 }
-                    
+
             }
 
 
             return geoSet;
         }
 
-        public static Autodesk.DesignScript.Geometry.Geometry GetLocation(Element linkElement) 
+        #endregion
+
+
+        #region Properties
+        //Query nodes
+
+        /// <summary>
+        /// Return the Document of the given Linked element
+        /// </summary>
+        /// <returns name="linkDocument">linkDocument</returns>
+        [NodeCategory("Query")]
+        public static Revit.Application.Document Document(Element element)
         {
-            Autodesk.Revit.DB.Element revitElement = linkElement.InternalElement;
-            Autodesk.Revit.DB.Location location = revitElement.Location;
-            if (location is Autodesk.Revit.DB.LocationPoint)
-            {
-                var pt = (location as LocationPoint).Point;
-                return pt.ToPoint();
-            }
-            else if (location is Autodesk.Revit.DB.LocationCurve)
-            {
-                var curve = (location as LocationCurve).Curve;
-                return curve.ToProtoType();
-            }
-            else
-            {
-            
-                return null;
-            }
-            
+            Autodesk.Revit.DB.Element revitElement = element.InternalElement;
+
+            var elementDocument = revitElement.Document;
+
+            return new Revit.Application.Document(elementDocument);
         }
+
+        /// <summary>
+        /// Return the Link Transform
+        /// </summary>
+        [NodeCategory("Query")]
+        public static Autodesk.Revit.DB.Transform LinkTransform(Element element)
+        {
+            var revitLinkInstances = GetLinkInstancesContainingLinkElement(element);
+
+            foreach (var revitLinkInstance in revitLinkInstances)
+            {
+                return revitLinkInstance.GetTotalTransform();
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Return the Inverted Link Transform
+        /// </summary>
+        [NodeCategory("Query")]
+        public static Autodesk.Revit.DB.Transform LinkInverseTransform(Element element)
+        {
+            List<RevitLinkInstance> revitLinkInstances = GetLinkInstancesContainingLinkElement(element);
+
+            foreach (RevitLinkInstance revitLinkInstance in revitLinkInstances)
+            {
+                return revitLinkInstance.GetTotalTransform().Inverse;
+            }
+            return null;
+
+        }
+
+        /// <summary>
+        /// Return the Linked Element's Bounding Box
+        /// </summary>
+        [NodeCategory("Query")]
+        public static BoundingBox BoundingBox(Element linkElement)
+        {
+
+            Autodesk.Revit.DB.Element revitElement = linkElement.InternalElement;
+            BoundingBoxXYZ boundingBox = revitElement.get_BoundingBox(null);
+            Transform linkTransform = LinkTransform(linkElement);
+
+            XYZ linkBBMin = boundingBox.Min;
+            XYZ linkBBMax = boundingBox.Max;
+
+            XYZ mainBBMin = linkTransform.OfPoint(linkBBMin);
+            XYZ mainBBMax = linkTransform.OfPoint(linkBBMax);
+
+            BoundingBoxXYZ transformedBBox = new BoundingBoxXYZ();
+            transformedBBox.Max = mainBBMax;
+            transformedBBox.Min = mainBBMin;
+
+            return transformedBBox.ToProtoType();
+        }
+        #endregion
     }
 }
