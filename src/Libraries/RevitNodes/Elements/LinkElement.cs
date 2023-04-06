@@ -155,6 +155,7 @@ namespace Revit.Elements
 
         }
 
+
         public static object GetGeometry(Element linkElement)
         {
             // how to set the info state? 
@@ -170,13 +171,24 @@ namespace Revit.Elements
             {
                 if (geometryInstance is PolyLine)
                 {
-                    geoSet.Add((geometryInstance as PolyLine).ToProtoType());
+                    PolyLine transformedPLine = (geometryInstance as PolyLine).GetTransformed(linkTransform);
+                    geoSet.Add(transformedPLine.ToProtoType());
                 }
                 else if (geometryInstance is Autodesk.Revit.DB.Mesh)
                 {
-                    var mesh = geometryInstance as Autodesk.Revit.DB.Mesh;
+                    Autodesk.DesignScript.Geometry.Mesh mesh = (geometryInstance as Autodesk.Revit.DB.Mesh).ToProtoType();
+                    CoordinateSystem CS = linkTransform.ToCoordinateSystem();
+                    Point[] meshVertices = mesh.VertexPositions;
+                    var meshIndices = mesh.FaceIndices;
+                    List<Point> newVertList = new List<Point>();
+                    foreach (Point vertex in meshVertices)
+                    {
+                        Point transformedVertex = (Point)vertex.Transform(CS);
+                        newVertList.Add(transformedVertex);
+                    }
 
-                    geoSet.Add(mesh.ToProtoType());
+                    Autodesk.DesignScript.Geometry.Mesh newMesh = Autodesk.DesignScript.Geometry.Mesh.ByPointsFaceIndices(newVertList, meshIndices);
+                    geoSet.Add(newMesh);
                 }
                 else if (geometryInstance is GeometryInstance)
                 {
@@ -203,7 +215,6 @@ namespace Revit.Elements
                         else if (geo is Autodesk.Revit.DB.Mesh)
                         {
                             var mesh = geo as Autodesk.Revit.DB.Mesh;
-
                             geoSet.Add(mesh.ToProtoType());
                         }
                     }
