@@ -17,6 +17,7 @@ using Revit.GeometryConversion;
 using System.Windows.Media.Imaging;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using Autodesk.Revit.UI;
+using System.Windows.Media.Media3D;
 
 
 namespace Revit.Elements
@@ -57,32 +58,26 @@ namespace Revit.Elements
         // helper for zooming to clicked green Id
         internal static void ZoomToLinkedElement(Element element)
         {
-
-            double zoomOffset = 4;
+                    
             UIDocument uiDoc = DocumentManager.Instance.CurrentUIDocument;
             Autodesk.Revit.DB.View activeView = uiDoc.ActiveView;
             // get active UI view to use
             UIView uiview = uiDoc.GetOpenUIViews().FirstOrDefault<UIView>(uv => uv.ViewId.Equals(activeView.Id));
             var location = Revit.Elements.LinkElement.GetLinkElementLocation(element);
             Transform linkTransform = Revit.Elements.LinkElement.LinkTransform(element);
-            XYZ locationPt = new XYZ();
-            if (location is XYZ)
-            {
-                locationPt = location as XYZ;
-            }
-            else if (location is Autodesk.Revit.DB.Curve)
-                locationPt = (location as Autodesk.Revit.DB.Curve).Evaluate(0.5, true);
-            else
-            {
-                BoundingBoxXYZ bb = element.InternalElement.get_BoundingBox(null);
-                XYZ bbCenter = (bb.Max + bb.Min) / 2;
-                locationPt = Revit.Elements.LinkElement.TransformPoint(bbCenter, linkTransform);
-
-            }
+            
+            // use the center of the BoundingBox as zoom center
+            BoundingBoxXYZ bb = element.InternalElement.get_BoundingBox(null);
+            XYZ bbCenter = (bb.Max + bb.Min) / 2;
+            double zoomOffsetX = bb.Max.X - bbCenter.X;
+            double zoomOffsetY= bb.Max.Y - bbCenter.Y;
+            double zoomOffsetZ = bb.Max.Z - bbCenter.Z;
+            XYZ locationPt = Revit.Elements.LinkElement.TransformPoint(bbCenter, linkTransform);
+                        
             if (locationPt != null)
             {
-                XYZ min = new XYZ(locationPt.X - zoomOffset, locationPt.Y - zoomOffset, locationPt.Z - zoomOffset);
-                XYZ max = new XYZ(locationPt.X + zoomOffset, locationPt.Y + zoomOffset, locationPt.Z + zoomOffset);
+                XYZ min = new XYZ(locationPt.X - zoomOffsetX, locationPt.Y - zoomOffsetY, locationPt.Z - zoomOffsetZ);
+                XYZ max = new XYZ(locationPt.X + zoomOffsetX, locationPt.Y + zoomOffsetY, locationPt.Z + zoomOffsetZ);
                 uiview.ZoomAndCenterRectangle(min, max);
             }
 
@@ -280,25 +275,24 @@ namespace Revit.Elements
         /// <summary>
         /// Return the Linked Element's Bounding Box
         /// </summary>
+        /// <returns name="boundingBox">Bounding Box</returns>
         [NodeCategory("Query")]
         public static BoundingBox BoundingBox(Element linkElement)
         {
 
-            Autodesk.Revit.DB.Element revitElement = linkElement.InternalElement;
-            BoundingBoxXYZ boundingBox = revitElement.get_BoundingBox(null);
-            Transform linkTransform = LinkTransform(linkElement);
+            List<object> linkedElementGeometry = (List<object>)GetGeometry(linkElement);
+                   
+            var geoList = new List<Geometry>();
+            
+            foreach (var geo in linkedElementGeometry)
+                if (geo is Geometry)
+                {
+                    geoList.Add(geo as Geometry);
+                }
 
-            XYZ linkBBMin = boundingBox.Min;
-            XYZ linkBBMax = boundingBox.Max;
-
-            XYZ mainBBMin = linkTransform.OfPoint(linkBBMin);
-            XYZ mainBBMax = linkTransform.OfPoint(linkBBMax);
-
-            BoundingBoxXYZ transformedBBox = new BoundingBoxXYZ();
-            transformedBBox.Max = mainBBMax;
-            transformedBBox.Min = mainBBMin;
-
-            return transformedBBox.ToProtoType();
+            var minBBOx = Autodesk.DesignScript.Geometry.BoundingBox.ByMinimumVolume(geoList);
+           
+            return minBBOx;
         }
         #endregion
     }
