@@ -44,7 +44,7 @@ namespace Dynamo.Applications
                 Document currrentDoc = Revit.Application.Document.Current.InternalDocument;
                 if (!(elementDoc.Equals(currrentDoc)) && (element.InternalElement.IsValidObject))
                 {
-                    ZoomToLinkedElement(element);
+                    Revit.Elements.LinkElement.ZoomToLinkedElement(element);
                 }
                 else if (element.InternalElement.IsValidObject)
                     DocumentManager.Instance.CurrentUIDocument.ShowElements(element.InternalElement);
@@ -55,39 +55,7 @@ namespace Dynamo.Applications
             return node;
         }
 
-        private static void ZoomToLinkedElement(Element element)
-        {
-
-            double zoomOffset = 4;
-            UIDocument uiDoc = DocumentManager.Instance.CurrentUIDocument;
-            View activeView = uiDoc.ActiveView;
-            // get active UI view to use
-            UIView uiview = uiDoc.GetOpenUIViews().FirstOrDefault<UIView>(uv => uv.ViewId.Equals(activeView.Id));
-            var location = Revit.Elements.LinkElement.GetLinkElementLocation(element);
-            Transform linkTransform = Revit.Elements.LinkElement.LinkTransform(element);
-            XYZ locationPt = new XYZ();
-            if (location is XYZ)
-            {
-                locationPt = location as XYZ;
-            }
-            else if (location is Autodesk.Revit.DB.Curve)
-                locationPt = (location as Curve).Evaluate(0.5, true);
-            else
-            {
-                BoundingBoxXYZ bb = element.InternalElement.get_BoundingBox(null);
-                XYZ bbCenter = (bb.Max + bb.Min) / 2;
-                locationPt = Revit.Elements.LinkElement.TransformPoint(bbCenter,linkTransform);
-
-            }
-            if (locationPt != null)
-            {
-                XYZ min = new XYZ(locationPt.X - zoomOffset, locationPt.Y - zoomOffset, locationPt.Z - zoomOffset);
-                XYZ max = new XYZ(locationPt.X + zoomOffset, locationPt.Y + zoomOffset, locationPt.Z + zoomOffset);          
-                uiview.ZoomAndCenterRectangle(min, max);
-            }
-            
-           
-        }
+        
 
         //If no dispatch target is found, then invoke base watch handler.
         private WatchViewModel ProcessThing(object obj, List<string> preferredDictionaryOrdering, ProtoCore.RuntimeCore runtimeCore, string tag, bool showRawData, WatchHandlerCallback callback)

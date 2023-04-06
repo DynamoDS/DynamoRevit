@@ -16,6 +16,7 @@ using Autodesk.DesignScript.Geometry;
 using Revit.GeometryConversion;
 using System.Windows.Media.Imaging;
 using Point = Autodesk.DesignScript.Geometry.Point;
+using Autodesk.Revit.UI;
 
 
 namespace Revit.Elements
@@ -53,6 +54,40 @@ namespace Revit.Elements
             return matchingLinkInstances;
         }
 
+        // helper for zooming to clicked green Id
+        internal static void ZoomToLinkedElement(Element element)
+        {
+
+            double zoomOffset = 4;
+            UIDocument uiDoc = DocumentManager.Instance.CurrentUIDocument;
+            Autodesk.Revit.DB.View activeView = uiDoc.ActiveView;
+            // get active UI view to use
+            UIView uiview = uiDoc.GetOpenUIViews().FirstOrDefault<UIView>(uv => uv.ViewId.Equals(activeView.Id));
+            var location = Revit.Elements.LinkElement.GetLinkElementLocation(element);
+            Transform linkTransform = Revit.Elements.LinkElement.LinkTransform(element);
+            XYZ locationPt = new XYZ();
+            if (location is XYZ)
+            {
+                locationPt = location as XYZ;
+            }
+            else if (location is Autodesk.Revit.DB.Curve)
+                locationPt = (location as Autodesk.Revit.DB.Curve).Evaluate(0.5, true);
+            else
+            {
+                BoundingBoxXYZ bb = element.InternalElement.get_BoundingBox(null);
+                XYZ bbCenter = (bb.Max + bb.Min) / 2;
+                locationPt = Revit.Elements.LinkElement.TransformPoint(bbCenter, linkTransform);
+
+            }
+            if (locationPt != null)
+            {
+                XYZ min = new XYZ(locationPt.X - zoomOffset, locationPt.Y - zoomOffset, locationPt.Z - zoomOffset);
+                XYZ max = new XYZ(locationPt.X + zoomOffset, locationPt.Y + zoomOffset, locationPt.Z + zoomOffset);
+                uiview.ZoomAndCenterRectangle(min, max);
+            }
+
+
+        }
 
         // return element location with transform
         internal static object GetLinkElementLocation(Element linkElement)
