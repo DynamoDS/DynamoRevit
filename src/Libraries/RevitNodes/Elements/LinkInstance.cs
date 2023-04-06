@@ -24,9 +24,9 @@ namespace Revit.Elements
 
         /// <summary>
         /// Retrieves all elements from a link instance on the given level
-        /// </summary>>
-        /// <param name="linkInstance">Linked Element Instance </param>>
-        /// <param name="level">Linked Element Level </param>>
+        /// </summary>
+        /// <param name="linkInstance">Linked Element Instance </param>
+        /// <param name="level">Linked Element Level </param>
         /// <returns name="elements[]">List of elements</returns>
         public static List<Revit.Elements.Element> AllElementsAtLevel(RevitLinkInstance linkInstance, Level level)
         {
@@ -42,9 +42,9 @@ namespace Revit.Elements
         }
 
 
-        /// <summary> Retrieves all elements of a given category in a link instance </summary>>
-        /// <param name="linkInstance">Revit link Instance</param>>
-        /// <param name="category">Element category</param>>
+        /// <summary> Retrieves all elements of a given category in a link instance </summary>
+        /// <param name="linkInstance">Revit link Instance</param>
+        /// <param name="category">Element category</param>
         /// <returns name="linkedElements[]">All elements of the category</returns>
         public static List<Element> AllElementsOfCategory(RevitLinkInstance linkInstance, Revit.Elements.Category category)
         {
@@ -65,9 +65,9 @@ namespace Revit.Elements
         /// <summary>
         /// Retrieves all elements of a category in a given view of a link instance
         /// </summary>>
-        /// <param name="linkInstance">Revit link instance</param>>
-        /// <param name="category">Element category</param>>
-        /// <param name="view">View in active document</param>>
+        /// <param name="linkInstance">Revit link instance</param>
+        /// <param name="category">Element category</param>
+        /// <param name="view">View in active document</param>
         /// <returns name="linkedElementsInView[]"> All elements of the category in the view</returns>
         public static List<Revit.Elements.Element> AllElementsOfCategoryInView(RevitLinkInstance linkInstance, Elements.Category category, Elements.Views.View view)
         {
@@ -151,9 +151,9 @@ namespace Revit.Elements
 
         /// <summary>
         /// Retrieves all elements of a given class in a link instance
-        /// </summary>>
-        /// <param name="linkInstance">Revit link instance</param>>
-        /// <param name="elementClass">Element class in the link instance</param>>
+        /// </summary>
+        /// <param name="linkInstance">Revit link instance</param>
+        /// <param name="elementClass">Element class in the link instance</param>
         /// <returns name="elements[]">All elements of the class in the link instance</returns>
         public static List<Revit.Elements.Element> AllElementsOfClass(RevitLinkInstance linkInstance, System.Type elementClass)
         {
@@ -169,8 +169,8 @@ namespace Revit.Elements
 
         /// <summary>
         /// Retrieves a link instance by name
-        /// </summary>>
-        /// <param name="name">Name of the link instance</param>>
+        /// </summary>
+        /// <param name="name">Name of the link instance</param>
         /// <returns name="linkInstance[]">Revit link instance</returns>
         public static List<RevitLinkInstance> ByName(string name)
         {
@@ -194,8 +194,8 @@ namespace Revit.Elements
         /// <summary>
         /// Retrieves one or more elements by ID from a link instance
         /// </summary>
-        /// <param name="id">Element ID</param>>
-        /// <param name="linkInstance">Revit link instance</param>>
+        /// <param name="id">Element ID</param>
+        /// <param name="linkInstance">Revit link instance</param>
         /// <returns name="element[]">Element(s) from the link instance</returns>
         public static Element ElementById(object id, RevitLinkInstance linkInstance)
         {
@@ -223,7 +223,7 @@ namespace Revit.Elements
         /// <summary>
         /// Return the Document of the given Link Instance
         /// </summary>
-        /// <param name="linkInstance"> Link Instance </param>>
+        /// <param name="linkInstance"> Link Instance </param>
         /// <returns name="linkDocument">linkDocument</returns>
         [NodeCategory("Query")]
         public static Revit.Application.Document Document(RevitLinkInstance linkInstance)
@@ -239,7 +239,7 @@ namespace Revit.Elements
         /// <summary>
         /// Retrieves a link instance’s GUID
         /// </summary>      
-        /// <param name="linkInstance">Revit link instance</param>>
+        /// <param name="linkInstance">Revit link instance</param>
         /// <returns name="string[]">GUID of link instance</returns>
         [NodeCategory("Query")]
         public static string UniqueId(RevitLinkInstance linkInstance)
@@ -393,7 +393,7 @@ namespace Revit.Elements
         /// <summary>
         /// Returns the link instances by the provided Document Title (revit file name)
         /// </summary>
-        /// <param name="title">The Title of the Link Document (the revit file name without the extension) </param>>
+        /// <param name="title">The Title of the Link Document (the revit file name without the extension) </param>
         /// <returns name="linkInstance">Revil link instance</returns>
         public static List<RevitLinkInstance> ByTitle(string title)
         {
