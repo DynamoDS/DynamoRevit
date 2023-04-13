@@ -155,8 +155,8 @@ namespace Revit.Elements
 
         }
 
-
-        public static object GetGeometry(Element linkElement)
+       
+        public static object GetGeometry(Element linkElement, string detailLevel = "Medium")
         {
             // how to set the info state? 
             var info = Dynamo.Graph.Nodes.ElementState.Info;
@@ -164,70 +164,86 @@ namespace Revit.Elements
             Autodesk.Revit.DB.Transform linkTransform = LinkTransform(linkElement);
             var geoSet = new List<object>();
             Autodesk.Revit.DB.Element revitElement = linkElement.InternalElement;
+
             Options options = new Options();
+            switch (detailLevel) {
+                case "Coarse":
+                    options.DetailLevel = ViewDetailLevel.Coarse; 
+                    break;
+                case "Medium":
+                    options.DetailLevel = ViewDetailLevel.Medium;
+                    break;
+                case "Fine":
+                    options.DetailLevel = ViewDetailLevel.Fine;
+                    break;
+                default:
+                    options.DetailLevel = ViewDetailLevel.Undefined;
+                    break;
+            }
             GeometryElement linkElementGeometry = revitElement.get_Geometry(options);
 
             foreach (var geometryInstance in linkElementGeometry)
             {
-                if (geometryInstance is PolyLine)
+                switch (geometryInstance)
                 {
-                    PolyLine transformedPLine = (geometryInstance as PolyLine).GetTransformed(linkTransform);
-                    geoSet.Add(transformedPLine.ToProtoType());
-                }
-                else if (geometryInstance is Autodesk.Revit.DB.Mesh)
-                {
-                    Autodesk.DesignScript.Geometry.Mesh mesh = (geometryInstance as Autodesk.Revit.DB.Mesh).ToProtoType();
-                    CoordinateSystem CS = linkTransform.ToCoordinateSystem();
-                    Point[] meshVertices = mesh.VertexPositions;
-                    var meshIndices = mesh.FaceIndices;
-                    List<Point> newVertList = new List<Point>();
-                    foreach (Point vertex in meshVertices)
-                    {
-                        Point transformedVertex = (Point)vertex.Transform(CS);
-                        newVertList.Add(transformedVertex);
-                    }
+                    case PolyLine p:
+                        var transformedLine = p.GetTransformed(linkTransform);
+                        geoSet.Add(transformedLine.ToProtoType());
+                        break;
+                    case Autodesk.Revit.DB.Mesh m:
+                        var protoMesh = m.ToProtoType();
+                        var CS = linkTransform.ToCoordinateSystem();
+                        var meshVertices = protoMesh.VertexPositions;
+                        var meshIndices = protoMesh.FaceIndices;
+                        var newVertList = new List<Point>();
 
-                    Autodesk.DesignScript.Geometry.Mesh newMesh = Autodesk.DesignScript.Geometry.Mesh.ByPointsFaceIndices(newVertList, meshIndices);
-                    geoSet.Add(newMesh);
-                }
-                else if (geometryInstance is GeometryInstance)
-                {
-                    var instanceGeometry = (geometryInstance as GeometryInstance).GetInstanceGeometry(linkTransform);
-                    foreach (var geo in instanceGeometry)
-                    {
-                        if (geo is Autodesk.Revit.DB.Solid)
+                        foreach (Point vertex in meshVertices)
                         {
-                            var solid = geo as Autodesk.Revit.DB.Solid;
-                            if ((int)solid.Id != -1)
-                            {
+                            var transformedVertex = (Point)vertex.Transform(CS);
+                            newVertList.Add(transformedVertex);
+                        }
 
-                                geoSet.Add(solid.ToProtoType());
+                        var newMesh = Autodesk.DesignScript.Geometry.Mesh.ByPointsFaceIndices(newVertList, meshIndices);
+                        geoSet.Add(newMesh);
+                        break;
+                    case GeometryInstance gi:
+                        var instanceGeometry = gi.GetInstanceGeometry(linkTransform);
+                        foreach (var geo in instanceGeometry)
+                        {
+                            if (geo is Autodesk.Revit.DB.Solid)
+                            {
+                                var solid = geo as Autodesk.Revit.DB.Solid;
+                                if ((int)solid.Id != -1)
+                                {
+                                    geoSet.Add(solid.ToProtoType());
+                                }
+                            }
+                            else if (geo is Autodesk.Revit.DB.Curve)
+                            {
+                                var curve = geo as Autodesk.Revit.DB.Curve;
+
+                                geoSet.Add(curve.ToProtoType());
+                            }
+                            else if (geo is Autodesk.Revit.DB.Mesh)
+                            {
+                                var mesh = geo as Autodesk.Revit.DB.Mesh;
+
+                                geoSet.Add(mesh.ToProtoType());
                             }
                         }
-
-                        else if (geo is Autodesk.Revit.DB.Curve)
-                        {
-                            var curve = geo as Autodesk.Revit.DB.Curve;
-
-                            geoSet.Add(curve.ToProtoType());
-                        }
-
-                        else if (geo is Autodesk.Revit.DB.Mesh)
-                        {
-                            var mesh = geo as Autodesk.Revit.DB.Mesh;
-                            geoSet.Add(mesh.ToProtoType());
-                        }
-                    }
+                        break;
+                    case Autodesk.Revit.DB.Solid s:
+                        //if (!(geometryInstance.Id == -1)) break;
+                        var transformedSolid = Autodesk.Revit.DB.SolidUtils.CreateTransformed(s, linkTransform);
+                        geoSet.Add(transformedSolid.ToProtoType());
+                        break;
+                    case null:
+                        geoSet.Add(null); // Add null in case we didn't find anything?
+                        break;
+                    default:
+                        break;
                 }
-                else
-                {
-                    if ((geometryInstance is Autodesk.Revit.DB.Solid) && !(geometryInstance.Id == -1))
-                    { geoSet.Add(geometryInstance); }
-
-                }
-
             }
-
 
             return geoSet;
         }
@@ -290,19 +306,22 @@ namespace Revit.Elements
         [NodeCategory("Query")]
         public static BoundingBox BoundingBox(Element linkElement)
         {
-
-            List<object> linkedElementGeometry = (List<object>)GetGeometry(linkElement);
-                   
+            var linkedElementGeometry = (List<object>)GetGeometry(linkElement);
             var geoList = new List<Geometry>();
-            
+
             foreach (var geo in linkedElementGeometry)
+            {
                 if (geo is Geometry)
                 {
                     geoList.Add(geo as Geometry);
                 }
+            }
+
+            if (!geoList.Any())
+                return null;
 
             var minBBOx = Autodesk.DesignScript.Geometry.BoundingBox.ByMinimumVolume(geoList);
-           
+
             return minBBOx;
         }
         #endregion
