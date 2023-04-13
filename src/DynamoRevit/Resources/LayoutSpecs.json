@@ -197,7 +197,7 @@
                   "path": "RevitNodes.Revit.Elements.Level"
                 },
                 {
-                  "path": "RevitNodes.Revit.Elements.LinkInstance"
+                  "path": "RevitNodes.Revit.Elements.LinkElement"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.Material"
