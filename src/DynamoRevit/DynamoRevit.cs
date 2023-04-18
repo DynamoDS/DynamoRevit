@@ -269,15 +269,8 @@ namespace Dynamo.Applications
 
         public Result ExecuteCommand(DynamoRevitCommandData commandData)
         {
-            var ssEventHandler = new DynamoExternalEventHandler(new Action(() =>
-            {
-                LoadDynamoView();
-            }));
-            //Register DynamoExternalEventHandler so Revit will call our callback
-            //we requested with API access.
-            SplashScreenExternalEvent = ExternalEvent.Create(ssEventHandler);
-
             startupTimer = Stopwatch.StartNew();
+
             if (ModelState == RevitDynamoModelState.StartedUIless)
             {
                 if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, true) ||
@@ -312,42 +305,101 @@ namespace Dynamo.Applications
             //subscribe to the assembly load
             AppDomain.CurrentDomain.AssemblyLoad += AssemblyLoad;
 
-            try
+            // Show splash screen when dynamo is started, otherwise run UIless mode when needed.
+            if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, true))
             {
-                extCommandData = commandData;
-
-                UpdateSystemPathForProcess();
-
-                splashScreen = new Dynamo.UI.Views.SplashScreen();
-                //when the splashscreen is ready, raise a request to revit to call
-                //our callback within an api context.
-                splashScreen.DynamicSplashScreenReady += () =>
+                var ssEventHandler = new DynamoExternalEventHandler(new Action(() =>
                 {
-                    SplashScreenExternalEvent.Raise();
-                };
-                splashScreen.Closed += OnSplashScreenClosed;
-                splashScreen.Show();
-            }
-            catch (Exception ex)
-            {
-                // notify instrumentation
-                Analytics.TrackException(ex, true);
+                    LoadDynamoView();
+                }));
+                //Register DynamoExternalEventHandler so Revit will call our callback
+                //we requested with API access.
+                SplashScreenExternalEvent = ExternalEvent.Create(ssEventHandler);
 
-                MessageBox.Show(ex.ToString());
-
-                DynamoRevitApp.DynamoButtonEnabled = true;
-
-                //If for some reason Dynamo has crashed while startup make sure the Dynamo Model is properly shutdown.
-                if (RevitDynamoModel != null)
+                try
                 {
-                    RevitDynamoModel.ShutDown(false);
-                    RevitDynamoModel = null;
+                    extCommandData = commandData;
+                    UpdateSystemPathForProcess();
+
+                    splashScreen = new Dynamo.UI.Views.SplashScreen();
+                    //when the splashscreen is ready, raise a request to revit to call
+                    //our callback within an api context.
+                    splashScreen.DynamicSplashScreenReady += () =>
+                    {
+                        SplashScreenExternalEvent.Raise();
+                    };
+                    splashScreen.Closed += OnSplashScreenClosed;
+
+                    //Set the owner for splashscreen window.
+                    IntPtr mwHandle = commandData.Application.MainWindowHandle;
+                    new WindowInteropHelper(splashScreen).Owner = mwHandle;
+
+                    // show the splashscreen.
+                    splashScreen.Show();
+
+                    // Disable the Dynamo button in Revit to avoid launching multiple instances.
+                    DynamoRevitApp.DynamoButtonEnabled = false;
+                }
+                catch (Exception ex)
+                {
+                    // notify instrumentation
+                    Analytics.TrackException(ex, true);
+                    MessageBox.Show(ex.ToString());
+
+                    DynamoRevitApp.DynamoButtonEnabled = true;
+
+                    //If for some reason Dynamo has crashed while startup make sure the Dynamo Model is properly shutdown.
+                    if (RevitDynamoModel != null)
+                    {
+                        RevitDynamoModel.ShutDown(false);
+                        RevitDynamoModel = null;
+                    }
+
+                    return Result.Failed;
                 }
 
-                return Result.Failed;
+                return Result.Succeeded;
+            }
+            else // Run UIless mode by just initializing RevitDynamoModel
+            {
+                try
+                {
+                    extCommandData = commandData;
+                    UpdateSystemPathForProcess();
+
+                    // create core data models
+                    RevitDynamoModel = InitializeCoreModel(extCommandData);
+                    RevitDynamoModel.UpdateManager.RegisterExternalApplicationProcessId(Process.GetCurrentProcess().Id);
+                    RevitDynamoModel.Logger.Log("SYSTEM", string.Format("Environment Path:{0}", Environment.GetEnvironmentVariable("PATH")));
+
+                    // handle initialization steps after RevitDynamoModel is created in UIless mode
+                    RevitDynamoModel.HandlePostInitialization();
+                    ModelState = RevitDynamoModelState.StartedUIless;
+
+                    //unsubscribe to the assembly load
+                    AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
+                }
+                catch (Exception ex)
+                {
+                    // notify instrumentation
+                    Analytics.TrackException(ex, true);
+                    MessageBox.Show(ex.ToString());
+
+                    DynamoRevitApp.DynamoButtonEnabled = true;
+
+                    //If for some reason Dynamo has crashed while startup make sure the Dynamo Model is properly shutdown.
+                    if (RevitDynamoModel != null)
+                    {
+                        RevitDynamoModel.ShutDown(false);
+                        RevitDynamoModel = null;
+                    }
+
+                    return Result.Failed;
+                }
+
+                return Result.Succeeded;
             }
 
-            return Result.Succeeded;
         }
 
         private void LoadDynamoView()
