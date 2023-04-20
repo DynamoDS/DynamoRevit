@@ -327,15 +327,16 @@ namespace Revit.Application
         }
 
         /// <summary>
-        /// Get all Revit link instances in the current Document
+        /// Retrieves all link instances in the current Revit document
         /// </summary>
-        /// <returns name="LinkInstances">RevitLinkInstances</returns>
-        public List<RevitLinkInstance> GetLinkInstances()
+        /// <param name="document">Document</param>
+        /// <returns name="linkInstances[]">List of link instances in the document</returns>
+        public List<Elements.Element> GetLinkInstances()
         {
             var links = new FilteredElementCollector(this.InternalDocument)
                 .OfCategory(BuiltInCategory.OST_RvtLinks)
                 .WhereElementIsNotElementType()
-                .Cast<RevitLinkInstance>()
+                .Select(el => el.ToDSType(true))
                 .ToList();
 
             return links;
