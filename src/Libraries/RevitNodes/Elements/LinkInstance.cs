@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Level = Revit.Elements.Level;
 using RevitServices.Persistence;
 using Autodesk.Revit.UI;
+using Dynamo.Search.SearchElements;
 
 namespace Revit.Elements
 { 
@@ -19,6 +20,7 @@ namespace Revit.Elements
     /// </summary>
     public static class LinkInstance
     {
+
         #region Action Nodes
 
 
@@ -159,14 +161,30 @@ namespace Revit.Elements
         /// <returns name="elements[]">All elements of the class in the link instance</returns>
         public static List<Revit.Elements.Element> AllElementsOfClass(Element linkInstance, System.Type elementClass)
         {
+            if (elementClass == null) return null;
             RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as RevitLinkInstance;
-            var linkedOfClass = new FilteredElementCollector(revitlinkInstance.GetLinkDocument())
-                            .OfClass(elementClass)
+            Autodesk.Revit.DB.Document linkDoc = revitlinkInstance.GetLinkDocument();
+            // check if the class belongs to a subset of classes not supported by the class filter,
+            // in which case use its base class and match the results to the input class
+            if (Elements.InternalUtilities.ElementQueries.ClassFilterExceptions.Contains(elementClass))
+            {
+                Type baseClass = Elements.InternalUtilities.ElementQueries.GetClassFilterExceptionsValidType(elementClass);
+   
+                return new FilteredElementCollector(linkDoc)
+                    .OfClass(baseClass)
+                    .Where(x => x.GetType() == elementClass)
+                    .Select(el => el.ToDSType(true))
+                    .ToList();
+            }
+
+            var classFilter = new ElementClassFilter(elementClass);
+            var linkedElementsOfClass = new FilteredElementCollector(linkDoc)
+                            .WherePasses(classFilter)
                             .WhereElementIsNotElementType()
                             .ToElements()
                             .Select(el => el.ToDSType(true))
                             .ToList();
-            return linkedOfClass;
+            return linkedElementsOfClass;
         }
 
         /// <summary>
@@ -420,8 +438,7 @@ namespace Revit.Elements
         }
 
 
-
-
+ 
 
     }
 }
