@@ -248,24 +248,7 @@ namespace Revit.Elements
 
         #endregion
 
-
         #region Properties
-        //Query nodes
-
-        /// <summary>
-        /// Return the Document of the given Linked element
-        /// </summary>
-        /// <returns name="linkDocument">linkDocument</returns>
-        [NodeCategory("Query")]
-        public static Revit.Application.Document Document(Element element)
-        {
-            Autodesk.Revit.DB.Element revitElement = element.InternalElement;
-
-            var elementDocument = revitElement.Document;
-
-            return new Revit.Application.Document(elementDocument);
-        }
-
         /// <summary>
         /// Return the Link Transform
         /// </summary>
