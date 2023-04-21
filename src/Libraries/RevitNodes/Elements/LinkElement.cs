@@ -18,10 +18,11 @@ using System.Windows.Media.Imaging;
 using Point = Autodesk.DesignScript.Geometry.Point;
 using Autodesk.Revit.UI;
 using System.Windows.Media.Media3D;
-
+using Autodesk.DesignScript.Runtime;
+using System.ComponentModel;
 
 namespace Revit.Elements
-{ 
+{
     /// <summary>
     /// A Revit Link Instance
     /// </summary>
@@ -151,10 +152,7 @@ namespace Revit.Elements
 
             }
             else { return null; }
-
-
         }
-
        
         public static object GetGeometry(Element linkElement, string detailLevel = "Medium")
         {
@@ -324,6 +322,128 @@ namespace Revit.Elements
 
             return minBBOx;
         }
+        #endregion
+
+        #region RayBounce
+
+        /// <summary>
+        /// Returns positions and elements hit by ray bounce from the specified origin point and direction
+        /// </summary>
+        /// <param name="origin"></param>
+        /// <param name="direction"></param>
+        /// <param name="maxBounces"></param>
+        /// <param name="view"></param>
+        /// <param name="findLinkedLements"></param>
+        /// <returns></returns>
+        [MultiReturn(new[] { "points", "elements" })]
+        public static Dictionary<string, object> ByRayBounce(Point origin, Autodesk.DesignScript.Geometry.Vector direction, int maxBounces, Elements.Views.View3D view)
+        {
+            var startpt = origin.ToXyz();
+            var rayCount = 0;
+
+            var bouncePts = new List<Point> { origin };
+            var bounceElements = new List<Elements.Element>();
+
+            for (int ctr = 1; ctr <= maxBounces; ctr++)
+            {
+                var referenceIntersector = new ReferenceIntersector((View3D)view.InternalElement);
+                referenceIntersector.FindReferencesInRevitLinks = true;
+                IList<ReferenceWithContext> references = referenceIntersector.Find(startpt, direction.ToXyz())
+                    .Where(r => r.GetReference().LinkedElementId != ElementId.InvalidElementId)
+                    .ToList();
+
+                ReferenceWithContext rClosest = null;
+                rClosest = FindClosestReference(references);
+                if (rClosest == null)
+                {
+                    break;
+                }
+                else
+                {
+                    var reference = rClosest.GetReference();
+                    var linkedRef = reference.CreateReferenceInLink();
+                    var linkedInstance = DocumentManager.Instance.CurrentDBDocument.GetElement(reference.ElementId) as Autodesk.Revit.DB.RevitLinkInstance;
+                    var linkedReferenceElement = linkedInstance.GetLinkDocument().GetElement(reference.LinkedElementId);
+                    var referenceObject = linkedReferenceElement.GetGeometryObjectFromReference(linkedRef);
+
+                    bounceElements.Add(linkedReferenceElement.ToDSType(true));
+                    var endpt = reference.GlobalPoint;
+                    if (startpt.IsAlmostEqualTo(endpt))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        rayCount = rayCount + 1;
+                        var currFace = referenceObject as Autodesk.Revit.DB.Face;
+                        var endptUV = reference.UVPoint;
+                        var FaceNormal = currFace.ComputeDerivatives(endptUV).BasisZ;  // face normal where ray hits
+                        FaceNormal = rClosest.GetInstanceTransform().OfVector(FaceNormal); // transformation to get it in terms of document coordinates instead of the parent symbol
+                        var directionMirrored = direction.ToXyz() - 2 * direction.ToXyz().DotProduct(FaceNormal) * FaceNormal; //http://www.fvastro.org/presentations/ray_tracing.htm
+                        direction = directionMirrored.ToVector(); // get ready to shoot the next ray
+                        startpt = endpt;
+                        bouncePts.Add(endpt.ToPoint());
+                    }
+                }
+            }
+
+            return new Dictionary<string, object>
+            {
+                { "points", bouncePts },
+                { "elements", bounceElements }
+            };
+        }
+
+        /// <summary>
+        /// Find the first intersection with a face
+        /// </summary>
+        /// <param name="references"></param>
+        /// <returns></returns>
+        private static ReferenceWithContext FindClosestReference(IEnumerable<ReferenceWithContext> references)
+        {
+            ReferenceWithContext rClosest = null;
+
+            var face_prox = Double.PositiveInfinity;
+            var edge_prox = Double.PositiveInfinity;
+
+            foreach (ReferenceWithContext r in references)
+            {
+                var reference = r.GetReference();
+                var linkedRef = reference.CreateReferenceInLink();
+                var linkedInstance = DocumentManager.Instance.CurrentDBDocument.GetElement(reference.ElementId) as Autodesk.Revit.DB.RevitLinkInstance;
+                var linkedReferenceElement = linkedInstance.GetLinkDocument().GetElement(reference.LinkedElementId);
+                var referenceGeometryObject = linkedReferenceElement.GetGeometryObjectFromReference(linkedRef);
+
+                Autodesk.Revit.DB.Face currFace = null;
+                currFace = referenceGeometryObject as Autodesk.Revit.DB.Face;
+                Autodesk.Revit.DB.Edge edge = null;
+                edge = referenceGeometryObject as Autodesk.Revit.DB.Edge;
+                if (currFace != null)
+                {
+                    if ((r.Proximity < face_prox) && (r.Proximity > Double.Epsilon))
+                    {
+                        rClosest = r;
+                        face_prox = Math.Abs(r.Proximity);
+                    }
+                }
+                else if (edge != null)
+                {
+                    if ((r.Proximity < edge_prox) && (r.Proximity > Double.Epsilon))
+                    {
+                        edge_prox = Math.Abs(r.Proximity);
+                    }
+                }
+            }
+            if (edge_prox <= face_prox)
+            {
+                // stop bouncing if there is an edge at least as close as the nearest face - there is no single angle of reflection for a ray striking a line
+                //m_outputInfo.Add("there is an edge at least as close as the nearest face - there is no single angle of reflection for a ray striking a line");
+                rClosest = null;
+            }
+
+            return rClosest;
+        }
+
         #endregion
     }
 }
