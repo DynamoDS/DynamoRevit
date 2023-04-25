@@ -305,48 +305,28 @@ namespace Dynamo.Applications
             //subscribe to the assembly load
             AppDomain.CurrentDomain.AssemblyLoad += AssemblyLoad;
 
-            // Launch main Dynamo directly when ShowUiKey is true.
-            if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, false))
+            try
             {
-                try
+                // Launch main Dynamo directly when ShowUiKey is true.
+                if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, false))
                 {
                     extCommandData = commandData;
                     LoadDynamoWithoutSplashScreen();
+                    return Result.Succeeded;
                 }
-                catch (Exception ex)
+
+                // Show splash screen when dynamo is started, otherwise run UIless mode when needed.
+                if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, true))
                 {
-                    // Notify instrumentation
-                    Analytics.TrackException(ex, true);
-                    MessageBox.Show(ex.ToString());
-
-                    DynamoRevitApp.DynamoButtonEnabled = true;
-
-                    // If for some reason Dynamo has crashed while startup make sure the Dynamo Model is properly shutdown.
-                    if (RevitDynamoModel != null)
+                    var ssEventHandler = new DynamoExternalEventHandler(new Action(() =>
                     {
-                        RevitDynamoModel.ShutDown(false);
-                        RevitDynamoModel = null;
-                    }
+                        LoadDynamoView();
+                    }));
 
-                    return Result.Failed;
-                }
-                return Result.Succeeded;
-            }
+                    /* Register DynamoExternalEventHandler so Revit will call our callback
+                    we requested with API access. */
+                    SplashScreenExternalEvent = ExternalEvent.Create(ssEventHandler);
 
-            // Show splash screen when dynamo is started, otherwise run UIless mode when needed.
-            if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, true))
-            {
-                var ssEventHandler = new DynamoExternalEventHandler(new Action(() =>
-                {
-                    LoadDynamoView();
-                }));
-
-                /* Register DynamoExternalEventHandler so Revit will call our callback
-                we requested with API access. */
-                SplashScreenExternalEvent = ExternalEvent.Create(ssEventHandler);
-
-                try
-                {
                     extCommandData = commandData;
                     UpdateSystemPathForProcess();
 
@@ -368,30 +348,10 @@ namespace Dynamo.Applications
 
                     // Disable the Dynamo button in Revit to avoid launching multiple instances.
                     DynamoRevitApp.DynamoButtonEnabled = false;
+
+                    return Result.Succeeded;
                 }
-                catch (Exception ex)
-                {
-                    // Notify instrumentation
-                    Analytics.TrackException(ex, true);
-                    MessageBox.Show(ex.ToString());
-
-                    DynamoRevitApp.DynamoButtonEnabled = true;
-
-                    // If for some reason Dynamo has crashed while startup make sure the Dynamo Model is properly shutdown.
-                    if (RevitDynamoModel != null)
-                    {
-                        RevitDynamoModel.ShutDown(false);
-                        RevitDynamoModel = null;
-                    }
-
-                    return Result.Failed;
-                }
-
-                return Result.Succeeded;
-            }
-            else // Run UIless mode by just initializing RevitDynamoModel
-            {
-                try
+                else // Run UIless mode by just initializing RevitDynamoModel
                 {
                     extCommandData = commandData;
                     UpdateSystemPathForProcess();
@@ -407,28 +367,28 @@ namespace Dynamo.Applications
 
                     //unsubscribe to the assembly load
                     AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
-                }
-                catch (Exception ex)
-                {
-                    // notify instrumentation
-                    Analytics.TrackException(ex, true);
-                    MessageBox.Show(ex.ToString());
 
-                    DynamoRevitApp.DynamoButtonEnabled = true;
-
-                    //If for some reason Dynamo has crashed while startup make sure the Dynamo Model is properly shutdown.
-                    if (RevitDynamoModel != null)
-                    {
-                        RevitDynamoModel.ShutDown(false);
-                        RevitDynamoModel = null;
-                    }
-
-                    return Result.Failed;
+                    return Result.Succeeded;
                 }
 
-                return Result.Succeeded;
             }
+            catch (Exception ex)
+            {
+                // notify instrumentation
+                Analytics.TrackException(ex, true);
+                MessageBox.Show(ex.ToString());
 
+                DynamoRevitApp.DynamoButtonEnabled = true;
+
+                //If for some reason Dynamo has crashed while startup make sure the Dynamo Model is properly shutdown.
+                if (RevitDynamoModel != null)
+                {
+                    RevitDynamoModel.ShutDown(false);
+                    RevitDynamoModel = null;
+                }
+
+                return Result.Failed;
+            }
         }
 
         private void LoadDynamoView()
