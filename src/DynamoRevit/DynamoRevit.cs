@@ -38,6 +38,7 @@ using RevitServices.Transactions;
 using DynUpdateManager = Dynamo.Updates.UpdateManager;
 using MessageBox = System.Windows.Forms.MessageBox;
 using Resources = Dynamo.Applications.Properties.Resources;
+using Dynamo.Configuration;
 
 namespace RevitServices.Threading
 {
@@ -302,6 +303,7 @@ namespace Dynamo.Applications
                 if (CheckJournalForKey(extCommandData, JournalKeys.ShowUiKey, true))
                 {
                     RevitDynamoViewModel = InitializeCoreViewModel(RevitDynamoModel);
+                    SetRevitProperties();
 
                     // Let the host (e.g. Revit) control the rendering mode
                     var save = RenderOptions.ProcessRenderMode;
@@ -697,6 +699,50 @@ namespace Dynamo.Applications
         {
             if (DocumentManager.Instance.CurrentUIApplication == null)
                 DocumentManager.Instance.CurrentUIApplication = commandData.Application;
+        }
+
+        /// <summary>
+        /// Creates Revit-specific preferences 
+        /// </summary>
+        private void SetRevitProperties()
+        {
+            SetScale();
+        }
+
+        /// <summary>
+        /// Sets current Revit document units 
+        /// </summary>
+        private void SetScale()
+        {
+            // TODO - do we need this to work for Revit < 2021?
+            var doc = extCommandData.Application.ActiveUIDocument.Document;
+            var docUnitType = doc.GetUnits().GetFormatOptions(SpecTypeId.Length).GetUnitTypeId();
+
+            if (docUnitType.TypeId == UnitTypeId.Millimeters.TypeId)
+            {
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Millimeters;
+            }
+            else if (docUnitType.TypeId == UnitTypeId.Centimeters.TypeId || docUnitType.TypeId == UnitTypeId.Decimeters.TypeId)
+            {
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Centimeters;
+            }
+            else if (docUnitType.TypeId == UnitTypeId.Meters.TypeId || docUnitType.TypeId == UnitTypeId.MetersCentimeters.TypeId)
+            {
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Meters;
+            }
+            else if (docUnitType.TypeId == UnitTypeId.Feet.TypeId || docUnitType.TypeId == UnitTypeId.FeetFractionalInches.TypeId || docUnitType.TypeId == UnitTypeId.UsSurveyFeet.TypeId)
+            {
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Feet;
+            }
+            else if (docUnitType.TypeId == UnitTypeId.Inches.TypeId || docUnitType.TypeId == UnitTypeId.FractionalInches.TypeId)
+            {
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Inches;
+            }
+            else
+            {
+                // Default unit
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Millimeters;
+            }
         }
 
         #endregion
