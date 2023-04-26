@@ -184,6 +184,10 @@ namespace Revit.Elements
                 else
                     return AxonometricView.FromExisting(view, isRevitOwned);
             }
+            else if(view.IsTemplate)
+            {
+                return View3DTemplate.FromExisting(view, isRevitOwned);
+            }
             return null;
         }
 
