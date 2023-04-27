@@ -222,7 +222,26 @@ namespace Revit.Elements
                                 var solid = geo as Autodesk.Revit.DB.Solid;
                                 if ((int)solid.Id != -1)
                                 {
-                                    geoSet.Add(solid.ToProtoType());
+                                    try
+                                    {
+                                        var protoSolid = solid.ToProtoType();
+                                        if (protoSolid == null)
+                                        {
+                                            foreach (Autodesk.Revit.DB.Face face in solid.Faces)
+                                            {
+                                                geoSet.AddRange(face.ToProtoType());
+                                            }
+                                            foreach (Autodesk.Revit.DB.Edge edge in solid.Edges)
+                                            {
+                                                geoSet.Add(edge.AsCurve().ToProtoType());
+                                            }
+                                        }
+                                        else
+                                        {
+                                            geoSet.Add(protoSolid);
+                                        }
+                                    }
+                                    catch (Exception ex) { }
                                 }
                             }
                             else if (geo is Autodesk.Revit.DB.Curve)
@@ -237,6 +256,21 @@ namespace Revit.Elements
 
                                 geoSet.Add(mesh.ToProtoType());
                             }
+                            else if (geo is Autodesk.Revit.DB.PolyLine)
+                            {
+                                var polyLine = geo as Autodesk.Revit.DB.PolyLine;
+                                geoSet.Add(polyLine.ToProtoType());
+                            }
+                            else if (geo is Autodesk.Revit.DB.Point)
+                            {
+                                var point = geo as Autodesk.Revit.DB.Point;
+                                geoSet.Add(point.ToProtoType());
+                            }
+                            else
+                            {
+                                geoSet.Add(null);
+                            }
+
                         }
                         break;
                     case Autodesk.Revit.DB.Solid s:
