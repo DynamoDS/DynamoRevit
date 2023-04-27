@@ -192,7 +192,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="name">Name of the link instance</param>
         /// <returns name="linkInstance[]">Revit link instance</returns>
-        public static List<RevitLinkInstance> ByName(string name)
+        public static List<Element> ByName(string name)
         {
             ElementId paramId = new ElementId(BuiltInParameter.RVT_LINK_INSTANCE_NAME);
             ParameterValueProvider valueProvider = new ParameterValueProvider(paramId);
@@ -200,13 +200,13 @@ namespace Revit.Elements
             FilterStringRule filterStringRule = new FilterStringRule(valueProvider, evaluator, name);
             ElementParameterFilter paramterFilter = new ElementParameterFilter(filterStringRule);
             var currentDocument = Application.Document.Current.InternalDocument;
-            var linkInstancesByName = new FilteredElementCollector(currentDocument)
+            var linkInstance = new FilteredElementCollector(currentDocument)
                 .OfCategory(BuiltInCategory.OST_RvtLinks)
                 .WhereElementIsNotElementType()
                 .WherePasses(paramterFilter)
-                .Cast<RevitLinkInstance>()
+                .Select(el => el.ToDSType(true))
                 .ToList();
-            return linkInstancesByName;
+            return linkInstance;
         }
 
 
@@ -242,10 +242,10 @@ namespace Revit.Elements
         #region Query Nodes
 
         /// <summary>
-        /// Return the Document of the given Link Instance
+        /// Queries the link instance’s document
         /// </summary>
-        /// <param name="linkInstance"> Link Instance </param>
-        /// <returns name="linkDocument">linkDocument</returns>
+        /// <param name="linkInstance"> Revit link instance </param>
+        /// <returns name="linkDocument">Document of link instance</returns>
         [NodeCategory("Query")]
         public static Revit.Application.Document Document(Element linkInstance)
         {
@@ -413,10 +413,10 @@ namespace Revit.Elements
 
 
         /// <summary>
-        /// Returns the link instances by the provided Document Title (revit file name)
+        /// Retrieves link instances by project title (file name)
         /// </summary>
-        /// <param name="title">The Title of the Link Document (the revit file name without the extension) </param>
-        /// <returns name="linkInstance">Revil link instance</returns>
+        /// <param name="title">Project title (file name) </param>
+        /// <returns name="linkInstance[]">Revil link instance</returns>
         public static List<Element> ByTitle(string title)
         {
             var currentDocument = Application.Document.Current.InternalDocument;
