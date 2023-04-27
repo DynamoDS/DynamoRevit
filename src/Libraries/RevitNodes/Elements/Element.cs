@@ -5,6 +5,7 @@ using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Interfaces;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+using Dynamo.Graph.Nodes;
 using DynamoUnits;
 using Revit.Elements.InternalUtilities;
 using Revit.GeometryConversion;
@@ -586,6 +587,56 @@ namespace Revit.Elements
         }
 
         /// <summary>
+        /// Returns all geometry associated with an element. Ignores transforms when used with linked elements.
+        /// <param name="detailLevel">Detail level</param>
+        /// <returns>List of geometry from the element</returns>
+        /// </summary>
+        public object[] GetGeometry(string detailLevel = "Medium")
+        {
+            var converted = new List<object>();
+
+            ViewDetailLevel dlevel;
+            switch (detailLevel)
+            {
+                case "Coarse":
+                    dlevel = ViewDetailLevel.Coarse;
+                    break;
+                case "Medium":
+                    dlevel = ViewDetailLevel.Medium; 
+                    break;
+                case "Fine":
+                    dlevel = ViewDetailLevel.Fine;
+                    break;
+                default:
+                    dlevel = ViewDetailLevel.Undefined;
+                    break;
+            }
+
+            foreach (var geometryObject in InternalGeometry(false, dlevel))
+            {
+                var geoObj = geometryObject.Convert();
+                if (geoObj != null)
+                {
+                    converted.Add(geoObj);
+                }
+                else
+                {
+                    var solid = geometryObject as Autodesk.Revit.DB.Solid;
+                    if (solid != null)
+                    {
+                        var geomObjs = solid.ConvertToMany();
+
+                        if (geomObjs == null) continue;
+
+                        converted.AddRange(geomObjs.Where(x => { return x != null; }));
+                    }
+                }
+            }
+
+            return converted.ToArray();
+        }
+
+        /// <summary>
         /// Gets all elements hosted by the supplied element
         /// </summary>
         /// <param name="includeOpenings">Include rectangular openings in output</param>
@@ -641,13 +692,14 @@ namespace Revit.Elements
         /// Extract the Revit GeometryObject's from a Revit Element
         /// </summary>
         /// <returns></returns>
-        internal IEnumerable<Autodesk.Revit.DB.GeometryObject> InternalGeometry(bool useSymbolGeometry = false)
+        internal IEnumerable<Autodesk.Revit.DB.GeometryObject> InternalGeometry(bool useSymbolGeometry = false, 
+            ViewDetailLevel detailLevel = ViewDetailLevel.Medium)
         {
             DocumentManager.Regenerate();
 
             var thisElement = InternalElement;
 
-            var goptions0 = new Options { ComputeReferences = true };
+            var goptions0 = new Options { ComputeReferences = true, DetailLevel = detailLevel };
 
             var geomElement = thisElement.get_Geometry(goptions0);
 
