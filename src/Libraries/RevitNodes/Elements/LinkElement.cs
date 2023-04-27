@@ -65,7 +65,7 @@ namespace Revit.Elements
             // get active UI view to use
             UIView uiview = uiDoc.GetOpenUIViews().FirstOrDefault<UIView>(uv => uv.ViewId.Equals(activeView.Id));
             var location = Revit.Elements.LinkElement.GetLinkElementLocation(element);
-            Transform linkTransform = Revit.Elements.LinkElement.LinkTransform(element);
+            Transform linkTransform = Revit.Elements.LinkElement.LinkTransform(element).ToTransform();
             
             // use the center of the BoundingBox as zoom center
             BoundingBoxXYZ bb = element.InternalElement.get_BoundingBox(null);
@@ -85,12 +85,12 @@ namespace Revit.Elements
 
         }
 
-        // return element location with transform
+        // helper to return element's location with transform
         internal static object GetLinkElementLocation(Element linkElement)
         {
             Autodesk.Revit.DB.Element revitElement = linkElement.InternalElement;
             Autodesk.Revit.DB.Location location = revitElement.Location;
-            Autodesk.Revit.DB.Transform linkTransform = LinkTransform(linkElement);
+            Autodesk.Revit.DB.Transform linkTransform = LinkTransform(linkElement).ToTransform();
 
             if (location is Autodesk.Revit.DB.LocationPoint)
             {
@@ -137,10 +137,16 @@ namespace Revit.Elements
 
         #region Public methods
         // Action nodes
-        public static Autodesk.DesignScript.Geometry.Geometry GetLocation(Element linkElement)
+
+        /// <summary>
+        /// Returns a linked element’s location
+        /// </summary>
+        /// <param name="linkedElement">Element from a link instance</param>
+        /// <returns name="geometry[]">The linked element’s location</returns>
+        public static Autodesk.DesignScript.Geometry.Geometry GetLocation(Element linkedElement)
         {
             // get location (point or curve) with transform
-            var location = GetLinkElementLocation(linkElement);
+            var location = GetLinkElementLocation(linkedElement);
             if (location is XYZ)
             {
                 return (location as XYZ).ToPoint();
@@ -153,15 +159,18 @@ namespace Revit.Elements
             }
             else { return null; }
         }
-       
-        public static object GetGeometry(Element linkElement, string detailLevel = "Medium")
+
+        /// <summary>
+        /// Returns geometry from a linked element at the given detail level
+        /// </summary>
+        /// <param name="linkedElement">Element from a link instance</param>
+        /// <param name="detailLevel">Detail level</param>
+        /// <returns name="geometry[]">List of geometry from the linked element</returns>
+        public static object GetGeometry(Element linkedElement, string detailLevel = "Medium")
         {
-            // how to set the info state? 
-            var info = Dynamo.Graph.Nodes.ElementState.Info;
-            info = ElementState.Info;
-            Autodesk.Revit.DB.Transform linkTransform = LinkTransform(linkElement);
+            Autodesk.Revit.DB.Transform linkTransform = LinkTransform(linkedElement).ToTransform();
             var geoSet = new List<object>();
-            Autodesk.Revit.DB.Element revitElement = linkElement.InternalElement;
+            Autodesk.Revit.DB.Element revitElement = linkedElement.InternalElement;
 
             Options options = new Options();
             switch (detailLevel) {
@@ -250,44 +259,53 @@ namespace Revit.Elements
 
         #region Properties
         /// <summary>
-        /// Return the Link Transform
+        /// Returns the transform applied to the linked element
         /// </summary>
+        /// <param name="linkedElement"> Element from a link instance</param>
+        /// <returns name="coordinateSystem">Transform from the linked element</returns>
         [NodeCategory("Query")]
-        public static Autodesk.Revit.DB.Transform LinkTransform(Element element)
+        public static CoordinateSystem LinkTransform(Element linkedElement)
         {
-            var revitLinkInstances = GetLinkInstancesContainingLinkElement(element);
+            var revitLinkInstances = GetLinkInstancesContainingLinkElement(linkedElement);
 
             foreach (var revitLinkInstance in revitLinkInstances)
             {
-                return revitLinkInstance.GetTotalTransform();
+                Transform transform = revitLinkInstance.GetTotalTransform();
+                CoordinateSystem cs = transform.ToCoordinateSystem();
+                return cs;
             }
             return null;
         }
 
         /// <summary>
-        /// Return the Inverted Link Transform
+        /// Returns the inverse vector of the transform applied to a linked element
         /// </summary>
+        /// <param name="linkedElement">Element from a link instance</param>
+        /// <returns name="coordinateSystem">Inverse vector applied to the linked element</returns>
         [NodeCategory("Query")]
-        public static Autodesk.Revit.DB.Transform LinkInverseTransform(Element element)
+        public static CoordinateSystem LinkInverseTransform(Element linkedElement)
         {
-            List<RevitLinkInstance> revitLinkInstances = GetLinkInstancesContainingLinkElement(element);
+            List<RevitLinkInstance> revitLinkInstances = GetLinkInstancesContainingLinkElement(linkedElement);
 
             foreach (RevitLinkInstance revitLinkInstance in revitLinkInstances)
             {
-                return revitLinkInstance.GetTotalTransform().Inverse;
+                Transform inverseTransform = revitLinkInstance.GetTotalTransform();
+                CoordinateSystem coordinateSystem = inverseTransform.ToCoordinateSystem();
+                return coordinateSystem;
             }
             return null;
 
         }
 
         /// <summary>
-        /// Return the Linked Element's Bounding Box
+        /// Returns a linked element’s BoundingBox
         /// </summary>
-        /// <returns name="boundingBox">Bounding Box</returns>
+        /// <param name="linkedElement">Element from a link instance</param>
+        /// <returns name="boundingBox">BoundingBox from the linked element</returns>
         [NodeCategory("Query")]
-        public static BoundingBox BoundingBox(Element linkElement)
+        public static BoundingBox BoundingBox(Element linkedElement)
         {
-            var linkedElementGeometry = (List<object>)GetGeometry(linkElement);
+            var linkedElementGeometry = (List<object>)GetGeometry(linkedElement);
             var geoList = new List<Geometry>();
 
             foreach (var geo in linkedElementGeometry)
@@ -310,15 +328,15 @@ namespace Revit.Elements
         #region RayBounce
 
         /// <summary>
-        /// Returns positions and elements hit by ray bounce from the specified origin point and direction
+        /// Returns points and linked elements hit by ray bounce from the given origin point and direction
         /// </summary>
-        /// <param name="origin"></param>
-        /// <param name="direction"></param>
-        /// <param name="maxBounces"></param>
-        /// <param name="view"></param>
-        /// <param name="findLinkedLements"></param>
-        /// <returns></returns>
-        [MultiReturn(new[] { "points", "elements" })]
+        /// <param name="origin">Origin point of the ray</param>
+        /// <param name="direction">Direction of the ray</param>
+        /// <param name="maxBounces">Maximum number of bounces</param>
+        /// <param name="view">3D view from the Revit model</param>
+        /// <returns name="points">Positions hit by ray bounce</returns>
+        /// <returns name="linkedElement">Linked elements hit by ray bounce</returns>
+        [MultiReturn(new[] { "points", "linkedElements" })]
         public static Dictionary<string, object> ByRayBounce(Point origin, Autodesk.DesignScript.Geometry.Vector direction, int maxBounces, Elements.Views.View3D view)
         {
             var startpt = origin.ToXyz();
@@ -373,7 +391,7 @@ namespace Revit.Elements
             return new Dictionary<string, object>
             {
                 { "points", bouncePts },
-                { "elements", bounceElements }
+                { "linkedElements", bounceElements }
             };
         }
 
