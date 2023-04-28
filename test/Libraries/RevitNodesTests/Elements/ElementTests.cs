@@ -180,6 +180,35 @@ namespace RevitNodesTests.Elements
             bbox.MinPoint.ShouldBeApproximately(-304.160105, -126.243438, 0, 1e-2);
         }
 
+
+        [Test]
+        [TestModel(@".\GetGeometryInDetailLevel.rvt")]
+        public void GetGeometry_ExtractsSolidAccountingForInstanceTransform()
+        {
+            var ele = ElementSelector.ByElementId(318943, true);
+
+            var objects = ele.GetGeometry("Coarse");
+            Assert.AreEqual(3, objects.Length);
+
+            objects = ele.GetGeometry("Medium");
+            Assert.AreEqual(1, objects.Length);
+
+            objects = ele.GetGeometry("Fine");
+            Assert.AreEqual(2, objects.Length);
+
+            // The default state at 'Medium'
+            objects = ele.GetGeometry();
+            Assert.AreEqual(1, objects.Length); 
+
+            var solids = objects.OfType<Autodesk.DesignScript.Geometry.Solid>();
+            Assert.AreEqual(1, solids.Count());
+
+            var bbox = BoundingBox.ByGeometry(solids);
+
+            bbox.MaxPoint.ShouldBeApproximately(-45922.100, 2843.625, 60693.300, 1e-2);
+            bbox.MinPoint.ShouldBeApproximately(-74363.832, -27636.375, 0, 1e-2);
+        }
+
         [Test]
         [TestModel(@".\AdaptiveComponents.rfa")]
         public void ElementFaceReferences_ExtractsExpectedReferences()
