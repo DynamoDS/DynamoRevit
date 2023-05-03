@@ -1233,9 +1233,9 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get an existing element's location
+        /// Returns an element’s location
         /// </summary>
-        /// <returns>Location Geometry</returns>
+        /// <returns name="geometry[]">The element’s location</returns>
         public Geometry GetLocation()
         {
             if (this.InternalElement.Location is Autodesk.Revit.DB.LocationPoint)
