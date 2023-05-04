@@ -555,8 +555,9 @@ namespace Revit.Elements
         #endregion
 
         /// <summary>
-        /// Get all of the Geometry associated with this object
+        /// Returns all geometry associated with an element. Ignores transforms when used with linked elements.
         /// </summary>
+        /// <returns name='geometry[]'>List of geometry from the element</returns>
         public object[] Geometry()
         {
             var converted = new List<object>();
