@@ -19,6 +19,7 @@ using Autodesk.Revit.UI;
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Applications.ViewModel;
+using Dynamo.Configuration;
 using Dynamo.Controls;
 using Dynamo.Core;
 using Dynamo.Graph.Workspaces;
@@ -406,6 +407,7 @@ namespace Dynamo.Applications
             if (CheckJournalForKey(extCommandData, JournalKeys.ShowUiKey, true))
             {
                 RevitDynamoViewModel = InitializeCoreViewModel(RevitDynamoModel);
+                SetRevitProperties();
 
                 // Let the host (e.g. Revit) control the rendering mode
                 var save = RenderOptions.ProcessRenderMode;
@@ -841,6 +843,48 @@ namespace Dynamo.Applications
                 DocumentManager.Instance.CurrentUIApplication = commandData.Application;
         }
 
+        /// <summary>
+        /// Creates Revit-specific preferences 
+        /// </summary>
+        private void SetRevitProperties()
+        {
+            SetScale();
+        }
+
+        /// <summary>
+        /// Sets current Revit document units 
+        /// </summary>
+        private void SetScale()
+        {
+            var doc = extCommandData.Application.ActiveUIDocument.Document;
+            var docUnitType = doc.GetUnits().GetFormatOptions(SpecTypeId.Length).GetUnitTypeId();
+
+            if (docUnitType.TypeId == UnitTypeId.Millimeters.TypeId)
+            {
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Millimeters;
+            }
+            else if (docUnitType.TypeId == UnitTypeId.Centimeters.TypeId || docUnitType.TypeId == UnitTypeId.Decimeters.TypeId)
+            {
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Centimeters;
+            }
+            else if (docUnitType.TypeId == UnitTypeId.Meters.TypeId || docUnitType.TypeId == UnitTypeId.MetersCentimeters.TypeId)
+            {
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Meters;
+            }
+            else if (docUnitType.TypeId == UnitTypeId.Feet.TypeId || docUnitType.TypeId == UnitTypeId.FeetFractionalInches.TypeId || docUnitType.TypeId == UnitTypeId.UsSurveyFeet.TypeId)
+            {
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Feet;
+            }
+            else if (docUnitType.TypeId == UnitTypeId.Inches.TypeId || docUnitType.TypeId == UnitTypeId.FractionalInches.TypeId)
+            {
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Inches;
+            }
+            else
+            {
+                // Default unit
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Millimeters;
+            }
+        }
         #endregion
 
         #region Helpers
