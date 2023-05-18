@@ -325,6 +325,21 @@ namespace Revit.Application
 
             return Unit.ByTypeID(cleanUnitTypeId.TypeId);
         }
+        /// <summary>
+        /// Retrieves all link instances in the current Revit document
+        /// </summary>
+        /// <param name="document">Document</param>
+        /// <returns name="linkInstances[]">List of link instances in the document</returns>
+        public List<Elements.Element> GetLinkInstances()
+        {
+            var links = new FilteredElementCollector(this.InternalDocument)
+                .OfCategory(BuiltInCategory.OST_RvtLinks)
+                .WhereElementIsNotElementType()
+                .Select(el => el.ToDSType(true))
+                .ToList();
+
+            return links;
+        }
     }
 
 }
