@@ -46,16 +46,16 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="ProtoGeometry">
+      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net48\ProtoGeometry.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="RevitAPI">
-      <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
+      <HintPath>..\..\..\lib\Revit Preview Release\net48\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI">
-      <HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="ProtoGeometry">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net48\ProtoGeometry.dll</HintPath>
+      <HintPath>..\..\..\lib\Revit Preview Release\net48\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -81,6 +81,7 @@
     <Compile Include="Elements\Category.cs" />
     <Compile Include="Elements\Ceiling.cs" />
     <Compile Include="Elements\CeilingType.cs" />
+    <Compile Include="Elements\LinkElement.cs" />
     <Compile Include="Elements\Coordinates.cs" />
     <Compile Include="Elements\CurtainGrid.cs" />
     <Compile Include="Elements\CurtainPanel.cs" />
