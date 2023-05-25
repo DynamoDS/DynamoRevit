@@ -105,11 +105,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
-      <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI">
-      <HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -169,10 +169,10 @@
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net48\DynamoCoreWpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoCore">
-      <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DynamoCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+	<Reference Include="DynamoCore">
+		<HintPath>..\..\..\Dynamo\bin\AnyCPU\Debug\DynamoCore.dll</HintPath>
+		<Private>False</Private>
+	</Reference>
     <Reference Include="DynamoUtilities">
       <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net48\DynamoUtilities.dll</HintPath>
       <Private>False</Private>

@@ -58,11 +58,11 @@ limitations under the License.
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
-      <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI">
-      <HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RTFRevit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
