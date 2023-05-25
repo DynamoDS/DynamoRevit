@@ -154,6 +154,7 @@
     <Compile Include="Elements\Views\Packing\OutOfSpaceException.cs" />
     <Compile Include="Elements\Views\Packing\RectanglePacker.cs" />
     <Compile Include="Elements\FillPatternElement.cs" />
+    <Compile Include="Elements\LinkInstance.cs" />
     <Compile Include="Filter\FilterRule.cs" />
     <Compile Include="Elements\LinePatternElement.cs" />
     <Compile Include="Filter\OverrideGraphicSettings.cs" />
