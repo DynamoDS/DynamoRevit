@@ -1,3 +1,9 @@
+## 0.4.18
+* Upgrade DynamoCore version to 2.18.1.5096 from 2.17.1.4055
+
+## 0.4.17
+* Upgrade DynamoCore version to 2.17.1.4055
+
 ## 0.4.16
 * Upgrade DynamoSamples to 2.18.0-beta3734 to involve new version of Sample rvt file.
 

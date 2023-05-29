@@ -2,12 +2,12 @@
   "nuget": {
    "references": {
       "DynamicLanguageRuntime": "1.2.2",
-      "DynamoVisualProgramming.Core": "2.17.1.4055",
-      "DynamoVisualProgramming.DynamoCoreNodes": "2.17.1.4055",
-      "DynamoVisualProgramming.DynamoServices": "2.17.1.4055",
-      "DynamoVisualProgramming.Tests": "2.17.1.4055",
-      "DynamoVisualProgramming.WpfUILibrary": "2.17.1.4055",
-      "DynamoVisualProgramming.ZeroTouchLibrary": "2.17.1.4055",
+      "DynamoVisualProgramming.Core": "2.18.1.5096",
+      "DynamoVisualProgramming.DynamoCoreNodes": "2.18.1.5096",
+      "DynamoVisualProgramming.DynamoServices": "2.18.1.5096",
+      "DynamoVisualProgramming.Tests": "2.18.1.5096",
+      "DynamoVisualProgramming.WpfUILibrary": "2.18.1.5096",
+      "DynamoVisualProgramming.ZeroTouchLibrary": "2.18.1.5096",
       "DynamoVisualProgramming.DynamoSamples": "2.18.0-beta3734",
       "Greg": "2.3.0.1646",
       "GregRevitAuth": "1.1.7972.27909",
