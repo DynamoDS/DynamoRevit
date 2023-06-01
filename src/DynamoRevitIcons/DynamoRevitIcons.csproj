@@ -34,9 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="DSRevitNodesUIImages.resx" />
-    <EmbeddedResource Include="RevitNodesImages.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <EmbeddedResource Include="RevitNodesImages.resx"/>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Drawing" />
