@@ -22,8 +22,6 @@ namespace Revit.Elements
     {
 
         #region Action Nodes
-
-
         /// <summary>
         /// Retrieves all elements from a link instance on the given level
         /// </summary>
@@ -117,7 +115,6 @@ namespace Revit.Elements
                 else
                 { return null; }
 
-
                 BuiltInCategory bic = (BuiltInCategory)System.Enum.Parse(typeof(BuiltInCategory),
                                                                                          category.InternalCategory.Id.ToString());
 
@@ -146,8 +143,6 @@ namespace Revit.Elements
                                    .ToList();
                     return linkedElements;
                 }
-
-
             }
             return null;
         }
@@ -169,14 +164,12 @@ namespace Revit.Elements
             if (Elements.InternalUtilities.ElementQueries.ClassFilterExceptions.Contains(elementClass))
             {
                 Type baseClass = Elements.InternalUtilities.ElementQueries.GetClassFilterExceptionsValidType(elementClass);
-
                 return new FilteredElementCollector(linkDoc)
                     .OfClass(baseClass)
                     .Where(x => x.GetType() == elementClass)
                     .Select(el => el.ToDSType(true))
                     .ToList();
             }
-
             var classFilter = new ElementClassFilter(elementClass);
             var linkedElementsOfClass = new FilteredElementCollector(linkDoc)
                             .WherePasses(classFilter)
@@ -229,7 +222,6 @@ namespace Revit.Elements
             {
                 idAsInteger = int.Parse(id.ToString());
             }
-
             Document linkDocument = revitlinkInstance.GetLinkDocument();
             ElementId elementId = new ElementId(idAsInteger);
             Autodesk.Revit.DB.Element linkElementById = linkDocument.GetElement((elementId));
@@ -269,13 +261,10 @@ namespace Revit.Elements
             string uniqueId = revitlinkInstance.UniqueId;
             return uniqueId;
         }
-
         #endregion
 
 
         #region Helpers
-
-
         private static Solid CreateSolidFromCropRegion(Document doc, Autodesk.Revit.DB.ViewPlan viewPlan)
         {
 
@@ -328,9 +317,7 @@ namespace Revit.Elements
             // using crop region to generate the solid for intersection
             ViewCropRegionShapeManager crsm = viewPlan.GetCropRegionShapeManager();
             IList<CurveLoop> cropLoopList = crsm.GetCropShape();
-
             CurveLoop correctedCropLoop = new CurveLoop();
-
             foreach (CurveLoop cropLoop in cropLoopList)
             {
                 foreach (Curve curve in cropLoop)
@@ -348,10 +335,8 @@ namespace Revit.Elements
             {
                 correctedCropLoop
             };
-
             XYZ direction = XYZ.BasisZ;
             Solid cropViewSolid = GeometryCreationUtilities.CreateExtrusionGeometry(correctedCropLoopList, direction, solidHeight);
-
             return cropViewSolid;
         }
 
@@ -436,9 +421,5 @@ namespace Revit.Elements
             }
             return linkInstancesByTitle;
         }
-
-
-
-
     }
 }
