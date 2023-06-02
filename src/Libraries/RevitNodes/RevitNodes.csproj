@@ -120,6 +120,7 @@
     <Compile Include="Elements\Space.cs" />
     <Compile Include="Elements\Views\AreaPlanView.cs" />
     <Compile Include="Elements\Views\Legend.cs" />
+    <Compile Include="Elements\Views\View3DTemplate.cs" />
     <Compile Include="PerformanceAdviser\FailureMessage.cs" />
     <Compile Include="PerformanceAdviser\PerformanceAdviserRule.cs" />
     <Compile Include="Elements\SunSettings.cs" />
