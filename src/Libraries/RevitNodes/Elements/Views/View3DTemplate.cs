@@ -42,14 +42,14 @@ namespace Revit.Elements.Views
         /// <param name="plan"></param>
         /// <param name="isRevitOwned"></param>
         /// <returns></returns>
-        internal static View3DTemplate FromExisting(Autodesk.Revit.DB.View3D plan, bool isRevitOwned)
+        internal static View3DTemplate FromExisting(Autodesk.Revit.DB.View3D view, bool isRevitOwned)
         {
-            if (plan == null)
+            if (view == null)
             {
                 throw new ArgumentNullException("3d_view");
             }
 
-            return new View3DTemplate(plan)
+            return new View3DTemplate(view)
             {
                 IsRevitOwned = isRevitOwned
             };
