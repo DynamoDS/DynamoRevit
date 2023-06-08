@@ -119,9 +119,9 @@ namespace Revit.Elements
             double z = point.Z;
 
             //transform basis of the old coordinate system in the new coordinate // system
-            XYZ b0 = transform.get_Basis(0);
-            XYZ b1 = transform.get_Basis(1);
-            XYZ b2 = transform.get_Basis(2);
+            XYZ b0 = transform.BasisX;
+            XYZ b1 = transform.BasisY;
+            XYZ b2 = transform.BasisZ;
             XYZ origin = transform.Origin;
 
             //transform the origin of the old coordinate system in the new 
