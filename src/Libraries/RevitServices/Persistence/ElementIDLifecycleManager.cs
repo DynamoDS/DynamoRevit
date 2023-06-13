@@ -201,7 +201,16 @@ namespace RevitServices.Persistence
                 sb.AppendLine(string.Format("\tElement ID {0}:", kvp.Key));
                 foreach (var item in kvp.Value)
                 {
-                    sb.AppendLine(string.Format("\t\t{0}:", item));
+                    string value;
+                    try
+                    {
+                        value = item.ToString();
+                    }
+                    catch (Exception)
+                    {
+                        value = "Invalid or deleted Element";
+                    }
+                    sb.AppendLine(string.Format("\t\t{0}:", value));
                 }
             }
 
