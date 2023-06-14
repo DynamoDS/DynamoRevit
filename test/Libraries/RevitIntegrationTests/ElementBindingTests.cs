@@ -186,6 +186,7 @@ namespace RevitSystemTests
             int wallElementCountPostsave;
             ElementId wallElementIdPresave;
             ElementId wallElementIdPostsave;
+            ElementId wallElementIdPostResave;
 
             // Load Dynamo xml file containing trace data
             string dynFilePath = Path.Combine(workingDirectory, @".\ElementBinding\CreateWallInDynamo.dyn");
@@ -223,7 +224,7 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             // Get binding element id for wall node postsave
-            selNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.GUID.ToString(), "b568d298-f7be-4619-99a1-cae16efaed58"));
+            selNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.Name, "Wall.ByCurveAndHeight"));
             Assert.IsTrue(selNodes.Any());
             node = selNodes.First();
             wallElementIdPostsave = GetBindingElementIdForNode(node.GUID);
@@ -234,11 +235,36 @@ namespace RevitSystemTests
             wallElementCountPostsave = wallsPostsave.Count();
 
             // Verify xml results against json
-            Assert.AreEqual(wallElementIdPresave, wallElementIdPostsave);
+            //Assert.AreEqual(wallElementIdPresave, wallElementIdPostsave);
             Assert.AreEqual(wallElementCountPresave, wallElementCountPostsave);
+
+            // Save the model after run to update the bindings after changing all the GUIDs on Save As
+            ViewModel.SaveCommand.Execute(null);
+
+            // Close work space
+            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            // Run
+            RunCurrentModel();
+
+            // Get binding element id for wall node postsave
+            selNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.Name, "Wall.ByCurveAndHeight"));
+            node = selNodes.First();
+            wallElementIdPostResave = GetBindingElementIdForNode(node.GUID);
+
+            // Get wall count upon reopening to verify no duplicate walls exist
+            doc = DocumentManager.Instance.CurrentUIDocument.Document;
+            wallsPostsave = Utils.AllElementsOfType<Wall>(doc);
+            wallElementCountPostsave = wallsPostsave.Count();
+
+            // Verify xml results against json
+            Assert.AreEqual(wallElementIdPostsave, wallElementIdPostResave);
 
             // Close work space and delete temp file
             ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+
             File.Delete(tempPath);
         }
 
