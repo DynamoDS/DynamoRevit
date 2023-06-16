@@ -861,28 +861,28 @@ namespace Dynamo.Applications
 
             if (docUnitType.TypeId == UnitTypeId.Millimeters.TypeId)
             {
-                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Millimeters;
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentHostUnits = Configurations.Units.Millimeters;
             }
             else if (docUnitType.TypeId == UnitTypeId.Centimeters.TypeId || docUnitType.TypeId == UnitTypeId.Decimeters.TypeId)
             {
-                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Centimeters;
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentHostUnits = Configurations.Units.Centimeters;
             }
             else if (docUnitType.TypeId == UnitTypeId.Meters.TypeId || docUnitType.TypeId == UnitTypeId.MetersCentimeters.TypeId)
             {
-                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Meters;
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentHostUnits = Configurations.Units.Meters;
             }
             else if (docUnitType.TypeId == UnitTypeId.Feet.TypeId || docUnitType.TypeId == UnitTypeId.FeetFractionalInches.TypeId || docUnitType.TypeId == UnitTypeId.UsSurveyFeet.TypeId)
             {
-                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Feet;
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentHostUnits = Configurations.Units.Feet;
             }
             else if (docUnitType.TypeId == UnitTypeId.Inches.TypeId || docUnitType.TypeId == UnitTypeId.FractionalInches.TypeId)
             {
-                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Inches;
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentHostUnits = Configurations.Units.Inches;
             }
             else
             {
                 // Default unit
-                RevitDynamoViewModel.Model.PreferenceSettings.CurrentRevitUnits = Configurations.Units.Millimeters;
+                RevitDynamoViewModel.Model.PreferenceSettings.CurrentHostUnits = Configurations.Units.Millimeters;
             }
         }
         #endregion
