@@ -222,6 +222,16 @@
         GvRBr1Wu2gqqfdBDpcgKqkEf9Frlqq2g2gc9VIqsoBoEgSClD/LhuGpR64a/AAAAAElFTkSuQmCC
 </value>
     </data>
+	<data name="DSRevitNodesUI.DetailLevel.Large" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+		<value>
+			iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAACqElEQVR4nO3bzWoiQRSG4eNPopBMQJgR3CQRIt5ELiEX7AW4zj7owrgRMgMBR/A3OnyNDWGY2fQ5TZnkfVZu+lDVX3VLHaoNAAAAAAAAAAAAAAAAAIBPpRI5maenp5WZNb7AEln3+/1mRKF6RJF3fiuAarVqZ2dn7mJvb2+23W6tUim+Tg6HQzaWWq3mHo/Gst/v7TjPENEBZBOdz+c2Go2sXi9efrfbWbvdtuvr6+x3Ubr50+nUXl5e3OPp9Xp2dXWVLYwo4QFota7Xa5tMJnZ+fl64jlabbl6323UFoAXx+vpqz8/Prqdys9lki8HzNP5LeAB2DEGT9b6GIl4beR3vePQqi775Ug2vCAL4SAggMQJIjAASI4DECCAxAkiMABIrZSesXaP6JcfGVSF5v0W7WDX3isp306rn2Vnres0rWnQ7+qeZfdeNVz/Is3XXzZrNZjYej10tBPWU7u7urNPpuJpouvmNRiNfDL/6/f6PwsXeKeUJ0CAvLi5cK0aNPAW4WCys2Szeel+tVlmdy8vLrKFWlGp4nuj/KSUA8Q42v15hep6k/PWlep4FUcbrx/gTTo8AEiOAxAggMQJIjAASI4DECCCx0jZi2gB5Ni9RG6ioDd2H2glroMvl0jVhtQ1049VC8PSCdBhLddTSCOwFhQkPQBPWKbThcJgNuCgFoJNoDw8PWT+nKPWRHh8fbTAYuA6Kqbl4f3+fndbzHBT7W2kHsyLbyKfS1uZg1idEAIkRQGIEkBgBJEYAiRFAYgSQGAEkVtrBLO/Xjbo+6mO4/GtLD11fxsmI8ADyptXt7a37q8RWq+UOQderzs3NjXs8mld0CKWcjPsC3wmf7Mm4b3ZsR6t7GMHbANP1Wr2RHcx8ngAAAAAAAAAAAAAAAAAAAKfEzP4AR14mYSsF1YUAAAAASUVORK5CYII=
+		</value>
+	</data>
+	<data name="DSRevitNodesUI.DetailLevel.Small" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+		<value>
+			iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB9ElEQVRYhe1Vu47CMBDcBAgYgoKSDiGuAgQfAAUSFT/Ah/ITdFBQgqA76VoQEY/wzml8ceQECHcUR5ORonjHjnd2vd5QjBgxYrwbSpT/6XT6adt2AWNF+Vl6uVyIMUb5fJ6PBRKJBK3Xa3Ich48B13X52zCMVb1e/7jnIxklwHGc0mAwUOFcVVXOwUmj0aB2u02bzcZfC1Hj8ZgmkwkXB1yvVy6i2+3qj3xEClAUZaVpmikLSKfTPEIRnQBs8JjXNC0gAPu8JAAfH49Hnn6R1v1+z/lMJkOn08lfCxs85iGCvOMCFxb7awGI2jAMkjOQTCb5s1wu+XkLQAx4y7Iom80GMiC+vYfIIpzNZgsiMmVO13Waz+c0Go0ol8v5/Ha7pWazSdVqNVAbHpa1Ws36cwbk1AukUinOI+Lz+RzIAHjMIxMy5NsSxuPc/BOeFqEcpYgUfDhS2ODDmXmGZ32AhsNhoAh3ux2Vy2Xq9XqBIkQfQA/o9/s3RdhqtR76iBSADWzbDtQC7GKxSKZp8qYkgOaDyBeLhZ8BcQ2xz0sC4BhNRc4A7jts3Hf0CAHY4DGP4yCvPXuN6DUBrusWRCMSAg6HA48svCls8JgPd0Ls85IAxthXp9O5+zOSz5+8eqlUKlQqlW5+Royxh604RowYMd4LIvoGOLQJB2nNgPcAAAAASUVORK5CYII=
+		</value>
+	</data>
     <data name="DSRevitNodesUI.ElementById.Large" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
         <value>
         iVBORw0KGgoAAAANSUhEUgAAAGEAAABhCAYAAADGBs+jAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

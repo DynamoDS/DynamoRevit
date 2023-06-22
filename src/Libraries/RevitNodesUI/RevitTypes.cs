@@ -197,7 +197,7 @@ namespace DSRevitNodesUI
     [OutPortTypes("string")]
     public class DetailLevel : CustomGenericEnumerationDropDown
     {
-        private const string outputName = "Detail Level";
+        private const string outputName = "detailLevel";
 
         public DetailLevel() : base(outputName, typeof(Autodesk.Revit.DB.ViewDetailLevel)) { }
 

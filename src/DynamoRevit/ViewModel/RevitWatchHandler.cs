@@ -4,7 +4,8 @@ using System.Globalization;
 using System.Linq;
 using Dynamo.Interfaces;
 using Dynamo.ViewModels;
-
+using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
 using ProtoCore.Mirror;
 using RevitServices.Persistence;
 using Element = Revit.Elements.Element;
@@ -37,7 +38,13 @@ namespace Dynamo.Applications
 
             node.Clicked += () =>
             {
-                if (element.InternalElement.IsValidObject)
+                Document elementDoc = element.InternalElement.Document;
+                Document currrentDoc = Revit.Application.Document.Current.InternalDocument;
+                if (!(elementDoc.Equals(currrentDoc)) && (element.InternalElement.IsValidObject))
+                {
+                    Revit.Elements.LinkElement.ZoomToLinkedElement(element);
+                }
+                else if (element.InternalElement.IsValidObject)
                     DocumentManager.Instance.CurrentUIDocument.ShowElements(element.InternalElement);
             };
 
