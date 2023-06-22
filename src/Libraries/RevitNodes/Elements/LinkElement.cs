@@ -64,7 +64,6 @@ namespace Revit.Elements
             Autodesk.Revit.DB.View activeView = uiDoc.ActiveView;
             // get active UI view to use
             UIView uiview = uiDoc.GetOpenUIViews().FirstOrDefault<UIView>(uv => uv.ViewId.Equals(activeView.Id));
-            var location = Revit.Elements.LinkElement.GetLinkElementLocation(element);
             Transform linkTransform = Revit.Elements.LinkElement.LinkTransform(element).ToTransform();
 
             // use the center of the BoundingBox as zoom center
