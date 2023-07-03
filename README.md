@@ -21,6 +21,7 @@ git clone https://github.com/DynamoDS/DynamoRevit.git
 - Make sure you have the following installed on your computer:
    - [.Net Framework 4.8 SDK](https://dotnet.microsoft.com/download) 
 - Run `restorepackages.bat` from a command prompt with administrative privileges (Located in your _Github\DynamoRevit\src folder_)
+  Note: `restorepackages.bat` employs the use of a legacy tool `aget.exe`, which requires VC++ 2010 redistributable installed, before you can run it. When missing you will get an `msvcr100.dll not found` error. 
 - Copy `RevitAPI.dll`&`RevitAPIUI.dll` to the folder `DynamoRevit\lib\Revit Preview Release\net48`, these 2 dlls are in the folder same with `Revit.exe` installed on your computer
 	(if you want to build other branch of DynamoRevit, but corresponding version of Revit is not installed locally, you can get these dlls from https://www.nuget.org/ )
 - Set the `RevitVersionNumber` environment variable to the Revit version you're building against (e.g. `2020`) either in the system environment or in the [user_locals.props](https://github.com/DynamoDS/DynamoRevit/blob/Revit2017/src/Config/user_local.props) file in your build folder.
