@@ -11,7 +11,7 @@ namespace Revit.Elements.InternalUtilities
     [IsVisibleInDynamoLibrary(false)]
     public static class ElementQueries
     {
-        private static readonly HashSet<Type> ClassFilterExceptions = new HashSet<Type>
+        internal static readonly HashSet<Type> ClassFilterExceptions = new HashSet<Type>
         {
             typeof(Autodesk.Revit.DB.HostedSweep),
             typeof(Autodesk.Revit.DB.Architecture.Room),
@@ -49,7 +49,7 @@ namespace Revit.Elements.InternalUtilities
             typeof(Autodesk.Revit.DB.SymbolicCurve)
         };
 
-        private static Type GetClassFilterExceptionsValidType(Type elementType)
+        internal static Type GetClassFilterExceptionsValidType(Type elementType)
         {
             if(ClassFilterExceptions.Contains(elementType.BaseType))
             {
