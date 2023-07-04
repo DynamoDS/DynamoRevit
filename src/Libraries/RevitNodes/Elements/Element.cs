@@ -553,8 +553,9 @@ namespace Revit.Elements
         #endregion
 
         /// <summary>
-        /// Get all of the Geometry associated with this object
+        /// Returns all geometry associated with an element. Ignores transforms when used with linked elements.
         /// </summary>
+        /// <returns name='geometry[]'>List of geometry from the element</returns>
         public object[] Geometry()
         {
             var converted = new List<object>();
@@ -1275,9 +1276,9 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get an existing element's location
+        /// Returns an element's location
         /// </summary>
-        /// <returns>Location Geometry</returns>
+        /// <returns name="geometry[]">The element’s location</returns>
         public Geometry GetLocation()
         {
             if (this.InternalElement.Location is Autodesk.Revit.DB.LocationPoint)

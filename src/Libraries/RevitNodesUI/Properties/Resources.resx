@@ -419,7 +419,7 @@
     <comment>Description for Vertical Text Alignment Style</comment>
   </data>
   <data name="ViewDetailLevelDescription" xml:space="preserve">
-    <value>View Detail Level</value>
+    <value>Enables selection of a detail level for all Revit elements, families, and views</value>
   </data>
   <data name="ViewFamilyTypesDescription" xml:space="preserve">
     <value>All view family types in the current document.</value>
