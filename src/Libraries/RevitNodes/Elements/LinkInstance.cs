@@ -305,8 +305,8 @@ namespace Revit.Elements
         public static string UniqueId(LinkInstance linkInstance)
         {
             RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as RevitLinkInstance;
-            var id = revitlinkInstance.UniqueId;
-            return id;
+            var uniqueId = revitlinkInstance.UniqueId;
+            return uniqueId;
         }
 
         #endregion
