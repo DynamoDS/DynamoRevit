@@ -29,21 +29,11 @@ namespace Revit.Elements
             get { return InternalLinkInstance; }
         }
 
-
         /// <summary>
         /// Private constructor
         /// </summary>
         /// <param name="linkInstance"></param>
         internal LinkInstance(Autodesk.Revit.DB.RevitLinkInstance linkInstance)
-        {
-            SafeInit(() => InitLinkInstance(linkInstance), true);
-        }
-
-        /// <summary>
-        /// Private constructor
-        /// </summary>
-        /// <param name="linkInstance"></param>
-        internal LinkInstance(Autodesk.Revit.DB.Element linkInstance)
         {
             SafeInit(() => InitLinkInstance(linkInstance), true);
         }
@@ -57,14 +47,6 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Initialize a Revit Link Instance element
-        /// </summary>
-        private void InitLinkInstance(Autodesk.Revit.DB.Element linkInstance)
-        {
-            InternalSetLinkInstance(linkInstance as RevitLinkInstance);
-        }
-
-        /// <summary>
         /// Set the InternalLinkInstance property and the associated element id and unique id
         /// </summary>
         /// <param name="linkInstance"></param>
@@ -73,6 +55,7 @@ namespace Revit.Elements
             InternalLinkInstance = linkInstance;
             InternalElementId = linkInstance.Id;
             InternalUniqueId = linkInstance.UniqueId;
+
         }
 
         /// <summary>
@@ -88,8 +71,6 @@ namespace Revit.Elements
                 IsRevitOwned = isRevitOwned
             };
         }
-
-
 
         #region Action Nodes
         /// <summary>
@@ -112,7 +93,6 @@ namespace Revit.Elements
             return linkedAtLevel;
         }
 
-
         /// <summary> Retrieves all elements of a given category in a link instance </summary>
         /// <param name="linkInstance">Revit link Instance</param>
         /// <param name="category">Element category</param>
@@ -128,10 +108,8 @@ namespace Revit.Elements
                 .Select(el => el.ToDSType(true))
                 .ToList();
 
-
             return linkedElements;
         }
-
 
         /// <summary>
         /// Retrieves all elements of a category in a given view of a link instance
@@ -215,7 +193,6 @@ namespace Revit.Elements
             return null;
         }
 
-
         /// <summary>
         /// Retrieves all elements of a given class in a link instance
         /// </summary>
@@ -265,12 +242,11 @@ namespace Revit.Elements
                 .OfCategory(BuiltInCategory.OST_RvtLinks)
                 .WhereElementIsNotElementType()
                 .WherePasses(paramterFilter)
+                .Cast<Autodesk.Revit.DB.RevitLinkInstance>()
                 .Select(el => new LinkInstance(el))
                 .ToList();
             return linkInstance;
         }
-
-
 
         /// <summary>
         /// Retrieves one or more elements by ID from a link instance
@@ -293,9 +269,12 @@ namespace Revit.Elements
             Document linkDocument = revitlinkInstance.GetLinkDocument();
             ElementId elementId = new ElementId(idAsInteger);
             Autodesk.Revit.DB.Element linkElementById = linkDocument.GetElement(elementId);
+            if(linkElementById == null)
+            {
+                return null;
+            }
             return linkElementById.ToDSType(true);
         }
-
 
         #endregion
 
@@ -307,7 +286,7 @@ namespace Revit.Elements
         /// <param name="linkInstance"> Revit link instance </param>
         /// <returns name="linkDocument">Document of link instance</returns>
         [NodeCategory("Query")]
-        public static Revit.Application.Document Document(LinkInstance linkInstance)
+        public static new Revit.Application.Document Document(LinkInstance linkInstance)
         {
             RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as RevitLinkInstance;
             var linkDocument = revitlinkInstance.GetLinkDocument();
@@ -321,21 +300,21 @@ namespace Revit.Elements
         /// Retrieves a link instance’s GUID
         /// </summary>      
         /// <param name="linkInstance">Revit link instance</param>
-        /// <returns name="string[]">GUID of link instance</returns>
+        /// <returns name="string">GUID of link instance</returns>
         [NodeCategory("Query")]
-        public static string UniqueId(Element linkInstance)
+        public static string UniqueId(LinkInstance linkInstance)
         {
             RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as RevitLinkInstance;
-            string uniqueId = revitlinkInstance.UniqueId;
-            return uniqueId;
+            var id = revitlinkInstance.UniqueId;
+            return id;
         }
+
         #endregion
 
 
         #region Helpers
         private static Solid CreateSolidFromCropRegion(Document doc, Autodesk.Revit.DB.ViewPlan viewPlan)
         {
-
             PlanViewRange planViewRange = viewPlan.GetViewRange();
             ViewType viewType = viewPlan.ViewType;
             ElementId cutPlaneLevelId = planViewRange.GetLevelId(PlanViewPlane.CutPlane);
@@ -364,7 +343,6 @@ namespace Revit.Elements
             }
             double cutPlaneOffset = planViewRange.GetOffset(PlanViewPlane.CutPlane);
             double viewDepthOffset = planViewRange.GetOffset(PlanViewPlane.ViewDepthPlane);
-
 
             double solidBottomZ;
             double solidTopZ;

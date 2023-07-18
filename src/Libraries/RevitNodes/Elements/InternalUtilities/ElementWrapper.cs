@@ -390,6 +390,11 @@ namespace Revit.Elements
             return AppearanceAssetElement.FromExisting(ele, isRevitOwned);
         }
 
+        public static LinkInstance Wrap(Autodesk.Revit.DB.RevitLinkInstance ele, bool isRevitOwned)
+        {
+            return LinkInstance.FromExisting(ele, isRevitOwned);
+        }
+
         #endregion
     }
 
