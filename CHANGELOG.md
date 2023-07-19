@@ -1,3 +1,6 @@
+## 0.3.18
+* Upgrade DynamoCore version to 2.16.2.5624.
+
 ## 0.3.17
 * Upgrade DynamoCore version to 2.16.1.
 * Update Greg version to 2.3.0.1646.
