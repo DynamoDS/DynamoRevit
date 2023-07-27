@@ -11,7 +11,7 @@ namespace Revit.Elements
     /// <summary>
     /// A Revit Link Instance
     /// </summary>
-    public class LinkInstance : Element
+    public class RevitLinkInstance : Element
     {
         /// <summary>
         /// An internal handle on the Revit Link Instance
@@ -33,7 +33,7 @@ namespace Revit.Elements
         /// Private constructor
         /// </summary>
         /// <param name="linkInstance"></param>
-        internal LinkInstance(Autodesk.Revit.DB.RevitLinkInstance linkInstance)
+        internal RevitLinkInstance(Autodesk.Revit.DB.RevitLinkInstance linkInstance)
         {
             SafeInit(() => InitLinkInstance(linkInstance), true);
         }
@@ -64,9 +64,9 @@ namespace Revit.Elements
         /// <param name="linkInstance"></param>
         /// <param name="isRevitOwned"></param>
         /// <returns></returns>
-        internal static LinkInstance FromExisting(Autodesk.Revit.DB.RevitLinkInstance linkInstance, bool isRevitOwned)
+        internal static RevitLinkInstance FromExisting(Autodesk.Revit.DB.RevitLinkInstance linkInstance, bool isRevitOwned)
         {
-            return new LinkInstance(linkInstance)
+            return new RevitLinkInstance(linkInstance)
             {
                 IsRevitOwned = isRevitOwned
             };
@@ -79,9 +79,9 @@ namespace Revit.Elements
         /// <param name="linkInstance">Linked Element Instance </param>
         /// <param name="level">Linked Element Level </param>
         /// <returns name="elements[]">List of elements</returns>
-        public static List<Revit.Elements.Element> AllElementsAtLevel(LinkInstance linkInstance, Level level)
+        public static List<Revit.Elements.Element> AllElementsAtLevel(RevitLinkInstance linkInstance, Level level)
         {
-            RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as RevitLinkInstance;
+            Autodesk.Revit.DB.RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as Autodesk.Revit.DB.RevitLinkInstance;
             Autodesk.Revit.DB.Level revitLevel = level.InternalLevel;
             ElementId levelId = revitLevel.Id;
             ElementLevelFilter levelFilter = new ElementLevelFilter(levelId);
@@ -97,9 +97,9 @@ namespace Revit.Elements
         /// <param name="linkInstance">Revit link Instance</param>
         /// <param name="category">Element category</param>
         /// <returns name="linkedElements[]">All elements of the category</returns>
-        public static List<Element> AllElementsOfCategory(LinkInstance linkInstance, Revit.Elements.Category category)
+        public static List<Element> AllElementsOfCategory(RevitLinkInstance linkInstance, Revit.Elements.Category category)
         {
-            RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as RevitLinkInstance;
+            Autodesk.Revit.DB.RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as Autodesk.Revit.DB.RevitLinkInstance;
             BuiltInCategory bic = (BuiltInCategory)category.InternalCategory.Id.Value;
             var linkedElements = new FilteredElementCollector(revitlinkInstance.GetLinkDocument())
                 .OfCategory(bic)
@@ -118,9 +118,9 @@ namespace Revit.Elements
         /// <param name="category">Element category</param>
         /// <param name="view">View in active document</param>
         /// <returns name="linkedElementsInView[]"> All elements of the category in the view</returns>
-        public static List<Revit.Elements.Element> AllElementsOfCategoryInView(LinkInstance linkInstance, Elements.Category category, Elements.Views.View view)
+        public static List<Revit.Elements.Element> AllElementsOfCategoryInView(RevitLinkInstance linkInstance, Elements.Category category, Elements.Views.View view)
         {
-            RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as RevitLinkInstance;
+            Autodesk.Revit.DB.RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as Autodesk.Revit.DB.RevitLinkInstance;
             var currentDocument = Application.Document.Current.InternalDocument;
             Autodesk.Revit.DB.View revitView = view.InternalView as Autodesk.Revit.DB.View;
 
@@ -199,10 +199,10 @@ namespace Revit.Elements
         /// <param name="linkInstance">Revit link instance</param>
         /// <param name="elementClass">Element class in the link instance</param>
         /// <returns name="elements[]">All elements of the class in the link instance</returns>
-        public static List<Revit.Elements.Element> AllElementsOfClass(LinkInstance linkInstance, System.Type elementClass)
+        public static List<Revit.Elements.Element> AllElementsOfClass(RevitLinkInstance linkInstance, System.Type elementClass)
         {
             if (elementClass == null) return null;
-            RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as RevitLinkInstance;
+            Autodesk.Revit.DB.RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as Autodesk.Revit.DB.RevitLinkInstance;
             Autodesk.Revit.DB.Document linkDoc = revitlinkInstance.GetLinkDocument();
             // check if the class belongs to a subset of classes not supported by the class filter,
             // in which case use its base class and match the results to the input class
@@ -230,7 +230,7 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="name">Name of the link instance</param>
         /// <returns name="linkInstance[]">Revit link instance</returns>
-        public static List<LinkInstance> ByName(string name)
+        public static List<RevitLinkInstance> ByName(string name)
         {
             ElementId paramId = new ElementId(BuiltInParameter.RVT_LINK_INSTANCE_NAME);
             ParameterValueProvider valueProvider = new ParameterValueProvider(paramId);
@@ -243,7 +243,7 @@ namespace Revit.Elements
                 .WhereElementIsNotElementType()
                 .WherePasses(paramterFilter)
                 .Cast<Autodesk.Revit.DB.RevitLinkInstance>()
-                .Select(el => new LinkInstance(el))
+                .Select(el => new RevitLinkInstance(el))
                 .ToList();
             return linkInstance;
         }
@@ -254,9 +254,9 @@ namespace Revit.Elements
         /// <param name="id">Element ID</param>
         /// <param name="linkInstance">Revit link instance</param>
         /// <returns name="element[]">Element(s) from the link instance</returns>
-        public static Element ElementById(object id, LinkInstance linkInstance)
+        public static Element ElementById(object id, RevitLinkInstance linkInstance)
         {
-            RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as RevitLinkInstance;
+            Autodesk.Revit.DB.RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as Autodesk.Revit.DB.RevitLinkInstance;
             long idAsInteger;
             if (id is ElementId)
             {
@@ -286,34 +286,17 @@ namespace Revit.Elements
         /// <param name="linkInstance"> Revit link instance </param>
         /// <returns name="linkDocument">Document of link instance</returns>
         [NodeCategory("Query")]
-        public static new Revit.Application.Document Document(LinkInstance linkInstance)
+        public static new Revit.Application.Document Document(RevitLinkInstance linkInstance)
         {
-            RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as RevitLinkInstance;
+            Autodesk.Revit.DB.RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as Autodesk.Revit.DB.RevitLinkInstance;
             var linkDocument = revitlinkInstance.GetLinkDocument();
 
             return new Revit.Application.Document(linkDocument);
         }
-
-
-
-        /// <summary>
-        /// Retrieves a link instance’s GUID
-        /// </summary>      
-        /// <param name="linkInstance">Revit link instance</param>
-        /// <returns name="string">GUID of link instance</returns>
-        [NodeCategory("Query")]
-        public static string UniqueId(LinkInstance linkInstance)
-        {
-            RevitLinkInstance revitlinkInstance = linkInstance.InternalElement as RevitLinkInstance;
-            var uniqueId = revitlinkInstance.UniqueId;
-            return uniqueId;
-        }
-
         #endregion
 
-
         #region Helpers
-        private static Solid CreateSolidFromCropRegion(Document doc, Autodesk.Revit.DB.ViewPlan viewPlan)
+        internal static Solid CreateSolidFromCropRegion(Document doc, Autodesk.Revit.DB.ViewPlan viewPlan)
         {
             PlanViewRange planViewRange = viewPlan.GetViewRange();
             ViewType viewType = viewPlan.ViewType;
@@ -448,21 +431,21 @@ namespace Revit.Elements
         /// </summary>
         /// <param name="title">Project title (file name) </param>
         /// <returns name="linkInstance[]">Revil link instance</returns>
-        public static List<LinkInstance> ByTitle(string title)
+        public static List<RevitLinkInstance> ByTitle(string title)
         {
             var currentDocument = Application.Document.Current.InternalDocument;
             var linkInstances = new FilteredElementCollector(currentDocument)
                 .OfCategory(BuiltInCategory.OST_RvtLinks)
                 .WhereElementIsNotElementType()
                 .ToList();
-            List<LinkInstance> linkInstancesByTitle = new List<LinkInstance>();
-            foreach (RevitLinkInstance linkInstance in linkInstances)
+            List<RevitLinkInstance> linkInstancesByTitle = new List<RevitLinkInstance>();
+            foreach (Autodesk.Revit.DB.RevitLinkInstance linkInstance in linkInstances)
             {
                 Document linkDoc = linkInstance.GetLinkDocument();
                 if (linkDoc.Title == title)
                 {
                     Element linkInstanceElement = linkInstance.ToDSType(true);
-                    linkInstancesByTitle.Add(linkInstanceElement as LinkInstance);
+                    linkInstancesByTitle.Add(linkInstanceElement as RevitLinkInstance);
                 }
             }
             return linkInstancesByTitle;
