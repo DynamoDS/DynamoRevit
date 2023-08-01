@@ -320,10 +320,8 @@ namespace RevitNodesTests.Elements
             List<object> wallGeometry = LinkElement.GetGeometry(wallsInLink.First(), "Medium") as List<object>;
 
             Assert.NotNull(wallGeometry);
-            /*object t = wallGeometry.GetType();*/
-           /* List<object> lstGeometry = wallGeometry as List<object>; ;*/
+
             Autodesk.DesignScript.Geometry.Solid solid = wallGeometry.First() as Autodesk.DesignScript.Geometry.Solid; 
-            /*Autodesk.DesignScript.Geometry.Solid wallSolid = (wallGeometry as Autodesk.DesignScript.Geometry.Solid);*/
      
             Assert.AreEqual(solid.Volume, solidVolume, 1e-1);
         }
