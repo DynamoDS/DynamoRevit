@@ -1,3 +1,6 @@
+## 0.5.1
+* Upgrade DynamoCore version to 2.19.0-beta5995.
+
 ## 0.4.14
 * Upgrade DynamoCore version to 2.17.0-beta3141.
 
