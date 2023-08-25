@@ -1102,7 +1102,7 @@ namespace Dynamo.Applications
             //dynamo back up.
             //TODO use new api by updating dynamocorewpf nuget.
             //After it's published, remove the use of dynamic.
-            if(sender is Dynamo.UI.Views.SplashScreen ss && ((dynamic)ss).CloseWasExplicit)
+            if(sender is Dynamo.UI.Views.SplashScreen ss && ss.CloseWasExplicit)
             {
                 DynamoRevitApp.DynamoButtonEnabled = true;
                 //the model is shutdown when splash screen is closed
