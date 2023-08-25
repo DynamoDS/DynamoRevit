@@ -1100,8 +1100,6 @@ namespace Dynamo.Applications
             view.Closed -= OnSplashScreenClosed;
             //if the user explicitly closed the splashscreen, then we should let them boot
             //dynamo back up.
-            //TODO use new api by updating dynamocorewpf nuget.
-            //After it's published, remove the use of dynamic.
             if(sender is Dynamo.UI.Views.SplashScreen ss && ss.CloseWasExplicit)
             {
                 DynamoRevitApp.DynamoButtonEnabled = true;
