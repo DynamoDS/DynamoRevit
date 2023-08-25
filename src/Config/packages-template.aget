@@ -13,8 +13,7 @@
       "Newtonsoft.Json": "8.0.3",
       "NUnit": "2.6.3",
       "Prism": "4.1.0",
-      "RestSharp": "106.12.0",
-      "Unofficial.Ionic.Zip": "1.9.1.8"
+      "RestSharp": "106.12.0"
     }
   }
 }
