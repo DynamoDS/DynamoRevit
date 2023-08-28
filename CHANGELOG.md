@@ -1,3 +1,6 @@
+## 0.4.20
+* UPgrade DynamoCore version to 2.19.0-beta6022 from 2.18.1.5096
+
 ## 0.4.19
 * Fix runtime error due to old, invalid bindings
 
