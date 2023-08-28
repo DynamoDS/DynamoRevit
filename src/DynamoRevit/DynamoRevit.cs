@@ -1021,7 +1021,7 @@ namespace Dynamo.Applications
         #region Exception
 
         /// <summary>
-        ///     A method to deal with unhandle exceptions.  Executes right before Revit crashes.
+        ///     A method to deal with unhandled exceptions.  Executes right before Revit crashes.
         ///     Dynamo is still valid at this time, but further work may cause corruption.  Here,
         ///     we run the ExitCommand, allowing the user to save all of their work.
         /// </summary>
@@ -1098,11 +1098,14 @@ namespace Dynamo.Applications
 
             view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
             view.Closed -= OnSplashScreenClosed;
-
-            DynamoRevitApp.DynamoButtonEnabled = true;
-
-            //the model is shutdown when splash screen is closed
-            ModelState = RevitDynamoModelState.NotStarted;
+            //if the user explicitly closed the splashscreen, then we should let them boot
+            //dynamo back up.
+            if(sender is Dynamo.UI.Views.SplashScreen ss && ss.CloseWasExplicit)
+            {
+                DynamoRevitApp.DynamoButtonEnabled = true;
+                //the model is shutdown when splash screen is closed
+                ModelState = RevitDynamoModelState.NotStarted;
+            }
         }
 
         #endregion
