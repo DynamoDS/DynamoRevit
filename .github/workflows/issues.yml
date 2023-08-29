@@ -1,9 +1,9 @@
 name: Issues workflow
-# DynamoRevitIssues project (https://github.com/orgs/DynamoDS/projects/7)
+# DynamoRevitIssues project https://github.com/orgs/DynamoDS/projects/7
 # Built-in workflow https://github.com/orgs/DynamoDS/projects/7/workflows/11382076
 
-# The built in workflow
-#   - automatically adds any new issues to DynamoRevitIssues project
+# The built-in workflow
+#   - adds any new issues to DynamoRevitIssues project
 #   - sets status as 'Triage' when an item is added to the project
 #   - sets status as 'Backlog' when an item is reopened
 #   - sets status as 'Done' when an item is closed
@@ -20,7 +20,7 @@ on:
       - assigned
 
 env:
-  gh_token: ${{ secrets.DYNAMOBOTTOKEN }}
+  gh_token: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
   gh_organization: DynamoDS
   project_id: 7
 
@@ -30,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'issues' && github.event.action == 'labeled'
     steps:
+      - uses: actions/checkout@v3
       - name: Move issue to Dynamo Repository
         if: github.event.label.name == 'Dynamo'
         run: gh issue transfer ${{ github.event.issue.number }} DynamoDS/Dynamo
