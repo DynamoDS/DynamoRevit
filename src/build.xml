@@ -12,7 +12,7 @@
 
 <ItemGroup>
     <ProjectToBuild Include="$(Solution)" >
-        <Properties>Configuration=$(Configuration);DefineConstants=$(Constants);Platform=Any CPU;VisualStudioVersion=16.0</Properties>
+        <Properties>Configuration=$(Configuration);DefineConstants=$(Constants);Platform=$(Platform);VisualStudioVersion=17.0</Properties>
     </ProjectToBuild>
 </ItemGroup>
 

@@ -309,7 +309,8 @@ namespace Dynamo.Applications
             try
             {
                 // Launch main Dynamo directly when ShowUiKey is true.
-                if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, false))
+                bool bSkipSplashScreen = true; // TODO: remove this
+                if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, false) || bSkipSplashScreen)
                 {
                     extCommandData = commandData;
                     LoadDynamoWithoutSplashScreen();
@@ -615,6 +616,10 @@ namespace Dynamo.Applications
         internal static Version PreloadAsmFromRevit()
         {
             var asmLocation = AppDomain.CurrentDomain.BaseDirectory;
+            // TODO: remove this when above will work
+            if (string.IsNullOrEmpty(asmLocation))
+                asmLocation = Path.GetDirectoryName(Environment.ProcessPath);
+            
             Version libGVersion = findRevitASMVersion(asmLocation);
             var dynCorePath = DynamoRevitApp.DynamoCorePath;
             // Get the corresponding libG preloader location for the target ASM loading version.

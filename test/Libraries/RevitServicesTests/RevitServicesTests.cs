@@ -170,7 +170,7 @@ namespace RevitServicesTests
         [Category("UnitTests")]
         public void TestRoundTripElementSerialisation()
         {
-            IFormatter formatter = new SoapFormatter();
+            SoapFormatter formatter = new SoapFormatter();
 
             // Create an instance of the type and serialize it.
             var elementId = new SerializableId
@@ -218,7 +218,7 @@ namespace RevitServicesTests
         [Category("UnitTests")]
         public void TestRoundTripElementSerialisationForMultipleIDs()
         {
-            IFormatter formatter = new SoapFormatter();
+            SoapFormatter formatter = new SoapFormatter();
 
             // Create an instance of the type and serialize it.
             var elementIDs = new MultipleSerializableId

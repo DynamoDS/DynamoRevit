@@ -16,7 +16,6 @@ using Autodesk.DesignScript.Geometry;
 using Revit.GeometryConversion;
 using System.Windows.Media.Imaging;
 using Point = Autodesk.DesignScript.Geometry.Point;
-using Autodesk.Revit.UI;
 using System.Windows.Media.Media3D;
 using Autodesk.DesignScript.Runtime;
 using System.ComponentModel;

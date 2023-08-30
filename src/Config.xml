@@ -2,7 +2,7 @@
 <AnalyseParams>
 	<Executable><!-- Required.   -->C:\Program Files (x86)\NUnit 2.6.3\bin\nunit-console.exe</Executable>
 	<Arguments> AnalysisTests.dll DataBridgeTests.dll DSCoreNodesTests.dll DynamoServicesTests.dll DynamoPythonTests.dll DynamoMSOfficeTests.dll DynamoCoreTests.dll DynamoUtilitiesTests.dll IntegrationTests.dll   WorkflowTests.dll /noshadow /xml=nunit-result.xml</Arguments>
-	<WorkingDir>..\bin\AnyCPU\Release\</WorkingDir>
+	<WorkingDir>..\bin\$(Platform)\Release\</WorkingDir>
 	<Output>Coverage.html</Output> <!-- Change the value to html-->
 	<ReportType>html</ReportType><!-- Change the value to html -->
 </AnalyseParams>
