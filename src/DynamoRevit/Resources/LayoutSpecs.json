@@ -266,6 +266,12 @@
                   "path": "RevitNodes.Revit.Elements.Topography"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.Toposolid"
+                },
+                {
+                  "path": "RevitNodes.Revit.Elements.ToposolidType"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.Viewport"
                 },
                 {
