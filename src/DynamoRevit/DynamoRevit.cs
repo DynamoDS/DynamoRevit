@@ -549,12 +549,16 @@ namespace Dynamo.Applications
             // Assume Revit Install folder as look for root. Assembly name is compromised.
             var assemblyList = new[]
             {
-                "SDA\\bin\\ICSharpCode.AvalonEdit.dll"
+                //"SDA\\bin\\ICSharpCode.AvalonEdit.dll"
+                "Addins\\DynamoForRevit\\ICSharpCode.AvalonEdit.dll"
             };
 
             foreach (var assembly in assemblyList)
             {
                 var assemblyPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, assembly);
+                // TODO: remove this when the above will work
+                if (!File.Exists(assemblyPath))
+                    assemblyPath = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), assembly);
                 if (File.Exists(assemblyPath))
                     Assembly.LoadFrom(assemblyPath);
             }
