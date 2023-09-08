@@ -38,14 +38,14 @@ jobs:
       - name: Move issue to Dynamo Repository
         if: github.event.label.name == 'Dynamo'
         run: |
-          gh issue edit ${{ github.event.issue.number }} --remove-project ${{ env.project_name }}
+          gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}"
           gh issue transfer ${{ github.event.issue.number }} DynamoDS/Dynamo
         env:
           GITHUB_TOKEN:  ${{ env.gh_token }}
       - name: Move issue to DynamoWishlist Repository
         if: github.event.label.name == 'Wishlist'
         run:  |
-          gh issue edit ${{ github.event.issue.number }} --remove-project ${{ env.project_name }}
+          gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}"
           gh issue transfer ${{ github.event.issue.number }} DynamoDS/DynamoWishlist
         env:
           GITHUB_TOKEN:  ${{ env.gh_token }}
