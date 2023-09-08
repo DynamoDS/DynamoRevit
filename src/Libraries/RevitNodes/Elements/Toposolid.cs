@@ -177,7 +177,15 @@ namespace Revit.Elements
         #endregion
 
         #region Public static constructors
-
+        /// <summary>
+        /// Create a Revit Toposolid given its curve outline, points, type and Level
+        /// </summary>
+        /// <param name="outlineCurves"></param>
+        /// <param name="points"></param>
+        /// <param name="toposolidType"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static Toposolid ByOutlinePointsTypeAndLevel(Curve[] outlineCurves, IEnumerable<Pt> points, ToposolidType toposolidType, Level level)
         {
             if (outlineCurves == null)
@@ -190,6 +198,16 @@ namespace Revit.Elements
             return toposolid;
         }
 
+        /// <summary>
+        /// Create a Revit Toposolid given its curve outline, points, type and Level
+        /// </summary>
+        /// <param name="outline"></param>
+        /// <param name="points"></param>
+        /// <param name="toposolidType"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public static Toposolid ByOutlinePointsTypeAndLevel(PolyCurve outline, IEnumerable<Pt> points, ToposolidType toposolidType, Level level)
         {
             if (outline == null)
@@ -234,6 +252,14 @@ namespace Revit.Elements
             return toposolid;
         }
 
+        /// <summary>
+        /// Create a Revit Toposolid given its curve outline, type and Level
+        /// </summary>
+        /// <param name="outlineCurves"></param>
+        /// <param name="toposolidType"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static Toposolid ByOutlineTypeAndLevel(Curve[] outlineCurves, ToposolidType toposolidType, Level level)
         {
             if (outlineCurves == null)
@@ -246,6 +272,15 @@ namespace Revit.Elements
             return toposolid;
         }
 
+        /// <summary>
+        /// Create a Revit Toposolid given its curve outline, type and Level
+        /// </summary>
+        /// <param name="outline"></param>
+        /// <param name="toposolidType"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public static Toposolid ByOutlineTypeAndLevel(PolyCurve outline,  ToposolidType toposolidType, Level level)
         {
             if (outline == null)
@@ -283,6 +318,14 @@ namespace Revit.Elements
             return toposolid;
         }
 
+        /// <summary>
+        /// Create a Revit Toposolid given its points, type and Level
+        /// </summary>
+        /// <param name="points"></param>
+        /// <param name="toposolidType"></param>
+        /// <param name="level"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static Toposolid ByPointsTypeAndLevel(IEnumerable<Pt> points, ToposolidType toposolidType, Level level)
         {
             if (points == null)
