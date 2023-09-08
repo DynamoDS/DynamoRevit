@@ -26,7 +26,7 @@ env:
   gh_token: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
   gh_organization: DynamoDS
   project_id: 7
-  project_name: DynamoRevitIssues
+  project_name: 'DynamoRevit Issues'
 
 jobs:
   issue_labeled:
