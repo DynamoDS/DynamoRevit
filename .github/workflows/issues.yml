@@ -2,7 +2,7 @@ name: Issues workflow
 # This workflow transfers or moves issues based upon assigned labels.
 
 # DynamoRevitIssues project https://github.com/orgs/DynamoDS/projects/7
-# Built-in workflow https://github.com/orgs/DynamoDS/projects/7/workflows/11382076
+# Built-in workflow https://github.com/orgs/DynamoDS/projects/7/workflows
 
 # The built-in workflow
 #   - adds any new issues to DynamoRevitIssues project
