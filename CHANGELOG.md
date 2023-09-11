@@ -1,3 +1,6 @@
+## 0.5.3
+* Migrade DynamoRevit to .NET 7.0
+
 ## 0.4.14
 * Upgrade DynamoCore version to 2.17.0-beta3141.
 

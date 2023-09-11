@@ -189,11 +189,18 @@ namespace DynamoAddinGenerator
 
             // Grant everyone permissions to delete this addin.
             //http://stackoverflow.com/questions/5298905/add-everyone-privilege-to-folder-using-c-net/5398398#5398398
+#if NETFRAMEWORK
+            var sec = File.GetAccessControl(data.AddinPath);
+            var everyone = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
+            sec.AddAccessRule(new FileSystemAccessRule(everyone, FileSystemRights.FullControl, AccessControlType.Allow));
+            File.SetAccessControl(data.AddinPath, sec);
+#else
             var fi = new FileInfo(data.AddinPath);
             var sec = FileSystemAclExtensions.GetAccessControl(fi);
             var everyone = new SecurityIdentifier(WellKnownSidType.WorldSid, null);
             sec.AddAccessRule(new FileSystemAccessRule(everyone, FileSystemRights.FullControl, AccessControlType.Allow));
             FileSystemAclExtensions.SetAccessControl(fi, sec);
+#endif
         }
     }
 }

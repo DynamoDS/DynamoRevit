@@ -27,10 +27,14 @@
 	<PropertyGroup>
 		<PostBuildEvent />
 	</PropertyGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+	<ItemGroup Condition="!$(Platform.Contains('NET'))">
 		<Reference Include="PresentationCore" />
 		<Reference Include="PresentationFramework" />
+		<Reference Include="System" />
+		<Reference Include="System.Core" />
 		<Reference Include="System.Xaml" />
+		<Reference Include="System.Xml" />
+		<Reference Include="WindowsBase" />
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="DynamoUtilities">

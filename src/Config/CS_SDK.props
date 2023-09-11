@@ -44,6 +44,11 @@
 		<DefineConstants>TRACE</DefineConstants>
 	</PropertyGroup>
 	<PropertyGroup Condition="$(Platform.Contains('NET'))">
-		<DefineConstants>NET</DefineConstants>
+		<DefineConstants>$(DefineConstants);NET</DefineConstants>
+		<IsNETFramework>false</IsNETFramework>
+	</PropertyGroup>
+	<PropertyGroup Condition="!$(Platform.Contains('NET'))">
+		<IsNETFramework>true</IsNETFramework>
+		<DefineConstants>$(DefineConstants);NETFRAMEWORK</DefineConstants>
 	</PropertyGroup>
 </Project>
