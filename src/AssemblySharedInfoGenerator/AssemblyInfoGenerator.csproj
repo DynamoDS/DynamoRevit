@@ -3,6 +3,7 @@
     <Import Project="$(SolutionDir)Config\CS_SDK.props" />
   </ImportGroup>
   <PropertyGroup>
+	  <OutputType>Library</OutputType>
     <TransformOnBuild>true</TransformOnBuild>
     <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
     <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
@@ -10,13 +11,10 @@
     <PreBuildEvent>"$(SolutionDir)transform_all.bat" "$(ProjectDir)"</PreBuildEvent>
 	<DebugSymbols>false</DebugSymbols>
     <DebugType>None</DebugType>
+    <AssemblyTitle>AssemblyInfoGenerator</AssemblyTitle>
   </PropertyGroup>
   <PropertyGroup>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PreBuildEvent>"$(SolutionDir)transform_all.bat" "$(ProjectDir)"</PreBuildEvent>
-    <AssemblyTitle>AssemblyInfoGenerator</AssemblyTitle>
   </PropertyGroup>
   <Target Name="BeforeBuildMigrated" BeforeTargets="PreBuildEvent">
     <Exec Command="&quot;$(SolutionDir)restorepackages.bat&quot;" ContinueOnError="true" />
@@ -24,17 +22,23 @@
   <ItemGroup>
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Update="AssemblySharedInfo.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AssemblySharedInfo.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="AssemblySharedInfo.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AssemblySharedInfo.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+	    <None Update="AssemblySharedInfo.tt">
+		    <Generator>TextTemplatingFileGenerator</Generator>
+		    <LastGenOutput>AssemblySharedInfo.cs</LastGenOutput>
+	    </None>
+    </ItemGroup>
+    <ItemGroup>
+	    <Compile Update="AssemblySharedInfo.cs">
+		    <DesignTime>True</DesignTime>
+		    <AutoGen>True</AutoGen>
+		    <DependentUpon>AssemblySharedInfo.tt</DependentUpon>
+	    </Compile>
+    </ItemGroup>
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+  <Import Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets')" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets" />
+  <Target Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets')" Name="T4TemplateGen" BeforeTargets="Build">
+    <CallTarget Targets="TransformAll" />
+    <Message Importance="high" Text="Running Template Generator for AssemblyInfoProperties" />
+  </Target>
 </Project>
