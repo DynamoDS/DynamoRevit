@@ -102,11 +102,6 @@
 			<HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="System.Runtime.Serialization.Formatters.Soap">
-			<!-- TODO: update or remove this after Revit solution -->
-			<HintPath>$(REVITAPI)\System.Runtime.Serialization.Formatters.Soap.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="Properties\AssemblySharedInfo.cs" />

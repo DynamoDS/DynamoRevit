@@ -59,11 +59,12 @@ limitations under the License.
 			<Private>False</Private>
 			<SpecificVersion>False</SpecificVersion>
 		</Reference>
-		<Reference Include="System.Runtime.Serialization.Formatters.Soap">
-			<!-- TODO: update or remove this after Revit solution -->
-			<HintPath>$(REVITAPI)\System.Runtime.Serialization.Formatters.Soap.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
+	</ItemGroup>
+	<ItemGroup Condition="$(Platform.Contains('NET'))">
+		<PackageReference Include="SoapFormatter" Version="1.0.11" />
+	</ItemGroup>
+	<ItemGroup Condition="!$(Platform.Contains('NET'))">
+		<Reference Include="System.Runtime.Serialization.Formatters.Soap" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="AssemblySharedInfo.cs" />
