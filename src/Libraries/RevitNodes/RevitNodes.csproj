@@ -117,6 +117,8 @@
     <Compile Include="Elements\Revision.cs" />
     <Compile Include="Elements\RevisionCloud.cs" />
     <Compile Include="Elements\ScheduleOnSheet.cs" />
+    <Compile Include="Elements\Toposolid.cs" />
+    <Compile Include="Elements\ToposolidType.cs" />
     <Compile Include="Elements\Viewport.cs" />
     <Compile Include="Elements\Space.cs" />
     <Compile Include="Elements\Views\AreaPlanView.cs" />
