@@ -41,7 +41,7 @@ namespace Revit.Elements
         {
             if (name == null)
             {
-                throw new ArgumentNullException("name");
+                throw new ArgumentNullException(nameof(name));
             }
 
             var type = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.ToposolidType>()

@@ -190,7 +190,7 @@ namespace Revit.Elements
         {
             if (outlineCurves == null)
             {
-                throw new ArgumentNullException("outlineCurves");
+                throw new ArgumentNullException(nameof(outlineCurves));
             }
 
             var toposolid = ByOutlinePointsTypeAndLevel(PolyCurve.ByJoinedCurves(outlineCurves, 0.001, false), points, toposolidType, level);
@@ -212,22 +212,22 @@ namespace Revit.Elements
         {
             if (outline == null)
             {
-                throw new ArgumentNullException("outline");
+                throw new ArgumentNullException(nameof(outline));
             }
 
             if (points == null)
             {
-                throw new ArgumentNullException("points");
+                throw new ArgumentNullException(nameof(points));
             }
 
             if (toposolidType == null)
             {
-                throw new ArgumentNullException("toposolidType");
+                throw new ArgumentNullException(nameof(toposolidType));
             }
 
             if (level == null)
             {
-                throw new ArgumentNullException("level");
+                throw new ArgumentNullException(nameof(level));
             }
 
             if (!outline.IsClosed)
@@ -264,7 +264,7 @@ namespace Revit.Elements
         {
             if (outlineCurves == null)
             {
-                throw new ArgumentNullException("outlineCurves");
+                throw new ArgumentNullException(nameof(outlineCurves));
             }
 
             var toposolid = ByOutlineTypeAndLevel(PolyCurve.ByJoinedCurves(outlineCurves, 0.001, false), toposolidType, level);
@@ -285,17 +285,17 @@ namespace Revit.Elements
         {
             if (outline == null)
             {
-                throw new ArgumentNullException("outline");
+                throw new ArgumentNullException(nameof(outline));
             }
 
             if (toposolidType == null)
             {
-                throw new ArgumentNullException("toposolidType");
+                throw new ArgumentNullException(nameof(toposolidType));
             }
 
             if (level == null)
             {
-                throw new ArgumentNullException("level");
+                throw new ArgumentNullException(nameof(level));
             }
 
             if (!outline.IsClosed)
@@ -330,17 +330,17 @@ namespace Revit.Elements
         {
             if (points == null)
             {
-                throw new ArgumentNullException("points");
+                throw new ArgumentNullException(nameof(points));
             }
 
             if (toposolidType == null)
             {
-                throw new ArgumentNullException("toposolidType");
+                throw new ArgumentNullException(nameof(toposolidType));
             }
 
             if (level == null)
             {
-                throw new ArgumentNullException("level");
+                throw new ArgumentNullException(nameof(level));
             }
 
             List<XYZ> xyzList = points.Select(x => x.ToRevitType()).ToList();
