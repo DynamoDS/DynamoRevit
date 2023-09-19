@@ -1393,6 +1393,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no ToposolidType of the given name in the current Document..
+        /// </summary>
+        internal static string ToposolidTypeNotFound {
+            get {
+                return ResourceManager.GetString("ToposolidTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type not found in document..
         /// </summary>
         internal static string TypeNotFound {
