@@ -582,4 +582,7 @@
   <data name="AppearanceAssetElementPropertyPathNoConnect" xml:space="preserve">
     <value>Input value for imageProperty {0} is invalid. There is no texture connected to {1} in {2}.</value>
   </data>
+  <data name="ToposolidTypeNotFound" xml:space="preserve">
+    <value>There is no ToposolidType of the given name in the current Document.</value>
+  </data>
 </root>

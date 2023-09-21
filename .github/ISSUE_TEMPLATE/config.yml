@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Dynamo Issues
+    url: https://github.com/DynamoDS/Dynamo/issues/new/choose
+    about: File an issue with Dynamo
+  - name: Dynamo Wishlist
+    url: https://github.com/DynamoDS/DynamoWishlist/issues/new/choose
+    about: File an improvement request
+  - name: Dynamo Forum
+    url: https://forum.dynamobim.com
+    about: Discussions? Questions? Ideas? Something to share?
