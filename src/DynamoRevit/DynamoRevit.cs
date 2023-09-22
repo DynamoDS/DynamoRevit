@@ -607,8 +607,7 @@ namespace Dynamo.Applications
                 AuthProvider = new RevitOAuth2Provider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
                 ExternalCommandData = commandData,
                 UpdateManager = revitUpdateManager,
-                ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous,
-                Preferences = PreferenceSettings.Instance
+                ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
             });
         }
 
