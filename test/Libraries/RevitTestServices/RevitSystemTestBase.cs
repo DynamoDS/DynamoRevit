@@ -276,8 +276,7 @@ namespace RevitTestServices
                         SchedulerThread = new TestSchedulerThread(),
                         PackageManagerAddress = "https://www.dynamopackages.com",
                         ExternalCommandData = commandData,
-                        ProcessMode = RevitTaskProcessMode,
-                        Preferences = PreferenceSettings.Instance
+                        ProcessMode = RevitTaskProcessMode
                     });
 
                 Model = DynamoRevit.RevitDynamoModel;
