@@ -1,3 +1,6 @@
+## 0.4.22
+* Update DynamoCore version to 2.19.2.6325
+
 ## 0.4.21
 * Bump "version" to rebuild and republish
 * Upgrade DynamoCore version to 2.19.0.6156
