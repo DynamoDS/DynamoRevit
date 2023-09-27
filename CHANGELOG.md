@@ -1,3 +1,6 @@
+## 0.5.7
+* disable splashcreen due to System.Windows.Application.Current not being null not being null
+
 ## 0.5.6
 * enable splashcreen
 * update NUnit to 3.13.3
