@@ -1,3 +1,6 @@
+## 0.5.5
+* Fix some .net7 build issues
+
 ## 0.5.3
 * Migrade DynamoRevit to .NET 7.0
 
