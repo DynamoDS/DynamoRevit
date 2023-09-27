@@ -9,7 +9,6 @@
 	  <Prefer32Bit>false</Prefer32Bit>
 	  <ErrorReport>prompt</ErrorReport>
 	  <WarningLevel>4</WarningLevel>
-	  <OutputPath>$(OutputPath)\..</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
 	  <DebugSymbols>true</DebugSymbols>
