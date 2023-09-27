@@ -43,8 +43,11 @@
 		<PostBuildEvent>if exist $(ProjectDir)PostBuildStep.bat call $(ProjectDir)PostBuildStep.bat $(SolutionDir)</PostBuildEvent>
 		<PlatformTarget>x64</PlatformTarget>
 	</PropertyGroup>
-	<Target Name="AfterBuildMigrated">
-		<WriteLinesToFile File="$(OutputPath)/../Dynamo.config" Lines="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;configuration&gt;&#xD;&#xA;  &lt;appSettings&gt;&#xD;&#xA;     &lt;add key=&quot;DynamoRuntime&quot; value=&quot;$(DYNAMOAPI)&quot;/&gt;&#xD;&#xA;  &lt;/appSettings&gt;&#xD;&#xA;&lt;/configuration&gt;&#xD;&#xA;" Overwrite="true" />
+	<Target Name="AfterBuildMigrated" AfterTargets="PostBuildEvent">
+		<WriteLinesToFile Condition="!Exists('$(OutputPath)/../Dynamo.config')"
+						  File="$(OutputPath)/../Dynamo.config"
+						  Lines="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;configuration&gt;&#xD;&#xA;  &lt;appSettings&gt;&#xD;&#xA;     &lt;add key=&quot;DynamoRuntime&quot; value=&quot;$(DYNAMOAPI)&quot;/&gt;&#xD;&#xA;  &lt;/appSettings&gt;&#xD;&#xA;&lt;/configuration&gt;&#xD;&#xA;"
+						  Overwrite="true" />
 	</Target>
 	<ItemGroup>
 		<Reference Include="DynamoApplications">
