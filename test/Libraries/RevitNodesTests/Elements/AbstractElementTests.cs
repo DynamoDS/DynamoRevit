@@ -11,7 +11,7 @@ namespace RevitNodesTests.Elements
     [TestFixture]
     public class AbstractElementTests : RevitNodeTestBase
     {
-        [Test, Ignore, Category("Failure")]
+        [Test, Ignore("Not finished"), Category("Failure")]
         [TestModel(@".\empty.rfa")]
         public void GetParameterByName_ValidArgs()
         {
@@ -52,7 +52,7 @@ namespace RevitNodesTests.Elements
                 (() => refPt.SetParameterByName("Name", -1.0));
         }
 
-        [Test, Ignore, Category("Failure")]
+        [Test, Ignore("Not finished"), Category("Failure")]
         [TestModel(@".\empty.rfa")]
         public void OverrideColorInView_ValidArgs()
         {

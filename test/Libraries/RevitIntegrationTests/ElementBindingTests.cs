@@ -307,7 +307,7 @@ namespace RevitSystemTests
         }
 
         // TODO: Re-enable the test when open workspace in JSON is enabled.
-        [Test, Ignore]
+        [Test, Ignore("Was disabled 6 years ago, TODO - check if it should be re-enabled")]
         [TestModel(@".\empty.rfa")]
         public void CreateInDynamoSaveCloseGraphReopenGraphRerun()
         {
@@ -388,7 +388,7 @@ namespace RevitSystemTests
             Assert.IsTrue(!id1.Equals(id2));
         }
 
-        [Test, Ignore]
+        [Test, Ignore("Not finished")]
         [TestModel(@".\empty.rfa")]
         public void CreateInDynamoUndoInRevit()
         {
@@ -406,7 +406,7 @@ namespace RevitSystemTests
             Assert.Inconclusive("TO DO");
         }
 
-        [Test, Ignore]
+        [Test, Ignore("Not finished")]
         [TestModel(@".\ElementBinding\BindingCloseReopen.rvt")]
         public void SelectElementCloseReopenDocument()
         {
@@ -441,14 +441,14 @@ namespace RevitSystemTests
             Assert.AreEqual(true, GetPreviewValue("6e4abc3b-83fd-44fe-821b-447f1ec0a56c"));
         }
 
-        [Test, Ignore]
+        [Test, Ignore("Not finished")]
         [TestModel(@".\ElementBinding\BindingCloseReopen.rvt")]
         public void SelectElementFromFamilyDocumentSwitchToProjectDocument()
         {            
             Assert.Inconclusive("TO DO");
         }
 
-        [Test, Ignore]
+        [Test, Ignore("Not finished")]
         [TestModel(@".\empty.rfa")]
         public void CreateInRevitSelectInDynamoUndoInRevit()
         {
@@ -572,7 +572,7 @@ namespace RevitSystemTests
             Assert.AreEqual(6, points.Count);
         }
 
-        [Test, Ignore]
+        [Test, Ignore("Not finished")]
         [TestModel(@".\empty.rfa")]
         public void CreateDifferentNumberOfElementsInDynamoWithDifferentLacingStrategies()
         {

@@ -12,7 +12,7 @@ namespace RevitSystemTests
     [TestFixture]
     public class RenderingAsAServiceTests : RevitSystemTestBase
     {
-        [Test, Ignore]
+        [Test, Ignore("DynamoRaaS was removed from DynamoRevit")]
         [TestModel(@".\empty.rfa")]
         public void CanOpenDaylightingMinimalSample()
         {
@@ -27,7 +27,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
         }
 
-        [Test, Ignore]
+        [Test, Ignore("DynamoRaaS was removed from DynamoRevit")]
         [TestModel(@".\empty.rfa")]
         public void CanOpenSimpleCloudRender()
         {
@@ -38,7 +38,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
         }
 
-        [Test, Ignore]
+        [Test, Ignore("DynamoRaaS was removed from DynamoRevit")]
         [TestModel(@".\empty.rfa")]
         public void CanOpenDaylightingExtractingData()
         {
@@ -52,7 +52,7 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
         }
 
-        [Test, Ignore]
+        [Test, Ignore("DynamoRaaS was removed from DynamoRevit")]
         [TestModel(@".\empty.rfa")]
         public void CanOpenDaylightingandAnalysisDisplay()
         {

@@ -51,7 +51,7 @@ namespace RevitSystemTests
        }
 
         //this test runs in automatic to attempt to reproduce the defect in MAGN 8187
-        [Test,Ignore]
+        [Test,Ignore("Because it throws exceptions during nodeModified")]
         [TestModel(@".\Level\Level.rvt")]
         public void SetAllLevelsToSameName()
         {

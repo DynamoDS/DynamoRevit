@@ -617,7 +617,7 @@ namespace RevitSystemTests
             Assert.IsTrue(File.Exists(excelFilePath));
         }
 
-        [Ignore]
+        [Ignore("Not finished")]
         [TestModel(@".\empty.rfa")]
         public void Rendering_hill_climbing_simple()
         {

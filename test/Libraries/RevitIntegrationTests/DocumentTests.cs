@@ -63,14 +63,14 @@ namespace RevitSystemTests
             SwapCurrentModel(emptyModelPath);
         }
 
-        [Test, Ignore]
+        [Test, Ignore("Not finished")]
         [TestModel(@"./empty.rfa")]
         public void AttachesToNewDocumentWhenAllDocsWereClosed()
         {
             Assert.Inconclusive("Cannot test. API required for allowing closing all docs.");
         }
 
-        [Test, Ignore]
+        [Test, Ignore("Not finished")]
         [TestModel(@"./empty.rfa")]
         public void WhenActiveDocumentResetIsRequiredVisualizationsAreCleared()
         {

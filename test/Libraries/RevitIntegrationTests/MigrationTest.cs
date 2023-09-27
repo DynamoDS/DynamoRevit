@@ -43,7 +43,7 @@ namespace RevitSystemTests
             }
         }
 
-        [Test, Ignore]
+        [Test, Ignore("DynamoRaaS was removed from DynamoRevit")]
         [TestModel(@".\empty.rfa")]
         public void TestMigration_Analyze_Daylighting()
         {

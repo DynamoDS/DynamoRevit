@@ -135,37 +135,37 @@ namespace RevitNodesTests.Elements
             Assert.NotNull(roof);
         }
 
-        [Test, Ignore]
+        [Test, Ignore("Not finished - need to investigate why")]
         public void ReferencePointByElementId_ValidArgs()
         {
             Assert.Inconclusive();
         }
 
-        [Test, Ignore]
+        [Test, Ignore("Not finished")]
         public void ReferencePointByUniqueId_ValidArgs()
         {
             Assert.Inconclusive();
         }
 
-        [Test, Ignore, Category("Failure")]
+        [Test, Ignore("Not finished"), Category("Failure")]
         public void FamilyInstanceByElementId_ValidArgs()
         {
             Assert.Inconclusive();
         }
 
-        [Test, Ignore, Category("Failure")]
+        [Test, Ignore("Not finished"), Category("Failure")]
         public void FamilyInstanceByUniqueId_ValidArgs()
         {
             Assert.Inconclusive();
         }
 
-        [Test, Ignore, Category("Failure")]
+        [Test, Ignore("Not finished"), Category("Failure")]
         public void DividedPathByElementId_ValidArgs()
         {
             Assert.Inconclusive();
         }
 
-        [Test, Ignore, Category("Failure")]
+        [Test, Ignore("Not finished"), Category("Failure")]
         public void DividedSurfaceByUniqueId_ValidArgs()
         {
             Assert.Inconclusive();

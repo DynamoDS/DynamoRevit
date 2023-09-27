@@ -57,7 +57,7 @@
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="nunit.framework">
-			<HintPath>$(PACKAGESPATH)\NUnit\lib\nunit.framework.dll</HintPath>
+			<HintPath>$(PACKAGESPATH)\NUnit\lib\netstandard2.0\nunit.framework.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="ProtoGeometry">

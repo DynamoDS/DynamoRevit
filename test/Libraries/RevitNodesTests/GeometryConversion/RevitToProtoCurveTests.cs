@@ -282,7 +282,7 @@ namespace RevitNodesTests.GeometryConversion
             //}
         }
 
-        [Test, Ignore, Category("Failure")]
+        [Test, Ignore("Not finished - need to investigate why"), Category("Failure")]
         [TestModel(@".\empty.rfa")]
         public void CylindricalHelix_Basic()
         {

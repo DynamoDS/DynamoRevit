@@ -38,8 +38,10 @@ namespace RevitSystemTests
                 //if a dyn file is found in the regression tests directory
                 //and there is no corresponding rfa or rvt, then an empty string
                 //or a null will be passed into here.
-                Assert.IsNotNullOrEmpty(dynamoFilePath, "Dynamo file path is invalid or missing.");
-                Assert.IsNotNullOrEmpty(revitFilePath, "Revit file path is invalid or missing.");
+                Assert.IsNotNull(dynamoFilePath, "Dynamo file path is invalid or missing.");
+                Assert.IsEmpty(dynamoFilePath, "Dynamo file path is invalid or missing.");
+                Assert.IsNotNull(revitFilePath, "Revit file path is invalid or missing.");
+                Assert.IsEmpty(revitFilePath, "Revit file path is invalid or missing.");
 
                 //open the revit model
                 SwapCurrentModel(revitFilePath);
