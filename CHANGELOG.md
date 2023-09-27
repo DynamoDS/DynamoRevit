@@ -1,3 +1,7 @@
+## 0.5.6
+* enable splashcreen
+* update NUnit to 3.13.3
+
 ## 0.5.5
 * Fix some .net7 build issues
 
