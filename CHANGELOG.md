@@ -1,3 +1,6 @@
+## 0.5.8
+* Upgrade DynamoCore version to 2.19.3.6394 to fix large launch times when there are many packages
+
 ## 0.5.2
 * Fix runtime error due to old, invalid bindings
 * Update DynamoCore vertion to 2.19.0.6156
