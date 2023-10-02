@@ -1,3 +1,6 @@
+## 0.4.23
+* Upgrade DynamoCore version to 2.19.3.6394 to fix large launch times when there are many packages
+
 ## 0.4.22
 * Update DynamoCore version to 2.19.2.6325
 
