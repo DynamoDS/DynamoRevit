@@ -18,7 +18,7 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <OldToolsVersion>3.5</OldToolsVersion>
+    <OldToolsVersion>4.0</OldToolsVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup>
@@ -34,6 +34,7 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <NoWarn>618</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -44,6 +45,7 @@
     <DebugSymbols>true</DebugSymbols>
     <NoWarn>618</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -64,10 +66,6 @@
     <Reference Include="GregRevitAuth">
       <HintPath>$(PACKAGESPATH)\GregRevitAuth\lib\net48\GregRevitAuth.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Ionic.Zip">
-      <HintPath>$(PACKAGESPATH)\Unofficial.Ionic.Zip\lib\Ionic.Zip.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Dynamic">
@@ -187,7 +185,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Ionic.Zip.xml" />
     <EmbeddedResource Include="Resources\Category.Revit.svg" />
     <EmbeddedResource Include="Resources\LayoutSpecs.json" />
     <Content Include="Resources\logo_square_32x32.png" />
@@ -217,6 +214,6 @@
   </Target>
   -->
   <Target Name="AfterBuild">
-    <WriteLinesToFile File="$(OutputPath)/../Dynamo.config" Lines="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;configuration&gt;&#xD;&#xA;  &lt;appSettings&gt;&#xD;&#xA;     &lt;add key=&quot;DynamoRuntime&quot; value=&quot;$(DYNAMOAPI)&quot;/&gt;&#xD;&#xA;  &lt;/appSettings&gt;&#xD;&#xA;&lt;/configuration&gt;&#xD;&#xA;" Overwrite="true" />
+    <WriteLinesToFile Condition="!Exists('$(OutputPath)/../Dynamo.config')" File="$(OutputPath)/../Dynamo.config" Lines="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;configuration&gt;&#xD;&#xA;  &lt;appSettings&gt;&#xD;&#xA;     &lt;add key=&quot;DynamoRuntime&quot; value=&quot;$(DYNAMOAPI)&quot;/&gt;&#xD;&#xA;  &lt;/appSettings&gt;&#xD;&#xA;&lt;/configuration&gt;&#xD;&#xA;" Overwrite="false" />
   </Target>
 </Project>

@@ -244,6 +244,16 @@ namespace Revit.Elements
             return Topography.FromExisting(topoSurface, isRevitOwned);
         }
 
+        public static Toposolid Wrap(Autodesk.Revit.DB.Toposolid toposolid, bool isRevitOwned)
+        {
+            return Toposolid.FromExisting(toposolid, isRevitOwned);
+        }
+
+        public static ToposolidType Wrap(Autodesk.Revit.DB.ToposolidType toposolidType, bool isRevitOwned)
+        {
+            return ToposolidType.FromExisting(toposolidType, isRevitOwned);
+        }
+
         public static object Wrap(Autodesk.Revit.DB.Panel ele, bool isRevitOwned)
         {
             if (AdaptiveComponentInstanceUtils.IsAdaptiveFamilySymbol(ele.Symbol))
