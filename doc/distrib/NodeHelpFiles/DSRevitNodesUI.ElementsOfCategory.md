@@ -1,5 +1,7 @@
 ## In Depth
-Use in conjuction with either the categories dropdown selection node or Category.ByName node to collect all instances of a given category in the current document (file).
+`All Elements of Category` returns all instances of an element of a given category in the current document (file). This node is for use in conjuction with either the `Categories` dropdown selection node or `Category.ByName` node.
+
+In the example below, all wall instances in the current document are being returned.
 ___
 ## Example File
 
