@@ -54,9 +54,46 @@
       ],
       "Replication": "Disabled",
       "Description": "Returns all rooms in the document grouped by status"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1262c93d0c7d47ecbc93b04d8ce3f4da",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "1348371b65f845c98803beca9f8b7ff4",
+          "Name": "room",
+          "Description": "Revit.Elements.Room",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1e3409cc92c94238b27f85691731e0b5",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Room.Area",
+      "Replication": "Auto",
+      "Description": "Get room area\n\nRoom.Area: double"
     }
   ],
-  "Connectors": [],
+  "Connectors": [
+    {
+      "Start": "8a515a05eaa94987b87f8ca9e70fc37d",
+      "End": "1348371b65f845c98803beca9f8b7ff4",
+      "Id": "c37bc2f8c5544aa3b98d46b0e2cad5f5",
+      "IsHidden": "False"
+    }
+  ],
   "Dependencies": [],
   "NodeLibraryDependencies": [],
   "Thumbnail": "",
@@ -113,8 +150,18 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 645.6,
-        "Y": 180.79999999999995
+        "X": 376.8,
+        "Y": 180.8
+      },
+      {
+        "Id": "1262c93d0c7d47ecbc93b04d8ce3f4da",
+        "Name": "Room.Area",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 747.2,
+        "Y": 180.8
       }
     ],
     "Annotations": [],
