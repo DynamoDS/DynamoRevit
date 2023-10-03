@@ -1,8 +1,7 @@
 ## In Depth
-Use in conjuction with a category selection node* and a view input node** to collect all instances of elements of a given category in the current document (file).
+`All Elements of Category in View` returns all instances of elements of a given category in the given view. This node is for use in conjuction with either the `Categories` dropdown selection node or `Category.ByName` node.
 
-* You can use the categories drop-down or a Category.ByName node.
-** Obtain a view through a dropdown or an active view node.
+In the example below, all wall instances in the "L1" view are being returned.
 ___
 ## Example File
 
