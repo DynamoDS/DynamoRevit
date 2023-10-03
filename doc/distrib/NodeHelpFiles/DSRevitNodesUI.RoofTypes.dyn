@@ -29,9 +29,82 @@
       ],
       "Replication": "Disabled",
       "Description": "All roof types in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "4a8feaf708e94f859c030b7c6cfc3618",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "db28d010d595464fb07a1e5076d1b379",
+          "Name": "roofType",
+          "Description": "Revit.Elements.RoofType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4f231d673cc44952a6fd0da6acca1486",
+          "Name": "Absorptance",
+          "Description": "Value of absorptance.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cc1229db2097439ca00654986a4c1050",
+          "Name": "HeatTransferCoefficient",
+          "Description": "The heat transfer coefficient value (U-Value).",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "14405f43614940e18256087a65ed4650",
+          "Name": "Roughness",
+          "Description": "Value of roughness.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c725c152cc784094bdcb771c2b1a9023",
+          "Name": "ThermalMass",
+          "Description": "The calculated thermal mass value.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "28fa5865f8c244a5959d6f35d4a17f15",
+          "Name": "ThermalResistance",
+          "Description": "The calculated thermal resistance value (R-Value).",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.RoofType.GetThermalProperties",
+      "Replication": "Auto",
+      "Description": "The calculated and settable thermal properties of the RoofType.\n\nRoofType.GetThermalProperties ( ): var[]..[]"
     }
   ],
-  "Connectors": [],
+  "Connectors": [
+    {
+      "Start": "d9a1b1f87dd54061a3d7b666610cb766",
+      "End": "db28d010d595464fb07a1e5076d1b379",
+      "Id": "07506a5fe13d4422b5616b638a47c891",
+      "IsHidden": "False"
+    }
+  ],
   "Dependencies": [],
   "NodeLibraryDependencies": [],
   "Thumbnail": "",
@@ -88,13 +161,23 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 359.31558324819383,
-        "Y": 339.08010430472837
+        "X": 359.315583248194,
+        "Y": 339.080104304728
+      },
+      {
+        "Id": "4a8feaf708e94f859c030b7c6cfc3618",
+        "Name": "RoofType.GetThermalProperties",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 955.809355144843,
+        "Y": 339.080104304728
       }
     ],
     "Annotations": [],
-    "X": -126.4713103515578,
-    "Y": -79.588178026557216,
-    "Zoom": 1.130842140625
+    "X": -235.73385397130113,
+    "Y": -6.354220532510908,
+    "Zoom": 0.9540429248828125
   }
 }
