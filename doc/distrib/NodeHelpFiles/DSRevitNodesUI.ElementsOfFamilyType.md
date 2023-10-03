@@ -1,5 +1,7 @@
 ## In Depth
-Use with the Family Types dropdown to collect all instances of a given family type in the current document (file). Family types are loadable families from .rfa files.
+`All Elements of Family Type` collects all instances of a given family type in the current document (file). For reference, family types are loadable pieces of contents from a ".rfa" file type.
+
+In the example below, all family instances of the selected Family Type are being returned.
 ___
 ## Example File
 
