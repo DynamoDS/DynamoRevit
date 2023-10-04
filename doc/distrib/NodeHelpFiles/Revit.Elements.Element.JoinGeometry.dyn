@@ -1,0 +1,256 @@
+{
+  "Uuid": "890bd437-c67f-496a-bc91-6113ab6b256c",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Element.JoinGeometry",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9c9c1a334db7434fb16316664762de59",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "1344dde4296644cf95c256e204381a6a",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f5c12514b7da4ddd910d8892ac685c8d",
+          "Name": "otherElement",
+          "Description": "Other element to join with\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2e56782a8e3e4568952673d76f9e292b",
+          "Name": "Element[]",
+          "Description": "The two joined elements",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.JoinGeometry@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "Joins the geometry of two elements, if they are intersecting.\n\nElement.JoinGeometry (otherElement: Element): Element[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "27d2b172-766f-4491-9fe9-c474a2c9f8e0-0014cf49"
+      ],
+      "Id": "a959c85735584dd4bc92eb4978a3030d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "da73964d472943b0ba5ca4078fa4ed1b",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "61a32cf2-3b05-44a5-a32b-59b97361a46a-0017c61c"
+      ],
+      "Id": "14ab776814db482d948d5faaffc4d39a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "40265268962b4205a97984e82a280ffa",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "fb8d0d153a3542389f336aba1bd02405",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a978eebc2ff647ba818d7bec96019c22",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cddb286f71484276b470f85871f143e1",
+          "Name": "otherElement",
+          "Description": "Second element to check\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1978bbe4cdcb45d2a5673332b4bf24fb",
+          "Name": "bool",
+          "Description": "True if the two elements are joined, False otherwise",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.AreJoined@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "Checks if two elements are joined\n\nElement.AreJoined (otherElement: Element): bool"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "da73964d472943b0ba5ca4078fa4ed1b",
+      "End": "1344dde4296644cf95c256e204381a6a",
+      "Id": "7d1758f0dc684947970f293fffd9cb9e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "da73964d472943b0ba5ca4078fa4ed1b",
+      "End": "a978eebc2ff647ba818d7bec96019c22",
+      "Id": "73c122195f70457fa91941785bf48aae",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "40265268962b4205a97984e82a280ffa",
+      "End": "f5c12514b7da4ddd910d8892ac685c8d",
+      "Id": "25692981566c4a05bbdaf84e013acf71",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "40265268962b4205a97984e82a280ffa",
+      "End": "cddb286f71484276b470f85871f143e1",
+      "Id": "19074a2125ba4b93b9d231ea0990f5ce",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "9c9c1a334db7434fb16316664762de59",
+        "Name": "Element.JoinGeometry",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1398.2815869424,
+        "Y": 443.903276796424
+      },
+      {
+        "Id": "a959c85735584dd4bc92eb4978a3030d",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 972.110254770267,
+        "Y": 224.379339583261
+      },
+      {
+        "Id": "14ab776814db482d948d5faaffc4d39a",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 972.110254770267,
+        "Y": 443.903276796424
+      },
+      {
+        "Id": "fb8d0d153a3542389f336aba1bd02405",
+        "Name": "Element.AreJoined",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1398.2815869424,
+        "Y": 224.379339583261
+      }
+    ],
+    "Annotations": [],
+    "X": -287.26628003109386,
+    "Y": -40.491551103623578,
+    "Zoom": 0.69134779386718748
+  }
+}
