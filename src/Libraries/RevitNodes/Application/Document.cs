@@ -330,14 +330,14 @@ namespace Revit.Application
         /// </summary>
         /// <param name="document">Document</param>
         /// <returns name="linkInstances[]">List of link instances in the document</returns>
-        public List<Elements.Element> GetLinkInstances()
+        public List<Revit.Elements.RevitLinkInstance> GetLinkInstances()
         {
             var links = new FilteredElementCollector(this.InternalDocument)
                 .OfCategory(BuiltInCategory.OST_RvtLinks)
                 .WhereElementIsNotElementType()
-                .Select(el => el.ToDSType(true))
+                .Cast<Autodesk.Revit.DB.RevitLinkInstance>()
+                .Select(el => new Revit.Elements.RevitLinkInstance(el))
                 .ToList();
-
             return links;
         }
     }
