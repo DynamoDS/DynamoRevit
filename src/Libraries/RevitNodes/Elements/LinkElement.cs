@@ -19,7 +19,7 @@ namespace Revit.Elements
     {
 
         #region Helpers
-        private static List<RevitLinkInstance> GetLinkInstancesContainingLinkElement(Element linkElement)
+        internal static List<Autodesk.Revit.DB.RevitLinkInstance> GetLinkInstancesContainingLinkElement(Element linkElement)
         {
             Autodesk.Revit.DB.Element revitElement = linkElement.InternalElement;
             // get the document of the linked element
@@ -29,12 +29,12 @@ namespace Revit.Elements
                 .OfCategory(BuiltInCategory.OST_RvtLinks)
                 .WhereElementIsNotElementType()
                 .ToElements()
-                .Cast<RevitLinkInstance>()
+                .Cast<Autodesk.Revit.DB.RevitLinkInstance>()
                 .ToList();
 
             // list to store all instances that match the linked element's document
-            List<RevitLinkInstance> matchingLinkInstances = new List<RevitLinkInstance>();
-            foreach (RevitLinkInstance linkInstance in allLinkInstances)
+            List<Autodesk.Revit.DB.RevitLinkInstance> matchingLinkInstances = new List<Autodesk.Revit.DB.RevitLinkInstance>();
+            foreach (Autodesk.Revit.DB.RevitLinkInstance linkInstance in allLinkInstances)
             {
                 Document linkDoc = linkInstance.GetLinkDocument();
                 if (linkDoc.Equals(linkDocToMatch))
@@ -310,7 +310,7 @@ namespace Revit.Elements
         {
             var revitLinkInstances = GetLinkInstancesContainingLinkElement(linkedElement);
 
-            foreach (RevitLinkInstance revitLinkInstance in revitLinkInstances)
+            foreach (Autodesk.Revit.DB.RevitLinkInstance revitLinkInstance in revitLinkInstances)
             {
                 Transform inverseTransform = revitLinkInstance.GetTotalTransform().Inverse;
                 CoordinateSystem cs = inverseTransform.ToCoordinateSystem();

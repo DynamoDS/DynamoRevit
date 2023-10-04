@@ -1,0 +1,209 @@
+{
+  "Uuid": "97be3b35-0720-4540-98c4-811dbbc63c3e",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "DSRevitNodesUI.FamilyInstanceParameters",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.FamilyInstanceParameters, DSRevitNodesUI",
+      "SelectedIndex": 36,
+      "SelectedString": "Type Mark(Type)(string)",
+      "Id": "8413786170d6462ba09491292f87e957",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "283cc5c2c67944e5a839bff0b2887081",
+          "Name": "f",
+          "Description": "Family Type or Instance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ac767d051f634b1a9a18634e99e9294b",
+          "Name": "Parameter",
+          "Description": "The selected Parameter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Given a Family Instance or Type allows the user to select a parameter as a string."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.FamilyTypes, DSRevitNodesUI",
+      "SelectedIndex": 158,
+      "SelectedString": "Door-Passage-Single-Flush:30\" x 84\"",
+      "Id": "9ea0efdff0e045e6861ed16eebaa702e",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "73cce8011b944cec9f7d01114b1b2622",
+          "Name": "Family Type",
+          "Description": "The selected Family Type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All family types available in the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "14ccd4dc0e1041b78505a4d5af5e926c",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "61ab69c9ea7a438682bc83e4fd013ab4",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0be579c25df0479fb242cd40af9b04db",
+          "Name": "parameterName",
+          "Description": "The name of the parameter whose value you want to obtain.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a874d3d012304ccd8bd24878fce0fb3d",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.GetParameterValueByName@string",
+      "Replication": "Auto",
+      "Description": "Get the value of one of the element's parameters.\n\nElement.GetParameterValueByName (parameterName: string): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ac767d051f634b1a9a18634e99e9294b",
+      "End": "0be579c25df0479fb242cd40af9b04db",
+      "Id": "8d075fd4cd744f57aec9dd46ffe9d6a9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "73cce8011b944cec9f7d01114b1b2622",
+      "End": "283cc5c2c67944e5a839bff0b2887081",
+      "Id": "610b707f4fad4afb8a570a010a1ae7c4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "73cce8011b944cec9f7d01114b1b2622",
+      "End": "61ab69c9ea7a438682bc83e4fd013ab4",
+      "Id": "48d8f21de3bf425f8a5df9ab6e00682e",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "8413786170d6462ba09491292f87e957",
+        "Name": "Get Family Parameter",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 470.43778156124051,
+        "Y": 244.68288835167871
+      },
+      {
+        "Id": "9ea0efdff0e045e6861ed16eebaa702e",
+        "Name": "Family Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -22.2629080118693,
+        "Y": 155.696735905044
+      },
+      {
+        "Id": "14ccd4dc0e1041b78505a4d5af5e926c",
+        "Name": "Element.GetParameterValueByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 895.0,
+        "Y": 155.696735905044
+      }
+    ],
+    "Annotations": [],
+    "X": 44.643418880401782,
+    "Y": 88.33456212627857,
+    "Zoom": 0.822695359375
+  }
+}

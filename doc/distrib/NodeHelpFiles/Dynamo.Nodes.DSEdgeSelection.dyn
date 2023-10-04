@@ -1,0 +1,101 @@
+{
+  "Uuid": "ecc87869-8982-49c2-825c-e00c7ad3850b",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Dynamo.Nodes.DSEdgeSelection",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSEdgeSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "d8e5b43d-b81d-4d0f-8d3d-6cce9d1cfc50-001e00cb:1646:LINEAR"
+      ],
+      "Id": "76888f5c4d8547d3990ffb195f10295c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9677635a3f3244fba602b542a4c6e989",
+          "Name": "Curve",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select an edge."
+    }
+  ],
+  "Connectors": [],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": 7.0975828170776367,
+      "EyeY": 69.016998291015625,
+      "EyeZ": 5.0816030502319336,
+      "LookX": 8.5343904495239258,
+      "LookY": -5.0753326416015625,
+      "LookZ": -3.9272985458374023,
+      "UpX": 0.25039753317832947,
+      "UpY": 0.96126168966293335,
+      "UpZ": -0.11522620171308517
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "76888f5c4d8547d3990ffb195f10295c",
+        "Name": "Select Edge",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 603.27979531440246,
+        "Y": 558.42784404508438
+      }
+    ],
+    "Annotations": [],
+    "X": -325.30752511214689,
+    "Y": -134.1030558823079,
+    "Zoom": 0.847618571998227
+  }
+}
