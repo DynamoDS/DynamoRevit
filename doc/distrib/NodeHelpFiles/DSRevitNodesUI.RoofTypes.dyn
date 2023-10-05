@@ -1,0 +1,183 @@
+{
+  "Uuid": "f4e3c23b-40cd-4ab7-b3e4-6991c5db56f9",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "DSRevitNodesUI.RoofTypes",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.RoofTypes, DSRevitNodesUI",
+      "SelectedIndex": 7,
+      "SelectedString": "Steel Truss - Insulation on Metal Deck - EPDM",
+      "Id": "3bb42c8ffaf2489ca6e3058eca88a0f2",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d9a1b1f87dd54061a3d7b666610cb766",
+          "Name": "Roof Types",
+          "Description": "The selected Roof Types",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All roof types in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "4a8feaf708e94f859c030b7c6cfc3618",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "db28d010d595464fb07a1e5076d1b379",
+          "Name": "roofType",
+          "Description": "Revit.Elements.RoofType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4f231d673cc44952a6fd0da6acca1486",
+          "Name": "Absorptance",
+          "Description": "Value of absorptance.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cc1229db2097439ca00654986a4c1050",
+          "Name": "HeatTransferCoefficient",
+          "Description": "The heat transfer coefficient value (U-Value).",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "14405f43614940e18256087a65ed4650",
+          "Name": "Roughness",
+          "Description": "Value of roughness.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c725c152cc784094bdcb771c2b1a9023",
+          "Name": "ThermalMass",
+          "Description": "The calculated thermal mass value.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "28fa5865f8c244a5959d6f35d4a17f15",
+          "Name": "ThermalResistance",
+          "Description": "The calculated thermal resistance value (R-Value).",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.RoofType.GetThermalProperties",
+      "Replication": "Auto",
+      "Description": "The calculated and settable thermal properties of the RoofType.\n\nRoofType.GetThermalProperties ( ): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d9a1b1f87dd54061a3d7b666610cb766",
+      "End": "db28d010d595464fb07a1e5076d1b379",
+      "Id": "07506a5fe13d4422b5616b638a47c891",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "3bb42c8ffaf2489ca6e3058eca88a0f2",
+        "Name": "Roof Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 359.315583248194,
+        "Y": 339.080104304728
+      },
+      {
+        "Id": "4a8feaf708e94f859c030b7c6cfc3618",
+        "Name": "RoofType.GetThermalProperties",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 955.809355144843,
+        "Y": 339.080104304728
+      }
+    ],
+    "Annotations": [],
+    "X": -235.73385397130113,
+    "Y": -6.354220532510908,
+    "Zoom": 0.9540429248828125
+  }
+}
