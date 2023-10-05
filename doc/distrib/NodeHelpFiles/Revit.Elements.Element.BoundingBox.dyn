@@ -793,10 +793,57 @@
         "InitialHeight": 192.2,
         "TextblockHeight": 51.2,
         "Background": "#FF87CEFA"
+      },
+      {
+        "Id": "ef191c9f0d0647408a9683546dfb3613",
+        "Title": "Extract Non-Axis-Aligned Bounding Box",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "ae22cd60e2fb47449ef51b6feff66986",
+          "e7ddeaa6338b48e9a64429e208bebf22",
+          "95b28ffbcf3f4834925163128a93f512"
+        ],
+        "HasNestedGroups": false,
+        "Left": 287.32429906765157,
+        "Top": 362.99711347626646,
+        "Width": 907.14614605276211,
+        "Height": 196.20000000000005,
+        "FontSize": 18.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 414.59711347626649,
+        "InitialHeight": 174.60000000000002,
+        "TextblockHeight": 41.6,
+        "Background": "#FFD3D3D3"
+      },
+      {
+        "Id": "7bde8646b9e744649df58c2431bafb3c",
+        "Title": "Extract Axis-Aligned Bounding Box",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3ec80490f11c4d2c88bd5d67b271d0dd",
+          "29b4db9c6f9846ddb61bbd2031a84df0"
+        ],
+        "HasNestedGroups": false,
+        "Left": 563.54584912549956,
+        "Top": -165.48847133829651,
+        "Width": 630.92459599491406,
+        "Height": 196.2,
+        "FontSize": 18.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -113.88847133829651,
+        "InitialHeight": 174.6,
+        "TextblockHeight": 41.6,
+        "Background": "#FFD3D3D3"
       }
     ],
-    "X": 170.59840324648781,
-    "Y": 98.514867706782184,
-    "Zoom": 0.78436932804482717
+    "X": 22.011377762722873,
+    "Y": 92.9278513491115,
+    "Zoom": 0.8887892282971559
   }
 }
