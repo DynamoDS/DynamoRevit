@@ -228,15 +228,15 @@
     },
     "Camera": {
       "Name": "_Background Preview",
-      "EyeX": -17.0,
-      "EyeY": 24.0,
-      "EyeZ": 50.0,
-      "LookX": 12.0,
-      "LookY": -13.0,
-      "LookZ": -58.0,
-      "UpX": 0.0,
-      "UpY": 1.0,
-      "UpZ": 0.0
+      "EyeX": -82.696044921875,
+      "EyeY": 105.13975524902344,
+      "EyeZ": 101.32599639892578,
+      "LookX": 62.945541381835938,
+      "LookY": -81.181411743164063,
+      "LookZ": -94.420783996582031,
+      "UpX": 0.21851591765880585,
+      "UpY": 0.91913527250289917,
+      "UpZ": -0.32778236269950867
     },
     "ConnectorPins": [],
     "NodeViews": [
@@ -295,7 +295,7 @@
       {
         "Id": "6d04df16dff24e189ba48244249156dd",
         "Title": "Weave Lists",
-        "DescriptionText": "Combine the Wall element with it's unique id",
+        "DescriptionText": "Combine the Wall element with it's id",
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
@@ -316,8 +316,8 @@
         "Background": "#FFD3D3D3"
       }
     ],
-    "X": -344.57313152916873,
-    "Y": 219.94353935524879,
-    "Zoom": 0.87853075737805475
+    "X": -2403.9410887231943,
+    "Y": -394.2119048014498,
+    "Zoom": 2.4253363763405238
   }
 }
