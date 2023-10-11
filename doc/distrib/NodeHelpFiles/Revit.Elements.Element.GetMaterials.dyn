@@ -1,0 +1,201 @@
+{
+  "Uuid": "890bd437-c67f-496a-bc91-6113ab6b256c",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Element.GetMaterials",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 725,
+      "SelectedString": "OST_Walls",
+      "Id": "e58a2c1839d14969ae617f2b8b11fcb4",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4ad36df7a2684a97b960046937a9fcfa",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "cb9738f0f51649f18818c7ed624f5f0f",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "0d1fcfbce6a94bbfaa8b37d036a23f9d",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "68466d0f931a43ab9f13d61c37bd5f05",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d965a02d6576499dbcd0c4071126ffb3",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "502fa9d3aa6245f792be2eb8de00107a",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0560d0f8529548e784a147e78180b684",
+          "Name": "paintMaterials",
+          "Description": "Paint Materials\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "163536263fd74beea47f66bb47554114",
+          "Name": "Material[]",
+          "Description": "List of Names",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.GetMaterials@bool",
+      "Replication": "Auto",
+      "Description": "Get Material Names from a Revit Element\n\nElement.GetMaterials (paintMaterials: bool = false): Material[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4ad36df7a2684a97b960046937a9fcfa",
+      "End": "0d1fcfbce6a94bbfaa8b37d036a23f9d",
+      "Id": "e105df6af5f74304a9b1c4d5de55a8ab",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "68466d0f931a43ab9f13d61c37bd5f05",
+      "End": "502fa9d3aa6245f792be2eb8de00107a",
+      "Id": "3fec11abcd0e4f83ba53f47dc6e9f869",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -119.03198435485082,
+      "EyeY": 180.18285783101911,
+      "EyeZ": 157.30070113786141,
+      "LookX": 96.334245707389883,
+      "LookY": -153.18285640050763,
+      "LookZ": -177.50458144792,
+      "UpX": 0.20007659494876862,
+      "UpY": 0.90777748823165894,
+      "UpZ": -0.36865901947021484
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e58a2c1839d14969ae617f2b8b11fcb4",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 355.36259434558,
+        "Y": 303.4687774324625
+      },
+      {
+        "Id": "cb9738f0f51649f18818c7ed624f5f0f",
+        "Name": "All Elements of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 691.36259434558,
+        "Y": 303.4687774324625
+      },
+      {
+        "Id": "d965a02d6576499dbcd0c4071126ffb3",
+        "Name": "Element.GetMaterials",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1048.16259434558,
+        "Y": 303.4687774324625
+      }
+    ],
+    "Annotations": [],
+    "X": -7.7418869020200418,
+    "Y": 29.45112002764472,
+    "Zoom": 0.89689576519360137
+  }
+}
