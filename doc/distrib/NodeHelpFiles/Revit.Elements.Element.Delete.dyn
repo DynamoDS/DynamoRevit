@@ -1,0 +1,192 @@
+{
+  "Uuid": "890bd437-c67f-496a-bc91-6113ab6b256c",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Element.Delete",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.FamilyTypes, DSRevitNodesUI",
+      "SelectedIndex": 303,
+      "SelectedString": "Help Button:Select for Help Link",
+      "Id": "5a9c336b5d6a47669c80ec949e0fc71b",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4d8dac2259e6418aafe9706ea5c2ada4",
+          "Name": "Family Type",
+          "Description": "The selected Family Type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All family types available in the document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "Id": "f62b6f9bf596411c875b13781fc27d4f",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "44aa6e76a3d0403c8426ea16ee14fd98",
+          "Name": "Family Type",
+          "Description": "The Family Type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2c8bd7e93ef849c89d826061a9273d64",
+          "Name": "Elements",
+          "Description": "The list of elements matching the query.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified family type from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "365b4c6a040741bbbf0579aca6e9d84f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "4c6aca0a628b442bbc8db27ca521dafd",
+          "Name": "element",
+          "Description": "The element to delete.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2f27ce0857974f65b739fc074cdd34ca",
+          "Name": "int[]",
+          "Description": "The list of element id's deleted, including any dependent elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Delete@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "Delete the element and any elements that are totally dependent upon the element.\n\nElement.Delete (element: Element): int[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4d8dac2259e6418aafe9706ea5c2ada4",
+      "End": "44aa6e76a3d0403c8426ea16ee14fd98",
+      "Id": "49ec129488954725a9758b29693a6c7b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2c8bd7e93ef849c89d826061a9273d64",
+      "End": "4c6aca0a628b442bbc8db27ca521dafd",
+      "Id": "0afcab99f8ac4e1096438497165f87b4",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": 12.34603969020004,
+      "EyeY": 52.163330664841233,
+      "EyeZ": -57.83920606191419,
+      "LookX": 28.90396030979996,
+      "LookY": -42.996663680283149,
+      "LookZ": 35.552747092797979,
+      "UpX": 0.32300731539726257,
+      "UpY": 0.85895973443984985,
+      "UpZ": 0.39730891585350037
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "5a9c336b5d6a47669c80ec949e0fc71b",
+        "Name": "Family Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 493.861052857584,
+        "Y": 239.212724932471
+      },
+      {
+        "Id": "f62b6f9bf596411c875b13781fc27d4f",
+        "Name": "All Elements of Family Type",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 955.899135856614,
+        "Y": 239.212724932471
+      },
+      {
+        "Id": "365b4c6a040741bbbf0579aca6e9d84f",
+        "Name": "Element.Delete",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1348.31067766983,
+        "Y": 239.212724932471
+      }
+    ],
+    "Annotations": [],
+    "X": 68.429673020621522,
+    "Y": 150.35769166929691,
+    "Zoom": 0.75460363982754519
+  }
+}

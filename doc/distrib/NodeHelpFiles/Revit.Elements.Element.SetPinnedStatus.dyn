@@ -1,0 +1,237 @@
+{
+  "Uuid": "26e69b70-90cd-46c5-a77a-dd920c0172b5",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Element.SetPinnedStatus",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 258,
+      "SelectedString": "OST_Furniture",
+      "Id": "822c95e6a6184932b035f267343b2966",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a4d5f7d4454c401cad8f863cf61fede0",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "325feffafb364d668182640e83e00020",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "42b8ea0201d1482999c9254a3db2fb5f",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "318cd1afaf334fbb9b75a67aea60c7ba",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b971247443304d259488ac16e44fbb9e",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "94a78054b093433c95b7030613c49b08",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "db0bef86c6444dd581fada5ef019cbe3",
+          "Name": "pinned",
+          "Description": "Value for pin status true/false\n\nbool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "22c918fa326c410fb73c355f647e3c0d",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.SetPinnedStatus@bool",
+      "Replication": "Auto",
+      "Description": "Sets an existing element's pinned status\n\nElement.SetPinnedStatus (pinned: bool): Element"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "ff2fd5031db44657b13f93ee31d03c2b",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b839f7195dc14d6a8844a302d844214e",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "a4d5f7d4454c401cad8f863cf61fede0",
+      "End": "42b8ea0201d1482999c9254a3db2fb5f",
+      "Id": "7a4c6974a0944f34adc2a282c013bf8d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "318cd1afaf334fbb9b75a67aea60c7ba",
+      "End": "94a78054b093433c95b7030613c49b08",
+      "Id": "8c15357636c94e4aaa2b8a1678ed7fe8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b839f7195dc14d6a8844a302d844214e",
+      "End": "db0bef86c6444dd581fada5ef019cbe3",
+      "Id": "7dc781f5b6b24fb79688736add857147",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "822c95e6a6184932b035f267343b2966",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -942.89106423221972,
+        "Y": 321.27604993741687
+      },
+      {
+        "Id": "325feffafb364d668182640e83e00020",
+        "Name": "All Elements of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -599.869839531865,
+        "Y": 321.276049937417
+      },
+      {
+        "Id": "b971247443304d259488ac16e44fbb9e",
+        "Name": "Element.SetPinnedStatus",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -198.51791159989659,
+        "Y": 474.95167936254717
+      },
+      {
+        "Id": "ff2fd5031db44657b13f93ee31d03c2b",
+        "Name": "Boolean",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -537.469839531865,
+        "Y": 763.43615132789
+      }
+    ],
+    "Annotations": [],
+    "X": 823.42997942914553,
+    "Y": -25.895575924377283,
+    "Zoom": 0.84289377023226819
+  }
+}

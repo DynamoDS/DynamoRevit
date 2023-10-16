@@ -1,0 +1,849 @@
+{
+  "Uuid": "26e69b70-90cd-46c5-a77a-dd920c0172b5",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Element.BoundingBox",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3ec80490f11c4d2c88bd5d67b271d0dd",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "84a4bd3844d6467a821a5ff6c75c713e",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bbd6c9383fa54379981a6a10a150d675",
+          "Name": "BoundingBox",
+          "Description": "BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.BoundingBox",
+      "Replication": "Auto",
+      "Description": "Get an Axis-aligned BoundingBox of the Element\n\nElement.BoundingBox: BoundingBox"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "29b4db9c6f9846ddb61bbd2031a84df0",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "86dbabb1f2074e83b845e9d695df6e70",
+          "Name": "boundingBox",
+          "Description": "Autodesk.DesignScript.Geometry.BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5422ab30b7c24d91ace94629c21c9eb7",
+          "Name": "Cuboid",
+          "Description": "Returns cuboid representation of the bounding box.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.BoundingBox.ToCuboid",
+      "Replication": "Auto",
+      "Description": "Get the bounding box as a solid cuboid.\n\nBoundingBox.ToCuboid ( ): Cuboid"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "ae22cd60e2fb47449ef51b6feff66986",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "96da31f26c754437ac412fc16aacea4e",
+          "Name": "geom",
+          "Description": "Geometry[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "549c77a2994947e08b4533a5d78221c4",
+          "Name": "BoundingBox",
+          "Description": "Oriented bounding box arounding input geometries.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.BoundingBox.ByMinimumVolume@Autodesk.DesignScript.Geometry.Geometry[]",
+      "Replication": "Auto",
+      "Description": "Create a non-axis-aligned, minimum-volume, oriented bounding box around the input geometries.\n\nBoundingBox.ByMinimumVolume (geom: Geometry[]): BoundingBox"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e7ddeaa6338b48e9a64429e208bebf22",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "4cf83fdec30047ba882fa4db201b5953",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "389e74d011bc4c1dbe68709aa5c4fa30",
+          "Name": "Solid[]",
+          "Description": "Solid[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Solids",
+      "Replication": "Auto",
+      "Description": "The Solids in this Element\n\nElement.Solids: Solid[]"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
+      "SelectedIndex": 4,
+      "SelectedString": "L1 - Block 35",
+      "Id": "e8c2f032ea9b426ab8b6ac52707c1e61",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "facab5fba51d487381a5b5b9ba0ca855",
+          "Name": "Levels",
+          "Description": "The selected Levels",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a level in the active document"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsAtLevel, DSRevitNodesUI",
+      "Id": "9071e9e3030341c4835cf79b502535a5",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "d436b7f186a94646889d935884ea2ac5",
+          "Name": "Level",
+          "Description": "A Level",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e02a49e6391d48f7a7ced812c1c3ff97",
+          "Name": "Elements",
+          "Description": "Elements at the given level.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all the elements at the specified Level from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "61724b52a8c546269827b3403c7e12a6",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "8a4f1b3b020b49cfa9558b60cb75b716",
+          "Name": "list",
+          "Description": "List to remove items from\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6e47ff904f0143f1913f6a41934486aa",
+          "Name": "type",
+          "Description": "Type of element\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "14dbf94bb5994cc2b91a33e3b3ca7028",
+          "Name": "list",
+          "Description": "List with everything removed except a specified type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "List.RemoveIfNot@var[]..[],string",
+      "Replication": "Auto",
+      "Description": "Removes the members of the list which are not members of the specified type.\n\nList.RemoveIfNot (list: var[]..[], type: string): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "4df2e5bcc6f34ec28f076d9d9b76e76e",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "302b4dc7841b4aa59df31e94086c3cf4",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Revit.Elements.FamilyInstance"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.FamilyTypes, DSRevitNodesUI",
+      "SelectedIndex": 73,
+      "SelectedString": "Chair-Breuer:Chair-Breuer",
+      "Id": "10da35a3591941c0b1eae4a4fcf10364",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "94e4336e706345f48fde74146c23e5bd",
+          "Name": "Family Type",
+          "Description": "The selected Family Type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All family types available in the document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "Id": "f0d2ed0363bc4d529b992e84e4f8c72f",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "cec3c5b16d9e44ba803ffdacb330e6ce",
+          "Name": "Family Type",
+          "Description": "The Family Type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "10537090850449a980c2d44d7507949b",
+          "Name": "Elements",
+          "Description": "The list of elements matching the query.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified family type from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "26a468f236ba432aa1eae77ac4017a40",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "72f8b12fa84e4bc9beabdb55f81d4a7a",
+          "Name": "list1",
+          "Description": "List of objects to be compared with list2\n\nvar[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e314f84415674a38815aa242771e471a",
+          "Name": "list2",
+          "Description": "List of objects to be compared with list1\n\nvar[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "84a2d87f23cd465ab4d76fd8f16c9201",
+          "Name": "list",
+          "Description": "The new list that contains objects that are in both List1 and List2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.SetIntersection@var[],var[]",
+      "Replication": "Auto",
+      "Description": "Returns a new list that includes objects that are present in both List1 and List2.\n\nList.SetIntersection (list1: var[], list2: var[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "95b28ffbcf3f4834925163128a93f512",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "90f2b30d878f492899e66926f35d7d18",
+          "Name": "boundingBox",
+          "Description": "Autodesk.DesignScript.Geometry.BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "37d07cee1c704bf9acf50a6fcb4f14ec",
+          "Name": "Cuboid",
+          "Description": "Returns cuboid representation of the bounding box.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.BoundingBox.ToCuboid",
+      "Replication": "Auto",
+      "Description": "Get the bounding box as a solid cuboid.\n\nBoundingBox.ToCuboid ( ): Cuboid"
+    },
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 372.8,
+      "WatchHeight": 320.8,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "0ce8701d-5229-45db-8cf4-b0d8aa334da8 Preview",
+        "EyeX": -82.5699691772461,
+        "EyeY": 18.156545639038086,
+        "EyeZ": 11.25616455078125,
+        "LookX": 17.889877319335938,
+        "LookY": -37.965995788574219,
+        "LookZ": -24.639118194580078,
+        "UpX": 0.36887854337692261,
+        "UpY": 0.77834451198577881,
+        "UpZ": -0.50804382562637329
+      },
+      "Id": "0ce8701d522945db8cf4b0d8aa334da8",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "ffca7d8d60e04ce18b9f3cfdc13dd250",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c634e1d62ee84ce8ac2f489b2b7cc5f0",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry"
+    },
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 372.8,
+      "WatchHeight": 320.8,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "0462ae5d-9ed6-4ee2-ba0d-4c7bbc64792a Preview",
+        "EyeX": -82.5699691772461,
+        "EyeY": 18.156545639038086,
+        "EyeZ": 11.25616455078125,
+        "LookX": 17.889877319335938,
+        "LookY": -37.965995788574219,
+        "LookZ": -24.639118194580078,
+        "UpX": 0.36887854337692261,
+        "UpY": 0.77834451198577881,
+        "UpZ": -0.50804382562637329
+      },
+      "Id": "0462ae5d9ed64ee2ba0d4c7bbc64792a",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "e81c234b440043eb88595c622b3b4753",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8aed6a471fd143468780d37c1bc54037",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "bbd6c9383fa54379981a6a10a150d675",
+      "End": "86dbabb1f2074e83b845e9d695df6e70",
+      "Id": "74429af0ef084831aae469f5d2386933",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5422ab30b7c24d91ace94629c21c9eb7",
+      "End": "ffca7d8d60e04ce18b9f3cfdc13dd250",
+      "Id": "fb38be88335f4a4bbef8dbf79b8186ab",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "549c77a2994947e08b4533a5d78221c4",
+      "End": "90f2b30d878f492899e66926f35d7d18",
+      "Id": "db5c3cc0292a49e6b305f2a16e641a87",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "389e74d011bc4c1dbe68709aa5c4fa30",
+      "End": "96da31f26c754437ac412fc16aacea4e",
+      "Id": "4e581b36c6d949eea9f233254aa29680",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "facab5fba51d487381a5b5b9ba0ca855",
+      "End": "d436b7f186a94646889d935884ea2ac5",
+      "Id": "2c935c6e0bbd4d659123686c69fed76b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e02a49e6391d48f7a7ced812c1c3ff97",
+      "End": "8a4f1b3b020b49cfa9558b60cb75b716",
+      "Id": "481c888b8d5c44198dd4932111732659",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "14dbf94bb5994cc2b91a33e3b3ca7028",
+      "End": "72f8b12fa84e4bc9beabdb55f81d4a7a",
+      "Id": "db16752f73f2448fab4bdd566bf3c90e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "302b4dc7841b4aa59df31e94086c3cf4",
+      "End": "6e47ff904f0143f1913f6a41934486aa",
+      "Id": "225422cd333348bb81ee9f578455a407",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "94e4336e706345f48fde74146c23e5bd",
+      "End": "cec3c5b16d9e44ba803ffdacb330e6ce",
+      "Id": "2e3301b7069742e09170c7a06c2f82d5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "10537090850449a980c2d44d7507949b",
+      "End": "e314f84415674a38815aa242771e471a",
+      "Id": "d27cfcbc0c81443c86e449c90fb688b5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "84a2d87f23cd465ab4d76fd8f16c9201",
+      "End": "84a4bd3844d6467a821a5ff6c75c713e",
+      "Id": "68869d9c44b84087bf19911b78e5c0bf",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "84a2d87f23cd465ab4d76fd8f16c9201",
+      "End": "4cf83fdec30047ba882fa4db201b5953",
+      "Id": "f9e74b7245c4438aa389368572797cd8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "37d07cee1c704bf9acf50a6fcb4f14ec",
+      "End": "e81c234b440043eb88595c622b3b4753",
+      "Id": "dc498a81ca124a4f93591f9f4839d2c4",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -103.7393798828125,
+      "EyeY": 27.440670013427734,
+      "EyeZ": 33.364242553710938,
+      "LookX": 34.565040588378906,
+      "LookY": -31.951068878173828,
+      "LookZ": -37.735183715820313,
+      "UpX": 0.22658182680606842,
+      "UpY": 0.94205754995346069,
+      "UpZ": -0.24736268818378448
+    },
+    "ConnectorPins": [
+      {
+        "Left": 337.02679904913566,
+        "Top": -62.23530631748369,
+        "IsHidden": false,
+        "ConnectorGuid": "68869d9c-44b8-4087-bf19-911b78e5c0bf"
+      }
+    ],
+    "NodeViews": [
+      {
+        "Id": "3ec80490f11c4d2c88bd5d67b271d0dd",
+        "Name": "Element.BoundingBox",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 573.54584912549956,
+        "Y": -112.4301399021285
+      },
+      {
+        "Id": "29b4db9c6f9846ddb61bbd2031a84df0",
+        "Name": "BoundingBox.ToCuboid",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": false,
+        "X": 938.07044512041364,
+        "Y": -113.88847133829651
+      },
+      {
+        "Id": "ae22cd60e2fb47449ef51b6feff66986",
+        "Name": "BoundingBox.ByMinimumVolume",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 573.54584912549956,
+        "Y": 414.59711347626649
+      },
+      {
+        "Id": "e7ddeaa6338b48e9a64429e208bebf22",
+        "Name": "Element.Solids",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": false,
+        "X": 297.32429906765157,
+        "Y": 414.59711347626649
+      },
+      {
+        "Id": "e8c2f032ea9b426ab8b6ac52707c1e61",
+        "Name": "Levels",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -969.163524900344,
+        "Y": -88.1687271712686
+      },
+      {
+        "Id": "9071e9e3030341c4835cf79b502535a5",
+        "Name": "All Elements at Level",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -681.224758417288,
+        "Y": -88.1687271712686
+      },
+      {
+        "Id": "61724b52a8c546269827b3403c7e12a6",
+        "Name": "List.RemoveIfNot",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -353.70998030124042,
+        "Y": -23.376363691626125
+      },
+      {
+        "Id": "4df2e5bcc6f34ec28f076d9d9b76e76e",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -699.624758417288,
+        "Y": 77.6836743886426
+      },
+      {
+        "Id": "10da35a3591941c0b1eae4a4fcf10364",
+        "Name": "Family Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -969.163524900344,
+        "Y": 337.738943646681
+      },
+      {
+        "Id": "f0d2ed0363bc4d529b992e84e4f8c72f",
+        "Name": "All Elements of Family Type",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -572.218349897131,
+        "Y": 337.73894364668064
+      },
+      {
+        "Id": "26a468f236ba432aa1eae77ac4017a40",
+        "Name": "List.SetIntersection",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -25.541516818250102,
+        "Y": 168.73104411458041
+      },
+      {
+        "Id": "95b28ffbcf3f4834925163128a93f512",
+        "Name": "BoundingBox.ToCuboid",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": false,
+        "X": 938.07044512041364,
+        "Y": 414.59711347626649
+      },
+      {
+        "Id": "0ce8701d522945db8cf4b0d8aa334da8",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1274.9664523003785,
+        "Y": -113.88847133829651
+      },
+      {
+        "Id": "0462ae5d9ed64ee2ba0d4c7bbc64792a",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1274.9664523003785,
+        "Y": 414.59711347626649
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "174ce8b3a6c54e9faefab9d1abc4b5e7",
+        "Title": "Collect",
+        "DescriptionText": "Collect all elements at L1 - Block 35 and Filter for Family Instances",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "e8c2f032ea9b426ab8b6ac52707c1e61",
+          "9071e9e3030341c4835cf79b502535a5",
+          "61724b52a8c546269827b3403c7e12a6",
+          "4df2e5bcc6f34ec28f076d9d9b76e76e"
+        ],
+        "HasNestedGroups": false,
+        "Left": -979.163524900344,
+        "Top": -139.76872717126861,
+        "Width": 838.6535445991035,
+        "Height": 368.45240155991121,
+        "FontSize": 18.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -88.1687271712686,
+        "InitialHeight": 346.85240155991119,
+        "TextblockHeight": 41.6,
+        "Background": "#FFD3D3D3"
+      },
+      {
+        "Id": "d79c4852f0db43f288c6105c0fbf8361",
+        "Title": "Collect",
+        "DescriptionText": "Collect all family instances of the given family type.",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "10da35a3591941c0b1eae4a4fcf10364",
+          "f0d2ed0363bc4d529b992e84e4f8c72f"
+        ],
+        "HasNestedGroups": false,
+        "Left": -979.163524900344,
+        "Top": 286.13894364668062,
+        "Width": 696.1451750032129,
+        "Height": 183.40000000000038,
+        "FontSize": 18.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 337.73894364668064,
+        "InitialHeight": 161.80000000000035,
+        "TextblockHeight": 41.6,
+        "Background": "#FFD3D3D3"
+      },
+      {
+        "Id": "1da3ce04a1314895bef422a9b5631319",
+        "Title": "Select",
+        "DescriptionText": "Only select family instances of the given family type on L1 - Block 35",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "26a468f236ba432aa1eae77ac4017a40"
+        ],
+        "HasNestedGroups": false,
+        "Left": -35.5415168182501,
+        "Top": 107.53104411458041,
+        "Width": 240.8,
+        "Height": 223.39999999999998,
+        "FontSize": 18.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 168.73104411458041,
+        "InitialHeight": 192.2,
+        "TextblockHeight": 51.2,
+        "Background": "#FF87CEFA"
+      },
+      {
+        "Id": "ef191c9f0d0647408a9683546dfb3613",
+        "Title": "Extract Non-Axis-Aligned Bounding Box",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "ae22cd60e2fb47449ef51b6feff66986",
+          "e7ddeaa6338b48e9a64429e208bebf22",
+          "95b28ffbcf3f4834925163128a93f512"
+        ],
+        "HasNestedGroups": false,
+        "Left": 287.32429906765157,
+        "Top": 362.99711347626646,
+        "Width": 907.14614605276211,
+        "Height": 196.20000000000005,
+        "FontSize": 18.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 414.59711347626649,
+        "InitialHeight": 174.60000000000002,
+        "TextblockHeight": 41.6,
+        "Background": "#FFD3D3D3"
+      },
+      {
+        "Id": "7bde8646b9e744649df58c2431bafb3c",
+        "Title": "Extract Axis-Aligned Bounding Box",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3ec80490f11c4d2c88bd5d67b271d0dd",
+          "29b4db9c6f9846ddb61bbd2031a84df0"
+        ],
+        "HasNestedGroups": false,
+        "Left": 563.54584912549956,
+        "Top": -165.48847133829651,
+        "Width": 630.92459599491406,
+        "Height": 196.2,
+        "FontSize": 18.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": -113.88847133829651,
+        "InitialHeight": 174.6,
+        "TextblockHeight": 41.6,
+        "Background": "#FFD3D3D3"
+      }
+    ],
+    "X": 22.011377762722873,
+    "Y": 92.9278513491115,
+    "Zoom": 0.8887892282971559
+  }
+}
