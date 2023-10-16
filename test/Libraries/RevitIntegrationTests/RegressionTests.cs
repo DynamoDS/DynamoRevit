@@ -100,7 +100,7 @@ namespace RevitSystemTests
             Assert.NotNull(homespace, "The current workspace is not a HomeWorkspaceModel");
 
             // Iterate through all loaded nodes in library & add Revit UI nodes to ws
-            var nodeList = Model.SearchModel.SearchEntries.OfType<NodeSearchElement>();
+            var nodeList = Model.CurrentWorkspace.Nodes.OfType<NodeSearchElement>();
             foreach (var node in nodeList)
             {
                 var assembly = Path.GetFileName(node.Assembly);
@@ -159,7 +159,7 @@ namespace RevitSystemTests
             Assert.NotNull(homespace, "The current workspace is not a HomeWorkspaceModel");
 
             // Iterate through all loaded nodes in library & add Revit UI nodes to ws
-            var nodeList = Model.SearchModel.SearchEntries.OfType<NodeSearchElement>();
+            var nodeList = Model.CurrentWorkspace.Nodes.OfType<NodeSearchElement>();
             foreach (var node in nodeList)
             {
                 var searchElement = node as NodeSearchElement;

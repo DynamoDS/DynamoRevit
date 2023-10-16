@@ -162,7 +162,7 @@ namespace RevitSystemTests
             if (ViewModel == null) return Enumerable.Empty<NodeModelSearchElement>();
 
             return
-                ViewModel.Model.SearchModel.SearchEntries.OfType<NodeModelSearchElement>()
+                ViewModel.Model.CurrentWorkspace.Nodes.OfType<NodeModelSearchElement>()
                     .Where(x => !excludes.Contains(x.Name));
         }
     }
