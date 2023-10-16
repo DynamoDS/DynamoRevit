@@ -1,3 +1,7 @@
+## 0.5.9
+* merge master (linkInstance wrappers, documentation)
+* update NUnit to 3.13.3 - work in progress
+
 ## 0.5.7
 * disable splashcreen due to System.Windows.Application.Current not being null not being null
 
