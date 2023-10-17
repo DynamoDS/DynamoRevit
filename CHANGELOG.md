@@ -1,5 +1,6 @@
 ## 0.4.25
 * Incorrect Category returned by Category.ByName node
+* Node FamilyDocument.SetParameterValueByName cannot be used for Yes/No family parameters
 
 ## 0.4.24
 * Disable Splash Screen for Revit 2024.2 due to inconsistent sign in/out with host application
