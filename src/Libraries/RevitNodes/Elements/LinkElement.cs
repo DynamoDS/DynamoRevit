@@ -407,7 +407,9 @@ namespace Revit.Elements
                     var reference = rClosest.GetReference();
                     var linkedRef = reference.CreateReferenceInLink();
                     var linkedInstance = DocumentManager.Instance.CurrentDBDocument.GetElement(reference.ElementId) as Autodesk.Revit.DB.RevitLinkInstance;
-                    var linkedReferenceElement = linkedInstance.GetLinkDocument().GetElement(reference.LinkedElementId);
+                    var linkDocument = linkedInstance.GetLinkDocument();
+                    if (linkDocument == null) { continue; } // check if link is loaded
+                    var linkedReferenceElement = linkDocument.GetElement(reference.LinkedElementId);
                     var referenceObject = linkedReferenceElement.GetGeometryObjectFromReference(linkedRef);
 
                     bounceElements.Add(linkedReferenceElement.ToDSType(true));
@@ -455,7 +457,9 @@ namespace Revit.Elements
                 var reference = r.GetReference();
                 var linkedRef = reference.CreateReferenceInLink();
                 var linkedInstance = DocumentManager.Instance.CurrentDBDocument.GetElement(reference.ElementId) as Autodesk.Revit.DB.RevitLinkInstance;
-                var linkedReferenceElement = linkedInstance.GetLinkDocument().GetElement(reference.LinkedElementId);
+                var linkDocument = linkedInstance.GetLinkDocument();
+                if (linkDocument == null) { continue; } // check if link is loaded
+                var linkedReferenceElement = linkDocument.GetElement(reference.LinkedElementId);
                 var referenceGeometryObject = linkedReferenceElement.GetGeometryObjectFromReference(linkedRef);
 
                 Autodesk.Revit.DB.Face currFace = null;
