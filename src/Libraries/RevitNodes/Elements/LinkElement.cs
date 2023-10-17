@@ -57,6 +57,17 @@ namespace Revit.Elements
 
             // use the center of the BoundingBox as zoom center
             BoundingBoxXYZ bb = element.InternalElement.get_BoundingBox(null);
+            // if the BBox cannot be found, attempt to find it using the active view
+            if (bb==null)
+            {
+                bb=element.InternalElement.get_BoundingBox(activeView);
+            }
+            // finally, if the BB cannot be found at all
+            if (bb==null)
+            {
+                TaskDialog.Show("Revit", "No good view can be found.");
+                return;
+            }
             XYZ bbCenter = (bb.Max + bb.Min) / 2;
             double zoomOffsetX = bb.Max.X - bbCenter.X;
             double zoomOffsetY = bb.Max.Y - bbCenter.Y;
@@ -69,8 +80,6 @@ namespace Revit.Elements
                 XYZ max = new XYZ(locationPt.X + zoomOffsetX, locationPt.Y + zoomOffsetY, locationPt.Z + zoomOffsetZ);
                 uiview.ZoomAndCenterRectangle(min, max);
             }
-
-
         }
 
         // helper to return element's location with transform
