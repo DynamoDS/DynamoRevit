@@ -1,3 +1,6 @@
+## 0.5.10
+* Fixed issue for node FamilyDocument.SetParameterValueByName that cannot be used for Yes/No family parameters
+
 ## 0.5.8
 * Upgrade DynamoCore version to 2.19.3.6394 to fix large launch times when there are many packages
 
