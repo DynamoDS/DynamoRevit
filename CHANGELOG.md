@@ -1,5 +1,6 @@
 ## 0.3.19
 * Incorrect Category returned by Category.ByName node
+* Node FamilyDocument.SetParameterValueByName cannot be used for Yes/No family parameters
 
 ## 0.3.18
 * Upgrade DynamoCore version to 2.16.2.5624.
