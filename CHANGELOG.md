@@ -1,3 +1,6 @@
+## 0.5.10
+* Fixed issue for node FamilyDocument.SetParameterValueByName that cannot be used for Yes/No family parameters
+
 ## 0.5.9
 * merge master (linkInstance wrappers, documentation)
 * update NUnit to 3.13.3 - work in progress

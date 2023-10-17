@@ -305,10 +305,14 @@ namespace Revit.Application
 
         private void SetIntValue(object value, Autodesk.Revit.DB.FamilyParameter familyParameter)
         {
-            int intValue;
+            long intValue;
             try
             {
-                intValue = (int)value;
+                // support int64 conversion
+                if(value.GetType() == typeof(long))
+                    intValue = (long)value;
+                else
+                    intValue = (int)value;
             }
             catch (Exception)
             {
