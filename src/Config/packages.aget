@@ -15,7 +15,7 @@
       "Newtonsoft.Json": "13.0.1",
       "NUnit": "3.13.3",
       "Prism": "4.1.0",
-      "RestSharp": "110.2.0"
+      "RestSharp": "109.0.1"
     }
   }
 }
