@@ -1,0 +1,192 @@
+{
+  "Uuid": "90759e4d-ebfc-49e9-ad9a-ced3d303a9fd",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Category.Id",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a3f4b9ab09d14fb0b04371b439eff2ec",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f4e4a8047769462ea7a22cb04f255b08",
+          "Name": "name",
+          "Description": "The built in category name.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4a8ec13698d049378090254c4374a2ef",
+          "Name": "Category",
+          "Description": "Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Category.ByName@string",
+      "Replication": "Auto",
+      "Description": "Gets a Revit category by the built-in category name.\n\nCategory.ByName (name: string): Category"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "7f1b29b7e643474ba16bd9478c5d8d18",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "05535ca034fa46e39b38e778d866b401",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Walls"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "743d2acc025447fb91287f741c382aa3",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f2b5cb9228124011b07679fe45c0857f",
+          "Name": "category",
+          "Description": "Revit.Elements.Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0af4c736e2fe4bb9b268b749d9b63a2b",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Category.Id",
+      "Replication": "Auto",
+      "Description": "The Id of the category.\n\nCategory.Id: int"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4a8ec13698d049378090254c4374a2ef",
+      "End": "f2b5cb9228124011b07679fe45c0857f",
+      "Id": "bc8a4e6962d34b089d254ec04cf8bf66",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "05535ca034fa46e39b38e778d866b401",
+      "End": "f4e4a8047769462ea7a22cb04f255b08",
+      "Id": "2fa01feac1de470ab9db3ac604bb5ced",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "a3f4b9ab09d14fb0b04371b439eff2ec",
+        "Name": "Category.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 577.6,
+        "Y": 332.0
+      },
+      {
+        "Id": "7f1b29b7e643474ba16bd9478c5d8d18",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 353.6,
+        "Y": 332.0
+      },
+      {
+        "Id": "743d2acc025447fb91287f741c382aa3",
+        "Name": "Category.Id",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 850.4,
+        "Y": 332.0
+      }
+    ],
+    "Annotations": [],
+    "X": -42.430136261960115,
+    "Y": 82.039588597435227,
+    "Zoom": 0.82269535937499993
+  }
+}
