@@ -9,20 +9,13 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoreNodeModelsWpf.Nodes;
 using Autodesk.DesignScript.Runtime;
-using ProtoCore.AST.AssociativeAST;
-using Dynamo.Wpf.Nodes.Revit;
-using Microsoft.Practices.Prism.Commands;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using RevitServices.Persistence;
 using Autodesk.Revit.UI.Selection;
 using Dynamo.Logging;
 using DSCore;
+using Dynamo.UI.Commands;
 
 namespace Dynamo.ComboNodes
 {
@@ -194,7 +187,7 @@ namespace Dynamo.ComboNodes
         public void CustomizeView(DSModelElementsByCategorySelection model, NodeView nodeView)
         {
             Model = model;
-            SelectCommand = new DelegateCommand(() => Model.Select(null), Model.CanBeginSelect);
+            SelectCommand = new DelegateCommand((_) => Model.Select(null),(_)=> Model.CanBeginSelect());
             Model.PropertyChanged += (s, e) => {
                 nodeView.Dispatcher.Invoke(new Action(() =>
                 {
@@ -221,7 +214,7 @@ namespace Dynamo.ComboNodes
         public void CustomizeView(DSModelElementByCategorySelection model, NodeView nodeView)
         {
             Model = model;
-            SelectCommand = new DelegateCommand(() => Model.Select(null), Model.CanBeginSelect);
+            SelectCommand = new DelegateCommand((_) => Model.Select(null), (_) => Model.CanBeginSelect());
             Model.PropertyChanged += (s, e) => {
                 nodeView.Dispatcher.Invoke(new Action(() =>
                 {
