@@ -185,7 +185,7 @@ namespace Revit.Elements
         /// <param name="toposolidType"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="System.ArgumentNullException"></exception>
         public static Toposolid ByOutlinePointsTypeAndLevel(Curve[] outlineCurves, IEnumerable<Pt> points, ToposolidType toposolidType, Level level)
         {
             if (outlineCurves == null)
@@ -206,8 +206,8 @@ namespace Revit.Elements
         /// <param name="toposolidType"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <exception cref="System.ArgumentException"></exception>
         public static Toposolid ByOutlinePointsTypeAndLevel(PolyCurve outline, IEnumerable<Pt> points, ToposolidType toposolidType, Level level)
         {
             if (outline == null)
@@ -259,7 +259,7 @@ namespace Revit.Elements
         /// <param name="toposolidType"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="System.ArgumentNullException"></exception>
         public static Toposolid ByOutlineTypeAndLevel(Curve[] outlineCurves, ToposolidType toposolidType, Level level)
         {
             if (outlineCurves == null)
@@ -279,8 +279,8 @@ namespace Revit.Elements
         /// <param name="toposolidType"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <exception cref="System.ArgumentException"></exception>
         public static Toposolid ByOutlineTypeAndLevel(PolyCurve outline,  ToposolidType toposolidType, Level level)
         {
             if (outline == null)
@@ -325,7 +325,7 @@ namespace Revit.Elements
         /// <param name="toposolidType"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="System.ArgumentNullException"></exception>
         public static Toposolid ByPointsTypeAndLevel(IEnumerable<Pt> points, ToposolidType toposolidType, Level level)
         {
             if (points == null)
