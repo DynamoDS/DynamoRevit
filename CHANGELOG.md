@@ -1,3 +1,6 @@
+## 0.3.20
+* Handle case when GlobalParameter.SetValue node receives a value of type long
+
 ## 0.3.19
 * Incorrect Category returned by Category.ByName node
 * Node FamilyDocument.SetParameterValueByName cannot be used for Yes/No family parameters
