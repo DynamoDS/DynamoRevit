@@ -1,3 +1,8 @@
+## 0.5.11
+* Update Dynamo Core to 3.0.0-beta6634, Greg, and RestSharp
+* fix missing DYnamoInstallDetective.dll
+* fix yes/no (long type) value for global parameters not being set properly
+
 ## 0.5.10
 * Fixed issue for node FamilyDocument.SetParameterValueByName that cannot be used for Yes/No family parameters
 
