@@ -1,3 +1,6 @@
+## 0.4.24
+* Disable Splash Screen for Revit 2024.2 due to inconsistent sign in/out with host application
+
 ## 0.4.23
 * Upgrade DynamoCore version to 2.19.3.6394 to fix large launch times when there are many packages
 
