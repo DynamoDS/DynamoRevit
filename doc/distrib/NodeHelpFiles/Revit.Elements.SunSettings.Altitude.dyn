@@ -1,0 +1,238 @@
+{
+  "Uuid": "1fdb1ff9-de82-4d4d-9f94-5b7e9eae79e8",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.SunSettings.Altitude",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.SunSettings, DSRevitNodesUI",
+      "Id": "cbeef7b04589495b986dcc50ad7eb1fb",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "22ab72f3b2ef40d68251b83453bbceff",
+          "Name": "SunSettings",
+          "Description": "SunSettings element.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Returns the SunSettings of the current View."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 327.2,
+      "WatchHeight": 38.4,
+      "Id": "ed9f0b943e5a448798f9ef0713e9bf09",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "200c8011775a4cc7ab6ae16de503d76c",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4cc22f32184e45689b75e31e44b0a18a",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "f7405194b1cf414eb3cc23f74a5b4b3b",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "22d3c34973d14f6fbe06671cb5ce8550",
+          "Name": "sunSettings",
+          "Description": "Revit.Elements.SunSettings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f636fb1d8ddd4e18b81bde390047c034",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.SunSettings.Altitude",
+      "Replication": "Auto",
+      "Description": "Extracts the Altitude.\n\nSunSettings.Altitude: double"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3dc2f5ebe9a44da9b87d9bcef6b64c56",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "1b9c88bb900c4b9eb015ae93e1edd584",
+          "Name": "sunSettings",
+          "Description": "Revit.Elements.SunSettings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8708c94a1e234482a82ca7f20a862b07",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.SunSettings.Azimuth",
+      "Replication": "Auto",
+      "Description": "Extracts the Azimuth.\n\nSunSettings.Azimuth: double"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "22ab72f3b2ef40d68251b83453bbceff",
+      "End": "200c8011775a4cc7ab6ae16de503d76c",
+      "Id": "6994e9e475f744ab9cd14bc6a15fe13b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "22ab72f3b2ef40d68251b83453bbceff",
+      "End": "1b9c88bb900c4b9eb015ae93e1edd584",
+      "Id": "ce12697661d74952a97e432139282249",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "22ab72f3b2ef40d68251b83453bbceff",
+      "End": "22d3c34973d14f6fbe06671cb5ce8550",
+      "Id": "b003693ffa3d4cfb9d340aea5393daff",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "cbeef7b04589495b986dcc50ad7eb1fb",
+        "Name": "SunSettings.Current",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 248.4,
+        "Y": 443.2
+      },
+      {
+        "Id": "ed9f0b943e5a448798f9ef0713e9bf09",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 606.8,
+        "Y": 278.4
+      },
+      {
+        "Id": "f7405194b1cf414eb3cc23f74a5b4b3b",
+        "Name": "SunSettings.Altitude",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 606.8,
+        "Y": 443.2
+      },
+      {
+        "Id": "3dc2f5ebe9a44da9b87d9bcef6b64c56",
+        "Name": "SunSettings.Azimuth",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 606.8,
+        "Y": 620.8
+      }
+    ],
+    "Annotations": [],
+    "X": -146.40000000000009,
+    "Y": -26.400000000000091,
+    "Zoom": 1.0
+  }
+}
