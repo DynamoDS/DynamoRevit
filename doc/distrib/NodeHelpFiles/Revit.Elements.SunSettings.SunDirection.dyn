@@ -1,0 +1,329 @@
+{
+  "Uuid": "1fdb1ff9-de82-4d4d-9f94-5b7e9eae79e8",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.SunSettings.SunDirection",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.SunSettings, DSRevitNodesUI",
+      "Id": "cbeef7b04589495b986dcc50ad7eb1fb",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "22ab72f3b2ef40d68251b83453bbceff",
+          "Name": "SunSettings",
+          "Description": "SunSettings element.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Returns the SunSettings of the current View."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 327.2,
+      "WatchHeight": 38.4,
+      "Id": "ed9f0b943e5a448798f9ef0713e9bf09",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "200c8011775a4cc7ab6ae16de503d76c",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4cc22f32184e45689b75e31e44b0a18a",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3938812a5d9842518475b41fc1198f40",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "69babd760e2a410ea5235bf2cf16a455",
+          "Name": "sunSettings",
+          "Description": "Revit.Elements.SunSettings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f98a29bb7b4e436ebd4ee572d964fae2",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.SunSettings.SunDirection",
+      "Replication": "Auto",
+      "Description": "Calculates the direction of the sun.\n\nSunSettings.SunDirection: Vector"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "06c17bd93ede439391d0925662e87935",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "8b58be0caa964c60b31d048093e23853",
+          "Name": "startPoint",
+          "Description": "Line start point\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d2b2f54119824afbb0e591c89a86ace0",
+          "Name": "direction",
+          "Description": "Direction vector\n\nVector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3d40d39a78394fcbb38e8b408c73fa83",
+          "Name": "length",
+          "Description": "Length of line\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4c247047900a40e5902a2f64a90c3a3b",
+          "Name": "Line",
+          "Description": "Line from start direction and length",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Line.ByStartPointDirectionLength@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Vector,double",
+      "Replication": "Auto",
+      "Description": "Create a straight Line starting at start Point, extending in Vector direction by specified length.\n\nLine.ByStartPointDirectionLength (startPoint: Point, direction: Vector, length: double = 1): Line"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "f7f9f8e24a914e80a3a73acb0277994a",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e1fb8e23fdfe4dcc8b3ca4fc1917075d",
+          "Name": "Point",
+          "Description": "Origin point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.Origin",
+      "Replication": "Auto",
+      "Description": "Get the Origin point (0,0,0)\n\nPoint.Origin ( ): Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "96b0aed30b7b4d8182fa9d97a21c6cfb",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "be101b12482f4c5080f5d8fe0af84761",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 10.0
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "22ab72f3b2ef40d68251b83453bbceff",
+      "End": "200c8011775a4cc7ab6ae16de503d76c",
+      "Id": "6994e9e475f744ab9cd14bc6a15fe13b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "22ab72f3b2ef40d68251b83453bbceff",
+      "End": "69babd760e2a410ea5235bf2cf16a455",
+      "Id": "357b85d723164a9296ba6452ab1a158b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f98a29bb7b4e436ebd4ee572d964fae2",
+      "End": "d2b2f54119824afbb0e591c89a86ace0",
+      "Id": "f64294e2178846e3a001e660a1e4b8bf",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e1fb8e23fdfe4dcc8b3ca4fc1917075d",
+      "End": "8b58be0caa964c60b31d048093e23853",
+      "Id": "6d9bf0fb06b14030b4688c6cccf8daec",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "be101b12482f4c5080f5d8fe0af84761",
+      "End": "3d40d39a78394fcbb38e8b408c73fa83",
+      "Id": "d656c1336d9a4fe7af0624dc2d021005",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": 16.705934524536133,
+      "EyeY": 5.9428005218505859,
+      "EyeZ": 5.3798713684082031,
+      "LookX": -16.281389236450195,
+      "LookY": -1.165766716003418,
+      "LookZ": -3.96575927734375,
+      "UpX": 0.14193317294120789,
+      "UpY": 0.98927241563797,
+      "UpZ": 0.034571487456560135
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "cbeef7b04589495b986dcc50ad7eb1fb",
+        "Name": "SunSettings.Current",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 230.8,
+        "Y": 438.4
+      },
+      {
+        "Id": "ed9f0b943e5a448798f9ef0713e9bf09",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 602.8,
+        "Y": 278.4
+      },
+      {
+        "Id": "3938812a5d9842518475b41fc1198f40",
+        "Name": "SunSettings.SunDirection",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 602.8,
+        "Y": 548.0
+      },
+      {
+        "Id": "06c17bd93ede439391d0925662e87935",
+        "Name": "Line.ByStartPointDirectionLength",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1023.2,
+        "Y": 411.2
+      },
+      {
+        "Id": "f7f9f8e24a914e80a3a73acb0277994a",
+        "Name": "Point.Origin",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 602.8,
+        "Y": 411.2
+      },
+      {
+        "Id": "96b0aed30b7b4d8182fa9d97a21c6cfb",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 736.4,
+        "Y": 728.0
+      }
+    ],
+    "Annotations": [],
+    "X": -339.20000000000005,
+    "Y": -121.60000000000002,
+    "Zoom": 1.0
+  }
+}
