@@ -1,0 +1,345 @@
+{
+  "Uuid": "34703780-f4cd-4bf5-b67a-5b70edfb4ca4",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.View3D.CreateUniqueViewName",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "42166cb2c0cb45c1abe64cb6fbca7409",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "1b0bdc45ccde46f79e22adac66f6143c",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2fff3bfd32dd43fc91f76e6c36a44989",
+          "Name": "string",
+          "Description": "The original name if it is already unique, or a unique version of the name.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View3D.CreateUniqueViewName@string",
+      "Replication": "Auto",
+      "Description": "Determines whether a view with the provided name already exists. If a view exists with the provided name, and new view is created with a unique name. Otherwise, the original view name is returned.\n\nView3D.CreateUniqueViewName (name: string): string"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "{3D}",
+      "Id": "69d81ee9f2ec42449b6b51e71734e6a3",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "395fd37ff31c427bb96db25e0ff74ad7",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "26a2d4b8f2ea4a9db80e83a63d03e1a7",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "9418ace6c90440b0be672ff7986d3198",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6173171b635b41cd9675fa8ddf16f9c3",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "107629253d5949089fc59f613be6a8e8",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "dd5209981cf34459bc6fc521e22c02d5",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "L1"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "fb92531e077842ed9388aeca0fd1b325",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "762fb56350ec44b295cd83eb793b2063",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6265c25598464f52a40229cf4c025d1d",
+          "Name": "string",
+          "Description": "The original name if it is already unique, or a unique version of the name.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View3D.CreateUniqueViewName@string",
+      "Replication": "Auto",
+      "Description": "Determines whether a view with the provided name already exists. If a view exists with the provided name, and new view is created with a unique name. Otherwise, the original view name is returned.\n\nView3D.CreateUniqueViewName (name: string): string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "cd8bb6f3312043b4bc3a1640505b4025",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "72c031bfbb3548e38292e47a98c78def",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "29f517ac4bac4c8aad6bcc0620ffded2",
+          "Name": "string",
+          "Description": "The original name if it is already unique, or a unique version of the name.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View3D.CreateUniqueViewName@string",
+      "Replication": "Auto",
+      "Description": "Determines whether a view with the provided name already exists. If a view exists with the provided name, and new view is created with a unique name. Otherwise, the original view name is returned.\n\nView3D.CreateUniqueViewName (name: string): string"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "af077a6876114c3a902174b5fdf47f54",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d1d5decfcbd644ef8830d0d63f3fb63b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Neat Revit View"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "395fd37ff31c427bb96db25e0ff74ad7",
+      "End": "9418ace6c90440b0be672ff7986d3198",
+      "Id": "77e20556a1384ee49338182b6771dbd8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6173171b635b41cd9675fa8ddf16f9c3",
+      "End": "1b0bdc45ccde46f79e22adac66f6143c",
+      "Id": "21846dcb47324a6fbfb903147f109903",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dd5209981cf34459bc6fc521e22c02d5",
+      "End": "762fb56350ec44b295cd83eb793b2063",
+      "Id": "af88d58c456d4ce79888cd1076c273a8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d1d5decfcbd644ef8830d0d63f3fb63b",
+      "End": "72c031bfbb3548e38292e47a98c78def",
+      "Id": "fcd05eca146343969f47571f50966e40",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -73.566497802734375,
+      "EyeY": 27.8989315032959,
+      "EyeZ": 5.5471715927124023,
+      "LookX": -0.60507965087890625,
+      "LookY": -1.1655960083007813,
+      "LookZ": -0.64636802673339844,
+      "UpX": -0.442932665348053,
+      "UpY": 0.761538565158844,
+      "UpZ": -0.47314867377281189
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "42166cb2c0cb45c1abe64cb6fbca7409",
+        "Name": "View3D.CreateUniqueViewName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 876.608153959597,
+        "Y": 655.798209063023
+      },
+      {
+        "Id": "69d81ee9f2ec42449b6b51e71734e6a3",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 201.259820965866,
+        "Y": 655.798209063023
+      },
+      {
+        "Id": "26a2d4b8f2ea4a9db80e83a63d03e1a7",
+        "Name": "Element.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 609.131607270491,
+        "Y": 655.798209063023
+      },
+      {
+        "Id": "107629253d5949089fc59f613be6a8e8",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 673.131607270491,
+        "Y": 864.24092881059
+      },
+      {
+        "Id": "fb92531e077842ed9388aeca0fd1b325",
+        "Name": "View3D.CreateUniqueViewName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 869.944254639789,
+        "Y": 864.24092881059
+      },
+      {
+        "Id": "cd8bb6f3312043b4bc3a1640505b4025",
+        "Name": "View3D.CreateUniqueViewName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 869.944254639789,
+        "Y": 1050.83010976523
+      },
+      {
+        "Id": "af077a6876114c3a902174b5fdf47f54",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 638.73160727049,
+        "Y": 1050.83010976523
+      }
+    ],
+    "Annotations": [],
+    "X": -52.63698191535957,
+    "Y": -396.41583291428384,
+    "Zoom": 0.96039866343357683
+  }
+}
