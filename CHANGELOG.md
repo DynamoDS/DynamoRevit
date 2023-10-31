@@ -1,3 +1,6 @@
+## 0.5.12
+* Update Dynamo Core to 3.0.0-beta6680
+
 ## 0.5.11
 * Update Dynamo Core to 3.0.0-beta6634, Greg, and RestSharp
 * fix missing DYnamoInstallDetective.dll

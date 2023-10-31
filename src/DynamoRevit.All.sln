@@ -52,11 +52,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RevitSystemTests", "..\test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4466E6F6-F644-43AB-96B3-5ECE1622E711}"
 	ProjectSection(SolutionItems) = preProject
+		..\.version = ..\.version
+		..\CHANGELOG.md = ..\CHANGELOG.md
 		Config.xml = Config.xml
 		Config\CS_SDK.props = Config\CS_SDK.props
 		Config\dynamo-nuget.config = Config\dynamo-nuget.config
 		Config\packages-template.aget = Config\packages-template.aget
 		Config\packages.aget = Config\packages.aget
+		..\README.md = ..\README.md
 		Config\user_local.props = Config\user_local.props
 	EndProjectSection
 EndProject
