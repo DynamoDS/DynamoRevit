@@ -1,0 +1,284 @@
+{
+  "Uuid": "6e38fa05-057a-408b-bd33-b285fff8f50a",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Mullion.LocationCurve",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementById, DSRevitNodesUI",
+      "Id": "ec8e8e3bf3614f68bf1bccf2b8db54be",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "c4ee36adb5144026aeaaa090ae799a07",
+          "Name": "Id",
+          "Description": "Element Id as string, int or ElementId",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a5456970bb4e4cdca541bc8173a37aac",
+          "Name": "Element",
+          "Description": "The list of elements matching the query.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Gets the Element with the specified Id"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "b838579e1d304e53917cfe20a15894c5",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4da99647e4484801bb030e1d4da16c0d",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 1055165.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "2db29e66e8a2499189617d954404cd8d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "5774e665ca5540a2aeb8a84295c8b3ff",
+          "Name": "hostingElement",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "62a066355e724e9faa899eb938f86b65",
+          "Name": "CurtainPanel[]",
+          "Description": "CurtainPanel[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.CurtainPanel.ByElement@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "get all panels of curtain wall, system or slope glazing roof\n\nCurtainPanel.ByElement (hostingElement: Element): CurtainPanel[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "2ce247ab80034603b8968e55fe9f051a",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b68f98283a0742c59e8ca5540f868a0c",
+          "Name": "curtainPanel",
+          "Description": "Revit.Elements.CurtainPanel",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3f2e200abec44780b8966f681aae0a67",
+          "Name": "Mullion[]",
+          "Description": "Mullion[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.CurtainPanel.SupportingMullions",
+      "Replication": "Auto",
+      "Description": "Gets Mullions hosting the specified curtain panel\n\nCurtainPanel.SupportingMullions ( ): Mullion[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a58a6c565ed54b709f903393a5b9b1fc",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d582336a45a3438e9adcadabf5d252b4",
+          "Name": "mullion",
+          "Description": "Revit.Elements.Mullion",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3b644f206c7d41f7886b239883bac433",
+          "Name": "Curve",
+          "Description": "Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Mullion.LocationCurve",
+      "Replication": "Auto",
+      "Description": "Gets curve geometry from the specified Mullion Element\n\nMullion.LocationCurve: Curve"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "a5456970bb4e4cdca541bc8173a37aac",
+      "End": "5774e665ca5540a2aeb8a84295c8b3ff",
+      "Id": "c81aa84ecff4420ca46474b452841b4f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4da99647e4484801bb030e1d4da16c0d",
+      "End": "c4ee36adb5144026aeaaa090ae799a07",
+      "Id": "4a400b669f864868b6350f1f1a17b91e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "62a066355e724e9faa899eb938f86b65",
+      "End": "b68f98283a0742c59e8ca5540f868a0c",
+      "Id": "79dcdd3fe52643cc9aa45be3dadf99ab",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3f2e200abec44780b8966f681aae0a67",
+      "End": "d582336a45a3438e9adcadabf5d252b4",
+      "Id": "c60359c7768640e69e165fd62315ef58",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -56.263572692871094,
+      "EyeY": 72.885826110839844,
+      "EyeZ": 91.338294982910156,
+      "LookX": -2.1908493041992188,
+      "LookY": -34.219158172607422,
+      "LookZ": -83.077377319335938,
+      "UpX": -0.0045777237974107265,
+      "UpY": 0.98480772972106934,
+      "UpZ": -0.1735878586769104
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "ec8e8e3bf3614f68bf1bccf2b8db54be",
+        "Name": "Element By Id",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 847.685712268282,
+        "Y": 805.078274705584
+      },
+      {
+        "Id": "b838579e1d304e53917cfe20a15894c5",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 612.598591194703,
+        "Y": 805.078274705584
+      },
+      {
+        "Id": "2db29e66e8a2499189617d954404cd8d",
+        "Name": "CurtainPanel.ByElement",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1101.17283334186,
+        "Y": 805.078274705584
+      },
+      {
+        "Id": "2ce247ab80034603b8968e55fe9f051a",
+        "Name": "CurtainPanel.SupportingMullions",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1557.33293582041,
+        "Y": 805.615924952514
+      },
+      {
+        "Id": "a58a6c565ed54b709f903393a5b9b1fc",
+        "Name": "Mullion.LocationCurve",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1980.26631066572,
+        "Y": 805.615924952514
+      }
+    ],
+    "Annotations": [],
+    "X": -457.19640455387537,
+    "Y": -235.42807364573133,
+    "Zoom": 0.642869557405948
+  }
+}

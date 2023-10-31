@@ -1,0 +1,238 @@
+{
+  "Uuid": "6e38fa05-057a-408b-bd33-b285fff8f50a",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.CurtainPanel.AsFamilyInstance",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementById, DSRevitNodesUI",
+      "Id": "ec8e8e3bf3614f68bf1bccf2b8db54be",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "c4ee36adb5144026aeaaa090ae799a07",
+          "Name": "Id",
+          "Description": "Element Id as string, int or ElementId",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a5456970bb4e4cdca541bc8173a37aac",
+          "Name": "Element",
+          "Description": "The list of elements matching the query.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Gets the Element with the specified Id"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "b838579e1d304e53917cfe20a15894c5",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4da99647e4484801bb030e1d4da16c0d",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 1055165.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "2db29e66e8a2499189617d954404cd8d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "5774e665ca5540a2aeb8a84295c8b3ff",
+          "Name": "hostingElement",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "62a066355e724e9faa899eb938f86b65",
+          "Name": "CurtainPanel[]",
+          "Description": "CurtainPanel[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.CurtainPanel.ByElement@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "get all panels of curtain wall, system or slope glazing roof\n\nCurtainPanel.ByElement (hostingElement: Element): CurtainPanel[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "df5116dfab73427997ee55753a6efff6",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "5878c72766ae4368911f63afb9320134",
+          "Name": "curtainPanel",
+          "Description": "Revit.Elements.CurtainPanel",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2260c2268fe94048b24fd9c4a617e85d",
+          "Name": "FamilyInstance",
+          "Description": "FamilyInstance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.CurtainPanel.AsFamilyInstance",
+      "Replication": "Auto",
+      "Description": "Gets family instance from curtain Panel\n\nCurtainPanel.AsFamilyInstance ( ): FamilyInstance"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "a5456970bb4e4cdca541bc8173a37aac",
+      "End": "5774e665ca5540a2aeb8a84295c8b3ff",
+      "Id": "c81aa84ecff4420ca46474b452841b4f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4da99647e4484801bb030e1d4da16c0d",
+      "End": "c4ee36adb5144026aeaaa090ae799a07",
+      "Id": "4a400b669f864868b6350f1f1a17b91e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "62a066355e724e9faa899eb938f86b65",
+      "End": "5878c72766ae4368911f63afb9320134",
+      "Id": "c238c65d6fc8404da5f6e4b74aab8988",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "ec8e8e3bf3614f68bf1bccf2b8db54be",
+        "Name": "Element By Id",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 847.685712268282,
+        "Y": 805.078274705584
+      },
+      {
+        "Id": "b838579e1d304e53917cfe20a15894c5",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 612.598591194703,
+        "Y": 805.078274705584
+      },
+      {
+        "Id": "2db29e66e8a2499189617d954404cd8d",
+        "Name": "CurtainPanel.ByElement",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1101.17283334186,
+        "Y": 805.078274705584
+      },
+      {
+        "Id": "df5116dfab73427997ee55753a6efff6",
+        "Name": "CurtainPanel.AsFamilyInstance",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1487.34345709275,
+        "Y": 805.078274705584
+      }
+    ],
+    "Annotations": [],
+    "X": -410.942806349646,
+    "Y": -379.65582432050246,
+    "Zoom": 0.76582939285155194
+  }
+}
