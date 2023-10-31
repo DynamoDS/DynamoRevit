@@ -234,13 +234,12 @@ namespace Revit.Elements
                     parameter.InternalGlobalParameter.SetValue(
                         new Autodesk.Revit.DB.StringParameterValue((string)value));
                 }
-                else if (value.GetType() == typeof(double))
+                else if (value.GetType() == typeof(double) || value.GetType() == typeof(long))
                 {
-                    var valueToSet = (double)value * UnitConverter.DynamoToHostFactor(parameter.InternalGlobalParameter.GetDefinition().GetDataType());
-
+                    double dValue = value.GetType() == typeof(long) ? (double)(long)value : (double)value;
+                    var valueToSet = dValue * UnitConverter.DynamoToHostFactor(parameter.InternalGlobalParameter.GetDefinition().GetDataType());
                     parameter.InternalGlobalParameter.SetValue(
                         new Autodesk.Revit.DB.DoubleParameterValue(valueToSet));
-
                 }
 
                 TransactionManager.Instance.TransactionTaskDone();

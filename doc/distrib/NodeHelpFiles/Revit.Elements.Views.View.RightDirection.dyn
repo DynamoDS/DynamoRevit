@@ -1,0 +1,368 @@
+{
+  "Uuid": "34703780-f4cd-4bf5-b67a-5b70edfb4ca4",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.View.RightDirection",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "2afbe0f3e8994247b42675096fb094f3",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9baf88948c0a4428890282a54b3bbea5",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8a2cd5386ef441e1b99f633f8065c5bf",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d89c2fb1347d4c7e94ffd891340dfca6",
+          "Name": "document",
+          "Description": "Revit.Application.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9fa363967053400e8bdd41fcf80da4af",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.ActiveView",
+      "Replication": "Auto",
+      "Description": "Get the active view for the document\n\nDocument.ActiveView: View"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b60c0dfa4cb64587a398090555203524",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e5ee733b5ae742c787f9fd120fceed5b",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3e60ad5511a146ed824716fb93c14eaf",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View.RightDirection",
+      "Replication": "Auto",
+      "Description": "The direction towards the right side of the screen.\n\nView.RightDirection: Vector"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d42f25cb9c284c9d9cd1a3b675401141",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "1e218e59e50e4913a909fce18e0f43bb",
+          "Name": "startPoint",
+          "Description": "Line start point\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a49a842b113d4be69e20baa5a8ab81de",
+          "Name": "direction",
+          "Description": "Direction vector\n\nVector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "83c2f6b8b1ab4134b1d4013cfc1efeb7",
+          "Name": "length",
+          "Description": "Length of line\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "153135d4e555424598c8bd797f091655",
+          "Name": "Line",
+          "Description": "Line from start direction and length",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Line.ByStartPointDirectionLength@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Vector,double",
+      "Replication": "Auto",
+      "Description": "Create a straight Line starting at start Point, extending in Vector direction by specified length.\n\nLine.ByStartPointDirectionLength (startPoint: Point, direction: Vector, length: double = 1): Line"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a27ab4b3b0c543b792211ae658b2047a",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "77eb300c1b1d4b9388dcd6836a913ee5",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7c9b780fc52841ef8c8d66be16fd108d",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View.Origin",
+      "Replication": "Auto",
+      "Description": "Returns the origin of the screen.\n\nView.Origin: Point"
+    },
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 200.0,
+      "WatchHeight": 200.0,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "145925a5-a8ab-4f0e-80c4-77b39bdc7ecf Preview",
+        "EyeX": -74.274124145507813,
+        "EyeY": 27.264444351196289,
+        "EyeZ": 6.02022123336792,
+        "LookX": 0.1025543212890625,
+        "LookY": -0.53111076354980469,
+        "LookZ": -1.119417667388916,
+        "UpX": 0.020382389426231384,
+        "UpY": 0.97472262382507324,
+        "UpZ": -0.22248722612857819
+      },
+      "Id": "145925a5a8ab4f0e80c477b39bdc7ecf",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "57bd996e98d9472380891ee7091d1c03",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "19728cb712654f379c8d27db885dc7a6",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "9baf88948c0a4428890282a54b3bbea5",
+      "End": "d89c2fb1347d4c7e94ffd891340dfca6",
+      "Id": "b11453979eab4b8fbb12cc3a8637f791",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9fa363967053400e8bdd41fcf80da4af",
+      "End": "e5ee733b5ae742c787f9fd120fceed5b",
+      "Id": "f1195a9b1d1e4689abf94dcc32a3de7a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9fa363967053400e8bdd41fcf80da4af",
+      "End": "77eb300c1b1d4b9388dcd6836a913ee5",
+      "Id": "082ad1ea44a341aaa238fce01de94359",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3e60ad5511a146ed824716fb93c14eaf",
+      "End": "a49a842b113d4be69e20baa5a8ab81de",
+      "Id": "703c7b8db4944d39b2f9f98d1707ebd5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "153135d4e555424598c8bd797f091655",
+      "End": "57bd996e98d9472380891ee7091d1c03",
+      "Id": "935f87249eaf4044a06829c687dc5ec2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7c9b780fc52841ef8c8d66be16fd108d",
+      "End": "1e218e59e50e4913a909fce18e0f43bb",
+      "Id": "c4620335d6674129bfe2f45935e60582",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -73.566497802734375,
+      "EyeY": 27.8989315032959,
+      "EyeZ": 5.5471715927124023,
+      "LookX": -0.60507965087890625,
+      "LookY": -1.1655960083007813,
+      "LookZ": -0.64636802673339844,
+      "UpX": -0.442932665348053,
+      "UpY": 0.761538565158844,
+      "UpZ": -0.47314867377281189
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "2afbe0f3e8994247b42675096fb094f3",
+        "Name": "Document.Current",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 371.25353739209584,
+        "Y": 264.35991416242359
+      },
+      {
+        "Id": "8a2cd5386ef441e1b99f633f8065c5bf",
+        "Name": "Document.ActiveView",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 680.053537392096,
+        "Y": 264.359914162424
+      },
+      {
+        "Id": "b60c0dfa4cb64587a398090555203524",
+        "Name": "View.RightDirection",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1009.1506638863771,
+        "Y": 342.17155136039048
+      },
+      {
+        "Id": "d42f25cb9c284c9d9cd1a3b675401141",
+        "Name": "Line.ByStartPointDirectionLength",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1322.93315367367,
+        "Y": 264.359914162424
+      },
+      {
+        "Id": "a27ab4b3b0c543b792211ae658b2047a",
+        "Name": "View.Origin",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1009.1506638863771,
+        "Y": 202.72349787500349
+      },
+      {
+        "Id": "145925a5a8ab4f0e80c477b39bdc7ecf",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1752.67257745132,
+        "Y": 264.359914162424
+      }
+    ],
+    "Annotations": [],
+    "X": 32.813506056464064,
+    "Y": 62.007761079803117,
+    "Zoom": 0.60888182308590988
+  }
+}
