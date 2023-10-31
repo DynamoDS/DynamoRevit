@@ -224,7 +224,7 @@
                   "path": "RevitNodes.Revit.Elements.RevisionCloud"
                 },
                 {
-                  "path": "RevitNodes.Revit.Elements.RevitLinkInstance"
+                  "path": "RevitNodes.Revit.Elements.LinkInstance"
                 },
                 {
                   "path": "RevitNodes.Revit.Elements.Roof"
