@@ -249,7 +249,7 @@ namespace Revit.Elements
                 .WhereElementIsNotElementType()
                 .WherePasses(paramterFilter)
                 .Cast<Autodesk.Revit.DB.RevitLinkInstance>()
-                .Select(el => new LinkInstance(el))
+                .Select(el => el.ToDSType(true) as LinkInstance)
                 .ToList();
             return linkInstance;
         }
