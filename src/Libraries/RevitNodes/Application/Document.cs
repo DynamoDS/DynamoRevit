@@ -335,7 +335,7 @@ namespace Revit.Application
                 .OfCategory(BuiltInCategory.OST_RvtLinks)
                 .WhereElementIsNotElementType()
                 .Cast<Autodesk.Revit.DB.RevitLinkInstance>()
-                .Select(el => new Revit.Elements.LinkInstance(el))
+                .Select(el => el.ToDSType(true) as Revit.Elements.LinkInstance)
                 .ToList();
             return links;
         }
