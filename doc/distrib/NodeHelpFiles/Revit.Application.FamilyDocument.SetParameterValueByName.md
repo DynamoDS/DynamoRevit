@@ -6,3 +6,4 @@ ___
 ## Example File
 
 ![FamilyDocument.SetParameterValueByName](./Revit.Application.FamilyDocument.SetParameterValueByName_img.jpg)
+![FamilyDocument.SetParameterValueByName GIF](./Revit.Application.FamilyDocument.SetParameterValueByName_img2.gif)
