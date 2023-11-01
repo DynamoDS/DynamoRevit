@@ -293,14 +293,7 @@
       "UpY": 1.0,
       "UpZ": 0.0
     },
-    "ConnectorPins": [
-      {
-        "Left": 906.13476116384618,
-        "Top": 431.287896758228,
-        "IsHidden": false,
-        "ConnectorGuid": "a4d018e0-0069-4766-b613-8f3e86f27f5b"
-      }
-    ],
+    "ConnectorPins": [],
     "NodeViews": [
       {
         "Id": "9247bb5efbf4483eb5966abff62fa23c",
@@ -339,8 +332,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 738.689206829078,
-        "Y": 856.522418603749
+        "X": 744.662941682362,
+        "Y": 841.675057019019
       },
       {
         "Id": "a8d753ae80264a7a91cc58854fb24ad4",
@@ -349,8 +342,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 436.043779475216,
-        "Y": 389.081142896329
+        "X": 770.262941682362,
+        "Y": 379.633711320454
       },
       {
         "Id": "55c0a893b7b84b58ab780170a5ff165e",
@@ -359,8 +352,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 693.889206829077,
-        "Y": 691.028656597152
+        "X": 699.862941682362,
+        "Y": 682.712154591254
       },
       {
         "Id": "c43d0e1a9a8f4a56b7258d2b46700c44",
@@ -369,8 +362,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 687.489206829077,
-        "Y": 527.524992676364
+        "X": 693.462941682362,
+        "Y": 523.749252163489
       }
     ],
     "Annotations": [],
