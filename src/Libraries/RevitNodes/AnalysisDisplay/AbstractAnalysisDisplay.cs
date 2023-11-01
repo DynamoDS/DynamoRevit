@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Analysis;
 using DynamoUnits;
+using Newtonsoft.Json;
 using RevitServices.Elements;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
@@ -17,16 +17,15 @@ namespace Revit.AnalysisDisplay
     /// support serialization.
     /// </summary>
     [SupressImportIntoVM]
-    [Serializable]
-    public class SpmPrimitiveIdPair : ISerializable
+    public class SpmPrimitiveIdPair
     {
         public long SpatialFieldManagerID { get; set; }
         public List<int> PrimitiveIds { get; set; }
- 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+
+        public SpmPrimitiveIdPair(long spatialFieldManagerID,  List<int> primitiveIds)
         {
-            info.AddValue("SpatialFieldManagerID", SpatialFieldManagerID, typeof(long));
-            info.AddValue("PrimitiveIds", PrimitiveIds, typeof(List<int>));
+            SpatialFieldManagerID = spatialFieldManagerID;
+            PrimitiveIds = primitiveIds;
         }
 
         public SpmPrimitiveIdPair()
@@ -34,39 +33,24 @@ namespace Revit.AnalysisDisplay
             SpatialFieldManagerID = long.MinValue;
             PrimitiveIds = new List<int>();
         }
-
-        public SpmPrimitiveIdPair(SerializationInfo info, StreamingContext context)
-        {
-            SpatialFieldManagerID = (long) info.GetValue("SpatialFieldManagerID", typeof (long));
-            PrimitiveIds =
-                (List<int>)
-                    info.GetValue("PrimitiveIds", typeof(List<int>));
-        }
     }
 
     [SupressImportIntoVM]
-    [Serializable]
-    public class SpmRefPrimitiveIdListPair : ISerializable
+    public class SpmRefPrimitiveIdListPair
     {
         public long SpatialFieldManagerID { get; set; }
         public Dictionary<Reference, int> RefIdPairs { get; set; }
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
+
+        public SpmRefPrimitiveIdListPair(long spatialFieldManagerID, Dictionary<Reference, int> refIdPairs)
         {
-            info.AddValue("SpatialFieldManagerID", SpatialFieldManagerID, typeof(long));
-            info.AddValue("ReferencePrimitiveIds", RefIdPairs, typeof(Dictionary<Reference, int>));
+            SpatialFieldManagerID = spatialFieldManagerID;
+            RefIdPairs = refIdPairs;
         }
+
         public SpmRefPrimitiveIdListPair()
         {
             SpatialFieldManagerID = long.MinValue;
             RefIdPairs = new Dictionary<Reference, int>();
-        }
-
-        public SpmRefPrimitiveIdListPair(SerializationInfo info, StreamingContext context)
-        {
-            SpatialFieldManagerID = (long)info.GetValue("SpatialFieldManagerID", typeof(long));
-            RefIdPairs =
-                (Dictionary<Reference, int>)
-                    info.GetValue("ReferencePrimitiveIds", typeof(Dictionary<Reference, int>));
         }
     }
 
@@ -240,11 +224,21 @@ namespace Revit.AnalysisDisplay
         protected Tuple<SpatialFieldManager, List<int>> GetElementAndPrimitiveIdFromTrace()
         {
             // This is a provisional implementation until we can store both items in trace
-            var id = ElementBinder.GetRawDataFromTrace();
-            if (id == null)
+            var traceString = ElementBinder.GetRawDataFromTrace();
+
+            if (String.IsNullOrEmpty(traceString))
                 return null;
 
-            var idPair = id as SpmPrimitiveIdPair;
+            SpmPrimitiveIdPair idPair = null;
+            try
+            {
+                idPair = JsonConvert.DeserializeObject<SpmPrimitiveIdPair>(traceString);
+            }
+            catch
+            {
+                //do nothing 
+            }
+
             if (idPair == null)
                 return null;
 
@@ -277,7 +271,9 @@ namespace Revit.AnalysisDisplay
                 SpatialFieldManagerID = manager.Id.Value,
                 PrimitiveIds = primitiveIds
             };
-            ElementBinder.SetRawDataForTrace(idPair);
+
+            var serializedTraceData = JsonConvert.SerializeObject(idPair);
+            ElementBinder.SetRawDataForTrace(serializedTraceData);
         }
 
         /// <summary>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using Analysis;
 using Dynamo.Graph.Nodes;
 using Autodesk.DesignScript.Runtime;
@@ -14,6 +13,7 @@ using RevitServices.Transactions;
 using Surface = Autodesk.DesignScript.Geometry.Surface;
 using UV = Autodesk.Revit.DB.UV;
 using View = Revit.Elements.Views.View;
+using Newtonsoft.Json;
 
 namespace Revit.AnalysisDisplay
 {
@@ -278,11 +278,21 @@ namespace Revit.AnalysisDisplay
         protected Tuple<SpatialFieldManager, Dictionary<Reference, int>> GetElementAndRefPrimitiveIdFromTrace()
         {
             // This is a provisional implementation until we can store both items in trace
-            var id = ElementBinder.GetRawDataFromTrace();
-            if (id == null)
+            var traceString = ElementBinder.GetRawDataFromTrace();
+
+            if (String.IsNullOrEmpty(traceString))
                 return null;
 
-            var idPair = id as SpmRefPrimitiveIdListPair;
+            SpmRefPrimitiveIdListPair idPair = null;
+            try
+            {
+                idPair = JsonConvert.DeserializeObject<SpmRefPrimitiveIdListPair>(traceString);
+            }
+            catch
+            {
+                //do nothing 
+            }
+
             if (idPair == null)
                 return null;
 
@@ -315,7 +325,9 @@ namespace Revit.AnalysisDisplay
                 SpatialFieldManagerID = manager.Id.Value,
                 RefIdPairs = keyValues
             };
-            ElementBinder.SetRawDataForTrace(idPair);
+
+            var serializedTraceData = JsonConvert.SerializeObject(idPair);
+            ElementBinder.SetRawDataForTrace(serializedTraceData);
         }
 
         protected void SetElementAndRefPrimitiveIdsForTrace()
