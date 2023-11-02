@@ -1,0 +1,193 @@
+{
+  "Uuid": "7fe4cf99-baa3-4d79-95dd-f095af82929f",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Application.Warning.Severity",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.AllWarningsOfType, DSRevitNodesUI",
+      "SelectedIndex": 2,
+      "SelectedString": "Highlighted floors overlap. ",
+      "Id": "34c088045717428ebacc720c552c9863",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "582ee8fd1e7f4abdb920ea0897a10e7d",
+          "Name": "Warnings",
+          "Description": "The selected Warnings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Returns a list of all instances of the selected warning type."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "55efad176c974c34b509f700cfa60259",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "7bed4a0015e14967b0f0b649b7cff21e",
+          "Name": "warning",
+          "Description": "Revit.Application.Warning",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9af15e2aa7c44c5281f1a036508593d9",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Warning.Description",
+      "Replication": "Auto",
+      "Description": "Retrieves the description text of the warning.\n\nWarning.Description: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "fdaf778f13004071a6835e078faf1d93",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "addd051decfc49aa9c235dfc1dfc1a78",
+          "Name": "warning",
+          "Description": "Revit.Application.Warning",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8f1ba724c79e47f7ace1091d2f24c691",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Warning.Severity",
+      "Replication": "Auto",
+      "Description": "Retrieves the severity of the Warning.\n\nWarning.Severity: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "582ee8fd1e7f4abdb920ea0897a10e7d",
+      "End": "7bed4a0015e14967b0f0b649b7cff21e",
+      "Id": "59ff314f27f64933ad03a2b554df27dd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "582ee8fd1e7f4abdb920ea0897a10e7d",
+      "End": "addd051decfc49aa9c235dfc1dfc1a78",
+      "Id": "c2d3f660b4aa44d8b1ee798113575989",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "34c088045717428ebacc720c552c9863",
+        "Name": "All Warnings of Type",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1294.60183380411,
+        "Y": 748.153393257271
+      },
+      {
+        "Id": "55efad176c974c34b509f700cfa60259",
+        "Name": "Warning.Description",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1750.9122390416344,
+        "Y": 675.40357614267873
+      },
+      {
+        "Id": "fdaf778f13004071a6835e078faf1d93",
+        "Name": "Warning.Severity",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1750.9122390416344,
+        "Y": 905.29582018225869
+      }
+    ],
+    "Annotations": [],
+    "X": -1532.235984489115,
+    "Y": -610.90309956469116,
+    "Zoom": 1.1448842091196694
+  }
+}
