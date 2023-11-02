@@ -6,7 +6,7 @@ Possible filter types include:
 - NotEqual - The field value is not equal to the specified value.
 - GreaterThan - The field value is greater than the specified value.
 - GreaterThanOrEqual - The field value is greater than or equal to the specified value.
-- LessThan - Less The field value is less than to the specified value.
+- LessThan - The field value is less than the specified value.
 - LessThanOrEqual - The field value is less than or equal to the specified value.
 - Contains - For a string field, the field value contains the specified string.
 - NotContains - For a string field, the field value does not contain the specified string.
@@ -17,7 +17,7 @@ Possible filter types include:
 - IsAssociatedWithGlobalParameter - The field is associated with a specified global parameter of a compatible type
 - IsNotAssociatedWithGlobalParameter - The field is not associated with a specified global parameter of a compatible type 
 
-In the example below, the first schedule from the current Revit file is collected. The schedule view is then checked for filters, and the only filter applied is a string does not end with filter type.
+In the example below, the first schedule from the current Revit file is collected. The schedule view is then checked for filters, and the only filter applied is a "string does not end with" filter type.
 ___
 ## Example File
 
