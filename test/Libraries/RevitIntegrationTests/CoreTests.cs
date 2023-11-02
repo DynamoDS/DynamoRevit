@@ -135,7 +135,7 @@ namespace RevitSystemTests
 
         [Test, TestCaseSource("SetupCopyPastes")]
         [TestModel(@".\empty.rfa")]
-        public void CanCopyAndPasteAllNodesOnRevit(NodeModelSearchElement searchElement)
+        public void CanCopyAndPasteAllNodesOnRevit(NodeSearchElement searchElement)
         {
             var model = ViewModel.Model;
 
@@ -153,16 +153,18 @@ namespace RevitSystemTests
             model.ClearCurrentWorkspace();
         }
 
-        private IEnumerable<NodeModelSearchElement> SetupCopyPastes()
+        private IEnumerable<NodeSearchElement> SetupCopyPastes()
         {
-            var excludes = new List<string>();
-            excludes.Add("Input");
-            excludes.Add("Output");
+            var excludes = new List<string>
+            {
+                "Input",
+                "Output"
+            };
 
-            if (ViewModel == null) return Enumerable.Empty<NodeModelSearchElement>();
+            if (ViewModel == null) return Enumerable.Empty<NodeSearchElement>();
 
             return
-                ViewModel.Model.CurrentWorkspace.Nodes.OfType<NodeModelSearchElement>()
+                ViewModel.Model.SearchModel.Search(string.Empty, ViewModel.Model.LuceneUtility)
                     .Where(x => !excludes.Contains(x.Name));
         }
     }
