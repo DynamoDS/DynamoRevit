@@ -14,7 +14,7 @@ using Dynamo.Nodes;
 using Dynamo.Search.SearchElements;
 using Dynamo.Selection;
 using Dynamo.Tests;
-
+using Dynamo.ViewModels;
 using NUnit.Framework;
 
 using RevitServices.Persistence;
@@ -29,6 +29,32 @@ namespace RevitSystemTests
     [TestFixture]
     class CoreTests : RevitSystemTestBase
     {
+        protected override void GetLibrariesToPreload(List<string> libraries)
+        {
+            // Add multiple libraries to better simulate typical Dynamo application usage.
+            libraries.Add("Analysis.dll");
+            libraries.Add("BuiltIn.ds");
+            libraries.Add("DesignScriptBuiltin.dll");
+            libraries.Add("DSCoreNodes.dll");
+            libraries.Add("DSOffice.dll");
+            libraries.Add("DSCPython.dll");
+            libraries.Add("DynamoConversions.dll");
+            libraries.Add("DynamoUnits.dll");
+            libraries.Add("FunctionObject.ds");
+            libraries.Add("FFITarget.dll");
+            libraries.Add("GeometryColor.dll");
+            libraries.Add("LiveCharts.dll");
+            libraries.Add("ProtoGeometry.dll");
+            libraries.Add(@"Revit\RevitNodes.dll");
+            libraries.Add(@"Revit\nodes\DSRevitNodesUI.dll");
+            libraries.Add("VMDataBridge.dll");
+            base.GetLibrariesToPreload(libraries);
+
+            // TODO: still need to find a solution to Setup() being run not before
+            //  test cases are computed from TestCaseSource, but every time a test
+            //  case is run
+        }
+
         /// <summary>
         /// Sanity Check graph should always have nodes that error.
         /// </summary>
@@ -58,7 +84,7 @@ namespace RevitSystemTests
 
             var xyzNode = ViewModel.Model.CurrentWorkspace.Nodes.First(x => x.Name == "Point.ByCoordinates");
             Assert.IsNotNull(xyzNode);
-            
+
             //test the shortest lacing
             xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "Auto"));
 
@@ -133,13 +159,15 @@ namespace RevitSystemTests
 
         }
 
-        [Test, TestCaseSource("SetupCopyPastes")]
+        [Test, TestCaseSource(nameof(SetupCopyPastes))]
         [TestModel(@".\empty.rfa")]
         public void CanCopyAndPasteAllNodesOnRevit(NodeSearchElement searchElement)
         {
             var model = ViewModel.Model;
 
-            searchElement.ProduceNode(); // puts the node into the current workspace
+            //searchElement.ProduceNode(); // puts the node into the current workspace
+            var nodeModel = searchElement.CreateNode();
+            model.CurrentWorkspace.AddAndRegisterNode(nodeModel, false);
 
             var node = AllNodes.FirstOrDefault();
 
@@ -153,7 +181,7 @@ namespace RevitSystemTests
             model.ClearCurrentWorkspace();
         }
 
-        private IEnumerable<NodeSearchElement> SetupCopyPastes()
+        private static IEnumerable<NodeSearchElement> SetupCopyPastes()
         {
             var excludes = new List<string>
             {
@@ -161,11 +189,15 @@ namespace RevitSystemTests
                 "Output"
             };
 
-            if (ViewModel == null) return Enumerable.Empty<NodeSearchElement>();
-
-            return
-                ViewModel.Model.SearchModel.Search(string.Empty, ViewModel.Model.LuceneUtility)
-                    .Where(x => !excludes.Contains(x.Name));
+            var listOfAllNodes = Enumerable.Empty<NodeSearchElement>();
+            DynamoViewModel viewModel = (s_instance as CoreTests)?.ViewModel;
+            if (viewModel != null)
+                try
+                {
+                    listOfAllNodes = viewModel.Model.SearchModel.Entries.Where(x => !excludes.Contains(x.Name));
+                }
+                catch (System.Exception ex) { }
+            return listOfAllNodes;
         }
     }
 }

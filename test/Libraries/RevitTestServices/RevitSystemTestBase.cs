@@ -24,6 +24,7 @@ using RTF.Applications;
 using SystemTestServices;
 using TestServices;
 using Dynamo.Configuration;
+using RTF.Framework;
 
 namespace RevitTestServices
 {
@@ -135,11 +136,13 @@ namespace RevitTestServices
     }
 
     [TestFixture]
-    public class RevitSystemTestBase : SystemTestBase
+    public class RevitSystemTestBase : SystemTestBase, IRTFSetup
     {
         private string samplesPath;
         protected string emptyModelPath1;
         protected string emptyModelPath;
+
+        public static RevitSystemTestBase s_instance = null;
 
         #region public methods
 
@@ -151,6 +154,7 @@ namespace RevitTestServices
             ((HomeWorkspaceModel)ViewModel.Model.CurrentWorkspace).RunSettings.RunType = RunType.Manual;
 
             DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
+            s_instance = this;
         }
 
         [TearDown]
