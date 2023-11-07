@@ -1,4 +1,4 @@
-name: Issues workflow
+name: Move Issues
 # This workflow transfers or moves issues based upon assigned labels.
 
 # DynamoRevitIssues project https://github.com/orgs/DynamoDS/projects/7
@@ -23,8 +23,8 @@ on:
       - assigned
 
 env:
-  gh_token: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
-  gh_organization: DynamoDS
+  GH_TOKEN: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
+  gh_organization: ${{ github.repository_owner }}
   project_id: 7
   project_name: 'DynamoRevit Issues'
 
@@ -34,26 +34,22 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.action == 'labeled'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Move issue to Dynamo Repository
-        if: github.event.label.name == 'Dynamo'
+        if: ${{ github.event.label.name == 'Dynamo' }}
         run: |
           gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}"
           gh issue transfer ${{ github.event.issue.number }} DynamoDS/Dynamo
-        env:
-          GITHUB_TOKEN:  ${{ env.gh_token }}
       - name: Move issue to DynamoWishlist Repository
-        if: github.event.label.name == 'Wishlist'
+        if: ${{ github.event.label.name == 'Wishlist' }}
         run:  |
           gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}"
           gh issue transfer ${{ github.event.issue.number }} DynamoDS/DynamoWishlist
-        env:
-          GITHUB_TOKEN:  ${{ env.gh_token }}
       - name: Move issue to Todo
         if : github.event.label.name == 'tracked'
-        uses: leonsteinhaeuser/project-beta-automations@v2.1.0
+        uses: leonsteinhaeuser/project-beta-automations@v2.2.1
         with:
-          gh_token: ${{ env.gh_token }}
+          gh_token: ${{ env.GH_TOKEN }}
           organization: ${{ env.gh_organization }}
           project_id: ${{ env.project_id }}
           resource_node_id: ${{ github.event.issue.node_id }}
@@ -62,12 +58,12 @@ jobs:
   issue_assigned:
     name: issue assigned
     runs-on: ubuntu-latest
-    if: github.event.action == 'assigned'
+    if: ${{ github.event.action == 'assigned' }}
     steps:
       - name: Move issue to In Progress
-        uses: leonsteinhaeuser/project-beta-automations@v2.1.0
+        uses: leonsteinhaeuser/project-beta-automations@v2.2.1
         with:
-          gh_token: ${{ env.gh_token }}
+          gh_token: ${{ env.GH_TOKEN }}
           organization: ${{ env.gh_organization }}
           project_id: ${{ env.project_id }}
           resource_node_id: ${{ github.event.issue.node_id }}
