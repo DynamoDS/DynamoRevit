@@ -25,6 +25,9 @@ using SystemTestServices;
 using TestServices;
 using Dynamo.Configuration;
 using RTF.Framework;
+using Dynamo.Controls;
+using Dynamo.Interfaces;
+using Dynamo.Updates;
 
 namespace RevitTestServices
 {
@@ -93,8 +96,8 @@ namespace RevitTestServices
             //and then get the location of the required Revit files and dynamo files.
             if (RevitSystemTestBase.IsJournalReplaying())
             {
-               string journalPath = RevitTestExecutive.CommandData.Application.Application.RecordingJournalFilename;
-               WorkingDirectory = Path.GetDirectoryName(journalPath);
+                string journalPath = RevitTestExecutive.CommandData.Application.Application.RecordingJournalFilename;
+                WorkingDirectory = Path.GetDirectoryName(journalPath);
             }
 
             //get the test path
@@ -142,19 +145,46 @@ namespace RevitTestServices
         protected string emptyModelPath1;
         protected string emptyModelPath;
 
-        public static RevitSystemTestBase s_instance = null;
+        public static RevitSystemTestBase s_initedInstance = null;
 
         #region public methods
+
+        protected void WrapOf(RevitSystemTestBase initedInstance)
+        {
+            pathResolver = initedInstance.pathResolver;
+            workingDirectory = initedInstance.workingDirectory;
+            //preloader = other.preloader;
+            //assemblyResolver = other.assemblyResolver;
+            //originalBuiltinPackagesDirectory = other.originalBuiltinPackagesDirectory;
+            ViewModel = initedInstance.ViewModel;
+            View = initedInstance.View;
+            Model = initedInstance.Model;
+            UpdateManager = initedInstance.UpdateManager;
+            //TempFolder = other.TempFolder;
+
+            samplesPath = initedInstance.samplesPath;
+            emptyModelPath = initedInstance.emptyModelPath;
+            emptyModelPath1 = initedInstance.emptyModelPath1;
+        }
 
         [SetUp]
         public override void Setup()
         {
-            base.Setup();
+            if (s_initedInstance == null)
+            {
+                base.Setup();
+                //ViewModel.Model.AddZeroTouchNodesToSearch(ViewModel.Model.LibraryServices.GetAllFunctionGroups());
 
-            ((HomeWorkspaceModel)ViewModel.Model.CurrentWorkspace).RunSettings.RunType = RunType.Manual;
+                ((HomeWorkspaceModel)ViewModel.Model.CurrentWorkspace).RunSettings.RunType = RunType.Manual;
 
-            DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
-            s_instance = this;
+                DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
+                s_initedInstance = this;
+            }
+            else
+            {
+                WrapOf(s_initedInstance);
+                CreateTemporaryFolder();
+            }
         }
 
         [TearDown]
@@ -212,12 +242,12 @@ namespace RevitTestServices
         /// <returns>Whether journal is replaying or not.</returns>
         public static bool IsJournalReplaying()
         {
-           var method = typeof(Autodesk.Revit.UI.UIFabricationUtils).GetMethod("IsJournalReplaying", BindingFlags.NonPublic | BindingFlags.Static);
-           if (method != null)
-           {
-              return (bool)method.Invoke(null, null);
-           }
-           return false;
+            var method = typeof(Autodesk.Revit.UI.UIFabricationUtils).GetMethod("IsJournalReplaying", BindingFlags.NonPublic | BindingFlags.Static);
+            if (method != null)
+            {
+                return (bool)method.Invoke(null, null);
+            }
+            return false;
         }
 
         protected override void StartDynamo(TestSessionConfiguration testConfig)
@@ -235,7 +265,7 @@ namespace RevitTestServices
                 // 
                 var commandData = new DynamoRevitCommandData(RevitTestExecutive.CommandData);
                 var userDataFolder = Path.Combine(Environment.GetFolderPath(
-                  Environment.SpecialFolder.ApplicationData), 
+                  Environment.SpecialFolder.ApplicationData),
                   "Dynamo", "Dynamo Revit");
                 var commonDataFolder = Path.Combine(Environment.GetFolderPath(
                   Environment.SpecialFolder.CommonApplicationData),
@@ -244,8 +274,8 @@ namespace RevitTestServices
                 // Set Path Resolver's user data folder and common data folder with DynamoRevit runtime.
                 var pathResolverParams = new TestPathResolverParams()
                 {
-                   UserDataRootFolder = userDataFolder,
-                   CommonDataRootFolder = commonDataFolder
+                    UserDataRootFolder = userDataFolder,
+                    CommonDataRootFolder = commonDataFolder
                 };
                 RevitTestPathResolver revitTestPathResolver = new RevitTestPathResolver(pathResolverParams);
                 revitTestPathResolver.InitializePreloadedLibraries();
@@ -253,13 +283,13 @@ namespace RevitTestServices
                 // Get the preloaded DynamoRevit Custom Nodes, and Add them to Preload Libraries.
                 var preloadedLibraries = new List<string>();
                 GetLibrariesToPreload(preloadedLibraries);
-                if(preloadedLibraries.Any())
+                if (preloadedLibraries.Any())
                 {
-                    foreach(var preloadedLibrary in preloadedLibraries)
+                    foreach (var preloadedLibrary in preloadedLibraries)
                     {
-                        if(Directory.Exists(preloadedLibrary))
+                        if (Directory.Exists(preloadedLibrary))
                             revitTestPathResolver.AddNodeDirectory(preloadedLibrary);
-                        else if(File.Exists(preloadedLibrary))
+                        else if (File.Exists(preloadedLibrary))
                             revitTestPathResolver.AddPreloadLibraryPath(preloadedLibrary);
                     }
                 }
@@ -268,7 +298,7 @@ namespace RevitTestServices
                 PreferenceSettings.DynamoTestPath = string.Empty;
                 //preload ASM and instruct dynamo to load that version of libG.
                 var requestedLibGVersion = DynamoRevit.PreloadAsmFromRevit();
-                
+
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new RevitDynamoModel.RevitStartConfiguration()
                     {
@@ -285,7 +315,7 @@ namespace RevitTestServices
 
                 Model = DynamoRevit.RevitDynamoModel;
 
-                this.ViewModel = DynamoRevitViewModel.Start(
+                ViewModel = DynamoRevitViewModel.Start(
                     new DynamoViewModel.StartConfiguration()
                     {
                         DynamoModel = DynamoRevit.RevitDynamoModel,
@@ -339,7 +369,7 @@ namespace RevitTestServices
 
         private void CurrentUIApplication_ViewActivating(object sender, ViewActivatingEventArgs e)
         {
-            ((RevitDynamoModel)this.ViewModel.Model).SetRunEnabledBasedOnContext(e.NewActiveView);
+            ((RevitDynamoModel)ViewModel.Model).SetRunEnabledBasedOnContext(e.NewActiveView);
         }
 
         /// <summary>
@@ -379,7 +409,7 @@ namespace RevitTestServices
                 DynamoModel.MakeConnectionCommand.Mode.End);
             this.Model.ExecuteCommand(cmdend);
         }
-      
+
         private static void UpdateSystemPathForProcess()
         {
             var assemblyLocation = Assembly.GetExecutingAssembly().Location;

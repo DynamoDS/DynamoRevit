@@ -7,6 +7,7 @@ using Autodesk.Revit.UI;
 
 using CoreNodeModels;
 using CoreNodeModels.Input;
+using Dynamo.Applications.Models;
 using Dynamo.Graph;
 using Dynamo.Graph.Nodes;
 using Dynamo.Models;
@@ -29,30 +30,54 @@ namespace RevitSystemTests
     [TestFixture]
     class CoreTests : RevitSystemTestBase
     {
+
+        protected static CoreTests s_initedInstance = null;
+
+        [SetUp]
+        public override void Setup()
+        {
+            if (s_initedInstance == null)
+            {
+                base.Setup();
+
+                ViewModel.Model.AddZeroTouchNodesToSearch(ViewModel.Model.LibraryServices.GetAllFunctionGroups());
+
+                s_initedInstance = this;
+            }
+            else
+            {
+                WrapOf(s_initedInstance);
+                CreateTemporaryFolder();
+
+                // This is needed because TearDown will clear the Model, and TearDown
+                //  is needed in order to clear the dependencyGraph, otherwise adding
+                //  a node will take exponentially long time
+                (ViewModel.Model as RevitDynamoModel).InitializeDocumentManager();
+            }
+        }
+
         protected override void GetLibrariesToPreload(List<string> libraries)
         {
             // Add multiple libraries to better simulate typical Dynamo application usage.
-            libraries.Add("Analysis.dll");
-            libraries.Add("BuiltIn.ds");
-            libraries.Add("DesignScriptBuiltin.dll");
-            libraries.Add("DSCoreNodes.dll");
-            libraries.Add("DSOffice.dll");
-            libraries.Add("DSCPython.dll");
-            libraries.Add("DynamoConversions.dll");
-            libraries.Add("DynamoUnits.dll");
-            libraries.Add("FunctionObject.ds");
-            libraries.Add("FFITarget.dll");
-            libraries.Add("GeometryColor.dll");
-            libraries.Add("LiveCharts.dll");
-            libraries.Add("ProtoGeometry.dll");
+            //libraries.Add("Analysis.dll");
+            //libraries.Add("BuiltIn.ds");
+            //libraries.Add("DesignScriptBuiltin.dll");
+            //libraries.Add("DSCoreNodes.dll");
+            //libraries.Add("DSOffice.dll");
+            //libraries.Add("DSCPython.dll");
+            //libraries.Add("DynamoConversions.dll");
+            //libraries.Add("DynamoUnits.dll");
+            //libraries.Add("FunctionObject.ds");
+            //libraries.Add("FFITarget.dll");
+            //libraries.Add("GeometryColor.dll");
+            //libraries.Add("LiveCharts.dll");
+            //libraries.Add("ProtoGeometry.dll");
             libraries.Add(@"Revit\RevitNodes.dll");
             libraries.Add(@"Revit\nodes\DSRevitNodesUI.dll");
-            libraries.Add("VMDataBridge.dll");
+            libraries.Add(@"Revit\nodes\analytical-automation-pkg\bin\AnalyticalAutomation.dll");
+            libraries.Add(@"Revit\nodes\analytical-automation-pkg\bin\AnalyticalAutomationGUI.dll");
+            //libraries.Add("VMDataBridge.dll");
             base.GetLibrariesToPreload(libraries);
-
-            // TODO: still need to find a solution to Setup() being run not before
-            //  test cases are computed from TestCaseSource, but every time a test
-            //  case is run
         }
 
         /// <summary>
@@ -178,11 +203,13 @@ namespace RevitSystemTests
             Assert.DoesNotThrow(() => model.Copy(), string.Format("Could not copy node : {0}", node.GetType()));
             Assert.DoesNotThrow(() => model.Paste(), string.Format("Could not paste node : {0}", node.GetType()));
 
+            model.CurrentWorkspace.RemoveAndDisposeNode(nodeModel);
             model.ClearCurrentWorkspace();
         }
 
-        private static IEnumerable<NodeSearchElement> SetupCopyPastes()
+        private static IEnumerable<TestCaseData> SetupCopyPastes()
         {
+            var xxx = new TestCaseData();
             var excludes = new List<string>
             {
                 "Input",
@@ -190,14 +217,14 @@ namespace RevitSystemTests
             };
 
             var listOfAllNodes = Enumerable.Empty<NodeSearchElement>();
-            DynamoViewModel viewModel = (s_instance as CoreTests)?.ViewModel;
+            DynamoViewModel viewModel = s_initedInstance?.ViewModel;
             if (viewModel != null)
                 try
                 {
-                    listOfAllNodes = viewModel.Model.SearchModel.Entries.Where(x => !excludes.Contains(x.Name));
+                    listOfAllNodes = viewModel.Model.SearchModel.Entries.Where(x => !excludes.Contains(x.Name) && x.FullName.Contains("Revit"));
                 }
                 catch (System.Exception ex) { }
-            return listOfAllNodes;
+            return listOfAllNodes.Select(nse => new TestCaseData(nse).SetName(nse.FullName));
         }
     }
 }
