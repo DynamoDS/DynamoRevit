@@ -30,7 +30,7 @@ env:
 
 jobs:
   transfer_issue_labeled_as_dynamo:
-    name: Transfer issued labeled as Dynamo
+    name: Transfer issue labeled as Dynamo
     runs-on: ubuntu-latest
     if: ${{ github.event.action == 'labeled' }}
     steps:
@@ -41,7 +41,7 @@ jobs:
           gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}"
           gh issue transfer ${{ github.event.issue.number }} DynamoDS/Dynamo
   transfer_issue_labeled_as_wishlist:
-    name: Transfer issued labeled as Wishlist
+    name: Transfer issue labeled as Wishlist
     runs-on: ubuntu-latest
     if: ${{ github.event.action == 'labeled' }}
     steps:
@@ -65,8 +65,8 @@ jobs:
           project_id: ${{ env.project_id }}
           resource_node_id: ${{ github.event.issue.node_id }}
           status_value: Todo
-  move_assigned_issue_to_in_progress:
-    name: Move assigned issues to In Progress
+  move_assigned_issue:
+    name: Move assigned issue
     runs-on: ubuntu-latest
     if: ${{ github.event.action == 'assigned' }}
     steps:
