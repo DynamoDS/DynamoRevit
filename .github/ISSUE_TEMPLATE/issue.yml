@@ -1,10 +1,10 @@
-name: Issue
-description: File an issue
+name: DynamoRevit Issue
+description: File an issue with DynamoRevit
 projects: [DynamoDS/7]
 body:
   - type: textarea
     attributes:
-      label: 'Dynamo Version'
+      label: Dynamo Version
       description: |
         Which version of Dynamo are you using?
         Go to **Dynamo > About** if you are not sure.
@@ -34,7 +34,7 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: What did you see instead
+      label: What did you see instead?
     validations:
       required: true
   - type: textarea
