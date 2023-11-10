@@ -50,6 +50,9 @@
 			<HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
+		<Reference Include="RevitTestFrameworkTypes">
+		  <HintPath>..\..\..\extern\RevitTestFramework\RevitTestFrameworkTypes.dll</HintPath>
+		</Reference>
 		<Reference Include="RTFRevit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
 			<HintPath>..\..\..\extern\RevitTestFramework\RTFRevit.dll</HintPath>
 			<SpecificVersion>False</SpecificVersion>

@@ -494,7 +494,7 @@ namespace Dynamo.Applications.Models
             setupPython = true;
         }
 
-        private void InitializeDocumentManager()
+        internal void InitializeDocumentManager()
         {
             // Set the intitial document.
             var activeUIDocument = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;

@@ -2,20 +2,65 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Dynamo.Applications.Models;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Models;
 using Dynamo.Search.SearchElements;
 using NUnit.Framework;
 using RevitServices.Elements;
+using RevitServices.Persistence;
 using RevitTestServices;
 using RTF.Framework;
+using static Dynamo.ViewModels.SearchViewModel;
 
 namespace RevitSystemTests
 {
     [TestFixture]
     public class RegressionTest : RevitSystemTestBase
     {
+        //protected static RegressionTest s_initedInstance = null;
+
+        //[SetUp]
+        //public override void Setup()
+        //{
+        //    if (s_initedInstance == null)
+        //    {
+        //        base.Setup();
+
+        //        ViewModel.Model.AddZeroTouchNodesToSearch(ViewModel.Model.LibraryServices.GetAllFunctionGroups());
+
+        //        s_initedInstance = this;
+        //    }
+        //    else
+        //    {
+        //        WrapOf(s_initedInstance);
+        //        CreateTemporaryFolder();
+
+        //        // This is needed because TearDown will clear the Model, and TearDown
+        //        //  is needed in order to clear the dependencyGraph, otherwise adding
+        //        //  a node will take exponentially long time
+        //        (ViewModel.Model as RevitDynamoModel).InitializeDocumentManager();
+        //    }
+        //}
+
+        protected override void GetLibrariesToPreload(List<string> libraries)
+        {
+            // Add multiple libraries to better simulate typical Dynamo application usage.
+
+            var assemblyDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            var revitNodesDirectory = Path.Combine(assemblyDirectory, "nodes");
+            var revitUINodesDll = Path.Combine(assemblyDirectory, @"nodes\DSRevitNodesUI.dll");
+            var revitAANodesDirectory = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin");
+            var revitAANodesDll = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin\AnalyticalAutomation.dll");
+            var revitAAUINodesDll = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin\AnalyticalAutomationGUI.dll");
+            libraries.Add(revitNodesDirectory);
+            //libraries.Add(revitUINodesDll); // UI nodes seem to have a problem being loaded in this context
+            //libraries.Add(revitAANodesDirectory); // do not load AA nodes, they have their own tests, for now we believe this is not really needed
+            //libraries.Add(revitAANodesDll); // UI nodes seem to have a problem being loaded in this context
+            base.GetLibrariesToPreload(libraries);
+        }
+
         /// <summary>
         /// Automated creation of regression test cases. Opens each workflow
         /// runs it, and checks for errors or warnings. Regression test cases should
@@ -24,7 +69,7 @@ namespace RevitSystemTests
         /// <param name="dynamoFilePath">The path of the dynamo workspace.</param>
         /// <param name="revitFilePath">The path of the Revit rfa or rvt file.</param>
         [Test]
-        [TestCaseSource("SetupRevitRegressionTests")]
+        [TestCaseSource(nameof(SetupRevitRegressionTests))]
         public void Regressions(RegressionTestData testData)
         {
             Exception exception = null;
@@ -39,9 +84,9 @@ namespace RevitSystemTests
                 //and there is no corresponding rfa or rvt, then an empty string
                 //or a null will be passed into here.
                 Assert.IsNotNull(dynamoFilePath, "Dynamo file path is invalid or missing.");
-                Assert.IsEmpty(dynamoFilePath, "Dynamo file path is invalid or missing.");
+                Assert.IsNotEmpty(dynamoFilePath, "Dynamo file path is invalid or missing.");
                 Assert.IsNotNull(revitFilePath, "Revit file path is invalid or missing.");
-                Assert.IsEmpty(revitFilePath, "Revit file path is invalid or missing.");
+                Assert.IsNotEmpty(revitFilePath, "Revit file path is invalid or missing.");
 
                 //open the revit model
                 SwapCurrentModel(revitFilePath);
@@ -58,12 +103,12 @@ namespace RevitSystemTests
                 ViewModel.OpenCommand.Execute(dynamoFilePath);
                 Assert.IsTrue(ViewModel.Model.CurrentWorkspace.Nodes.Any());
                 AssertNoDummyNodes();
-                
+
                 //run the expression and assert that it does not
                 //throw an error
-    
-            RunCurrentModel();
-            
+
+                RunCurrentModel();
+
                 var errorNodes =
                     ViewModel.Model.CurrentWorkspace.Nodes.Where(
                         x => x.State == ElementState.Error || x.State == ElementState.Warning);
@@ -73,10 +118,11 @@ namespace RevitSystemTests
             {
                 exception = ex;
             }
-            finally
-            {
-                TearDown();
-            }
+            // this is not needed anymore, NUnit ensures this happens between each test case
+            //finally
+            //{
+            //    TearDown();
+            //}
 
             if (exception != null)
             {
@@ -100,7 +146,8 @@ namespace RevitSystemTests
             Assert.NotNull(homespace, "The current workspace is not a HomeWorkspaceModel");
 
             // Iterate through all loaded nodes in library & add Revit UI nodes to ws
-            var nodeList = Model.CurrentWorkspace.Nodes.OfType<NodeSearchElement>();
+            //var nodeList = Model.SearchModel.Search(string.Empty, Model.LuceneUtility);
+            var nodeList = Model.SearchModel.Entries;
             foreach (var node in nodeList)
             {
                 var assembly = Path.GetFileName(node.Assembly);
@@ -159,7 +206,7 @@ namespace RevitSystemTests
             Assert.NotNull(homespace, "The current workspace is not a HomeWorkspaceModel");
 
             // Iterate through all loaded nodes in library & add Revit UI nodes to ws
-            var nodeList = Model.CurrentWorkspace.Nodes.OfType<NodeSearchElement>();
+            var nodeList = Model.SearchModel.Entries;
             foreach (var node in nodeList)
             {
                 var searchElement = node as NodeSearchElement;
@@ -222,7 +269,7 @@ namespace RevitSystemTests
         }
 
         // Helper Functions
-   
+
         private void OpenAndAssertNoDummyNodes(string samplePath)
         {
             var testPath = Path.GetFullPath(samplePath);
@@ -271,10 +318,10 @@ namespace RevitSystemTests
                         data[1] = rfa;
                     }
 
-                    testParameters.Add(new RegressionTestData{Arguments=data, TestName = folder.Name});
+                    testParameters.Add(new RegressionTestData { Arguments = data, TestName = folder.Name });
                 }
             }
-            
+
 
             return testParameters;
         }
