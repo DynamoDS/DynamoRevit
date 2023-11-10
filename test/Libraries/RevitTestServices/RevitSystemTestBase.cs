@@ -145,8 +145,6 @@ namespace RevitTestServices
         protected string emptyModelPath1;
         protected string emptyModelPath;
 
-        public static RevitSystemTestBase s_initedInstance = null;
-
         #region public methods
 
         protected void WrapOf(RevitSystemTestBase initedInstance)
@@ -170,21 +168,11 @@ namespace RevitTestServices
         [SetUp]
         public override void Setup()
         {
-            if (s_initedInstance == null)
-            {
-                base.Setup();
-                //ViewModel.Model.AddZeroTouchNodesToSearch(ViewModel.Model.LibraryServices.GetAllFunctionGroups());
+            base.Setup();
 
-                ((HomeWorkspaceModel)ViewModel.Model.CurrentWorkspace).RunSettings.RunType = RunType.Manual;
+            ((HomeWorkspaceModel)ViewModel.Model.CurrentWorkspace).RunSettings.RunType = RunType.Manual;
 
-                DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
-                s_initedInstance = this;
-            }
-            else
-            {
-                WrapOf(s_initedInstance);
-                CreateTemporaryFolder();
-            }
+            DocumentManager.Instance.CurrentUIApplication.ViewActivating += CurrentUIApplication_ViewActivating;
         }
 
         [TearDown]

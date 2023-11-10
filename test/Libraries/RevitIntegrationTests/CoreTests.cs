@@ -59,24 +59,18 @@ namespace RevitSystemTests
         protected override void GetLibrariesToPreload(List<string> libraries)
         {
             // Add multiple libraries to better simulate typical Dynamo application usage.
-            //libraries.Add("Analysis.dll");
-            //libraries.Add("BuiltIn.ds");
-            //libraries.Add("DesignScriptBuiltin.dll");
-            //libraries.Add("DSCoreNodes.dll");
-            //libraries.Add("DSOffice.dll");
-            //libraries.Add("DSCPython.dll");
-            //libraries.Add("DynamoConversions.dll");
-            //libraries.Add("DynamoUnits.dll");
-            //libraries.Add("FunctionObject.ds");
-            //libraries.Add("FFITarget.dll");
-            //libraries.Add("GeometryColor.dll");
-            //libraries.Add("LiveCharts.dll");
-            //libraries.Add("ProtoGeometry.dll");
-            libraries.Add(@"Revit\RevitNodes.dll");
-            libraries.Add(@"Revit\nodes\DSRevitNodesUI.dll");
-            libraries.Add(@"Revit\nodes\analytical-automation-pkg\bin\AnalyticalAutomation.dll");
-            libraries.Add(@"Revit\nodes\analytical-automation-pkg\bin\AnalyticalAutomationGUI.dll");
-            //libraries.Add("VMDataBridge.dll");
+
+            var assemblyDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            var revitNodesDirectory = Path.Combine(assemblyDirectory, "nodes");
+            var revitUINodesDll = Path.Combine(assemblyDirectory, @"nodes\DSRevitNodesUI.dll");
+            var revitAANodesDirectory = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin");
+            var revitAANodesDll = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin\AnalyticalAutomation.dll");
+            var revitAAUINodesDll = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin\AnalyticalAutomationGUI.dll");
+            libraries.Add(revitNodesDirectory);
+            //libraries.Add(revitUINodesDll); // UI nodes seem to have a problem being loaded in this context
+            //libraries.Add(revitAANodesDirectory); // do not load AA nodes, they have their own tests, for now we believe this is not really needed
+            //libraries.Add(revitAANodesDll); // UI nodes seem to have a problem being loaded in this context
+
             base.GetLibrariesToPreload(libraries);
         }
 
