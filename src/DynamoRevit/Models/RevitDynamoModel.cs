@@ -57,7 +57,10 @@ namespace Dynamo.Applications.Models
             public string PackageManagerAddress { get; set; }
             public DynamoRevitCommandData ExternalCommandData { get; set; }
             public IEnumerable<Dynamo.Extensions.IExtension> Extensions { get; set; }
-            public TaskProcessMode ProcessMode { get; set; }           
+            public TaskProcessMode ProcessMode { get; set; }
+            //the property will contain revit host information, to be passed on to Dynamo.
+            public HostAnalyticsInfo HostAnalyticsInfo { get; set; }
+
         }
 
         /// <summary>
