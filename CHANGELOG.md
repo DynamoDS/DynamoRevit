@@ -1,3 +1,6 @@
+## 0.5.14
+* Update Dynamo Core to 3.0.0-beta6827
+
 ## 0.5.13
 * Update Dynamo Core to 3.0.0-beta6764
 * Add HostAnalyticsInfo to pass host related info
