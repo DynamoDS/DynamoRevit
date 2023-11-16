@@ -324,7 +324,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return string.Format("Level(Name={0}, Elevation={1})", Name, Elevation);
+            return InternalLevel.IsValidObject ? string.Format("Level(Name={0}, Elevation={1})", Name, Elevation) : "empty";
         }
 
     }
