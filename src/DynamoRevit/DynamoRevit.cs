@@ -208,6 +208,7 @@ namespace Dynamo.Applications
     {
         public static ExternalEvent SplashScreenExternalEvent { get; set; }
         public static ExternalEvent DynamoAppExternalEvent { get; set; }
+        private static readonly string DYNAMO_REVIT_HOST_NAME = "Dynamo Revit";
         /// <summary>
         /// Based on the RevitDynamoModelState a dependent component can take certain 
         /// decisions regarding its UI and functionality.
@@ -583,6 +584,8 @@ namespace Dynamo.Applications
             if (revitUpdateManager.Configuration is IDisableUpdateConfig)
                 (revitUpdateManager.Configuration as IDisableUpdateConfig).DisableUpdates = true;
 
+            HostAnalyticsInfo hostAnalyticsInfo = new HostAnalyticsInfo { HostName = DYNAMO_REVIT_HOST_NAME };
+
             Debug.Assert(umConfig.DynamoLookUp != null);
 
             var userDataFolder = Path.Combine(Environment.GetFolderPath(
@@ -612,7 +615,8 @@ namespace Dynamo.Applications
                 AuthProvider = new RevitOAuth2Provider(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher)),
                 ExternalCommandData = commandData,
                 UpdateManager = revitUpdateManager,
-                ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous
+                ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous,
+                HostAnalyticsInfo = hostAnalyticsInfo
             });
         }
 

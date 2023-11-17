@@ -1,3 +1,13 @@
+## 0.5.14
+* Update Dynamo Core to 3.0.0-beta6827
+
+## 0.5.13
+* Update Dynamo Core to 3.0.0-beta6764
+* Add HostAnalyticsInfo to pass host related info
+
+## 0.5.12
+* Update Dynamo Core to 3.0.0-beta6680
+
 ## 0.5.11
 * Update Dynamo Core to 3.0.0-beta6634, Greg, and RestSharp
 * fix missing DYnamoInstallDetective.dll

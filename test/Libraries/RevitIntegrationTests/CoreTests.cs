@@ -7,6 +7,7 @@ using Autodesk.Revit.UI;
 
 using CoreNodeModels;
 using CoreNodeModels.Input;
+using Dynamo.Applications.Models;
 using Dynamo.Graph;
 using Dynamo.Graph.Nodes;
 using Dynamo.Models;
@@ -14,7 +15,7 @@ using Dynamo.Nodes;
 using Dynamo.Search.SearchElements;
 using Dynamo.Selection;
 using Dynamo.Tests;
-
+using Dynamo.ViewModels;
 using NUnit.Framework;
 
 using RevitServices.Persistence;
@@ -29,6 +30,50 @@ namespace RevitSystemTests
     [TestFixture]
     class CoreTests : RevitSystemTestBase
     {
+
+        protected static CoreTests s_initedInstance = null;
+
+        [SetUp]
+        public override void Setup()
+        {
+            if (s_initedInstance == null)
+            {
+                base.Setup();
+
+                ViewModel.Model.AddZeroTouchNodesToSearch(ViewModel.Model.LibraryServices.GetAllFunctionGroups());
+
+                s_initedInstance = this;
+            }
+            else
+            {
+                WrapOf(s_initedInstance);
+                CreateTemporaryFolder();
+
+                // This is needed because TearDown will clear the Model, and TearDown
+                //  is needed in order to clear the dependencyGraph, otherwise adding
+                //  a node will take exponentially long time
+                (ViewModel.Model as RevitDynamoModel).InitializeDocumentManager();
+            }
+        }
+
+        protected override void GetLibrariesToPreload(List<string> libraries)
+        {
+            // Add multiple libraries to better simulate typical Dynamo application usage.
+
+            var assemblyDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            var revitNodesDirectory = Path.Combine(assemblyDirectory, "nodes");
+            var revitUINodesDll = Path.Combine(assemblyDirectory, @"nodes\DSRevitNodesUI.dll");
+            var revitAANodesDirectory = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin");
+            var revitAANodesDll = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin\AnalyticalAutomation.dll");
+            var revitAAUINodesDll = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin\AnalyticalAutomationGUI.dll");
+            libraries.Add(revitNodesDirectory);
+            //libraries.Add(revitUINodesDll); // UI nodes seem to have a problem being loaded in this context
+            //libraries.Add(revitAANodesDirectory); // do not load AA nodes, they have their own tests, for now we believe this is not really needed
+            //libraries.Add(revitAANodesDll); // UI nodes seem to have a problem being loaded in this context
+
+            base.GetLibrariesToPreload(libraries);
+        }
+
         /// <summary>
         /// Sanity Check graph should always have nodes that error.
         /// </summary>
@@ -58,7 +103,7 @@ namespace RevitSystemTests
 
             var xyzNode = ViewModel.Model.CurrentWorkspace.Nodes.First(x => x.Name == "Point.ByCoordinates");
             Assert.IsNotNull(xyzNode);
-            
+
             //test the shortest lacing
             xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "Auto"));
 
@@ -133,13 +178,15 @@ namespace RevitSystemTests
 
         }
 
-        [Test, TestCaseSource("SetupCopyPastes")]
+        [Test, TestCaseSource(nameof(SetupCopyPastes))]
         [TestModel(@".\empty.rfa")]
-        public void CanCopyAndPasteAllNodesOnRevit(NodeModelSearchElement searchElement)
+        public void CanCopyAndPasteAllNodesOnRevit(NodeSearchElement searchElement)
         {
             var model = ViewModel.Model;
 
-            searchElement.ProduceNode(); // puts the node into the current workspace
+            //searchElement.ProduceNode(); // puts the node into the current workspace
+            var nodeModel = searchElement.CreateNode();
+            model.CurrentWorkspace.AddAndRegisterNode(nodeModel, false);
 
             var node = AllNodes.FirstOrDefault();
 
@@ -150,20 +197,28 @@ namespace RevitSystemTests
             Assert.DoesNotThrow(() => model.Copy(), string.Format("Could not copy node : {0}", node.GetType()));
             Assert.DoesNotThrow(() => model.Paste(), string.Format("Could not paste node : {0}", node.GetType()));
 
+            model.CurrentWorkspace.RemoveAndDisposeNode(nodeModel);
             model.ClearCurrentWorkspace();
         }
 
-        private IEnumerable<NodeModelSearchElement> SetupCopyPastes()
+        private static IEnumerable<TestCaseData> SetupCopyPastes()
         {
-            var excludes = new List<string>();
-            excludes.Add("Input");
-            excludes.Add("Output");
+            var xxx = new TestCaseData();
+            var excludes = new List<string>
+            {
+                "Input",
+                "Output"
+            };
 
-            if (ViewModel == null) return Enumerable.Empty<NodeModelSearchElement>();
-
-            return
-                ViewModel.Model.CurrentWorkspace.Nodes.OfType<NodeModelSearchElement>()
-                    .Where(x => !excludes.Contains(x.Name));
+            var listOfAllNodes = Enumerable.Empty<NodeSearchElement>();
+            DynamoViewModel viewModel = s_initedInstance?.ViewModel;
+            if (viewModel != null)
+                try
+                {
+                    listOfAllNodes = viewModel.Model.SearchModel.Entries.Where(x => !excludes.Contains(x.Name) && x.FullName.Contains("Revit"));
+                }
+                catch (System.Exception ex) { }
+            return listOfAllNodes.Select(nse => new TestCaseData(nse).SetName(nse.FullName));
         }
     }
 }

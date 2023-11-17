@@ -19,13 +19,15 @@ git clone https://github.com/DynamoDS/DynamoRevit.git
 ```
 - Get the branch for the version of Revit you want to use. For the latest release of Revit or a preview release, master may be fine. Otherwise, run `git checkout Revit2019` or similar.
 - Make sure you have the following installed on your computer:
-   - [.Net Framework 4.8 SDK](https://dotnet.microsoft.com/download) 
+   - For Revit 2024 and older: [.Net Framework 4.8 SDK](https://dotnet.microsoft.com/download)
+   - For Revit 2025 (currently Preview Release) and newer: [.NET 7 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) for Windows x64
 - Run `restorepackages.bat` from a command prompt with administrative privileges (Located in your _Github\DynamoRevit\src folder_)
   Note: `restorepackages.bat` employs the use of a legacy tool `aget.exe`, which requires VC++ 2010 redistributable installed, before you can run it. When missing you will get an `msvcr100.dll not found` error. 
 - Copy `RevitAPI.dll`&`RevitAPIUI.dll` to the folder `DynamoRevit\lib\Revit Preview Release\net48`, these 2 dlls are in the folder same with `Revit.exe` installed on your computer
 	(if you want to build other branch of DynamoRevit, but corresponding version of Revit is not installed locally, you can get these dlls from https://www.nuget.org/ )
 - Set the `RevitVersionNumber` environment variable to the Revit version you're building against (e.g. `2020`) either in the system environment or in the [user_locals.props](https://github.com/DynamoDS/DynamoRevit/blob/Revit2017/src/Config/user_local.props) file in your build folder.
 - Open `DynamoRevit.All.sln` in Visual Studio, and select a build configuration (Debug | Release)
+   - For Revit 2025 (currently Preview Release) and newer you need Visual Studio 2022 (17.7.2 or 17.7.3, or newer)
 
 ### 2. Get or Build Dynamo Core
 
