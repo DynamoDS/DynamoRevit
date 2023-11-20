@@ -21,6 +21,14 @@ namespace Revit.Elements
     {
         public string InputName { get; set; }
 
+        [JsonConstructor]
+        public LevelTraceData(int intID, string stringID,  string inputName)
+        {
+            IntID = intID;
+            StringID = stringID;
+            InputName = inputName;  
+        }
+
         public LevelTraceData(Level lev, string inputName) :
             base()
         {

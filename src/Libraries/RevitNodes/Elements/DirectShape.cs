@@ -23,6 +23,15 @@ namespace Revit.Elements
         public string syncId { get; set; }
         public long materialId { get; set; }
 
+        [JsonConstructor]
+        public DirectShapeState(int intID, string stringID, string syncId, long materialId) 
+        {
+            IntID = intID;
+            StringID = stringID;
+            this.syncId = syncId;
+            this.materialId = materialId;
+        }
+
         public DirectShapeState(DirectShape ds, string syncId, ElementId materialId) :
             base()
         {
