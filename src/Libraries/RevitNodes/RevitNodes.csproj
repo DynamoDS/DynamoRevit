@@ -33,6 +33,10 @@
 		<Exec Command="copy /Y &quot;$(ProjectDir)*.Migrations.xml&quot; &quot;$(OutputPath)&quot;" />
 	</Target>
 	<ItemGroup>
+		<Reference Include="Newtonsoft.Json">
+			<HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\net45\Newtonsoft.Json.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
 		<Reference Include="DynamoServices">
 			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\netstandard2.0\DynamoServices.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoServices.dll</HintPath>

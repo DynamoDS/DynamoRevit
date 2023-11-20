@@ -42,6 +42,10 @@
 		<Exec Command="copy /Y &quot;$(ProjectDir)RevitTestConfiguration.xml&quot; &quot;$(OutputPath)&quot;" />
 	</Target>
 	<ItemGroup>
+		<Reference Include="Newtonsoft.Json">
+			<HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\net45\Newtonsoft.Json.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
 		<Reference Include="DynamoCoreWpf">
 			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net6.0\DynamoCoreWpf.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCoreWpf.dll</HintPath>

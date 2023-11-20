@@ -42,6 +42,10 @@ limitations under the License.
 		<Prefer32Bit>false</Prefer32Bit>
 	</PropertyGroup>
 	<ItemGroup>
+		<Reference Include="Newtonsoft.Json">
+			<HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\net45\Newtonsoft.Json.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
 		<Reference Include="nunit.framework">
 			<HintPath>$(PACKAGESPATH)\NUnit\lib\netstandard2.0\nunit.framework.dll</HintPath>
 			<Private>False</Private>
@@ -59,12 +63,6 @@ limitations under the License.
 			<Private>False</Private>
 			<SpecificVersion>False</SpecificVersion>
 		</Reference>
-	</ItemGroup>
-	<ItemGroup Condition="$(Platform.Contains('NET'))">
-		<PackageReference Include="SoapFormatter" Version="1.0.11" />
-	</ItemGroup>
-	<ItemGroup Condition="!$(Platform.Contains('NET'))">
-		<Reference Include="System.Runtime.Serialization.Formatters.Soap" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="AssemblySharedInfo.cs" />

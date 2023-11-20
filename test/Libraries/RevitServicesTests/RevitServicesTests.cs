@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Soap;
 using Autodesk.Revit.DB;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using RevitServices.Elements;
 using RevitServices.Materials;
@@ -170,8 +169,6 @@ namespace RevitServicesTests
         [Category("UnitTests")]
         public void TestRoundTripElementSerialisation()
         {
-            SoapFormatter formatter = new SoapFormatter();
-
             // Create an instance of the type and serialize it.
             var elementId = new SerializableId
             {
@@ -179,16 +176,8 @@ namespace RevitServicesTests
                 StringID = "{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}"
             };
 
-            //Serialise to a test memory stream
-            var m = new MemoryStream();
-            formatter.Serialize(m, elementId);
-            m.Flush();
-
-            //Reset the stream
-            m.Seek(0, SeekOrigin.Begin);
-
             //Readback
-            var readback = (SerializableId)formatter.Deserialize(m);
+            var readback = JsonConvert.DeserializeObject<SerializableId>(JsonConvert.SerializeObject(elementId));
 
             Assert.IsTrue(readback.IntID == 42);
             Assert.IsTrue(readback.StringID.Equals("{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}"));
@@ -205,11 +194,11 @@ namespace RevitServicesTests
             };
 
             //Raw write
-            ElementBinder.SetRawDataForTrace(elementId);
+            ElementBinder.SetRawDataForTrace(JsonConvert.SerializeObject(elementId));
             elementId = null;
 
             //Readback
-            elementId = (SerializableId)ElementBinder.GetRawDataFromTrace();
+            elementId = JsonConvert.DeserializeObject<SerializableId>( ElementBinder.GetRawDataFromTrace());
             Assert.IsTrue(elementId.IntID == 42);
             Assert.IsTrue(elementId.StringID == "{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}");
         }
@@ -218,8 +207,6 @@ namespace RevitServicesTests
         [Category("UnitTests")]
         public void TestRoundTripElementSerialisationForMultipleIDs()
         {
-            SoapFormatter formatter = new SoapFormatter();
-
             // Create an instance of the type and serialize it.
             var elementIDs = new MultipleSerializableId
             {
@@ -227,16 +214,9 @@ namespace RevitServicesTests
                 StringIDs = { "{BE507CAC-7F23-43D6-A2B4-13F6AF09046F}", "{A79294BF-6D27-4B86-BEE9-D6921C11D495}" }
             };
 
-            //Serialise to a test memory stream
-            var m = new MemoryStream();
-            formatter.Serialize(m, elementIDs);
-            m.Flush();
-
-            //Reset the stream
-            m.Seek(0, SeekOrigin.Begin);
-
             //Readback
-            var readback = (MultipleSerializableId)formatter.Deserialize(m);
+            var readback = JsonConvert.DeserializeObject<MultipleSerializableId>(JsonConvert.SerializeObject(elementIDs));
+
 
             //Verify that the data is correct
             Assert.IsTrue(readback.IntIDs.Count == 2);
@@ -258,11 +238,11 @@ namespace RevitServicesTests
             };
 
             //Raw write
-            ElementBinder.SetRawDataForTrace(elementIDs);
+            ElementBinder.SetRawDataForTrace(JsonConvert.SerializeObject(elementIDs));
             elementIDs = null;
 
             //Readback
-            var readback = (MultipleSerializableId)ElementBinder.GetRawDataFromTrace();
+            var readback = JsonConvert.DeserializeObject<MultipleSerializableId>(ElementBinder.GetRawDataFromTrace());
 
             //Verify that the data is correct
             Assert.IsTrue(readback.IntIDs.Count == 2);
@@ -290,14 +270,14 @@ namespace RevitServicesTests
             };
 
             //Raw write
-            ElementBinder.SetRawDataForTrace(elementIDs);
+            ElementBinder.SetRawDataForTrace(JsonConvert.SerializeObject(elementIDs));
             elementIDs = null;
 
             //Readback
-            var readback = (MultipleSerializableId)ElementBinder.GetRawDataFromTrace();
+            var readback = JsonConvert.DeserializeObject<MultipleSerializableId>( ElementBinder.GetRawDataFromTrace());
 
             //verify that the id extracted from trace is equal to the new instance
-            Assert.IsTrue(readback.Equals(elementIDs2));
+            Assert.IsTrue(readback.Equals(JsonConvert.SerializeObject(elementIDs2)));
 
         }
 
@@ -318,14 +298,14 @@ namespace RevitServicesTests
             };
 
             //Raw write
-            ElementBinder.SetRawDataForTrace(elementID);
+            ElementBinder.SetRawDataForTrace(JsonConvert.SerializeObject(elementID));
             elementID = null;
 
             //Readback
-            var readback = (SerializableId)ElementBinder.GetRawDataFromTrace();
+            var readback = JsonConvert.DeserializeObject<SerializableId>(ElementBinder.GetRawDataFromTrace());
 
             //verify that the id extracted from trace is equal to the new instance
-            Assert.IsTrue(readback.Equals(elementID2));
+            Assert.IsTrue(readback.Equals(JsonConvert.SerializeObject(elementID2)));
 
         }
 

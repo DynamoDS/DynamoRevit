@@ -21,6 +21,8 @@ using DoubleSlider = CoreNodeModels.Input.DoubleSlider;
 using IntegerSlider = CoreNodeModels.Input.IntegerSlider;
 using Utils = RevitServices.Elements.ElementUtils;
 using Dynamo.Graph.Nodes;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace RevitSystemTests
 {
@@ -107,7 +109,7 @@ namespace RevitSystemTests
             if (!traceDataList.Any())
                 return null;
             var data = traceDataList[0].GetLeftMostData();
-            var id = data as SerializableId;
+            var id = JsonConvert.DeserializeObject<SerializableId>(data);
             return new ElementId(id.IntID);
         }
 
