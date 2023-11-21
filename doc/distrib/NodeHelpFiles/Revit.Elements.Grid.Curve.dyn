@@ -1,0 +1,283 @@
+{
+  "Uuid": "1fdb1ff9-de82-4d4d-9f94-5b7e9eae79e8",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Grid.Curve",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
+      "Id": "514d9937bc6446d7b9f21205afb8a93d",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "c2f145ddbc974c00a3ca6242da017411",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "aa04671e78884d5bada62d5a669f700d",
+          "Name": "View",
+          "Description": "The View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6062e449302545609696eef49763050e",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category in the specified view from the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 269,
+      "SelectedString": "OST_Grids",
+      "Id": "470be96bcd6c4ac0bfcb09f30773d026",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d360bafde9b740c5b9da07efca90855c",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8f35a0c8280d41adba56eec2b60621d7",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "3dbbe4f44e62476db67df7e4e871f618",
+          "Name": "document",
+          "Description": "Revit.Application.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b5321c4ea10b45d2922edd93a0e39264",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.ActiveView",
+      "Replication": "Auto",
+      "Description": "Get the active view for the document\n\nDocument.ActiveView: View"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "cd3c82179f034c3a9d1d644cac84d19f",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8353f8f3828c441fa185a67571d30f6b",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "574c53038f684ba4bf3122fcc3d9fcce",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f7b128dcb7c54c8cb05c950fc10ce1b8",
+          "Name": "grid",
+          "Description": "Revit.Elements.Grid",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "38403aa5b7864368bade0af57159d81b",
+          "Name": "Curve",
+          "Description": "Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Grid.Curve",
+      "Replication": "Auto",
+      "Description": "Get the underlying Curve geometry from this Element\n\nGrid.Curve: Curve"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "6062e449302545609696eef49763050e",
+      "End": "f7b128dcb7c54c8cb05c950fc10ce1b8",
+      "Id": "6f979f87f552481591878373128b253b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d360bafde9b740c5b9da07efca90855c",
+      "End": "c2f145ddbc974c00a3ca6242da017411",
+      "Id": "5d8910250d064757aee0f2f1fa18aa96",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b5321c4ea10b45d2922edd93a0e39264",
+      "End": "aa04671e78884d5bada62d5a669f700d",
+      "Id": "139a04511c534244a9f406a6d88de61c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8353f8f3828c441fa185a67571d30f6b",
+      "End": "3dbbe4f44e62476db67df7e4e871f618",
+      "Id": "b93d4ea6348b4457b934c8fb732d149d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -93.242446899414063,
+      "EyeY": 141.42713928222656,
+      "EyeZ": 113.95236206054688,
+      "LookX": 74.497329711914063,
+      "LookY": -141.40214538574219,
+      "LookZ": -128.569580078125,
+      "UpX": 0.25971329212188721,
+      "UpY": 0.855364203453064,
+      "UpZ": -0.44821986556053162
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "514d9937bc6446d7b9f21205afb8a93d",
+        "Name": "All Elements of Category in View",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1367.2,
+        "Y": 545.674383913829
+      },
+      {
+        "Id": "470be96bcd6c4ac0bfcb09f30773d026",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1065.6,
+        "Y": 493.2
+      },
+      {
+        "Id": "8f35a0c8280d41adba56eec2b60621d7",
+        "Name": "Document.ActiveView",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1066.4,
+        "Y": 654.8
+      },
+      {
+        "Id": "cd3c82179f034c3a9d1d644cac84d19f",
+        "Name": "Document.Current",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 817.6,
+        "Y": 654.8
+      },
+      {
+        "Id": "574c53038f684ba4bf3122fcc3d9fcce",
+        "Name": "Grid.Curve",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1795.58199017255,
+        "Y": 545.674383913829
+      }
+    ],
+    "Annotations": [],
+    "X": -728.15102199656121,
+    "Y": -179.8871857617043,
+    "Zoom": 0.74769281712332525
+  }
+}

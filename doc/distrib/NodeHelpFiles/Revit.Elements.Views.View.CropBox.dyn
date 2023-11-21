@@ -1,0 +1,238 @@
+{
+  "Uuid": "34703780-f4cd-4bf5-b67a-5b70edfb4ca4",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.View.CropBox",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "2afbe0f3e8994247b42675096fb094f3",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9baf88948c0a4428890282a54b3bbea5",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8a2cd5386ef441e1b99f633f8065c5bf",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d89c2fb1347d4c7e94ffd891340dfca6",
+          "Name": "document",
+          "Description": "Revit.Application.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9fa363967053400e8bdd41fcf80da4af",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.ActiveView",
+      "Replication": "Auto",
+      "Description": "Get the active view for the document\n\nDocument.ActiveView: View"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "18d80ec6ac974fcd9aa46925198c66f9",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "47e71e0088f34a918b8b6de6b5aae987",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e9fa849a03f34b06a252b818cbbe6e5e",
+          "Name": "BoundingBox",
+          "Description": "BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View.CropBox",
+      "Replication": "Auto",
+      "Description": "The Crop Box applied to the view, or an outline encompassing the crop region applied to the view.\n\nView.CropBox: BoundingBox"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1e67b9f316f14752bda009ee0903d764",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a03ec1907af14a50a46f3fe297ca1854",
+          "Name": "boundingBox",
+          "Description": "Autodesk.DesignScript.Geometry.BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "95e0832d4cb942a7b73068404c80efff",
+          "Name": "Cuboid",
+          "Description": "Returns cuboid representation of the bounding box.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.BoundingBox.ToCuboid",
+      "Replication": "Auto",
+      "Description": "Get the bounding box as a solid cuboid.\n\nBoundingBox.ToCuboid ( ): Cuboid"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "9baf88948c0a4428890282a54b3bbea5",
+      "End": "d89c2fb1347d4c7e94ffd891340dfca6",
+      "Id": "b11453979eab4b8fbb12cc3a8637f791",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9fa363967053400e8bdd41fcf80da4af",
+      "End": "47e71e0088f34a918b8b6de6b5aae987",
+      "Id": "a61b0d46a34948dd83962e8943002d41",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e9fa849a03f34b06a252b818cbbe6e5e",
+      "End": "a03ec1907af14a50a46f3fe297ca1854",
+      "Id": "3c9cb433ead5442c9f959b099af0bd35",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": 20.341518512389616,
+      "EyeY": 63.96645481003128,
+      "EyeZ": 26.418943957719229,
+      "LookX": -24.069680324218229,
+      "LookY": -65.46645481003128,
+      "LookZ": -38.653505877885245,
+      "UpX": -0.35915032029151917,
+      "UpY": 0.7337297797203064,
+      "UpZ": -0.57675963640213013
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "2afbe0f3e8994247b42675096fb094f3",
+        "Name": "Document.Current",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 279.39999999999992,
+        "Y": 313.20000000000005
+      },
+      {
+        "Id": "8a2cd5386ef441e1b99f633f8065c5bf",
+        "Name": "Document.ActiveView",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 588.19999999999993,
+        "Y": 313.20000000000005
+      },
+      {
+        "Id": "18d80ec6ac974fcd9aa46925198c66f9",
+        "Name": "View.CropBox",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 923.4,
+        "Y": 313.2
+      },
+      {
+        "Id": "1e67b9f316f14752bda009ee0903d764",
+        "Name": "BoundingBox.ToCuboid",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1257.0,
+        "Y": 313.2
+      }
+    ],
+    "Annotations": [],
+    "X": -248.79999999999995,
+    "Y": -9.6000000000000227,
+    "Zoom": 1.0
+  }
+}

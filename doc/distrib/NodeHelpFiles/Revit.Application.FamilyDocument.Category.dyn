@@ -1,0 +1,192 @@
+{
+  "Uuid": "a1537391-72dc-40ce-8ebf-61d14192ffa6",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Application.FamilyDocument.Category",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9247bb5efbf4483eb5966abff62fa23c",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "71be430fc3f14d7c9fad45e520c59676",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "f4f2b15933a34fdfad6a3e95fc8772cb",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e599f531647341bebbf6607846ac6996",
+          "Name": "document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "69111209c4554a9e853eebd5572a671c",
+          "Name": "FamilyDocument",
+          "Description": "FamilyDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.FamilyDocument.ByDocument@Revit.Application.Document",
+      "Replication": "Auto",
+      "Description": "Get FamilyDocument from a Document if this document is a Family Document.\n\nFamilyDocument.ByDocument (document: Document): FamilyDocument"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e471af01086d48159128a2aa1eeaa15a",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "9aaf9a212fbb45b4929a8c58169502d0",
+          "Name": "familyDocument",
+          "Description": "Revit.Application.FamilyDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e6ac96d30e354f15bc7a431a32916add",
+          "Name": "Category",
+          "Description": "Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.FamilyDocument.Category",
+      "Replication": "Auto",
+      "Description": "Retrieves the Category object that represents the category or sub category in which the elements ( this family could generate ) reside.\n\nFamilyDocument.Category: Category"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "71be430fc3f14d7c9fad45e520c59676",
+      "End": "e599f531647341bebbf6607846ac6996",
+      "Id": "c2b60cd33ef0451eb8ed3a2da65f7dc0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "69111209c4554a9e853eebd5572a671c",
+      "End": "9aaf9a212fbb45b4929a8c58169502d0",
+      "Id": "5623f02c06df48e08bac6242850db8ad",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "9247bb5efbf4483eb5966abff62fa23c",
+        "Name": "Document.Current",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 262.0,
+        "Y": 284.8
+      },
+      {
+        "Id": "f4f2b15933a34fdfad6a3e95fc8772cb",
+        "Name": "FamilyDocument.ByDocument",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 590.8,
+        "Y": 284.8
+      },
+      {
+        "Id": "e471af01086d48159128a2aa1eeaa15a",
+        "Name": "FamilyDocument.Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1000.4,
+        "Y": 284.8
+      }
+    ],
+    "Annotations": [],
+    "X": -232.0,
+    "Y": -50.400000000000034,
+    "Zoom": 1.0
+  }
+}

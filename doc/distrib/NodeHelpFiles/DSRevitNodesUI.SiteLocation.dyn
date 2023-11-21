@@ -1,0 +1,145 @@
+{
+  "Uuid": "7fe4cf99-baa3-4d79-95dd-f095af82929f",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "DSRevitNodesUI.SiteLocation",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.SiteLocation, DSRevitNodesUI",
+      "Id": "88070255825242abbcde202dc9ed1751",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "40ab900991a646628a0d36509291f756",
+          "Name": "Location",
+          "Description": "The location of the current Revit project.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Returns the current Revit site location."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "13eaac6c28084095943c524408376fce",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "7e3e4895d9f14218b4e9e5822bf7aa39",
+          "Name": "location",
+          "Description": "DynamoUnits.Location",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a5e79ea3f25640aa880ad7e63be5391f",
+          "Name": "string",
+          "Description": "Name of location",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DynamoUnits.Location.Name",
+      "Replication": "Auto",
+      "Description": "Gets the name value from a location\n\nLocation.Name: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "40ab900991a646628a0d36509291f756",
+      "End": "7e3e4895d9f14218b4e9e5822bf7aa39",
+      "Id": "7fa01e421a7949a0ae260db464a0487c",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "88070255825242abbcde202dc9ed1751",
+        "Name": "SiteLocation",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 574.0,
+        "Y": 696.8
+      },
+      {
+        "Id": "13eaac6c28084095943c524408376fce",
+        "Name": "Location.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 892.4,
+        "Y": 696.8
+      }
+    ],
+    "Annotations": [],
+    "X": -305.59999999999991,
+    "Y": -305.60000000000008,
+    "Zoom": 1.0
+  }
+}

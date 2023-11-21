@@ -1,0 +1,147 @@
+{
+  "Uuid": "7fe4cf99-baa3-4d79-95dd-f095af82929f",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "DSRevitNodesUI.AllWarningsOfType",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.AllWarningsOfType, DSRevitNodesUI",
+      "SelectedIndex": 2,
+      "SelectedString": "Highlighted floors overlap. ",
+      "Id": "34c088045717428ebacc720c552c9863",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "582ee8fd1e7f4abdb920ea0897a10e7d",
+          "Name": "Warnings",
+          "Description": "The selected Warnings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Returns a list of all instances of the selected warning type."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "041e114f57424ff49ef90087d2ef4c16",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "12239b4b0eca438d9b60051bfb920a85",
+          "Name": "warning",
+          "Description": "Revit.Application.Warning",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ed5315dbc41f4d4a9a543bdc30f940ad",
+          "Name": "Element[]",
+          "Description": "The elements that have caused the failure.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Warning.GetFailingElements",
+      "Replication": "Auto",
+      "Description": "Retrieves a list of the elements that have caused the failure.\n\nWarning.GetFailingElements ( ): Element[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "582ee8fd1e7f4abdb920ea0897a10e7d",
+      "End": "12239b4b0eca438d9b60051bfb920a85",
+      "Id": "3b8c2308b2704cd1b82efa1254ddbe7c",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "34c088045717428ebacc720c552c9863",
+        "Name": "All Warnings of Type",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1294.60183380411,
+        "Y": 748.153393257271
+      },
+      {
+        "Id": "041e114f57424ff49ef90087d2ef4c16",
+        "Name": "Warning.GetFailingElements",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1719.46801113349,
+        "Y": 748.153393257271
+      }
+    ],
+    "Annotations": [],
+    "X": -1318.6359844891151,
+    "Y": -577.30309956469114,
+    "Zoom": 1.1448842091196694
+  }
+}
