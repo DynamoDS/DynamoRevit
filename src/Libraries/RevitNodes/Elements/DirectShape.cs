@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+using Newtonsoft.Json;
 using Revit.GeometryConversion;
 using RevitServices.Materials;
 using RevitServices.Persistence;
@@ -18,18 +18,18 @@ namespace Revit.Elements
     /// and DocumentEvents continue to function for DirectShapes.
     /// </summary>
     [SupressImportIntoVM]
-    [Serializable]
     public class DirectShapeState : SerializableId
     {
         public string syncId { get; set; }
         public long materialId { get; set; }
 
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        [JsonConstructor]
+        public DirectShapeState(int intID, string stringID, string syncId, long materialId) 
         {
-            base.GetObjectData(info, context);
-
-            info.AddValue("syncId", syncId, typeof(string));
-            info.AddValue("materialId", materialId, typeof(int));
+            IntID = intID;
+            StringID = stringID;
+            this.syncId = syncId;
+            this.materialId = materialId;
         }
 
         public DirectShapeState(DirectShape ds, string syncId, ElementId materialId) :
@@ -39,13 +39,6 @@ namespace Revit.Elements
             this.StringID = ds.UniqueId;
             this.syncId = syncId;
             this.materialId = materialId.Value;
-        }
-
-        public DirectShapeState(SerializationInfo info, StreamingContext context) :
-            base(info, context)
-        {
-            syncId = (string)info.GetValue("syncId", typeof(string));
-            materialId = (int)info.GetValue("materialId", typeof(int));
         }
     }
 
@@ -173,7 +166,8 @@ namespace Revit.Elements
             shapeReference.Tags.AddTag(this.InternalElementId.ToString(), traceData);
             TransactionManager.Instance.TransactionTaskDone();
 
-            ElementBinder.SetRawDataForTrace(traceData);
+            var serializedTraceData = JsonConvert.SerializeObject(traceData);
+            ElementBinder.SetRawDataForTrace(serializedTraceData);
 
         }
 
@@ -303,7 +297,9 @@ namespace Revit.Elements
 
             //update the value in trace, since we had to modify the geometry we need a new syncId
             var updatedTraceData = new DirectShapeState(this, Guid.NewGuid().ToString(), materialId);
-            ElementBinder.SetRawDataForTrace(updatedTraceData);
+
+            var serializedTraceData = JsonConvert.SerializeObject(updatedTraceData);
+            ElementBinder.SetRawDataForTrace(serializedTraceData);
             //place new values in the tags dict
             if (shapeReference.Tags.LookupTag(this.InternalElementId.ToString()) == null)
             {

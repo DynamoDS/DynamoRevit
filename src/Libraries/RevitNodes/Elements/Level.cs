@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using System.Runtime.Serialization;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
 using DynamoUnits;
+using Newtonsoft.Json;
 using Revit.Elements.InternalUtilities;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
@@ -17,16 +17,16 @@ namespace Revit.Elements
     /// it's used to keep track of what the user wanted to set the name of the level to
     /// </summary>
     [SupressImportIntoVM]
-    [Serializable]
     public class LevelTraceData : SerializableId
     {
         public string InputName { get; set; }
 
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        [JsonConstructor]
+        public LevelTraceData(int intID, string stringID,  string inputName)
         {
-            base.GetObjectData(info, context);
-
-            info.AddValue("inputName", InputName, typeof(string));
+            IntID = intID;
+            StringID = stringID;
+            InputName = inputName;  
         }
 
         public LevelTraceData(Level lev, string inputName) :
@@ -35,13 +35,6 @@ namespace Revit.Elements
             this.IntID = lev.InternalElement.Id.Value;
             this.StringID = lev.UniqueId;
             this.InputName = inputName;
-        }
-
-        public LevelTraceData(SerializationInfo info, StreamingContext context) :
-            base(info, context)
-        {
-            InputName = (string)info.GetValue("inputName", typeof(string));
-          
         }
     }
     /// <summary>
@@ -133,7 +126,9 @@ namespace Revit.Elements
             var traceData = new LevelTraceData(this, name);
             TransactionManager.Instance.TransactionTaskDone();
 
-            ElementBinder.SetRawDataForTrace(traceData);
+            var serializedTraceData = JsonConvert.SerializeObject(traceData);
+
+            ElementBinder.SetRawDataForTrace(serializedTraceData);
 
         }
 
@@ -194,7 +189,8 @@ namespace Revit.Elements
             TransactionManager.Instance.EnsureInTransaction(Document);
             this.InternalLevel.Name = name;
             var updatedTraceData =new LevelTraceData(this, originalInputName);
-            ElementBinder.SetRawDataForTrace(updatedTraceData);
+            var serializedTraceData = JsonConvert.SerializeObject(updatedTraceData);
+            ElementBinder.SetRawDataForTrace(serializedTraceData);
             TransactionManager.Instance.TransactionTaskDone();
         }
 

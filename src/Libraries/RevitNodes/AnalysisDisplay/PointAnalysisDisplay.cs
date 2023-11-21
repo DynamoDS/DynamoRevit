@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using Analysis;
 using Dynamo.Graph.Nodes;
 using Autodesk.DesignScript.Runtime;
@@ -16,44 +15,6 @@ using View = Revit.Elements.Views.View;
 
 namespace Revit.AnalysisDisplay
 {
-    [SupressImportIntoVM]
-    [Serializable]
-    [Obsolete("Please use Revit.AnalysisDisplay.SpmPrimitiveIdPair instead")]
-    public class SpmPrimitiveIdListPair : ISerializable
-    {
-        public long SpatialFieldManagerID { get; set; }
-        public List<int> PrimitiveIDs { get; set; }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("SpatialFieldManagerID", SpatialFieldManagerID, typeof(long));
-            info.AddValue("PrimitiveIDCount", PrimitiveIDs.Count, typeof(int));
-            foreach (var id in PrimitiveIDs)
-            {
-                info.AddValue("ID", id, typeof(int));
-            }
-        }
-
-        public SpmPrimitiveIdListPair()
-        {
-            SpatialFieldManagerID = long.MinValue;
-            PrimitiveIDs = new List<int>();
-        }
-
-        public SpmPrimitiveIdListPair(SerializationInfo info, StreamingContext context)
-        {
-            SpatialFieldManagerID = (long)info.GetValue("SpatialFieldManagerID", typeof(long));
-
-            int count = (int)info.GetValue("PrimitiveIDCount", typeof(int));
-            PrimitiveIDs = new List<int>();
-            for (int i = 0; i < count; ++i)
-            {
-                var id = (int)info.GetValue("ID", typeof(int));
-                PrimitiveIDs.Add(id);
-            }
-        }
-    }
-
     /// <summary>
     /// A Revit Point Analysis Display 
     /// </summary>
@@ -244,44 +205,6 @@ namespace Revit.AnalysisDisplay
         }
 
         #endregion
-
-        [Obsolete("Please use Revit.AnalysisDisplay.AbstractAnalysisDisplay instead")]
-        protected Tuple<SpatialFieldManager, List<int>> GetElementAndPrimitiveIdListFromTrace()
-        {
-            // This is a provisional implementation until we can store both items in trace
-            var id = ElementBinder.GetRawDataFromTrace();
-            if (id == null)
-                return null;
-
-            var idPair = id as SpmPrimitiveIdListPair;
-            if (idPair == null)
-                return null;
-
-            var primitiveIds = idPair.PrimitiveIDs;
-            var sfmId = idPair.SpatialFieldManagerID;
-
-            SpatialFieldManager sfm = null;
-
-            // if we can't get the sfm, return null
-            if (!Document.TryGetElement(new ElementId(sfmId), out sfm)) return null;
-
-            return new Tuple<SpatialFieldManager, List<int>>(sfm, primitiveIds);
-        }
-        [Obsolete("Please use Revit.AnalysisDisplay.AbstractAnalysisDisplay.SetElementAndPrimitiveIdsForTrace.GetElementAndPrimitiveIdFromTrace instead")]
-        protected void SetElementAndPrimitiveIdListTrace(SpatialFieldManager manager, List<int> primitiveIds)
-        {
-            if (manager == null)
-            {
-                throw new Exception();
-            }
-
-            var idPair = new SpmPrimitiveIdListPair
-            {
-                SpatialFieldManagerID = manager.Id.Value,
-                PrimitiveIDs = primitiveIds
-            };
-            ElementBinder.SetRawDataForTrace(idPair);
-        }
     }
 
 }
