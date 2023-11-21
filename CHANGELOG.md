@@ -1,3 +1,7 @@
+## 0.5.15
+* Update Dynamo Core to 3.0.0-beta6885
+* Drop SOAP formatter and move to JSON based serialization 
+
 ## 0.5.14
 * Update Dynamo Core to 3.0.0-beta6827
 
