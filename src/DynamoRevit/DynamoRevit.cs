@@ -842,6 +842,8 @@ namespace Dynamo.Applications
             // Change the locale that LibG depends on.
             StringBuilder sb = new StringBuilder("LANGUAGE=");
             var revitLocale = System.Globalization.CultureInfo.CurrentUICulture.ToString();
+            // Record host locale for locale switching in DynamoCore
+            System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalization.CultureInfo.CurrentUICulture;
             sb.Append(revitLocale.Replace("-", "_"));
             _putenv(sb.ToString());
 
