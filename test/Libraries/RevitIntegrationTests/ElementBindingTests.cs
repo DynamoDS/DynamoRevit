@@ -559,7 +559,7 @@ namespace RevitSystemTests
             var selNodes = model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.GUID.ToString(), "a52bee11-4382-4c42-a676-443f9d7eedf2"));
             Assert.IsTrue(selNodes.Any());
             var node = selNodes.First();
-            var slider = node as IntegerSlider;
+            var slider = node as IntegerSlider64Bit;
 
             //Change the slider value from 4 to 3
             slider.Value = 3;
