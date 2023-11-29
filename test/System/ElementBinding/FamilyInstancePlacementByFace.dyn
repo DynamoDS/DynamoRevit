@@ -1,38 +1,432 @@
-<Workspace Version="1.1.1.1930" X="-94" Y="59" zoom="1" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
-  <NamespaceResolutionMap />
-  <Elements>
-    <Dynamo.Nodes.DSFaceSelection guid="2c3c7b29-a52f-45c5-b5e1-d9c2c5693051" type="Dynamo.Nodes.DSFaceSelection" nickname="Select Face" x="215" y="129" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
-      <instance id="f2e46139-bba6-4e32-a83f-1787d8b6c9e9-0003d36a:5:SURFACE" />
-    </Dynamo.Nodes.DSFaceSelection>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="debd26d3-4d9d-4ac3-a226-9a294fe63fda" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Surface.PointAtParameter" x="648" y="363" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Surface.PointAtParameter@double,double">
-      <PortInfo index="1" default="True" />
-      <PortInfo index="2" default="True" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="a7e21de3-bff4-4d1d-b23d-3fb2db980d57" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="371" y="384" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="0.5;" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="56cf69ec-d4ca-4add-810d-aee64d003c76" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="FamilyInstance.ByFace" x="1087" y="145" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.FamilyInstance.ByFace@Revit.Elements.FamilyType,Autodesk.DesignScript.Geometry.Surface,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Vector" />
-    <DSRevitNodesUI.FamilyTypes guid="0e8e9b05-627e-45e3-8313-0c0205a51bf2" type="DSRevitNodesUI.FamilyTypes" nickname="Family Types" x="564" y="27" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="160:WallFamily:WallFamily" />
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="b2cdbe55-01ce-4524-a621-2e0b9185ea27" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="499" y="226" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="a[0];" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="bd082a12-3038-463c-a425-682eb74bccbf" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Vector.YAxis" x="919" y="358" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Vector.YAxis" />
-  </Elements>
-  <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="2c3c7b29-a52f-45c5-b5e1-d9c2c5693051" start_index="0" end="b2cdbe55-01ce-4524-a621-2e0b9185ea27" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="debd26d3-4d9d-4ac3-a226-9a294fe63fda" start_index="0" end="56cf69ec-d4ca-4add-810d-aee64d003c76" end_index="2" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="a7e21de3-bff4-4d1d-b23d-3fb2db980d57" start_index="0" end="debd26d3-4d9d-4ac3-a226-9a294fe63fda" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="a7e21de3-bff4-4d1d-b23d-3fb2db980d57" start_index="0" end="debd26d3-4d9d-4ac3-a226-9a294fe63fda" end_index="2" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="0e8e9b05-627e-45e3-8313-0c0205a51bf2" start_index="0" end="56cf69ec-d4ca-4add-810d-aee64d003c76" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="b2cdbe55-01ce-4524-a621-2e0b9185ea27" start_index="0" end="debd26d3-4d9d-4ac3-a226-9a294fe63fda" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="b2cdbe55-01ce-4524-a621-2e0b9185ea27" start_index="0" end="56cf69ec-d4ca-4add-810d-aee64d003c76" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="bd082a12-3038-463c-a425-682eb74bccbf" start_index="0" end="56cf69ec-d4ca-4add-810d-aee64d003c76" end_index="3" portType="0" />
-  </Connectors>
-  <Notes />
-  <Annotations />
-  <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
-  </Cameras>
-  <SessionTraceData>
-    <NodeTraceData NodeId="56cf69ec-d4ca-4add-810d-aee64d003c76">
-      <CallsiteTraceData>PFNPQVAtRU5WOkVudmVsb3BlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOlNPQVAtRU5DPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1sbnM6U09BUC1FTlY9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpjbHI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc29hcC9lbmNvZGluZy9jbHIvMS4wIiBTT0FQLUVOVjplbmNvZGluZ1N0eWxlPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyI+DQo8U09BUC1FTlY6Qm9keT4NCjxhMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXIgaWQ9InJlZi0xIiB4bWxuczphMT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9jbHIvbnNhc3NlbS9Qcm90b0NvcmUvUHJvdG9Db3JlJTJDJTIwVmVyc2lvbiUzRDEuMS4xLjE5MzAlMkMlMjBDdWx0dXJlJTNEbmV1dHJhbCUyQyUyMFB1YmxpY0tleVRva2VuJTNEbnVsbCI+DQo8TnVtYmVyT2ZFbGVtZW50cz4xPC9OdW1iZXJPZkVsZW1lbnRzPg0KPEJhc2UtMF9IYXNEYXRhPnRydWU8L0Jhc2UtMF9IYXNEYXRhPg0KPEJhc2UtMF9EYXRhIGlkPSJyZWYtMyI+UEZOUFFWQXRSVTVXT2tWdWRtVnNiM0JsSUhodGJHNXpPbmh6YVQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0V0YVc1emRHRnVZMlVpSUhodGJHNXpPbmh6WkQwaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNUzlZVFV4VFkyaGxiV0VpSUhodGJHNXpPbE5QUVZBdFJVNURQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SWdlRzFzYm5NNlUwOUJVQzFGVGxZOUltaDBkSEE2THk5elkyaGxiV0Z6TG5odGJITnZZWEF1YjNKbkwzTnZZWEF2Wlc1MlpXeHZjR1V2SWlCNGJXeHVjenBqYkhJOUltaDBkSEE2THk5elkyaGxiV0Z6TG0xcFkzSnZjMjltZEM1amIyMHZjMjloY0M5bGJtTnZaR2x1Wnk5amJISXZNUzR3SWlCVFQwRlFMVVZPVmpwbGJtTnZaR2x1WjFOMGVXeGxQU0pvZEhSd09pOHZjMk5vWlcxaGN5NTRiV3h6YjJGd0xtOXlaeTl6YjJGd0wyVnVZMjlrYVc1bkx5SStEUW84VTA5QlVDMUZUbFk2UW05a2VUNE5DanhoTVRwVFpYSnBZV3hwZW1GaWJHVkpaQ0JwWkQwaWNtVm1MVEVpSUhodGJHNXpPbUV4UFNKb2RIUndPaTh2YzJOb1pXMWhjeTV0YVdOeWIzTnZablF1WTI5dEwyTnNjaTl1YzJGemMyVnRMMUpsZG1sMFUyVnlkbWxqWlhNdVVHVnljMmx6ZEdWdVkyVXZVbVYyYVhSVFpYSjJhV05sY3lVeVF5VXlNRlpsY25OcGIyNGxNMFF4TGpFdU1DNHhPVE16SlRKREpUSXdRM1ZzZEhWeVpTVXpSRzVsZFhSeVlXd2xNa01sTWpCUWRXSnNhV05MWlhsVWIydGxiaVV6Ukc1MWJHd2lQZzBLUEhOMGNtbHVaMGxFSUdsa1BTSnlaV1l0TXlJK01qZzBOak5rWkRNdFlqWTNOUzAwT0RkakxUa3habVF0TXpGaU9HTTNaV0V3WkdGakxUQXdNRE5rWWpBMlBDOXpkSEpwYm1kSlJENE5DanhwYm5SSlJENHlOVEkyTnpnOEwybHVkRWxFUGcwS1BDOWhNVHBUWlhKcFlXeHBlbUZpYkdWSlpENE5Dand2VTA5QlVDMUZUbFk2UW05a2VUNE5Dand2VTA5QlVDMUZUbFk2Ulc1MlpXeHZjR1UrRFFvPTwvQmFzZS0wX0RhdGE+DQo8QmFzZS0wX0hhc05lc3RlZERhdGE+ZmFsc2U8L0Jhc2UtMF9IYXNOZXN0ZWREYXRhPg0KPC9hMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXI+DQo8L1NPQVAtRU5WOkJvZHk+DQo8L1NPQVAtRU5WOkVudmVsb3BlPg0K</CallsiteTraceData>
-    </NodeTraceData>
-  </SessionTraceData>
-</Workspace>
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "FamilyInstancePlacementByFace",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "2c3c7b29a52f45c5b5e1d9c2c5693051",
+      "Name": "Select Face",
+      "Type": "selection",
+      "Type2": "hostSelection",
+      "Value": "f2e46139-bba6-4e32-a83f-1787d8b6c9e9-0003d36a:5:SURFACE",
+      "Description": "Select a face."
+    },
+    {
+      "Id": "0e8e9b05627e45e383130c0205a51bf2",
+      "Name": "Family Types",
+      "Type": "selection",
+      "Type2": "dropdownSelection",
+      "Value": "WallFamily:WallFamily",
+      "Description": "All family types available in the document.",
+      "SelectedIndex": 160
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSFaceSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "f2e46139-bba6-4e32-a83f-1787d8b6c9e9-0003d36a:5:SURFACE"
+      ],
+      "Id": "2c3c7b29a52f45c5b5e1d9c2c5693051",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3b885378a67b44058725521e4ce3165c",
+          "Name": "Surface",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a face."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "debd26d34d9d4ac3a2269a294fe63fda",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "91d1fe893a7244998fdb3d79eace3c52",
+          "Name": "surface",
+          "Description": "Autodesk.DesignScript.Geometry.Surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "379422df148d43b1945fd9a154d8e9c8",
+          "Name": "u",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f97b2b16ed884568acd6e30f0b332e72",
+          "Name": "v",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "30bac543da814eba87472455e2fce519",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Surface.PointAtParameter@double,double",
+      "Replication": "Auto",
+      "Description": "Return the Point at specified U and V parameters.\n\nSurface.PointAtParameter (u: double = 0, v: double = 0): Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "Id": "a7e21de3bff44d1db23d3fb2db980d57",
+      "NodeType": "CodeBlockNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "579e8b2faa364687a6c27ae011b1fb1a",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly",
+      "Code": "0.5;"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "56cf69ecd4ca4add810daee64d003c76",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "092d9a6f75204db78e4ce47018abfc12",
+          "Name": "familyType",
+          "Description": "Family Type. Also called Family Symbol.\n\nFamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "878b6d43138445f083aecc5607968a0e",
+          "Name": "face",
+          "Description": "Surface geometry derived from a Revit face as reference element\n\nSurface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f5afd7239b5448ba874bc887a7c0ce5a",
+          "Name": "location",
+          "Description": "Point on the face where the instance is to be placed\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ea6d6fcf8ad245fd88014d8e396ca14f",
+          "Name": "referenceDirection",
+          "Description": "A vector that defines the direction of placement of the family instance\n\nVector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2035c24038184dccb868c3456f2c1be7",
+          "Name": "FamilyInstance",
+          "Description": "FamilyInstance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FamilyInstance.ByFace@Revit.Elements.FamilyType,Autodesk.DesignScript.Geometry.Surface,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Vector",
+      "Replication": "Auto",
+      "Description": "Place a Revit family instance given the FamilyType (also known as the FamilySymbol in the Revit API) on a surface derived from a backing Revit face as reference, a reference direction and a point location where to place the family. Note: The FamilyType should be workplane based and the input surface must be created from a Revit Face. The reference direction defines the rotation of the instance on the reference, and thus cannot be perpendicular to the face.\n\nFamilyInstance.ByFace (familyType: FamilyType, face: Surface, location: Point, referenceDirection: Vector): FamilyInstance"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.FamilyTypes, DSRevitNodesUI",
+      "SelectedIndex": 160,
+      "SelectedString": "WallFamily:WallFamily",
+      "Id": "0e8e9b05627e45e383130c0205a51bf2",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a89bb1429e094c178927b0ffdae299d9",
+          "Name": "Family Type",
+          "Description": "The selected Family Type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All family types available in the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "Id": "b2cdbe5501ce4524a6212e0b9185ea27",
+      "NodeType": "CodeBlockNode",
+      "Inputs": [
+        {
+          "Id": "093d5c9b84cc4b4aa93db45b622df675",
+          "Name": "a",
+          "Description": "a",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "56e404a7c8c54ecf99c265bfac8ca878",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly",
+      "Code": "a[0];"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "bd082a123038463ca425682eb74bccbf",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "298263f1dcdb499cb828ceb06ae06f81",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Vector.YAxis",
+      "Replication": "Auto",
+      "Description": "Get the canonical Y axis Vector (0,1,0)\n\nVector.YAxis ( ): Vector"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "3b885378a67b44058725521e4ce3165c",
+      "End": "093d5c9b84cc4b4aa93db45b622df675",
+      "Id": "67996e0e7eb0409aa09c2fba47e5ffb0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "30bac543da814eba87472455e2fce519",
+      "End": "f5afd7239b5448ba874bc887a7c0ce5a",
+      "Id": "b3e800032f764cd9a9a586ac58b4df59",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "579e8b2faa364687a6c27ae011b1fb1a",
+      "End": "379422df148d43b1945fd9a154d8e9c8",
+      "Id": "999c0aef2307469c96af461a42a5c4ba",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "579e8b2faa364687a6c27ae011b1fb1a",
+      "End": "f97b2b16ed884568acd6e30f0b332e72",
+      "Id": "46a337d5068a4dab94e6bb4a8d8fa212",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a89bb1429e094c178927b0ffdae299d9",
+      "End": "092d9a6f75204db78e4ce47018abfc12",
+      "Id": "e203dbbcda8f423795ae4e3c8e92daa6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "56e404a7c8c54ecf99c265bfac8ca878",
+      "End": "91d1fe893a7244998fdb3d79eace3c52",
+      "Id": "56e83c7f638c484f821032bab713c662",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "56e404a7c8c54ecf99c265bfac8ca878",
+      "End": "878b6d43138445f083aecc5607968a0e",
+      "Id": "a309f42e598f45d38e821aad8970b586",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "298263f1dcdb499cb828ceb06ae06f81",
+      "End": "ea6d6fcf8ad245fd88014d8e396ca14f",
+      "Id": "c9a56e2e25634d668e9479a238e97ea3",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": null,
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.0",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "7.0",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "56cf69ec-d4ca-4add-810d-aee64d003c76",
+      "Binding": {
+        "ByFace_InClassDecl-1_InFunctionScope-1_Instance0_56cf69ec-d4ca-4add-810d-aee64d003c76": "H4sIAAAAAAAACh3LsQ5AQAwG4Hf5Z03K3dEzW8xGNTSUWAxym3h3iW//5gebFUOPRzGV+7yOcVD0CmH3lHen7KtTtLiTdXWgmHPbWesSVyZmDp6CKCrFeJX/Nik1Ii/e5QPJZ7c2XgAAAA=="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.0.5795",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "2c3c7b29a52f45c5b5e1d9c2c5693051",
+        "Name": "Select Face",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 215.0,
+        "Y": 129.0
+      },
+      {
+        "Id": "debd26d34d9d4ac3a2269a294fe63fda",
+        "Name": "Surface.PointAtParameter",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 648.0,
+        "Y": 363.0
+      },
+      {
+        "Id": "a7e21de3bff44d1db23d3fb2db980d57",
+        "Name": "Code Block",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 371.0,
+        "Y": 384.0
+      },
+      {
+        "Id": "56cf69ecd4ca4add810daee64d003c76",
+        "Name": "FamilyInstance.ByFace",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1087.0,
+        "Y": 145.0
+      },
+      {
+        "Id": "0e8e9b05627e45e383130c0205a51bf2",
+        "Name": "Family Types",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 564.0,
+        "Y": 27.0
+      },
+      {
+        "Id": "b2cdbe5501ce4524a6212e0b9185ea27",
+        "Name": "Code Block",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 499.0,
+        "Y": 226.0
+      },
+      {
+        "Id": "bd082a123038463ca425682eb74bccbf",
+        "Name": "Vector.YAxis",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 919.0,
+        "Y": 358.0
+      }
+    ],
+    "Annotations": [],
+    "X": -94.0,
+    "Y": 59.0,
+    "Zoom": 1.0
+  }
+}

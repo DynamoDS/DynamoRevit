@@ -29,6 +29,7 @@ using CoreNodeModels;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Nodes.ZeroTouch;
 using Revit.Elements.InternalUtilities;
+using CoreNodeModels.Input;
 
 namespace RevitSystemTests
 {
@@ -882,8 +883,8 @@ namespace RevitSystemTests
             Assert.AreEqual(1, refPoints.Count);
 
             // change slider value and re-evaluate graph
-            IntegerSlider slider = model.CurrentWorkspace.NodeFromWorkspace
-                ("bdcd9b06-989f-4bac-a94d-b84a432d33ea") as IntegerSlider;
+            var slider = model.CurrentWorkspace.NodeFromWorkspace
+                ("bdcd9b06-989f-4bac-a94d-b84a432d33ea") as IntegerSlider64Bit;
             slider.Value = 10;
 
             RunCurrentModel();
