@@ -1,18 +1,18 @@
-name: Issues workflow
+name: Move Issues
 # This workflow transfers or moves issues based upon assigned labels.
 
 # DynamoRevitIssues project https://github.com/orgs/DynamoDS/projects/7
 # Built-in workflow https://github.com/orgs/DynamoDS/projects/7/workflows
 
 # The built-in workflow
-#   - adds any new issues to DynamoRevitIssues project
+#   - adds any new issues to DynamoRevit Issues project
 #   - sets status as 'Triage' when an item is added to the project
 #   - sets status as 'Backlog' when an item is reopened
 #   - sets status as 'Done' when an item is closed
 
 # This workflow complements the built in workflow and
-#   - moves issues labeled as 'Dynamo' to 'DynamoDS/Dynamo' repository
-#   - moves issues labeled as 'Wishlist' to 'DynamoDS/DynamoWishlist' repository
+#   - transfers issues labeled as 'Dynamo' to 'DynamoDS/Dynamo' repository
+#   - transfers issues labeled as 'Wishlist' to 'DynamoDS/DynamoWishlist' repository
 #   - moves issues labeled as 'tracked' to 'Todo' column the project
 #   - moves assigned issues to 'In Progress' column the project
 
@@ -23,51 +23,57 @@ on:
       - assigned
 
 env:
-  gh_token: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
-  gh_organization: DynamoDS
+  GH_TOKEN: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
+  gh_organization: ${{ github.repository_owner }}
   project_id: 7
-  project_name: 'DynamoRevit Issues'
+  project_name: DynamoRevit Issues
 
 jobs:
-  issue_labeled:
-    name: issue labeled
+  transfer_issue_labeled_as_dynamo:
+    name: Transfer issue labeled as Dynamo
     runs-on: ubuntu-latest
-    if: github.event.action == 'labeled'
+    if: ${{ github.event.action == 'labeled' }}
     steps:
-      - uses: actions/checkout@v3
-      - name: Move issue to Dynamo Repository
-        if: github.event.label.name == 'Dynamo'
+      - uses: actions/checkout@v4
+      - name: Transfer issue to Dynamo Repository
+        if: ${{ github.event.label.name == 'Dynamo' }}
         run: |
           gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}"
           gh issue transfer ${{ github.event.issue.number }} DynamoDS/Dynamo
-        env:
-          GITHUB_TOKEN:  ${{ env.gh_token }}
-      - name: Move issue to DynamoWishlist Repository
-        if: github.event.label.name == 'Wishlist'
-        run:  |
+  transfer_issue_labeled_as_wishlist:
+    name: Transfer issue labeled as Wishlist
+    runs-on: ubuntu-latest
+    if: ${{ github.event.action == 'labeled' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Transfer issue to DynamoWishlist Repository
+        if: ${{ github.event.label.name == 'Wishlist' }}
+        run: |
           gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}"
           gh issue transfer ${{ github.event.issue.number }} DynamoDS/DynamoWishlist
-        env:
-          GITHUB_TOKEN:  ${{ env.gh_token }}
+  move_issue_labeled_as_tracked:
+    name: Move issue labeled as tracked
+    runs-on: ubuntu-latest
+    if: ${{ github.event.action == 'labeled' }}
+    steps:
       - name: Move issue to Todo
-        if : github.event.label.name == 'tracked'
-        uses: leonsteinhaeuser/project-beta-automations@v2.1.0
+        if: ${{ github.event.label.name == 'tracked' }}
+        uses: leonsteinhaeuser/project-beta-automations@v2.2.1
         with:
-          gh_token: ${{ env.gh_token }}
+          gh_token: ${{ env.GH_TOKEN }}
           organization: ${{ env.gh_organization }}
           project_id: ${{ env.project_id }}
           resource_node_id: ${{ github.event.issue.node_id }}
           status_value: Todo
-
-  issue_assigned:
-    name: issue assigned
+  move_assigned_issue:
+    name: Move assigned issue
     runs-on: ubuntu-latest
-    if: github.event.action == 'assigned'
+    if: ${{ github.event.action == 'assigned' }}
     steps:
       - name: Move issue to In Progress
-        uses: leonsteinhaeuser/project-beta-automations@v2.1.0
+        uses: leonsteinhaeuser/project-beta-automations@v2.2.1
         with:
-          gh_token: ${{ env.gh_token }}
+          gh_token: ${{ env.GH_TOKEN }}
           organization: ${{ env.gh_organization }}
           project_id: ${{ env.project_id }}
           resource_node_id: ${{ github.event.issue.node_id }}

@@ -22,8 +22,12 @@ namespace Revit.Elements
         internal static List<Autodesk.Revit.DB.RevitLinkInstance> GetLinkInstancesContainingLinkElement(Element linkElement)
         {
             Autodesk.Revit.DB.Element revitElement = linkElement.InternalElement;
+            
             // get the document of the linked element
             Document linkDocToMatch = revitElement.Document;
+            // if the link has been unloaded in the meantime 
+            if (linkDocToMatch==null) return null;
+
             Document currentDocument = Application.Document.Current.InternalDocument;
             var allLinkInstances = new FilteredElementCollector(currentDocument)
                 .OfCategory(BuiltInCategory.OST_RvtLinks)
@@ -37,6 +41,8 @@ namespace Revit.Elements
             foreach (Autodesk.Revit.DB.RevitLinkInstance linkInstance in allLinkInstances)
             {
                 Document linkDoc = linkInstance.GetLinkDocument();
+                // if the link is unloaded - the link document cannot be retrieved
+                if (linkDoc == null) continue;
                 if (linkDoc.Equals(linkDocToMatch))
                 {
                     matchingLinkInstances.Add(linkInstance);
@@ -44,6 +50,7 @@ namespace Revit.Elements
             }
             return matchingLinkInstances;
         }
+       
 
         // helper for zooming to clicked green Id
         internal static void ZoomToLinkedElement(Element element)
@@ -57,6 +64,17 @@ namespace Revit.Elements
 
             // use the center of the BoundingBox as zoom center
             BoundingBoxXYZ bb = element.InternalElement.get_BoundingBox(null);
+            // if the BBox cannot be found, attempt to find it using the active view
+            if (bb==null)
+            {
+                bb=element.InternalElement.get_BoundingBox(activeView);
+            }
+            // finally, if the BB cannot be found at all
+            if (bb==null)
+            {
+                TaskDialog.Show("Revit", "No good view can be found.");
+                return;
+            }
             XYZ bbCenter = (bb.Max + bb.Min) / 2;
             double zoomOffsetX = bb.Max.X - bbCenter.X;
             double zoomOffsetY = bb.Max.Y - bbCenter.Y;
@@ -69,8 +87,6 @@ namespace Revit.Elements
                 XYZ max = new XYZ(locationPt.X + zoomOffsetX, locationPt.Y + zoomOffsetY, locationPt.Z + zoomOffsetZ);
                 uiview.ZoomAndCenterRectangle(min, max);
             }
-
-
         }
 
         // helper to return element's location with transform
@@ -290,6 +306,8 @@ namespace Revit.Elements
         public static CoordinateSystem LinkTransform(Element linkedElement)
         {
             var revitLinkInstances = GetLinkInstancesContainingLinkElement(linkedElement);
+            if (revitLinkInstances == null)
+            { return null; }
 
             foreach (var revitLinkInstance in revitLinkInstances)
             {
@@ -309,6 +327,8 @@ namespace Revit.Elements
         public static CoordinateSystem LinkInverseTransform(Element linkedElement)
         {
             var revitLinkInstances = GetLinkInstancesContainingLinkElement(linkedElement);
+            if (revitLinkInstances == null)
+            { return null; }
 
             foreach (Autodesk.Revit.DB.RevitLinkInstance revitLinkInstance in revitLinkInstances)
             {
@@ -387,7 +407,9 @@ namespace Revit.Elements
                     var reference = rClosest.GetReference();
                     var linkedRef = reference.CreateReferenceInLink();
                     var linkedInstance = DocumentManager.Instance.CurrentDBDocument.GetElement(reference.ElementId) as Autodesk.Revit.DB.RevitLinkInstance;
-                    var linkedReferenceElement = linkedInstance.GetLinkDocument().GetElement(reference.LinkedElementId);
+                    var linkDocument = linkedInstance.GetLinkDocument();
+                    if (linkDocument == null) { continue; } // check if link is loaded
+                    var linkedReferenceElement = linkDocument.GetElement(reference.LinkedElementId);
                     var referenceObject = linkedReferenceElement.GetGeometryObjectFromReference(linkedRef);
 
                     bounceElements.Add(linkedReferenceElement.ToDSType(true));
@@ -435,7 +457,9 @@ namespace Revit.Elements
                 var reference = r.GetReference();
                 var linkedRef = reference.CreateReferenceInLink();
                 var linkedInstance = DocumentManager.Instance.CurrentDBDocument.GetElement(reference.ElementId) as Autodesk.Revit.DB.RevitLinkInstance;
-                var linkedReferenceElement = linkedInstance.GetLinkDocument().GetElement(reference.LinkedElementId);
+                var linkDocument = linkedInstance.GetLinkDocument();
+                if (linkDocument == null) { continue; } // check if link is loaded
+                var linkedReferenceElement = linkDocument.GetElement(reference.LinkedElementId);
                 var referenceGeometryObject = linkedReferenceElement.GetGeometryObjectFromReference(linkedRef);
 
                 Autodesk.Revit.DB.Face currFace = null;

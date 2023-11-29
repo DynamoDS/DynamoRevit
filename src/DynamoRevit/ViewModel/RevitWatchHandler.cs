@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Autodesk.Revit.DB;
 using Dynamo.Interfaces;
 using Dynamo.ViewModels;
-using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
 using ProtoCore.Mirror;
 using RevitServices.Persistence;
 using Element = Revit.Elements.Element;
@@ -38,14 +37,19 @@ namespace Dynamo.Applications
 
             node.Clicked += () =>
             {
-                Document elementDoc = element.InternalElement.Document;
-                Document currrentDoc = Revit.Application.Document.Current.InternalDocument;
-                if (!(elementDoc.Equals(currrentDoc)) && (element.InternalElement.IsValidObject))
+                if (element.InternalElement.IsValidObject)
                 {
-                    Revit.Elements.LinkElement.ZoomToLinkedElement(element);
-                }
-                else if (element.InternalElement.IsValidObject)
-                    DocumentManager.Instance.CurrentUIDocument.ShowElements(element.InternalElement);
+                    Document elementDoc = element.InternalElement.Document;
+                    Document currrentDoc = Revit.Application.Document.Current.InternalDocument;
+                    if (!(elementDoc.Equals(currrentDoc)))
+                    {
+                        Revit.Elements.LinkElement.ZoomToLinkedElement(element);
+                    }
+                    else
+                    { 
+                        DocumentManager.Instance.CurrentUIDocument.ShowElements(element.InternalElement);
+                    }
+                }    
             };
 
             node.Link = id.ToString(CultureInfo.InvariantCulture);

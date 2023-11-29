@@ -1,8 +1,9 @@
 <Project>
 	<Import Project="$(SolutionDir)Config/user_local.props" />
 	<PropertyGroup>
-		<Platforms>net48;NET60;NET70</Platforms>
+		<Platforms>NET70;NET80</Platforms>
 		<PlatformTarget >x64</PlatformTarget>
+		<TargetFramework Condition="'$(Platform)' == 'NET80'">net8.0-windows</TargetFramework>
 		<TargetFramework Condition="'$(Platform)' == 'NET70'">net7.0-windows</TargetFramework>
 		<TargetFramework Condition="'$(Platform)' == 'NET60'">net6.0-windows</TargetFramework>
 		<TargetFramework Condition="'$(Platform)' == 'net48'">net48</TargetFramework>

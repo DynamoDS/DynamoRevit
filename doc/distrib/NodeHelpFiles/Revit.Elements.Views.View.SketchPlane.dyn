@@ -1,0 +1,238 @@
+{
+  "Uuid": "34703780-f4cd-4bf5-b67a-5b70edfb4ca4",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.View.SketchPlane",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "2afbe0f3e8994247b42675096fb094f3",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9baf88948c0a4428890282a54b3bbea5",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8a2cd5386ef441e1b99f633f8065c5bf",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d89c2fb1347d4c7e94ffd891340dfca6",
+          "Name": "document",
+          "Description": "Revit.Application.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9fa363967053400e8bdd41fcf80da4af",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.ActiveView",
+      "Replication": "Auto",
+      "Description": "Get the active view for the document\n\nDocument.ActiveView: View"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "fd9f68f98b4f4975b35889c0d7196d81",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "c9aba0a00f704e98afcfff94b8515674",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2df6216cbea649dd9414020558110aa7",
+          "Name": "SketchPlane",
+          "Description": "SketchPlane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View.SketchPlane",
+      "Replication": "Auto",
+      "Description": "The sketch plane assigned to the view for model curve creation.\n\nView.SketchPlane: SketchPlane"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "c37d88696dd148dc929a55422dac0fe7",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f94369cd8c4445bbadd7abcea394989a",
+          "Name": "sketchPlane",
+          "Description": "Revit.Elements.SketchPlane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a94929bb3b06468586da5b64abbd7459",
+          "Name": "Plane",
+          "Description": "Plane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.SketchPlane.Plane",
+      "Replication": "Auto",
+      "Description": "Gets the plane geometry of the specified sketch plane\n\nSketchPlane.Plane: Plane"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "9baf88948c0a4428890282a54b3bbea5",
+      "End": "d89c2fb1347d4c7e94ffd891340dfca6",
+      "Id": "b11453979eab4b8fbb12cc3a8637f791",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9fa363967053400e8bdd41fcf80da4af",
+      "End": "c9aba0a00f704e98afcfff94b8515674",
+      "Id": "3bbf3eedee8b4e23bcdbd092b4778136",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2df6216cbea649dd9414020558110aa7",
+      "End": "f94369cd8c4445bbadd7abcea394989a",
+      "Id": "eacb1d5cb1e649e3b6d763076f9d163d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.18.1.5096",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -73.566497802734375,
+      "EyeY": 27.8989315032959,
+      "EyeZ": 5.5471715927124023,
+      "LookX": -0.60507965087890625,
+      "LookY": -1.1655960083007813,
+      "LookZ": -0.64636802673339844,
+      "UpX": -0.442932665348053,
+      "UpY": 0.761538565158844,
+      "UpZ": -0.47314867377281189
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "2afbe0f3e8994247b42675096fb094f3",
+        "Name": "Document.Current",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 277.22279916415107,
+        "Y": 402.50389995877367
+      },
+      {
+        "Id": "8a2cd5386ef441e1b99f633f8065c5bf",
+        "Name": "Document.ActiveView",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 586.02279916415114,
+        "Y": 402.50389995877367
+      },
+      {
+        "Id": "fd9f68f98b4f4975b35889c0d7196d81",
+        "Name": "View.SketchPlane",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 921.22279916415107,
+        "Y": 402.50389995877367
+      },
+      {
+        "Id": "c37d88696dd148dc929a55422dac0fe7",
+        "Name": "SketchPlane.Plane",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1250.0227991641509,
+        "Y": 402.50389995877367
+      }
+    ],
+    "Annotations": [],
+    "X": -48.741735743054164,
+    "Y": 84.7984526410408,
+    "Zoom": 0.675272474771016
+  }
+}

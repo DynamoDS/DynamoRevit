@@ -166,7 +166,7 @@ namespace Revit.Elements
 
         public override string ToString()
         {
-            return String.Format("Family: {0}", InternalFamily.Name);
+            return InternalFamily.IsValidObject ? String.Format("Family: {0}", InternalFamily.Name) : "empty";
         }
 
         #endregion

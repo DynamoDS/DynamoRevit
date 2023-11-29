@@ -1,15 +1,14 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
+using DynamoUnits;
 using Revit.Elements;
 using Revit.GeometryConversion;
-using System;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using DynamoUnits;
 using View = Revit.Elements.Views.View;
 
 namespace Revit.Application
@@ -330,13 +329,13 @@ namespace Revit.Application
         /// </summary>
         /// <param name="document">Document</param>
         /// <returns name="linkInstances[]">List of link instances in the document</returns>
-        public List<Revit.Elements.RevitLinkInstance> GetLinkInstances()
+        public List<Revit.Elements.LinkInstance> GetLinkInstances()
         {
             var links = new FilteredElementCollector(this.InternalDocument)
                 .OfCategory(BuiltInCategory.OST_RvtLinks)
                 .WhereElementIsNotElementType()
                 .Cast<Autodesk.Revit.DB.RevitLinkInstance>()
-                .Select(el => new Revit.Elements.RevitLinkInstance(el))
+                .Select(el => el.ToDSType(true) as Revit.Elements.LinkInstance)
                 .ToList();
             return links;
         }
