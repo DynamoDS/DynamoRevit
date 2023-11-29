@@ -218,6 +218,66 @@ namespace Revit.Interactivity
         #endregion
     }
 
+    internal class RevitElementPickSelectionHelper<T> : LogSourceBase, IModelSelectionHelper<T> where T : Element
+    {
+        public static RevitElementPickSelectionHelper<T> Instance { get; } = new RevitElementPickSelectionHelper<T>();
+
+        /// <summary>
+        /// Request an element in a selection.
+        /// </summary>
+        /// <typeparam name="T">The type of the Element.</typeparam>
+        /// <param name="selectionMessage">The message to display.</param>
+        /// <param name="selectionType">The selection type.</param>
+        /// <param name="objectType">The selection object type.</param>
+        /// <returns></returns>
+        public IEnumerable<T> RequestSelectionOfType(
+            string selectionMessage, SelectionType selectionType, SelectionObjectType objectType)
+        {
+            switch (selectionType)
+            {
+                case SelectionType.Many:
+                    return RequestMultipleElementsSelection(selectionMessage, AsLogger());
+            }
+
+            return null;
+        }
+
+        #region private static methods
+
+        private static IEnumerable<T> RequestMultipleElementsSelection(
+            string selectionMessage, ILogger logger)
+        {
+            var doc = DocumentManager.Instance.CurrentUIDocument;
+
+            var choices = doc.Selection;
+            choices.SetElementIds(new Collection<ElementId>());
+
+            logger.Log(selectionMessage);
+
+            var elementRefs = doc.Selection.PickObjects(ObjectType.Element,
+                new ElementSelectionFilter<T>(),
+                selectionMessage);
+
+            if (elementRefs == null || !elementRefs.Any())
+            {
+                return null;
+            }
+
+            var elements = new List<T>();
+            Element e = null;
+
+            foreach (var elementRef in elementRefs)
+            {
+                e = DocumentManager.Instance.CurrentDBDocument.GetElement(elementRef);
+                elements.Add((T)e);
+            }
+
+            return elements;
+        }
+
+        #endregion
+    }
+
     internal class ElementSelectionFilter<T> : ISelectionFilter
     {
         public bool AllowElement(Element elem)

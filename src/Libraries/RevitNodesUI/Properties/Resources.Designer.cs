@@ -421,6 +421,42 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pick multiple Family Instances from the Revit document..
+        /// </summary>
+        internal static string PickFamilyInstancesDescription {
+            get {
+                return ResourceManager.GetString("PickFamilyInstancesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pick multiple Family Instances and click &apos;Finish&apos; above..
+        /// </summary>
+        internal static string PickFamilyInstancesMessage {
+            get {
+                return ResourceManager.GetString("PickFamilyInstancesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pick multiple elements from the Revit document..
+        /// </summary>
+        internal static string PickModelElementsDescription {
+            get {
+                return ResourceManager.GetString("PickModelElementsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pick multiple elements and click &apos;Finish&apos; above..
+        /// </summary>
+        internal static string PickModelElementsMessage {
+            get {
+                return ResourceManager.GetString("PickModelElementsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Level.
         /// </summary>
         internal static string PortDataALevelToolTip {
@@ -664,11 +700,29 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select an Analysis Result..
+        /// </summary>
+        internal static string SelectAnalysisResultsMessage {
+            get {
+                return ResourceManager.GetString("SelectAnalysisResultsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a divided surface and get its family instances..
         /// </summary>
         internal static string SelectDividedSurfaceFamiliesDescription {
             get {
                 return ResourceManager.GetString("SelectDividedSurfaceFamiliesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Divided Surface..
+        /// </summary>
+        internal static string SelectDividedSurfaceMessage {
+            get {
+                return ResourceManager.GetString("SelectDividedSurfaceMessage", resourceCulture);
             }
         }
         
@@ -718,6 +772,42 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a Family Instance from the Revit document..
+        /// </summary>
+        internal static string SelectFamilyInstanceDescription {
+            get {
+                return ResourceManager.GetString("SelectFamilyInstanceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a Family Instance..
+        /// </summary>
+        internal static string SelectFamilyInstanceMessage {
+            get {
+                return ResourceManager.GetString("SelectFamilyInstanceMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag Select multiple Family Instance from the Revit document..
+        /// </summary>
+        internal static string SelectFamilyInstancesDescription {
+            get {
+                return ResourceManager.GetString("SelectFamilyInstancesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag Select Multiple Family Instances..
+        /// </summary>
+        internal static string SelectFamilyInstancesMessage {
+            get {
+                return ResourceManager.GetString("SelectFamilyInstancesMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selection is disabled when Dynamo run is disabled..
         /// </summary>
         internal static string SelectionIsDisabledDescription {
@@ -745,6 +835,15 @@ namespace DSRevitNodesUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a Model Element..
+        /// </summary>
+        internal static string SelectModelElementMessage {
+            get {
+                return ResourceManager.GetString("SelectModelElementMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select multiple elements from the Revit document filtered by Category..
         /// </summary>
         internal static string SelectModelElementsByCategoryDescription {
@@ -759,6 +858,15 @@ namespace DSRevitNodesUI.Properties {
         internal static string SelectModelElementsDescription {
             get {
                 return ResourceManager.GetString("SelectModelElementsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag Select Multiple Elements..
+        /// </summary>
+        internal static string SelectModelElementsMessage {
+            get {
+                return ResourceManager.GetString("SelectModelElementsMessage", resourceCulture);
             }
         }
         

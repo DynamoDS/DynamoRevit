@@ -475,4 +475,40 @@
     <value>All ceiling types available in the document.</value>
     <comment>Description for Ceiling Types</comment>
   </data>
+  <data name="PickFamilyInstancesDescription" xml:space="preserve">
+    <value>Pick multiple Family Instances from the Revit document.</value>
+  </data>
+  <data name="PickFamilyInstancesMessage" xml:space="preserve">
+    <value>Pick multiple Family Instances and click 'Finish' above.</value>
+  </data>
+  <data name="PickModelElementsDescription" xml:space="preserve">
+    <value>Pick multiple elements from the Revit document.</value>
+  </data>
+  <data name="PickModelElementsMessage" xml:space="preserve">
+    <value>Pick multiple elements and click 'Finish' above.</value>
+  </data>
+  <data name="SelectAnalysisResultsMessage" xml:space="preserve">
+    <value>Select an Analysis Result.</value>
+  </data>
+  <data name="SelectDividedSurfaceMessage" xml:space="preserve">
+    <value>Select a Divided Surface.</value>
+  </data>
+  <data name="SelectFamilyInstanceDescription" xml:space="preserve">
+    <value>Select a Family Instance from the Revit document.</value>
+  </data>
+  <data name="SelectFamilyInstanceMessage" xml:space="preserve">
+    <value>Select a Family Instance.</value>
+  </data>
+  <data name="SelectFamilyInstancesDescription" xml:space="preserve">
+    <value>Drag Select multiple Family Instance from the Revit document.</value>
+  </data>
+  <data name="SelectFamilyInstancesMessage" xml:space="preserve">
+    <value>Drag Select Multiple Family Instances.</value>
+  </data>
+  <data name="SelectModelElementMessage" xml:space="preserve">
+    <value>Select a Model Element.</value>
+  </data>
+  <data name="SelectModelElementsMessage" xml:space="preserve">
+    <value>Drag Select Multiple Elements.</value>
+  </data>
 </root>
