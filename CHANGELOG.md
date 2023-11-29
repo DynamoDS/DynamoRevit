@@ -1,3 +1,7 @@
+## 0.5.16
+* Update Dynamo Core to 3.0.0-beta6964
+* Replace Trace Data from SOAP to JSON
+
 ## 0.5.15
 * Update Dynamo Core to 3.0.0-beta6885
 * Drop SOAP formatter and move to JSON based serialization 

@@ -172,11 +172,12 @@ namespace Dynamo.Applications.Models
         #endregion
 
         #region Properties/Fields
-        override internal string AppVersion
+        // TODO: remove this and replace it with proper solution
+        /*override*/ internal string AppVersion
         {
             get
             {
-                return base.AppVersion +
+                return DynamoModel.AppVersion + // base.AppVersion +
                     "-R" + DocumentManager.Instance.CurrentUIApplication.Application.VersionBuild;
             }
         }
