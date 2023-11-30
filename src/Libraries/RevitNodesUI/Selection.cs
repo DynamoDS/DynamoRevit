@@ -1010,12 +1010,12 @@ namespace Dynamo.Nodes
     [NodeDescription("PickModelElementsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
     [IsDesignScriptCompatible]
     [OutPortTypes("Revit.Elements.Element[]")]
-    public class DSModelElementMutlipleSelection : ElementPickSelection<Element>
+    public class DSModelElementMultipleSelection : ElementPickSelection<Element>
     {
         private static string message = Resources.PickModelElementsMessage;
         private const string prefix = "Elements";
 
-        public DSModelElementMutlipleSelection()
+        public DSModelElementMultipleSelection()
             : base(
                 SelectionType.Many,
                 SelectionObjectType.None,
@@ -1023,7 +1023,7 @@ namespace Dynamo.Nodes
                 prefix) { }
 
         [JsonConstructor]
-        public DSModelElementMutlipleSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts,
+        public DSModelElementMultipleSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts,
             IEnumerable<PortModel> outPorts)
             : base(
                 SelectionType.Many,
