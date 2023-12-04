@@ -406,6 +406,30 @@ namespace Dynamo.Nodes
         }
     }
 
+    /// <summary>
+    /// A selection type where the derived class specifies the type to select with a pick selection
+    /// and returns elements
+    /// </summary>
+    /// <typeparam name="TSelection"></typeparam>
+    public abstract class ElementPickSelection<TSelection> : ElementSelection<TSelection>
+        where TSelection : Element
+    {
+        protected ElementPickSelection(SelectionType selectionType,
+            SelectionObjectType selectionObjectType, string message, string prefix)
+            : base(selectionType, selectionObjectType, message, prefix) { }
+
+        [JsonConstructor]
+        protected ElementPickSelection(SelectionType selectionType,
+            SelectionObjectType selectionObjectType, string message, string prefix,
+            IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts)
+            : base(selectionType, selectionObjectType, message, prefix, selectionIdentifier, inPorts, outPorts) { }
+
+        public override IModelSelectionHelper<TSelection> SelectionHelper
+        {
+            get { return RevitElementPickSelectionHelper<TSelection>.Instance; }
+        }
+    }
+
     #endregion
 
     #region ReferenceSelection
@@ -576,7 +600,7 @@ namespace Dynamo.Nodes
      IsVisibleInDynamoLibrary(false)]
     public class DSAnalysisResultSelection : ElementSelection<Element>
     {
-        private const string message = "Select an analysis result.";
+        private static string message = Resources.SelectAnalysisResultsMessage;
         private const string prefix = "Analysis Results";
 
         public DSAnalysisResultSelection()
@@ -603,7 +627,7 @@ namespace Dynamo.Nodes
     [OutPortTypes("Revit.Elements.Element")]
     public class DSModelElementSelection : ElementSelection<Element>
     {
-        private const string message = "Select Model Element";
+        private static string message = Resources.SelectModelElementMessage;
         private const string prefix = "Element";
 
         public DSModelElementSelection()
@@ -630,7 +654,7 @@ namespace Dynamo.Nodes
     [OutPortTypes("Autodesk.DesignScript.Geometry.Surface")]
     public class DSFaceSelection : ReferenceSelection
     {
-        private const string message = "Select a face.";
+        private static string message = Resources.SelectFaceDescription;
         private const string prefix = "Face of Element Id";
         
         public DSFaceSelection()
@@ -657,7 +681,7 @@ namespace Dynamo.Nodes
     [OutPortTypes("Autodesk.DesignScript.Geometry.Curve")]
     public class DSEdgeSelection : ReferenceSelection
     {
-        private const string message = "Select an edge.";
+        private static string message = Resources.SelectEdgeDescription;
         private const string prefix = "Edge of Element Id";
         
         public DSEdgeSelection()
@@ -684,7 +708,7 @@ namespace Dynamo.Nodes
     [OutPortTypes("Revit.GeometryReferences.ElementGeometryReference")]
     public class DSRevitPointSelection : ReferenceSelection
     {
-        private const string message = "Select a Reference on an element.";
+        private static string message = Resources.SelectReferenceOnElement;
         private const string prefix = "Reference of Element Id";
 
         public DSRevitPointSelection()
@@ -750,7 +774,7 @@ namespace Dynamo.Nodes
     [OutPortTypes("Autodesk.DesignScript.Geometry.Point")]
     public class DSPointOnElementSelection : ReferenceSelection
     {
-        private const string message = "Select a point on a face.";
+        private static string message = Resources.SelectPointonFaceDescription;
         private const string prefix = "Point on Element";
         
         public DSPointOnElementSelection()
@@ -826,7 +850,7 @@ namespace Dynamo.Nodes
     [OutPortTypes("Autodesk.DesignScript.Geometry.UV")]
     public class DSUvOnElementSelection : ReferenceSelection
     {
-        private const string message = "Select a point on a face.";
+        private static string message = Resources.SelectUVonFaceDescription;
         private const string prefix = "UV on Element";
 
         public DSUvOnElementSelection()
@@ -903,7 +927,7 @@ namespace Dynamo.Nodes
     [OutPortTypes("Revit.Elements.Element")]
     public class DSDividedSurfaceFamiliesSelection : ElementSelection<DividedSurface>
     {
-        private const string message = "Select a divided surface.";
+        private static string message = Resources.SelectDividedSurfaceMessage;
         private const string prefix = "Elements";
 
         public DSDividedSurfaceFamiliesSelection()
@@ -958,7 +982,7 @@ namespace Dynamo.Nodes
     [OutPortTypes("Revit.Elements.Element[]")]
     public class DSModelElementsSelection : ElementSelection<Element>
     {
-        private const string message = "Select elements.";
+        private static string message = Resources.SelectModelElementsMessage;
         private const string prefix = "Elements";
 
         public DSModelElementsSelection()
@@ -979,6 +1003,36 @@ namespace Dynamo.Nodes
                 inPorts,
                 outPorts)
         { }
+    }
+
+    [NodeName("Pick Model Elements")]
+    [NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION)]
+    [NodeDescription("PickModelElementsDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Element[]")]
+    public class DSModelElementMultipleSelection : ElementPickSelection<Element>
+    {
+        private static string message = Resources.PickModelElementsMessage;
+        private const string prefix = "Elements";
+
+        public DSModelElementMultipleSelection()
+            : base(
+                SelectionType.Many,
+                SelectionObjectType.None,
+                message,
+                prefix) { }
+
+        [JsonConstructor]
+        public DSModelElementMultipleSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts,
+            IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.Many,
+                SelectionObjectType.None,
+                message,
+                prefix,
+                selectionIdentifier,
+                inPorts,
+                outPorts) { }
     }
 
     [NodeName("Select Faces"), NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION),
@@ -1031,6 +1085,102 @@ namespace Dynamo.Nodes
                 selectionIdentifier,
                 inPorts,
                 outPorts) { }
+    }
+
+    [NodeName("Select Family Instance")]
+    [NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION)]
+    [NodeDescription("SelectFamilyInstanceDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Element")]
+    public class DSModelFamilyInstanceSelection : ElementSelection<Autodesk.Revit.DB.FamilyInstance>
+    {
+        private static string message = Resources.SelectFamilyInstanceMessage;
+        private const string prefix = "Element";
+
+        public DSModelFamilyInstanceSelection()
+            : base(
+                SelectionType.One,
+                SelectionObjectType.None,
+                message,
+                prefix)
+        { }
+
+        [JsonConstructor]
+        public DSModelFamilyInstanceSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts,
+            IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.One,
+                SelectionObjectType.None,
+                message,
+                prefix,
+                selectionIdentifier,
+                inPorts,
+                outPorts)
+        { }
+    }
+
+    [NodeName("Select Family Instances")]
+    [NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION)]
+    [NodeDescription("SelectFamilyInstancesDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Element[]")]
+    public class DSModelDragFamilyInstanceSelection : ElementSelection<Autodesk.Revit.DB.FamilyInstance>
+    {
+        private static string message = Resources.SelectFamilyInstancesMessage;
+        private const string prefix = "Elements";
+
+        public DSModelDragFamilyInstanceSelection()
+            : base(
+                SelectionType.Many,
+                SelectionObjectType.None,
+                message,
+                prefix)
+        { }
+
+        [JsonConstructor]
+        public DSModelDragFamilyInstanceSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts,
+            IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.Many,
+                SelectionObjectType.None,
+                message,
+                prefix,
+                selectionIdentifier,
+                inPorts,
+                outPorts)
+        { }
+    }
+
+    [NodeName("Pick Family Instances")]
+    [NodeCategory(Revit.Elements.BuiltinNodeCategories.REVIT_SELECTION)]
+    [NodeDescription("PickFamilyInstancesDescription", typeof(DSRevitNodesUI.Properties.Resources))]
+    [IsDesignScriptCompatible]
+    [OutPortTypes("Revit.Elements.Element[]")]
+    public class DSModelFamilyInstanceMultipleSelection : ElementPickSelection<Autodesk.Revit.DB.FamilyInstance>
+    {
+        private static string message = Resources.PickFamilyInstancesMessage;
+        private const string prefix = "Elements";
+
+        public DSModelFamilyInstanceMultipleSelection()
+            : base(
+                SelectionType.Many,
+                SelectionObjectType.None,
+                message,
+                prefix)
+        { }
+
+        [JsonConstructor]
+        public DSModelFamilyInstanceMultipleSelection(IEnumerable<string> selectionIdentifier, IEnumerable<PortModel> inPorts,
+            IEnumerable<PortModel> outPorts)
+            : base(
+                SelectionType.Many,
+                SelectionObjectType.None,
+                message,
+                prefix,
+                selectionIdentifier,
+                inPorts,
+                outPorts)
+        { }
     }
 
 }
