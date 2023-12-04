@@ -573,7 +573,7 @@ namespace Dynamo.Applications
 
             HostAnalyticsInfo hostAnalyticsInfo = new HostAnalyticsInfo { 
                 HostName = DYNAMO_REVIT_HOST_NAME,
-                HostVersion = dynRevitVersion, // update RevitUpdateManager with the current DynamoRevit Version
+                HostVersion = dynRevitVersion
             };
 
             var userDataFolder = Path.Combine(Environment.GetFolderPath(
