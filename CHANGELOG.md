@@ -1,3 +1,6 @@
+## 0.5.17
+* Update Dynamo Core to 3.0.0-beta7044
+
 ## 0.5.16
 * Update Dynamo Core to 3.0.0-beta6964
 * Replace Trace Data from SOAP to JSON
