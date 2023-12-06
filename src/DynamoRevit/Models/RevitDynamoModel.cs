@@ -50,7 +50,6 @@ namespace Dynamo.Applications.Models
             public IPreferences Preferences { get; set; }
             public bool StartInTestMode { get; set; }
             public bool IsHeadless { get; set; }
-            public IUpdateManager UpdateManager { get; set; }
             public ISchedulerThread SchedulerThread { get; set; }
             public string GeometryFactoryPath { get; set; }
             public IAuthProvider AuthProvider { get; set; }
