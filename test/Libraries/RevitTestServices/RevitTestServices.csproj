@@ -63,34 +63,34 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="DynamoCore">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net6.0\DynamoCore.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoCore.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCore.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="DynamoCoreWpf">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net6.0\DynamoCoreWpf.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\$(DCoreLibSubFolder)\DynamoCoreWpf.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCoreWpf.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj" />
 		<Reference Include="DynamoUtilities">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net6.0\DynamoUtilities.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoUtilities.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUtilities.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="DynamoUnits">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net6.0\DynamoUnits.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\DynamoUnits.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUnits.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj" />
 		<Reference Include="TestServices">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\net6.0\TestServices.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\$(DCoreLibSubFolder)\TestServices.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\TestServices.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="SystemTestServices">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\net6.0\SystemTestServices.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\$(DCoreLibSubFolder)\SystemTestServices.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\SystemTestServices.dll</HintPath>
 			<Private>False</Private>
 		</Reference>

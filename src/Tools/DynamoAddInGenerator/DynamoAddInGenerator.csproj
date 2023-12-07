@@ -29,7 +29,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamoInstallDetective">
-		<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net6.0\DynamoInstallDetective.dll</HintPath>
+		<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoInstallDetective.dll</HintPath>
 		<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoInstallDetective.dll</HintPath>
     </Reference>
     <Reference Include="RevitAddinUtility">

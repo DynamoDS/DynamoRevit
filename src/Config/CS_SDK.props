@@ -19,7 +19,11 @@
 		<UICulture>en-US</UICulture>
 
 		<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOTESTAPI>
-		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\net6.0</REVITAPI>
+
+		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET80'">net8.0</DCoreLibSubFolder>
+		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET70'">net6.0</DCoreLibSubFolder>
+		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET60'">net6.0</DCoreLibSubFolder>
+		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\$(DCoreLibSubFolder)</REVITAPI>
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Preview Release</REVITAPI>
@@ -30,7 +34,7 @@
 		<DefaultOutputPath>$(SolutionDir)..\bin\$(Configuration)\$(Platform)\$(REVIT_VERSION)</DefaultOutputPath>
 		<OutputPath Condition=" '$(OutputPath)' == '' ">$(DefaultOutputPath)</OutputPath>
 		<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Configuration)\$(Platform)\$(REVIT_VERSION)</TestOutputPath>
-
+		
 		<NoWarn>MSB3539</NoWarn>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">

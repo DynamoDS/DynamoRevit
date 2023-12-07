@@ -29,7 +29,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="DSCoreNodes">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net6.0\DSCoreNodes.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\$(DCoreLibSubFolder)\DSCoreNodes.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DSCoreNodes.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
@@ -38,7 +38,7 @@
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="ProtoGeometry">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net6.0\ProtoGeometry.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\ProtoGeometry.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\ProtoGeometry.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
@@ -60,19 +60,19 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="DynamoCore">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net6.0\DynamoCore.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoCore.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCore.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="Analysis">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net6.0\Analysis.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\$(DCoreLibSubFolder)\Analysis.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\Analysis.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj" />
 		<ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj" />
 		<Reference Include="TestServices">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\net6.0\TestServices.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\$(DCoreLibSubFolder)\TestServices.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\TestServices.dll</HintPath>
 			<Private>False</Private>
 		</Reference>

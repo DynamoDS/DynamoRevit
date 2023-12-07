@@ -38,7 +38,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="DynamoUtilities">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net6.0\DynamoUtilities.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoUtilities.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUtilities.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
@@ -47,7 +47,7 @@
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="ProtoGeometry">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net6.0\ProtoGeometry.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\ProtoGeometry.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\ProtoGeometry.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
@@ -81,37 +81,37 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="DynamoCoreWpf">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net6.0\DynamoCoreWpf.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\$(DCoreLibSubFolder)\DynamoCoreWpf.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCoreWpf.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="ProtoCore">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net6.0\ProtoCore.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\ProtoCore.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\ProtoCore.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="CoreNodeModelsWpf">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\net6.0\CoreNodeModelsWpf.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\$(DCoreLibSubFolder)\CoreNodeModelsWpf.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\nodes\CoreNodeModelsWpf.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="CoreNodeModels">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net6.0\CoreNodeModels.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\$(DCoreLibSubFolder)\CoreNodeModels.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\nodes\CoreNodeModels.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="DynamoCore">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\net6.0\DynamoCore.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoCore.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCore.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="DSCoreNodes">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\net6.0\DSCoreNodes.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\$(DCoreLibSubFolder)\DSCoreNodes.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DSCoreNodes.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="DynamoUnits">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\net6.0\DynamoUnits.dll</HintPath>
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\DynamoUnits.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUnits.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
