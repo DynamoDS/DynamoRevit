@@ -157,7 +157,6 @@ namespace RevitTestServices
             ViewModel = initedInstance.ViewModel;
             View = initedInstance.View;
             Model = initedInstance.Model;
-            UpdateManager = initedInstance.UpdateManager;
             //TempFolder = other.TempFolder;
 
             samplesPath = initedInstance.samplesPath;

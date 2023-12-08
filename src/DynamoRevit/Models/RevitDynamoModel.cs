@@ -50,7 +50,6 @@ namespace Dynamo.Applications.Models
             public IPreferences Preferences { get; set; }
             public bool StartInTestMode { get; set; }
             public bool IsHeadless { get; set; }
-            public IUpdateManager UpdateManager { get; set; }
             public ISchedulerThread SchedulerThread { get; set; }
             public string GeometryFactoryPath { get; set; }
             public IAuthProvider AuthProvider { get; set; }
@@ -172,15 +171,6 @@ namespace Dynamo.Applications.Models
         #endregion
 
         #region Properties/Fields
-        // TODO: remove this and replace it with proper solution
-        /*override*/ internal string AppVersion
-        {
-            get
-            {
-                return DynamoModel.AppVersion + // base.AppVersion +
-                    "-R" + DocumentManager.Instance.CurrentUIApplication.Application.VersionBuild;
-            }
-        }
 
         public bool IsInMatchingDocumentContext
         {

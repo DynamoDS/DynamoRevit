@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Dynamo.Interfaces;
@@ -95,6 +96,28 @@ namespace Dynamo.Applications
         public string CommonDataRootFolder
         {
             get { return commonDataRootFolder; }
+        }
+
+        public IEnumerable<string> GetDynamoUserDataLocations()
+        {
+            var appDatafolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+            var paths = new List<string>();
+            //Pre 1.0 Dynamo Studio user data was stored at %appdata%\Dynamo\
+            var dynamoFolder = Path.Combine(appDatafolder, "Dynamo");
+            if (Directory.Exists(dynamoFolder))
+            {
+                paths.AddRange(Directory.EnumerateDirectories(dynamoFolder));
+            }
+
+            //From 1.0 onwards Dynamo Studio user data is stored at %appdata%\Dynamo\Dynamo Revit\
+            var revitFolder = Path.Combine(dynamoFolder, "Dynamo Revit");
+            if (Directory.Exists(revitFolder))
+            {
+                paths.AddRange(Directory.EnumerateDirectories(revitFolder));
+            }
+
+            return paths;
         }
     }
 }
