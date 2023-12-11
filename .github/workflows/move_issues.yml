@@ -23,8 +23,6 @@ on:
       - assigned
 
 env:
-  GH_TOKEN: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
-  gh_organization: ${{ github.repository_owner }}
   project_id: 7
   project_name: DynamoRevit Issues
 
@@ -33,23 +31,25 @@ jobs:
     name: Transfer issue labeled as Dynamo
     runs-on: ubuntu-latest
     if: ${{ github.event.action == 'labeled' }}
+    env:
+      GH_TOKEN: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
       - name: Transfer issue to Dynamo Repository
         if: ${{ github.event.label.name == 'Dynamo' }}
         run: |
-          gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}"
+          gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}" --repo ${{ github.repository }}
           gh issue transfer ${{ github.event.issue.number }} DynamoDS/Dynamo
   transfer_issue_labeled_as_wishlist:
     name: Transfer issue labeled as Wishlist
     runs-on: ubuntu-latest
     if: ${{ github.event.action == 'labeled' }}
+    env:
+      GH_TOKEN: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
       - name: Transfer issue to DynamoWishlist Repository
         if: ${{ github.event.label.name == 'Wishlist' }}
         run: |
-          gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}"
+          gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}" --repo ${{ github.repository }}
           gh issue transfer ${{ github.event.issue.number }} DynamoDS/DynamoWishlist
   move_issue_labeled_as_tracked:
     name: Move issue labeled as tracked
@@ -60,8 +60,8 @@ jobs:
         if: ${{ github.event.label.name == 'tracked' }}
         uses: leonsteinhaeuser/project-beta-automations@v2.2.1
         with:
-          gh_token: ${{ env.GH_TOKEN }}
-          organization: ${{ env.gh_organization }}
+          gh_token: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
+          organization: ${{ github.repository_owner }}
           project_id: ${{ env.project_id }}
           resource_node_id: ${{ github.event.issue.node_id }}
           status_value: Todo
@@ -73,8 +73,8 @@ jobs:
       - name: Move issue to In Progress
         uses: leonsteinhaeuser/project-beta-automations@v2.2.1
         with:
-          gh_token: ${{ env.GH_TOKEN }}
-          organization: ${{ env.gh_organization }}
+          gh_token: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
+          organization: ${{ github.repository_owner }}
           project_id: ${{ env.project_id }}
           resource_node_id: ${{ github.event.issue.node_id }}
           status_value: In Progress
