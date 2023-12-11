@@ -31,11 +31,11 @@ jobs:
     name: Transfer issue labeled as Dynamo
     runs-on: ubuntu-latest
     if: ${{ github.event.action == 'labeled' }}
-    env:
-      GH_TOKEN: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
     steps:
       - name: Transfer issue to Dynamo Repository
         if: ${{ github.event.label.name == 'Dynamo' }}
+        env:
+          GH_TOKEN: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
         run: |
           gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}" --repo ${{ github.repository }}
           gh issue transfer ${{ github.event.issue.number }} DynamoDS/Dynamo
@@ -43,11 +43,11 @@ jobs:
     name: Transfer issue labeled as Wishlist
     runs-on: ubuntu-latest
     if: ${{ github.event.action == 'labeled' }}
-    env:
-      GH_TOKEN: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
     steps:
       - name: Transfer issue to DynamoWishlist Repository
         if: ${{ github.event.label.name == 'Wishlist' }}
+        env:
+          GH_TOKEN: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
         run: |
           gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}" --repo ${{ github.repository }}
           gh issue transfer ${{ github.event.issue.number }} DynamoDS/DynamoWishlist
