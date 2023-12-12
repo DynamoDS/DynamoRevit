@@ -1303,10 +1303,12 @@ namespace Revit.Elements
         /// <param name="vector">Translation Vector</param>
         public void MoveByVector(Vector vector)
         {
+            TransactionManager.Instance.EnsureInTransaction(Application.Document.Current.InternalDocument);
             if (!this.InternalElement.Location.Move(vector.ToXyz(true)))
             {
                 throw new Exception(Properties.Resources.InvalidElementLocation);
             }
+            TransactionManager.Instance.TransactionTaskDone();
         }
 
         #endregion
