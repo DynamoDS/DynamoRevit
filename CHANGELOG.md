@@ -1,3 +1,6 @@
+## 0.5.20
+* (re-)enable Dynamo Splash Screen
+
 ## 0.5.19
 * Update / Change Dynamo Core to 3.0.0-beta7040
 
