@@ -38,7 +38,7 @@ jobs:
           GH_TOKEN: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
         run: |
           gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}" --repo ${{ github.repository }}
-          gh issue transfer ${{ github.event.issue.number }} DynamoDS/Dynamo
+          gh issue transfer ${{ github.event.issue.number }} DynamoDS/Dynamo --repo ${{ github.repository }}
   transfer_issue_labeled_as_wishlist:
     name: Transfer issue labeled as Wishlist
     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
           GH_TOKEN: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
         run: |
           gh issue edit ${{ github.event.issue.number }} --remove-project "${{ env.project_name }}" --repo ${{ github.repository }}
-          gh issue transfer ${{ github.event.issue.number }} DynamoDS/DynamoWishlist
+          gh issue transfer ${{ github.event.issue.number }} DynamoDS/DynamoWishlist --repo ${{ github.repository }}
   move_issue_labeled_as_tracked:
     name: Move issue labeled as tracked
     runs-on: ubuntu-latest
