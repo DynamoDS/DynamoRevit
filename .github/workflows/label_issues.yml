@@ -1,0 +1,20 @@
+name: Label Issues
+# This workflow add labels to new issues based on the title of the issue with regex defined in .github/labeler.yml
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  label_issues:
+    name: Label Issues
+    runs-on: ubuntu-latest
+    steps:
+      - uses: github/issue-labeler@v3.2
+        with:
+          repo-token: ${{ github.token }}
+          configuration-path: .github/labeler.yml
+          enable-versioned-regex: 0
+          include-title: 1
+          include-body: 0
