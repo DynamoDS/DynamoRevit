@@ -1,0 +1,24 @@
+bug:
+  - (bug|Bug|BUG)
+Crash:
+  - (crash|Crash|CRASH)
+DesignScript:
+  - designscript
+Documentation:
+  - (documentation|docs)
+Dynamo Player:
+  - player
+Engine:
+  - engine
+Geometry:
+  - geometry
+Graphics:
+  - graphics
+Nodes:
+  - node
+Python:
+  - python
+Revit:
+  - revit
+Wishlist:
+  - (wish|wishlist|improvement|suggestion|enhancement|feature|request)

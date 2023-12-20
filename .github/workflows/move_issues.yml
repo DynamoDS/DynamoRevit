@@ -30,10 +30,9 @@ jobs:
   transfer_issue_labeled_as_dynamo:
     name: Transfer issue labeled as Dynamo
     runs-on: ubuntu-latest
-    if: ${{ github.event.action == 'labeled' }}
+    if: ${{ github.event.action == 'labeled' }} && ${{ github.event.label.name == 'Dynamo' }}
     steps:
       - name: Transfer issue to Dynamo Repository
-        if: ${{ github.event.label.name == 'Dynamo' }}
         env:
           GH_TOKEN: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
         run: |
@@ -42,10 +41,9 @@ jobs:
   transfer_issue_labeled_as_wishlist:
     name: Transfer issue labeled as Wishlist
     runs-on: ubuntu-latest
-    if: ${{ github.event.action == 'labeled' }}
+    if: ${{ github.event.action == 'labeled' }} && ${{ github.event.label.name == 'Wishlist' }}
     steps:
       - name: Transfer issue to DynamoWishlist Repository
-        if: ${{ github.event.label.name == 'Wishlist' }}
         env:
           GH_TOKEN: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
         run: |
@@ -54,10 +52,9 @@ jobs:
   move_issue_labeled_as_tracked:
     name: Move issue labeled as tracked
     runs-on: ubuntu-latest
-    if: ${{ github.event.action == 'labeled' }}
+    if: ${{ github.event.action == 'labeled' }} && ${{ github.event.label.name == 'tracked' }}
     steps:
       - name: Move issue to Todo
-        if: ${{ github.event.label.name == 'tracked' }}
         uses: leonsteinhaeuser/project-beta-automations@v2.2.1
         with:
           gh_token: ${{ secrets.DYNAMO_ISSUES_TOKEN }}
