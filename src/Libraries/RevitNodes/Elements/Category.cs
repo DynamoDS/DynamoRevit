@@ -145,7 +145,9 @@ namespace Revit.Elements
             Autodesk.Revit.DB.Category category = null;
             
             var splits = name.Split('-');
-            category = FindCategory(name);
+
+            // search by ui name first, that can be "{parent name} - {name}" or only the "{name}"
+            category = FindCategory((Autodesk.Revit.DB.Category cat) => { return name.Equals(new Revit.Elements.Category(cat).Name); });
             if(category != null)
             {
                 return category;
@@ -157,7 +159,7 @@ namespace Revit.Elements
                 {
                     var parentName = name.Substring(0, index).TrimEnd(' ');
                     var subName = name.Substring(index + 1).TrimStart(' ');
-                    Autodesk.Revit.DB.Category parentCategory = FindCategory(parentName);
+                    Autodesk.Revit.DB.Category parentCategory = FindCategory((Autodesk.Revit.DB.Category cat) => { return parentName.Equals(cat.Name); });
                     if(parentCategory != null)
                     {
                         if(parentCategory.SubCategories.Contains(subName))
@@ -199,7 +201,7 @@ namespace Revit.Elements
             return CharIndex;
         }
 
-        private static Autodesk.Revit.DB.Category FindCategory(String name)
+        private static Autodesk.Revit.DB.Category FindCategory(Predicate<Autodesk.Revit.DB.Category> pred)
         {
             var document = DocumentManager.Instance.CurrentDBDocument;
 
@@ -217,7 +219,7 @@ namespace Revit.Elements
                     continue;
                 }
 
-                if(tempCategory != null && name.Equals(tempCategory.Name))
+                if(tempCategory != null && pred(tempCategory))
                 {
                     return tempCategory;
                 }

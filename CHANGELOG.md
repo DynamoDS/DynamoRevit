@@ -1,3 +1,6 @@
+## 0.5.21
+* Incorrect Category returned by Category.ByName node
+
 ## 0.5.20
 * (re-)enable Dynamo Splash Screen
 
