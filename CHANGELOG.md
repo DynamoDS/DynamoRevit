@@ -1,3 +1,6 @@
+## 0.5.22
+* Update Dynamo Core to 3.0.0.7190
+
 ## 0.5.21
 * Incorrect Category returned by Category.ByName node
 
