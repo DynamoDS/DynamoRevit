@@ -1,3 +1,7 @@
+## 0.5.23
+* RC for Revit2025
+* Removed configuration for .NET 7
+
 ## 0.5.22
 * Update Dynamo Core to 3.0.0.7190
 
