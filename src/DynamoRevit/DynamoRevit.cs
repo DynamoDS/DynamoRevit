@@ -1015,7 +1015,7 @@ namespace Dynamo.Applications
         }
 
         [DllImport("msvcrt.dll")]
-        public static extern int _putenv(string env);
+        internal static extern int _putenv(string env);
 
         #endregion
 

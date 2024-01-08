@@ -29,10 +29,6 @@
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoServices.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="Microsoft.Practices.Prism">
-			<HintPath>$(PACKAGESPATH)\Prism\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="Properties\AssemblySharedInfo.cs" />

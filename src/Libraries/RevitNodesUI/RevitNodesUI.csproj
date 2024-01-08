@@ -27,15 +27,6 @@
 	<PropertyGroup>
 		<PostBuildEvent />
 	</PropertyGroup>
-	<ItemGroup Condition="!$(Platform.Contains('NET'))">
-		<Reference Include="PresentationCore" />
-		<Reference Include="PresentationFramework" />
-		<Reference Include="System" />
-		<Reference Include="System.Core" />
-		<Reference Include="System.Xaml" />
-		<Reference Include="System.Xml" />
-		<Reference Include="WindowsBase" />
-	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="DynamoUtilities">
 			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoUtilities.dll</HintPath>
@@ -43,7 +34,7 @@
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="Newtonsoft.Json">
-			<HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\net45\Newtonsoft.Json.dll</HintPath>
+			<HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="ProtoGeometry">
@@ -65,19 +56,19 @@
 			<Private>False</Private>
 		</Reference>
 	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="Properties\AssemblySharedInfo.cs" />
+  <ItemGroup>
+    <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="Properties\AssemblySharedInfo.cs" />
 		<Compile Update="Controls\ComboControl.xaml.cs">
 			<DependentUpon>ComboControl.xaml</DependentUpon>
 		</Compile>
 		<Compile Update="LocationControl.xaml.cs">
 			<DependentUpon>LocationControl.xaml</DependentUpon>
 		</Compile>
-		<Compile Update="Properties\Resources.Designer.cs">
-			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
-			<DependentUpon>Resources.resx</DependentUpon>
-		</Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="DynamoCoreWpf">
@@ -113,10 +104,6 @@
 		<Reference Include="DynamoUnits">
 			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\DynamoUnits.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUnits.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="Microsoft.Practices.Prism">
-			<HintPath>$(PACKAGESPATH)\Prism\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 	</ItemGroup>

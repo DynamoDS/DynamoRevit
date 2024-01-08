@@ -100,14 +100,14 @@ namespace Revit.Elements
         #region Hidden public static constructors 
 
         [IsVisibleInDynamoLibrary(false)]
-        public static Form ByLoftCrossSections(ElementCurveReference[][] curves, bool isSolid = true)
+        internal static Form ByLoftCrossSections(ElementCurveReference[][] curves, bool isSolid = true)
         {
             if (curves == null) throw new ArgumentNullException("curves");
             return ByLoftMultiPartCrossSectionsInternal(curves, isSolid);
         }
 
         [IsVisibleInDynamoLibrary(false)]
-        public static Form ByLoftCrossSections(Revit.Elements.Element[][] curves, bool isSolid = true)
+        internal static Form ByLoftCrossSections(Revit.Elements.Element[][] curves, bool isSolid = true)
         {
             if (curves == null) throw new ArgumentNullException("curves");
             return ByLoftMultiPartCrossSectionsInternal(curves, isSolid);

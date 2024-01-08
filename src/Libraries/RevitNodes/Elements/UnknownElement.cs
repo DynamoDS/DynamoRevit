@@ -48,6 +48,7 @@ namespace Revit.Elements
         /// set this value manually if that's not what you want.
         /// </summary>
         /// <param name="element"></param>
+        /// <param name="isRevitOwned"></param>
         internal static UnknownElement FromExisting(Autodesk.Revit.DB.Element element, bool isRevitOwned)
         {
             var el = new UnknownElement(element) { IsRevitOwned = isRevitOwned };

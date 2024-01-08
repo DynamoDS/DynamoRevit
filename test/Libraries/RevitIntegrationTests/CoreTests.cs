@@ -217,7 +217,7 @@ namespace RevitSystemTests
                 {
                     listOfAllNodes = viewModel.Model.SearchModel.Entries.Where(x => !excludes.Contains(x.Name) && x.FullName.Contains("Revit"));
                 }
-                catch (System.Exception ex) { }
+                catch (System.Exception) { }
             return listOfAllNodes.Select(nse => new TestCaseData(nse).SetName(nse.FullName));
         }
     }

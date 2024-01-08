@@ -66,7 +66,7 @@ namespace Revit.Elements
         /// <summary>
         /// Set the internal Element, ElementId, and UniqueId
         /// </summary>
-        /// <param name="wall"></param>
+        /// <param name="element"></param>
         private void InternalSetElement(Autodesk.Revit.DB.RevisionCloud element)
         {
             InternalRevitElement = element;

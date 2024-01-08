@@ -22,6 +22,9 @@ limitations under the License.
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<OutputPath>$(TestOutputPath)</OutputPath>
 	</PropertyGroup>
+  <PropertyGroup>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+  </PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
 		<DebugSymbols>true</DebugSymbols>
 		<DebugType>full</DebugType>
@@ -43,7 +46,7 @@ limitations under the License.
 	</PropertyGroup>
 	<ItemGroup>
 		<Reference Include="Newtonsoft.Json">
-			<HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\net45\Newtonsoft.Json.dll</HintPath>
+			<HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="nunit.framework">
@@ -58,7 +61,7 @@ limitations under the License.
 			<HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="RTFRevit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+		<Reference Include="RTFRevit">
 			<HintPath>..\..\..\extern\RevitTestFramework\RTFRevit.dll</HintPath>
 			<Private>False</Private>
 			<SpecificVersion>False</SpecificVersion>

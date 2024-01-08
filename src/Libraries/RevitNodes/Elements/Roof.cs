@@ -130,7 +130,7 @@ namespace Revit.Elements
         /// <summary>
         /// Set the InternalRoof property and the associated element id and unique id
         /// </summary>
-        /// <param name="Roof"></param>
+        /// <param name="roof"></param>
         private void InternalSetRoof(Autodesk.Revit.DB.RoofBase roof)
         {
             InternalRoof = roof;
@@ -210,17 +210,17 @@ namespace Revit.Elements
         {
             get 
             {
-                if (this.InternalRoof.SlabShapeEditor == null)
+                if (this.InternalRoof.GetSlabShapeEditor() == null)
                 {
                     throw new Exception(Properties.Resources.InvalidShapeEditor);
                 }
 
                 TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-                this.InternalRoof.SlabShapeEditor.Enable();
+                this.InternalRoof.GetSlabShapeEditor().Enable();
                 TransactionManager.Instance.TransactionTaskDone();
 
                 List<Pt> points = new List<Pt>();
-                foreach (SlabShapeVertex v in this.InternalRoof.SlabShapeEditor.SlabShapeVertices)
+                foreach (SlabShapeVertex v in this.InternalRoof.GetSlabShapeEditor().SlabShapeVertices)
                 {
                     points.Add(v.Position.ToPoint());
                 }
@@ -233,14 +233,14 @@ namespace Revit.Elements
         /// </summary>
         public void AddPoint(Pt point)
         {
-            if (this.InternalRoof.SlabShapeEditor == null)
+            if (this.InternalRoof.GetSlabShapeEditor() == null)
             {
                 throw new Exception(Properties.Resources.InvalidShapeEditor);
             }
 
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-            this.InternalRoof.SlabShapeEditor.Enable();
-            this.InternalRoof.SlabShapeEditor.DrawPoint(point.ToXyz());
+            this.InternalRoof.GetSlabShapeEditor().Enable();
+            this.InternalRoof.GetSlabShapeEditor().DrawPoint(point.ToXyz());
             TransactionManager.Instance.TransactionTaskDone();
         }
 
@@ -249,14 +249,14 @@ namespace Revit.Elements
         /// </summary>
         public void MovePoint(Pt point, double offset)
         {
-            if (this.InternalRoof.SlabShapeEditor == null)
+            if (this.InternalRoof.GetSlabShapeEditor() == null)
             {
                 throw new Exception(Properties.Resources.InvalidShapeEditor);
             }
 
             SlabShapeVertex vertex = null;
 
-            foreach (SlabShapeVertex v in this.InternalRoof.SlabShapeEditor.SlabShapeVertices)
+            foreach (SlabShapeVertex v in this.InternalRoof.GetSlabShapeEditor().SlabShapeVertices)
             {
                 if (point.IsAlmostEqualTo(v.Position.ToPoint()))
                 {
@@ -267,8 +267,8 @@ namespace Revit.Elements
             if (vertex != null && offset != 0)
             {
                 TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-                this.InternalRoof.SlabShapeEditor.Enable();
-                this.InternalRoof.SlabShapeEditor.ModifySubElement(vertex, offset);
+                this.InternalRoof.GetSlabShapeEditor().Enable();
+                this.InternalRoof.GetSlabShapeEditor().ModifySubElement(vertex, offset);
                 TransactionManager.Instance.TransactionTaskDone();
             }
         }

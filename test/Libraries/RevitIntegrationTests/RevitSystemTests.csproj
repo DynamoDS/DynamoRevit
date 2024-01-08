@@ -7,9 +7,10 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<OutputPath>$(TestOutputPath)</OutputPath>
 		<WarningLevel>3</WarningLevel>
-		<NoWarn>618</NoWarn>
+		<NoWarn>$(NoWarn);618</NoWarn>
 		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
+    <Prefer32Bit>false</Prefer32Bit>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
 		<DebugSymbols>true</DebugSymbols>
@@ -17,23 +18,15 @@
 		<Optimize>false</Optimize>
 		<DefineConstants>DEBUG;TRACE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>3</WarningLevel>
-		<NoWarn>618</NoWarn>
-		<Prefer32Bit>false</Prefer32Bit>
 	</PropertyGroup>
 	<PropertyGroup>
-		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
-			None
-		</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
 		<DebugType>none</DebugType>
 		<Optimize>true</Optimize>
 		<DefineConstants>TRACE</DefineConstants>
 		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>3</WarningLevel>
-		<NoWarn>618</NoWarn>
-		<Prefer32Bit>false</Prefer32Bit>
 	</PropertyGroup>
 	<Target Name="BeforeBuild" BeforeTargets="PreBuildEvent">
 		<Exec Command="&quot;$(SolutionDir)transform_all.bat&quot; &quot;$(ProjectDir)&quot; xml" />
@@ -43,7 +36,7 @@
 	</Target>
 	<ItemGroup>
 		<Reference Include="Newtonsoft.Json">
-			<HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\net45\Newtonsoft.Json.dll</HintPath>
+			<HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="DynamoCoreWpf">
@@ -54,10 +47,6 @@
 		<Reference Include="DynamoUtilities">
 			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoUtilities.dll</HintPath>
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUtilities.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="Microsoft.Practices.Prism">
-			<HintPath>$(PACKAGESPATH)\Prism\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="nunit.framework">

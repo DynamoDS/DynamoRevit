@@ -62,6 +62,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{821DE75A-8C7C-4747-B838-BA0354B15592}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoAddinGenerator", "Tools\DynamoAddinGenerator\DynamoAddinGenerator.csproj", "{92A46535-D870-4E1A-AED0-7492789E9C4A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{133FC760-5699-46D9-BEA6-E816B5F01016} = {133FC760-5699-46D9-BEA6-E816B5F01016}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{9568462D-249F-4494-856B-5B25751DB361}"
 	ProjectSection(SolutionItems) = preProject

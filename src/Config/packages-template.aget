@@ -12,7 +12,6 @@
       "pythonnet_py38_win": "2.5.1",
       "Newtonsoft.Json": "8.0.3",
       "NUnit": "3.13.3",
-      "Prism": "4.1.0",
       "RestSharp": "106.12.0"
     }
   }

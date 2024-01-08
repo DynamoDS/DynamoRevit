@@ -327,7 +327,6 @@ namespace Revit.Application
         /// <summary>
         /// Retrieves all link instances in the current Revit document
         /// </summary>
-        /// <param name="document">Document</param>
         /// <returns name="linkInstances[]">List of link instances in the document</returns>
         public List<Revit.Elements.LinkInstance> GetLinkInstances()
         {

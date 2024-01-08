@@ -30,14 +30,7 @@
 		</ItemGroup>
 		<Copy SourceFiles="@(DllConfig)" DestinationFolder="$(TestOutputPath)" />
 	</Target>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net48'">
-		<Reference Include="PresentationCore" />
-	</ItemGroup>
 	<ItemGroup>
-		<Reference Include="Microsoft.Practices.Prism">
-			<HintPath>$(PACKAGESPATH)\Prism\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
 		<Reference Include="nunit.framework">
 			<HintPath>$(PACKAGESPATH)\NUnit\lib\netstandard2.0\nunit.framework.dll</HintPath>
 			<Private>False</Private>

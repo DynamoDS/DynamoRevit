@@ -1,59 +1,43 @@
 <Project>
-	<Import Project="$(SolutionDir)Config/user_local.props" />
-	<PropertyGroup>
-		<Platforms>NET70;NET80</Platforms>
-		<PlatformTarget >x64</PlatformTarget>
-		<TargetFramework Condition="'$(Platform)' == 'NET80'">net8.0-windows</TargetFramework>
-		<TargetFramework Condition="'$(Platform)' == 'NET70'">net7.0-windows</TargetFramework>
-		<TargetFramework Condition="'$(Platform)' == 'NET60'">net6.0-windows</TargetFramework>
-		<TargetFramework Condition="'$(Platform)' == 'net48'">net48</TargetFramework>
-		<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
-		<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
-		<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
-		<PACKAGESPATH>$(SolutionDir)packages</PACKAGESPATH>
-		<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
+  <Import Project="$(SolutionDir)Config/user_local.props" />
+  <PropertyGroup>
+    <PlatformTarget >x64</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <Platforms>NET80</Platforms>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <DCoreLibSubFolder>net8.0</DCoreLibSubFolder>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
+    <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
+    <REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
+    <PACKAGESPATH>$(SolutionDir)packages</PACKAGESPATH>
+    <DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\$(DCoreLibSubFolder)</REVITAPI>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Preview Release</REVITAPI>
 
-		<Prefer32Bit>false</Prefer32Bit>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-		<UICulture>en-US</UICulture>
-
-		<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">C:\Program Files\Dynamo 0.7</DYNAMOTESTAPI>
-
-		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET80'">net8.0</DCoreLibSubFolder>
-		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET70'">net6.0</DCoreLibSubFolder>
-		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET60'">net6.0</DCoreLibSubFolder>
-		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\$(DCoreLibSubFolder)</REVITAPI>
-		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
-		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
-		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Preview Release</REVITAPI>
-
-		<BaseIntermediateOutputPath>$(SolutionDir)..\obj\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
-		<IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
-		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<DefaultOutputPath>$(SolutionDir)..\bin\$(Configuration)\$(Platform)\$(REVIT_VERSION)</DefaultOutputPath>
-		<OutputPath Condition=" '$(OutputPath)' == '' ">$(DefaultOutputPath)</OutputPath>
-		<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Configuration)\$(Platform)\$(REVIT_VERSION)</TestOutputPath>
-		
-		<NoWarn>MSB3539</NoWarn>
-	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-		<DebugSymbols>true</DebugSymbols>
-		<DebugType>full</DebugType>
-		<Optimize>false</Optimize>
-		<DefineConstants>DEBUG;TRACE</DefineConstants>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-		<DebugType>pdbonly</DebugType>
-		<Optimize>true</Optimize>
-		<DefineConstants>TRACE</DefineConstants>
-	</PropertyGroup>
-	<PropertyGroup Condition="$(Platform.Contains('NET'))">
-		<DefineConstants>$(DefineConstants);NET</DefineConstants>
-		<IsNETFramework>false</IsNETFramework>
-	</PropertyGroup>
-	<PropertyGroup Condition="!$(Platform.Contains('NET'))">
-		<IsNETFramework>true</IsNETFramework>
-		<DefineConstants>$(DefineConstants);NETFRAMEWORK</DefineConstants>
-	</PropertyGroup>
+    <BaseIntermediateOutputPath>$(SolutionDir)..\obj\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <DefaultOutputPath>$(SolutionDir)..\bin\$(Configuration)\$(Platform)\$(REVIT_VERSION)</DefaultOutputPath>
+    <OutputPath Condition=" '$(OutputPath)' == '' ">$(DefaultOutputPath)</OutputPath>
+    <TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Configuration)\$(Platform)\$(REVIT_VERSION)</TestOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UICulture>en-US</UICulture>
+    <!--MSB3539: The value of the property "BaseIntermediateOutputPath" was modified after it was used by MSBuild-->
+    <!--CS3001,CS3002,CS3003,CS3009,CS3016,CS3027: ...is not CLS-compliant -->
+    <NoWarn>MSB3539;CS3001;CS3002;CS3003;CS3009;CS3016;CS3027</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
 </Project>

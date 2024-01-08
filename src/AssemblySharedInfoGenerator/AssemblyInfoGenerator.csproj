@@ -19,9 +19,6 @@
   <Target Name="BeforeBuildMigrated" BeforeTargets="PreBuildEvent">
     <Exec Command="&quot;$(SolutionDir)restorepackages.bat&quot;" ContinueOnError="true" />
   </Target>
-  <ItemGroup>
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-  </ItemGroup>
     <ItemGroup>
 	    <None Update="AssemblySharedInfo.tt">
 		    <Generator>TextTemplatingFileGenerator</Generator>
@@ -35,7 +32,6 @@
 		    <DependentUpon>AssemblySharedInfo.tt</DependentUpon>
 	    </Compile>
     </ItemGroup>
-  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <Import Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets')" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets" />
   <Target Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TextTemplating\Microsoft.TextTemplating.targets')" Name="T4TemplateGen" BeforeTargets="Build">
     <CallTarget Targets="TransformAll" />

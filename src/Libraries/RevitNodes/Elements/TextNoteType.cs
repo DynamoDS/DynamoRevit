@@ -72,7 +72,7 @@ namespace Revit.Elements
         /// <summary>
         /// Create from an existing Revit element
         /// </summary>
-        /// <param name="modelTextType"></param>
+        /// <param name="type"></param>
         /// <param name="isRevitOwned"></param>
         /// <returns></returns>
         internal static TextNoteType FromExisting(Autodesk.Revit.DB.TextNoteType type, bool isRevitOwned)

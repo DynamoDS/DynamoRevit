@@ -7,8 +7,8 @@
 		<RootNamespace>Revit</RootNamespace>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<DocumentationFile>$(OutputPath)\$(UICulture)\RevitNodes.xml</DocumentationFile>
-		<NoWarn>1591</NoWarn>
-		<Prefer32Bit>false</Prefer32Bit>
+		<NoWarn>$(NoWarn);1591;CA2200</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
 		<AssemblyTitle>DSRevitNodes</AssemblyTitle>
@@ -34,7 +34,7 @@
 	</Target>
 	<ItemGroup>
 		<Reference Include="Newtonsoft.Json">
-			<HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\net45\Newtonsoft.Json.dll</HintPath>
+			<HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="DynamoServices">

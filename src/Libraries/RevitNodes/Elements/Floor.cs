@@ -189,17 +189,17 @@ namespace Revit.Elements
         {
             get 
             {
-                if (this.InternalFloor.SlabShapeEditor == null)
+                if (this.InternalFloor.GetSlabShapeEditor() == null)
                 {
                     throw new Exception(Properties.Resources.InvalidShapeEditor);
                 }
 
                 TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-                this.InternalFloor.SlabShapeEditor.Enable();
+                this.InternalFloor.GetSlabShapeEditor().Enable();
                 TransactionManager.Instance.TransactionTaskDone();
 
                 List<Pt> points = new List<Pt>();              
-                foreach (SlabShapeVertex v in this.InternalFloor.SlabShapeEditor.SlabShapeVertices)
+                foreach (SlabShapeVertex v in this.InternalFloor.GetSlabShapeEditor().SlabShapeVertices)
                 {
                     points.Add(v.Position.ToPoint());
                 }
@@ -212,14 +212,14 @@ namespace Revit.Elements
         /// </summary>
         public Floor AddPoint(Pt point)
         {
-            if (this.InternalFloor.SlabShapeEditor == null)
+            if (this.InternalFloor.GetSlabShapeEditor() == null)
             {
                 throw new Exception(Properties.Resources.InvalidShapeEditor);
             }
 
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-            this.InternalFloor.SlabShapeEditor.Enable();
-            this.InternalFloor.SlabShapeEditor.DrawPoint(point.ToXyz());
+            this.InternalFloor.GetSlabShapeEditor().Enable();
+            this.InternalFloor.GetSlabShapeEditor().DrawPoint(point.ToXyz());
             TransactionManager.Instance.TransactionTaskDone();
 
             return this;
@@ -231,14 +231,14 @@ namespace Revit.Elements
         /// </summary>
         public Floor MovePoint(Pt point, double offset)
         {
-            if (this.InternalFloor.SlabShapeEditor == null)
+            if (this.InternalFloor.GetSlabShapeEditor() == null)
             {
                 throw new Exception(Properties.Resources.InvalidShapeEditor);
             }
 
             SlabShapeVertex vertex = null;
 
-            foreach (SlabShapeVertex v in this.InternalFloor.SlabShapeEditor.SlabShapeVertices)
+            foreach (SlabShapeVertex v in this.InternalFloor.GetSlabShapeEditor().SlabShapeVertices)
             {
                 if (point.IsAlmostEqualTo(v.Position.ToPoint()))
                 {
@@ -249,8 +249,8 @@ namespace Revit.Elements
             if (vertex != null && offset != 0)
             {
                 TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-                this.InternalFloor.SlabShapeEditor.Enable();
-                this.InternalFloor.SlabShapeEditor.ModifySubElement(vertex, offset);
+                this.InternalFloor.GetSlabShapeEditor().Enable();
+                this.InternalFloor.GetSlabShapeEditor().ModifySubElement(vertex, offset);
                 TransactionManager.Instance.TransactionTaskDone();
             }
 

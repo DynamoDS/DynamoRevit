@@ -12,7 +12,7 @@
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>3</WarningLevel>
 		<DebugType>full</DebugType>
-		<NoWarn>618</NoWarn>
+		<NoWarn>$(NoWarn);618</NoWarn>
 		<DebugSymbols>true</DebugSymbols>
 		<Prefer32Bit>false</Prefer32Bit>
 		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -68,20 +68,8 @@
 			<HintPath>$(PACKAGESPATH)\GregRevitAuth\lib\net6.0\GregRevitAuth.dll</HintPath>
 			<Private>True</Private>
 		</Reference>
-		<Reference Include="Microsoft.Dynamic">
-			<HintPath>$(PACKAGESPATH)\DynamicLanguageRuntime\lib\net45\Microsoft.Dynamic.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="Microsoft.Practices.Prism">
-			<HintPath>$(PACKAGESPATH)\Prism\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="Microsoft.Scripting">
-			<HintPath>$(PACKAGESPATH)\DynamicLanguageRuntime\lib\net45\Microsoft.Scripting.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
 		<Reference Include="Newtonsoft.Json">
-			<HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\net45\Newtonsoft.Json.dll</HintPath>
+			<HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="ProtoGeometry">
@@ -89,14 +77,14 @@
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)') ">$(DYNAMOBUILDPATH)\ProtoGeometry.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="Python.Runtime">
-			<HintPath>$(PACKAGESPATH)\pythonnet\lib\net40\Python.Runtime.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="RestSharp">
-			<HintPath>$(PACKAGESPATH)\RestSharp\lib\net6.0\RestSharp.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
+    <Reference Include="Python.Runtime">
+      <HintPath>$(PACKAGESPATH)\pythonnet\lib\net40\Python.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>$(PACKAGESPATH)\RestSharp\lib\net6.0\RestSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
 		<Reference Include="RevitAPI">
 			<HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
 			<Private>False</Private>
