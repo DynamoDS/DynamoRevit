@@ -1,3 +1,6 @@
+## 0.5.24
+* Fixed build warnings in master branch
+
 ## 0.5.23
 * RC for Revit2025
 * Removed configuration for .NET 7
