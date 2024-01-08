@@ -13,8 +13,7 @@
       "GregRevitAuth": "2.0.8718.22924",
       "pythonnet_py38_win": "2.5.1",
       "Newtonsoft.Json": "13.0.1",
-      "NUnit": "3.13.3",
-      "RestSharp": "108.0.1"
+      "NUnit": "3.13.3"
     }
   }
 }

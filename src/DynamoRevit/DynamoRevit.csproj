@@ -81,10 +81,6 @@
       <HintPath>$(PACKAGESPATH)\pythonnet\lib\net40\Python.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RestSharp">
-      <HintPath>$(PACKAGESPATH)\RestSharp\lib\net6.0\RestSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
       <Private>False</Private>
