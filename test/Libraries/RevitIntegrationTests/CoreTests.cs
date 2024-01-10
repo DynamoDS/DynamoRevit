@@ -53,6 +53,7 @@ namespace RevitSystemTests
                 //  is needed in order to clear the dependencyGraph, otherwise adding
                 //  a node will take exponentially long time
                 (ViewModel.Model as RevitDynamoModel).InitializeDocumentManager();
+                ViewModel.Model.ResetEngine();
             }
         }
 
@@ -201,6 +202,59 @@ namespace RevitSystemTests
             model.ClearCurrentWorkspace();
         }
 
+        /// <summary>
+        /// Alternative test to copy paste all nodes on Revit without test case for each of them.
+        /// </summary>
+        //[Test]
+        //[TestModel(@".\empty.rfa")]
+        public void CanCopyAndPasteAllNodesOnRevit2()
+        {
+            var model = ViewModel.Model;
+
+            var excludes = new List<string>
+            {
+                "Input",
+                "Output"
+            };
+
+            var listOfAllNodes = Enumerable.Empty<NodeSearchElement>();
+            DynamoViewModel viewModel = s_initedInstance?.ViewModel;
+            
+            listOfAllNodes = viewModel.Model.SearchModel.Entries
+                // this is to remove nodes from additional packages and also Dynamo Core nodes
+                .Where(x => !excludes.Contains(x.Name) && (x.FullName.StartsWith("Revit.") || x.FullName.StartsWith("RevitNodes.")))
+                // the ordering is to make the result consistent and also easier to identify new/missing nodes
+                .OrderBy(x => x.FullName);
+            
+            string strFailedNode = "";
+            foreach (var searchElement in listOfAllNodes)
+            {
+                //searchElement.ProduceNode(); // puts the node into the current workspace
+                var nodeModel = searchElement.CreateNode();
+                model.CurrentWorkspace.AddAndRegisterNode(nodeModel, false);
+
+                var node = AllNodes.FirstOrDefault();
+
+                DynamoSelection.Instance.ClearSelection();
+                DynamoSelection.Instance.Selection.Add(node);
+                if (DynamoSelection.Instance.Selection.Count != 1)
+                {
+                    strFailedNode += string.Format("Could not create node : {0}\n", node.GetType());
+                }
+
+                try
+                {
+                    model.Copy();
+                    model.Paste();
+                }
+                catch (System.Exception)
+                {
+                    strFailedNode += string.Format("Could not copy node : {0}\n", node.GetType());
+                }
+            }
+            Assert.IsEmpty(strFailedNode, strFailedNode);
+        }
+
         private static IEnumerable<TestCaseData> SetupCopyPastes()
         {
             var xxx = new TestCaseData();
@@ -215,7 +269,11 @@ namespace RevitSystemTests
             if (viewModel != null)
                 try
                 {
-                    listOfAllNodes = viewModel.Model.SearchModel.Entries.Where(x => !excludes.Contains(x.Name) && x.FullName.Contains("Revit"));
+                    listOfAllNodes = viewModel.Model.SearchModel.Entries
+                        // this is to remove nodes from additional packages and also Dynamo Core nodes
+                        .Where(x => !excludes.Contains(x.Name) && (x.FullName.StartsWith("Revit.") || x.FullName.StartsWith("RevitNodes.")))
+                        // the ordering is to make the result consistent and also easier to identify new/missing nodes
+                        .OrderBy(x => x.FullName);
                 }
                 catch (System.Exception ex) { }
             return listOfAllNodes.Select(nse => new TestCaseData(nse).SetName(nse.FullName));
