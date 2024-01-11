@@ -1,3 +1,6 @@
+## 0.5.24
+* Update GregRevitAuth to 2.0.8776.26607
+
 ## 0.5.23
 * RC for Revit2025
 * Removed configuration for .NET 7
