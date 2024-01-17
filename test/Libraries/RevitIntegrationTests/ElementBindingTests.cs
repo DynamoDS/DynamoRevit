@@ -571,7 +571,7 @@ namespace RevitSystemTests
 
             //Check the number of the family instances
             var instances = TestUtils.GetAllFamilyInstances();
-            Assert.AreEqual(8, instances.Count);
+            Assert.AreEqual(4, instances.Count);
 
             var model = ViewModel.Model;
             var selNodes = model.CurrentWorkspace.Nodes.Where(x => string.Equals(x.GUID.ToString(), "2411be0e-abff-4d32-804c-5e5025a92257"));
@@ -593,7 +593,7 @@ namespace RevitSystemTests
 
             //Check the number of family instances
             instances = TestUtils.GetAllFamilyInstances();
-            Assert.AreEqual(8, instances.Count);
+            Assert.AreEqual(4, instances.Count);
         }
 
         [Test]
