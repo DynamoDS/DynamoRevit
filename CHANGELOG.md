@@ -1,3 +1,6 @@
+## 0.5.25
+* Fix two failed tests
+
 ## 0.5.24
 * Update GregRevitAuth to 2.0.8776.26607
 
