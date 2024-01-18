@@ -1031,19 +1031,19 @@ namespace Dynamo.Applications
         private static void Dispatcher_UnhandledException(
             object sender, DispatcherUnhandledExceptionEventArgs args)
         {
-            args.Handled = true;
-
-            // only handle a single crash per Dynamo sesh, this should be reset in the initial command
+            // only handle a single crash per Dynamo session, this should be reset in the initial command
             if (handledCrash)
                 return;
 
             handledCrash = true;
 
-            string exceptionMessage = args.Exception.Message;
-
             try
             {
-                Dynamo.Logging.Analytics.TrackException(args.Exception, true);
+                if (!args.Handled)
+                {
+                    Analytics.TrackException(args.Exception, true);
+                }
+                string exceptionMessage = args.Exception.Message;
 
                 RevitDynamoModel.Logger.LogError("Dynamo Unhandled Exception");
                 RevitDynamoModel.Logger.LogError(exceptionMessage);
@@ -1052,11 +1052,12 @@ namespace Dynamo.Applications
 
             try
             {
-                DynamoModel.IsCrashing = true;
-                RevitDynamoModel.OnRequestsCrashPrompt(
-                    RevitDynamoModel,
-                    new CrashPromptArgs(args.Exception.Message + "\n\n" + args.Exception.StackTrace));
-                RevitDynamoViewModel.Exit(false); // don't allow cancellation
+                if (!args.Handled)
+                {
+                    DynamoModel.IsCrashing = true;
+                    RevitDynamoModel.OnRequestsCrashPrompt(new CrashErrorReportArgs(args.Exception));
+                    RevitDynamoViewModel.Exit(false); // don't allow cancellation
+                }
             }
             catch { }
             finally
