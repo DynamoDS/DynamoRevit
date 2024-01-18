@@ -46,7 +46,7 @@ namespace RevitSystemTests.Application
             string testPath = Path.GetFullPath(samplePath);
 
             var expectedOutputType = typeof(Revit.Elements.FamilyParameter);
-            var expectedParameterCount = 17;
+            var expectedParameterCount = 19;
 
             // Act
             ViewModel.OpenCommand.Execute(testPath);

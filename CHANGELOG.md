@@ -1,3 +1,6 @@
+## 0.6.2
+* Fix two failed tests
+
 ## 0.6.1
 * Target for Revit 2026
 * Update GregRevitAuth to 2.0.8776.26607
