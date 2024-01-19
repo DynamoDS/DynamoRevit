@@ -696,7 +696,6 @@ namespace Dynamo.Applications
 
             DynamoAppExternalEvent = ExternalEvent.Create(appEventHandler);
 
-            dynamoView.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
             dynamoView.Closed += OnDynamoViewClosed;
             dynamoView.Loaded += (o, e) => DynamoAppExternalEvent.Raise();
 
@@ -1019,55 +1018,6 @@ namespace Dynamo.Applications
 
         #endregion
 
-        #region Exception
-
-        /// <summary>
-        ///     A method to deal with unhandled exceptions.  Executes right before Revit crashes.
-        ///     Dynamo is still valid at this time, but further work may cause corruption.  Here,
-        ///     we run the ExitCommand, allowing the user to save all of their work.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args">Info about the exception</param>
-        private static void Dispatcher_UnhandledException(
-            object sender, DispatcherUnhandledExceptionEventArgs args)
-        {
-            // only handle a single crash per Dynamo session, this should be reset in the initial command
-            if (handledCrash)
-                return;
-
-            handledCrash = true;
-
-            try
-            {
-                if (!args.Handled)
-                {
-                    Analytics.TrackException(args.Exception, true);
-                }
-                string exceptionMessage = args.Exception.Message;
-
-                RevitDynamoModel.Logger.LogError("Dynamo Unhandled Exception");
-                RevitDynamoModel.Logger.LogError(exceptionMessage);
-            }
-            catch { }
-
-            try
-            {
-                if (!args.Handled)
-                {
-                    DynamoModel.IsCrashing = true;
-                    RevitDynamoModel.OnRequestsCrashPrompt(new CrashErrorReportArgs(args.Exception));
-                    RevitDynamoViewModel.Exit(false); // don't allow cancellation
-                }
-            }
-            catch { }
-            finally
-            {
-                args.Handled = true;
-                DynamoRevitApp.DynamoButtonEnabled = true;
-            }
-        }
-
-        #endregion
 
         #region Shutdown
 
@@ -1080,7 +1030,6 @@ namespace Dynamo.Applications
         {
             var view = (DynamoView)sender;
 
-            view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
             view.Closed -= OnDynamoViewClosed;
 
             DynamoRevitApp.DynamoButtonEnabled = true;
@@ -1098,7 +1047,6 @@ namespace Dynamo.Applications
         {
             var view = (Window)sender;
 
-            view.Dispatcher.UnhandledException -= Dispatcher_UnhandledException;
             view.Closed -= OnSplashScreenClosed;
             //if the user explicitly closed the splashscreen, then we should let them boot
             //dynamo back up.
