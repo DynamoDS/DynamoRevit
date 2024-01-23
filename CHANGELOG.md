@@ -1,3 +1,6 @@
+## 0.5.26
+* Build with signed binaries
+
 ## 0.5.25
 * Fix two failed tests
 
