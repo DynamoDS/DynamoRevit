@@ -1,3 +1,6 @@
+## 0.5.27
+* Build with signed binaries (including for addin)
+
 ## 0.5.26
 * Build with signed binaries
 
