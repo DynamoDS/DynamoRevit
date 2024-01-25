@@ -1053,9 +1053,7 @@ namespace Dynamo.Applications
             try
             {
                 DynamoModel.IsCrashing = true;
-                RevitDynamoModel.OnRequestsCrashPrompt(
-                    RevitDynamoModel,
-                    new CrashPromptArgs(args.Exception.Message + "\n\n" + args.Exception.StackTrace));
+                RevitDynamoModel.OnRequestsCrashPrompt(new CrashErrorReportArgs(args.Exception));
                 RevitDynamoViewModel.Exit(false); // don't allow cancellation
             }
             catch { }
