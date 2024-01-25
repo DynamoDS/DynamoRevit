@@ -1,3 +1,6 @@
+## 0.6.5
+* Update Dynamo Core to 3.0.2.7476
+
 ## 0.6.4
 * Update sign files (internal process) - no actual changes here
 
