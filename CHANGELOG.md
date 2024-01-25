@@ -1,3 +1,6 @@
+## 0.5.28
+* Update Dynamo Core to 3.0.2.7476
+
 ## 0.5.27
 * Build with signed binaries (including for addin)
 
