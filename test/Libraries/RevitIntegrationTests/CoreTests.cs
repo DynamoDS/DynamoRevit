@@ -48,6 +48,7 @@ namespace RevitSystemTests
             {
                 WrapOf(s_initedInstance);
                 CreateTemporaryFolder();
+                ViewModel.Model.ResetEngine();
 
                 // This is needed because TearDown will clear the Model, and TearDown
                 //  is needed in order to clear the dependencyGraph, otherwise adding
