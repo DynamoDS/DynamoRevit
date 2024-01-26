@@ -1,3 +1,6 @@
+## 0.6.7
+* Fix a couple of regression tests
+
 ## 0.6.6
 * Update DynamoRevit versioning to 3.0.2
 
