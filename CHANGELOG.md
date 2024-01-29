@@ -1,3 +1,6 @@
+## 0.6.8
+* Fix 3 broken DynamoRevit tests
+
 ## 0.6.7
 * Fix a couple of regression tests
 
