@@ -1,3 +1,6 @@
+## 0.5.31
+* Update Dynamo Core to 3.0.3.7597
+
 ## 0.5.30
 * Fix a couple of regression tests
 
