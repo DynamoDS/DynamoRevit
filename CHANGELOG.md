@@ -1,3 +1,6 @@
+## 0.5.32
+* Update DynamoRevit versioning to 3.0.3
+
 ## 0.5.31
 * Update Dynamo Core to 3.0.3.7597
 
