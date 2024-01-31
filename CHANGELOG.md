@@ -1,3 +1,6 @@
+## 0.6.9
+* Update Dynamo Core to 3.0.3.7597
+
 ## 0.6.8
 * Fix 3 broken DynamoRevit tests
 
