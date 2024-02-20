@@ -1,4 +1,19 @@
-## 0.6.3
+## 0.6.9
+* Update Dynamo Core to 3.0.3.7597
+
+## 0.6.8
+* Fix 3 broken DynamoRevit tests
+
+## 0.6.7
+* Fix a couple of regression tests
+
+## 0.6.6
+* Update DynamoRevit versioning to 3.0.2
+
+## 0.6.5
+* Update Dynamo Core to 3.0.2.7476
+
+## 0.6.4
 * Update sign files (internal process) - no actual changes here
 
 ## 0.6.2
