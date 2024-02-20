@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
@@ -443,9 +444,16 @@ namespace Dynamo.Applications.Models
         {
             if (engine != null)
             {
-                (engine.OutputDataMarshaler as DataMarshaler).RegisterMarshaler((Element element) => element.ToDSType(true));
-                engine.EvaluationStarted += OnPythonEvalStart;
-                engine.EvaluationFinished += OnPythonEvalFinished;
+                try
+                {
+                    (engine.OutputDataMarshaler as DataMarshaler).RegisterMarshaler((Element element) => element.ToDSType(true));
+                    engine.EvaluationStarted += OnPythonEvalStart;
+                    engine.EvaluationFinished += OnPythonEvalFinished;
+                }
+                catch(FileNotFoundException ex)
+                {
+                    Logger.Log(ex);
+                }
             }
         }
 
@@ -455,11 +463,18 @@ namespace Dynamo.Applications.Models
         /// <param name="engine"></param>
         private void CleanUpPythonEngine(PythonEngine engine)
         {
-            if (engine != null)
+            try
             {
-                (engine.OutputDataMarshaler as DataMarshaler).UnregisterMarshalerOfType<Element>();
-                engine.EvaluationStarted -= OnPythonEvalStart;
-                engine.EvaluationFinished -= OnPythonEvalFinished;
+                if (engine != null)
+                {
+                    (engine.OutputDataMarshaler as DataMarshaler).UnregisterMarshalerOfType<Element>();
+                    engine.EvaluationStarted -= OnPythonEvalStart;
+                    engine.EvaluationFinished -= OnPythonEvalFinished;
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                Logger.Log(ex);
             }
         }
 
