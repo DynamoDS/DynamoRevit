@@ -1,3 +1,6 @@
+## 0.6.10
+* Fix Dynamo not loading due to Python engine errors
+
 ## 0.6.9
 * Update Dynamo Core to 3.0.3.7597
 
