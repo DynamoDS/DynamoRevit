@@ -1,3 +1,6 @@
+## 0.4.25
+* GlobalParameter.SetValue fix: handle case when value returned by Dynamo is of type long
+
 ## 0.4.24
 * Disable Splash Screen for Revit 2024.2 due to inconsistent sign in/out with host application
 
