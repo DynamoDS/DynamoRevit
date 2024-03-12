@@ -1,5 +1,6 @@
 ## 0.6.12
-* Fix CurtainPanel.ByElements failing
+* Fix CurtainPanel.ByElements failing to return when there is a door or window present in the curtain wall
+* Stop tracking user_local.props in git so local setup for building DynamoRevit doesn't get pushed by mistake on remote server
 
 ## 0.6.11
 * Update Dynamo Core to 3.0.4.7905
