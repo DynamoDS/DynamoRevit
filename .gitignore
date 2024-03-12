@@ -41,7 +41,6 @@ local.properties
 *.suo
 *.user
 *.sln.docstates
-/src/Config/user_local.props
 
 # Build results
 
