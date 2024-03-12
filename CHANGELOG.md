@@ -1,3 +1,6 @@
+## 0.6.12
+* Fix CurtainPanel.ByElements failing
+
 ## 0.6.11
 * Update Dynamo Core to 3.0.4.7905
 
