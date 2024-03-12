@@ -81,10 +81,6 @@
       <HintPath>$(PACKAGESPATH)\pythonnet\lib\net40\Python.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RestSharp">
-      <HintPath>$(PACKAGESPATH)\RestSharp\lib\net6.0\RestSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -151,7 +147,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Ionic.Zip.xml" />
     <EmbeddedResource Include="Resources\Category.Revit.svg" />
     <EmbeddedResource Include="Resources\LayoutSpecs.json" />
     <Content Include="Resources\logo_square_32x32.png" />

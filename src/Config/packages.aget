@@ -2,19 +2,18 @@
   "nuget": {
     "references": {
       "DynamicLanguageRuntime": "1.2.2",
-      "DynamoVisualProgramming.Core": "3.0.0.7190",
-      "DynamoVisualProgramming.DynamoCoreNodes": "3.0.0.7190",
-      "DynamoVisualProgramming.DynamoServices": "3.0.0.7190",
-      "DynamoVisualProgramming.Tests": "3.0.0.7190",
-      "DynamoVisualProgramming.WpfUILibrary": "3.0.0.7190",
-      "DynamoVisualProgramming.ZeroTouchLibrary": "3.0.0.7190",
-      "DynamoVisualProgramming.DynamoSamples": "3.0.0.7190",
+      "DynamoVisualProgramming.Core": "3.0.4.7905",
+      "DynamoVisualProgramming.DynamoCoreNodes": "3.0.4.7905",
+      "DynamoVisualProgramming.DynamoServices": "3.0.4.7905",
+      "DynamoVisualProgramming.Tests": "3.0.4.7905",
+      "DynamoVisualProgramming.WpfUILibrary": "3.0.4.7905",
+      "DynamoVisualProgramming.ZeroTouchLibrary": "3.0.4.7905",
+      "DynamoVisualProgramming.DynamoSamples": "3.0.4.7905",
       "Greg": "3.0.0.3175",
-      "GregRevitAuth": "2.0.8718.22924",
+      "GregRevitAuth": "2.0.8776.26607",
       "pythonnet_py38_win": "2.5.1",
       "Newtonsoft.Json": "13.0.1",
-      "NUnit": "3.13.3",
-      "RestSharp": "108.0.1"
+      "NUnit": "3.13.3"
     }
   }
 }
