@@ -1,4 +1,8 @@
-## ## 0.4.26
+## 0.4.27
+* Update Dynamo Core to 2.19.5.7955
+* Sign DynamoForRevit binaries
+
+## 0.4.26
 * Handle case when GlobalParameter.SetValue node receives a value of type long
 
 ## 0.4.25

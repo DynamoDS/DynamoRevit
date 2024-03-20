@@ -6,5 +6,6 @@
 	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)</DYNAMOTESTAPI>
 	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\AnyCPU\$(Configuration)\$(REVIT_VERSION)</OutputPath>
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(OutputPath)</TestOutputPath>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">D:\work\Builds\Revit\2024\Dev_x64_Inst_20221005_1515\Program</REVITAPI>
   </PropertyGroup>
 </Project>
