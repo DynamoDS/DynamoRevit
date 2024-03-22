@@ -1,3 +1,6 @@
+## 0.3.21
+* Update build to sign D4R binaries
+
 ## 0.3.20
 * Handle case when GlobalParameter.SetValue node receives a value of type long
 
