@@ -1,3 +1,6 @@
+## 0.4.28
+* Update Dynamo Core to 2.19.5.8116
+
 ## 0.4.27
 * Update Dynamo Core to 2.19.5.7955
 * Sign DynamoForRevit binaries
