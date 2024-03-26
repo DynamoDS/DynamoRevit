@@ -380,7 +380,15 @@ namespace Revit.Elements
                     var panel = DocumentManager.Instance.CurrentDBDocument.GetElement(idPanel);
                     if (panel is Autodesk.Revit.DB.Panel)
                     {
-                        result.Add(CurtainPanel.FromExisting(panel as Autodesk.Revit.DB.Panel, true));
+                        ElementId hostPanelId = (panel as Panel).FindHostPanel();
+                        if (hostPanelId.IntegerValue != -1)
+                        {
+                            result.Add(null);
+                        }
+                        else
+                        {
+                            result.Add(CurtainPanel.FromExisting(panel as Autodesk.Revit.DB.Panel, true));
+                        }
                     }
                     else
                     {
