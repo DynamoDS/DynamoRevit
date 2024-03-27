@@ -394,6 +394,7 @@ namespace Dynamo.Applications
         {
             // create core data models
             RevitDynamoModel = InitializeCoreModel(extCommandData);
+            RevitDynamoModel.OnDetectLanguage();
             RevitDynamoModel.Logger.Log("SYSTEM", string.Format("Environment Path:{0}", Environment.GetEnvironmentVariable("PATH")));
 
             // handle initialization steps after RevitDynamoModel is created.
