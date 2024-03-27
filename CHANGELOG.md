@@ -1,3 +1,6 @@
+## 0.4.31
+* update Dynamo Revit build to fix signing (sign only D4R binaries)
+
 ## 0.4.30
 * Revert Dynamo Core to 2.19.3.6394, change D4R version to 2.19.3
 
