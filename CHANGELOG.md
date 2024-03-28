@@ -1,3 +1,6 @@
+## 0.4.32
+* bump up Dynamo Revit build to fix signing (one filename)
+
 ## 0.4.31
 * update Dynamo Revit build to fix signing (sign only D4R binaries)
 
