@@ -1,3 +1,6 @@
+## 0.3.23
+* Bump up D4R build version for publishing (fix binary signing)
+
 ## 0.3.22
 * Update D4R build version to account for signature change
 
