@@ -1,3 +1,6 @@
+## 0.3.22
+* Update D4R build version to account for signature change
+
 ## 0.3.21
 * Update build to sign D4R binaries
 
