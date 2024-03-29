@@ -1,3 +1,6 @@
+## 0.4.33
+* bump up Dynamo Revit version to 2.19.4 to signify binary signing change
+
 ## 0.4.32
 * bump up Dynamo Revit build to fix signing (one filename)
 
