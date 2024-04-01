@@ -1,3 +1,6 @@
+## 0.4.34
+* update version of *.customization.dll files
+
 ## 0.4.33
 * bump up Dynamo Revit version to 2.19.4 to signify binary signing change
 
