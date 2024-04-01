@@ -1,3 +1,6 @@
+## 0.3.24
+* Update version for *.customization.dll binaries
+
 ## 0.3.23
 * Bump up D4R build version for publishing (fix binary signing)
 
