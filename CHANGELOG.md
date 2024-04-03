@@ -1,3 +1,6 @@
+## 0.4.35
+* update Dynamo Core to 2.19.5.8116 for testing
+
 ## 0.4.34
 * update version of *.customization.dll files
 
