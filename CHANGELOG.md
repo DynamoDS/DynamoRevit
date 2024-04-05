@@ -1,3 +1,6 @@
+## 0.3.25
+* Version *.customization.dll files with number from other output binary
+
 ## 0.3.24
 * Update version for *.customization.dll binaries
 
