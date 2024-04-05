@@ -1,3 +1,6 @@
+## 0.5.33
+* Version *.customization.dll files with number from other output binary
+
 ## 0.5.32
 * Update DynamoRevit versioning to 3.0.3
 
