@@ -736,6 +736,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The value and the parameter values&apos; data types are incompatible..
+        /// </summary>
+        internal static string InputValueParameterValueTypeMismatch {
+            get {
+                return ResourceManager.GetString("InputValueParameterValueTypeMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not obtain ImportInstance from imported Element.
         /// </summary>
         internal static string InstanceImportFailure {
