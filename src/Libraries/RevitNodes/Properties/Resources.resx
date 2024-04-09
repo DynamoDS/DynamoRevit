@@ -312,6 +312,9 @@
   <data name="InvalidFilterType" xml:space="preserve">
     <value>FilterType is not valid.</value>
   </data>
+  <data name="InputValueParameterValueTypeMismatch" xml:space="preserve">
+    <value>The value and the parameter values' data types are incompatible.</value>
+  </data>
   <data name="InvalidGroupType" xml:space="preserve">
     <value>{0} is not a valid GroupType.</value>
   </data>

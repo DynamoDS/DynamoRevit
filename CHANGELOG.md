@@ -1,3 +1,6 @@
+## 0.6.14
+* Add extra protection in FilterRule.ByRuleType node to prevent invalid data type casting in Revit
+
 ## 0.6.13
 * Fix CurtainPanel.ByElements displaying invalid ElementIds when Curtain Panels have their types changed to a different wall
 
