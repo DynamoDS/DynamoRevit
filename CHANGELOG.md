@@ -1,3 +1,6 @@
+## 0.3.26
+* Update Dynamo Core to 2.16.3
+
 ## 0.3.25
 * Version *.customization.dll files with number from other output binary
 

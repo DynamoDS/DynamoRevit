@@ -3,7 +3,8 @@
   <PropertyGroup>
     <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2023</RevitVersionNumber>
 	<REVIT_VERSION>Revit</REVIT_VERSION>
-	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)</DYNAMOTESTAPI>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">D:\work\Builds\Revit\2023\2023_Ship_x64_Inst_20230727_1515\Program</REVITAPI>
+	<DYNAMOTESTAPI Condition=" '$(DYNAMOTESTAPI)' == '' ">$(REVITAPI)\Addins\DynamoForRevit</DYNAMOTESTAPI>
 	<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\AnyCPU\$(Configuration)\$(REVIT_VERSION)</OutputPath>
 	<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(OutputPath)</TestOutputPath>
   </PropertyGroup>
