@@ -1,3 +1,6 @@
+## 0.3.29
+* Build D4R against Dynamo Core 2.16.2
+
 ## 0.3.28
 * Sign files that aren't signed in latest 2.16.3 build
 
