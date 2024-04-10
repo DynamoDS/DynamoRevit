@@ -1,3 +1,6 @@
+## 0.3.28
+* Sign files that aren't signed in latest 2.16.3 build
+
 ## 0.3.27
 * Update only DynamoCoreRuntime to 2.16.3, leave the rest of Dynamo packages to 2.16.2
 
