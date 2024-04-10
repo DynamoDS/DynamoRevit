@@ -1,3 +1,6 @@
+## 0.3.27
+* Update only DynamoCoreRuntime to 2.16.3, leave the rest of Dynamo packages to 2.16.2
+
 ## 0.3.26
 * Update Dynamo Core to 2.16.3
 
