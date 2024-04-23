@@ -1,3 +1,10 @@
+## 0.6.16
+* Improved FilterRule.ByRuleType node to use the same data type for the value and the parameter value that it takes as input
+
+## 0.6.15
+* Update Dynamo Core to 3.1.0
+* Update DynamoRevit version to 2026.0.0
+
 ## 0.6.14
 * Add extra protection in FilterRule.ByRuleType node to prevent invalid data type casting in Revit
 
