@@ -1,3 +1,6 @@
+## 0.6.17
+* Version back DynamoRevit to 3.1
+
 ## 0.6.16
 * Improved FilterRule.ByRuleType node to use the same data type for the value and the parameter value that it takes as input
 
