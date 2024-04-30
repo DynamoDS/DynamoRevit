@@ -176,6 +176,8 @@ namespace Revit.GeometryConversion
             var solids = GetSolidsFromElement(familyDocument.GetElement(importedElementId));
 
             // delete imported sat
+            // first unpin the element to avoid an exception when deleting the SAT import
+            familyDocument.GetElement(importedElementId).Pinned = false;
             familyDocument.Delete(importedElementId);
             System.IO.File.Delete(tempFile);
 
