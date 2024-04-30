@@ -1,3 +1,6 @@
+## 0.5.35
+* Fix regression on FamilyInstance.ByGeometry node
+
 ## 0.5.33
 * Version *.customization.dll files with number from other output binary
 
