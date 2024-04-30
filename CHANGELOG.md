@@ -1,3 +1,6 @@
+## 0.6.18
+* Fix regression on FamilyInstance.ByGeometry node
+
 ## 0.6.17
 * Version back DynamoRevit to 3.1
 
