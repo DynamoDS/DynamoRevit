@@ -1,3 +1,6 @@
+## 0.5.36
+* Integrate Dynamo Core 3.1 in Revit 2025.2
+
 ## 0.5.35
 * Fix regression on FamilyInstance.ByGeometry node
 
