@@ -1,3 +1,6 @@
+## 0.6.19
+* Fix regression test for FamilyInstance.ByGeometry node
+
 ## 0.6.18
 * Fix regression on FamilyInstance.ByGeometry node
 
