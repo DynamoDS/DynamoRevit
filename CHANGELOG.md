@@ -1,3 +1,6 @@
+## 0.5.37
+* Update D4R minor version to 3.1
+
 ## 0.5.36
 * Integrate Dynamo Core 3.1 in Revit 2025.2
 
