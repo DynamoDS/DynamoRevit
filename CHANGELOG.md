@@ -1,3 +1,6 @@
+## 0.6.20
+* Add the support of the subelement and its parameter.
+
 ## 0.6.19
 * Fix regression test for FamilyInstance.ByGeometry node
 

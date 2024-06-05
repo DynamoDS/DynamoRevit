@@ -8,6 +8,6 @@
     <TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(OutputPath)</TestOutputPath>
   </PropertyGroup>
   <PropertyGroup>
-    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">E:\RevitVersion\2025\Releasex64_NET7_20230907\Releasex64</REVITAPI>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">D:\git\revit\Debugx64</REVITAPI>
   </PropertyGroup>
 </Project>
