@@ -1,3 +1,7 @@
+## 0.5.38
+* Update D4R to 3.2.0
+* Update Greg to 2.0.1
+
 ## 0.5.37
 * Update D4R minor version to 3.1
 
