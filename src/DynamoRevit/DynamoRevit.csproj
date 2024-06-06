@@ -61,7 +61,7 @@
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="Greg">
-			<HintPath>$(PACKAGESPATH)\Greg\lib\net6.0\Greg.dll</HintPath>
+			<HintPath>$(PACKAGESPATH)\Greg\lib\net8.0\Greg.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="GregRevitAuth">
