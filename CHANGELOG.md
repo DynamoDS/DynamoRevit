@@ -1,3 +1,6 @@
+## 0.6.20
+* Update Dynamo to 3.2.0
+
 ## 0.6.19
 * Fix regression test for FamilyInstance.ByGeometry node
 
