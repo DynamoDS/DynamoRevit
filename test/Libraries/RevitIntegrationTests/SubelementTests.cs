@@ -1,16 +1,15 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Revit.Elements;
 using RevitTestServices;
 using RTF.Framework;
 using Autodesk.Revit.DB;
-using RevitServices.Persistence;
 using Autodesk.Revit.DB.Analysis;
-using System;
 
-namespace RevitNodesTests.Elements
+namespace RevitSystemTests
 {
     [TestFixture]
-    class SubelementTests : RevitNodeTestBase
+    class SubelementTests : RevitSystemTestBase
     {
         private const Int64 m_testElbowId = 976586L;
 
@@ -34,8 +33,8 @@ namespace RevitNodesTests.Elements
                 var flowValue = subelem.GetParameterValue(lossCoeffParamId);
                 Assert.AreEqual((double)flowValue, newValue);
 
-                Assert.Equals(subelem.Element.Id, m_testElbowId);
-                Assert.Equals(subelem.Category.Id, (long)BuiltInCategory.OST_DuctAnalyticalSegments);
+                Assert.AreEqual(subelem.Element.Id, m_testElbowId);
+                Assert.AreEqual(subelem.Category.Id, (long)BuiltInCategory.OST_DuctAnalyticalSegments);
             }
         }
     }
