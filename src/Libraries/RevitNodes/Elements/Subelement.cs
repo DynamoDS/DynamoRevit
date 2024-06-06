@@ -8,6 +8,7 @@ using Autodesk.DesignScript.Runtime;
 using RevitServices.Persistence;
 using System;
 using Autodesk.Revit.DB.Architecture;
+using System.Windows.Media.Animation;
 
 namespace Revit.Elements
 {
@@ -48,7 +49,7 @@ namespace Revit.Elements
 
         #region Parameters
         /// <summary>
-        /// Obtain all of the Parameters from an Element.
+        /// Obtain all parameter ids of the subelement.
         /// </summary>
         public IList<ElementId> GetAllParameters()
         {
@@ -58,11 +59,19 @@ namespace Revit.Elements
         /// <summary>
         /// Get the value of the subelement parameter.
         /// </summary>
-        /// <param name="paramId">The parameter id to be retrieved.</param>
+        /// <param name="paramId">The parameter id to be retrieved, as ElementId or Int.</param>
         /// <returns></returns>
-        public object GetParameterValue(ElementId paramId)
+        public object GetParameterValue(object paramId)
         {
-            return GetObjectValue( InternalSubelement.GetParameterValue(paramId) );
+            ElementId idParam = paramId as ElementId;
+            if(idParam == null)
+            {
+                Int64 longValue = (Int64)paramId;
+                idParam = new ElementId(longValue);
+                if (idParam == null)
+                    return string.Empty;
+            }
+            return GetObjectValue( InternalSubelement.GetParameterValue(idParam) );
         }
 
         private object GetObjectValue(ParameterValue value)
@@ -89,11 +98,93 @@ namespace Revit.Elements
         /// <summary>
         /// Set the value of the specified subelement parameter. 
         /// </summary>
+        /// <param name="paramId">The parameter id to be set, as ElementId</param>
+        /// <param name="value">The new parameter value to be set.</param>
+        /// <returns></returns>
+        public Subelement SetParameterValue(ElementId paramId, ParameterValue value)
+        {
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+
+            InternalSubelement.SetParameterValue(paramId, value);
+
+            TransactionManager.Instance.TransactionTaskDone();
+            return this;
+        }
+
+        /// <summary>
+        /// Set the value of the specified subelement parameter. 
+        /// </summary>
         /// <param name="paramId">The parameter id to be set.</param>
         /// <param name="value">The new parameter value to be set.</param>
-        public void SetParameterValue(ElementId paramId, ParameterValue value)
+        /// <returns></returns>
+        public Subelement SetDoubleParameterValue(Int64 paramId, double value)
         {
-            InternalSubelement.SetParameterValue(paramId, value);
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+
+            ElementId idParam = new ElementId(paramId);
+            DoubleParameterValue paramValue = new DoubleParameterValue(value);
+            InternalSubelement.SetParameterValue(idParam, paramValue);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Set the value of the specified subelement parameter. 
+        /// </summary>
+        /// <param name="paramId">The parameter id to be set.</param>
+        /// <param name="value">The new parameter value to be set.</param>
+        /// <returns></returns>
+        public Subelement SetIntegerParameterValue(Int64 paramId, int value)
+        {
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+
+            ElementId idParam = new ElementId(paramId);
+            IntegerParameterValue paramValue = new IntegerParameterValue(value);
+            InternalSubelement.SetParameterValue(idParam, paramValue);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Set the value of the specified subelement parameter. 
+        /// </summary>
+        /// <param name="paramId">The parameter id to be set.</param>
+        /// <param name="value">The new parameter value to be set.</param>
+        /// <returns></returns>
+        public Subelement SetElementIdParameterValue(Int64 paramId, Int64 value)
+        {
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+
+            ElementId idParam = new ElementId(paramId);
+            ElementIdParameterValue paramValue = new ElementIdParameterValue(new ElementId(value));
+            InternalSubelement.SetParameterValue(idParam, paramValue);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Set the value of the specified subelement parameter. 
+        /// </summary>
+        /// <param name="paramId">The parameter id to be set.</param>
+        /// <param name="value">The new parameter value to be set.</param>
+        /// <returns></returns>
+        public Subelement SetStringParameterValue(Int64 paramId, string value)
+        {
+            TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
+
+            ElementId idParam = new ElementId(paramId);
+            StringParameterValue paramValue = new StringParameterValue(value);
+            InternalSubelement.SetParameterValue(idParam, paramValue);
+
+            TransactionManager.Instance.TransactionTaskDone();
+
+            return this;
         }
 
         #endregion
