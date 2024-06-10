@@ -1,5 +1,8 @@
+## 0.6.21
+* Add the support of the subelement and its parameters.
+
 ## 0.6.20
-* Add the support of the subelement and its parameter.
+* Update Dynamo to 3.2.0
 
 ## 0.6.19
 * Fix regression test for FamilyInstance.ByGeometry node
