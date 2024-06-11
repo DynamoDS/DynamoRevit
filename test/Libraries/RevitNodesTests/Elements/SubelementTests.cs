@@ -6,10 +6,10 @@ using RTF.Framework;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Analysis;
 
-namespace RevitSystemTests
+namespace RevitNodesTests.Elements
 {
     [TestFixture]
-    class SubelementTests : RevitSystemTestBase
+    class SubelementTests : RevitNodeTestBase
     {
         private const Int64 m_testElbowId = 976586L;
 
