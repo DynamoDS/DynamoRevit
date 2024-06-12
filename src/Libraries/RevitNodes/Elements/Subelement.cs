@@ -101,6 +101,7 @@ namespace Revit.Elements
         /// <param name="paramId">The parameter id to be set, as ElementId</param>
         /// <param name="value">The new parameter value to be set.</param>
         /// <returns></returns>
+        [IsVisibleInDynamoLibrary(false)]
         public Subelement SetParameterValue(ElementId paramId, ParameterValue value)
         {
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
