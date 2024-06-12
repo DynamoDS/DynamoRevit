@@ -1,3 +1,6 @@
+## 0.6.21
+* Add the support of the subelement and its parameters.
+
 ## 0.6.20
 * Update Dynamo to 3.2.0
 
