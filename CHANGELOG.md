@@ -1,3 +1,7 @@
+## 0.5.39
+* Update Dynamo to 3.2.1
+* Update RevitGregAuth
+
 ## 0.5.38
 * Update D4R to 3.2.0
 * Update Greg to 2.0.1
