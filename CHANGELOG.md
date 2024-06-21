@@ -1,3 +1,6 @@
+## 0.5.41
+* change D4R content publishing
+
 ## 0.5.40
 * update Dynamo to published 3.2.1.5366
 * add Sample Template files
