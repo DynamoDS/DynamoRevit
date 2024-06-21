@@ -1,3 +1,7 @@
+## 0.5.40
+* update Dynamo to published 3.2.1.5366
+* add Sample Template files
+
 ## 0.5.39
 * Update Dynamo to 3.2.1
 * Update RevitGregAuth
