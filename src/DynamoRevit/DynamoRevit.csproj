@@ -65,7 +65,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="GregRevitAuth">
-      <HintPath>$(PACKAGESPATH)\GregRevitAuth\lib\net6.0\GregRevitAuth.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\GregRevitAuth\lib\net8.0\GregRevitAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
