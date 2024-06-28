@@ -1,3 +1,6 @@
+## 0.6.22
+* Update Dynamo to 3.2.1 and RevitGregAuth
+
 ## 0.6.21
 * Add the support of the subelement and its parameters.
 
