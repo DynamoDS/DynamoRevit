@@ -1,3 +1,6 @@
+## 0.6.23
+* Add OOTB template files for Revit 2026+ as well
+
 ## 0.6.22
 * Update Dynamo to 3.2.1 and RevitGregAuth
 
