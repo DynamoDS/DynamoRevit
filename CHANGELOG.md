@@ -1,3 +1,6 @@
+## 0.6.24
+* Fix Roof.Points raising an invalid argument exception by adding a wrapper over RoofBase Revit class to Roof D4R class 
+
 ## 0.6.23
 * Add OOTB template files for Revit 2026+ as well
 
