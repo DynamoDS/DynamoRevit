@@ -327,7 +327,8 @@ namespace Dynamo.Nodes
 
             var ids =
                 elements.Cast<Element>().Where(el => el.IsValidObject).Select(el => el.Id).ToArray();
-            return ids.Any() ? String.Join(" ", ids.Take(20)) : "";
+
+            return base.FormatSelectionText(ids);
         }
 
         protected override TSelection GetModelObjectFromIdentifer(string id)
@@ -502,7 +503,7 @@ namespace Dynamo.Nodes
                     .Where(el => el != null)
                     .Select(el => el.Id);
 
-            return ids.Any() ? String.Join(" ", ids.Take(20)) : "";
+            return base.FormatSelectionText(ids);
         }
 
         protected override Reference GetModelObjectFromIdentifer(string id)
