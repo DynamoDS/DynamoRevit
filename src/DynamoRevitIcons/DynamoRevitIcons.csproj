@@ -51,7 +51,7 @@
       <Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
     </GetReferenceAssemblyPaths>
     <GetAssemblyIdentity
-	  AssemblyFiles="$(OutputPath)DynamoAddinGenerator.exe">
+	  AssemblyFiles="$(OutputPath)..\DynamoAddinGenerator.exe">
 		<Output
 			TaskParameter="Assemblies"
 			ItemName="MyAssemblyIdentities"/>
