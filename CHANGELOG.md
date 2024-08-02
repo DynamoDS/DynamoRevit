@@ -1,3 +1,6 @@
+## 0.4.35
+* Use file version of DynamoAddinGenerator.exe for *.customization.dll
+
 ## 0.4.34
 * update version of *.customization.dll files
 
