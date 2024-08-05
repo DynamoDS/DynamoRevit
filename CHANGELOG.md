@@ -1,3 +1,6 @@
+## 0.5.42
+* Fix Roof.Points raising an invalid argument exception by adding a wrapper over RoofBase Revit class to Roof D4R class 
+
 ## 0.5.41
 * change D4R content publishing
 
