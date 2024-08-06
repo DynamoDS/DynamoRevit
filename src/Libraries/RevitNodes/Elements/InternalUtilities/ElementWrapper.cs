@@ -390,6 +390,11 @@ namespace Revit.Elements
             return RoofType.FromExisting(ele, isRevitOwned);
         }
 
+        public static Roof Wrap(Autodesk.Revit.DB.RoofBase ele, bool isRevitOwned)
+        {
+            return Roof.FromExisting(ele, isRevitOwned);
+        }
+
         public static ScheduleOnSheet Wrap(Autodesk.Revit.DB.ScheduleSheetInstance ele, bool isRevitOwned)
         {
             return ScheduleOnSheet.FromExisting(ele, isRevitOwned);

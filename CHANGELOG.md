@@ -1,3 +1,8 @@
+## 0.5.42
+* Fix Roof.Points raising an invalid argument exception by adding a wrapper over RoofBase Revit class to Roof D4R class
+* Add extra protection in FilterRule.ByRuleType node to prevent invalid data type casting in Revit
+* Improved FilterRule.ByRuleType node to use the same data type for the value and the parameter value that it takes as input
+
 ## 0.5.41
 * change D4R content publishing
 

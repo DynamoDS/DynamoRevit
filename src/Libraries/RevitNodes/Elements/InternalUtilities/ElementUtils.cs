@@ -106,6 +106,44 @@ namespace Revit.Elements.InternalUtilities
             return result;
         }
 
+        /// <summary>
+        /// Get data type of parameter value, or based on its StorageType if value is null
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        /// <exception cref="ApplicationException"></exception>
+        [SupressImportIntoVM]
+        public static Type GetParameterType(Elements.Parameter parameter)
+        {
+            Type parameterType;
+            if (!parameter.HasValue)
+            {
+                switch (parameter.InternalParameter.StorageType)
+                {
+                    case StorageType.String:
+                        parameterType = typeof(string);
+                        break;
+                    case Autodesk.Revit.DB.StorageType.Integer:
+                        parameterType = typeof(int);
+                        break;
+                    case Autodesk.Revit.DB.StorageType.Double:
+                        parameterType = typeof(double);
+                        break;
+                    case Autodesk.Revit.DB.StorageType.ElementId:
+                        parameterType = typeof(ElementId);
+                        break;
+                    default:
+                        throw new ApplicationException(Properties.Resources.InputValueParameterValueTypeMismatch);
+                }
+            }
+            else
+            {
+                parameterType = parameter.Value.GetType();
+            }
+
+            return parameterType;
+        }
+
         #region dynamic parameter setting methods
 
         [SupressImportIntoVM]

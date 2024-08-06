@@ -85,6 +85,17 @@ namespace Revit.Filter
 
             ElementId parameterId = parameter.InternalParameter.Id;
 
+            object convertedValue = null;
+            try
+            {
+                Type parameterType = Revit.Elements.InternalUtilities.ElementUtils.GetParameterType(parameter);
+                convertedValue = Convert.ChangeType(value, parameterType);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(Properties.Resources.InputValueParameterValueTypeMismatch);
+            }        
+
             // assemble the method name to construct a new filter using the FilterType
             string methodname = string.Format("{0}{1}{2}", new object[] { CreatePrefix , type, RuleSuffix});
     
@@ -98,39 +109,39 @@ namespace Revit.Filter
                 ruletype == RuleType.LessOrEqual
                 )
             {
-                if (value.GetType() == typeof(int))
+                if (convertedValue.GetType() == typeof(int))
                 {
                     System.Reflection.MethodInfo methodInfo = typeof(ParameterFilterRuleFactory).GetMethod(methodname, new[] { typeof(ElementId), typeof(int) });
                     if (methodInfo != null)
                     {
-                        return new FilterRule((Autodesk.Revit.DB.FilterRule)methodInfo.Invoke(null, new object[] { parameterId, (int)value }));
+                        return new FilterRule((Autodesk.Revit.DB.FilterRule)methodInfo.Invoke(null, new object[] { parameterId, (int)convertedValue }));
                     }
                 }
-                else if (value.GetType() == typeof(double))
+                else if (convertedValue.GetType() == typeof(double))
                 {
                     System.Reflection.MethodInfo methodInfo = typeof(ParameterFilterRuleFactory).GetMethod(methodname, new[] { typeof(ElementId), typeof(double), typeof(double) });
                     if (methodInfo != null)
                     {
-                        return new FilterRule((Autodesk.Revit.DB.FilterRule)methodInfo.Invoke(null, new object[] { parameterId, (double)value, 0 }));
+                        return new FilterRule((Autodesk.Revit.DB.FilterRule)methodInfo.Invoke(null, new object[] { parameterId, (double)convertedValue, 0 }));
                     }
                 }
-                else if (value.GetType() == typeof(string))
+                else if (convertedValue.GetType() == typeof(string))
                 {
                     System.Reflection.MethodInfo methodInfo = typeof(ParameterFilterRuleFactory).GetMethod(methodname, new[] { typeof(ElementId), typeof(string), typeof(bool) });
                     if (methodInfo != null)
                     {
-                        return new FilterRule((Autodesk.Revit.DB.FilterRule)methodInfo.Invoke(null, new object[] { parameterId, (string)value, true }));
+                        return new FilterRule((Autodesk.Revit.DB.FilterRule)methodInfo.Invoke(null, new object[] { parameterId, (string)convertedValue, true }));
                     }
                 }
             }
             else
             {
-                if (value.GetType() == typeof(string))
+                if (convertedValue.GetType() == typeof(string))
                 {
                     System.Reflection.MethodInfo methodInfo = typeof(ParameterFilterRuleFactory).GetMethod(methodname, new[] { typeof(ElementId), typeof(string), typeof(bool) });
                     if (methodInfo != null)
                     {
-                        return new FilterRule((Autodesk.Revit.DB.FilterRule)methodInfo.Invoke(null, new object[] { parameterId, (string)value, true }));
+                        return new FilterRule((Autodesk.Revit.DB.FilterRule)methodInfo.Invoke(null, new object[] { parameterId, (string)convertedValue, true }));
                     }
                 }
             }
