@@ -1,3 +1,6 @@
+## 0.6.25
+* update Dynamo Core to 3.2.2
+
 ## 0.6.24
 * Fix Roof.Points raising an invalid argument exception by adding a wrapper over RoofBase Revit class to Roof D4R class 
 
