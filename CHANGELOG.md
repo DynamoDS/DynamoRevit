@@ -1,3 +1,6 @@
+## 0.5.43
+* Update Dynamo Core to 3.2.2.5494
+
 ## 0.5.42
 * Fix Roof.Points raising an invalid argument exception by adding a wrapper over RoofBase Revit class to Roof D4R class
 * Add extra protection in FilterRule.ByRuleType node to prevent invalid data type casting in Revit
