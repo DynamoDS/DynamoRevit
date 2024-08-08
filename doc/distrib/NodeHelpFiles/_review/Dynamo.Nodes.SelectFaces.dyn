@@ -1,0 +1,165 @@
+{
+  "Uuid": "200648c1-8df2-4224-929c-681d45c32b3b",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Dynamo.Nodes.SelectFaces",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 200.0,
+      "WatchHeight": 200.0,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "f3118970-4fd7-46a2-bbc8-1cb1f61ca397 Preview",
+        "EyeX": -148.55096435546875,
+        "EyeY": 87.73046112060547,
+        "EyeZ": 105.01171112060547,
+        "LookX": 115.12359619140625,
+        "LookY": -79.69232177734375,
+        "LookZ": -140.8143768310547,
+        "UpX": 0.2540118992328644,
+        "UpY": 0.91593998670578,
+        "UpZ": -0.31069591641426086
+      },
+      "VariableInputPorts": true,
+      "Id": "f31189704fd746a2bbc81cb1f61ca397",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "7d439751e5984953bdab8b3c6cf6b705",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "81d3794602704f11a074a56ac8916992",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.SelectFaces, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "8b2fcbb6-3350-4536-a114-8d91a78c59b4-000aa56e:6:SURFACE",
+        "27f91e31-2bdf-4a66-a13f-6fbddb02715b-001d48e5:6:SURFACE"
+      ],
+      "Id": "a39dc96ba705499c9e2f6c03e25a2981",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "83ef6568d783400391edb58f197f10f9",
+          "Name": "Surfaces",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select multiple faces from the Revit document."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "83ef6568d783400391edb58f197f10f9",
+      "End": "7d439751e5984953bdab8b3c6cf6b705",
+      "Id": "abd037c5aa854121b3d469e447c12e97",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "f31189704fd746a2bbc81cb1f61ca397",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 660.0715579726921,
+        "Y": 329.1944878492375
+      },
+      {
+        "Id": "a39dc96ba705499c9e2f6c03e25a2981",
+        "Name": "Select Faces",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 341.09154861233105,
+        "Y": 329.1944878492375
+      }
+    ],
+    "Annotations": [],
+    "X": 15.677500099715076,
+    "Y": -132.72182545804878,
+    "Zoom": 1.1917937712929567
+  }
+}
