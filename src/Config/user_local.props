@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
+    <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2025</RevitVersionNumber>
     <REVIT_VERSION>Revit</REVIT_VERSION>
     <!-- local env -->
     <OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
     <TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(OutputPath)</TestOutputPath>
   </PropertyGroup>
   <PropertyGroup>
-    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit Preview Release\net8.0</REVITAPI>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit 2025\net8.0</REVITAPI>
     <!--<REVITAPI Condition=" !Exists('$(REVITAPI)') ">D:\src\git.adsk\revit\Debugx64</REVITAPI>-->
   </PropertyGroup>
 </Project>
