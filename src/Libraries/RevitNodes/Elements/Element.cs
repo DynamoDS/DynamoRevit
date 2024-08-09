@@ -436,10 +436,7 @@ namespace Revit.Elements
             // 3. If it exist: Use the first writable parameter
             // 4. Otherwise: Use the first read-only parameter
             //
-            var allParams =
-            InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
-                .Where(x => string.CompareOrdinal(x.Definition.Name, parameterName) == 0)
-                .OrderBy(x => x.Id.Value);
+            var allParams = InternalElement.GetParameters(parameterName).OrderBy(x => x.Id.Value);
 
             var param = allParams.FirstOrDefault(x => x.IsReadOnly == false) ?? allParams.FirstOrDefault();
 
