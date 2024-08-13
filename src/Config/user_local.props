@@ -8,7 +8,7 @@
     <TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(OutputPath)</TestOutputPath>
   </PropertyGroup>
   <PropertyGroup>
-    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit 2025\net8.0</REVITAPI>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit 2025</REVITAPI>
     <!--<REVITAPI Condition=" !Exists('$(REVITAPI)') ">D:\src\git.adsk\revit\Debugx64</REVITAPI>-->
   </PropertyGroup>
 </Project>
