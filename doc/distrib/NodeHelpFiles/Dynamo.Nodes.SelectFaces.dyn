@@ -1,8 +1,8 @@
 {
-  "Uuid": "ecc87869-8982-49c2-825c-e00c7ad3850b",
+  "Uuid": "200648c1-8df2-4224-929c-681d45c32b3b",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Dynamo.Nodes.DSEdgeSelection",
+  "Name": "Dynamo.Nodes.SelectFaces",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -10,50 +10,28 @@
   "Outputs": [],
   "Nodes": [
     {
-      "ConcreteType": "Dynamo.Nodes.DSEdgeSelection, DSRevitNodesUI",
-      "NodeType": "ExtensionNode",
-      "InstanceId": [
-        "d8e5b43d-b81d-4d0f-8d3d-6cce9d1cfc50-001e00cb:1646:LINEAR"
-      ],
-      "Id": "76888f5c4d8547d3990ffb195f10295c",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "9677635a3f3244fba602b542a4c6e989",
-          "Name": "Curve",
-          "Description": "The selected elements.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Select an edge."
-    },
-    {
       "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
       "WatchWidth": 200.0,
       "WatchHeight": 200.0,
       "WasExecuted": true,
       "Camera": {
-        "Name": "03d45cbf-4136-461e-af72-d0f6a5683194 Preview",
-        "EyeX": 22.788076400756836,
-        "EyeY": 70.91416931152344,
-        "EyeZ": 16.258094787597656,
-        "LookX": -7.290586471557617,
-        "LookY": -7.814174652099609,
-        "LookZ": -14.948566436767578,
-        "UpX": -0.18640676140785217,
-        "UpY": 0.905080258846283,
-        "UpZ": -0.38220706582069397
+        "Name": "f3118970-4fd7-46a2-bbc8-1cb1f61ca397 Preview",
+        "EyeX": -148.55096435546875,
+        "EyeY": 87.73046112060547,
+        "EyeZ": 105.01171112060547,
+        "LookX": 115.12359619140625,
+        "LookY": -79.69232177734375,
+        "LookZ": -140.8143768310547,
+        "UpX": 0.2540118992328644,
+        "UpY": 0.91593998670578,
+        "UpZ": -0.31069591641426086
       },
       "VariableInputPorts": true,
-      "Id": "03d45cbf4136461eaf72d0f6a5683194",
+      "Id": "f31189704fd746a2bbc81cb1f61ca397",
       "NodeType": "ExtensionNode",
       "Inputs": [
         {
-          "Id": "98e527b9ec1f4d5bb2f024fdf8199aee",
+          "Id": "7d439751e5984953bdab8b3c6cf6b705",
           "Name": "",
           "Description": "Incoming geometry objects.",
           "UsingDefaultValue": false,
@@ -64,7 +42,7 @@
       ],
       "Outputs": [
         {
-          "Id": "e3d0fd31abaf4e38a5e6074407faefad",
+          "Id": "81d3794602704f11a074a56ac8916992",
           "Name": "",
           "Description": "Incoming geometry objects.",
           "UsingDefaultValue": false,
@@ -75,13 +53,36 @@
       ],
       "Replication": "Disabled",
       "Description": "Shows a dynamic preview of geometry"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.SelectFaces, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "8b2fcbb6-3350-4536-a114-8d91a78c59b4-000aa56e:6:SURFACE",
+        "27f91e31-2bdf-4a66-a13f-6fbddb02715b-001d48e5:6:SURFACE"
+      ],
+      "Id": "a39dc96ba705499c9e2f6c03e25a2981",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "83ef6568d783400391edb58f197f10f9",
+          "Name": "Surfaces",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select multiple faces from the Revit document."
     }
   ],
   "Connectors": [
     {
-      "Start": "9677635a3f3244fba602b542a4c6e989",
-      "End": "98e527b9ec1f4d5bb2f024fdf8199aee",
-      "Id": "59edc48e97294d6f8fd1114b78c4b591",
+      "Start": "83ef6568d783400391edb58f197f10f9",
+      "End": "7d439751e5984953bdab8b3c6cf6b705",
+      "Id": "abd037c5aa854121b3d469e447c12e97",
       "IsHidden": "False"
     }
   ],
@@ -94,13 +95,13 @@
     {
       "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
       "Name": "Properties",
-      "Version": "2.18",
+      "Version": "3.2",
       "Data": {}
     },
     {
       "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
       "Name": "Generative Design",
-      "Version": "6.0",
+      "Version": "8.1",
       "Data": {}
     }
   ],
@@ -123,42 +124,42 @@
     },
     "Camera": {
       "Name": "_Background Preview",
-      "EyeX": 7.097582817077637,
-      "EyeY": 69.01699829101562,
-      "EyeZ": 5.081603050231934,
-      "LookX": 8.534390449523926,
-      "LookY": -5.0753326416015625,
-      "LookZ": -3.9272985458374023,
-      "UpX": 0.25039753317832947,
-      "UpY": 0.9612616896629333,
-      "UpZ": -0.11522620171308517
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
     },
     "ConnectorPins": [],
     "NodeViews": [
       {
-        "Id": "76888f5c4d8547d3990ffb195f10295c",
-        "Name": "Select Edge",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 603.2797953144025,
-        "Y": 558.4278440450844
-      },
-      {
-        "Id": "03d45cbf4136461eaf72d0f6a5683194",
+        "Id": "f31189704fd746a2bbc81cb1f61ca397",
         "Name": "Watch 3D",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 951.026265519148,
-        "Y": 558.4278440450844
+        "X": 660.0715579726921,
+        "Y": 329.1944878492375
+      },
+      {
+        "Id": "a39dc96ba705499c9e2f6c03e25a2981",
+        "Name": "Select Faces",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 341.09154861233105,
+        "Y": 329.1944878492375
       }
     ],
     "Annotations": [],
-    "X": -742.8138921946736,
-    "Y": -615.1115000625064,
-    "Zoom": 1.5193932772469263
+    "X": 15.677500099715076,
+    "Y": -132.72182545804878,
+    "Zoom": 1.1917937712929567
   }
 }
