@@ -2,7 +2,7 @@
   "Uuid": "8b3bf8c4-be5c-4888-8430-43de08d55f1c",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Revit.Elements.Room.CoreCenterBoundary",
+  "Name": "Revit.Elements.Room.CoreBoundary",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -29,36 +29,6 @@
       ],
       "Replication": "Disabled",
       "Description": "All built-in categories."
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "6af2ec6edb204dc58bc5c2d418edbfb4",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "2a8999377ccd4c84a4d89db510d2c508",
-          "Name": "room",
-          "Description": "Revit.Elements.Room",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "4138c4b9df234f7bad3196d95ba6ac38",
-          "Name": "Curve[][]",
-          "Description": "Curve[][]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "Revit.Elements.Room.CoreCenterBoundary",
-      "Replication": "Auto",
-      "Description": "Core center boundary\n\nRoom.CoreCenterBoundary: Curve[][]"
     },
     {
       "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
@@ -118,6 +88,36 @@
       ],
       "Replication": "Disabled",
       "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "f09ca99619684468901adfca4c779bf4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "cbb01d9d9dbc483b835f6cc2e42beead",
+          "Name": "room",
+          "Description": "Revit.Elements.Room",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bc6a8b3df7a74d81a2db7871f773241b",
+          "Name": "Curve[][]",
+          "Description": "Curve[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Room.CoreBoundary",
+      "Replication": "Auto",
+      "Description": "Core boundary\n\nRoom.CoreBoundary: Curve[][]"
     }
   ],
   "Connectors": [
@@ -129,8 +129,8 @@
     },
     {
       "Start": "91ea54efd9a44d71bf8a80b0ae7b3fc0",
-      "End": "2a8999377ccd4c84a4d89db510d2c508",
-      "Id": "06bd47fd15b544f283c1c7c150772c9d",
+      "End": "cbb01d9d9dbc483b835f6cc2e42beead",
+      "Id": "1c77550423d24e7d84b2bfd45a26f827",
       "IsHidden": "False"
     },
     {
@@ -201,16 +201,6 @@
         "Y": 353.6327849617063
       },
       {
-        "Id": "6af2ec6edb204dc58bc5c2d418edbfb4",
-        "Name": "Room.CoreCenterBoundary",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 881.7874101459513,
-        "Y": 410.6327849617063
-      },
-      {
         "Id": "1ef61875dda84bc393018ebcede41dac",
         "Name": "All Elements of Category in View",
         "IsSetAsInput": false,
@@ -229,6 +219,16 @@
         "ShowGeometry": true,
         "X": 129.7874101459513,
         "Y": 501.6327849617063
+      },
+      {
+        "Id": "f09ca99619684468901adfca4c779bf4",
+        "Name": "Room.CoreBoundary",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 881.7874101459513,
+        "Y": 410.6327849617063
       }
     ],
     "Annotations": [],

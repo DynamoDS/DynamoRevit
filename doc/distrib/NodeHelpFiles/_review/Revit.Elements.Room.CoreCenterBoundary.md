@@ -1,5 +1,5 @@
 ## In Depth
-`Room.CoreCenterBoundary` returns a nested list representing the given room's core center boundary. Core center boundaries occur on Revit rooms on the wall's section that is defined as core.
+`Room.CoreCenterBoundary` returns a nested list representing the given room's core center boundary. In the returned list, the first sublist represents the outermost curves, while subsequent lists represent loops within the room. Core center boundaries occur on Revit rooms on the wall's section that is defined as core.
 
 If an unbounded or unplaced room is given, a null value is returned.
 
