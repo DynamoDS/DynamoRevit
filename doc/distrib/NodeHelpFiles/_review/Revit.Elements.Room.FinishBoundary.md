@@ -1,5 +1,5 @@
 ## In Depth
-`Room.FinishBoundary returns a nested list representing the given room's finish boundary. In the returned list, the first sublist represents the outermost curves, while subsequent lists represent loops within the room. Finish boundaries occur on Revit rooms on the wall's section that is defined as finish.
+`Room.FinishBoundary` returns a nested list representing the given room's finish boundary. In the returned list, the first sublist represents the outermost curves, while subsequent lists represent loops within the room. Finish boundaries occur on Revit rooms on the wall's section that is defined as finish.
 
 If an unbounded or unplaced room is given, a null value is returned.
 
