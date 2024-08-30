@@ -44,7 +44,8 @@ namespace Revit.Application
         /// </summary>
         public string Severity
         {
-            get{ return this.InternalWarning.GetSeverity().ToString(); }
+            get{ return Autodesk.Revit.DB.LabelUtils.GetFailureSeverityName(InternalWarning.GetSeverity());
+            }
         }
 
         /// <summary>
