@@ -1,3 +1,6 @@
+## 0.6.26
+* Use new function to get translated string of Warning Severity
+
 ## 0.6.25
 * update Dynamo Core to 3.2.2
 
