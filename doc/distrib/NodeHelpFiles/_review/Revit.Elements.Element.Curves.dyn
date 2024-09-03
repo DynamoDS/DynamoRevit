@@ -312,7 +312,7 @@
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
       "Version": "3.2.1.5366",
-      "RunType": "Automatic",
+      "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "Camera": {
@@ -401,8 +401,8 @@
       }
     ],
     "Annotations": [],
-    "X": -705.8057616617061,
-    "Y": 125.70885651951318,
-    "Zoom": 0.7303223744532528
+    "X": -69.09358181311747,
+    "Y": 227.68309300742158,
+    "Zoom": 0.5839342886559752
   }
 }
