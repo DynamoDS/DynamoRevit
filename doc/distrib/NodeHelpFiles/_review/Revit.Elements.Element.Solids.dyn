@@ -129,8 +129,8 @@
     },
     {
       "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
-      "SelectedIndex": 121,
-      "SelectedString": "L2",
+      "SelectedIndex": 209,
+      "SelectedString": "Residential Lobby - South",
       "Id": "4f6998fdfbfc4b789994e1341bef470b",
       "NodeType": "ExtensionNode",
       "Inputs": [],
@@ -266,6 +266,51 @@
       "Replication": "Disabled",
       "Description": "Enables selection between True and False",
       "InputValue": false
+    },
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 366.4,
+      "WatchHeight": 361.6,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "4bd15caf-f91e-46de-b2ad-e9cc63a88379 Preview",
+        "EyeX": -60.344329833984375,
+        "EyeY": 47.82352066040039,
+        "EyeZ": 53.248233795166016,
+        "LookX": 52.13175964355469,
+        "LookY": -33.707088470458984,
+        "LookZ": -49.63746643066406,
+        "UpX": 0.3071211874485016,
+        "UpY": 0.9056288003921509,
+        "UpZ": -0.29242655634880066
+      },
+      "VariableInputPorts": true,
+      "Id": "4bd15caff91e46deb2ade9cc63a88379",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "5a360b0595734213bbcfb74cbc3461e9",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4272b97f7fab40bb859a08b3a3f5e824",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry"
     }
   ],
   "Connectors": [
@@ -303,6 +348,12 @@
       "Start": "3c13de4138b0444eb9f1f70debcdf2d4",
       "End": "f2580895e62447e58a4ebe873038659c",
       "Id": "a8e802196e8d46f4820e83ceb10e789b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3c13de4138b0444eb9f1f70debcdf2d4",
+      "End": "5a360b0595734213bbcfb74cbc3461e9",
+      "Id": "53684659e833487ebc2bfcb9772536db",
       "IsHidden": "False"
     },
     {
@@ -351,7 +402,7 @@
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
       "Version": "3.2.1.5366",
-      "RunType": "Automatic",
+      "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "Camera": {
@@ -457,6 +508,16 @@
         "ShowGeometry": true,
         "X": 1582.3123547725568,
         "Y": 353.0689533587358
+      },
+      {
+        "Id": "4bd15caff91e46deb2ade9cc63a88379",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1578.3919646216004,
+        "Y": 554.0046189385855
       }
     ],
     "Annotations": [
@@ -480,7 +541,7 @@
         "FontSize": 36.0,
         "GroupStyleId": "00000000-0000-0000-0000-000000000000",
         "InitialTop": 262.0689533587358,
-        "InitialHeight": 252.8,
+        "InitialHeight": 236.0,
         "TextblockHeight": 62.4,
         "Background": "#FFA4E1FF"
       },
@@ -506,8 +567,8 @@
         "PinnedNode": "de0eb631a1f44d999360040197a6726f"
       }
     ],
-    "X": -384.672469088805,
-    "Y": 27.317673672413008,
-    "Zoom": 0.7042258785842902
+    "X": -730.514912085671,
+    "Y": -297.0715552341428,
+    "Zoom": 1.0485066619380725
   }
 }
