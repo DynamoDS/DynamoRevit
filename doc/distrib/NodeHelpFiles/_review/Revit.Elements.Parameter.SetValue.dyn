@@ -70,36 +70,6 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "b187851612da4b02bd573153341ec07f",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "9e151717e57449429002ad52aca89bc5",
-          "Name": "list",
-          "Description": "List to get the first item from.\n\nvar[]..[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "58050f2b2d2a450aa51162a7cd2d7bb9",
-          "Name": "item",
-          "Description": "First item in the list.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
-      "Replication": "Auto",
-      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "Id": "774996adc0dd4928b794df59b6966af0",
       "NodeType": "FunctionNode",
       "Inputs": [
@@ -266,14 +236,8 @@
     },
     {
       "Start": "cee8d90b58ea47ba9ad1cc202439d95c",
-      "End": "9e151717e57449429002ad52aca89bc5",
-      "Id": "59e69f7c3ff947c4b91408ec2007797f",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "58050f2b2d2a450aa51162a7cd2d7bb9",
       "End": "d0c0a5cacb3c44bfb76edc496b5e4ca7",
-      "Id": "b76d899b470246f09b674e3ce1993655",
+      "Id": "d41c005ef6804fcbb80e4f4ce707b4e1",
       "IsHidden": "False"
     },
     {
@@ -309,7 +273,7 @@
   ],
   "Dependencies": [],
   "NodeLibraryDependencies": [],
-  "EnableLegacyPolyCurveBehavior": null,
+  "EnableLegacyPolyCurveBehavior": true,
   "Thumbnail": "",
   "GraphDocumentationURL": null,
   "ExtensionWorkspaceData": [
@@ -364,7 +328,7 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -106.03201837959921,
+        "X": -67.26903796509055,
         "Y": 207.3093120549165
       },
       {
@@ -374,17 +338,7 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 257.1679816204008,
-        "Y": 207.3093120549165
-      },
-      {
-        "Id": "b187851612da4b02bd573153341ec07f",
-        "Name": "List.FirstItem",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 613.9679816204008,
+        "X": 295.93096203490944,
         "Y": 207.3093120549165
       },
       {
@@ -394,7 +348,7 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 889.9679816204008,
+        "X": 652.7309620349095,
         "Y": 264.3093120549165
       },
       {
@@ -404,7 +358,7 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 613.9679816204008,
+        "X": 295.93096203490944,
         "Y": 355.3093120549165
       },
       {
@@ -414,8 +368,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1244.7085321796312,
-        "Y": 371.67167690740325
+        "X": 1005.2711224528869,
+        "Y": 355.78995129672467
       },
       {
         "Id": "7a99b09e87574759b4276192c84c5324",
@@ -424,7 +378,7 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1796.219903278435,
+        "X": 1613.0893627153375,
         "Y": 264.3093120549165
       },
       {
@@ -434,13 +388,13 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1515.1859449832673,
-        "Y": 371.67167690740325
+        "X": 1338.8711224528868,
+        "Y": 355.78995129672467
       }
     ],
     "Annotations": [],
-    "X": -1314.8120457547323,
-    "Y": 35.51266177002347,
-    "Zoom": 1.385710683058823
+    "X": -2259.21307758865,
+    "Y": -355.45506518937395,
+    "Zoom": 2.654635869260398
   }
 }
