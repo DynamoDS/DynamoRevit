@@ -10,6 +10,7 @@ These data types include:
 If no SpecType is found, a null value is returned.
 
 In the example below, all parameters are returned for the current document's project information. The SpecTypes are returned as well.
+
 ___
 ## Example File
 
