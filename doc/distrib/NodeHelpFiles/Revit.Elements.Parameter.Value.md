@@ -1,7 +1,10 @@
 ## In Depth
-`Parameter.Value` returns the value of the given parameter (if available).
+Given a parameter element, `Parameter.Value` returns the value that is stored within the given parameter.
 
-In the example below, all wall elements are collected from the current Revit document. The first wall is then selected, and it's parameter values are obtained. For any parameters without values, null is returned.
+If no parameter value is found, a null value is returned.
+
+In the example below, the project name is returned for the project information for the current document.
+
 ___
 ## Example File
 

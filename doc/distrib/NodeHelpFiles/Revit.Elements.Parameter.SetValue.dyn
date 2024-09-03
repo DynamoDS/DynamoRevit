@@ -2,7 +2,7 @@
   "Uuid": "f40ca5ab-06bd-468c-90e4-1104a1bbf030",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Revit.Elements.Parameter.Value",
+  "Name": "Revit.Elements.Parameter.SetValue",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -156,6 +156,75 @@
       "FunctionSignature": "Revit.Elements.Parameter.Value",
       "Replication": "Auto",
       "Description": "Get the value of the parameter\n\nParameter.Value: var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "7a99b09e87574759b4276192c84c5324",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d3954797ff5d42beb63b468721ed4bad",
+          "Name": "parameter",
+          "Description": "Parameter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "52cd01b742f649039e90fdc53170e0ba",
+          "Name": "value",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ca6ac421b49f48dc83f77690c804040f",
+          "Name": "void",
+          "Description": "void",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Parameter.SetValue@Revit.Elements.Parameter,var",
+      "Replication": "Auto",
+      "Description": "Set the value of the parameter\n\nParameter.SetValue (parameter: Parameter, value: var): void"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d1657958967a4833a1b8895fb4cadfa0",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "4375383fd34040ae9ee1985a33c1eb28",
+          "Name": "string",
+          "Description": "String to be made lowercase\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2376a7d33fe642d0a03e121dc8c3f7c6",
+          "Name": "string",
+          "Description": "Lowercase string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.String.ToLower@string",
+      "Replication": "Auto",
+      "Description": "Converts the given string to all lowercase characters.\n\nString.ToLower (string: string): string"
     }
   ],
   "Connectors": [
@@ -168,7 +237,7 @@
     {
       "Start": "cee8d90b58ea47ba9ad1cc202439d95c",
       "End": "d0c0a5cacb3c44bfb76edc496b5e4ca7",
-      "Id": "9b909b7dc8024428aad911befdb6cf35",
+      "Id": "d41c005ef6804fcbb80e4f4ce707b4e1",
       "IsHidden": "False"
     },
     {
@@ -178,9 +247,27 @@
       "IsHidden": "False"
     },
     {
+      "Start": "432fff43df9d44b68ae1c685d5f44182",
+      "End": "d3954797ff5d42beb63b468721ed4bad",
+      "Id": "e46a66f55a9148688faa842e6c1e003a",
+      "IsHidden": "False"
+    },
+    {
       "Start": "9db1e06a0b7b4216a7da938d1ab8acf4",
       "End": "7ee1d795740d4d9c9289ef5ba58c79c2",
       "Id": "da046c38cbc5475ba583f5ed44be8c0d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "cbbbaff6aca74148b24d7043f004fc73",
+      "End": "4375383fd34040ae9ee1985a33c1eb28",
+      "Id": "1828255794244d9da4c46fd86aa7041c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2376a7d33fe642d0a03e121dc8c3f7c6",
+      "End": "52cd01b742f649039e90fdc53170e0ba",
+      "Id": "1152bd3e884b4ea8b4ed39bf328effc4",
       "IsHidden": "False"
     }
   ],
@@ -241,8 +328,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -71.0593010736402,
-        "Y": 209.5460279893433
+        "X": -67.26903796509055,
+        "Y": 207.3093120549165
       },
       {
         "Id": "6b4bb376b94d49298a487fd580ca8310",
@@ -251,8 +338,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 292.1406989263598,
-        "Y": 209.5460279893433
+        "X": 295.93096203490944,
+        "Y": 207.3093120549165
       },
       {
         "Id": "774996adc0dd4928b794df59b6966af0",
@@ -261,8 +348,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 648.9406989263598,
-        "Y": 266.5460279893433
+        "X": 652.7309620349095,
+        "Y": 264.3093120549165
       },
       {
         "Id": "646dc8fdcf63485e9de319318bd94112",
@@ -271,8 +358,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 292.1406989263598,
-        "Y": 449.00154494489874
+        "X": 295.93096203490944,
+        "Y": 355.3093120549165
       },
       {
         "Id": "bd8986322baf44e3aed5c28e8bc2bffb",
@@ -281,13 +368,33 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1042.5406989263597,
-        "Y": 266.5460279893433
+        "X": 1005.2711224528869,
+        "Y": 355.78995129672467
+      },
+      {
+        "Id": "7a99b09e87574759b4276192c84c5324",
+        "Name": "Parameter.SetValue",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1613.0893627153375,
+        "Y": 264.3093120549165
+      },
+      {
+        "Id": "d1657958967a4833a1b8895fb4cadfa0",
+        "Name": "String.ToLower",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1338.8711224528868,
+        "Y": 355.78995129672467
       }
     ],
     "Annotations": [],
-    "X": -211.11346087986283,
-    "Y": 22.5536214510135,
-    "Zoom": 1.323152941985202
+    "X": -2259.21307758865,
+    "Y": -355.45506518937395,
+    "Zoom": 2.654635869260398
   }
 }

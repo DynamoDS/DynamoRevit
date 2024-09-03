@@ -2,7 +2,7 @@
   "Uuid": "f40ca5ab-06bd-468c-90e4-1104a1bbf030",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Revit.Elements.Element.GetHostedElements",
+  "Name": "Revit.Elements.Element.Solids",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -29,72 +29,6 @@
       ],
       "Replication": "Disabled",
       "Description": "All built-in categories."
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "4b25b6fbb175498692dfa0ae284513c6",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "6402249df64f44b29e6d2e01ab63bb5c",
-          "Name": "element",
-          "Description": "Revit.Elements.Element",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "7d92cba707bf460da999d5061afbb1a0",
-          "Name": "includeOpenings",
-          "Description": "Include rectangular openings in output\n\nbool\nDefault value : false",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "88fe32c01f6f4bb79414ba2dc95a2454",
-          "Name": "includeHostedElementsOfJoinedHosts",
-          "Description": "Include the hosted elements from the multiple joined hosts in output\n\nbool\nDefault value : false",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "82a68b15fd444cb2a78b6b21d5f8777e",
-          "Name": "includeEmbeddedWalls",
-          "Description": "Include embedded walls in output\n\nbool\nDefault value : false",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "7aea2d7a8f254270b5c3b23e71770754",
-          "Name": "includeSharedEmbeddedInserts",
-          "Description": "Include shared embedded elements in output\n\nbool\nDefault value : false",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "34a4d27c934f459c8f83d3bd44723631",
-          "Name": "Element[]",
-          "Description": "Hosted Elements",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "Revit.Elements.Element.GetHostedElements@bool,bool,bool,bool",
-      "Replication": "Auto",
-      "Description": "Gets all elements hosted by the supplied element\n\nElement.GetHostedElements (includeOpenings: bool = false, includeHostedElementsOfJoinedHosts: bool = false, includeEmbeddedWalls: bool = false, includeSharedEmbeddedInserts: bool = false): Element[]"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -156,36 +90,6 @@
       "InputValue": "Revit.Elements.Wall"
     },
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "e663d41c86644639a8da599935c1c2c8",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "fd61fe9fa2af495dbc3ac294d2c322b8",
-          "Name": "list",
-          "Description": "List to be checked if it is empty\n\nvar[]..[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": true,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "156caad018d04a20a31413632c62d4a4",
-          "Name": "bool",
-          "Description": "True if list is empty, false if it isnt",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "DSCore.List.IsEmpty@var[]..[]",
-      "Replication": "Auto",
-      "Description": "Determines if the given list is empty.\n\nList.IsEmpty (list: var[]..[]): bool"
-    },
-    {
       "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
       "Id": "db82b53bae5749b6a67e8fd8dd6a6720",
       "NodeType": "ExtensionNode",
@@ -225,8 +129,8 @@
     },
     {
       "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
-      "SelectedIndex": 121,
-      "SelectedString": "L2",
+      "SelectedIndex": 209,
+      "SelectedString": "Residential Lobby - South",
       "Id": "4f6998fdfbfc4b789994e1341bef470b",
       "NodeType": "ExtensionNode",
       "Inputs": [],
@@ -246,22 +150,13 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "d9568299ab1c4de3af75fc72068264d8",
+      "Id": "e2e8afbcf2e34b669ef9d583f76ef2cf",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "fddead3d171f447a857774478e272902",
-          "Name": "list",
-          "Description": "List to filter.\n\nvar[]..[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "9cace0e0cf224fdeb7d061815511e8cd",
-          "Name": "mask",
-          "Description": "List of booleans representing a mask.\n\nvar[]..[]",
+          "Id": "e513e9a5a50140438515b923ca03c3e7",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -270,39 +165,28 @@
       ],
       "Outputs": [
         {
-          "Id": "d7be3e111e7a4658aac681b12d564513",
-          "Name": "in",
-          "Description": "Items whose mask index is true.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "9c59f8ccbee544d5840ff8d3e149fe9c",
-          "Name": "out",
-          "Description": "Items whose mask index is false.",
+          "Id": "3c13de4138b0444eb9f1f70debcdf2d4",
+          "Name": "Solid[]",
+          "Description": "Solid[]",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "DSCore.List.FilterByBoolMask@var[]..[],var[]..[]",
+      "FunctionSignature": "Revit.Elements.Element.Solids",
       "Replication": "Auto",
-      "Description": "Filters a sequence by looking up corresponding indices in a separate list of booleans.\n\nList.FilterByBoolMask (list: var[]..[], mask: var[]..[]): var[]..[]"
+      "Description": "The Solids in this Element\n\nElement.Solids: Solid[]"
     },
     {
-      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
-      "WatchWidth": 328.8,
-      "WatchHeight": 420.0,
-      "Id": "19938156082c44db84368f1448fd7a00",
-      "NodeType": "ExtensionNode",
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "942cb241f24840aaafca58ad3299f1c6",
+      "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "3a3c3dd0e778461ba2209da8440e45d3",
-          "Name": "",
-          "Description": "Node to show output from",
+          "Id": "c37bba60d4f146f38a44c3f49e8139e6",
+          "Name": "solids",
+          "Description": "A collection of solids\n\nSolid[]",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -311,9 +195,68 @@
       ],
       "Outputs": [
         {
-          "Id": "e3c450ca9ff24088b4cf224d4972fe95",
+          "Id": "012109b6b04b47008b5443dd3d14dd75",
+          "Name": "Solid",
+          "Description": "Solid",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Solid.ByUnion@Autodesk.DesignScript.Geometry.Solid[]",
+      "Replication": "Auto",
+      "Description": "Union a collection of solids into one solid\n\nSolid.ByUnion (solids: Solid[]): Solid"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "63af184a7c4d4a0f8af9e6b00bdf8414",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f2580895e62447e58a4ebe873038659c",
+          "Name": "list",
+          "Description": "List containing nulls and empty sublists to clean\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "85ebbc829a6d4873b384dbdbc87cc222",
+          "Name": "preserveIndices",
+          "Description": "Provide an option to preserve the indices of the data\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2ce19e180b364a44959f517b19fad1b8",
+          "Name": "list",
+          "Description": "List of transposed lists",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.Clean@var[]..[],bool",
+      "Replication": "Auto",
+      "Description": "Cleans data of nulls and empty lists from a given list of arbitrary dimension\n\nList.Clean (list: var[]..[], preserveIndices: bool = true): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "d2460a06a9fa43d6be861936128ff153",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1c0e063e425a47d9be6515d145e58c11",
           "Name": "",
-          "Description": "Node output",
+          "Description": "Boolean",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -321,19 +264,34 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Visualizes a node's output"
+      "Description": "Enables selection between True and False",
+      "InputValue": false
     },
     {
-      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
-      "WatchWidth": 364.0,
-      "WatchHeight": 434.4,
-      "Id": "4bdff5f2919d478891f2da87eccaad1b",
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 366.4,
+      "WatchHeight": 361.6,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "4bd15caf-f91e-46de-b2ad-e9cc63a88379 Preview",
+        "EyeX": -60.344329833984375,
+        "EyeY": 47.82352066040039,
+        "EyeZ": 53.248233795166016,
+        "LookX": 52.13175964355469,
+        "LookY": -33.707088470458984,
+        "LookZ": -49.63746643066406,
+        "UpX": 0.3071211874485016,
+        "UpY": 0.9056288003921509,
+        "UpZ": -0.29242655634880066
+      },
+      "VariableInputPorts": true,
+      "Id": "4bd15caff91e46deb2ade9cc63a88379",
       "NodeType": "ExtensionNode",
       "Inputs": [
         {
-          "Id": "4a87c214f162483badbaef73f6fee958",
+          "Id": "5a360b0595734213bbcfb74cbc3461e9",
           "Name": "",
-          "Description": "Node to show output from",
+          "Description": "Incoming geometry objects.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -342,9 +300,9 @@
       ],
       "Outputs": [
         {
-          "Id": "79d28dd99538409981810cea0ac43517",
+          "Id": "4272b97f7fab40bb859a08b3a3f5e824",
           "Name": "",
-          "Description": "Node output",
+          "Description": "Incoming geometry objects.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -352,7 +310,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Visualizes a node's output"
+      "Description": "Shows a dynamic preview of geometry"
     }
   ],
   "Connectors": [
@@ -363,33 +321,15 @@
       "IsHidden": "False"
     },
     {
-      "Start": "34a4d27c934f459c8f83d3bd44723631",
-      "End": "fd61fe9fa2af495dbc3ac294d2c322b8",
-      "Id": "da8700b783584cf588559a1232b4ef34",
-      "IsHidden": "False"
-    },
-    {
       "Start": "26d6873baa5d4f57bbeea483f14885c7",
-      "End": "6402249df64f44b29e6d2e01ab63bb5c",
-      "Id": "829b1621b20d4517a715582a648bb6e2",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "26d6873baa5d4f57bbeea483f14885c7",
-      "End": "fddead3d171f447a857774478e272902",
-      "Id": "0c875aebdd0c45d58dee4d952cfdf50d",
+      "End": "e513e9a5a50140438515b923ca03c3e7",
+      "Id": "7731a37117e54c62baa1b752ea252274",
       "IsHidden": "False"
     },
     {
       "Start": "bd5a24b4f2ea4cc5904aabf26d27559b",
       "End": "599dcbc87ed2438ebc8c9eb2d18551cf",
       "Id": "d2160b3d0f8c430aa93418473d5baeb8",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "156caad018d04a20a31413632c62d4a4",
-      "End": "9cace0e0cf224fdeb7d061815511e8cd",
-      "Id": "b6f79bb8de0243f3858037ea8e31d0bd",
       "IsHidden": "False"
     },
     {
@@ -405,15 +345,27 @@
       "IsHidden": "False"
     },
     {
-      "Start": "d7be3e111e7a4658aac681b12d564513",
-      "End": "4a87c214f162483badbaef73f6fee958",
-      "Id": "d632734a16f34de08bcbdb1c33260b0e",
+      "Start": "3c13de4138b0444eb9f1f70debcdf2d4",
+      "End": "f2580895e62447e58a4ebe873038659c",
+      "Id": "a8e802196e8d46f4820e83ceb10e789b",
       "IsHidden": "False"
     },
     {
-      "Start": "9c59f8ccbee544d5840ff8d3e149fe9c",
-      "End": "3a3c3dd0e778461ba2209da8440e45d3",
-      "Id": "07437025ca2e4de381fb193e6aeb54f4",
+      "Start": "3c13de4138b0444eb9f1f70debcdf2d4",
+      "End": "5a360b0595734213bbcfb74cbc3461e9",
+      "Id": "53684659e833487ebc2bfcb9772536db",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2ce19e180b364a44959f517b19fad1b8",
+      "End": "c37bba60d4f146f38a44c3f49e8139e6",
+      "Id": "81f77fa2deac419e9a35866e5ca608d8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1c0e063e425a47d9be6515d145e58c11",
+      "End": "85ebbc829a6d4873b384dbdbc87cc222",
+      "Id": "82fea8e8da384fe08f52338637d24f4a",
       "IsHidden": "False"
     }
   ],
@@ -450,20 +402,20 @@
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
       "Version": "3.2.1.5366",
-      "RunType": "Automatic",
+      "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "Camera": {
       "Name": "_Background Preview",
-      "EyeX": -17.0,
-      "EyeY": 24.0,
-      "EyeZ": 50.0,
-      "LookX": 12.0,
-      "LookY": -13.0,
-      "LookZ": -58.0,
-      "UpX": 0.0,
-      "UpY": 1.0,
-      "UpZ": 0.0
+      "EyeX": -134.033935546875,
+      "EyeY": 66.58377075195312,
+      "EyeZ": 89.88414001464844,
+      "LookX": 88.40723419189453,
+      "LookY": -64.01081848144531,
+      "LookZ": -103.55059051513672,
+      "UpX": 0.27625101804733276,
+      "UpY": 0.9049793481826782,
+      "UpZ": -0.32357022166252136
     },
     "ConnectorPins": [],
     "NodeViews": [
@@ -476,16 +428,6 @@
         "ShowGeometry": true,
         "X": 171.9999999999999,
         "Y": 130.19999999999993
-      },
-      {
-        "Id": "4b25b6fbb175498692dfa0ae284513c6",
-        "Name": "Element.GetHostedElements",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1277.6141477001333,
-        "Y": 395.5993450575257
       },
       {
         "Id": "de0eb631a1f44d999360040197a6726f",
@@ -508,16 +450,6 @@
         "Y": 365.19999999999993
       },
       {
-        "Id": "e663d41c86644639a8da599935c1c2c8",
-        "Name": "List.IsEmpty",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1774.9403577761695,
-        "Y": 394.95648457226497
-      },
-      {
         "Id": "db82b53bae5749b6a67e8fd8dd6a6720",
         "Name": "All Elements of Category in View",
         "IsSetAsInput": false,
@@ -538,37 +470,81 @@
         "Y": 278.19999999999993
       },
       {
-        "Id": "d9568299ab1c4de3af75fc72068264d8",
-        "Name": "List.FilterByBoolMask",
+        "Id": "e2e8afbcf2e34b669ef9d583f76ef2cf",
+        "Name": "Element.Solids",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 2030.8680992471577,
-        "Y": 257.8337098444633
+        "X": 1167.9121635212398,
+        "Y": 258.0640008492612
       },
       {
-        "Id": "19938156082c44db84368f1448fd7a00",
-        "Name": "Walls that have doors",
+        "Id": "942cb241f24840aaafca58ad3299f1c6",
+        "Name": "Solid.ByUnion",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "ShowGeometry": true,
-        "X": 2310.9002843520657,
-        "Y": 341.93154855926934
+        "ShowGeometry": false,
+        "X": 2200.616385345962,
+        "Y": 262.0689533587358
       },
       {
-        "Id": "4bdff5f2919d478891f2da87eccaad1b",
-        "Name": "Walls without doors",
+        "Id": "63af184a7c4d4a0f8af9e6b00bdf8414",
+        "Name": "List.Clean",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": false,
+        "X": 1859.0163853459624,
+        "Y": 262.0689533587358
+      },
+      {
+        "Id": "d2460a06a9fa43d6be861936128ff153",
+        "Name": "Boolean",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 2757.360869293904,
-        "Y": 257.8337098444633
+        "X": 1582.3123547725568,
+        "Y": 353.0689533587358
+      },
+      {
+        "Id": "4bd15caff91e46deb2ade9cc63a88379",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1578.3919646216004,
+        "Y": 554.0046189385855
       }
     ],
     "Annotations": [
+      {
+        "Id": "1a0de7bee24f451caa068b2514592172",
+        "Title": "Optional Union of Solids",
+        "DescriptionText": "Optional method to return a single solid for the given elements",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "942cb241f24840aaafca58ad3299f1c6",
+          "63af184a7c4d4a0f8af9e6b00bdf8414",
+          "d2460a06a9fa43d6be861936128ff153"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1572.3123547725568,
+        "Top": 189.66895335873582,
+        "Width": 833.5040305734051,
+        "Height": 295.20000000000005,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 262.0689533587358,
+        "InitialHeight": 236.0,
+        "TextblockHeight": 62.4,
+        "Background": "#FFA4E1FF"
+      },
       {
         "Id": "fcfa0693a8a747fc9ada6d698431c593",
         "Title": "Removes in place families",
@@ -591,8 +567,8 @@
         "PinnedNode": "de0eb631a1f44d999360040197a6726f"
       }
     ],
-    "X": -372.8709818849676,
-    "Y": -157.30608370516677,
-    "Zoom": 0.7169829515582271
+    "X": -730.514912085671,
+    "Y": -297.0715552341428,
+    "Zoom": 1.0485066619380725
   }
 }

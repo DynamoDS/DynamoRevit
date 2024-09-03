@@ -2,20 +2,11 @@
   "Uuid": "f40ca5ab-06bd-468c-90e4-1104a1bbf030",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Revit.Elements.Parameter.Value",
+  "Name": "Revit.Elements.Parameter.SpecType",
   "ElementResolver": {
     "ResolutionMap": {}
   },
-  "Inputs": [
-    {
-      "Id": "646dc8fdcf63485e9de319318bd94112",
-      "Name": "String",
-      "Type": "string",
-      "Type2": "string",
-      "Value": "Project Name",
-      "Description": "Creates a string"
-    }
-  ],
+  "Inputs": [],
   "Outputs": [],
   "Nodes": [
     {
@@ -70,22 +61,13 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "774996adc0dd4928b794df59b6966af0",
+      "Id": "93230688c24e441fa950c2e1935fd8c4",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "d0c0a5cacb3c44bfb76edc496b5e4ca7",
+          "Id": "199383c0ae0e4b0abfb3357075aa6c85",
           "Name": "element",
-          "Description": "Element\n\nElement",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "7ee1d795740d4d9c9289ef5ba58c79c2",
-          "Name": "name",
-          "Description": "Parameter Name\n\nstring",
+          "Description": "Revit.Elements.Element",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -94,46 +76,26 @@
       ],
       "Outputs": [
         {
-          "Id": "432fff43df9d44b68ae1c685d5f44182",
-          "Name": "Parameter",
-          "Description": "Parameter",
+          "Id": "8791b5ed969d40ceb0c35f966f541519",
+          "Name": "Parameter[]",
+          "Description": "Parameter[]",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "Revit.Elements.Parameter.ParameterByName@Revit.Elements.Element,string",
+      "FunctionSignature": "Revit.Elements.Element.Parameters",
       "Replication": "Auto",
-      "Description": "Get Element's Parameter by Name\n\nParameter.ParameterByName (element: Element, name: string): Parameter"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
-      "Id": "646dc8fdcf63485e9de319318bd94112",
-      "NodeType": "StringInputNode",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "9db1e06a0b7b4216a7da938d1ab8acf4",
-          "Name": "",
-          "Description": "String",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Creates a string",
-      "InputValue": "Project Name"
+      "Description": "Obtain all of the Parameters from an Element, sorted by Name.\n\nElement.Parameters: Parameter[]"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "bd8986322baf44e3aed5c28e8bc2bffb",
+      "Id": "1e56938ba574496e8be8f22405e7b44b",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "d8978b262a1c4f5685025ec0887ec877",
+          "Id": "24ac76ed9387414cbc3126be8faa2d5a",
           "Name": "parameter",
           "Description": "Revit.Elements.Parameter",
           "UsingDefaultValue": false,
@@ -144,18 +106,18 @@
       ],
       "Outputs": [
         {
-          "Id": "cbbbaff6aca74148b24d7043f004fc73",
-          "Name": "var[]..[]",
-          "Description": "var[]..[]",
+          "Id": "d942a5a446374489a8dea6da1a256d1c",
+          "Name": "SpecType",
+          "Description": "SpecType",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "Revit.Elements.Parameter.Value",
+      "FunctionSignature": "Revit.Elements.Parameter.SpecType",
       "Replication": "Auto",
-      "Description": "Get the value of the parameter\n\nParameter.Value: var[]..[]"
+      "Description": "Get the parameter's SpecType\n\nParameter.SpecType: SpecType"
     }
   ],
   "Connectors": [
@@ -167,20 +129,14 @@
     },
     {
       "Start": "cee8d90b58ea47ba9ad1cc202439d95c",
-      "End": "d0c0a5cacb3c44bfb76edc496b5e4ca7",
-      "Id": "9b909b7dc8024428aad911befdb6cf35",
+      "End": "199383c0ae0e4b0abfb3357075aa6c85",
+      "Id": "a6355ffb4f61411c80530926c9d3bdad",
       "IsHidden": "False"
     },
     {
-      "Start": "432fff43df9d44b68ae1c685d5f44182",
-      "End": "d8978b262a1c4f5685025ec0887ec877",
-      "Id": "b70e339829384563b13c795b6fb0aa67",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "9db1e06a0b7b4216a7da938d1ab8acf4",
-      "End": "7ee1d795740d4d9c9289ef5ba58c79c2",
-      "Id": "da046c38cbc5475ba583f5ed44be8c0d",
+      "Start": "8791b5ed969d40ceb0c35f966f541519",
+      "End": "24ac76ed9387414cbc3126be8faa2d5a",
+      "Id": "0b7a07e68b15490182e6d77309dd40f7",
       "IsHidden": "False"
     }
   ],
@@ -241,8 +197,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -71.0593010736402,
-        "Y": 209.5460279893433
+        "X": -10.200000000000045,
+        "Y": 211.99999999999997
       },
       {
         "Id": "6b4bb376b94d49298a487fd580ca8310",
@@ -251,43 +207,33 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 292.1406989263598,
-        "Y": 209.5460279893433
+        "X": 352.99999999999994,
+        "Y": 211.99999999999997
       },
       {
-        "Id": "774996adc0dd4928b794df59b6966af0",
-        "Name": "Parameter.ParameterByName",
+        "Id": "93230688c24e441fa950c2e1935fd8c4",
+        "Name": "Element.Parameters",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 648.9406989263598,
-        "Y": 266.5460279893433
+        "X": 709.8,
+        "Y": 211.99999999999997
       },
       {
-        "Id": "646dc8fdcf63485e9de319318bd94112",
-        "Name": "String",
-        "IsSetAsInput": true,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 292.1406989263598,
-        "Y": 449.00154494489874
-      },
-      {
-        "Id": "bd8986322baf44e3aed5c28e8bc2bffb",
-        "Name": "Parameter.Value",
+        "Id": "1e56938ba574496e8be8f22405e7b44b",
+        "Name": "Parameter.SpecType",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1042.5406989263597,
-        "Y": 266.5460279893433
+        "X": 1057.8,
+        "Y": 211.99999999999997
       }
     ],
     "Annotations": [],
-    "X": -211.11346087986283,
-    "Y": 22.5536214510135,
-    "Zoom": 1.323152941985202
+    "X": -668.3324424839134,
+    "Y": -146.70867172375222,
+    "Zoom": 1.8777441607754501
   }
 }

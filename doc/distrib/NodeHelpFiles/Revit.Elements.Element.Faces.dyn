@@ -2,7 +2,7 @@
   "Uuid": "f40ca5ab-06bd-468c-90e4-1104a1bbf030",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Revit.Elements.Element.GetHostedElements",
+  "Name": "Revit.Elements.Element.Faces",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -29,72 +29,6 @@
       ],
       "Replication": "Disabled",
       "Description": "All built-in categories."
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "4b25b6fbb175498692dfa0ae284513c6",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "6402249df64f44b29e6d2e01ab63bb5c",
-          "Name": "element",
-          "Description": "Revit.Elements.Element",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "7d92cba707bf460da999d5061afbb1a0",
-          "Name": "includeOpenings",
-          "Description": "Include rectangular openings in output\n\nbool\nDefault value : false",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "88fe32c01f6f4bb79414ba2dc95a2454",
-          "Name": "includeHostedElementsOfJoinedHosts",
-          "Description": "Include the hosted elements from the multiple joined hosts in output\n\nbool\nDefault value : false",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "82a68b15fd444cb2a78b6b21d5f8777e",
-          "Name": "includeEmbeddedWalls",
-          "Description": "Include embedded walls in output\n\nbool\nDefault value : false",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "7aea2d7a8f254270b5c3b23e71770754",
-          "Name": "includeSharedEmbeddedInserts",
-          "Description": "Include shared embedded elements in output\n\nbool\nDefault value : false",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "34a4d27c934f459c8f83d3bd44723631",
-          "Name": "Element[]",
-          "Description": "Hosted Elements",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "Revit.Elements.Element.GetHostedElements@bool,bool,bool,bool",
-      "Replication": "Auto",
-      "Description": "Gets all elements hosted by the supplied element\n\nElement.GetHostedElements (includeOpenings: bool = false, includeHostedElementsOfJoinedHosts: bool = false, includeEmbeddedWalls: bool = false, includeSharedEmbeddedInserts: bool = false): Element[]"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
@@ -156,36 +90,6 @@
       "InputValue": "Revit.Elements.Wall"
     },
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "e663d41c86644639a8da599935c1c2c8",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "fd61fe9fa2af495dbc3ac294d2c322b8",
-          "Name": "list",
-          "Description": "List to be checked if it is empty\n\nvar[]..[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": true,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "156caad018d04a20a31413632c62d4a4",
-          "Name": "bool",
-          "Description": "True if list is empty, false if it isnt",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "DSCore.List.IsEmpty@var[]..[]",
-      "Replication": "Auto",
-      "Description": "Determines if the given list is empty.\n\nList.IsEmpty (list: var[]..[]): bool"
-    },
-    {
       "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
       "Id": "db82b53bae5749b6a67e8fd8dd6a6720",
       "NodeType": "ExtensionNode",
@@ -225,8 +129,8 @@
     },
     {
       "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
-      "SelectedIndex": 121,
-      "SelectedString": "L2",
+      "SelectedIndex": 209,
+      "SelectedString": "Residential Lobby - South",
       "Id": "4f6998fdfbfc4b789994e1341bef470b",
       "NodeType": "ExtensionNode",
       "Inputs": [],
@@ -246,22 +150,13 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "d9568299ab1c4de3af75fc72068264d8",
+      "Id": "cc32d9a51c2b4070b113a40a9684ff1d",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "fddead3d171f447a857774478e272902",
-          "Name": "list",
-          "Description": "List to filter.\n\nvar[]..[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "9cace0e0cf224fdeb7d061815511e8cd",
-          "Name": "mask",
-          "Description": "List of booleans representing a mask.\n\nvar[]..[]",
+          "Id": "84af60d4efeb42c3ba7a4299d435d88c",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -270,39 +165,44 @@
       ],
       "Outputs": [
         {
-          "Id": "d7be3e111e7a4658aac681b12d564513",
-          "Name": "in",
-          "Description": "Items whose mask index is true.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "9c59f8ccbee544d5840ff8d3e149fe9c",
-          "Name": "out",
-          "Description": "Items whose mask index is false.",
+          "Id": "50ee1da07c7541d1a7d0ac7aab879ff7",
+          "Name": "Surface[]",
+          "Description": "Surface[]",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "DSCore.List.FilterByBoolMask@var[]..[],var[]..[]",
+      "FunctionSignature": "Revit.Elements.Element.Faces",
       "Replication": "Auto",
-      "Description": "Filters a sequence by looking up corresponding indices in a separate list of booleans.\n\nList.FilterByBoolMask (list: var[]..[], mask: var[]..[]): var[]..[]"
+      "Description": "The Faces in this Element\n\nElement.Faces: Surface[]"
     },
     {
-      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
-      "WatchWidth": 328.8,
-      "WatchHeight": 420.0,
-      "Id": "19938156082c44db84368f1448fd7a00",
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 383.2,
+      "WatchHeight": 363.2,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "76a638fe-6f86-45d5-bd29-7c1fe07095fc Preview",
+        "EyeX": -39.688804626464844,
+        "EyeY": 42.903724670410156,
+        "EyeZ": 57.922725677490234,
+        "LookX": 37.64801788330078,
+        "LookY": -29.601428985595703,
+        "LookZ": -51.72624969482422,
+        "UpX": 0.24711039662361145,
+        "UpY": 0.9075602293014526,
+        "UpZ": -0.33951547741889954
+      },
+      "VariableInputPorts": true,
+      "Id": "76a638fe6f8645d5bd297c1fe07095fc",
       "NodeType": "ExtensionNode",
       "Inputs": [
         {
-          "Id": "3a3c3dd0e778461ba2209da8440e45d3",
+          "Id": "b904a17042f64ac58f66836bd5cc1dc0",
           "Name": "",
-          "Description": "Node to show output from",
+          "Description": "Incoming geometry objects.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -311,9 +211,9 @@
       ],
       "Outputs": [
         {
-          "Id": "e3c450ca9ff24088b4cf224d4972fe95",
+          "Id": "7e04b57f9b4944308eecdd5cf3fe2466",
           "Name": "",
-          "Description": "Node output",
+          "Description": "Incoming geometry objects.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -321,38 +221,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Visualizes a node's output"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
-      "WatchWidth": 364.0,
-      "WatchHeight": 434.4,
-      "Id": "4bdff5f2919d478891f2da87eccaad1b",
-      "NodeType": "ExtensionNode",
-      "Inputs": [
-        {
-          "Id": "4a87c214f162483badbaef73f6fee958",
-          "Name": "",
-          "Description": "Node to show output from",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "79d28dd99538409981810cea0ac43517",
-          "Name": "",
-          "Description": "Node output",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Visualizes a node's output"
+      "Description": "Shows a dynamic preview of geometry"
     }
   ],
   "Connectors": [
@@ -363,33 +232,15 @@
       "IsHidden": "False"
     },
     {
-      "Start": "34a4d27c934f459c8f83d3bd44723631",
-      "End": "fd61fe9fa2af495dbc3ac294d2c322b8",
-      "Id": "da8700b783584cf588559a1232b4ef34",
-      "IsHidden": "False"
-    },
-    {
       "Start": "26d6873baa5d4f57bbeea483f14885c7",
-      "End": "6402249df64f44b29e6d2e01ab63bb5c",
-      "Id": "829b1621b20d4517a715582a648bb6e2",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "26d6873baa5d4f57bbeea483f14885c7",
-      "End": "fddead3d171f447a857774478e272902",
-      "Id": "0c875aebdd0c45d58dee4d952cfdf50d",
+      "End": "84af60d4efeb42c3ba7a4299d435d88c",
+      "Id": "cb883608d3af47e08bccf2b921bc98e3",
       "IsHidden": "False"
     },
     {
       "Start": "bd5a24b4f2ea4cc5904aabf26d27559b",
       "End": "599dcbc87ed2438ebc8c9eb2d18551cf",
       "Id": "d2160b3d0f8c430aa93418473d5baeb8",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "156caad018d04a20a31413632c62d4a4",
-      "End": "9cace0e0cf224fdeb7d061815511e8cd",
-      "Id": "b6f79bb8de0243f3858037ea8e31d0bd",
       "IsHidden": "False"
     },
     {
@@ -405,15 +256,9 @@
       "IsHidden": "False"
     },
     {
-      "Start": "d7be3e111e7a4658aac681b12d564513",
-      "End": "4a87c214f162483badbaef73f6fee958",
-      "Id": "d632734a16f34de08bcbdb1c33260b0e",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "9c59f8ccbee544d5840ff8d3e149fe9c",
-      "End": "3a3c3dd0e778461ba2209da8440e45d3",
-      "Id": "07437025ca2e4de381fb193e6aeb54f4",
+      "Start": "50ee1da07c7541d1a7d0ac7aab879ff7",
+      "End": "b904a17042f64ac58f66836bd5cc1dc0",
+      "Id": "a210d30f512540a685775eff680ca250",
       "IsHidden": "False"
     }
   ],
@@ -450,20 +295,20 @@
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
       "Version": "3.2.1.5366",
-      "RunType": "Automatic",
+      "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "Camera": {
       "Name": "_Background Preview",
-      "EyeX": -17.0,
-      "EyeY": 24.0,
-      "EyeZ": 50.0,
-      "LookX": 12.0,
-      "LookY": -13.0,
-      "LookZ": -58.0,
-      "UpX": 0.0,
-      "UpY": 1.0,
-      "UpZ": 0.0
+      "EyeX": -172.7609100341797,
+      "EyeY": 117.65895080566406,
+      "EyeZ": 80.92129516601562,
+      "LookX": 109.84013366699219,
+      "LookY": -79.52920532226562,
+      "LookZ": -128.65475463867188,
+      "UpX": 0.2762511074542999,
+      "UpY": 0.904979407787323,
+      "UpZ": -0.32357028126716614
     },
     "ConnectorPins": [],
     "NodeViews": [
@@ -476,16 +321,6 @@
         "ShowGeometry": true,
         "X": 171.9999999999999,
         "Y": 130.19999999999993
-      },
-      {
-        "Id": "4b25b6fbb175498692dfa0ae284513c6",
-        "Name": "Element.GetHostedElements",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1277.6141477001333,
-        "Y": 395.5993450575257
       },
       {
         "Id": "de0eb631a1f44d999360040197a6726f",
@@ -508,16 +343,6 @@
         "Y": 365.19999999999993
       },
       {
-        "Id": "e663d41c86644639a8da599935c1c2c8",
-        "Name": "List.IsEmpty",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1774.9403577761695,
-        "Y": 394.95648457226497
-      },
-      {
         "Id": "db82b53bae5749b6a67e8fd8dd6a6720",
         "Name": "All Elements of Category in View",
         "IsSetAsInput": false,
@@ -538,34 +363,24 @@
         "Y": 278.19999999999993
       },
       {
-        "Id": "d9568299ab1c4de3af75fc72068264d8",
-        "Name": "List.FilterByBoolMask",
+        "Id": "cc32d9a51c2b4070b113a40a9684ff1d",
+        "Name": "Element.Faces",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 2030.8680992471577,
-        "Y": 257.8337098444633
+        "X": 1189.4477053106375,
+        "Y": 259.19999999999993
       },
       {
-        "Id": "19938156082c44db84368f1448fd7a00",
-        "Name": "Walls that have doors",
+        "Id": "76a638fe6f8645d5bd297c1fe07095fc",
+        "Name": "Watch 3D",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 2310.9002843520657,
-        "Y": 341.93154855926934
-      },
-      {
-        "Id": "4bdff5f2919d478891f2da87eccaad1b",
-        "Name": "Walls without doors",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 2757.360869293904,
-        "Y": 257.8337098444633
+        "X": 1503.6118557770956,
+        "Y": 259.19999999999993
       }
     ],
     "Annotations": [
@@ -591,8 +406,8 @@
         "PinnedNode": "de0eb631a1f44d999360040197a6726f"
       }
     ],
-    "X": -372.8709818849676,
-    "Y": -157.30608370516677,
-    "Zoom": 0.7169829515582271
+    "X": -886.541927292588,
+    "Y": -228.99083092722577,
+    "Zoom": 1.3309742118318284
   }
 }
