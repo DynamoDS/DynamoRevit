@@ -61,36 +61,6 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "b187851612da4b02bd573153341ec07f",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "9e151717e57449429002ad52aca89bc5",
-          "Name": "list",
-          "Description": "List to get the first item from.\n\nvar[]..[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "58050f2b2d2a450aa51162a7cd2d7bb9",
-          "Name": "item",
-          "Description": "First item in the list.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
-      "Replication": "Auto",
-      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "Id": "774996adc0dd4928b794df59b6966af0",
       "NodeType": "FunctionNode",
       "Inputs": [
@@ -158,14 +128,8 @@
     },
     {
       "Start": "cee8d90b58ea47ba9ad1cc202439d95c",
-      "End": "9e151717e57449429002ad52aca89bc5",
-      "Id": "59e69f7c3ff947c4b91408ec2007797f",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "58050f2b2d2a450aa51162a7cd2d7bb9",
       "End": "d0c0a5cacb3c44bfb76edc496b5e4ca7",
-      "Id": "b76d899b470246f09b674e3ce1993655",
+      "Id": "3df1c0c6f07f4b01b3cf144b4313f77c",
       "IsHidden": "False"
     },
     {
@@ -177,7 +141,7 @@
   ],
   "Dependencies": [],
   "NodeLibraryDependencies": [],
-  "EnableLegacyPolyCurveBehavior": null,
+  "EnableLegacyPolyCurveBehavior": true,
   "Thumbnail": "",
   "GraphDocumentationURL": null,
   "ExtensionWorkspaceData": [
@@ -232,8 +196,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -106.03201837959921,
-        "Y": 207.3093120549165
+        "X": 10.73269117234048,
+        "Y": 202.63034975280155
       },
       {
         "Id": "6b4bb376b94d49298a487fd580ca8310",
@@ -242,18 +206,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 257.1679816204008,
-        "Y": 207.3093120549165
-      },
-      {
-        "Id": "b187851612da4b02bd573153341ec07f",
-        "Name": "List.FirstItem",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 613.9679816204008,
-        "Y": 207.3093120549165
+        "X": 373.93269117234047,
+        "Y": 202.63034975280155
       },
       {
         "Id": "774996adc0dd4928b794df59b6966af0",
@@ -262,8 +216,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 889.9679816204008,
-        "Y": 264.3093120549165
+        "X": 730.7326911723405,
+        "Y": 259.6303497528016
       },
       {
         "Id": "646dc8fdcf63485e9de319318bd94112",
@@ -272,13 +226,13 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 613.9679816204008,
-        "Y": 355.3093120549165
+        "X": 463.9127354437821,
+        "Y": 427.65326764915557
       }
     ],
     "Annotations": [],
-    "X": 51.4585004664433,
-    "Y": 28.980930153488032,
-    "Zoom": 1.1113575327695027
+    "X": -359.37109645546104,
+    "Y": -271.4540665257417,
+    "Zoom": 1.7138791189044988
   }
 }
