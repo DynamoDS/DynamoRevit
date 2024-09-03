@@ -91,36 +91,6 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "b187851612da4b02bd573153341ec07f",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "9e151717e57449429002ad52aca89bc5",
-          "Name": "list",
-          "Description": "List to get the first item from.\n\nvar[]..[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "58050f2b2d2a450aa51162a7cd2d7bb9",
-          "Name": "item",
-          "Description": "First item in the list.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
-      "Replication": "Auto",
-      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "Id": "adad7a2c47a94203a39dabd8d77c7a9a",
       "NodeType": "FunctionNode",
       "Inputs": [
@@ -159,20 +129,14 @@
     },
     {
       "Start": "cee8d90b58ea47ba9ad1cc202439d95c",
-      "End": "9e151717e57449429002ad52aca89bc5",
-      "Id": "59e69f7c3ff947c4b91408ec2007797f",
+      "End": "199383c0ae0e4b0abfb3357075aa6c85",
+      "Id": "f2586c7fe7634c38b3a8e58693b266bd",
       "IsHidden": "False"
     },
     {
       "Start": "8791b5ed969d40ceb0c35f966f541519",
       "End": "365d404dc9c64cdd8d79c1cb6f024651",
       "Id": "556cc9c713214e18ae10461da771c721",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "58050f2b2d2a450aa51162a7cd2d7bb9",
-      "End": "199383c0ae0e4b0abfb3357075aa6c85",
-      "Id": "6d44d8c4ad374a4c849a96fe4ba35001",
       "IsHidden": "False"
     }
   ],
@@ -209,7 +173,7 @@
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
       "Version": "3.2.1.5366",
-      "RunType": "Automatic",
+      "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "Camera": {
@@ -233,8 +197,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -72.80000000000001,
-        "Y": 211.99999999999994
+        "X": 3.920243253363992,
+        "Y": 211.99999999999997
       },
       {
         "Id": "6b4bb376b94d49298a487fd580ca8310",
@@ -243,8 +207,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 253.86666666666662,
-        "Y": 211.99999999999994
+        "X": 367.120243253364,
+        "Y": 211.99999999999997
       },
       {
         "Id": "93230688c24e441fa950c2e1935fd8c4",
@@ -253,18 +217,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 813.5999999999998,
-        "Y": 211.99999999999994
-      },
-      {
-        "Id": "b187851612da4b02bd573153341ec07f",
-        "Name": "List.FirstItem",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 574.1333333333332,
-        "Y": 211.99999999999994
+        "X": 723.920243253364,
+        "Y": 211.99999999999997
       },
       {
         "Id": "adad7a2c47a94203a39dabd8d77c7a9a",
@@ -273,13 +227,13 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1148.640486506728,
-        "Y": 211.99999999999994
+        "X": 1071.9202432533639,
+        "Y": 211.99999999999997
       }
     ],
     "Annotations": [],
-    "X": -131.4796299471758,
-    "Y": 2.22078679545362,
-    "Zoom": 1.0857035604471865
+    "X": -1782.2491169300372,
+    "Y": -218.48163231345308,
+    "Zoom": 2.5657064560634666
   }
 }

@@ -9,6 +9,7 @@ Data types include:
 - ElementId
 
 In the example below, all of the parameters from the current document's project information are returned. The parameter's storage type is then returned.
+
 ___
 ## Example File
 
