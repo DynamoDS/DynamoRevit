@@ -187,6 +187,36 @@
       "FunctionSignature": "Analysis.Label.ByPointAndString@Autodesk.DesignScript.Geometry.Point,string",
       "Replication": "Auto",
       "Description": "Returns a Label object given a point object and a string label.\n\nLabel.ByPointAndString (point: Point, label: string): Label"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "81da6d7a865946498e2013e6c6363d0d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d913108d1077413b8401884c590f1ec1",
+          "Name": "room",
+          "Description": "Revit.Elements.Room",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b21f21242dc8429d8f9ba67088edf796",
+          "Name": "Curve[][]",
+          "Description": "Curve[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Room.CenterBoundary",
+      "Replication": "Auto",
+      "Description": "Centerline boundary\n\nRoom.CenterBoundary: Curve[][]"
     }
   ],
   "Connectors": [
@@ -206,6 +236,12 @@
       "Start": "91ea54efd9a44d71bf8a80b0ae7b3fc0",
       "End": "fbb8fd6666684d5abbd5f983fd4d1989",
       "Id": "06b4700c64114500b85cfb7f8a236536",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "91ea54efd9a44d71bf8a80b0ae7b3fc0",
+      "End": "d913108d1077413b8401884c590f1ec1",
+      "Id": "61a449f31f734f23b58c8ffeb9bd65f9",
       "IsHidden": "False"
     },
     {
@@ -265,15 +301,15 @@
     },
     "Camera": {
       "Name": "_Background Preview",
-      "EyeX": 4.048498153686523,
-      "EyeY": 119.89519500732422,
-      "EyeZ": 52.128440856933594,
-      "LookX": -27.953622817993164,
-      "LookY": -123.99169158935547,
-      "LookZ": -78.89215850830078,
-      "UpX": -0.27681559324264526,
-      "UpY": 0.5594897270202637,
-      "UpZ": -0.7812455296516418
+      "EyeX": 0.6001567840576172,
+      "EyeY": 130.27276611328125,
+      "EyeZ": 69.29988861083984,
+      "LookX": -24.505281448364258,
+      "LookY": -134.3692626953125,
+      "LookZ": -96.06360626220703,
+      "UpX": -0.19889943301677704,
+      "UpY": 0.5937068462371826,
+      "UpZ": -0.7797123193740845
     },
     "ConnectorPins": [],
     "NodeViews": [
@@ -314,8 +350,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 891.1604358478457,
-        "Y": 460.26843109715895
+        "X": 860.0913737742219,
+        "Y": 385.7026821204616
       },
       {
         "Id": "8a38e3315afa4e20808af9e125744571",
@@ -324,8 +360,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1263.9737794584232,
-        "Y": 759.1687478650355
+        "X": 1252.7889171119189,
+        "Y": 597.6096250821913
       },
       {
         "Id": "157915667ed846de824bb6a6c7a7d42b",
@@ -334,8 +370,18 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1501.6625025308654,
-        "Y": 642.1881332660585
+        "X": 1490.477640184361,
+        "Y": 480.62901048321424
+      },
+      {
+        "Id": "81da6d7a865946498e2013e6c6363d0d",
+        "Name": "Room.CenterBoundary",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1204.416052293487,
+        "Y": 464.7520852811105
       }
     ],
     "Annotations": [
@@ -348,23 +394,24 @@
         "HeightAdjustment": 0.0,
         "Nodes": [
           "157915667ed846de824bb6a6c7a7d42b",
-          "8a38e3315afa4e20808af9e125744571"
+          "8a38e3315afa4e20808af9e125744571",
+          "81da6d7a865946498e2013e6c6363d0d"
         ],
         "HasNestedGroups": false,
-        "Left": 1253.9737794584232,
-        "Top": 569.7881332660585,
-        "Width": 508.08872307244224,
-        "Height": 321.18061459897694,
+        "Left": 1194.416052293487,
+        "Top": 392.35208528111053,
+        "Width": 556.4615878908742,
+        "Height": 337.05753980108074,
         "FontSize": 36.0,
         "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 642.1881332660585,
-        "InitialHeight": 278.7806145989769,
+        "InitialTop": 464.7520852811105,
+        "InitialHeight": 261.980614598977,
         "TextblockHeight": 62.4,
         "Background": "#FFA4E1FF"
       }
     ],
-    "X": 23.898088746186772,
-    "Y": -230.58336123766856,
-    "Zoom": 0.766835412561354
+    "X": -33.640411228855555,
+    "Y": -225.44127545172296,
+    "Zoom": 0.7486769496168161
   }
 }
