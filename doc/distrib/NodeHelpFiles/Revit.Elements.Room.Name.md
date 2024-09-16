@@ -1,7 +1,7 @@
 ## In Depth
-`Room.Name` obtains the input room's name as a string.
+`Room.Name` returns the name for the given room element.
 
-In the example below, both the room name and number are obtained for downstream use.
+In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then returned.
 ___
 ## Example File
 
