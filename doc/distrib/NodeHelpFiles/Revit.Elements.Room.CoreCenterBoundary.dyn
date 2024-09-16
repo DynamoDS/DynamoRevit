@@ -2,7 +2,7 @@
   "Uuid": "8b3bf8c4-be5c-4888-8430-43de08d55f1c",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Revit.Elements.Room.Number",
+  "Name": "Revit.Elements.Room.CoreCenterBoundary",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -29,6 +29,36 @@
       ],
       "Replication": "Disabled",
       "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "6af2ec6edb204dc58bc5c2d418edbfb4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "2a8999377ccd4c84a4d89db510d2c508",
+          "Name": "room",
+          "Description": "Revit.Elements.Room",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4138c4b9df234f7bad3196d95ba6ac38",
+          "Name": "Curve[][]",
+          "Description": "Curve[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Room.CoreCenterBoundary",
+      "Replication": "Auto",
+      "Description": "Core center boundary\n\nRoom.CoreCenterBoundary: Curve[][]"
     },
     {
       "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
@@ -88,36 +118,6 @@
       ],
       "Replication": "Disabled",
       "Description": "All views available in the current document."
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "619f63c528874912b6d9f337ea9a4177",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "f90efb7357504bb6986b333917167fcf",
-          "Name": "room",
-          "Description": "Revit.Elements.Room",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "740a7d5f457849cd9997fac046a418de",
-          "Name": "string",
-          "Description": "string",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "Revit.Elements.Room.Number",
-      "Replication": "Auto",
-      "Description": "Get room number\n\nRoom.Number: string"
     }
   ],
   "Connectors": [
@@ -129,8 +129,8 @@
     },
     {
       "Start": "91ea54efd9a44d71bf8a80b0ae7b3fc0",
-      "End": "f90efb7357504bb6986b333917167fcf",
-      "Id": "fd078c3fa70443ff8f5aec75669afb1c",
+      "End": "2a8999377ccd4c84a4d89db510d2c508",
+      "Id": "06bd47fd15b544f283c1c7c150772c9d",
       "IsHidden": "False"
     },
     {
@@ -201,6 +201,16 @@
         "Y": 353.6327849617063
       },
       {
+        "Id": "6af2ec6edb204dc58bc5c2d418edbfb4",
+        "Name": "Room.CoreCenterBoundary",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 881.7874101459513,
+        "Y": 410.6327849617063
+      },
+      {
         "Id": "1ef61875dda84bc393018ebcede41dac",
         "Name": "All Elements of Category in View",
         "IsSetAsInput": false,
@@ -208,7 +218,7 @@
         "Excluded": false,
         "ShowGeometry": true,
         "X": 465.7874101459513,
-        "Y": 408.5801430202642
+        "Y": 410.6327849617063
       },
       {
         "Id": "95a11c0c430e40a5bbe055e015fc4a54",
@@ -219,21 +229,11 @@
         "ShowGeometry": true,
         "X": 129.7874101459513,
         "Y": 501.6327849617063
-      },
-      {
-        "Id": "619f63c528874912b6d9f337ea9a4177",
-        "Name": "Room.Number",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 913.2695607253224,
-        "Y": 408.5801430202642
       }
     ],
     "Annotations": [],
-    "X": -26.074012542590253,
-    "Y": -80.60193901126348,
-    "Zoom": 1.067830880751473
+    "X": 205.9285720534922,
+    "Y": 56.443515080289956,
+    "Zoom": 0.9663664937627432
   }
 }
