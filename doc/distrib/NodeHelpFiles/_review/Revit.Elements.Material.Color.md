@@ -1,7 +1,7 @@
 ## In Depth
-`Material.Color` returns a Dynamo color that represents the material's cut pattern color (if available).
+`Material.Color` returns a Dynamo color that represents the material's shading color. If the material's shading color is set to "use render appearance", that value is returned.
 
-In the example below, all materials are collected from the current document. The materials' colors are returned with `Material.Color`.
+In the example below, all materials are collected from the current document. The materials' shading color values are returned with `Material.Color`.
 
 ___
 ## Example File
