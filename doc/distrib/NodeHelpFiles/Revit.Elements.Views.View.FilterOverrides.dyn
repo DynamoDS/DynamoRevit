@@ -1,0 +1,209 @@
+{
+  "Uuid": "34703780-f4cd-4bf5-b67a-5b70edfb4ca4",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.View.FilterOverrides",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "73e33193b5d34ef699bb2cd15d345f7e",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f0c25bd1160c4037895059bdb57fa576",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2ac0695062b34c28938e06d623b7fd2c",
+          "Name": "filter",
+          "Description": "View Filters",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View.Filters",
+      "Replication": "Auto",
+      "Description": "Get View Filters\n\nView.Filters: ParameterFilterElement[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "43435515ca764c50be72de73d9eb9405",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "56b79f9f05d84feaaad02fcef4ecf40a",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6626908469a84c52bd505ee92d806995",
+          "Name": "parameterFilter",
+          "Description": "ParameterFilterElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ac1276fb2fe44cad9e8c8500a8d2bf04",
+          "Name": "overrides",
+          "Description": "Filter overrides",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View.FilterOverrides@Revit.Filter.ParameterFilterElement",
+      "Replication": "Auto",
+      "Description": "Get Filter overrides\n\nView.FilterOverrides (parameterFilter: ParameterFilterElement): OverrideGraphicSettings"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 113,
+      "SelectedString": "L1",
+      "Id": "a529738173cc4996836144960394eefb",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b951b62521e148089491a9f9286804a3",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "2ac0695062b34c28938e06d623b7fd2c",
+      "End": "6626908469a84c52bd505ee92d806995",
+      "Id": "7d47d6209990483b98f553ea3413e21f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b951b62521e148089491a9f9286804a3",
+      "End": "f0c25bd1160c4037895059bdb57fa576",
+      "Id": "fd3fc25cbdef4c0ba91983fdbe793d12",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b951b62521e148089491a9f9286804a3",
+      "End": "56b79f9f05d84feaaad02fcef4ecf40a",
+      "Id": "89f763937a0b4bd08c3cd8ee4e25acb3",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.18",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "6.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": 20.341518512389616,
+      "EyeY": 63.96645481003128,
+      "EyeZ": 26.41894395771923,
+      "LookX": -24.06968032421823,
+      "LookY": -65.46645481003128,
+      "LookZ": -38.653505877885245,
+      "UpX": -0.35915032029151917,
+      "UpY": 0.7337297797203064,
+      "UpZ": -0.5767596364021301
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "73e33193b5d34ef699bb2cd15d345f7e",
+        "Name": "View.Filters",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1016.9798360193281,
+        "Y": 374.36958955037704
+      },
+      {
+        "Id": "43435515ca764c50be72de73d9eb9405",
+        "Name": "View.FilterOverrides",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1338.1982633231999,
+        "Y": 241.1284938503874
+      },
+      {
+        "Id": "a529738173cc4996836144960394eefb",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 540.9240982922814,
+        "Y": 241.1284938503874
+      }
+    ],
+    "Annotations": [],
+    "X": -421.59360916625803,
+    "Y": -24.39115406841347,
+    "Zoom": 1.104764256303027
+  }
+}
