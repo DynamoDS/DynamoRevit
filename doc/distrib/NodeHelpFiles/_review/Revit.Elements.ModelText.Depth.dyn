@@ -1,0 +1,193 @@
+{
+  "Uuid": "ba92fac8-180f-4280-b675-5bad01e9fb04",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.ModelText.Depth",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementTypes, DSRevitNodesUI",
+      "SelectedIndex": 228,
+      "SelectedString": "ModelText",
+      "Id": "93a2c331b4dd48fab7acc0eb6cada59a",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ffc00c251db74765b43550e4b703310a",
+          "Name": "Classes",
+          "Description": "The selected Classes",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All element subclasses."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfType, DSRevitNodesUI",
+      "Id": "e5d660ee7ab94987bfdd7167dc5695f2",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "df3ccbc932614a9bbc1c18746a4d315e",
+          "Name": "element class",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8680c5248dcd4b7b9775c8b339d1bd87",
+          "Name": "elements",
+          "Description": "All elements in the active document of a given class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All elements in the active document of a given class."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9347bf98295349aab8802e2d040cf499",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "4c34a8b44e2a4d24a23f620ceb552a78",
+          "Name": "modelText",
+          "Description": "Revit.Elements.ModelText",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "81757d38f245420ca06ba74456b34316",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.ModelText.Depth",
+      "Replication": "Auto",
+      "Description": "The Depth of the ModelText Element\n\nModelText.Depth: double"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ffc00c251db74765b43550e4b703310a",
+      "End": "df3ccbc932614a9bbc1c18746a4d315e",
+      "Id": "1db93fd5d8e44de297caf9cc8502e053",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8680c5248dcd4b7b9775c8b339d1bd87",
+      "End": "4c34a8b44e2a4d24a23f620ceb552a78",
+      "Id": "b42e32d6d4c14506aee179ae9d98c607",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": 28.249759674072266,
+      "EyeY": 148.59800720214844,
+      "EyeZ": 166.217041015625,
+      "LookX": -56.17384338378906,
+      "LookY": -145.61021423339844,
+      "LookZ": -151.77020263671875,
+      "UpX": -0.23217052221298218,
+      "UpY": 0.74338299036026,
+      "UpZ": -0.6272786259651184
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "93a2c331b4dd48fab7acc0eb6cada59a",
+        "Name": "Element Classes",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -75.85797570879095,
+        "Y": 743.8285486219855
+      },
+      {
+        "Id": "e5d660ee7ab94987bfdd7167dc5695f2",
+        "Name": "All Elements of Class",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 250.54202429120903,
+        "Y": 743.8285486219855
+      },
+      {
+        "Id": "9347bf98295349aab8802e2d040cf499",
+        "Name": "ModelText.Depth",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 579.3420242912091,
+        "Y": 743.8285486219855
+      }
+    ],
+    "Annotations": [],
+    "X": -285.5187176617774,
+    "Y": -1565.1311283949974,
+    "Zoom": 2.598863535779499
+  }
+}
