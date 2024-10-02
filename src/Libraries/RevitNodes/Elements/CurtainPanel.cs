@@ -381,7 +381,7 @@ namespace Revit.Elements
                     if (panel is Autodesk.Revit.DB.Panel)
                     {
                         ElementId hostPanelId = (panel as Panel).FindHostPanel();
-                        if (hostPanelId.IntegerValue != -1)
+                        if (hostPanelId.Value != -1)
                         {
                             result.Add(null);
                         }

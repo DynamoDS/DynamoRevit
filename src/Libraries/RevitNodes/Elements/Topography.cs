@@ -12,6 +12,7 @@ using Point = Autodesk.DesignScript.Geometry.Point;
 namespace Revit.Elements
 {
     [DynamoServices.RegisterForTrace]
+    [Obsolete("This method is deprecated with the introduction of the new Toposolid elements. It is recommended that Toposolid elements should be used in place of Topography elements.")]
     public class Topography : Element
     {
         #region internal properties
@@ -59,6 +60,7 @@ namespace Revit.Elements
 
         #region private constructors
 
+        [Obsolete("This method is deprecated with the introduction of the new Toposolid elements. It is recommended that Toposolid elements should be used in place of Topography elements.")]
         private Topography(IList<XYZ> points)
         {
             SafeInit(() => InitTopography(points));
@@ -78,6 +80,7 @@ namespace Revit.Elements
         /// Initialize a Topography element
         /// </summary>
         /// <param name="points"></param>
+        [Obsolete("This method is deprecated with the introduction of the new Toposolid elements. It is recommended that Toposolid elements should be used in place of Topography elements.")]
         private void InitTopography(IList<XYZ> points)
         {
             //Phase 1 - Check to see if the object exists and should be rebound

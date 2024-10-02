@@ -371,6 +371,7 @@ namespace DSRevitNodesUI
             return null == elem ? null : elem.InternalElement;
         }
 
+        [Obsolete]
         protected override void SerializeCore(XmlElement nodeElement, SaveContext context)
         {
             base.SerializeCore(nodeElement, context);
@@ -387,6 +388,7 @@ namespace DSRevitNodesUI
 
         }
 
+        [Obsolete]
         protected override void DeserializeCore(XmlElement nodeElement, SaveContext context)
         {
             base.DeserializeCore(nodeElement, context);

@@ -70,7 +70,7 @@ namespace Revit.GeometryConversion
             {
                 using (var geom = protoFace.SurfaceGeometry())
                 {
-                    using (var ngeom = geom.ToNurbsSurface())
+                    using (var ngeom = geom.ToNurbsSurface(true))
                     {
                         bool flipped = false;
                         // Check if the nurbs surface has flipped compared to the original surface

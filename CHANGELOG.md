@@ -1,3 +1,7 @@
+## 0.6.27
+* Update Dynamo Core to 3.3.0.6316
+* Add node documentation: Parameter, Element, Room, Material, Views 
+
 ## 0.6.26
 * Use new function to get translated string of Warning Severity
 

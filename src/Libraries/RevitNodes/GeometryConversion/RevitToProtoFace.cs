@@ -43,7 +43,7 @@ namespace Revit.GeometryConversion
                 Surface converted;
                 try
                 {
-                    converted = untrimmedSrf.TrimWithEdgeLoops(curveLoops);
+                    converted = untrimmedSrf.TrimWithEdgeLoops(curveLoops, 0.001);
                 }
                 catch (Exception e)
                 {

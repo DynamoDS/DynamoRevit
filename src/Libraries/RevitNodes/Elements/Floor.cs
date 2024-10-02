@@ -219,7 +219,7 @@ namespace Revit.Elements
 
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
             this.InternalFloor.GetSlabShapeEditor().Enable();
-            this.InternalFloor.GetSlabShapeEditor().DrawPoint(point.ToXyz());
+            this.InternalFloor.GetSlabShapeEditor().AddPoint(point.ToXyz());
             TransactionManager.Instance.TransactionTaskDone();
 
             return this;

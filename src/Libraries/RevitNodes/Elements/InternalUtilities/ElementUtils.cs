@@ -111,7 +111,7 @@ namespace Revit.Elements.InternalUtilities
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        /// <exception cref="ApplicationException"></exception>
+        /// <exception cref="System.ApplicationException"></exception>
         [SupressImportIntoVM]
         public static Type GetParameterType(Elements.Parameter parameter)
         {

@@ -91,7 +91,7 @@ namespace Revit.Filter
                 Type parameterType = Revit.Elements.InternalUtilities.ElementUtils.GetParameterType(parameter);
                 convertedValue = Convert.ChangeType(value, parameterType);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new ApplicationException(Properties.Resources.InputValueParameterValueTypeMismatch);
             }        
