@@ -1,7 +1,7 @@
 ## In Depth
 `Viewport.LabelLineLength` gets the length of the viewport line, in paper space units.
 
-n the example below, all of the viewports from the selected sheet are collected and the lengths of the viewport label lines are retrieved.
+In the example below, all of the viewports from the selected sheet are collected and the lengths of the viewport label lines are retrieved.
 ___
 ## Example File
 
