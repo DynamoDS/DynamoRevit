@@ -1,0 +1,528 @@
+{
+  "Uuid": "ba92fac8-180f-4280-b675-5bad01e9fb04",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Viewport.SetLabelLineLength",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Sheets, DSRevitNodesUI",
+      "SelectedIndex": 53,
+      "SelectedString": "Wall Sections",
+      "Id": "293f9659f2654fc7ab7bf313fd294514",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "416d10f6ff4d4dde8c881eaa6f8536a8",
+          "Name": "Sheet",
+          "Description": "The selected Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All sheets available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b143dceff10b4b078bed355a3ef1a2c4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "84513a913d694756a6ff3092b6ed0f06",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ae2b5a53ec5b4a0884022e9812f962c9",
+          "Name": "Viewport[]",
+          "Description": "Viewport[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.Sheet.Viewports",
+      "Replication": "Auto",
+      "Description": "Get Viewports from a given sheet\n\nSheet.Viewports: Viewport[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "45ea035d76674cfc82e0e08fd8f12574",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "bc02b0e6e2154d3399fe3ae4614d541f",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5ab6a196312c4802b7c6169c4bffc0a1",
+          "Name": "BoundingBox",
+          "Description": "BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Viewport.BoxOutline",
+      "Replication": "Auto",
+      "Description": "Returns the outline of the viewport on the sheet, excluding the viewport label.\n\nViewport.BoxOutline: BoundingBox"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "425ac863f96b48daa35a56187c8ad71d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "52882b94dffd4495ac569681065a683d",
+          "Name": "boundingBox",
+          "Description": "Autodesk.DesignScript.Geometry.BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fdd08176574e4418b3efb87f6176a4b3",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.BoundingBox.MinPoint",
+      "Replication": "Auto",
+      "Description": "The minimum point\n\nBoundingBox.MinPoint: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "155cd088aacb452cbd5d58dbc8c0cfa0",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f1ce2421b765491d8f0737059e8198a0",
+          "Name": "boundingBox",
+          "Description": "Autodesk.DesignScript.Geometry.BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "89e6fa38460d402398fd4d268ee0e0ab",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.BoundingBox.MaxPoint",
+      "Replication": "Auto",
+      "Description": "The maximum point\n\nBoundingBox.MaxPoint: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a3b5cc643d3147bbbf079beb4de1d01d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "644ec193fbe2468ab8abb54402277184",
+          "Name": "point",
+          "Description": "Autodesk.DesignScript.Geometry.Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5812745a6e574ca3b1931eef5ca68776",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.X",
+      "Replication": "Auto",
+      "Description": "Get the X component of a Point\n\nPoint.X: double"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "77cd8638e0e34ad3be8353d77e9d21ed",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "ddb7c8a494bb41ada0d8a4ce0e21edc1",
+          "Name": "point",
+          "Description": "Autodesk.DesignScript.Geometry.Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b861b6e90f7f4c2bbe78f09182388914",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.X",
+      "Replication": "Auto",
+      "Description": "Get the X component of a Point\n\nPoint.X: double"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "46d6430b407049769f75b8869e6e66c4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d19a76daa699459d9bf9427ad10f5edb",
+          "Name": "x",
+          "Description": "Integer or double value\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "af9c0e094c7346f2affc6851df170cfc",
+          "Name": "y",
+          "Description": "Integer or double value\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ae06410ba6984f268e4592ff36791625",
+          "Name": "number",
+          "Description": "Result of the y input subtracted from the x input",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "-@var[]..[],var[]..[]",
+      "Replication": "Auto",
+      "Description": "Returns subtraction of x minus y\n\n- (x: var[]..[], y: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "198f27baa36142539554af411619d205",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "109c22262f3a43258f21af98b59b8a6f",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "daac1d3bd2a647a5b5eab7a119f565da",
+          "Name": "length",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d7fd2682cd964ba58e12a31df44567f9",
+          "Name": "Viewport",
+          "Description": "Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Viewport.SetLabelLineLength@double",
+      "Replication": "Auto",
+      "Description": "Set LabelLineLength of Viewport\n\nViewport.SetLabelLineLength (length: double): Viewport"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "416d10f6ff4d4dde8c881eaa6f8536a8",
+      "End": "84513a913d694756a6ff3092b6ed0f06",
+      "Id": "b50d4703ecce41629bf0d0d88fdb70de",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ae2b5a53ec5b4a0884022e9812f962c9",
+      "End": "bc02b0e6e2154d3399fe3ae4614d541f",
+      "Id": "9c4811b936cc4f6a9c8d79972ed3a9fa",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ae2b5a53ec5b4a0884022e9812f962c9",
+      "End": "109c22262f3a43258f21af98b59b8a6f",
+      "Id": "da02809bbd6b4e6abca480be7ff711a6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5ab6a196312c4802b7c6169c4bffc0a1",
+      "End": "52882b94dffd4495ac569681065a683d",
+      "Id": "ea7034433d2d4842954243068ea534ae",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5ab6a196312c4802b7c6169c4bffc0a1",
+      "End": "f1ce2421b765491d8f0737059e8198a0",
+      "Id": "6c790efc9e7f46e0a218f213ec3ff925",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fdd08176574e4418b3efb87f6176a4b3",
+      "End": "ddb7c8a494bb41ada0d8a4ce0e21edc1",
+      "Id": "857aa7651a9f46f9af0e240f47750709",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "89e6fa38460d402398fd4d268ee0e0ab",
+      "End": "644ec193fbe2468ab8abb54402277184",
+      "Id": "dcf6036ba3ee48f18ccf806ad9e38b46",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5812745a6e574ca3b1931eef5ca68776",
+      "End": "d19a76daa699459d9bf9427ad10f5edb",
+      "Id": "2aa08581291c4692bbe4edc5455a3060",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b861b6e90f7f4c2bbe78f09182388914",
+      "End": "af9c0e094c7346f2affc6851df170cfc",
+      "Id": "b2edb2854aff413a845709d28267d52d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ae06410ba6984f268e4592ff36791625",
+      "End": "daac1d3bd2a647a5b5eab7a119f565da",
+      "Id": "a7f0792326b949cdb743e1c2ae96ab95",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": 5.165637969970703,
+      "EyeY": 10.774824142456055,
+      "EyeZ": 4.310678005218506,
+      "LookX": 0.874394416809082,
+      "LookY": -8.773530960083008,
+      "LookZ": -5.590611934661865,
+      "UpX": 0.10888437926769257,
+      "UpY": 0.7095710039138794,
+      "UpZ": -0.6961703896522522
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "293f9659f2654fc7ab7bf313fd294514",
+        "Name": "Sheets",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -146.4352309651461,
+        "Y": 297.02980087430194
+      },
+      {
+        "Id": "b143dceff10b4b078bed355a3ef1a2c4",
+        "Name": "Sheet.Viewports",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 149.03261342599535,
+        "Y": 297.02980087430194
+      },
+      {
+        "Id": "45ea035d76674cfc82e0e08fd8f12574",
+        "Name": "Viewport.BoxOutline",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": false,
+        "X": 457.9189521923108,
+        "Y": 543.9364713830959
+      },
+      {
+        "Id": "425ac863f96b48daa35a56187c8ad71d",
+        "Name": "BoundingBox.MinPoint",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 815.5189521923108,
+        "Y": 617.9364713830959
+      },
+      {
+        "Id": "155cd088aacb452cbd5d58dbc8c0cfa0",
+        "Name": "BoundingBox.MaxPoint",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 815.5189521923108,
+        "Y": 469.93647138309586
+      },
+      {
+        "Id": "a3b5cc643d3147bbbf079beb4de1d01d",
+        "Name": "Point.X",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1163.5189521923107,
+        "Y": 469.93647138309586
+      },
+      {
+        "Id": "77cd8638e0e34ad3be8353d77e9d21ed",
+        "Name": "Point.X",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1163.5189521923107,
+        "Y": 617.9364713830959
+      },
+      {
+        "Id": "46d6430b407049769f75b8869e6e66c4",
+        "Name": "-",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1463.5189521923107,
+        "Y": 526.936471383096
+      },
+      {
+        "Id": "198f27baa36142539554af411619d205",
+        "Name": "Viewport.SetLabelLineLength",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1760.3661805261295,
+        "Y": 288.010243163093
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "da58a5da12eb47228bcb5dddc767a86a",
+        "Title": "Calculate Length",
+        "DescriptionText": "Calculate ideal viewport line length based on extents",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "45ea035d76674cfc82e0e08fd8f12574",
+          "425ac863f96b48daa35a56187c8ad71d",
+          "155cd088aacb452cbd5d58dbc8c0cfa0",
+          "a3b5cc643d3147bbbf079beb4de1d01d",
+          "77cd8638e0e34ad3be8353d77e9d21ed",
+          "46d6430b407049769f75b8869e6e66c4"
+        ],
+        "HasNestedGroups": false,
+        "Left": 447.9189521923108,
+        "Top": 397.5364713830959,
+        "Width": 1208.0,
+        "Height": 352.19999999999993,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 469.93647138309586,
+        "InitialHeight": 309.79999999999995,
+        "TextblockHeight": 62.4,
+        "Background": "#FFB9F9E1"
+      }
+    ],
+    "X": -1812.2982899356175,
+    "Y": -718.681120416846,
+    "Zoom": 2.7795386154778505
+  }
+}
