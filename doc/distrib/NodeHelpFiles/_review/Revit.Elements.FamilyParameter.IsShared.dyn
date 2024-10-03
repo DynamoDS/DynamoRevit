@@ -1,0 +1,416 @@
+{
+  "Uuid": "6a221eeb-4ff6-4dcd-8b96-7805b2d187b6",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.FamilyParameter.IsShared",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "f115ac2302664ca48c17c65c92069001",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cd1ef1aa87c146af8752b68f369f6c3c",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b1dfb5b21fb04ea08bc916dd5d03d56d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "07e99673416742a7b4bad176ac975382",
+          "Name": "document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0696e4ec4ed5495d9555868786ed026b",
+          "Name": "FamilyDocument",
+          "Description": "FamilyDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.FamilyDocument.ByDocument@Revit.Application.Document",
+      "Replication": "Auto",
+      "Description": "Get FamilyDocument from a Document if this document is a Family Document.\n\nFamilyDocument.ByDocument (document: Document): FamilyDocument"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "65107dd39fce46eda3b3073ccc763970",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e08762e5771c48fd86c817d74a70d058",
+          "Name": "familyDocument",
+          "Description": "Revit.Application.FamilyDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1cf18953a1324e13837e322fe08165e1",
+          "Name": "FamilyParameter[]",
+          "Description": "FamilyParameter[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.FamilyDocument.Parameters",
+      "Replication": "Auto",
+      "Description": "All family parameters in this family.\n\nFamilyDocument.Parameters: FamilyParameter[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "0a10538220f046498c614ade39bbb18c",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "c342243ba4744a2f86a006803e0840f7",
+          "Name": "familyParameter",
+          "Description": "Revit.Elements.FamilyParameter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dab5788ffd1b4b3a9cea01ff4c42008c",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FamilyParameter.Name",
+      "Replication": "Auto",
+      "Description": "The name of the parameter.\n\nFamilyParameter.Name: string"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "Id": "a79ae0b4ec684ed8803deaf19aa52684",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "17079fa0aa6546289b789f1a996af952",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "74bfcc2f7a484e18b282985a846ffe9d",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a7e7e026ed6141cc9c7ea347cfa8b1b3",
+          "Name": "list",
+          "Description": "A list (type: var[]..[])",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list from the given inputs"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "11f44e748b484f8f8a63a0007330f505",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "3f454119b18f4ff8a3b87156a790e617",
+          "Name": "lists",
+          "Description": "List of lists to be transposed\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a371eb88089b4a6f9af6b83c7b1a9b61",
+          "Name": "lists",
+          "Description": "List of transposed lists",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.Transpose@var[]..[]",
+      "Replication": "Auto",
+      "Description": "Swaps rows and columns in a list of lists. If there are some rows that are shorter than others, null values are inserted as place holders in the resultant array such that it is always rectangular.\n\nList.Transpose (lists: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "2d296ac9101c4fdeac85a6b6b5720982",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "0d4e593c3d9e46e8b5eef4889da41b8a",
+          "Name": "familyParameter",
+          "Description": "Revit.Elements.FamilyParameter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "84e4df4e2446479b8bd4edcb3cdbc94d",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FamilyParameter.IsShared",
+      "Replication": "Auto",
+      "Description": "Check if the Parameter is shared\n\nFamilyParameter.IsShared: bool"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "cd1ef1aa87c146af8752b68f369f6c3c",
+      "End": "07e99673416742a7b4bad176ac975382",
+      "Id": "b7f6f5f676a44613bd8c0d04905396a0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0696e4ec4ed5495d9555868786ed026b",
+      "End": "e08762e5771c48fd86c817d74a70d058",
+      "Id": "81a81e560af342c9935436533e9abbb9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1cf18953a1324e13837e322fe08165e1",
+      "End": "c342243ba4744a2f86a006803e0840f7",
+      "Id": "bfa8f5f9adef462aa2e59f98eaf8e9ad",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1cf18953a1324e13837e322fe08165e1",
+      "End": "0d4e593c3d9e46e8b5eef4889da41b8a",
+      "Id": "52c2c75460f9404394bb6c39a4054e98",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dab5788ffd1b4b3a9cea01ff4c42008c",
+      "End": "17079fa0aa6546289b789f1a996af952",
+      "Id": "4424a8cf5cc0458a85b632b47440ac24",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a7e7e026ed6141cc9c7ea347cfa8b1b3",
+      "End": "3f454119b18f4ff8a3b87156a790e617",
+      "Id": "3978eb411fe14a58866e26485e987742",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "84e4df4e2446479b8bd4edcb3cdbc94d",
+      "End": "74bfcc2f7a484e18b282985a846ffe9d",
+      "Id": "11e83810d6034242937558c5d2a474e4",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "f115ac2302664ca48c17c65c92069001",
+        "Name": "Document.Current",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 285.93554206461306,
+        "Y": 285.4197010207364
+      },
+      {
+        "Id": "b1dfb5b21fb04ea08bc916dd5d03d56d",
+        "Name": "FamilyDocument.ByDocument",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 594.7355420646131,
+        "Y": 285.4197010207364
+      },
+      {
+        "Id": "65107dd39fce46eda3b3073ccc763970",
+        "Name": "FamilyDocument.Parameters",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 992.3355420646132,
+        "Y": 285.4197010207364
+      },
+      {
+        "Id": "0a10538220f046498c614ade39bbb18c",
+        "Name": "FamilyParameter.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1423.5355420646133,
+        "Y": 286.36352177505756
+      },
+      {
+        "Id": "a79ae0b4ec684ed8803deaf19aa52684",
+        "Name": "List Create",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1799.546095078056,
+        "Y": 286.03393427403796
+      },
+      {
+        "Id": "11f44e748b484f8f8a63a0007330f505",
+        "Name": "List.Transpose",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2030.3351315574282,
+        "Y": 284.9112766804527
+      },
+      {
+        "Id": "2d296ac9101c4fdeac85a6b6b5720982",
+        "Name": "FamilyParameter.IsShared",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1423.5355420646133,
+        "Y": 445.2765094383328
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "4e6e76e42a0b43ada5f97d0e42476a98",
+        "Title": "Combine into Sublists",
+        "DescriptionText": "Combine the parameter name and the read only state to sublists",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "a79ae0b4ec684ed8803deaf19aa52684",
+          "11f44e748b484f8f8a63a0007330f505"
+        ],
+        "HasNestedGroups": false,
+        "Left": 1789.546095078056,
+        "Top": 212.5112766804527,
+        "Width": 431.58903647937245,
+        "Height": 235.72265759358524,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 284.9112766804527,
+        "InitialHeight": 192.2,
+        "TextblockHeight": 62.4,
+        "Background": "#FFA4E1FF"
+      }
+    ],
+    "X": -648.3296285261487,
+    "Y": -8.59656069367918,
+    "Zoom": 1.0120421414445722
+  }
+}
