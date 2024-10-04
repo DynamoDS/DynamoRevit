@@ -1,3 +1,6 @@
+## 0.3.30
+* Update Dynamo Core to 2.16.4.10057
+
 ## 0.3.29
 * Build D4R against Dynamo Core 2.16.2
 
