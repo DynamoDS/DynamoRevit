@@ -58,6 +58,36 @@
       "FunctionSignature": "Revit.Application.Document.GetLinkInstances",
       "Replication": "Auto",
       "Description": "Retrieves all link instances in the current Revit document\n\nDocument.GetLinkInstances ( ): LinkInstance[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "08733d4213524bbb8f208b60813f663d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "c91bffa34db143dbbfd8f749313d3b7b",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a3445d5c11574727b8642c18c81d275e",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
     }
   ],
   "Connectors": [
@@ -65,6 +95,12 @@
       "Start": "6796c8aee9474e68af9f29aa38765adf",
       "End": "0e18f42f733e43a6a22b7d94a1d2a396",
       "Id": "0770ac6115fc4ee386baba0fbe09ff09",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2c35f9899dc5452b9747f3673bfc859f",
+      "End": "c91bffa34db143dbbfd8f749313d3b7b",
+      "Id": "2682a55e9cb14eeca721ae8f135a217b",
       "IsHidden": "False"
     }
   ],
@@ -136,12 +172,22 @@
         "Excluded": false,
         "ShowGeometry": true,
         "X": 596.4000000000001,
-        "Y": 246.0
+        "Y": 245.2
+      },
+      {
+        "Id": "08733d4213524bbb8f208b60813f663d",
+        "Name": "Element.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1003.4968698474268,
+        "Y": 245.2
       }
     ],
     "Annotations": [],
-    "X": -425.4472164296826,
-    "Y": -293.02196120496114,
-    "Zoom": 1.8568800912710801
+    "X": -274.4383710521396,
+    "Y": -172.45736566563517,
+    "Zoom": 1.3005422041356618
   }
 }
