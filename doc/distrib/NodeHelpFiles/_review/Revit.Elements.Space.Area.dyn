@@ -1,0 +1,193 @@
+{
+  "Uuid": "2eb00891-91ee-45bb-82bd-ccdad772d8b1",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Space.Area",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b604ded6926a4df6acc1914669481c7f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "ec22d0d2f2fa42719841c0ac72bbfdba",
+          "Name": "space",
+          "Description": "Revit.Elements.Space",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7fae1c7e7b44456382ff54eb8a95f504",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Space.Area",
+      "Replication": "Auto",
+      "Description": "Get area of the space.\n\nSpace.Area: double"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 547,
+      "SelectedString": "OST_MEPSpaces",
+      "Id": "3d4264a68a6a4626b4d5fb2c4106b5c6",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1c303778b90d42a98ead3c1ec50113c7",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "f93b56e58da540c68dfe648aab4e7a1d",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "d4a4b65c37644ba198a13f24a56497f1",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a9626e382edc4e13b87c09185702e515",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1c303778b90d42a98ead3c1ec50113c7",
+      "End": "d4a4b65c37644ba198a13f24a56497f1",
+      "Id": "aa4007a713dd4786bdb417e131fecd3b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a9626e382edc4e13b87c09185702e515",
+      "End": "ec22d0d2f2fa42719841c0ac72bbfdba",
+      "Id": "4cdc49c23842477286298b6cd2644637",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "b604ded6926a4df6acc1914669481c7f",
+        "Name": "Space.Area",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 915.0000000000001,
+        "Y": 402.40000000000003
+      },
+      {
+        "Id": "3d4264a68a6a4626b4d5fb2c4106b5c6",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 222.20000000000016,
+        "Y": 402.40000000000003
+      },
+      {
+        "Id": "f93b56e58da540c68dfe648aab4e7a1d",
+        "Name": "All Elements of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 558.2000000000002,
+        "Y": 402.40000000000003
+      }
+    ],
+    "Annotations": [],
+    "X": -83.44000000000017,
+    "Y": -155.264,
+    "Zoom": 1.1575
+  }
+}
