@@ -2,7 +2,7 @@
   "Uuid": "463cc73e-0181-45b4-80ec-23fa405e8bba",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Revit.Elements.Views.View.DuplicateView",
+  "Name": "DSRevitNodesUI.ViewDuplicateOptions",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -223,8 +223,8 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 803.7062634989198,
-        "Y": 307.18272138228946
+        "X": 803.188671973195,
+        "Y": 306.1475383308402
       },
       {
         "Id": "76f139d7d5f24565b712e0f5efeb900c",
@@ -258,8 +258,8 @@
       }
     ],
     "Annotations": [],
-    "X": -223.02805325053987,
-    "Y": -94.61133922246228,
-    "Zoom": 1.33823125
+    "X": -176.50027564636503,
+    "Y": -87.15792635172801,
+    "Zoom": 1.3076413563671876
   }
 }
