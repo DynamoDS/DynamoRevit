@@ -1,0 +1,284 @@
+{
+  "Uuid": "463cc73e-0181-45b4-80ec-23fa405e8bba",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.View.SetCropBoxVisible",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 530,
+      "SelectedString": "OST_Sheets",
+      "Id": "490e81d8b7e54e19bb592dae2003f0d4",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "161011441e964a9a9bcbc25ccf75c6c6",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "a4d96084afa647c1840e48b88bbeb66e",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "6fa45224277b41719426cb5d5c3a9272",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f958a71a74264291b17a649bc126c91f",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a9698cd2400945afb69a232e5b3cffe2",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "fc81b9c298044182846b6dfcfd813c1f",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e7b62db50e9e4f928cd06f4e0bb70f19",
+          "Name": "View[]",
+          "Description": "View[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.Sheet.Views",
+      "Replication": "Auto",
+      "Description": "Get the Views on a Sheet\n\nSheet.Views: View[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "5b01829b4cf646a5bb3328b0fc12abe8",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "6df3f0b7f2424b6dbeede7299ded78ce",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "085686bc522a4b56b2691ef44cdda07e",
+          "Name": "isVisible",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3bb0d2783c564ba694ed88eccb15ed34",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View.SetCropBoxVisible@bool",
+      "Replication": "Auto",
+      "Description": "Set CropBox visible status.\n\nView.SetCropBoxVisible (isVisible: bool): View"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "184312b5a50249bba76163b891f180e8",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "91ae37f6b73049afaee47389b0e7494d",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "161011441e964a9a9bcbc25ccf75c6c6",
+      "End": "6fa45224277b41719426cb5d5c3a9272",
+      "Id": "09a013833a14425aa0d45c967b9dbee2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f958a71a74264291b17a649bc126c91f",
+      "End": "fc81b9c298044182846b6dfcfd813c1f",
+      "Id": "c4c9897b16f14cef89e2d2083682049c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e7b62db50e9e4f928cd06f4e0bb70f19",
+      "End": "6df3f0b7f2424b6dbeede7299ded78ce",
+      "Id": "3c0012095a854957bdae2228b9a6d7a3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "91ae37f6b73049afaee47389b0e7494d",
+      "End": "085686bc522a4b56b2691ef44cdda07e",
+      "Id": "8d990a3a397d4566ba00214b1609e5a8",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "490e81d8b7e54e19bb592dae2003f0d4",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 326.99703264094944,
+        "Y": 170.08783382789304
+      },
+      {
+        "Id": "a4d96084afa647c1840e48b88bbeb66e",
+        "Name": "All Elements of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 662.9970326409494,
+        "Y": 170.08783382789304
+      },
+      {
+        "Id": "a9698cd2400945afb69a232e5b3cffe2",
+        "Name": "Sheet.Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1019.7970326409494,
+        "Y": 170.08783382789304
+      },
+      {
+        "Id": "5b01829b4cf646a5bb3328b0fc12abe8",
+        "Name": "View.SetCropBoxVisible",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1639.4979228486648,
+        "Y": 170.11454005934698
+      },
+      {
+        "Id": "184312b5a50249bba76163b891f180e8",
+        "Name": "Boolean",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1337.8979228486646,
+        "Y": 261.114540059347
+      }
+    ],
+    "Annotations": [],
+    "X": -1379.8346858070774,
+    "Y": -5.215706741525565,
+    "Zoom": 2.01045961824633
+  }
+}
