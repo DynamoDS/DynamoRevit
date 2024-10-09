@@ -1,0 +1,239 @@
+{
+  "Uuid": "ee61484e-5c8a-4d9b-99c8-bd0580895762",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.FloorType.ByName",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "f79905a7eb5b44ed893f6f65106d3c1c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "9c87bbfafeb740179104c2094e65336a",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "65cd4d055d9f48898667bf00927c1adb",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 245,
+      "SelectedString": "OST_Floors",
+      "Id": "2254b7d0673141c8bedab889df42c839",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5adde35a4df24371a47e4756848d0d03",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "be83a92339c64665857b0c10b303cb8e",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "50176d88b8884b1db81991d00c3fa3c1",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "62ba806fce9a46b7adbe9f1e8a21be85",
+          "Name": "FloorType",
+          "Description": "FloorType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FloorType.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a FloorType from the document given\n\nFloorType.ByName (name: string): FloorType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3e24c276dc054628b98053651fc67280",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "250ed5a2138049e7b1341b42612ea222",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e859cbed57fd4191a26eef1ee8be9626",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "65cd4d055d9f48898667bf00927c1adb",
+      "End": "250ed5a2138049e7b1341b42612ea222",
+      "Id": "f72d90082acc473a99b6d82561cbab44",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5adde35a4df24371a47e4756848d0d03",
+      "End": "9c87bbfafeb740179104c2094e65336a",
+      "Id": "a38e78c5595e494ea9ba89c1c31f4428",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e859cbed57fd4191a26eef1ee8be9626",
+      "End": "50176d88b8884b1db81991d00c3fa3c1",
+      "Id": "1674985f5ddd47e4bd83629c6ad501d2",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "f79905a7eb5b44ed893f6f65106d3c1c",
+        "Name": "All Elements of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 468.4,
+        "Y": 290.79999999999995
+      },
+      {
+        "Id": "2254b7d0673141c8bedab889df42c839",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 132.39999999999998,
+        "Y": 290.79999999999995
+      },
+      {
+        "Id": "be83a92339c64665857b0c10b303cb8e",
+        "Name": "FloorType.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1162.1957245962471,
+        "Y": 290.79999999999995
+      },
+      {
+        "Id": "3e24c276dc054628b98053651fc67280",
+        "Name": "Element.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 837.6,
+        "Y": 290.79999999999995
+      }
+    ],
+    "Annotations": [],
+    "X": -151.38942397816857,
+    "Y": -167.00949196823933,
+    "Zoom": 1.3005422041356625
+  }
+}
