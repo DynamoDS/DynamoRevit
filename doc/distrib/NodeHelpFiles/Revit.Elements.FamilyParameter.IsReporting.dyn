@@ -2,7 +2,7 @@
   "Uuid": "6a221eeb-4ff6-4dcd-8b96-7805b2d187b6",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Revit.Elements.FamilyParameter.Name",
+  "Name": "Revit.Elements.FamilyParameter.IsReporting",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -65,7 +65,7 @@
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "e08762e5771c48fd86c817d74a70d058",
+          "Id": "c573e71c517c4fcea9da3ba5881484d7",
           "Name": "familyDocument",
           "Description": "Revit.Application.FamilyDocument",
           "UsingDefaultValue": false,
@@ -76,7 +76,7 @@
       ],
       "Outputs": [
         {
-          "Id": "1cf18953a1324e13837e322fe08165e1",
+          "Id": "8a3e5d6f44e74bc6aab412d05744bc74",
           "Name": "FamilyParameter[]",
           "Description": "FamilyParameter[]",
           "UsingDefaultValue": false,
@@ -91,11 +91,11 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "3ec134a95c2b4a4b9a5651721148d68f",
+      "Id": "578fd3ea605d4b129c0aded7182144fe",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "29a6512974e847a8aa3f7b11b2f11d42",
+          "Id": "7b6bb6aa13264dcdbe018b72ecd1d012",
           "Name": "familyParameter",
           "Description": "Revit.Elements.FamilyParameter",
           "UsingDefaultValue": false,
@@ -106,18 +106,18 @@
       ],
       "Outputs": [
         {
-          "Id": "2ff8201295f34c72955643ee3572a387",
-          "Name": "string",
-          "Description": "string",
+          "Id": "9945b237cfb944de90fa965aa8574c56",
+          "Name": "bool",
+          "Description": "bool",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "Revit.Elements.FamilyParameter.Name",
+      "FunctionSignature": "Revit.Elements.FamilyParameter.IsReporting",
       "Replication": "Auto",
-      "Description": "The name of the parameter.\n\nFamilyParameter.Name: string"
+      "Description": "Indicates if the parameter is a reporting parameter.\n\nFamilyParameter.IsReporting: bool"
     }
   ],
   "Connectors": [
@@ -129,14 +129,14 @@
     },
     {
       "Start": "0696e4ec4ed5495d9555868786ed026b",
-      "End": "e08762e5771c48fd86c817d74a70d058",
+      "End": "c573e71c517c4fcea9da3ba5881484d7",
       "Id": "81a81e560af342c9935436533e9abbb9",
       "IsHidden": "False"
     },
     {
-      "Start": "1cf18953a1324e13837e322fe08165e1",
-      "End": "29a6512974e847a8aa3f7b11b2f11d42",
-      "Id": "bc9ccd381cc843698dac09295ad51078",
+      "Start": "8a3e5d6f44e74bc6aab412d05744bc74",
+      "End": "7b6bb6aa13264dcdbe018b72ecd1d012",
+      "Id": "a0c15019bd82485fbac17c1c67a6f234",
       "IsHidden": "False"
     }
   ],
@@ -217,12 +217,12 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 992.3355420646132,
+        "X": 992.9228777717084,
         "Y": 285.4197010207364
       },
       {
-        "Id": "3ec134a95c2b4a4b9a5651721148d68f",
-        "Name": "FamilyParameter.Name",
+        "Id": "578fd3ea605d4b129c0aded7182144fe",
+        "Name": "FamilyParameter.IsReporting",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
@@ -232,8 +232,8 @@
       }
     ],
     "Annotations": [],
-    "X": -315.04312409219597,
-    "Y": 43.711331153965375,
-    "Zoom": 0.8785307573780549
+    "X": -613.9809836516783,
+    "Y": 2.3568584297154302,
+    "Zoom": 1.2416500433291167
   }
 }

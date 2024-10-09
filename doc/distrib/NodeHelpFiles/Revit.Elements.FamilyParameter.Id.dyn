@@ -2,7 +2,7 @@
   "Uuid": "6a221eeb-4ff6-4dcd-8b96-7805b2d187b6",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Revit.Elements.FamilyParameter.Name",
+  "Name": "Revit.Elements.FamilyParameter.Id",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -91,11 +91,11 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "3ec134a95c2b4a4b9a5651721148d68f",
+      "Id": "6695922f9f8a4f65977ee65dc8338f25",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "29a6512974e847a8aa3f7b11b2f11d42",
+          "Id": "b646339f75c74019b4f618a57fa1de04",
           "Name": "familyParameter",
           "Description": "Revit.Elements.FamilyParameter",
           "UsingDefaultValue": false,
@@ -106,18 +106,18 @@
       ],
       "Outputs": [
         {
-          "Id": "2ff8201295f34c72955643ee3572a387",
-          "Name": "string",
-          "Description": "string",
+          "Id": "5320c9c0462a48bf892a7924f0ff68a8",
+          "Name": "int",
+          "Description": "int",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "Revit.Elements.FamilyParameter.Name",
+      "FunctionSignature": "Revit.Elements.FamilyParameter.Id",
       "Replication": "Auto",
-      "Description": "The name of the parameter.\n\nFamilyParameter.Name: string"
+      "Description": "Get the parameter's element Id\n\nFamilyParameter.Id: int"
     }
   ],
   "Connectors": [
@@ -135,8 +135,8 @@
     },
     {
       "Start": "1cf18953a1324e13837e322fe08165e1",
-      "End": "29a6512974e847a8aa3f7b11b2f11d42",
-      "Id": "bc9ccd381cc843698dac09295ad51078",
+      "End": "b646339f75c74019b4f618a57fa1de04",
+      "Id": "d37aa96a99574900af0aa377aaa54a38",
       "IsHidden": "False"
     }
   ],
@@ -221,19 +221,19 @@
         "Y": 285.4197010207364
       },
       {
-        "Id": "3ec134a95c2b4a4b9a5651721148d68f",
-        "Name": "FamilyParameter.Name",
+        "Id": "6695922f9f8a4f65977ee65dc8338f25",
+        "Name": "FamilyParameter.Id",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1423.0371190496594,
+        "X": 1429.1826060318754,
         "Y": 285.4197010207364
       }
     ],
     "Annotations": [],
-    "X": -315.04312409219597,
-    "Y": 43.711331153965375,
-    "Zoom": 0.8785307573780549
+    "X": -355.6343812224968,
+    "Y": 12.854391180917219,
+    "Zoom": 0.9210916844355568
   }
 }
