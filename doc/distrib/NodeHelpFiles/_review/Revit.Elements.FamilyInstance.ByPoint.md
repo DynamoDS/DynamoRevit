@@ -6,3 +6,4 @@ ___
 ## Example File
 
 ![FamilyInstance.ByPoint](./Revit.Elements.FamilyInstance.ByPoint_img.jpg)
+![FamilyInstance.ByPoint](./Revit.Elements.FamilyInstance.ByPoint_img.gif)
