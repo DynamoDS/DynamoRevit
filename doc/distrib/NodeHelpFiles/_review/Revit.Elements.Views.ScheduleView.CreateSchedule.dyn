@@ -1,0 +1,246 @@
+{
+  "Uuid": "ee61484e-5c8a-4d9b-99c8-bd0580895762",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.ScheduleView.CreateSchedule",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ScheduleTypes, DSRevitNodesUI",
+      "SelectedIndex": 2,
+      "SelectedString": "RegularSchedule",
+      "Id": "680166ec11e840229dd689fadbd2937d",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "702451820e1e4967b4361c3b17528eda",
+          "Name": "ScheduleType",
+          "Description": "The selected ScheduleType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a Schedule Type."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "25ddf3646522445fa3ed98c45d10ea05",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "7743102db4d94401af38b44f96b49f29",
+          "Name": "category",
+          "Description": "Category that Schedule will be associated with.\n\nCategory",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fe3e8917f717429389197b91dae104cc",
+          "Name": "name",
+          "Description": "Name of the Schedule View.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e3c55cdfdf504780ae5760fa8b5abc90",
+          "Name": "scheduleType",
+          "Description": "Type of Schedule View to be created. Ex. Key Schedule.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d204aaf6080b4e079294fc1d5be9bdda",
+          "Name": "scheduleView",
+          "Description": "Schedule View.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.ScheduleView.CreateSchedule@Revit.Elements.Category,string,string",
+      "Replication": "Auto",
+      "Description": "Create Schedule by Category, Type and Name.\n\nScheduleView.CreateSchedule (category: Category, name: string, scheduleType: string): ScheduleView"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 178,
+      "SelectedString": "OST_Doors",
+      "Id": "9896a2475de845df822138ec99657106",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "400a715ed98344d687191cc5944704e3",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "c06314db0b9a469987e4881e3bd7c44e",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3e33977effb74004b4f0bc0f48b482f6",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Working Door Schedule"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "702451820e1e4967b4361c3b17528eda",
+      "End": "e3c55cdfdf504780ae5760fa8b5abc90",
+      "Id": "c72a4b6126094175a5c6fcab992919bd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "400a715ed98344d687191cc5944704e3",
+      "End": "7743102db4d94401af38b44f96b49f29",
+      "Id": "91c792abbffd41a896ab1bef1bb97285",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3e33977effb74004b4f0bc0f48b482f6",
+      "End": "fe3e8917f717429389197b91dae104cc",
+      "Id": "a2435089a2b9435cad568bc90d7c7d36",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "25ddf364-6522-445f-a3ed-98c45d10ea05",
+      "Binding": {
+        "CreateSchedule_InClassDecl-1_InFunctionScope-1_Instance0_25ddf364-6522-445f-a3ed-98c45d10ea05": "H4sIAAAAAAAACh3LKw6AQAwFwLs8TRPS/RaNQSMpYjcFgkGQdYS7kzB+lgdWWsGARzG3+7yOaVQMCich5WSeNpadvBRPUs0oRpa6Oy7BNup7zqm6rOgU09X+yzGwZP/iXT8pBGeRXwAAAA=="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "680166ec11e840229dd689fadbd2937d",
+        "Name": "Schedule Type",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 335.19999999999993,
+        "Y": 401.59999999999997
+      },
+      {
+        "Id": "25ddf3646522445fa3ed98c45d10ea05",
+        "Name": "ScheduleView.CreateSchedule",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 712.0000000000001,
+        "Y": 237.59999999999997
+      },
+      {
+        "Id": "9896a2475de845df822138ec99657106",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 368.79999999999995,
+        "Y": 140.7999999999999
+      },
+      {
+        "Id": "c06314db0b9a469987e4881e3bd7c44e",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 363.99999999999994,
+        "Y": 271.19999999999993
+      }
+    ],
+    "Annotations": [],
+    "X": -442.68122178085616,
+    "Y": -179.77086669735075,
+    "Zoom": 1.7835993623828124
+  }
+}
