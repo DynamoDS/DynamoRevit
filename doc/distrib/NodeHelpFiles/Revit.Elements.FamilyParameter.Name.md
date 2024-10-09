@@ -1,7 +1,7 @@
 ## In Depth
-`FamilyParameter.Name` obtains the user visible name from the given family parameter element.
+`FamilyParameter.Name` returns the user-visible name of the given parameter.
 
-In the example below, the current Revit document is converted to a family document and all the parameters are obtained. `FamilyParameter.Name` is used to obtain the name from all the parameters in the family.
+In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the name.
 ___
 ## Example File
 
