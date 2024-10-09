@@ -1,7 +1,7 @@
 ## In Depth
 `Detail Level` allows for the selection of a view detail level for use in graphic settings.
 
-Available detail levels available include:
+Detail levels available include:
 - Coarse
 - Fine
 - Medium
