@@ -91,54 +91,6 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "fd27234a20ae4f64ab6d3c1ad738b236",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "0a43b1ec24134116a51c3cae1462eb0f",
-          "Name": "element",
-          "Description": "Revit.Elements.Element",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "dd5a5fae1cc048eba16cbe341ee9437a",
-          "Name": "overrides",
-          "Description": "Override Graphics Settings.\n\nOverrideGraphicSettings",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "d0bcc18f223f49daabd2b987fcd5107d",
-          "Name": "hide",
-          "Description": "If True given Element will be hidden.\n\nbool\nDefault value : false",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "81b60dbb03c64d2698eada4a3cffbedc",
-          "Name": "Element",
-          "Description": "Element",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "Revit.Elements.Element.OverrideInView@Revit.Filter.OverrideGraphicSettings,bool",
-      "Replication": "Auto",
-      "Description": "Override Elements Graphics Settings in Active View.\n\nElement.OverrideInView (overrides: OverrideGraphicSettings, hide: bool = false): Element"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "Id": "07c4fae88f514ccebe2293df039ae6fb",
       "NodeType": "FunctionNode",
       "Inputs": [
@@ -269,16 +221,6 @@
         "Y": 259.6613583638655
       },
       {
-        "Id": "fd27234a20ae4f64ab6d3c1ad738b236",
-        "Name": "Element.OverrideInView",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 4007.4125439999925,
-        "Y": 681.1846960375832
-      },
-      {
         "Id": "07c4fae88f514ccebe2293df039ae6fb",
         "Name": "Element.OverridesInView",
         "IsSetAsInput": false,
@@ -290,8 +232,8 @@
       }
     ],
     "Annotations": [],
-    "X": -205.5569468468318,
-    "Y": 43.80414403531401,
-    "Zoom": 1.0365353738494159
+    "X": -484.1204989901174,
+    "Y": -34.306697341901895,
+    "Zoom": 1.457047610805021
   }
 }
