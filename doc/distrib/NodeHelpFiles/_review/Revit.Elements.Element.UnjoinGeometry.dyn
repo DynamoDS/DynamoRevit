@@ -1,0 +1,221 @@
+{
+  "Uuid": "463cc73e-0181-45b4-80ec-23fa405e8bba",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Element.UnjoinGeometry",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "aa28ddb4f0b84710b6b7fef7cd5e132e",
+      "Name": "Select Model Element By Category",
+      "Type": "selection",
+      "Type2": "hostSelection",
+      "Value": "30b382b6-087b-407b-9fe7-257a49470bb8-0012ba28",
+      "Description": "Select a model element from the Revit document filtered by Category."
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.ComboNodes.DSModelElementByCategorySelection, DSRevitNodesUI",
+      "SelectedIndex": 245,
+      "SelectedString": "OST_Floors",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "30b382b6-087b-407b-9fe7-257a49470bb8-0012ba28"
+      ],
+      "Id": "aa28ddb4f0b84710b6b7fef7cd5e132e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d7f048fb17e94766991e127e199fc61a",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the Revit document filtered by Category."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "049dc7c6a53d49f087a717d91a1dbf4b",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "8ae3ea65da2140c792d6b5d73e498e3a",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e9cafa86480d4ed9820d75f82e8bf19c",
+          "Name": "Element[]",
+          "Description": "All elements whose geometry is joined to the given element.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.GetJoinedElements",
+      "Replication": "Auto",
+      "Description": "Finds the elements whose geometry is joined with the given element.\n\nElement.GetJoinedElements ( ): Element[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "990ac584052d49928495d4a456fc691b",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a2b7aa7715974b5b91e55fa57dbf2725",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "533c4198a9d54d6da5130436bde50bf4",
+          "Name": "otherElement",
+          "Description": "Other element to unjoin from the element.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "510fbbf234e646119d36018ed093cbe8",
+          "Name": "Element[]",
+          "Description": "The input elements with their geometry unjoined.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.UnjoinGeometry@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "Unjoin the geometry of two Elements.\n\nElement.UnjoinGeometry (otherElement: Element): Element[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d7f048fb17e94766991e127e199fc61a",
+      "End": "8ae3ea65da2140c792d6b5d73e498e3a",
+      "Id": "f08ff64edcd645cfa7e6fe67feb053a7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d7f048fb17e94766991e127e199fc61a",
+      "End": "a2b7aa7715974b5b91e55fa57dbf2725",
+      "Id": "92b2f8f56f9f4d6294514210c2093f9e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e9cafa86480d4ed9820d75f82e8bf19c",
+      "End": "533c4198a9d54d6da5130436bde50bf4",
+      "Id": "732cae885a864baa8673b48c16c6e67c",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "aa28ddb4f0b84710b6b7fef7cd5e132e",
+        "Name": "Select Model Element By Category",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 421.94977523593457,
+        "Y": -331.2934868849949
+      },
+      {
+        "Id": "049dc7c6a53d49f087a717d91a1dbf4b",
+        "Name": "Element.GetJoinedElements",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 915.6113426914742,
+        "Y": -226.26045269232037
+      },
+      {
+        "Id": "990ac584052d49928495d4a456fc691b",
+        "Name": "Element.UnjoinGeometry",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1298.0729101470138,
+        "Y": -331.2934868849949
+      }
+    ],
+    "Annotations": [],
+    "X": -102.36839478373474,
+    "Y": 405.9633724866803,
+    "Zoom": 0.8378316467424073
+  }
+}
