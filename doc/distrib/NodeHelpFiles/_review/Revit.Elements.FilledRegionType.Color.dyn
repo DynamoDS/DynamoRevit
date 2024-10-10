@@ -1,0 +1,193 @@
+{
+  "Uuid": "75d6fda1-d7b8-4808-a6dd-3966745dc8d8",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.FilledRegionType.Color",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1b9ed9099e184645b3045644d13a7ac9",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f44e059b2a3f40d9bc9a47f376d55fe8",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "11627b5bc32d4cdd8ee02d76ba583f6d",
+          "Name": "FilledRegionType",
+          "Description": "FilledRegionType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FilledRegionType.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a FilledRegionType from the current document by name\n\nFilledRegionType.ByName (name: string): FilledRegionType"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "7b84025f42ee453d85f4b59e41074a84",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "77c7325c59e04e688677dc69507a4b08",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Diagonal Down"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "4bf0110b4af34822aecc523ee771f3d9",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "42d5945cd5ca4418be098a4926216b53",
+          "Name": "filledRegionType",
+          "Description": "Revit.Elements.FilledRegionType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "18cd33584b2345859db556a8a8541767",
+          "Name": "Color",
+          "Description": "Color",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FilledRegionType.Color",
+      "Replication": "Auto",
+      "Description": "Get Color\n\nFilledRegionType.Color: Color"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "11627b5bc32d4cdd8ee02d76ba583f6d",
+      "End": "42d5945cd5ca4418be098a4926216b53",
+      "Id": "813792b384c94e3488be181174eb26f3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "77c7325c59e04e688677dc69507a4b08",
+      "End": "f44e059b2a3f40d9bc9a47f376d55fe8",
+      "Id": "3a9826ad93da4ba4b0bded467ea98fcc",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "1b9ed9099e184645b3045644d13a7ac9",
+        "Name": "FilledRegionType.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 593.4075171444192,
+        "Y": 579.4837959655923
+      },
+      {
+        "Id": "7b84025f42ee453d85f4b59e41074a84",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 315.0075171444192,
+        "Y": 579.4837959655923
+      },
+      {
+        "Id": "4bf0110b4af34822aecc523ee771f3d9",
+        "Name": "FilledRegionType.Color",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 961.4075171444192,
+        "Y": 579.4837959655923
+      }
+    ],
+    "Annotations": [],
+    "X": -477.2241962033736,
+    "Y": -668.0182630380319,
+    "Zoom": 1.5105184564313479
+  }
+}

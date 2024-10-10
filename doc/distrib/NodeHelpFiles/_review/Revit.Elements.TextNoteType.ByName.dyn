@@ -1,0 +1,147 @@
+{
+  "Uuid": "75d6fda1-d7b8-4808-a6dd-3966745dc8d8",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.TextNoteType.ByName",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1fbac61ec9b8455888c5602dc07ffca1",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "456e4e14828d40358bbf335c95dced4e",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e8c75f46d54a491db3aa9b6257b5d7ab",
+          "Name": "TextNoteType",
+          "Description": "TextNoteType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.TextNoteType.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a ModelTextType from the current document by name\n\nTextNoteType.ByName (name: string): TextNoteType"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "4b7a08f6eead437f9883d2a4a79722ee",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ac1456ede9e742e4bddabe6ef051593b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Working Notes"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ac1456ede9e742e4bddabe6ef051593b",
+      "End": "456e4e14828d40358bbf335c95dced4e",
+      "Id": "0a066074c388460590d19de24e1cc41c",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "1fbac61ec9b8455888c5602dc07ffca1",
+        "Name": "TextNoteType.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 648.9829042575085,
+        "Y": 49.67506277615243
+      },
+      {
+        "Id": "4b7a08f6eead437f9883d2a4a79722ee",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 425.0276746834445,
+        "Y": 48.92077824367735
+      }
+    ],
+    "Annotations": [],
+    "X": -647.982907516315,
+    "Y": 118.87176577447191,
+    "Zoom": 2.1772647537941046
+  }
+}
