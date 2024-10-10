@@ -1,0 +1,424 @@
+{
+  "Uuid": "ee61484e-5c8a-4d9b-99c8-bd0580895762",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.FloorType.GetStructuralMaterial",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "f79905a7eb5b44ed893f6f65106d3c1c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "9c87bbfafeb740179104c2094e65336a",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "65cd4d055d9f48898667bf00927c1adb",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 245,
+      "SelectedString": "OST_Floors",
+      "Id": "2254b7d0673141c8bedab889df42c839",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5adde35a4df24371a47e4756848d0d03",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "be83a92339c64665857b0c10b303cb8e",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "50176d88b8884b1db81991d00c3fa3c1",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "62ba806fce9a46b7adbe9f1e8a21be85",
+          "Name": "FloorType",
+          "Description": "FloorType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FloorType.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a FloorType from the document given\n\nFloorType.ByName (name: string): FloorType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3e24c276dc054628b98053651fc67280",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "250ed5a2138049e7b1341b42612ea222",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e859cbed57fd4191a26eef1ee8be9626",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b1ca88224b9640b7bf7cb3805fd94b1a",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "55a43dbd14004606b4abdd4b2e724cd5",
+          "Name": "list",
+          "Description": "List of items to group as sublists\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2b18b0736523438192c7fbfe64d0c193",
+          "Name": "keys",
+          "Description": "Key values, one per item in the input list, used for grouping the items\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1a4a5719a735434fa9e8235e77ffcb52",
+          "Name": "groups",
+          "Description": "list of sublists, with items grouped by like key values",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "011526bab2eb41149c95a8fdf1038c4b",
+          "Name": "uniqueKeys",
+          "Description": "key value corresponding to each group",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.GroupByKey@var[]..[],var[]..[]",
+      "Replication": "Auto",
+      "Description": "Group items into sub-lists based on their like key values\n\nList.GroupByKey (list: var[]..[], keys: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 456.8,
+      "WatchHeight": 396.8,
+      "Id": "ed9e36739fa244c0a1d2632b6b41cfc2",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "40754c4af82a4a63bffa3c63344f34b1",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6b44daf314c94c5fb021e1fae6d9fb04",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d93d22c260a2464aba7019dcc634ffa5",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b9e1333775424e7dbf71272e11310cfc",
+          "Name": "floorType",
+          "Description": "Revit.Elements.FloorType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ca77515a9c934760adedec29354d38cb",
+          "Name": "Material",
+          "Description": "Returns the material that defines the element's structural analysis properties.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FloorType.GetStructuralMaterial",
+      "Replication": "Auto",
+      "Description": "Gets the structural material of the FloorType.\n\nFloorType.GetStructuralMaterial ( ): Material"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "65cd4d055d9f48898667bf00927c1adb",
+      "End": "250ed5a2138049e7b1341b42612ea222",
+      "Id": "f72d90082acc473a99b6d82561cbab44",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "65cd4d055d9f48898667bf00927c1adb",
+      "End": "55a43dbd14004606b4abdd4b2e724cd5",
+      "Id": "93a6d327a180472f933696b2a65005d0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5adde35a4df24371a47e4756848d0d03",
+      "End": "9c87bbfafeb740179104c2094e65336a",
+      "Id": "a38e78c5595e494ea9ba89c1c31f4428",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "62ba806fce9a46b7adbe9f1e8a21be85",
+      "End": "2b18b0736523438192c7fbfe64d0c193",
+      "Id": "d0bee66064b14e3b9f14a2bb0654c2a0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e859cbed57fd4191a26eef1ee8be9626",
+      "End": "50176d88b8884b1db81991d00c3fa3c1",
+      "Id": "1674985f5ddd47e4bd83629c6ad501d2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "011526bab2eb41149c95a8fdf1038c4b",
+      "End": "40754c4af82a4a63bffa3c63344f34b1",
+      "Id": "c8be716c9b554fa39db979377f86ec96",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6b44daf314c94c5fb021e1fae6d9fb04",
+      "End": "b9e1333775424e7dbf71272e11310cfc",
+      "Id": "34adeb3181dc473c95f0a575085cc76c",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "f79905a7eb5b44ed893f6f65106d3c1c",
+        "Name": "All Elements of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 468.4,
+        "Y": 290.79999999999995
+      },
+      {
+        "Id": "2254b7d0673141c8bedab889df42c839",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 132.39999999999998,
+        "Y": 290.79999999999995
+      },
+      {
+        "Id": "be83a92339c64665857b0c10b303cb8e",
+        "Name": "FloorType.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1125.6000000000004,
+        "Y": 436.00000000000006
+      },
+      {
+        "Id": "3e24c276dc054628b98053651fc67280",
+        "Name": "Element.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 837.6,
+        "Y": 436.00000000000006
+      },
+      {
+        "Id": "b1ca88224b9640b7bf7cb3805fd94b1a",
+        "Name": "List.GroupByKey",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1421.5997736158206,
+        "Y": 290.79999999999995
+      },
+      {
+        "Id": "ed9e36739fa244c0a1d2632b6b41cfc2",
+        "Name": "Floor Types Used",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1747.6449264859025,
+        "Y": 325.12274472821565
+      },
+      {
+        "Id": "d93d22c260a2464aba7019dcc634ffa5",
+        "Name": "FloorType.GetStructuralMaterial",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2410.647365384891,
+        "Y": 325.12274472821565
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "a746a910c0184fdebe9ddcf8d9978749",
+        "Title": "Group Floors by Type",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 1465.1997736158205,
+        "Top": 240.39999999999998,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "b1ca88224b9640b7bf7cb3805fd94b1a"
+      }
+    ],
+    "X": -993.0390756472262,
+    "Y": -43.772911229786246,
+    "Zoom": 0.988548899604769
+  }
+}

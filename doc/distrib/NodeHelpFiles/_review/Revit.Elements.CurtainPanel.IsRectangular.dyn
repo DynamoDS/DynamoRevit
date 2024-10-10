@@ -1,0 +1,197 @@
+{
+  "Uuid": "ee61484e-5c8a-4d9b-99c8-bd0580895762",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.CurtainPanel.IsRectangular",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "7e8e0a3e554a433fb48488f366c2611e",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "439393ca96bf4c88b9189b33ca89a4cf",
+          "Name": "curtainPanel",
+          "Description": "Revit.Elements.CurtainPanel",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4129cc34eb614c3f9a3833f9a5d2c1de",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.CurtainPanel.IsRectangular",
+      "Replication": "Auto",
+      "Description": "Checks whether the specific curtain panel is rectangular. Returns true if the curtain panel is rectangular. Otherwise returns false\n\nCurtainPanel.IsRectangular: bool"
+    },
+    {
+      "ConcreteType": "Dynamo.ComboNodes.DSModelElementByCategorySelection, DSRevitNodesUI",
+      "SelectedIndex": 732,
+      "SelectedString": "OST_Walls",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "049439b4-5467-47c4-a72e-459e7fd736c2-001019bd"
+      ],
+      "Id": "a6cfd646399c46beb6500c1b8a7dbb4e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0360065162dc4fdd9c0094daa7aa46c5",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the Revit document filtered by Category."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b9c547d8e9e64827bc4ddba85b1feb7d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "afcd5800aa9340b58e69db8217ccf814",
+          "Name": "hostingElement",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "19259e2161fc4a68b66463178dd8f1a4",
+          "Name": "CurtainPanel[]",
+          "Description": "CurtainPanel[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.CurtainPanel.ByElement@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "get all panels of curtain wall, system or slope glazing roof\n\nCurtainPanel.ByElement (hostingElement: Element): CurtainPanel[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0360065162dc4fdd9c0094daa7aa46c5",
+      "End": "afcd5800aa9340b58e69db8217ccf814",
+      "Id": "82c380fd56134da88f7a1df1798b9758",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "19259e2161fc4a68b66463178dd8f1a4",
+      "End": "439393ca96bf4c88b9189b33ca89a4cf",
+      "Id": "2ede7e72242f4c368034c20321d32d05",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "7e8e0a3e554a433fb48488f366c2611e",
+        "Name": "CurtainPanel.IsRectangular",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 435.1430513474475,
+        "Y": -50.36513850525509
+      },
+      {
+        "Id": "a6cfd646399c46beb6500c1b8a7dbb4e",
+        "Name": "Select Curtain Wall",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -464.05694865255253,
+        "Y": -50.36513850525509
+      },
+      {
+        "Id": "b9c547d8e9e64827bc4ddba85b1feb7d",
+        "Name": "CurtainPanel.ByElement",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 31.143051347447454,
+        "Y": -50.36513850525509
+      }
+    ],
+    "Annotations": [],
+    "X": 528.7441768994544,
+    "Y": 290.3138154894736,
+    "Zoom": 1.1375820522947404
+  }
+}

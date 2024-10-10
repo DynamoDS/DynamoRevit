@@ -1,0 +1,239 @@
+{
+  "Uuid": "ee61484e-5c8a-4d9b-99c8-bd0580895762",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Family.FamilyDocument",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "00ba6580a0594b159e4f779059007be2",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "766d0d1073294890bb932a6c7123bece",
+          "Name": "name",
+          "Description": "The name of the family in the current document\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "41c520048fe5488da786efd120e10b62",
+          "Name": "Family",
+          "Description": "Family",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Family.ByName@string",
+      "Replication": "Auto",
+      "Description": "Obtain a Family from the current document given it's name\n\nFamily.ByName (name: string): Family"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "8c1333ffc1aa464eacedaa90019d94f4",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d9e0fd59c46d4a60a81fcc5eff88ebf4",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Door-Passage-Single-Flush"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "ad8537f6b2af458e9847b090a8474d12",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d44cddb1eb9d4922bc82f5fbd86a2979",
+          "Name": "family",
+          "Description": "Revit.Elements.Family",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d63dd30e9127464f8128834849b6762d",
+          "Name": "FamilyDocument",
+          "Description": "Reference of the document of the family.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Family.FamilyDocument",
+      "Replication": "Auto",
+      "Description": "Gets the document of a loaded family.\n\nFamily.FamilyDocument ( ): FamilyDocument"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "0d1761d8934e4ddc9785f00760224a98",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "176006108b824956b34b2f7736d10796",
+          "Name": "familyDocument",
+          "Description": "Revit.Application.FamilyDocument",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d042d84200a644b0b31cd9d61991fb60",
+          "Name": "string[]",
+          "Description": "string[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.FamilyDocument.Types",
+      "Replication": "Auto",
+      "Description": "All family type names in the family document.\n\nFamilyDocument.Types: string[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "41c520048fe5488da786efd120e10b62",
+      "End": "d44cddb1eb9d4922bc82f5fbd86a2979",
+      "Id": "721f0dfdfd1249ffa51be59806c01c2a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d9e0fd59c46d4a60a81fcc5eff88ebf4",
+      "End": "766d0d1073294890bb932a6c7123bece",
+      "Id": "8e89cabeec2840f68efa65bd49843b2b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d63dd30e9127464f8128834849b6762d",
+      "End": "176006108b824956b34b2f7736d10796",
+      "Id": "cf91ad81f0f4400391b8fb93a5f8c60e",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "00ba6580a0594b159e4f779059007be2",
+        "Name": "Family.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 798.75,
+        "Y": 360.0
+      },
+      {
+        "Id": "8c1333ffc1aa464eacedaa90019d94f4",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 467.54999999999995,
+        "Y": 360.0
+      },
+      {
+        "Id": "ad8537f6b2af458e9847b090a8474d12",
+        "Name": "Family.FamilyDocument",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1098.75,
+        "Y": 360.0
+      },
+      {
+        "Id": "0d1761d8934e4ddc9785f00760224a98",
+        "Name": "FamilyDocument.Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1461.15,
+        "Y": 360.0
+      }
+    ],
+    "Annotations": [],
+    "X": -269.7562025218158,
+    "Y": -23.531858007143057,
+    "Zoom": 0.822695359375
+  }
+}

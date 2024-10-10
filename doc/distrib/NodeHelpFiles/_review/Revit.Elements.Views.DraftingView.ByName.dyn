@@ -1,0 +1,154 @@
+{
+  "Uuid": "ee61484e-5c8a-4d9b-99c8-bd0580895762",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.DraftingView.ByName",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "5d37941348244211a9fc552c57bc3d46",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "eba211a9a87f4442900917ce7092f01b",
+          "Name": "name",
+          "Description": "Name of the view\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4412dd5f879f48b78c8d0e560d172916",
+          "Name": "DraftingView",
+          "Description": "The view",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.DraftingView.ByName@string",
+      "Replication": "Auto",
+      "Description": "Create a Revit DraftingView given it's name\n\nDraftingView.ByName (name: string): DraftingView"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "f956c644ca9b4320a1ed9b1c458cc50a",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "92d6cf9b904d4fb2b2dd7d5a4f74f653",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Door/Jamb Detail"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "92d6cf9b904d4fb2b2dd7d5a4f74f653",
+      "End": "eba211a9a87f4442900917ce7092f01b",
+      "Id": "b5fcf9e44c5b41c18551f690f6a1630a",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "5d379413-4824-4211-a9fc-552c57bc3d46",
+      "Binding": {
+        "ByName_InClassDecl-1_InFunctionScope-1_Instance0_5d379413-4824-4211-a9fc-552c57bc3d46": "H4sIAAAAAAAACh3Lqw6AMAwF0H+5miaj7EHRGDSSIrYUCAZB5gj/TsLxZ3lguWYMeBRzvc/rmEbFoOgkpD6Zp41lJy/ZkxQzipGl7B3nYBs5x30qbVA0iumq/+UYWLy8eNcPzgJCeV8AAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "5d37941348244211a9fc552c57bc3d46",
+        "Name": "DraftingView.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 738.4720477914918,
+        "Y": 225.67722573084637
+      },
+      {
+        "Id": "f956c644ca9b4320a1ed9b1c458cc50a",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 467.71982153540534,
+        "Y": 225.67722573084637
+      }
+    ],
+    "Annotations": [],
+    "X": -856.4473517203289,
+    "Y": -329.79865043548244,
+    "Zoom": 2.1161404215607713
+  }
+}
