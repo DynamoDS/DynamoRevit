@@ -436,6 +436,8 @@ namespace Dynamo.Applications.Models
             InitializeMaterials(); // Initialize materials for preview.
         }
 
+        private DataMarshaler UnwrapElementMarshaler;
+        
         /// <summary>
         /// Setup the python engine so that it can manage Revit data
         /// </summary>
@@ -446,6 +448,14 @@ namespace Dynamo.Applications.Models
             {
                 try
                 {
+                    if (UnwrapElementMarshaler is null)
+                    {
+                        UnwrapElementMarshaler = new DataMarshaler();
+                        UnwrapElementMarshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
+                        UnwrapElementMarshaler.RegisterMarshaler((Category element) => element.InternalCategory);
+                        engine.RegisterHostDataMarshalers(UnwrapElementMarshaler);
+                    }
+
                     (engine.OutputDataMarshaler as DataMarshaler).RegisterMarshaler((Element element) => element.ToDSType(true));
                     engine.EvaluationStarted += OnPythonEvalStart;
                     engine.EvaluationFinished += OnPythonEvalFinished;
@@ -495,56 +505,16 @@ namespace Dynamo.Applications.Models
         }
 
         // Python evaluation start event handler
-        private DataMarshaler UnwrapElementMarshaler;
         private void OnPythonEvalStart(string code, IList bindingValues, PythonServices.EventHandlers.ScopeSetAction scopeSet)
         {
-            if (UnwrapElementMarshaler == null)
-            {
-                UnwrapElementMarshaler = new DataMarshaler();
-                UnwrapElementMarshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
-                UnwrapElementMarshaler.RegisterMarshaler((Category element) => element.InternalCategory);
-                UnwrapElementMarshaler.RegisterMarshaler((Python.Runtime.PyObject pyObj) =>
-                        {
-                            IntPtr gs = Python.Runtime.PythonEngine.AcquireLock();
-                            try
-                            {
-                                using (Python.Runtime.Py.GIL())
-                                {
-                                    if (Python.Runtime.PyDict.IsDictType(pyObj))
-                                    {
-                                        using (var pyDict = new Python.Runtime.PyDict(pyObj))
-                                        {
-                                            var dict = new Python.Runtime.PyDict();
-                                            foreach (Python.Runtime.PyObject item in pyDict.Items())
-                                            {
-                                                dict.SetItem(
-                                                    Python.Runtime.ConverterExtension.ToPython(UnwrapElementMarshaler.Marshal(item.GetItem(0))),
-                                                    Python.Runtime.ConverterExtension.ToPython(UnwrapElementMarshaler.Marshal(item.GetItem(1)))
-                                                );
-                                            }
-                                            return dict;
-                                        }
-                                    }
-                                    var unmarshalled = pyObj.AsManagedObject(typeof(object));
-                                    return UnwrapElementMarshaler.Marshal(unmarshalled);
-                                }
-                            }
-                            catch (Exception e)
-                            {
-                                Logger.Log($"error marshaling python object {pyObj.Handle} {e.Message}");
-                                return pyObj;
-                            }
-                            finally
-                            {
-                                Python.Runtime.PythonEngine.ReleaseLock(gs);
-                            }
-                        });
-            }
-            Func<object, object> unwrap = UnwrapElementMarshaler.Marshal;
             // Turn off element binding during python script execution
             ElementBinder.IsEnabled = false;
-            // register UnwrapElement method
-            scopeSet("UnwrapElement", unwrap);
+            if (UnwrapElementMarshaler != null)
+            {
+                Func<object, object> unwrap = UnwrapElementMarshaler.Marshal;
+                // register UnwrapElement method
+                scopeSet("UnwrapElement", unwrap);
+            }
         }
 
         // Python evaluation finished event handler
