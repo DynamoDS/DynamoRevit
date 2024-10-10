@@ -1,0 +1,363 @@
+{
+  "Uuid": "d05952f6-4f9d-4d58-a627-504380dc2f6a",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.View.CanViewBeDuplicated",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "094b4e4d27dc45ddb7bc642378aeda7e",
+      "Name": "String",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "Revit.Elements.Views.DraftingView",
+      "Description": "Creates a string"
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 729,
+      "SelectedString": "OST_Views",
+      "Id": "a7b8080fb14644beb9bf2a66edd1e6f8",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0e77d9bb398347869c21d6ae8ebefb57",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "99cf3fa69cfe4caa808e179c9dda9073",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "51fefceb6a1c48308c342bfc8693b8bd",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "76b9a5d1df0a43d08a9cdeac6c9852df",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e5b6ca12bcd847e49083b2bc71c8ae8c",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "587167f640944f42aac76918ec4d32d1",
+          "Name": "list",
+          "Description": "List to remove items from\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1598183dc8ec4b66bb24462d93733602",
+          "Name": "type",
+          "Description": "Type of element\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cd612da4176c4adba627f392239f7af0",
+          "Name": "list",
+          "Description": "List with everything removed except a specified type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "List.RemoveIfNot@var[]..[],string",
+      "Replication": "Auto",
+      "Description": "Removes the members of the list which are not members of the specified type.\n\nList.RemoveIfNot (list: var[]..[], type: string): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "094b4e4d27dc45ddb7bc642378aeda7e",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c2ba65218259441f88901d8bfef81c89",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Revit.Elements.Views.DraftingView"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "0d956c07be974cffbd767254ead02e00",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a6ccbc545430494db27440707c1f0732",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3a9219358a974ee7bc5f05f1e5ea48de",
+          "Name": "viewDuplicateOption",
+          "Description": "Enter View Duplicate Option: Duplicate, AsDependent or WithDetailing.\n\nstring\nDefault value : \"Duplicate\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e706622c363643c29366b9a9085339b1",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View.CanViewBeDuplicated@string",
+      "Replication": "Auto",
+      "Description": "Identifies if this view can be duplicated with specified viewDuplicateOption\n\nView.CanViewBeDuplicated (viewDuplicateOption: string = \"Duplicate\"): bool"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ViewDuplicateOptions, DSRevitNodesUI",
+      "SelectedIndex": 2,
+      "SelectedString": "WithDetailing",
+      "Id": "eed05cbf91234965840af301e55ada4a",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4265bbfe872d4ef1bed645ba9f586735",
+          "Name": "DuplicateOption",
+          "Description": "The selected DuplicateOption",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "View Duplicate Option."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0e77d9bb398347869c21d6ae8ebefb57",
+      "End": "51fefceb6a1c48308c342bfc8693b8bd",
+      "Id": "74454d9b8ed24d0692bfa8c3a1eccaad",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "76b9a5d1df0a43d08a9cdeac6c9852df",
+      "End": "587167f640944f42aac76918ec4d32d1",
+      "Id": "c941bc581cfc476885708dd76d58da9d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "cd612da4176c4adba627f392239f7af0",
+      "End": "a6ccbc545430494db27440707c1f0732",
+      "Id": "bdb74ebf046d4ee98782165e1c39bada",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c2ba65218259441f88901d8bfef81c89",
+      "End": "1598183dc8ec4b66bb24462d93733602",
+      "Id": "231113721708475aaf3cd0450a61f351",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4265bbfe872d4ef1bed645ba9f586735",
+      "End": "3a9219358a974ee7bc5f05f1e5ea48de",
+      "Id": "10fee3b3b8e54756bc7a9c1511fb984e",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": 55.63827133178711,
+      "EyeY": 11.0,
+      "EyeZ": -8.0,
+      "LookX": -60.63827133178711,
+      "LookY": -0.0,
+      "LookZ": -0.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "a7b8080fb14644beb9bf2a66edd1e6f8",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 142.39999999999986,
+        "Y": 140.8
+      },
+      {
+        "Id": "99cf3fa69cfe4caa808e179c9dda9073",
+        "Name": "All Elements of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 455.9999999999999,
+        "Y": 140.8
+      },
+      {
+        "Id": "e5b6ca12bcd847e49083b2bc71c8ae8c",
+        "Name": "List.RemoveIfNot",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1177.6000000000001,
+        "Y": 140.8
+      },
+      {
+        "Id": "094b4e4d27dc45ddb7bc642378aeda7e",
+        "Name": "String",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 807.2000000000003,
+        "Y": 288.6959821102693
+      },
+      {
+        "Id": "0d956c07be974cffbd767254ead02e00",
+        "Name": "View.CanViewBeDuplicated",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1953.1758660823282,
+        "Y": 140.8
+      },
+      {
+        "Id": "eed05cbf91234965840af301e55ada4a",
+        "Name": "View Duplicate Options",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1518.471088970547,
+        "Y": 288.6959821102693
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "c704372f327f4f0180a5ae09ec2ebe45",
+        "Title": "Filter for Drafting Views",
+        "DescriptionText": "Remove all views that are not drafting views",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "e5b6ca12bcd847e49083b2bc71c8ae8c",
+          "094b4e4d27dc45ddb7bc642378aeda7e"
+        ],
+        "HasNestedGroups": false,
+        "Left": 797.2000000000003,
+        "Top": 68.4,
+        "Width": 593.5999999999999,
+        "Height": 371.2959821102693,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 140.8,
+        "InitialHeight": 333.0,
+        "TextblockHeight": 62.4,
+        "Background": "#FFB9F9E1"
+      }
+    ],
+    "X": -1672.6850353120046,
+    "Y": -359.79620401937535,
+    "Zoom": 1.5546925571943866
+  }
+}
