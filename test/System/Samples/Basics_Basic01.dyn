@@ -1,0 +1,343 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "Dynamo Basic Sample",
+  "Name": "Basics_Basic01",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "a8d28be45b934b68a1826e7d09b6147e",
+      "Name": "Number",
+      "Type": "number",
+      "Value": "2",
+      "NumberType": "Double",
+      "Description": "Creates a number.",
+      "SelectedIndex": 0
+    },
+    {
+      "Id": "52048c4773fb4d5f9221e4c6b2b41126",
+      "Name": "Number",
+      "Type": "number",
+      "Value": "6",
+      "NumberType": "Double",
+      "Description": "Creates a number.",
+      "SelectedIndex": 0
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 2.0,
+      "Id": "a8d28be45b934b68a1826e7d09b6147e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bdaed298000c4de4bdc989adbaff5222",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "+@var[]..[],var[]..[]",
+      "Id": "0d2e1e9d21dc4e5bb105e3bedca3b1f9",
+      "Inputs": [
+        {
+          "Id": "c0d7f6cc642d478bb12abfe5f56511b3",
+          "Name": "x",
+          "Description": "Integer value, double value or string\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fb7fa087ab954539b0675d83c4bccf13",
+          "Name": "y",
+          "Description": "Integer value, double value or string\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "389b70a9ba80459e9958f594230c86b6",
+          "Name": "var",
+          "Description": "The sum of two input numbers, or the concatenation of two strings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns addition of x and y\n\n+ (x: var[]..[], y: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "89ef21b095e14b46aabcc02f16589b8d",
+      "Inputs": [
+        {
+          "Id": "9bacd0cbbe68470d8deb2f0dfc31155f",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "23f3b9f8740a47bcaee0a48699e61066",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the node's output"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 6.0,
+      "Id": "52048c4773fb4d5f9221e4c6b2b41126",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cf0239002fdd43f3948cfda6b24f7cdf",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "bdaed298000c4de4bdc989adbaff5222",
+      "End": "c0d7f6cc642d478bb12abfe5f56511b3",
+      "Id": "6feab043fa8449dc8a04f277b7be1416",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "389b70a9ba80459e9958f594230c86b6",
+      "End": "9bacd0cbbe68470d8deb2f0dfc31155f",
+      "Id": "826d74aa54124dc4a7d5c7cfa1295511",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.13",
+      "Data": {}
+    }
+  ],
+  "Author": "Dynamo Team",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.13.0.3265",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -16.965513229370117,
+      "EyeY": 24.341577529907227,
+      "EyeZ": 50.649433135986328,
+      "LookX": 12.444104194641113,
+      "LookY": -13.011065483093262,
+      "LookZ": -58.544906616210938,
+      "UpX": -0.081237569451332092,
+      "UpY": 0.9205048680305481,
+      "UpZ": 0.3821927011013031
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "a8d28be45b934b68a1826e7d09b6147e",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2899.1001626181155,
+        "Y": 871.55323271809118
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "+",
+        "Id": "0d2e1e9d21dc4e5bb105e3bedca3b1f9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3345.38395751019,
+        "Y": 870.914556274731
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "89ef21b095e14b46aabcc02f16589b8d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3592.79738563383,
+        "Y": 870.914556274731
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "52048c4773fb4d5f9221e4c6b2b41126",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2898.69722477541,
+        "Y": 1041.2153244339816
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "1d089d46305e464b8714d8f6d762775a",
+        "Title": "Basic functional inputs, like Numbers and Strings can be selected by either browsing or searching from the library on the left of the canvas.\r\n\r\nOperations to execute on data, like math or geometric transformations, are also found in the library",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 2814.666827545153,
+        "Top": 647.64973924213461,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "07d8f330cb434fcea050bf864d5ebc10",
+        "Title": "Dynamo is a Visual Programming language.  Like other languages it works by linking simple elements together to form more complex ideas",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 2814.666827545153,
+        "Top": 578.84122797909856,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "a0293ecc963343219704a7c84f4749c8",
+        "Title": "Pull a connector out of the \">\" port on the Number node and connect it to the \"y\" port on the + node, then push the \"Run\" button in the lower left corner of the application.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 2817.1001626181155,
+        "Top": 777.55323271809118,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "a8d28be45b934b68a1826e7d09b6147e"
+      },
+      {
+        "Id": "5cefc1038b544158bd2bae09ec296510",
+        "Title": "Data Can be visualized by clicking on the Run button in the lower right of the application.  If you enable \"Run automatically\" the application will constantly update.\r\n\r\nYou can see the data either by using a Watch node or clicking on the small square at the bottom of most nodes.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 3579.29738563383,
+        "Top": 719.914556274731,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "89ef21b095e14b46aabcc02f16589b8d"
+      },
+      {
+        "Id": "d053df48c7af4d8c80c1b151bf2fc884",
+        "Title": "More Sample files can be found in the Help menu, or close this file by clicking the \"X\" on the tab to return to the welcome page",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 2829.915427754514,
+        "Top": 1179.375576913623,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -1915.1170286989568,
+    "Y": -330.08421551895185,
+    "Zoom": 0.76162914980193863
+  }
+}
