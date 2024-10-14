@@ -1,3 +1,6 @@
+## 26.0.0
+* Change versioning of DynamoRevit to match Revit (host) release versioning
+
 ## 0.6.27
 * Update Dynamo Core to 3.3.0.6316
 * Add node documentation: Parameter, Element, Room, Material, Views 
