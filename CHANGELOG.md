@@ -1,3 +1,6 @@
+## 0.5.44
+* Update Dynamo Core to 3.3.0.6316
+
 ## 0.5.43
 * Update Dynamo Core to 3.2.2.5494
 
