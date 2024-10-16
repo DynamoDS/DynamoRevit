@@ -1,0 +1,447 @@
+{
+  "Uuid": "ee61484e-5c8a-4d9b-99c8-bd0580895762",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.ScheduleView.Export",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementTypes, DSRevitNodesUI",
+      "SelectedIndex": 372,
+      "SelectedString": "ViewSchedule",
+      "Id": "d64d70c6a8924d73984716b83a558f3c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5441d7d2ddb04ce08868a5b3dc9c0241",
+          "Name": "Classes",
+          "Description": "The selected Classes",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All element subclasses."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfType, DSRevitNodesUI",
+      "Id": "40749a7ff95442e4b97e3723bc3e8267",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "f235a9a5f3004877a6b6c97dd4e1e59c",
+          "Name": "element class",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "60229f432c594191aa4272df13b547da",
+          "Name": "elements",
+          "Description": "All elements in the active document of a given class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All elements in the active document of a given class."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "12679b372f134119aa550f6466252e39",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "6336eadb45434b2a9c0bcdacc95104e8",
+          "Name": "scheduleView",
+          "Description": "Revit.Elements.Views.ScheduleView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d3ff2c6017cf4cad8165011b2c1c5ec7",
+          "Name": "path",
+          "Description": "A valid file path with file extension.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ab34eb3d05874ee9b4ca789358e83ec2",
+          "Name": "exportOptions",
+          "Description": "Export Options.\n\nScheduleExportOptions",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6ef5eeb077a140a4acb904e2583df414",
+          "Name": "scheduleView",
+          "Description": "Schedule View.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.ScheduleView.Export@string,Revit.Schedules.ScheduleExportOptions",
+      "Replication": "Auto",
+      "Description": "Export View Schedule to CSV, TSV etc.\n\nScheduleView.Export (path: string, exportOptions: ScheduleExportOptions): ScheduleView"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d7c54aa822b04501913703db3dfde0cf",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d8bc832f5ce542a9a081c0f4ade2a3e8",
+          "Name": "list",
+          "Description": "List to get the first item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "73220082be224f47af1a48ef8e8759f4",
+          "Name": "item",
+          "Description": "First item in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
+      "Replication": "Auto",
+      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8efbf1f323544ff0a9de1b767eba1ca2",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "1fd29d516ec5419a92f12ee44f31623d",
+          "Name": "columnHeaders",
+          "Description": "How to export column headers. Default is MultipleRows.\n\nstring\nDefault value : \"MultipleRows\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0a84625a4741426ab8a278f3cbb1f2fd",
+          "Name": "fieldDelimiter",
+          "Description": "How to delimit fields. Default is Tab.\n\nstring\nDefault value : \"\t\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "def81771020e40b8bf9a524b23e31f15",
+          "Name": "headersFootersBlanks",
+          "Description": "Whether to export group headers, footers, and blank lines. Default is false.\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bd41c3d20f9b447780e1fa4e613cc7a6",
+          "Name": "textQualifier",
+          "Description": "How to qualify text fields. Default is DoubleQuote.\n\nstring\nDefault value : \"DoubleQuote\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b17a0ca5d88148bd9690a9e75ba026d7",
+          "Name": "title",
+          "Description": "Whether or not to export the schedule title. Default is false.\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7067fafae4044cf9bd2059cb5750cd2f",
+          "Name": "exportOptions",
+          "Description": "View Schedule Export Options.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Schedules.ScheduleExportOptions.ByProperties@string,string,bool,string,bool",
+      "Replication": "Auto",
+      "Description": "Creates View Schedule Export Options element.\n\nScheduleExportOptions.ByProperties (columnHeaders: string = \"MultipleRows\", fieldDelimiter: string = \"\t\", headersFootersBlanks: bool = false, textQualifier: string = \"DoubleQuote\", title: bool = false): ScheduleExportOptions"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# Load the Python Standard and DesignScript Libraries\r\nimport sys\r\nimport clr\r\nimport os\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# user inputs\r\nviewName = IN[0]\r\n\r\n# Place your code below this line\r\nexportedSchedulePath = os.path.expanduser('~\\\\Documents\\\\')\r\n\r\n# Assign your output to the OUT variable.\r\nOUT = exportedSchedulePath + viewName + \".csv\"",
+      "Engine": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "aef1d52544bc429f91ea34bcf8fb97ea",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "f08dcb51eef04877acbf70ad92b366bd",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9873aa7a10ae4ad1b433cf57b137edfb",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "02a88fea1d08412e9a6cd70e662d237c",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "c86892bc3cb449a8bbc3376c5d47b29d",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "516c6a0bb1c8490f9a8ce0dedaea80b9",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "5441d7d2ddb04ce08868a5b3dc9c0241",
+      "End": "f235a9a5f3004877a6b6c97dd4e1e59c",
+      "Id": "85556e23ef0746069c198b7ffd9e80da",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "60229f432c594191aa4272df13b547da",
+      "End": "d8bc832f5ce542a9a081c0f4ade2a3e8",
+      "Id": "9ba35bd704fe45c99fa47ec71232f348",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "73220082be224f47af1a48ef8e8759f4",
+      "End": "6336eadb45434b2a9c0bcdacc95104e8",
+      "Id": "586408523a284d15a5fb7518e21c30e1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "73220082be224f47af1a48ef8e8759f4",
+      "End": "c86892bc3cb449a8bbc3376c5d47b29d",
+      "Id": "099eb97fedc14c1aac13080511e8b521",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7067fafae4044cf9bd2059cb5750cd2f",
+      "End": "ab34eb3d05874ee9b4ca789358e83ec2",
+      "Id": "0eddce9428ae4f508369059655a57b04",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9873aa7a10ae4ad1b433cf57b137edfb",
+      "End": "d3ff2c6017cf4cad8165011b2c1c5ec7",
+      "Id": "803d1db6d0ef491f8dc5c1b244c5cfff",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "516c6a0bb1c8490f9a8ce0dedaea80b9",
+      "End": "f08dcb51eef04877acbf70ad92b366bd",
+      "Id": "a389194505e84055aafdf86120abdcdc",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Door Schedule.csv",
+      "ReferenceType": "External",
+      "Nodes": [
+        "aef1d52544bc429f91ea34bcf8fb97ea"
+      ]
+    }
+  ],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "d64d70c6a8924d73984716b83a558f3c",
+        "Name": "Element Classes",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 500.48343868431505,
+        "Y": 224.88955653357232
+      },
+      {
+        "Id": "40749a7ff95442e4b97e3723bc3e8267",
+        "Name": "All Elements of Class",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 826.883438684315,
+        "Y": 224.88955653357232
+      },
+      {
+        "Id": "12679b372f134119aa550f6466252e39",
+        "Name": "ScheduleView.Export",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2051.630339509851,
+        "Y": 224.88955653357232
+      },
+      {
+        "Id": "d7c54aa822b04501913703db3dfde0cf",
+        "Name": "List.FirstItem",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1169.7940071606001,
+        "Y": 224.88955653357232
+      },
+      {
+        "Id": "8efbf1f323544ff0a9de1b767eba1ca2",
+        "Name": "ScheduleExportOptions.ByProperties",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1558.6811370329192,
+        "Y": 577.3097089704407
+      },
+      {
+        "Id": "aef1d52544bc429f91ea34bcf8fb97ea",
+        "Name": "Python Script",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1734.2461432803077,
+        "Y": 358.98120660623704
+      },
+      {
+        "Id": "02a88fea1d08412e9a6cd70e662d237c",
+        "Name": "Element.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1452.0152080898865,
+        "Y": 358.98120660623704
+      }
+    ],
+    "Annotations": [],
+    "X": -995.295367414223,
+    "Y": -123.68517327804489,
+    "Zoom": 1.198876412251697
+  }
+}
