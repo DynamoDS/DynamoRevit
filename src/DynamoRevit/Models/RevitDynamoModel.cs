@@ -454,7 +454,7 @@ namespace Dynamo.Applications.Models
                         revitDataMarshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
                         revitDataMarshaler.RegisterMarshaler((Category element) => element.InternalCategory);
                         engine.HostDataMarshaler = revitDataMarshaler;
-                        engine.RegisterHostDataMarshalers(revitDataMarshaler);
+                        engine.RegisterHostDataMarshalers();
                     }
 
                     (engine.OutputDataMarshaler as DataMarshaler).RegisterMarshaler((Element element) => element.ToDSType(true));
