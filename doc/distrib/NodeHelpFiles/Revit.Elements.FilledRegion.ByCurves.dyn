@@ -1,0 +1,362 @@
+{
+  "Uuid": "75d6fda1-d7b8-4808-a6dd-3966745dc8d8",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.FilledRegion.ByCurves",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.FilledRegionTypes, DSRevitNodesUI",
+      "SelectedIndex": 5,
+      "SelectedString": "Diagonal Down",
+      "Id": "e8eb62e242bb4427985929afcf2ca6ba",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0d44c34c5fd343319432144d1c3ae697",
+          "Name": "FilledRegionType",
+          "Description": "The selected FilledRegionType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select an existing Filled Region Type from the active document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e2878f0e2c67429cb489890fc6bc9251",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f52d3b956a5c4c609d3bf282d50a0b2c",
+          "Name": "view",
+          "Description": "View to place filled region on\n\nView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7b839943446a4bcca4097ffba2c9fef5",
+          "Name": "boundary",
+          "Description": "Boundary curves\n\nCurve[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dbad3af9715b4a709d36715763c09073",
+          "Name": "regionType",
+          "Description": "Region Type\n\nFilledRegionType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "482fa5d2cddb41d2bb67e829d64e8bbc",
+          "Name": "FilledRegion",
+          "Description": "FilledRegion",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FilledRegion.ByCurves@Revit.Elements.Views.View,Autodesk.DesignScript.Geometry.Curve[],Revit.Elements.FilledRegionType",
+      "Replication": "Auto",
+      "Description": "Construct a Revit FilledRegion element by Curves\n\nFilledRegion.ByCurves (view: View, boundary: Curve[], regionType: FilledRegionType): FilledRegion"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "5c76dd1d776d49129fa1c8f04d85a240",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "858ff77aad1543f1afe835930a528b32",
+          "Name": "width",
+          "Description": "Width of rectangle\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b470eb081d78475882303f0a00fc5802",
+          "Name": "length",
+          "Description": "Length of rectangle\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "316a0c57799645ae8474b39f784f8232",
+          "Name": "Rectangle",
+          "Description": "Rectangle created by width and length",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Rectangle.ByWidthLength@double,double",
+      "Replication": "Auto",
+      "Description": "Create a Rectangle centered at the WCS origin in the WCS XY Plane, with specified width (X Axis length), and length (Y Axis length).\n\nRectangle.ByWidthLength (width: double = 1, length: double = 1): Rectangle"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1ccbb954b28e4d1698c6a46843b9bb58",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "37d1e912a2614015a804a36831566da2",
+          "Name": "geometry",
+          "Description": "Autodesk.DesignScript.Geometry.Geometry",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0bca3be3a9414cd79f47131993c6781e",
+          "Name": "Geometry[]",
+          "Description": "Geometry[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Geometry.Explode",
+      "Replication": "Auto",
+      "Description": "Separates compound or non-separated elements into their component parts.\n\nGeometry.Explode ( ): Geometry[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3427509e0da84484bf5676a6c068bfff",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "3786e58fb50144abac4e1020890892e2",
+          "Name": "name",
+          "Description": "Name of the view\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "476ed97e48ee43a5912af98089f4bb92",
+          "Name": "DraftingView",
+          "Description": "The view",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.DraftingView.ByName@string",
+      "Replication": "Auto",
+      "Description": "Create a Revit DraftingView given it's name\n\nDraftingView.ByName (name: string): DraftingView"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "f9a39a0626444718a2d29adffbb3bb5a",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ca3b2e0814564aca880bcb9fc833782e",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Sample Drafting View"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0d44c34c5fd343319432144d1c3ae697",
+      "End": "dbad3af9715b4a709d36715763c09073",
+      "Id": "42b499a229a14b52a5a801e842286c81",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "316a0c57799645ae8474b39f784f8232",
+      "End": "37d1e912a2614015a804a36831566da2",
+      "Id": "f3972524bb2c48b99b77945923bd7729",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0bca3be3a9414cd79f47131993c6781e",
+      "End": "7b839943446a4bcca4097ffba2c9fef5",
+      "Id": "2d7ef401d9d3491685bbc4395c0c98fb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "476ed97e48ee43a5912af98089f4bb92",
+      "End": "f52d3b956a5c4c609d3bf282d50a0b2c",
+      "Id": "3342cbaa7560455b9246a61df94c6ce8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ca3b2e0814564aca880bcb9fc833782e",
+      "End": "3786e58fb50144abac4e1020890892e2",
+      "Id": "fa5058a443c24270a379fa1716d3a41c",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "e2878f0e-2c67-429c-b489-890fc6bc9251",
+      "Binding": {
+        "ByCurves_InClassDecl-1_InFunctionScope-1_Instance0_e2878f0e-2c67-429c-b489-890fc6bc9251": "H4sIAAAAAAAACh3LMQ6DMAwF0Lv8uZZcQwhmZsncsWYwdYpYGKpsiLtX4u3vfSK8OSachlf77cdWZsNk+PrHNbTS2oVQXyvTyJIoP5NziGSNSswyZpXV8DCUo91XhiR90gvX8gfnn4bwXwAAAA=="
+      }
+    },
+    {
+      "NodeId": "3427509e-0da8-4484-bf56-76a6c068bfff",
+      "Binding": {
+        "ByName_InClassDecl-1_InFunctionScope-1_Instance0_3427509e-0da8-4484-bf56-76a6c068bfff": "H4sIAAAAAAAACh3LMQ6DMAwF0Lv8GUvmQxrCzMLcse7g4lB1YaiyIe5eqW9/jxPhzTHjNNzb93O818UwG3bfvESp8hqCMtaqMimT5D65BplLVFHllAtp6Azr0f6Xt8Qx6YXr+QMBQaweXwAAAA=="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e8eb62e242bb4427985929afcf2ca6ba",
+        "Name": "Select Filled Region Type",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 679.1999999999999,
+        "Y": 407.2000000000001
+      },
+      {
+        "Id": "e2878f0e2c67429cb489890fc6bc9251",
+        "Name": "FilledRegion.ByCurves",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1049.6,
+        "Y": 197.59999999999985
+      },
+      {
+        "Id": "5c76dd1d776d49129fa1c8f04d85a240",
+        "Name": "Rectangle.ByWidthLength",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 347.9999999999999,
+        "Y": 229.60000000000002
+      },
+      {
+        "Id": "1ccbb954b28e4d1698c6a46843b9bb58",
+        "Name": "Geometry.Explode",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 708.8,
+        "Y": 229.60000000000002
+      },
+      {
+        "Id": "3427509e0da84484bf5676a6c068bfff",
+        "Name": "DraftingView.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 724.8,
+        "Y": 87.2
+      },
+      {
+        "Id": "f9a39a0626444718a2d29adffbb3bb5a",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 387.9999999999999,
+        "Y": 87.2
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}
