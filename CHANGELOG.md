@@ -1,3 +1,6 @@
+* Update Dynamo Core to 3.4.0-beta6616
+* Remove python runtime dependency
+
 ## 0.6.27
 * Update Dynamo Core to 3.3.0.6316
 * Add node documentation: Parameter, Element, Room, Material, Views 
