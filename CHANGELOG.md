@@ -1,3 +1,6 @@
+* Update Dynamo Core to 3.4.0-beta6616
+* Remove python runtime dependency
+
 ## 0.6.28
 * Disable Dynamo Splashscreen for Revit 2026
 * Update FilterRule.ByRuleType node to not use deprecated functions
