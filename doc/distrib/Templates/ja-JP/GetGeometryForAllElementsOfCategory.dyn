@@ -1,0 +1,257 @@
+{
+  "Uuid": "6ab2aa77-03ac-43aa-996a-9bcba72a6560",
+  "IsCustomNode": false,
+  "Description": "選択したカテゴリ(既定はドア)のすべての要素を収集し、各要素のジオメトリを取得します",
+  "Name": "GetGeometryForAllElementsOfCategory",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 178,
+      "SelectedString": "OST_Doors",
+      "Id": "bb34b03a88c14566861ee701d2036259",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "81976910d2c3462980fe759708cbdd11",
+          "Name": "Category",
+          "Description": "選択したカテゴリ。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "すべての組み込みカテゴリ。"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "33f773eb560c4fcaa847e18214de2ef7",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "6d071236512842a99ab51e6ac5633508",
+          "Name": "Category",
+          "Description": "カテゴリ",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9705018e7b36421e93c205f16c29988f",
+          "Name": "Elements",
+          "Description": "要素クラス。",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "モデルから指定したカテゴリのすべての要素を取得します。"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "736260b981b146eca204f690b6d52bf6",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "4685755d9e5b46679f2dcee806dd42fb",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "59e132d5dc654e04be8019b84b3f7015",
+          "Name": "geometry[]",
+          "Description": "要素からのジオメトリのリスト",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Geometry",
+      "Replication": "Auto",
+      "Description": "要素に関連付けられているすべてのジオメトリを返します。リンクされた要素で使用すると、変換が無視されます。\n\nElement.Geometry ( ): var[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "81976910d2c3462980fe759708cbdd11",
+      "End": "6d071236512842a99ab51e6ac5633508",
+      "Id": "70d5e5a703b94d1b9509ed1c36ee7afb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9705018e7b36421e93c205f16c29988f",
+      "End": "4685755d9e5b46679f2dcee806dd42fb",
+      "Id": "e4117a528d7844b083289073c1053ced",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "プロパティ",
+      "Version": "3.0",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "7.1",
+      "Data": {}
+    }
+  ],
+  "Author": "Autodesk",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.3.7597",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "背景プレビュー(_B)",
+      "EyeX": -45.10952377319336,
+      "EyeY": 126.64234924316406,
+      "EyeZ": 79.76921844482422,
+      "LookX": 14.782140731811523,
+      "LookY": -106.08958435058594,
+      "LookZ": -86.57583618164062,
+      "UpX": 0.1296440213918686,
+      "UpY": 0.6376994848251343,
+      "UpZ": -0.7592970132827759
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "bb34b03a88c14566861ee701d2036259",
+        "Name": "カテゴリ",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 89870.21477205436,
+        "Y": -4247.693497007918
+      },
+      {
+        "Id": "33f773eb560c4fcaa847e18214de2ef7",
+        "Name": "カテゴリのすべての要素",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 90206.21477205436,
+        "Y": -4247.693497007918
+      },
+      {
+        "Id": "736260b981b146eca204f690b6d52bf6",
+        "Name": "Element.Geometry",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 90574.09037191584,
+        "Y": -4247.693497007918
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "bba4fa218eb6408e941257c49579a7dd",
+        "Title": "Revit カテゴリを選択",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 89920.21477205436,
+        "Top": -4297.693497007918,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "bb34b03a88c14566861ee701d2036259"
+      },
+      {
+        "Id": "9af9581ad0114956a822641259e63620",
+        "Title": "選択したカテゴリのすべての要素を収集",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 90203.21477205436,
+        "Top": -4297.693497007918,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "33f773eb560c4fcaa847e18214de2ef7"
+      },
+      {
+        "Id": "c2867b4d2aff4177bb118c225603b573",
+        "Title": "可能な場合は、収集されたすべての要素のジオメトリを取得します。Revit で何かが見つからない場合や、ジオメトリが解決できない場合は、警告と null が返される場合があります。",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 90553.59037191584,
+        "Top": -4341.693497007918,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "736260b981b146eca204f690b6d52bf6"
+      }
+    ],
+    "X": -113376.05923228659,
+    "Y": 5631.061522389584,
+    "Zoom": 1.2633317726382167
+  }
+}
