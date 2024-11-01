@@ -1,0 +1,302 @@
+{
+  "Uuid": "107641db-6b6a-4a08-8282-d474513714b1",
+  "IsCustomNode": false,
+  "Description": "選択したシート名でデータを Exce lに書き出します。書き出すデータを接続する必要があります。",
+  "Name": "ExportDataToExcel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "d2ca2769c87f4b4396940a74ff1111d2",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4cb119c0fc804e47bd4bcd5fff82cf7c",
+          "Name": "",
+          "Description": "ファイル パス",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "システム上の任意のファイルを選択して、そのファイル パスを返すことができます",
+      "HintPath": "C:\\Users\\amours\\Desktop\\DynamoRevitTemplates\\No file selected",
+      "InputValue": "ファイルが選択されていません。"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "3bd4fe2e6876454da3e83a01462c85c7",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3f6242f197704cb08d28d338399cc02b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "文字列を作成します",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a30280ae0aea42649c79b5f80b7c6dbe",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "33167a5f9e25441b98598dc1ecc07832",
+          "Name": "filePath",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0a38be4fb78c4ac385664c50cf9dbbff",
+          "Name": "sheetName",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "53fd2ca44312424f9e88959329c97a76",
+          "Name": "data",
+          "Description": "var[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5cb3225aeccb496989afa724dd38b537",
+          "Name": "startRow",
+          "Description": "int\n既定値 : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c6b08add41fe4398b6c167e99c73c8b1",
+          "Name": "startColumn",
+          "Description": "int\n既定値 : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1e16648803b341e395baccc2ff2db3ea",
+          "Name": "overWrite",
+          "Description": "bool\n既定値: false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f6cdbc62f3ef4cee91ae11eb5a21f1de",
+          "Name": "writeAsString",
+          "Description": "bool\n既定値: false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "937ba830e5174f2a9ed269d57b1f5157",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSOffice.Data.OpenXMLExportExcel@string,string,var[][],int,int,bool,bool",
+      "Replication": "Auto",
+      "Description": "Data.OpenXMLExportExcel (filePath: string, sheetName: string, data: var[][], startRow: int = 0, startColumn: int = 0, overWrite: bool = false, writeAsString: bool = false): bool"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4cb119c0fc804e47bd4bcd5fff82cf7c",
+      "End": "33167a5f9e25441b98598dc1ecc07832",
+      "Id": "b07a2afc08844afeb9ef963e970cb646",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3f6242f197704cb08d28d338399cc02b",
+      "End": "0a38be4fb78c4ac385664c50cf9dbbff",
+      "Id": "8f18137f976541a2a0186380ecf744c4",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "プロパティ",
+      "Version": "3.0",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "7.1",
+      "Data": {}
+    }
+  ],
+  "Author": "Autodesk",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.3.7597",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "背景プレビュー(_B)",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "d2ca2769c87f4b4396940a74ff1111d2",
+        "Name": "File Path",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 238.5,
+        "Y": 282.0
+      },
+      {
+        "Id": "3bd4fe2e6876454da3e83a01462c85c7",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 238.5,
+        "Y": 531.5
+      },
+      {
+        "Id": "a30280ae0aea42649c79b5f80b7c6dbe",
+        "Name": "Data.OpenXMLExportExcel",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 811.0,
+        "Y": 282.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "f8caed9cca86404397d6c13d7f9a2292",
+        "Title": "データの書き出し先の Excel ファイルを参照",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 213.0,
+        "Top": 232.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "d2ca2769c87f4b4396940a74ff1111d2"
+      },
+      {
+        "Id": "f6199651df8b4e3ebe2e1ba518850914",
+        "Title": "大文字と小文字を区別してシート名を入力してください",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 193.5,
+        "Top": 466.5,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "3bd4fe2e6876454da3e83a01462c85c7"
+      },
+      {
+        "Id": "a69836269d524c90a34e16b7efd8f803",
+        "Title": "選択したシート名から OpenXML 形式を使用して Excel データを書き出す",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 797.0,
+        "Top": 217.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "a30280ae0aea42649c79b5f80b7c6dbe"
+      }
+    ],
+    "X": 196.23761879446965,
+    "Y": -15.960282864435044,
+    "Zoom": 1.13507102841452
+  }
+}

@@ -1,0 +1,323 @@
+{
+  "Uuid": "847b8d50-8963-40c7-90ca-c0afb7b9b9a6",
+  "IsCustomNode": false,
+  "Description": "Načte obrázek z disku, se kterým bude možné pracovat v aplikaci Dynamo",
+  "Name": "ReadImageFromFile",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "d2ca2769c87f4b4396940a74ff1111d2",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4cb119c0fc804e47bd4bcd5fff82cf7c",
+          "Name": "",
+          "Description": "Cesta k souboru",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Umožňuje vybrat soubor v systému a vrací cestu k tomuto souboru.",
+      "HintPath": "C:\\Users\\amours\\Desktop\\DynamoRevitTemplates\\No file selected",
+      "InputValue": "Není vybrán žádný soubor."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "Id": "59d22a7921854195813ce16dac4fde76",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "ac3d97121b3a4e7e81b84beb515453b6",
+          "Name": "path",
+          "Description": "Cesta k souboru.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e6871041961542a7b371fe5c91060ef7",
+          "Name": "file",
+          "Description": "Souborový objekt",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Vytvoří objekt souboru z dané cesty."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "19ee29aa65234cd0b7dc15d77fb4eb15",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "eb524fc133cb468b907620050f72b8bf",
+          "Name": "file",
+          "Description": "Objekt souboru, ze kterého se načte obrázek\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f106b67f8d5f4cab91d132b92814efbd",
+          "Name": "image",
+          "Description": "Objekt obrázku ze souboru",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.IO.Image.ReadFromFile@var",
+      "Replication": "Auto",
+      "Description": "Načte soubor jako rastr.\n\nImage.ReadFromFile (file: var): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.WatchImageCore, CoreNodeModels",
+      "Id": "3fe34643619745249cb1e4a286e36944",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "f4d5f5b983b340f8973b41f72174f9e7",
+          "Name": "image",
+          "Description": "Obrázek k vizualizaci",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bebb4cb152da4adbad95a62a2c1dcc6e",
+          "Name": "image",
+          "Description": "Obrázek k vizualizaci",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Zobrazí náhled obrázku"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "4cb119c0fc804e47bd4bcd5fff82cf7c",
+      "End": "ac3d97121b3a4e7e81b84beb515453b6",
+      "Id": "df3062a3444e41b8b7f34c7a286e4cce",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e6871041961542a7b371fe5c91060ef7",
+      "End": "eb524fc133cb468b907620050f72b8bf",
+      "Id": "78544d0ab304493f81cbb3753ea34fec",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f106b67f8d5f4cab91d132b92814efbd",
+      "End": "f4d5f5b983b340f8973b41f72174f9e7",
+      "Id": "d95208d4410d4cb9825e4f2d39309326",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Vlastnosti",
+      "Version": "3.0",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "7.1",
+      "Data": {}
+    }
+  ],
+  "Author": "Autodesk",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.3.7597",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Náhled pozadí",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "d2ca2769c87f4b4396940a74ff1111d2",
+        "Name": "File Path",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 238.5,
+        "Y": 282.0
+      },
+      {
+        "Id": "59d22a7921854195813ce16dac4fde76",
+        "Name": "Soubor z cesty",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 811.0,
+        "Y": 282.0
+      },
+      {
+        "Id": "19ee29aa65234cd0b7dc15d77fb4eb15",
+        "Name": "Image.ReadFromFile",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1092.7547786720322,
+        "Y": 282.0
+      },
+      {
+        "Id": "3fe34643619745249cb1e4a286e36944",
+        "Name": "Sledovat obrázek",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1433.866448692153,
+        "Y": 282.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "f8caed9cca86404397d6c13d7f9a2292",
+        "Title": "Přejít k souboru obrázku k importu",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 229.5,
+        "Top": 232.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "d2ca2769c87f4b4396940a74ff1111d2"
+      },
+      {
+        "Id": "a69836269d524c90a34e16b7efd8f803",
+        "Title": "Načíst soubor obrázku z disku do paměti aplikace Dynamo",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 772.0,
+        "Top": 217.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "59d22a7921854195813ce16dac4fde76"
+      },
+      {
+        "Id": "37460f13b9794e029d2aec8655b5aaa9",
+        "Title": "Načíst obrázek ze souboru v paměťovém prostoru aplikace Dynamo ve formátu rastru",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 1056.2547786720322,
+        "Top": 169.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "19ee29aa65234cd0b7dc15d77fb4eb15"
+      },
+      {
+        "Id": "92781c108d794300982eb5b214c43333",
+        "Title": "Sledovat obrázek kvůli vizuální kontrole",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 1417.866448692153,
+        "Top": 232.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "3fe34643619745249cb1e4a286e36944"
+      }
+    ],
+    "X": -301.7268648176259,
+    "Y": 70.82444097119173,
+    "Zoom": 1.4454329621683044
+  }
+}
