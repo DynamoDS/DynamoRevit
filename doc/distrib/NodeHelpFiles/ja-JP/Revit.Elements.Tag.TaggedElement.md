@@ -1,0 +1,8 @@
+## 詳細
+`Tag.TaggedElement` returns the source element of the given tag.
+
+In the example below, all door tags are collected from the current Revit document. The door tags' source door (family instance) are returned.
+___
+## サンプル ファイル
+
+![Tag.TaggedElement](./Revit.Elements.Tag.TaggedElement_img.jpg)
