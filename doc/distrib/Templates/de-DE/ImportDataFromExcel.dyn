@@ -1,0 +1,398 @@
+{
+  "Uuid": "c49c9e5d-746d-42f7-975a-5a40f1ad1c6c",
+  "IsCustomNode": false,
+  "Description": "Daten aus einer Excel-Datei importieren und die Daten zum Umkehren von Spalten und Zeilen umstellen",
+  "Name": "ImportDataFromExcel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "7620c0a6d174413281b95698fb1d9d57",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "fab5ba40009445218c05f8e2e125c3e2",
+          "Name": "filePath",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1838b7ed07924850904317b05d21e435",
+          "Name": "sheetName",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2285506c22014e38983dd1f274148b74",
+          "Name": "startRow",
+          "Description": "int\nVorgabewert: 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fa731e8403c64eb59363e3a25779c3c3",
+          "Name": "startColumn",
+          "Description": "int\nVorgabewert: 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7b40d5b11e734659a873d691ceacedaf",
+          "Name": "readAsString",
+          "Description": "bool\nVorgabewert: false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "da29b5f8bea04c09b0e32ec0d27dd1af",
+          "Name": "var[][]",
+          "Description": "var[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSOffice.Data.OpenXMLImportExcel@string,string,int,int,bool",
+      "Replication": "Auto",
+      "Description": "Data.OpenXMLImportExcel (filePath: string, sheetName: string, startRow: int = 0, startColumn: int = 0, readAsString: bool = false): var[][]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "d2ca2769c87f4b4396940a74ff1111d2",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4cb119c0fc804e47bd4bcd5fff82cf7c",
+          "Name": "",
+          "Description": "Dateipfad",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Ermöglicht die Auswahl einer Datei auf dem System und gibt ihren Dateipfad zurück",
+      "HintPath": "C:\\Users\\amours\\Desktop\\DynamoRevitTemplates\\No file selected",
+      "InputValue": "Keine Datei ausgewählt."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "3bd4fe2e6876454da3e83a01462c85c7",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3f6242f197704cb08d28d338399cc02b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Erstellt eine Zeichenfolge",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "13b0e9b105ea4af2a48f0aafdfa0bf5b",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "c2a83726b20f4856956b731605c325fc",
+          "Name": "lists",
+          "Description": "Liste der umzustellenden Listen\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "91219a54373d4ea1b3ee8a1c03ace17a",
+          "Name": "lists",
+          "Description": "Liste der umgestellten Listen",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.Transpose@var[]..[]",
+      "Replication": "Auto",
+      "Description": "Vertauscht Zeilen und Spalten in einer Liste von Listen. Wenn einige Zeilen kürzer als die übrigen sind, werden Nullwerte als Platzhalter in das resultierende Array eingefügt, sodass dieses immer rechteckig ist.\n\nList.Transpose (Listen: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 50.0,
+      "WatchHeight": 38.0,
+      "Id": "9277ad9caa034b88b3f4a71ce0489dfc",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "c8ff6c767c27463fa83801056a1659f4",
+          "Name": "",
+          "Description": "Block, dessen Ausgabe angezeigt wird",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e8e96a2d54104462b846e9146c44d28d",
+          "Name": "",
+          "Description": "Blockausgabe",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualisiert die Ausgabe eines Blocks"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "da29b5f8bea04c09b0e32ec0d27dd1af",
+      "End": "c2a83726b20f4856956b731605c325fc",
+      "Id": "a21c0cfc98c246f6a048060ecab505b2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4cb119c0fc804e47bd4bcd5fff82cf7c",
+      "End": "fab5ba40009445218c05f8e2e125c3e2",
+      "Id": "c1f29067813448e4a0c018fc9d108ed5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3f6242f197704cb08d28d338399cc02b",
+      "End": "1838b7ed07924850904317b05d21e435",
+      "Id": "23ce470fd17646daa45add92a0e826ce",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "91219a54373d4ea1b3ee8a1c03ace17a",
+      "End": "c8ff6c767c27463fa83801056a1659f4",
+      "Id": "cc4370cff5a04c1c8ed3f74da4e2fe10",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Eigenschaften",
+      "Version": "3.0",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "7.1",
+      "Data": {}
+    }
+  ],
+  "Author": "Autodesk",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.3.7597",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Hintergrundvorschau",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "7620c0a6d174413281b95698fb1d9d57",
+        "Name": "Data.OpenXMLImportExcel",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 811.0,
+        "Y": 282.0
+      },
+      {
+        "Id": "d2ca2769c87f4b4396940a74ff1111d2",
+        "Name": "File Path",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 238.5,
+        "Y": 282.0
+      },
+      {
+        "Id": "3bd4fe2e6876454da3e83a01462c85c7",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 238.5,
+        "Y": 531.5
+      },
+      {
+        "Id": "13b0e9b105ea4af2a48f0aafdfa0bf5b",
+        "Name": "List.Transpose",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1180.5,
+        "Y": 282.0
+      },
+      {
+        "Id": "9277ad9caa034b88b3f4a71ce0489dfc",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1462.0,
+        "Y": 282.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "f8caed9cca86404397d6c13d7f9a2292",
+        "Title": "Zu Excel-Datei navigieren, aus der Daten importiert werden sollen",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 205.0,
+        "Top": 232.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "d2ca2769c87f4b4396940a74ff1111d2"
+      },
+      {
+        "Id": "f6199651df8b4e3ebe2e1ba518850914",
+        "Title": "Plannamen eingeben, die Groß- und Kleinschreibung jedoch beachten",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 193.5,
+        "Top": 466.5,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "3bd4fe2e6876454da3e83a01462c85c7"
+      },
+      {
+        "Id": "a69836269d524c90a34e16b7efd8f803",
+        "Title": "Excel-Daten im OpenXML-Format von einem ausgewählten Plannamen importieren",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 799.5,
+        "Top": 169.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "7620c0a6d174413281b95698fb1d9d57"
+      },
+      {
+        "Id": "37460f13b9794e029d2aec8655b5aaa9",
+        "Title": "Excel-Daten zum Umkehren von Zeilen und Spalten umstellen",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 1125.0,
+        "Top": 184.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "13b0e9b105ea4af2a48f0aafdfa0bf5b"
+      }
+    ],
+    "X": -245.65603726262975,
+    "Y": -92.29666786098167,
+    "Zoom": 1.4245790039412396
+  }
+}

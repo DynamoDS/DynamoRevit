@@ -1,0 +1,258 @@
+{
+  "Uuid": "f36fba0c-8a97-4fef-b3dc-6f0d4d61aafa",
+  "IsCustomNode": false,
+  "Description": "Recopile todos los elementos de la categoría elegida (por defecto, Habitaciones).",
+  "Name": "CollectAllElementsOfCategory",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 507,
+      "SelectedString": "OST_Rooms",
+      "Id": "1400fd6298f44dfbb91bb11505c879f5",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ca529bd2c6784809b882c1cda2584135",
+          "Name": "Category",
+          "Description": "La categoría seleccionada",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Todas las categorías integradas."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "59f1256567874cfb855f5354eb87646f",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "9747105e6ec74aa59a9478911c780165",
+          "Name": "Category",
+          "Description": "La categoría",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ee4a35b876d6409cbe8d34b67945d69c",
+          "Name": "Elements",
+          "Description": "Una clase de elemento",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obtenga todos los elementos de la categoría especificada en el modelo."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 50.0,
+      "WatchHeight": 38.0,
+      "Id": "f7a0ba86dc714b328564f6390b1ffa92",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "a41994fd9039439da30bbd9e37f15df2",
+          "Name": "",
+          "Description": "Nodo desde el que se mostrará la salida",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6589178d81c64f0ebe7a71eee07c5333",
+          "Name": "",
+          "Description": "Salida del nodo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Muestra la salida de un nodo."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ca529bd2c6784809b882c1cda2584135",
+      "End": "9747105e6ec74aa59a9478911c780165",
+      "Id": "7cac21d0b5fa4589ab93e035fbc94b98",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ee4a35b876d6409cbe8d34b67945d69c",
+      "End": "a41994fd9039439da30bbd9e37f15df2",
+      "Id": "beb2bfe394284d458668b2e4cefadc8f",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Propiedades",
+      "Version": "3.0",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "7.1",
+      "Data": {}
+    }
+  ],
+  "Author": "Autodesk",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.3.7597",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Vista preliminar en segundo plano",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "1400fd6298f44dfbb91bb11505c879f5",
+        "Name": "Categorías",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 89870.21477205436,
+        "Y": -4247.693497007918
+      },
+      {
+        "Id": "59f1256567874cfb855f5354eb87646f",
+        "Name": "Todos los elementos de la categoría",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 90206.21477205436,
+        "Y": -4247.693497007918
+      },
+      {
+        "Id": "f7a0ba86dc714b328564f6390b1ffa92",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 90563.21477205436,
+        "Y": -4247.693497007918
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "0d323631560047b5a5f69d0e63a173fc",
+        "Title": "Seleccionar categoría de Revit",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 89920.21477205436,
+        "Top": -4297.693497007918,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "1400fd6298f44dfbb91bb11505c879f5"
+      },
+      {
+        "Id": "cf7dcb56bee2467882c6a3715c0b459f",
+        "Title": "Recopile todos los elementos de la categoría seleccionada.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 90203.21477205436,
+        "Top": -4297.693497007918,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "59f1256567874cfb855f5354eb87646f"
+      },
+      {
+        "Id": "bd0885cebce64783be7ce4b6a6284bd4",
+        "Title": "Vea los resultados de la recopilación de todos los elementos de una categoría seleccionada.",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 90494.21477205436,
+        "Top": -4312.693497007918,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "f7a0ba86dc714b328564f6390b1ffa92"
+      }
+    ],
+    "X": -93439.47156922061,
+    "Y": 4723.485874233058,
+    "Zoom": 1.0427979036983706
+  }
+}

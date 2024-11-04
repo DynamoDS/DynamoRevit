@@ -1,0 +1,323 @@
+{
+  "Uuid": "b3342583-c831-4c51-800a-ffbe4db82efa",
+  "IsCustomNode": false,
+  "Description": "Shromáždí všechny prvky vybrané kategorie (výchozí pro místnosti) a získá hodnotu Plocha místnosti všech prvků",
+  "Name": "CollectAllElementsOfCategoryAndGetParameters",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 507,
+      "SelectedString": "OST_Rooms",
+      "Id": "ed17aaffa2cc456890f43f91d6307693",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "34705ee8b2f946a2aa58a222acf21623",
+          "Name": "Category",
+          "Description": "Vybraná kategorie.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Všechny integrované kategorie."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "c3baf69e99244c09883314344f09230a",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "ee6f864350fd45efa292b7ed0b6c4005",
+          "Name": "Category",
+          "Description": "Kategorie",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9636b76d7fea47c7b6c9c8a2fc917646",
+          "Name": "Elements",
+          "Description": "Třída prvku.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Získá z modelu všechny prvky určité kategorie."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "ac5cca7b2ea54fc9b01ee0f8aa2bf111",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "7f24488c689540da931ecf8e66297039",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f8e752733b37486b8b3a75b32605d4dd",
+          "Name": "parameterName",
+          "Description": "Název parametru, jehož hodnotu chcete získat\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5138e0135c444a949fa971333222030b",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.GetParameterValueByName@string",
+      "Replication": "Auto",
+      "Description": "Získá hodnotu jednoho z parametrů prvku.\n\nElement.GetParameterValueByName (parameterName: string): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "8191910e638249e5a3a2fb85b9d563cb",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4eb48f9dc024487286a1c3beba048dc8",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Vytvoří řetězec.",
+      "InputValue": "Plocha"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "34705ee8b2f946a2aa58a222acf21623",
+      "End": "ee6f864350fd45efa292b7ed0b6c4005",
+      "Id": "5055c2abf7ac4e08a0fb2792bfffb480",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9636b76d7fea47c7b6c9c8a2fc917646",
+      "End": "7f24488c689540da931ecf8e66297039",
+      "Id": "ea5f0cf77f804c8c854070034a3a6364",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4eb48f9dc024487286a1c3beba048dc8",
+      "End": "f8e752733b37486b8b3a75b32605d4dd",
+      "Id": "52e19a722d7e4cd79a12a89fcea6d077",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Vlastnosti",
+      "Version": "3.0",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "7.1",
+      "Data": {}
+    }
+  ],
+  "Author": "Autodesk",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.0.3.7597",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Náhled pozadí",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "ed17aaffa2cc456890f43f91d6307693",
+        "Name": "Kategorie",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 89870.21477205436,
+        "Y": -4247.693497007918
+      },
+      {
+        "Id": "c3baf69e99244c09883314344f09230a",
+        "Name": "Všechny prvky kategorie",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 90209.21477205436,
+        "Y": -4247.693497007918
+      },
+      {
+        "Id": "ac5cca7b2ea54fc9b01ee0f8aa2bf111",
+        "Name": "Element.GetParameterValueByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 90569.21477205436,
+        "Y": -4247.693497007918
+      },
+      {
+        "Id": "8191910e638249e5a3a2fb85b9d563cb",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 90318.21477205436,
+        "Y": -3977.9057569773872
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "413e32392339406dbcc552c6bd8449d9",
+        "Title": "Vybrat kategorii aplikace Revit",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 89920.21477205436,
+        "Top": -4297.693497007918,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "ed17aaffa2cc456890f43f91d6307693"
+      },
+      {
+        "Id": "bcac70e033a1483dba06f5ef39ccab17",
+        "Title": "Shromáždit všechny prvky vybrané kategorie",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 90206.21477205436,
+        "Top": -4297.693497007918,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "c3baf69e99244c09883314344f09230a"
+      },
+      {
+        "Id": "3e722249f0434c5cbdb3bcafb8e38c40",
+        "Title": "Získat hodnoty parametrů z možnosti Prvky podle kategorie přes název parametru",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 90593.21477205436,
+        "Top": -4312.693497007918,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "ac5cca7b2ea54fc9b01ee0f8aa2bf111"
+      },
+      {
+        "Id": "9d0cd5783e8949c180d1f1da85c6961f",
+        "Title": "Zadejte název parametru a ujistěte se, že zohledňujete velká a malá písmena",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 90254.71477205436,
+        "Top": -4042.9057569773872,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "8191910e638249e5a3a2fb85b9d563cb"
+      }
+    ],
+    "X": -93439.47156922061,
+    "Y": 4723.485874233058,
+    "Zoom": 1.0427979036983706
+  }
+}
