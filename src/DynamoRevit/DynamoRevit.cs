@@ -1086,6 +1086,7 @@ namespace Dynamo.Applications
             //the model is shutdown when DynamoView is closed
             ModelState = RevitDynamoModelState.NotStarted;
 
+            // Once Dynamo is closed, we want to set the current UI culture back to the default thread culture.
             System.Globalization.CultureInfo.CurrentUICulture = System.Globalization.CultureInfo.DefaultThreadCurrentCulture;
         }
 
