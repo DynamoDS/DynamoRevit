@@ -1085,6 +1085,8 @@ namespace Dynamo.Applications
 
             //the model is shutdown when DynamoView is closed
             ModelState = RevitDynamoModelState.NotStarted;
+
+            System.Globalization.CultureInfo.CurrentUICulture = System.Globalization.CultureInfo.DefaultThreadCurrentCulture;
         }
 
         /// <summary>
