@@ -54,6 +54,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		..\.version = ..\.version
 		..\CHANGELOG.md = ..\CHANGELOG.md
+		..\.adsk\ContinuousLocalization.yml = ..\.adsk\ContinuousLocalization.yml
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
@@ -77,6 +78,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{956846
 		Config\packages-template.aget = Config\packages-template.aget
 		Config\packages.aget = Config\packages.aget
 		Config\user_local.props = Config\user_local.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".adsk", ".adsk", "{D6EED31E-BD59-4E53-B6C8-574A8C9A61B3}"
+	ProjectSection(SolutionItems) = preProject
+		..\.adsk\ContinuousLocalization.yml = ..\.adsk\ContinuousLocalization.yml
 	EndProjectSection
 EndProject
 Global
@@ -155,6 +161,7 @@ Global
 		{9ADADC68-36A3-4A21-9B54-298154A88720} = {0E492D35-2310-4849-9694-A2A53C09F21B}
 		{92A46535-D870-4E1A-AED0-7492789E9C4A} = {821DE75A-8C7C-4747-B838-BA0354B15592}
 		{9568462D-249F-4494-856B-5B25751DB361} = {4466E6F6-F644-43AB-96B3-5ECE1622E711}
+		{D6EED31E-BD59-4E53-B6C8-574A8C9A61B3} = {4466E6F6-F644-43AB-96B3-5ECE1622E711}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {757AAA40-191F-4673-9B04-8270A3370BCA}
