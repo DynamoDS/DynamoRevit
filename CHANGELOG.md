@@ -1,3 +1,7 @@
+## 0.6.30
+* Update Dynamo Core to 3.4.0-beta6752
+* Move D4R content to en-US folders
+
 ## 0.6.29
 * Disable Dynamo Splashscreen for Revit 2026
 * Update FilterRule.ByRuleType node to not use deprecated functions
