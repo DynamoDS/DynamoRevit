@@ -254,72 +254,10 @@ namespace Revit.Elements
                 throw new Exception(Properties.Resources.InvalidElementLocation);
             }
         }
-        /// <summary>
-        /// Gets family type from the specified structural element
-        /// </summary>
-        /// <search>
-        /// symbol
-        /// </search>
-        [Obsolete("Use Element.ElementType instead.")]
-        public new FamilyType Type
-        {    
-            // NOTE: Because AbstractFamilyInstance is not visible in the library
-            //       we redefine this method on FamilyInstance
-            get { return base.Type; }
-        }
-
-        // (Konrad) We had to add this call here because if we feed Structural Framing to
-        // FamilyInstance.GetType it tries to call StructuralFraming.GetType and that throws 
-        // an exception. These methods should not exist on either class, but rather on base Element.
-        [Obsolete("Use Element.ElementType instead.")]
-        [IsVisibleInDynamoLibrary(false)]
-        public new FamilyType GetType
-        {
-            // NOTE: Because AbstractFamilyInstance is not visible in the library
-            //       we redefine this method on FamilyInstance
-            get { return base.Type; }
-        }
 
         #endregion
 
         #region Public static constructors
-
-        /// <summary>
-        /// Create a Revit Structural Member - a special FamilyInstance
-        /// </summary>
-        /// <param name="curve">The curve path for the structural member</param>
-        /// <param name="upVector">The up vector for the element - this is required to determine the orientation of the element</param>
-        /// <param name="level">The level on which the member should appear</param>
-        /// <param name="structuralType">The type of the structural element - a beam, column, etc</param>
-        /// <param name="structuralFramingType">The structural framing type representing the structural type</param>
-        /// <returns></returns>
-        [Obsolete("Use StructuralFraming.BeamByCurve, StructuralFraming.BraceByCurve, or StructuralFraming.ColumnByCurve instead.")]
-        public static StructuralFraming ByCurveLevelUpVectorAndType(Autodesk.DesignScript.Geometry.Curve curve, Level level, 
-            Autodesk.DesignScript.Geometry.Vector upVector, StructuralType structuralType, FamilyType structuralFramingType)
-        {
-            if (curve == null)
-            {
-                throw new ArgumentNullException("curve");
-            }
-
-            if (level == null)
-            {
-                throw new ArgumentNullException("level");
-            }
-
-            if (upVector == null)
-            {
-                throw new ArgumentNullException("upVector");
-            }
-
-            if (structuralFramingType == null)
-            {
-                throw new ArgumentNullException("structuralFramingType");
-            }            
-
-            return new StructuralFraming(curve.ToRevitType(), upVector.ToXyz(), level.InternalLevel,
-                structuralType.ToRevitType(), structuralFramingType.InternalFamilySymbol);
-        }
 
         /// <summary>
         /// Create a beam.
