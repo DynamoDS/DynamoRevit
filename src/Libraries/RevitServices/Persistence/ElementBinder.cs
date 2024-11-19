@@ -139,37 +139,6 @@ namespace RevitServices.Persistence
         public static bool IsEnabled = false;
 
         /// <summary>
-        /// Get an ElementId from trace
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        [Obsolete]
-        public static ElementId GetElementIdFromTrace(Document document)
-        {
-            //Get the element ID that was cached in the callsite
-            string traceString = TraceUtils.GetTraceData(REVIT_TRACE_ID);
-
-            if (String.IsNullOrEmpty(traceString))
-                return null;
-
-            SerializableId id = null;
-            try
-            {
-                id = JsonConvert.DeserializeObject<SerializableId>(traceString);
-            }
-            catch
-            {
-                //do nothing 
-            }
-
-            if (id == null)
-                return null; //There was no usable data in the trace cache
-
-            var traceDataInt = id.IntID;
-            return new Autodesk.Revit.DB.ElementId(traceDataInt);
-        }
-
-        /// <summary>
         /// Get an Element unique Identifier from trace
         /// </summary>
         /// <param name="document"></param>

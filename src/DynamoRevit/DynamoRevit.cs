@@ -206,14 +206,6 @@ namespace Dynamo.Applications
         public static ExternalEvent SplashScreenExternalEvent { get; set; }
         public static ExternalEvent DynamoAppExternalEvent { get; set; }
         private static readonly string DYNAMO_REVIT_HOST_NAME = "Dynamo Revit";
-        /// <summary>
-        /// Based on the RevitDynamoModelState a dependent component can take certain 
-        /// decisions regarding its UI and functionality.
-        /// In order to be able to run a specified graph , revitDynamoModel needs to be 
-        /// at least in StartedUIless state. 
-        /// </summary>
-        [Obsolete("This enum will be removed, please use the State property on DynamoModel along with DynamoModelState")]
-        public enum RevitDynamoModelState { NotStarted, StartedUIless, StartedUI };
 
         private static List<Action> idleActions;
         private static DynamoRevitCommandData extCommandData;
@@ -222,17 +214,6 @@ namespace Dynamo.Applications
         private static Action shutdownHandler;
         private Stopwatch startupTimer;
         private Dynamo.UI.Views.SplashScreen splashScreen;
-
-        /// <summary>
-        /// The modelState tels us if the RevitDynamoModel was started and if has the
-        /// the Dynamo UI attached to it or not 
-        /// </summary>
-        [Obsolete("This property will be removed, please use the State property on DynamoModel.")]
-        public static RevitDynamoModelState ModelState
-        {
-            get;
-            private set;
-        }
 
         /// <summary>
         /// Get or Set the current RevitDynamoModel available in Revit context
@@ -251,7 +232,7 @@ namespace Dynamo.Applications
             RevitDynamoViewModel = null;
             RevitDynamoModel = null;
             handledCrash = false;
-            ModelState = RevitDynamoModelState.NotStarted;
+            //ModelState = RevitDynamoModelState.NotStarted;
             preLoadExceptions = new List<Exception>();
         }
 
@@ -270,7 +251,7 @@ namespace Dynamo.Applications
         {
             startupTimer = Stopwatch.StartNew();
 
-            if (ModelState == RevitDynamoModelState.StartedUIless)
+            if (RevitDynamoModel?.State == DynamoModel.DynamoModelState.StartedUIless)
             {
                 if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, true) ||
                     CheckJournalForKey(commandData, JournalKeys.ModelShutDownKey))
@@ -283,7 +264,7 @@ namespace Dynamo.Applications
                     //the document in Revit. Since revitDynamoModel is well connected to the previous document we need to
                     //shut it down and start a new one in order to able to run a graph in the new document.
                     RevitDynamoModel.ShutDown(false);
-                    ModelState = RevitDynamoModelState.NotStarted;
+                    RevitDynamoModel.State = DynamoModel.DynamoModelState.NotStarted;
                 }
                 else
                 {
@@ -292,7 +273,7 @@ namespace Dynamo.Applications
                 }
             }
 
-            if (ModelState == RevitDynamoModelState.StartedUI)
+            if (RevitDynamoModel?.State == DynamoModel.DynamoModelState.StartedUI)
             {
                 TryOpenAndExecuteWorkspaceInCommandData(commandData);
                 return Result.Succeeded;
@@ -362,7 +343,7 @@ namespace Dynamo.Applications
 
                     // handle initialization steps after RevitDynamoModel is created in UIless mode
                     RevitDynamoModel.HandlePostInitialization();
-                    ModelState = RevitDynamoModelState.StartedUIless;
+                    RevitDynamoModel.State = DynamoModel.DynamoModelState.StartedUIless;
 
                     //unsubscribe to the assembly load
                     AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
@@ -399,7 +380,7 @@ namespace Dynamo.Applications
 
             // handle initialization steps after RevitDynamoModel is created.
             RevitDynamoModel.HandlePostInitialization();
-            ModelState = RevitDynamoModelState.StartedUIless;
+            RevitDynamoModel.State = DynamoModel.DynamoModelState.StartedUIless;
 
             // show the window
             if (CheckJournalForKey(extCommandData, JournalKeys.ShowUiKey, true))
@@ -415,7 +396,7 @@ namespace Dynamo.Applications
                 RenderOptions.ProcessRenderMode = save;
                 RevitDynamoModel.Logger.Log(Dynamo.Applications.Properties.Resources.WPFRenderMode + RenderOptions.ProcessRenderMode.ToString());
 
-                ModelState = RevitDynamoModelState.StartedUI;
+                RevitDynamoModel.State = DynamoModel.DynamoModelState.StartedUI;
                 // Disable the Dynamo button to prevent a re-run
                 DynamoRevitApp.DynamoButtonEnabled = false;
             }
@@ -432,7 +413,7 @@ namespace Dynamo.Applications
 
             //unsubscribe to the assembly load
             AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
-            Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed, ModelState.ToString());
+            Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed, RevitDynamoModel.State.ToString());
 
             splashScreen.OnRequestStaticSplashScreen();
             splashScreen.DynamicSplashScreenReady -= LoadDynamoView;
@@ -447,7 +428,7 @@ namespace Dynamo.Applications
 
             // Handle initialization steps after RevitDynamoModel is created.
             RevitDynamoModel.HandlePostInitialization();
-            ModelState = RevitDynamoModelState.StartedUIless;
+            RevitDynamoModel.State = DynamoModel.DynamoModelState.StartedUIless;
 
             // Show the window
             if (CheckJournalForKey(extCommandData, JournalKeys.ShowUiKey, true))
@@ -461,7 +442,7 @@ namespace Dynamo.Applications
                 RenderOptions.ProcessRenderMode = save;
                 RevitDynamoModel.Logger.Log(Dynamo.Applications.Properties.Resources.WPFRenderMode + RenderOptions.ProcessRenderMode.ToString());
 
-                ModelState = RevitDynamoModelState.StartedUI;
+                RevitDynamoModel.State = DynamoModel.DynamoModelState.StartedUI;
                 // Disable the Dynamo button to prevent a re-run
                 DynamoRevitApp.DynamoButtonEnabled = false;
             }
@@ -478,7 +459,7 @@ namespace Dynamo.Applications
 
             // Unsubscribe to the assembly load
             AppDomain.CurrentDomain.AssemblyLoad -= AssemblyLoad;
-            Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed, ModelState.ToString());
+            Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed, RevitDynamoModel.State.ToString());
         }
 
         /// <summary>
@@ -505,25 +486,9 @@ namespace Dynamo.Applications
         /// </summary>
         /// <param name="corePath">The path where DynamoShapeManager.dll can be 
         /// located.</param>
+        /// <param name="version">The version of DynamoShapeManager.dll</param>
         /// <returns>Returns the full path to geometry factory assembly.</returns>
-        /// 
-        [Obsolete("Please use the overload which specifies the version of the geometry library to load")]
-        public static string GetGeometryFactoryPath(string corePath)
-        {
-            var dynamoAsmPath = Path.Combine(corePath, "DynamoShapeManager.dll");
-            var assembly = Assembly.LoadFrom(dynamoAsmPath);
-            if (assembly == null)
-                throw new FileNotFoundException("File not found", dynamoAsmPath);
-
-            var utilities = assembly.GetType("DynamoShapeManager.Utilities");
-            var getGeometryFactoryPath = utilities.GetMethod("GetGeometryFactoryPath2");
-
-            //if old method is called default to 224.4.0
-            return (getGeometryFactoryPath.Invoke(null,
-                new object[] { corePath, new Version(224, 4, 0) }) as string);
-        }
-
-
+        /// <exception cref="FileNotFoundException"></exception>
         public static string GetGeometryFactoryPath(string corePath, Version version)
         {
             var dynamoAsmPath = Path.Combine(corePath, "DynamoShapeManager.dll");
@@ -943,7 +908,7 @@ namespace Dynamo.Applications
 
                 if (!useExistingWorkspace) //if use existing is false, open the specified workspace
                 {
-                    if (ModelState == RevitDynamoModelState.StartedUIless)
+                    if (RevitDynamoModel?.State == DynamoModel.DynamoModelState.StartedUIless)
                     {
                         RevitDynamoModel.OpenFileFromPath(commandData.JournalData[JournalKeys.DynPathKey], forceManualRun);
                     }
@@ -1084,7 +1049,7 @@ namespace Dynamo.Applications
             DynamoRevitApp.DynamoButtonEnabled = true;
 
             //the model is shutdown when DynamoView is closed
-            ModelState = RevitDynamoModelState.NotStarted;
+            RevitDynamoModel.State = DynamoModel.DynamoModelState.NotStarted;
 
             // Once Dynamo is closed, we want to set the current UI culture back to the default thread culture.
             System.Globalization.CultureInfo.CurrentUICulture = System.Globalization.CultureInfo.DefaultThreadCurrentCulture;
@@ -1107,7 +1072,7 @@ namespace Dynamo.Applications
             {
                 DynamoRevitApp.DynamoButtonEnabled = true;
                 //the model is shutdown when splash screen is closed
-                ModelState = RevitDynamoModelState.NotStarted;
+                RevitDynamoModel.State = DynamoModel.DynamoModelState.NotStarted;
             }
         }
 
