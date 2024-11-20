@@ -1,3 +1,6 @@
+## 0.6.32
+* update Dynamo Core to 3.4.0.6892
+
 ## 0.6.31
 * remove obsolete nodes
 * Set the UI culture back to default after dynamo is closed
