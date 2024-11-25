@@ -10,7 +10,7 @@
   </priorNameHint>
   <priorNameHint>
     <oldName>Revit.Elements.FamilyInstance.Symbol</oldName>
-    <newName>Revit.Elements.FamilyInstance.Type</newName>
+    <newName>Revit.Elements.Element.ElementType</newName>
   </priorNameHint>
    <priorNameHint>
     <oldName>Revit.Elements.FamilyInstance.ByFamilySymbol</oldName>
@@ -42,7 +42,7 @@
   </priorNameHint>
   <priorNameHint>
     <oldName>Revit.Elements.StructuralFraming.Symbol</oldName>
-    <newName>Revit.Elements.StructuralFraming.Type</newName>
+    <newName>Revit.Elements.Element.ElementType</newName>
   </priorNameHint>
   <priorNameHint>
     <oldName>Revit.Elements.AdaptiveComponent.ByPoints@Autodesk.DesignScript.Geometry.Point[],Revit.Elements.FamilySymbol</oldName>

@@ -1,3 +1,6 @@
+## 0.6.33
+* Update Node Migrations and one test after obsolete node removal
+
 ## 0.6.32
 * update Dynamo Core to 3.4.0.6892
 
