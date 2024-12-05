@@ -1,7 +1,7 @@
 ## In profondità
-`Element.ElementFaceReferences` provides access to the face references within the given element. These references are useful for dimension creation, or the creation of other elements. If no face references are found, a null value is returned.
+`Element.ElementFaceReferences` fornisce l'accesso ai riferimenti alle facce all'interno dell'elemento specificato. Questi riferimenti sono utili per la creazione di quote o di altri elementi. Se non viene trovato alcun riferimento alla faccia, viene restituito un valore null.
 
-In the example below, all doors are collected from the selected view and the face references are returned.
+Nell'esempio seguente, vengono raccolte tutte le porte dalla vista selezionata e vengono restituiti i riferimenti alle facce.
 ___
 ## File di esempio
 

@@ -1,7 +1,7 @@
 ## Подробности
-`Viewport.LabelOutline` returns a Dynamo bounding box that represents the outline of the viewport's label.
+Узел `Viewport.LabelOutline` возвращает ограничивающую рамку Dynamo, представляющую контур метки видового экрана.
 
-In the example below, the viewports are returned for the selected sheet. The outlines of the label are then returned with `Viewport.LabelOutline`.
+В приведенном ниже примере возвращаются видовые экраны для выбранного листа. Затем с помощью `Viewport.LabelOutline` возвращаются контуры метки.
 ___
 ## Файл примера
 

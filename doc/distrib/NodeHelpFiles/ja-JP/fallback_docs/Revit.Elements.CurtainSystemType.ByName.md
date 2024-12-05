@@ -1,7 +1,7 @@
 ## 詳細
-`CurtainSystemType.ByName` selects a curtain system type from the current Revit document of the given name.
+`CurtainSystemType.ByName` は、指定された名前の現在の Revit ドキュメントからカーテン システム タイプを選択します。
 
-In the example below, the curtain system type `5' x 10'` is returned.
+次の例では、カーテン システム タイプ「5' x 10'」が返されます。
 ___
 ## サンプル ファイル
 

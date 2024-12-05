@@ -1,12 +1,12 @@
 ## Podrobnosti
-`TextNote.HorizontalAlignment` returns the assigned horizontal alignment of the given text note.
+Uzel `TextNote.HorizontalAlignment` vrací přiřazené horizontální zarovnání dané textové poznámky.
 
-Horizontal Alignment Options include:
-- Right
-- Left
-- Center
+Mezi možnosti horizontálního zarovnání patří:
+- Vpravo
+- Vlevo
+- Na střed
 
-In the example below, all working notes are collected from the current Revit document. The horizontal alignment values are then returned.
+V následujícím příkladu jsou shromážděny všechny pracovní poznámky z aktuálního dokumentu aplikace Revit. Poté jsou vráceny hodnoty horizontálního zarovnání.
 
 ___
 ## Vzorový soubor

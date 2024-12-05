@@ -1,7 +1,7 @@
 ## 深入資訊
-`Element.IsPinned` returns a true or false value to indicate whether the given element is pinned.
+`Element.IsPinned` 會傳回 true 或 false 值，指出是否釘住給定元素。
 
-In the example below, all Revit link instances are collected in the current document, and their pinned state is returned.
+以下範例收集目前文件中的所有 Revit 連結實體，然後傳回其釘住狀態。
 ___
 ## 範例檔案
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Material.Transparency` returns an integer that indicates how transparent a material is.
+Uzel `Material.Transparency` vrací celé číslo, které označuje, jak je materiál průhledný.
 
-In the example below, all materials are collected from the current document. The materials' transparency values (as integers) are returned with `Material.Transparency`.
+V následujícím příkladu jsou shromážděny všechny materiály z aktuálního dokumentu. Pomocí uzlu `Material.Transparency` jsou vráceny hodnoty průhlednosti materiálů (jako celá čísla).
 ___
 ## Vzorový soubor
 

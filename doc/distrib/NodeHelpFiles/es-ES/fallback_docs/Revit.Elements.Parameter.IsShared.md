@@ -1,7 +1,7 @@
 ## En detalle:
-`Parameter.IsShared` returns a boolean value representing if the given parameter is a shared parameter (loaded from a shared parameter file).
+`Parameter.IsShared` devuelve un valor booleano que representa si el parámetro especificado se ha compartido (cargado desde un archivo de parámetros compartidos).
 
-In the example below, a single wall is selected from all walls in the current Revit document. The wall's parameters are then queried to see if they are shared parameters.
+En el ejemplo siguiente, se selecciona un único muro de entre todos los muros del documento de Revit actual. A continuación, se consultan los parámetros del muro para ver si son parámetros compartidos.
 ___
 ## Archivo de ejemplo
 

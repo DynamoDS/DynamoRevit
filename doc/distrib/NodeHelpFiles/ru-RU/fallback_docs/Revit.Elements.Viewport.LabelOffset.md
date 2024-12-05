@@ -1,7 +1,7 @@
 ## Подробности
-`Viewport.LabelOffset` returns a point that represents the left endpoint of the viewport label.
+Узел `Viewport.LabelOffset` возвращает точку, представляющую левую конечную точку метки видового экрана.
 
-In the example below, the viewports are returned for the selected sheet. The label offsets of the viewports are then returned with `Viewport.LabelOffset`.
+В приведенном ниже примере возвращаются видовые экраны для выбранного листа. Затем с помощью `Viewport.LabelOffset` возвращаются смещения меток видовых экранов.
 ___
 ## Файл примера
 

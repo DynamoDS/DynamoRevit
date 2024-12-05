@@ -1,7 +1,7 @@
 ## 详细
-`Material.MaterialClass` returns the name of the class that the material is assigned to.
+“Material.MaterialClass”返回为其指定材质的类的名称。
 
-In the example below, all materials are collected from the current document. The materials' class names are returned with `Material.MaterialClass`.
+在下面的示例中，将从当前文档收集所有材质。使用“Material.MaterialClass”返回材质的类名。
 ___
 ## 示例文件
 

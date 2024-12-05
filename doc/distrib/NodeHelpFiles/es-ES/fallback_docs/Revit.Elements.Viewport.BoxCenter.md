@@ -1,7 +1,7 @@
 ## En detalle:
-`Viewport.BoxCenter` returns a Dynamo point that represents the center point of the extents of the viewport.
+`Viewport.BoxCenter` devuelve un punto de Dynamo que representa el centro de la extensión de la ventana gráfica.
 
-In the example below, the viewports are returned for the selected sheet. The box center locations are then returned with `Viewport.BoxCenter`.
+En el ejemplo siguiente, se devuelven las ventanas gráficas del plano seleccionado. Las ubicaciones del centro del cuadro se devuelven con `Viewport.BoxCenter`.
 ___
 ## Archivo de ejemplo
 

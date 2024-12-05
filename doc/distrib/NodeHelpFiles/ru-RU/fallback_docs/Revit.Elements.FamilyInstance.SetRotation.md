@@ -1,7 +1,7 @@
 ## Подробности
-`FamilyInstance.SetRotation` sets the rotation of a family instance on an individual basis. `FamilyInstance.SetRotation` will rotate each family instance about it's Z axis. This differs from rotating elements directly in Revit, where a rotation command rotates selected elements about a common center point.
+Узел `FamilyInstance.SetRotation` задает угол поворота экземпляра семейства на индивидуальной основе. Узел `FamilyInstance.SetRotation` поворачивает каждый экземпляр семейства вокруг оси Z. Это отличается от вращения элементов непосредственно в Revit, где команда поворачивает выбранные элементы вокруг общего центра.
 
-In the example below, all entourage families in the current Revit document are rotated at a random value between 0 and 360.
+В приведенном ниже примере все семейства элементов благоустройства в текущем документе Revit поворачиваются со случайным значением в диапазоне от 0 до 360.
 ___
 ## Файл примера
 

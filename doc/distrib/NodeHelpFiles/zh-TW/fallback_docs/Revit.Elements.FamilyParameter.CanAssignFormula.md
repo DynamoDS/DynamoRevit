@@ -1,7 +1,7 @@
 ## 深入資訊
-`FamilyParameter.CanAssignFormula` returns a true or false value indicating whether the given family parameter can have a formula assigned.
+`FamilyParameter.CanAssignFormula` 會傳回 true 或 false 值，指出給定族群參數是否可以指定公式。
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with a list of boolean values representing if they can have a formula assigned.
+在以下範例中，目前的 Revit 文件 (範例模型中的門族群) 處於開啟狀態。將傳回族群中的參數，以及一個布林值清單，表示這些參數是否可以指定公式。
 ___
 ## 範例檔案
 

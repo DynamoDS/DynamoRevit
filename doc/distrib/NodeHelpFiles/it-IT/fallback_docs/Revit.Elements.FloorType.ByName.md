@@ -1,7 +1,7 @@
 ## In profondità
-`FloorType.ByName` returns a floor type for the given name in the current Revit document. If the floor type does not exist, a null value is returned.
+`FloorType.ByName` restituisce un tipo di pavimento per il nome specificato nel documento di Revit corrente. Se il tipo di pavimento non esiste, viene restituito un valore null.
 
-In the example below, all floors present in the current Revit document are collected. The floors' types are then collected by getting the name of the floor and using `FloorType.ByName` to retrieve the floor type.
+Nell'esempio seguente, vengono raccolti tutti i pavimenti presenti nel documento di Revit corrente. Vengono quindi raccolti i tipi di pavimenti ottenendo il nome del pavimento e utilizzando `FloorType.ByName` per recuperare il tipo di pavimento.
 ___
 ## File di esempio
 

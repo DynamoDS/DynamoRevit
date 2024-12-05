@@ -1,15 +1,15 @@
 ## Podrobnosti
-`Parameter.SpecType` returns the given parameter's SpecType. SpecType describes the type of data that a given parameter stores.
+Uzel `Parameter.SpecType` vrací objekt SpecType daného parametru. Objekt SpecType popisuje datový typ, který daný parametr ukládá.
 
-These data types include:
+Mezi tyto datové typy patří:
 - Boolean
 - Int
 - Reference
 - String
 
-If no SpecType is found, a null value is returned.
+Pokud není nalezen žádný objekt SpecType, je vrácena hodnota null.
 
-In the example below, all parameters are returned for the current document's project information. The SpecTypes are returned as well.
+V následujícím příkladu jsou vráceny všechny parametry pro informace o projektu aktuálního dokumentu. Vrátí se také objekty SpecType.
 
 ___
 ## Vzorový soubor

@@ -1,8 +1,8 @@
 ## En detalle:
 
-`Material.CutPatternColor` returns a Dynamo color that represents the material's cut pattern color (if available).
+`Material.CutPatternColor` devuelve un color de Dynamo que representa el color del patrón de corte del material (si está disponible).
 
-In the example below, all materials are collected from the current document. The materials' cut pattern colors are returned with `Material.CutPatternColor`.
+En el ejemplo siguiente, se recopilan todos los materiales del documento actual. Los colores del patrón de corte de los materiales se devuelven con `Material.CutPatternColor`.
 
 ___
 ## Archivo de ejemplo

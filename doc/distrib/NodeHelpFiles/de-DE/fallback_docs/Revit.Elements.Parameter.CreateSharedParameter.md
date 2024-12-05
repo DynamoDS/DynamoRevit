@@ -1,7 +1,7 @@
 ## Im Detail
-`Parameter.CreateSharedParameter` will add a parameter with the given values to the given categories in the current Revit document. This node differs from `Parameter.CreateSharedParameterForAllCategories` by allowing for input for specific categories.
+`Parameter.CreateSharedParameter` fügt einen Parameter mit den angegebenen Werten zu den angegebenen Kategorien im aktuellen Revit-Dokument hinzu. Dieser Block unterscheidet sich dadurch von `Parameter.CreateSharedParameterForAllCategories`, dass die Eingabe für bestimmte Kategorien möglich ist.
 
-In the example below, a shared Yes/No parameter called "Include in FFE" is added to the furniture and generic model categories in the current Revit document.
+Im folgenden Beispiel wird ein gemeinsam genutzter Ja/Nein-Parameter namens "In FFE einbeziehen" zu den allgemeinen und Möbel-Modellkategorien im aktuellen Revit-Dokument hinzugefügt.
 ___
 ## Beispieldatei
 

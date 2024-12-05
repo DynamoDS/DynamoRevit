@@ -1,9 +1,9 @@
 ## Description approfondie
-`View DisplayStyles` allows for the selection of built-in display styles in Revit.
+L'option « Styles d'affichage de vue » permet de sélectionner des styles d'affichage intégrés dans Revit.
 
-For more information on the view display styles, also known as visual styles, refer to this article, [Visual Styles](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-12C2D6B0-71ED-490E-9CC6-AD3C635F092B)
+Pour plus d'informations sur les styles d'affichage de vue, également appelés styles visuels, reportez-vous à cet article: [Styles visuels](https://help.autodesk.com/view/RVT/2025/FRA/?guid=GUID-12C2D6B0-71ED-490E-9CC6-AD3C635F092B)
 
-In the example below, the default 3d view's display style is set to Realistic.
+Dans l'exemple ci-dessous, le style d'affichage de la vue 3D par défaut est défini sur Réaliste.
 ___
 ## Exemple de fichier
 

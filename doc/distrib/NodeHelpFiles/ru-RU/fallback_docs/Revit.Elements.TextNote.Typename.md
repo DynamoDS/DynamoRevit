@@ -1,7 +1,7 @@
 ## Подробности
-`TextNote.Typename` returns the type name for the given text note.
+Узел `TextNote.Typename` возвращает имя типа для заданного текстового примечания.
 
-In the example below, all working text notes are collected from the current Revit document by filtering by the text note type name.
+В приведенном ниже примере собираются все рабочие текстовые примечания в текущем документе Revit путем фильтрации по имени типа текстового примечания.
 
 ___
 ## Файл примера

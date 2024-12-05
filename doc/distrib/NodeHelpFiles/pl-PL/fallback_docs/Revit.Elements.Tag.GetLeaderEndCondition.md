@@ -1,11 +1,11 @@
 ## Informacje szczegółowe
-`Tag.GetLeaderEndCondition` returns the given tags leader end condition.
+Węzeł `Tag.GetLeaderEndCondition` zwraca stan zakończenia linii odniesienia oznaczenia.
 
-Possible end conditions include:
-- Attached
-- Free
+Możliwe stany zakończenia to:
+- Attached (przywiązany)
+- Free (wolny)
 
-In the example below, all keynote tags are collected from the "North Wall Window Detail" detail view. The tags' leader end conditions are then returned.
+W poniższym przykładzie pobierane są wszystkie oznaczenia opisów indeksowych z widoku szczegółowego „North Wall Window Detail”. Następnie zwracane są stany zakończenia linii odniesienia oznaczeń.
 
 ___
 ## Plik przykładowy

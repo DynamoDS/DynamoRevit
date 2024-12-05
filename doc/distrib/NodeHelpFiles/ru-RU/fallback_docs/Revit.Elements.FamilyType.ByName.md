@@ -1,9 +1,9 @@
 ## Подробности
-`FamilyType.ByName` will attempt to retrieve the given family type of the given name from the current document. If the family type is not available in the current document, a null value is returned.
+Узел `FamilyType.ByName` пытается извлечь указанный типоразмер семейства с данным именем из текущего документа. Если типоразмер семейства недоступен в текущем документе, возвращается значение null.
 
-Note: `FamilyType.ByName` searches family type definitions in order of the parent family's creation (by element id). If multiple parent families have a type definition with the same name, the first one found is returned. For a more concise lookup of family types use, `FamilyType.ByFamilyAndName` or `FamilyType.ByFamilyNameAndTypeName`
+Примечание. Узел `FamilyType.ByName` выполняет поиск в определениях типоразмеров семейств в порядке создания родительского семейства (по идентификатору элемента). Если несколько родительских семейств имеют определение типоразмера с одинаковым именем, возвращается первое найденное. Для более точного поиска типоразмеров семейств используйте узел `FamilyType.ByFamilyAndName` или `FamilyType.ByFamilyNameAndTypeName`.
 
-In the example below, a door family type, "36" x 84", from family "Door-Passage-Single-Flush" is returned.
+В приведенном ниже примере возвращается типоразмер семейства дверей «36" x 84"» из семейства «Дверь-Маятниковая-Одинарная-Щитовая».
 ___
 ## Файл примера
 

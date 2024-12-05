@@ -1,7 +1,7 @@
 ## En detalle:
-`View.AddFilter` adds the specified filter to the given view. If the view has a view template applied, this node will add the filter to it's view template.
+`View.AddFilter`añade el filtro especificado a la vista especificada. Si la vista tiene aplicada una plantilla de vista, este nodo añadirá el filtro a su plantilla de vista.
 
-In the example below, a view filter is created for the `Fire Rating` parameter on wall type elements. This filter is added to the `L1` floor plan view in the sample model.
+En el ejemplo siguiente, se crea un filtro de vista para el parámetro `Calificación para incendios` en los elementos de tipo de muro. Este filtro se añade a la vista de plano de planta `L1` del modelo de muestra.
 
 ___
 ## Archivo de ejemplo

@@ -1,9 +1,9 @@
 ## Informacje szczegółowe
-`Room.Location` returns a Dynamo point that represents a given room's location.
+Węzeł `Room.Location` zwraca punkt dodatku Dynamo, który reprezentuje położenie danego pomieszczenia.
 
-If an unbounded or unplaced room is given, a null value is returned.
+W razie podania nieograniczonego lub nieumieszczonego pomieszczenia zwracana jest wartość null.
 
-In the example below, all rooms are collected from the current document and selected view. The rooms' locations are then returned. Additionally, the room names are previewed in the Dynamo viewport with the `Label.ByPointAndString` node.
+W poniższym przykładzie pobierane są wszystkie pomieszczenia z bieżącego dokumentu i wybranego widoku. Następnie zwracane są lokalizacje pomieszczeń. Ponadto za pomocą węzła `Label.ByPointAndString` w rzutni dodatku Dynamo wyświetlany jest podgląd nazw pomieszczeń.
 
 ___
 ## Plik przykładowy

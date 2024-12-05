@@ -1,7 +1,7 @@
 ## 詳細
-`FamilyParameter.Unit` returns the unit type of the given parameter.
+`FamilyParameter.Unit` は、指定されたパラメータの単位タイプを返します。
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the unit type. If no unit type is found, a null value is returned.
+次の例では、現在の Revit ドキュメント(サンプル モデルのドア ファミリ)が開いています。ファミリ内のパラメータが、単位タイプとともに返されます。単位タイプが見つからない場合は、null 値が返されます。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## 深入資訊
-`Material.CutPatternId` returns the cut pattern's element id as an integer (if available). If no cut pattern is assigned, a value of "-1" is returned.
+`Material.CutPatternId` 會以整數傳回切割樣式的元素 ID (如果有)。如果未指定切割樣式，則傳回值「-1」。
 
-In the example below, all materials are collected from the current document. The materials' cut pattern ids are returned with `Material.CutPatternId`.
+以下範例收集目前文件中的所有材料。使用 `Material.CutPatternId` 傳回材料的切割樣式 ID。
 
 ___
 ## 範例檔案

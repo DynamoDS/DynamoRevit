@@ -1,7 +1,7 @@
 ## 詳細
-`Element.Solids` returns the solid geometry for the given element. The solids are returned as nested lists, as any given element can have more than one solid within it. If a single solid that represents the element is desired, `Solid.ByUnion` may be used on the lists.
+`Element.Solids` は、指定された要素のソリッド ジオメトリを返します。すべての指定要素には複数のソリッドを含めることができるため、ソリッドはネストされたリストとして返されます。要素を表す単一のソリッドが必要な場合は、リストで `Solid.ByUnion` を使用できます。
 
-In the example below, all walls are collected from the selected view. Walls that were created as in-place families are then removed, and the remaining walls' solids are returned.
+次の例では、選択したビューからすべての壁が収集されます。次に、インプレイス ファミリとして作成された壁は削除され、残りの壁のソリッドが返されます。
 
 ___
 ## サンプル ファイル

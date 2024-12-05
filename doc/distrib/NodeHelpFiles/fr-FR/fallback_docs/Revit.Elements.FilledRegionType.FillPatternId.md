@@ -1,7 +1,7 @@
 ## Description approfondie
-`FilledRegionType.FillPatternId` returns the element id of the given filled region type.
+'FilledRegionType.FillPatternId' renvoie l'ID d'élément du type de zone remplie donné.
 
-In the example below, the "Diagonal Down" filled region type is selected from the current Revit document. The fill pattern id is then returned with `FilledRegionType.FillPatternId`.
+Dans l'exemple ci-dessous, le type de zone remplie "Diagonale vers le bas" est sélectionné dans le document Revit actif. L'ID de motif de remplissage est ensuite renvoyé avec 'FilledRegionType.FillPatternId'.
 
 ___
 ## Exemple de fichier

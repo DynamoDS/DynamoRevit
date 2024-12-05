@@ -1,7 +1,7 @@
 ## 詳細
-`Select Filled Region Type` allows for the selection of a filled region type from all types available in the active Revit document.
+`Select Filled Region Type` は、アクティブな Revit ドキュメントで使用可能なすべてのタイプから塗り潰し領域タイプを選択できます。
 
-In the example below, a new drafting view is created in the active Revit document. A filled region is created in the view using "Diagonal Down" type.
+次の例では、アクティブな Revit ドキュメント内に新しい製図ビューが作成されています。「斜め下」タイプを使用して、塗り潰し領域がビュー内に作成されています。
 
 ___
 ## サンプル ファイル

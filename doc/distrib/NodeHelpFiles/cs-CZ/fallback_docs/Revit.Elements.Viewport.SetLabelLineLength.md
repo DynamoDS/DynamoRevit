@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Viewport.SetLabelLineLength` sets the length of the viewport line, in paper space units.
+Uzel `Viewport.SetLabelLineLength` nastavuje délku čáry výřezu v jednotkách výkresového prostoru.
 
-In the example below, all of the viewports from the selected sheet are collected. The viewports' bounding boxes are then used to calculate the width that the viewport line should be. Finally, the viewport lines are set to the width of the viewport.
+V následujícím příkladu se shromáždí všechny výřezy z vybraného výkresu. Pomocí ohraničujících kvádrů výřezů se pak vypočítá šířka, kterou by měla čára výřezu zaujímat. Nakonec jsou čáry výřezu nastaveny na šířku výřezu.
 ___
 ## Vzorový soubor
 

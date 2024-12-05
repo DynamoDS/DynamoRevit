@@ -1,7 +1,7 @@
 ## 深入資訊
-`Group.Location` returns a point that represents the given group's origin.
+`Group.Location` 會傳回表示給定群組原點的點。
 
-In the example below, all model groups are collected from the active Revit document. The groups' locations are returned with `Group.Location`.
+以下範例收集作用中 Revit 文件中的所有模型群組。使用 `Group.Location` 傳回群組的位置。
 
 ___
 ## 範例檔案

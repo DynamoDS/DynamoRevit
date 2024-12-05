@@ -1,9 +1,9 @@
 ## Im Detail
-`Room.Area` returns the area of the given room element in the current document's units. _(E.g. Feet and Inches)_
+`Room.Area` gibt die Fläche des angegebenen Raumelements in den Einheiten des aktuellen Dokuments zurück. _(z. B. Fuß und Zoll)_
 
-If an unbounded or unplaced room is given, a null value is returned.
+Wenn ein nicht begrenzter oder nicht platzierter Raum angegeben wird, wird ein Nullwert zurückgegeben.
 
-In the example below, all rooms are collected from the current document and the area values are returned.
+Im folgenden Beispiel werden alle Räume aus dem aktuellen Dokument gesammelt, und die Flächenwerte werden zurückgegeben.
 ___
 ## Beispieldatei
 

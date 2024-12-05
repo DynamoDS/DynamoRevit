@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`GlobalParameter.Name` returns the name of the given global parameter.
+Węzeł `GlobalParameter.Name` zwraca nazwę danego parametru globalnego.
 
-In the example below, all global parameters are returned from the current Revit document. The names of the parameter are then returned with `GlobalParameter.Name`.
+W poniższym przykładzie zwracane są wszystkie parametry globalne z bieżącego dokumentu programu Revit. Następnie za pomocą węzła `GlobalParameter.Name` zwracane są nazwy parametrów.
 ___
 ## Plik przykładowy
 

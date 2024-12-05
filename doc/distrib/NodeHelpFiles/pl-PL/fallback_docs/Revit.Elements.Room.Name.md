@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Room.Name` returns the name for the given room element.
+Węzeł `Room.Name` zwraca nazwę danego elementu pomieszczenia.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then returned.
+W poniższym przykładzie pobierane są wszystkie pomieszczenia z bieżącego dokumentu z wybranego widoku. Następnie zwracane są nazwy pomieszczeń.
 ___
 ## Plik przykładowy
 

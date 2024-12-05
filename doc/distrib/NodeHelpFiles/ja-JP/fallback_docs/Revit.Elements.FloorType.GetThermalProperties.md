@@ -1,9 +1,9 @@
 ## 詳細
-`FloorType.GetThermalProperties` returns the thermal properties of the floor type if available.
+`FloorType.GetThermalProperties` は、床タイプの断熱プロパティを返します(使用可能な場合)。
 
-For more information about thermal properties of elements in Revit, refer to this [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-3C378374-D360-4207-A558-3500922A452E).
+Revit の要素の断熱プロパティの詳細については、こちらの記事(https://help.autodesk.com/view/RVT/2024/JPN/?guid=GUID-3C378374-D360-4207-A558-3500922A452E)を参照してください。
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types' are the queried for their thermal properties.
+次の例では、現在の Revit ドキュメントに存在するすべての床が収集されています。次に、床がタイプ別にグループ化されます。床タイプの断熱プロパティがクエリ―されます。
 ___
 ## サンプル ファイル
 

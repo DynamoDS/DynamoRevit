@@ -1,7 +1,7 @@
 ## Podrobnosti
-`ScheduleView.AddFields` adds the selected fields to the schedule. Schedulable fields represent available parameters of the category assigned to the schedule.
+Uzel `ScheduleView.AddFields` přidá vybraná pole do výkazu. Pole, která lze zahrnout do výkazu, představují dostupné parametry kategorie přiřazené k výkazu.
 
-In the example below, a new schedule called "Working Door Schedule" is created. The schedulable fields are then collected and input into a dictionary to facilitate looking the fields up by name. Finally, the fields are found by name and added to the schedule view with `ScheduleView.AddFields`.
+V níže uvedeném příkladu je vytvořen nový výkaz s názvem „Pracovní výkaz dveří“. Pole, která lze zahrnout do výkazu, jsou poté shromážděna a vložena do slovníku, aby se usnadnilo vyhledávání polí podle názvu. Nakonec jsou pole vyhledána podle názvu a přidána do pohledu výkazu pomocí uzlu `ScheduleView.AddFields`.
 ___
 ## Vzorový soubor
 

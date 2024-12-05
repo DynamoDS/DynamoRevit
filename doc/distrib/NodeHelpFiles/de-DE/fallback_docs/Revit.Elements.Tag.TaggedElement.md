@@ -1,7 +1,7 @@
 ## Im Detail
-`Tag.TaggedElement` returns the source element of the given tag.
+`Tag.TaggedElement` gibt das Quellelement der angegebenen Beschriftung zurück.
 
-In the example below, all door tags are collected from the current Revit document. The door tags' source door (family instance) are returned.
+Im folgenden Beispiel werden alle Türbeschriftungen aus dem aktuellen Revit-Dokument gesammelt. Dann wird die Quelltür (Familienexemplar) der Türbeschriftungen zurückgegeben.
 ___
 ## Beispieldatei
 

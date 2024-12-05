@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Material.Color` returns a Dynamo color that represents the material's shading color. If the material's shading color is set to "use render appearance", that value is returned.
+Uzel `Material.Color` vrací barvu aplikace Dynamo, která představuje barvu stínování materiálu. Pokud je barva stínování materiálu nastavena na hodnotu „Použít rendrovaný vzhled“, je vrácena tato hodnota.
 
-In the example below, all materials are collected from the current document. The materials' shading color values are returned with `Material.Color`.
+V následujícím příkladu jsou shromážděny všechny materiály z aktuálního dokumentu. Pomocí uzlu `Material.Color` jsou vráceny hodnoty barev stínování materiálů.
 
 ___
 ## Vzorový soubor

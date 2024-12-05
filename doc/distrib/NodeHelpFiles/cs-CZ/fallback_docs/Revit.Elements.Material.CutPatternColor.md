@@ -1,8 +1,8 @@
 ## Podrobnosti
 
-`Material.CutPatternColor` returns a Dynamo color that represents the material's cut pattern color (if available).
+Uzel `Material.CutPatternColor` vrací barvu aplikace Dynamo, která představuje barvu vzoru řezu materiálu (pokud je k dispozici).
 
-In the example below, all materials are collected from the current document. The materials' cut pattern colors are returned with `Material.CutPatternColor`.
+V následujícím příkladu jsou shromážděny všechny materiály z aktuálního dokumentu. Pomocí uzlu `Material.CutPatternColor` jsou vráceny barvy vzoru řezu materiálů.
 
 ___
 ## Vzorový soubor

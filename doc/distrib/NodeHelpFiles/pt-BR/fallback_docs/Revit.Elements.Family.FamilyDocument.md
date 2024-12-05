@@ -1,7 +1,7 @@
 ## Em profundidade
-`Family.FamilyDocument` provides access to the document of the given family. This is useful for extracting parameters, types and other specific family document data.
+`Family.FamilyDocument` fornece acesso ao documento da família especificada. Isso é útil para extrair parâmetros, tipos e outros dados específicos do documento de família.
 
-In the example below, the family "Door-Passage-Single-Flush" is selected from the current Revit document. The family document is then obtained and the different types are provided.
+No exemplo abaixo, é selecionada a família “Door-Passage-Single-Flush” no documento atual do Revit. Em seguida, o documento da família é obtido e os diferentes tipos são fornecidos.
 ___
 ## Arquivo de exemplo
 

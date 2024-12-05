@@ -1,11 +1,11 @@
 ## Подробности
-`Tag.GetLeaderEndCondition` returns the given tags leader end condition.
+Узел `Tag.GetLeaderEndCondition` возвращает заданное конечное условие выносок марок.
 
-Possible end conditions include:
-- Attached
-- Free
+Возможные конечные условия:
+- присоединено;
+- свободно.
 
-In the example below, all keynote tags are collected from the "North Wall Window Detail" detail view. The tags' leader end conditions are then returned.
+В приведенном ниже примере все марки ключевых пометок собираются из вида узла «Узел окна на северной стене». Затем возвращаются конечные условия выносок марок.
 
 ___
 ## Файл примера

@@ -1,12 +1,12 @@
 ## Informacje szczegółowe
-`TextNote.VerticalAlignment` returns the assigned vertical alignment of the given text note.
+Węzeł `TextNote.VerticalAlignment` zwraca przypisane wyrównanie w pionie danej notatki tekstowej.
 
-Vertical Alignment Options include:
-- Top
-- Bottom
-- Middle
+Opcje wyrównania w pionie obejmują:
+- Top (góra)
+- Bottom (dół)
+- Middle (środek)
 
-In the example below, all working notes are collected from the current Revit document. The vertical alignment values are then returned.
+W poniższym przykładzie z bieżącego dokumentu programu Revit pobierane są wszystkie notatki robocze. Następnie zwracane są wartości wyrównania w pionie.
 
 ___
 ## Plik przykładowy

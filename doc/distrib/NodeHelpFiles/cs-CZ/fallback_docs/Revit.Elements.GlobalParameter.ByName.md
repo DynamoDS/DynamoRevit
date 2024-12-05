@@ -1,7 +1,7 @@
 ## Podrobnosti
-`GlobalParameter.ByName` creates a global parameter with the given name and spec type.
+Uzel `GlobalParameter.ByName` vytvoří globální parametr s daným názvem a typem specifikace.
 
-In the example below, a global parameter called "Building Number" is created.
+V níže uvedeném příkladu se vytvoří globální parametr s názvem „Číslo budovy“.
 ___
 ## Vzorový soubor
 

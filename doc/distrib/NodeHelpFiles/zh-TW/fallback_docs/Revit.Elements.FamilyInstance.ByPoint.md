@@ -1,7 +1,7 @@
 ## 深入資訊
-`FamilyInstance.ByPoint` creates an instance of the given family type at the given point.
+`FamilyInstance.ByPoint` 會在給定點建立給定族群類型的實體。
 
-In the example below, a selected floor surface is parameterized with hexagon panels. The panel center points are used for randomized RPC placement.
+在以下範例中，使用六邊形嵌板參數化選取的地板表面。使用嵌板中心點隨機放置 RPC。
 ___
 ## 範例檔案
 

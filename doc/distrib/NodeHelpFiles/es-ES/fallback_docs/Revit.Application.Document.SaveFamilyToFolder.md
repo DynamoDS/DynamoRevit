@@ -1,7 +1,7 @@
 ## En detalle:
-`Document.SaveFamilyToFolder` attempts to save all input families to the given folder. If the input family is not editable a null value will be returned.
+`Document.SaveFamilyToFolder` intenta guardar todas las familias de entrada en la carpeta especificada. Si la familia de entrada no se puede editar, se devolverá un valor nulo.
 
-In the example below, all families that can be saved out of the current Revit document are saved to the given location.
+En el ejemplo siguiente, todas las familias que pueden guardarse fuera del documento de Revit actual se almacenan en la ubicación especificada.
 ___
 ## Archivo de ejemplo
 

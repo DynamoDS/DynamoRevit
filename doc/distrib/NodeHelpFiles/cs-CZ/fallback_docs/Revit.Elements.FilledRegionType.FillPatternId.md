@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FilledRegionType.FillPatternId` returns the element id of the given filled region type.
+Uzel `FilledRegionType.FillPatternId` vrací id prvku daného typu vyplněné oblasti.
 
-In the example below, the "Diagonal Down" filled region type is selected from the current Revit document. The fill pattern id is then returned with `FilledRegionType.FillPatternId`.
+V níže uvedeném příkladu je z aktuálního dokumentu aplikace Revit vybrán typ vyplněné oblasti „Diagonálně dolů“. Poté se vrátí id vzoru výplně pomocí uzlu `FilledRegionType.FillPatternId`.
 
 ___
 ## Vzorový soubor

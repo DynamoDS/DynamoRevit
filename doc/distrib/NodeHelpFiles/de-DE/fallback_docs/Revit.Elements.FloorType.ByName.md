@@ -1,7 +1,7 @@
 ## Im Detail
-`FloorType.ByName` returns a floor type for the given name in the current Revit document. If the floor type does not exist, a null value is returned.
+`FloorType.ByName` gibt einen Geschossdeckentyp für den angegebenen Namen im aktuellen Revit-Dokument zurück. Wenn der Geschossdeckentyp nicht vorhanden ist, wird ein Nullwert zurückgegeben.
 
-In the example below, all floors present in the current Revit document are collected. The floors' types are then collected by getting the name of the floor and using `FloorType.ByName` to retrieve the floor type.
+Im folgenden Beispiel werden alle im aktuellen Revit-Dokument vorhandenen Geschossdecken gesammelt. Die Geschossdeckentypen werden dann gesammelt, indem der Name der Geschossdecke und mit `FloorType.ByName` der Geschossdeckentyp abgerufen wird.
 ___
 ## Beispieldatei
 

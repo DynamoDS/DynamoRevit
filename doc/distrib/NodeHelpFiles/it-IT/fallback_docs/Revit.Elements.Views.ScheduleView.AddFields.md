@@ -1,7 +1,7 @@
 ## In profondità
-`ScheduleView.AddFields` adds the selected fields to the schedule. Schedulable fields represent available parameters of the category assigned to the schedule.
+`ScheduleView.AddFields` aggiunge i campi selezionati all'abaco. I campi che è possibile inserire in abachi rappresentano i parametri disponibili della categoria assegnata all'abaco.
 
-In the example below, a new schedule called "Working Door Schedule" is created. The schedulable fields are then collected and input into a dictionary to facilitate looking the fields up by name. Finally, the fields are found by name and added to the schedule view with `ScheduleView.AddFields`.
+Nell'esempio seguente, viene creato un nuovo abaco denominato "Working Door Schedule". I campi che è possibile inserire in abachi vengono quindi raccolti e inseriti in un dizionario per facilitare la ricerca dei campi in base al nome. Infine, i campi vengono trovati per nome e aggiunti alla vista abaco con `ScheduleView.AddFields`.
 ___
 ## File di esempio
 

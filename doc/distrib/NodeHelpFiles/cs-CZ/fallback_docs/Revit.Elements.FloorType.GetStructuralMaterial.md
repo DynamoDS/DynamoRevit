@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FloorType.GetStructuralMaterial` returns the material assigned as structure if available. If no structural material is assigned, a null value is returned.
+Uzel `FloorType.GetStructuralMaterial` vrací materiál přiřazený jako konstrukci, pokud je k dispozici. Pokud není přiřazen žádný konstrukční materiál, je vrácena hodnota null.
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types' are the queried for their structural material.
+V následujícím příkladu jsou shromážděny všechny podlahy nacházející se v aktuálním dokumentu aplikace Revit. Podlahy jsou poté seskupeny podle typu. Typy podlah jsou dotazovány na jejich konstrukční materiál.
 ___
 ## Vzorový soubor
 

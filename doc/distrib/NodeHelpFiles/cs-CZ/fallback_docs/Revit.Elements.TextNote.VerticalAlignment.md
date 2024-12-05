@@ -1,12 +1,12 @@
 ## Podrobnosti
-`TextNote.VerticalAlignment` returns the assigned vertical alignment of the given text note.
+Uzel `TextNote.VerticalAlignment` vrací přiřazené vertikální zarovnání dané textové poznámky.
 
-Vertical Alignment Options include:
-- Top
-- Bottom
-- Middle
+Mezi možnosti vertikálního zarovnání patří:
+- Nahoru
+- Dolů
+- Doprostřed
 
-In the example below, all working notes are collected from the current Revit document. The vertical alignment values are then returned.
+V následujícím příkladu jsou shromážděny všechny pracovní poznámky z aktuálního dokumentu aplikace Revit. Poté jsou vráceny hodnoty vertikálního zarovnání.
 
 ___
 ## Vzorový soubor

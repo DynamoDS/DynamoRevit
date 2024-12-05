@@ -1,11 +1,11 @@
 ## Description approfondie
-`Tag.GetLeaderEndCondition` returns the given tags leader end condition.
+'Tag.GetLeaderEndCondition' renvoie la condition donnée d'extrémité de repère des étiquettes.
 
-Possible end conditions include:
-- Attached
-- Free
+Conditions d'extrémité possibles:
+- Attachée
+- Libre
 
-In the example below, all keynote tags are collected from the "North Wall Window Detail" detail view. The tags' leader end conditions are then returned.
+Dans l'exemple ci-dessous, toutes les étiquettes de note d'identification sont collectées à partir de la vue de détail "Détail de la fenêtre du mur nord". Les conditions d'extrémité de repère des étiquettes sont ensuite renvoyées.
 
 ___
 ## Exemple de fichier

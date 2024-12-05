@@ -1,7 +1,7 @@
 ## Подробности
-`GlobalParameter.FindByName` returns a global parameter for the given name, if available. If the given global parameter does not exist, null is returned.
+Узел `GlobalParameter.FindByName` возвращает глобальный параметр для заданного имени, если он доступен. Если заданный глобальный параметр не существует, возвращается значение null.
 
-In the example below, the global parameter, "Windows_North Elevation Inset" is returned and the value is returned (in project units).
+В приведенном ниже примере возвращается глобальный параметр «Окна_Вставка на северном фасаде» и возвращается значение (в единицах проекта).
 ___
 ## Файл примера
 

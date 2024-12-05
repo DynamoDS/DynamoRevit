@@ -1,7 +1,7 @@
 ## 深入資訊
-`FloorType.ByName` returns a floor type for the given name in the current Revit document. If the floor type does not exist, a null value is returned.
+`FloorType.ByName` 會傳回目前 Revit 文件中給定名稱的樓板類型。如果樓板類型不存在，則傳回空值。
 
-In the example below, all floors present in the current Revit document are collected. The floors' types are then collected by getting the name of the floor and using `FloorType.ByName` to retrieve the floor type.
+以下範例收集目前 Revit 文件中的所有樓板，然後透過取得樓板的名稱並使用 `FloorType.ByName` 擷取樓板類型，來收集樓板的類型。
 ___
 ## 範例檔案
 

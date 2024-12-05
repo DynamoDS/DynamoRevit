@@ -1,7 +1,7 @@
 ## 詳細
-`CurtainPanel.IsRectangular` returns a true or false value to indicate if the given curtain panel is rectangular.
+'CurtainPanel.IsRectangular' は、指定されたカーテン パネルが長方形かどうかを示す true または false の値を返します。
 
-In the example below, all curtain panels are collected from the selected curtain wall element. The panels are then queried for whether or not they are rectangular.
+次の例では、選択されたカーテン ウォール要素からすべてのカーテン パネルが収集されています。次に、パネルが長方形かどうかクエリ―されます。
 ___
 ## サンプル ファイル
 

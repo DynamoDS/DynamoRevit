@@ -1,7 +1,7 @@
 ## En detalle:
-`TextNote.Typename` returns the type name for the given text note.
+`TextNote.Typename` devuelve el nombre de tipo de la nota de texto especificada.
 
-In the example below, all working text notes are collected from the current Revit document by filtering by the text note type name.
+En el ejemplo siguiente, se recopilan todas las notas de texto de trabajo del documento de Revit actual mediante el filtrado por el nombre del tipo de nota de texto.
 
 ___
 ## Archivo de ejemplo

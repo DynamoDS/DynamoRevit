@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Viewport.LabelOffset` returns a point that represents the left endpoint of the viewport label.
+Uzel `Viewport.LabelOffset` vrací bod, který představuje levý koncový bod popisku výřezu.
 
-In the example below, the viewports are returned for the selected sheet. The label offsets of the viewports are then returned with `Viewport.LabelOffset`.
+V níže uvedeném příkladu jsou vráceny výřezy pro vybraný výkres. Poté jsou vrácena odsazení popisků výřezů pomocí uzlu `Viewport.LabelOffset`.
 ___
 ## Vzorový soubor
 

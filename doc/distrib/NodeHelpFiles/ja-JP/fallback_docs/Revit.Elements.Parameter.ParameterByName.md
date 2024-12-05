@@ -1,9 +1,9 @@
 ## 詳細
-Given an element and a name of a parameter, `Parameter.ParameterByName` returns the parameter element, if applicable.
+要素とパラメータ名を指定すると、`Parameter.ParameterByName` はパラメータ要素を返します(該当する場合)。
 
-If no parameter is found by the given name, a null value is returned.
+指定された名前でパラメータが見つからない場合は、null 値が返されます。
 
-In the example below, the project name parameter is returned for the project information for the current document.
+次の例では、現在のドキュメント内のプロジェクト情報としてプロジェクト名パラメータが返されます。
 
 ___
 ## サンプル ファイル

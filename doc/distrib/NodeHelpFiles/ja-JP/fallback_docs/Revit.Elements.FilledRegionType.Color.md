@@ -1,7 +1,7 @@
 ## 詳細
-`FilledRegionType.Color` returns the color assigned to the given filled region type.
+`FilledRegionType.Color` は、指定された塗り潰し領域タイプに割り当てられている色を返します。
 
-In the example below, the "Diagonal Down" filled region type is selected from the current Revit document. The color is then reported with `FilledRegionType.Color`.
+次の例では、現在の Revit ドキュメントから「斜め下」の塗り潰し領域タイプが選択されます。次に、その色が `FilledRegionType.Color` によってレポートされます。
 
 ___
 ## サンプル ファイル

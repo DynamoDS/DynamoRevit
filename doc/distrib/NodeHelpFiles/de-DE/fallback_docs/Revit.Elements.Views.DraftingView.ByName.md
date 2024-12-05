@@ -1,7 +1,7 @@
 ## Im Detail
-`DraftingView.ByName` creates a drafting view with the given name. The type of drafting view used is the last one used within Revit.
+`DraftingView.ByName` erstellt eine Zeichenansicht mit dem angegebenen Namen. Der verwendete Zeichenansichtstyp ist der zuletzt in Revit verwendete.
 
-In the example below, a drafting view called "Door/Jamb Detail" is created.
+Im folgenden Beispiel wird eine Zeichenansicht mit dem Namen "Tür/Flügel Detail" erstellt.
 ___
 ## Beispieldatei
 

@@ -1,9 +1,9 @@
 ## Informacje szczegółowe
-`FloorType.GetThermalProperties` returns the thermal properties of the floor type if available.
+Węzeł `FloorType.GetThermalProperties` zwraca właściwości cieplne typu stropu, jeśli są dostępne.
 
-For more information about thermal properties of elements in Revit, refer to this [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-3C378374-D360-4207-A558-3500922A452E).
+Więcej informacji na temat właściwości cieplnych elementów w programie Revit można znaleźć w tym [artykule](https://help.autodesk.com/view/RVT/2024/PLK/?guid=GUID-3C378374-D360-4207-A558-3500922A452E).
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types' are the queried for their thermal properties.
+W poniższym przykładzie pobierane są wszystkie stropy obecne w bieżącym dokumencie programu Revit. Stropy są dalej grupowane według typów. Typy stropów są następnie badane pod kątem właściwości cieplnych.
 ___
 ## Plik przykładowy
 

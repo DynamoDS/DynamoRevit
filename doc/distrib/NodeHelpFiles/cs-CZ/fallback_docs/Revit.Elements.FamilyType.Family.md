@@ -1,7 +1,7 @@
 ## Podrobnosti
-Given a family type, `FamilyType.Family` returns the overall parent family of the family type. The family represents the file that contains all of the family type definitions.
+U daného typu rodiny vrací uzel `FamilyType.Family` celkovou nadřazenou rodinu typu rodiny. Rodina představuje soubor, který obsahuje všechny definice typů rodin.
 
-In the example below, all door instances in the current view are grouped by their parent family.
+V níže uvedeném příkladu jsou všechny instance dveří v aktuálním pohledu seskupeny podle jejich nadřazené rodiny.
 ___
 ## Vzorový soubor
 

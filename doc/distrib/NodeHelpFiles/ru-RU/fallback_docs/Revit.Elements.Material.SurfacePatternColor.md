@@ -1,7 +1,7 @@
 ## Подробности
-`Material.SurfacePatternColor` returns a Dynamo color that represents the material's surface pattern color (if available).
+Узел `Material.SurfacePatternColor` возвращает цвет Dynamo, представляющий цвет штриховки поверхности материала (если доступен).
 
-In the example below, all materials are collected from the current document. The materials' colors are returned with `Material.SurfacePatternColor`.
+В приведенном ниже примере все материалы собираются из текущего документа. Цвета материалов возвращаются с помощью `Material.SurfacePatternColor`.
 ___
 ## Файл примера
 

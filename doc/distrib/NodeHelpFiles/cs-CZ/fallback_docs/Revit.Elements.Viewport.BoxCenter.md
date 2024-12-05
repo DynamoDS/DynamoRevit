@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Viewport.BoxCenter` returns a Dynamo point that represents the center point of the extents of the viewport.
+Uzel `Viewport.BoxCenter` vrací bod aplikace Dynamo, který představuje střed rozsahu výřezu.
 
-In the example below, the viewports are returned for the selected sheet. The box center locations are then returned with `Viewport.BoxCenter`.
+V níže uvedeném příkladu jsou vráceny výřezy pro vybraný výkres. Poté jsou vrácena umístění středu kvádru pomocí uzlu `Viewport.BoxCenter`.
 ___
 ## Vzorový soubor
 

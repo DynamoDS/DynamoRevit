@@ -1,9 +1,9 @@
 ## Im Detail
-`FamilyInstance.Location` returns a Dynamo point for the given family instance. If there is no location, a null value is returned. `FamilyInstance.Location` works on point-based element, and will not return a location for curve based element in Revit, _e.g. a wall or beam element_.
+`FamilyInstance.Location` gibt einen Dynamo-Punkt für das angegebene Familienexemplar zurück. Wenn keine Position vorhanden ist, wird ein Nullwert zurückgegeben. `FamilyInstance.Location` funktioniert mit punktbasierten Elementen und gibt keine Position für kurvenbasierte Elemente in Revit zurück, _z. B. für Wände oder Trägerelemente_.
 
-In the example below, all door family instances in the current view of the current document are collected. The doors' locations are then returned with `FamilyInstance.Location`.
+Im folgenden Beispiel werden alle Türfamilienexemplare in der aktuellen Ansicht des aktuellen Dokuments gesammelt. Die Positionen der Türen werden dann mit `FamilyInstance.Location` zurückgegeben.
 
-In the case of this example, curtain wall doors are returning null. Curtain panels locations are available via curtain panel nodes.
+In diesem Beispiel geben Fassadentüren einen Nullwert zurück. Die Positionen von Fassadenelementen sind über Fassadenelementblöcke verfügbar.
 ___
 ## Beispieldatei
 

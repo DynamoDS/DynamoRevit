@@ -1,7 +1,7 @@
 ## Em profundidade
-`FamilyParameter.CanAssignFormula` returns a true or false value indicating whether the given family parameter can have a formula assigned.
+`FamilyParameter.CanAssignFormula` retorna um valor true ou false que indica se o parâmetro de família especificado pode ter uma fórmula atribuída.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with a list of boolean values representing if they can have a formula assigned.
+No exemplo abaixo, está aberto o documento atual do Revit (uma família de portas do modelo de amostra). São retornados os parâmetros na família, juntamente com uma lista de valores booleanos que representam se eles podem ter uma fórmula atribuída.
 ___
 ## Arquivo de exemplo
 

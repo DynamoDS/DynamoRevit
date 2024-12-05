@@ -1,8 +1,8 @@
 ## Informacje szczegółowe
 
-`Select Edges` displays a cursor in Revit that allows you to select multiple edges. The objects returned are curves or lines that represent the selected edges.
+Węzeł `Select Edges` powoduje wyświetlenie kursora w programie Revit, który umożliwia wybranie wielu krawędzi. Zwracane obiekty są krzywymi lub liniami reprezentującymi wybrane krawędzie.
 
-In the example below, two lines are returned that represent the top edges of a parapet in the current document (file). Additionally, `Select Edges` reports the owning element ids of the edges that are selected.
+W poniższym przykładzie zwracane są dwie linie, które reprezentują górne krawędzie parapetu w bieżącym dokumencie (pliku). Ponadto węzeł `Select Edges` zgłasza identyfikatory elementów, do których należą wybrane krawędzie.
 
 ___
 ## Plik przykładowy

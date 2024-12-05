@@ -1,7 +1,7 @@
 ## Im Detail
-`ModelText.Text` returns the text value of the given model text element as a string.
+`ModelText.Text` gibt den Textwert des angegebenen Modelltextelements als Zeichenfolge zurück.
 
-In the example below, all model text is collected in the current Revit file. The text values are then returned with `ModelText.Text`.
+Im folgenden Beispiel wird der gesamte Modelltext in der aktuellen Revit-Datei gesammelt. Die Textwerte werden dann mit `ModelText.Text` zurückgegeben.
 ___
 ## Beispieldatei
 

@@ -1,7 +1,7 @@
 ## 詳細
-`Material.Transparency` returns an integer that indicates how transparent a material is.
+`Material.Transparency` は、マテリアルの透過度を示す整数を返します。
 
-In the example below, all materials are collected from the current document. The materials' transparency values (as integers) are returned with `Material.Transparency`.
+次の例では、すべてのマテリアルが現在のドキュメントから収集されます。マテリアルの透明度の値(整数)は `Material.Transparency` によって返されます。
 ___
 ## サンプル ファイル
 

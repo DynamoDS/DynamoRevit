@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Material.MaterialClass` returns the name of the class that the material is assigned to.
+Węzeł `Material.MaterialClass` zwraca nazwę klasy, do której jest przypisany materiał.
 
-In the example below, all materials are collected from the current document. The materials' class names are returned with `Material.MaterialClass`.
+W poniższym przykładzie pobierane są wszystkie materiały z bieżącego dokumentu. Za pomocą węzła `Material.MaterialClass` zwracane są nazwy klas materiałów.
 ___
 ## Plik przykładowy
 

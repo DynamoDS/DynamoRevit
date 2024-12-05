@@ -1,7 +1,7 @@
 ## In profondità
-`FamilyInstance.FacingOrientation` returns a vector describing the orientation of a family instance. This can be used to determine how much an instance has been rotated.
+`FamilyInstance.FacingOrientation` restituisce un vettore che descrive l'orientamento di un'istanza di famiglia. Può essere utilizzato per determinare il grado di rotazione di un'istanza.
 
-In the example below, the facing orientation (vector) for all door instances in the current view from the current document are returned.
+Nell'esempio seguente, viene restituito l'orientamento (vettore) delle facce per tutte le istanze di porta nella vista corrente del documento corrente.
 ___
 ## File di esempio
 

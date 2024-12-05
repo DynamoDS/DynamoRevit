@@ -1,9 +1,9 @@
 ## 詳細
-`Tag.HeadLocation` returns a point that represents the position of the given tag's head.
+`Tag.HeadLocation` は、指定されたタグのヘッドの位置を表す点を返します。
 
-For more information on tag placement, visit this [article](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
+タグ配置の詳細については、こちらの記事(https://help.autodesk.com/view/RVT/2025/JPN/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0)をご覧ください。
 
-In the example below, all door tags are collected from the L1 floor plan view. The tags' head locations are then returned.
+次の例では、すべてのドア タグが L1 平面図ビューから収集されます。次に、タグのヘッド位置が返されます。
 ___
 ## サンプル ファイル
 

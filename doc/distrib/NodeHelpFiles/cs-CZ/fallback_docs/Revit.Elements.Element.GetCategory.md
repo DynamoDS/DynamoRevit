@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Element.GetCategory` returns the category element for the given element. With the returned category element, it can be queried for various parameters.
+Uzel `Element.GetCategory` vrací prvek kategorie daného prvku. Vráceným prvek kategorie je možné dotazovat na různé parametry.
 
-In the example below, all selected elements' categories are returned. The elements are then filtered down to two lists. One list of door elements and a second list of all other elements.
+V níže uvedeném příkladu jsou vráceny kategorie všech vybraných prvků. Prvky jsou poté filtrovány do dvou seznamů. Jeden je seznam prvků dveří a druhý je seznam všech ostatních prvků.
 ___
 ## Vzorový soubor
 

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`ScheduleView.Export` exports the given schedule to the given path with the selected options.
+Węzeł `ScheduleView.Export` eksportuje dane zestawienie do danej ścieżki z wybranymi opcjami.
 
-In the example below, the door schedule is selected from the current Revit document for export. The export location is derived from the view name and the current user's documents location. Finally, the schedule is exported with the default export options.
+W poniższym przykładzie z bieżącego dokumentu programu Revit wybierane jest zestawienie drzwi do wyeksportowania. Położenie eksportu jest ustalane na podstawie nazwy widoku i położenia dokumentów bieżącego użytkownika. Na koniec zestawienie jest eksportowane z domyślnymi opcjami eksportu.
 ___
 ## Plik przykładowy
 

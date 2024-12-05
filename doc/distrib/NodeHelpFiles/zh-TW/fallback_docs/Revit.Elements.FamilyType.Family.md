@@ -1,7 +1,7 @@
 ## 深入資訊
-Given a family type, `FamilyType.Family` returns the overall parent family of the family type. The family represents the file that contains all of the family type definitions.
+給定族群類型，`FamilyType.Family` 會傳回族群類型的整體父系族群。族群表示包含所有族群類型定義的檔案。
 
-In the example below, all door instances in the current view are grouped by their parent family.
+在以下範例中，依門實體的父系族群，將目前視圖中的所有門實體分組。
 ___
 ## 範例檔案
 

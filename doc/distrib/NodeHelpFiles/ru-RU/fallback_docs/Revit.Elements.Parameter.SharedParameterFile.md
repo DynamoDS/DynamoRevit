@@ -1,7 +1,7 @@
 ## Подробности
-`Parameter.SharedParameterFile` returns the shared parameter file location for the active Revit document. If no shared parameter file is assigned, a null value is returned.
+Узел `Parameter.SharedParameterFile` возвращает расположение файла общих параметров для активного документа Revit. Если файл общих параметров не назначен, возвращается значение null.
 
-In the example below, the shared parameter file is returned and the file is read from the path.
+В приведенном ниже примере возвращается файл общих параметров, файл считывается из указанного пути.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`TextNote.SetText` sets the given text value to the text note.
+Węzeł `TextNote.SetText` ustawia dla notatki tekstowej daną wartość tekstu.
 
-In the example below, all text notes are collected from the current Revit document. The text notes' text values are collected and converted to upper case. These values are then used to set the text value.
+W poniższym przykładzie z bieżącego dokumentu programu Revit pobierane są wszystkie notatki tekstowe. Pobierane są wartości tekstu notatek tekstowych i ich litery są zmieniane na wielkie. Wartości te są następnie używane do ustawienia wartości tekstu.
 
 ___
 ## Plik przykładowy

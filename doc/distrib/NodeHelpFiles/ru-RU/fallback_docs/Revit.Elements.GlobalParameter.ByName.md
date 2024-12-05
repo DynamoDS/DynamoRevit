@@ -1,7 +1,7 @@
 ## Подробности
-`GlobalParameter.ByName` creates a global parameter with the given name and spec type.
+Узел `GlobalParameter.ByName` создает глобальный параметр с заданным именем и типом мини-каталога.
 
-In the example below, a global parameter called "Building Number" is created.
+В приведенном ниже примере создается глобальный параметр под названием «Номер здания».
 ___
 ## Файл примера
 

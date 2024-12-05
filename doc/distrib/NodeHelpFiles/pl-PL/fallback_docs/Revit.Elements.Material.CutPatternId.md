@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Material.CutPatternId` returns the cut pattern's element id as an integer (if available). If no cut pattern is assigned, a value of "-1" is returned.
+Węzeł `Material.CutPatternId` zwraca identyfikator elementu wzoru cięcia jako liczbę całkowitą (integer), jeśli jest dostępny. Jeśli wzór cięcia nie jest przypisany, zwracana jest wartość „-1”.
 
-In the example below, all materials are collected from the current document. The materials' cut pattern ids are returned with `Material.CutPatternId`.
+W poniższym przykładzie z bieżącego dokumentu pobierane są wszystkie materiały. Za pomocą węzła `Material.CutPatternId` zwracane są identyfikatory wzorów cięcia materiałów.
 
 ___
 ## Plik przykładowy

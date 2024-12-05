@@ -1,8 +1,8 @@
 ## Em profundidade
 
-`Select Edges` displays a cursor in Revit that allows you to select multiple edges. The objects returned are curves or lines that represent the selected edges.
+`Select Edges` exibe um cursor no Revit que permite selecionar várias arestas. Os objetos retornados são curvas ou linhas que representam as arestas selecionadas.
 
-In the example below, two lines are returned that represent the top edges of a parapet in the current document (file). Additionally, `Select Edges` reports the owning element ids of the edges that are selected.
+No exemplo abaixo, são retornadas duas linhas que representam as arestas superiores de um parapeito no documento atual (arquivo). Além disso, `Select Edges` reporta as IDs de elemento proprietário das arestas selecionadas.
 
 ___
 ## Arquivo de exemplo

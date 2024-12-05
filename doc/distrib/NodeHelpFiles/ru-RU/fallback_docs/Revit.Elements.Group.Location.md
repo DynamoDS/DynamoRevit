@@ -1,7 +1,7 @@
 ## Подробности
-`Group.Location` returns a point that represents the given group's origin.
+Узел `Group.Location` возвращает точку, представляющую начало координат данной группы.
 
-In the example below, all model groups are collected from the active Revit document. The groups' locations are returned with `Group.Location`.
+В приведенном ниже примере все группы моделей собираются из активного документа Revit. Местоположения групп возвращаются с помощью `Group.Location`.
 
 ___
 ## Файл примера

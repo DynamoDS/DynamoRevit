@@ -1,7 +1,7 @@
 ## Подробности
-`TextNoteType.ByName` selects the text note type that matches the given name, if available. If the text note type does not exist, a null value is returned.
+Узел `TextNoteType.ByName` выбирает тип текстового примечания, соответствующий заданному имени, если он доступен. Если тип текстового примечания не существует, возвращается значение null.
 
-In the example below, the text note type, "Working Notes" is selected from the current Revit document.
+В приведенном ниже примере в текущем документе Revit выбран тип текстового примечания «Рабочие примечания».
 
 ___
 ## Файл примера

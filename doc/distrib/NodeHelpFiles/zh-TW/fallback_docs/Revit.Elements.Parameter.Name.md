@@ -1,7 +1,7 @@
 ## 深入資訊
-`Parameter.Name` returns the name of the given parameter.
+`Parameter.Name` 會傳回給定參數的名稱。
 
-In the example below, all wall elements are collected from the current Revit document. The first wall is then selected, and it's parameters are obtained (in alphabetical order).
+以下範例收集目前 Revit 文件中的所有牆元素，然後選取第一面牆，並取得其參數 (依字母順序)。
 
 ___
 ## 範例檔案

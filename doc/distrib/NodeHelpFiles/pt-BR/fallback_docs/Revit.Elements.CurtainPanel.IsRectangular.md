@@ -1,7 +1,7 @@
 ## Em profundidade
-`CurtainPanel.IsRectangular` returns a true or false value to indicate if the given curtain panel is rectangular.
+`CurtainPanel.IsRectangular` retorna um valor true ou false para indicar se o painel cortina fornecido é retangular.
 
-In the example below, all curtain panels are collected from the selected curtain wall element. The panels are then queried for whether or not they are rectangular.
+No exemplo abaixo, são coletados todos os painéis cortina do elemento de parede cortina selecionado. Em seguida, os painéis são consultados para saber se são ou não retangulares.
 ___
 ## Arquivo de exemplo
 

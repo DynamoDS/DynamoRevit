@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Viewport.BoxCenter` returns a Dynamo point that represents the center point of the extents of the viewport.
+Węzeł `Viewport.BoxCenter` zwraca punkt dodatku Dynamo, który reprezentuje punkt środkowy zakresu rzutni.
 
-In the example below, the viewports are returned for the selected sheet. The box center locations are then returned with `Viewport.BoxCenter`.
+W poniższym przykładzie zwracane są rzutnie dla wybranego arkusza. Następnie za pomocą węzła `Viewport.BoxCenter` zwracane są lokalizacje środka ramki.
 ___
 ## Plik przykładowy
 

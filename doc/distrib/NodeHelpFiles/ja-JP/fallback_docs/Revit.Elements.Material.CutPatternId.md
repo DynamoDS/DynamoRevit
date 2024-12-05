@@ -1,7 +1,7 @@
 ## 詳細
-`Material.CutPatternId` returns the cut pattern's element id as an integer (if available). If no cut pattern is assigned, a value of "-1" is returned.
+`Material.CutPatternId` は、切断面パターンの要素 ID を整数として返します(使用可能な場合)。切断面パターンが割り当てられていない場合は、値「-1」が返されます。
 
-In the example below, all materials are collected from the current document. The materials' cut pattern ids are returned with `Material.CutPatternId`.
+次の例では、すべてのマテリアルが現在のドキュメントから収集されます。マテリアルの切断面パターン ID は `Material.CutPatternId` によって返されます。
 
 ___
 ## サンプル ファイル

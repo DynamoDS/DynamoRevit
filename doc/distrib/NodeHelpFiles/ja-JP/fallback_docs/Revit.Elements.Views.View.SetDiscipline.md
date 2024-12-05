@@ -1,15 +1,15 @@
 ## 詳細
-`View.SetDiscipline` modifies the discipline of the given view.
+`View.SetDiscipline` は、指定されたビューの専門分野を変更します。
 
-View discipline options include:
-- Architectural
-- Coordination
-- Electrical
-- Mechanical
-- Plumbing
-- Structural
+専門分野のオプションには次のものがあります。
+- 建築
+- コーディネーション
+- 電気
+- 機械
+- 給排水衛生設備
+- 構造
 
-In the example below, the default 3d view's discipline is set to coordination.
+次の例では、既定の 3D ビューの専門分野が[コーディネーション]に設定されています。
 ___
 ## サンプル ファイル
 

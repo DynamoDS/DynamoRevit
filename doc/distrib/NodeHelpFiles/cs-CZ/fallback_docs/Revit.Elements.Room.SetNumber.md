@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Room.SetNumber` modifies the number of the given room element.
+Uzel `Room.SetNumber` upraví číslo daného prvku místnosti.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' numbers are then modified with a suffix of "e" to indicate existing conditions. This type of workflow is useful when working through room renumbering in Revit.
+V níže uvedeném příkladu jsou shromážděny všechny místnosti z aktuálního dokumentu a vybraného pohledu. Čísla místností jsou poté změněna přidáním přípony „e“, která označuje existující podmínky. Tento typ pracovního postupu je užitečný při práci s přečíslováním místností v aplikaci Revit.
 ___
 ## Vzorový soubor
 

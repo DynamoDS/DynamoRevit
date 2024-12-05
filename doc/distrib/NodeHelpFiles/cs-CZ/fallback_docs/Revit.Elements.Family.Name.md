@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Family.Name` returns the name of the given family element.
+Uzel `Family.Name` vrací název daného prvku rodiny.
 
-In the example below, all families are collected from the current Revit document. The family names are returned with `Family.Name`.
+V následujícím příkladu jsou shromážděny všechny rodiny z aktuálního dokumentu aplikace Revit. U názvů rodin se vrátí hodnota `Family.Name`.
 ___
 ## Vzorový soubor
 

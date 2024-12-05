@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FamilyParameter.Unit` returns the unit type of the given parameter.
+Uzel `FamilyParameter.Unit` vrací typ jednotky daného parametru.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the unit type. If no unit type is found, a null value is returned.
+V níže uvedeném příkladu je otevřen aktuální dokument aplikace Revit (rodina dveří ze vzorového modelu). Vrátí se parametry v rodině spolu s typem jednotky. Pokud není nalezen žádný typ jednotky, je vrácena hodnota null.
 ___
 ## Vzorový soubor
 

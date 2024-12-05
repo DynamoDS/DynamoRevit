@@ -1,7 +1,7 @@
 ## 詳細
-`Viewport.View` returns the view associated with the given viewport.
+`Viewport.View` は、指定されたビューポートに関連付けられたビューを返します。
 
-In the example below, the viewports are returned for the selected sheet. The viewports' associated views are then returned with `Viewport.View`.
+次の例では、選択されたシートのビューポートが返されます。次に、ビューポートの関連付けられたビューが `Viewport.View` によって返されます。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## Подробности
-`Element.GetCategory` returns the category element for the given element. With the returned category element, it can be queried for various parameters.
+Узел `Element.GetCategory` возвращает элемент категории для указанного элемента. С помощью возвращаемого элемента категории можно запрашивать различные параметры.
 
-In the example below, all selected elements' categories are returned. The elements are then filtered down to two lists. One list of door elements and a second list of all other elements.
+В приведенном ниже примере возвращаются категории всех выбранных элементов. Затем элементы отфильтровываются до двух списков: с элементами дверей и всеми остальными элементами.
 ___
 ## Файл примера
 

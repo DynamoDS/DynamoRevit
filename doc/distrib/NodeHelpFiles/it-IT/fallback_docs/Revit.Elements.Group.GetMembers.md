@@ -1,7 +1,7 @@
 ## In profondità
-`Group.GetMembers` returns the elements that are located within the given group. The elements are returned as sublists.
+`Group.GetMembers` restituisce gli elementi che si trovano all'interno del gruppo specificato. Gli elementi vengono restituiti come sottoelenchi.
 
-In the example below, all model groups are collected from the active Revit document. The group members are then collected with `Group.GetMembers`.
+Nell'esempio seguente, vengono raccolti tutti i gruppi di modelli dal documento di Revit attivo. Vengono quindi raccolti i membri del gruppo con `Group.GetMembers`.
 
 ___
 ## File di esempio

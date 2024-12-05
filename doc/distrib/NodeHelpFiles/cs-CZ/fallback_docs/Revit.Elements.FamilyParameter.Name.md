@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FamilyParameter.Name` returns the user-visible name of the given parameter.
+Uzel `FamilyParameter.Name` vrací uživatelem viditelný název daného parametru.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the name.
+V níže uvedeném příkladu je otevřen aktuální dokument aplikace Revit (rodina dveří ze vzorového modelu). Vrátí se parametry v rodině spolu s názvem.
 ___
 ## Vzorový soubor
 

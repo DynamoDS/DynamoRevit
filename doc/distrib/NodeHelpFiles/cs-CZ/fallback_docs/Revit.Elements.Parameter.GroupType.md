@@ -1,11 +1,11 @@
 ## Podrobnosti
-`Parameter.GroupType` returns the given parameter's GroupType.
+Uzel `Parameter.GroupType` vrací objekt GroupType daného parametru.
 
-In Revit, parameter groups for non-shared parameters are predefined, whereas shared parameters allow you to define custom groups. For more information on working with shared parameters and groups, visit this help article: [Create Shared Parameter Files, Groups, and Parameters](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-94EA2B8E-2C00-4D29-8D5A-C7C6664DE9CE)
+V aplikaci Revit jsou skupiny parametrů pro nesdílené parametry předdefinovány, zatímco sdílené parametry umožňují definovat vlastní skupiny. Další informace o práci se sdílenými parametry a skupinami naleznete v tomto článku nápovědy: [Tvorba souborů, skupin a parametrů sdílených parametrů](https://help.autodesk.com/view/RVT/2025/CSY/?guid=GUID-94EA2B8E-2C00-4D29-8D5A-C7C6664DE9CE)
 
-If no GroupType is found, a null value is returned.
+Pokud není nalezena žádný objekt GroupType, je vrácena hodnota null.
 
-In the example below, all parameters are returned for the current document's project information. The GroupTypes are returned as well.
+V následujícím příkladu jsou vráceny všechny parametry pro informace o projektu aktuálního dokumentu. Vrátí se také objekty GroupType.
 ___
 ## Vzorový soubor
 

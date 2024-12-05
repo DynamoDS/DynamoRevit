@@ -1,7 +1,7 @@
 ## In profondità
-`Group.UngroupElements` ungroups the given group instance, resulting in the elements being in the model directly. Note, this action is destructive and returning the group members to a group is not easily achievable.
+`Group.UngroupElements` separa l'istanza di gruppo specificata, facendo sì che gli elementi si trovino direttamente nel modello. Tenere presente che questa azione è distruttiva e il ritorno dei membri del gruppo in un gruppo non è facilmente realizzabile.
 
-In the example below, all model groups of type, "Bleachers Continuous" are collected from the active Revit document. The instances are then ungrouped with `Group.UngroupElements`.
+Nell'esempio seguente, vengono raccolti tutti i gruppi di modelli di tipo "Bleachers Continuous" dal documento di Revit attivo. Vengono quindi separate le istanze con `Group.UngroupElements`.
 
 ___
 ## File di esempio

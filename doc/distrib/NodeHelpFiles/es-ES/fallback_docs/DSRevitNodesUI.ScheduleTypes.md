@@ -1,14 +1,14 @@
 ## En detalle:
-`Schedule Type` allows for the selection of the available schedule types.
+`Schedule Type` permite seleccionar los tipos de tabla de planificación disponibles.
 
-Available schedule types include:
-- RegularSchedule
-- Key Schedule
-- Material Takeoffs
+Entre los tipos de tabla de planificación disponibles, se incluyen los siguientes:
+- Tabla de planificación normal
+- Tabla de planificación de claves
+- Cómputos de materiales
 
-For more information regarding schedules in Revit, refer to this [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
+Para obtener más información sobre las tablas de planificación en Revit, consulte este [artículo](https://help.autodesk.com/view/RVT/2024/ESP/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+En el ejemplo siguiente, se crea una nueva tabla de planificación denominada "Tabla de planificación de puertas de trabajo" en el documento de Revit actual.
 ___
 ## Archivo de ejemplo
 

@@ -1,7 +1,7 @@
 ## 상세
-Given a family type, `FamilyType.Name` returns the name for the family type as a string.
+`FamilyType.Name`는 지정된 패밀리 유형을 바탕으로 패밀리 유형의 이름을 문자열로 반환합니다.
 
-In the example below, all door instances in the current view are grouped by their family type name.
+아래 예에서는 현재 뷰의 모든 문 인스턴스가 패밀리 유형 이름으로 그룹화됩니다.
 ___
 ## 예제 파일
 

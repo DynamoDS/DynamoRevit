@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Sheet.Schedules` returns the schedule instances placed on the given sheet. Note: `Sheet.Schedules` will return revision schedules that exist within the titleblock family for the given sheet.
+Węzeł `Sheet.Schedules` zwraca wystąpienia zestawień umieszczone na danym arkuszu. Uwaga: węzeł `Sheet.Schedules` zwraca zestawienia rewizji istniejące w rodzinie tabelek rysunkowych dla danego arkusza.
 
-In the example below, the schedule instances are returned for the selected sheet. The revision schedules are then filtered out with `List.FilterByBoolMask`. Additionally, the owner view for the schedule instance is retrieved with `ScheduleOnSheet.ScheduleView`.
+W poniższym przykładzie zwracane są wystąpienia zestawień dla wybranego arkusza. Następnie za pomocą węzła `List.FilterByBoolMask` odfiltrowywane są zestawienia rewizji. Ponadto za pomocą węzła `ScheduleOnSheet.ScheduleView` pobierany jest widok właściciela dla danego wystąpienia zestawienia.
 ___
 ## Plik przykładowy
 

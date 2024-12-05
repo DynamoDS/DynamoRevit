@@ -1,9 +1,9 @@
 ## Podrobnosti
-`FamilyType.ByName` will attempt to retrieve the given family type of the given name from the current document. If the family type is not available in the current document, a null value is returned.
+Uzel `FamilyType.ByName` se pokusí načíst daný typ rodiny s daným názvem z aktuálního dokumentu. Pokud není typ rodiny v aktuálním dokumentu dostupný, bude vrácena hodnota null.
 
-Note: `FamilyType.ByName` searches family type definitions in order of the parent family's creation (by element id). If multiple parent families have a type definition with the same name, the first one found is returned. For a more concise lookup of family types use, `FamilyType.ByFamilyAndName` or `FamilyType.ByFamilyNameAndTypeName`
+Poznámka: Uzel `FamilyType.ByName` prohledává definice typů rodin v pořadí, v jakém byly vytvořeny nadřazené rodiny (podle id prvku). Pokud má více nadřazených rodin definici typu se stejným názvem, je vrácena první nalezená definice. Za účelem výstiženějšího vyhledávání typů rodin použijte uzel `FamilyType.ByFamilyAndName` nebo uzel `FamilyType.ByFamilyNameAndTypeName`
 
-In the example below, a door family type, "36" x 84", from family "Door-Passage-Single-Flush" is returned.
+V níže uvedeném příkladu je vrácen typ rodiny dveří „36" x 84“ z rodiny „Dveře, průchod, jednokřídlé, hladké“.
 ___
 ## Vzorový soubor
 

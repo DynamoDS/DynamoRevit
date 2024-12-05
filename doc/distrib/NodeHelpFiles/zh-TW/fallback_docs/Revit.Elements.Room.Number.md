@@ -1,7 +1,7 @@
 ## 深入資訊
-`Room.Number` returns the number for the given room element as a string.
+`Room.Number` 會以字串傳回給定房間元素的編號。
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' numbers are then returned.
+以下範例收集目前文件所選視圖中的所有房間，然後傳回房間的編號。
 ___
 ## 範例檔案
 

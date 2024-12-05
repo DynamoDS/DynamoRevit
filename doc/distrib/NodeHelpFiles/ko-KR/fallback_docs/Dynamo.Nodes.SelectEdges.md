@@ -1,8 +1,8 @@
 ## 상세
 
-`Select Edges` displays a cursor in Revit that allows you to select multiple edges. The objects returned are curves or lines that represent the selected edges.
+`Select Edges`는 여러 모서리를 선택할 수 있게 해주는 커서를 Revit에 표시합니다. 반환되는 객체는 선택된 모서리를 나타내는 곡선 또는 선입니다.
 
-In the example below, two lines are returned that represent the top edges of a parapet in the current document (file). Additionally, `Select Edges` reports the owning element ids of the edges that are selected.
+아래 예에서는 현재 문서(파일)에서 파라펫의 상단 모서리를 나타내는 두 개의 선이 반환됩니다. 또한 `Select Edges`는 선택된 모서리가 속해 있는 요소 ID를 보고합니다.
 
 ___
 ## 예제 파일

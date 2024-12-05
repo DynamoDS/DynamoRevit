@@ -1,7 +1,7 @@
 ## Description approfondie
-`GlobalParameter.FindByName` returns a global parameter for the given name, if available. If the given global parameter does not exist, null is returned.
+'GlobalParameter.FindByName' renvoie un paramètre global pour le nom donné, s'il est disponible. Si le paramètre global donné n'existe pas, une valeur nulle est renvoyée.
 
-In the example below, the global parameter, "Windows_North Elevation Inset" is returned and the value is returned (in project units).
+Dans l'exemple ci-dessous, le paramètre global "Windows_North Elevation Inset" est renvoyé et la valeur est renvoyée (en unités du projet).
 ___
 ## Exemple de fichier
 

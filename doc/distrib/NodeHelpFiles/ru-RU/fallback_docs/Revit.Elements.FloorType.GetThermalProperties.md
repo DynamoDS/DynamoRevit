@@ -1,9 +1,9 @@
 ## Подробности
-`FloorType.GetThermalProperties` returns the thermal properties of the floor type if available.
+Узел `FloorType.GetThermalProperties` возвращает тепловые свойства типа перекрытия, если они доступны.
 
-For more information about thermal properties of elements in Revit, refer to this [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-3C378374-D360-4207-A558-3500922A452E).
+Дополнительные сведения о тепловых свойствах элементов в Revit см. в этой [статье](https://help.autodesk.com/view/RVT/2024/RUS/?guid=GUID-3C378374-D360-4207-A558-3500922A452E).
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types' are the queried for their thermal properties.
+В приведенном ниже примере собираются все перекрытия, присутствующие в текущем документе Revit. Затем перекрытия группируются по типу. Типы перекрытий запрашиваются для получения их тепловых свойств.
 ___
 ## Файл примера
 

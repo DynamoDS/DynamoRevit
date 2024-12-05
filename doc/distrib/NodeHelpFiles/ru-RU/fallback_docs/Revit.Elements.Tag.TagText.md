@@ -1,7 +1,7 @@
 ## Подробности
-`Tag.TagText` retrieves the given tag's text value, if available.
+Узел `Tag.TagText` извлекает текстовое значение заданной марки, если доступно.
 
-In the example below, all door tags are collected from the current Revit document. The door tags' text values are then returned.
+В приведенном ниже примере собираются все марки дверей в текущем документе Revit. Затем возвращаются текстовые значения для марок дверей.
 ___
 ## Файл примера
 

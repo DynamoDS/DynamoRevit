@@ -1,7 +1,7 @@
 ## Подробности
-`ModelText.Text` returns the text value of the given model text element as a string.
+Узел `ModelText.Text` возвращает текстовое значение заданного текстового элемента модели в виде строки.
 
-In the example below, all model text is collected in the current Revit file. The text values are then returned with `ModelText.Text`.
+В приведенном ниже примере весь текст модели собран в текущем файле Revit. Текстовые значения возвращаются с помощью `ModelText.Text`.
 ___
 ## Файл примера
 

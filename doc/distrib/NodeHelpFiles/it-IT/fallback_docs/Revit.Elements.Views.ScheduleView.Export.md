@@ -1,7 +1,7 @@
 ## In profondità
-`ScheduleView.Export` exports the given schedule to the given path with the selected options.
+`ScheduleView.Export` esporta l'abaco specificato nel percorso dato con le opzioni selezionate.
 
-In the example below, the door schedule is selected from the current Revit document for export. The export location is derived from the view name and the current user's documents location. Finally, the schedule is exported with the default export options.
+Nell'esempio seguente, viene selezionato l'abaco delle porte dal documento di Revit corrente per l'esportazione. La posizione di esportazione è derivata dal nome della vista e dalla posizione dei documenti dell'utente corrente. Infine, l'abaco viene esportato con le opzioni di esportazione di default.
 ___
 ## File di esempio
 

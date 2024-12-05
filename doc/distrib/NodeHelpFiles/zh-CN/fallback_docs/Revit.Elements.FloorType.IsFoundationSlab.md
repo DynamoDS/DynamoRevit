@@ -1,7 +1,7 @@
 ## 详细
-`FloorType.IsFoundationSlab` returns a true or false value to indicate whether the given floor type is a foundation slab.
+“FloorType.IsFoundationSlab”返回 true 或 false 值，以指示给定楼板类型是基础底板。
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types are then checked whether or not they are foundation slabs with `FloorType.IsFoundationSlab`.
+在下面的示例中，将收集当前 Revit 文档中存在的所有楼板。接着按楼板类型对楼板进行分组。然后使用“FloorType.IsFoundationSlab”检查楼板类型是否为基础底板。
 ___
 ## 示例文件
 

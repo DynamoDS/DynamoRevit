@@ -1,7 +1,7 @@
 ## Im Detail
-`Viewport.SetLabelLineLength` sets the length of the viewport line, in paper space units.
+`Viewport.SetLabelLineLength` legt die Länge der Ansichtsfensterlinie in Papierbereichseinheiten fest.
 
-In the example below, all of the viewports from the selected sheet are collected. The viewports' bounding boxes are then used to calculate the width that the viewport line should be. Finally, the viewport lines are set to the width of the viewport.
+Im folgenden Beispiel werden alle Ansichtsfenster aus dem ausgewählten Plan gesammelt. Dann werden die Begrenzungsrahmen der Ansichtsfenster zur Berechnung der Breite der Ansichtsfensterlinie verwendet. Abschließend werden die Ansichtsfensterlinien auf die Breite des Ansichtsfensters eingestellt.
 ___
 ## Beispieldatei
 

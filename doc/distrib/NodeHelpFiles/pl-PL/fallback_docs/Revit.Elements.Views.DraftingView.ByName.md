@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`DraftingView.ByName` creates a drafting view with the given name. The type of drafting view used is the last one used within Revit.
+Węzeł `DraftingView.ByName` tworzy widok kreślarski o danej nazwie. Używany typ widoku kreślarskiego to typ używany ostatnio w programie Revit.
 
-In the example below, a drafting view called "Door/Jamb Detail" is created.
+W poniższym przykładzie tworzony jest widok kreślarski o nazwie „Door/Jamb Detail”.
 ___
 ## Plik przykładowy
 

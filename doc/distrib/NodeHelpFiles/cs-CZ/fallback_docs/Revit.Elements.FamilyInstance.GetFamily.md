@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FamilyInstance.GetFamily` returns the parent family of the given family instance.
+Uzel `FamilyInstance.GetFamily` vrací nadřazenou rodinu dané instance rodiny.
 
-In the example below, the family for all doors in the current view of the current document are returned.
+V následujícím příkladu je vrácena rodina pro všechny dveře v aktuálním pohledu aktuálního dokumentu.
 ___
 ## Vzorový soubor
 

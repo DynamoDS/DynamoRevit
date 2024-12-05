@@ -1,9 +1,9 @@
 ## Подробности
-Given a parameter element, `Parameter.SetValue` updates the value of the given parameter to the input value.
+Если задан элемент параметра, узел `Parameter.SetValue` обновляет значение данного параметра до входного значения.
 
-This node functions similar to `Element.SetParameterByName`, but differs by working directly with the parameter element.
+Этот узел функционирует аналогично `Element.SetParameterByNameУзел`, но отличается тем, что работает непосредственно с элементом параметра.
 
-In the example below, the current project's name is returned (from the project information), converted to lowercase and then updated with `Parameter.SetValue`.
+В приведенном ниже примере возвращается имя текущего проекта (из информации о проекте), преобразуется в нижний регистр, а затем обновляется с помощью `Parameter.SetValue`.
 
 ___
 ## Файл примера

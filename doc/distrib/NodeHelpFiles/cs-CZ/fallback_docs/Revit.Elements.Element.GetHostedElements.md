@@ -1,13 +1,13 @@
 ## Podrobnosti
-Given an element that supports hosting of elements _(e.g. Walls)_, `Element.GetHostedElements` returns the elements that rely on the given element. By default, family instances that are hosted to the element are returned. `Element.GetHostedElements` offers the option to include other types of hosted elements.
+Uzel `Element.GetHostedElements` vrací za předpokladu, že je dán prvek, který podporuje hostování prvků _(například stěny)_, prvky, které na daném prvku závisí. Ve výchozím nastavení jsou vráceny instance rodiny, které jsou hostovány do prvku. Uzel `Element.GetHostedElements` nabízí možnost zahrnout další typy hostovaných prvků.
 
-These include:
-- openings
-- elements that are hosted in joined hosts
-- embedded walls _(i.e. curtain walls)_
-- shared embedded inserts
+Mezi tyto prvky patří:
+- otvory
+- prvky, které jsou hostovány ve spojených hostitelích
+- vnořené stěny _(tj. obvodové pláště)_
+- sdílené vnořené vložky
 
-In the example below, all wall elements are collected from L2. The wall elements are then checked for hosted elements with `Element.GetHostedElements`. This list is then used to create two lists. Walls with doors and walls without doors.
+V níže uvedeném příkladu jsou shromážděny všechny prvky stěn z podlaží L2. U prvků stěn se poté zkontrolují hostované prvky pomocí uzlu `Element.GetHostedElements`. Pomocí tohoto seznamu se poté vytvoří dva seznamy. Stěny s dveřmi a stěny bez dveří.
 ___
 ## Vzorový soubor
 

@@ -1,7 +1,7 @@
 ## Description approfondie
-`FloorType.IsFoundationSlab` returns a true or false value to indicate whether the given floor type is a foundation slab.
+'FloorType.IsFoundationSlab' renvoie une valeur true ou false pour indiquer si le type de sol donné est un radier.
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types are then checked whether or not they are foundation slabs with `FloorType.IsFoundationSlab`.
+Dans l'exemple ci-dessous, tous les sols présents dans le document Revit actif sont collectés. Les sols sont ensuite regroupés par type. Les types de sol sont ensuite vérifiés avec 'FloorType.IsFoundationSlab' pour déterminer s'il s'agit ou non de radiers.
 ___
 ## Exemple de fichier
 

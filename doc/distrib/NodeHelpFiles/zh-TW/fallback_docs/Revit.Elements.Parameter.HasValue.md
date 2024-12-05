@@ -1,7 +1,7 @@
 ## 深入資訊
-`Parameter.HasValue` returns a boolean value representing if the parameter has a value set.
+`Parameter.HasValue` 會傳回表示參數是否有值集的布林值。
 
-In the example below, a single wall is selected from all walls in the current Revit document, and it's parameters are split into two lists; Parameters with Values and Parameters without Values.
+以下範例從目前 Revit 文件中的所有牆中選取一面牆，將其參數分成兩個清單: 有值的參數和沒有值的參數。
 ___
 ## 範例檔案
 

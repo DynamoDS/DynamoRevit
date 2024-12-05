@@ -1,7 +1,7 @@
 ## Description approfondie
-`GlobalParameter.Value` returns the value for the given global parameter.
+'GlobalParameter.Value' renvoie la valeur du paramètre global donné.
 
-In the example below, the global parameter, "Windows_North Elevation Inset" is returned and the value is returned (in project units).
+Dans l'exemple ci-dessous, le paramètre global "Windows_North Elevation Inset" est renvoyé et la valeur est renvoyée (en unités du projet).
 ___
 ## Exemple de fichier
 

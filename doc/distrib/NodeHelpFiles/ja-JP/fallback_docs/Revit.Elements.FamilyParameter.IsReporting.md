@@ -1,7 +1,7 @@
 ## 詳細
-`FamilyParameter.IsReporting` returns a true or false value indicating whether the given family parameter is a reporting parameter.
+`FamilyParameter.IsReporting` は、指定されたファミリ パラメータがレポート パラメータであるかどうかを示す true または false の値を返します。
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with a list of boolean values representing if they are reporting parameters.
+次の例では、現在の Revit ドキュメント(サンプル モデルのドア ファミリ)が開いています。ファミリ内のパラメータが、レポート パラメータであるかどうかを表すブール値のリストとともに返されます。
 ___
 ## サンプル ファイル
 

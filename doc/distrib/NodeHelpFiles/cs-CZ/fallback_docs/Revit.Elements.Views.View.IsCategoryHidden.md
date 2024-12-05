@@ -1,7 +1,7 @@
 ## Podrobnosti
-`View.IsCategoryHidden` returns a true or false value to indicate if the category has been hidden in the given view. Note, if a view has a view template assigned, the view template must be used.
+Uzel `View.IsCategoryHidden` vrací hodnotu true nebo false, která udává, zda byla kategorie v daném pohledu skryta. Vezměte na vědomí, že pokud má pohled přiřazenou šablonu pohledu, je nutné použít šablonu pohledu.
 
-In the example below, the view template of the active view from the current document is retrieved. `View.IsCategoryHidden` reports if the wall category is hidden.
+V níže uvedeném příkladu se načte šablona aktivního pohledu z aktuálního dokumentu. Uzel `View.IsCategoryHidden` vykáže, zda je kategorie stěn skrytá.
 ___
 ## Vzorový soubor
 

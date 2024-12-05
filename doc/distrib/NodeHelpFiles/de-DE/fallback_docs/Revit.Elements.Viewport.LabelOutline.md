@@ -1,7 +1,7 @@
 ## Im Detail
-`Viewport.LabelOutline` returns a Dynamo bounding box that represents the outline of the viewport's label.
+`Viewport.LabelOutline` gibt einen Dynamo-Begrenzungsrahmen zurück, der den Umriss der Ansichtsfenster-Beschriftung darstellt.
 
-In the example below, the viewports are returned for the selected sheet. The outlines of the label are then returned with `Viewport.LabelOutline`.
+Im folgenden Beispiel werden die Ansichtsfenster für den ausgewählten Plan zurückgegeben. Dann werden die Umrisse der Beschriftung mit `Viewport.LabelOutline` zurückgegeben.
 ___
 ## Beispieldatei
 

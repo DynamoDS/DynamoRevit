@@ -1,7 +1,7 @@
 ## Description approfondie
-Given a material name as a string, `Material.ByName` retrieves the corresponding material element from the current Revit document, if the material is available. If the material is not found, a null value is returned.
+À partir d'un nom de matériau sous forme de chaîne, 'Material.ByName' récupère l'élément de matériau correspondant à partir du document Revit actif, si le matériau est disponible. Si le matériau est introuvable, une valeur nulle est renvoyée.
 
-In the example below, the material, "Metal - Aluminium" is returned.
+Dans l'exemple ci-dessous, le matériau "Métal - Aluminium" est renvoyé.
 ___
 ## Exemple de fichier
 

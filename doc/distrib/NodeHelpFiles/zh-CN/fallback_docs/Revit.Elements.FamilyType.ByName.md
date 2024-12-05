@@ -1,9 +1,9 @@
 ## 详细
-`FamilyType.ByName` will attempt to retrieve the given family type of the given name from the current document. If the family type is not available in the current document, a null value is returned.
+“FamilyType.ByName”将尝试从当前文档中检索给定名称的给定族类型。如果族类型在当前文档中不可用，则返回空值。
 
-Note: `FamilyType.ByName` searches family type definitions in order of the parent family's creation (by element id). If multiple parent families have a type definition with the same name, the first one found is returned. For a more concise lookup of family types use, `FamilyType.ByFamilyAndName` or `FamilyType.ByFamilyNameAndTypeName`
+注意:“FamilyType.ByName”按父族的创建顺序(按图元 ID)搜索族类型定义。如果多个父族具有同名的类型定义，则返回找到的第一个。如需更简明地查找族类型，请使用“FamilyType.ByFamilyAndName”或“FamilyType.ByFamilyNameAndTypeName”
 
-In the example below, a door family type, "36" x 84", from family "Door-Passage-Single-Flush" is returned.
+在下面的示例中，将返回“Door-Passage-Single-Flush”族中的门族类型“36” x 84”。
 ___
 ## 示例文件
 

@@ -1,7 +1,7 @@
 ## 深入資訊
-`GlobalParameter.FindByName` returns a global parameter for the given name, if available. If the given global parameter does not exist, null is returned.
+`GlobalParameter.FindByName` 會傳回給定名稱的整體參數 (如果有)。如果給定的整體參數不存在，則傳回空值。
 
-In the example below, the global parameter, "Windows_North Elevation Inset" is returned and the value is returned (in project units).
+在以下範例中，傳回「Windows_North Elevation Inset」整體參數並傳回值 (以專案單位表示)。
 ___
 ## 範例檔案
 

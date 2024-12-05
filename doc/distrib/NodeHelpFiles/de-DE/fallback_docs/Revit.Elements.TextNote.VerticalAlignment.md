@@ -1,12 +1,12 @@
 ## Im Detail
-`TextNote.VerticalAlignment` returns the assigned vertical alignment of the given text note.
+`TextNote.VerticalAlignment` gibt die zugewiesene vertikale Ausrichtung der angegebenen Textnotiz zurück.
 
-Vertical Alignment Options include:
-- Top
-- Bottom
-- Middle
+Folgende Optionen sind für die vertikale Ausrichtung verfügbar:
+- Oben
+- Unten
+- Mitte
 
-In the example below, all working notes are collected from the current Revit document. The vertical alignment values are then returned.
+Im folgenden Beispiel werden alle Arbeitsnotizen aus dem aktuellen Revit-Dokument gesammelt. Dann werden die Werte für die vertikale Ausrichtung zurückgegeben.
 
 ___
 ## Beispieldatei

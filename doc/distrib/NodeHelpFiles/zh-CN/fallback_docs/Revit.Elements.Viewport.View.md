@@ -1,7 +1,7 @@
 ## 详细
-`Viewport.View` returns the view associated with the given viewport.
+“Viewport.View”返回与给定视口关联的视图。
 
-In the example below, the viewports are returned for the selected sheet. The viewports' associated views are then returned with `Viewport.View`.
+在下面的示例中，将返回选定图纸的视口。然后，使用“Viewport.View”返回视口的关联视图。
 ___
 ## 示例文件
 

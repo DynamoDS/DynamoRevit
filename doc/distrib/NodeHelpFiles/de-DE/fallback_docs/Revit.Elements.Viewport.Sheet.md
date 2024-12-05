@@ -1,7 +1,7 @@
 ## Im Detail
-`Viewport.Sheet` returns the sheet element that the viewport is placed on.
+`Viewport.Sheet` gibt das Planelement zurück, auf dem das Ansichtsfenster platziert ist.
 
-In the example below, all viewports are collected from the current Revit document. The sheet for each viewport is then returned with `Viewport.Sheet`. Additionally, the viewports are grouped by sheet with `List.GroupByKey`.
+Im folgenden Beispiel werden alle Ansichtsfenster aus dem aktuellen Revit-Dokument gesammelt. Dann wird der Plan für jedes Ansichtsfenster mit `Viewport.Sheet` zurückgegeben. Darüber hinaus werden die Ansichtsfenster mit `List.GroupByKey` nach Plänen gruppiert.
 ___
 ## Beispieldatei
 

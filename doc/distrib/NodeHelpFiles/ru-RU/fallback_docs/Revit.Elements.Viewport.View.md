@@ -1,7 +1,7 @@
 ## Подробности
-`Viewport.View` returns the view associated with the given viewport.
+Узел `Viewport.View` возвращает вид, связанный с данным видовым экраном.
 
-In the example below, the viewports are returned for the selected sheet. The viewports' associated views are then returned with `Viewport.View`.
+В приведенном ниже примере возвращаются видовые экраны для выбранного листа. Затем с помощью `Viewport.View` возвращаются связанные виды видовых экранов.
 ___
 ## Файл примера
 

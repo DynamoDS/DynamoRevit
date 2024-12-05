@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`FamilyInstance.GetFamily` returns the parent family of the given family instance.
+Węzeł `FamilyInstance.GetFamily` zwraca rodzinę nadrzędną danego wystąpienia rodziny.
 
-In the example below, the family for all doors in the current view of the current document are returned.
+W poniższym przykładzie zwracana jest rodzina dla wszystkich drzwi w bieżącym widoku bieżącego dokumentu.
 ___
 ## Plik przykładowy
 

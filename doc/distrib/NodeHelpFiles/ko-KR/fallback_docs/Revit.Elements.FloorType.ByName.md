@@ -1,7 +1,7 @@
 ## 상세
-`FloorType.ByName` returns a floor type for the given name in the current Revit document. If the floor type does not exist, a null value is returned.
+`FloorType.ByName`은 현재 Revit 문서에서 지정된 이름의 바닥 유형을 반환합니다. 바닥 유형이 없으면 null 값이 반환됩니다.
 
-In the example below, all floors present in the current Revit document are collected. The floors' types are then collected by getting the name of the floor and using `FloorType.ByName` to retrieve the floor type.
+아래 예에서는 현재 Revit 문서에 있는 모든 바닥이 수집됩니다. 그런 다음 바닥 이름을 획득하고 `FloorType.ByName`을 사용하여 바닥 유형을 가져오는 방식으로 바닥 유형이 수집됩니다.
 ___
 ## 예제 파일
 

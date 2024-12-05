@@ -1,7 +1,7 @@
 ## 詳細
-`Element.IsPinned` returns a true or false value to indicate whether the given element is pinned.
+`Element.IsPinned` は、指定された要素が固定されているかどうかを示す true または false の値を返します。
 
-In the example below, all Revit link instances are collected in the current document, and their pinned state is returned.
+次の例では、現在のドキュメント内のすべての Revit リンク インスタンスが収集され、その固定状態が返されます。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## In profondità
-`Element.Faces` returns all faces _(as Dynamo surfaces)_ for the given element.
+`Element.Faces` restituisce tutte le facce _(come superfici di Dynamo)_ per l'elemento specificato.
 
-In the example below, all walls are collected from the selected view. Walls that were created as in-place families are then removed, and the remaining walls' faces are returned.
+Nell'esempio seguente, vengono raccolti tutti i muri dalla vista selezionata. I muri creati come famiglie locali vengono quindi rimossi e vengono restituite le facce dei muri rimanenti.
 
 ___
 ## File di esempio

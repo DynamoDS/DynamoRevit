@@ -1,7 +1,7 @@
 ## 详细
-`Viewport.LabelOffset` returns a point that represents the left endpoint of the viewport label.
+“Viewport.LabelOffset”返回一个表示视口标签左侧端点的点。
 
-In the example below, the viewports are returned for the selected sheet. The label offsets of the viewports are then returned with `Viewport.LabelOffset`.
+在下面的示例中，将返回选定图纸的视口。然后，使用“Viewport.LabelOffset”返回视口的标签偏移。
 ___
 ## 示例文件
 

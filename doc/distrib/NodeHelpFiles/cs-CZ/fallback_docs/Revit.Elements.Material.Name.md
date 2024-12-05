@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Material.Name` returns the given material's name as a string.
+Uzel `Material.Name` vrací název daného materiálu jako řetězec.
 
-In the example below, all materials are collected from the current document. The material names are returned with `Material.Name`.
+V následujícím příkladu jsou shromážděny všechny materiály z aktuálního dokumentu. Pomocí uzlu `Material.Name` jsou vráceny názvy materiálů.
 ___
 ## Vzorový soubor
 

@@ -1,7 +1,7 @@
 ## Description approfondie
-`Family.ByName` returns the family definition from the current document (if available). If the family is not available in the current document, a null value is returned.
+'Family.ByName' renvoie la définition de famille du document actif (si disponible). Si la famille n'est pas disponible dans le document actif, une valeur nulle est renvoyée.
 
-In the example below, a family definition for "Door-Passage-Single-Flush" is returned, along with its element id (in green).
+Dans l'exemple ci-dessous, une définition de famille pour "Door-Passage-Single-Flush" est renvoyée, ainsi que son ID d'élément (en vert).
 ___
 ## Exemple de fichier
 

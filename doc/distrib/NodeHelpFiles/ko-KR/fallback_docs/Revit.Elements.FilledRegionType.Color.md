@@ -1,7 +1,7 @@
 ## 상세
-`FilledRegionType.Color` returns the color assigned to the given filled region type.
+`FilledRegionType.Color`는 지정된 채워진 영역 유형에 할당된 색상을 반환합니다.
 
-In the example below, the "Diagonal Down" filled region type is selected from the current Revit document. The color is then reported with `FilledRegionType.Color`.
+아래 예에서는 현재 Revit 문서에서 "대각선으로 아래쪽" 채워진 영역 유형이 선택됩니다. 그런 다음 `FilledRegionType.Color`를 통해 색상이 보고됩니다.
 
 ___
 ## 예제 파일

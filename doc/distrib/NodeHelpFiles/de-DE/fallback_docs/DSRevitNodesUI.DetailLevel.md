@@ -1,13 +1,13 @@
 ## Im Detail
-`Detail Level` allows for the selection of a view detail level for use in graphic settings.
+`Detaillierungsgrad` ermöglicht die Auswahl eines Ansichtsdetaillierungsgrads für die Verwendung in Grafikeinstellungen.
 
-Detail levels available include:
-- Coarse
-- Fine
-- Medium
-- Undefined
+Die verfügbaren Detaillierungsgrade umfassen:
+- Grob
+- Fein
+- Mittel
+- Undefiniert
 
-In the example below, graphic settings are created with a coarse detail level setting for use on view elements.
+Im folgenden Beispiel werden Grafikeinstellungen mit grobem Detaillierungsgrad für Ansichtselemente erstellt.
 ___
 ## Beispieldatei
 

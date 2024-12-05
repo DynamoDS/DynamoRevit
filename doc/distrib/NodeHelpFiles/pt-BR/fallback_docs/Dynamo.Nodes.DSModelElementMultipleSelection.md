@@ -1,9 +1,9 @@
 ## Em profundidade
-`Pick Model Elements` allows for the selection of multiple model elements from the current Revit document. `Pick Model Elements` offers a pick based selection unlike `Select Model Elements` that offers a crossing window selection.
+`Pick Model Elements` permite a seleção de vários elementos do modelo no documento atual do Revit. `Pick Model Elements` oferece uma seleção com base na seleção, ao contrário de `Select Model Elements`, que oferece uma seleção de janelas de interseção.
 
-`Pick Model Elements` requires the user to press finish on the Revit contextual ribbon.
+`Pick Model Elements` requer que o usuário pressione Concluir na faixa de opções contextual do Revit.
 
-In the example below, 3 tag elements are selected from the current Revit document.
+No exemplo abaixo, estão selecionados três elementos de identificadores no documento atual do Revit.
 ___
 ## Arquivo de exemplo
 

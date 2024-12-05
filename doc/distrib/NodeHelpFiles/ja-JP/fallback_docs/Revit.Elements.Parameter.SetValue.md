@@ -1,9 +1,9 @@
 ## 詳細
-Given a parameter element, `Parameter.SetValue` updates the value of the given parameter to the input value.
+パラメータ要素を指定すると、`Parameter.SetValue` は指定されたパラメータの値を入力値に更新します。
 
-This node functions similar to `Element.SetParameterByName`, but differs by working directly with the parameter element.
+このノードの機能は `Element.SetParameterByName` と似ていますが、パラメータ要素を直接操作する点が異なります。
 
-In the example below, the current project's name is returned (from the project information), converted to lowercase and then updated with `Parameter.SetValue`.
+次の例では、(プロジェクト情報から)現在のプロジェクトの名前が返され、小文字に変換されてから、`Parameter.SetValue` によって更新されます。
 
 ___
 ## サンプル ファイル

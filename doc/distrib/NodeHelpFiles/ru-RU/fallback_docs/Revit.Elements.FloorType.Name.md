@@ -1,7 +1,7 @@
 ## Подробности
-`FloorType.Name` returns the given floor type's name.
+Узел `FloorType.Name` возвращает имя данного типа перекрытия.
 
-In the example below, all floor types loaded in the current Revit document are collected. The names are then returned with `FloorType.Name`.
+В приведенном ниже примере собираются все типы перекрытий, загруженные в текущий документ Revit. Имена возвращаются с помощью `FloorType.Name`.
 ___
 ## Файл примера
 

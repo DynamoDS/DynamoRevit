@@ -1,7 +1,7 @@
 ## In profondità
-`FloorType.IsFoundationSlab` returns a true or false value to indicate whether the given floor type is a foundation slab.
+`FloorType.IsFoundationSlab` restituisce un valore true o false per indicare se il tipo di pavimento specificato è una platea.
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types are then checked whether or not they are foundation slabs with `FloorType.IsFoundationSlab`.
+Nell'esempio seguente, vengono raccolti tutti i pavimenti presenti nel documento di Revit corrente. I pavimenti vengono quindi raggruppati in base al tipo. I tipi di pavimento vengono poi controllati per verificare se se si tratta o meno di platee con `FloorType.IsFoundationSlab`.
 ___
 ## File di esempio
 

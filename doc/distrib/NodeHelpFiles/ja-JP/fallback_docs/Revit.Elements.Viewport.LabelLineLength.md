@@ -1,7 +1,7 @@
 ## 詳細
-`Viewport.LabelLineLength` gets the length of the viewport line, in paper space units.
+`Viewport.LabelLineLength` は、ビューポートの線分の長さをペーパー空間単位で取得します。
 
-In the example below, all of the viewports from the selected sheet are collected and the lengths of the viewport label lines are retrieved.
+次の例では、すべてのビューポートが選択されたシートから収集され、ビューポート ラベルの線分の長さが取得されます。
 ___
 ## サンプル ファイル
 

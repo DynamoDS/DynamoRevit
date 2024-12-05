@@ -1,7 +1,7 @@
 ## 深入資訊
-`TextNote.SetText` sets the given text value to the text note.
+`TextNote.SetText` 會將給定的文字值設定為文字註釋。
 
-In the example below, all text notes are collected from the current Revit document. The text notes' text values are collected and converted to upper case. These values are then used to set the text value.
+以下範例收集目前 Revit 文件中的所有文字註釋。收集文字註釋的文字值並轉換為大寫，然後使用這些值設定文字值。
 
 ___
 ## 範例檔案

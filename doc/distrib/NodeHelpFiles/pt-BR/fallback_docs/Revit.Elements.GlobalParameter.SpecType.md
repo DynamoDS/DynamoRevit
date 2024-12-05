@@ -1,7 +1,7 @@
 ## Em profundidade
-`GlobalParameter.SpecType` returns the spec type for the given parameter. Information regarding spec types can be found in the documentation located, [here](https://help.autodesk.com/view/RVT/2025/ENU/?guid=Revit_API_Revit_API_Developers_Guide_Introduction_Application_and_Document_Units_html).
+`GlobalParameter.SpecType` retorna o tipo de especificação do parâmetro fornecido. Informações sobre os tipos de especificações podem ser encontradas na documentação localizada [aqui](https://help.autodesk.com/view/RVT/2025/PTB/?guid=Revit_API_Revit_API_Developers_Guide_Introduction_Application_and_Document_Units_html).
 
-In the example below, all global parameters are returned from the current Revit document. The spec types are then returned with `GlobalParameter.SpecType`.
+No exemplo abaixo, são retornados todos os parâmetros globais do documento atual do Revit. Em seguida, são retornados os tipos de especificações com `GlobalParameter.SpecType`.
 ___
 ## Arquivo de exemplo
 

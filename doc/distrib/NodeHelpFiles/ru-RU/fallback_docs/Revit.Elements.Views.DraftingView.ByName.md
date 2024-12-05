@@ -1,7 +1,7 @@
 ## Подробности
-`DraftingView.ByName` creates a drafting view with the given name. The type of drafting view used is the last one used within Revit.
+Узел `DraftingView.ByName` создает чертежный вид с заданным именем. Используемый тип чертежного вида является последним, использованным в Revit.
 
-In the example below, a drafting view called "Door/Jamb Detail" is created.
+В приведенном ниже примере создается чертежный вид под названием «Узел двери/косяка».
 ___
 ## Файл примера
 

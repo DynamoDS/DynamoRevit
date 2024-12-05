@@ -1,9 +1,9 @@
 ## Podrobnosti
-`FloorType.GetThermalProperties` returns the thermal properties of the floor type if available.
+Uzel `FloorType.GetThermalProperties` vrací tepelné vlastnosti typu podlahy, pokud jsou k dispozici.
 
-For more information about thermal properties of elements in Revit, refer to this [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-3C378374-D360-4207-A558-3500922A452E).
+Další informace o tepelných vlastnostech prvků v aplikaci Revit naleznete v tomto [článku](https://help.autodesk.com/view/RVT/2024/CSY/?guid=GUID-3C378374-D360-4207-A558-3500922A452E).
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types' are the queried for their thermal properties.
+V následujícím příkladu jsou shromážděny všechny podlahy nacházející se v aktuálním dokumentu aplikace Revit. Podlahy jsou poté seskupeny podle typu. Typy podlah jsou dotazovány na jejich tepelné vlastnosti.
 ___
 ## Vzorový soubor
 

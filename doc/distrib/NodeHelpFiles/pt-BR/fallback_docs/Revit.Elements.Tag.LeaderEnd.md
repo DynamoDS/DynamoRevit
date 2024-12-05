@@ -1,9 +1,9 @@
 ## Em profundidade
-`Tag.LeaderEnd` returns a point that represents the position of the given tag's leader end.
+`Tag.LeaderEnd` retorna um ponto que representa a posição da extremidade da chamada de detalhe do identificador especificado.
 
-For more information on tag placement, visit this [article](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
+Para obter mais informações sobre a colocação de identificadores, consulte [artigo](https://help.autodesk.com/view/RVT/2025/PTB/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
 
-In the example below, all keynote tags are collected from the "North Wall Window Detail" detail view. The tags' leader ends are then returned.
+No exemplo abaixo, são coletados todos os identificadores de nota-chave da vista de detalhe “Detalhe da janela da parede norte”. Em seguida, são retornadas as extremidades da linha de chamada dos identificadores.
 ___
 ## Arquivo de exemplo
 

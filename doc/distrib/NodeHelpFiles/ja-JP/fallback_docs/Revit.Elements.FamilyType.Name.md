@@ -1,7 +1,7 @@
 ## 詳細
-Given a family type, `FamilyType.Name` returns the name for the family type as a string.
+ファミリ タイプを指定すると、`FamilyType.Name` はファミリ タイプの名前を文字列として返します。
 
-In the example below, all door instances in the current view are grouped by their family type name.
+次の例では、現在のビューのすべてのドア インスタンスがファミリ タイプ名別にグループ化されています。
 ___
 ## サンプル ファイル
 

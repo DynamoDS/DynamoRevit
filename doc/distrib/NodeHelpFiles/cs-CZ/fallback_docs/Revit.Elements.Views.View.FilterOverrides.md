@@ -1,7 +1,7 @@
 ## Podrobnosti
-`View.FilterOverrides` provides the settings for the given view filter `(ParameterFilterElement)`.
+Uzel `View.FilterOverrides` nabízí nastavení pro daný filtr pohledu `(ParameterFilterElement)`.
 
-In the example below, the view filters are collected from the selected view and the filter overrides are returned.
+V následujícím příkladu jsou shromážděny filtry pohledů z vybraného pohledu a jsou vrácena přepsání filtrů.
 
 ___
 ## Vzorový soubor

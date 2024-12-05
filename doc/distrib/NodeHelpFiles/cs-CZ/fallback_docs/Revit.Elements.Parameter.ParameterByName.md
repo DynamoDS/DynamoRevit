@@ -1,9 +1,9 @@
 ## Podrobnosti
-Given an element and a name of a parameter, `Parameter.ParameterByName` returns the parameter element, if applicable.
+S daným prvkem a názvem parametru vrátí uzel `Parameter.ParameterByName` prvek parametru, pokud je to možné.
 
-If no parameter is found by the given name, a null value is returned.
+Pokud parametr s daným názvem není nalezen, je vrácena hodnota null.
 
-In the example below, the project name parameter is returned for the project information for the current document.
+V následujícím příkladu je vrácen parametr názvu projektu pro informace o projektu v aktuálním dokumentu.
 
 ___
 ## Vzorový soubor

@@ -1,7 +1,7 @@
 ## 詳細
-`View.FilterOverrides` provides the settings for the given view filter `(ParameterFilterElement)`.
+`View.FilterOverrides` は、指定されたビュー フィルタ「ParameterFilterElement」の設定を提供します。
 
-In the example below, the view filters are collected from the selected view and the filter overrides are returned.
+次の例では、選択されたビューからビュー フィルタが収集され、フィルタの優先設定が返されます。
 
 ___
 ## サンプル ファイル

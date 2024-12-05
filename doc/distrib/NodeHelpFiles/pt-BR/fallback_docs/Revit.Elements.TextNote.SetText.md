@@ -1,7 +1,7 @@
 ## Em profundidade
-`TextNote.SetText` sets the given text value to the text note.
+`TextNote.SetText` define o valor de texto especificado para a nota de texto.
 
-In the example below, all text notes are collected from the current Revit document. The text notes' text values are collected and converted to upper case. These values are then used to set the text value.
+No exemplo abaixo, são coletadas todas as notas de texto do documento atual do Revit. Os valores de texto das notas de texto são agrupados e convertidos em maiúsculas. Esses valores são usados para definir o valor do texto.
 
 ___
 ## Arquivo de exemplo

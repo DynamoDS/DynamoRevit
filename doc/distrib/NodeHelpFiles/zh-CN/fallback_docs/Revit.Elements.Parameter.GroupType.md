@@ -1,11 +1,11 @@
 ## 详细
-`Parameter.GroupType` returns the given parameter's GroupType.
+“Parameter.GroupType”返回给定参数的 GroupType。
 
-In Revit, parameter groups for non-shared parameters are predefined, whereas shared parameters allow you to define custom groups. For more information on working with shared parameters and groups, visit this help article: [Create Shared Parameter Files, Groups, and Parameters](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-94EA2B8E-2C00-4D29-8D5A-C7C6664DE9CE)
+在 Revit 中，非共享参数的参数组是预定义的，而共享参数允许您定义自定义组。有关使用共享参数和组的详细信息，请访问此帮助文章: [创建共享参数文件、组和参数] (https://help.autodesk.com/view/RVT/2025/CHS/?guid=GUID-94EA2B8E-2C00-4D29-8D5A-C7C6664DE9CE)
 
-If no GroupType is found, a null value is returned.
+如果未找到 GroupType，则返回空值。
 
-In the example below, all parameters are returned for the current document's project information. The GroupTypes are returned as well.
+在下面的示例中，将返回当前文档的项目信息的所有参数。同时返回 GroupTypes。
 ___
 ## 示例文件
 

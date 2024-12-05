@@ -1,7 +1,7 @@
 ## 详细
-`Parameter.SharedParameterFile` returns the shared parameter file location for the active Revit document. If no shared parameter file is assigned, a null value is returned.
+“Parameter.SharedParameterFile”返回活动 Revit 文档的共享参数文件位置。如果未指定共享参数文件，则返回空值。
 
-In the example below, the shared parameter file is returned and the file is read from the path.
+在下面的示例中，返回共享参数文件，并从路径中读取该文件。
 ___
 ## 示例文件
 

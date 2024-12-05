@@ -1,7 +1,7 @@
 ## 深入資訊
-`View.IsCategoryHidden` returns a true or false value to indicate if the category has been hidden in the given view. Note, if a view has a view template assigned, the view template must be used.
+`View.IsCategoryHidden` 會傳回 true 或 false 值，指出品類是否在給定視圖中隱藏。請注意，如果視圖指定了視圖樣板，則必須使用視圖樣板。
 
-In the example below, the view template of the active view from the current document is retrieved. `View.IsCategoryHidden` reports if the wall category is hidden.
+以下範例從目前文件中擷取作用中視圖的視圖樣板。`View.IsCategoryHidden` 會報告牆品類是否隱藏。
 ___
 ## 範例檔案
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Material.SurfacePatternColor` returns a Dynamo color that represents the material's surface pattern color (if available).
+Uzel `Material.SurfacePatternColor` vrací barvu aplikace Dynamo, která představuje barvu vzoru povrchu materiálu (pokud je k dispozici).
 
-In the example below, all materials are collected from the current document. The materials' colors are returned with `Material.SurfacePatternColor`.
+V následujícím příkladu jsou shromážděny všechny materiály z aktuálního dokumentu. Pomocí uzlu `Material.SurfacePatternColor` jsou vráceny barvy materiálů.
 ___
 ## Vzorový soubor
 

@@ -1,7 +1,7 @@
 ## Em profundidade
-`Room.Name` returns the name for the given room element.
+`Room.Name` retorna o nome do elemento de ambiente fornecido.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then returned.
+No exemplo abaixo, são coletados todos os ambientes do documento atual na vista selecionada. São retornados os nomes dos ambientes.
 ___
 ## Arquivo de exemplo
 

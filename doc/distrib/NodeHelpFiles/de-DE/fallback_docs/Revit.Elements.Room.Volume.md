@@ -1,9 +1,9 @@
 ## Im Detail
-`Room.Volume` returns the volume of the given room element in the current document's units. _(E.g. Feet and Inches)_
+`Room.Volume` gibt das Volumen des angegebenen Raumelements in den Einheiten des aktuellen Dokuments zurück. _(z. B. Fuß und Zoll)_
 
-If an unbounded or unplaced room is given, a null value is returned.
+Wenn ein nicht begrenzter oder nicht platzierter Raum angegeben wird, wird ein Nullwert zurückgegeben.
 
-In the example below, all rooms are collected from the current document and the volume values are returned.
+Im folgenden Beispiel werden alle Räume aus dem aktuellen Dokument gesammelt, und die Volumenwerte werden zurückgegeben.
 ___
 ## Beispieldatei
 

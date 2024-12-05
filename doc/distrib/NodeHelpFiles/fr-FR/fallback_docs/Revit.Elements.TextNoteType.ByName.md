@@ -1,7 +1,7 @@
 ## Description approfondie
-`TextNoteType.ByName` selects the text note type that matches the given name, if available. If the text note type does not exist, a null value is returned.
+'TextNoteType.ByName' sélectionne le type de note textuelle qui correspond au nom donné, le cas échéant. Si le type de note textuelle n'existe pas, une valeur nulle est renvoyée.
 
-In the example below, the text note type, "Working Notes" is selected from the current Revit document.
+Dans l'exemple ci-dessous, le type de note textuelle "Notes de travail" est sélectionné dans le document Revit actif.
 
 ___
 ## Exemple de fichier

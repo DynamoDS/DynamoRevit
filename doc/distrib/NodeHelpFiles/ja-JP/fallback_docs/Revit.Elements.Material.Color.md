@@ -1,7 +1,7 @@
 ## 詳細
-`Material.Color` returns a Dynamo color that represents the material's shading color. If the material's shading color is set to "use render appearance", that value is returned.
+`Material.Color` は、マテリアルのシェーディング カラーを表す Dynamo の色を返します。マテリアルのシェーディング カラーが「レンダリングの外観を使用」に設定されている場合は、その値が返されます。
 
-In the example below, all materials are collected from the current document. The materials' shading color values are returned with `Material.Color`.
+次の例では、すべてのマテリアルが現在のドキュメントから収集されます。マテリアルのシェーディング カラー値は `Material.Color` によって返されます。
 
 ___
 ## サンプル ファイル

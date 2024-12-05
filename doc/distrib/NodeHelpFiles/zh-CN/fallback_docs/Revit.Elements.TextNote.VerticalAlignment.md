@@ -1,12 +1,12 @@
 ## 详细
-`TextNote.VerticalAlignment` returns the assigned vertical alignment of the given text note.
+“TextNote.VerticalAlignment”返回给定文字注释的指定垂直对齐方式。
 
-Vertical Alignment Options include:
-- Top
-- Bottom
-- Middle
+垂直对齐选项包括:
+- 顶部
+- 底部
+- 中间
 
-In the example below, all working notes are collected from the current Revit document. The vertical alignment values are then returned.
+在下面的示例中，将从当前 Revit 文档收集所有工作注释。然后返回垂直对齐值。
 
 ___
 ## 示例文件

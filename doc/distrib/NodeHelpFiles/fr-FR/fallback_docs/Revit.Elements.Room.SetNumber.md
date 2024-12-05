@@ -1,7 +1,7 @@
 ## Description approfondie
-`Room.SetNumber` modifies the number of the given room element.
+'Room.SetNumber' permet de modifier le numéro de l'élément de pièce donné.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' numbers are then modified with a suffix of "e" to indicate existing conditions. This type of workflow is useful when working through room renumbering in Revit.
+Dans l'exemple ci-dessous, toutes les pièces sont collectées à partir du document actif et de la vue sélectionnée. Les numéros des pièces sont ensuite modifiés avec un suffixe "e" pour indiquer les conditions existantes. Ce type de workflow est utile lorsque vous travaillez sur la renumérotation de pièces dans Revit.
 ___
 ## Exemple de fichier
 

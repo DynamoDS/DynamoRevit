@@ -1,7 +1,7 @@
 ## En detalle:
-`Group.UngroupElements` ungroups the given group instance, resulting in the elements being in the model directly. Note, this action is destructive and returning the group members to a group is not easily achievable.
+`Group.UngroupElements` desagrupa el ejemplar de grupo especificado, por lo que los elementos se encuentran directamente en el modelo. Tenga en cuenta que esta acción es destructiva y que no es fácil devolver los elementos de un grupo a otro.
 
-In the example below, all model groups of type, "Bleachers Continuous" are collected from the active Revit document. The instances are then ungrouped with `Group.UngroupElements`.
+En el ejemplo siguiente, se recopilan todos los grupos de modelo de tipo "Bleachers Continuous" del documento de Revit activo. A continuación, los ejemplares se desagrupan con `Group.UngroupElements`.
 
 ___
 ## Archivo de ejemplo

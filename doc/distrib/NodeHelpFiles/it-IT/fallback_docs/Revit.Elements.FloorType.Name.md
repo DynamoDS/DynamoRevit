@@ -1,7 +1,7 @@
 ## In profondità
-`FloorType.Name` returns the given floor type's name.
+`FloorType.Name` restituisce il nome del tipo di pavimento specificato.
 
-In the example below, all floor types loaded in the current Revit document are collected. The names are then returned with `FloorType.Name`.
+Nell'esempio seguente, vengono raccolti tutti i tipi di pavimento caricati nel documento di Revit corrente. Vengono quindi restituiti i nomi con `FloorType.Name`.
 ___
 ## File di esempio
 

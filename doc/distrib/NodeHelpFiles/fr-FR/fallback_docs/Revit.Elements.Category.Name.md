@@ -1,7 +1,7 @@
 ## Description approfondie
-`Category.Name` obtient le nom visible de l'utilisateur de la catégorie d'entrée sous forme de chaîne.
+« Category.Name » permet d'obtenir le nom visible de l'utilisateur de la catégorie d'entrée sous forme de chaîne.
 
-Dans l'exemple ci-dessous, le nom de la catégorie Murs est obtenu.
+Dans l'exemple ci-dessous, on obtient le nom de la catégorie Murs.
 ___
 ## Exemple de fichier
 

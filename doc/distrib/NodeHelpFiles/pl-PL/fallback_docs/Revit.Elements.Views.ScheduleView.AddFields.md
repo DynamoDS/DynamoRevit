@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`ScheduleView.AddFields` adds the selected fields to the schedule. Schedulable fields represent available parameters of the category assigned to the schedule.
+Węzeł `ScheduleView.AddFields` dodaje wybrane pola do zestawienia. Pola, które można dodać do zestawienia, reprezentują dostępne parametry kategorii przypisanej do zestawienia.
 
-In the example below, a new schedule called "Working Door Schedule" is created. The schedulable fields are then collected and input into a dictionary to facilitate looking the fields up by name. Finally, the fields are found by name and added to the schedule view with `ScheduleView.AddFields`.
+W poniższym przykładzie zostaje utworzone nowe zestawienie o nazwie „Working Door Schedule”. Następnie pobierane są pola, które można dodać do zestawienia, i są one wprowadzane do słownika, aby ułatwić wyszukiwanie pól według nazw. Na koniec pola te są znajdowane według nazw i dodawane do widoku zestawienia za pomocą węzła `ScheduleView.AddFields`.
 ___
 ## Plik przykładowy
 

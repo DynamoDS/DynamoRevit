@@ -1,7 +1,7 @@
 ## 詳細
-`TextNote.SetText` sets the given text value to the text note.
+`TextNote.SetText` は、指定された文字列の値を文字注記に設定します。
 
-In the example below, all text notes are collected from the current Revit document. The text notes' text values are collected and converted to upper case. These values are then used to set the text value.
+次の例では、すべての文字注記が現在の Revit ドキュメントから収集されます。文字注記の文字列の値が収集され、大文字に変換されます。次に、これらの値は文字列の値を設定するために使用されます。
 
 ___
 ## サンプル ファイル

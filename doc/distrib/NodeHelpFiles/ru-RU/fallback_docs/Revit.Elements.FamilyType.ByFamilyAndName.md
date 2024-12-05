@@ -1,7 +1,7 @@
 ## Подробности
-`FamilyType.ByFamilyAndName` returns the family type definition from the current document (if available). If the family type is not available in the current document, a null value is returned.
+Узел `FamilyType.ByFamilyAndName` возвращает определение типоразмера семейства из текущего документа (если доступно). Если тип семейства недоступен в текущем документе, возвращается значение null.
 
-In the example below, a door family type, "36" x 84", from family "Door-Passage-Single-Flush" is returned.
+В приведенном ниже примере возвращается типоразмер семейства дверей «36" x 84"» из семейства «Дверь-Маятниковая-Одинарная-Щитовая».
 ___
 ## Файл примера
 

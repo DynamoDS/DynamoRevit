@@ -1,7 +1,7 @@
 ## Podrobnosti
-`ScheduleView.Export` exports the given schedule to the given path with the selected options.
+Uzel `ScheduleView.Export` exportuje daný výkaz do dané cesty s vybranými možnostmi.
 
-In the example below, the door schedule is selected from the current Revit document for export. The export location is derived from the view name and the current user's documents location. Finally, the schedule is exported with the default export options.
+V níže uvedeném příkladu je vybrán výkaz dveří k exportu z aktuálního dokumentu aplikace Revit. Umístění exportu je odvozeno z názvu pohledu a umístění dokumentů aktuálního uživatele. Nakonec je výkaz exportován s výchozími možnostmi exportu.
 ___
 ## Vzorový soubor
 

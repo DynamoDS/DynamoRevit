@@ -1,7 +1,7 @@
 ## In profondità
-`Material.CutPatternId` returns the cut pattern's element id as an integer (if available). If no cut pattern is assigned, a value of "-1" is returned.
+`Material.CutPatternId` restituisce l'ID elemento del motivo di taglio come numero intero (se disponibile). Se non viene assegnato alcun motivo di taglio, viene restituito il valore "-1".
 
-In the example below, all materials are collected from the current document. The materials' cut pattern ids are returned with `Material.CutPatternId`.
+Nell'esempio seguente, vengono raccolti tutti i materiali dal documento corrente. Vengono restituiti gli ID motivo di sezione dei materiali con `Material.CutPatternId`.
 
 ___
 ## File di esempio

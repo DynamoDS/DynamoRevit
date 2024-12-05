@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Room.SetName` modifies the name of the given room element.
+Uzel `Room.SetName` změní název daného prvku místnosti.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then modified with a prefix of "(E)" to indicate existing conditions.
+V níže uvedeném příkladu jsou shromážděny všechny místnosti z aktuálního dokumentu a vybraného pohledu. Názvy místností jsou poté změněny přidáním předpony „(E)“, která označuje existující podmínky.
 ___
 ## Vzorový soubor
 

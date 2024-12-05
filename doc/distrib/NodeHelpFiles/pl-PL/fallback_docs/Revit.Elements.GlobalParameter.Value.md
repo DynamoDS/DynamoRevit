@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`GlobalParameter.Value` returns the value for the given global parameter.
+Węzeł `GlobalParameter.Value` zwraca wartość danego parametru globalnego.
 
-In the example below, the global parameter, "Windows_North Elevation Inset" is returned and the value is returned (in project units).
+W poniższym przykładzie zwracany jest parametr globalny „Windows_North Elevation Inset” i zwracana jest wartość (w jednostkach projektu).
 ___
 ## Plik przykładowy
 

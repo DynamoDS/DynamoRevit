@@ -1,7 +1,7 @@
 ## Description approfondie
-`Viewport.Sheet` returns the sheet element that the viewport is placed on.
+'Viewport.Sheet' renvoie l'élément de feuille sur lequel la fenêtre est placée.
 
-In the example below, all viewports are collected from the current Revit document. The sheet for each viewport is then returned with `Viewport.Sheet`. Additionally, the viewports are grouped by sheet with `List.GroupByKey`.
+Dans l'exemple ci-dessous, toutes les fenêtres sont collectées à partir du document Revit actif. La feuille de chaque fenêtre est ensuite renvoyée avec 'Viewport.Sheet'. En outre, les fenêtres sont regroupées par feuille avec 'List.GroupByKey'.
 ___
 ## Exemple de fichier
 

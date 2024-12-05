@@ -1,7 +1,7 @@
 ## 詳細
-`Element.Parameters` collects all parameters, along with values from the given element. If an element instance is provided, instance parameters are returned. If an element type is provided, type parameters are returned.
+`Element.Parameters` は、指定された要素からすべてのパラメータを値とともに収集します。要素インスタンスが指定されている場合は、インスタンス パラメータが返されます。要素タイプが指定されている場合は、タイプ パラメータが返されます。
 
-In the example below, all doors are collected from the current Revit document. For the example, the first door found is used. The door's instance parameters and type parameters are returned.
+次の例では、現在の Revit ドキュメントからすべてのドアが収集されます。この例では、最初に見つかったドアが使用されています。ドアのインスタンス パラメータとタイプ パラメータが返されます。
 ___
 ## サンプル ファイル
 

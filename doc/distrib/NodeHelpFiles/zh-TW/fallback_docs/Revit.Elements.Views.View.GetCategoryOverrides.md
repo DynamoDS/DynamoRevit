@@ -1,7 +1,7 @@
 ## 深入資訊
-Given a view or view template, `View.GetCategoryOverrides` returns the graphic overrides for the provided view or view template. Note, if a view has a view template assigned, the view template must be used.
+給定視圖或視圖樣板，`View.GetCategoryOverrides` 會傳回所提供視圖或視圖樣板的圖形取代。請注意，如果視圖指定了視圖樣板，則必須使用視圖樣板。
 
-In the example below, the active view's view template from the current document is retrieved. The overrides for the wall category are then returned.
+以下範例從目前文件中擷取作用中視圖的視圖樣板，然後傳回牆品類的取代。
 ___
 ## 範例檔案
 

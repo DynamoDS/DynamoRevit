@@ -1,14 +1,14 @@
 ## Em profundidade
-`Parameter.StorageType` helps determine what type of data a parameter stores.
+`Parameter.StorageType` ajuda a determinar que tipo de dados um parâmetro armazena.
 
-Data types include:
-- None
-- Integer
-- Double
-- String
+Os tipos de dados incluem:
+- Nenhum
+- Inteiro
+- Duplo
+- Sequência de caracteres
 - ElementId
 
-In the example below, all of the parameters from the current document's project information are returned. The parameter's storage type is then returned.
+No exemplo abaixo, são retornados todos os parâmetros das informações do projeto do documento atual. Em seguida, é retornado o tipo de armazenamento do parâmetro.
 
 ___
 ## Arquivo de exemplo

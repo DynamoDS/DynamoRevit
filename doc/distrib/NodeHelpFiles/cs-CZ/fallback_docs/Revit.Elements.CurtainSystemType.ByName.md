@@ -1,7 +1,7 @@
 ## Podrobnosti
-`CurtainSystemType.ByName` selects a curtain system type from the current Revit document of the given name.
+Uzel `CurtainSystemType.ByName` vybere typ systému obvodového pláště s daným názvem z aktuálního dokumentu aplikace Revit.
 
-In the example below, the curtain system type `5' x 10'` is returned.
+V níže uvedeném příkladu je vrácen typ systému obvodového pláště `5' x 10'`.
 ___
 ## Vzorový soubor
 

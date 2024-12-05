@@ -1,7 +1,7 @@
 ## Подробности
-`Viewport.LabelLineLength` gets the length of the viewport line, in paper space units.
+Узел `Viewport.LabelLineLength` получает длину линии видового экрана в единицах пространства листа.
 
-In the example below, all of the viewports from the selected sheet are collected and the lengths of the viewport label lines are retrieved.
+В приведенном ниже примере собираются все видовые экраны на выбранном листе и извлекаются длины линий меток видовых экранов.
 ___
 ## Файл примера
 

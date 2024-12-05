@@ -1,9 +1,9 @@
 ## In profondità
-`FamilyType.ByName` will attempt to retrieve the given family type of the given name from the current document. If the family type is not available in the current document, a null value is returned.
+`FamilyType.ByName` tenterà di recuperare il tipo di famiglia specificato con il nome dato dal documento corrente. Se il tipo di famiglia non è disponibile nel documento corrente, viene restituito un valore null.
 
-Note: `FamilyType.ByName` searches family type definitions in order of the parent family's creation (by element id). If multiple parent families have a type definition with the same name, the first one found is returned. For a more concise lookup of family types use, `FamilyType.ByFamilyAndName` or `FamilyType.ByFamilyNameAndTypeName`
+Nota: `FamilyType.ByName` cerca le definizioni dei tipi di famiglia nell'ordine di creazione della famiglia principale (per ID elemento). Se più famiglie principali hanno una definizione del tipo con lo stesso nome, viene restituita la prima trovata. Per una ricerca più concisa dei tipi di famiglia, utilizzare `FamilyType.ByFamilyAndName` o `FamilyType.ByFamilyNameAndTypeName`.
 
-In the example below, a door family type, "36" x 84", from family "Door-Passage-Single-Flush" is returned.
+Nell'esempio seguente, viene restituito un tipo di famiglia di porte, "36" x 84", della famiglia "Door-Passage-Single-Flush".
 ___
 ## File di esempio
 

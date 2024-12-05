@@ -1,14 +1,14 @@
 ## Подробности
-`View Disciplines` allows for the selection of the following disciplines to assign to views:
+Узел `View Disciplines` позволяет выбрать категории из следующего списка для назначения видам:
 
-- Architectural
-- Coordination
-- Electrical
-- Mechanical
-- Plumbing
-- Structural
+- архитектурный;
+- координация;
+- электрический;
+- механический;
+- сантехника;
+- структурный.
 
-In the example below, the default 3d view's discipline is set to coordination.
+В приведенном ниже примере для категории 3D-вида по умолчанию задано значение «Координация».
 ___
 ## Файл примера
 

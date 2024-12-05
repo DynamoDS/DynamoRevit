@@ -1,9 +1,9 @@
 ## Podrobnosti
-`All Elements In Active View` returns all of the elements that are visible in the active view of the current Revit document.
+Uzel `All Elements In Active View` vrátí všechny prvky, které jsou viditelné v aktivním pohledu aktuálního dokumentu aplikace Revit.
 
-`All Elements In Active View` will return a new list if the view has changed and the graph has been run.
+Uzel `All Elements In Active View` vrátí nový seznam, pokud se pohled změnil a graf byl spuštěn.
 
-In the example below, 11 elements are returned for the starting view of the Revit architectural sample file, _(Snowdon Towers)_.
+V následujícím příkladu je vráceno 11 prvků pro počáteční pohled architektonického vzorového souboru aplikace Revit _(Snowdon Towers)_.
 ___
 ## Vzorový soubor
 

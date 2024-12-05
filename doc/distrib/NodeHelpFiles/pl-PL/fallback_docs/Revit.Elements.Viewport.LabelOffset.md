@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Viewport.LabelOffset` returns a point that represents the left endpoint of the viewport label.
+Węzeł `Viewport.LabelOffset` zwraca punkt reprezentujący lewy punkt końcowy etykiety rzutni.
 
-In the example below, the viewports are returned for the selected sheet. The label offsets of the viewports are then returned with `Viewport.LabelOffset`.
+W poniższym przykładzie zwracane są rzutnie dla wybranego arkusza. Następnie za pomocą węzła `Viewport.LabelOffset` zwracane są odsunięcia etykiet rzutni.
 ___
 ## Plik przykładowy
 

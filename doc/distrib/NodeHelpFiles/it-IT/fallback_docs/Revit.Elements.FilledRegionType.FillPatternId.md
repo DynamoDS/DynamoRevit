@@ -1,7 +1,7 @@
 ## In profondità
-`FilledRegionType.FillPatternId` returns the element id of the given filled region type.
+`FilledRegionType.FillPatternId` restituisce l'ID elemento del tipo di campitura specificato.
 
-In the example below, the "Diagonal Down" filled region type is selected from the current Revit document. The fill pattern id is then returned with `FilledRegionType.FillPatternId`.
+Nell'esempio seguente, viene selezionato il tipo di campitura "Diagonal Down" dal documento di Revit corrente. Viene quindi restituito l'ID retino con `FilledRegionType.FillPatternId`.
 
 ___
 ## File di esempio

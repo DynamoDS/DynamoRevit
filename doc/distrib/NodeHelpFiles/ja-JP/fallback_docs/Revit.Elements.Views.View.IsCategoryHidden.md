@@ -1,7 +1,7 @@
 ## 詳細
-`View.IsCategoryHidden` returns a true or false value to indicate if the category has been hidden in the given view. Note, if a view has a view template assigned, the view template must be used.
+`View.IsCategoryHidden` は、指定されたビューでカテゴリが非表示になっているかどうかを示す true または false の値を返します。注: ビューにビュー テンプレートが割り当てられている場合は、そのビュー テンプレートを使用する必要があります。
 
-In the example below, the view template of the active view from the current document is retrieved. `View.IsCategoryHidden` reports if the wall category is hidden.
+次の例では、アクティブなビューのビュー テンプレートが現在のドキュメントから取得されます。`View.IsCategoryHidden` は、壁カテゴリが非表示かどうかを報告します。
 ___
 ## サンプル ファイル
 

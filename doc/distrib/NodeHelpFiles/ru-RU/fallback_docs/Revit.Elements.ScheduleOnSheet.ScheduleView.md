@@ -1,7 +1,7 @@
 ## Подробности
-The `ScheduleOnSheet.ScheduleView` node in Dynamo for Revit is used to retrieve the original schedule view that was used to create the specific schedule instance on a sheet.
+Узел `ScheduleOnSheet.ScheduleView` в Dynamo для Revit применяется для получения исходного вида спецификации, который использовался для создания определенного экземпляра спецификации на листе.
 
-In the example below, the schedule instances are returned for the selected sheet.
+В приведенном ниже примере возвращаются экземпляры спецификации для выбранного листа.
 
 ___
 ## Файл примера

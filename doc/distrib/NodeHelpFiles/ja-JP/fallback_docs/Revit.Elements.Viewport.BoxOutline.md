@@ -1,7 +1,7 @@
 ## 詳細
-`Viewport.BoxOutline` returns a Dynamo bounding box that represents the extents of the viewport.
+`Viewport.BoxOutline` は、ビューポートの範囲を表す Dynamo の境界ボックスを返します。
 
-In the example below, the viewports are returned for the selected sheet. The box outlines are then returned with `Viewport.BoxOutline`.
+次の例では、選択されたシートのビューポートが返されます。次に、ボックスのアウトラインが `Viewport.BoxOutline` によって返されます。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Viewport.LabelOutline` returns a Dynamo bounding box that represents the outline of the viewport's label.
+Węzeł `Viewport.LabelOutline` zwraca ramkę ograniczającą dodatku Dynamo reprezentującą kontur etykiety rzutni.
 
-In the example below, the viewports are returned for the selected sheet. The outlines of the label are then returned with `Viewport.LabelOutline`.
+W poniższym przykładzie zwracane są rzutnie dla wybranego arkusza. Następnie za pomocą węzła `Viewport.LabelOutline` zwracane są kontury etykiety.
 ___
 ## Plik przykładowy
 

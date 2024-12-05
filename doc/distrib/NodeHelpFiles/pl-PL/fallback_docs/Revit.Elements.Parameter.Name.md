@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Parameter.Name` returns the name of the given parameter.
+Węzeł `Parameter.Name` zwraca nazwę danego parametru.
 
-In the example below, all wall elements are collected from the current Revit document. The first wall is then selected, and it's parameters are obtained (in alphabetical order).
+W poniższym przykładzie z bieżącego dokumentu programu Revit pobierane są wszystkie elementy ścian. Następnie wybierana jest pierwsza ściana i pobierane są jej parametry (w kolejności alfabetycznej).
 
 ___
 ## Plik przykładowy

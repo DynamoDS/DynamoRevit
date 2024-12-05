@@ -1,7 +1,7 @@
 ## Подробности
-`Material.Color` returns a Dynamo color that represents the material's shading color. If the material's shading color is set to "use render appearance", that value is returned.
+Узел `Material.Color` возвращает цвет Dynamo, представляющий цвет тонирования материала. Если для цвета тонирования материала задано значение «Использовать визуальный образ», это значение возвращается.
 
-In the example below, all materials are collected from the current document. The materials' shading color values are returned with `Material.Color`.
+В приведенном ниже примере все материалы собираются из текущего документа. Значения цвета тонирования материалов возвращаются с помощью `Material.Color`.
 
 ___
 ## Файл примера

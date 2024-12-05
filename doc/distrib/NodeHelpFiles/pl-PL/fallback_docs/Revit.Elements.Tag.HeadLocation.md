@@ -1,9 +1,9 @@
 ## Informacje szczegółowe
-`Tag.HeadLocation` returns a point that represents the position of the given tag's head.
+Węzeł `Tag.HeadLocation` zwraca punkt reprezentujący położenie danego symbolu oznaczenia.
 
-For more information on tag placement, visit this [article](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
+Więcej informacji na temat umieszczania oznaczeń można znaleźć w tym [artykule](https://help.autodesk.com/view/RVT/2025/PLK/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
 
-In the example below, all door tags are collected from the L1 floor plan view. The tags' head locations are then returned.
+W poniższym przykładzie z widoku rzutu stropu L1 pobierane są wszystkie oznaczenia drzwi. Następnie zwracane są lokalizacje symboli oznaczeń.
 ___
 ## Plik przykładowy
 

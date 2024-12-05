@@ -1,7 +1,7 @@
 ## Подробности
-`FloorType.IsFoundationSlab` returns a true or false value to indicate whether the given floor type is a foundation slab.
+Узел `FloorType.IsFoundationSlab` возвращает значение True или False, указывающее, является ли данный тип перекрытия фундаментной плитой.
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types are then checked whether or not they are foundation slabs with `FloorType.IsFoundationSlab`.
+В приведенном ниже примере собираются все перекрытия, присутствующие в текущем документе Revit. Затем перекрытия группируются по типу. После этого проверяется, являются ли типы перекрытий фундаментными плитами с помощью узла `FloorType.IsFoundationSlab`.
 ___
 ## Файл примера
 

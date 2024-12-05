@@ -1,7 +1,7 @@
 ## En detalle:
-`FamilyParameter.IsShared` returns a true or false value to indicate if the given family parameter is a shared parameter.
+`FamilyParameter.IsShared` devuelve un valor "true" (verdadero) o "false" (falso) para indicar si el parámetro de familia especificado es un parámetro compartido.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with a value representing if it is shared. `List Create` and `List.Transpose` are used to combine the values in sublists.
+En el ejemplo siguiente se abre el documento de Revit actual (una familia de puertas del modelo de muestra). Se devuelven los parámetros de la familia, junto con un valor que representa si se comparte. Se utilizan `List Create` y `List.Transpose` para combinar los valores en sublistas.
 ___
 ## Archivo de ejemplo
 

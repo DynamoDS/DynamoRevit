@@ -1,7 +1,7 @@
 ## En detalle:
-Given a view or view template, `View.GetCategoryOverrides` returns the graphic overrides for the provided view or view template. Note, if a view has a view template assigned, the view template must be used.
+Si se especifica una vista o una plantilla de vista, `View.GetCategoryOverrides` devuelve las modificaciones de gráficos para la vista o la plantilla de vista especificada. Tenga en cuenta que si una vista tiene asignada una plantilla de vista, deberá utilizarse esta.
 
-In the example below, the active view's view template from the current document is retrieved. The overrides for the wall category are then returned.
+En el ejemplo siguiente, se recupera la plantilla de la vista activa del documento actual. A continuación, se devuelven las modificaciones de la categoría de muro.
 ___
 ## Archivo de ejemplo
 

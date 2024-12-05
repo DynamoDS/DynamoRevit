@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Parameter.HasValue` returns a boolean value representing if the parameter has a value set.
+Węzeł `Parameter.HasValue` zwraca wartość logiczną (boolean) określającą, czy parametr ma ustawioną wartość.
 
-In the example below, a single wall is selected from all walls in the current Revit document, and it's parameters are split into two lists; Parameters with Values and Parameters without Values.
+W poniższym przykładzie ze wszystkich ścian w bieżącym dokumencie programu Revit wybierana jest pojedyncza ściana, a jej parametry są dzielone na dwie listy. Parametry z wartościami i parametry bez wartości.
 ___
 ## Plik przykładowy
 

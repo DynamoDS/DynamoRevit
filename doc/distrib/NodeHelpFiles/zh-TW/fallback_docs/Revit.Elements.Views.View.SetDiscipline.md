@@ -1,15 +1,15 @@
 ## 深入資訊
-`View.SetDiscipline` modifies the discipline of the given view.
+`View.SetDiscipline` 會修改給定視圖的領域。
 
-View discipline options include:
-- Architectural
-- Coordination
-- Electrical
-- Mechanical
-- Plumbing
-- Structural
+視圖領域選項包括:
+- 建築
+- 協調
+- 電氣
+- 機械
+- 衛工
+- 結構
 
-In the example below, the default 3d view's discipline is set to coordination.
+在以下範例中，將預設 3D 視圖的領域設定為「協調」。
 ___
 ## 範例檔案
 

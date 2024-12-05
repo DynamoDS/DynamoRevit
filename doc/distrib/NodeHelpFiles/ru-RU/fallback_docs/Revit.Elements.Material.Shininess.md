@@ -1,7 +1,7 @@
 ## Подробности
-`Material.Shininess` returns an integer that indicates how shiny a material is.
+Узел `Material.Shininess` возвращает целое число, показывающее, насколько блестящим является материал.
 
-In the example below, all materials are collected from the current document. The materials' shininess values (as integers) are returned with `Material.Shininess`.
+В приведенном ниже примере все материалы собираются из текущего документа. Значения блеска материалов (в виде целых чисел) возвращаются с помощью `Material.Shininess`.
 ___
 ## Файл примера
 

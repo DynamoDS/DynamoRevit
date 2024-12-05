@@ -1,7 +1,7 @@
 ## 深入資訊
-`Parameter.IsShared` returns a boolean value representing if the given parameter is a shared parameter (loaded from a shared parameter file).
+`Parameter.IsShared` 會傳回表示給定參數是否為 (從共用參數檔案載入的) 共用參數的布林值。
 
-In the example below, a single wall is selected from all walls in the current Revit document. The wall's parameters are then queried to see if they are shared parameters.
+以下範例從目前 Revit 文件中的所有牆中選取一面牆，然後查詢牆的參數是否為共用參數。
 ___
 ## 範例檔案
 

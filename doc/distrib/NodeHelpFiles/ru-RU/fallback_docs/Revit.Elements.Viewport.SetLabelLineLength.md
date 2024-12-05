@@ -1,7 +1,7 @@
 ## Подробности
-`Viewport.SetLabelLineLength` sets the length of the viewport line, in paper space units.
+Узел `Viewport.SetLabelLineLength` задает длину линии видового экрана в единицах пространства листа.
 
-In the example below, all of the viewports from the selected sheet are collected. The viewports' bounding boxes are then used to calculate the width that the viewport line should be. Finally, the viewport lines are set to the width of the viewport.
+В приведенном ниже примере собираются все видовые экраны на выбранном листе. Затем с помощью ограничивающих рамок видовых экранов вычисляется ширина линии видового экрана. Наконец, линии видового экрана устанавливаются на ширину видового экрана.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## 详细
-`Group.GetMembers` returns the elements that are located within the given group. The elements are returned as sublists.
+“Group.GetMembers”返回位于给定组内的元素。这些元素作为子列表返回。
 
-In the example below, all model groups are collected from the active Revit document. The group members are then collected with `Group.GetMembers`.
+在下面的示例中，所有模型组都收集自活动的 Revit 文档。然后，使用“Group.GetMembers”收集组成员。
 
 ___
 ## 示例文件

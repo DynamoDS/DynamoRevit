@@ -1,7 +1,7 @@
 ## Description approfondie
-`Room.Name` returns the name for the given room element.
+'Room.Name' renvoie le nom de l'élément de pièce donné.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then returned.
+Dans l'exemple ci-dessous, toutes les pièces sont collectées à partir du document actif et de la vue sélectionnée. Les noms des pièces sont renvoyés.
 ___
 ## Exemple de fichier
 

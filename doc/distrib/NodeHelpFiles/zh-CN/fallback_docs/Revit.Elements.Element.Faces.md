@@ -1,7 +1,7 @@
 ## 详细
-`Element.Faces` returns all faces _(as Dynamo surfaces)_ for the given element.
+“Element.Faces”返回给定图元的所有面(作为 Dynamo 曲面)。
 
-In the example below, all walls are collected from the selected view. Walls that were created as in-place families are then removed, and the remaining walls' faces are returned.
+在下面的示例中，将从选定视图收集所有墙。然后，将删除作为内建族创建的墙，并返回其余墙的面。
 
 ___
 ## 示例文件

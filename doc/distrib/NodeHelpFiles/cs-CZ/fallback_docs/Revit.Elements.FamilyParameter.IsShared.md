@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FamilyParameter.IsShared` returns a true or false value to indicate if the given family parameter is a shared parameter.
+Uzel `FamilyParameter.IsShared` vrací hodnotu true nebo false, která označuje, zda je daný parametr rodiny sdíleným parametrem.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with a value representing if it is shared. `List Create` and `List.Transpose` are used to combine the values in sublists.
+V níže uvedeném příkladu je otevřen aktuální dokument aplikace Revit (rodina dveří ze vzorového modelu). Vrátí se parametry v rodině spolu s hodnotou představující informaci o tom, zda je parametr sdílený. Uzly 'List Create' a 'List.Transpose' se použijí ke sloučení hodnot v dílčích seznamech.
 ___
 ## Vzorový soubor
 

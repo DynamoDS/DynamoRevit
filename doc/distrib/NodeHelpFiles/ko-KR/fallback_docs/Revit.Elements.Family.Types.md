@@ -1,7 +1,7 @@
 ## 상세
-`Family.Types` returns all of the available types of the given family element.
+`Family.Types`는 지정된 패밀리 요소의 사용 가능한 모든 유형을 반환합니다.
 
-In the example below, all family types for two RPC (entourage) families in the current Revit document are returned.
+아래 예에서는 현재 Revit 문서의 두 RPC(환경) 패밀리에 대한 모든 패밀리 유형이 반환됩니다.
 ___
 ## 예제 파일
 

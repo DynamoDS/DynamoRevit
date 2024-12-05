@@ -1,7 +1,7 @@
 ## En detalle:
-`ParameterFilterElement.ByRules` creates a parameter filter with the given rules. The parameter filter element can be used for view filters.
+`ParameterFilterElement.ByRules` crea un filtro de parámetros con las reglas especificadas. El elemento de filtro de parámetros puede utilizarse para filtros de vistas.
 
-In the example below, a view filter is created for the `Fire Rating` parameter on wall type elements. This filter is added to the `L1` floor plan view in the sample model. After the filter is added, overrides are then added to the filter to turn the wall types with a "2 HR" rating to a solid red color.
+En el ejemplo siguiente, se crea un filtro de vista para el parámetro `Calificación para incendios` en los elementos de tipo de muro. Este filtro se añade a la vista de planta `L1` del modelo de muestra. Después de añadir el filtro, se agregan modificaciones a este para que los tipos de muro con una clasificación de "2 HR" pasen a ser de color rojo uniforme.
 ___
 ## Archivo de ejemplo
 

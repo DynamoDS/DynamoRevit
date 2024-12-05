@@ -1,11 +1,11 @@
 ## Em profundidade
-`Tag.GetLeaderEndCondition` returns the given tags leader end condition.
+`Tag.GetLeaderEndCondition` retorna a condição final da linha de chamada dos identificadores fornecidos.
 
-Possible end conditions include:
-- Attached
-- Free
+As possíveis condições finais incluem:
+- Anexo
+- Livre
 
-In the example below, all keynote tags are collected from the "North Wall Window Detail" detail view. The tags' leader end conditions are then returned.
+No exemplo abaixo, são coletados todos os identificadores de nota-chave da vista de detalhe “Detalhe da janela da parede norte”. Em seguida, são retornadas as condições da extremidade da linha de chamada dos identificadores.
 
 ___
 ## Arquivo de exemplo

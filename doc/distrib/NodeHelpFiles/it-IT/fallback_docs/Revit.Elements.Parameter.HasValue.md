@@ -1,7 +1,7 @@
 ## In profondità
-`Parameter.HasValue` returns a boolean value representing if the parameter has a value set.
+`Parameter.HasValue` restituisce un valore booleano che indica se il parametro ha un valore impostato.
 
-In the example below, a single wall is selected from all walls in the current Revit document, and it's parameters are split into two lists; Parameters with Values and Parameters without Values.
+Nell'esempio seguente, viene selezionato un singolo muro da tutti i muri del documento di Revit corrente e i relativi parametri vengono suddivisi in due elenchi: parametri con valori e parametri senza valori.
 ___
 ## File di esempio
 

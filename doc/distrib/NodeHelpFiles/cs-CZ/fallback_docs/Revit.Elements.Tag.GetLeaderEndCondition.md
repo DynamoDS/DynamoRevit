@@ -1,11 +1,11 @@
 ## Podrobnosti
-`Tag.GetLeaderEndCondition` returns the given tags leader end condition.
+Uzel `Tag.GetLeaderEndCondition` vrací danou podmínku zakončení odkazů popisků.
 
-Possible end conditions include:
-- Attached
-- Free
+Mezi možné podmínky zakončení patří:
+- Připojeno
+- Volné
 
-In the example below, all keynote tags are collected from the "North Wall Window Detail" detail view. The tags' leader end conditions are then returned.
+V níže uvedeném příkladu jsou shromážděny všechny popisky indexovaných poznámek shromážděny z detailního pohledu „Detail okna severní stěny“. Poté jsou vráceny podmínky zakončení odkazů popisků.
 
 ___
 ## Vzorový soubor

@@ -1,7 +1,7 @@
 ## In profondità
-`Viewport.SetLabelLineLength` sets the length of the viewport line, in paper space units.
+`Viewport.SetLabelLineLength` imposta la lunghezza della linea della finestra, in unità dello spazio carta.
 
-In the example below, all of the viewports from the selected sheet are collected. The viewports' bounding boxes are then used to calculate the width that the viewport line should be. Finally, the viewport lines are set to the width of the viewport.
+Nell'esempio seguente, vengono raccolte tutte le finestre della tavola selezionata. Vengono quindi utilizzati i riquadri di delimitazione delle finestre per calcolare la larghezza della linea della finestra. Infine, vengono impostate le linee delle finestre sulla larghezza della finestra.
 ___
 ## File di esempio
 

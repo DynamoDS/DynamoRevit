@@ -1,7 +1,7 @@
 ## 詳細
-`ScheduleView.Export` exports the given schedule to the given path with the selected options.
+`ScheduleView.Export` は、選択されたオプションを使用して、指定された集計表を指定されたパスに書き出します。
 
-In the example below, the door schedule is selected from the current Revit document for export. The export location is derived from the view name and the current user's documents location. Finally, the schedule is exported with the default export options.
+次の例では、ドア集計表が書き出し用に現在の Revit ドキュメントから選択されています。書き出し場所は、ビュー名と現在のユーザのドキュメントの場所から取得されます。最後に、集計表が既定の書き出しオプションで書き出されます。
 ___
 ## サンプル ファイル
 

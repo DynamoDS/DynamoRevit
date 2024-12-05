@@ -1,7 +1,7 @@
 ## In profondità
-`Parameter.IsReadOnly` returns a boolean value representing if the given parameter is a read only parameter.
+`Parameter.IsReadOnly` restituisce un valore booleano che indica se il parametro specificato è un parametro di sola lettura.
 
-In the example below, a single wall is selected from all walls in the current Revit document, and it's parameters are split into two lists; Read Only Parameters and Editable Parameters.
+Nell'esempio seguente, viene selezionato un singolo muro da tutti i muri del documento di Revit corrente e i relativi parametri vengono suddivisi in due elenchi: parametri di sola lettura e parametri modificabili.
 ___
 ## File di esempio
 

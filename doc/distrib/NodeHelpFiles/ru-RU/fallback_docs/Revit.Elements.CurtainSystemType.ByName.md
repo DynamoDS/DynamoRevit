@@ -1,7 +1,7 @@
 ## Подробности
-`CurtainSystemType.ByName` selects a curtain system type from the current Revit document of the given name.
+Узел `CurtainSystemType.ByName` позволяет выбрать в текущем документе Revit тип витражной системы с указанным именем.
 
-In the example below, the curtain system type `5' x 10'` is returned.
+В приведенном ниже примере возвращается тип витражной системы `5' x 10'`.
 ___
 ## Файл примера
 

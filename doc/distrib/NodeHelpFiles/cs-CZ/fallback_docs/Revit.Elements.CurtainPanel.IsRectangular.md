@@ -1,7 +1,7 @@
 ## Podrobnosti
-`CurtainPanel.IsRectangular` returns a true or false value to indicate if the given curtain panel is rectangular.
+Uzel `CurtainPanel.IsRectangular` vrací hodnotu true nebo false, která označuje, zda je daný panel obvodového pláště obdélníkový.
 
-In the example below, all curtain panels are collected from the selected curtain wall element. The panels are then queried for whether or not they are rectangular.
+V níže uvedeném příkladu jsou všechny panely obvodového pláště shromážděny z vybraného prvku obvodového pláště. Panely jsou poté dotazovány na to, zda jsou či nejsou obdélníkové.
 ___
 ## Vzorový soubor
 

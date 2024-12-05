@@ -1,7 +1,7 @@
 ## Подробности
-`Select Face` is a user interface node that displays a cursor in Revit that allows you to select a single face.
+`Select Face` — это узел пользовательского интерфейса, отображающий курсор в Revit, который позволяет выбрать одну грань.
 
-In the example below, a wall face is selected in Revit and the corresponding surface geometry is returned. Additionally, `Select Face` reports the owning element id of the face that is selected.
+В приведенном ниже примере в Revit выбирается грань стены и возвращается соответствующая геометрия поверхности. Кроме того, узел `Select Face` сообщает идентификатор элемента, которому принадлежит выбранная грань.
 ___
 ## Файл примера
 

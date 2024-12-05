@@ -1,9 +1,9 @@
 ## En detalle:
-`Room.CenterBoundary` returns a nested list representing the given room's centerline boundary. In the returned list, the first sublist represents the outermost curves, while subsequent lists represent loops within the room. The center boundaries are located on the centerline of the wall across all layers within the Revit room. For more information on wall location lines, see this help [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89).
+`Room.CenterBoundary` devuelve una lista anidada que representa el contorno central de la habitación especificada. En la lista devuelta, la primera sublista representa las curvas más externas, mientras que las listas posteriores representan bucles dentro de la habitación. Los contornos centrales se encuentran en la línea central del muro a través de todas las capas dentro de la habitación de Revit. Para obtener más información sobre las líneas de ubicación de muros, consulte este [artículo](https://help.autodesk.com/view/RVT/2024/ESP/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89) de la Ayuda.
 
-If an unbounded or unplaced room is given, a null value is returned.
+Si se especifica una habitación sin delimitar o sin colocar, se devuelve un valor nulo.
 
-In the example below, all rooms are collected from the current document and selected view. The center boundaries are then returned.
+En el ejemplo siguiente, se recopilan todas las habitaciones del documento actual y de la vista seleccionada. A continuación, se devuelven los contornos centrales.
 ___
 ## Archivo de ejemplo
 

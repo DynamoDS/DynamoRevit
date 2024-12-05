@@ -1,7 +1,7 @@
 ## 深入資訊
-`Viewport.LabelOutline` returns a Dynamo bounding box that represents the outline of the viewport's label.
+`Viewport.LabelOutline` 會傳回表示視埠標示外框的 Dynamo 邊界框。
 
-In the example below, the viewports are returned for the selected sheet. The outlines of the label are then returned with `Viewport.LabelOutline`.
+以下範例會傳回所選圖紙的視埠，然後使用 `Viewport.LabelOutline` 傳回標示的外框。
 ___
 ## 範例檔案
 

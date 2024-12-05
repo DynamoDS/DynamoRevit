@@ -1,6 +1,6 @@
 ## Em profundidade
 
-`Select Edge` displays a cursor in Revit that allows you to select a single edge. The object returned is a curve or line that represents the selected edge. Additionally, `Select Edge` reports the owning element id of the edge that is selected.
+`Select Edge` exibe um cursor no Revit que permite selecionar uma única aresta. O objeto retornado é uma curva ou umas linha que representa a aresta selecionada. Além disso, `Select Edge` reporta a ID do elemento proprietário da aresta selecionada.
 
 No exemplo abaixo, é retornada uma linha que representa a aresta superior de um parapeito no documento (arquivo) atual.
 

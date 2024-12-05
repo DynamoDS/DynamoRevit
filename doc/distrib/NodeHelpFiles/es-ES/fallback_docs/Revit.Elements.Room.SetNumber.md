@@ -1,7 +1,7 @@
 ## En detalle:
-`Room.SetNumber` modifies the number of the given room element.
+`Room.SetNumber` modifica el número del elemento de habitación especificado.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' numbers are then modified with a suffix of "e" to indicate existing conditions. This type of workflow is useful when working through room renumbering in Revit.
+En el ejemplo siguiente, se recopilan todas las habitaciones del documento actual desde la vista seleccionada. A continuación, los números de las habitaciones se modifican con un sufijo "e" para indicar las condiciones existentes. Este tipo de flujo de trabajo es útil para renumerar habitaciones en Revit.
 ___
 ## Archivo de ejemplo
 

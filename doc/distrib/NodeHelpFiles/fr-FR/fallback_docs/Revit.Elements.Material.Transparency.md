@@ -1,7 +1,7 @@
 ## Description approfondie
-`Material.Transparency` returns an integer that indicates how transparent a material is.
+'Material.Transparency' renvoie un nombre entier qui indique le niveau de transparence d'un matériau.
 
-In the example below, all materials are collected from the current document. The materials' transparency values (as integers) are returned with `Material.Transparency`.
+Dans l'exemple ci-dessous, tous les matériaux sont collectés à partir du document actif. Les valeurs de transparence des matériaux (sous forme de nombres entiers) sont renvoyées avec 'Material.Transparency'.
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## Im Detail
-`CurtainPanel.IsRectangular` returns a true or false value to indicate if the given curtain panel is rectangular.
+`CurtainPanel.IsRectangular` gibt den Wert True oder False zurück, um anzugeben, ob das angegebene Fassadenelement rechteckig ist.
 
-In the example below, all curtain panels are collected from the selected curtain wall element. The panels are then queried for whether or not they are rectangular.
+Im folgenden Beispiel werden alle Fassadenelemente aus dem ausgewählten Fassadenelement gesammelt. Für die Fassendelemente wird dann abgefragt, ob sie rechteckig sind oder nicht.
 ___
 ## Beispieldatei
 

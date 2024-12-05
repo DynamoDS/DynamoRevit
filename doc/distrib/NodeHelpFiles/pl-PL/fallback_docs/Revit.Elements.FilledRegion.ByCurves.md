@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`FilledRegion.ByCurves` creates a filled region in the given view with the given curves and type.
+Węzeł `FilledRegion.ByCurves` tworzy w danym widoku obszar wypełnienia z danymi krzywymi i typem.
 
-In the example below, a new drafting view is created in the active Revit document. A new filled region is created with `FilledRegion.ByCurves`.
+W poniższym przykładzie w aktywnym dokumencie programu Revit zostaje utworzony nowy widok kreślarski. Za pomocą węzła `FilledRegion.ByCurves` zostaje utworzony nowy obszar wypełnienia.
 
 ___
 ## Plik przykładowy

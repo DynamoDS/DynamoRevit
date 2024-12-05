@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FloorType.Name` returns the given floor type's name.
+Uzel `FloorType.Name` vrací název daného typu podlahy.
 
-In the example below, all floor types loaded in the current Revit document are collected. The names are then returned with `FloorType.Name`.
+V následujícím příkladu jsou shromážděny všechny typy podlah načtené v aktuálním dokumentu aplikace Revit. Poté jsou vráceny názvy pomocí uzlu `FloorType.Name`.
 ___
 ## Vzorový soubor
 

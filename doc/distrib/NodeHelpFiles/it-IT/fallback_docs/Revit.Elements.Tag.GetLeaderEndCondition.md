@@ -1,11 +1,11 @@
 ## In profondità
-`Tag.GetLeaderEndCondition` returns the given tags leader end condition.
+`Tag.GetLeaderEndCondition` restituisce la condizione dell'estremità della direttrice dell'etichetta specificata.
 
-Possible end conditions include:
+Le possibili condizioni finali includono:
 - Attached
 - Free
 
-In the example below, all keynote tags are collected from the "North Wall Window Detail" detail view. The tags' leader end conditions are then returned.
+Nell'esempio seguente, vengono raccolte tutte le etichette della nota chiave dalla vista di dettaglio "North Wall Window Detail". Vengono quindi restituite le condizioni dell'estremità della direttrice delle etichette.
 
 ___
 ## File di esempio

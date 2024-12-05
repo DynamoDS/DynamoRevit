@@ -1,9 +1,9 @@
 ## En detalle:
-Given a parameter element, `Parameter.SetValue` updates the value of the given parameter to the input value.
+Si se especifica un elemento de parámetro, `Parameter.SetValue` actualiza el valor del parámetro especificado al valor de entrada.
 
-This node functions similar to `Element.SetParameterByName`, but differs by working directly with the parameter element.
+Este nodo funciona de forma similar a `Element.SetParameterByName`, pero se diferencia en que funciona directamente con el elemento de parámetro.
 
-In the example below, the current project's name is returned (from the project information), converted to lowercase and then updated with `Parameter.SetValue`.
+En el ejemplo siguiente, se devuelve el nombre del proyecto actual (a partir de la información del proyecto), se convierte a minúsculas y, a continuación, se actualiza con `Parameter.SetValue`.
 
 ___
 ## Archivo de ejemplo

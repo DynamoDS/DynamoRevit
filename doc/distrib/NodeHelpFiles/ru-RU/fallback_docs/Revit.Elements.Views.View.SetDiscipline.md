@@ -1,15 +1,15 @@
 ## Подробности
-`View.SetDiscipline` modifies the discipline of the given view.
+Узел `View.SetDiscipline` изменяет категорию заданного вида.
 
-View discipline options include:
-- Architectural
-- Coordination
-- Electrical
-- Mechanical
-- Plumbing
-- Structural
+Варианты категорий вида:
+- архитектурный;
+- координация;
+- электрический;
+- механический;
+- сантехника;
+- структурный.
 
-In the example below, the default 3d view's discipline is set to coordination.
+В приведенном ниже примере для категории 3D-вида по умолчанию задано значение «Координация».
 ___
 ## Файл примера
 

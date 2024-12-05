@@ -1,7 +1,7 @@
 ## Description approfondie
-`Material.Shininess` returns an integer that indicates how shiny a material is.
+'Material.Shininess' renvoie un nombre entier qui indique le degré de brillance d'un matériau.
 
-In the example below, all materials are collected from the current document. The materials' shininess values (as integers) are returned with `Material.Shininess`.
+Dans l'exemple ci-dessous, tous les matériaux sont collectés à partir du document actif. Les valeurs de brillance des matériaux (sous forme de nombres entiers) sont renvoyées avec 'Material.Shininess'.
 ___
 ## Exemple de fichier
 

@@ -1,14 +1,14 @@
 ## In profondità
-`Schedule Type` allows for the selection of the available schedule types.
+`Schedule Type` consente di selezionare i tipi di abaco disponibili.
 
-Available schedule types include:
+I tipi di abaco disponibili includono:
 - RegularSchedule
 - Key Schedule
 - Material Takeoffs
 
-For more information regarding schedules in Revit, refer to this [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
+Per ulteriori informazioni sugli abachi in Revit, fare riferimento a questo [articolo](https://help.autodesk.com/view/RVT/2024/ITA/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+Nell'esempio seguente, viene creato un nuovo abaco denominato "Working Door Schedule" nel documento di Revit corrente.
 ___
 ## File di esempio
 

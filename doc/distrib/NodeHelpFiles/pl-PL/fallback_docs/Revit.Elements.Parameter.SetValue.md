@@ -1,9 +1,9 @@
 ## Informacje szczegółowe
-Given a parameter element, `Parameter.SetValue` updates the value of the given parameter to the input value.
+Na podstawie elementu parametru węzeł `Parameter.SetValue` aktualizuje wartość danego parametru do wartości wejściowej.
 
-This node functions similar to `Element.SetParameterByName`, but differs by working directly with the parameter element.
+Ten węzeł działa podobnie do węzła `Element.SetParameterByName`, ale różni się tym, że współdziała bezpośrednio z elementem parametru.
 
-In the example below, the current project's name is returned (from the project information), converted to lowercase and then updated with `Parameter.SetValue`.
+W poniższym przykładzie zwrócona zostaje nazwa bieżącego projektu (z informacji o projekcie), a następnie wszystkie jej litery zostają zmienione na małe i zostaje ona zaktualizowana za pomocą węzła `Parameter.SetValue`.
 
 ___
 ## Plik przykładowy

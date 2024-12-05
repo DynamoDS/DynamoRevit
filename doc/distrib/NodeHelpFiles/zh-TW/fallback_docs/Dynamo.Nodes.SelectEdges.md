@@ -1,8 +1,8 @@
 ## 深入資訊
 
-`Select Edges` displays a cursor in Revit that allows you to select multiple edges. The objects returned are curves or lines that represent the selected edges.
+`Select Edges` 會在 Revit 中顯示游標，可讓您選取多條邊。傳回的物件是表示所選邊的曲線或直線。
 
-In the example below, two lines are returned that represent the top edges of a parapet in the current document (file). Additionally, `Select Edges` reports the owning element ids of the edges that are selected.
+在以下範例中，傳回目前文件 (檔案) 中表示女兒牆頂部邊緣的兩條直線。此外，`Select Edges` 還會顯示所選邊的擁有元素 ID。
 
 ___
 ## 範例檔案

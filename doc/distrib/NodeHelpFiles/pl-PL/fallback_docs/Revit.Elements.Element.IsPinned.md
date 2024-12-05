@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Element.IsPinned` returns a true or false value to indicate whether the given element is pinned.
+Węzeł `Element.IsPinned` zwraca wartość true (prawda) lub false (fałsz), aby określić, czy dany element jest przypięty.
 
-In the example below, all Revit link instances are collected in the current document, and their pinned state is returned.
+W poniższym przykładzie z bieżącego dokumentu są pobierane wszystkie wystąpienia połączeń programu Revit i zwracany jest ich stan: przypięty lub nieprzypięty.
 ___
 ## Plik przykładowy
 

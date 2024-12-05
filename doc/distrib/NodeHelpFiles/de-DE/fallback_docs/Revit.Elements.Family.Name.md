@@ -1,7 +1,7 @@
 ## Im Detail
-`Family.Name` returns the name of the given family element.
+`Family.Name` gibt den Namen des angegebenen Familienelements zurück.
 
-In the example below, all families are collected from the current Revit document. The family names are returned with `Family.Name`.
+Im folgenden Beispiel werden alle Familien aus dem aktuellen Revit-Dokument gesammelt. Die Familiennamen werden mit `Family.Name` zurückgegeben.
 ___
 ## Beispieldatei
 

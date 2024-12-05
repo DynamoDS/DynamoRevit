@@ -1,7 +1,7 @@
 ## En detalle:
-`ModelText.Depth` returns the depth of the given model text element as a number.
+`ModelText.Depth` devuelve la profundidad del elemento de texto del modelo especificado como un número.
 
-In the example below, all model text is collected in the current Revit file. The depth values are then returned with `ModelText.Depth` in project units.
+En el ejemplo siguiente, se recopila todo el texto del modelo del archivo de Revit actual. A continuación, los valores de profundidad se devuelven con `ModelText.Depth` en unidades de proyecto.
 ___
 ## Archivo de ejemplo
 

@@ -1,7 +1,7 @@
 ## 深入資訊
-`ModelText.Position` returns the position of the given model text element as a Dynamo point.
+`ModelText.Position` 會傳回給定模型文字元素的位置作為 Dynamo 點。
 
-In the example below, all model text is collected in the current Revit file. The locations are then returned with `ModelText.Position`.
+以下範例收集目前 Revit 檔案中的所有模型文字，然後使用 `ModelText.Position` 傳回位置。
 ___
 ## 範例檔案
 

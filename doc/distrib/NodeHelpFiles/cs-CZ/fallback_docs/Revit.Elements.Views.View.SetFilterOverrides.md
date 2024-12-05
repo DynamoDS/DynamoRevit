@@ -1,7 +1,7 @@
 ## Podrobnosti
-`View.SetFilterOverrides` will apply the given overrides to the given view and view filter.
+Uzel `View.SetFilterOverrides` použije daná přepsání na daný pohled a filtr pohledu.
 
-In the example below, a view filter is created for the `Fire Rating` parameter on wall type elements. This filter is added to the `L1` floor plan view in the sample model. After the filter is added, overrides are then added to the filter to turn the wall types with a "2 HR" rating to a solid red color.
+V níže uvedeném příkladu je vytvořen filtr pohledů pro parametr `Fire Rating` na prvcích typu stěny. Tento filtr je přidán do půdorysného pohledu podlaží `L1` ve vzorovém modelu. Po přidání filtru se do filtru přidají přepsání, aby se typy stěn s hodnocením „2 HR“ změnily na jednolitou červenou barvu.
 ___
 ## Vzorový soubor
 

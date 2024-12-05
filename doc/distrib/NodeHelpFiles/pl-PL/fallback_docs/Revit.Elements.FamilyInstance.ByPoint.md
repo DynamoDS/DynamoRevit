@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`FamilyInstance.ByPoint` creates an instance of the given family type at the given point.
+Węzeł `FamilyInstance.ByPoint` tworzy wystąpienie danego typu rodziny w danym punkcie.
 
-In the example below, a selected floor surface is parameterized with hexagon panels. The panel center points are used for randomized RPC placement.
+W poniższym przykładzie wybrana powierzchnia stropu jest zmieniana w parametryzowaną za pomocą paneli sześciokątnych. Punkty środkowe paneli są wykorzystywane do losowego umieszczania obiektów RPC.
 ___
 ## Plik przykładowy
 

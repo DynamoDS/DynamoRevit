@@ -1,7 +1,7 @@
 ## 详细
-`Parameter.CreateSharedParameter` will add a parameter with the given values to the given categories in the current Revit document. This node differs from `Parameter.CreateSharedParameterForAllCategories` by allowing for input for specific categories.
+“Parameter.CreateSharedParameter”会将具有给定值的参数添加到当前 Revit 文档中的给定类别。此节点与“Parameter.CreateSharedParameterForAllCategories”不同，允许输入特定类别。
 
-In the example below, a shared Yes/No parameter called "Include in FFE" is added to the furniture and generic model categories in the current Revit document.
+在下面的示例中，名为“包含在 FFE 中”的共享“是/否”参数已添加到当前 Revit 文档中的家具和常规模型类别。
 ___
 ## 示例文件
 

@@ -1,7 +1,7 @@
 ## 深入資訊
-Given a material name as a string, `Material.ByName` retrieves the corresponding material element from the current Revit document, if the material is available. If the material is not found, a null value is returned.
+給定以字串表示的材料名稱，`Material.ByName` 會擷取目前 Revit 文件中的對應材料元素 (如果有材料)。如果找不到材料，則傳回空值。
 
-In the example below, the material, "Metal - Aluminium" is returned.
+以下範例傳回「Metal - Aluminium」材料。
 ___
 ## 範例檔案
 

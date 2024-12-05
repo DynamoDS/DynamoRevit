@@ -1,7 +1,7 @@
 ## 详细
-`GlobalParameter.ByName` creates a global parameter with the given name and spec type.
+“GlobalParameter.ByName”创建一个具有给定名称和等级库类型的全局参数。
 
-In the example below, a global parameter called "Building Number" is created.
+在下面的示例中，创建了一个名为“Building Number”的全局参数。
 ___
 ## 示例文件
 

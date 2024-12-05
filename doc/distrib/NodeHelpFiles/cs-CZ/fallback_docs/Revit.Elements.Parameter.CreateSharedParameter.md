@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Parameter.CreateSharedParameter` will add a parameter with the given values to the given categories in the current Revit document. This node differs from `Parameter.CreateSharedParameterForAllCategories` by allowing for input for specific categories.
+Uzel `Parameter.CreateSharedParameter` přidá parametr s danými hodnotami do daných kategorií v aktuálním dokumentu aplikace Revit. Tento uzel se liší od uzlu `Parameter.CreateSharedParameterForAllCategories` tím, že umožňuje vstup pro konkrétní kategorie.
 
-In the example below, a shared Yes/No parameter called "Include in FFE" is added to the furniture and generic model categories in the current Revit document.
+V níže uvedeném příkladu je sdílený parametr Ano/Ne s názvem „Zahrnout do FFE“ přidán do kategorií nábytku a obecného modelu v aktuálním dokumentu aplikace Revit.
 ___
 ## Vzorový soubor
 

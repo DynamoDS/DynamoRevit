@@ -1,7 +1,7 @@
 ## Podrobnosti
-`TextNote.Height` returns the given text note's height in project units.
+Uzel `TextNote.Height` vrací výšku dané textové poznámky v jednotkách projektu.
 
-In the example below, all working notes are collected from the current Revit document. The height values are then returned in project units _(feet and inches)_.
+V následujícím příkladu jsou shromážděny všechny pracovní poznámky z aktuálního dokumentu aplikace Revit. Poté jsou vráceny hodnoty výšky v jednotkách projektu _(stopy a palce)_.
 
 ___
 ## Vzorový soubor

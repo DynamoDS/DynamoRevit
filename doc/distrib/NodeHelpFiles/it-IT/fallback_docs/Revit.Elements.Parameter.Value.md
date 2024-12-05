@@ -1,9 +1,9 @@
 ## In profondità
-Given a parameter element, `Parameter.Value` returns the value that is stored within the given parameter.
+Dato un parametro element, `Parameter.Value` restituisce il valore memorizzato all'interno del parametro specificato.
 
-If no parameter value is found, a null value is returned.
+Se non viene trovato alcun valore di parametro, viene restituito un valore null.
 
-In the example below, the project name is returned for the project information for the current document.
+Nell'esempio seguente, viene restituito il nome del progetto per le informazioni sul progetto per il documento corrente.
 
 ___
 ## File di esempio

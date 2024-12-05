@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`FloorType.IsFoundationSlab` returns a true or false value to indicate whether the given floor type is a foundation slab.
+Węzeł `FloorType.IsFoundationSlab` zwraca wartość true (prawda) lub false (fałsz) wskazującą, czy dany typ stropu jest płytą fundamentową.
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types are then checked whether or not they are foundation slabs with `FloorType.IsFoundationSlab`.
+W poniższym przykładzie pobierane są wszystkie stropy obecne w bieżącym dokumencie programu Revit. Stropy są dalej grupowane według typów. Następnie za pomocą węzła `FloorType.IsFoundationSlab` zostaje sprawdzone, czy typy stropów są płytami fundamentowymi.
 ___
 ## Plik przykładowy
 

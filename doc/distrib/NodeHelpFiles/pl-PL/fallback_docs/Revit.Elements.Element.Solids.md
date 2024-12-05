@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Element.Solids` returns the solid geometry for the given element. The solids are returned as nested lists, as any given element can have more than one solid within it. If a single solid that represents the element is desired, `Solid.ByUnion` may be used on the lists.
+Węzeł `Element.Solids` zwraca geometrię bryły dla danego elementu. Bryły są zwracane jako listy zagnieżdżone, ponieważ każdy dany element może zawierać więcej niż jedną bryłę. Jeśli potrzebna jest pojedyncza bryła reprezentująca element, do list można zastosować węzeł `Solid.ByUnion`.
 
-In the example below, all walls are collected from the selected view. Walls that were created as in-place families are then removed, and the remaining walls' solids are returned.
+W poniższym przykładzie z wybranego widoku są pobierane wszystkie ściany. Ściany, które zostały utworzone jako rodziny lokalne, są następnie usuwane, i zwracane są pozostałe bryły ścian.
 
 ___
 ## Plik przykładowy

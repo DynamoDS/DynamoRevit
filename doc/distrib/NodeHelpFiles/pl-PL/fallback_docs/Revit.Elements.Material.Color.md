@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Material.Color` returns a Dynamo color that represents the material's shading color. If the material's shading color is set to "use render appearance", that value is returned.
+Węzeł `Material.Color` zwraca kolor dodatku Dynamo reprezentujący kolor cieniowania materiału. Jeśli kolor cieniowania materiału ma ustawienie „Użyj wyglądu renderingu”, zwracana jest ta wartość.
 
-In the example below, all materials are collected from the current document. The materials' shading color values are returned with `Material.Color`.
+W poniższym przykładzie z bieżącego dokumentu pobierane są wszystkie materiały. Za pomocą węzła `Material.Color` zwracane są wartości kolorów cieniowania materiałów.
 
 ___
 ## Plik przykładowy

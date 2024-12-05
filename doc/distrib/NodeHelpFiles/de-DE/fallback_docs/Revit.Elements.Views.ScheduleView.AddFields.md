@@ -1,7 +1,7 @@
 ## Im Detail
-`ScheduleView.AddFields` adds the selected fields to the schedule. Schedulable fields represent available parameters of the category assigned to the schedule.
+`ScheduleView.AddFields` fügt die ausgewählten Felder zur Bauteilliste hinzu. Bauteillisten-Felder stellen verfügbare Parameter der Kategorie dar, die der Bauteilliste zugewiesen ist.
 
-In the example below, a new schedule called "Working Door Schedule" is created. The schedulable fields are then collected and input into a dictionary to facilitate looking the fields up by name. Finally, the fields are found by name and added to the schedule view with `ScheduleView.AddFields`.
+Im folgenden Beispiel wird eine neue Bauteilliste mit dem Namen "Arbeitstür Bauteilliste" erstellt. Die Bauteillisten-Felder werden dann gesammelt und in ein Wörterbuch eingegeben, um die Suche nach Feldern nach Namen zu erleichtern. Schließlich werden die Felder nach Namen gesucht und mit `ScheduleView.AddFields` zur Bauteillistenansicht hinzugefügt.
 ___
 ## Beispieldatei
 

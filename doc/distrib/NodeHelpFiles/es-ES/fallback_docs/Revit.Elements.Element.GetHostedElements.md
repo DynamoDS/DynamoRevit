@@ -1,13 +1,13 @@
 ## En detalle:
-Given an element that supports hosting of elements _(e.g. Walls)_, `Element.GetHostedElements` returns the elements that rely on the given element. By default, family instances that are hosted to the element are returned. `Element.GetHostedElements` offers the option to include other types of hosted elements.
+Si se ha especificado un elemento que admite el alojamiento de elementos (por ejemplo, muros), `Element.GetHostedElements` devuelve los elementos que dependen del elemento especificado. Por defecto, se devuelven los ejemplares de familia alojados en el elemento. `Element.GetHostedElements` ofrece la opción de incluir otros tipos de elementos alojados.
 
-These include:
-- openings
-- elements that are hosted in joined hosts
-- embedded walls _(i.e. curtain walls)_
-- shared embedded inserts
+Entre estos, se incluyen los siguientes:
+- Huecos
+- Elementos alojados en anfitriones unidos
+- Muros incrustados (por ejemplo, muros cortina)
+- Inserciones incrustadas compartidas
 
-In the example below, all wall elements are collected from L2. The wall elements are then checked for hosted elements with `Element.GetHostedElements`. This list is then used to create two lists. Walls with doors and walls without doors.
+En el ejemplo siguiente, se recopilan todos los elementos de muro de L2. A continuación, se comprueba si los elementos de muro están alojados con `Element.GetHostedElements`. Posteriormente, esta lista se utiliza para crear dos listas, Muros con puertas y Muros sin puertas.
 ___
 ## Archivo de ejemplo
 

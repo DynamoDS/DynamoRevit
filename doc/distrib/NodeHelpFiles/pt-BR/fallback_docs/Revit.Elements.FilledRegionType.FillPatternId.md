@@ -1,7 +1,7 @@
 ## Em profundidade
-`FilledRegionType.FillPatternId` returns the element id of the given filled region type.
+`FilledRegionType.FillPatternId` retorna a ID do elemento do tipo de região preenchida fornecido.
 
-In the example below, the "Diagonal Down" filled region type is selected from the current Revit document. The fill pattern id is then returned with `FilledRegionType.FillPatternId`.
+No exemplo abaixo, o tipo de região preenchida “Diagonal descendente” é selecionado no documento atual do Revit. A ID do padrão de preenchimento é retornada com `FilledRegionType.FillPatternId`.
 
 ___
 ## Arquivo de exemplo

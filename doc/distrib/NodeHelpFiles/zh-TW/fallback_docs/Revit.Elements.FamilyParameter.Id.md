@@ -1,7 +1,7 @@
 ## 深入資訊
-`FamilyParameter.Id` returns an integer representation of the element id of the given parameter.
+`FamilyParameter.Id` 會傳回給定參數之元素 ID 的整數表現法。
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the element id as an integer. Note: Built-In Revit parameters have a negative (-) prefix.
+在以下範例中，目前的 Revit 文件 (範例模型中的門族群) 處於開啟狀態。將傳回族群中的參數，以及整數的元素 ID。注意事項: 內建 Revit 參數的字首為負號 (-)。
 ___
 ## 範例檔案
 

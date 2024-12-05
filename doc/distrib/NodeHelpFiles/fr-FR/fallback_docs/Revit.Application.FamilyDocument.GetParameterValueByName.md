@@ -1,7 +1,7 @@
 ## Description approfondie
-`FamilyDocument.GetParameterValueByName` permet d'obtenir la valeur de paramètre indiquée pour le type de famille donné dans le document de famille.
+« FamilyDocument.GetParameterValueByName » permet d'obtenir la valeur de paramètre indiquée du type de famille donné dans le document de famille.
 
-Dans l'exemple ci-dessous, le fichier actuel est converti en document de famille. La valeur du paramètre "Rayon" est ensuite obtenue pour le type de famille "Diamètre 36".
+Dans l'exemple ci-dessous, le fichier actuel est converti en document de famille. La valeur du paramètre « Rayon » est ensuite récupérée pour le type de famille « Diamètre 36 ».
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## Подробности
-`Viewport.Sheet` returns the sheet element that the viewport is placed on.
+Узел `Viewport.Sheet` возвращает элемент листа, на котором размещен видовой экран.
 
-In the example below, all viewports are collected from the current Revit document. The sheet for each viewport is then returned with `Viewport.Sheet`. Additionally, the viewports are grouped by sheet with `List.GroupByKey`.
+В приведенном ниже примере собираются все видовые экраны в текущем документе Revit. Затем с помощью `Viewport.Sheet` возвращается лист для каждого видового экрана. Кроме того, видовые экраны группируются по листам с помощью `List.GroupByKey`.
 ___
 ## Файл примера
 

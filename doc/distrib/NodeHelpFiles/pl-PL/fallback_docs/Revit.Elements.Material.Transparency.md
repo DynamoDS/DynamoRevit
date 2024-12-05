@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Material.Transparency` returns an integer that indicates how transparent a material is.
+Węzeł `Material.Transparency` zwraca liczbę całkowitą (integer) wskazującą przezroczystość materiału.
 
-In the example below, all materials are collected from the current document. The materials' transparency values (as integers) are returned with `Material.Transparency`.
+W poniższym przykładzie z bieżącego dokumentu pobierane są wszystkie materiały. Za pomocą węzła `Material.Transparency` zwracane są wartości przezroczystości materiałów (jako liczby całkowite, czyli integer).
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## Im Detail
-Given a family type, `FamilyType.Name` returns the name for the family type as a string.
+Bei Eingabe eines Familientyps gibt `FamilyType.Name` den Namen für den Familientyp als Zeichenfolge zurück.
 
-In the example below, all door instances in the current view are grouped by their family type name.
+Im folgenden Beispiel sind alle Türexemplare in der aktuellen Ansicht nach ihrem Familientypnamen gruppiert.
 ___
 ## Beispieldatei
 

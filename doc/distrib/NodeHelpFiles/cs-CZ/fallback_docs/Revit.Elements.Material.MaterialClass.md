@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Material.MaterialClass` returns the name of the class that the material is assigned to.
+Uzel `Material.MaterialClass` vrací název třídy, ke které je materiál přiřazen.
 
-In the example below, all materials are collected from the current document. The materials' class names are returned with `Material.MaterialClass`.
+V následujícím příkladu jsou shromážděny všechny materiály z aktuálního dokumentu. Pomocí uzlu `Material.MaterialClass` jsou vráceny názvy tříd materiálů.
 ___
 ## Vzorový soubor
 

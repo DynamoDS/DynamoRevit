@@ -1,7 +1,7 @@
 ## Подробности
-`GlobalParameter.Value` returns the value for the given global parameter.
+Узел `GlobalParameter.Value` возвращает значение для заданного глобального параметра.
 
-In the example below, the global parameter, "Windows_North Elevation Inset" is returned and the value is returned (in project units).
+В приведенном ниже примере возвращается глобальный параметр «Окна_Вставка на северном фасаде» и возвращается значение (в единицах проекта).
 ___
 ## Файл примера
 

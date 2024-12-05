@@ -1,7 +1,7 @@
 ## 详细
-`Parameter.IsReadOnly` returns a boolean value representing if the given parameter is a read only parameter.
+“Parameter.IsReadOnly”返回一个布尔值，表示给定参数是否为只读参数。
 
-In the example below, a single wall is selected from all walls in the current Revit document, and it's parameters are split into two lists; Read Only Parameters and Editable Parameters.
+在下面的示例中，从当前 Revit 文档的所有墙中选择一面墙，并将其参数拆分为两个列表；只读参数和可编辑参数。
 ___
 ## 示例文件
 

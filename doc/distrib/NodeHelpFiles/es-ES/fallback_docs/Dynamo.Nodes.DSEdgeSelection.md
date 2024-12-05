@@ -1,8 +1,8 @@
 ## En detalle:
 
-`Select Edge` displays a cursor in Revit that allows you to select a single edge. The object returned is a curve or line that represents the selected edge. Additionally, `Select Edge` reports the owning element id of the edge that is selected.
+`Select Edge` muestra un cursor en Revit que le permite seleccionar una única arista. El objeto devuelto es una curva o línea que representa la arista seleccionada. Además, `Select Edge` informa del ID de elemento propietario de la arista seleccionada.
 
-En el ejemplo siguiente, se devuelve una línea que representa el borde superior de un parapeto en el documento (archivo) actual.
+En el ejemplo siguiente, se devuelve una línea que representa la arista superior de un parapeto en el documento (archivo) actual.
 
 ___
 ## Archivo de ejemplo

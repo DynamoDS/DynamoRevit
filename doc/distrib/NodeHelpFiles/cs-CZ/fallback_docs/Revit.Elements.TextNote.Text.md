@@ -1,7 +1,7 @@
 ## Podrobnosti
-`TextNote.Text` returns the text value of the given text note.
+Uzel `TextNote.Text` vrací textovou hodnotu dané textové poznámky.
 
-In the example below, all text notes are collected from the current Revit document. The text notes' text values are then returned.
+V níže uvedeném příkladu jsou shromážděny všechny textové poznámky z aktuálního dokumentu aplikace Revit. Poté jsou vráceny textové hodnoty textových poznámek.
 
 ___
 ## Vzorový soubor

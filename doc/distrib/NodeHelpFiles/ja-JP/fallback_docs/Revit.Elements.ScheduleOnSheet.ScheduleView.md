@@ -1,7 +1,7 @@
 ## 詳細
-The `ScheduleOnSheet.ScheduleView` node in Dynamo for Revit is used to retrieve the original schedule view that was used to create the specific schedule instance on a sheet.
+Dynamo for Revit の `ScheduleOnSheet.ScheduleView` ノードは、シート上に特定の集計表インスタンスを作成するために使用された元の集計表ビューを取得するために使用されます。
 
-In the example below, the schedule instances are returned for the selected sheet.
+次の例では、選択されたシートの集計表インスタンスが返されます。
 
 ___
 ## サンプル ファイル

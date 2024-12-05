@@ -1,7 +1,7 @@
 ## Podrobnosti
-Similar to `Revit.Elements.FamilyType.ByFamilyAndName`, `Revit.Elements.FamilyType.ByFamilyNameAndTypeName` returns the family type definition from the current document (if available). This is similar to `Revit.Elements.FamilyType.ByFamilyAndName`. However, instead of using a family definition, this node relies on string input for both values. If the family type is not available in the current document, a null value is returned.
+Podobně jako uzel `Revit.Elements.FamilyType.ByFamilyAndName` vrací uzel `Revit.Elements.FamilyType.ByFamilyNameAndTypeName` definici typu rodiny z aktuálního dokumentu (pokud je k dispozici). Tato akce je podobná jako u uzlu `Revit.Elements.FamilyType.ByFamilyAndName`. Místo použití definice rodiny však tento uzel spoléhá na řetězcový vstup u obou hodnot. Pokud není typ rodiny v aktuálním dokumentu dostupný, bude vrácena hodnota null.
 
-In the example below, a door family type, "36" x 84", from family "Door-Passage-Single-Flush" is returned.
+V níže uvedeném příkladu je vrácen typ rodiny dveří "36" x 84" z rodiny „Dveře, průchod, jednokřídlé, hladké“.
 ___
 ## Vzorový soubor
 

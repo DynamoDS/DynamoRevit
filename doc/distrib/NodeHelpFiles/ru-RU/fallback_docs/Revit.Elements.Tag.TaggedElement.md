@@ -1,7 +1,7 @@
 ## Подробности
-`Tag.TaggedElement` returns the source element of the given tag.
+Узел `Tag.TaggedElement` возвращает исходный элемент заданной марки.
 
-In the example below, all door tags are collected from the current Revit document. The door tags' source door (family instance) are returned.
+В приведенном ниже примере собираются все марки дверей в текущем документе Revit. Возвращается исходная дверь (экземпляр семейства) для марок дверей.
 ___
 ## Файл примера
 

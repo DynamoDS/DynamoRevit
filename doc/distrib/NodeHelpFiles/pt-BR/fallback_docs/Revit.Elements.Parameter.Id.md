@@ -1,7 +1,7 @@
 ## Em profundidade
-`Parameter.Id` returns the element id for the given parameter.
+`Parameter.Id` retorna a ID do elemento do parâmetro fornecido.
 
-In the example below, a single wall is selected from all walls in the current Revit document. The element ids of the wall's parameters are then returned. In Revit, built in parameters return element ids that start with a dash (-). These are reserved element ids and do not change.
+No exemplo abaixo, uma única parede é selecionada de todas as paredes no documento atual do Revit. Em seguida, são retornadas as IDs dos elementos dos parâmetros da parede. No Revit, os parâmetros incorporados retornam as IDs dos elementos que começam com um traço (-). Essas são IDs de elementos reservadas e não são alteradas.
 ___
 ## Arquivo de exemplo
 

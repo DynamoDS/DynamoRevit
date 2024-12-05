@@ -1,7 +1,7 @@
 ## 상세
-`Family.ByName` returns the family definition from the current document (if available). If the family is not available in the current document, a null value is returned.
+`Family.ByName`은 현재 문서에서 패밀리 정의를 반환합니다(사용 가능한 경우). 현재 문서에서 패밀리를 사용할 수 없는 경우 null 값이 반환됩니다.
 
-In the example below, a family definition for "Door-Passage-Single-Flush" is returned, along with its element id (in green).
+아래 예에서는 "Door-Passage-Single-Flush"에 대한 패밀리 정의가 요소 ID(녹색)와 함께 반환됩니다.
 ___
 ## 예제 파일
 

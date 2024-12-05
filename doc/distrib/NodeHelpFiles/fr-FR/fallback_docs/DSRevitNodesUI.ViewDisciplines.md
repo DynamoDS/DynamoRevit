@@ -1,14 +1,14 @@
 ## Description approfondie
-`View Disciplines` allows for the selection of the following disciplines to assign to views:
+L'option « Disciplines de vue » permet de sélectionner les disciplines suivantes à affecter aux vues :
 
-- Architectural
+- Architecturale
 - Coordination
-- Electrical
-- Mechanical
-- Plumbing
-- Structural
+- Électrique
+- Mécanique
+- Plomberie
+- Structurelle
 
-In the example below, the default 3d view's discipline is set to coordination.
+Dans l'exemple ci-dessous, la discipline de la vue 3D par défaut est définie sur Coordination.
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## Em profundidade
-`Select Filled Region Type` allows for the selection of a filled region type from all types available in the active Revit document.
+`Select Filled Region Type` permite a seleção de um tipo de região preenchida entre todos os tipos disponíveis no documento ativo do Revit.
 
-In the example below, a new drafting view is created in the active Revit document. A filled region is created in the view using "Diagonal Down" type.
+No exemplo abaixo, é criada uma nova vista do desenho no documento ativo do Revit. Uma região preenchida é criada na vista usando o tipo “Diagonal descendente”.
 
 ___
 ## Arquivo de exemplo

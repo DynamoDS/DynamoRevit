@@ -1,7 +1,7 @@
 ## 深入資訊
-`Material.SurfacePatternColor` returns a Dynamo color that represents the material's surface pattern color (if available).
+`Material.SurfacePatternColor` 會傳回表示材料表面樣式顏色 (如果有) 的 Dynamo 顏色。
 
-In the example below, all materials are collected from the current document. The materials' colors are returned with `Material.SurfacePatternColor`.
+以下範例收集目前文件中的所有材料。使用 `Material.SurfacePatternColor` 傳回材料的顏色。
 ___
 ## 範例檔案
 

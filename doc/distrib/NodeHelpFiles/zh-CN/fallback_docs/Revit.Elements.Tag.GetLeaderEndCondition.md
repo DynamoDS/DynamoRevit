@@ -1,11 +1,11 @@
 ## 详细
-`Tag.GetLeaderEndCondition` returns the given tags leader end condition.
+“Tag.GetLeaderEndCondition”返回给定标记引线结束条件。
 
-Possible end conditions include:
-- Attached
-- Free
+可能的结束条件包括:
+- 附着
+- 自由
 
-In the example below, all keynote tags are collected from the "North Wall Window Detail" detail view. The tags' leader end conditions are then returned.
+在下面的示例中，将从“North Wall Window Detail”详图视图收集所有注释记号标记。然后返回标记的引线结束条件。
 
 ___
 ## 示例文件

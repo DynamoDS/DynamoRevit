@@ -1,9 +1,9 @@
 ## Im Detail
-`Pick Family Instances` allows for the selection of multiple family instances from the current Revit document. `Pick Family Instances` offers a pick based selection unlike `Select Family Instances` that offers a crossing window selection.
+`Pick Family Instances` ermöglicht die Auswahl mehrerer Familienexemplare aus dem aktuellen Revit-Dokument. `Pick Family Instances` bietet eine auswahlbasierte Auswahl, im Gegensatz zu `Select Family Instances`, wobei eine Auswahl mit einem Kreuzen-Fenster möglich ist.
 
-`Pick Family Instances` requires the user to press finish on the Revit contextual ribbon.
+Für `Pick Family Instances` muss der Benutzer in der kontextabhängigen Multifunktionsleiste von Revit auf Fertig stellen klicken.
 
-In the example below, door and window family instances are selected from the current Revit document.
+Im folgenden Beispiel werden Tür- und Fenster-Familienexemplare aus dem aktuellen Revit-Dokument ausgewählt.
 
 ___
 ## Beispieldatei

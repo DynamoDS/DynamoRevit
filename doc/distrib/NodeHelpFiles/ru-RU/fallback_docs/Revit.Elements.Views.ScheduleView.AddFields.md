@@ -1,7 +1,7 @@
 ## Подробности
-`ScheduleView.AddFields` adds the selected fields to the schedule. Schedulable fields represent available parameters of the category assigned to the schedule.
+Узел `ScheduleView.AddFields` добавляет выбранные поля в спецификацию. Поля, доступные для добавления в спецификацию, представляют собой доступные параметры категории, назначенной спецификации.
 
-In the example below, a new schedule called "Working Door Schedule" is created. The schedulable fields are then collected and input into a dictionary to facilitate looking the fields up by name. Finally, the fields are found by name and added to the schedule view with `ScheduleView.AddFields`.
+В приведенном ниже примере создается спецификация под названием «Рабочая спецификация дверей». Затем поля, доступные для добавления в спецификацию, собираются и заносятся в словарь, что упрощает поиск полей по имени. Наконец, поля находятся по имени и добавляются в вид спецификации с помощью `ScheduleView.AddFields`.
 ___
 ## Файл примера
 

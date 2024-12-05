@@ -1,7 +1,7 @@
 ## In profondità
-`Parameter.SharedParameterFile` returns the shared parameter file location for the active Revit document. If no shared parameter file is assigned, a null value is returned.
+`Parameter.SharedParameterFile` restituisce la posizione del file di parametri condivisi per il documento di Revit attivo. Se non viene assegnato alcun file di parametri condivisi, viene restituito un valore null.
 
-In the example below, the shared parameter file is returned and the file is read from the path.
+Nell'esempio seguente, viene restituito il file di parametri condivisi che viene letto dal percorso.
 ___
 ## File di esempio
 

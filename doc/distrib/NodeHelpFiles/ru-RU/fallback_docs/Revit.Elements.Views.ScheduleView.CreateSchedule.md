@@ -1,7 +1,7 @@
 ## Подробности
-`ScheduleView.CreateSchedule` creates a new schedule with the given parameters. If the schedule name already exists, an error will be returned.
+Узел `ScheduleView.CreateSchedule` создает спецификацию с заданными параметрами. Если спецификация с таким именем уже существует, возвращается ошибка.
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+В приведенном ниже примере в текущем документе Revit создается спецификация под названием «Рабочая спецификация дверей».
 ___
 ## Файл примера
 

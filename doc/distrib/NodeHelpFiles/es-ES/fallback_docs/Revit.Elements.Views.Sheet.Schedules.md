@@ -1,7 +1,7 @@
 ## En detalle:
-`Sheet.Schedules` returns the schedule instances placed on the given sheet. Note: `Sheet.Schedules` will return revision schedules that exist within the titleblock family for the given sheet.
+`Sheet.Schedules` devuelve los ejemplares de tabla de planificación colocados en el plano especificado. Nota: `Sheet.Schedules` devolverá las tablas de planificación de revisiones que existan en la familia de cuadros de rotulación del plano especificado.
 
-In the example below, the schedule instances are returned for the selected sheet. The revision schedules are then filtered out with `List.FilterByBoolMask`. Additionally, the owner view for the schedule instance is retrieved with `ScheduleOnSheet.ScheduleView`.
+En el ejemplo siguiente, se devuelven las tablas de planificación del plano seleccionado. Las tablas de planificación de revisión se filtran con `List.FilterByBoolMask`. Además, se recupera la vista de propietario para el ejemplar de tabla de planificación con `ScheduleOnSheet.ScheduleView`.
 ___
 ## Archivo de ejemplo
 

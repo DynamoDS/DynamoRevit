@@ -1,7 +1,7 @@
 ## Im Detail
-`FloorType.Name` returns the given floor type's name.
+`FloorType.Name` gibt den Namen des angegebenen Geschossdeckentyps zurück.
 
-In the example below, all floor types loaded in the current Revit document are collected. The names are then returned with `FloorType.Name`.
+Im folgenden Beispiel werden alle im aktuellen Revit-Dokument geladenen Geschossdeckentypen gesammelt. Die Namen werden dann mit `FloorType.Name` zurückgegeben.
 ___
 ## Beispieldatei
 

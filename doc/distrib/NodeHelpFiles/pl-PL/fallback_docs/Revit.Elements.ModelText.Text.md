@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`ModelText.Text` returns the text value of the given model text element as a string.
+Węzeł `ModelText.Text` zwraca wartość tekstu danego elementu tekstu modelu w postaci ciągu (string).
 
-In the example below, all model text is collected in the current Revit file. The text values are then returned with `ModelText.Text`.
+W poniższym przykładzie pobierany jest cały tekst modelu w bieżącym pliku programu Revit. Następnie za pomocą węzła `ModelText.Text` zwracane są wartości tekstu.
 ___
 ## Plik przykładowy
 

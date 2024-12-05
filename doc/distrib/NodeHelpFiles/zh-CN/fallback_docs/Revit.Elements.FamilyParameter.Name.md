@@ -1,7 +1,7 @@
 ## 详细
-`FamilyParameter.Name` returns the user-visible name of the given parameter.
+“FamilyParameter.Name”返回给定参数的用户可见名称。
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the name.
+在下面的示例中，当前 Revit 文档(来自样例模型的门族)已打开。返回族中的参数及其名称。
 ___
 ## 示例文件
 

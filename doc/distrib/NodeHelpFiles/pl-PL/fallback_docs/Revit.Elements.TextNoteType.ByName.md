@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`TextNoteType.ByName` selects the text note type that matches the given name, if available. If the text note type does not exist, a null value is returned.
+Węzeł `TextNoteType.ByName` wybiera typ notatki tekstowej zgodny z daną nazwą, jeśli jest dostępny. Jeśli typ notatki tekstowej nie istnieje, zwracana jest wartość null.
 
-In the example below, the text note type, "Working Notes" is selected from the current Revit document.
+W poniższym przykładzie z bieżącego dokumentu programu Revit wybierany jest typ notatki tekstowej „Working Notes” (Uwagi robocze).
 
 ___
 ## Plik przykładowy

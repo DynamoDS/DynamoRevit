@@ -1,7 +1,7 @@
 ## Подробности
-`CurtainPanel.IsRectangular` returns a true or false value to indicate if the given curtain panel is rectangular.
+Узел `CurtainPanel.IsRectangular` возвращает значение True или False, чтобы указать, является ли данная панель витража прямоугольной.
 
-In the example below, all curtain panels are collected from the selected curtain wall element. The panels are then queried for whether or not they are rectangular.
+В приведенном ниже примере из выбранного элемента витража собираются все панели витража. Затем запрашивается, являются ли панели прямоугольными.
 ___
 ## Файл примера
 

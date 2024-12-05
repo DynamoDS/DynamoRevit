@@ -1,7 +1,7 @@
 ## 深入資訊
-`Material.Transparency` returns an integer that indicates how transparent a material is.
+`Material.Transparency` 會傳回指出材料透明度的整數。
 
-In the example below, all materials are collected from the current document. The materials' transparency values (as integers) are returned with `Material.Transparency`.
+以下範例收集目前文件中的所有材料。使用 `Material.Transparency` 傳回材料的透明度值 (整數)。
 ___
 ## 範例檔案
 

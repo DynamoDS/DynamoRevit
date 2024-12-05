@@ -1,7 +1,7 @@
 ## En detalle:
-`FloorType.GetStructuralMaterial` returns the material assigned as structure if available. If no structural material is assigned, a null value is returned.
+`FloorType.GetStructuralMaterial` devuelve el material asignado como estructura si está disponible. Si no hay ningún material estructural asignado, se devuelve un valor nulo.
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types' are the queried for their structural material.
+En el ejemplo siguiente, se recopilan todos los suelos presentes en el documento de Revit actual. A continuación, los suelos se agrupan por su tipo. Posteriormente, se consulta el material estructural de los tipos de suelo.
 ___
 ## Archivo de ejemplo
 

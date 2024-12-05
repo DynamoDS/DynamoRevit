@@ -1,7 +1,7 @@
 ## Подробности
-`Select Faces` is a user interface node that displays a cursor in Revit that allows you to select multiple faces in the current Revit document.
+`Select Faces` — это узел пользовательского интерфейса, отображающий курсор в Revit, который позволяет выбрать несколько граней в текущем документе Revit.
 
-In the example below, two wall faces are selected in Revit and the corresponding surface geometries are returned. Additionally, `Select Faces` reports the owning element ids of the faces that are selected.
+В приведенном ниже примере в Revit выбираются две грани стены и отображаются соответствующие геометрии поверхности. Кроме того, узел `Select Faces` указывает идентификаторы элементов, которым принадлежат выбранные грани.
 ___
 ## Файл примера
 

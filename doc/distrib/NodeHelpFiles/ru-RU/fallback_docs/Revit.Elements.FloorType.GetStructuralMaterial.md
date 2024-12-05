@@ -1,7 +1,7 @@
 ## Подробности
-`FloorType.GetStructuralMaterial` returns the material assigned as structure if available. If no structural material is assigned, a null value is returned.
+Узел `FloorType.GetStructuralMaterial` возвращает материал, назначенный для несущих конструкций, если он доступен. Если материал несущих конструкций не назначен, возвращается значение null.
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types' are the queried for their structural material.
+В приведенном ниже примере собираются все перекрытия, присутствующие в текущем документе Revit. Затем перекрытия группируются по типу. Типы перекрытий запрашиваются для получения материала несущих конструкций.
 ___
 ## Файл примера
 

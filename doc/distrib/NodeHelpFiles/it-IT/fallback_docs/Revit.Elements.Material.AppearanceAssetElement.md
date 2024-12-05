@@ -1,9 +1,9 @@
 ## In profondità
-`Material.AppearanceAssetElement` returns the appearance asset for the given material (if available).
+`Material.AppearanceAssetElement` restituisce il componente di aspetto per il materiale specificato (se disponibile).
 
-Appearance assets control how materials display in rendered images. For more information, refer to this [article](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-6E3C9EF0-F657-4F79-90BD-A2FB88B0467D).
+I componenti di aspetto controllano la visualizzazione dei materiali nelle immagini di rendering. Per ulteriori informazioni, fare riferimento a questo [articolo](https://help.autodesk.com/view/RVT/2025/ITA/?guid=GUID-6E3C9EF0-F657-4F79-90BD-A2FB88B0467D).
 
-In the example below, all materials are collected from the current document. The materials' appearance assets are returned with `Material.AppearanceAssetElement`.
+Nell'esempio seguente, vengono raccolti tutti i materiali dal documento corrente. Vengono restituiti i componenti di aspetto dei materiali con `Material.AppearanceAssetElement`.
 
 ___
 ## File di esempio

@@ -1,13 +1,13 @@
 ## Подробности
-Given an element that supports hosting of elements _(e.g. Walls)_, `Element.GetHostedElements` returns the elements that rely on the given element. By default, family instances that are hosted to the element are returned. `Element.GetHostedElements` offers the option to include other types of hosted elements.
+При наличии элемента _(например, стены)_, который можно использовать в качестве основы для других элементов, узел `Element.GetHostedElements` возвращает элементы, размещенные на выбранном элементе. По умолчанию возвращаются экземпляры семейства, размещенные на выбранном элементе. Узел `Element.GetHostedElements` предоставляет возможность включить другие типы элементов, требующих основы.
 
-These include:
-- openings
-- elements that are hosted in joined hosts
-- embedded walls _(i.e. curtain walls)_
-- shared embedded inserts
+Они включают следующие:
+- проемы;
+- элементы, размещенные на соединенных основах;
+- вложенные стены _(т. е. витражи)_;
+- общие встроенные вставки.
 
-In the example below, all wall elements are collected from L2. The wall elements are then checked for hosted elements with `Element.GetHostedElements`. This list is then used to create two lists. Walls with doors and walls without doors.
+В приведенном ниже примере все элементы стен собираются из L2. Затем элементы стен проверяются на наличие элементов, требующих основы, с помощью узла `Element.GetHostedElements`. Затем эти списки используются для создания двух списков: стены с дверями и стены без дверей.
 ___
 ## Файл примера
 

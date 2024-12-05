@@ -1,7 +1,7 @@
 ## 詳細
-`Room.SetName` modifies the name of the given room element.
+`Room.SetName` は、指定された部屋要素の名前を変更します。
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then modified with a prefix of "(E)" to indicate existing conditions.
+次の例では、すべての部屋が選択されたビューの現在のドキュメントからが収集されます。次に、部屋の名前が接頭表記「(E)」付きで変更され、既存の条件であることを示します。
 ___
 ## サンプル ファイル
 

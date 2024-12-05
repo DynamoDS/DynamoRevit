@@ -1,7 +1,7 @@
 ## Im Detail
-`Element.Parameters` collects all parameters, along with values from the given element. If an element instance is provided, instance parameters are returned. If an element type is provided, type parameters are returned.
+`Element.Parameters` sammelt alle Parameter zusammen mit den Werten aus dem angegebenen Element. Wenn ein Elementexemplar angegeben wird, werden Exemplarparameter zurückgegeben. Wenn ein Elementtyp angegeben wird, werden Typenparameter zurückgegeben.
 
-In the example below, all doors are collected from the current Revit document. For the example, the first door found is used. The door's instance parameters and type parameters are returned.
+Im folgenden Beispiel werden alle Türen aus dem aktuellen Revit-Dokument gesammelt. Für dieses Beispiel wird die erste gefundene Tür verwendet. Die Exemplarparameter und Typenparameter der Tür werden zurückgegeben.
 ___
 ## Beispieldatei
 

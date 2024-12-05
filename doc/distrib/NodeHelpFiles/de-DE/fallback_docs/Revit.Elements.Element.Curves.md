@@ -1,7 +1,7 @@
 ## Im Detail
-`Element.Curves` returns the curve geometry for the given element. If no curve geometry is present an empty list is returned.
+`Element.Curves` gibt die Kurvengeometrie für das angegebene Element zurück. Wenn keine Kurvengeometrie vorhanden ist, wird eine leere Liste zurückgegeben.
 
-In the example below, a warning for overlapping walls and room separators is selected. The elements involved in this warning are then extracted for further analysis. With `Element.Solids` and `Element.Curves` it is demonstrated that the overlap occurs within the wall.
+Im folgenden Beispiel ist eine Warnung für überlappende Wände und Raumtrennungen ausgewählt. Die Elemente, die von dieser Warnung betroffen sind, werden dann für weitere Analysen extrahiert. Mit `Element.Solids` und `Element.Curves` wird gezeigt, dass die Überlappung innerhalb der Wand auftritt.
 
 ___
 ## Beispieldatei

@@ -1,7 +1,7 @@
 ## In profondità
-`Viewport.BoxOutline` returns a Dynamo bounding box that represents the extents of the viewport.
+`Viewport.BoxOutline` restituisce un riquadro di delimitazione di Dynamo che rappresenta le estensioni della finestra.
 
-In the example below, the viewports are returned for the selected sheet. The box outlines are then returned with `Viewport.BoxOutline`.
+Nell'esempio seguente, vengono restituite le finestre per la tavola selezionata. Vengono quindi restituiti i contorni del riquadro con `Viewport.BoxOutline`.
 ___
 ## File di esempio
 

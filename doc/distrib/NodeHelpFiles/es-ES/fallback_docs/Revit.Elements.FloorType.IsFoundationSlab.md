@@ -1,7 +1,7 @@
 ## En detalle:
-`FloorType.IsFoundationSlab` returns a true or false value to indicate whether the given floor type is a foundation slab.
+`FloorType.IsFoundationSlab` devuelve un valor "true" (verdadero) o "false" (falso) para indicar si el tipo de suelo especificado es una losa de cimentación.
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types are then checked whether or not they are foundation slabs with `FloorType.IsFoundationSlab`.
+En el ejemplo siguiente, se recopilan todos los suelos presentes en el documento de Revit actual. A continuación, los suelos se agrupan por su tipo. Posteriormente, se comprueba si los tipos de suelo son o no losas de cimentación con `FloorType.IsFoundationSlab`.
 ___
 ## Archivo de ejemplo
 

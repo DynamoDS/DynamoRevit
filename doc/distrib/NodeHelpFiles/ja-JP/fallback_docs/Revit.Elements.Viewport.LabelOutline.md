@@ -1,7 +1,7 @@
 ## 詳細
-`Viewport.LabelOutline` returns a Dynamo bounding box that represents the outline of the viewport's label.
+`Viewport.LabelOutline` は、ビューポートのラベルのアウトラインを表す Dynamo 境界ボックスを返します。
 
-In the example below, the viewports are returned for the selected sheet. The outlines of the label are then returned with `Viewport.LabelOutline`.
+次の例では、選択されたシートのビューポートが返されます。次に、ラベルのアウトラインが `Viewport.LabelOutline` によって返されます。
 ___
 ## サンプル ファイル
 

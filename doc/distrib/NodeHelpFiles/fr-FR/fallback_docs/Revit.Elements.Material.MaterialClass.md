@@ -1,7 +1,7 @@
 ## Description approfondie
-`Material.MaterialClass` returns the name of the class that the material is assigned to.
+'Material.MaterialClass' renvoie le nom de la classe à laquelle le matériau est affecté.
 
-In the example below, all materials are collected from the current document. The materials' class names are returned with `Material.MaterialClass`.
+Dans l'exemple ci-dessous, tous les matériaux sont collectés à partir du document actif. Les noms de classe des matériaux sont renvoyés avec 'Material.MaterialClass'.
 ___
 ## Exemple de fichier
 

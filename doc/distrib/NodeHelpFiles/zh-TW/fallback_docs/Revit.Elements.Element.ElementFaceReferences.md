@@ -1,7 +1,7 @@
 ## 深入資訊
-`Element.ElementFaceReferences` provides access to the face references within the given element. These references are useful for dimension creation, or the creation of other elements. If no face references are found, a null value is returned.
+`Element.ElementFaceReferences` 可讓您存取給定元素內的面參考。這些參考對於建立尺寸或建立其他元素很有用。如果未找到任何面參照，則傳回空值。
 
-In the example below, all doors are collected from the selected view and the face references are returned.
+以下範例收集所選視圖中的所有門，然後傳回面參考。
 ___
 ## 範例檔案
 

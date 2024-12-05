@@ -1,7 +1,7 @@
 ## Em profundidade
-`Tag.TagText` retrieves the given tag's text value, if available.
+`Tag.TagText` recupera o valor de texto do identificador fornecido, se disponível.
 
-In the example below, all door tags are collected from the current Revit document. The door tags' text values are then returned.
+No exemplo abaixo, são coletados todos os identificadores de porta do documento atual do Revit. São retornados os valores de texto dos identificadores de porta.
 ___
 ## Arquivo de exemplo
 

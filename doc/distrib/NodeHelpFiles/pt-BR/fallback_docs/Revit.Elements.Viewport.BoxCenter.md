@@ -1,7 +1,7 @@
 ## Em profundidade
-`Viewport.BoxCenter` returns a Dynamo point that represents the center point of the extents of the viewport.
+`Viewport.BoxCenter` retorna um ponto do Dynamo que representa o ponto central das extensões da viewport.
 
-In the example below, the viewports are returned for the selected sheet. The box center locations are then returned with `Viewport.BoxCenter`.
+No exemplo abaixo, as viewports são retornadas para a folha selecionada. As localizações do centro da caixa são retornadas com `Viewport.BoxCenter`.
 ___
 ## Arquivo de exemplo
 

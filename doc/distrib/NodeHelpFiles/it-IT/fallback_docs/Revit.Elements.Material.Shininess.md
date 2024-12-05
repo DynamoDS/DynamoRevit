@@ -1,7 +1,7 @@
 ## In profondità
-`Material.Shininess` returns an integer that indicates how shiny a material is.
+`Material.Shininess` restituisce un numero intero che indica il grado di lucentezza di un materiale.
 
-In the example below, all materials are collected from the current document. The materials' shininess values (as integers) are returned with `Material.Shininess`.
+Nell'esempio seguente, vengono raccolti tutti i materiali dal documento corrente. Vengono restituiti i valori di lucentezza dei materiali (come numeri interi) con `Material.Shininess`.
 ___
 ## File di esempio
 

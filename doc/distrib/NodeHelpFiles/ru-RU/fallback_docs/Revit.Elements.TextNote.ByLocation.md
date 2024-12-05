@@ -1,7 +1,7 @@
 ## Подробности
-`TextNote.ByLocation` creates a new text note at the given location of the given type with the input string.
+Узел `TextNote.ByLocation` создает текстовое примечание в указанном месте заданного типа с использованием строки ввода.
 
-In the example below, a new drafting view is created and a new text note is created at the origin in the current Revit document.
+В приведенном ниже примере создаются чертежный вид и текстовое примечание в начале координат текущего документа Revit.
 
 ___
 ## Файл примера

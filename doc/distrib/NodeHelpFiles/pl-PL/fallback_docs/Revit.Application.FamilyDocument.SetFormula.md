@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
 Węzeł `FamilyDocument.SetFormula` ustawia dany parametr na daną formułę w dostarczonym dokumencie rodziny.
 
-W poniższym przykładzie dla parametru „Chairs” zostaje ustawiona formuła „Diameter / 1'”, co daje parametryczną liczbę krzeseł zależną od rozmiaru stołu.
+W poniższym przykładzie dla parametru „Chairs” zostaje ustawiona formuła „Diameter / 1'”, co daje parametryczną liczbę krzeseł (chair) zależną od rozmiaru (diameter) stołu.
 ___
 ## Plik przykładowy
 

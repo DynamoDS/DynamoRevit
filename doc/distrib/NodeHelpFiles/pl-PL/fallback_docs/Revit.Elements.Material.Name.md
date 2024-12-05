@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Material.Name` returns the given material's name as a string.
+Węzeł `Material.Name` zwraca nazwę danego materiału w postaci ciągu (string).
 
-In the example below, all materials are collected from the current document. The material names are returned with `Material.Name`.
+W poniższym przykładzie z bieżącego dokumentu pobierane są wszystkie materiały. Za pomocą węzła `Material.Name` zwracane są nazwy materiałów.
 ___
 ## Plik przykładowy
 

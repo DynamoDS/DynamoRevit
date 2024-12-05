@@ -1,14 +1,14 @@
 ## 详细
-`Parameter.StorageType` helps determine what type of data a parameter stores.
+“Parameter.StorageType”帮助确定参数存储的数据类型。
 
-Data types include:
-- None
+数据类型包括:
+- 无
 - 整数
 - 双精度
 - 字符串
 - 图元 ID
 
-In the example below, all of the parameters from the current document's project information are returned. The parameter's storage type is then returned.
+在下面的示例中，将返回当前文档的项目信息中的所有参数。然后返回参数的存储类型。
 
 ___
 ## 示例文件

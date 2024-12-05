@@ -1,7 +1,7 @@
 ## En detalle:
-`Viewport.LabelOutline` returns a Dynamo bounding box that represents the outline of the viewport's label.
+`Viewport.LabelOutline` devuelve un cuadro delimitador de Dynamo que representa el contorno de la etiqueta de la ventana gráfica.
 
-In the example below, the viewports are returned for the selected sheet. The outlines of the label are then returned with `Viewport.LabelOutline`.
+En el ejemplo siguiente, se devuelven las ventanas gráficas del plano seleccionado. A continuación, se devuelven los contornos de la etiqueta con `Viewport.LabelOutline`.
 ___
 ## Archivo de ejemplo
 

@@ -1,7 +1,7 @@
 ## Подробности
-`Material.Name` returns the given material's name as a string.
+Узел `Material.Name` возвращает имя данного материала в виде строки.
 
-In the example below, all materials are collected from the current document. The material names are returned with `Material.Name`.
+В приведенном ниже примере все материалы собираются из текущего документа. Имена материалов возвращаются с помощью `Material.Name`.
 ___
 ## Файл примера
 
