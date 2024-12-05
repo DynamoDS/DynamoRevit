@@ -1,0 +1,229 @@
+{
+  "Uuid": "463cc73e-0181-45b4-80ec-23fa405e8bba",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.WallType.GetThermalProperties",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "5cd6dbc560524f16bd667f7cd8ef30f9",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "9b7f483656eb4581b6edd6226de2886f",
+          "Name": "wallType",
+          "Description": "Revit.Elements.WallType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3905e99d628044a4be1cc435f55b7d10",
+          "Name": "Absorptance",
+          "Description": "Value of absorptance.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6c27bd5ce04b4d5a8b7bb830f6a67973",
+          "Name": "HeatTransferCoefficient",
+          "Description": "The heat transfer coefficient value (U-Value).",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0e0689cc15af40c78703390ae8d63520",
+          "Name": "Roughness",
+          "Description": "Value of roughness.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9b271878ce6c4fb4982954214812385f",
+          "Name": "ThermalMass",
+          "Description": "The calculated thermal mass value.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9b35d0a9a80544fe9d55eeaae43314f8",
+          "Name": "ThermalResistance",
+          "Description": "The calculated thermal resistance value (R-Value).",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.WallType.GetThermalProperties",
+      "Replication": "Auto",
+      "Description": "The calculated and settable thermal properties of the WallType\n\nWallType.GetThermalProperties ( ): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "cef5b517af7548908e721dc6b75c30e9",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b15d8cbe3ec64191808e5db8a23cd370",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Exterior - CMU on Mtl. Stud"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "7bb4ddd0510347b38878d9d8b2affa4c",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "2680c19c1bc448fcbbd31becfae8ff33",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8bdb09418c6349ef9e2c44548f6868fd",
+          "Name": "WallType",
+          "Description": "WallType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.WallType.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a walltype from the current document by name\n\nWallType.ByName (name: string): WallType"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "b15d8cbe3ec64191808e5db8a23cd370",
+      "End": "2680c19c1bc448fcbbd31becfae8ff33",
+      "Id": "0a624d563c754a23b16c8807c7b80f06",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8bdb09418c6349ef9e2c44548f6868fd",
+      "End": "9b7f483656eb4581b6edd6226de2886f",
+      "Id": "b2aa4b78172542ddaf6fe38627689591",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "5cd6dbc560524f16bd667f7cd8ef30f9",
+        "Name": "WallType.GetThermalProperties",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1310.2818831815557,
+        "Y": -154.23256924858617
+      },
+      {
+        "Id": "cef5b517af7548908e721dc6b75c30e9",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 664.6818831815558,
+        "Y": -154.23256924858617
+      },
+      {
+        "Id": "7bb4ddd0510347b38878d9d8b2affa4c",
+        "Name": "WallType.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 995.8818831815558,
+        "Y": -154.23256924858617
+      }
+    ],
+    "Annotations": [],
+    "X": -985.6607595554066,
+    "Y": 461.10755811632794,
+    "Zoom": 1.511253553338739
+  }
+}
