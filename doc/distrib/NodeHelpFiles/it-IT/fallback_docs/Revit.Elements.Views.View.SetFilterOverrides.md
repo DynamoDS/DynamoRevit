@@ -1,7 +1,7 @@
 ## In profondità
-`View.SetFilterOverrides` will apply the given overrides to the given view and view filter.
+`View.SetFilterOverrides` applicherà le sostituzioni specificate alla vista e al filtro della vista dati.
 
-In the example below, a view filter is created for the `Fire Rating` parameter on wall type elements. This filter is added to the `L1` floor plan view in the sample model. After the filter is added, overrides are then added to the filter to turn the wall types with a "2 HR" rating to a solid red color.
+Nell'esempio seguente, viene creato un filtro della vista per il parametro `Fire Rating` negli elementi di tipo muro. Questo filtro viene aggiunto alla vista della pianta del pavimento `L1` nel modello di esempio. Dopo aver aggiunto il filtro, le sostituzioni vengono aggiunte al filtro per trasformare i tipi di muro con una classificazione "2 HR" in un colore rosso uniforme.
 ___
 ## File di esempio
 

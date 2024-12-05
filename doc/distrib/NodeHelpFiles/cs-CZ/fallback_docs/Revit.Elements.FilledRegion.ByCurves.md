@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FilledRegion.ByCurves` creates a filled region in the given view with the given curves and type.
+Uzel `FilledRegion.ByCurves` vytvoří vyplněnou oblast v daném pohledu s danými křivkami a typem.
 
-In the example below, a new drafting view is created in the active Revit document. A new filled region is created with `FilledRegion.ByCurves`.
+V následujícím příkladu se v aktivním dokumentu aplikace Revit vytvoří nový pohled schéma/kresba. Vytvoří se nová vyplněná oblast pomocí uzlu `FilledRegion.ByCurves`.
 
 ___
 ## Vzorový soubor

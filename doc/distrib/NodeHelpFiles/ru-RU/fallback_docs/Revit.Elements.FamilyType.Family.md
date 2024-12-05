@@ -1,7 +1,7 @@
 ## Подробности
-Given a family type, `FamilyType.Family` returns the overall parent family of the family type. The family represents the file that contains all of the family type definitions.
+Если имеется типоразмер семейства, `FamilyType.Family` возвращает общее родительское семейство этого типоразмера. Семейство представляет собой файл, содержащий все определения типоразмеров семейств.
 
-In the example below, all door instances in the current view are grouped by their parent family.
+В приведенном ниже примере все экземпляры дверей в текущем виде сгруппированы по их родительскому семейству.
 ___
 ## Файл примера
 

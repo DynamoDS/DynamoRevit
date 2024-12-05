@@ -1,7 +1,7 @@
 ## En detalle:
-`View.IsCategoryHidden` returns a true or false value to indicate if the category has been hidden in the given view. Note, if a view has a view template assigned, the view template must be used.
+`View.IsCategoryHidden` devuelve un valor "true" (verdadero) o "false" (falso) para indicar si la categoría se ha ocultado en la vista especificada. Tenga en cuenta que, si una vista tiene asignada una plantilla de vista, se debe utilizar esta.
 
-In the example below, the view template of the active view from the current document is retrieved. `View.IsCategoryHidden` reports if the wall category is hidden.
+En el ejemplo siguiente, se recupera la plantilla de la vista activa del documento actual. `View.IsCategoryHidden` indica si la categoría de muro está oculta.
 ___
 ## Archivo de ejemplo
 

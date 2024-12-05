@@ -1,7 +1,7 @@
 ## Im Detail
-`Select Faces` is a user interface node that displays a cursor in Revit that allows you to select multiple faces in the current Revit document.
+`Select Faces` ist ein Block der Benutzeroberfläche, der einen Cursor in Revit anzeigt, mit dem Sie mehrere Flächen im aktuellen Revit-Dokument auswählen können.
 
-In the example below, two wall faces are selected in Revit and the corresponding surface geometries are returned. Additionally, `Select Faces` reports the owning element ids of the faces that are selected.
+Im folgenden Beispiel werden zwei Wandflächen in Revit ausgewählt, und die entsprechende Oberflächengeometrie wird zurückgegeben. Darüber hinaus werden mit `Select Faces` die Eigentümerelement-IDs der ausgewählten Flächen angegeben.
 ___
 ## Beispieldatei
 

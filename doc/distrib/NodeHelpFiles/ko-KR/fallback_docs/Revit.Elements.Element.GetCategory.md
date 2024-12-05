@@ -1,7 +1,7 @@
 ## 상세
-`Element.GetCategory` returns the category element for the given element. With the returned category element, it can be queried for various parameters.
+`Element.GetCategory`는 지정된 요소에 대한 카테고리 요소를 반환합니다. 반환된 카테고리 요소를 사용하여 다양한 매개변수를 조회할 수 있습니다.
 
-In the example below, all selected elements' categories are returned. The elements are then filtered down to two lists. One list of door elements and a second list of all other elements.
+아래 예에서는 선택된 모든 요소의 카테고리가 반환됩니다. 그런 다음 요소가 두 개의 리스트(문 요소의 리스트와 다른 모든 요소의 리스트)로 필터링됩니다.
 ___
 ## 예제 파일
 

@@ -1,7 +1,7 @@
 ## Im Detail
-`Material.Smoothness` returns an integer that indicates how smooth a material is.
+`Material.Smoothness` gibt eine Ganzzahl zurück, die angibt, wie glatt ein Material ist.
 
-In the example below, all materials are collected from the current document. The materials' smoothness values (as integers) are returned with `Material.Smoothness`.
+Im folgenden Beispiel werden alle Materialien aus dem aktuellen Dokument gesammelt. Die Glättungswerte der Materialien (als Ganzzahlen) werden mit `Material.Smoothness` zurückgegeben.
 ___
 ## Beispieldatei
 

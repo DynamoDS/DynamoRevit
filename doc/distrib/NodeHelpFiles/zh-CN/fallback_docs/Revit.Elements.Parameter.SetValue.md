@@ -1,9 +1,9 @@
 ## 详细
-Given a parameter element, `Parameter.SetValue` updates the value of the given parameter to the input value.
+给定参数图元，“Parameter.SetValue”将给定参数的值更新为输入值。
 
-This node functions similar to `Element.SetParameterByName`, but differs by working directly with the parameter element.
+此节点的功能类似于“Element.SetParameterByName”，但不同之处在于直接使用参数图元。
 
-In the example below, the current project's name is returned (from the project information), converted to lowercase and then updated with `Parameter.SetValue`.
+在下面的示例中，返回当前项目的名称(来自项目信息)，转换为小写，然后使用“Parameter.SetValue”进行更新。
 
 ___
 ## 示例文件

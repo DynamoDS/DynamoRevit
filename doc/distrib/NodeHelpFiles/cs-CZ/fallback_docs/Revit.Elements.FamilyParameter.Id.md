@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FamilyParameter.Id` returns an integer representation of the element id of the given parameter.
+Uzel `FamilyParameter.Id` vrací celočíselnou reprezentaci id prvku daného parametru.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the element id as an integer. Note: Built-In Revit parameters have a negative (-) prefix.
+V níže uvedeném příkladu je otevřen aktuální dokument aplikace Revit (rodina dveří ze vzorového modelu). Vrátí se parametry v rodině spolu s id prvku jako celým číslem. Poznámka: Integrované parametry aplikace Revit mají zápornou předponu (-).
 ___
 ## Vzorový soubor
 

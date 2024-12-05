@@ -1,7 +1,7 @@
 ## 详细
-`Group.UngroupElements` ungroups the given group instance, resulting in the elements being in the model directly. Note, this action is destructive and returning the group members to a group is not easily achievable.
+“Group.UngroupElements”对给定的组实例进行解组，从而使图元直接位于模型中。请注意，此操作是破坏性的，并且将组成员返回到组并不容易实现。
 
-In the example below, all model groups of type, "Bleachers Continuous" are collected from the active Revit document. The instances are then ungrouped with `Group.UngroupElements`.
+在下面的示例中，所有类型为“Bleachers Continuous”的模型组都收集自活动的 Revit 文档。然后，使用“Group.UngroupElements”对实例进行解组。
 
 ___
 ## 示例文件

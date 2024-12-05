@@ -1,7 +1,7 @@
 ## Подробности
-`Family.ByName` returns the family definition from the current document (if available). If the family is not available in the current document, a null value is returned.
+Узел `Family.ByName` возвращает определение семейства из текущего документа (если доступно). Если семейство недоступно в текущем документе, возвращается значение null.
 
-In the example below, a family definition for "Door-Passage-Single-Flush" is returned, along with its element id (in green).
+В приведенном ниже примере возвращается определение семейства «Дверь-Маятниковая-Одинарная-Щитовая» вместе с идентификатором элемента (выделен зеленым цветом).
 ___
 ## Файл примера
 

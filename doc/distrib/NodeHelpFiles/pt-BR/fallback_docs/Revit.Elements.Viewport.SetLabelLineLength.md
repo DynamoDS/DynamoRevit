@@ -1,7 +1,7 @@
 ## Em profundidade
-`Viewport.SetLabelLineLength` sets the length of the viewport line, in paper space units.
+`Viewport.SetLabelLineLength` define o comprimento da linha da viewport, em unidades do espaço do papel.
 
-In the example below, all of the viewports from the selected sheet are collected. The viewports' bounding boxes are then used to calculate the width that the viewport line should be. Finally, the viewport lines are set to the width of the viewport.
+No exemplo abaixo, são coletadas todas as viewports da folha selecionada. As caixas delimitadoras das viewports são usadas para calcular a largura que a linha da viewport deve ter. Finalmente, as linhas de viewport são definidas para a largura da viewport.
 ___
 ## Arquivo de exemplo
 

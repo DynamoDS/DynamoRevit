@@ -1,7 +1,7 @@
 ## En detalle:
-`Viewport.Sheet` returns the sheet element that the viewport is placed on.
+`Viewport.Sheet` devuelve el elemento de plano en el que se coloca la ventana gráfica.
 
-In the example below, all viewports are collected from the current Revit document. The sheet for each viewport is then returned with `Viewport.Sheet`. Additionally, the viewports are grouped by sheet with `List.GroupByKey`.
+En el ejemplo siguiente, se recopilan todas las ventanas gráficas del documento de Revit actual. El plano de cada ventana gráfica se devuelve con `Viewport.Sheet`. Además, las ventanas gráficas se agrupan por planos con `List.GroupByKey`.
 ___
 ## Archivo de ejemplo
 

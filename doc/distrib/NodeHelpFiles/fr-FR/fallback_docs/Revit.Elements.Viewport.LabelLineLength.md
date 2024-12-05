@@ -1,7 +1,7 @@
 ## Description approfondie
-`Viewport.LabelLineLength` gets the length of the viewport line, in paper space units.
+'Viewport.LabelLineLength' permet d'obtenir la longueur de la ligne de la fenêtre, en unités de l'espace papier.
 
-In the example below, all of the viewports from the selected sheet are collected and the lengths of the viewport label lines are retrieved.
+Dans l'exemple ci-dessous, toutes les fenêtres de la feuille sélectionnée sont collectées et les longueurs des lignes d'étiquette de la fenêtre sont récupérées.
 ___
 ## Exemple de fichier
 

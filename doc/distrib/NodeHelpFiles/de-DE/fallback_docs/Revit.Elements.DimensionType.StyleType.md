@@ -1,5 +1,5 @@
 ## Im Detail
-`DimensionType.StyleType' ruft den Stil für den angegebenen Bemaßungsstil ab.
+`DimensionType.StyleType` ruft den Stil für den angegebenen Bemaßungsstil ab.
 
 Folgende Bemaßungsstiltypen sind möglich:
 - Linear

@@ -1,9 +1,9 @@
 ## Im Detail
-`FloorType.GetThermalProperties` returns the thermal properties of the floor type if available.
+`FloorType.GetThermalProperties` gibt die thermischen Eigenschaften des Geschossdeckentyps zurück, falls verfügbar.
 
-For more information about thermal properties of elements in Revit, refer to this [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-3C378374-D360-4207-A558-3500922A452E).
+Weitere Informationen zu den thermischen Eigenschaften von Elementen in Revit finden Sie in diesem [Artikel](https://help.autodesk.com/view/RVT/2024/DEU/?guid=GUID-3C378374-D360-4207-A558-3500922A452E).
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types' are the queried for their thermal properties.
+Im folgenden Beispiel werden alle im aktuellen Revit-Dokument vorhandenen Geschossdecken gesammelt. Die Geschossdecken werden dann nach ihrem Typ gruppiert. Die Geschossdeckentypen werden nach ihren thermischen Eigenschaften abgefragt.
 ___
 ## Beispieldatei
 

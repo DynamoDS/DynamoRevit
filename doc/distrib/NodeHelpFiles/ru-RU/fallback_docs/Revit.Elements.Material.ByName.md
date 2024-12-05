@@ -1,7 +1,7 @@
 ## Подробности
-Given a material name as a string, `Material.ByName` retrieves the corresponding material element from the current Revit document, if the material is available. If the material is not found, a null value is returned.
+При наличии имени материала в виде строки узел `Material.ByName` извлекает соответствующий элемент материала из текущего документа Revit, если материал доступен. Если материал не найден, возвращается значение null.
 
-In the example below, the material, "Metal - Aluminium" is returned.
+В приведенном ниже примере возвращается материал «Металл — алюминий».
 ___
 ## Файл примера
 

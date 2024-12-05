@@ -1,9 +1,9 @@
 ## 詳細
-`Room.CoreCenterBoundary` returns a nested list representing the given room's core center boundary. In the returned list, the first sublist represents the outermost curves, while subsequent lists represent loops within the room. Core center boundaries are located at the center of the walls that are defined as core. For more information on wall location lines, see this help [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89).
+'Room.CoreCenterBoundary' は、指定された部屋の躯体中心境界を表すネストされたリストを返します。返されたリストでは、最初のサブリストは最も外側の曲線を表し、後続のリストは部屋内のループを表します。躯体の中心境界は、躯体として定義されている壁の中心に配置されます。壁の配置基準線の詳細については、こちらのヘルプ記事(https://help.autodesk.com/view/RVT/2024/JPN/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89)を参照してください。
 
-If an unbounded or unplaced room is given, a null value is returned.
+境界のない部屋、または配置されていない部屋が指定されている場合は、null 値が返されます。
 
-In the example below, all rooms are collected from the current document and selected view. The core center boundaries are then returned.
+次の例では、すべての部屋が現在のドキュメントと選択されたビューから収集されます。次に、躯体中心境界が返されます。
 ___
 ## サンプル ファイル
 

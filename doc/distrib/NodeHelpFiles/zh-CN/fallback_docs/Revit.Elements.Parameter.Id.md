@@ -1,7 +1,7 @@
 ## 详细
-`Parameter.Id` returns the element id for the given parameter.
+“Parameter.Id”返回给定参数的图元 ID。
 
-In the example below, a single wall is selected from all walls in the current Revit document. The element ids of the wall's parameters are then returned. In Revit, built in parameters return element ids that start with a dash (-). These are reserved element ids and do not change.
+在下面的示例中，从当前 Revit 文档的所有墙中选择一面墙。然后，将返回墙参数的图元 ID。在 Revit 中，内置参数会返回以短划线 (-) 开头的图元 ID。这些是保留的图元 ID，不会更改。
 ___
 ## 示例文件
 

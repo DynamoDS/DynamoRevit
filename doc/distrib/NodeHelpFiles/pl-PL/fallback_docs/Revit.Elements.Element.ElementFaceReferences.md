@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Element.ElementFaceReferences` provides access to the face references within the given element. These references are useful for dimension creation, or the creation of other elements. If no face references are found, a null value is returned.
+Węzeł `Element.ElementFaceReferences` zapewnia dostęp do odniesień do powierzchni w danym elemencie. Odniesienia te są przydatne do tworzenia wymiarów lub tworzenia innych elementów. Jeśli nie zostaną znalezione żadne odniesienia do powierzchni, zwracana jest wartość null.
 
-In the example below, all doors are collected from the selected view and the face references are returned.
+W poniższym przykładzie z wybranego widoku są pobierane wszystkie drzwi i zwracane są odniesienia do powierzchni.
 ___
 ## Plik przykładowy
 

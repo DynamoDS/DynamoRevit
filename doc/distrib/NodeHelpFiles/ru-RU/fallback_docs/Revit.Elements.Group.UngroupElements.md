@@ -1,7 +1,7 @@
 ## Подробности
-`Group.UngroupElements` ungroups the given group instance, resulting in the elements being in the model directly. Note, this action is destructive and returning the group members to a group is not easily achievable.
+Узел `Group.UngroupElements` выполняет разгруппировку данного экземпляра группы, в результате чего элементы оказываются непосредственно в модели. Обратите внимание, что это действие является деструктивным, и вернуть члены в группу непросто.
 
-In the example below, all model groups of type, "Bleachers Continuous" are collected from the active Revit document. The instances are then ungrouped with `Group.UngroupElements`.
+В приведенном ниже примере все группы моделей типа «Сплошные трибуны» собираются из активного документа Revit. Затем экземпляры разгруппируются с помощью узла `Group.UngroupElements`.
 
 ___
 ## Файл примера

@@ -1,9 +1,9 @@
 ## Подробности
-`Room.Area` returns the area of the given room element in the current document's units. _(E.g. Feet and Inches)_
+Узел `Room.Area` возвращает площадь заданного элемента помещения в единицах измерения текущего документа. _(Например, в футах и дюймах.)_
 
-If an unbounded or unplaced room is given, a null value is returned.
+Если указано неограниченное или неразмещенное помещение, возвращается значение null.
 
-In the example below, all rooms are collected from the current document and the area values are returned.
+В приведенном ниже примере из текущего документа собираются все помещения и возвращаются значения площадей.
 ___
 ## Файл примера
 

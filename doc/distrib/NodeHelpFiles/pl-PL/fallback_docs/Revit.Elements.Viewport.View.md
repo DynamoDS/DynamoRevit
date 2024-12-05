@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Viewport.View` returns the view associated with the given viewport.
+Węzeł `Viewport.View` zwraca widok skojarzony z daną rzutnią.
 
-In the example below, the viewports are returned for the selected sheet. The viewports' associated views are then returned with `Viewport.View`.
+W poniższym przykładzie zwracane są rzutnie dla wybranego arkusza. Następnie za pomocą węzła `Viewport.View` zwracane są widoki skojarzone z rzutniami.
 ___
 ## Plik przykładowy
 

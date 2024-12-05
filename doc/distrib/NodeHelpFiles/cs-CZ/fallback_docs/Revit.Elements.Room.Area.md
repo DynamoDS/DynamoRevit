@@ -1,9 +1,9 @@
 ## Podrobnosti
-`Room.Area` returns the area of the given room element in the current document's units. _(E.g. Feet and Inches)_
+Uzel `Room.Area` vrací plochu daného prvku místnosti v jednotkách aktuálního dokumentu. _(například stopy a palce)_
 
-If an unbounded or unplaced room is given, a null value is returned.
+Pokud je zadána neohraničená nebo neumístěná místnost, je vrácena hodnota null.
 
-In the example below, all rooms are collected from the current document and the area values are returned.
+V následujícím příkladu jsou shromážděny všechny místnosti z aktuálního dokumentu a jsou vráceny hodnoty ploch.
 ___
 ## Vzorový soubor
 

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`FamilyParameter.IsReporting` returns a true or false value indicating whether the given family parameter is a reporting parameter.
+Węzeł `FamilyParameter.IsReporting` zwraca wartość true (prawda) lub false (fałsz) wskazującą, czy dany parametr rodziny jest parametrem raportowania.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with a list of boolean values representing if they are reporting parameters.
+W poniższym przykładzie otwarty jest bieżący dokument programu Revit (rodzina drzwi z przykładowego modelu). Zwracane są parametry w rodzinie wraz z listą wartości logicznych wskazujących, czy są one parametrami raportowania.
 ___
 ## Plik przykładowy
 

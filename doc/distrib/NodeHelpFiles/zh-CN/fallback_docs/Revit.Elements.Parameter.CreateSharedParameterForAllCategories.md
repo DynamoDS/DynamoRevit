@@ -1,7 +1,7 @@
 ## 详细
-`Parameter.CreateSharedParameterForAllCategories` will add a parameter with the given values to all categories available in the current Revit document.
+“Parameter.CreateSharedParameterForAllCategories”会将具有给定值的参数添加到当前 Revit 文档中的所有可用类别。
 
-In the example below, a shared Yes/No parameter called "Include in FFE" is added to all categories in the current Revit document.
+在下面的示例中，名为“包含在 FFE 中”的共享“是/否”参数将添加到当前 Revit 文档中的所有类别。
 ___
 ## 示例文件
 

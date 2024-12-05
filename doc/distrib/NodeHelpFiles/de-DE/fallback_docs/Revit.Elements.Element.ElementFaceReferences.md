@@ -1,7 +1,7 @@
 ## Im Detail
-`Element.ElementFaceReferences` provides access to the face references within the given element. These references are useful for dimension creation, or the creation of other elements. If no face references are found, a null value is returned.
+`Element.ElementFaceReferences` bietet Zugriff auf die Flächenreferenzen innerhalb des angegebenen Elements. Diese Referenzen sind nützlich für die Erstellung von Bemaßungen oder die Erstellung anderer Elemente. Wenn keine Flächenreferenzen gefunden werden, wird ein Nullwert zurückgegeben.
 
-In the example below, all doors are collected from the selected view and the face references are returned.
+Im folgenden Beispiel werden alle Türen aus der ausgewählten Ansicht gesammelt, und die Flächenreferenzen werden zurückgegeben.
 ___
 ## Beispieldatei
 

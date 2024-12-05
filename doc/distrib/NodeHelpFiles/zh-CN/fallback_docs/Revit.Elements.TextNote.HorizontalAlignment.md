@@ -1,12 +1,12 @@
 ## 详细
-`TextNote.HorizontalAlignment` returns the assigned horizontal alignment of the given text note.
+“TextNote.HorizontalAlignment”返回给定文字注释的指定水平对齐方式。
 
-Horizontal Alignment Options include:
-- Right
-- Left
-- Center
+“水平对齐”选项包括:
+- 右
+- 左
+- 居中
 
-In the example below, all working notes are collected from the current Revit document. The horizontal alignment values are then returned.
+在下面的示例中，将从当前 Revit 文档收集所有工作注释。然后，返回水平对齐值。
 
 ___
 ## 示例文件

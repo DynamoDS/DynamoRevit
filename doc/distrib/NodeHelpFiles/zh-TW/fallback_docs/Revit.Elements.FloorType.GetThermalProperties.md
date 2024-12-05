@@ -1,9 +1,9 @@
 ## 深入資訊
-`FloorType.GetThermalProperties` returns the thermal properties of the floor type if available.
+`FloorType.GetThermalProperties` 會傳回樓板類型的熱性質 (如果有)。
 
-For more information about thermal properties of elements in Revit, refer to this [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-3C378374-D360-4207-A558-3500922A452E).
+如需 Revit 中元素熱性質的更多資訊，請參閱此 [文章](https://help.autodesk.com/view/RVT/2024/CHT/?guid=GUID-3C378374-D360-4207-A558-3500922A452E)。
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types' are the queried for their thermal properties.
+以下範例收集目前 Revit 文件中的所有樓板，然後依其類型對樓板行分組，再查詢樓板類型的熱性質。
 ___
 ## 範例檔案
 

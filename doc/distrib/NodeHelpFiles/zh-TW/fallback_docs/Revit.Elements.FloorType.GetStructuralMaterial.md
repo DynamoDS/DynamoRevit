@@ -1,7 +1,7 @@
 ## 深入資訊
-`FloorType.GetStructuralMaterial` returns the material assigned as structure if available. If no structural material is assigned, a null value is returned.
+`FloorType.GetStructuralMaterial` 會傳回指定為結構的材料 (如果有)。如果未指定結構材料，則傳回空值。
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types' are the queried for their structural material.
+以下範例收集目前 Revit 文件中的所有樓板，然後依其類型將樓板分組，再查詢樓板類型的結構材料。
 ___
 ## 範例檔案
 

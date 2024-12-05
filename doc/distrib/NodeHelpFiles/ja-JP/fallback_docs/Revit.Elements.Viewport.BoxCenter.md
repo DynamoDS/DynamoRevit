@@ -1,7 +1,7 @@
 ## 詳細
-`Viewport.BoxCenter` returns a Dynamo point that represents the center point of the extents of the viewport.
+`Viewport.BoxCenter` は、ビューポート範囲の中心点を表す Dynamo の点を返します。
 
-In the example below, the viewports are returned for the selected sheet. The box center locations are then returned with `Viewport.BoxCenter`.
+次の例では、選択されたシートのビューポートが返されます。次に、ボックスの中心の位置が `Viewport.BoxCenter` によって返されます。
 ___
 ## サンプル ファイル
 

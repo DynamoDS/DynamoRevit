@@ -1,7 +1,7 @@
 ## Подробности
-`Document.PurgeUnused` purges elements that are not used from the current Revit document. `Document.PurgeUnused` includes a "Full Purge" option which mimics performing a purge unused in the Revit UI multiple times. `Document.PurgeUnused` returns an integer that represents the Element ID of the element that has been purged.
+Узел `Document.PurgeUnused` удаляет неиспользуемые элементы из текущего документа Revit. Узел `Document.PurgeUnused` включает параметр полной очистки (Full Purge), который имитирует многократное выполнение очистки неиспользуемых элементов в пользовательском интерфейсе Revit. `Document.PurgeUnused` возвращает целое число, представляющее идентификатор элемента, который был очищен.
 
-In the example below, all unused elements are purged from the current Revit document.
+В приведенном ниже примере из текущего документа Revit удаляются все неиспользуемые элементы.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Parameter.IsShared` returns a boolean value representing if the given parameter is a shared parameter (loaded from a shared parameter file).
+Uzel `Parameter.IsShared` vrací booleovskou hodnotu, která udává, zda je daný parametr sdíleným parametrem (načteným ze souboru sdílených parametrů).
 
-In the example below, a single wall is selected from all walls in the current Revit document. The wall's parameters are then queried to see if they are shared parameters.
+V níže uvedeném příkladu je ze všech stěn v aktuálním dokumentu aplikace Revit vybrána jedna stěna. Poté jsou parametry stěny dotazovány, aby se zjistilo, zda se jedná o sdílené parametry.
 ___
 ## Vzorový soubor
 

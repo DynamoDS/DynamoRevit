@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Viewport.Sheet` returns the sheet element that the viewport is placed on.
+Węzeł `Viewport.Sheet` zwraca element arkusza, na którym umieszczono rzutnię.
 
-In the example below, all viewports are collected from the current Revit document. The sheet for each viewport is then returned with `Viewport.Sheet`. Additionally, the viewports are grouped by sheet with `List.GroupByKey`.
+W poniższym przykładzie pobierane są wszystkie rzutnie z bieżącego dokumentu programu Revit. Następnie za pomocą węzła `Viewport.Sheet` zwracany jest arkusz dla każdej rzutni. Ponadto rzutnie są grupowane według arkuszy za pomocą węzła `List.GroupByKey`.
 ___
 ## Plik przykładowy
 

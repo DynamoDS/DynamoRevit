@@ -1,14 +1,14 @@
 ## Podrobnosti
-`Schedule Type` allows for the selection of the available schedule types.
+`Schedule Type` umožňuje výběr dostupných typů výkazů.
 
-Available schedule types include:
-- RegularSchedule
-- Key Schedule
-- Material Takeoffs
+Mezi dostupné typy výkazů patří:
+- Pravidelný harmonogram
+- Výkaz stylů
+- Výkazy materiálu
 
-For more information regarding schedules in Revit, refer to this [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
+Další informace o výkazech v aplikaci Revit naleznete v tomto [článku](https://help.autodesk.com/view/RVT/2024/CSY/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+V níže uvedeném příkladu je v aktuálním dokumentu aplikace Revit vytvořen nový výkaz s názvem „Pracovní výkaz dveří“.
 ___
 ## Vzorový soubor
 

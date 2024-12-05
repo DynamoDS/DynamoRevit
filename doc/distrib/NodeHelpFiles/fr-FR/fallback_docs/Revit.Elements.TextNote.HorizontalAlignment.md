@@ -1,12 +1,12 @@
 ## Description approfondie
-`TextNote.HorizontalAlignment` returns the assigned horizontal alignment of the given text note.
+'TextNote.HorizontalAlignment' renvoie l'alignement horizontal affecté de la note textuelle donnée.
 
-Horizontal Alignment Options include:
-- Right
-- Left
-- Center
+Options d'alignement horizontal:
+- Droite
+- Gauche
+- Centre
 
-In the example below, all working notes are collected from the current Revit document. The horizontal alignment values are then returned.
+Dans l'exemple ci-dessous, toutes les notes de travail sont collectées à partir du document Revit actif. Les valeurs d'alignement horizontal sont ensuite renvoyées.
 
 ___
 ## Exemple de fichier

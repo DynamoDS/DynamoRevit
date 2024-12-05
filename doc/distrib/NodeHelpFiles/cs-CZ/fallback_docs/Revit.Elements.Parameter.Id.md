@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Parameter.Id` returns the element id for the given parameter.
+Uzel `Parameter.Id` vrací id prvku pro daný parametr.
 
-In the example below, a single wall is selected from all walls in the current Revit document. The element ids of the wall's parameters are then returned. In Revit, built in parameters return element ids that start with a dash (-). These are reserved element ids and do not change.
+V níže uvedeném příkladu je ze všech stěn v aktuálním dokumentu aplikace Revit vybrána jedna stěna. Poté jsou vráceny id prvků parametrů stěny. Integrované parametry v aplikaci Revit vracejí id prvků, které začínají pomlčkou (-). Jedná se o vyhrazené id prvků a nemění se.
 ___
 ## Vzorový soubor
 

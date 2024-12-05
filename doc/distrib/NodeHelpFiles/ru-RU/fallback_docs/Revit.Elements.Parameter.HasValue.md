@@ -1,7 +1,7 @@
 ## Подробности
-`Parameter.HasValue` returns a boolean value representing if the parameter has a value set.
+Узел `Parameter.HasValue` возвращает логическое значение, определяющее, имеет ли параметр набор значений.
 
-In the example below, a single wall is selected from all walls in the current Revit document, and it's parameters are split into two lists; Parameters with Values and Parameters without Values.
+В приведенном ниже примере выбирается одна стена из всех стен в текущем документе Revit, а ее параметры разбиваются на два списка: параметры со значениями и без значений.
 ___
 ## Файл примера
 

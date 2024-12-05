@@ -1,6 +1,6 @@
 ## In profondità
 
-`Select Edge` displays a cursor in Revit that allows you to select a single edge. The object returned is a curve or line that represents the selected edge. Additionally, `Select Edge` reports the owning element id of the edge that is selected.
+`Select Edge` visualizza un cursore in Revit che consente di selezionare un singolo bordo. L'oggetto restituito è una curva o una linea che rappresenta il bordo selezionato. Inoltre, `Select Edge` riporta l'ID elemento proprietario del bordo selezionato.
 
 Nell'esempio seguente, viene restituita una linea che rappresenta il bordo superiore di un parapetto nel documento (file) corrente.
 

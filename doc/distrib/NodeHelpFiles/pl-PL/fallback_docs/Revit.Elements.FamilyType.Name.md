@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-Given a family type, `FamilyType.Name` returns the name for the family type as a string.
+Na podstawie typu rodziny węzeł `FamilyType.Name` zwraca nazwę typu rodziny w postaci ciągu (string).
 
-In the example below, all door instances in the current view are grouped by their family type name.
+W poniższym przykładzie wszystkie wystąpienia drzwi w bieżącym widoku są pogrupowane według nazw typów rodzin.
 ___
 ## Plik przykładowy
 

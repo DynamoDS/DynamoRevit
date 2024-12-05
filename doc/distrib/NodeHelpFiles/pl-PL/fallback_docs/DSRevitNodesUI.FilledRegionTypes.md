@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Select Filled Region Type` allows for the selection of a filled region type from all types available in the active Revit document.
+Węzeł `Select Filled Region Type` umożliwia wybranie typu obszaru wypełnienia spośród wszystkich typów dostępnych w aktywnym dokumencie programu Revit.
 
-In the example below, a new drafting view is created in the active Revit document. A filled region is created in the view using "Diagonal Down" type.
+W poniższym przykładzie w aktywnym dokumencie programu Revit zostaje utworzony nowy widok kreślarski. W tym widoku zostaje utworzony obszar wypełnienia za pomocą typu „Ukośnie w dół”.
 
 ___
 ## Plik przykładowy

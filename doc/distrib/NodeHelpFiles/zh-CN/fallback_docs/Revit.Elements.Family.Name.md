@@ -1,7 +1,7 @@
 ## 详细
-`Family.Name` returns the name of the given family element.
+“Family.Name”返回给定族图元的名称。
 
-In the example below, all families are collected from the current Revit document. The family names are returned with `Family.Name`.
+在下面的示例中，所有族都是从当前 Revit 文档收集的。使用“Family.Name”返回族名称。
 ___
 ## 示例文件
 

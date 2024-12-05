@@ -1,7 +1,7 @@
 ## In profondità
-`Document.PurgeUnused` purges elements that are not used from the current Revit document. `Document.PurgeUnused` includes a "Full Purge" option which mimics performing a purge unused in the Revit UI multiple times. `Document.PurgeUnused` returns an integer that represents the Element ID of the element that has been purged.
+`Document.PurgeUnused` elimina gli elementi non utilizzati dal documento di Revit corrente. `Document.PurgeUnused` include l'opzione "Eliminazione completa" che simula l'esecuzione di un'eliminazione di oggetti inutilizzati nell'interfaccia utente di Revit più volte. `Document.PurgeUnused` restituisce un numero intero che rappresenta l'ID dell'elemento che è stato eliminato.
 
-In the example below, all unused elements are purged from the current Revit document.
+Nell'esempio seguente, vengono eliminati dal documento di Revit corrente tutti gli elementi inutilizzati.
 ___
 ## File di esempio
 

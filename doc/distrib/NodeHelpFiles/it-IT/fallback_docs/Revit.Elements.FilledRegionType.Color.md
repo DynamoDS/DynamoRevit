@@ -1,7 +1,7 @@
 ## In profondità
-`FilledRegionType.Color` returns the color assigned to the given filled region type.
+`FilledRegionType.Color` restituisce il colore assegnato al tipo di campitura specificato.
 
-In the example below, the "Diagonal Down" filled region type is selected from the current Revit document. The color is then reported with `FilledRegionType.Color`.
+Nell'esempio seguente, viene selezionato il tipo di campitura "Diagonal Down" dal documento di Revit corrente. Viene quindi riportato il colore con `FilledRegionType.Color`.
 
 ___
 ## File di esempio

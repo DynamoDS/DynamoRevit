@@ -1,7 +1,7 @@
 ## Подробности
-Given a view or view template, `View.GetCategoryOverrides` returns the graphic overrides for the provided view or view template. Note, if a view has a view template assigned, the view template must be used.
+Если имеется вид или шаблон вида, узел `View.GetCategoryOverrides` возвращает переопределения графики для предоставленного вида или шаблона вида. Обратите внимание, что, если виду назначен шаблон, необходимо использовать шаблон вида.
 
-In the example below, the active view's view template from the current document is retrieved. The overrides for the wall category are then returned.
+В приведенном ниже примере из текущего документа извлекается шаблон активного вида. Затем возвращаются переопределения для категории стены.
 ___
 ## Файл примера
 

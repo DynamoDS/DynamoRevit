@@ -1,7 +1,7 @@
 ## 深入資訊
-`ScheduleView.CreateSchedule` creates a new schedule with the given parameters. If the schedule name already exists, an error will be returned.
+`ScheduleView.CreateSchedule` 會使用給定參數建立新明細表。如果明細表名稱已存在，則會傳回錯誤。
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+以下範例在目前 Revit 文件中建立一個名為「Working Door Schedule」的新明細表。
 ___
 ## 範例檔案
 

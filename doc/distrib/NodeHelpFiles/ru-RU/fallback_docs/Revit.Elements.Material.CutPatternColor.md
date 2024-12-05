@@ -1,8 +1,8 @@
 ## Подробности
 
-`Material.CutPatternColor` returns a Dynamo color that represents the material's cut pattern color (if available).
+Узел `Material.CutPatternColor` возвращает цвет Dynamo, представляющий собой цвет для штриховки разреза материала (если доступен).
 
-In the example below, all materials are collected from the current document. The materials' cut pattern colors are returned with `Material.CutPatternColor`.
+В приведенном ниже примере все материалы собираются из текущего документа. Цвета для штриховки разреза материалов возвращаются с помощью `Material.CutPatternColor`.
 
 ___
 ## Файл примера

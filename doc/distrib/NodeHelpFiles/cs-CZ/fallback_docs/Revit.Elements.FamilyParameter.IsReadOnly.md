@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FamilyParameter.IsReadOnly` returns a true or false value to indicate if the given family parameter is read only.
+Uzel `FamilyParameter.IsReadOnly` vrací hodnotu true nebo false, která označuje, zda je daný parametr rodiny určen pouze ke čtení.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the read only state. `List Create` and `List.Transpose` are used to combine the values in sublists.
+V níže uvedeném příkladu je otevřen aktuální dokument aplikace Revit (rodina dveří ze vzorového modelu). Vrátí se parametry v rodině spolu se stavem Pouze ke čtení. Uzly 'List Create' a 'List.Transpose' se použijí ke sloučení hodnot v dílčích seznamech.
 ___
 ## Vzorový soubor
 

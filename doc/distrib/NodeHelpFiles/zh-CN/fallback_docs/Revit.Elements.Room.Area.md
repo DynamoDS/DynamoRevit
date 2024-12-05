@@ -1,9 +1,9 @@
 ## 详细
-`Room.Area` returns the area of the given room element in the current document's units. _(E.g. Feet and Inches)_
+“Room.Area”以当前文档的单位返回给定房间图元的面积。(例如英尺和英寸)
 
-If an unbounded or unplaced room is given, a null value is returned.
+如果给定了无边界或未放置的房间，则返回空值。
 
-In the example below, all rooms are collected from the current document and the area values are returned.
+在下面的示例中，将从当前文档收集所有房间并返回面积值。
 ___
 ## 示例文件
 

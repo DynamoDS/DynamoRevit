@@ -1,9 +1,9 @@
 ## In profondità
-`Room.Area` returns the area of the given room element in the current document's units. _(E.g. Feet and Inches)_
+`Room.Area` restituisce l'area dell'elemento locale specificato nelle unità del documento corrente. _(Ad es. piedi e pollici)_
 
-If an unbounded or unplaced room is given, a null value is returned.
+Se viene specificato un locale non delimitato o non posizionato, viene restituito un valore null.
 
-In the example below, all rooms are collected from the current document and the area values are returned.
+Nell'esempio seguente, vengono raccolti tutti i locali dal documento corrente e vengono restituiti i valori dell'area.
 ___
 ## File di esempio
 

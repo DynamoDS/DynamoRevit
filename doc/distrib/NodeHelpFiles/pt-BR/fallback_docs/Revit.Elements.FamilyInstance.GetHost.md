@@ -1,7 +1,7 @@
 ## Em profundidade
-`FamilyInstance.GetHost` returns the element(s) that hosts a given family instance. Common hosted elements in Revit are doors, windows, and elements of curtain systems.
+`FamilyInstance.GetHost` retorna os elementos que hospedam uma determinada instância de família. Os elementos hospedados comuns no Revit são portas, janelas e elementos de sistemas cortina.
 
-In the example below, the host for all doors in the current view of the current document are returned. The element id (in green) is the host's element id in the current Revit document.
+No exemplo abaixo, é retornado o hospedeiro para todas as portas na vista atual do documento atual. A ID do elemento (em verde) é a ID do elemento do hospedeiro no documento atual do Revit.
 ___
 ## Arquivo de exemplo
 

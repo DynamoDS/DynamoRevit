@@ -1,7 +1,7 @@
 ## Description approfondie
-`DraftingView.ByName` creates a drafting view with the given name. The type of drafting view used is the last one used within Revit.
+'DraftingView.ByName' permet de créer une vue de dessin avec le nom donné. Le type de vue de dessin utilisé est le dernier qui a été utilisé dans Revit.
 
-In the example below, a drafting view called "Door/Jamb Detail" is created.
+Dans l'exemple ci-dessous, une vue de dessin appelée "Détail de porte/montant" est créée.
 ___
 ## Exemple de fichier
 

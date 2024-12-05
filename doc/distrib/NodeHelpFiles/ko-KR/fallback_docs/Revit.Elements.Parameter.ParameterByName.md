@@ -1,9 +1,9 @@
 ## 상세
-Given an element and a name of a parameter, `Parameter.ParameterByName` returns the parameter element, if applicable.
+`Parameter.ParameterByName`은 지정된 요소와 매개변수의 이름을 바탕으로 매개변수 요소를 반환합니다(해당하는 경우).
 
-If no parameter is found by the given name, a null value is returned.
+지정된 이름으로 매개변수를 찾을 수 없는 경우 null 값이 반환됩니다.
 
-In the example below, the project name parameter is returned for the project information for the current document.
+아래 예에서는 현재 문서의 프로젝트 정보에서 프로젝트 이름 매개변수가 반환됩니다.
 
 ___
 ## 예제 파일

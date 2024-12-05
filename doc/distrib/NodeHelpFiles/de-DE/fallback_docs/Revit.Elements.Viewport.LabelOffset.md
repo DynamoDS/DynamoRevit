@@ -1,7 +1,7 @@
 ## Im Detail
-`Viewport.LabelOffset` returns a point that represents the left endpoint of the viewport label.
+`Viewport.LabelOffset` gibt einen Punkt zurück, der den linken Endpunkt der Ansichtsfenster-Beschriftung darstellt.
 
-In the example below, the viewports are returned for the selected sheet. The label offsets of the viewports are then returned with `Viewport.LabelOffset`.
+Im folgenden Beispiel werden die Ansichtsfenster für den ausgewählten Plan zurückgegeben. Dann werden die Beschriftungsversätze der Ansichtsfenster mit `Viewport.LabelOffset` zurückgegeben.
 ___
 ## Beispieldatei
 

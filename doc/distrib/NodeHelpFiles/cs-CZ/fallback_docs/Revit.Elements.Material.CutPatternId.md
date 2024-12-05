@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Material.CutPatternId` returns the cut pattern's element id as an integer (if available). If no cut pattern is assigned, a value of "-1" is returned.
+Uzel `Material.CutPatternId` vrací id prvku vzoru řezu jako celé číslo (pokud je k dispozici). Pokud není přiřazen žádný vzor řezu, je vrácena hodnota „-1“.
 
-In the example below, all materials are collected from the current document. The materials' cut pattern ids are returned with `Material.CutPatternId`.
+V následujícím příkladu jsou shromážděny všechny materiály z aktuálního dokumentu. Pomocí uzlu `Material.CutPatternId` jsou vrácena id vzorů řezů materiálů.
 
 ___
 ## Vzorový soubor

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Viewport.LabelLineLength` gets the length of the viewport line, in paper space units.
+Węzeł `Viewport.LabelLineLength` pobiera długość linii rzutni w jednostkach obszaru papieru.
 
-In the example below, all of the viewports from the selected sheet are collected and the lengths of the viewport label lines are retrieved.
+W poniższym przykładzie pobierane są wszystkie rzutnie z wybranego arkusza i pobierane są długości linii etykiet rzutni.
 ___
 ## Plik przykładowy
 

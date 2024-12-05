@@ -1,7 +1,7 @@
 ## 詳細
-`Tag.TaggedElement` returns the source element of the given tag.
+`Tag.TaggedElement` は、指定されたタグの元の要素を返します。
 
-In the example below, all door tags are collected from the current Revit document. The door tags' source door (family instance) are returned.
+次の例では、すべてのドア タグが現在の Revit ドキュメントから収集されます。ドア タグの元のドア(ファミリ インスタンス)が返されます。
 ___
 ## サンプル ファイル
 

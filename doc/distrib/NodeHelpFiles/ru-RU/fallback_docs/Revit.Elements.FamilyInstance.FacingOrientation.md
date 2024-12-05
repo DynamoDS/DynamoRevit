@@ -1,7 +1,7 @@
 ## Подробности
-`FamilyInstance.FacingOrientation` returns a vector describing the orientation of a family instance. This can be used to determine how much an instance has been rotated.
+Узел `FamilyInstance.FacingOrientation` возвращает вектор, описывающий ориентацию экземпляра семейства. Его можно использовать для определения степени поворота экземпляра.
 
-In the example below, the facing orientation (vector) for all door instances in the current view from the current document are returned.
+В приведенном ниже примере возвращается ориентация (вектор) торца для всех экземпляров дверей в текущем виде из текущего документа.
 ___
 ## Файл примера
 

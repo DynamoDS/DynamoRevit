@@ -1,9 +1,9 @@
 ## Informacje szczegółowe
-`Room.Area` returns the area of the given room element in the current document's units. _(E.g. Feet and Inches)_
+Węzeł `Room.Area` zwraca powierzchnię danego elementu pomieszczenia w jednostkach bieżącego dokumentu. _(Np. stopy i cale)_
 
-If an unbounded or unplaced room is given, a null value is returned.
+W razie podania nieograniczonego lub nieumieszczonego pomieszczenia zwracana jest wartość null.
 
-In the example below, all rooms are collected from the current document and the area values are returned.
+W poniższym przykładzie pobierane są wszystkie pomieszczenia z bieżącego dokumentu i zwracane są wartości powierzchni.
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## Подробности
-`Element.OverrideInView` overrides the given element with the given `OverrideGraphicsSettings` in the active view of the current Revit document.
+Узел `Element.OverrideInView` переопределяет данный элемент указанными параметрами `OverrideGraphicsSettings` в активном виде текущего документа Revit.
 
-In the example below, all doors are collected from the L1 floor plan view. The doors are then compared to the host wall for matching Fire Rating, if it does not match, the doors are overridden to appear red.
+В приведенном ниже примере собраны все двери из вида в плане этажа L1. Затем двери сравниваются со стеной-основой для определения соответствия степени огнестойкости. Если не соответствуют, двери переопределяются, чтобы они были выделены красным цветом.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## Подробности
-`Element.IsPinned` returns a true or false value to indicate whether the given element is pinned.
+Узел `Element.IsPinned` возвращает значение True или False, указывающее, является ли данный элемент закрепленным.
 
-In the example below, all Revit link instances are collected in the current document, and their pinned state is returned.
+В приведенном ниже примере все экземпляры связей Revit собираются в текущем документе и возвращается их состояние закрепления.
 ___
 ## Файл примера
 

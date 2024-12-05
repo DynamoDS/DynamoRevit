@@ -1,7 +1,7 @@
 ## 詳細
-`Family.Types` returns all of the available types of the given family element.
+`Family.Types` は、指定されたファミリ要素の使用可能なすべてのタイプを返します。
 
-In the example below, all family types for two RPC (entourage) families in the current Revit document are returned.
+次の例では、現在の Revit ドキュメント内の 2 つの RPC(点景)ファミリのすべてのファミリ タイプが返されます。
 ___
 ## サンプル ファイル
 

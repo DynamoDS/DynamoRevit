@@ -1,7 +1,7 @@
 ## Em profundidade
-`ScheduleView.CreateSchedule` creates a new schedule with the given parameters. If the schedule name already exists, an error will be returned.
+`ScheduleView.CreateSchedule` cria uma nova tabela com os parâmetros fornecidos. Se o nome da agenda já existir, será retornado um erro.
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+No exemplo abaixo, é criada uma nova tabela chamada “Tabela da porta de trabalho” no documento atual do Revit.
 ___
 ## Arquivo de exemplo
 

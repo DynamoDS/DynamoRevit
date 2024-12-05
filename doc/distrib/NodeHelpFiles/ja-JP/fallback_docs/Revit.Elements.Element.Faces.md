@@ -1,7 +1,7 @@
 ## 詳細
-`Element.Faces` returns all faces _(as Dynamo surfaces)_ for the given element.
+`Element.Faces` は、指定された要素のすべての面を(Dynamo サーフェスとして)返します。
 
-In the example below, all walls are collected from the selected view. Walls that were created as in-place families are then removed, and the remaining walls' faces are returned.
+次の例では、選択したビューからすべての壁が収集されます。インプレイス ファミリとして作成された壁は削除され、残りの壁の面が返されます。
 
 ___
 ## サンプル ファイル

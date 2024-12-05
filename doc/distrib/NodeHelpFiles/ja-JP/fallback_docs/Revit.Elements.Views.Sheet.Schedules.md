@@ -1,7 +1,7 @@
 ## 詳細
-`Sheet.Schedules` returns the schedule instances placed on the given sheet. Note: `Sheet.Schedules` will return revision schedules that exist within the titleblock family for the given sheet.
+`Sheet.Schedules` は、指定されたシートに配置された集計表のインスタンスを返します。注: `Sheet.Schedules` は、指定されたシートの図面枠ファミリ内に存在する改訂集計表を返します。
 
-In the example below, the schedule instances are returned for the selected sheet. The revision schedules are then filtered out with `List.FilterByBoolMask`. Additionally, the owner view for the schedule instance is retrieved with `ScheduleOnSheet.ScheduleView`.
+次の例では、選択されたシートの集計表インスタンスが返されます。改訂集計表は `List.FilterByBoolMask` を使用してフィルタによって除外されます。さらに、集計表インスタンスの所有者ビューが `ScheduleOnSheet.ScheduleView` によって取得されます。
 ___
 ## サンプル ファイル
 

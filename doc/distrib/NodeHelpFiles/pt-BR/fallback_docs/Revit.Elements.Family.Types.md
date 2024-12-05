@@ -1,7 +1,7 @@
 ## Em profundidade
-`Family.Types` returns all of the available types of the given family element.
+`Family.Types` retorna todos os tipos disponíveis do elemento da família fornecido.
 
-In the example below, all family types for two RPC (entourage) families in the current Revit document are returned.
+No exemplo abaixo, são retornados todos os tipos de família para duas famílias RPC (ambiente) no documento atual do Revit.
 ___
 ## Arquivo de exemplo
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Element.Faces` returns all faces _(as Dynamo surfaces)_ for the given element.
+Uzel `Element.Faces` vrací všechny plochy _(jako povrchy aplikace Dynamo)_ pro daný prvek.
 
-In the example below, all walls are collected from the selected view. Walls that were created as in-place families are then removed, and the remaining walls' faces are returned.
+V níže uvedeném příkladu jsou shromážděny všechny stěny z vybraného pohledu. Stěny, které byly vytvořeny jako rodiny na místě, jsou poté odebrány a jsou vráceny plochy zbývajících stěn.
 
 ___
 ## Vzorový soubor

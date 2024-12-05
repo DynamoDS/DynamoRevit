@@ -1,7 +1,7 @@
 ## Подробности
-`FamilyParameter.Id` returns an integer representation of the element id of the given parameter.
+Узел `FamilyParameter.Id` возвращает целочисленное представление идентификатора элемента для заданного параметра.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the element id as an integer. Note: Built-In Revit parameters have a negative (-) prefix.
+В приведенном ниже примере открыт текущий документ Revit (семейство дверей из примера модели). Возвращаются параметры в семействе вместе с идентификатором элемента в виде целого числа. Примечание. Встроенные параметры Revit имеют отрицательный префикс (–).
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## En detalle:
-`Parameter.Name` returns the name of the given parameter.
+`Parameter.Name` devuelve el nombre del parámetro especificado.
 
-In the example below, all wall elements are collected from the current Revit document. The first wall is then selected, and it's parameters are obtained (in alphabetical order).
+En el ejemplo siguiente, se recopilan todos los elementos de muro del documento de Revit actual. A continuación, se selecciona el primer muro y se obtienen sus parámetros (por orden alfabético).
 
 ___
 ## Archivo de ejemplo

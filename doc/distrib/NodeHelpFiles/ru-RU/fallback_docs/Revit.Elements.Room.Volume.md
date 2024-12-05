@@ -1,9 +1,9 @@
 ## Подробности
-`Room.Volume` returns the volume of the given room element in the current document's units. _(E.g. Feet and Inches)_
+Узел `Room.Volume` возвращает объем заданного элемента помещения в единицах измерения текущего документа. _(Например, в футах и дюймах.)_
 
-If an unbounded or unplaced room is given, a null value is returned.
+Если указано неограниченное или неразмещенное помещение, возвращается значение null.
 
-In the example below, all rooms are collected from the current document and the volume values are returned.
+В приведенном ниже примере собираются все помещения из текущего документа и возвращаются значения объема.
 ___
 ## Файл примера
 

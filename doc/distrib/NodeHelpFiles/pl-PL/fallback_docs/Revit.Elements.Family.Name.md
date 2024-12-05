@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Family.Name` returns the name of the given family element.
+Węzeł `Family.Name` zwraca nazwę danego elementu rodziny.
 
-In the example below, all families are collected from the current Revit document. The family names are returned with `Family.Name`.
+W poniższym przykładzie z bieżącego dokumentu programu Revit są pobierane wszystkie rodziny. Nazwy rodzin są zwracane za pomocą węzła `Family.Name`.
 ___
 ## Plik przykładowy
 

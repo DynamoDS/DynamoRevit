@@ -1,7 +1,7 @@
 ## 詳細
-`Room.Name` returns the name for the given room element.
+`Room.Name` は、指定された部屋要素の名前を返します。
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then returned.
+次の例では、すべての部屋が現在のドキュメントと選択されたビューから収集されます。次に、部屋の名前が返されます。
 ___
 ## サンプル ファイル
 

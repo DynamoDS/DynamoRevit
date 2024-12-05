@@ -1,7 +1,7 @@
 ## 深入資訊
-`FamilyInstance.SetRotation` sets the rotation of a family instance on an individual basis. `FamilyInstance.SetRotation` will rotate each family instance about it's Z axis. This differs from rotating elements directly in Revit, where a rotation command rotates selected elements about a common center point.
+`FamilyInstance.SetRotation` 會個別設定族群實體的旋轉。`FamilyInstance.SetRotation` 會繞著其 Z 軸旋轉每個族群實體。這與直接在 Revit 中旋轉元素不同，在 Revit 中的旋轉指令會繞著共同的中心點旋轉所選元素。
 
-In the example below, all entourage families in the current Revit document are rotated at a random value between 0 and 360.
+在以下範例中，目前 Revit 文件中的所有點景族群都以 0 到 360 之間的隨機值旋轉。
 ___
 ## 範例檔案
 

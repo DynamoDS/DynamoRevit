@@ -1,7 +1,7 @@
 ## 详细
-`DraftingView.ByName` creates a drafting view with the given name. The type of drafting view used is the last one used within Revit.
+“DraftingView.ByName”将创建具有给定名称的绘图视图。使用的绘图视图类型是 Revit 中使用的最后一种。
 
-In the example below, a drafting view called "Door/Jamb Detail" is created.
+在下面的示例中，创建了一个名为“Door/Jamb Detail”的绘图视图。
 ___
 ## 示例文件
 

@@ -1,7 +1,7 @@
 ## 深入資訊
-`FloorType.Name` returns the given floor type's name.
+`FloorType.Name` 會傳回給定樓板類型的名稱。
 
-In the example below, all floor types loaded in the current Revit document are collected. The names are then returned with `FloorType.Name`.
+以下範例收集目前 Revit 文件中載入的所有樓板類型，然後使用 `FloorType.Name` 傳回名稱。
 ___
 ## 範例檔案
 

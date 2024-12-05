@@ -1,7 +1,7 @@
 ## 詳細
-`Material.Name` returns the given material's name as a string.
+`Material.Name` は、指定されたマテリアルの名前を文字列として返します。
 
-In the example below, all materials are collected from the current document. The material names are returned with `Material.Name`.
+次の例では、すべてのマテリアルが現在のドキュメントから収集されます。マテリアル名は `Material.Name` によって返されます。
 ___
 ## サンプル ファイル
 

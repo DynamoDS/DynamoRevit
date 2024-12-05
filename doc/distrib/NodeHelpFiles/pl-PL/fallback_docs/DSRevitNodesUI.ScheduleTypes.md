@@ -1,14 +1,14 @@
 ## Informacje szczegółowe
-`Schedule Type` allows for the selection of the available schedule types.
+Węzeł `Schedule Type` umożliwia wybór dostępnych typów zestawień.
 
-Available schedule types include:
-- RegularSchedule
-- Key Schedule
-- Material Takeoffs
+Dostępne typy zestawień obejmują:
+- RegularSchedule (zestawienie zwykłe)
+- Key Schedule (zestawienie kluczy)
+- Material Takeoffs (zestawienie materiałów)
 
-For more information regarding schedules in Revit, refer to this [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
+Więcej informacji na temat zestawień w programie Revit można znaleźć w tym [artykule](https://help.autodesk.com/view/RVT/2024/PLK/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+W poniższym przykładzie w bieżącym dokumencie programu Revit zostaje utworzone nowe zestawienie o nazwie „Working Door Schedule”.
 ___
 ## Plik przykładowy
 

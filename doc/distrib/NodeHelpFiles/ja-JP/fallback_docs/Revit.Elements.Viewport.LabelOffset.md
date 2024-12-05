@@ -1,7 +1,7 @@
 ## 詳細
-`Viewport.LabelOffset` returns a point that represents the left endpoint of the viewport label.
+`Viewport.LabelOffset` は、ビューポート ラベルの左端点を表す点を返します。
 
-In the example below, the viewports are returned for the selected sheet. The label offsets of the viewports are then returned with `Viewport.LabelOffset`.
+次の例では、選択されたシートのビューポートが返されます。次に、ビューポートのラベル オフセットが `Viewport.LabelOffset` によって返されます。
 ___
 ## サンプル ファイル
 

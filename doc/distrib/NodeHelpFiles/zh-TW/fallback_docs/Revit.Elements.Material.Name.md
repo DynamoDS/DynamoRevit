@@ -1,7 +1,7 @@
 ## 深入資訊
-`Material.Name` returns the given material's name as a string.
+`Material.Name` 會以字串傳回給定材料的名稱。
 
-In the example below, all materials are collected from the current document. The material names are returned with `Material.Name`.
+以下範例收集目前文件中的所有材料。使用 `Material.Name` 傳回材料名稱。
 ___
 ## 範例檔案
 

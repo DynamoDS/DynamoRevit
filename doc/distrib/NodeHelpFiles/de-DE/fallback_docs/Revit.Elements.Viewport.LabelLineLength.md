@@ -1,7 +1,7 @@
 ## Im Detail
-`Viewport.LabelLineLength` gets the length of the viewport line, in paper space units.
+`Viewport.LabelLineLength` ruft die Länge der Ansichtsfensterlinie in Papierbereichseinheiten ab.
 
-In the example below, all of the viewports from the selected sheet are collected and the lengths of the viewport label lines are retrieved.
+Im folgenden Beispiel werden alle Ansichtsfenster aus dem ausgewählten Plan gesammelt, und die Länge der Ansichtsfenster-Beschriftungslinien wird abgerufen.
 ___
 ## Beispieldatei
 

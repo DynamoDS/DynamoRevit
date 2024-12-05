@@ -1,9 +1,9 @@
 ## Im Detail
-`Room.CoreBoundary` returns a nested list representing the given room's core boundary. In the returned list, the first sublist represents the outermost curves, while subsequent lists represent loops within the room. The Core boundaries are located at the interior or exterior layer of the core that is closest to the room. For more information on wall location lines, see this help [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89).
+`Room.CoreBoundary` gibt eine verschachtelte Liste zurück, die die angegebene Kernbegrenzung des Raums darstellt. In der zurückgegebenen Liste stellt die erste Unterliste die äußersten Kurven dar, während nachfolgende Listen Schleifen innerhalb des Raums darstellen. Die Kernbegrenzungen befinden sich auf dem inneren oder äußeren Layer des Kerns, der am nächsten zum Raum liegt. Weitere Informationen zu Wandpositionslinien finden Sie in diesem [Hilfeartikel](https://help.autodesk.com/view/RVT/2024/DEU/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89).
 
-If an unbounded or unplaced room is given, a null value is returned.
+Wenn ein nicht begrenzter oder nicht platzierter Raum angegeben wird, wird ein Nullwert zurückgegeben.
 
-In the example below, all rooms are collected from the current document and selected view. The core boundaries are then returned.
+Im folgenden Beispiel werden alle Räume aus dem aktuellen Dokument und der ausgewählten Ansicht gesammelt. Dann werden die Kernbegrenzungen zurückgegeben.
 ___
 ## Beispieldatei
 

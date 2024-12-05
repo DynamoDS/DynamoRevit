@@ -1,7 +1,7 @@
 ## 詳細
-`FamilyParameter.Id` returns an integer representation of the element id of the given parameter.
+`FamilyParameter.Id` は、指定されたパラメータの要素 ID を整数で表したものを返します。
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the element id as an integer. Note: Built-In Revit parameters have a negative (-) prefix.
+次の例では、現在の Revit ドキュメント(サンプル モデルのドア ファミリ)が開いています。ファミリ内のパラメータが、要素 ID (整数)とともに返されます。注: Revit の組み込みパラメータには、負(-)の接頭表記があります。
 ___
 ## サンプル ファイル
 

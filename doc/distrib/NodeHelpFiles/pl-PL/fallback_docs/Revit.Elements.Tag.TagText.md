@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Tag.TagText` retrieves the given tag's text value, if available.
+Węzeł `Tag.TagText` pobiera wartość tekstu danego oznaczenia, jeśli jest dostępna.
 
-In the example below, all door tags are collected from the current Revit document. The door tags' text values are then returned.
+W poniższym przykładzie z bieżącego dokumentu programu Revit pobierane są wszystkie oznaczenia drzwi. Następnie zwracane są wartości tekstu oznaczeń drzwi.
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## Im Detail
-`Material.Shininess` returns an integer that indicates how shiny a material is.
+`Material.Shininess` gibt eine Ganzzahl zurück, die angibt, wie glänzend ein Material ist.
 
-In the example below, all materials are collected from the current document. The materials' shininess values (as integers) are returned with `Material.Shininess`.
+Im folgenden Beispiel werden alle Materialien aus dem aktuellen Dokument gesammelt. Die Glanzwerte der Materialien (als Ganzzahlen) werden mit `Material.Shininess` zurückgegeben.
 ___
 ## Beispieldatei
 

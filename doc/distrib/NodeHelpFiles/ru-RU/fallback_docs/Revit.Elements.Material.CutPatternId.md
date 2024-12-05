@@ -1,7 +1,7 @@
 ## Подробности
-`Material.CutPatternId` returns the cut pattern's element id as an integer (if available). If no cut pattern is assigned, a value of "-1" is returned.
+Узел `Material.CutPatternId` возвращает идентификатор элемента штриховки разреза в виде целого числа (если доступно). Если штриховка разреза не назначена, возвращается значение «–1».
 
-In the example below, all materials are collected from the current document. The materials' cut pattern ids are returned with `Material.CutPatternId`.
+В приведенном ниже примере все материалы собираются из текущего документа. Идентификаторы штриховок разреза материалов возвращаются с помощью `Material.CutPatternId`.
 
 ___
 ## Файл примера

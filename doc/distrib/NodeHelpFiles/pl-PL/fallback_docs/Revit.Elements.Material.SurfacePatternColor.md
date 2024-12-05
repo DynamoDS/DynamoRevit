@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Material.SurfacePatternColor` returns a Dynamo color that represents the material's surface pattern color (if available).
+Węzeł `Material.SurfacePatternColor` zwraca kolor dodatku Dynamo reprezentujący kolor wzoru powierzchni materiału (jeśli jest dostępny).
 
-In the example below, all materials are collected from the current document. The materials' colors are returned with `Material.SurfacePatternColor`.
+W poniższym przykładzie z bieżącego dokumentu pobierane są wszystkie materiały. Za pomocą węzła `Material.SurfacePatternColor` zwracane są kolory materiałów.
 ___
 ## Plik przykładowy
 

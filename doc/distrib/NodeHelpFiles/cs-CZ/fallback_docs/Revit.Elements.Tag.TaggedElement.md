@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Tag.TaggedElement` returns the source element of the given tag.
+Uzel `Tag.TaggedElement` vrací zdrojový prvek daného popisku.
 
-In the example below, all door tags are collected from the current Revit document. The door tags' source door (family instance) are returned.
+V níže uvedeném příkladu jsou shromážděny všechny popisky dveří z aktuálního dokumentu aplikace Revit. Jsou vráceny zdrojové dveře popisků dveří (instance rodiny).
 ___
 ## Vzorový soubor
 

@@ -1,7 +1,7 @@
 ## Em profundidade
-`Element.IsPinned` returns a true or false value to indicate whether the given element is pinned.
+`Element.IsPinned` retorna um valor true ou false para indicar se o elemento especificado está fixado.
 
-In the example below, all Revit link instances are collected in the current document, and their pinned state is returned.
+No exemplo abaixo, são coletadas todas as instâncias de vínculo do Revit no documento atual e seu estado fixado é retornado.
 ___
 ## Arquivo de exemplo
 

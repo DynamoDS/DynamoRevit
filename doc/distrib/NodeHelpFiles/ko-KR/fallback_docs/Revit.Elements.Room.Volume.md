@@ -1,9 +1,9 @@
 ## 상세
-`Room.Volume` returns the volume of the given room element in the current document's units. _(E.g. Feet and Inches)_
+`Room.Volume`은 지정된 룸 요소의 체적을 현재 문서의 단위로 반환합니다(예: 피트 및 인치).
 
-If an unbounded or unplaced room is given, a null value is returned.
+바인딩되지 않았거나 배치되지 않은 룸이 지정된 경우 null 값이 반환됩니다.
 
-In the example below, all rooms are collected from the current document and the volume values are returned.
+아래 예에서는 모든 룸이 현재 문서에서 수집되고 체적 값이 반환됩니다.
 ___
 ## 예제 파일
 

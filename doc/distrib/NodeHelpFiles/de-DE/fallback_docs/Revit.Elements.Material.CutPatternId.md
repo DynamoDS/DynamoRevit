@@ -1,7 +1,7 @@
 ## Im Detail
-`Material.CutPatternId` returns the cut pattern's element id as an integer (if available). If no cut pattern is assigned, a value of "-1" is returned.
+`Material.CutPatternId` gibt die Element-ID des Schnittmusters als Ganzzahl zurück (falls verfügbar). Wenn kein Schnittmuster zugewiesen ist, wird der Wert "-1" zurückgegeben.
 
-In the example below, all materials are collected from the current document. The materials' cut pattern ids are returned with `Material.CutPatternId`.
+Im folgenden Beispiel werden alle Materialien aus dem aktuellen Dokument gesammelt. Die Schnittmuster-IDs der Materialien werden mit `Material.CutPatternId` zurückgegeben.
 
 ___
 ## Beispieldatei

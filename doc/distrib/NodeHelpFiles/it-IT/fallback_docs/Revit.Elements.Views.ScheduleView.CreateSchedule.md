@@ -1,7 +1,7 @@
 ## In profondità
-`ScheduleView.CreateSchedule` creates a new schedule with the given parameters. If the schedule name already exists, an error will be returned.
+`ScheduleView.CreateSchedule` crea un nuovo abaco con i parametri specificati. Se il nome dell'abaco esiste già, verrà restituito un errore.
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+Nell'esempio seguente, viene creato un nuovo abaco denominato "Working Door Schedule" nel documento di Revit corrente.
 ___
 ## File di esempio
 

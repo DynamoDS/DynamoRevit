@@ -1,7 +1,7 @@
 ## 详细
-`Material.Smoothness` returns an integer that indicates how smooth a material is.
+“Material.Smoothness”返回一个整数，该整数指示材质的平滑程度。
 
-In the example below, all materials are collected from the current document. The materials' smoothness values (as integers) are returned with `Material.Smoothness`.
+在下面的示例中，将从当前文档收集所有材质。使用“Material.Smoothness”返回材质的平滑度值(整数形式)。
 ___
 ## 示例文件
 

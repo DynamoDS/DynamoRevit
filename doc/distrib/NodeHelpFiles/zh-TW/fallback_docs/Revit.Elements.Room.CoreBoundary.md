@@ -1,9 +1,9 @@
 ## 深入資訊
-`Room.CoreBoundary` returns a nested list representing the given room's core boundary. In the returned list, the first sublist represents the outermost curves, while subsequent lists represent loops within the room. The Core boundaries are located at the interior or exterior layer of the core that is closest to the room. For more information on wall location lines, see this help [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89).
+`Room.CoreBoundary` 會傳回表示給定房間核心邊界的巢狀清單。在傳回的清單中，第一個子清單表示最外側的曲線，後續的清單表示房間內的迴圈。核心邊界位於最靠近房間之核心的內部層或外部層。如需牆定位線的更多資訊，請參閱此說明 [文章](https://help.autodesk.com/view/RVT/2024/CHT/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89)。
 
-If an unbounded or unplaced room is given, a null value is returned.
+如果給定未設邊界或未放置的房間，則傳回空值。
 
-In the example below, all rooms are collected from the current document and selected view. The core boundaries are then returned.
+以下範例收集目前文件和所選視圖中的所有房間，然後傳回核心邊界。
 ___
 ## 範例檔案
 

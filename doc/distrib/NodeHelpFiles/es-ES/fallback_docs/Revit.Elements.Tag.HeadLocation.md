@@ -1,9 +1,9 @@
 ## En detalle:
-`Tag.HeadLocation` returns a point that represents the position of the given tag's head.
+`Tag.HeadLocation` devuelve un punto que representa la posición del extremo de la etiqueta especificada.
 
-For more information on tag placement, visit this [article](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
+Para obtener más información sobre la colocación de etiquetas, consulte este [artículo](https://help.autodesk.com/view/RVT/2025/ESP/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
 
-In the example below, all door tags are collected from the L1 floor plan view. The tags' head locations are then returned.
+En el ejemplo siguiente, se recopilan todas las etiquetas de puerta de la vista de plano de planta L1. A continuación, se devuelven las ubicaciones de los extremos de las etiquetas.
 ___
 ## Archivo de ejemplo
 

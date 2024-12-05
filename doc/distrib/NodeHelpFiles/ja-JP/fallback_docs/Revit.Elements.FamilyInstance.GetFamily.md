@@ -1,7 +1,7 @@
 ## 詳細
-`FamilyInstance.GetFamily` returns the parent family of the given family instance.
+`FamilyInstance.GetFamily` は、指定されたファミリ インスタンスの親ファミリを返します。
 
-In the example below, the family for all doors in the current view of the current document are returned.
+次の例では、現在のドキュメントの現在のビューにあるすべてのドアのファミリが返されます。
 ___
 ## サンプル ファイル
 

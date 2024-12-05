@@ -1,7 +1,7 @@
 ## Im Detail
-`CurtainSystemType.ByName` selects a curtain system type from the current Revit document of the given name.
+`CurtainSystemType.ByName` wählt einen Fassadensystemtyp mit dem angegebenen Namen aus dem aktuellen Revit-Dokument aus.
 
-In the example below, the curtain system type `5' x 10'` is returned.
+Im folgenden Beispiel wird der Fassadensystemtyp `5' x 10'` zurückgegeben.
 ___
 ## Beispieldatei
 

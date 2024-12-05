@@ -1,14 +1,14 @@
 ## Im Detail
-`Schedule Type` allows for the selection of the available schedule types.
+Mit `Schedule Type` können Sie die verfügbaren Bauteillistentypen auswählen.
 
-Available schedule types include:
+Folgende Bauteillistentypen sind verfügbar:
 - RegularSchedule
-- Key Schedule
-- Material Takeoffs
+- Schlüsselliste
+- Materialauflistung
 
-For more information regarding schedules in Revit, refer to this [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
+Weitere Informationen zu Bauteillisten in Revit finden Sie in diesem [Artikel](https://help.autodesk.com/view/RVT/2024/DEU/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+Im folgenden Beispiel wird eine neue Bauteilliste mit dem Namen "Arbeitstür Bauteilliste" im aktuellen Revit-Dokument erstellt.
 ___
 ## Beispieldatei
 

@@ -1,9 +1,9 @@
 ## 詳細
-`Room.Area` returns the area of the given room element in the current document's units. _(E.g. Feet and Inches)_
+`Room.Area` は、指定された部屋要素の面積を現在のドキュメントの単位(例: フィートとインチ)で返します。
 
-If an unbounded or unplaced room is given, a null value is returned.
+境界のない部屋、または配置されていない部屋が指定されている場合は、null 値が返されます。
 
-In the example below, all rooms are collected from the current document and the area values are returned.
+次の例では、すべての部屋が現在のドキュメントから収集され、面積の値が返されます。
 ___
 ## サンプル ファイル
 

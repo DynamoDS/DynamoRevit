@@ -1,7 +1,7 @@
 ## 詳細
-`Group.Location` returns a point that represents the given group's origin.
+`Group.Location` は、指定されたグループの原点を表す点を返します。
 
-In the example below, all model groups are collected from the active Revit document. The groups' locations are returned with `Group.Location`.
+次の例では、すべてのモデル グループがアクティブな Revit ドキュメントから収集されます。グループの位置は、`Group.Location` によって返されます。
 
 ___
 ## サンプル ファイル

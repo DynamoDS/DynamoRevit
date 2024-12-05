@@ -1,7 +1,7 @@
 ## Description approfondie
-`FloorType.ByName` returns a floor type for the given name in the current Revit document. If the floor type does not exist, a null value is returned.
+'FloorType.ByName' renvoie un type de sol pour le nom donné dans le document Revit actif. Si le type de sol n'existe pas, une valeur nulle est renvoyée.
 
-In the example below, all floors present in the current Revit document are collected. The floors' types are then collected by getting the name of the floor and using `FloorType.ByName` to retrieve the floor type.
+Dans l'exemple ci-dessous, tous les sols présents dans le document Revit actif sont collectés. Les types de sols sont ensuite collectés en obtenant le nom du sol et en utilisant 'FloorType.ByName' pour récupérer le type de sol.
 ___
 ## Exemple de fichier
 

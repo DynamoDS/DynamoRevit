@@ -1,7 +1,7 @@
 ## 详细
-`Room.Name` returns the name for the given room element.
+“Room.Name”返回给定房间图元的名称。
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then returned.
+在下面的示例中，将从当前文档和选定视图收集所有房间。然后返回房间的名称。
 ___
 ## 示例文件
 

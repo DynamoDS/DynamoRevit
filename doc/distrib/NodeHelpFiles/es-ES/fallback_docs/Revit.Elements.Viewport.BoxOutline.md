@@ -1,7 +1,7 @@
 ## En detalle:
-`Viewport.BoxOutline` returns a Dynamo bounding box that represents the extents of the viewport.
+`Viewport.BoxOutline` devuelve un cuadro delimitador de Dynamo que representa la extensión de la ventana gráfica.
 
-In the example below, the viewports are returned for the selected sheet. The box outlines are then returned with `Viewport.BoxOutline`.
+En el ejemplo siguiente, se devuelven las ventanas gráficas del plano seleccionado. Los contornos de cuadro se devuelven con `Viewport.BoxOutline`.
 ___
 ## Archivo de ejemplo
 

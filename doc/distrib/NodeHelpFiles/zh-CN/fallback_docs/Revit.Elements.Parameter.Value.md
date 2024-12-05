@@ -1,9 +1,9 @@
 ## 详细
-Given a parameter element, `Parameter.Value` returns the value that is stored within the given parameter.
+给定参数元素，“Parameter.Value”返回存储在给定参数中的值。
 
-If no parameter value is found, a null value is returned.
+如果未找到参数值，则返回空值。
 
-In the example below, the project name is returned for the project information for the current document.
+在下面的示例中，将返回当前文档的项目信息的项目名称。
 
 ___
 ## 示例文件

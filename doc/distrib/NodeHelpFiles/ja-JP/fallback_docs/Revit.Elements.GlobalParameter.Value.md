@@ -1,7 +1,7 @@
 ## 詳細
-`GlobalParameter.Value` returns the value for the given global parameter.
+`GlobalParameter.Value` は、指定されたグローバル パラメータの値を返します。
 
-In the example below, the global parameter, "Windows_North Elevation Inset" is returned and the value is returned (in project units).
+次の例では、グローバル パラメータ「Windows_North Elevation Inset」が返され、その値が(プロジェクト単位で)返されます。
 ___
 ## サンプル ファイル
 

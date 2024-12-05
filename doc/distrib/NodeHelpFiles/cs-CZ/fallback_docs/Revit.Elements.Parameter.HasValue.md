@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Parameter.HasValue` returns a boolean value representing if the parameter has a value set.
+Uzel `Parameter.HasValue` vrací booleovskou hodnotu, která udává, zda má parametr nastavenou hodnotu.
 
-In the example below, a single wall is selected from all walls in the current Revit document, and it's parameters are split into two lists; Parameters with Values and Parameters without Values.
+V níže uvedeném příkladu je ze všech stěn v aktuálním dokumentu aplikace Revit vybrána jedna stěna a její parametry jsou rozděleny do dvou seznamů; parametry s hodnotami a parametry bez hodnot.
 ___
 ## Vzorový soubor
 

@@ -1,7 +1,7 @@
 ## 深入資訊
-`Room.SetName` modifies the name of the given room element.
+`Room.SetName` 會修改給定房間元素的名稱。
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then modified with a prefix of "(E)" to indicate existing conditions.
+以下範例收集目前文件所選視圖中的所有房間，然後以「(E)」字首修改房間的名稱，指出現有的狀況。
 ___
 ## 範例檔案
 

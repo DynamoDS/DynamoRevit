@@ -1,9 +1,9 @@
 ## Im Detail
-Given a parameter element, `Parameter.Value` returns the value that is stored within the given parameter.
+Bei Angabe eines Parameterelements gibt `Parameter.Value` den Wert zurück, der im angegebenen Parameter gespeichert ist.
 
-If no parameter value is found, a null value is returned.
+Wenn kein Parameterwert gefunden wird, wird ein Nullwert zurückgegeben.
 
-In the example below, the project name is returned for the project information for the current document.
+Im folgenden Beispiel wird der Projektname für die Projektinformationen für das aktuelle Dokument zurückgegeben.
 
 ___
 ## Beispieldatei

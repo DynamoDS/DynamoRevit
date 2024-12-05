@@ -1,7 +1,7 @@
 ## 详细
-`GlobalParameter.Value` returns the value for the given global parameter.
+“GlobalParameter.Value”返回给定全局参数的值。
 
-In the example below, the global parameter, "Windows_North Elevation Inset" is returned and the value is returned (in project units).
+在下面的示例中，将返回全局参数“Windows_North Elevation Inset”并返回该值(以项目单位表示)。
 ___
 ## 示例文件
 

@@ -1,7 +1,7 @@
 ## Im Detail
-`Material.Color` returns a Dynamo color that represents the material's shading color. If the material's shading color is set to "use render appearance", that value is returned.
+`Material.Color` gibt eine Dynamo-Farbe zurück, die der Schattierungsfarbe des Materials entspricht. Wenn die Schattierungsfarbe des Materials auf "Renderdarstellung verwenden" eingestellt ist, wird dieser Wert zurückgegeben.
 
-In the example below, all materials are collected from the current document. The materials' shading color values are returned with `Material.Color`.
+Im folgenden Beispiel werden alle Materialien aus dem aktuellen Dokument gesammelt. Die Schattierungsfarbwerte der Materialien werden mit `Material.Color` zurückgegeben.
 
 ___
 ## Beispieldatei

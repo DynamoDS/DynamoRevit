@@ -1,9 +1,9 @@
 ## Podrobnosti
-`Room.FinishBoundary` returns a nested list representing the given room's finish boundary. In the returned list, the first sublist represents the outermost curves, while subsequent lists represent loops within the room. The room boundary returned by this node is located at the finish face inside the Revit room. For more information on wall location lines, see this help [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89).
+Uzel `Room.FinishBoundary` vrací vnořený seznam představující hranici povrchu dané místnosti. Ve vráceném seznamu představuje první dílčí seznam vnější křivky, zatímco další dílčí seznamy představují smyčky uvnitř místnosti. Hranice místnosti vrácená tímto uzlem je umístěna na ploše povrchové úpravy uvnitř místnosti aplikace Revit. Další informace o čarách umístění stěn naleznete v tomto [článku](https://help.autodesk.com/view/RVT/2024/CSY/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89) nápovědy.
 
-If an unbounded or unplaced room is given, a null value is returned.
+Pokud je zadána neohraničená nebo neumístěná místnost, je vrácena hodnota null.
 
-In the example below, all rooms are collected from the current document and selected view. The finish boundaries are then returned.
+V níže uvedeném příkladu jsou shromážděny všechny místnosti z aktuálního dokumentu a vybraného pohledu. Poté jsou vráceny hranice povrchu.
 ___
 ## Vzorový soubor
 

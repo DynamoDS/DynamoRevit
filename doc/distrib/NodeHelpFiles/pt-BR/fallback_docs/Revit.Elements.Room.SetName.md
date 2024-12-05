@@ -1,7 +1,7 @@
 ## Em profundidade
-`Room.SetName` modifies the name of the given room element.
+`Room.SetName` modifica o nome do elemento de ambiente fornecido.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then modified with a prefix of "(E)" to indicate existing conditions.
+No exemplo abaixo, são coletados todos os ambientes do documento atual na vista selecionada. Os nomes dos ambientes são, em seguida, modificados com um prefixo “(E)” para indicar condições existentes.
 ___
 ## Arquivo de exemplo
 

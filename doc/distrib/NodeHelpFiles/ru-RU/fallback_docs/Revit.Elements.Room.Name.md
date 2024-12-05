@@ -1,7 +1,7 @@
 ## Подробности
-`Room.Name` returns the name for the given room element.
+Узел `Room.Name` возвращает имя заданного элемента помещения.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then returned.
+В приведенном ниже примере собираются все помещения в текущем документе и на выбранном виде. Затем возвращаются имена помещений.
 ___
 ## Файл примера
 

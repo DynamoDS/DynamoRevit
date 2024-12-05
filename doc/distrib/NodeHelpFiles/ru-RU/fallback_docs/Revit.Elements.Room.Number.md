@@ -1,7 +1,7 @@
 ## Подробности
-`Room.Number` returns the number for the given room element as a string.
+Узел `Room.Number` возвращает номер заданного элемента помещения в виде строки.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' numbers are then returned.
+В приведенном ниже примере собираются все помещения в текущем документе и на выбранном виде. Затем возвращаются номера помещений.
 ___
 ## Файл примера
 

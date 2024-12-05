@@ -1,7 +1,7 @@
 ## 详细
-`Viewport.BoxCenter` returns a Dynamo point that represents the center point of the extents of the viewport.
+“Viewport.BoxCenter”返回一个 Dynamo 点，该点表示视口范围的中心点。
 
-In the example below, the viewports are returned for the selected sheet. The box center locations are then returned with `Viewport.BoxCenter`.
+在下面的示例中，将返回选定图纸的视口。然后，使用“Viewport.BoxCenter”返回长方体中心位置。
 ___
 ## 示例文件
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-`ScheduleView.CreateSchedule` creates a new schedule with the given parameters. If the schedule name already exists, an error will be returned.
+Uzel `ScheduleView.CreateSchedule` vytvoří nový výkaz se zadanými parametry. Pokud název výkazu již existuje, je vrácena chyba.
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+V níže uvedeném příkladu je v aktuálním dokumentu aplikace Revit vytvořen nový výkaz s názvem „Pracovní výkaz dveří“.
 ___
 ## Vzorový soubor
 

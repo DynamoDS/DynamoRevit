@@ -1,7 +1,7 @@
 ## Em profundidade
-`View.FilterOverrides` provides the settings for the given view filter `(ParameterFilterElement)`.
+`View.FilterOverrides` fornece as configurações para o filtro de vista `(ParameterFilterElement)` fornecido.
 
-In the example below, the view filters are collected from the selected view and the filter overrides are returned.
+No exemplo abaixo, os filtros de vista são coletados da vista selecionada e são retornadas as substituições de filtro.
 
 ___
 ## Arquivo de exemplo

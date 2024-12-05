@@ -1,7 +1,7 @@
 ## 深入資訊
-`ModelText.Depth` returns the depth of the given model text element as a number.
+`ModelText.Depth` 會以數字傳回給定模型文字元素的深度。
 
-In the example below, all model text is collected in the current Revit file. The depth values are then returned with `ModelText.Depth` in project units.
+以下範例收集目前 Revit 檔案中的所有模型文字，然後使用 `ModelText.Depth` 傳回深度值，以專案單位表示。
 ___
 ## 範例檔案
 

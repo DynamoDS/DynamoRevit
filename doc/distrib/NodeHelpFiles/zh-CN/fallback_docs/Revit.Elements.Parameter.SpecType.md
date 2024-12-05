@@ -1,15 +1,15 @@
 ## 详细
-`Parameter.SpecType` returns the given parameter's SpecType. SpecType describes the type of data that a given parameter stores.
+“Parameter.SpecType”返回给定参数的 SpecType。SpecType 描述给定参数存储的数据类型。
 
-These data types include:
-- Boolean
-- Int
-- Reference
+这些数据类型包括:
+- 布尔
+- 整数
+- 参照
 - 字符串
 
-If no SpecType is found, a null value is returned.
+如果未找到 SpecType，则返回空值。
 
-In the example below, all parameters are returned for the current document's project information. The SpecTypes are returned as well.
+在下面的示例中，将返回当前文档的项目信息的所有参数。同时返回 SpecType。
 
 ___
 ## 示例文件

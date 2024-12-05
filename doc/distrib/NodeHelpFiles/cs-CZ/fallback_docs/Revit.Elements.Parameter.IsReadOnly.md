@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Parameter.IsReadOnly` returns a boolean value representing if the given parameter is a read only parameter.
+Uzel `Parameter.IsReadOnly` vrací booleovskou hodnotu, která udává, zda je daný parametr parametrem pouze ke čtení.
 
-In the example below, a single wall is selected from all walls in the current Revit document, and it's parameters are split into two lists; Read Only Parameters and Editable Parameters.
+V níže uvedeném příkladu je ze všech stěn v aktuálním dokumentu aplikace Revit vybrána jedna stěna a její parametry jsou rozděleny do dvou seznamů; parametry pouze ke čtení a upravitelné parametry.
 ___
 ## Vzorový soubor
 

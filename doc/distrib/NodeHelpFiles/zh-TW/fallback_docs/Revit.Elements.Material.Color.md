@@ -1,7 +1,7 @@
 ## 深入資訊
-`Material.Color` returns a Dynamo color that represents the material's shading color. If the material's shading color is set to "use render appearance", that value is returned.
+`Material.Color` 會傳回表示材料描影顏色的 Dynamo 顏色。如果材料的描影顏色設定為「使用彩現外觀」，則傳回該值。
 
-In the example below, all materials are collected from the current document. The materials' shading color values are returned with `Material.Color`.
+以下範例收集目前文件中的所有材料。使用 `Material.Color` 傳回材料的描影顏色值。
 
 ___
 ## 範例檔案

@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Group.GroupType` returns the owning group type of the given group instance.
+Uzel `Group.GroupType` vrací nadřazený typ skupiny dané instance skupiny.
 
-In the example below, all model groups are collected from the active Revit document. The groups' types are returned with `Group.GroupType`.
+V následujícím příkladu jsou shromážděny všechny modelové skupiny z aktivního dokumentu aplikace Revit. Pomocí uzlu `Group.GroupType` jsou vráceny typy skupin.
 
 ___
 ## Vzorový soubor

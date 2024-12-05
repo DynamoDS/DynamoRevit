@@ -1,7 +1,7 @@
 ## Подробности
-`Element.Solids` returns the solid geometry for the given element. The solids are returned as nested lists, as any given element can have more than one solid within it. If a single solid that represents the element is desired, `Solid.ByUnion` may be used on the lists.
+Узел `Element.Solids` возвращает твердотельную геометрию для указанного элемента. Тела возвращаются в виде вложенных списков, так как любой указанный элемент может содержать более одного тела. Если требуется одно тело, представляющее элемент, для списков можно использовать `Solid.ByUnion`.
 
-In the example below, all walls are collected from the selected view. Walls that were created as in-place families are then removed, and the remaining walls' solids are returned.
+В приведенном ниже примере из выбранного вида собираются все стены. Стены, созданные как контекстные семейства, затем удаляются, а тела оставшихся стен возвращаются.
 
 ___
 ## Файл примера

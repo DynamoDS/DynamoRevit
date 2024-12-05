@@ -1,7 +1,7 @@
 ## 深入資訊
-`Element.Curves` returns the curve geometry for the given element. If no curve geometry is present an empty list is returned.
+`Element.Curves` 會傳回給定元素的曲線幾何圖形。如果沒有曲線幾何圖形，則傳回空清單。
 
-In the example below, a warning for overlapping walls and room separators is selected. The elements involved in this warning are then extracted for further analysis. With `Element.Solids` and `Element.Curves` it is demonstrated that the overlap occurs within the wall.
+在以下範例中，選取牆和房間分隔線重疊的警告，然後擷取此警告中涉及的元素供進一步分析。使用 `Element.Solids` 和 `Element.Curves`，顯示出重疊情況發生在牆內。
 
 ___
 ## 範例檔案

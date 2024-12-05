@@ -1,7 +1,7 @@
 ## 深入資訊
-`View.SetFilterOverrides` will apply the given overrides to the given view and view filter.
+`View.SetFilterOverrides` 會將給定的取代套用到給定的視圖和視圖篩選。
 
-In the example below, a view filter is created for the `Fire Rating` parameter on wall type elements. This filter is added to the `L1` floor plan view in the sample model. After the filter is added, overrides are then added to the filter to turn the wall types with a "2 HR" rating to a solid red color.
+以下範例為牆類型元素的 `Fire Rating` 參數建立一個視圖篩選。此篩選會加到範例模型中的 `L1` 樓板平面視圖。加入篩選後，在篩選中增加取代，將「2 HR」等級的牆類型變為純紅色。
 ___
 ## 範例檔案
 

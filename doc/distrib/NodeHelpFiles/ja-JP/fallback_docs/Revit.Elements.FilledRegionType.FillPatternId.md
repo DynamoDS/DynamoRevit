@@ -1,7 +1,7 @@
 ## 詳細
-`FilledRegionType.FillPatternId` returns the element id of the given filled region type.
+`FilledRegionType.FillPatternId` は、指定された塗り潰し領域タイプの要素 ID を返します。
 
-In the example below, the "Diagonal Down" filled region type is selected from the current Revit document. The fill pattern id is then returned with `FilledRegionType.FillPatternId`.
+次の例では、現在の Revit ドキュメントから「斜め下」の塗り潰し領域タイプが選択されます。次に、塗り潰しパターン ID が `FilledRegionType.FillPatternId` によって返されます。
 
 ___
 ## サンプル ファイル

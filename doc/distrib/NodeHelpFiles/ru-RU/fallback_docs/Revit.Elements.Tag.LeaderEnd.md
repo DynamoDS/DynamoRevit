@@ -1,9 +1,9 @@
 ## Подробности
-`Tag.LeaderEnd` returns a point that represents the position of the given tag's leader end.
+Узел `Tag.LeaderEnd` возвращает точку, представляющую положение конца выноски заданной марки.
 
-For more information on tag placement, visit this [article](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
+Дополнительные сведения о размещении марок см. в этой [статье](https://help.autodesk.com/view/RVT/2025/RUS/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
 
-In the example below, all keynote tags are collected from the "North Wall Window Detail" detail view. The tags' leader ends are then returned.
+В приведенном ниже примере все марки ключевых пометок собираются из вида узла «Узел окна на северной стене». Затем возвращаются концы выносок марок.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`TextNoteType.Default` provides access to the default text note type in the current Revit document. This text note type is the same as the one used when creating text in the Revit UI.
+Węzeł `TextNoteType.Default` zapewnia dostęp do domyślnego typu notatki tekstowej w bieżącym dokumencie programu Revit. Ten typ notatki tekstowej jest taki sam jak ten używany podczas tworzenia tekstu w interfejsie użytkownika programu Revit.
 
-In the example below, a new drafting view is created and a new text note is created at the origin in the current Revit document.
+W poniższym przykładzie tworzone są nowy widok kreślarski i nowa notatka tekstowa w punkcie początkowym w bieżącym dokumencie programu Revit.
 
 ___
 ## Plik przykładowy

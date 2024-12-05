@@ -1,7 +1,7 @@
 ## Im Detail
-`Room.SetName` modifies the name of the given room element.
+`Room.SetName` ändert den Namen des angegebenen Raumelements.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then modified with a prefix of "(E)" to indicate existing conditions.
+Im folgenden Beispiel werden alle Räume aus dem aktuellen Dokument aus der ausgewählten Ansicht gesammelt. Die Namen der Räume werden dann mit dem Präfix "(E)" versehen, um auf die vorhandenen Bedingungen hinzuweisen.
 ___
 ## Beispieldatei
 

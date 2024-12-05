@@ -1,7 +1,7 @@
 ## 深入資訊
-`Element.GetCategory` returns the category element for the given element. With the returned category element, it can be queried for various parameters.
+`Element.GetCategory` 會傳回給定元素的品類元素。使用傳回的品類元素，可以查詢各種參數。
 
-In the example below, all selected elements' categories are returned. The elements are then filtered down to two lists. One list of door elements and a second list of all other elements.
+以下範例傳回所有選取元素的品類。然後將這些元素篩選為兩個清單。一個是門元素的清單，另一個是其他所有元素的清單。
 ___
 ## 範例檔案
 

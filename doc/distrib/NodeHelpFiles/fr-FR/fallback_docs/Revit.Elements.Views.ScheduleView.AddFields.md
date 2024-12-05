@@ -1,7 +1,7 @@
 ## Description approfondie
-`ScheduleView.AddFields` adds the selected fields to the schedule. Schedulable fields represent available parameters of the category assigned to the schedule.
+'ScheduleView.AddFields' ajoute les champs sélectionnés à la nomenclature. Les champs pouvant être utilisés dans la nomenclature représentent les paramètres disponibles de la catégorie affectée à la nomenclature.
 
-In the example below, a new schedule called "Working Door Schedule" is created. The schedulable fields are then collected and input into a dictionary to facilitate looking the fields up by name. Finally, the fields are found by name and added to the schedule view with `ScheduleView.AddFields`.
+Dans l'exemple ci-dessous, une nouvelle nomenclature appelée "Working Door Schedule" est créée. Les champs pouvant être utilisés dans la nomenclature sont ensuite collectés et entrés dans un dictionnaire pour en faciliter la recherche par nom. Enfin, les champs sont recherchés par nom et ajoutés à la vue de nomenclature avec 'ScheduleView.AddFields'.
 ___
 ## Exemple de fichier
 

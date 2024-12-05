@@ -2,9 +2,9 @@
 `FamilyParameter.StorageType` reporta o tipo de dados que um determinado parâmetro armazena.
 
 As opções possíveis são:
-- Double
-- Integer
-- String
+- Duplo
+- Inteiro
+- Sequência de caracteres
 - ElementId
 
 No exemplo abaixo, o documento atual do Revit é convertido em um documento de família e todos os parâmetros são obtidos. `FamilyParameter.StorageType` é usado para obter o tipo de armazenamento de todos os parâmetros na família.

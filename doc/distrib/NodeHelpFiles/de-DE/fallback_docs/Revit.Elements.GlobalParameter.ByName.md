@@ -1,7 +1,7 @@
 ## Im Detail
-`GlobalParameter.ByName` creates a global parameter with the given name and spec type.
+`GlobalParameter.ByName` erstellt einen globalen Parameter mit dem angegebenen Namen und Rohrklassentyp.
 
-In the example below, a global parameter called "Building Number" is created.
+Im folgenden Beispiel wird ein globaler Parameter mit dem Namen "Gebäudenummer" erstellt.
 ___
 ## Beispieldatei
 

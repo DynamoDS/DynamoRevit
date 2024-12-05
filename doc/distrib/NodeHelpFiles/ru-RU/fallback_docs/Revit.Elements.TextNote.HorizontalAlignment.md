@@ -1,12 +1,12 @@
 ## Подробности
-`TextNote.HorizontalAlignment` returns the assigned horizontal alignment of the given text note.
+Узел `TextNote.HorizontalAlignment` возвращает назначенное выравнивание по горизонтали для заданного текстового примечания.
 
-Horizontal Alignment Options include:
-- Right
-- Left
-- Center
+Варианты выравнивания по горизонтали:
+- по правому краю;
+- по левому краю;
+- по центру.
 
-In the example below, all working notes are collected from the current Revit document. The horizontal alignment values are then returned.
+В приведенном ниже примере собираются все рабочие примечания в текущем документе Revit. Затем возвращаются значения выравнивания по горизонтали.
 
 ___
 ## Файл примера

@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FloorType.IsFoundationSlab` returns a true or false value to indicate whether the given floor type is a foundation slab.
+Uzel `FloorType.IsFoundationSlab` vrací hodnotu true nebo false, která označuje, zda je daný typ podlahy základová deska.
 
-In the example below, all floors present in the current Revit document are collected. The floors are then grouped by their type. The floor types are then checked whether or not they are foundation slabs with `FloorType.IsFoundationSlab`.
+V následujícím příkladu jsou shromážděny všechny podlahy nacházející se v aktuálním dokumentu aplikace Revit. Podlahy jsou poté seskupeny podle typu. U typů podlah se poté zkontroluje, zda se jedná o základové desky, pomocí uzlu `FloorType.IsFoundationSlab`.
 ___
 ## Vzorový soubor
 

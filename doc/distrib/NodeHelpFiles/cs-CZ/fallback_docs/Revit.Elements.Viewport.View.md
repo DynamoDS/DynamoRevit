@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Viewport.View` returns the view associated with the given viewport.
+Uzel `Viewport.View` vrací pohled asociovaný s daným výřezem.
 
-In the example below, the viewports are returned for the selected sheet. The viewports' associated views are then returned with `Viewport.View`.
+V níže uvedeném příkladu jsou vráceny výřezy pro vybraný výkres. Poté jsou vráceny asociované pohledy výřezů pomocí uzlu `Viewport.View`.
 ___
 ## Vzorový soubor
 

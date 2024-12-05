@@ -1,7 +1,7 @@
 ## Podrobnosti
-`ModelText.Text` returns the text value of the given model text element as a string.
+Uzel `ModelText.Text` vrací textovou hodnotu daného prvku modelového textu jako řetězec.
 
-In the example below, all model text is collected in the current Revit file. The text values are then returned with `ModelText.Text`.
+V níže uvedeném příkladu je shromážděn veškerý modelový text z aktuálního souboru aplikace Revit. Poté jsou vráceny textové hodnoty pomocí uzlu `ModelText.Text`.
 ___
 ## Vzorový soubor
 

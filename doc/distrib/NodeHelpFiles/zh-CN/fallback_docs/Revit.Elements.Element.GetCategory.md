@@ -1,7 +1,7 @@
 ## 详细
-`Element.GetCategory` returns the category element for the given element. With the returned category element, it can be queried for various parameters.
+“Element.GetCategory”返回给定图元的类别图元。使用返回的类别图元，可以查询各种参数。
 
-In the example below, all selected elements' categories are returned. The elements are then filtered down to two lists. One list of door elements and a second list of all other elements.
+在下面的示例中，将返回所有选定图元的类别。然后，这些图元被过滤为两个列表。一个是门图元列表，另一个是所有其他图元列表。
 ___
 ## 示例文件
 

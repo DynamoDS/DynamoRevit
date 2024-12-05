@@ -1,7 +1,7 @@
 ## 詳細
-`FloorType.Name` returns the given floor type's name.
+`FloorType.Name` は、指定された床タイプの名前を返します。
 
-In the example below, all floor types loaded in the current Revit document are collected. The names are then returned with `FloorType.Name`.
+次の例では、現在の Revit ドキュメントにロードされたすべての床タイプが収集されます。次に、床タイプの名前が `FloorType.Name` によって返されます。
 ___
 ## サンプル ファイル
 

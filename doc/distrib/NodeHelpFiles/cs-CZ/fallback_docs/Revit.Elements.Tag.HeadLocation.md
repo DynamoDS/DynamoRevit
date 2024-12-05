@@ -1,9 +1,9 @@
 ## Podrobnosti
-`Tag.HeadLocation` returns a point that represents the position of the given tag's head.
+Uzel `Tag.HeadLocation` vrací bod, který představuje pozici záhlaví daného popisku.
 
-For more information on tag placement, visit this [article](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
+Další informace o umístění popisku naleznete v tomto [článku](https://help.autodesk.com/view/RVT/2025/CSY/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
 
-In the example below, all door tags are collected from the L1 floor plan view. The tags' head locations are then returned.
+V níže uvedeném příkladu jsou shromážděny všechny popisky dveří z půdorysného pohledu podlaží L1. Poté jsou vrácena umístění záhlaví popisků.
 ___
 ## Vzorový soubor
 

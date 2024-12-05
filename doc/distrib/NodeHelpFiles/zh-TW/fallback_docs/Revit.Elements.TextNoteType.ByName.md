@@ -1,7 +1,7 @@
 ## 深入資訊
-`TextNoteType.ByName` selects the text note type that matches the given name, if available. If the text note type does not exist, a null value is returned.
+`TextNoteType.ByName` 會選取符合給定名稱的文字註釋類型 (如果有)。如果文字註釋類型不存在，則傳回空值。
 
-In the example below, the text note type, "Working Notes" is selected from the current Revit document.
+以下範例選取目前 Revit 文件中的文字註釋類型「Working Notes」。
 
 ___
 ## 範例檔案

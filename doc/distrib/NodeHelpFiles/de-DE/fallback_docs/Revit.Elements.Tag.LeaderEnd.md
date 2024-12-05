@@ -1,9 +1,9 @@
 ## Im Detail
-`Tag.LeaderEnd` returns a point that represents the position of the given tag's leader end.
+`Tag.LeaderEnd` gibt einen Punkt zurück, der die Position des Führungslinienendes der angegebenen Beschriftung darstellt.
 
-For more information on tag placement, visit this [article](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
+Weitere Informationen zur Platzierung von Beschriftungen finden Sie in diesem [Artikel](https://help.autodesk.com/view/RVT/2025/DEU/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
 
-In the example below, all keynote tags are collected from the "North Wall Window Detail" detail view. The tags' leader ends are then returned.
+Im folgenden Beispiel werden alle Bauelementbeschriftungen aus der Detailansicht "Nordwand Fensterdetail" gesammelt. Dann werden die Führungslinienenden der Beschriftungen zurückgegeben.
 ___
 ## Beispieldatei
 

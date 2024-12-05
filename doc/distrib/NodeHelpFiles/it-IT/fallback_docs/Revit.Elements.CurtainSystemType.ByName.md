@@ -1,7 +1,7 @@
 ## In profondità
-`CurtainSystemType.ByName` selects a curtain system type from the current Revit document of the given name.
+`CurtainSystemType.ByName` seleziona un tipo di sistema di facciata continua dal documento di Revit corrente con il nome specificato.
 
-In the example below, the curtain system type `5' x 10'` is returned.
+Nell'esempio seguente, viene restituito il tipo di sistema di facciata continua `5' x 10'`.
 ___
 ## File di esempio
 

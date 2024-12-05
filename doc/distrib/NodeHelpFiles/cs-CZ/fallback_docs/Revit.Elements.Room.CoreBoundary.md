@@ -1,9 +1,9 @@
 ## Podrobnosti
-`Room.CoreBoundary` returns a nested list representing the given room's core boundary. In the returned list, the first sublist represents the outermost curves, while subsequent lists represent loops within the room. The Core boundaries are located at the interior or exterior layer of the core that is closest to the room. For more information on wall location lines, see this help [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89).
+Uzel `Room.CoreBoundary` vrací vnořený seznam představující hranici nosné části dané místnosti. Ve vráceném seznamu představuje první dílčí seznam vnější křivky, zatímco další dílčí seznamy představují smyčky uvnitř místnosti. Hranice nosné části jsou umístěny na vnitřní nebo vnější hladině vzhledem k nosné části, která je k místnosti nejblíže. Další informace o čarách umístění stěn naleznete v tomto [článku](https://help.autodesk.com/view/RVT/2024/CSY/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89) nápovědy.
 
-If an unbounded or unplaced room is given, a null value is returned.
+Pokud je zadána neohraničená nebo neumístěná místnost, je vrácena hodnota null.
 
-In the example below, all rooms are collected from the current document and selected view. The core boundaries are then returned.
+V níže uvedeném příkladu jsou shromážděny všechny místnosti z aktuálního dokumentu a vybraného pohledu. Poté jsou vráceny hranice nosné části.
 ___
 ## Vzorový soubor
 

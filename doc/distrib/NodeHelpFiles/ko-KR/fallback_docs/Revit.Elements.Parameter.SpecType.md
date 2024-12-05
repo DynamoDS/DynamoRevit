@@ -1,15 +1,15 @@
 ## 상세
-`Parameter.SpecType` returns the given parameter's SpecType. SpecType describes the type of data that a given parameter stores.
+`Parameter.SpecType`은 지정된 매개변수의 SpecType을 반환합니다. SpecType은 지정된 매개변수가 저장하는 데이터 유형을 설명합니다.
 
-These data types include:
-- Boolean
-- Int
-- Reference
+이러한 데이터 유형은 다음과 같습니다.
+- 부울
+- 정수
+- 참조
 - 문자열
 
-If no SpecType is found, a null value is returned.
+SpecType을 찾을 수 없으면 null 값이 반환됩니다.
 
-In the example below, all parameters are returned for the current document's project information. The SpecTypes are returned as well.
+아래 예에서는 현재 문서의 프로젝트 정보에서 모든 매개변수가 반환됩니다. SpecType도 반환됩니다.
 
 ___
 ## 예제 파일

@@ -1,9 +1,9 @@
 ## Подробности
-`Room.CoreCenterBoundary` returns a nested list representing the given room's core center boundary. In the returned list, the first sublist represents the outermost curves, while subsequent lists represent loops within the room. Core center boundaries are located at the center of the walls that are defined as core. For more information on wall location lines, see this help [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89).
+Узел `Room.CoreCenterBoundary` возвращает вложенный список, представляющий границу осевой линии сердцевины заданного помещения. В возвращенном списке первый вспомогательный список представляет внешние кривые, а последующие списки — контуры внутри помещения. Границы осевой линии сердцевины расположены по центру стен, которые определены в качестве сердцевины. Дополнительные сведения о линиях расположения стен см. в этой [статье](https://help.autodesk.com/view/RVT/2024/RUS/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89) справки.
 
-If an unbounded or unplaced room is given, a null value is returned.
+Если указано неограниченное или неразмещенное помещение, возвращается значение null.
 
-In the example below, all rooms are collected from the current document and selected view. The core center boundaries are then returned.
+В приведенном ниже примере собираются все помещения в текущем документе и на выбранном виде. Затем возвращаются границы осевой линии сердцевины.
 ___
 ## Файл примера
 

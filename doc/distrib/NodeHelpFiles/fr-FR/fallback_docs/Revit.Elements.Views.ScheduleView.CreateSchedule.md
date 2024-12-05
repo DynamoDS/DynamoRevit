@@ -1,7 +1,7 @@
 ## Description approfondie
-`ScheduleView.CreateSchedule` creates a new schedule with the given parameters. If the schedule name already exists, an error will be returned.
+'ScheduleView.CreateSchedule' crée une nomenclature avec les paramètres donnés. Si le nom de la nomenclature existe déjà, une erreur est renvoyée.
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+Dans l'exemple ci-dessous, une nomenclature appelée "Working Door Schedule" est créée dans le document Revit actif.
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Viewport.LabelOutline` returns a Dynamo bounding box that represents the outline of the viewport's label.
+Uzel `Viewport.LabelOutline` vrací ohraničující kvádr aplikace Dynamo, který představuje obrys popisku výřezu.
 
-In the example below, the viewports are returned for the selected sheet. The outlines of the label are then returned with `Viewport.LabelOutline`.
+V níže uvedeném příkladu jsou vráceny výřezy pro vybraný výkres. Poté jsou vráceny obrysy popisku pomocí uzlu `Viewport.LabelOutline`.
 ___
 ## Vzorový soubor
 

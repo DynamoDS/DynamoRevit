@@ -1,15 +1,15 @@
 ## Description approfondie
-`Parameter.SpecType` returns the given parameter's SpecType. SpecType describes the type of data that a given parameter stores.
+'Parameter.SpecType' renvoie l'élément SpecType du paramètre donné. Cet élément décrit le type de données stockées par un paramètre donné.
 
-These data types include:
-- Boolean
-- Int
-- Reference
+Types de données:
+- Booléen
+- Entier
+- Référence
 - Chaîne
 
-If no SpecType is found, a null value is returned.
+Si aucun élément SpecType n'est trouvé, une valeur nulle est renvoyée.
 
-In the example below, all parameters are returned for the current document's project information. The SpecTypes are returned as well.
+Dans l'exemple ci-dessous, tous les paramètres sont renvoyés pour les informations de projet du document actif. Les éléments SpecType sont également renvoyés.
 
 ___
 ## Exemple de fichier

@@ -1,15 +1,15 @@
 ## Подробности
-`Parameter.SpecType` returns the given parameter's SpecType. SpecType describes the type of data that a given parameter stores.
+Узел `Parameter.SpecType` возвращает SpecType заданного параметра. SpecType описывает тип данных, хранящихся в данном параметре.
 
-These data types include:
-- Boolean
-- Int
-- Reference
-- строка;
+К таким типам данных относятся:
+- логический оператор;
+- целое число;
+- ссылка;
+- строка.
 
-If no SpecType is found, a null value is returned.
+Если элемент SpecType не найден, возвращается значение null.
 
-In the example below, all parameters are returned for the current document's project information. The SpecTypes are returned as well.
+В приведенном ниже примере возвращаются все параметры для информации о проекте текущего документа. Кроме того, возвращаются элементы SpecType.
 
 ___
 ## Файл примера

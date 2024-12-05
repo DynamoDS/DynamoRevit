@@ -1,7 +1,7 @@
 ## 详细
-`FamilyInstance.GetFamily` returns the parent family of the given family instance.
+“FamilyInstance.GetFamily”返回给定族实例的父族。
 
-In the example below, the family for all doors in the current view of the current document are returned.
+在下面的示例中，将返回当前文档的当前视图中所有门的族。
 ___
 ## 示例文件
 

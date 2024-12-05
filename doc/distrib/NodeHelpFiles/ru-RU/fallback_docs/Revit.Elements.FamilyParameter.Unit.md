@@ -1,7 +1,7 @@
 ## Подробности
-`FamilyParameter.Unit` returns the unit type of the given parameter.
+Узел `FamilyParameter.Unit` возвращает тип единиц измерения для данного параметра.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the unit type. If no unit type is found, a null value is returned.
+В приведенном ниже примере открыт текущий документ Revit (семейство дверей из примера модели). Возвращаются параметры в семействе вместе с типом единицы измерения. Если тип единиц измерения не найден, возвращается значение null.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## Description approfondie
-`FamilyDocument.GetFormula` permet d'obtenir la formule assignée au paramètre d'entrée, identifiée par son nom, le cas échéant.
+« FamilyDocument.GetFormula » permet d'obtenir la formule assignée au paramètre d'entrée, identifiée par son nom, le cas échéant.
 
-Dans l'exemple ci-dessous, le fichier actuel est converti en document de famille et la formule affectée à un paramètre nommé "Rayon" est extraite.
+Dans l'exemple ci-dessous, le fichier actuel est converti en document de famille et la formule affectée à un paramètre nommé "Rayon" est récupérée.
 ___
 ## Exemple de fichier
 

@@ -1,7 +1,7 @@
 ## 詳細
-`Material.Smoothness` returns an integer that indicates how smooth a material is.
+`Material.Smoothness` は、マテリアルの滑らかさを示す整数を返します。
 
-In the example below, all materials are collected from the current document. The materials' smoothness values (as integers) are returned with `Material.Smoothness`.
+次の例では、すべてのマテリアルが現在のドキュメントから収集されます。マテリアルの滑らかさの値(整数)は `Material.Smoothness` によって返されます。
 ___
 ## サンプル ファイル
 

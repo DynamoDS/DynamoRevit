@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`TextNote.ByLocation` creates a new text note at the given location of the given type with the input string.
+Węzeł `TextNote.ByLocation` tworzy nową notatkę tekstową w podanym położeniu danego typu na podstawie ciągu wejściowego (string).
 
-In the example below, a new drafting view is created and a new text note is created at the origin in the current Revit document.
+W poniższym przykładzie tworzone są nowy widok kreślarski i nowa notatka tekstowa w punkcie początkowym w bieżącym dokumencie programu Revit.
 
 ___
 ## Plik przykładowy

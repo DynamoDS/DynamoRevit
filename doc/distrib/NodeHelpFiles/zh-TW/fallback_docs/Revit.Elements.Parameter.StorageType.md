@@ -1,14 +1,14 @@
 ## 深入資訊
-`Parameter.StorageType` helps determine what type of data a parameter stores.
+`Parameter.StorageType` 有助於決定參數儲存的資料類型。
 
-Data types include:
+資料類型包括:
 - None
 - Integer
 - Double
 - String
 - ElementId
 
-In the example below, all of the parameters from the current document's project information are returned. The parameter's storage type is then returned.
+以下範例傳回目前文件之專案資訊中的所有參數，然後傳回參數的儲存類型。
 
 ___
 ## 範例檔案

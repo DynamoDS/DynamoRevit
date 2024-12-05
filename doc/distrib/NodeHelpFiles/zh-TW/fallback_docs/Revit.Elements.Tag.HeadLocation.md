@@ -1,9 +1,9 @@
 ## 深入資訊
-`Tag.HeadLocation` returns a point that represents the position of the given tag's head.
+`Tag.HeadLocation` 會傳回表示給定標籤頭部位置的點。
 
-For more information on tag placement, visit this [article](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
+如需有關標籤放置的更多資訊，請瀏覽此 [文章](https://help.autodesk.com/view/RVT/2025/CHT/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0)。
 
-In the example below, all door tags are collected from the L1 floor plan view. The tags' head locations are then returned.
+以下範例收集 L1 樓板平面視圖中的所有門標籤，然後傳回標籤的頭部位置。
 ___
 ## 範例檔案
 

@@ -1,7 +1,7 @@
 ## 詳細
-Given a view or view template, `View.GetCategoryOverrides` returns the graphic overrides for the provided view or view template. Note, if a view has a view template assigned, the view template must be used.
+ビューまたはビュー テンプレートを指定すると、`View.GetCategoryOverrides` は、指定されたビューまたはビュー テンプレートのグラフィックスの優先設定を返します。ビューにビュー テンプレートが割り当てられている場合は、そのビュー テンプレートを使用する必要があります。
 
-In the example below, the active view's view template from the current document is retrieved. The overrides for the wall category are then returned.
+次の例では、アクティブなビューのビュー テンプレートが現在のドキュメントから取得されます。次に、壁カテゴリの優先設定が返されます。
 ___
 ## サンプル ファイル
 

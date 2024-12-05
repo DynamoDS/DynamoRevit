@@ -1,7 +1,7 @@
 ## 詳細
-`GlobalParameter.SetValue` sets the given global parameter to the given value.
+`GlobalParameter.SetValue` は、指定されたグローバル パラメータを指定された値に設定します。
 
-In the example below, a global parameter called "Building Number" is created. The value is then set to "Building 01" with `GlobalParameter.SetValue`
+次の例では、「Building Number」というグローバル パラメータが作成されます。次に、その値が `GlobalParameter.SetValue` によって「Building 01」に設定されます。
 ___
 ## サンプル ファイル
 

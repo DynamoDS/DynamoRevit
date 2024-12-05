@@ -1,7 +1,7 @@
 ## 深入資訊
-`GlobalParameter.ByName` creates a global parameter with the given name and spec type.
+`GlobalParameter.ByName` 會建立具有給定名稱和規格類型的整體參數。
 
-In the example below, a global parameter called "Building Number" is created.
+以下範例建立名為「Building Number」的整體參數。
 ___
 ## 範例檔案
 

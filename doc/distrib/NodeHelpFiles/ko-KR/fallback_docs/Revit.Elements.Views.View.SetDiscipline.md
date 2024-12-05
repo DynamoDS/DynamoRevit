@@ -1,15 +1,15 @@
 ## 상세
-`View.SetDiscipline` modifies the discipline of the given view.
+`View.SetDiscipline`은 지정된 뷰의 분야를 수정합니다.
 
-View discipline options include:
-- Architectural
-- Coordination
-- Electrical
-- Mechanical
-- Plumbing
-- Structural
+뷰 분야 옵션에는 다음이 포함됩니다.
+- 건축
+- 조정
+- 전기
+- 기계
+- 배관
+- 구조
 
-In the example below, the default 3d view's discipline is set to coordination.
+아래 예에서는 기본 3D 뷰의 분야가 조정으로 설정됩니다.
 ___
 ## 예제 파일
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FamilyType.ByFamilyAndName` returns the family type definition from the current document (if available). If the family type is not available in the current document, a null value is returned.
+Uzel `FamilyType.ByFamilyAndName` vrací definici typu rodiny z aktuálního dokumentu (pokud je k dispozici). Pokud typ rodiny není v aktuálním dokumentu dostupný, bude vrácena hodnota null.
 
-In the example below, a door family type, "36" x 84", from family "Door-Passage-Single-Flush" is returned.
+V níže uvedeném příkladu je vrácen typ rodiny dveří „36" x 84“ z rodiny „Dveře, průchod, jednokřídlé, hladké“.
 ___
 ## Vzorový soubor
 

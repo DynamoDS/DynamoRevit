@@ -1,7 +1,7 @@
 ## 詳細
-`DraftingView.ByName` creates a drafting view with the given name. The type of drafting view used is the last one used within Revit.
+`DraftingView.ByName` は、指定された名前で製図ビューを作成します。使用される製図ビューのタイプは、Revit 内で最後に使用されたタイプです。
 
-In the example below, a drafting view called "Door/Jamb Detail" is created.
+次の例では、「ドア/側枠の詳細」という製図ビューが作成されます。
 ___
 ## サンプル ファイル
 

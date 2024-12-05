@@ -1,7 +1,7 @@
 ## 詳細
-`GlobalParameter.SpecType` returns the spec type for the given parameter. Information regarding spec types can be found in the documentation located, [here](https://help.autodesk.com/view/RVT/2025/ENU/?guid=Revit_API_Revit_API_Developers_Guide_Introduction_Application_and_Document_Units_html).
+`GlobalParameter.SpecType` は、指定されたパラメータの仕様タイプを返します。仕様タイプに関する情報は、こちら(https://help.autodesk.com/view/RVT/2025/JPN/?guid=Revit_API_Revit_API_Developers_Guide_Introduction_Application_and_Document_Units_html)のドキュメントに記載されています。
 
-In the example below, all global parameters are returned from the current Revit document. The spec types are then returned with `GlobalParameter.SpecType`.
+次の例では、すべてのグローバル パラメータが現在の Revit ドキュメントから返されます。次に、仕様タイプが `GlobalParameter.SpecType` によって返されます。
 ___
 ## サンプル ファイル
 

@@ -1,9 +1,9 @@
 ## Podrobnosti
-`Pick Family Instances` allows for the selection of multiple family instances from the current Revit document. `Pick Family Instances` offers a pick based selection unlike `Select Family Instances` that offers a crossing window selection.
+Uzel `Pick Family Instances` umožňuje výběr více instancí rodin z aktuálního dokumentu aplikace Revit. Uzel `Pick Family Instances` nabízí výběr jednotlivých objektů na rozdíl od uzlu `Select Family Instances`, který nabízí výběr oknem křížení.
 
-`Pick Family Instances` requires the user to press finish on the Revit contextual ribbon.
+Uzel `Pick Family Instances` rodiny vyžaduje, aby uživatel na kontextovém pásu karet aplikace Revit stiskl tlačítko Dokončit.
 
-In the example below, door and window family instances are selected from the current Revit document.
+V níže uvedeném příkladu jsou z aktuálního dokumentu aplikace Revit vybrány instance rodin dveří a oken.
 
 ___
 ## Vzorový soubor

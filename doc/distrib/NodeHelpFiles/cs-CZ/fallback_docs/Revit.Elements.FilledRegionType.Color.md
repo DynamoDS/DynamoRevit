@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FilledRegionType.Color` returns the color assigned to the given filled region type.
+Uzel `FilledRegionType.Color` vrací barvu přiřazenou danému typu vyplněné oblasti.
 
-In the example below, the "Diagonal Down" filled region type is selected from the current Revit document. The color is then reported with `FilledRegionType.Color`.
+V níže uvedeném příkladu je z aktuálního dokumentu aplikace Revit vybrán typ vyplněné oblasti „Diagonálně dolů“. Barva je poté uvedena jako `FilledRegionType.Color`.
 
 ___
 ## Vzorový soubor

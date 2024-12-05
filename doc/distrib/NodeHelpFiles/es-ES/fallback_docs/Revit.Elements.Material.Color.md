@@ -1,7 +1,7 @@
 ## En detalle:
-`Material.Color` returns a Dynamo color that represents the material's shading color. If the material's shading color is set to "use render appearance", that value is returned.
+`Material.Color` devuelve un color de Dynamo que representa el color de sombreado del material. Si este se ha establecido en "Usar aspecto renderizado", se devolverá ese valor.
 
-In the example below, all materials are collected from the current document. The materials' shading color values are returned with `Material.Color`.
+En el ejemplo siguiente, se recopilan todos los materiales del documento actual. Los valores de color de sombreado de los materiales se devuelven con `Material.Color`.
 
 ___
 ## Archivo de ejemplo

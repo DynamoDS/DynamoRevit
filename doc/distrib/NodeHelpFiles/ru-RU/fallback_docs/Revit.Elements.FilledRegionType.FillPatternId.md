@@ -1,7 +1,7 @@
 ## Подробности
-`FilledRegionType.FillPatternId` returns the element id of the given filled region type.
+Узел `FilledRegionType.FillPatternId` возвращает идентификатор элемента заданного типа цветовой области.
 
-In the example below, the "Diagonal Down" filled region type is selected from the current Revit document. The fill pattern id is then returned with `FilledRegionType.FillPatternId`.
+В приведенном ниже примере из текущего документа Revit выбирается тип цветовой области «Диагональ вниз». Затем возвращается идентификатор образца заливки с помощью `FilledRegionType.FillPatternId`.
 
 ___
 ## Файл примера

@@ -1,7 +1,7 @@
 ## 詳細
-`Room.SetNumber` modifies the number of the given room element.
+`Room.SetNumber` は、指定された部屋要素の番号を変更します。
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' numbers are then modified with a suffix of "e" to indicate existing conditions. This type of workflow is useful when working through room renumbering in Revit.
+次の例では、すべての部屋が選択されたビューの現在のドキュメントから収集されます。次に、部屋番号が接尾表記「e」付きで変更され、既存の条件であることを示します。このタイプのワークフローは、Revit で部屋の番号を再設定する場合に便利です。
 ___
 ## サンプル ファイル
 

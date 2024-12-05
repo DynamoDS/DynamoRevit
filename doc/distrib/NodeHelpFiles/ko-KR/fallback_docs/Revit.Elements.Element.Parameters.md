@@ -1,7 +1,7 @@
 ## 상세
-`Element.Parameters` collects all parameters, along with values from the given element. If an element instance is provided, instance parameters are returned. If an element type is provided, type parameters are returned.
+`Element.Parameters`는 지정된 요소의 값과 함께 모든 매개변수를 수집합니다. 요소 인스턴스가 제공되면 인스턴스 매개변수가 반환됩니다. 요소 유형이 제공되면 유형 매개변수가 반환됩니다.
 
-In the example below, all doors are collected from the current Revit document. For the example, the first door found is used. The door's instance parameters and type parameters are returned.
+아래 예에서는 모든 문이 현재 Revit 문서에서 수집됩니다. 예를 들면, 발견된 첫 번째 문이 사용됩니다. 문의 인스턴스 매개변수 및 유형 매개변수가 반환됩니다.
 ___
 ## 예제 파일
 

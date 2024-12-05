@@ -1,7 +1,7 @@
 ## 詳細
-`ModelText.Text` returns the text value of the given model text element as a string.
+`ModelText.Text` は、指定された立体文字要素の文字列の値を文字列として返します。
 
-In the example below, all model text is collected in the current Revit file. The text values are then returned with `ModelText.Text`.
+次の例では、現在の Revit ファイル内のすべての立体文字が収集されます。次に、文字列の値が `ModelText.Text` によって返されます。
 ___
 ## サンプル ファイル
 

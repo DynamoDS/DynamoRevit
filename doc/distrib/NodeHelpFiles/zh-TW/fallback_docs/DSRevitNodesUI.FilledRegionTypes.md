@@ -1,7 +1,7 @@
 ## 深入資訊
-`Select Filled Region Type` allows for the selection of a filled region type from all types available in the active Revit document.
+`Select Filled Region Type` 可讓您從作用中 Revit 文件中可用的所有類型，選取填滿區域類型。
 
-In the example below, a new drafting view is created in the active Revit document. A filled region is created in the view using "Diagonal Down" type.
+以下範例在作用中 Revit 文件中建立一個新的製圖視圖。使用「向下的對角線」類型在視圖中建立填滿區域。
 
 ___
 ## 範例檔案

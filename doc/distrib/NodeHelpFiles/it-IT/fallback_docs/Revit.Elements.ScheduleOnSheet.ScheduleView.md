@@ -1,7 +1,7 @@
 ## In profondità
-The `ScheduleOnSheet.ScheduleView` node in Dynamo for Revit is used to retrieve the original schedule view that was used to create the specific schedule instance on a sheet.
+Il nodo `ScheduleOnSheet.ScheduleView` in Dynamo for Revit viene utilizzato per recuperare la vista abaco originale utilizzata per creare l'istanza dell'abaco specifica su una tavola.
 
-In the example below, the schedule instances are returned for the selected sheet.
+Nell'esempio seguente, vengono restituite le istanze di abaco per la tavola selezionata.
 
 ___
 ## File di esempio

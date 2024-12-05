@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Viewport.LabelLineLength` gets the length of the viewport line, in paper space units.
+Uzel `Viewport.LabelLineLength` získá délku čáry výřezu v jednotkách výkresového prostoru.
 
-In the example below, all of the viewports from the selected sheet are collected and the lengths of the viewport label lines are retrieved.
+V následujícím příkladu jsou shromážděny všechny výřezy z vybraného výkresu a jsou načteny délky čar popisků výřezu.
 ___
 ## Vzorový soubor
 

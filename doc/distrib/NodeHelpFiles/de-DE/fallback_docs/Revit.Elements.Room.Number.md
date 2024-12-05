@@ -1,7 +1,7 @@
 ## Im Detail
-`Room.Number` returns the number for the given room element as a string.
+`Room.Number` gibt die Nummer des angegebenen Raumelements zurück.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' numbers are then returned.
+Im folgenden Beispiel werden alle Räume aus dem aktuellen Dokument aus der ausgewählten Ansicht gesammelt. Dann werden die Raumnummern zurückgegeben.
 ___
 ## Beispieldatei
 

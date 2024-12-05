@@ -1,7 +1,7 @@
 ## Im Detail
-`Element.Solids` returns the solid geometry for the given element. The solids are returned as nested lists, as any given element can have more than one solid within it. If a single solid that represents the element is desired, `Solid.ByUnion` may be used on the lists.
+`Element.Solids` gibt die Volumengeometrie für das angegebene Element zurück. Die Volumenkörper werden als verschachtelte Listen zurückgegeben, da ein angegebenes Element mehrere Volumenkörper enthalten kann. Wenn ein einzelner Volumenkörper, der das Element darstellt, gewünscht wird, kann `Solid.ByUnion` für die Listen verwendet werden.
 
-In the example below, all walls are collected from the selected view. Walls that were created as in-place families are then removed, and the remaining walls' solids are returned.
+Im folgenden Beispiel werden alle Wände aus der ausgewählten Ansicht gesammelt. Wände, die als Projektfamilien erstellt wurden, werden dann entfernt, und die Volumenkörper der übrigen Wände werden zurückgegeben.
 
 ___
 ## Beispieldatei

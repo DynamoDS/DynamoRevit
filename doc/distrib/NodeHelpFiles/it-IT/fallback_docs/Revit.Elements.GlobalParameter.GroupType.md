@@ -1,7 +1,7 @@
 ## In profondità
-`GlobalParameter.GroupType` returns the group type for the given parameter. Information regarding group types can be found in the documentation located, [here](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-94EA2B8E-2C00-4D29-8D5A-C7C6664DE9CE).
+`GlobalParameter.GroupType` restituisce il tipo di gruppo per il parametro specificato. Le informazioni relative ai tipi di gruppi sono disponibili nella documentazione che si trova [qui](https://help.autodesk.com/view/RVT/2025/ITA/?guid=GUID-94EA2B8E-2C00-4D29-8D5A-C7C6664DE9CE).
 
-In the example below, all global parameters are returned from the current Revit document. The group types are then returned with `GlobalParameter.GroupType`.
+Nell'esempio seguente, vengono restituiti tutti i parametri globali dal documento di Revit corrente. Vengono quindi restituiti i tipi di gruppo con `GlobalParameter.GroupType`.
 ___
 ## File di esempio
 

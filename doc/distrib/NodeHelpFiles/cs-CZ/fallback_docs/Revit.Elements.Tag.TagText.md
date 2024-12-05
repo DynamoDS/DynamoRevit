@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Tag.TagText` retrieves the given tag's text value, if available.
+Uzel `Tag.TagText` načte textovou hodnotu daného popisku, pokud je k dispozici.
 
-In the example below, all door tags are collected from the current Revit document. The door tags' text values are then returned.
+V níže uvedeném příkladu jsou shromážděny všechny popisky dveří z aktuálního dokumentu aplikace Revit. Poté jsou vráceny textové hodnoty popisků dveří.
 ___
 ## Vzorový soubor
 

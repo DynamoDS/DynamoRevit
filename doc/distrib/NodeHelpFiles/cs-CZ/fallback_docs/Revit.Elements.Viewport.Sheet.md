@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Viewport.Sheet` returns the sheet element that the viewport is placed on.
+Uzel `Viewport.Sheet` vrací prvek výkresu, na kterém je výřez umístěn.
 
-In the example below, all viewports are collected from the current Revit document. The sheet for each viewport is then returned with `Viewport.Sheet`. Additionally, the viewports are grouped by sheet with `List.GroupByKey`.
+V následujícím příkladu jsou shromážděny všechny výřezy z aktuálního dokumentu aplikace Revit. Poté je vrácen výkres pro každý výřez pomocí uzlu `Viewport.Sheet`. Kromě toho jsou výřezy seskupeny podle výkresu pomocí uzlu `List.GroupByKey`.
 ___
 ## Vzorový soubor
 

@@ -1,7 +1,7 @@
 ## 상세
-`Viewport.SetLabelLineLength` sets the length of the viewport line, in paper space units.
+`Viewport.SetLabelLineLength`는 뷰포트 선의 길이를 도면 공간 단위로 설정합니다.
 
-In the example below, all of the viewports from the selected sheet are collected. The viewports' bounding boxes are then used to calculate the width that the viewport line should be. Finally, the viewport lines are set to the width of the viewport.
+아래 예에서는 선택된 시트의 모든 뷰포트가 수집됩니다. 그런 다음 뷰포트의 경계 상자가 뷰포트 선의 폭을 계산하는 데 사용됩니다. 마지막으로 뷰포트 선이 뷰포트의 폭으로 설정됩니다.
 ___
 ## 예제 파일
 

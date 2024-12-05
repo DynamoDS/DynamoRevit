@@ -1,7 +1,7 @@
 ## En detalle:
-`Viewport.LabelOffset` returns a point that represents the left endpoint of the viewport label.
+`Viewport.LabelOffset` devuelve un punto que representa el punto final izquierdo de la etiqueta de la ventana gráfica.
 
-In the example below, the viewports are returned for the selected sheet. The label offsets of the viewports are then returned with `Viewport.LabelOffset`.
+En el ejemplo siguiente, se devuelven las ventanas gráficas del plano seleccionado. Los desfases de etiquetas de las ventanas gráficas se devuelven con `Viewport.LabelOffset`.
 ___
 ## Archivo de ejemplo
 

@@ -1,7 +1,7 @@
 ## Description approfondie
-`Tag.TagText` retrieves the given tag's text value, if available.
+'Tag.TagText' permet de récupérer la valeur de texte de l'étiquette donnée, si elle est disponible.
 
-In the example below, all door tags are collected from the current Revit document. The door tags' text values are then returned.
+Dans l'exemple ci-dessous, toutes les étiquettes de porte sont collectées à partir du document Revit actif. Les valeurs de texte des étiquettes de porte sont ensuite renvoyées.
 ___
 ## Exemple de fichier
 

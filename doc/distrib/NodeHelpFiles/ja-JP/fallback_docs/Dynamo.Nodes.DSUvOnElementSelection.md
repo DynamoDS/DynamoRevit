@@ -1,7 +1,7 @@
 ## 詳細
-`Select UV on Face` returns a UV location for the given selection.
+`Select UV on Face` は、指定された選択の UV 位置を返します。
 
-In the example below, a UV location is returned for a point selected on a wall in the current Revit document.
+次の例では、現在の Revit ドキュメントの壁で選択された点の UV 位置が返されています。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## 深入資訊
-`Tag.TaggedElement` returns the source element of the given tag.
+`Tag.TaggedElement` 會傳回給定標籤的來源元素。
 
-In the example below, all door tags are collected from the current Revit document. The door tags' source door (family instance) are returned.
+以下範例收集目前 Revit 文件中的所有門標籤，傳回門標籤的來源門 (族群實體)。
 ___
 ## 範例檔案
 

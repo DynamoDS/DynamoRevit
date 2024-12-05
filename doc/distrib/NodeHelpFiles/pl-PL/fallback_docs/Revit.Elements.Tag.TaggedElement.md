@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Tag.TaggedElement` returns the source element of the given tag.
+Węzeł `Tag.TaggedElement` zwraca element źródłowy danego oznaczenia.
 
-In the example below, all door tags are collected from the current Revit document. The door tags' source door (family instance) are returned.
+W poniższym przykładzie z bieżącego dokumentu programu Revit pobierane są wszystkie oznaczenia drzwi. Zwracane są drzwi źródłowe oznaczeń drzwi (wystąpienie rodziny).
 ___
 ## Plik przykładowy
 

@@ -1,13 +1,13 @@
 ## En detalle:
-`Detail Level` allows for the selection of a view detail level for use in graphic settings.
+`Detail Level` permite seleccionar un nivel de detalle de la vista para utilizarlo en la configuración de gráficos.
 
-Detail levels available include:
-- Coarse
-- Fine
-- Medium
-- Undefined
+Entre los niveles de detalle disponibles, se incluyen los siguientes:
+- Bajo
+- Alto
+- Medio
+- Sin definir
 
-In the example below, graphic settings are created with a coarse detail level setting for use on view elements.
+En el ejemplo siguiente, la configuración de gráficos se crea con un ajuste de nivel de detalle bajo para su uso en elementos de la vista.
 ___
 ## Archivo de ejemplo
 

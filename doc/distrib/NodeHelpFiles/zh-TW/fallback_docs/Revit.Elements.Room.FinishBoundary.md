@@ -1,9 +1,9 @@
 ## 深入資訊
-`Room.FinishBoundary` returns a nested list representing the given room's finish boundary. In the returned list, the first sublist represents the outermost curves, while subsequent lists represent loops within the room. The room boundary returned by this node is located at the finish face inside the Revit room. For more information on wall location lines, see this help [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89).
+`Room.FinishBoundary` 會傳回表示給定房間塗層邊界的巢狀清單。在傳回的清單中，第一個子清單表示最外側的曲線，後續的清單表示房間內的迴圈。此節點傳回的房間邊界位於 Revit 房間內的塗層面。如需牆定位線的更多資訊，請參閱此說明 [文章](https://help.autodesk.com/view/RVT/2024/CHT/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89)。
 
-If an unbounded or unplaced room is given, a null value is returned.
+如果給定未設邊界或未放置的房間，則傳回空值。
 
-In the example below, all rooms are collected from the current document and selected view. The finish boundaries are then returned.
+以下範例收集目前文件和所選視圖中的所有房間，然後傳回塗層邊界。
 ___
 ## 範例檔案
 

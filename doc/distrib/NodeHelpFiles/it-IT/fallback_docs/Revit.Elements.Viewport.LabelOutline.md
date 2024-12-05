@@ -1,7 +1,7 @@
 ## In profondità
-`Viewport.LabelOutline` returns a Dynamo bounding box that represents the outline of the viewport's label.
+`Viewport.LabelOutline` restituisce un riquadro di delimitazione di Dynamo che rappresenta il contorno dell'etichetta della finestra.
 
-In the example below, the viewports are returned for the selected sheet. The outlines of the label are then returned with `Viewport.LabelOutline`.
+Nell'esempio seguente, vengono restituite le finestre per la tavola selezionata. Vengono quindi restituiti i contorni dell'etichetta con `Viewport.LabelOutline`.
 ___
 ## File di esempio
 

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`ModelText.Position` returns the position of the given model text element as a Dynamo point.
+Węzeł `ModelText.Position` zwraca położenie danego elementu tekstu modelu w postaci punktu dodatku Dynamo.
 
-In the example below, all model text is collected in the current Revit file. The locations are then returned with `ModelText.Position`.
+W poniższym przykładzie pobierany jest cały tekst modelu w bieżącym pliku programu Revit. Następnie za pomocą węzła `ModelText.Position` zwracane są lokalizacje.
 ___
 ## Plik przykładowy
 

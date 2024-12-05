@@ -1,14 +1,14 @@
 ## Description approfondie
-`Schedule Type` allows for the selection of the available schedule types.
+L'option « Type de nomenclature » permet de sélectionner les types de nomenclatures disponibles.
 
-Available schedule types include:
-- RegularSchedule
-- Key Schedule
-- Material Takeoffs
+Types de nomenclatures disponibles :
+- Nomenclature standard
+- Nomenclature clé
+- Relevés de matériaux
 
-For more information regarding schedules in Revit, refer to this [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
+Pour plus d'informations sur les nomenclatures dans Revit, reportez-vous à cet [article](https://help.autodesk.com/view/RVT/2024/FRA/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+Dans l'exemple ci-dessous, une nouvelle nomenclature appelée « Working Door Schedule » est créée dans le document Revit actif.
 ___
 ## Exemple de fichier
 

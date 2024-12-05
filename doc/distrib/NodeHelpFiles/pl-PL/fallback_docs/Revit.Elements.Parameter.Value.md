@@ -1,9 +1,9 @@
 ## Informacje szczegółowe
-Given a parameter element, `Parameter.Value` returns the value that is stored within the given parameter.
+Na podstawie elementu parametru węzeł `Parameter.Value` zwraca wartość przechowywaną w danym parametrze.
 
-If no parameter value is found, a null value is returned.
+W razie nieznalezienia żadnej wartości parametru zwracana jest wartość null.
 
-In the example below, the project name is returned for the project information for the current document.
+W poniższym przykładzie zwracana jest nazwa projektu dla informacji o projekcie dla bieżącego dokumentu.
 
 ___
 ## Plik przykładowy

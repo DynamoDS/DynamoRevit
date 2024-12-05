@@ -1,9 +1,9 @@
 ## Description approfondie
-Given a parameter element, `Parameter.SetValue` updates the value of the given parameter to the input value.
+À partir d'un élément de paramètre, 'Parameter.SetValue' met à jour la valeur du paramètre donné en fonction de la valeur d'entrée.
 
-This node functions similar to `Element.SetParameterByName`, but differs by working directly with the parameter element.
+Ce noeud fonctionne de la même manière que 'Element.SetParameterByName', mais diffère en travaillant directement avec l'élément de paramètre.
 
-In the example below, the current project's name is returned (from the project information), converted to lowercase and then updated with `Parameter.SetValue`.
+Dans l'exemple ci-dessous, le nom du projet en cours est renvoyé (à partir des informations du projet), converti en minuscules, puis mis à jour avec 'Parameter.SetValue'.
 
 ___
 ## Exemple de fichier

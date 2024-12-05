@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`FamilyParameter.Unit` returns the unit type of the given parameter.
+Węzeł `FamilyParameter.Unit` zwraca typ jednostki danego parametru.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the unit type. If no unit type is found, a null value is returned.
+W poniższym przykładzie otwarty jest bieżący dokument programu Revit (rodzina drzwi z przykładowego modelu). Zwracane są parametry w rodzinie wraz z typem jednostki. Jeśli nie zostanie znaleziony żaden typ jednostki, zwracana jest wartość null.
 ___
 ## Plik przykładowy
 

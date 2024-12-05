@@ -1,7 +1,7 @@
 ## 詳細
-`ModelText.Depth` returns the depth of the given model text element as a number.
+`ModelText.Depth` は、指定された立体文字要素の奥行きを数値として返します。
 
-In the example below, all model text is collected in the current Revit file. The depth values are then returned with `ModelText.Depth` in project units.
+次の例では、現在の Revit ファイル内のすべての立体文字が収集されます。次に、その奥行きの値が `ModelText.Depth` によりプロジェクト単位で返されます。
 ___
 ## サンプル ファイル
 

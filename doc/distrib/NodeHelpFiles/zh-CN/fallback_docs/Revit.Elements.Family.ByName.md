@@ -1,7 +1,7 @@
 ## 详细
-`Family.ByName` returns the family definition from the current document (if available). If the family is not available in the current document, a null value is returned.
+“Family.ByName”从当前文档返回族定义(如果可用)。如果族在当前文档中不可用，则返回空值。
 
-In the example below, a family definition for "Door-Passage-Single-Flush" is returned, along with its element id (in green).
+在下面的示例中，返回“Door-Passage-Single-Flush”的族定义及其图元 ID (绿色)。
 ___
 ## 示例文件
 

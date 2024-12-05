@@ -1,7 +1,7 @@
 ## In profondità
-`Viewport.Sheet` returns the sheet element that the viewport is placed on.
+`Viewport.Sheet` restituisce l'elemento tavola su cui è posizionata la finestra.
 
-In the example below, all viewports are collected from the current Revit document. The sheet for each viewport is then returned with `Viewport.Sheet`. Additionally, the viewports are grouped by sheet with `List.GroupByKey`.
+Nell'esempio seguente, vengono raccolte tutte le finestre dal documento di Revit corrente. Viene quindi restituita la tavola per ogni finestra con `Viewport.Sheet`. Inoltre, le finestre vengono raggruppate per tavola con `List.GroupByKey`.
 ___
 ## File di esempio
 

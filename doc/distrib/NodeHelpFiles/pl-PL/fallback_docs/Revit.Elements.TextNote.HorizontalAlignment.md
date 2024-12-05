@@ -1,12 +1,12 @@
 ## Informacje szczegółowe
-`TextNote.HorizontalAlignment` returns the assigned horizontal alignment of the given text note.
+Węzeł `TextNote.HorizontalAlignment` zwraca przypisane wyrównanie w poziomie danej notatki tekstowej.
 
-Horizontal Alignment Options include:
-- Right
-- Left
-- Center
+Opcje wyrównania w poziomie obejmują:
+- Right (prawe)
+- Left (lewe)
+- Center (centrum)
 
-In the example below, all working notes are collected from the current Revit document. The horizontal alignment values are then returned.
+W poniższym przykładzie z bieżącego dokumentu programu Revit pobierane są wszystkie notatki robocze. Następnie zwracane są wartości wyrównania w poziomie.
 
 ___
 ## Plik przykładowy

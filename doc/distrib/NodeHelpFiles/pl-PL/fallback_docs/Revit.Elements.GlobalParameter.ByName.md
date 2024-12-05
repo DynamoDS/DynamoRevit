@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`GlobalParameter.ByName` creates a global parameter with the given name and spec type.
+Węzeł `GlobalParameter.ByName` tworzy parametr globalny o danej nazwie i typie specyfikacji.
 
-In the example below, a global parameter called "Building Number" is created.
+W poniższym przykładzie tworzony jest parametr globalny o nazwie „Building Number”.
 ___
 ## Plik przykładowy
 

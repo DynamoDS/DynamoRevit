@@ -1,14 +1,14 @@
 ## 詳細
-`View Disciplines` allows for the selection of the following disciplines to assign to views:
+`View Disciplines` では、ビューに割り当てる次の専門分野を選択できます。
 
-- Architectural
-- Coordination
-- Electrical
-- Mechanical
-- Plumbing
-- Structural
+- 建築
+- コーディネーション
+- 電気
+- 機械
+- 給排水衛生設備
+- 構造
 
-In the example below, the default 3d view's discipline is set to coordination.
+次の例では、既定の 3D ビューの専門分野が[コーディネーション]に設定されています。
 ___
 ## サンプル ファイル
 

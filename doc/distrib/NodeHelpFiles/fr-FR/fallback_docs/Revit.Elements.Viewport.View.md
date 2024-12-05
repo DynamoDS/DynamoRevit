@@ -1,7 +1,7 @@
 ## Description approfondie
-`Viewport.View` returns the view associated with the given viewport.
+'Viewport.View' renvoie la vue associée à la fenêtre donnée.
 
-In the example below, the viewports are returned for the selected sheet. The viewports' associated views are then returned with `Viewport.View`.
+Dans l'exemple ci-dessous, les fenêtres sont renvoyées pour la feuille sélectionnée. Les vues associées aux fenêtres sont ensuite renvoyées avec la valeur 'Viewport.View'.
 ___
 ## Exemple de fichier
 

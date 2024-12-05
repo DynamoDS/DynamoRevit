@@ -1,7 +1,7 @@
 ## 詳細
-`TextNote.ByLocation` creates a new text note at the given location of the given type with the input string.
+`TextNote.ByLocation` は、入力された文字列を使用して、指定されたタイプの指定された位置に新しい文字注記を作成します。
 
-In the example below, a new drafting view is created and a new text note is created at the origin in the current Revit document.
+次の例では、新しい製図ビューが作成され、新しい文字注記が現在の Revit ドキュメントの基準点に作成されます。
 
 ___
 ## サンプル ファイル

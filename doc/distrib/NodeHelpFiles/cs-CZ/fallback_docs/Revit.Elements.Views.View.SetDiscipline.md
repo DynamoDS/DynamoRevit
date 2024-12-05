@@ -1,15 +1,15 @@
 ## Podrobnosti
-`View.SetDiscipline` modifies the discipline of the given view.
+Uzel `View.SetDiscipline` změní disciplínu daného pohledu.
 
-View discipline options include:
-- Architectural
-- Coordination
-- Electrical
-- Mechanical
-- Plumbing
-- Structural
+Mezi možnosti disciplíny pohledu patří:
+- Architektonický
+- Koordinace
+- Elektroinstalace
+- Mechanický
+- Domovní instalace
+- Konstrukční
 
-In the example below, the default 3d view's discipline is set to coordination.
+V níže uvedeném příkladu je disciplína výchozího 3D pohledu nastavena na koordinaci.
 ___
 ## Vzorový soubor
 

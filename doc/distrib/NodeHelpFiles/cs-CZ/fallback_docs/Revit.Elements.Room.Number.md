@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Room.Number` returns the number for the given room element as a string.
+Uzel `Room.Number` vrací číslo daného prvku místnosti jako řetězec.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' numbers are then returned.
+V níže uvedeném příkladu jsou shromážděny všechny místnosti z aktuálního dokumentu a vybraného pohledu. Poté jsou vrácena čísla místností.
 ___
 ## Vzorový soubor
 

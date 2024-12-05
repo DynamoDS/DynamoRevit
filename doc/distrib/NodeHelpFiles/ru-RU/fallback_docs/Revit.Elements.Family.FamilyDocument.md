@@ -1,7 +1,7 @@
 ## Подробности
-`Family.FamilyDocument` provides access to the document of the given family. This is useful for extracting parameters, types and other specific family document data.
+Узел `Family.FamilyDocument` предоставляет доступ к документу данного семейства. Это полезно для извлечения параметров, типов и других конкретных данных документа семейства.
 
-In the example below, the family "Door-Passage-Single-Flush" is selected from the current Revit document. The family document is then obtained and the different types are provided.
+В приведенном ниже примере в текущем документе Revit выбрано семейство «Дверь-Маятниковая-Одинарная-Щитовая». Затем выполняется получение документа семейства, и предоставляются различные типы.
 ___
 ## Файл примера
 

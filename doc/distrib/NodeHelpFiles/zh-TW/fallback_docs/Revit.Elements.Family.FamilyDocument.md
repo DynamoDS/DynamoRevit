@@ -1,7 +1,7 @@
 ## 深入資訊
-`Family.FamilyDocument` provides access to the document of the given family. This is useful for extracting parameters, types and other specific family document data.
+`Family.FamilyDocument` 可讓您存取給定族群的文件。這對於擷取參數、類型和其他特定的族群文件資料非常有用。
 
-In the example below, the family "Door-Passage-Single-Flush" is selected from the current Revit document. The family document is then obtained and the different types are provided.
+以下範例在目前 Revit 文件中選取「門-通道-單-嵌平」族群，然後取得族群文件並提供不同類型。
 ___
 ## 範例檔案
 

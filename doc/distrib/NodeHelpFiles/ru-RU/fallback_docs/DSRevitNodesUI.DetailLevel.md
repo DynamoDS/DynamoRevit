@@ -1,13 +1,13 @@
 ## Подробности
-`Detail Level` allows for the selection of a view detail level for use in graphic settings.
+Узел `Detail Level` позволяет выбрать уровень детализации вида для использования в параметрах графики.
 
-Detail levels available include:
-- Coarse
-- Fine
-- Medium
-- Undefined
+Доступные уровни детализации:
+- низкий;
+- высокий;
+- средний;
+- не определено.
 
-In the example below, graphic settings are created with a coarse detail level setting for use on view elements.
+В приведенном ниже примере параметры графики создаются с низким уровнем детализации для использования в элементах вида.
 ___
 ## Файл примера
 

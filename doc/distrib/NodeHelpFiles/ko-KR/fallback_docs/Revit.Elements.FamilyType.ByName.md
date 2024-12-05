@@ -1,9 +1,9 @@
 ## 상세
-`FamilyType.ByName` will attempt to retrieve the given family type of the given name from the current document. If the family type is not available in the current document, a null value is returned.
+`FamilyType.ByName`은 현재 문서에서 지정된 이름의 지정된 패밀리 유형을 검색하려고 시도합니다. 현재 문서에서 패밀리 유형을 사용할 수 없는 경우 null 값이 반환됩니다.
 
-Note: `FamilyType.ByName` searches family type definitions in order of the parent family's creation (by element id). If multiple parent families have a type definition with the same name, the first one found is returned. For a more concise lookup of family types use, `FamilyType.ByFamilyAndName` or `FamilyType.ByFamilyNameAndTypeName`
+주: `FamilyType.ByName`은 상위 패밀리의 작성 순서대로(요소 ID 기준) 패밀리 유형 정의를 검색합니다. 여러 상위 패밀리에 이름이 같은 유형 정의가 있는 경우 첫 번째로 찾은 유형 정의가 반환됩니다. 패밀리 유형을 보다 간결하게 조회하려면 `FamilyType.ByFamilyAndName` 또는 `FamilyType.ByFamilyNameAndTypeName`을 사용하십시오.
 
-In the example below, a door family type, "36" x 84", from family "Door-Passage-Single-Flush" is returned.
+아래 예에서는 "Door-Passage-Single-Flush" 패밀리의 문 패밀리 유형 "36" x 84"가 반환됩니다.
 ___
 ## 예제 파일
 

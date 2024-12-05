@@ -1,9 +1,9 @@
 ## 深入資訊
-`FamilyType.ByName` will attempt to retrieve the given family type of the given name from the current document. If the family type is not available in the current document, a null value is returned.
+`FamilyType.ByName` 會嘗試從目前文件中擷取給定名稱的給定族群類型。如果目前文件沒有族群類型，則傳回空值。
 
-Note: `FamilyType.ByName` searches family type definitions in order of the parent family's creation (by element id). If multiple parent families have a type definition with the same name, the first one found is returned. For a more concise lookup of family types use, `FamilyType.ByFamilyAndName` or `FamilyType.ByFamilyNameAndTypeName`
+注意事項: `FamilyType.ByName` 會依父系族群的建立順序 (依元素 ID) 搜尋族群類型定義。如果多個父系族群有名稱相同的類型定義，則傳回找到的第一個父系族群。若要更簡潔地查詢族群類型，請使用 `FamilyType.ByFamilyAndName` 或 `FamilyType.ByFamilyNameAndTypeName`
 
-In the example below, a door family type, "36" x 84", from family "Door-Passage-Single-Flush" is returned.
+在以下範例中，傳回「門-通道-單-嵌平」族群中的「36" x 84"」門族群類型。
 ___
 ## 範例檔案
 

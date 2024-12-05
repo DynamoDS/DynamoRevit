@@ -1,8 +1,8 @@
 ## Description approfondie
 
-`Select Edges` displays a cursor in Revit that allows you to select multiple edges. The objects returned are curves or lines that represent the selected edges.
+L'option « Sélectionner des bords » affiche un curseur dans Revit qui vous permet de sélectionner plusieurs bords. Les objets renvoyés sont des courbes ou des lignes qui représentent les bords sélectionnés.
 
-In the example below, two lines are returned that represent the top edges of a parapet in the current document (file). Additionally, `Select Edges` reports the owning element ids of the edges that are selected.
+Dans l'exemple ci-dessous, deux lignes sont renvoyées qui représentent les bords supérieurs d'un parapet dans le document (fichier) actif. De plus, l'option « Sélectionner les bords » indique les ID des éléments propriétaires des bords sélectionnés.
 
 ___
 ## Exemple de fichier

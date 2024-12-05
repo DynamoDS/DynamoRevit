@@ -1,7 +1,7 @@
 ## Подробности
-`Material.MaterialClass` returns the name of the class that the material is assigned to.
+Узел `Material.MaterialClass` возвращает имя класса, которому назначен материал.
 
-In the example below, all materials are collected from the current document. The materials' class names are returned with `Material.MaterialClass`.
+В приведенном ниже примере все материалы собираются из текущего документа. Имена классов материалов возвращаются с помощью `Material.MaterialClass`.
 ___
 ## Файл примера
 

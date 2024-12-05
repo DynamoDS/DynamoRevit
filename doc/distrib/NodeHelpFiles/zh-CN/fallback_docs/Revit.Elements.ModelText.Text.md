@@ -1,7 +1,7 @@
 ## 详细
-`ModelText.Text` returns the text value of the given model text element as a string.
+“ModelText.Text”以字符串形式返回给定模型文字图元的文字值。
 
-In the example below, all model text is collected in the current Revit file. The text values are then returned with `ModelText.Text`.
+在下面的示例中，所有模型文字都收集在当前 Revit 文件中。然后，使用“ModelText.Text”返回文本值。
 ___
 ## 示例文件
 

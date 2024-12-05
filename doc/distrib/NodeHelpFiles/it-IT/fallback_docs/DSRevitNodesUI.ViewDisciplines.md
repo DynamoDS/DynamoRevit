@@ -1,5 +1,5 @@
 ## In profondità
-`View Disciplines` allows for the selection of the following disciplines to assign to views:
+`View Disciplines` consente di selezionare le seguenti discipline da assegnare alle viste:
 
 - Architectural
 - Coordination
@@ -8,7 +8,7 @@
 - Plumbing
 - Structural
 
-In the example below, the default 3d view's discipline is set to coordination.
+Nell'esempio seguente, la disciplina della vista 3D di default è impostata su Coordination.
 ___
 ## File di esempio
 

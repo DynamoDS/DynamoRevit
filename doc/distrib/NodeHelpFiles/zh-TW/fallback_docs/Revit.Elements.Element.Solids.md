@@ -1,7 +1,7 @@
 ## 深入資訊
-`Element.Solids` returns the solid geometry for the given element. The solids are returned as nested lists, as any given element can have more than one solid within it. If a single solid that represents the element is desired, `Solid.ByUnion` may be used on the lists.
+`Element.Solids` 會傳回給定元素的實體幾何圖形。以巢狀清單傳回實體，因為任何給定元素當中都可以有多個實體。如果需要表示元素的單個實體，可以對清單使用 `Solid.ByUnion`。
 
-In the example below, all walls are collected from the selected view. Walls that were created as in-place families are then removed, and the remaining walls' solids are returned.
+以下範例收集所選視圖中的所有牆，然後移除以現地族群建立的牆，並傳回其餘牆的實體。
 
 ___
 ## 範例檔案

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Viewport.BoxOutline` returns a Dynamo bounding box that represents the extents of the viewport.
+Węzeł `Viewport.BoxOutline` zwraca ramkę ograniczającą dodatku Dynamo reprezentującą zakres rzutni.
 
-In the example below, the viewports are returned for the selected sheet. The box outlines are then returned with `Viewport.BoxOutline`.
+W poniższym przykładzie zwracane są rzutnie dla wybranego arkusza. Następnie za pomocą węzła `Viewport.BoxOutline` zwracane są kontury ramki.
 ___
 ## Plik przykładowy
 

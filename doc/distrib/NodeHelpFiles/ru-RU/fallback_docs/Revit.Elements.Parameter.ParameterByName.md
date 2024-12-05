@@ -1,9 +1,9 @@
 ## Подробности
-Given an element and a name of a parameter, `Parameter.ParameterByName` returns the parameter element, if applicable.
+При наличии элемента и имени параметра узел `Parameter.ParameterByName` возвращает элемент параметра, если применимо.
 
-If no parameter is found by the given name, a null value is returned.
+Если по заданному имени параметр не найден, возвращается значение null.
 
-In the example below, the project name parameter is returned for the project information for the current document.
+В приведенном ниже примере параметр имени проекта возвращается для информации о проекте из текущего документа.
 
 ___
 ## Файл примера

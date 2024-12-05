@@ -1,7 +1,7 @@
 ## 詳細
-`Room.Number` returns the number for the given room element as a string.
+`Room.Number` は、指定された部屋要素の番号を文字列として取得します。
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' numbers are then returned.
+次の例では、すべての部屋が選択されたビューの現在のドキュメントから収集されます。次に、部屋の番号が返されます。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## In profondità
-`Viewport.LabelLineLength` gets the length of the viewport line, in paper space units.
+`Viewport.LabelLineLength` ottiene la lunghezza della linea della finestra, in unità dello spazio carta.
 
-In the example below, all of the viewports from the selected sheet are collected and the lengths of the viewport label lines are retrieved.
+Nell'esempio seguente, vengono raccolte tutte le finestre della tavola selezionata e vengono recuperate le lunghezze delle linee delle etichette delle finestre.
 ___
 ## File di esempio
 

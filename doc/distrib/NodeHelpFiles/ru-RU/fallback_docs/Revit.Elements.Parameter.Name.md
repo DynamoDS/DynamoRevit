@@ -1,7 +1,7 @@
 ## Подробности
-`Parameter.Name` returns the name of the given parameter.
+Узел `Parameter.Name` возвращает имя заданного параметра.
 
-In the example below, all wall elements are collected from the current Revit document. The first wall is then selected, and it's parameters are obtained (in alphabetical order).
+В приведенном ниже примере все элементы стен собираются из текущего документа Revit. Затем выбирается первая стена и выполняется получение ее параметров (в алфавитном порядке).
 
 ___
 ## Файл примера

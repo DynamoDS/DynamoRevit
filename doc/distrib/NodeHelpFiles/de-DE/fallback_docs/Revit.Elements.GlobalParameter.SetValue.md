@@ -1,7 +1,7 @@
 ## Im Detail
-`GlobalParameter.SetValue` sets the given global parameter to the given value.
+`GlobalParameter.SetValue` legt den angegebenen globalen Parameter auf den angegebenen Wert fest.
 
-In the example below, a global parameter called "Building Number" is created. The value is then set to "Building 01" with `GlobalParameter.SetValue`
+Im folgenden Beispiel wird ein globaler Parameter mit dem Namen "Gebäudenummer" erstellt. Der Wert wird dann mit `GlobalParameter.SetValue` auf "Gebäude 01" festgelegt.
 ___
 ## Beispieldatei
 

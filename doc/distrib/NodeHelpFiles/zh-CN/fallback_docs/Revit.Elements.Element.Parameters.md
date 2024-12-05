@@ -1,7 +1,7 @@
 ## 详细
-`Element.Parameters` collects all parameters, along with values from the given element. If an element instance is provided, instance parameters are returned. If an element type is provided, type parameters are returned.
+“Element.Parameters”收集所有参数以及给定元素的值。如果提供了元素实例，则返回实例参数。如果提供了元素类型，则返回类型参数。
 
-In the example below, all doors are collected from the current Revit document. For the example, the first door found is used. The door's instance parameters and type parameters are returned.
+在下面的示例中，所有门都是从当前 Revit 文档收集的。例如，使用找到的第一扇门。返回门的实例参数和类型参数。
 ___
 ## 示例文件
 

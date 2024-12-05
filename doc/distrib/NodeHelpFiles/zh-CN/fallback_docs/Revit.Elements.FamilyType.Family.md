@@ -1,7 +1,7 @@
 ## 详细
-Given a family type, `FamilyType.Family` returns the overall parent family of the family type. The family represents the file that contains all of the family type definitions.
+给定族类型“FamilyType.Family”返回该族类型的整个父族。族表示包含所有族类型定义的文件。
 
-In the example below, all door instances in the current view are grouped by their parent family.
+在下面的示例中，当前视图中的所有门实例都按其父族分组。
 ___
 ## 示例文件
 

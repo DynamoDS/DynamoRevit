@@ -1,7 +1,7 @@
 ## Description approfondie
-`FamilyInstance.SetRotation` sets the rotation of a family instance on an individual basis. `FamilyInstance.SetRotation` will rotate each family instance about it's Z axis. This differs from rotating elements directly in Revit, where a rotation command rotates selected elements about a common center point.
+'FamilyInstance.SetRotation' définit la rotation d'une occurrence de famille sur une base individuelle. 'FamilyInstance.SetRotation' fait pivoter chaque occurrence de famille autour de son axe Z. Cela diffère de la rotation directe d'éléments dans Revit, où une commande de rotation fait pivoter les éléments sélectionnés autour d'un point central commun.
 
-In the example below, all entourage families in the current Revit document are rotated at a random value between 0 and 360.
+Dans l'exemple ci-dessous, toutes les familles d'environnement du document Revit actif sont pivotées selon une valeur aléatoire comprise entre 0 et 360.
 ___
 ## Exemple de fichier
 

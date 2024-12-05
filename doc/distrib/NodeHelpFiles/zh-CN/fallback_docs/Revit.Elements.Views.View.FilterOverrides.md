@@ -1,7 +1,7 @@
 ## 详细
-`View.FilterOverrides` provides the settings for the given view filter `(ParameterFilterElement)`.
+“View.FilterOverrides”提供给定视图过滤器“(ParameterFilterElement)”的设置。
 
-In the example below, the view filters are collected from the selected view and the filter overrides are returned.
+在下面的示例中，将从选定视图收集视图过滤器并返回过滤器替代。
 
 ___
 ## 示例文件

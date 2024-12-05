@@ -1,14 +1,14 @@
 ## 深入資訊
-`View Disciplines` allows for the selection of the following disciplines to assign to views:
+`View Disciplines` 可讓您選取要指定到視圖的以下領域:
 
-- Architectural
-- Coordination
-- Electrical
-- Mechanical
-- Plumbing
-- Structural
+- 建築
+- 協調
+- 電氣
+- 機械
+- 衛工
+- 結構
 
-In the example below, the default 3d view's discipline is set to coordination.
+在以下範例中，將預設 3D 視圖的領域設定為「協調」。
 ___
 ## 範例檔案
 

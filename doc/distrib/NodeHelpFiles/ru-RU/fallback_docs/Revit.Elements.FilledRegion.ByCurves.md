@@ -1,7 +1,7 @@
 ## Подробности
-`FilledRegion.ByCurves` creates a filled region in the given view with the given curves and type.
+Узел `FilledRegion.ByCurves` создает цветовую область на данном виде с заданными кривыми и типом.
 
-In the example below, a new drafting view is created in the active Revit document. A new filled region is created with `FilledRegion.ByCurves`.
+В приведенном ниже примере в активном документе Revit создается чертежный вид. Новая цветовая область создается с помощью узла `FilledRegion.ByCurves`.
 
 ___
 ## Файл примера

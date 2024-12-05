@@ -1,7 +1,7 @@
 ## Podrobnosti
-`DraftingView.ByName` creates a drafting view with the given name. The type of drafting view used is the last one used within Revit.
+Uzel `DraftingView.ByName` vytvoří pohled schéma/kresba s daným názvem. Typ pohledu schéma/kresba je naposledy použitý typ v aplikaci Revit.
 
-In the example below, a drafting view called "Door/Jamb Detail" is created.
+V níže uvedeném příkladu se vytvoří pohled schéma/kresba s názvem „Detail dveří/sloupku“.
 ___
 ## Vzorový soubor
 

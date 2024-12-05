@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`CurtainPanel.IsRectangular` returns a true or false value to indicate if the given curtain panel is rectangular.
+Węzeł `CurtainPanel.IsRectangular` zwraca wartość true (prawda) lub false (fałsz), aby określić, czy dany panel ściany osłonowej jest prostokątny.
 
-In the example below, all curtain panels are collected from the selected curtain wall element. The panels are then queried for whether or not they are rectangular.
+W poniższym przykładzie z wybranego elementu ściany osłonowej są pobierane wszystkie panele ścian osłonowych. Następnie sprawdzone zostaje, czy panele są prostokątne.
 ___
 ## Plik przykładowy
 

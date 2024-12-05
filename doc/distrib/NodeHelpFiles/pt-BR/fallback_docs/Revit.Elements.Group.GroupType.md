@@ -1,7 +1,7 @@
 ## Em profundidade
-`Group.GroupType` returns the owning group type of the given group instance.
+`Group.GroupType` retorna o tipo de grupo proprietário da instância de grupo fornecida.
 
-In the example below, all model groups are collected from the active Revit document. The groups' types are returned with `Group.GroupType`.
+No exemplo abaixo, são coletados todos os grupos de modelos do documento ativo do Revit. Os tipos dos grupos são retornados com `Group.GroupType`.
 
 ___
 ## Arquivo de exemplo

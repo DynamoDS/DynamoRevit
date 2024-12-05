@@ -1,14 +1,14 @@
 ## 详细
-`View Disciplines` allows for the selection of the following disciplines to assign to views:
+“View Disciplines”允许选择以下规程以指定给视图:
 
-- Architectural
-- Coordination
-- Electrical
-- Mechanical
-- Plumbing
-- Structural
+- 建筑
+- 协调
+- 电气
+- 机械
+- 卫浴
+- 结构
 
-In the example below, the default 3d view's discipline is set to coordination.
+在下面的示例中，默认三维视图的规程设置为“协调”。
 ___
 ## 示例文件
 

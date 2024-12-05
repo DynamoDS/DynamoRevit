@@ -1,7 +1,7 @@
 ## Подробности
-`Family.Types` returns all of the available types of the given family element.
+Узел `Family.Types` возвращает все доступные типы данного элемента семейства.
 
-In the example below, all family types for two RPC (entourage) families in the current Revit document are returned.
+В приведенном ниже примере возвращаются все типоразмеры семейств для двух семейств RPC (элементов благоустройства) в текущем документе Revit.
 ___
 ## Файл примера
 

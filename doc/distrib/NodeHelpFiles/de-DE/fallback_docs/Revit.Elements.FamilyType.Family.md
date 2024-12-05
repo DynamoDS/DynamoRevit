@@ -1,7 +1,7 @@
 ## Im Detail
-Given a family type, `FamilyType.Family` returns the overall parent family of the family type. The family represents the file that contains all of the family type definitions.
+Bei Eingabe eines Familientyps gibt `FamilyType.Family` die gesamte übergeordnete Familie des Familientyps zurück. Die Familie stellt die Datei dar, die alle Familientypdefinitionen enthält.
 
-In the example below, all door instances in the current view are grouped by their parent family.
+Im folgenden Beispiel werden alle Türexemplare in der aktuellen Ansicht nach ihrer übergeordneten Familie gruppiert.
 ___
 ## Beispieldatei
 

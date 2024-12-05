@@ -1,7 +1,7 @@
 ## 詳細
-Given a family type, `FamilyType.Family` returns the overall parent family of the family type. The family represents the file that contains all of the family type definitions.
+ファミリ タイプを指定すると、`FamilyType.Family` はファミリ タイプの親ファミリ全体を返します。ファミリは、すべてのファミリ タイプの定義を含むファイルを表します。
 
-In the example below, all door instances in the current view are grouped by their parent family.
+次の例では、現在のビューのすべてのドア インスタンスが親ファミリ別にグループ化されています。
 ___
 ## サンプル ファイル
 

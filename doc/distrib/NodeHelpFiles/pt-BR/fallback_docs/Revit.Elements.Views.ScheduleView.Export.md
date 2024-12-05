@@ -1,7 +1,7 @@
 ## Em profundidade
-`ScheduleView.Export` exports the given schedule to the given path with the selected options.
+`ScheduleView.Export` exporta a tabela fornecida para o caminho fornecido com as opções selecionadas.
 
-In the example below, the door schedule is selected from the current Revit document for export. The export location is derived from the view name and the current user's documents location. Finally, the schedule is exported with the default export options.
+No exemplo abaixo, está selecionada a tabela de portas no documento atual do Revit para exportação. A localização da exportação é derivada do nome da vista e da localização dos documentos do usuário atual. Finalmente, a tabela é exportada com as opções de exportação padrão.
 ___
 ## Arquivo de exemplo
 

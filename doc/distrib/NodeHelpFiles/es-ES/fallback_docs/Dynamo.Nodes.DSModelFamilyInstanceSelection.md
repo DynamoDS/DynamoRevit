@@ -1,7 +1,7 @@
 ## En detalle:
-`Select Family Instance` allows for a selection of a single family instance in the current Revit document. `Select Family Instance` differs from `Select Model Element` by providing an isolated selection of family instances. With `Select Family Instance`, only loadable families can be selected. _Eg. Windows, Doors, Generic Models._
+`Select Family Instance` permite seleccionar un único ejemplar de familia en el documento de Revit actual. `Select Family Instance` se diferencia de `Select Model Element` en que proporciona una selección aislada de ejemplares de familia. Con `Select Family Instance`, solo se pueden seleccionar las familias que se pueden cargar como, por ejemplo, ventanas, puertas y modelos genéricos.
 
-In the example below, a single window family is selected from the current Revit document.
+En el ejemplo siguiente, se selecciona una única familia de ventanas del documento de Revit actual.
 ___
 ## Archivo de ejemplo
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-`GlobalParameter.FindByName` returns a global parameter for the given name, if available. If the given global parameter does not exist, null is returned.
+Uzel `GlobalParameter.FindByName` vrací globální parametr pro daný název, pokud je k dispozici. Pokud daný globální parametr neexistuje, je vrácena hodnota null.
 
-In the example below, the global parameter, "Windows_North Elevation Inset" is returned and the value is returned (in project units).
+V následujícím příkladu je vrácen globální parametr „Okna_Vložka severního pohledu“ a je vrácena hodnota (v jednotkách projektu).
 ___
 ## Vzorový soubor
 

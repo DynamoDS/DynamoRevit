@@ -1,7 +1,7 @@
 ## 详细
-`ScheduleView.AddFields` adds the selected fields to the schedule. Schedulable fields represent available parameters of the category assigned to the schedule.
+“ScheduleView.AddFields”将选定字段添加到明细表。明细表字段表示指定给明细表的类别的可用参数。
 
-In the example below, a new schedule called "Working Door Schedule" is created. The schedulable fields are then collected and input into a dictionary to facilitate looking the fields up by name. Finally, the fields are found by name and added to the schedule view with `ScheduleView.AddFields`.
+在下面的示例中，创建了一个名为“工作门明细表”的新明细表。然后，收集可计划的字段并将其输入到字典中，以便于按名称查找字段。最后，按名称找到字段，并使用“ScheduleView.AddFields”添加到明细表视图。
 ___
 ## 示例文件
 

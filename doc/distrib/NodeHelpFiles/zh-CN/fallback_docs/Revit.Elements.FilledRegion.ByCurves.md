@@ -1,7 +1,7 @@
 ## 详细
-`FilledRegion.ByCurves` creates a filled region in the given view with the given curves and type.
+“FilledRegion.ByCurves”使用给定曲线和类型在给定视图中创建填充区域。
 
-In the example below, a new drafting view is created in the active Revit document. A new filled region is created with `FilledRegion.ByCurves`.
+在下面的示例中，将在活动的 Revit 文档中创建一个新的绘图视图。使用“FilledRegion.ByCurves”创建一个新的填充区域。
 
 ___
 ## 示例文件

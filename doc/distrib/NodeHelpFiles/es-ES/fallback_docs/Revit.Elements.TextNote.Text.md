@@ -1,7 +1,7 @@
 ## En detalle:
-`TextNote.Text` returns the text value of the given text note.
+`TextNote.Text` devuelve el valor de texto de la nota de texto especificada.
 
-In the example below, all text notes are collected from the current Revit document. The text notes' text values are then returned.
+En el ejemplo siguiente, se recopilan todas las notas de texto del documento de Revit actual. A continuación, se devuelven los valores de texto de las notas de texto.
 
 ___
 ## Archivo de ejemplo

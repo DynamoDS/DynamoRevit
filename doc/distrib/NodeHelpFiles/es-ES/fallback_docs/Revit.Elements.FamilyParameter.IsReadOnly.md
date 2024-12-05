@@ -1,7 +1,7 @@
 ## En detalle:
-`FamilyParameter.IsReadOnly` returns a true or false value to indicate if the given family parameter is read only.
+`FamilyParameter.IsReadOnly` devuelve un valor "true" (verdadero) o "false" (falso) para indicar si el parámetro de familia especificado es de solo lectura.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the read only state. `List Create` and `List.Transpose` are used to combine the values in sublists.
+En el ejemplo siguiente, se abre el documento de Revit actual (una familia de puertas del modelo de muestra). Se devuelven los parámetros de la familia, junto con el estado de solo lectura. Se utilizan `List Create` y `List.Transpose` para combinar los valores en sublistas.
 ___
 ## Archivo de ejemplo
 

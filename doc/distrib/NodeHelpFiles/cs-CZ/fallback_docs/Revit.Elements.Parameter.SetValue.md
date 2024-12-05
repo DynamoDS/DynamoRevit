@@ -1,9 +1,9 @@
 ## Podrobnosti
-Given a parameter element, `Parameter.SetValue` updates the value of the given parameter to the input value.
+S daným prvkem parametru uzel `Parameter.SetValue` aktualizuje hodnotu daného parametru na vstupní hodnotu.
 
-This node functions similar to `Element.SetParameterByName`, but differs by working directly with the parameter element.
+Tento uzel funguje podobně jako uzel `Element.SetParameterByName`, ale liší se tím, že pracuje přímo s prvkem parametru.
 
-In the example below, the current project's name is returned (from the project information), converted to lowercase and then updated with `Parameter.SetValue`.
+V následujícím příkladu je vrácen název aktuálního projektu (z informací o projektu), převeden na malá písmena a poté aktualizován pomocí uzlu `Parameter.SetValue`.
 
 ___
 ## Vzorový soubor

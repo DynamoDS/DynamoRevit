@@ -1,7 +1,7 @@
 ## 深入資訊
-`Select Face` is a user interface node that displays a cursor in Revit that allows you to select a single face.
+`Select Face` 是一個在 Revit 中顯示游標的使用者介面節點，可讓您選取一個面。
 
-In the example below, a wall face is selected in Revit and the corresponding surface geometry is returned. Additionally, `Select Face` reports the owning element id of the face that is selected.
+以下範例在 Revit 中選取一個牆面，然後傳回對應的曲面幾何圖形。此外，`Select Face` 還會顯示所選面的擁有元素 ID。
 ___
 ## 範例檔案
 

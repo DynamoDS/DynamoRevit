@@ -1,13 +1,13 @@
 ## Podrobnosti
-`Detail Level` allows for the selection of a view detail level for use in graphic settings.
+Možnost `Detail Level` umožňuje výběr úrovně detailu pohledu k použití v nastavení grafiky.
 
-Detail levels available include:
-- Coarse
-- Fine
-- Medium
-- Undefined
+Mezi dostupné úrovně detailů patří:
+- Hrubá
+- Jemná
+- Střední
+- Nedefinovaná
 
-In the example below, graphic settings are created with a coarse detail level setting for use on view elements.
+V následujícím příkladu jsou nastavení grafiky vytvořena s nastavením hrubé úrovně detailů k použití na prvcích pohledu.
 ___
 ## Vzorový soubor
 

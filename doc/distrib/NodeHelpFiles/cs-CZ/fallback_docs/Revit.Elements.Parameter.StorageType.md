@@ -1,14 +1,14 @@
 ## Podrobnosti
-`Parameter.StorageType` helps determine what type of data a parameter stores.
+Uzel `Parameter.StorageType` pomáhá určit, jaký datový typ parametr ukládá.
 
-Data types include:
-- None
+Mezi datové typy patří:
+- Žádný
 - Integer
 - Double
 - String
 - ElementId
 
-In the example below, all of the parameters from the current document's project information are returned. The parameter's storage type is then returned.
+V níže uvedeném příkladu jsou vráceny všechny parametry z informací o projektu aktuálního dokumentu. Pak se vrátí ukládaný typ parametru.
 
 ___
 ## Vzorový soubor

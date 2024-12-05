@@ -1,13 +1,13 @@
 ## 詳細
-`Detail Level` allows for the selection of a view detail level for use in graphic settings.
+`Detail Level` では、グラフィックス設定で使用するビューの詳細レベルを選択できます。
 
-Detail levels available include:
-- Coarse
-- Fine
-- Medium
-- Undefined
+使用可能な詳細レベルは次のとおりです。
+- 簡略
+- 詳細
+- 標準
+- 未定義
 
-In the example below, graphic settings are created with a coarse detail level setting for use on view elements.
+次の例では、ビュー要素で使用する簡略な詳細レベルでグラフィックス設定が作成されます。
 ___
 ## サンプル ファイル
 

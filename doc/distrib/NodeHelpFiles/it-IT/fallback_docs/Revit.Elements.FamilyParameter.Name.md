@@ -1,7 +1,7 @@
 ## In profondità
-`FamilyParameter.Name` returns the user-visible name of the given parameter.
+`FamilyParameter.Name` restituisce il nome visibile all'utente del parametro specificato.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the name.
+Nell'esempio seguente, è aperto il documento di Revit corrente (una famiglia di porte del modello di esempio). Vengono restituiti i parametri di famiglia, insieme al nome.
 ___
 ## File di esempio
 

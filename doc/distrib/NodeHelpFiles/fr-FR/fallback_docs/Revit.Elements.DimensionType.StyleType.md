@@ -1,19 +1,19 @@
 ## Description approfondie
-`DimensionType.StyleType' obtient le style pour le style de cote donné.
+« DimensionType.StyleType » permet d'obtenir le style pour le style de dimension donné.
 
-Les types de style de cote possibles sont les suivants :
+Les types de style de dimension possibles sont les suivants :
 - Linéaire
 - Angulaire
 - Radial
 - Longueur d'arc
-- Cote de niveau
+- Cote d'élévation
 - Cote de coordonnées
 - Linéaire fixe
-- Cote de talus
+- Cote d'inclinaison
 - Diamètre
-- EtiquetteAbscisseAxe
+- Étiquette de l'abscisse curviligne d'axe
 
-Dans l'exemple ci-dessous, le type de style est obtenu à partir du premier type de cote du fichier actuel.
+Dans l'exemple ci-dessous, on obtient le type de style à partir du premier type de dimension du fichier actuel.
 ___
 ## Exemple de fichier
 

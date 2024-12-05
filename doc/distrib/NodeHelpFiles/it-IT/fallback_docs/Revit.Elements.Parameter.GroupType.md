@@ -1,11 +1,11 @@
 ## In profondità
-`Parameter.GroupType` returns the given parameter's GroupType.
+`Parameter.GroupType` restituisce l'input GroupType del parametro specificato.
 
-In Revit, parameter groups for non-shared parameters are predefined, whereas shared parameters allow you to define custom groups. For more information on working with shared parameters and groups, visit this help article: [Create Shared Parameter Files, Groups, and Parameters](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-94EA2B8E-2C00-4D29-8D5A-C7C6664DE9CE)
+In Revit, i gruppi di parametri per i parametri non condivisi sono predefiniti, mentre i parametri condivisi consentono di definire gruppi personalizzati. Per ulteriori informazioni sull'utilizzo di parametri e gruppi condivisi, consultare questo articolo della Guida: [Creazione di file di parametri condivisi, gruppi e parametri](https://help.autodesk.com/view/RVT/2025/ITA/?guid=GUID-94EA2B8E-2C00-4D29-8D5A-C7C6664DE9CE)
 
-If no GroupType is found, a null value is returned.
+Se non viene trovato alcun input GroupType, viene restituito un valore null.
 
-In the example below, all parameters are returned for the current document's project information. The GroupTypes are returned as well.
+Nell'esempio seguente, vengono restituiti tutti i parametri per le informazioni sul progetto del documento corrente. Vengono restituiti anche gli input GroupType.
 ___
 ## File di esempio
 

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`FloorType.ByName` returns a floor type for the given name in the current Revit document. If the floor type does not exist, a null value is returned.
+Węzeł `FloorType.ByName` zwraca typ stropu dla danej nazwy w bieżącym dokumencie programu Revit. Jeśli typ stropu nie istnieje, zwracana jest wartość null.
 
-In the example below, all floors present in the current Revit document are collected. The floors' types are then collected by getting the name of the floor and using `FloorType.ByName` to retrieve the floor type.
+W poniższym przykładzie pobierane są wszystkie stropy obecne w bieżącym dokumencie programu Revit. Następnie pobierane są typy stropów przez pobranie nazwy stropu i wyodrębnienie typu stropu za pomocą węzła `FloorType.ByName`.
 ___
 ## Plik przykładowy
 

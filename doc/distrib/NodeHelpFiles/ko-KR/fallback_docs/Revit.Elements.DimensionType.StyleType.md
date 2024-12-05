@@ -1,5 +1,5 @@
 ## 상세
-`DimensionType.StyleType'은 지정된 차원 스타일에 대한 스타일을 가져옵니다.
+`DimensionType.StyleType`은 지정된 차원 스타일에 대한 스타일을 가져옵니다.
 
 가져올 수 있는 차원 스타일 유형은 다음과 같습니다.
 - 선형

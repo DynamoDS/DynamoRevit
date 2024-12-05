@@ -1,9 +1,9 @@
 ## Em profundidade
-`Select Family Instances` allows for a window selection of multiple family instance in the current Revit document. `Select Family Instances` differs from `Select Model Elements` by providing an isolated selection of family instances. With `Select Family Instances`, only loadable families can be selected. _Eg. Windows, Doors, Generic Models.
+`Select Family Instances` permite uma seleção de janela de várias instâncias de família no documento atual do Revit. `Select Family Instances` difere de `Select Model Elements` por fornecer uma seleção isolada de instâncias de família. Com `Select Family Instances`, só é possível selecionar famílias carregáveis. _Ex.: janelas, portas, modelos genéricos.
 
-`Select Family Instances` offers a crossing window selection unlike `Pick Family Instances` that offers a pick based selection.
+`Select Family Instances` oferece uma seleção de janelas de interseção, ao contrário de `Pick Family Instances`, que oferece uma seleção com base na seleção.
 
-In the example below, family instances of multiple categories are selected from the current Revit document.
+No exemplo abaixo, estão selecionadas instâncias de família de várias categorias no documento atual do Revit.
 ___
 ## Arquivo de exemplo
 

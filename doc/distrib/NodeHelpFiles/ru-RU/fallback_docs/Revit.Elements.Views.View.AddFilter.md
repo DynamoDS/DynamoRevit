@@ -1,7 +1,7 @@
 ## Подробности
-`View.AddFilter` adds the specified filter to the given view. If the view has a view template applied, this node will add the filter to it's view template.
+Узел `View.AddFilter` добавляет указанный фильтр к данному виду. Если к виду применен шаблон вида, этот узел добавит фильтр в шаблон вида.
 
-In the example below, a view filter is created for the `Fire Rating` parameter on wall type elements. This filter is added to the `L1` floor plan view in the sample model.
+В приведенном ниже примере создается фильтр просмотра для параметра `Fire Rating` для элементов типа стены. Этот фильтр добавляется к виду в плане этажа `L1` в примере модели.
 
 ___
 ## Файл примера

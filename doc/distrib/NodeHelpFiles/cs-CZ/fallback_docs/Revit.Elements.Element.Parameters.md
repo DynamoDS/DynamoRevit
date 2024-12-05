@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Element.Parameters` collects all parameters, along with values from the given element. If an element instance is provided, instance parameters are returned. If an element type is provided, type parameters are returned.
+Uzel `Element.Parameters` shromáždí všechny parametry spolu s hodnotami z daného prvku. Pokud je zadána instance prvku, jsou vráceny parametry instance. Pokud je zadán typ prvku, jsou vráceny parametry typu.
 
-In the example below, all doors are collected from the current Revit document. For the example, the first door found is used. The door's instance parameters and type parameters are returned.
+V níže uvedeném příkladu jsou shromážděny všechny dveře z aktuálního dokumentu aplikace Revit. V příkladu se použijí první nalezené dveře. Jsou vráceny parametry instance dveří a parametry typu.
 ___
 ## Vzorový soubor
 

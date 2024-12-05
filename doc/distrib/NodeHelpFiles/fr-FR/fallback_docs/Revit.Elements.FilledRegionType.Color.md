@@ -1,7 +1,7 @@
 ## Description approfondie
-`FilledRegionType.Color` returns the color assigned to the given filled region type.
+'FilledRegionType.Color' renvoie la couleur attribuée au type de zone remplie donné.
 
-In the example below, the "Diagonal Down" filled region type is selected from the current Revit document. The color is then reported with `FilledRegionType.Color`.
+Dans l'exemple ci-dessous, le type de zone remplie "Diagonale vers le bas" est sélectionné dans le document Revit actif. La couleur est ensuite indiquée avec 'FilledRegionType.Color'.
 
 ___
 ## Exemple de fichier

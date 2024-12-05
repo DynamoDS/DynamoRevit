@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Group.Location` returns a point that represents the given group's origin.
+Węzeł `Group.Location` zwraca punkt reprezentujący początek danej grupy.
 
-In the example below, all model groups are collected from the active Revit document. The groups' locations are returned with `Group.Location`.
+W poniższym przykładzie pobierane są wszystkie grupy modeli z aktywnego dokumentu programu Revit. Za pomocą węzła `Group.Location` zwracane są lokalizacje grup.
 
 ___
 ## Plik przykładowy

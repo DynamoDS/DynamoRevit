@@ -1,9 +1,9 @@
 ## Informacje szczegółowe
-Given an element and a name of a parameter, `Parameter.ParameterByName` returns the parameter element, if applicable.
+Na podstawie elementu i nazwy parametru węzeł `Parameter.ParameterByName` zwraca element parametru, jeśli ma to zastosowanie.
 
-If no parameter is found by the given name, a null value is returned.
+W razie nieznalezienia żadnego parametru o danej nazwie zwracana jest wartość null.
 
-In the example below, the project name parameter is returned for the project information for the current document.
+W poniższym przykładzie zwracany jest parametr nazwy projektu dla informacji o projekcie dla bieżącego dokumentu.
 
 ___
 ## Plik przykładowy

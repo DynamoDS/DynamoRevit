@@ -1,9 +1,9 @@
 ## Подробности
-Given a parameter element, `Parameter.Value` returns the value that is stored within the given parameter.
+Если задан элемент параметра, узел `Parameter.Value` возвращает значение, хранящееся в данном параметре.
 
-If no parameter value is found, a null value is returned.
+Если значение параметра не найдено, возвращается значение null.
 
-In the example below, the project name is returned for the project information for the current document.
+В приведенном ниже примере возвращается имя проекта для информации о проекте в текущем документе.
 
 ___
 ## Файл примера

@@ -1,15 +1,15 @@
 ## 詳細
-`Parameter.SpecType` returns the given parameter's SpecType. SpecType describes the type of data that a given parameter stores.
+`Parameter.SpecType` は、指定されたパラメータの SpecType を返します。SpecType は、指定されたパラメータが格納するデータのタイプを説明します。
 
-These data types include:
-- Boolean
-- Int
-- Reference
+これらのデータ タイプには、次のものがあります。
+- ブール値
+- 整数
+- 参照
 - 文字列
 
-If no SpecType is found, a null value is returned.
+SpecType が見つからない場合は、null 値が返されます。
 
-In the example below, all parameters are returned for the current document's project information. The SpecTypes are returned as well.
+次の例では、現在のドキュメントのプロジェクト情報としてすべてのパラメータが返されます。その SpecType も返されます。
 
 ___
 ## サンプル ファイル

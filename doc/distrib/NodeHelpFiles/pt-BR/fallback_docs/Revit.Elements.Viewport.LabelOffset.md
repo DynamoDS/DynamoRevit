@@ -1,7 +1,7 @@
 ## Em profundidade
-`Viewport.LabelOffset` returns a point that represents the left endpoint of the viewport label.
+`Viewport.LabelOffset` retorna um ponto que representa o ponto final esquerdo da legenda da viewport.
 
-In the example below, the viewports are returned for the selected sheet. The label offsets of the viewports are then returned with `Viewport.LabelOffset`.
+No exemplo abaixo, são retornadas as viewports para a folha selecionada. Os deslocamentos das legendas das viewports são retornados com `Viewport.LabelOffset`.
 ___
 ## Arquivo de exemplo
 

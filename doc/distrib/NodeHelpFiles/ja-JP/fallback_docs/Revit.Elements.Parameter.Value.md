@@ -1,9 +1,9 @@
 ## 詳細
-Given a parameter element, `Parameter.Value` returns the value that is stored within the given parameter.
+パラメータ要素を指定すると、`Parameter.Value` は指定されたパラメータ内に格納されている値を返します。
 
-If no parameter value is found, a null value is returned.
+パラメータ値が見つからない場合は、null 値が返されます。
 
-In the example below, the project name is returned for the project information for the current document.
+次の例では、現在のドキュメントのプロジェクト情報としてプロジェクト名が返されます。
 
 ___
 ## サンプル ファイル

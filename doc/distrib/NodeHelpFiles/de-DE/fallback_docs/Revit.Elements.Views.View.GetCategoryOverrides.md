@@ -1,7 +1,7 @@
 ## Im Detail
-Given a view or view template, `View.GetCategoryOverrides` returns the graphic overrides for the provided view or view template. Note, if a view has a view template assigned, the view template must be used.
+Bei Angabe einer Ansicht oder Ansichtsvorlage gibt `View.GetCategoryOverrides` die grafischen Überschreibungen für die angegebene Ansicht oder Ansichtsvorlage zurück. Beachten Sie: Wenn einer Ansicht eine Ansichtsvorlage zugewiesen ist, muss diese Ansichtsvorlage verwendet werden.
 
-In the example below, the active view's view template from the current document is retrieved. The overrides for the wall category are then returned.
+Im folgenden Beispiel wird die Ansichtsvorlage der aktiven Ansicht aus dem aktuellen Dokument abgerufen. Dann werden die Überschreibungen für die Wandkategorie zurückgegeben.
 ___
 ## Beispieldatei
 

@@ -1,8 +1,8 @@
 ## Подробности
 
-`Select Edge` displays a cursor in Revit that allows you to select a single edge. The object returned is a curve or line that represents the selected edge. Additionally, `Select Edge` reports the owning element id of the edge that is selected.
+Узел `Select Edge` отображает в Revit курсор, с помощью которого можно выбрать одно ребро. Возвращается объект (кривая или линия), который представляет собой выбранное ребро. Кроме того, узел `Select Edge` сообщает идентификатор элемента, которому принадлежит выбранное ребро.
 
-В приведенном ниже примере возвращается строка, представляющая верхнее ребро парапета в текущем документе (файле).
+В приведенном ниже примере возвращается линия, представляющая собой верхнее ребро парапета в текущем документе (файле).
 
 ___
 ## Файл примера

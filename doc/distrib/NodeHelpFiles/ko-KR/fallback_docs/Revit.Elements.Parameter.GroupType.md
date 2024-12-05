@@ -1,11 +1,11 @@
 ## 상세
-`Parameter.GroupType` returns the given parameter's GroupType.
+`Parameter.GroupType`은 지정된 매개변수의 GroupType을 반환합니다.
 
-In Revit, parameter groups for non-shared parameters are predefined, whereas shared parameters allow you to define custom groups. For more information on working with shared parameters and groups, visit this help article: [Create Shared Parameter Files, Groups, and Parameters](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-94EA2B8E-2C00-4D29-8D5A-C7C6664DE9CE)
+Revit에서 비공유 매개변수에 대한 매개변수 그룹은 미리 정의되어 있지만, 공유 매개변수를 사용하면 사용자 지정 그룹을 정의할 수 있습니다. 공유 매개변수 및 그룹 관련 작업에 대한 자세한 내용은 도움말 문서 [공유 매개변수 파일, 그룹 및 매개변수 작성](https://help.autodesk.com/view/RVT/2025/KOR/?guid=GUID-94EA2B8E-2C00-4D29-8D5A-C7C6664DE9CE)을 참조하십시오.
 
-If no GroupType is found, a null value is returned.
+GroupType을 찾을 수 없으면 null 값이 반환됩니다.
 
-In the example below, all parameters are returned for the current document's project information. The GroupTypes are returned as well.
+아래 예에서는 현재 문서의 프로젝트 정보에 대한 모든 매개변수가 반환됩니다. GroupType도 반환됩니다.
 ___
 ## 예제 파일
 

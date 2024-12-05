@@ -1,7 +1,7 @@
 ## En detalle:
-`Room.Name` returns the name for the given room element.
+`Room.Name` devuelve el nombre del elemento de habitación especificado.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then returned.
+En el ejemplo siguiente, se recopilan todas las habitaciones del documento actual desde la vista seleccionada. A continuación, se devuelven los nombres de las habitaciones.
 ___
 ## Archivo de ejemplo
 

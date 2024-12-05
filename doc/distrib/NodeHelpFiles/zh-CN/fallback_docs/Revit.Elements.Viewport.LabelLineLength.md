@@ -1,7 +1,7 @@
 ## 详细
-`Viewport.LabelLineLength` gets the length of the viewport line, in paper space units.
+“Viewport.LabelLineLength”获取视口线的长度(以图纸空间单位表示)。
 
-In the example below, all of the viewports from the selected sheet are collected and the lengths of the viewport label lines are retrieved.
+在下面的示例中，将收集选定图纸中的所有视口，并检索视口标签线的长度。
 ___
 ## 示例文件
 

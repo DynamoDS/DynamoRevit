@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FamilyParameter.CanAssignFormula` returns a true or false value indicating whether the given family parameter can have a formula assigned.
+Uzel `FamilyParameter.CanAssignFormula` vrací hodnotu true nebo false, která udává, zda lze k danému parametru rodiny přiřadit vzorec.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with a list of boolean values representing if they can have a formula assigned.
+V níže uvedeném příkladu je otevřen aktuální dokument aplikace Revit (rodina dveří ze vzorového modelu). Vrátí se parametry v rodině spolu se seznamem booleovských hodnot představujících informaci o tom, zda jim lze přiřadit vzorec.
 ___
 ## Vzorový soubor
 

@@ -1,9 +1,9 @@
 ## 深入資訊
-`All Elements In Active View` returns all of the elements that are visible in the active view of the current Revit document.
+`All Elements In Active View` 會傳回目前 Revit 文件作用中視圖中可見的所有元素。
 
-`All Elements In Active View` will return a new list if the view has changed and the graph has been run.
+如果視圖已變更且圖表已執行，則 `All Elements In Active View` 會傳回新清單。
 
-In the example below, 11 elements are returned for the starting view of the Revit architectural sample file, _(Snowdon Towers)_.
+在以下範例中，傳回 Revit 建築範例檔案 _(Snowdon Towers)_ 開始視圖中的 11 個元素。
 ___
 ## 範例檔案
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-Given a family type, `FamilyType.Name` returns the name for the family type as a string.
+U daného typu rodiny vrací uzel `FamilyType.Name` název typu rodiny jako řetězec.
 
-In the example below, all door instances in the current view are grouped by their family type name.
+V níže uvedeném příkladu jsou všechny instance dveří v aktuálním pohledu seskupeny podle názvu typu rodiny.
 ___
 ## Vzorový soubor
 

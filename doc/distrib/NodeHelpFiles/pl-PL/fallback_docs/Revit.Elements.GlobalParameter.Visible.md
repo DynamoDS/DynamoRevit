@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`GlobalParameter.Visible` returns a true or false value indicating whether or not the given global parameter is visible in the UI.
+Węzeł `GlobalParameter.Visible` zwraca wartość true (prawda) lub false (fałsz) wskazującą, czy dany parametr globalny jest widoczny w interfejsie użytkownika.
 
-In the example below, all global parameters are returned from the current Revit document. The visibility states are then returned with `GlobalParameter.Visible`.
+W poniższym przykładzie zwracane są wszystkie parametry globalne z bieżącego dokumentu programu Revit. Następnie za pomocą węzła `GlobalParameter.Visible` zwracane są stany widoczności.
 ___
 ## Plik przykładowy
 

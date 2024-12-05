@@ -1,7 +1,7 @@
 ## Description approfondie
-`GlobalParameter.Name` returns the name of the given global parameter.
+'GlobalParameter.Name' renvoie le nom du paramètre global donné.
 
-In the example below, all global parameters are returned from the current Revit document. The names of the parameter are then returned with `GlobalParameter.Name`.
+Dans l'exemple ci-dessous, tous les paramètres globaux sont renvoyés à partir du document Revit actif. Les noms du paramètre sont ensuite renvoyés avec 'GlobalParameter.Name'.
 ___
 ## Exemple de fichier
 

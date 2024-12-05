@@ -1,7 +1,7 @@
 ## 詳細
-`Element.GetCategory` returns the category element for the given element. With the returned category element, it can be queried for various parameters.
+`Element.GetCategory` は、指定された要素のカテゴリ要素を返します。返されたカテゴリ要素を使用して、さまざまなパラメータをクエリ―できます。
 
-In the example below, all selected elements' categories are returned. The elements are then filtered down to two lists. One list of door elements and a second list of all other elements.
+次の例では、選択したすべての要素のカテゴリが返されます。次に、その要素がドア要素とその他すべての要素の 2 つのリストにフィルタされます。
 ___
 ## サンプル ファイル
 

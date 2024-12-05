@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Room.Number` returns the number for the given room element as a string.
+Węzeł `Room.Number` zwraca numer danego elementu pomieszczenia w postaci ciągu (string).
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' numbers are then returned.
+W poniższym przykładzie pobierane są wszystkie pomieszczenia z bieżącego dokumentu z wybranego widoku. Następnie zwracane są numery pomieszczeń.
 ___
 ## Plik przykładowy
 

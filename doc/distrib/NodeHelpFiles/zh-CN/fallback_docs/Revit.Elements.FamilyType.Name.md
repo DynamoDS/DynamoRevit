@@ -1,7 +1,7 @@
 ## 详细
-Given a family type, `FamilyType.Name` returns the name for the family type as a string.
+给定族类型“FamilyType.Name”以字符串形式返回族类型的名称。
 
-In the example below, all door instances in the current view are grouped by their family type name.
+在下面的示例中，当前视图中的所有门实例都按其族类型名称进行分组。
 ___
 ## 示例文件
 

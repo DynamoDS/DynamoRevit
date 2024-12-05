@@ -1,7 +1,7 @@
 ## Podrobnosti
-`GlobalParameter.Visible` returns a true or false value indicating whether or not the given global parameter is visible in the UI.
+Uzel `GlobalParameter.Visible` vrací hodnotu true nebo false, která určuje, zda je daný globální parametr v uživatelském rozhraní viditelný, či nikoli.
 
-In the example below, all global parameters are returned from the current Revit document. The visibility states are then returned with `GlobalParameter.Visible`.
+V níže uvedeném příkladu jsou vráceny všechny globální parametry z aktuálního dokumentu aplikace Revit. Poté jsou vráceny stavy viditelnosti pomocí uzlu `GlobalParameter.Visible`.
 ___
 ## Vzorový soubor
 

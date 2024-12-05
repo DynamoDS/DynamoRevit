@@ -1,7 +1,7 @@
 ## Im Detail
-`FamilyInstance.GetFamily` returns the parent family of the given family instance.
+`FamilyInstance.GetFamily` gibt die übergeordnete Familie des angegebenen Familienexemplars zurück.
 
-In the example below, the family for all doors in the current view of the current document are returned.
+Im folgenden Beispiel wird die Familie für alle Türen in der aktuellen Ansicht des aktuellen Dokuments zurückgegeben.
 ___
 ## Beispieldatei
 

@@ -1,14 +1,14 @@
 ## Подробности
-`Schedule Type` allows for the selection of the available schedule types.
+Узел `Schedule Type` позволяет выбрать доступные типы спецификаций.
 
-Available schedule types include:
-- RegularSchedule
-- Key Schedule
-- Material Takeoffs
+Доступные типы спецификаций:
+- регулярная спецификация;
+- ключевая спецификация;
+- ведомости материалов.
 
-For more information regarding schedules in Revit, refer to this [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
+Дополнительные сведения о спецификациях в Revit см. в этой [статье](https://help.autodesk.com/view/RVT/2024/RUS/?guid=GUID-73090B70-8A13-4E12-909C-F25D724D5BA7).
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+В приведенном ниже примере в текущем документе Revit создается спецификация под названием «Рабочая спецификация дверей».
 ___
 ## Файл примера
 

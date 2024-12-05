@@ -1,7 +1,7 @@
 ## 詳細
-`Viewport.Sheet` returns the sheet element that the viewport is placed on.
+`Viewport.Sheet` は、ビューポートが配置されているシート要素を返します。
 
-In the example below, all viewports are collected from the current Revit document. The sheet for each viewport is then returned with `Viewport.Sheet`. Additionally, the viewports are grouped by sheet with `List.GroupByKey`.
+次の例では、すべてのビューポートが現在の Revit ドキュメントから収集されます。各ビューポートのシートが `Viewport.Sheet` によって返されます。さらに、ビューポートは `List.GroupByKey` によってシートごとにグループ化されます。
 ___
 ## サンプル ファイル
 

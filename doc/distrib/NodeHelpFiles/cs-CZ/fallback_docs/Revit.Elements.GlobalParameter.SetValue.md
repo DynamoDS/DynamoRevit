@@ -1,7 +1,7 @@
 ## Podrobnosti
-`GlobalParameter.SetValue` sets the given global parameter to the given value.
+Uzel `GlobalParameter.SetValue` nastaví daný globální parametr na danou hodnotu.
 
-In the example below, a global parameter called "Building Number" is created. The value is then set to "Building 01" with `GlobalParameter.SetValue`
+V níže uvedeném příkladu je vytvořen globální parametr s názvem „Číslo budovy“. Hodnota se pak nastaví na „Budova 01“ pomocí uzlu `GlobalParameter.SetValue`
 ___
 ## Vzorový soubor
 

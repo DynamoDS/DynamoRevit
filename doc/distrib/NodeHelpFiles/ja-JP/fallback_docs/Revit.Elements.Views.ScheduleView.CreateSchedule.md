@@ -1,7 +1,7 @@
 ## 詳細
-`ScheduleView.CreateSchedule` creates a new schedule with the given parameters. If the schedule name already exists, an error will be returned.
+`ScheduleView.CreateSchedule` は、指定されたパラメータを使用して新しい集計表を作成します。集計表名が既に存在する場合は、エラーが返されます。
 
-In the example below, a new schedule called "Working Door Schedule" is created in the current Revit document.
+次の例では、「作業ドアの集計表」という新しい集計表が現在の Revit ドキュメントに作成されます。
 ___
 ## サンプル ファイル
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FamilyInstance.ByPoint` creates an instance of the given family type at the given point.
+Uzel `FamilyInstance.ByPoint` vytvoří instanci daného typu rodiny v daném bodě.
 
-In the example below, a selected floor surface is parameterized with hexagon panels. The panel center points are used for randomized RPC placement.
+V níže uvedeném příkladu je vybraný povrch podlahy parametrizován pomocí šestiúhelníkových panelů. Středy panelů se používají k náhodnému umístění RPC.
 ___
 ## Vzorový soubor
 

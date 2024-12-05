@@ -1,7 +1,7 @@
 ## Description approfondie
-`ScheduleView.Export` exports the given schedule to the given path with the selected options.
+'ScheduleView.Export' permet d'exporter la nomenclature donnée vers le chemin donné avec les options sélectionnées.
 
-In the example below, the door schedule is selected from the current Revit document for export. The export location is derived from the view name and the current user's documents location. Finally, the schedule is exported with the default export options.
+Dans l'exemple ci-dessous, la nomenclature de portes est sélectionnée dans le document Revit actif pour l'exporter. L'emplacement d'exportation est dérivé du nom de la vue et de l'emplacement actuel des documents de l'utilisateur. Enfin, la nomenclature est exportée avec les options d'exportation par défaut.
 ___
 ## Exemple de fichier
 

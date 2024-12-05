@@ -1,7 +1,7 @@
 ## In profondità
-`Room.Name` returns the name for the given room element.
+`Room.Name` restituisce il nome dell'elemento locale specificato.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' names are then returned.
+Nell'esempio seguente, vengono raccolti tutti i locali dal documento corrente e dalla vista selezionata. Vengono quindi restituiti i nomi dei locali.
 ___
 ## File di esempio
 

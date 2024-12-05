@@ -1,7 +1,7 @@
 ## Description approfondie
-`Ceiling.ByOutlineTypeAndLevel` permet de créer un plafond dans le document actuel (fichier).
+« Ceiling.ByOutlineTypeAndLevel » permet de créer un plafond dans le document actuel (fichier).
 
-Dans l'exemple ci-dessous, le noeud `Ceiling.ByOutlineTypeAndLevel` est utilisé avec les noeuds `Ceiling Types` et `Room.FinishBoundary` pour créer un plafond simple à partir des limites d'une pièce.
+Dans l'exemple ci-dessous, le nœud « Ceiling.ByOutlineTypeAndLevel » est utilisé avec les nœuds « Ceiling Types » et « Room.FinishBoundary » pour créer un plafond simple à partir des limites d'une pièce.
 
 ___
 ## Exemple de fichier

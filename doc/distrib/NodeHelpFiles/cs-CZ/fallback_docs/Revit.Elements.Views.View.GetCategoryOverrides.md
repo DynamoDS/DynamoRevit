@@ -1,7 +1,7 @@
 ## Podrobnosti
-Given a view or view template, `View.GetCategoryOverrides` returns the graphic overrides for the provided view or view template. Note, if a view has a view template assigned, the view template must be used.
+S daným pohledem nebo šablonou pohledu vrátí uzel `View.GetCategoryOverrides` přepsání zobrazení pro zadaný pohled nebo šablonu pohledu. Vezměte na vědomí, že pokud má pohled přiřazenou šablonu pohledu, je nutné použít šablonu pohledu.
 
-In the example below, the active view's view template from the current document is retrieved. The overrides for the wall category are then returned.
+V následujícím příkladu se načte šablona aktivního pohledu z aktuálního dokumentu. Poté jsou vrácena přepsání kategorie stěny.
 ___
 ## Vzorový soubor
 

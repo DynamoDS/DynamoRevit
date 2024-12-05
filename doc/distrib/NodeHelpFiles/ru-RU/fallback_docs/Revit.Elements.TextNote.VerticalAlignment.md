@@ -1,12 +1,12 @@
 ## Подробности
-`TextNote.VerticalAlignment` returns the assigned vertical alignment of the given text note.
+Узел `TextNote.VerticalAlignment` возвращает назначенное выравнивание по вертикали для заданного текстового примечания.
 
-Vertical Alignment Options include:
-- Top
-- Bottom
-- Middle
+Варианты выравнивания по вертикали:
+- по верхнему краю;
+- по нижнему краю;
+- по середине.
 
-In the example below, all working notes are collected from the current Revit document. The vertical alignment values are then returned.
+В приведенном ниже примере собираются все рабочие примечания в текущем документе Revit. Затем возвращаются значения выравнивания по вертикали.
 
 ___
 ## Файл примера

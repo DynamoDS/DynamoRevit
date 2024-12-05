@@ -1,7 +1,7 @@
 ## 详细
-`Viewport.SetLabelLineLength` sets the length of the viewport line, in paper space units.
+“Viewport.SetLabelLineLength”设置视口线的长度(以图纸空间单位表示)。
 
-In the example below, all of the viewports from the selected sheet are collected. The viewports' bounding boxes are then used to calculate the width that the viewport line should be. Finally, the viewport lines are set to the width of the viewport.
+在下面的示例中，将收集选定图纸中的所有视口。然后，使用视口的边界框来计算视口线应有的宽度。最后，视口线设置为视口的宽度。
 ___
 ## 示例文件
 

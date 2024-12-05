@@ -1,7 +1,7 @@
 ## Description approfondie
-`Material.Name` returns the given material's name as a string.
+'Material.Name' renvoie le nom du matériau donné sous forme de chaîne.
 
-In the example below, all materials are collected from the current document. The material names are returned with `Material.Name`.
+Dans l'exemple ci-dessous, tous les matériaux sont collectés à partir du document actif. Les noms de matériau sont renvoyés avec 'Material.Name'.
 ___
 ## Exemple de fichier
 

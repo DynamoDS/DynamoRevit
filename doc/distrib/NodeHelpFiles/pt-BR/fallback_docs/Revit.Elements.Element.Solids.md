@@ -1,7 +1,7 @@
 ## Em profundidade
-`Element.Solids` returns the solid geometry for the given element. The solids are returned as nested lists, as any given element can have more than one solid within it. If a single solid that represents the element is desired, `Solid.ByUnion` may be used on the lists.
+`Element.Solids` retorna a geometria sólida do elemento fornecido. Os sólidos são retornados como listas aninhadas, pois qualquer elemento pode ter mais de um sólido dentro dele. Se um único sólido que representa o elemento for desejado, `Solid.ByUnion` poderá ser usado nas listas.
 
-In the example below, all walls are collected from the selected view. Walls that were created as in-place families are then removed, and the remaining walls' solids are returned.
+No exemplo abaixo, são coletadas todas as paredes da vista selecionada. As paredes que foram criadas como famílias no local são removidas e os sólidos das paredes restantes são retornados.
 
 ___
 ## Arquivo de exemplo

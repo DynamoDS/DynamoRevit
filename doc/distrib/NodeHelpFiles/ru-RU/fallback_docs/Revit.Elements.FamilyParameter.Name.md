@@ -1,7 +1,7 @@
 ## Подробности
-`FamilyParameter.Name` returns the user-visible name of the given parameter.
+Узел `FamilyParameter.Name` возвращает видимое пользователю имя заданного параметра.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the name.
+В приведенном ниже примере открыт текущий документ Revit (семейство дверей из примера модели). Возвращаются параметры в семействе вместе именем.
 ___
 ## Файл примера
 

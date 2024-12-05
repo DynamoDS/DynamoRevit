@@ -1,7 +1,7 @@
 ## 상세
-`TextNote.Typename` returns the type name for the given text note.
+`TextNote.Typename`은 지정된 문자 참고의 유형 이름을 반환합니다.
 
-In the example below, all working text notes are collected from the current Revit document by filtering by the text note type name.
+아래 예에서는 모든 작업 문자 참고가 현재 Revit 문서에서 수집되고 문자 참고 유형 이름별로 필터링됩니다.
 
 ___
 ## 예제 파일

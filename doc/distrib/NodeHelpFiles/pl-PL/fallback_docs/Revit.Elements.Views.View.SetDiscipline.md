@@ -1,15 +1,15 @@
 ## Informacje szczegółowe
-`View.SetDiscipline` modifies the discipline of the given view.
+Węzeł `View.SetDiscipline` modyfikuje dziedzinę danego widoku.
 
-View discipline options include:
-- Architectural
-- Coordination
-- Electrical
-- Mechanical
-- Plumbing
-- Structural
+Opcje dziedziny widoku obejmują:
+- Architectural (architektoniczny)
+- Coordination (koordynacja)
+- Electrical (elektryczny)
+- Mechanical (mechaniczny)
+- Plumbing (hydraulika)
+- Structural (konstrukcyjny)
 
-In the example below, the default 3d view's discipline is set to coordination.
+W poniższym przykładzie jako domyślna dziedzina widoku 3D zostaje ustawiona „koordynacja”.
 ___
 ## Plik przykładowy
 

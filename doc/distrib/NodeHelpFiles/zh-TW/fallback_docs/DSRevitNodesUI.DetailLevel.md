@@ -1,13 +1,13 @@
 ## 深入資訊
-`Detail Level` allows for the selection of a view detail level for use in graphic settings.
+`Detail Level` 可讓您選取視圖詳細等級，以在圖形設定中使用。
 
-Detail levels available include:
-- Coarse
-- Fine
-- Medium
-- Undefined
+可用的詳細等級包括:
+- 粗糙
+- 細緻
+- 中等
+- 未定義
 
-In the example below, graphic settings are created with a coarse detail level setting for use on view elements.
+在以下範例中，使用粗糙詳細等級設定建立圖形設定用於視圖元素。
 ___
 ## 範例檔案
 

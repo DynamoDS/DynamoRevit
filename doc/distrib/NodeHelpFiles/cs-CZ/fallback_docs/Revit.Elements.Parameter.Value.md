@@ -1,9 +1,9 @@
 ## Podrobnosti
-Given a parameter element, `Parameter.Value` returns the value that is stored within the given parameter.
+S daným prvkem parametru uzel `Parameter.Value` vrací hodnotu, která je uložena v daném parametru.
 
-If no parameter value is found, a null value is returned.
+Pokud není nalezena žádná hodnota parametru, je vrácena hodnota null.
 
-In the example below, the project name is returned for the project information for the current document.
+V níže uvedeném příkladu je vrácen název projektu pro informace o projektu v aktuálním dokumentu.
 
 ___
 ## Vzorový soubor

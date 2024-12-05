@@ -1,7 +1,7 @@
 ## Im Detail
-`Viewport.View` returns the view associated with the given viewport.
+`Viewport.View` gibt die Ansicht zurück, die mit dem angegebenen Ansichtsfenster verknüpft ist.
 
-In the example below, the viewports are returned for the selected sheet. The viewports' associated views are then returned with `Viewport.View`.
+Im folgenden Beispiel werden die Ansichtsfenster für den ausgewählten Plan zurückgegeben. Dann werden die mit den Ansichtsfenstern verknüpften Ansichten mit `Viewport.View` zurückgegeben.
 ___
 ## Beispieldatei
 

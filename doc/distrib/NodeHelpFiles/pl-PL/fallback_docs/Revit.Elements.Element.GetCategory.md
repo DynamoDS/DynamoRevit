@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Element.GetCategory` returns the category element for the given element. With the returned category element, it can be queried for various parameters.
+Węzeł `Element.GetCategory` zwraca element kategorii dla danego elementu. Zwrócony element kategorii można zbadać pod kątem różnych parametrów.
 
-In the example below, all selected elements' categories are returned. The elements are then filtered down to two lists. One list of door elements and a second list of all other elements.
+W poniższym przykładzie zwracane są kategorie wszystkich wybranych elementów. Elementy są następnie filtrowane do postaci dwóch list. Jedna lista to lista elementów drzwi, a druga to lista wszystkich pozostałych elementów.
 ___
 ## Plik przykładowy
 

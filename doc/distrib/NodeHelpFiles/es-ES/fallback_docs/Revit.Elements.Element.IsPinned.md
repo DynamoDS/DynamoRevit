@@ -1,7 +1,7 @@
 ## En detalle:
-`Element.IsPinned` returns a true or false value to indicate whether the given element is pinned.
+`Element.IsPinned` devuelve un valor "true" (verdadero) o "false" (falso) para indicar si el elemento especificado está bloqueado.
 
-In the example below, all Revit link instances are collected in the current document, and their pinned state is returned.
+En el ejemplo siguiente, se recopilan todos los ejemplares de vínculos de Revit en el documento actual y se devuelve su estado bloqueado.
 ___
 ## Archivo de ejemplo
 

@@ -1,7 +1,7 @@
 ## 详细
-`Material.Shininess` returns an integer that indicates how shiny a material is.
+“Material.Shininess”返回一个整数，该整数指示材质的光泽程度。
 
-In the example below, all materials are collected from the current document. The materials' shininess values (as integers) are returned with `Material.Shininess`.
+在下面的示例中，将从当前文档收集所有材质。使用“Material.Shininess”返回材质的光泽值(整数形式)。
 ___
 ## 示例文件
 

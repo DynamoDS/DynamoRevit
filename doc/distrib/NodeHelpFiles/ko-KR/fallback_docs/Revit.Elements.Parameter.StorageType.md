@@ -1,14 +1,14 @@
 ## 상세
-`Parameter.StorageType` helps determine what type of data a parameter stores.
+`Parameter.StorageType`은 매개변수가 저장하는 데이터 유형을 확인하는 데 도움이 됩니다.
 
-Data types include:
-- None
+데이터 유형은 다음과 같습니다.
+- 없음
 - 정수
-- Double
+- 실수
 - 문자열
 - 요소 ID
 
-In the example below, all of the parameters from the current document's project information are returned. The parameter's storage type is then returned.
+아래 예에서는 현재 문서의 프로젝트 정보에 있는 모든 매개변수가 반환됩니다. 그런 다음 매개변수의 저장소 유형이 반환됩니다.
 
 ___
 ## 예제 파일

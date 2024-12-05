@@ -1,9 +1,9 @@
 ## 詳細
-`Room.Volume` returns the volume of the given room element in the current document's units. _(E.g. Feet and Inches)_
+`Room.Volume` は、指定された部屋要素の容積を現在のドキュメントの単位(例: フィートとインチ)で返します。
 
-If an unbounded or unplaced room is given, a null value is returned.
+境界のない部屋、または配置されていない部屋が指定されている場合は、null 値が返されます。
 
-In the example below, all rooms are collected from the current document and the volume values are returned.
+次の例では、すべての部屋が現在のドキュメントから収集され、容積の値が返されます。
 ___
 ## サンプル ファイル
 

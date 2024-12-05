@@ -1,7 +1,7 @@
 ## Podrobnosti
-`TextNote.SetText` sets the given text value to the text note.
+Uzel `TextNote.SetText` nastaví danou textovou hodnotu u textové poznámky.
 
-In the example below, all text notes are collected from the current Revit document. The text notes' text values are collected and converted to upper case. These values are then used to set the text value.
+V níže uvedeném příkladu jsou shromážděny všechny textové poznámky z aktuálního dokumentu aplikace Revit. Textové hodnoty textových poznámek jsou shromážděny a převedeny na velká písmena. Na základě těchto hodnot se poté nastaví textová hodnota.
 
 ___
 ## Vzorový soubor

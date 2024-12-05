@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`FloorType.Name` returns the given floor type's name.
+Węzeł `FloorType.Name` zwraca nazwę danego typu stropu.
 
-In the example below, all floor types loaded in the current Revit document are collected. The names are then returned with `FloorType.Name`.
+W poniższym przykładzie pobierane są wszystkie typy stropów wczytane w bieżącym dokumencie programu Revit. Następnie za pomocą węzła `FloorType.Name` zwracane są ich nazwy.
 ___
 ## Plik przykładowy
 

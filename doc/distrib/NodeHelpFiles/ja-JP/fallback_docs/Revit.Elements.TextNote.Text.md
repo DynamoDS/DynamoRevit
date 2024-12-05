@@ -1,7 +1,7 @@
 ## 詳細
-`TextNote.Text` returns the text value of the given text note.
+`TextNote.Text` は、指定された文字注記の文字列の値を返します。
 
-In the example below, all text notes are collected from the current Revit document. The text notes' text values are then returned.
+次の例では、すべての文字注記が現在の Revit ドキュメントから収集されます。次に、文字注記の文字列の値が返されます。
 
 ___
 ## サンプル ファイル

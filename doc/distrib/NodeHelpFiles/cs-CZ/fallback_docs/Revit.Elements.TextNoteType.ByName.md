@@ -1,7 +1,7 @@
 ## Podrobnosti
-`TextNoteType.ByName` selects the text note type that matches the given name, if available. If the text note type does not exist, a null value is returned.
+Uzel `TextNoteType.ByName` vybere typ textové poznámky, který odpovídá danému názvu, pokud je k dispozici. Pokud typ textové poznámky neexistuje, je vrácena hodnota null.
 
-In the example below, the text note type, "Working Notes" is selected from the current Revit document.
+V níže uvedeném příkladu je z aktuálního dokumentu aplikace Revit vybrán typ textové poznámky „Pracovní poznámky“.
 
 ___
 ## Vzorový soubor

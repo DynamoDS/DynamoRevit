@@ -1,7 +1,7 @@
 ## 深入資訊
-Given a family type, `FamilyType.Name` returns the name for the family type as a string.
+給定族群類型，`FamilyType.Name` 會以字串傳回族群類型的名稱。
 
-In the example below, all door instances in the current view are grouped by their family type name.
+在以下範例中，依門實體的族群類型名稱，將目前視圖中的所有門實體分組。
 ___
 ## 範例檔案
 

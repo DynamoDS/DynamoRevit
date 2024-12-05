@@ -1,7 +1,7 @@
 ## Подробности
-`Element.ElementFaceReferences` provides access to the face references within the given element. These references are useful for dimension creation, or the creation of other elements. If no face references are found, a null value is returned.
+Узел `Element.ElementFaceReferences` предоставляет доступ к ссылкам на грани в указанном элементе. Эти ссылки полезны для создания размеров или других элементов. Если ссылки на грани не найдены, возвращается значение null.
 
-In the example below, all doors are collected from the selected view and the face references are returned.
+В приведенном ниже примере из выбранного вида собираются все двери и возвращаются ссылки на грани.
 ___
 ## Файл примера
 

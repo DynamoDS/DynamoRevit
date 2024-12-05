@@ -1,7 +1,7 @@
 ## En detalle:
-`Element.GetCategory` returns the category element for the given element. With the returned category element, it can be queried for various parameters.
+`Element.GetCategory` devuelve el elemento de categoría para el elemento especificado. Con el elemento de categoría devuelto, se pueden realizar consultas por diversos parámetros.
 
-In the example below, all selected elements' categories are returned. The elements are then filtered down to two lists. One list of door elements and a second list of all other elements.
+En el ejemplo siguiente, se devuelven todas las categorías de los elementos seleccionados. A continuación, los elementos se filtran en dos listas. Una lista de elementos de puerta y una segunda lista de todos los demás elementos.
 ___
 ## Archivo de ejemplo
 

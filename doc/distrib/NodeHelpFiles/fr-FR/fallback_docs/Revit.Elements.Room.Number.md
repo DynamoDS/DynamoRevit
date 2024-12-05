@@ -1,7 +1,7 @@
 ## Description approfondie
-`Room.Number` returns the number for the given room element as a string.
+'Room.Number' renvoie le numéro de l'élément de pièce donné sous forme de chaîne.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' numbers are then returned.
+Dans l'exemple ci-dessous, toutes les pièces sont collectées à partir du document actif et de la vue sélectionnée. Les numéros des pièces sont ensuite renvoyés.
 ___
 ## Exemple de fichier
 

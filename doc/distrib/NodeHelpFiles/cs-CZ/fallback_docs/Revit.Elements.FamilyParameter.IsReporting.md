@@ -1,7 +1,7 @@
 ## Podrobnosti
-`FamilyParameter.IsReporting` returns a true or false value indicating whether the given family parameter is a reporting parameter.
+Uzel `FamilyParameter.IsReporting` vrací hodnotu true nebo false, která udává, zda je daný parametr rodiny vykazovaným parametrem.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with a list of boolean values representing if they are reporting parameters.
+V níže uvedeném příkladu je otevřen aktuální dokument aplikace Revit (rodina dveří ze vzorového modelu). Vrátí se parametry v rodině spolu se seznamem booleovských hodnot představujících informaci o tom, zda se jedná o vykazované parametry.
 ___
 ## Vzorový soubor
 

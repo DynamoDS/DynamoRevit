@@ -1,7 +1,7 @@
 ## Подробности
-`Material.Smoothness` returns an integer that indicates how smooth a material is.
+Узел `Material.Smoothness` возвращает целое число, показывающее, насколько гладким является материал.
 
-In the example below, all materials are collected from the current document. The materials' smoothness values (as integers) are returned with `Material.Smoothness`.
+В приведенном ниже примере все материалы собираются из текущего документа. Значения гладкости материалов (в виде целых чисел) возвращаются с помощью `Material.Smoothness`.
 ___
 ## Файл примера
 

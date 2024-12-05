@@ -1,9 +1,9 @@
 ## Description approfondie
-`All Elements In Active View` returns all of the elements that are visible in the active view of the current Revit document.
+L'option « Tous les éléments de la vue active » renvoie tous les éléments visibles dans la vue active du document Revit actif.
 
-`All Elements In Active View` will return a new list if the view has changed and the graph has been run.
+L'option « Tous les éléments de la vue active» renvoie une nouvelle liste si la vue a été modifiée et si le graphique a été exécuté.
 
-In the example below, 11 elements are returned for the starting view of the Revit architectural sample file, _(Snowdon Towers)_.
+Dans l'exemple ci-dessous, 11 éléments sont renvoyés pour la vue de départ du fichier d'exemple architectural Revit, _(Snowdon Towers)_.
 ___
 ## Exemple de fichier
 

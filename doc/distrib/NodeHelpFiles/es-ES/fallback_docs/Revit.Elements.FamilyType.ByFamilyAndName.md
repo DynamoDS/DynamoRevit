@@ -1,7 +1,7 @@
 ## En detalle:
-`FamilyType.ByFamilyAndName` returns the family type definition from the current document (if available). If the family type is not available in the current document, a null value is returned.
+`FamilyType.ByFamilyAndName` devuelve la definición del tipo de familia del documento actual (si está disponible). Si el tipo de familia no está disponible en el documento actual, se devuelve un valor nulo.
 
-In the example below, a door family type, "36" x 84", from family "Door-Passage-Single-Flush" is returned.
+En el ejemplo siguiente, se devuelve un tipo de familia de puertas, 36" x 84", de la familia "Puerta-De_paso-Simple-Paneles_planos".
 ___
 ## Archivo de ejemplo
 

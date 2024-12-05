@@ -1,7 +1,7 @@
 ## En detalle:
-`ScheduleView.AddFields` adds the selected fields to the schedule. Schedulable fields represent available parameters of the category assigned to the schedule.
+`ScheduleView.AddFields` añade los campos seleccionados a la tabla de planificación. Los campos planificables representan los parámetros disponibles de la categoría asignada a la tabla de planificación.
 
-In the example below, a new schedule called "Working Door Schedule" is created. The schedulable fields are then collected and input into a dictionary to facilitate looking the fields up by name. Finally, the fields are found by name and added to the schedule view with `ScheduleView.AddFields`.
+En el ejemplo siguiente, se crea una nueva tabla de planificación denominada "Working Door Schedule ". A continuación, se recopilan los campos planificables y se introducen en un diccionario para facilitar la búsqueda de los campos por nombre. Por último, se buscan los campos por nombre y se añaden a la vista de tabla de planificación con `ScheduleView.AddFields`.
 ___
 ## Archivo de ejemplo
 

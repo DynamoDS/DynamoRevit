@@ -1,9 +1,9 @@
 ## 详细
-`Room.Location` returns a Dynamo point that represents a given room's location.
+“Room.Location”返回表示给定房间位置的 Dynamo 点。
 
-If an unbounded or unplaced room is given, a null value is returned.
+如果给定了无边界或未放置的房间，则返回空值。
 
-In the example below, all rooms are collected from the current document and selected view. The rooms' locations are then returned. Additionally, the room names are previewed in the Dynamo viewport with the `Label.ByPointAndString` node.
+在下面的示例中，将从当前文档和选定视图收集所有房间。然后返回房间的位置。此外，在 Dynamo 视口中使用“Label.ByPointAndString”节点预览房间名称。
 
 ___
 ## 示例文件

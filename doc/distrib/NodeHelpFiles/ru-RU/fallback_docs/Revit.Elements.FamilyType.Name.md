@@ -1,7 +1,7 @@
 ## Подробности
-Given a family type, `FamilyType.Name` returns the name for the family type as a string.
+Если имеется типоразмер семейства, `FamilyType.Name` возвращает имя типоразмера семейства в виде строки.
 
-In the example below, all door instances in the current view are grouped by their family type name.
+В приведенном ниже примере все экземпляры дверей в текущем виде группируются по имени типоразмера семейства.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## Подробности
-`TextNote.Text` returns the text value of the given text note.
+Узел `TextNote.Text` возвращает текстовое значение заданного текстового примечания.
 
-In the example below, all text notes are collected from the current Revit document. The text notes' text values are then returned.
+В приведенном ниже примере собираются все текстовые примечания в текущем документе Revit. Затем возвращаются текстовые значения примечаний.
 
 ___
 ## Файл примера

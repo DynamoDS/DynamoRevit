@@ -1,7 +1,7 @@
 ## In profondità
-`Viewport.View` returns the view associated with the given viewport.
+`Viewport.View` restituisce la vista associata alla finestra specificata.
 
-In the example below, the viewports are returned for the selected sheet. The viewports' associated views are then returned with `Viewport.View`.
+Nell'esempio seguente, vengono restituite le finestre per la tavola selezionata. Vengono quindi restituite le viste associate delle finestre con `Viewport.View`.
 ___
 ## File di esempio
 

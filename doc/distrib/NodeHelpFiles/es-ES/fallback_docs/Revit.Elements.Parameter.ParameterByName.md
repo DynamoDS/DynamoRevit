@@ -1,9 +1,9 @@
 ## En detalle:
-Given an element and a name of a parameter, `Parameter.ParameterByName` returns the parameter element, if applicable.
+Si se especifica un elemento y el nombre de un parámetro, `Parameter.ParameterByName` devuelve el elemento de parámetro, si procede.
 
-If no parameter is found by the given name, a null value is returned.
+Si no se encuentra ningún parámetro con el nombre especificado, se devuelve un valor nulo.
 
-In the example below, the project name parameter is returned for the project information for the current document.
+En el ejemplo siguiente, se devuelve el parámetro de nombre de proyecto para la información del proyecto del documento actual.
 
 ___
 ## Archivo de ejemplo

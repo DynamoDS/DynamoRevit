@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`TextNote.Text` returns the text value of the given text note.
+Węzeł `TextNote.Text` zwraca wartość tekstu danej notatki tekstowej.
 
-In the example below, all text notes are collected from the current Revit document. The text notes' text values are then returned.
+W poniższym przykładzie z bieżącego dokumentu programu Revit pobierane są wszystkie notatki tekstowe. Następnie zwracane są wartości tekstu notatek tekstowych.
 
 ___
 ## Plik przykładowy

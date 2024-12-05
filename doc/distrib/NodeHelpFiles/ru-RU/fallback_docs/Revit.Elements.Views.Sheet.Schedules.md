@@ -1,7 +1,7 @@
 ## Подробности
-`Sheet.Schedules` returns the schedule instances placed on the given sheet. Note: `Sheet.Schedules` will return revision schedules that exist within the titleblock family for the given sheet.
+Узел `Sheet.Schedules` возвращает экземпляры спецификации, размещенные на данном листе. Примечание. Узел `Sheet.Schedules` возвращает спецификации изменений, которые существуют в семействе основных надписей для данного листа.
 
-In the example below, the schedule instances are returned for the selected sheet. The revision schedules are then filtered out with `List.FilterByBoolMask`. Additionally, the owner view for the schedule instance is retrieved with `ScheduleOnSheet.ScheduleView`.
+В приведенном ниже примере возвращаются экземпляры спецификации для выбранного листа. Затем спецификации изменений отфильтровываются с помощью `List.FilterByBoolMask`. Кроме того, с помощью `ScheduleOnSheet.ScheduleView` извлекается основной вид для экземпляра спецификации.
 ___
 ## Файл примера
 

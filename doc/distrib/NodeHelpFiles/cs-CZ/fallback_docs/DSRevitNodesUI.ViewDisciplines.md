@@ -1,14 +1,14 @@
 ## Podrobnosti
-`View Disciplines` allows for the selection of the following disciplines to assign to views:
+Uzel `View Disciplines` umožňuje vybrat následující disciplíny, které budou pohledům přiřazeny:
 
-- Architectural
-- Coordination
-- Electrical
-- Mechanical
-- Plumbing
-- Structural
+- Architektura
+- Koordinace
+- Elektroinstalace
+- Mechanické
+- Domovní instalace
+- Konstrukce
 
-In the example below, the default 3d view's discipline is set to coordination.
+V níže uvedeném příkladu je disciplína výchozího 3D pohledu nastavena na koordinaci.
 ___
 ## Vzorový soubor
 

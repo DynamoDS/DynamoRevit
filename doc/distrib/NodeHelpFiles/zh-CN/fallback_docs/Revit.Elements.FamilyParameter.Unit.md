@@ -1,7 +1,7 @@
 ## 详细
-`FamilyParameter.Unit` returns the unit type of the given parameter.
+“FamilyParameter.Unit”返回给定参数的单位类型。
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the unit type. If no unit type is found, a null value is returned.
+在下面的示例中，当前 Revit 文档(样例模型中的门族)处于打开状态。将返回族中的参数以及单位类型。如果未找到单位类型，则返回空值。
 ___
 ## 示例文件
 

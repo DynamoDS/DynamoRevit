@@ -1,14 +1,14 @@
 ## 詳細
-`Parameter.StorageType` helps determine what type of data a parameter stores.
+`Parameter.StorageType` は、パラメータに格納されるデータのタイプを判断するのに便利です。
 
-Data types include:
-- None
+データ タイプには、次が含まれます。
+- なし
 - 整数
 - 倍精度浮動小数点数
 - 文字列
 - 要素 ID
 
-In the example below, all of the parameters from the current document's project information are returned. The parameter's storage type is then returned.
+次の例では、現在のドキュメントのプロジェクト情報からすべてのパラメータが返されます。次に、パラメータの格納タイプが返されます。
 
 ___
 ## サンプル ファイル

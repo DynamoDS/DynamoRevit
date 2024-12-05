@@ -1,9 +1,9 @@
 ## Подробности
-`Material.AppearanceAssetElement` returns the appearance asset for the given material (if available).
+Узел `Material.AppearanceAssetElement` возвращает набор характеристик представления для заданного материала (если доступен).
 
-Appearance assets control how materials display in rendered images. For more information, refer to this [article](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-6E3C9EF0-F657-4F79-90BD-A2FB88B0467D).
+Наборы характеристик представления определяют способ отображения материалов в визуализированных изображениях. Для получения дополнительной информации см. эту [статью](https://help.autodesk.com/view/RVT/2025/RUS/?guid=GUID-6E3C9EF0-F657-4F79-90BD-A2FB88B0467D).
 
-In the example below, all materials are collected from the current document. The materials' appearance assets are returned with `Material.AppearanceAssetElement`.
+В приведенном ниже примере все материалы собираются из текущего документа. Наборы характеристик представления материалов возвращаются с помощью `Material.AppearanceAssetElement`.
 
 ___
 ## Файл примера

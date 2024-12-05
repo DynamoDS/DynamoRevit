@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`View.SetFilterOverrides` will apply the given overrides to the given view and view filter.
+Węzeł `View.SetFilterOverrides` stosuje dane nadpisania do danego widoku i filtru widoku.
 
-In the example below, a view filter is created for the `Fire Rating` parameter on wall type elements. This filter is added to the `L1` floor plan view in the sample model. After the filter is added, overrides are then added to the filter to turn the wall types with a "2 HR" rating to a solid red color.
+W poniższym przykładzie zostaje utworzony filtr widoku dla parametru `Fire Rating` (Klasa ognioodporności) dla elementów typu ściany. Ten filtr jest dodawany do widoku rzutu stropu `L1` w modelu przykładowym. Po dodaniu filtra do tego filtra dodawane są nadpisania, aby zmienić kolory typów ścian z klasą „2 HR” (2 GODZ.) na kolor czerwony jednolity.
 ___
 ## Plik przykładowy
 

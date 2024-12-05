@@ -1,7 +1,7 @@
 ## 詳細
-`Group.UngroupElements` ungroups the given group instance, resulting in the elements being in the model directly. Note, this action is destructive and returning the group members to a group is not easily achievable.
+`Group.UngroupElements` は、指定されたグループ インスタンスをグループ解除することで、要素をモデルに直接配置します。注: このアクションは破壊的なアクションであるため、グループ メンバーを元のグループに戻すことは困難です。
 
-In the example below, all model groups of type, "Bleachers Continuous" are collected from the active Revit document. The instances are then ungrouped with `Group.UngroupElements`.
+次の例では、タイプ「Bleachers Continuous」のすべてのモデル グループがアクティブな Revit ドキュメントから収集されます。次に、インスタンスが `Group.UngroupElements` によってグループ解除されます。
 
 ___
 ## サンプル ファイル

@@ -1,7 +1,7 @@
 ## Подробности
-`Select Filled Region Type` allows for the selection of a filled region type from all types available in the active Revit document.
+Узел `Select Filled Region Type` позволяет выбрать тип цветовой области из всех типов, доступных в активном документе Revit.
 
-In the example below, a new drafting view is created in the active Revit document. A filled region is created in the view using "Diagonal Down" type.
+В приведенном ниже примере в активном документе Revit создается чертежный вид. Цветовая область создается на виде с использованием типа «Диагональ вниз».
 
 ___
 ## Файл примера

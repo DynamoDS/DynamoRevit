@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Element.ElementFaceReferences` provides access to the face references within the given element. These references are useful for dimension creation, or the creation of other elements. If no face references are found, a null value is returned.
+Uzel `Element.ElementFaceReferences` poskytuje přístup k referencím plochy v rámci daného prvku. Tyto odkazy jsou užitečné při tvorbě kót nebo při tvorbě jiných prvků. Pokud nejsou nalezeny žádné reference plochy, je vrácena hodnota null.
 
-In the example below, all doors are collected from the selected view and the face references are returned.
+V níže uvedeném příkladu jsou z vybraného pohledu shromážděny všechny dveře a jsou vráceny reference plochy.
 ___
 ## Vzorový soubor
 

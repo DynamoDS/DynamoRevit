@@ -1,7 +1,7 @@
 ## 詳細
-`Material.MaterialClass` returns the name of the class that the material is assigned to.
+`Material.MaterialClass` は、マテリアルが割り当てられているクラスの名前を返します。
 
-In the example below, all materials are collected from the current document. The materials' class names are returned with `Material.MaterialClass`.
+次の例では、すべてのマテリアルが現在のドキュメントから収集されます。マテリアルのクラス名は `Material.MaterialClass` によって返されます。
 ___
 ## サンプル ファイル
 

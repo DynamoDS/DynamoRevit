@@ -1,7 +1,7 @@
 ## 深入資訊
-`CurtainSystemType.ByName` selects a curtain system type from the current Revit document of the given name.
+`CurtainSystemType.ByName` 會選取目前 Revit 文件中給定名稱的帷幕系統類型。
 
-In the example below, the curtain system type `5' x 10'` is returned.
+以下範例傳回 `5' x 10'` 的帷幕系統類型。
 ___
 ## 範例檔案
 

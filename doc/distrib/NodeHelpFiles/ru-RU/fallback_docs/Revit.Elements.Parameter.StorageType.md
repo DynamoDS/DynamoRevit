@@ -1,14 +1,14 @@
 ## Подробности
-`Parameter.StorageType` helps determine what type of data a parameter stores.
+Узел `Parameter.StorageType` помогает определить тип данных, хранимых в параметре.
 
-Data types include:
-- None
+Доступные типы данных:
+- никаких данных;
 - целое число;
 - число двойной точности;
 - строка;
 - идентификатор элемента.
 
-In the example below, all of the parameters from the current document's project information are returned. The parameter's storage type is then returned.
+В приведенном ниже примере возвращаются все параметры из информации о проекте текущего документа. Затем возвращается тип хранения параметра.
 
 ___
 ## Файл примера

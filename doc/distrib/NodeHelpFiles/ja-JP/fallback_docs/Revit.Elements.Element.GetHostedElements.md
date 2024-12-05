@@ -1,13 +1,13 @@
 ## 詳細
-Given an element that supports hosting of elements _(e.g. Walls)_, `Element.GetHostedElements` returns the elements that rely on the given element. By default, family instances that are hosted to the element are returned. `Element.GetHostedElements` offers the option to include other types of hosted elements.
+要素のホストをサポートする要素(壁など)が指定されている場合、`Element.GetHostedElements` は、指定された要素に依存している要素を返します。この要素はます。既定では、要素にホストされているファミリ インスタンスを返します。`Element.GetHostedElements` はホストされている要素のその他のタイプを含むオプションを提供します。
 
-These include:
-- openings
-- elements that are hosted in joined hosts
-- embedded walls _(i.e. curtain walls)_
-- shared embedded inserts
+これらには、次が含まれます。
+- 開口部
+- 結合されたホストにホストされている要素
+- 埋め込み壁(カーテン ウォール)
+- 共有の埋め込み挿入部品
 
-In the example below, all wall elements are collected from L2. The wall elements are then checked for hosted elements with `Element.GetHostedElements`. This list is then used to create two lists. Walls with doors and walls without doors.
+次の例では、すべての壁要素を L2 から収集します。次に `Element.GetHostedElements` を使用して、壁要素にホストされた要素があるかどうかを確認します。このリストを使用して、ドアのある壁とドアのない壁の 2 つのリストを作成します。
 ___
 ## サンプル ファイル
 

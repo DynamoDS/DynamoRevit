@@ -1,7 +1,7 @@
 ## 详细
-`GlobalParameter.SetValue` sets the given global parameter to the given value.
+“GlobalParameter.SetValue”将给定的全局参数设置为给定值。
 
-In the example below, a global parameter called "Building Number" is created. The value is then set to "Building 01" with `GlobalParameter.SetValue`
+在下面的示例中，创建了一个名为“Building Number”的全局参数。然后，该值将设置为“Building 01”，并使用“GlobalParameter.SetValue”
 ___
 ## 示例文件
 

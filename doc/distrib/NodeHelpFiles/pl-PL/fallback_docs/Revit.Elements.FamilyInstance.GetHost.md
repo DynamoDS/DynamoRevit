@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`FamilyInstance.GetHost` returns the element(s) that hosts a given family instance. Common hosted elements in Revit are doors, windows, and elements of curtain systems.
+Węzeł `FamilyInstance.GetHost` zwraca elementy będące obiektami nadrzędnymi danego wystąpienia rodziny. Typowymi elementami podrzędnymi w programie Revit są drzwi, okna i elementy systemów ścian osłonowych.
 
-In the example below, the host for all doors in the current view of the current document are returned. The element id (in green) is the host's element id in the current Revit document.
+W poniższym przykładzie zwracany jest element nadrzędny dla wszystkich drzwi w bieżącym widoku bieżącego dokumentu. Identyfikator elementu (w kolorze zielonym) jest identyfikatorem elementu nadrzędnego w bieżącym dokumencie programu Revit.
 ___
 ## Plik przykładowy
 

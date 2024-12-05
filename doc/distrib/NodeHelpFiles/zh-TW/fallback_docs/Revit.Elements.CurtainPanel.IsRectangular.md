@@ -1,7 +1,7 @@
 ## 深入資訊
-`CurtainPanel.IsRectangular` returns a true or false value to indicate if the given curtain panel is rectangular.
+`CurtainPanel.IsRectangular` 會傳回 true 或 false 值，指出給定的帷幕板是否為矩形。
 
-In the example below, all curtain panels are collected from the selected curtain wall element. The panels are then queried for whether or not they are rectangular.
+以下範例收集所選帷幕牆元素中的所有帷幕板，然後查詢這些帷幕板是否為矩形。
 ___
 ## 範例檔案
 

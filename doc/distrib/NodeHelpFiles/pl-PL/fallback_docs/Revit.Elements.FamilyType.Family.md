@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-Given a family type, `FamilyType.Family` returns the overall parent family of the family type. The family represents the file that contains all of the family type definitions.
+Na podstawie typu rodziny węzeł `FamilyType.Family` zwraca całościową rodzinę nadrzędną typu rodziny. Rodzina reprezentuje plik zawierający wszystkie definicje typów rodzin.
 
-In the example below, all door instances in the current view are grouped by their parent family.
+W poniższym przykładzie wszystkie wystąpienia drzwi w bieżącym widoku są pogrupowane według ich rodzin nadrzędnych.
 ___
 ## Plik przykładowy
 

@@ -1,7 +1,7 @@
 ## Podrobnosti
-`Viewport.BoxOutline` returns a Dynamo bounding box that represents the extents of the viewport.
+Uzel `Viewport.BoxOutline` vrací ohraničující kvádr aplikace Dynamo, který představuje rozsah výřezu.
 
-In the example below, the viewports are returned for the selected sheet. The box outlines are then returned with `Viewport.BoxOutline`.
+V níže uvedeném příkladu jsou vráceny výřezy pro vybraný výkres. Poté jsou vráceny obrysy kvádrů pomocí uzlu `Viewport.BoxOutline`.
 ___
 ## Vzorový soubor
 

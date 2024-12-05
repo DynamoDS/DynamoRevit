@@ -1,7 +1,7 @@
 ## 詳細
-`TextNoteType.Default` provides access to the default text note type in the current Revit document. This text note type is the same as the one used when creating text in the Revit UI.
+`TextNoteType.Default` は、現在の Revit ドキュメント内にある既定の文字注記タイプへのアクセスを提供します。この文字注記タイプは、Revit UI で文字を作成するときに使用するものと同じです。
 
-In the example below, a new drafting view is created and a new text note is created at the origin in the current Revit document.
+次の例では、新しい製図ビューが作成され、新しい文字注記が現在の Revit ドキュメントの基準点に作成されます。
 
 ___
 ## サンプル ファイル

@@ -1,7 +1,7 @@
 ## En detalle:
-`Viewport.View` returns the view associated with the given viewport.
+`Viewport.View` devuelve la vista asociada a la ventana gráfica especificada.
 
-In the example below, the viewports are returned for the selected sheet. The viewports' associated views are then returned with `Viewport.View`.
+En el ejemplo siguiente, se devuelven las ventanas gráficas del plano seleccionado. Las vistas asociadas de las ventanas gráficas se devuelven con `Viewport.View`.
 ___
 ## Archivo de ejemplo
 

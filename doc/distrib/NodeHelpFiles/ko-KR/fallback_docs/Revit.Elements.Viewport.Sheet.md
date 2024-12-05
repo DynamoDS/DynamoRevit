@@ -1,7 +1,7 @@
 ## 상세
-`Viewport.Sheet` returns the sheet element that the viewport is placed on.
+`Viewport.Sheet`는 뷰포트가 배치된 시트 요소를 반환합니다.
 
-In the example below, all viewports are collected from the current Revit document. The sheet for each viewport is then returned with `Viewport.Sheet`. Additionally, the viewports are grouped by sheet with `List.GroupByKey`.
+아래 예에서는 모든 뷰포트가 현재 Revit 문서에서 수집됩니다. 그런 다음 `Viewport.Sheet`를 통해 각 뷰포트의 시트가 반환됩니다. 또한 뷰포트는 `List.GroupByKey`를 통해 시트로 그룹화됩니다.
 ___
 ## 예제 파일
 

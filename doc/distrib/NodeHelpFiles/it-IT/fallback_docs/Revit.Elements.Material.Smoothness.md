@@ -1,7 +1,7 @@
 ## In profondità
-`Material.Smoothness` returns an integer that indicates how smooth a material is.
+`Material.Smoothness` restituisce un numero intero che indica il grado di levigatezza di un materiale.
 
-In the example below, all materials are collected from the current document. The materials' smoothness values (as integers) are returned with `Material.Smoothness`.
+Nell'esempio seguente, vengono raccolti tutti i materiali dal documento corrente. Vengono restituiti i valori di levigatezza dei materiali (come numeri interi) con `Material.Smoothness`.
 ___
 ## File di esempio
 

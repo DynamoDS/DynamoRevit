@@ -1,7 +1,7 @@
 ## Подробности
-`FloorType.ByName` returns a floor type for the given name in the current Revit document. If the floor type does not exist, a null value is returned.
+Узел `FloorType.ByName` возвращает тип перекрытия для заданного имени в текущем документе Revit. Если тип перекрытия не существует, возвращается значение null.
 
-In the example below, all floors present in the current Revit document are collected. The floors' types are then collected by getting the name of the floor and using `FloorType.ByName` to retrieve the floor type.
+В приведенном ниже примере собираются все перекрытия, присутствующие в текущем документе Revit. Затем собираются типы перекрытий путем получения имени перекрытия и извлечения его типа с помощью `FloorType.ByName`.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Material.Smoothness` returns an integer that indicates how smooth a material is.
+Węzeł `Material.Smoothness` zwraca liczbę całkowitą (integer) wskazującą gładkość materiału.
 
-In the example below, all materials are collected from the current document. The materials' smoothness values (as integers) are returned with `Material.Smoothness`.
+W poniższym przykładzie z bieżącego dokumentu pobierane są wszystkie materiały. Za pomocą węzła `Material.Smoothness` zwracane są wartości gładkości materiałów (jako liczby całkowite, czyli integer).
 ___
 ## Plik przykładowy
 

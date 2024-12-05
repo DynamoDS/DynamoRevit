@@ -1,6 +1,6 @@
 ## 详细
 
-`Select Edge` displays a cursor in Revit that allows you to select a single edge. The object returned is a curve or line that represents the selected edge. Additionally, `Select Edge` reports the owning element id of the edge that is selected.
+“Select Edge”在 Revit 中显示光标，使您可以选择一条边。返回的对象是表示选定边的曲线或直线。此外，“Select Edge”还会报告选定边的所属图元 ID。
 
 在下面的示例中，将返回一条直线，表示当前文档(文件)中女儿墙的顶边。
 

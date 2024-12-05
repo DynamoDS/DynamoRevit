@@ -1,7 +1,7 @@
 ## En detalle:
-`FilledRegion.ByCurves` creates a filled region in the given view with the given curves and type.
+`FilledRegion.ByCurves` crea una región rellenada en la vista especificada con las curvas y el tipo indicados.
 
-In the example below, a new drafting view is created in the active Revit document. A new filled region is created with `FilledRegion.ByCurves`.
+En el ejemplo siguiente, se crea una nueva vista de diseño en el documento de Revit activo. Se crea una nueva región rellenada con `FilledRegion.ByCurves`.
 
 ___
 ## Archivo de ejemplo

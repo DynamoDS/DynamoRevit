@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Material.Shininess` returns an integer that indicates how shiny a material is.
+Węzeł `Material.Shininess` zwraca liczbę całkowitą (integer) wskazującą intensywność połysku materiału.
 
-In the example below, all materials are collected from the current document. The materials' shininess values (as integers) are returned with `Material.Shininess`.
+W poniższym przykładzie z bieżącego dokumentu pobierane są wszystkie materiały. Za pomocą węzła `Material.Shininess` zwracane są wartości połysku materiałów (jako liczby całkowite, czyli integer).
 ___
 ## Plik przykładowy
 

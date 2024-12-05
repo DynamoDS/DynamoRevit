@@ -1,7 +1,7 @@
 ## 深入資訊
-`View.AddFilter` adds the specified filter to the given view. If the view has a view template applied, this node will add the filter to it's view template.
+`View.AddFilter` 會將指定的篩選加到給定視圖中。如果視圖套用了視圖樣板，此節點會將該篩選加到其視圖樣板中。
 
-In the example below, a view filter is created for the `Fire Rating` parameter on wall type elements. This filter is added to the `L1` floor plan view in the sample model.
+以下範例為牆類型元素的 `Fire Rating` 參數建立一個視圖篩選。此篩選會加到範例模型中的 `L1` 樓板平面視圖。
 
 ___
 ## 範例檔案

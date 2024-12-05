@@ -1,13 +1,13 @@
 ## 深入資訊
-Given an element that supports hosting of elements _(e.g. Walls)_, `Element.GetHostedElements` returns the elements that rely on the given element. By default, family instances that are hosted to the element are returned. `Element.GetHostedElements` offers the option to include other types of hosted elements.
+給定支撐元素主體 _(例如牆)_ 的元素，`Element.GetHostedElements` 會傳回依賴給定元素的元素。預設會傳回以該元素為主體的族群實體。`Element.GetHostedElements` 提供包括其他主體元素類型的選項。
 
-These include:
-- openings
-- elements that are hosted in joined hosts
-- embedded walls _(i.e. curtain walls)_
-- shared embedded inserts
+包括:
+- 開口
+- 以接合的主體為主體的元素
+- 嵌入牆 _(即帷幕牆)_
+- 共用的嵌入式嵌入件
 
-In the example below, all wall elements are collected from L2. The wall elements are then checked for hosted elements with `Element.GetHostedElements`. This list is then used to create two lists. Walls with doors and walls without doors.
+以下範例 收集 L2 的所有牆元素，然後使用 `Element.GetHostedElements` 檢查牆元素是否有主體元素，接著使用此清單建立兩個清單。有門的牆和沒有門的牆。
 ___
 ## 範例檔案
 

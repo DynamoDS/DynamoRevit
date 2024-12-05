@@ -1,7 +1,7 @@
 ## 详细
-`ScheduleView.Export` exports the given schedule to the given path with the selected options.
+“ScheduleView.Export”使用选定选项将给定明细表导出到给定路径。
 
-In the example below, the door schedule is selected from the current Revit document for export. The export location is derived from the view name and the current user's documents location. Finally, the schedule is exported with the default export options.
+在下面的示例中，从当前 Revit 文档中选择门明细表进行导出。导出位置派生自视图名称和当前用户的文档位置。最后，使用默认导出选项导出明细表。
 ___
 ## 示例文件
 

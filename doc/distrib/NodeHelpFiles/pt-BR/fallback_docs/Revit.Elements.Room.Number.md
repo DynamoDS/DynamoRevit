@@ -1,7 +1,7 @@
 ## Em profundidade
-`Room.Number` returns the number for the given room element as a string.
+`Room.Number` retorna o número do elemento de ambiente fornecido como uma sequência de caracteres.
 
-In the example below, all rooms are collected from the current document from the selected view. The rooms' numbers are then returned.
+No exemplo abaixo, são coletados todos os ambientes do documento atual na vista selecionada. São retornados os números dos ambientes.
 ___
 ## Arquivo de exemplo
 

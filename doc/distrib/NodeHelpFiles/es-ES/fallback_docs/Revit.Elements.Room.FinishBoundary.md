@@ -1,9 +1,9 @@
 ## En detalle:
-`Room.FinishBoundary` returns a nested list representing the given room's finish boundary. In the returned list, the first sublist represents the outermost curves, while subsequent lists represent loops within the room. The room boundary returned by this node is located at the finish face inside the Revit room. For more information on wall location lines, see this help [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89).
+`Room.FinishBoundary` devuelve una lista anidada que representa el contorno de acabado de la habitación especificada. En la lista devuelta, la primera sublista representa las curvas más exteriores, mientras que las listas posteriores representan bucles dentro de la habitación. El contorno de la habitación devuelto por este nodo se encuentra en la cara de acabado dentro de la habitación de Revit. Para obtener más información sobre las líneas de ubicación de muros, consulte este [artículo](https://help.autodesk.com/view/RVT/2024/ESP/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89) de la Ayuda.
 
-If an unbounded or unplaced room is given, a null value is returned.
+Si se especifica una habitación sin delimitar o sin colocar, se devuelve un valor nulo.
 
-In the example below, all rooms are collected from the current document and selected view. The finish boundaries are then returned.
+En el ejemplo siguiente, se recopilan todas las habitaciones del documento actual y de la vista seleccionada. A continuación, se devuelven los contornos de acabado.
 ___
 ## Archivo de ejemplo
 

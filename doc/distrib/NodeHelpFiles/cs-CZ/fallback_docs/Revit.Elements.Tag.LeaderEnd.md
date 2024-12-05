@@ -1,9 +1,9 @@
 ## Podrobnosti
-`Tag.LeaderEnd` returns a point that represents the position of the given tag's leader end.
+Uzel `Tag.LeaderEnd` vrací bod, který představuje pozici zakončení odkazu daného popisku.
 
-For more information on tag placement, visit this [article](https://help.autodesk.com/view/RVT/2025/ENU/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
+Další informace o umístění popisku naleznete v tomto [článku](https://help.autodesk.com/view/RVT/2025/CSY/?guid=GUID-555BB05A-3AFB-470D-BA3A-3A6C18ADD2A0).
 
-In the example below, all keynote tags are collected from the "North Wall Window Detail" detail view. The tags' leader ends are then returned.
+V níže uvedeném příkladu jsou shromážděny všechny popisky indexovaných poznámek shromážděny z detailního pohledu „Detail okna severní stěny“. Poté jsou vrácena zakončení odkazů popisků.
 ___
 ## Vzorový soubor
 

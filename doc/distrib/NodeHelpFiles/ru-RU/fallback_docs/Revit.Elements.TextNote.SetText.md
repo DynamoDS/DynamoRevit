@@ -1,7 +1,7 @@
 ## Подробности
-`TextNote.SetText` sets the given text value to the text note.
+Узел `TextNote.SetText` задает указанное текстовое значение для текстового примечания.
 
-In the example below, all text notes are collected from the current Revit document. The text notes' text values are collected and converted to upper case. These values are then used to set the text value.
+В приведенном ниже примере собираются все текстовые примечания в текущем документе Revit. Текстовые значения примечаний собираются и преобразуются в верхний регистр. Эти значения затем используются для задания текстового значения.
 
 ___
 ## Файл примера

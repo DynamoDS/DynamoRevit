@@ -1,7 +1,7 @@
 ## 详细
-`Material.CutPatternId` returns the cut pattern's element id as an integer (if available). If no cut pattern is assigned, a value of "-1" is returned.
+“Material.CutPatternId”以整数形式返回剪切图案的图元 ID (如果可用)。如果未指定剪切图案，则返回值“-1”。
 
-In the example below, all materials are collected from the current document. The materials' cut pattern ids are returned with `Material.CutPatternId`.
+在下面的示例中，将从当前文档收集所有材质。使用“Material.CutPatternId”返回材质的剪切图案 ID。
 
 ___
 ## 示例文件

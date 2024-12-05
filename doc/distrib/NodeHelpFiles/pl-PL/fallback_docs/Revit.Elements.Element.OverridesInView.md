@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Element.OverridesInView` returns the `OverrideGraphicSettings` for the given element in the active view of the current Revit document.
+Węzeł `Element.OverridesInView` zwraca element `OverrideGraphicSettings` dla danego elementu w aktywnym widoku bieżącego dokumentu programu Revit.
 
-In the example below, all doors are collected from the L1 floor plan. The `OverrideGraphicSettings` are then returned for use downstream.
+W poniższym przykładzie z rzutu stropu L1 są pobierane wszystkie drzwi. Następnie zwracany jest element `OverrideGraphicSettings` do użycia na dalszym etapie.
 
 ___
 ## Plik przykładowy

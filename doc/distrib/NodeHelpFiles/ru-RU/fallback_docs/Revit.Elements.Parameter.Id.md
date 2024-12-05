@@ -1,7 +1,7 @@
 ## Подробности
-`Parameter.Id` returns the element id for the given parameter.
+Узел `Parameter.Id` возвращает идентификатор элемента для заданного параметра.
 
-In the example below, a single wall is selected from all walls in the current Revit document. The element ids of the wall's parameters are then returned. In Revit, built in parameters return element ids that start with a dash (-). These are reserved element ids and do not change.
+В приведенном ниже примере из всех стен в текущем документе Revit выбирается одна стена. Затем возвращаются идентификаторы элементов для параметров стены. В Revit встроенные параметры возвращают идентификаторы элементов, начинающиеся с тире (–). Это зарезервированные идентификаторы элементов, которые не меняются.
 ___
 ## Файл примера
 

@@ -1,7 +1,7 @@
 ## Description approfondie
-`Element.Faces` returns all faces _(as Dynamo surfaces)_ for the given element.
+« Element.Faces » renvoie toutes les faces (en tant que surfaces Dynamo) de l'élément.
 
-In the example below, all walls are collected from the selected view. Walls that were created as in-place families are then removed, and the remaining walls' faces are returned.
+Dans l'exemple ci-dessous, tous les murs sont collectés à partir de la vue sélectionnée. Les murs créés en tant que familles in situ sont ensuite supprimés et les faces restantes des murs sont renvoyées.
 
 ___
 ## Exemple de fichier

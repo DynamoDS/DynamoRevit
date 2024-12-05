@@ -1,7 +1,7 @@
 ## In profondità
-`FamilyParameter.Unit` returns the unit type of the given parameter.
+`FamilyParameter.Unit` restituisce il tipo di unità del parametro specificato.
 
-In the example below, the current Revit document (a door family from the sample model) is open. The parameters in the family are returned, along with the unit type. If no unit type is found, a null value is returned.
+Nell'esempio seguente, è aperto il documento di Revit corrente (una famiglia di porte del modello di esempio). Vengono restituiti i parametri di famiglia, insieme al tipo di unità. Se non viene trovato alcun tipo di unità, viene restituito un valore null.
 ___
 ## File di esempio
 

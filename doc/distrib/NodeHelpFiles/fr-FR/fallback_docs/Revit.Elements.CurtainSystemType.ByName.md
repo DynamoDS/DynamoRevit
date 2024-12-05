@@ -1,7 +1,7 @@
 ## Description approfondie
-`CurtainSystemType.ByName` selects a curtain system type from the current Revit document of the given name.
+« CurtainSystemType.ByName » sélectionne un type de système de mur-rideau dans le document Revit actif portant le nom donné.
 
-In the example below, the curtain system type `5' x 10'` is returned.
+Dans l'exemple ci-dessous, le type de système de mur-rideau '5' x 10'' est renvoyé.
 ___
 ## Exemple de fichier
 

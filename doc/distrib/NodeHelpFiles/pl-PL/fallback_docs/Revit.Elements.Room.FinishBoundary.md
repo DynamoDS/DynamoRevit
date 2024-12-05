@@ -1,9 +1,9 @@
 ## Informacje szczegółowe
-`Room.FinishBoundary` returns a nested list representing the given room's finish boundary. In the returned list, the first sublist represents the outermost curves, while subsequent lists represent loops within the room. The room boundary returned by this node is located at the finish face inside the Revit room. For more information on wall location lines, see this help [article](https://help.autodesk.com/view/RVT/2024/ENU/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89).
+Węzeł `Room.FinishBoundary` zwraca listę zagnieżdżoną reprezentującą obwiednię wykończenia danego pomieszczenia. Na zwróconej liście pierwsza lista podrzędna reprezentuje krzywe najbardziej zewnętrzne, a kolejne listy reprezentują pętle w pomieszczeniu. Obwiednia pomieszczenia zwracana przez ten węzeł znajduje się na powierzchni wykończenia wewnątrz pomieszczenia programu Revit. Więcej informacji na temat linii lokalizacji ścian można znaleźć w pomocy w tym [artykule](https://help.autodesk.com/view/RVT/2024/PLK/?guid=GUID-0BB62832-36DD-4E06-A9D4-EE98CE0FCF89).
 
-If an unbounded or unplaced room is given, a null value is returned.
+W razie podania nieograniczonego lub nieumieszczonego pomieszczenia zwracana jest wartość null.
 
-In the example below, all rooms are collected from the current document and selected view. The finish boundaries are then returned.
+W poniższym przykładzie pobierane są wszystkie pomieszczenia z bieżącego dokumentu i wybranego widoku. Następnie zwracane są obwiednie wykończenia.
 ___
 ## Plik przykładowy
 

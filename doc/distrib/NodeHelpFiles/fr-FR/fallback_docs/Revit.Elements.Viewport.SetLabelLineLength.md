@@ -1,7 +1,7 @@
 ## Description approfondie
-`Viewport.SetLabelLineLength` sets the length of the viewport line, in paper space units.
+'Viewport.SetLabelLineLength' définit la longueur de la ligne de la fenêtre, en unités de l'espace papier.
 
-In the example below, all of the viewports from the selected sheet are collected. The viewports' bounding boxes are then used to calculate the width that the viewport line should be. Finally, the viewport lines are set to the width of the viewport.
+Dans l'exemple ci-dessous, toutes les fenêtres de la feuille sélectionnée sont collectées. Les zones de délimitation des fenêtres sont ensuite utilisées pour calculer la largeur que doit avoir la ligne de fenêtre. Enfin, les lignes de fenêtre sont définies sur la largeur de la fenêtre.
 ___
 ## Exemple de fichier
 

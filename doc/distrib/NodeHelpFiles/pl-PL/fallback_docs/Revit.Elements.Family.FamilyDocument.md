@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Family.FamilyDocument` provides access to the document of the given family. This is useful for extracting parameters, types and other specific family document data.
+Węzeł `Family.FamilyDocument` zapewnia dostęp do dokumentu danej rodziny. Jest to przydatne do wyodrębniania parametrów, typów i innych określonych danych dokumentu rodziny.
 
-In the example below, the family "Door-Passage-Single-Flush" is selected from the current Revit document. The family document is then obtained and the different types are provided.
+W poniższym przykładzie z bieżącego dokumentu programu Revit zostaje wybrana rodzina „Door-Passage-Single-Flush” (Drzwi-korytarz-jednoskrzydłowe-wpuszczane). Następnie zostaje pobrany dokument rodziny i udostępnione zostają różne typy.
 ___
 ## Plik przykładowy
 

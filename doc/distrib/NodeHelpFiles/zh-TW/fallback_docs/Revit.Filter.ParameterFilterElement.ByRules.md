@@ -1,7 +1,7 @@
 ## 深入資訊
-`ParameterFilterElement.ByRules` creates a parameter filter with the given rules. The parameter filter element can be used for view filters.
+`ParameterFilterElement.ByRules` 會使用給定的規則建立參數篩選。參數篩選元素可用於視圖篩選。
 
-In the example below, a view filter is created for the `Fire Rating` parameter on wall type elements. This filter is added to the `L1` floor plan view in the sample model. After the filter is added, overrides are then added to the filter to turn the wall types with a "2 HR" rating to a solid red color.
+以下範例為牆類型元素的 `Fire Rating` 參數建立一個視圖篩選。此篩選會加到範例模型中的 `L1` 樓板平面視圖。加入篩選後，在篩選中增加取代，將「2 HR」等級的牆類型變為純紅色。
 ___
 ## 範例檔案
 

@@ -1,8 +1,8 @@
 ## 詳細
 
-`Material.CutPatternColor` returns a Dynamo color that represents the material's cut pattern color (if available).
+`Material.CutPatternColor` は、マテリアルの切断面パターンの色を表す Dynamo の色を返します(使用可能な場合)。
 
-In the example below, all materials are collected from the current document. The materials' cut pattern colors are returned with `Material.CutPatternColor`.
+次の例では、すべてのマテリアルが現在のドキュメントから収集されます。マテリアルの切断面パターンの色は `Material.CutPatternColor` によって返されます。
 
 ___
 ## サンプル ファイル

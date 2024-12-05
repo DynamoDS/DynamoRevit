@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-`Element.Faces` returns all faces _(as Dynamo surfaces)_ for the given element.
+Węzeł `Element.Faces` zwraca wszystkie powierzchnie _(jako powierzchnie Dynamo)_ dla danego elementu.
 
-In the example below, all walls are collected from the selected view. Walls that were created as in-place families are then removed, and the remaining walls' faces are returned.
+W poniższym przykładzie z wybranego widoku są pobierane wszystkie ściany. Ściany, które zostały utworzone jako rodziny lokalne, są następnie usuwane, i zwracane są pozostałe powierzchnie ścian.
 
 ___
 ## Plik przykładowy
