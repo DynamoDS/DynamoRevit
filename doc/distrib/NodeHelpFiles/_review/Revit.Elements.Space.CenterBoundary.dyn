@@ -1,0 +1,300 @@
+{
+  "Uuid": "2eb00891-91ee-45bb-82bd-ccdad772d8b1",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Space.CenterBoundary",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 547,
+      "SelectedString": "OST_MEPSpaces",
+      "Id": "3d4264a68a6a4626b4d5fb2c4106b5c6",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1c303778b90d42a98ead3c1ec50113c7",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e6967717dfb9449bb41d38ece9100ce4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "224fdfb06c724f87b3d744b41cb68c5d",
+          "Name": "space",
+          "Description": "Revit.Elements.Space",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "66e00f9460c740d3bf16b88e8eec35b3",
+          "Name": "Curve[][]",
+          "Description": "Curve[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Space.CenterBoundary",
+      "Replication": "Auto",
+      "Description": "Centerline boundary of the space.\n\nSpace.CenterBoundary: Curve[][]"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
+      "Id": "d1a48fdf54484e44af907a16f43e1e56",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "76aebbb0a24c4c9c97e9475c7b307e2f",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "da49346f81374567ab74c0441570fa9b",
+          "Name": "View",
+          "Description": "The View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "319b8ec57f0542c68feff848e9266db6",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category in the specified view from the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 15,
+      "SelectedString": "L1 - Block 35",
+      "Id": "6c339c48f0af4d60b628b86e2b8989ea",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "78f0a7a2dc144ab885f65a952f08abf4",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 446.4,
+      "WatchHeight": 372.0,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "a68fb1f9-0ae6-497a-bc0b-dcd9f0f9ab68 Preview",
+        "EyeX": -78.37271118164062,
+        "EyeY": 88.1239242553711,
+        "EyeZ": 37.55200958251953,
+        "LookX": 24.32583999633789,
+        "LookY": -101.68431854248047,
+        "LookZ": -43.66872787475586,
+        "UpX": 0.4367259740829468,
+        "UpY": 0.441165953874588,
+        "UpZ": -0.7839918732643127
+      },
+      "VariableInputPorts": true,
+      "Id": "a68fb1f90ae6497abc0bdcd9f0f9ab68",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "1cc5699256a343beb37ed304d0814c34",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "46ce600f86bd4cd699d3b70f68bd080c",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1c303778b90d42a98ead3c1ec50113c7",
+      "End": "76aebbb0a24c4c9c97e9475c7b307e2f",
+      "Id": "f496a726f1214ac097ab46ce143ce2b4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "66e00f9460c740d3bf16b88e8eec35b3",
+      "End": "1cc5699256a343beb37ed304d0814c34",
+      "Id": "c0991c822a994b9887dce228f7015db2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "319b8ec57f0542c68feff848e9266db6",
+      "End": "224fdfb06c724f87b3d744b41cb68c5d",
+      "Id": "d76905c038f8429085dc200cf221c2a9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "78f0a7a2dc144ab885f65a952f08abf4",
+      "End": "da49346f81374567ab74c0441570fa9b",
+      "Id": "e699275af3f748c0bc40a57429203315",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -93.22573852539062,
+      "EyeY": 105.7025146484375,
+      "EyeZ": 50.88597106933594,
+      "LookX": 26.83148193359375,
+      "LookY": -124.23087310791016,
+      "LookZ": -56.78974151611328,
+      "UpX": 0.3812350928783417,
+      "UpY": 0.4511966407299042,
+      "UpZ": -0.8068962097167969
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "3d4264a68a6a4626b4d5fb2c4106b5c6",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 222.20000000000016,
+        "Y": 402.40000000000003
+      },
+      {
+        "Id": "e6967717dfb9449bb41d38ece9100ce4",
+        "Name": "Space.CenterBoundary",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 962.2198493518414,
+        "Y": 402.40000000000003
+      },
+      {
+        "Id": "d1a48fdf54484e44af907a16f43e1e56",
+        "Name": "All Elements of Category in View",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 558.2000000000002,
+        "Y": 402.40000000000003
+      },
+      {
+        "Id": "6c339c48f0af4d60b628b86e2b8989ea",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 239.80000000000015,
+        "Y": 540.0925570071547
+      },
+      {
+        "Id": "a68fb1f90ae6497abc0bdcd9f0f9ab68",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1315.238414245685,
+        "Y": 402.40000000000003
+      }
+    ],
+    "Annotations": [],
+    "X": -161.4584919115099,
+    "Y": -185.88241206698666,
+    "Zoom": 0.9408624919317137
+  }
+}
