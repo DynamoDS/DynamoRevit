@@ -1,8 +1,8 @@
 {
-  "Uuid": "b3342583-c831-4c51-800a-ffbe4db82efa",
+  "Uuid": "847b8d50-8963-40c7-90ca-c0afb7b9b9a6",
   "IsCustomNode": false,
-  "Description": "Collect all elements of a chosen category (Defaulting to Rooms) and getting each elements Room Area",
-  "Name": "CollectAllElementsOfCategoryAndGetParameters",
+  "Description": "Read Image from disc to be able to work with inside of Dynamo",
+  "Name": "Read Image From File",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -10,17 +10,15 @@
   "Outputs": [],
   "Nodes": [
     {
-      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
-      "SelectedIndex": 507,
-      "SelectedString": "OST_Rooms",
-      "Id": "ed17aaffa2cc456890f43f91d6307693",
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "d2ca2769c87f4b4396940a74ff1111d2",
       "NodeType": "ExtensionNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "34705ee8b2f946a2aa58a222acf21623",
-          "Name": "Category",
-          "Description": "The selected Category.",
+          "Id": "4cb119c0fc804e47bd4bcd5fff82cf7c",
+          "Name": "",
+          "Description": "File Path",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -28,17 +26,19 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "All built-in categories."
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "C:\\Users\\amours\\Desktop\\DynamoRevitTemplates\\No file selected",
+      "InputValue": "No file selected."
     },
     {
-      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
-      "Id": "c3baf69e99244c09883314344f09230a",
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "Id": "59d22a7921854195813ce16dac4fde76",
       "NodeType": "ExtensionNode",
       "Inputs": [
         {
-          "Id": "ee6f864350fd45efa292b7ed0b6c4005",
-          "Name": "Category",
-          "Description": "The Category",
+          "Id": "ac3d97121b3a4e7e81b84beb515453b6",
+          "Name": "path",
+          "Description": "Path to the file.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -47,9 +47,9 @@
       ],
       "Outputs": [
         {
-          "Id": "9636b76d7fea47c7b6c9c8a2fc917646",
-          "Name": "Elements",
-          "Description": "An element class.",
+          "Id": "e6871041961542a7b371fe5c91060ef7",
+          "Name": "file",
+          "Description": "File object",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -57,26 +57,17 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Get all elements of the specified category from the model."
+      "Description": "Creates a file object from the given path"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "ac5cca7b2ea54fc9b01ee0f8aa2bf111",
+      "Id": "19ee29aa65234cd0b7dc15d77fb4eb15",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "7f24488c689540da931ecf8e66297039",
-          "Name": "element",
-          "Description": "Revit.Elements.Element",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "f8e752733b37486b8b3a75b32605d4dd",
-          "Name": "parameterName",
-          "Description": "The name of the parameter whose value you want to obtain.\n\nstring",
+          "Id": "eb524fc133cb468b907620050f72b8bf",
+          "Name": "file",
+          "Description": "File object to load image from\n\nvar",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -85,29 +76,39 @@
       ],
       "Outputs": [
         {
-          "Id": "5138e0135c444a949fa971333222030b",
-          "Name": "var[]..[]",
-          "Description": "var[]..[]",
+          "Id": "f106b67f8d5f4cab91d132b92814efbd",
+          "Name": "image",
+          "Description": "Image object from file",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "Revit.Elements.Element.GetParameterValueByName@string",
+      "FunctionSignature": "DSCore.IO.Image.ReadFromFile@var",
       "Replication": "Auto",
-      "Description": "Get the value of one of the element's parameters.\n\nElement.GetParameterValueByName (parameterName: string): var[]..[]"
+      "Description": "Loads the file as a bitmap.\n\nImage.ReadFromFile (file: var): var"
     },
     {
-      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
-      "Id": "8191910e638249e5a3a2fb85b9d563cb",
-      "NodeType": "StringInputNode",
-      "Inputs": [],
+      "ConcreteType": "CoreNodeModels.WatchImageCore, CoreNodeModels",
+      "Id": "3fe34643619745249cb1e4a286e36944",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "f4d5f5b983b340f8973b41f72174f9e7",
+          "Name": "image",
+          "Description": "Image for visualization",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
       "Outputs": [
         {
-          "Id": "4eb48f9dc024487286a1c3beba048dc8",
-          "Name": "",
-          "Description": "String",
+          "Id": "bebb4cb152da4adbad95a62a2c1dcc6e",
+          "Name": "image",
+          "Description": "Image for visualization",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -115,27 +116,26 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Creates a string",
-      "InputValue": "Area"
+      "Description": "Previews an image"
     }
   ],
   "Connectors": [
     {
-      "Start": "34705ee8b2f946a2aa58a222acf21623",
-      "End": "ee6f864350fd45efa292b7ed0b6c4005",
-      "Id": "5055c2abf7ac4e08a0fb2792bfffb480",
+      "Start": "4cb119c0fc804e47bd4bcd5fff82cf7c",
+      "End": "ac3d97121b3a4e7e81b84beb515453b6",
+      "Id": "df3062a3444e41b8b7f34c7a286e4cce",
       "IsHidden": "False"
     },
     {
-      "Start": "9636b76d7fea47c7b6c9c8a2fc917646",
-      "End": "7f24488c689540da931ecf8e66297039",
-      "Id": "ea5f0cf77f804c8c854070034a3a6364",
+      "Start": "e6871041961542a7b371fe5c91060ef7",
+      "End": "eb524fc133cb468b907620050f72b8bf",
+      "Id": "78544d0ab304493f81cbb3753ea34fec",
       "IsHidden": "False"
     },
     {
-      "Start": "4eb48f9dc024487286a1c3beba048dc8",
-      "End": "f8e752733b37486b8b3a75b32605d4dd",
-      "Id": "52e19a722d7e4cd79a12a89fcea6d077",
+      "Start": "f106b67f8d5f4cab91d132b92814efbd",
+      "End": "f4d5f5b983b340f8973b41f72174f9e7",
+      "Id": "d95208d4410d4cb9825e4f2d39309326",
       "IsHidden": "False"
     }
   ],
@@ -190,58 +190,58 @@
     "ConnectorPins": [],
     "NodeViews": [
       {
-        "Id": "ed17aaffa2cc456890f43f91d6307693",
-        "Name": "Categories",
+        "Id": "d2ca2769c87f4b4396940a74ff1111d2",
+        "Name": "File Path",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 89870.21477205436,
-        "Y": -4247.693497007918
+        "X": 238.5,
+        "Y": 282.0
       },
       {
-        "Id": "c3baf69e99244c09883314344f09230a",
-        "Name": "All Elements of Category",
+        "Id": "59d22a7921854195813ce16dac4fde76",
+        "Name": "File From Path",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 90209.21477205436,
-        "Y": -4247.693497007918
+        "X": 811.0,
+        "Y": 282.0
       },
       {
-        "Id": "ac5cca7b2ea54fc9b01ee0f8aa2bf111",
-        "Name": "Element.GetParameterValueByName",
+        "Id": "19ee29aa65234cd0b7dc15d77fb4eb15",
+        "Name": "Image.ReadFromFile",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 90569.21477205436,
-        "Y": -4247.693497007918
+        "X": 1092.7547786720322,
+        "Y": 282.0
       },
       {
-        "Id": "8191910e638249e5a3a2fb85b9d563cb",
-        "Name": "String",
+        "Id": "3fe34643619745249cb1e4a286e36944",
+        "Name": "Watch Image",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 90318.21477205436,
-        "Y": -3977.9057569773872
+        "X": 1433.866448692153,
+        "Y": 282.0
       }
     ],
     "Annotations": [
       {
-        "Id": "413e32392339406dbcc552c6bd8449d9",
-        "Title": "Select Revit Category",
+        "Id": "f8caed9cca86404397d6c13d7f9a2292",
+        "Title": "Browse to Image file to import",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 89920.21477205436,
-        "Top": -4297.693497007918,
+        "Left": 229.5,
+        "Top": 232.0,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -250,19 +250,19 @@
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
         "Background": "#FFC1D676",
-        "PinnedNode": "ed17aaffa2cc456890f43f91d6307693"
+        "PinnedNode": "d2ca2769c87f4b4396940a74ff1111d2"
       },
       {
-        "Id": "bcac70e033a1483dba06f5ef39ccab17",
-        "Title": "Collect all elements of that selected Category",
+        "Id": "a69836269d524c90a34e16b7efd8f803",
+        "Title": "Load the Image file from disk into Dynamo's memory",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 90206.21477205436,
-        "Top": -4297.693497007918,
+        "Left": 772.0,
+        "Top": 217.0,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -271,19 +271,19 @@
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
         "Background": "#FFC1D676",
-        "PinnedNode": "c3baf69e99244c09883314344f09230a"
+        "PinnedNode": "59d22a7921854195813ce16dac4fde76"
       },
       {
-        "Id": "3e722249f0434c5cbdb3bcafb8e38c40",
-        "Title": "Get parameter values from Elements by Category via a parameter name",
+        "Id": "37460f13b9794e029d2aec8655b5aaa9",
+        "Title": "Read Image from File in Dynamo's memory space in the Bitmap format",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 90593.21477205436,
-        "Top": -4312.693497007918,
+        "Left": 1056.2547786720322,
+        "Top": 169.0,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -292,19 +292,19 @@
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
         "Background": "#FFC1D676",
-        "PinnedNode": "ac5cca7b2ea54fc9b01ee0f8aa2bf111"
+        "PinnedNode": "19ee29aa65234cd0b7dc15d77fb4eb15"
       },
       {
-        "Id": "9d0cd5783e8949c180d1f1da85c6961f",
-        "Title": "Input parameter name, and make sure you take capitalization into account",
+        "Id": "92781c108d794300982eb5b214c43333",
+        "Title": "Watch the Image to visually check",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 90254.71477205436,
-        "Top": -4042.9057569773872,
+        "Left": 1417.866448692153,
+        "Top": 232.0,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -313,11 +313,11 @@
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
         "Background": "#FFC1D676",
-        "PinnedNode": "8191910e638249e5a3a2fb85b9d563cb"
+        "PinnedNode": "3fe34643619745249cb1e4a286e36944"
       }
     ],
-    "X": -93439.47156922061,
-    "Y": 4723.485874233058,
-    "Zoom": 1.0427979036983706
+    "X": -301.7268648176259,
+    "Y": 70.82444097119173,
+    "Zoom": 1.4454329621683044
   }
 }
