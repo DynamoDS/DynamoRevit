@@ -1,8 +1,8 @@
 {
-  "Uuid": "f36fba0c-8a97-4fef-b3dc-6f0d4d61aafa",
+  "Uuid": "6ab2aa77-03ac-43aa-996a-9bcba72a6560",
   "IsCustomNode": false,
-  "Description": "Collect all elements of a chosen category (Defaulting to Rooms)",
-  "Name": "CollectAllElementsOfCategory",
+  "Description": "Collect all elements of a chosen category (Defaulting to Doors) and getting each elements Geometry",
+  "Name": "Get Geometry For All Elements Of Category",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -11,14 +11,14 @@
   "Nodes": [
     {
       "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
-      "SelectedIndex": 507,
-      "SelectedString": "OST_Rooms",
-      "Id": "1400fd6298f44dfbb91bb11505c879f5",
+      "SelectedIndex": 178,
+      "SelectedString": "OST_Doors",
+      "Id": "bb34b03a88c14566861ee701d2036259",
       "NodeType": "ExtensionNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "ca529bd2c6784809b882c1cda2584135",
+          "Id": "81976910d2c3462980fe759708cbdd11",
           "Name": "Category",
           "Description": "The selected Category.",
           "UsingDefaultValue": false,
@@ -32,11 +32,11 @@
     },
     {
       "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
-      "Id": "59f1256567874cfb855f5354eb87646f",
+      "Id": "33f773eb560c4fcaa847e18214de2ef7",
       "NodeType": "ExtensionNode",
       "Inputs": [
         {
-          "Id": "9747105e6ec74aa59a9478911c780165",
+          "Id": "6d071236512842a99ab51e6ac5633508",
           "Name": "Category",
           "Description": "The Category",
           "UsingDefaultValue": false,
@@ -47,7 +47,7 @@
       ],
       "Outputs": [
         {
-          "Id": "ee4a35b876d6409cbe8d34b67945d69c",
+          "Id": "9705018e7b36421e93c205f16c29988f",
           "Name": "Elements",
           "Description": "An element class.",
           "UsingDefaultValue": false,
@@ -60,16 +60,14 @@
       "Description": "Get all elements of the specified category from the model."
     },
     {
-      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
-      "WatchWidth": 50.0,
-      "WatchHeight": 38.0,
-      "Id": "f7a0ba86dc714b328564f6390b1ffa92",
-      "NodeType": "ExtensionNode",
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "736260b981b146eca204f690b6d52bf6",
+      "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "a41994fd9039439da30bbd9e37f15df2",
-          "Name": "",
-          "Description": "Node to show output from",
+          "Id": "4685755d9e5b46679f2dcee806dd42fb",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -78,30 +76,31 @@
       ],
       "Outputs": [
         {
-          "Id": "6589178d81c64f0ebe7a71eee07c5333",
-          "Name": "",
-          "Description": "Node output",
+          "Id": "59e132d5dc654e04be8019b84b3f7015",
+          "Name": "geometry[]",
+          "Description": "List of geometry from the element",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "Replication": "Disabled",
-      "Description": "Visualizes a node's output"
+      "FunctionSignature": "Revit.Elements.Element.Geometry",
+      "Replication": "Auto",
+      "Description": "Returns all geometry associated with an element. Ignores transforms when used with linked elements.\n\nElement.Geometry ( ): var[]"
     }
   ],
   "Connectors": [
     {
-      "Start": "ca529bd2c6784809b882c1cda2584135",
-      "End": "9747105e6ec74aa59a9478911c780165",
-      "Id": "7cac21d0b5fa4589ab93e035fbc94b98",
+      "Start": "81976910d2c3462980fe759708cbdd11",
+      "End": "6d071236512842a99ab51e6ac5633508",
+      "Id": "70d5e5a703b94d1b9509ed1c36ee7afb",
       "IsHidden": "False"
     },
     {
-      "Start": "ee4a35b876d6409cbe8d34b67945d69c",
-      "End": "a41994fd9039439da30bbd9e37f15df2",
-      "Id": "beb2bfe394284d458668b2e4cefadc8f",
+      "Start": "9705018e7b36421e93c205f16c29988f",
+      "End": "4685755d9e5b46679f2dcee806dd42fb",
+      "Id": "e4117a528d7844b083289073c1053ced",
       "IsHidden": "False"
     }
   ],
@@ -143,20 +142,20 @@
     },
     "Camera": {
       "Name": "_Background Preview",
-      "EyeX": -17.0,
-      "EyeY": 24.0,
-      "EyeZ": 50.0,
-      "LookX": 12.0,
-      "LookY": -13.0,
-      "LookZ": -58.0,
-      "UpX": 0.0,
-      "UpY": 1.0,
-      "UpZ": 0.0
+      "EyeX": -45.10952377319336,
+      "EyeY": 126.64234924316406,
+      "EyeZ": 79.76921844482422,
+      "LookX": 14.782140731811523,
+      "LookY": -106.08958435058594,
+      "LookZ": -86.57583618164062,
+      "UpX": 0.1296440213918686,
+      "UpY": 0.6376994848251343,
+      "UpZ": -0.7592970132827759
     },
     "ConnectorPins": [],
     "NodeViews": [
       {
-        "Id": "1400fd6298f44dfbb91bb11505c879f5",
+        "Id": "bb34b03a88c14566861ee701d2036259",
         "Name": "Categories",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -166,7 +165,7 @@
         "Y": -4247.693497007918
       },
       {
-        "Id": "59f1256567874cfb855f5354eb87646f",
+        "Id": "33f773eb560c4fcaa847e18214de2ef7",
         "Name": "All Elements of Category",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
@@ -176,19 +175,19 @@
         "Y": -4247.693497007918
       },
       {
-        "Id": "f7a0ba86dc714b328564f6390b1ffa92",
-        "Name": "Watch",
+        "Id": "736260b981b146eca204f690b6d52bf6",
+        "Name": "Element.Geometry",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 90563.21477205436,
+        "X": 90574.09037191584,
         "Y": -4247.693497007918
       }
     ],
     "Annotations": [
       {
-        "Id": "0d323631560047b5a5f69d0e63a173fc",
+        "Id": "bba4fa218eb6408e941257c49579a7dd",
         "Title": "Select Revit Category",
         "DescriptionText": null,
         "IsExpanded": true,
@@ -206,10 +205,10 @@
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
         "Background": "#FFC1D676",
-        "PinnedNode": "1400fd6298f44dfbb91bb11505c879f5"
+        "PinnedNode": "bb34b03a88c14566861ee701d2036259"
       },
       {
-        "Id": "cf7dcb56bee2467882c6a3715c0b459f",
+        "Id": "9af9581ad0114956a822641259e63620",
         "Title": "Collect all elements of that selected Category",
         "DescriptionText": null,
         "IsExpanded": true,
@@ -227,19 +226,19 @@
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
         "Background": "#FFC1D676",
-        "PinnedNode": "59f1256567874cfb855f5354eb87646f"
+        "PinnedNode": "33f773eb560c4fcaa847e18214de2ef7"
       },
       {
-        "Id": "bd0885cebce64783be7ce4b6a6284bd4",
-        "Title": "Watch results of collecting every element of a chosen category",
+        "Id": "c2867b4d2aff4177bb118c225603b573",
+        "Title": "Get the geometry of all collected elements where possible. It may return a warning and null should there be something missing in Revit, or the geometry be unresolvable",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 90494.21477205436,
-        "Top": -4312.693497007918,
+        "Left": 90553.59037191584,
+        "Top": -4341.693497007918,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -248,11 +247,11 @@
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
         "Background": "#FFC1D676",
-        "PinnedNode": "f7a0ba86dc714b328564f6390b1ffa92"
+        "PinnedNode": "736260b981b146eca204f690b6d52bf6"
       }
     ],
-    "X": -93439.47156922061,
-    "Y": 4723.485874233058,
-    "Zoom": 1.0427979036983706
+    "X": -113376.05923228659,
+    "Y": 5631.061522389584,
+    "Zoom": 1.2633317726382167
   }
 }

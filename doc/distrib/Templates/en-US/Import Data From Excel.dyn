@@ -1,14 +1,80 @@
 {
-  "Uuid": "107641db-6b6a-4a08-8282-d474513714b1",
+  "Uuid": "c49c9e5d-746d-42f7-975a-5a40f1ad1c6c",
   "IsCustomNode": false,
-  "Description": "Export data to Excel given a chosen sheet name. You will need to connect the data to be exported",
-  "Name": "ExportDataToExcel",
+  "Description": "Import data from an Excel file and transpose the data to flip columns and rows",
+  "Name": "Import Data From Excel",
   "ElementResolver": {
     "ResolutionMap": {}
   },
   "Inputs": [],
   "Outputs": [],
   "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "7620c0a6d174413281b95698fb1d9d57",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "fab5ba40009445218c05f8e2e125c3e2",
+          "Name": "filePath",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1838b7ed07924850904317b05d21e435",
+          "Name": "sheetName",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2285506c22014e38983dd1f274148b74",
+          "Name": "startRow",
+          "Description": "int\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fa731e8403c64eb59363e3a25779c3c3",
+          "Name": "startColumn",
+          "Description": "int\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7b40d5b11e734659a873d691ceacedaf",
+          "Name": "readAsString",
+          "Description": "bool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "da29b5f8bea04c09b0e32ec0d27dd1af",
+          "Name": "var[][]",
+          "Description": "var[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSOffice.Data.OpenXMLImportExcel@string,string,int,int,bool",
+      "Replication": "Auto",
+      "Description": "Data.OpenXMLImportExcel (filePath: string, sheetName: string, startRow: int = 0, startColumn: int = 0, readAsString: bool = false): var[][]"
+    },
     {
       "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
       "Id": "d2ca2769c87f4b4396940a74ff1111d2",
@@ -52,68 +118,14 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "a30280ae0aea42649c79b5f80b7c6dbe",
+      "Id": "13b0e9b105ea4af2a48f0aafdfa0bf5b",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "33167a5f9e25441b98598dc1ecc07832",
-          "Name": "filePath",
-          "Description": "string",
+          "Id": "c2a83726b20f4856956b731605c325fc",
+          "Name": "lists",
+          "Description": "List of lists to be transposed\n\nvar[]..[]",
           "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "0a38be4fb78c4ac385664c50cf9dbbff",
-          "Name": "sheetName",
-          "Description": "string",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "53fd2ca44312424f9e88959329c97a76",
-          "Name": "data",
-          "Description": "var[][]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "5cb3225aeccb496989afa724dd38b537",
-          "Name": "startRow",
-          "Description": "int\nDefault value : 0",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "c6b08add41fe4398b6c167e99c73c8b1",
-          "Name": "startColumn",
-          "Description": "int\nDefault value : 0",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "1e16648803b341e395baccc2ff2db3ea",
-          "Name": "overWrite",
-          "Description": "bool\nDefault value : false",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "f6cdbc62f3ef4cee91ae11eb5a21f1de",
-          "Name": "writeAsString",
-          "Description": "bool\nDefault value : false",
-          "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
@@ -121,31 +133,74 @@
       ],
       "Outputs": [
         {
-          "Id": "937ba830e5174f2a9ed269d57b1f5157",
-          "Name": "bool",
-          "Description": "bool",
+          "Id": "91219a54373d4ea1b3ee8a1c03ace17a",
+          "Name": "lists",
+          "Description": "List of transposed lists",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "DSOffice.Data.OpenXMLExportExcel@string,string,var[][],int,int,bool,bool",
+      "FunctionSignature": "DSCore.List.Transpose@var[]..[]",
       "Replication": "Auto",
-      "Description": "Data.OpenXMLExportExcel (filePath: string, sheetName: string, data: var[][], startRow: int = 0, startColumn: int = 0, overWrite: bool = false, writeAsString: bool = false): bool"
+      "Description": "Swaps rows and columns in a list of lists. If there are some rows that are shorter than others, null values are inserted as place holders in the resultant array such that it is always rectangular.\n\nList.Transpose (lists: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 50.0,
+      "WatchHeight": 38.0,
+      "Id": "9277ad9caa034b88b3f4a71ce0489dfc",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "c8ff6c767c27463fa83801056a1659f4",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e8e96a2d54104462b846e9146c44d28d",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
     }
   ],
   "Connectors": [
     {
+      "Start": "da29b5f8bea04c09b0e32ec0d27dd1af",
+      "End": "c2a83726b20f4856956b731605c325fc",
+      "Id": "a21c0cfc98c246f6a048060ecab505b2",
+      "IsHidden": "False"
+    },
+    {
       "Start": "4cb119c0fc804e47bd4bcd5fff82cf7c",
-      "End": "33167a5f9e25441b98598dc1ecc07832",
-      "Id": "b07a2afc08844afeb9ef963e970cb646",
+      "End": "fab5ba40009445218c05f8e2e125c3e2",
+      "Id": "c1f29067813448e4a0c018fc9d108ed5",
       "IsHidden": "False"
     },
     {
       "Start": "3f6242f197704cb08d28d338399cc02b",
-      "End": "0a38be4fb78c4ac385664c50cf9dbbff",
-      "Id": "8f18137f976541a2a0186380ecf744c4",
+      "End": "1838b7ed07924850904317b05d21e435",
+      "Id": "23ce470fd17646daa45add92a0e826ce",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "91219a54373d4ea1b3ee8a1c03ace17a",
+      "End": "c8ff6c767c27463fa83801056a1659f4",
+      "Id": "cc4370cff5a04c1c8ed3f74da4e2fe10",
       "IsHidden": "False"
     }
   ],
@@ -200,6 +255,16 @@
     "ConnectorPins": [],
     "NodeViews": [
       {
+        "Id": "7620c0a6d174413281b95698fb1d9d57",
+        "Name": "Data.OpenXMLImportExcel",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 811.0,
+        "Y": 282.0
+      },
+      {
         "Id": "d2ca2769c87f4b4396940a74ff1111d2",
         "Name": "File Path",
         "IsSetAsInput": false,
@@ -220,27 +285,37 @@
         "Y": 531.5
       },
       {
-        "Id": "a30280ae0aea42649c79b5f80b7c6dbe",
-        "Name": "Data.OpenXMLExportExcel",
+        "Id": "13b0e9b105ea4af2a48f0aafdfa0bf5b",
+        "Name": "List.Transpose",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 811.0,
+        "X": 1180.5,
+        "Y": 282.0
+      },
+      {
+        "Id": "9277ad9caa034b88b3f4a71ce0489dfc",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1462.0,
         "Y": 282.0
       }
     ],
     "Annotations": [
       {
         "Id": "f8caed9cca86404397d6c13d7f9a2292",
-        "Title": "Browse to Excel file to export data to",
+        "Title": "Browse to Excel file to import data from",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 213.0,
+        "Left": 205.0,
         "Top": 232.0,
         "Width": 0.0,
         "Height": 0.0,
@@ -275,15 +350,15 @@
       },
       {
         "Id": "a69836269d524c90a34e16b7efd8f803",
-        "Title": "Export Excel data using the OpenXML format from a chosen sheet name",
+        "Title": "Import Excel data using the OpenXML format from a chosen sheet name",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 797.0,
-        "Top": 217.0,
+        "Left": 799.5,
+        "Top": 169.0,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -292,11 +367,32 @@
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
         "Background": "#FFC1D676",
-        "PinnedNode": "a30280ae0aea42649c79b5f80b7c6dbe"
+        "PinnedNode": "7620c0a6d174413281b95698fb1d9d57"
+      },
+      {
+        "Id": "37460f13b9794e029d2aec8655b5aaa9",
+        "Title": "Transpose the Excel data to flip Rows and Columns",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 1125.0,
+        "Top": 184.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "13b0e9b105ea4af2a48f0aafdfa0bf5b"
       }
     ],
-    "X": 196.23761879446965,
-    "Y": -15.960282864435044,
-    "Zoom": 1.13507102841452
+    "X": -245.65603726262975,
+    "Y": -92.29666786098167,
+    "Zoom": 1.4245790039412396
   }
 }

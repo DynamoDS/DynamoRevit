@@ -1,8 +1,8 @@
 {
-  "Uuid": "847b8d50-8963-40c7-90ca-c0afb7b9b9a6",
+  "Uuid": "107641db-6b6a-4a08-8282-d474513714b1",
   "IsCustomNode": false,
-  "Description": "Read Image from disc to be able to work with inside of Dynamo",
-  "Name": "ReadImageFromFile",
+  "Description": "Export data to Excel given a chosen sheet name. You will need to connect the data to be exported",
+  "Name": "Export Data To Excel",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -31,25 +31,15 @@
       "InputValue": "No file selected."
     },
     {
-      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
-      "Id": "59d22a7921854195813ce16dac4fde76",
-      "NodeType": "ExtensionNode",
-      "Inputs": [
-        {
-          "Id": "ac3d97121b3a4e7e81b84beb515453b6",
-          "Name": "path",
-          "Description": "Path to the file.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "3bd4fe2e6876454da3e83a01462c85c7",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
       "Outputs": [
         {
-          "Id": "e6871041961542a7b371fe5c91060ef7",
-          "Name": "file",
-          "Description": "File object",
+          "Id": "3f6242f197704cb08d28d338399cc02b",
+          "Name": "",
+          "Description": "String",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -57,18 +47,73 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Creates a file object from the given path"
+      "Description": "Creates a string",
+      "InputValue": ""
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "19ee29aa65234cd0b7dc15d77fb4eb15",
+      "Id": "a30280ae0aea42649c79b5f80b7c6dbe",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "eb524fc133cb468b907620050f72b8bf",
-          "Name": "file",
-          "Description": "File object to load image from\n\nvar",
+          "Id": "33167a5f9e25441b98598dc1ecc07832",
+          "Name": "filePath",
+          "Description": "string",
           "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0a38be4fb78c4ac385664c50cf9dbbff",
+          "Name": "sheetName",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "53fd2ca44312424f9e88959329c97a76",
+          "Name": "data",
+          "Description": "var[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5cb3225aeccb496989afa724dd38b537",
+          "Name": "startRow",
+          "Description": "int\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c6b08add41fe4398b6c167e99c73c8b1",
+          "Name": "startColumn",
+          "Description": "int\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1e16648803b341e395baccc2ff2db3ea",
+          "Name": "overWrite",
+          "Description": "bool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f6cdbc62f3ef4cee91ae11eb5a21f1de",
+          "Name": "writeAsString",
+          "Description": "bool\nDefault value : false",
+          "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
@@ -76,66 +121,31 @@
       ],
       "Outputs": [
         {
-          "Id": "f106b67f8d5f4cab91d132b92814efbd",
-          "Name": "image",
-          "Description": "Image object from file",
+          "Id": "937ba830e5174f2a9ed269d57b1f5157",
+          "Name": "bool",
+          "Description": "bool",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "DSCore.IO.Image.ReadFromFile@var",
+      "FunctionSignature": "DSOffice.Data.OpenXMLExportExcel@string,string,var[][],int,int,bool,bool",
       "Replication": "Auto",
-      "Description": "Loads the file as a bitmap.\n\nImage.ReadFromFile (file: var): var"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.WatchImageCore, CoreNodeModels",
-      "Id": "3fe34643619745249cb1e4a286e36944",
-      "NodeType": "ExtensionNode",
-      "Inputs": [
-        {
-          "Id": "f4d5f5b983b340f8973b41f72174f9e7",
-          "Name": "image",
-          "Description": "Image for visualization",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "bebb4cb152da4adbad95a62a2c1dcc6e",
-          "Name": "image",
-          "Description": "Image for visualization",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Previews an image"
+      "Description": "Data.OpenXMLExportExcel (filePath: string, sheetName: string, data: var[][], startRow: int = 0, startColumn: int = 0, overWrite: bool = false, writeAsString: bool = false): bool"
     }
   ],
   "Connectors": [
     {
       "Start": "4cb119c0fc804e47bd4bcd5fff82cf7c",
-      "End": "ac3d97121b3a4e7e81b84beb515453b6",
-      "Id": "df3062a3444e41b8b7f34c7a286e4cce",
+      "End": "33167a5f9e25441b98598dc1ecc07832",
+      "Id": "b07a2afc08844afeb9ef963e970cb646",
       "IsHidden": "False"
     },
     {
-      "Start": "e6871041961542a7b371fe5c91060ef7",
-      "End": "eb524fc133cb468b907620050f72b8bf",
-      "Id": "78544d0ab304493f81cbb3753ea34fec",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "f106b67f8d5f4cab91d132b92814efbd",
-      "End": "f4d5f5b983b340f8973b41f72174f9e7",
-      "Id": "d95208d4410d4cb9825e4f2d39309326",
+      "Start": "3f6242f197704cb08d28d338399cc02b",
+      "End": "0a38be4fb78c4ac385664c50cf9dbbff",
+      "Id": "8f18137f976541a2a0186380ecf744c4",
       "IsHidden": "False"
     }
   ],
@@ -200,47 +210,37 @@
         "Y": 282.0
       },
       {
-        "Id": "59d22a7921854195813ce16dac4fde76",
-        "Name": "File From Path",
+        "Id": "3bd4fe2e6876454da3e83a01462c85c7",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 238.5,
+        "Y": 531.5
+      },
+      {
+        "Id": "a30280ae0aea42649c79b5f80b7c6dbe",
+        "Name": "Data.OpenXMLExportExcel",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
         "X": 811.0,
         "Y": 282.0
-      },
-      {
-        "Id": "19ee29aa65234cd0b7dc15d77fb4eb15",
-        "Name": "Image.ReadFromFile",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1092.7547786720322,
-        "Y": 282.0
-      },
-      {
-        "Id": "3fe34643619745249cb1e4a286e36944",
-        "Name": "Watch Image",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1433.866448692153,
-        "Y": 282.0
       }
     ],
     "Annotations": [
       {
         "Id": "f8caed9cca86404397d6c13d7f9a2292",
-        "Title": "Browse to Image file to import",
+        "Title": "Browse to Excel file to export data to",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 229.5,
+        "Left": 213.0,
         "Top": 232.0,
         "Width": 0.0,
         "Height": 0.0,
@@ -253,15 +253,36 @@
         "PinnedNode": "d2ca2769c87f4b4396940a74ff1111d2"
       },
       {
-        "Id": "a69836269d524c90a34e16b7efd8f803",
-        "Title": "Load the Image file from disk into Dynamo's memory",
+        "Id": "f6199651df8b4e3ebe2e1ba518850914",
+        "Title": "Type in a Sheet Name, but be mindful of capitalization",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 772.0,
+        "Left": 193.5,
+        "Top": 466.5,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "3bd4fe2e6876454da3e83a01462c85c7"
+      },
+      {
+        "Id": "a69836269d524c90a34e16b7efd8f803",
+        "Title": "Export Excel data using the OpenXML format from a chosen sheet name",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 797.0,
         "Top": 217.0,
         "Width": 0.0,
         "Height": 0.0,
@@ -271,53 +292,11 @@
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
         "Background": "#FFC1D676",
-        "PinnedNode": "59d22a7921854195813ce16dac4fde76"
-      },
-      {
-        "Id": "37460f13b9794e029d2aec8655b5aaa9",
-        "Title": "Read Image from File in Dynamo's memory space in the Bitmap format",
-        "DescriptionText": null,
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "Nodes": [],
-        "HasNestedGroups": false,
-        "Left": 1056.2547786720322,
-        "Top": 169.0,
-        "Width": 0.0,
-        "Height": 0.0,
-        "FontSize": 36.0,
-        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 0.0,
-        "InitialHeight": 0.0,
-        "TextblockHeight": 0.0,
-        "Background": "#FFC1D676",
-        "PinnedNode": "19ee29aa65234cd0b7dc15d77fb4eb15"
-      },
-      {
-        "Id": "92781c108d794300982eb5b214c43333",
-        "Title": "Watch the Image to visually check",
-        "DescriptionText": null,
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "Nodes": [],
-        "HasNestedGroups": false,
-        "Left": 1417.866448692153,
-        "Top": 232.0,
-        "Width": 0.0,
-        "Height": 0.0,
-        "FontSize": 36.0,
-        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 0.0,
-        "InitialHeight": 0.0,
-        "TextblockHeight": 0.0,
-        "Background": "#FFC1D676",
-        "PinnedNode": "3fe34643619745249cb1e4a286e36944"
+        "PinnedNode": "a30280ae0aea42649c79b5f80b7c6dbe"
       }
     ],
-    "X": -301.7268648176259,
-    "Y": 70.82444097119173,
-    "Zoom": 1.4454329621683044
+    "X": 196.23761879446965,
+    "Y": -15.960282864435044,
+    "Zoom": 1.13507102841452
   }
 }

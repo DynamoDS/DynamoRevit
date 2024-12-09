@@ -1,5 +1,6 @@
 ## 0.6.34
 * Update Dynamo Core to 3.4.1.7055
+* Rename Template files for filename localization
 
 ## 0.6.33
 * Update Node Migrations and one test after obsolete node removal
