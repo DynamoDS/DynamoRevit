@@ -1,3 +1,6 @@
+## 0.6.34
+* Load ASM from SharedComponents folder
+
 ## 0.6.33
 * Update Node Migrations and one test after obsolete node removal
 

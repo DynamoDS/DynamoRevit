@@ -97,6 +97,7 @@ namespace Dynamo.Applications
         private static readonly Queue<Action> idleActionQueue = new Queue<Action>(10);
         private static EventHandlerProxy proxy;
         private AddInCommandBinding dynamoCommand;
+        internal static string ASMPath;
 
         private Result loadDependentComponents()
         {
@@ -135,6 +136,13 @@ namespace Dynamo.Applications
 
                 UIControlledApplication = application;
                 ControlledApplication = application.ControlledApplication;
+
+                // TO_DO: get the asm path from API
+
+                var rvtExePath = AppDomain.CurrentDomain.BaseDirectory;
+                if (string.IsNullOrEmpty(rvtExePath))
+                    rvtExePath = Path.GetDirectoryName(Environment.ProcessPath);
+                ASMPath = Path.Combine(rvtExePath, "SharedComponents", "1.0.0");
 
                 SubscribeAssemblyEvents();
                 SubscribeApplicationEvents();
