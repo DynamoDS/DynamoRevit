@@ -2,7 +2,7 @@
   "Uuid": "b3342583-c831-4c51-800a-ffbe4db82efa",
   "IsCustomNode": false,
   "Description": "Сбор всех элементов выбранной категории (по умолчанию — «Помещения») и получение площади помещения для каждого элемента",
-  "Name": "Collect All Elements Of Category And Get Parameters",
+  "Name": "Сбор всех элементов категории и получение параметров",
   "ElementResolver": {
     "ResolutionMap": {}
   },

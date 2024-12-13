@@ -2,7 +2,7 @@
   "Uuid": "c49c9e5d-746d-42f7-975a-5a40f1ad1c6c",
   "IsCustomNode": false,
   "Description": "Excel ファイルからデータを読み込み、データを転置して列と行を反転します。",
-  "Name": "Import Data From Excel",
+  "Name": "Excel からデータを読み込む",
   "ElementResolver": {
     "ResolutionMap": {}
   },
