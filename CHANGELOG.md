@@ -1,3 +1,6 @@
+## 0.6.35
+* Load ASM from shared components path
+
 ## 0.6.34
 * Update Dynamo Core to 3.4.1.7055
 * Rename Template files for filename localization
