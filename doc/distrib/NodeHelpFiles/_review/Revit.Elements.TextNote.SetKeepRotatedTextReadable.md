@@ -1,5 +1,5 @@
 ## In Depth
-`TextNote.SetKeepRotatedTextReadable` set the keep readable instance parameter of the given text note to the given boolean value. 
+`TextNote.SetKeepRotatedTextReadable` sets the keep readable instance parameter of the given text note to the given boolean value. 
 
 Note: this node has a return type of void, which means the node commits an action on an element and returns null.
 
