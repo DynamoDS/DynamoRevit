@@ -1,0 +1,256 @@
+{
+  "Uuid": "17ad6046-976a-4d39-aa93-76629e74ff14",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.ReferencePoint.ByCoordinates",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "388a927434fd4682b5c2b5069f5fee8b",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "3e33d96794a64a31af41e183a516c8ce",
+          "Name": "x",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "aa470d2642144d9f9a99cd1120574364",
+          "Name": "y",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "95c1ed32da314df9bf62fdcef230316a",
+          "Name": "z",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6a02d770b65e4a2c9d17fb79eb380bc7",
+          "Name": "ReferencePoint",
+          "Description": "ReferencePoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.ReferencePoint.ByCoordinates@double,double,double",
+      "Replication": "Auto",
+      "Description": "Create a Reference Point by x, y, and z coordinates.\n\nReferencePoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): ReferencePoint"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "ee7d5e4db23d4e63a23a88bf78b1cdff",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "69d592bfd2e0452d962d795abdf47d18",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "39948161d50543b1baafb112f32593a4",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f344656af5614d4cbd8ebfca46c2f385",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "515120e585214b6a9f985f723225ca07",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "668d915713464ff1afb678ce8cd7b3a7",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 1.0
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "69d592bfd2e0452d962d795abdf47d18",
+      "End": "3e33d96794a64a31af41e183a516c8ce",
+      "Id": "aed4b0a75acb4fc894fcc027d98c2679",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f344656af5614d4cbd8ebfca46c2f385",
+      "End": "aa470d2642144d9f9a99cd1120574364",
+      "Id": "5c1c6d11d04f4335bd708181c3a137b1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "668d915713464ff1afb678ce8cd7b3a7",
+      "End": "95c1ed32da314df9bf62fdcef230316a",
+      "Id": "b81ebd86eaa248789118ea5961b886b0",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "388a9274-34fd-4682-b5c2-b5069f5fee8b",
+      "Binding": {
+        "ByCoordinates_InClassDecl-1_InFunctionScope-1_Instance0_388a9274-34fd-4682-b5c2-b5069f5fee8b": "H4sIAAAAAAAACh3LoQ6AIBAG4Hf5s7cdIIpmi9noGfBgzmJwNMe76/z6tz5IsUSMeARLuc/rmCfBKNg19TmrJ41eqTXBUOBoiYesHe/qnHXEH9MOnaARzFf5r7c9V9TtBQbEgHVcAAAA"
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "388a927434fd4682b5c2b5069f5fee8b",
+        "Name": "ReferencePoint.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 641.6000000000001,
+        "Y": 389.6
+      },
+      {
+        "Id": "ee7d5e4db23d4e63a23a88bf78b1cdff",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 192.80000000000007,
+        "Y": 276.6
+      },
+      {
+        "Id": "39948161d50543b1baafb112f32593a4",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 192.80000000000007,
+        "Y": 423.6
+      },
+      {
+        "Id": "515120e585214b6a9f985f723225ca07",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 192.80000000000007,
+        "Y": 570.6000000000001
+      }
+    ],
+    "Annotations": [],
+    "X": -166.00041340083953,
+    "Y": -254.75887934180025,
+    "Zoom": 1.4425890929331346
+  }
+}
