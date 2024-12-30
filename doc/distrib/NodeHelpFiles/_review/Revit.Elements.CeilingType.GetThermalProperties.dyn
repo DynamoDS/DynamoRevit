@@ -1,0 +1,229 @@
+{
+  "Uuid": "6b0a2ccc-6b7e-40bf-96e3-65276d088d0a",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.CeilingType.GetThermalProperties",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "202c643ec7cc40049ad4a9d7fdd537f2",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3427d6cad39b4509867137a302550b0f",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Generic"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "6c4c19a9f76f4211b6bb0c75961008cd",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "53e536d6c8ac47ec86d2ec03946e6595",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1c5ec0022548485c8cb536edd4f096c7",
+          "Name": "CeilingType",
+          "Description": "CeilingType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.CeilingType.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a CeilingType from the document given\n\nCeilingType.ByName (name: string): CeilingType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b42126239b5042a0a1767d55680f5dbf",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b8f4fa9f00fd43f6897894957f10b02e",
+          "Name": "ceilingType",
+          "Description": "Revit.Elements.CeilingType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "532d0b6aa0e14ba38e05f095242c2302",
+          "Name": "Absorptance",
+          "Description": "Value of absorptance.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b9627e4f4c6f42028353aba5dce77495",
+          "Name": "HeatTransferCoefficient",
+          "Description": "The heat transfer coefficient value (U-Value).",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "19b8883fbcf3433ba2e9287fd7735710",
+          "Name": "Roughness",
+          "Description": "Value of roughness.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c1338ddf9a1b47ddb8dd7171a94fb96b",
+          "Name": "ThermalMass",
+          "Description": "The calculated thermal mass value.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "479fd70d196448edbf0b6b1ceed74ac6",
+          "Name": "ThermalResistance",
+          "Description": "The calculated thermal resistance value (R-Value).",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.CeilingType.GetThermalProperties",
+      "Replication": "Auto",
+      "Description": "The calculated and settable thermal properties of the CeilingType\n\nCeilingType.GetThermalProperties ( ): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "3427d6cad39b4509867137a302550b0f",
+      "End": "53e536d6c8ac47ec86d2ec03946e6595",
+      "Id": "8cc3b9c1a79a4fc8ada253d24e6403b6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1c5ec0022548485c8cb536edd4f096c7",
+      "End": "b8f4fa9f00fd43f6897894957f10b02e",
+      "Id": "934c2d89df8d4ad0b74cd37135c70650",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "202c643ec7cc40049ad4a9d7fdd537f2",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 330.8000000000002,
+        "Y": 199.45900184588808
+      },
+      {
+        "Id": "6c4c19a9f76f4211b6bb0c75961008cd",
+        "Name": "CeilingType.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 583.6000000000001,
+        "Y": 199.45900184588808
+      },
+      {
+        "Id": "b42126239b5042a0a1767d55680f5dbf",
+        "Name": "CeilingType.GetThermalProperties",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 908.7932889868368,
+        "Y": 199.45900184588808
+      }
+    ],
+    "Annotations": [],
+    "X": -11.296507009648508,
+    "Y": 31.223180181025015,
+    "Zoom": 1.1047642563030273
+  }
+}

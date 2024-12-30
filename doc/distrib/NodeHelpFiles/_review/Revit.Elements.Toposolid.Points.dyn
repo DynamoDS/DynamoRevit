@@ -1,0 +1,309 @@
+{
+  "Uuid": "52fd31e0-c6e1-48f2-801b-3d7dc435037c",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Toposolid.Points",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a3f25317692b4a51890bb1c232ff54b7",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "c477440b5be34eaaa1931d7e16abe365",
+          "Name": "linkInstance",
+          "Description": "Revit link Instance\n\nLinkInstance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "94a88cc66ee44cd98583cb55a4ea193c",
+          "Name": "category",
+          "Description": "Element category\n\nCategory",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c40691901b9147e4b1e258dd386acde7",
+          "Name": "linkedElements[]",
+          "Description": "All elements of the category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.LinkInstance.AllElementsOfCategory@Revit.Elements.LinkInstance,Revit.Elements.Category",
+      "Replication": "Auto",
+      "Description": "Retrieves all elements of a given category in a link instance\n\nLinkInstance.AllElementsOfCategory (linkInstance: LinkInstance, category: Category): Element[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "ef222a91-e151-45ee-ab0b-cccc6ea80ab7-00255b59"
+      ],
+      "Id": "5c38342969ab42e9a4f674594943ddac",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "914d3f9d844a47578031e32b2cc47aea",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 697,
+      "SelectedString": "OST_Toposolid",
+      "Id": "603245ff63b74d4580fa1a1c6c0d1fa2",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d2fedfb304264435ad89717bed3fa631",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "97a046cd2f3341208a2b716996e448e3",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "023a1f9e8da24914a121593d3125dfc7",
+          "Name": "toposolid",
+          "Description": "Revit.Elements.Toposolid",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "533fefc29a5d4481a96e521e58dccd92",
+          "Name": "Point[]",
+          "Description": "Point[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Toposolid.Points",
+      "Replication": "Auto",
+      "Description": "Get Slab Shape Points\n\nToposolid.Points: Point[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a739941946d544f388085e722479a92b",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "4315900167064ca58962bd93cf7498bc",
+          "Name": "list",
+          "Description": "List to get the first item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "af206eb0676d44ed9270d9ddd3c2af40",
+          "Name": "item",
+          "Description": "First item in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
+      "Replication": "Auto",
+      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "c40691901b9147e4b1e258dd386acde7",
+      "End": "4315900167064ca58962bd93cf7498bc",
+      "Id": "46a325f30bc3498b99cf341269acfeca",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "914d3f9d844a47578031e32b2cc47aea",
+      "End": "c477440b5be34eaaa1931d7e16abe365",
+      "Id": "6998d5646ab94af7bd0bfaffc176e4f6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d2fedfb304264435ad89717bed3fa631",
+      "End": "94a88cc66ee44cd98583cb55a4ea193c",
+      "Id": "a70fa2cfc8ff401d89ff34b4b53b1761",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "af206eb0676d44ed9270d9ddd3c2af40",
+      "End": "023a1f9e8da24914a121593d3125dfc7",
+      "Id": "c8bf824b5c9f4108be7fcbedd1949495",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -292.3471984863281,
+      "EyeY": 297.33197021484375,
+      "EyeZ": 358.6072692871094,
+      "LookX": 287.3471984863281,
+      "LookY": -286.33197021484375,
+      "LookZ": -366.6072692871094,
+      "UpX": 0.20287440717220306,
+      "UpY": 0.9443764686584473,
+      "UpZ": -0.25883394479751587
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "a3f25317692b4a51890bb1c232ff54b7",
+        "Name": "LinkInstance.AllElementsOfCategory",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 693.6,
+        "Y": 332.0
+      },
+      {
+        "Id": "5c38342969ab42e9a4f674594943ddac",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 323.9999999999999,
+        "Y": 262.4000000000001
+      },
+      {
+        "Id": "603245ff63b74d4580fa1a1c6c0d1fa2",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 316.79999999999995,
+        "Y": 479.20000000000005
+      },
+      {
+        "Id": "97a046cd2f3341208a2b716996e448e3",
+        "Name": "Toposolid.Points",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1333.1893175074183,
+        "Y": 332.0
+      },
+      {
+        "Id": "a739941946d544f388085e722479a92b",
+        "Name": "List.FirstItem",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1074.4,
+        "Y": 332.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "eea180cb39e14f8fab30a4df0b2def15",
+        "Title": "Select Link in View",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 381.1999999999999,
+        "Top": 212.0000000000001,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "5c38342969ab42e9a4f674594943ddac"
+      }
+    ],
+    "X": -186.92435729851638,
+    "Y": -161.70173056476324,
+    "Zoom": 0.8226953593749999
+  }
+}

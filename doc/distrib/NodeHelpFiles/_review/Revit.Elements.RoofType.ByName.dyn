@@ -1,0 +1,147 @@
+{
+  "Uuid": "6b0a2ccc-6b7e-40bf-96e3-65276d088d0a",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.RoofType.ByName",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "202c643ec7cc40049ad4a9d7fdd537f2",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3427d6cad39b4509867137a302550b0f",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Generic - 9\""
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a4aeba7cd0f04e57b18eeca32fec0d45",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "1931b7f8a69946a8a5d57710004d536c",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c2ad36bcaf8a40d4a5096d41e660caec",
+          "Name": "RoofType",
+          "Description": "RoofType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.RoofType.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a RoofType from the document given\n\nRoofType.ByName (name: string): RoofType"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "3427d6cad39b4509867137a302550b0f",
+      "End": "1931b7f8a69946a8a5d57710004d536c",
+      "Id": "cd8ded12efbc42b496c97401b43cbc36",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "202c643ec7cc40049ad4a9d7fdd537f2",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 330.8000000000002,
+        "Y": 200.79999999999995
+      },
+      {
+        "Id": "a4aeba7cd0f04e57b18eeca32fec0d45",
+        "Name": "RoofType.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 583.6000000000001,
+        "Y": 200.79999999999995
+      }
+    ],
+    "Annotations": [],
+    "X": -79.93042789017284,
+    "Y": -33.968912082370366,
+    "Zoom": 1.545620359375
+  }
+}

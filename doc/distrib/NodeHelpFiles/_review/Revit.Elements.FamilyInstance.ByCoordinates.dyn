@@ -1,0 +1,302 @@
+{
+  "Uuid": "6b0a2ccc-6b7e-40bf-96e3-65276d088d0a",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.FamilyInstance.ByCoordinates",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.FamilyTypes, DSRevitNodesUI",
+      "SelectedIndex": 511,
+      "SelectedString": "RPC Male:Alex",
+      "Id": "9abc90b609964c89bbc9ad94ee086acf",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "426e94aaf16847c59ef9623e2896d9ea",
+          "Name": "Family Type",
+          "Description": "The selected Family Type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All family types available in the document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "86adf363001a416f90045aa55bccf469",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d9c6d9114fb14168ab0f5d143a3cccd1",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 3.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "fb654ec10a69406389100e6cb731b715",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "43eba8aeb68e4897bae226eb7d28588b",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 12.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "d11b760f5d964918827ebf2605eacf64",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "becfe90dcaf04b958d124c1b1402905b",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 8.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "6d347557545649e5b809d707f150000d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "45c8cbf1b2e84ccab37c88e629ffdc00",
+          "Name": "familyType",
+          "Description": "Family Type. Also called Family Symbol.\n\nFamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "235bb77cdfc1423ca4dc9a8e42b8c607",
+          "Name": "x",
+          "Description": "X coordinate in meters\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "45d7de83d9984651af4577e3a8afd4e9",
+          "Name": "y",
+          "Description": "Y coordinate in meters\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c90a0b4b878a48f69922ad686d1df943",
+          "Name": "z",
+          "Description": "Z coordinate in meters\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2016ba50791b4fcba67f163e2f9fd381",
+          "Name": "FamilyInstance",
+          "Description": "FamilyInstance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FamilyInstance.ByCoordinates@Revit.Elements.FamilyType,double,double,double",
+      "Replication": "Auto",
+      "Description": "Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) and its coordinates in world space\n\nFamilyInstance.ByCoordinates (familyType: FamilyType, x: double = 0, y: double = 0, z: double = 0): FamilyInstance"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "426e94aaf16847c59ef9623e2896d9ea",
+      "End": "45c8cbf1b2e84ccab37c88e629ffdc00",
+      "Id": "129b2fc6f1bc4e40942eacb32729a50a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d9c6d9114fb14168ab0f5d143a3cccd1",
+      "End": "235bb77cdfc1423ca4dc9a8e42b8c607",
+      "Id": "a0b776be985e4f7f9c77dd1388b814fb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "43eba8aeb68e4897bae226eb7d28588b",
+      "End": "c90a0b4b878a48f69922ad686d1df943",
+      "Id": "aed8e3e3367f41b4a9c797322d6865e8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "becfe90dcaf04b958d124c1b1402905b",
+      "End": "45d7de83d9984651af4577e3a8afd4e9",
+      "Id": "d575d1607c684b9f8ffcca37cdc39285",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "6d347557-5456-49e5-b809-d707f150000d",
+      "Binding": {
+        "ByCoordinates_InClassDecl-1_InFunctionScope-1_Instance0_6d347557-5456-49e5-b809-d707f150000d": "H4sIAAAAAAAACh3LMQ7DIAwF0Lv8uZYMARMyd8mcse5goERdMlRsUe5eKW9/rxPNhmHBqdjG73vs61OxKFJ1pSeJVDl+KPTAZKUImYi1HDI7V4nZzylPk+KhWI9xXy/RB0kXrvcfLV9cSl8AAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "9abc90b609964c89bbc9ad94ee086acf",
+        "Name": "Family Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 269.79999999999995,
+        "Y": 83.09999999999981
+      },
+      {
+        "Id": "86adf363001a416f90045aa55bccf469",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 172.99999999999994,
+        "Y": 311.43282866868014
+      },
+      {
+        "Id": "fb654ec10a69406389100e6cb731b715",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 172.99999999999994,
+        "Y": 605.4328286686801
+      },
+      {
+        "Id": "d11b760f5d964918827ebf2605eacf64",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 172.99999999999994,
+        "Y": 458.43282866868014
+      },
+      {
+        "Id": "6d347557545649e5b809d707f150000d",
+        "Name": "FamilyInstance.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 660.9999999999998,
+        "Y": 364.09999999999985
+      }
+    ],
+    "Annotations": [],
+    "X": 305.4721064186375,
+    "Y": -4.25302477707794,
+    "Zoom": 0.7476928171233252
+  }
+}

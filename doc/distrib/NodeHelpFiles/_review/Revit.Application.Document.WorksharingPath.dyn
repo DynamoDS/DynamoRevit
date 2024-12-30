@@ -1,0 +1,239 @@
+{
+  "Uuid": "4baeea40-0517-4b06-9476-2f30d517d1fe",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Application.Document.WorksharingPath",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a0c26d599fbd43b9bd18248bf72b18f9",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d67ae815a5584bd190f199bf8d8b615f",
+          "Name": "document",
+          "Description": "Revit.Application.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ce506fe05d7045fb8fd4acaaafa1c6a0",
+          "Name": "linkInstances[]",
+          "Description": "List of link instances in the document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.GetLinkInstances",
+      "Replication": "Auto",
+      "Description": "Retrieves all link instances in the current Revit document\n\nDocument.GetLinkInstances ( ): LinkInstance[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "5da17e59b656453c9462bf78fa1e3149",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "eef9e1e808604538af1200c4787716a8",
+          "Name": "linkInstance",
+          "Description": "Revit link instance\n\nLinkInstance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "553694a2a9bd4331915295219278d411",
+          "Name": "linkDocument",
+          "Description": "Document of link instance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.LinkInstance.Document@Revit.Elements.LinkInstance",
+      "Replication": "Auto",
+      "Description": "Queries the link instance’s document\n\nLinkInstance.Document (linkInstance: LinkInstance): Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "7401af6685d24e6badf8f1ed68bdde93",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "426e778f326c4643b4f794d05154c7d6",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "36a83bff18934e4fa7a573245f869918",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "1d17648aaeae4014a7b2c8c889c875fd",
+          "Name": "document",
+          "Description": "Revit.Application.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e4502417e3bf4affa3379f78913fddbe",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.WorksharingPath",
+      "Replication": "Auto",
+      "Description": "Gets the worksharing path of the current document\n\nDocument.WorksharingPath: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ce506fe05d7045fb8fd4acaaafa1c6a0",
+      "End": "eef9e1e808604538af1200c4787716a8",
+      "Id": "0fc3c2932edb491ba5fa52b426fa1e4f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "553694a2a9bd4331915295219278d411",
+      "End": "1d17648aaeae4014a7b2c8c889c875fd",
+      "Id": "55632637c6e740b29e7e98b9363f7606",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "426e778f326c4643b4f794d05154c7d6",
+      "End": "d67ae815a5584bd190f199bf8d8b615f",
+      "Id": "3989ef946a01420aba252287055285c5",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "a0c26d599fbd43b9bd18248bf72b18f9",
+        "Name": "Document.GetLinkInstances",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 310.4,
+        "Y": 333.6
+      },
+      {
+        "Id": "5da17e59b656453c9462bf78fa1e3149",
+        "Name": "LinkInstance.Document",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 675.1999999999999,
+        "Y": 333.6
+      },
+      {
+        "Id": "7401af6685d24e6badf8f1ed68bdde93",
+        "Name": "Document.Current",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 43.200000000000045,
+        "Y": 333.6
+      },
+      {
+        "Id": "36a83bff18934e4fa7a573245f869918",
+        "Name": "Document.WorksharingPath",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1041.031903099201,
+        "Y": 334.61992769400376
+      }
+    ],
+    "Annotations": [],
+    "X": -30.95349430714714,
+    "Y": 15.423025688454459,
+    "Zoom": 0.7843693280448272
+  }
+}

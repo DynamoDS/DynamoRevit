@@ -1,0 +1,340 @@
+{
+  "Uuid": "62489567-448a-43df-9a13-e8bb42f57523",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.TextNote.SetKeepRotatedTextReadable",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "b33126b8e7cc40dc837bf99700829d21",
+      "Name": "Sheets",
+      "Type": "selection",
+      "Type2": "dropdownSelection",
+      "Value": "Details",
+      "Description": "All sheets available in the current document.",
+      "SelectedIndex": 12
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Sheets, DSRevitNodesUI",
+      "SelectedIndex": 12,
+      "SelectedString": "Details",
+      "Id": "b33126b8e7cc40dc837bf99700829d21",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "312fc31b8e7a4daab9b35418f27d154e",
+          "Name": "Sheet",
+          "Description": "The selected Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All sheets available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9e41e778f239491eaee371a1c04e027f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "172d408f82da452993b5a7ce4152059b",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2470084ed1104a8a94be5249443dc244",
+          "Name": "View[]",
+          "Description": "View[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.Sheet.Views",
+      "Replication": "Auto",
+      "Description": "Get the Views on a Sheet\n\nSheet.Views: View[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "f2772aa0a2f549038baa3202f97c2837",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "825526e327624648839f3a51b495d5de",
+          "Name": "textNote",
+          "Description": "Revit.Elements.TextNote",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f64a6ad1435e4448b56c02c14e02c356",
+          "Name": "value",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "37048d0c462b44e5a2ee0cb435ab5779",
+          "Name": "void",
+          "Description": "void",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.TextNote.SetKeepRotatedTextReadable@bool",
+      "Replication": "Auto",
+      "Description": "Set Keep Rotated Text Readable\n\nTextNote.SetKeepRotatedTextReadable (value: bool): void"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
+      "Id": "aec17b8ad3e844f39abefbd343001367",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "03c7693bc82043ecba425d20ad5be2e6",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "28d3dba74bbe47808de7a1e0d9c9bf44",
+          "Name": "View",
+          "Description": "The View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e24135a1af934599bb3a9ca3171948d4",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category in the specified view from the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 683,
+      "SelectedString": "OST_TextNotes",
+      "Id": "9e563d05e7fc499ebc79460418ede9b5",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d4917734c01544e19525458b91a204b5",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "05a8abcf77054a698a398433ac185658",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b6ec0ad4cb50408f93bc1fe6004f0294",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "312fc31b8e7a4daab9b35418f27d154e",
+      "End": "172d408f82da452993b5a7ce4152059b",
+      "Id": "fabaa593b6784bfb9fa1f700ae9dd46d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2470084ed1104a8a94be5249443dc244",
+      "End": "28d3dba74bbe47808de7a1e0d9c9bf44",
+      "Id": "a8e531a7c1a74d4296736e770ef8b098",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e24135a1af934599bb3a9ca3171948d4",
+      "End": "825526e327624648839f3a51b495d5de",
+      "Id": "bc25bc2c87914baa8346069b79302f6d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d4917734c01544e19525458b91a204b5",
+      "End": "03c7693bc82043ecba425d20ad5be2e6",
+      "Id": "31901ee28f344dd58ed1bff4ac061a46",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b6ec0ad4cb50408f93bc1fe6004f0294",
+      "End": "f64a6ad1435e4448b56c02c14e02c356",
+      "Id": "b500ab554fd740d98fdcb8df090dfcc1",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "b33126b8e7cc40dc837bf99700829d21",
+        "Name": "Sheets",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 987.564209061723,
+        "Y": 64.01138948233566
+      },
+      {
+        "Id": "9e41e778f239491eaee371a1c04e027f",
+        "Name": "Sheet.Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1355.5606098511657,
+        "Y": 64.01138948233566
+      },
+      {
+        "Id": "f2772aa0a2f549038baa3202f97c2837",
+        "Name": "TextNote.SetKeepRotatedTextReadable",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2186.921405631453,
+        "Y": 125.93744202041916
+      },
+      {
+        "Id": "aec17b8ad3e844f39abefbd343001367",
+        "Name": "All Elements of Category in View",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1657.594595723099,
+        "Y": -62.38074996620665
+      },
+      {
+        "Id": "9e563d05e7fc499ebc79460418ede9b5",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1321.1606098511656,
+        "Y": -115.82239904349251
+      },
+      {
+        "Id": "05a8abcf77054a698a398433ac185658",
+        "Name": "Boolean",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1779.964921295551,
+        "Y": 481.506196491371
+      }
+    ],
+    "Annotations": [],
+    "X": -923.0890662387565,
+    "Y": 167.71328859829606,
+    "Zoom": 0.9210916844355563
+  }
+}

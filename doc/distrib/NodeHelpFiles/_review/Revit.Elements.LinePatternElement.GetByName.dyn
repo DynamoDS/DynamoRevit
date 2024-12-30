@@ -1,0 +1,193 @@
+{
+  "Uuid": "62489567-448a-43df-9a13-e8bb42f57523",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.LinePatternElement.GetByName",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "53e16f66563643ca8a19bf00276cc11c",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a76300524d0b4666b06e8a531db1df79",
+          "Name": "name",
+          "Description": "Name of the line pattern.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "eaab437132784e8e8479ac4a438bbe63",
+          "Name": "LinePattern",
+          "Description": "Filled Pattern Element.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.LinePatternElement.GetByName@string",
+      "Replication": "Auto",
+      "Description": "Line Pattern Element by name.\n\nLinePatternElement.GetByName (name: string): LinePatternElement"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "65651aac71594c8db38b036988a0a616",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5033e3718a2b4807bedc3cc005923773",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Center"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "5131397c507e4bbb8bba07d5b1cf8f25",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a36532a0a57b490bb5b3a9f0de0cc723",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fc348b784520469cbd9026ba6e33998e",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "eaab437132784e8e8479ac4a438bbe63",
+      "End": "a36532a0a57b490bb5b3a9f0de0cc723",
+      "Id": "499c6856a1b34eb9aa8dd285b337fd4c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5033e3718a2b4807bedc3cc005923773",
+      "End": "a76300524d0b4666b06e8a531db1df79",
+      "Id": "fbe7a1d132e5467bb2cd5731650aa10a",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "53e16f66563643ca8a19bf00276cc11c",
+        "Name": "LinePatternElement.GetByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1245.9424220603821,
+        "Y": 280.3801351514528
+      },
+      {
+        "Id": "65651aac71594c8db38b036988a0a616",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 997.142422060382,
+        "Y": 280.3801351514528
+      },
+      {
+        "Id": "5131397c507e4bbb8bba07d5b1cf8f25",
+        "Name": "Element.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1659.5424220603823,
+        "Y": 280.3801351514528
+      }
+    ],
+    "Annotations": [],
+    "X": -882.0865500785815,
+    "Y": -18.782765567337606,
+    "Zoom": 1.4510819488660847
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "Uuid": "62489567-448a-43df-9a13-e8bb42f57523",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.FillPatternElement.GetByName",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "52d8e99efd804cc2b610193be61b768f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "7885fb92e0a340eea6c5e03d0ed72198",
+          "Name": "name",
+          "Description": "Name of the Fill Pattern.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fd65807e4ba04f20b7411f714635be7d",
+          "Name": "fillPatternTarget",
+          "Description": "Target Fill pattern. Fill Patterns can be either \"Drafting\" or \"Modeling\". Default is \"Drafting\".\n\nstring\nDefault value : \"Drafting\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1c5cbc7cdf3548429d640d41603e2547",
+          "Name": "FillPattern",
+          "Description": "Filled Pattern Element.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FillPatternElement.GetByName@string,string",
+      "Replication": "Auto",
+      "Description": "Fill Pattern Element by Name and Target Type.\n\nFillPatternElement.GetByName (name: string, fillPatternTarget: string = \"Drafting\"): FillPatternElement"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.FillPatternTargets, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Drafting",
+      "Id": "f9451c16b08d46d9b5ff4f4cdd7a7f5b",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9ff495b0572c4e7787da944b9146f9c0",
+          "Name": "FillPatternTarget",
+          "Description": "The selected FillPatternTarget",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "The type of the fill pattern."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "d8a5e7dcb49c4252a0f6d1ac18a23728",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "45ce40c3b0124e0eb08ead041ca27beb",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "<Solid Fill>"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "9ff495b0572c4e7787da944b9146f9c0",
+      "End": "fd65807e4ba04f20b7411f714635be7d",
+      "Id": "73edc40acef24c2ca47b6905c748f729",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "45ce40c3b0124e0eb08ead041ca27beb",
+      "End": "7885fb92e0a340eea6c5e03d0ed72198",
+      "Id": "104e81bd3f564cdd9d940eb4b010b548",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "52d8e99efd804cc2b610193be61b768f",
+        "Name": "FillPatternElement.GetByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1066.4,
+        "Y": 356.79999999999995
+      },
+      {
+        "Id": "f9451c16b08d46d9b5ff4f4cdd7a7f5b",
+        "Name": "Fill Pattern Targets",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 643.1999999999998,
+        "Y": 448.0
+      },
+      {
+        "Id": "d8a5e7dcb49c4252a0f6d1ac18a23728",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 773.5999999999999,
+        "Y": 308.8
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

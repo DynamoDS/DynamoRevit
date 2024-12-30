@@ -1,0 +1,434 @@
+{
+  "Uuid": "4baeea40-0517-4b06-9476-2f30d517d1fe",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.LinkElement.BoundingBox",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "4bea3250d3e7473094f3459985a4985f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e60a5d2a63da43e19533593039c2c1bc",
+          "Name": "name",
+          "Description": "Name of the link instance\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "35738c45b39443fdb932ba74b06bcc7e",
+          "Name": "linkInstance[]",
+          "Description": "Revit link instance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.LinkInstance.ByName@string",
+      "Replication": "Auto",
+      "Description": "Retrieves a link instance by name\n\nLinkInstance.ByName (name: string): LinkInstance[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "57c80a1cfb66459fab1a9cd05298d8e5",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f314db9c824a409b827b6e8e01d66d9b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "22"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "ef222a91-e151-45ee-ab0b-cccc6ea80ab7-00255b59"
+      ],
+      "Id": "f14a3ffc44814d04a2a29fc68aab33d7",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "352402afa63542ad9f6fa29fb5788213",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "27530722d027463da1d13506a2a1537c",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "661b11f73fde4a108f2bf9f651f763ff",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3f0475f4bb854a12a302b90725c72c5c",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 420.0,
+      "WatchHeight": 38.4,
+      "Id": "a2ba95d8ebea4566948fff34cda6b9d2",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "205fc8d5924a44f59536c1d332fd2f71",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "29c6c2cb53564fc38974a29f147bc49d",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "0a78303b189848458a1003992780175c",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b76f5dfe2d7f4153a19e2d9da0e288fb",
+          "Name": "id",
+          "Description": "Element ID\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "33381a52ca4e4b27b943306476b4874e",
+          "Name": "linkInstance",
+          "Description": "Revit link instance\n\nLinkInstance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a8b4391cf89042b5b801a543c245b1ab",
+          "Name": "element[]",
+          "Description": "Element(s) from the link instance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.LinkInstance.ElementById@var,Revit.Elements.LinkInstance",
+      "Replication": "Auto",
+      "Description": "Retrieves one or more elements by ID from a link instance\n\nLinkInstance.ElementById (id: var, linkInstance: LinkInstance): Element"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "ca3cf2727af64d9eb0d12e2bd1aecfc4",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a0425a0236ec41b19ff238e3a7c00856",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "1264746"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "f5061506fb1d49e28effa63652d26933",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "3fd222c4b8154f6898206d29594b5022",
+          "Name": "linkedElement",
+          "Description": "Element from a link instance\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "180446fde01d46c098ec293f1917d63b",
+          "Name": "boundingBox",
+          "Description": "BoundingBox from the linked element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.LinkElement.BoundingBox@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "Returns a linked element’s BoundingBox\n\nLinkElement.BoundingBox (linkedElement: Element): BoundingBox"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "35738c45b39443fdb932ba74b06bcc7e",
+      "End": "33381a52ca4e4b27b943306476b4874e",
+      "Id": "aa52d4ddb22e4003b71c326750134c41",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f314db9c824a409b827b6e8e01d66d9b",
+      "End": "e60a5d2a63da43e19533593039c2c1bc",
+      "Id": "f7a59b9fe4774f33b94c5e268d6e9a60",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "352402afa63542ad9f6fa29fb5788213",
+      "End": "661b11f73fde4a108f2bf9f651f763ff",
+      "Id": "ec52117f7e784ca8a1057e1c7dea9252",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3f0475f4bb854a12a302b90725c72c5c",
+      "End": "205fc8d5924a44f59536c1d332fd2f71",
+      "Id": "294c4fc644d345e0a41e9fe0a12cd247",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a8b4391cf89042b5b801a543c245b1ab",
+      "End": "3fd222c4b8154f6898206d29594b5022",
+      "Id": "42a4e2cc4c064741af9f7c134556f6fa",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a0425a0236ec41b19ff238e3a7c00856",
+      "End": "b76f5dfe2d7f4153a19e2d9da0e288fb",
+      "Id": "29c44500606744d68d17f53bc466323d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "4bea3250d3e7473094f3459985a4985f",
+        "Name": "LinkInstance.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1007.641348240725,
+        "Y": 517.6778789444822
+      },
+      {
+        "Id": "57c80a1cfb66459fab1a9cd05298d8e5",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 689.9641488796404,
+        "Y": 517.6778789444822
+      },
+      {
+        "Id": "f14a3ffc44814d04a2a29fc68aab33d7",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 167.20000000000016,
+        "Y": 147.2
+      },
+      {
+        "Id": "27530722d027463da1d13506a2a1537c",
+        "Name": "Element.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 476.4000000000001,
+        "Y": 147.2
+      },
+      {
+        "Id": "a2ba95d8ebea4566948fff34cda6b9d2",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 762.4000000000002,
+        "Y": 147.2
+      },
+      {
+        "Id": "0a78303b189848458a1003992780175c",
+        "Name": "LinkInstance.ElementById",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1387.6824273149018,
+        "Y": 487.2778789444822
+      },
+      {
+        "Id": "ca3cf2727af64d9eb0d12e2bd1aecfc4",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1100.5820652634388,
+        "Y": 375.2060616549561
+      },
+      {
+        "Id": "f5061506fb1d49e28effa63652d26933",
+        "Name": "LinkElement.BoundingBox",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1726.276587130257,
+        "Y": 487.2778789444822
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "fed6e977d82c46ffa6395108b4a324bc",
+        "Title": "How a LinkInstance's Name Works",
+        "DescriptionText": "Link instances are the individual placements of a specific link type. The name is unique and is found between the \":\"",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "f14a3ffc44814d04a2a29fc68aab33d7",
+          "27530722d027463da1d13506a2a1537c",
+          "a2ba95d8ebea4566948fff34cda6b9d2"
+        ],
+        "HasNestedGroups": false,
+        "Left": 157.20000000000016,
+        "Top": 74.79999999999998,
+        "Width": 1113.6,
+        "Height": 223.4,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 147.2,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 62.4,
+        "Background": "#FFA4E1FF"
+      }
+    ],
+    "X": -288.6630307432887,
+    "Y": 84.50493917351844,
+    "Zoom": 0.6428695574059478
+  }
+}
