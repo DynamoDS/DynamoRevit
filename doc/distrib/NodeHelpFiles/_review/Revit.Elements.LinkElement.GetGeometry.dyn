@@ -100,8 +100,8 @@
     },
     {
       "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
-      "SelectedIndex": 697,
-      "SelectedString": "OST_Toposolid",
+      "SelectedIndex": 732,
+      "SelectedString": "OST_Walls",
       "Id": "ab0d40c91c1e418586abf0b72b32c624",
       "NodeType": "ExtensionNode",
       "Inputs": [],
@@ -157,6 +157,51 @@
       "FunctionSignature": "Revit.Elements.LinkElement.GetGeometry@Revit.Elements.Element,string",
       "Replication": "Auto",
       "Description": "Returns geometry from a linked element at the given detail level\n\nLinkElement.GetGeometry (linkedElement: Element, detailLevel: string = \"Medium\"): var[]..[]"
+    },
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 200.0,
+      "WatchHeight": 200.0,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "3ac94ebe-8693-4461-8d05-ccf8569ea339 Preview",
+        "EyeX": -6.834430694580078,
+        "EyeY": 44.861122131347656,
+        "EyeZ": 208.3295440673828,
+        "LookX": -60.01350021362305,
+        "LookY": -68.11834716796875,
+        "LookZ": -150.54957580566406,
+        "UpX": -0.14347711205482483,
+        "UpY": 0.9218828678131104,
+        "UpZ": -0.3599257469177246
+      },
+      "VariableInputPorts": true,
+      "Id": "3ac94ebe869344618d05ccf8569ea339",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "ccda036315a442a0bf61d7cc0443f789",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c700daac8ce641b2a274ef8a7e005a80",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry"
     }
   ],
   "Connectors": [
@@ -183,11 +228,17 @@
       "End": "3ffa4c47d4ee43c88c33992cc17f75ff",
       "Id": "ddb4149c9fbc4cb8bcb08d948777669e",
       "IsHidden": "False"
+    },
+    {
+      "Start": "0109a95d6ba34dd78bde1035a08a3954",
+      "End": "ccda036315a442a0bf61d7cc0443f789",
+      "Id": "544e598e28dd43b2a97c148a121326bb",
+      "IsHidden": "False"
     }
   ],
   "Dependencies": [],
   "NodeLibraryDependencies": [],
-  "EnableLegacyPolyCurveBehavior": null,
+  "EnableLegacyPolyCurveBehavior": true,
   "Thumbnail": "",
   "GraphDocumentationURL": null,
   "ExtensionWorkspaceData": [
@@ -284,11 +335,21 @@
         "ShowGeometry": true,
         "X": 1592.024572557782,
         "Y": 598.2380746987517
+      },
+      {
+        "Id": "3ac94ebe869344618d05ccf8569ea339",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1956.2935469898628,
+        "Y": 602.6329262352823
       }
     ],
     "Annotations": [],
-    "X": -395.0547779956362,
-    "Y": -545.3228883466761,
-    "Zoom": 1.0926914385353919
+    "X": -362.2801645590064,
+    "Y": -347.337963550639,
+    "Zoom": 0.9215194513514215
   }
 }
