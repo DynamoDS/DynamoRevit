@@ -71,7 +71,7 @@
     },
     {
       "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
-      "Code": "# Load the Python Standard and DesignScript Libraries\r\nimport sys\r\nimport clr\r\nimport os\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# user inputs\r\nviewName = IN[0]\r\n\r\n# Place your code below this line\r\nexportedImagePath = os.path.expanduser('~\\pictures\\\\')\r\n\r\n# Assign your output to the OUT variable.\r\nOUT = exportedImagePath + viewName + \".png\"",
+      "Code": "# Load the Python Standard and DesignScript Libraries\r\nimport sys\r\nimport clr\r\nimport os\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# user inputs\r\nviewName = IN[0]\r\n\r\n# Place your code below this line\r\nexportedImagePath = os.path.expanduser('~\\desktop\\\\')\r\n\r\n# Assign your output to the OUT variable.\r\nOUT = exportedImagePath + viewName + \".png\"",
       "Engine": "CPython3",
       "VariableInputPorts": true,
       "Id": "3a066c70c2fe4fcbaeb3b85ca94936ed",
@@ -224,7 +224,7 @@
         "Excluded": false,
         "ShowGeometry": true,
         "X": 1171.225836382403,
-        "Y": -339.2906746666234
+        "Y": -338.59193858859174
       },
       {
         "Id": "2738849ea6fe4803b8371031d175e6c5",
@@ -258,8 +258,8 @@
       }
     ],
     "Annotations": [],
-    "X": -83.99435324392812,
-    "Y": 487.67345975285536,
+    "X": -18.39435324392798,
+    "Y": 565.2734597528554,
     "Zoom": 1.1449244216123138
   }
 }
