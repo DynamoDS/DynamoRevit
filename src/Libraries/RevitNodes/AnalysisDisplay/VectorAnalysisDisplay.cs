@@ -151,44 +151,6 @@ namespace Revit.AnalysisDisplay
             return new VectorAnalysisDisplay(view.InternalView, data, name, description, unitType);
         }
 
-        /// <summary>
-        /// Show a Vector Analysis Display in the Revit view.
-        /// </summary>
-        /// <param name="view">The view into which you want to draw the analysis results.</param>
-        /// <param name="data">A list of VectorData objects.</param>
-        /// <param name="name">An optional analysis results name to show on the results legend.</param>
-        /// <param name="description">An optional analysis results description to show on the results legend.</param>
-        /// <param name="unitType">An optional Unit type to provide conversions in the analysis results.</param>
-        /// <returns>A VectorAnalysisDisplay object.</returns>
-        [NodeObsolete("VectorDataObsolete", typeof(Properties.Resources))]
-        public static VectorAnalysisDisplay ByViewAndVectorAnalysisData(View view,
-                        VectorData data,
-            string name = "", string description = "", Type unitType = null)
-        {
-
-            if (view == null)
-            {
-                throw new ArgumentNullException("view");
-            }
-
-            if (data == null)
-            {
-                throw new ArgumentNullException("data");
-            }
-
-            if (string.IsNullOrEmpty(name))
-            {
-                name = Properties.Resources.AnalysisResultsDefaultName;
-            }
-
-            if (string.IsNullOrEmpty(description))
-            {
-                description = Properties.Resources.AnalysisResultsDefaultDescription;
-            }
-
-            return new VectorAnalysisDisplay(view.InternalView, data, name, description, unitType);
-        }
-
         #endregion
 
     }

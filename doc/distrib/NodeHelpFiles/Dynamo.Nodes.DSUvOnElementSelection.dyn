@@ -1,0 +1,102 @@
+{
+  "Uuid": "2bbdb10f-7e71-44b6-8cf3-99fff16c878e",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Dynamo.Nodes.DSUvOnElementSelection",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSUvOnElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "ad2588d0-c655-4eef-965a-6d983a5e846c-00169397:7:SURFACE"
+      ],
+      "Id": "1e20083f32b5415a890414252a6c289f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1d61efdedb8e4d60a1c93a1f4912d189",
+          "Name": "Point",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a UV on a face."
+    }
+  ],
+  "Connectors": [],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": 32.549903869628906,
+      "EyeY": 70.38159942626953,
+      "EyeZ": 31.292184829711914,
+      "LookX": 20.782562255859375,
+      "LookY": -12.580574035644531,
+      "LookZ": -19.18472671508789,
+      "UpX": 0.29862523078918457,
+      "UpY": 0.9136910438537598,
+      "UpZ": -0.2756657898426056
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "1e20083f32b5415a890414252a6c289f",
+        "Name": "Select UV on Face",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 255.85625239796792,
+        "Y": 411.1339305653682
+      }
+    ],
+    "Annotations": [],
+    "X": -505.0250095918717,
+    "Y": -1455.335722261473,
+    "Zoom": 4.0
+  }
+}

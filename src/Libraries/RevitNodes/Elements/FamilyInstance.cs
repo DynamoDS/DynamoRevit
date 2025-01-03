@@ -300,19 +300,6 @@ namespace Revit.Elements
 
         #region Public properties
         /// <summary>
-        /// Gets family type of the specific family instance
-        /// </summary>
-        /// <search>
-        /// symbol
-        /// </search>
-        [Obsolete("Use Element.ElementType instead.")]
-        public new FamilyType Type
-        {
-            // NOTE: Because AbstractFamilyInstance is not visible in the library
-            //       we redefine this method on FamilyInstance
-            get { return base.Type; }
-        }
-        /// <summary>
         /// Gets the location of the specific family instance 
         /// </summary>
         public new Point Location
@@ -600,17 +587,6 @@ namespace Revit.Elements
             { 
                 return Family.FromExisting(this.InternalFamilyInstance.Symbol.Family, true);
             }
-        }
-
-        /// <summary>
-        /// Gets the family type of this family instance
-        /// </summary>
-        [Obsolete("Use Element.ElementType instead.")]
-        public new FamilyType GetType
-        {
-            // NOTE: Because AbstractFamilyInstance is not visible in the library
-            //       we redefine this method on FamilyInstance
-            get { return base.Type; }
         }
 
         

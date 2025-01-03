@@ -1,3 +1,31 @@
+## 0.6.35
+* Load ASM from shared components path
+
+## 0.6.34
+* Update Dynamo Core to 3.4.1.7055
+* Rename Template files for filename localization
+* Fix warning in template file
+
+## 0.6.33
+* Update Node Migrations and one test after obsolete node removal
+
+## 0.6.32
+* update Dynamo Core to 3.4.0.6892
+
+## 0.6.31
+* remove obsolete nodes
+* Set the UI culture back to default after dynamo is closed
+
+## 0.6.30
+* Update Dynamo Core to 3.4.0-beta6752
+* Move D4R content to en-US folders
+
+## 0.6.29
+* Disable Dynamo Splashscreen for Revit 2026
+* Update FilterRule.ByRuleType node to not use deprecated functions
+* Update Dynamo Core to 3.4.0-beta6616
+* Remove python runtime dependency
+
 ## 0.6.27
 * Update Dynamo Core to 3.3.0.6316
 * Add node documentation: Parameter, Element, Room, Material, Views 

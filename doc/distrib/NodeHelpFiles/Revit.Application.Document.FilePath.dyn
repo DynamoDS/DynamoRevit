@@ -1,0 +1,203 @@
+{
+  "Uuid": "d05952f6-4f9d-4d58-a627-504380dc2f6a",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Application.Document.FilePath",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "dd1f2707bfcf47d487d7ff99ca423d04",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "52c3202de60246eebc77e5f377807f8b",
+          "Name": "document",
+          "Description": "Revit.Application.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e5321b7684ee4b6e86b447058bfee7a2",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.FilePath",
+      "Replication": "Auto",
+      "Description": "The full path of the Document.\n\nDocument.FilePath: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "f068dcb8c2ba416ba46a1e88a1bfd422",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6796c8aee9474e68af9f29aa38765adf",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 668.8,
+      "WatchHeight": 67.2,
+      "Id": "a94d978f711d4e11a9a0bc9edf48a3f9",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "fffbe2408e65496e86360b0cca4f5470",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fe4813072e4e41619fdce939044ab7d9",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e5321b7684ee4b6e86b447058bfee7a2",
+      "End": "fffbe2408e65496e86360b0cca4f5470",
+      "Id": "89a3b10716dd4e9ba84714bac71862fb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6796c8aee9474e68af9f29aa38765adf",
+      "End": "52c3202de60246eebc77e5f377807f8b",
+      "Id": "f5e5815ac8bf4df89dd147ba615a94e1",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Snowdon Towers Sample Architectural.rvt",
+      "ReferenceType": "External",
+      "Nodes": [
+        "dd1f2707bfcf47d487d7ff99ca423d04",
+        "a94d978f711d4e11a9a0bc9edf48a3f9"
+      ]
+    }
+  ],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "dd1f2707bfcf47d487d7ff99ca423d04",
+        "Name": "Document.FilePath",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 596.4000000000001,
+        "Y": 246.0
+      },
+      {
+        "Id": "f068dcb8c2ba416ba46a1e88a1bfd422",
+        "Name": "Document.Current",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 287.60000000000014,
+        "Y": 245.2
+      },
+      {
+        "Id": "a94d978f711d4e11a9a0bc9edf48a3f9",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 918.8000000000002,
+        "Y": 245.2
+      }
+    ],
+    "Annotations": [],
+    "X": -952.4253943469253,
+    "Y": -453.77957329657045,
+    "Zoom": 1.7835993623828124
+  }
+}

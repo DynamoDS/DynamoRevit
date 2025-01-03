@@ -1,0 +1,193 @@
+{
+  "Uuid": "2bbdb10f-7e71-44b6-8cf3-99fff16c878e",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.GlobalParameter.Value",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b8786df8da464632bad57de84553d754",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a09511058f0445b880c3bc12de4ad019",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6ad7435c3f734a91a3925e6122203554",
+          "Name": "GlobalParameter",
+          "Description": "GlobalParameter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.GlobalParameter.FindByName@string",
+      "Replication": "Auto",
+      "Description": "Find Global Parameter by Name\n\nGlobalParameter.FindByName (name: string): GlobalParameter"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "006585b737384da2bf0575d76cfa2209",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ed74752f504345b5920f2ed9f5b947be",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Windows_North Elevation Inset"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a548424a7c0d4d30aa6f8347386ce6f3",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "6c5363b61c024639899a7cbff0e7b80d",
+          "Name": "globalParameter",
+          "Description": "Revit.Elements.GlobalParameter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "83ddad4ab3e84433881af54bbcf86dce",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.GlobalParameter.Value",
+      "Replication": "Auto",
+      "Description": "Get Global Parameter Value\n\nGlobalParameter.Value: var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "6ad7435c3f734a91a3925e6122203554",
+      "End": "6c5363b61c024639899a7cbff0e7b80d",
+      "Id": "23d1669d31e740949f7ddcbe1bfc49e6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ed74752f504345b5920f2ed9f5b947be",
+      "End": "a09511058f0445b880c3bc12de4ad019",
+      "Id": "aef4179b40564494bf5b2ae936edf6c4",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "b8786df8da464632bad57de84553d754",
+        "Name": "GlobalParameter.FindByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 806.8000000000002,
+        "Y": 307.2
+      },
+      {
+        "Id": "006585b737384da2bf0575d76cfa2209",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 522.0000000000001,
+        "Y": 307.2
+      },
+      {
+        "Id": "a548424a7c0d4d30aa6f8347386ce6f3",
+        "Name": "GlobalParameter.Value",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1203.6000000000001,
+        "Y": 307.2
+      }
+    ],
+    "Annotations": [],
+    "X": -1014.3624866805251,
+    "Y": -353.4455688013673,
+    "Zoom": 2.056680268334277
+  }
+}
