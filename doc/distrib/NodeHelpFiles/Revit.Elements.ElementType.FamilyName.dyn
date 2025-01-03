@@ -2,7 +2,7 @@
   "Uuid": "463cc73e-0181-45b4-80ec-23fa405e8bba",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Revit.Elements.ElementType.CanBeDeleted",
+  "Name": "Revit.Elements.ElementType.FamilyName",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -11,11 +11,11 @@
   "Nodes": [
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "d5eaca0005eb4a74b85e71f573a9a595",
+      "Id": "6c54e54464f7469c84956ae0ebc6324d",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "770bd2d34ad34cfdae1d77c4ba310f51",
+          "Id": "77d9a6dde9834abc93367f902daa0a3c",
           "Name": "elementType",
           "Description": "Revit.Elements.ElementType",
           "UsingDefaultValue": false,
@@ -26,7 +26,7 @@
       ],
       "Outputs": [
         {
-          "Id": "1ec4f0200114440f9a01dc8b21f5a339",
+          "Id": "ec842570120f411f835ab992aa2dd6c3",
           "Name": "string",
           "Description": "string",
           "UsingDefaultValue": false,
@@ -35,22 +35,22 @@
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "Revit.Elements.ElementType.Name",
+      "FunctionSignature": "Revit.Elements.ElementType.FamilyName",
       "Replication": "Auto",
-      "Description": "The name of the ElementType.\n\nElementType.Name: string"
+      "Description": "The FamilyName of the ElementType.\n\nElementType.FamilyName: string"
     },
     {
-      "ConcreteType": "DSRevitNodesUI.ElementTypes, DSRevitNodesUI",
-      "SelectedIndex": 382,
-      "SelectedString": "WallType",
-      "Id": "b9f0c3b48b544b12ab3a1f9971b773ad",
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 732,
+      "SelectedString": "OST_Walls",
+      "Id": "c02016aed6034a30a1dca2d1261fe176",
       "NodeType": "ExtensionNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "24e7174e06d54b90b83611a768d1029e",
-          "Name": "Classes",
-          "Description": "The selected Classes",
+          "Id": "b511b96ca52346e894918e126ae897bf",
+          "Name": "Category",
+          "Description": "The selected Category.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -58,16 +58,27 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "All element subclasses."
+      "Description": "All built-in categories."
     },
     {
-      "ConcreteType": "DSRevitNodesUI.ElementsOfType, DSRevitNodesUI",
-      "Id": "9fd40fe82d7a4446a1e8fb210a6dfbd0",
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "166eee94ec97446197b8fb5996174f51",
       "NodeType": "ExtensionNode",
       "Inputs": [
         {
-          "Id": "943c6c1ac5bf40c5bcbed043b49da584",
-          "Name": "element class",
+          "Id": "5f3f5bcdf1294e9d88422f7687db8457",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e694aa481a4041bcbb87242c9f26b7f3",
+          "Name": "Elements",
           "Description": "An element class.",
           "UsingDefaultValue": false,
           "Level": 2,
@@ -75,29 +86,18 @@
           "KeepListStructure": false
         }
       ],
-      "Outputs": [
-        {
-          "Id": "717cf3ff15734971b222be3aaf29a11a",
-          "Name": "elements",
-          "Description": "All elements in the active document of a given class.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
       "Replication": "Disabled",
-      "Description": "All elements in the active document of a given class."
+      "Description": "Get all elements of the specified category from the model."
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "a9ee391b472b4a0cab58fe054795355d",
+      "Id": "20ae27bba28a40dea2eaa4a277cfc619",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "7575282b465f4deda5811e791c08c015",
-          "Name": "elementType",
-          "Description": "Revit.Elements.ElementType",
+          "Id": "6c6a28028a414b02be7a4786d0886a17",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -106,43 +106,43 @@
       ],
       "Outputs": [
         {
-          "Id": "05e838290470421ebba310e0adda4d20",
-          "Name": "bool",
-          "Description": "bool",
+          "Id": "51f4ffe9e62547d9a8c0834750b53ba4",
+          "Name": "ElementType",
+          "Description": "Element Type or Null.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "Revit.Elements.ElementType.CanBeDeleted",
+      "FunctionSignature": "Revit.Elements.Element.ElementType",
       "Replication": "Auto",
-      "Description": "Determine if this ElementType can be deleted.\n\nElementType.CanBeDeleted: bool"
+      "Description": "Returns the ElementType for this Element. Returns null if the Element cannot have an ElementType assigned.\n\nElement.ElementType: ElementType"
     }
   ],
   "Connectors": [
     {
-      "Start": "24e7174e06d54b90b83611a768d1029e",
-      "End": "943c6c1ac5bf40c5bcbed043b49da584",
-      "Id": "3d10ae02c2994123b83c59bc2b58621f",
+      "Start": "b511b96ca52346e894918e126ae897bf",
+      "End": "5f3f5bcdf1294e9d88422f7687db8457",
+      "Id": "8f8152daffc4424eba04251afbca6791",
       "IsHidden": "False"
     },
     {
-      "Start": "717cf3ff15734971b222be3aaf29a11a",
-      "End": "770bd2d34ad34cfdae1d77c4ba310f51",
-      "Id": "1641a4790c3e488a874c3c4c42fc18d9",
+      "Start": "e694aa481a4041bcbb87242c9f26b7f3",
+      "End": "6c6a28028a414b02be7a4786d0886a17",
+      "Id": "cd926ff160f24419be5adbc94bd45cda",
       "IsHidden": "False"
     },
     {
-      "Start": "717cf3ff15734971b222be3aaf29a11a",
-      "End": "7575282b465f4deda5811e791c08c015",
-      "Id": "161d15557f8b4310adc19fd3c2195474",
+      "Start": "51f4ffe9e62547d9a8c0834750b53ba4",
+      "End": "77d9a6dde9834abc93367f902daa0a3c",
+      "Id": "b451d521e345417f8adc97b08424945a",
       "IsHidden": "False"
     }
   ],
   "Dependencies": [],
   "NodeLibraryDependencies": [],
-  "EnableLegacyPolyCurveBehavior": true,
+  "EnableLegacyPolyCurveBehavior": null,
   "Thumbnail": "",
   "GraphDocumentationURL": null,
   "ExtensionWorkspaceData": [
@@ -191,49 +191,49 @@
     "ConnectorPins": [],
     "NodeViews": [
       {
-        "Id": "d5eaca0005eb4a74b85e71f573a9a595",
-        "Name": "ElementType.Name",
+        "Id": "6c54e54464f7469c84956ae0ebc6324d",
+        "Name": "ElementType.FamilyName",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1355.53948870656,
-        "Y": -175.89803949715775
+        "X": 1639.2278473350211,
+        "Y": -366.44995315043036
       },
       {
-        "Id": "b9f0c3b48b544b12ab3a1f9971b773ad",
-        "Name": "Element Classes",
+        "Id": "c02016aed6034a30a1dca2d1261fe176",
+        "Name": "Categories",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 734.8290231965857,
-        "Y": -271.1191455891851
+        "X": 628.957140654375,
+        "Y": -366.44995315043036
       },
       {
-        "Id": "9fd40fe82d7a4446a1e8fb210a6dfbd0",
-        "Name": "All Elements of Class",
+        "Id": "166eee94ec97446197b8fb5996174f51",
+        "Name": "All Elements of Category",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1061.2290231965858,
-        "Y": -271.1191455891851
+        "X": 964.957140654375,
+        "Y": -366.44995315043036
       },
       {
-        "Id": "a9ee391b472b4a0cab58fe054795355d",
-        "Name": "ElementType.CanBeDeleted",
+        "Id": "20ae27bba28a40dea2eaa4a277cfc619",
+        "Name": "Element.ElementType",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 1712.991112798605,
-        "Y": -271.1191455891851
+        "X": 1286.4278473350212,
+        "Y": -366.44995315043036
       }
     ],
     "Annotations": [],
-    "X": -1252.9030855886278,
-    "Y": 628.4548894173993,
-    "Zoom": 1.4264411938468207
+    "X": -813.0812985355158,
+    "Y": 590.4113461506804,
+    "Zoom": 1.0485436785515172
   }
 }

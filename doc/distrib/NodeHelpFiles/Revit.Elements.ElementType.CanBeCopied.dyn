@@ -2,7 +2,7 @@
   "Uuid": "463cc73e-0181-45b4-80ec-23fa405e8bba",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Revit.Elements.ElementType.CanBeDeleted",
+  "Name": "Revit.Elements.ElementType.CanBeCopied",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -91,11 +91,11 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "a9ee391b472b4a0cab58fe054795355d",
+      "Id": "bb3c1d15fcf0417884d497260467a5ea",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "7575282b465f4deda5811e791c08c015",
+          "Id": "544a9387b7b5460a85cc731a430fcefe",
           "Name": "elementType",
           "Description": "Revit.Elements.ElementType",
           "UsingDefaultValue": false,
@@ -106,7 +106,7 @@
       ],
       "Outputs": [
         {
-          "Id": "05e838290470421ebba310e0adda4d20",
+          "Id": "96588c281ef24d50a62e6a978733fe1a",
           "Name": "bool",
           "Description": "bool",
           "UsingDefaultValue": false,
@@ -115,9 +115,9 @@
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "Revit.Elements.ElementType.CanBeDeleted",
+      "FunctionSignature": "Revit.Elements.ElementType.CanBeCopied",
       "Replication": "Auto",
-      "Description": "Determine if this ElementType can be deleted.\n\nElementType.CanBeDeleted: bool"
+      "Description": "Determine if this ElementType can be copied.\n\nElementType.CanBeCopied: bool"
     }
   ],
   "Connectors": [
@@ -135,8 +135,8 @@
     },
     {
       "Start": "717cf3ff15734971b222be3aaf29a11a",
-      "End": "7575282b465f4deda5811e791c08c015",
-      "Id": "161d15557f8b4310adc19fd3c2195474",
+      "End": "544a9387b7b5460a85cc731a430fcefe",
+      "Id": "ceb755ac4263480d84c7082e44613874",
       "IsHidden": "False"
     }
   ],
@@ -173,7 +173,7 @@
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
       "Version": "3.2.1.5366",
-      "RunType": "Automatic",
+      "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "Camera": {
@@ -221,8 +221,8 @@
         "Y": -271.1191455891851
       },
       {
-        "Id": "a9ee391b472b4a0cab58fe054795355d",
-        "Name": "ElementType.CanBeDeleted",
+        "Id": "bb3c1d15fcf0417884d497260467a5ea",
+        "Name": "ElementType.CanBeCopied",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
@@ -232,8 +232,8 @@
       }
     ],
     "Annotations": [],
-    "X": -1252.9030855886278,
-    "Y": 628.4548894173993,
-    "Zoom": 1.4264411938468207
+    "X": -969.9350285087448,
+    "Y": 643.9848212439451,
+    "Zoom": 1.17832718568627
   }
 }
