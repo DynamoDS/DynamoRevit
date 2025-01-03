@@ -1,7 +1,7 @@
 ## Im Detail
-`ElementType.CanBeDeleted` bestimmt, ob der Elementtyp aus der Revit-Datei gelöscht werden kann.
+`ElementType.CanBeDeleted` returns a true/false value indicating whether or not the given element type can be deleted.
 
-Im folgenden Beispiel werden alle Draufsichten aus der aktuellen Revit-Datei gesammelt. Die Draufsichten werden dann in 2 Listen unterteilt: "können gelöscht werden" und "können nicht gelöscht werden".
+In the example below, all wall types are collected from the current Revit document and verified if they are able to be deleted.
 ___
 ## Beispieldatei
 

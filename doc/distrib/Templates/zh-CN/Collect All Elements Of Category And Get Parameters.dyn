@@ -2,7 +2,7 @@
   "Uuid": "b3342583-c831-4c51-800a-ffbe4db82efa",
   "IsCustomNode": false,
   "Description": "收集选定类别的所有图元(默认为房间)，并获取每个图元的“房间面积”",
-  "Name": "Collect All Elements Of Category And Get Parameters",
+  "Name": "收集类别的所有图元并获取参数",
   "ElementResolver": {
     "ResolutionMap": {}
   },

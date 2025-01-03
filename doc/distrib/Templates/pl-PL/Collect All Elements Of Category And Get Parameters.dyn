@@ -2,7 +2,7 @@
   "Uuid": "b3342583-c831-4c51-800a-ffbe4db82efa",
   "IsCustomNode": false,
   "Description": "Zbierz wszystkie elementy wybranej kategorii (ustawienie domyślne to pomieszczenia) i pobierz powierzchnie pomieszczeń poszczególnych elementów",
-  "Name": "Collect All Elements Of Category And Get Parameters",
+  "Name": "Zbierz wszystkie elementy kategorii i pobierz parametry",
   "ElementResolver": {
     "ResolutionMap": {}
   },

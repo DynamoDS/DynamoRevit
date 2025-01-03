@@ -2,7 +2,7 @@
   "Uuid": "847b8d50-8963-40c7-90ca-c0afb7b9b9a6",
   "IsCustomNode": false,
   "Description": "Legge l'immagine dal disco per poter lavorare all'interno di Dynamo.",
-  "Name": "Read Image From File",
+  "Name": "Leggi immagine dal file",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -275,7 +275,7 @@
       },
       {
         "Id": "37460f13b9794e029d2aec8655b5aaa9",
-        "Title": "Leggere l'immagine da file nello spazio dello memoria di Dynamo nel formato bitmap",
+        "Title": "Leggere l'immagine dal file nello spazio dello memoria di Dynamo nel formato bitmap",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,

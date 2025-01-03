@@ -2,7 +2,7 @@
   "Uuid": "847b8d50-8963-40c7-90ca-c0afb7b9b9a6",
   "IsCustomNode": false,
   "Description": "Dynamo에서 작업할 수 있도록 디스크의 이미지를 읽습니다.",
-  "Name": "Read Image From File",
+  "Name": "파일에서 이미지 읽기",
   "ElementResolver": {
     "ResolutionMap": {}
   },

@@ -1,7 +1,7 @@
 ## 深入資訊
-`ElementType.CanBeDeleted`會判定是否可從 Revit 檔案中刪除元素類型。
+`ElementType.CanBeDeleted` returns a true/false value indicating whether or not the given element type can be deleted.
 
-以下範例收集目前 Revit 檔案中的所有平面視圖，然後將平面視圖分成 2 個清單:「可以刪除」和「無法刪除」。
+In the example below, all wall types are collected from the current Revit document and verified if they are able to be deleted.
 ___
 ## 範例檔案
 
