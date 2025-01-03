@@ -1,7 +1,7 @@
 ## Подробности
-Узел `ElementType.CanBeDeleted` определяет, можно ли удалить тип элемента из файла Revit.
+`ElementType.CanBeDeleted` returns a true/false value indicating whether or not the given element type can be deleted.
 
-В приведенном ниже примере все виды в плане собраны из текущего файла Revit. Затем виды в плане разделяются на два списка на основе того, могут ли они быть удалены или не могут.
+In the example below, all wall types are collected from the current Revit document and verified if they are able to be deleted.
 ___
 ## Файл примера
 

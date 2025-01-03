@@ -2,7 +2,7 @@
   "Uuid": "107641db-6b6a-4a08-8282-d474513714b1",
   "IsCustomNode": false,
   "Description": "Esporta i dati in formato Excel in base al nome della tavola scelto. È necessario connettere i dati da esportare.",
-  "Name": "Export Data To Excel",
+  "Name": "Esporta dati in Excel",
   "ElementResolver": {
     "ResolutionMap": {}
   },
