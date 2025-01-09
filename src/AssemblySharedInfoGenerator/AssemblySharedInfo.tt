@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyCompany("Autodesk, Inc")]
-[assembly: AssemblyProduct("Dynamo For Revit Preview Release")]
+[assembly: AssemblyProduct("Dynamo For Revit 2026")]
 [assembly: AssemblyCopyright("Copyright © Autodesk, Inc 2017-2018")]
 [assembly: AssemblyTrademark("")]
 
@@ -71,6 +71,6 @@ using System.Runtime.InteropServices;
 <#+
 int MajorVersion = 3;
 int MinorVersion = 4;
-int BuildNumber = 0;
-int RevisionNumber = ((int)(DateTime.UtcNow - new DateTime(2024,1,1)).TotalDays)*10+((int)DateTime.UtcNow.Hour)/3;
+int BuildNumber = 1;
+int RevisionNumber = ((int)(DateTime.UtcNow - new DateTime(2025,1,1)).TotalDays)*10+((int)DateTime.UtcNow.Hour)/3;
 #>

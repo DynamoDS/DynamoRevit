@@ -1,3 +1,6 @@
+## 0.6.36
+* RC for Revit2026
+
 ## 0.6.35
 * Load ASM from shared components path
 

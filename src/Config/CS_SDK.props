@@ -7,14 +7,14 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <DCoreLibSubFolder>net8.0</DCoreLibSubFolder>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
-    <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
+    <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2026</RevitVersionNumber>
     <REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
     <PACKAGESPATH>$(SolutionDir)packages</PACKAGESPATH>
     <DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\$(DCoreLibSubFolder)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
-    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Preview Release</REVITAPI>
+    <REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit 2026</REVITAPI>
 
     <BaseIntermediateOutputPath>$(SolutionDir)..\obj\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
