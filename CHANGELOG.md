@@ -1,3 +1,6 @@
+## 0.7.1
+* Target for Revit Preview Release
+
 ## 0.6.35
 * Load ASM from shared components path
 
