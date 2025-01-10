@@ -1,3 +1,6 @@
+## 0.6.38
+* Set output path from the old user_local.props
+
 ## 0.6.37
 * Fix output path
 

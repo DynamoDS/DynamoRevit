@@ -18,7 +18,7 @@
     <BaseIntermediateOutputPath>$(SolutionDir)..\obj\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <DefaultOutputPath>$(SolutionDir)..\bin\$(Configuration)\$(Platform)\Revit</DefaultOutputPath>
+    <DefaultOutputPath>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\Revit</DefaultOutputPath>
     <OutputPath Condition=" '$(OutputPath)' == '' ">$(DefaultOutputPath)</OutputPath>
     <TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Configuration)\$(Platform)\Revit</TestOutputPath>
     <ErrorReport>prompt</ErrorReport>
