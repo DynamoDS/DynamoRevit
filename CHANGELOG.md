@@ -1,3 +1,6 @@
+## 0.7.4
+* Add host product info for analytics
+
 ## 0.7.3
 * Remove duplicate dll files
 
