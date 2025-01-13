@@ -206,6 +206,7 @@ namespace Dynamo.Applications
         public static ExternalEvent SplashScreenExternalEvent { get; set; }
         public static ExternalEvent DynamoAppExternalEvent { get; set; }
         private static readonly string DYNAMO_REVIT_HOST_NAME = "Dynamo Revit";
+        private static readonly string REVIT_HOST_NAME = "Revit";
 
         private static List<Action> idleActions;
         private static DynamoRevitCommandData extCommandData;
@@ -536,10 +537,13 @@ namespace Dynamo.Applications
 
             // get Dynamo Revit Version
             var dynRevitVersion = Assembly.GetExecutingAssembly().GetName().Version;
+            var revitVersion = Assembly.GetAssembly(typeof(Autodesk.Revit.DB.ElementId))?.GetName()?.Version;
 
             HostAnalyticsInfo hostAnalyticsInfo = new HostAnalyticsInfo { 
                 HostName = DYNAMO_REVIT_HOST_NAME,
-                HostVersion = dynRevitVersion
+                HostVersion = dynRevitVersion,
+                HostProductName = REVIT_HOST_NAME,
+                HostProductVersion = revitVersion
             };
 
             var userDataFolder = Path.Combine(Environment.GetFolderPath(
