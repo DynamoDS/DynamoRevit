@@ -108,9 +108,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DynamoRevit\DynamoRevit.csproj" />
-    <ProjectReference Include="..\RevitNodes\RevitNodes.csproj" />
-    <ProjectReference Include="..\RevitServices\RevitServices.csproj" />
+    <ProjectReference Include="..\..\DynamoRevit\DynamoRevit.csproj">
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\RevitNodes\RevitNodes.csproj">
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\RevitServices\RevitServices.csproj">
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">

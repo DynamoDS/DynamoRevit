@@ -69,14 +69,20 @@
       <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\Analysis.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj" />
-    <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj" />
+    <ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj">
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj">
+      <Private>False</Private>
+    </ProjectReference>
     <Reference Include="TestServices">
       <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\$(DCoreLibSubFolder)\TestServices.dll</HintPath>
       <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\TestServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <ProjectReference Include="..\RevitTestServices\RevitTestServices.csproj" />
+    <ProjectReference Include="..\RevitTestServices\RevitTestServices.csproj">
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Elements\Views\StructuralPlanViewTests.cs" />

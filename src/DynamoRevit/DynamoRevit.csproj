@@ -45,9 +45,9 @@
   </PropertyGroup>
   <Target Name="AfterBuildMigrated" AfterTargets="PostBuildEvent">
     <WriteLinesToFile Condition="!Exists('$(OutputPath)/../Dynamo.config')"
-						  File="$(OutputPath)/../Dynamo.config"
-						  Lines="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;configuration&gt;&#xD;&#xA;  &lt;appSettings&gt;&#xD;&#xA;     &lt;add key=&quot;DynamoRuntime&quot; value=&quot;$(DYNAMOAPI)&quot;/&gt;&#xD;&#xA;  &lt;/appSettings&gt;&#xD;&#xA;&lt;/configuration&gt;&#xD;&#xA;"
-						  Overwrite="true" />
+           File="$(OutputPath)/../Dynamo.config"
+           Lines="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;configuration&gt;&#xD;&#xA;  &lt;appSettings&gt;&#xD;&#xA;     &lt;add key=&quot;DynamoRuntime&quot; value=&quot;$(DYNAMOAPI)&quot;/&gt;&#xD;&#xA;  &lt;/appSettings&gt;&#xD;&#xA;&lt;/configuration&gt;&#xD;&#xA;"
+           Overwrite="true" />
   </Target>
   <ItemGroup>
     <Reference Include="DynamoApplications">
@@ -149,8 +149,12 @@
     <Content Include="Resources\logo_square_64x64.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj" />
-    <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj" />
+    <ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj">
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj">
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="RevitSettings.cs" />

@@ -1,3 +1,6 @@
+## 0.7.3
+* Remove duplicate dll files
+
 ## 0.7.2
 * Replace outdated decriptions
 
