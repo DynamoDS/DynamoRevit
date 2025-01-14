@@ -1,3 +1,6 @@
+## 0.6.39
+* Add host product info for analytics
+
 ## 0.6.38
 * Set output path from the old user_local.props
 
