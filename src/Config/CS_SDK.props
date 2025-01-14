@@ -20,7 +20,7 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <DefaultOutputPath>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\Revit</DefaultOutputPath>
     <OutputPath Condition=" '$(OutputPath)' == '' ">$(DefaultOutputPath)</OutputPath>
-    <TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Configuration)\$(Platform)\Revit</TestOutputPath>
+    <TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(OutputPath)</TestOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UICulture>en-US</UICulture>
