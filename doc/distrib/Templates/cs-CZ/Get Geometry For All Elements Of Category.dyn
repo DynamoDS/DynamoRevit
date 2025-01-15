@@ -2,7 +2,7 @@
   "Uuid": "6ab2aa77-03ac-43aa-996a-9bcba72a6560",
   "IsCustomNode": false,
   "Description": "Shromáždí všechny prvky vybrané kategorie (výchozí nastavení na Dveře) a získá geometrie všech prvků",
-  "Name": "Get Geometry For All Elements Of Category",
+  "Name": "Získat geometrii pro všechny prvky kategorie",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -251,7 +251,7 @@
       },
       {
         "Id": "8ba36ad66fd043f8b9db0ffc465a667f",
-        "Title": "We recommend you save your graph with a category you expect to exist in your models to prevent a warning.\n\nFor example, try saving and running the graph with the Doors category on the sample model Snowdon Towers Sample Architectural.rvt, available at:\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
+        "Title": "Doporučujeme, abyste uložili graf s kategorií, která bude v modelech existovat, aby se nezobrazovalo upozornění.\n\nZkuste například uložit a spustit graf s kategorií Dveře ve vzorovém modelu Snowdon Towers Sample Architectural.rvt, available at:\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,

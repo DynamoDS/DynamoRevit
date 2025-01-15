@@ -2,7 +2,7 @@
   "Uuid": "847b8d50-8963-40c7-90ca-c0afb7b9b9a6",
   "IsCustomNode": false,
   "Description": "Lea la imagen del disco para poder trabajar con ella dentro de Dynamo.",
-  "Name": "Read Image From File",
+  "Name": "Leer imagen de archivo",
   "ElementResolver": {
     "ResolutionMap": {}
   },

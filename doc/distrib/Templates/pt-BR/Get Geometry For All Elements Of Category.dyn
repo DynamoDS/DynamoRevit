@@ -2,7 +2,7 @@
   "Uuid": "6ab2aa77-03ac-43aa-996a-9bcba72a6560",
   "IsCustomNode": false,
   "Description": "Coletar todos os elementos de uma categoria selecionada (padronizando para portas) e obter a geometria de cada elemento",
-  "Name": "Get Geometry For All Elements Of Category",
+  "Name": "Obter a geometria de todos os elementos da categoria",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -251,7 +251,7 @@
       },
       {
         "Id": "8ba36ad66fd043f8b9db0ffc465a667f",
-        "Title": "We recommend you save your graph with a category you expect to exist in your models to prevent a warning.\n\nFor example, try saving and running the graph with the Doors category on the sample model Snowdon Towers Sample Architectural.rvt, available at:\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
+        "Title": "Recomendamos salvar o gráfico com uma categoria que você espera que exista nos modelos para evitar um aviso.\n\nPor exemplo, tente salvar e executar o gráfico com a categoria Portas no modelo de amostra Snowdon Towers Sample Architectural.rvt, disponível em:\nC:\\Arquivos de programas\\Autodesk\\<Revit ....>\\Samples",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,

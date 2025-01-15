@@ -1,9 +1,9 @@
 {
-  "Collect All Elements Of Category And Get Parameters": "Collect All Elements Of Category And Get Parameters",
-  "Collect All Elements Of Category": "Collect All Elements Of Category",
-  "Export Data To Excel": "Export Data To Excel",
-  "Get Geometry For All Elements Of Category": "Get Geometry For All Elements Of Category",
-  "Import Data From Excel": "Import Data From Excel",
-  "Read Image From File": "Read Image From File"
+  "Collect All Elements Of Category And Get Parameters": "收集类别的所有图元并获取参数",
+  "Collect All Elements Of Category": "收集类别的所有图元",
+  "Export Data To Excel": "将数据导出到 Excel",
+  "Get Geometry For All Elements Of Category": "获取类别的所有图元的几何图形",
+  "Import Data From Excel": "从 Excel 导入数据",
+  "Read Image From File": "从文件读取图像"
 }
 

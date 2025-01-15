@@ -2,7 +2,7 @@
   "Uuid": "6ab2aa77-03ac-43aa-996a-9bcba72a6560",
   "IsCustomNode": false,
   "Description": "收集所選品類 (預設為房間) 的所有元素，並取得每個元素的幾何圖形",
-  "Name": "Get Geometry For All Elements Of Category",
+  "Name": "取得品類所有元素的幾何圖形",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -251,7 +251,7 @@
       },
       {
         "Id": "8ba36ad66fd043f8b9db0ffc465a667f",
-        "Title": "We recommend you save your graph with a category you expect to exist in your models to prevent a warning.\n\nFor example, try saving and running the graph with the Doors category on the sample model Snowdon Towers Sample Architectural.rvt, available at:\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
+        "Title": "我們建議您以模型中應該存在的品類來儲存圖表，以避免出現警告。\n\n例如，請嘗試以範例模型 Snowdon Towers Sample Architectural.rvt 的「門」品類儲存圖表並執行，此範例模型位於:\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,

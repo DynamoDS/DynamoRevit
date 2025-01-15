@@ -2,7 +2,7 @@
   "Uuid": "847b8d50-8963-40c7-90ca-c0afb7b9b9a6",
   "IsCustomNode": false,
   "Description": "ディスクからイメージを読み込んで、Dynamo 内で作業できるようにします",
-  "Name": "Read Image From File",
+  "Name": "ファイルからイメージを読み込む",
   "ElementResolver": {
     "ResolutionMap": {}
   },

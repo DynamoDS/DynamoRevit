@@ -2,7 +2,7 @@
   "Uuid": "107641db-6b6a-4a08-8282-d474513714b1",
   "IsCustomNode": false,
   "Description": "給定選擇的圖紙名稱，將資料匯出到 Excel。您必須連線要匯出的資料",
-  "Name": "Export Data To Excel",
+  "Name": "將資料匯出至 Excel",
   "ElementResolver": {
     "ResolutionMap": {}
   },
