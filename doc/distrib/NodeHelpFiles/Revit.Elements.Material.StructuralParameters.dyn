@@ -1,0 +1,193 @@
+{
+  "Uuid": "8459deb8-1aa8-435e-9cd9-4588849eb5f1",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Material.StructuralParameters",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1ba239ee4f48401fb4c9df9a434a3b9a",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "29b60e6e1c8c4ee0a312c9fa59d0f275",
+          "Name": "name",
+          "Description": "The name of the material\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1e824eb9695144f4a8ac7a554d6df431",
+          "Name": "Material",
+          "Description": "Material",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Material.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a material from the current document by the name\n\nMaterial.ByName (name: string): Material"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "efbccd1ae2564fa699cb82bc34b77ae7",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "15f030c8c7b74f869aa0ad3ba6f1a5ce",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Aluminum"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "5f5ab0d1a0bf4f22bec0802decb98bed",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a0400976dd8a49faaa76d4e03f72c0b9",
+          "Name": "material",
+          "Description": "Revit.Elements.Material",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e0f62dd146474382a528ccbbf98b7b4c",
+          "Name": "Parameter[]",
+          "Description": "Parameter[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Material.StructuralParameters",
+      "Replication": "Auto",
+      "Description": "Get all structural parameters\n\nMaterial.StructuralParameters: Parameter[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1e824eb9695144f4a8ac7a554d6df431",
+      "End": "a0400976dd8a49faaa76d4e03f72c0b9",
+      "Id": "84197bb06c3645198a4eb0fbb0cb02cf",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "15f030c8c7b74f869aa0ad3ba6f1a5ce",
+      "End": "29b60e6e1c8c4ee0a312c9fa59d0f275",
+      "Id": "c031e89024844c6691fe0387b0099c8b",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "1ba239ee4f48401fb4c9df9a434a3b9a",
+        "Name": "Material.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 273.1999999999999,
+        "Y": 350.8
+      },
+      {
+        "Id": "efbccd1ae2564fa699cb82bc34b77ae7",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 24.399999999999864,
+        "Y": 350.8
+      },
+      {
+        "Id": "5f5ab0d1a0bf4f22bec0802decb98bed",
+        "Name": "Material.StructuralParameters",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 580.6040994501294,
+        "Y": 350.8
+      }
+    ],
+    "Annotations": [],
+    "X": 136.79461397389446,
+    "Y": -301.5298695135371,
+    "Zoom": 1.5105184564313479
+  }
+}
