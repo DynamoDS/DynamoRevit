@@ -1,0 +1,193 @@
+{
+  "Uuid": "75d6fda1-d7b8-4808-a6dd-3966745dc8d8",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.FilledRegionType.Name",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "af4c44a02c074e93908b3e79371b236f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "38705d988ab9447b970b15f17d1288b9",
+          "Name": "filledRegionType",
+          "Description": "Revit.Elements.FilledRegionType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "42ffad65dd10433c99e4402ac9523f7b",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FilledRegionType.Name",
+      "Replication": "Auto",
+      "Description": "Get Name\n\nFilledRegionType.Name: string"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementTypes, DSRevitNodesUI",
+      "SelectedIndex": 145,
+      "SelectedString": "FilledRegionType",
+      "Id": "057c6c7a8a7f434b91354094e5cfcee3",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6c4df883b11e45da82cd0f3c8e9a2be8",
+          "Name": "Classes",
+          "Description": "The selected Classes",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All element subclasses."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfType, DSRevitNodesUI",
+      "Id": "066d59ea2dbc4a18bae69f1750c99970",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "9ee8daaed0204669bf86365f41bdbb24",
+          "Name": "element class",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f2cb47727fa64c18a689f852967148e9",
+          "Name": "elements",
+          "Description": "All elements in the active document of a given class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All elements in the active document of a given class."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "6c4df883b11e45da82cd0f3c8e9a2be8",
+      "End": "9ee8daaed0204669bf86365f41bdbb24",
+      "Id": "a8bdaa044bed4d5483da9e032743da81",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f2cb47727fa64c18a689f852967148e9",
+      "End": "38705d988ab9447b970b15f17d1288b9",
+      "Id": "2f46d657a1f2458687f241e411d09040",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "af4c44a02c074e93908b3e79371b236f",
+        "Name": "FilledRegionType.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 700.768485983755,
+        "Y": 305.8702636362141
+      },
+      {
+        "Id": "057c6c7a8a7f434b91354094e5cfcee3",
+        "Name": "Element Classes",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 35.9684859837551,
+        "Y": 304.991204391638
+      },
+      {
+        "Id": "066d59ea2dbc4a18bae69f1750c99970",
+        "Name": "All Elements of Class",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 371.9684859837551,
+        "Y": 304.991204391638
+      }
+    ],
+    "Annotations": [],
+    "X": -124.03043540305003,
+    "Y": -286.4694683907692,
+    "Zoom": 1.6276637566670584
+  }
+}

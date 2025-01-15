@@ -1,0 +1,248 @@
+{
+  "Uuid": "52fd31e0-c6e1-48f2-801b-3d7dc435037c",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Wall.ByFace",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.WallLocation, DSRevitNodesUI",
+      "SelectedIndex": 4,
+      "SelectedString": "FinishFaceInterior",
+      "Id": "b8fb0323f62c480fb83753db541eea63",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e94d6ff6531f4a0dbb2a9988ff792752",
+          "Name": "Wall Location",
+          "Description": "The selected Wall Location",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Wall locations."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "93834463c5cc4de1bf88d3d5e3d70a61",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "6676082f1a0d4822afdcf4a8f5643b98",
+          "Name": "locationLine",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7223c1bafdf74d1997c1d749f04149e7",
+          "Name": "wallType",
+          "Description": "WallType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bbe10774e089459db5073cf5baf916c8",
+          "Name": "surface",
+          "Description": "Surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f8a3bba76baf4fefb68af266de5c8c91",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Wall.ByFace@string,Revit.Elements.WallType,Autodesk.DesignScript.Geometry.Surface",
+      "Replication": "Auto",
+      "Description": "Creates a Wall following the geometry of a surface. Walls by Faces cannot be updated, any geometry change will create a new wall and delete the old one.\n\nWall.ByFace (locationLine: string, wallType: WallType, surface: Surface): Element"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSFaceSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "a0e8c87e-e052-4466-9a4d-8dddaff96381-00287bd1:11:SURFACE"
+      ],
+      "Id": "4de1a618b59f481188627803751bc789",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bf7c54dd635f4a6c81e16396d6a7135e",
+          "Name": "Surface",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a face."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.WallTypes, DSRevitNodesUI",
+      "SelectedIndex": 29,
+      "SelectedString": "Generic - 10\"",
+      "Id": "6ca28003ff8740bab615cdcd405429f4",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4d859e328f3d484f87eae470dc035a31",
+          "Name": "Wall Type",
+          "Description": "The selected Wall Type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All wall types available in the document."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e94d6ff6531f4a0dbb2a9988ff792752",
+      "End": "6676082f1a0d4822afdcf4a8f5643b98",
+      "Id": "827b8c3667b84a1eb8df66c4428c51b3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bf7c54dd635f4a6c81e16396d6a7135e",
+      "End": "bbe10774e089459db5073cf5baf916c8",
+      "Id": "5fa9a1c675a54a5db71c60f208d0505f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4d859e328f3d484f87eae470dc035a31",
+      "End": "7223c1bafdf74d1997c1d749f04149e7",
+      "Id": "384abc4ca7424f0e93a0543170012dc0",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "93834463-c5cc-4de1-bf88-d3d5e3d70a61",
+      "Binding": {
+        "ByFace_InClassDecl-1_InFunctionScope-1_Instance0_93834463-c5cc-4de1-bf88-d3d5e3d70a61": "H4sIAAAAAAAACh3LoQ6DMBAG4Hf59S4pbSkHGoOe5BDd7lhmKra6pu9OgvvMtzcU+1fTNdeMZW/QG2iCZ/19y2dbBYsgO+M3T0bmRk8xpkRzjkqsqvk85xR4IOc8Ty/1godgK/W+Po1hCNzRj35cnG9eSHAAAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -90.61685180664062,
+      "EyeY": 31.201656341552734,
+      "EyeZ": 68.49210357666016,
+      "LookX": -34.13990783691406,
+      "LookY": -26.06133270263672,
+      "LookZ": -7.063438415527344,
+      "UpX": -0.5863196849822998,
+      "UpY": 0.8009455800056458,
+      "UpZ": -0.12130752205848694
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "b8fb0323f62c480fb83753db541eea63",
+        "Name": "Wall Location",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 391.99999999999983,
+        "Y": 492.80000000000007
+      },
+      {
+        "Id": "93834463c5cc4de1bf88d3d5e3d70a61",
+        "Name": "Wall.ByFace",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 803.2,
+        "Y": 640.0
+      },
+      {
+        "Id": "4de1a618b59f481188627803751bc789",
+        "Name": "Select Face",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 420.79999999999984,
+        "Y": 888.8000000000001
+      },
+      {
+        "Id": "6ca28003ff8740bab615cdcd405429f4",
+        "Name": "Wall Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 431.99999999999983,
+        "Y": 675.2000000000002
+      }
+    ],
+    "Annotations": [],
+    "X": -245.570612067409,
+    "Y": -559.0629084143798,
+    "Zoom": 1.277716984107724
+  }
+}
