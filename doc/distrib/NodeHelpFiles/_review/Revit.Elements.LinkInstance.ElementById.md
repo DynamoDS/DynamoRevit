@@ -1,5 +1,5 @@
 ## In Depth
-`LinkInstance.ElementById` retrieves one or more elements by the given id from the given link instance. 
+`LinkInstance.ElementById` retrieves an element by the given id from the given link instance. 
 
 In the example below, the project information element is returned from an instance of the "Snowdon Towers Sample Site".
 ___

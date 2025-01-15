@@ -1,7 +1,7 @@
 ## In Depth
 `CeilingPlanView.ByLevel` creates a new ceiling plan view from the given level.
 
-In the example below, a new floor plan views is created for "L1 - Block 35".
+In the example below, a new ceiling plan view is created for "L1 - Block 35".
 ___
 ## Example File
 
