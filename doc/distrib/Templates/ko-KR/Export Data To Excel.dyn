@@ -2,7 +2,7 @@
   "Uuid": "107641db-6b6a-4a08-8282-d474513714b1",
   "IsCustomNode": false,
   "Description": "선택한 시트 이름을 기준으로 데이터를 Excel로 내보냅니다. 내보낼 데이터를 연결해야 합니다.",
-  "Name": "Export Data To Excel",
+  "Name": "Excel로 데이터 내보내기",
   "ElementResolver": {
     "ResolutionMap": {}
   },

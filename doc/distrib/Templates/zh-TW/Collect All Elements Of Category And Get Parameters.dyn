@@ -2,7 +2,7 @@
   "Uuid": "b3342583-c831-4c51-800a-ffbe4db82efa",
   "IsCustomNode": false,
   "Description": "收集所選品類 (預設為房間) 的所有元素，並取得每個元素的房間面積",
-  "Name": "Collect All Elements Of Category And Get Parameters",
+  "Name": "收集品類的所有元素並取得參數",
   "ElementResolver": {
     "ResolutionMap": {}
   },

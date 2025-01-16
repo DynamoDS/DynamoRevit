@@ -2,7 +2,7 @@
   "Uuid": "f36fba0c-8a97-4fef-b3dc-6f0d4d61aafa",
   "IsCustomNode": false,
   "Description": "Raccoglie tutti gli elementi della categoria scelta (l'impostazione di default è Locali).",
-  "Name": "Collect All Elements Of Category",
+  "Name": "Raccogli tutti gli elementi della categoria",
   "ElementResolver": {
     "ResolutionMap": {}
   },

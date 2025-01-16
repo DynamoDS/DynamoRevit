@@ -2,7 +2,7 @@
   "Uuid": "107641db-6b6a-4a08-8282-d474513714b1",
   "IsCustomNode": false,
   "Description": "Exportar dados para o Excel com base um nome de folha escolhido. Será necessário conectar os dados a serem exportados",
-  "Name": "Export Data To Excel",
+  "Name": "Exportar dados para o Excel",
   "ElementResolver": {
     "ResolutionMap": {}
   },

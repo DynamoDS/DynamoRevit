@@ -2,7 +2,7 @@
   "Uuid": "b3342583-c831-4c51-800a-ffbe4db82efa",
   "IsCustomNode": false,
   "Description": "Alle Elemente einer ausgewählten Kategorie sammeln (vorgabemäßig auf Räume eingestellt) und Raumfläche der einzelnen Elemente abrufen",
-  "Name": "Collect All Elements Of Category And Get Parameters",
+  "Name": "Alle Elemente der Kategorie sammeln und Parameter abrufen",
   "ElementResolver": {
     "ResolutionMap": {}
   },
