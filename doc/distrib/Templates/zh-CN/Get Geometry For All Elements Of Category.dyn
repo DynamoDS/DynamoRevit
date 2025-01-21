@@ -2,7 +2,7 @@
   "Uuid": "6ab2aa77-03ac-43aa-996a-9bcba72a6560",
   "IsCustomNode": false,
   "Description": "收集所选类别的所有图元(默认为门)并获取每个图元几何图形",
-  "Name": "Get Geometry For All Elements Of Category",
+  "Name": "获取类别的所有图元的几何图形",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -251,7 +251,7 @@
       },
       {
         "Id": "8ba36ad66fd043f8b9db0ffc465a667f",
-        "Title": "We recommend you save your graph with a category you expect to exist in your models to prevent a warning.\n\nFor example, try saving and running the graph with the Doors category on the sample model Snowdon Towers Sample Architectural.rvt, available at:\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
+        "Title": "我们建议您使用预期存在于模型中的类别保存图形，以防止出现警告。\n\n例如，尝试在样例模型“Snowdon Towers Sample Architectural.rvt”(可从以下网址获得)上保存并运行“门”类别的图形:\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,

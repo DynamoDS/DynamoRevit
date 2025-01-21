@@ -2,7 +2,7 @@
   "Uuid": "f36fba0c-8a97-4fef-b3dc-6f0d4d61aafa",
   "IsCustomNode": false,
   "Description": "Recopile todos los elementos de la categoría elegida (por defecto, Habitaciones).",
-  "Name": "Collect All Elements Of Category",
+  "Name": "Recopilar todos los elementos de categoría",
   "ElementResolver": {
     "ResolutionMap": {}
   },

@@ -2,7 +2,7 @@
   "Uuid": "847b8d50-8963-40c7-90ca-c0afb7b9b9a6",
   "IsCustomNode": false,
   "Description": "Načte obrázek z disku, se kterým bude možné pracovat v aplikaci Dynamo",
-  "Name": "Read Image From File",
+  "Name": "Načíst obrázek ze souboru",
   "ElementResolver": {
     "ResolutionMap": {}
   },
