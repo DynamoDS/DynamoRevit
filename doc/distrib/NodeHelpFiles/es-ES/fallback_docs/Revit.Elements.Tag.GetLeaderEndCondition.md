@@ -1,12 +1,7 @@
 ## En detalle:
-`Tag.GetLeaderEndCondition` devuelve la condición de extremo de la directriz especificada.
+"Tag.GetLeaderEndCondition" devuelve la condición de extremo de la directriz del elemento de etiqueta especificado.
 
-Entre las posibles condiciones de extremo, se incluyen las siguientes:
-- Enlazado
-- Libre
-
-En el ejemplo siguiente, se recopilan todas las etiquetas de nota clave de la vista de detalle "North Wall Window Detail". A continuación, se devuelven las condiciones de extremo de la directriz de las etiquetas.
-
+En el siguiente ejemplo, se recopilan todos los muros de la vista especificada. A continuación, los muros se etiquetan con el tipo de etiqueta de muro por defecto y los criterios de alineación/directriz. Después, se devuelven las condiciones de extremo con "Tag.GetLeaderEndCondition".
 ___
 ## Archivo de ejemplo
 

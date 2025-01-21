@@ -2,7 +2,7 @@
   "Uuid": "f36fba0c-8a97-4fef-b3dc-6f0d4d61aafa",
   "IsCustomNode": false,
   "Description": "선택한 카테고리의 모든 요소(기본값: 룸) 수집",
-  "Name": "Collect All Elements Of Category",
+  "Name": "카테고리의 모든 요소 수집",
   "ElementResolver": {
     "ResolutionMap": {}
   },
