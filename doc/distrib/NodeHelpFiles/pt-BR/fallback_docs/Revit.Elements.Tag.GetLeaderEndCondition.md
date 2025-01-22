@@ -1,12 +1,7 @@
 ## Em profundidade
-`Tag.GetLeaderEndCondition` retorna a condição final da linha de chamada dos identificadores fornecidos.
+`Tag.GetLeaderEndCondition` retorna a condição final da chamada de detalhe do elemento do identificador especificado.
 
-As possíveis condições finais incluem:
-- Anexo
-- Livre
-
-No exemplo abaixo, são coletados todos os identificadores de nota-chave da vista de detalhe “Detalhe da janela da parede norte”. Em seguida, são retornadas as condições da extremidade da linha de chamada dos identificadores.
-
+No exemplo abaixo, são coletadas todas as paredes da vista especificada. Em seguida, as paredes são identificadas com o tipo de identificador de parede padrão e critérios de alinhamento/chamada de detalhe. As condições finais são depois retornadas com `Tag.GetLeaderEndCondition`.
 ___
 ## Arquivo de exemplo
 
