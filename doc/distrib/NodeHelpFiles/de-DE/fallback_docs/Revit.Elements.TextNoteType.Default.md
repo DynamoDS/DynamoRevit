@@ -1,8 +1,7 @@
 ## Im Detail
-`TextNoteType.Default` bietet Zugriff auf den Vorgabetyp für Textnotizen im aktuellen Revit-Dokument. Dieser Textnotiztyp ist derselbe, der auch beim Erstellen von Text in der Revit-Benutzeroberfläche verwendet wird.
+`TextNoteType.Default` gibt den vorgegebenen Notiztyp im aktuellen Revit-Dokument zurück. Dieser entspricht dem vorgegebenen Texttyp, der verwendet wird, wenn vom Benutzer eine neue Notiz in der Revit-Benutzeroberfläche erstellt wird.
 
-Im folgenden Beispiel wird eine neue Zeichenansicht erstellt und eine neue Textnotiz am Ursprung im aktuellen Revit-Dokument erstellt.
-
+Im folgenden Beispiel wird der vorgegebene Notiztyp "1/4" Trebuchet MS" für das Modell Snowdon Towers Sample zurückgegeben.
 ___
 ## Beispieldatei
 
