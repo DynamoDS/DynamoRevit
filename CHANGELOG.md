@@ -1,3 +1,6 @@
+## 0.6.40
+* Add node help documentation for 60 nodes
+
 ## 0.6.39
 * Add host product info for analytics
 
