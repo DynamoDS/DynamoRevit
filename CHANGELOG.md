@@ -1,3 +1,6 @@
+## 0.6.41
+* Update content with translated node help
+
 ## 0.6.40
 * Add node help documentation for 60 nodes
 
