@@ -1,0 +1,341 @@
+{
+  "Uuid": "62489567-448a-43df-9a13-e8bb42f57523",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.TextNote.SetHorizontalAlignment",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "b33126b8e7cc40dc837bf99700829d21",
+      "Name": "Sheets",
+      "Type": "selection",
+      "Type2": "dropdownSelection",
+      "Value": "Details",
+      "Description": "All sheets available in the current document.",
+      "SelectedIndex": 12
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Sheets, DSRevitNodesUI",
+      "SelectedIndex": 12,
+      "SelectedString": "Details",
+      "Id": "b33126b8e7cc40dc837bf99700829d21",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "312fc31b8e7a4daab9b35418f27d154e",
+          "Name": "Sheet",
+          "Description": "The selected Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All sheets available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9e41e778f239491eaee371a1c04e027f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "172d408f82da452993b5a7ce4152059b",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2470084ed1104a8a94be5249443dc244",
+          "Name": "View[]",
+          "Description": "View[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.Sheet.Views",
+      "Replication": "Auto",
+      "Description": "Get the Views on a Sheet\n\nSheet.Views: View[]"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
+      "Id": "aec17b8ad3e844f39abefbd343001367",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "03c7693bc82043ecba425d20ad5be2e6",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "28d3dba74bbe47808de7a1e0d9c9bf44",
+          "Name": "View",
+          "Description": "The View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e24135a1af934599bb3a9ca3171948d4",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category in the specified view from the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 683,
+      "SelectedString": "OST_TextNotes",
+      "Id": "9e563d05e7fc499ebc79460418ede9b5",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d4917734c01544e19525458b91a204b5",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.HorizontalAlignment, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Center",
+      "Id": "6475ac22d96944028a2fa6546956dd5c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "795e3cde75614ab4b7b3be8842be7c35",
+          "Name": "Horizontal Alignment",
+          "Description": "The selected Horizontal Alignment",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select the horizontal text alignment style."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "74c6316ffdf24342b8e8cf600072c3ed",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "7fcb9d2bf7d84f57a5f92784c54cab65",
+          "Name": "textNote",
+          "Description": "Revit.Elements.TextNote",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2c8c3c1208bc48159299186bd770c6a0",
+          "Name": "value",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ef4cb2fde1894fa28564533a0c794424",
+          "Name": "void",
+          "Description": "void",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.TextNote.SetHorizontalAlignment@string",
+      "Replication": "Auto",
+      "Description": "Set Horizontal Text Alignment\n\nTextNote.SetHorizontalAlignment (value: string): void"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "312fc31b8e7a4daab9b35418f27d154e",
+      "End": "172d408f82da452993b5a7ce4152059b",
+      "Id": "fabaa593b6784bfb9fa1f700ae9dd46d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2470084ed1104a8a94be5249443dc244",
+      "End": "28d3dba74bbe47808de7a1e0d9c9bf44",
+      "Id": "a8e531a7c1a74d4296736e770ef8b098",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e24135a1af934599bb3a9ca3171948d4",
+      "End": "7fcb9d2bf7d84f57a5f92784c54cab65",
+      "Id": "d110b08900234b75840c30d2c937c502",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d4917734c01544e19525458b91a204b5",
+      "End": "03c7693bc82043ecba425d20ad5be2e6",
+      "Id": "31901ee28f344dd58ed1bff4ac061a46",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "795e3cde75614ab4b7b3be8842be7c35",
+      "End": "2c8c3c1208bc48159299186bd770c6a0",
+      "Id": "dc2ac258b4c948398a247947aff3e749",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "b33126b8e7cc40dc837bf99700829d21",
+        "Name": "Sheets",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 987.564209061723,
+        "Y": 64.01138948233566
+      },
+      {
+        "Id": "9e41e778f239491eaee371a1c04e027f",
+        "Name": "Sheet.Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1355.5606098511657,
+        "Y": 64.01138948233566
+      },
+      {
+        "Id": "aec17b8ad3e844f39abefbd343001367",
+        "Name": "All Elements of Category in View",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1664.5862573045758,
+        "Y": -62.38074996620665
+      },
+      {
+        "Id": "9e563d05e7fc499ebc79460418ede9b5",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1321.1606098511656,
+        "Y": -115.82239904349251
+      },
+      {
+        "Id": "6475ac22d96944028a2fa6546956dd5c",
+        "Name": "Select Horizontal Text Alignment",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1661.3862573045758,
+        "Y": 443.2639207375988
+      },
+      {
+        "Id": "74c6316ffdf24342b8e8cf600072c3ed",
+        "Name": "TextNote.SetHorizontalAlignment",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2186.921405631453,
+        "Y": 125.93744202041916
+      }
+    ],
+    "Annotations": [],
+    "X": -923.0890662387565,
+    "Y": 167.71328859829606,
+    "Zoom": 0.9210916844355563
+  }
+}

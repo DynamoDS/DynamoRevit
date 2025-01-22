@@ -1,0 +1,165 @@
+{
+  "Uuid": "8459deb8-1aa8-435e-9cd9-4588849eb5f1",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.CeilingPlanView.ByLevel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "3ab7640fed7248f9a5025d5da7e4140c",
+      "Name": "Levels",
+      "Type": "selection",
+      "Type2": "dropdownSelection",
+      "Value": "L1 - Block 35",
+      "Description": "Select a level in the active document",
+      "SelectedIndex": 4
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
+      "SelectedIndex": 4,
+      "SelectedString": "L1 - Block 35",
+      "Id": "3ab7640fed7248f9a5025d5da7e4140c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "adbb1ff0ce3b4b05ac0be7726c4d4494",
+          "Name": "Levels",
+          "Description": "The selected Levels",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a level in the active document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "cd343dedefc6489eb3ad007b2695d8b1",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f4f6455d5d414a8380b43608f6413580",
+          "Name": "level",
+          "Description": "Level",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ce16d53f922343a1b2ee84764483368a",
+          "Name": "CeilingPlanView",
+          "Description": "CeilingPlanView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.CeilingPlanView.ByLevel@Revit.Elements.Level",
+      "Replication": "Auto",
+      "Description": "Create a Revit Floor Plan at a given Level\n\nCeilingPlanView.ByLevel (level: Level): CeilingPlanView"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "adbb1ff0ce3b4b05ac0be7726c4d4494",
+      "End": "f4f6455d5d414a8380b43608f6413580",
+      "Id": "18d00846c72c425ebf39df559f1022d9",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "cd343ded-efc6-489e-b3ad-007b2695d8b1",
+      "Binding": {
+        "ByLevel_InClassDecl-1_InFunctionScope-1_Instance0_cd343ded-efc6-489e-b3ad-007b2695d8b1": "H4sIAAAAAAAACh3Lqw6AMAwF0H+5miZt2YOhMWgkRWxACAZB5gj/TsLxZ36w5ZrR4zFM9T6vYxwMvaHbg8Z2jZQlCLnASmUvnlRF/JakZRZi1i4mSYbGMF71vxq8Oicv3uUDuDDYi18AAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "3ab7640fed7248f9a5025d5da7e4140c",
+        "Name": "Levels",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 470.4000000000001,
+        "Y": 279.99999999999994
+      },
+      {
+        "Id": "cd343dedefc6489eb3ad007b2695d8b1",
+        "Name": "CeilingPlanView.ByLevel",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 829.1296338971015,
+        "Y": 281.0351830514493
+      }
+    ],
+    "Annotations": [],
+    "X": -412.4795076918198,
+    "Y": -200.33282684999995,
+    "Zoom": 1.545620359375
+  }
+}

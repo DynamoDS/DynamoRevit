@@ -1,0 +1,469 @@
+{
+  "Uuid": "4a51d918-f63f-4c36-96e4-947132430da5",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.PathOfTravel.ByFloorPlanPoints",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 113,
+      "SelectedString": "L1",
+      "Id": "a9d0a0a45b1f4b41be65b0b21f115c1a",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b4a6284bc91648d9a50553fb064c3c85",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.ComboNodes.DSModelElementByCategorySelection, DSRevitNodesUI",
+      "SelectedIndex": 178,
+      "SelectedString": "OST_Doors",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "f671d00b-afe0-4235-80b7-cfe899bb5fb6-000b6163"
+      ],
+      "Id": "cdfad80f4a1948909b3875a90631bd13",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bac7538c7daf41dcb5b00a85747807e2",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the Revit document filtered by Category."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9b3f4f1d9d6c4cc0b709fd93857f9ee9",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "ee2ae8f416924cdc83809eb23444bcee",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "55241761e75a4e2c85e76988c99e7c6e",
+          "Name": "geometry[]",
+          "Description": "The element’s location",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.GetLocation",
+      "Replication": "Auto",
+      "Description": "Returns an element's location\n\nElement.GetLocation ( ): Geometry"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d862a6ee2932416bbba60c19a35de61f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "572445447b3e48f3a5c1f6a8a84dedd1",
+          "Name": "floorPlan",
+          "Description": "Floor plan view to place paths of travel on\n\nFloorPlanView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e0d2c6ee905c47da88d40817f2727544",
+          "Name": "startPtsList",
+          "Description": "List of start points\n\nPoint[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "11ce0e8401de4984a122ba061db30080",
+          "Name": "endPtsList",
+          "Description": "List of end points\n\nPoint[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2c2009c49c4b4efea6d67eb61cc43574",
+          "Name": "manyToMany",
+          "Description": "If true, paths are created from every point in the start point list to all points in the end point list. If false, a path is created from every point in the start point list to a corresponding point in the end point list with the same index. The two lists must have the same size when not creating many-to-many paths.\n\nbool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0e8eadc947e14159bf5c324f3a83cb87",
+          "Name": "PathOfTravel[]..[]",
+          "Description": "List of PathOfTravel elements; can contain null elements if there is no path between some points.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.PathOfTravel.ByFloorPlanPoints@Revit.Elements.Views.FloorPlanView,Autodesk.DesignScript.Geometry.Point[],Autodesk.DesignScript.Geometry.Point[],bool",
+      "Replication": "Longest",
+      "Description": "Constructs a list of PathOfTravel elements in a floor plan view between the specified start points and end points.\n\nPathOfTravel.ByFloorPlanPoints (floorPlan: FloorPlanView, startPtsList: Point[], endPtsList: Point[], manyToMany: bool): PathOfTravel[]..[]"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
+      "Id": "9ae9c30fed944d29a801d804fae7e489",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "ad0a45a444394bc0b27cc0e21beb11b8",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f3b0ddcfa1274f2b98cbb2b81472b418",
+          "Name": "View",
+          "Description": "The View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4f8322182dca408d81918459295eea93",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category in the specified view from the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 507,
+      "SelectedString": "OST_Rooms",
+      "Id": "d57e9dae4e174b458b0d2b93cc96518a",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fdfff6cf067c4a76b072e287f6d9b35f",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "2b41e7ff444b4d60aa0cd7d7dca9eb78",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "24cd59150c4c4f6a8d553a25f032c95f",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d6c6d6af26ca41589815f4aa6a4d8ef9",
+          "Name": "geometry[]",
+          "Description": "The element’s location",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.GetLocation",
+      "Replication": "Auto",
+      "Description": "Returns an element's location\n\nElement.GetLocation ( ): Geometry"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "fd17a39f7b14457b8d5f326d1fed87e9",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "de1e1fb1a1e54b7381dcbc1c8e4e347e",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "b4a6284bc91648d9a50553fb064c3c85",
+      "End": "572445447b3e48f3a5c1f6a8a84dedd1",
+      "Id": "dea7cbd1d9d74d27a6f4d530d2015d30",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b4a6284bc91648d9a50553fb064c3c85",
+      "End": "f3b0ddcfa1274f2b98cbb2b81472b418",
+      "Id": "f0ec6298b72a4e2f8e49e1d3946d6f71",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bac7538c7daf41dcb5b00a85747807e2",
+      "End": "ee2ae8f416924cdc83809eb23444bcee",
+      "Id": "e98ff892de42489092acd692e8195bd7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "55241761e75a4e2c85e76988c99e7c6e",
+      "End": "11ce0e8401de4984a122ba061db30080",
+      "Id": "a3690872fce54a49b3660d7dfab8dcf8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4f8322182dca408d81918459295eea93",
+      "End": "24cd59150c4c4f6a8d553a25f032c95f",
+      "Id": "83f25a8c61754efb8396a1fb0754cc0e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fdfff6cf067c4a76b072e287f6d9b35f",
+      "End": "ad0a45a444394bc0b27cc0e21beb11b8",
+      "Id": "58fd4a531df649b99978123245b48527",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d6c6d6af26ca41589815f4aa6a4d8ef9",
+      "End": "e0d2c6ee905c47da88d40817f2727544",
+      "Id": "1bbbb9b0155b41219bf65e35b8724d29",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "de1e1fb1a1e54b7381dcbc1c8e4e347e",
+      "End": "2c2009c49c4b4efea6d67eb61cc43574",
+      "Id": "9ac66c52027845079c3bb3261bc6a2ca",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "d862a6ee-2932-416b-bba6-0c19a35de61f",
+      "Binding": {
+        "ByFloorPlanPoints_InClassDecl-1_InFunctionScope-1_Instance0_d862a6ee-2932-416b-bba6-0c19a35de61f": "H4sIAAAAAAAACq3PqQ7DMBAE0H9ZHEtrx0ddHBJcGBusj1QlBo2Z5X9P1QamLNLAGT3N0qDkreY0USW4L60PfwPp24Hm4FHfr/Kcp819Ng5M5GE1WrGIKjO5SmQUgmakNSUrLXIeGaK4GcvRgR8czKUec6GVkKPwHa5k+Dkz/phrDHFuyOOK734H7x+xBl8BAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "a9d0a0a45b1f4b41be65b0b21f115c1a",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 422.34302670623134,
+        "Y": 248.79999999999995
+      },
+      {
+        "Id": "cdfad80f4a1948909b3875a90631bd13",
+        "Name": "Select Model Element By Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 422.34302670623134,
+        "Y": 526.4284866468844
+      },
+      {
+        "Id": "9b3f4f1d9d6c4cc0b709fd93857f9ee9",
+        "Name": "Element.GetLocation",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 918.3430267062313,
+        "Y": 526.4284866468844
+      },
+      {
+        "Id": "d862a6ee2932416bbba60c19a35de61f",
+        "Name": "PathOfTravel.ByFloorPlanPoints",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1579.5181008902082,
+        "Y": 251.3709198813056
+      },
+      {
+        "Id": "9ae9c30fed944d29a801d804fae7e489",
+        "Name": "All Elements of Category in View",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 761.4100890207715,
+        "Y": 112.80000000000013
+      },
+      {
+        "Id": "d57e9dae4e174b458b0d2b93cc96518a",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 422.34302670623134,
+        "Y": 112.80000000000013
+      },
+      {
+        "Id": "2b41e7ff444b4d60aa0cd7d7dca9eb78",
+        "Name": "Element.GetLocation",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1180.4201780415428,
+        "Y": 112.80000000000013
+      },
+      {
+        "Id": "fd17a39f7b14457b8d5f326d1fed87e9",
+        "Name": "Boolean",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 965.6735905044509,
+        "Y": 680.9234421364987
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "803ccc51f7fb46ee8d8d9304e0e283fc",
+        "Title": "Select Exit Door",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 566.3430267062313,
+        "Top": 476.0284866468844,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "cdfad80f4a1948909b3875a90631bd13"
+      }
+    ],
+    "X": -237.58000000000015,
+    "Y": 23.921999999999855,
+    "Zoom": 0.8425
+  }
+}
