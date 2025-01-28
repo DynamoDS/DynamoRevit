@@ -1,3 +1,6 @@
+## 0.6.42
+* Republish content to localize templates' filenames
+
 ## 0.6.41
 * Update content with translated node help
 
