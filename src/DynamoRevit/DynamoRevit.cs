@@ -539,11 +539,18 @@ namespace Dynamo.Applications
             var dynRevitVersion = Assembly.GetExecutingAssembly().GetName().Version;
             var revitVersion = Assembly.GetAssembly(typeof(Autodesk.Revit.DB.ElementId))?.GetName()?.Version;
 
+            int majorForDynamo;
+            if (!int.TryParse(extCommandData.Application.Application.VersionNumber, out majorForDynamo))
+            {
+                majorForDynamo = revitVersion.Major;
+            }
+            Version revitVersionForDynamo = new Version(majorForDynamo, revitVersion.Minor, revitVersion.Build, revitVersion.Revision);
+
             HostAnalyticsInfo hostAnalyticsInfo = new HostAnalyticsInfo { 
                 HostName = DYNAMO_REVIT_HOST_NAME,
                 HostVersion = dynRevitVersion,
                 HostProductName = REVIT_HOST_NAME,
-                HostProductVersion = revitVersion
+                HostProductVersion = revitVersionForDynamo
             };
 
             var userDataFolder = Path.Combine(Environment.GetFolderPath(
