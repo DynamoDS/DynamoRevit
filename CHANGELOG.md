@@ -1,3 +1,6 @@
+## 0.7.5
+* Change Host version to 2026 instead of 26 for package compatibility
+
 ## 0.7.4
 * Add host product info for analytics
 
