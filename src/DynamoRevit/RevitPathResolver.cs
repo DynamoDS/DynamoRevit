@@ -68,6 +68,14 @@ namespace Dynamo.Applications
                     additionalResolutionPaths.Add(assemblyDir);
                 }
             }
+            var internalNodesAdditionalAssemblyLoadPaths = DynamoRevitInternalNodes.GetAdditionalAssemblyLoadPaths();
+            foreach (var assemblyPath in internalNodesAdditionalAssemblyLoadPaths)
+            {
+                if (File.Exists(assemblyPath))
+                {
+                    additionalResolutionPaths.Add(Path.GetDirectoryName(assemblyPath));
+                }
+            }
 
             this.userDataRootFolder = userDataFolder;
             this.commonDataRootFolder = commonDataFolder;

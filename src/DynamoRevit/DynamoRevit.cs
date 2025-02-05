@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -588,7 +589,7 @@ namespace Dynamo.Applications
         internal static Version PreloadAsmFromRevit()
         {
             var asmLocation = DynamoRevitApp.ControlledApplication.SharedComponentsLocation;
-            
+
             Version libGVersion = findRevitASMVersion(asmLocation);
             var dynCorePath = DynamoRevitApp.DynamoCorePath;
             // Get the corresponding libG preloader location for the target ASM loading version.
@@ -1077,7 +1078,7 @@ namespace Dynamo.Applications
             view.Closed -= OnSplashScreenClosed;
             //if the user explicitly closed the splashscreen, then we should let them boot
             //dynamo back up.
-            if(sender is Dynamo.UI.Views.SplashScreen ss && ss.CloseWasExplicit)
+            if (sender is Dynamo.UI.Views.SplashScreen ss && ss.CloseWasExplicit)
             {
                 DynamoRevitApp.DynamoButtonEnabled = true;
                 //the model is shutdown when splash screen is closed
@@ -1123,6 +1124,11 @@ namespace Dynamo.Applications
         /// keeps the path to the layoutSpecs.json file
         /// </summary>
         public string LayoutSpecsPath { get; set; }
+
+        /// <summary>
+        /// keeps paths to additional assembly load paths
+        /// </summary>
+        public List<string> AdditionalAssemblyLoadPaths { get; set; }
     }
     internal static class DynamoRevitInternalNodes
     {
@@ -1154,6 +1160,7 @@ namespace Dynamo.Applications
         private static IEnumerable<InternalPackage> ParseinternalPackageFiles(IEnumerable<string> internalPackageFiles)
         {
             List<InternalPackage> internalPackages = new List<InternalPackage>();
+            string basePath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
 
             foreach (string internalPackageFile in internalPackageFiles)
             {
@@ -1177,6 +1184,13 @@ namespace Dynamo.Applications
                             intPackage.LayoutSpecsPath = Path.Combine(internalPackageDir, intPackage.LayoutSpecsPath);
                         }
 
+                        // convert to absolute paths, if needed
+                        if (null != intPackage.AdditionalAssemblyLoadPaths && intPackage.AdditionalAssemblyLoadPaths.Count > 0
+                            && false == Path.IsPathRooted(intPackage.AdditionalAssemblyLoadPaths.First()))
+                        {
+                            intPackage.AdditionalAssemblyLoadPaths = intPackage.AdditionalAssemblyLoadPaths.Select(s => Path.Combine(basePath, s)).ToList();
+                        }
+
                         internalPackages.Add(intPackage);
                     }
                 }
@@ -1197,6 +1211,12 @@ namespace Dynamo.Applications
         {
             IEnumerable<string> internalPackageFiles = GetAllInternalPackageFiles();
             return ParseinternalPackageFiles(internalPackageFiles).Select(pkg => pkg.LayoutSpecsPath);
+        }
+
+        internal static IEnumerable<string> GetAdditionalAssemblyLoadPaths()
+        {
+            IEnumerable<string> internalPackageFiles = GetAllInternalPackageFiles();
+            return ParseinternalPackageFiles(internalPackageFiles).SelectMany(pkg => pkg.AdditionalAssemblyLoadPaths);
         }
     }
 }
