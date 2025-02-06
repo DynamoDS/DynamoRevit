@@ -1,3 +1,6 @@
+## 0.6.44
+* Republish content to localize templates' filenames
+
 ## 0.6.43
 * Change Host version to 2026 instead of 26 for package compatibility
 
