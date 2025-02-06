@@ -1185,10 +1185,11 @@ namespace Dynamo.Applications
                         }
 
                         // convert to absolute paths, if needed
-                        if (null != intPackage.AdditionalAssemblyLoadPaths && intPackage.AdditionalAssemblyLoadPaths.Count > 0
-                            && false == Path.IsPathRooted(intPackage.AdditionalAssemblyLoadPaths.First()))
+                        if (null != intPackage.AdditionalAssemblyLoadPaths && intPackage.AdditionalAssemblyLoadPaths.Count > 0)
                         {
-                            intPackage.AdditionalAssemblyLoadPaths = intPackage.AdditionalAssemblyLoadPaths.Select(s => Path.Combine(basePath, s)).ToList();
+                            intPackage.AdditionalAssemblyLoadPaths = intPackage.AdditionalAssemblyLoadPaths
+                                .Select(p => !Path.IsPathRooted(p) ? Path.Combine(basePath, p) : p)
+                                .Where(Path.Exists).ToList();
                         }
 
                         internalPackages.Add(intPackage);

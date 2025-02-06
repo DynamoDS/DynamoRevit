@@ -68,6 +68,8 @@ namespace Dynamo.Applications
                     additionalResolutionPaths.Add(assemblyDir);
                 }
             }
+
+            // Add assembly load paths from internal packages - for dependencies between other Revit addins
             var internalNodesAdditionalAssemblyLoadPaths = DynamoRevitInternalNodes.GetAdditionalAssemblyLoadPaths();
             foreach (var assemblyPath in internalNodesAdditionalAssemblyLoadPaths)
             {
