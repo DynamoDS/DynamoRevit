@@ -1,3 +1,6 @@
+## 0.7.7
+* Fix additional paths for loading assemblies
+
 ## 0.7.6
 * Add abbility for internal packages to specify additional paths for loading assemblies
 

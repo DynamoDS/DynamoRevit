@@ -73,7 +73,7 @@ namespace Dynamo.Applications
             var internalNodesAdditionalAssemblyLoadPaths = DynamoRevitInternalNodes.GetAdditionalAssemblyLoadPaths();
             foreach (var assemblyPath in internalNodesAdditionalAssemblyLoadPaths)
             {
-                if (File.Exists(assemblyPath))
+                if (Directory.Exists(assemblyPath))
                 {
                     additionalResolutionPaths.Add(Path.GetDirectoryName(assemblyPath));
                 }
