@@ -75,7 +75,7 @@ namespace Dynamo.Applications
             {
                 if (Directory.Exists(assemblyPath))
                 {
-                    additionalResolutionPaths.Add(Path.GetDirectoryName(assemblyPath));
+                    additionalResolutionPaths.Add(assemblyPath);
                 }
             }
 

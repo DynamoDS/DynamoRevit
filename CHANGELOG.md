@@ -1,3 +1,6 @@
+## 0.7.8
+* Fix additional paths for loading assemblies (again)
+
 ## 0.7.7
 * Fix additional paths for loading assemblies
 
