@@ -215,7 +215,7 @@ namespace Dynamo.Applications
         private static List<Exception> preLoadExceptions;
         private static Action shutdownHandler;
         private Stopwatch startupTimer;
-        private Dynamo.UI.Views.SplashScreen splashScreen;
+        private static Dynamo.UI.Views.SplashScreen splashScreen;
 
         /// <summary>
         /// Get or Set the current RevitDynamoModel available in Revit context
@@ -226,6 +226,11 @@ namespace Dynamo.Applications
         /// Get or Set the current DynamoViewModel available in Revit context
         /// </summary>
         public static DynamoViewModel RevitDynamoViewModel { get; private set; }
+
+        /// <summary>
+        /// Determines whether the splash screen is currently visible.
+        /// </summary>
+        public static bool IsSplashScreenVisible() => splashScreen != null && splashScreen.IsVisible;
 
         static DynamoRevit()
         {
@@ -290,8 +295,7 @@ namespace Dynamo.Applications
             try
             {
                 // Launch main Dynamo directly when ShowUiKey is true.
-                bool bSkipSplashScreen = true; // TODO: remove this when issue with System.Windows.Application.Current not being null
-                if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, false) || bSkipSplashScreen)
+                if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, false))
                 {
                     extCommandData = commandData;
                     LoadDynamoWithoutSplashScreen();
@@ -1084,6 +1088,8 @@ namespace Dynamo.Applications
                 //the model is shutdown when splash screen is closed
                 RevitDynamoModel.State = DynamoModel.DynamoModelState.NotStarted;
             }
+
+            splashScreen = null;
         }
 
         #endregion
