@@ -1,3 +1,6 @@
+## 0.7.9
+* Reinstate SplashScreen
+
 ## 0.7.8
 * Fix additional paths for loading assemblies (again)
 
