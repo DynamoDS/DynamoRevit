@@ -1,3 +1,6 @@
+## 0.7.10
+* Disable SplashScreen
+
 ## 0.7.9
 * Reinstate SplashScreen
 

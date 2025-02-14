@@ -295,7 +295,8 @@ namespace Dynamo.Applications
             try
             {
                 // Launch main Dynamo directly when ShowUiKey is true.
-                if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, false))
+                const bool bSkipSplashScreen = true;
+                if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, false) || !bSkipSplashScreen)
                 {
                     extCommandData = commandData;
                     LoadDynamoWithoutSplashScreen();
