@@ -2,7 +2,7 @@
   "Uuid": "c49c9e5d-746d-42f7-975a-5a40f1ad1c6c",
   "IsCustomNode": false,
   "Description": "Importuj dane z pliku programu Excel i przekształć dane, zamieniając kolumny i wiersze",
-  "Name": "Import Data From Excel",
+  "Name": "Importuj dane z programu Excel",
   "ElementResolver": {
     "ResolutionMap": {}
   },

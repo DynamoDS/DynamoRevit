@@ -2,7 +2,7 @@
   "Uuid": "f36fba0c-8a97-4fef-b3dc-6f0d4d61aafa",
   "IsCustomNode": false,
   "Description": "Rassembler tous les éléments d'une catégorie choisie (valeurs par défaut : pièces)",
-  "Name": "Collect All Elements Of Category",
+  "Name": "Recueillir tous les éléments de la catégorie",
   "ElementResolver": {
     "ResolutionMap": {}
   },
