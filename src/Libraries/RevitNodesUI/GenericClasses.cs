@@ -166,7 +166,7 @@ namespace DSRevitNodesUI
         /// </summary>
         public void PopulateDropDownItems()
         {
-            if (this.EnumerationType != null)
+            if (this.EnumerationType != null && this.EnumerationType is Type)
             {
                 // Clear the dropdown list
                 Items.Clear();
