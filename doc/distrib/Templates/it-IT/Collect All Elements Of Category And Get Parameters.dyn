@@ -2,7 +2,7 @@
   "Uuid": "b3342583-c831-4c51-800a-ffbe4db82efa",
   "IsCustomNode": false,
   "Description": "Raccoglie tutti gli elementi della categoria selezionata (l'impostazione di default è Locali) e ottiene l'area del locale di ogni elemento.",
-  "Name": "Collect All Elements Of Category And Get Parameters",
+  "Name": "Raccogli tutti gli elementi della categoria e ottiene i parametri",
   "ElementResolver": {
     "ResolutionMap": {}
   },

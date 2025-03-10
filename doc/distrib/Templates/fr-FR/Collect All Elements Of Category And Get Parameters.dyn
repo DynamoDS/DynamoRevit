@@ -2,7 +2,7 @@
   "Uuid": "b3342583-c831-4c51-800a-ffbe4db82efa",
   "IsCustomNode": false,
   "Description": "Rassembler tous les éléments d'une catégorie choisie (par défaut : les pièces) et obtenir chaque élément Surface de la pièce",
-  "Name": "Collect All Elements Of Category And Get Parameters",
+  "Name": "Recueillir tous les éléments de la catégorie et obtenir les paramètres",
   "ElementResolver": {
     "ResolutionMap": {}
   },

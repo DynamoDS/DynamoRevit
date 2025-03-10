@@ -2,7 +2,7 @@
   "Uuid": "c49c9e5d-746d-42f7-975a-5a40f1ad1c6c",
   "IsCustomNode": false,
   "Description": "从 Excel 文件导入数据并转置数据以翻转列和行",
-  "Name": "Import Data From Excel",
+  "Name": "从 Excel 导入数据",
   "ElementResolver": {
     "ResolutionMap": {}
   },
