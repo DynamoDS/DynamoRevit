@@ -1,3 +1,6 @@
+## 0.5.46
+* Update RestSharp in DynamoRevit to 112.0.0
+
 ## 0.5.45
 * Update Dynamo Core to 3.3.1.7726
 
