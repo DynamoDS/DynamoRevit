@@ -1,4 +1,4 @@
-## 0.7.10
+## 0.7.11
 * Update DynamoAllSelectionNodeTests_WithPreSelectedEntities test
 
 ## 0.7.9
