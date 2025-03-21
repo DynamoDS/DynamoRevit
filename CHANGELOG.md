@@ -1,3 +1,6 @@
+## 0.7.10
+* Update DynamoAllSelectionNodeTests_WithPreSelectedEntities test
+
 ## 0.7.9
 * Reinstate SplashScreen
 
