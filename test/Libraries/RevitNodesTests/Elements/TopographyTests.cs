@@ -10,6 +10,7 @@ using RTF.Framework;
 namespace RevitNodesTests.Elements
 {
     [TestFixture]
+#pragma warning disable CS0618 // Type or member is obsolete
     class TopographyTests : RevitNodeTestBase
     {
         [Test]
@@ -73,4 +74,5 @@ namespace RevitNodesTests.Elements
             topoSurf.Points[4].ShouldBeApproximately(p6);
         }
     }
+#pragma warning restore CS0618
 }

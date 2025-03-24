@@ -1,0 +1,193 @@
+{
+  "Uuid": "c97b33fa-c5fd-4bee-a621-e00a9d86ccb3",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Material.Color",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 344,
+      "SelectedString": "OST_Materials",
+      "Id": "1d6cc464b8224c6ba2b8f3ba479952e9",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ded8d0519a5b487eb09366c5be75830d",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "ecafb539633c4692ac20fe8c76f571d0",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "8064f76c9d994ec8b95ed5d799b42422",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7f458aa394c844a2a82bc77d86c32f1e",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "336a0a95d5b04ac19553de803776663a",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "66f164660b9e4ddc85737887d9695163",
+          "Name": "material",
+          "Description": "Revit.Elements.Material",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "706b81a61d5740bcaf05d1d26aaa6a75",
+          "Name": "Color",
+          "Description": "Color",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Material.Color",
+      "Replication": "Auto",
+      "Description": "Get color\n\nMaterial.Color: Color"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ded8d0519a5b487eb09366c5be75830d",
+      "End": "8064f76c9d994ec8b95ed5d799b42422",
+      "Id": "a3a175e7e51042a69d968f103d8e3d87",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7f458aa394c844a2a82bc77d86c32f1e",
+      "End": "66f164660b9e4ddc85737887d9695163",
+      "Id": "1bf2655c4be443a990e9c81c13796a68",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "1d6cc464b8224c6ba2b8f3ba479952e9",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 43.42786838480748,
+        "Y": 328.3254800342019
+      },
+      {
+        "Id": "ecafb539633c4692ac20fe8c76f571d0",
+        "Name": "All Elements of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 379.4278683848075,
+        "Y": 328.3254800342019
+      },
+      {
+        "Id": "336a0a95d5b04ac19553de803776663a",
+        "Name": "Material.Color",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 735.4899768699463,
+        "Y": 328.325480034202
+      }
+    ],
+    "Annotations": [],
+    "X": -21.54447687794209,
+    "Y": -275.38052190739626,
+    "Zoom": 1.6166707045023265
+  }
+}

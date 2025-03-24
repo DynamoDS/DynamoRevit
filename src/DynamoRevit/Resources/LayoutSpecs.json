@@ -251,6 +251,9 @@
                   "path": "RevitNodes.Revit.Elements.StructuralType"
                 },
                 {
+                  "path": "RevitNodes.Revit.Elements.Subelement"
+                },
+                {
                   "path": "RevitNodes.Revit.Elements.SunSettings"
                 },
                 {

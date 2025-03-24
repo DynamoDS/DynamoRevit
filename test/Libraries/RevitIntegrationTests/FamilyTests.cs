@@ -359,7 +359,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            var famInst = GetPreviewValue("df1bc5da-b9de-4fb2-8c9b-9aa7c8997834");
+            var famInst = GetPreviewValue("aa018bdb2523490bbb4f8e141a342748");
             Assert.IsNotNull(famInst);
             Assert.IsTrue(typeof(Revit.Elements.FamilyType) == famInst.GetType());
             

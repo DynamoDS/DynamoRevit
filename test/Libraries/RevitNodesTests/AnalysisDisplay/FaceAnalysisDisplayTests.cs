@@ -98,58 +98,5 @@ namespace RevitNodesTests.AnalysisDisplay
             Assert.Throws(typeof(System.ArgumentNullException), () => FaceAnalysisDisplay.ByViewFacePointsAndValues(doc.ActiveView, surface, samplePoints, null));
         }
 
-        [Test, TestModel(@".\AnalysisDisplay\Surfaces.rvt"), Category(ANALYSIS_DISPLAY_TESTS)]
-        public void ByViewAndFaceAnalysisData_ValidArgs()
-        {
-            var surface = AnalysisDisplayHelpers.GetFirstSurfaceInInPlaceMass();
-
-            var samplePoints = new[]
-            {
-                UV.ByCoordinates(0,0),
-                UV.ByCoordinates(0.1,0.2),
-                UV.ByCoordinates(0,0.1),
-                
-            };
-
-            var sampleValues = new[]
-            {
-                1.0,
-                1092,
-                -1
-            };
-
-            var data = SurfaceData.BySurfacePointsAndValues(surface, samplePoints, sampleValues );
-
-            var doc = Document.Current;
-            var grid = FaceAnalysisDisplay.ByViewAndFaceAnalysisData(doc.ActiveView, data);
-
-            Assert.NotNull(grid);
-        }
-
-        [Test, TestModel(@".\AnalysisDisplay\Surfaces.rvt"), Category(ANALYSIS_DISPLAY_TESTS)]
-        public void ByViewAndFaceAnalysisData_BadArgs()
-        {
-            var surface = AnalysisDisplayHelpers.GetFirstSurfaceInInPlaceMass();
-
-            var samplePoints = new[]
-            {
-                UV.ByCoordinates(0,0),
-                UV.ByCoordinates(0.5,0),
-                UV.ByCoordinates(0,0.5)
-            };
-
-            var sampleValues = new[]
-            {
-                1.0,
-                1092,
-                -1
-            };
-
-            var data = SurfaceData.BySurfacePointsAndValues(surface, samplePoints, sampleValues);
-            var doc = Document.Current;
-
-            Assert.Throws(typeof(System.ArgumentNullException), () => FaceAnalysisDisplay.ByViewAndFaceAnalysisData(null, data));
-            Assert.Throws(typeof(System.ArgumentNullException), () => FaceAnalysisDisplay.ByViewAndFaceAnalysisData(doc.ActiveView, null));
-        }
     }
 }

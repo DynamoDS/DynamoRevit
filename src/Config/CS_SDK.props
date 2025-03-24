@@ -8,7 +8,6 @@
     <DCoreLibSubFolder>net8.0</DCoreLibSubFolder>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
     <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
-    <REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
     <PACKAGESPATH>$(SolutionDir)packages</PACKAGESPATH>
     <DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
     <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\$(DCoreLibSubFolder)</REVITAPI>
@@ -19,9 +18,9 @@
     <BaseIntermediateOutputPath>$(SolutionDir)..\obj\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <DefaultOutputPath>$(SolutionDir)..\bin\$(Configuration)\$(Platform)\$(REVIT_VERSION)</DefaultOutputPath>
+    <DefaultOutputPath>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\Revit\</DefaultOutputPath>
     <OutputPath Condition=" '$(OutputPath)' == '' ">$(DefaultOutputPath)</OutputPath>
-    <TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(SolutionDir)..\bin\$(Configuration)\$(Platform)\$(REVIT_VERSION)</TestOutputPath>
+    <TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(DefaultOutputPath)</TestOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UICulture>en-US</UICulture>

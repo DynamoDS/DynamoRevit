@@ -1,0 +1,165 @@
+{
+  "Uuid": "8459deb8-1aa8-435e-9cd9-4588849eb5f1",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.FloorPlanView.ByLevel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "3ab7640fed7248f9a5025d5da7e4140c",
+      "Name": "Levels",
+      "Type": "selection",
+      "Type2": "dropdownSelection",
+      "Value": "L1 - Block 35",
+      "Description": "Select a level in the active document",
+      "SelectedIndex": 4
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "00775bc190e1479e816a94c26e38bfec",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "75fb05028b8041609b2c3a41dfe3b9cc",
+          "Name": "level",
+          "Description": "Level",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d724d25935e649fcb28e6344476fbf9d",
+          "Name": "FloorPlanView",
+          "Description": "FloorPlanView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.FloorPlanView.ByLevel@Revit.Elements.Level",
+      "Replication": "Auto",
+      "Description": "Create a Revit Floor Plan at a given Level\n\nFloorPlanView.ByLevel (level: Level): FloorPlanView"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
+      "SelectedIndex": 4,
+      "SelectedString": "L1 - Block 35",
+      "Id": "3ab7640fed7248f9a5025d5da7e4140c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "adbb1ff0ce3b4b05ac0be7726c4d4494",
+          "Name": "Levels",
+          "Description": "The selected Levels",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a level in the active document"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "adbb1ff0ce3b4b05ac0be7726c4d4494",
+      "End": "75fb05028b8041609b2c3a41dfe3b9cc",
+      "Id": "f809fbd0d9254d5b86a985962e3fdca8",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "00775bc1-90e1-479e-816a-94c26e38bfec",
+      "Binding": {
+        "ByLevel_InClassDecl-1_InFunctionScope-1_Instance0_00775bc1-90e1-479e-816a-94c26e38bfec": "H4sIAAAAAAAACh3Lqw6AMAwF0H+5miZtxzZAY6aRFDGewSDIHOHfSTj+jA/WXDI6PIah3Od1pN7QGZotaHRLpCxBqA6sNG+zJ1URv7bimIWYtYkt74bKkK7yXw1eaycv3ukDH3WhcF8AAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "00775bc190e1479e816a94c26e38bfec",
+        "Name": "FloorPlanView.ByLevel",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 831.2000000000002,
+        "Y": 279.99999999999994
+      },
+      {
+        "Id": "3ab7640fed7248f9a5025d5da7e4140c",
+        "Name": "Levels",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 470.4000000000001,
+        "Y": 279.99999999999994
+      }
+    ],
+    "Annotations": [],
+    "X": -412.4795076918198,
+    "Y": -200.33282684999995,
+    "Zoom": 1.545620359375
+  }
+}

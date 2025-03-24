@@ -240,7 +240,7 @@ namespace Revit.Elements
 
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
             this.InternalRoof.GetSlabShapeEditor().Enable();
-            this.InternalRoof.GetSlabShapeEditor().DrawPoint(point.ToXyz());
+            this.InternalRoof.GetSlabShapeEditor().AddPoint(point.ToXyz());
             TransactionManager.Instance.TransactionTaskDone();
         }
 

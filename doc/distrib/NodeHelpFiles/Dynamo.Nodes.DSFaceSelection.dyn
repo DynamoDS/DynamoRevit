@@ -1,0 +1,164 @@
+{
+  "Uuid": "200648c1-8df2-4224-929c-681d45c32b3b",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Dynamo.Nodes.DSFaceSelection",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSFaceSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "27f91e31-2bdf-4a66-a13f-6fbddb02715b-001d48e5:6:SURFACE"
+      ],
+      "Id": "ca0848a7af9f4f7a8feb3166de2bf1de",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0eb45b050e424336ac0dafc9fe0e224a",
+          "Name": "Surface",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a face."
+    },
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 200.0,
+      "WatchHeight": 200.0,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "f3118970-4fd7-46a2-bbc8-1cb1f61ca397 Preview",
+        "EyeX": -45.670814514160156,
+        "EyeY": 62.340126037597656,
+        "EyeZ": 48.5706787109375,
+        "LookX": 34.274757385253906,
+        "LookY": -26.803630828857422,
+        "LookZ": -69.12531280517578,
+        "UpX": 0.1457759290933609,
+        "UpY": 0.9446231722831726,
+        "UpZ": -0.2940007746219635
+      },
+      "VariableInputPorts": true,
+      "Id": "f31189704fd746a2bbc81cb1f61ca397",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "7d439751e5984953bdab8b3c6cf6b705",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "81d3794602704f11a074a56ac8916992",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0eb45b050e424336ac0dafc9fe0e224a",
+      "End": "7d439751e5984953bdab8b3c6cf6b705",
+      "Id": "b5c0db4790ed402da47a60ac56db9805",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "ca0848a7af9f4f7a8feb3166de2bf1de",
+        "Name": "Select Face",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 286.2716026721499,
+        "Y": 324.8496695111943
+      },
+      {
+        "Id": "f31189704fd746a2bbc81cb1f61ca397",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 639.07160267215,
+        "Y": 324.8496695111943
+      }
+    ],
+    "Annotations": [],
+    "X": 73.53603615089884,
+    "Y": -89.61418100220698,
+    "Zoom": 1.1047642563030275
+  }
+}

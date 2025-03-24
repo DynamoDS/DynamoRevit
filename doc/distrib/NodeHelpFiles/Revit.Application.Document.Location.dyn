@@ -1,0 +1,147 @@
+{
+  "Uuid": "d05952f6-4f9d-4d58-a627-504380dc2f6a",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Application.Document.Location",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "f068dcb8c2ba416ba46a1e88a1bfd422",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6796c8aee9474e68af9f29aa38765adf",
+          "Name": "Document",
+          "Description": "Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.Current",
+      "Replication": "Auto",
+      "Description": "Get the current document\n\nDocument.Current: Document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "eee97dc97a484ddf9bc0f4b598d75b61",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "2a5fd4fcd59f49878e25ea5337fda3d7",
+          "Name": "document",
+          "Description": "Revit.Application.Document",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c743f55287d641499acc2431b1f4d942",
+          "Name": "Lat",
+          "Description": "Latitude",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Application.Document.Location",
+      "Replication": "Auto",
+      "Description": "Extracts Latitude and Longitude from Revit\n\nDocument.Location: Location"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "6796c8aee9474e68af9f29aa38765adf",
+      "End": "2a5fd4fcd59f49878e25ea5337fda3d7",
+      "Id": "3de7b008303844449a7bf315c38f5298",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "f068dcb8c2ba416ba46a1e88a1bfd422",
+        "Name": "Document.Current",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 287.60000000000014,
+        "Y": 245.2
+      },
+      {
+        "Id": "eee97dc97a484ddf9bc0f4b598d75b61",
+        "Name": "Document.Location",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 596.4000000000001,
+        "Y": 246.0
+      }
+    ],
+    "Annotations": [],
+    "X": -1168.4464332620312,
+    "Y": -815.1508403839014,
+    "Zoom": 3.5558434565419494
+  }
+}

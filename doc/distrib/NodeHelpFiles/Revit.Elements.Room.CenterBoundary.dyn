@@ -1,5 +1,5 @@
 {
-  "Uuid": "26e69b70-90cd-46c5-a77a-dd920c0172b5",
+  "Uuid": "8b3bf8c4-be5c-4888-8430-43de08d55f1c",
   "IsCustomNode": false,
   "Description": "",
   "Name": "Revit.Elements.Room.CenterBoundary",
@@ -11,14 +11,14 @@
   "Nodes": [
     {
       "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
-      "SelectedIndex": 503,
+      "SelectedIndex": 507,
       "SelectedString": "OST_Rooms",
-      "Id": "637e4901e2a7497a9789ede7678c24df",
+      "Id": "2bdb817d9f904e3f99fdb7c77ad3b3b3",
       "NodeType": "ExtensionNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "46a984e4d4b44fefac077d7ea16aa30c",
+          "Id": "8267c64de7d04331ade743c3aea0e36a",
           "Name": "Category",
           "Description": "The selected Category.",
           "UsingDefaultValue": false,
@@ -31,14 +31,23 @@
       "Description": "All built-in categories."
     },
     {
-      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
-      "Id": "4cd28366e8f549a280631ed6a93c3343",
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategoryInView, DSRevitNodesUI",
+      "Id": "1ef61875dda84bc393018ebcede41dac",
       "NodeType": "ExtensionNode",
       "Inputs": [
         {
-          "Id": "525fc7e45231495d81a33aa9281a9d9e",
+          "Id": "8425be2c630e4d89a989c2c2eadbf849",
           "Name": "Category",
           "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "45cb0768c97b474f8228d8ae8c9a831d",
+          "Name": "View",
+          "Description": "The View",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -47,7 +56,7 @@
       ],
       "Outputs": [
         {
-          "Id": "e6d4c9ff7f2d47199d2adda98e5e9341",
+          "Id": "91ea54efd9a44d71bf8a80b0ae7b3fc0",
           "Name": "Elements",
           "Description": "An element class.",
           "UsingDefaultValue": false,
@@ -57,15 +66,36 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Get all elements of the specified category from the model."
+      "Description": "Get all elements of the specified category in the specified view from the model."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 113,
+      "SelectedString": "L1",
+      "Id": "95a11c0c430e40a5bbe055e015fc4a54",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c0bca5e22c49480ba5a89626c9affe03",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "3e72a332d1e845ccbecfbb6b55bd0592",
+      "Id": "a8730740bb8f4716978dde2a472e299d",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "92b48c9524684448b23e3ece8f5107ef",
+          "Id": "91acaa321a0c408dbc81532982d91c15",
           "Name": "room",
           "Description": "Revit.Elements.Room",
           "UsingDefaultValue": false,
@@ -76,7 +106,7 @@
       ],
       "Outputs": [
         {
-          "Id": "29a19f032b9b47058e03d4c42c37b8fb",
+          "Id": "71577f22f8ad4d219e1e8dd823504aee",
           "Name": "Curve[][]",
           "Description": "Curve[][]",
           "UsingDefaultValue": false,
@@ -88,412 +118,44 @@
       "FunctionSignature": "Revit.Elements.Room.CenterBoundary",
       "Replication": "Auto",
       "Description": "Centerline boundary\n\nRoom.CenterBoundary: Curve[][]"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "ca8831703933434fb5f337dfae1d93be",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "02955133c6eb43519148c1403cc78096",
-          "Name": "room",
-          "Description": "Revit.Elements.Room",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "e8e321c577f24c24b8b75b320d5cf56b",
-          "Name": "Curve[][]",
-          "Description": "Curve[][]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "Revit.Elements.Room.CoreBoundary",
-      "Replication": "Auto",
-      "Description": "Core boundary\n\nRoom.CoreBoundary: Curve[][]"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "21a07e5628fe41d48bc6a73608ee8900",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "32c1549f010d4f1fb08558401abc9176",
-          "Name": "room",
-          "Description": "Revit.Elements.Room",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "3d547f0ed1154e0299df1d10e32c00ee",
-          "Name": "Curve[][]",
-          "Description": "Curve[][]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "Revit.Elements.Room.FinishBoundary",
-      "Replication": "Auto",
-      "Description": "Finish boundary\n\nRoom.FinishBoundary: Curve[][]"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "699c703eaaa34870b7fd0efbc7436347",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "6c450a5cfeae4d7f93ca4d13f0722d3b",
-          "Name": "list",
-          "Description": "List to fetch an item from.\n\nvar[]..[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "1efff9f9a64347b89239f99b180ea70d",
-          "Name": "index",
-          "Description": "Index of the item to be fetched.\n\nint",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "89e8e179bf4a45a499b33b357405045d",
-          "Name": "item",
-          "Description": "Item in the list at the given index.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "DSCore.List.GetItemAtIndex@var[]..[],int",
-      "Replication": "Auto",
-      "Description": "Returns an item from the given list that's located at the specified index.\n\nList.GetItemAtIndex (list: var[]..[], index: int): var[]..[]"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
-      "NumberType": "Integer",
-      "MaximumValue": 100,
-      "MinimumValue": 0,
-      "StepValue": 1,
-      "Id": "e469a10a50de4d4586cc5f96b7529404",
-      "NodeType": "NumberInputNode",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "fe484aa908504df6b6610e6f7333316a",
-          "Name": "",
-          "Description": "Int64",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Produces integer values",
-      "InputValue": 11
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "fd814269e70f4a6599379dd623c2693d",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "f44747b844014e108be1993412416b17",
-          "Name": "geometry",
-          "Description": "The geometry to which you would like to apply color.\n\nGeometry",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "c97fb448e0da4d69b4c7de563f944e16",
-          "Name": "color",
-          "Description": "The color.\n\nColor",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "7594fd2e07e54fc9a0958ca7f99f7d55",
-          "Name": "GeometryColor",
-          "Description": "A Display object.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "Modifiers.GeometryColor.ByGeometryColor@Autodesk.DesignScript.Geometry.Geometry,DSCore.Color",
-      "Replication": "Auto",
-      "Description": "Display geometry using a color.\n\nGeometryColor.ByGeometryColor (geometry: Geometry, color: Color): GeometryColor"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Input.ColorPalette, CoreNodeModels",
-      "InputValue": {
-        "R": 0,
-        "G": 128,
-        "B": 254,
-        "A": 255
-      },
-      "Id": "46a75338a0cf44eda38836a96d41f1b6",
-      "NodeType": "ColorInputNode",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "c497728bd51f4068b4c23c4dd2dd98bf",
-          "Name": "Color",
-          "Description": "Selected Color.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Select a Color from the palette"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "ac55f2d875174f7bbbf3a30ea5488dd0",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "425cc653147e4b6cbd55bc63bbb7a252",
-          "Name": "geometry",
-          "Description": "The geometry to which you would like to apply color.\n\nGeometry",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "2dc91a66d404436e969fe753744e6ee5",
-          "Name": "color",
-          "Description": "The color.\n\nColor",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "60d34c8cc226405e85c3b12c949b75eb",
-          "Name": "GeometryColor",
-          "Description": "A Display object.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "Modifiers.GeometryColor.ByGeometryColor@Autodesk.DesignScript.Geometry.Geometry,DSCore.Color",
-      "Replication": "Auto",
-      "Description": "Display geometry using a color.\n\nGeometryColor.ByGeometryColor (geometry: Geometry, color: Color): GeometryColor"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Input.ColorPalette, CoreNodeModels",
-      "InputValue": {
-        "R": 46,
-        "G": 204,
-        "B": 3,
-        "A": 255
-      },
-      "Id": "86ccfc3962024b6b88d20c296fd43e60",
-      "NodeType": "ColorInputNode",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "d0694cd4d2e64c86b401bc67c6938157",
-          "Name": "Color",
-          "Description": "Selected Color.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Select a Color from the palette"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "5adce25cbfcb4a86aacfdfb533c0f648",
-      "NodeType": "FunctionNode",
-      "Inputs": [
-        {
-          "Id": "0131e0c5b7da421c86a255e1c420b186",
-          "Name": "geometry",
-          "Description": "The geometry to which you would like to apply color.\n\nGeometry",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "55eb625172b247a18becd3478a0ff91b",
-          "Name": "color",
-          "Description": "The color.\n\nColor",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "c531dfc804534ea59ffa45f2e62812e4",
-          "Name": "GeometryColor",
-          "Description": "A Display object.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "FunctionSignature": "Modifiers.GeometryColor.ByGeometryColor@Autodesk.DesignScript.Geometry.Geometry,DSCore.Color",
-      "Replication": "Auto",
-      "Description": "Display geometry using a color.\n\nGeometryColor.ByGeometryColor (geometry: Geometry, color: Color): GeometryColor"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Input.ColorPalette, CoreNodeModels",
-      "InputValue": {
-        "R": 255,
-        "G": 127,
-        "B": 1,
-        "A": 255
-      },
-      "Id": "68c8039fec85443f978d9b14a8c7481d",
-      "NodeType": "ColorInputNode",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "a15eb3c6eda9491abcbc7b44812dbe61",
-          "Name": "Color",
-          "Description": "Selected Color.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Select a Color from the palette"
     }
   ],
   "Connectors": [
     {
-      "Start": "46a984e4d4b44fefac077d7ea16aa30c",
-      "End": "525fc7e45231495d81a33aa9281a9d9e",
-      "Id": "ef929658fa4e4b9faa4dd52cf1b3a5fb",
+      "Start": "8267c64de7d04331ade743c3aea0e36a",
+      "End": "8425be2c630e4d89a989c2c2eadbf849",
+      "Id": "4f94f42a2f924a39be7ab7cb73cde194",
       "IsHidden": "False"
     },
     {
-      "Start": "e6d4c9ff7f2d47199d2adda98e5e9341",
-      "End": "6c450a5cfeae4d7f93ca4d13f0722d3b",
-      "Id": "6fcaa8e2ad314a88bf526ab7a4da5de9",
+      "Start": "91ea54efd9a44d71bf8a80b0ae7b3fc0",
+      "End": "91acaa321a0c408dbc81532982d91c15",
+      "Id": "0fd240afeff6402f9c480e051ee72def",
       "IsHidden": "False"
     },
     {
-      "Start": "29a19f032b9b47058e03d4c42c37b8fb",
-      "End": "f44747b844014e108be1993412416b17",
-      "Id": "383c4014983c4e1380d5624df4b86613",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "e8e321c577f24c24b8b75b320d5cf56b",
-      "End": "425cc653147e4b6cbd55bc63bbb7a252",
-      "Id": "5ea5c44b8356428f99b60d47a66db7fa",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "3d547f0ed1154e0299df1d10e32c00ee",
-      "End": "0131e0c5b7da421c86a255e1c420b186",
-      "Id": "ee6940b8c3da40c59e781eb952b2bdcd",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "89e8e179bf4a45a499b33b357405045d",
-      "End": "92b48c9524684448b23e3ece8f5107ef",
-      "Id": "b2759548de264e51b232334571b371b5",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "89e8e179bf4a45a499b33b357405045d",
-      "End": "02955133c6eb43519148c1403cc78096",
-      "Id": "0842d97a6d804015b3fd75deb188163d",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "89e8e179bf4a45a499b33b357405045d",
-      "End": "32c1549f010d4f1fb08558401abc9176",
-      "Id": "ba13e79594a64ce7a30195f712ca0164",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "fe484aa908504df6b6610e6f7333316a",
-      "End": "1efff9f9a64347b89239f99b180ea70d",
-      "Id": "91edfc11759540c59e1ec7617a26e59a",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "c497728bd51f4068b4c23c4dd2dd98bf",
-      "End": "c97fb448e0da4d69b4c7de563f944e16",
-      "Id": "ba1ad26d6cc544cface620219240601c",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "d0694cd4d2e64c86b401bc67c6938157",
-      "End": "2dc91a66d404436e969fe753744e6ee5",
-      "Id": "2bf0dfa603104e77a005c80a4663d20f",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "a15eb3c6eda9491abcbc7b44812dbe61",
-      "End": "55eb625172b247a18becd3478a0ff91b",
-      "Id": "51845b5c19ec4f428f4400612827f917",
+      "Start": "c0bca5e22c49480ba5a89626c9affe03",
+      "End": "45cb0768c97b474f8228d8ae8c9a831d",
+      "Id": "b5e3a4f216b84f0ca56b18d31ae40471",
       "IsHidden": "False"
     }
   ],
   "Dependencies": [],
   "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
   "Thumbnail": "",
   "GraphDocumentationURL": null,
   "ExtensionWorkspaceData": [
     {
       "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
       "Name": "Properties",
-      "Version": "2.18",
+      "Version": "3.2",
       "Data": {}
     },
     {
       "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
       "Name": "Generative Design",
-      "Version": "6.0",
+      "Version": "8.1",
       "Data": {}
     }
   ],
@@ -510,231 +172,68 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.18.1.5096",
-      "RunType": "Automatic",
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "Camera": {
       "Name": "_Background Preview",
-      "EyeX": 11.881966590881348,
-      "EyeY": 20.866243362426758,
-      "EyeZ": -40.346647262573242,
-      "LookX": -14.210116386413574,
-      "LookY": -26.798925399780273,
-      "LookZ": 10.751178741455078,
-      "UpX": -0.55397087335586548,
-      "UpY": 0.71933948993682861,
-      "UpZ": 0.41912642121315
+      "EyeX": -62.842655181884766,
+      "EyeY": 86.10198974609375,
+      "EyeZ": 71.42588806152344,
+      "LookX": 32.41157150268555,
+      "LookY": -101.36388397216797,
+      "LookZ": -66.19123840332031,
+      "UpX": 0.3556911051273346,
+      "UpY": 0.5880751609802246,
+      "UpZ": -0.7263963222503662
     },
     "ConnectorPins": [],
     "NodeViews": [
       {
-        "Id": "637e4901e2a7497a9789ede7678c24df",
+        "Id": "2bdb817d9f904e3f99fdb7c77ad3b3b3",
         "Name": "Categories",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -200.793518511956,
-        "Y": 261.98096291115
+        "X": 129.7874101459513,
+        "Y": 353.6327849617063
       },
       {
-        "Id": "4cd28366e8f549a280631ed6a93c3343",
-        "Name": "All Elements of Category",
+        "Id": "1ef61875dda84bc393018ebcede41dac",
+        "Name": "All Elements of Category in View",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 135.206481488044,
-        "Y": 261.98096291115
+        "X": 465.7874101459513,
+        "Y": 410.6327849617063
       },
       {
-        "Id": "3e72a332d1e845ccbecfbb6b55bd0592",
+        "Id": "95a11c0c430e40a5bbe055e015fc4a54",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 129.7874101459513,
+        "Y": 501.6327849617063
+      },
+      {
+        "Id": "a8730740bb8f4716978dde2a472e299d",
         "Name": "Room.CenterBoundary",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "ShowGeometry": false,
-        "X": 1009.4576911530354,
-        "Y": -83.173847050517509
-      },
-      {
-        "Id": "ca8831703933434fb5f337dfae1d93be",
-        "Name": "Room.CoreBoundary",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": false,
-        "X": 1013.4773572116247,
-        "Y": 263.02221083367584
-      },
-      {
-        "Id": "21a07e5628fe41d48bc6a73608ee8900",
-        "Name": "Room.FinishBoundary",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": false,
-        "X": 1015.056967728866,
-        "Y": 626.08975687174632
-      },
-      {
-        "Id": "699c703eaaa34870b7fd0efbc7436347",
-        "Name": "List.GetItemAtIndex",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
         "ShowGeometry": true,
-        "X": 540.20433818124,
-        "Y": 261.98096291115
-      },
-      {
-        "Id": "e469a10a50de4d4586cc5f96b7529404",
-        "Name": "Integer Slider",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 43.2064814880444,
-        "Y": 443.764655904162
-      },
-      {
-        "Id": "fd814269e70f4a6599379dd623c2693d",
-        "Name": "GeometryColor.ByGeometryColor",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1369.7844271768915,
-        "Y": -83.173847050517509
-      },
-      {
-        "Id": "46a75338a0cf44eda38836a96d41f1b6",
-        "Name": "Color Palette",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1081.4576911530314,
-        "Y": 63.689572474575471
-      },
-      {
-        "Id": "ac55f2d875174f7bbbf3a30ea5488dd0",
-        "Name": "GeometryColor.ByGeometryColor",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1358.6040932354808,
-        "Y": 263.02221083367584
-      },
-      {
-        "Id": "86ccfc3962024b6b88d20c296fd43e60",
-        "Name": "Color Palette",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1070.2773572116207,
-        "Y": 421.84010125415989
-      },
-      {
-        "Id": "5adce25cbfcb4a86aacfdfb533c0f648",
-        "Name": "GeometryColor.ByGeometryColor",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1372.1837037527221,
-        "Y": 626.08975687174632
-      },
-      {
-        "Id": "68c8039fec85443f978d9b14a8c7481d",
-        "Name": "Color Palette",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1083.8569677288619,
-        "Y": 757.53930089458129
+        "X": 881.7874101459513,
+        "Y": 410.6327849617063
       }
     ],
-    "Annotations": [
-      {
-        "Id": "bf34f351eaa74b14b277482640d1ce52",
-        "Title": "Background",
-        "DescriptionText": null,
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "Nodes": [
-          "ca8831703933434fb5f337dfae1d93be",
-          "ac55f2d875174f7bbbf3a30ea5488dd0",
-          "86ccfc3962024b6b88d20c296fd43e60"
-        ],
-        "HasNestedGroups": false,
-        "Left": 1003.4773572116247,
-        "Top": 211.42221083367585,
-        "Width": 684.32673602385614,
-        "Height": 342.21789042048397,
-        "FontSize": 18.0,
-        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 263.02221083367584,
-        "InitialHeight": 320.617890420484,
-        "TextblockHeight": 41.6,
-        "Background": "#FFD3D3D3"
-      },
-      {
-        "Id": "7efc9033a9764a939624bafeef53e8c4",
-        "Title": "Background",
-        "DescriptionText": null,
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "Nodes": [
-          "3e72a332d1e845ccbecfbb6b55bd0592",
-          "fd814269e70f4a6599379dd623c2693d",
-          "46a75338a0cf44eda38836a96d41f1b6"
-        ],
-        "HasNestedGroups": false,
-        "Left": 999.4576911530354,
-        "Top": -134.7738470505175,
-        "Width": 699.52673602385619,
-        "Height": 330.263419525093,
-        "FontSize": 18.0,
-        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": -83.173847050517509,
-        "InitialHeight": 308.663419525093,
-        "TextblockHeight": 41.6,
-        "Background": "#FFD3D3D3"
-      },
-      {
-        "Id": "e01ae98a3d0f4841ac1f2b08dcb338c3",
-        "Title": "Background",
-        "DescriptionText": null,
-        "IsExpanded": true,
-        "WidthAdjustment": 0.0,
-        "HeightAdjustment": 0.0,
-        "Nodes": [
-          "21a07e5628fe41d48bc6a73608ee8900",
-          "5adce25cbfcb4a86aacfdfb533c0f648",
-          "68c8039fec85443f978d9b14a8c7481d"
-        ],
-        "HasNestedGroups": false,
-        "Left": 1005.056967728866,
-        "Top": 574.48975687174629,
-        "Width": 696.32673602385614,
-        "Height": 314.84954402283495,
-        "FontSize": 18.0,
-        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
-        "InitialTop": 626.08975687174632,
-        "InitialHeight": 293.24954402283504,
-        "TextblockHeight": 41.6,
-        "Background": "#FFD3D3D3"
-      }
-    ],
-    "X": -34.454801644704219,
-    "Y": 133.60067047338359,
-    "Zoom": 0.60498987240461044
+    "Annotations": [],
+    "X": 205.9285720534922,
+    "Y": 56.443515080289956,
+    "Zoom": 0.9663664937627432
   }
 }

@@ -48,6 +48,39 @@
     <WriteLinesToFile Condition="!Exists('$(OutputPath)/../Dynamo.config')" File="$(OutputPath)/../Dynamo.config" Lines="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;configuration&gt;&#xD;&#xA;  &lt;appSettings&gt;&#xD;&#xA;     &lt;add key=&quot;DynamoRuntime&quot; value=&quot;$(DYNAMOAPI)&quot;/&gt;&#xD;&#xA;  &lt;/appSettings&gt;&#xD;&#xA;&lt;/configuration&gt;&#xD;&#xA;" Overwrite="true" />
   </Target>
   <ItemGroup>
+    <WriteLinesToFile Condition="!Exists('$(OutputPath)/../Dynamo.config')"
+           File="$(OutputPath)/../Dynamo.config"
+           Lines="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;configuration&gt;&#xD;&#xA;  &lt;appSettings&gt;&#xD;&#xA;     &lt;add key=&quot;DynamoRuntime&quot; value=&quot;$(DYNAMOAPI)&quot;/&gt;&#xD;&#xA;  &lt;/appSettings&gt;&#xD;&#xA;&lt;/configuration&gt;&#xD;&#xA;"
+           Overwrite="true" />
+  </Target>
+  <ItemGroup>
+    <Reference Include="DynamoApplications">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)') ">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoApplications.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)') ">$(DYNAMOBUILDPATH)\DynamoApplications.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoServices">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)') ">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\netstandard2.0\DynamoServices.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)') ">$(DYNAMOBUILDPATH)\DynamoServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Greg">
+      <HintPath>$(PACKAGESPATH)\Greg\lib\net8.0\Greg.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GregRevitAuth">
+      <HintPath>$(PACKAGESPATH)\GregRevitAuth\lib\net8.0\GregRevitAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ProtoGeometry">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)') ">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\ProtoGeometry.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)') ">$(DYNAMOBUILDPATH)\ProtoGeometry.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -83,14 +116,50 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ionic.Zip.xml" />
+    <Reference Include="ProtoCore">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\ProtoCore.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\ProtoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoCoreWpf">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\$(DCoreLibSubFolder)\DynamoCoreWpf.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCoreWpf.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoCore">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoCore.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoUtilities">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoUtilities.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUtilities.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoShapeManager">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoShapeManager.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoShapeManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoInstallDetective">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoInstallDetective.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoInstallDetective.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Resources\Category.Revit.svg" />
     <EmbeddedResource Include="Resources\LayoutSpecs.json" />
     <Content Include="Resources\logo_square_32x32.png" />
     <Content Include="Resources\logo_square_64x64.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj" />
-    <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj" />
+    <ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj">
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj">
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="RevitSettings.cs" />

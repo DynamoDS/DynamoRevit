@@ -1,0 +1,193 @@
+{
+  "Uuid": "f40ca5ab-06bd-468c-90e4-1104a1bbf030",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Element.IsPinned",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3e739fdf49544d52b7576df84f550e1b",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "364b4fe5e45440c4a95842a8ab85fb9a",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9a05dffcd6f64940abe0a9fda268f594",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.IsPinned",
+      "Replication": "Auto",
+      "Description": "Get the Element Pinned status\n\nElement.IsPinned: bool"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementTypes, DSRevitNodesUI",
+      "SelectedIndex": 297,
+      "SelectedString": "RevitLinkInstance",
+      "Id": "d73d0aab9a5a48e08fb98f53a2ff7850",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "170e78989f8043839744781447784e6a",
+          "Name": "Classes",
+          "Description": "The selected Classes",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All element subclasses."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfType, DSRevitNodesUI",
+      "Id": "4ed71ef918544f6993228d3760e683c6",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "c98ad4e958f04b19bc241479f2465cc6",
+          "Name": "element class",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c98da16884054326806b85ff42621d9d",
+          "Name": "elements",
+          "Description": "All elements in the active document of a given class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All elements in the active document of a given class."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "170e78989f8043839744781447784e6a",
+      "End": "c98ad4e958f04b19bc241479f2465cc6",
+      "Id": "2628dc70bcb54a26adf4611ec41d8a26",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c98da16884054326806b85ff42621d9d",
+      "End": "364b4fe5e45440c4a95842a8ab85fb9a",
+      "Id": "6f040a60375743039fa2b0db7101249c",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "3e739fdf49544d52b7576df84f550e1b",
+        "Name": "Element.IsPinned",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 663.4,
+        "Y": 307.20000000000005
+      },
+      {
+        "Id": "d73d0aab9a5a48e08fb98f53a2ff7850",
+        "Name": "Element Classes",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -6.2000000000000455,
+        "Y": 307.20000000000005
+      },
+      {
+        "Id": "4ed71ef918544f6993228d3760e683c6",
+        "Name": "All Elements of Class",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 334.59999999999997,
+        "Y": 307.20000000000005
+      }
+    ],
+    "Annotations": [],
+    "X": 139.44773499999994,
+    "Y": -94.38736500000005,
+    "Zoom": 1.33823125
+  }
+}

@@ -66,7 +66,7 @@ namespace RevitSystemTests
             levelColl.OfClass(typeof(Level));
             Assert.AreEqual(levelColl.ToElements().Count(),6);
 
-            var firstLevelID = levelColl.ToElementIds().First().IntegerValue;
+            var firstLevelID = levelColl.ToElementIds().First().Value;
 
             //change the name and run again
             var stringNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<StringInput>();
@@ -78,7 +78,7 @@ namespace RevitSystemTests
             Assert.AreEqual(levelColl.ToElements().First().Name,"aNewName");
             Assert.AreEqual(levelColl.ToElements().Last().Name, "aNewName(5)");
 
-            var firstLevelIDModified = levelColl.ToElementIds().First().IntegerValue;
+            var firstLevelIDModified = levelColl.ToElementIds().First().Value;
 
             //assert that the elementId of the first level is unchanged... and rebinding has succeeded.
             //while this is true... currently this test throws exceptions during nodeModified runs

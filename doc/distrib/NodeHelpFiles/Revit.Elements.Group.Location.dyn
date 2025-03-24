@@ -1,0 +1,254 @@
+{
+  "Uuid": "75d6fda1-d7b8-4808-a6dd-3966745dc8d8",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Group.Location",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 385,
+      "SelectedString": "OST_IOSModelGroups",
+      "Id": "f8c538cabbc845b49dae23acd33e5587",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "115f0e3032524d8caf30bcd38f2dd680",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "Id": "31f24e1f6f3d45e98fc127d6ecb53dc5",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "da6b0bc964b14e8fb8128ff1867dabd1",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7e51c166a6b64b4abbcbc058adf48839",
+          "Name": "Elements",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "330ee7c47cb844dabfe911f52d7043a2",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "c9c122dea37f4484b0311998e52b342d",
+          "Name": "group",
+          "Description": "Revit.Elements.Group",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6761c5d8f2a34f10aa43aa9efdda5b3f",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Group.Location",
+      "Replication": "Auto",
+      "Description": "Get the groups physical location whitin the project.\n\nGroup.Location: Point"
+    },
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 200.0,
+      "WatchHeight": 200.0,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "25156e93-2ff7-4e23-8a08-260510b2a485 Preview",
+        "EyeX": -53.1635627746582,
+        "EyeY": 102.70845031738281,
+        "EyeZ": 72.06684875488281,
+        "LookX": 48.1635627746582,
+        "LookY": -91.70845031738281,
+        "LookZ": -80.06684875488281,
+        "UpX": 0.27380919456481934,
+        "UpY": 0.847254753112793,
+        "UpZ": -0.455178827047348
+      },
+      "VariableInputPorts": true,
+      "Id": "25156e932ff74e238a08260510b2a485",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "ca265340550b4374bb78939f5ddb91c6",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d78c9494ed2d4b96b84b820fe3cea061",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "115f0e3032524d8caf30bcd38f2dd680",
+      "End": "da6b0bc964b14e8fb8128ff1867dabd1",
+      "Id": "17b7dc3e6bd1430aa960b26a265e6847",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7e51c166a6b64b4abbcbc058adf48839",
+      "End": "c9c122dea37f4484b0311998e52b342d",
+      "Id": "8b2a6fb366d541a8bea76c782ad70040",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6761c5d8f2a34f10aa43aa9efdda5b3f",
+      "End": "ca265340550b4374bb78939f5ddb91c6",
+      "Id": "a8ad58d607254afaa0e3d52337ed447d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "f8c538cabbc845b49dae23acd33e5587",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 353.58016744025247,
+        "Y": 609.2689747027745
+      },
+      {
+        "Id": "31f24e1f6f3d45e98fc127d6ecb53dc5",
+        "Name": "All Elements of Category",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 689.5801674402525,
+        "Y": 609.2689747027745
+      },
+      {
+        "Id": "330ee7c47cb844dabfe911f52d7043a2",
+        "Name": "Group.Location",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1046.3801674402525,
+        "Y": 609.2689747027745
+      },
+      {
+        "Id": "25156e932ff74e238a08260510b2a485",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1343.1801674402523,
+        "Y": 609.2689747027745
+      }
+    ],
+    "Annotations": [],
+    "X": -456.4479734338993,
+    "Y": -481.04745836344034,
+    "Zoom": 1.2198072017254968
+  }
+}

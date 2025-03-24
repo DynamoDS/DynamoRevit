@@ -3,6 +3,7 @@ using Autodesk.Revit.DB;
 using RevitServices.Transactions;
 using Dynamo.Graph.Nodes;
 using Revit.GeometryConversion;
+using System;
 
 namespace Revit.Elements
 {
@@ -272,7 +273,7 @@ namespace Revit.Elements
         #endregion
 
         #region Project Parameters
-                
+
         /// <summary>
         /// Create a new Project Parameter in this current Revit document for all applicable categories
         /// </summary>
@@ -281,6 +282,7 @@ namespace Revit.Elements
         /// <param name="specType">The type of new parameter.</param>
         /// <param name="groupType">The type of the group to which the parameter belongs.</param>
         /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
+        [Obsolete("Creating Project Parameters is currently not supported by Revit API without making use of shared parameters. Please use the CreateSharedParameterForAllCategories node instead.")]
         public static void CreateProjectParameterForAllCategories(string parameterName, string groupName, SpecType specType, GroupType groupType, bool instance)
         {
             CreateProjectParameter(parameterName, groupName, specType, groupType, instance, null);
@@ -295,6 +297,7 @@ namespace Revit.Elements
         /// <param name="groupType">The type of the group to which the parameter belongs.</param>
         /// <param name="instance">True if it's an instance parameter, otherwise it's a type parameter</param>
         /// <param name="categoryList">A list of categories this parameter applies to. If no category is supplied, all possible categories are selected</param>
+        [Obsolete("Creating Project Parameters is currently not supported by Revit API without making use of shared parameters. Please use the CreateSharedParameter node instead.")]
         public static void CreateProjectParameter(string parameterName, string groupName, SpecType specType, GroupType groupType, bool instance, System.Collections.Generic.IEnumerable<Category> categoryList)
         {
             // get document and open transaction

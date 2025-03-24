@@ -1,0 +1,8 @@
+## En detalle:
+`Dimension.SetSuffix` establece el sufijo de la cota especificada en la cadena o cadenas indicadas. Si se proporciona una lista anidada, los segmentos de cotas se establecen en esos valores.
+
+En el ejemplo siguiente, se establece el sufijo para todos los segmentos de la cota especificada.
+___
+## Archivo de ejemplo
+
+![Dimension.SetSuffix](./Revit.Elements.Dimension.SetSuffix_img.jpg)

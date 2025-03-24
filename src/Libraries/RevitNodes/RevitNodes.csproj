@@ -72,7 +72,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RevitServices\RevitServices.csproj" />
+    <ProjectReference Include="..\RevitServices\RevitServices.csproj">
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="New Node Samples\ElementId.cs" />

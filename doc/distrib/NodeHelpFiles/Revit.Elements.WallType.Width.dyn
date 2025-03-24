@@ -1,0 +1,193 @@
+{
+  "Uuid": "463cc73e-0181-45b4-80ec-23fa405e8bba",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.WallType.Width",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementTypes, DSRevitNodesUI",
+      "SelectedIndex": 382,
+      "SelectedString": "WallType",
+      "Id": "b9f0c3b48b544b12ab3a1f9971b773ad",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "24e7174e06d54b90b83611a768d1029e",
+          "Name": "Classes",
+          "Description": "The selected Classes",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All element subclasses."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfType, DSRevitNodesUI",
+      "Id": "9fd40fe82d7a4446a1e8fb210a6dfbd0",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "943c6c1ac5bf40c5bcbed043b49da584",
+          "Name": "element class",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "717cf3ff15734971b222be3aaf29a11a",
+          "Name": "elements",
+          "Description": "All elements in the active document of a given class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All elements in the active document of a given class."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "dab2d8be2fb442f4abab9a45d1ffe167",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f37e1824640340e59a37f33d1d3c98e6",
+          "Name": "wallType",
+          "Description": "Revit.Elements.WallType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dbd1c7abae4f42c1aee1b942f74f6d09",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.WallType.Width",
+      "Replication": "Auto",
+      "Description": "The width of the WallType\n\nWallType.Width: double"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "24e7174e06d54b90b83611a768d1029e",
+      "End": "943c6c1ac5bf40c5bcbed043b49da584",
+      "Id": "3d10ae02c2994123b83c59bc2b58621f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "717cf3ff15734971b222be3aaf29a11a",
+      "End": "f37e1824640340e59a37f33d1d3c98e6",
+      "Id": "6a6fb3df144f4b91bdea91490cb446b4",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "b9f0c3b48b544b12ab3a1f9971b773ad",
+        "Name": "Element Classes",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 734.8290231965857,
+        "Y": -271.1191455891851
+      },
+      {
+        "Id": "9fd40fe82d7a4446a1e8fb210a6dfbd0",
+        "Name": "All Elements of Class",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1074.5280720838882,
+        "Y": -271.1191455891851
+      },
+      {
+        "Id": "dab2d8be2fb442f4abab9a45d1ffe167",
+        "Name": "WallType.Width",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1416.6271209711908,
+        "Y": -271.1191455891851
+      }
+    ],
+    "Annotations": [],
+    "X": -2094.589907935639,
+    "Y": 922.4600376629439,
+    "Zoom": 2.140843140793149
+  }
+}

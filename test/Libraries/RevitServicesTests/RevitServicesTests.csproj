@@ -63,7 +63,11 @@ limitations under the License.
     <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="AssemblySharedInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj" />
-    <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj" />
+    <ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj">
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj">
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
 </Project>

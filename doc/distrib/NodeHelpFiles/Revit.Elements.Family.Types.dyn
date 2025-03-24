@@ -1,0 +1,284 @@
+{
+  "Uuid": "ee61484e-5c8a-4d9b-99c8-bd0580895762",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Family.Types",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "665043a86a95480e8bfdf2cfb29bbee8",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "1aa0ec56717a4b2daef6018553f343ad",
+          "Name": "name",
+          "Description": "The name of the family in the current document\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fd87f265314d479698cbd30b4dbd804a",
+          "Name": "Family",
+          "Description": "Family",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Family.ByName@string",
+      "Replication": "Auto",
+      "Description": "Obtain a Family from the current document given it's name\n\nFamily.ByName (name: string): Family"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "ab208173d3114876a4de6caf09415d54",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e1c492eb37ad487ab103c401e96edf88",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "RPC Male"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3002bfc33197421ca3dca4aaa5dcc2bb",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "ddd453cb81f74d5890619f16f52f9319",
+          "Name": "family",
+          "Description": "Revit.Elements.Family",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "321453e031d34fb0aae6a89c8df53817",
+          "Name": "FamilyType[]",
+          "Description": "FamilyType[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Family.Types",
+      "Replication": "Auto",
+      "Description": "Obtain the FamilyTypes from this Family\n\nFamily.Types: FamilyType[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "d9ed646b83f44b7c9912d73e211970ab",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d2b3c8ae18ac4a878b3fa374c41d7a8c",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "RPC Female"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "Id": "3d21b384805a407d93a04b7c39445a8a",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "6dfad0aeab1d42d48b2083412f51a5fc",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7ea612f7dc80480abf23bef273220baf",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3d0cb8cc68ca4bca9e9f34aaab5d856a",
+          "Name": "list",
+          "Description": "A list (type: var[]..[])",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list from the given inputs"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "fd87f265314d479698cbd30b4dbd804a",
+      "End": "ddd453cb81f74d5890619f16f52f9319",
+      "Id": "6523882cb0fa4cbba0185ea96f8ba705",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e1c492eb37ad487ab103c401e96edf88",
+      "End": "6dfad0aeab1d42d48b2083412f51a5fc",
+      "Id": "b5362da6612e463293ed88a3fa2cac71",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d2b3c8ae18ac4a878b3fa374c41d7a8c",
+      "End": "7ea612f7dc80480abf23bef273220baf",
+      "Id": "fd6813a043334074805d0c59900d2c7b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3d0cb8cc68ca4bca9e9f34aaab5d856a",
+      "End": "1aa0ec56717a4b2daef6018553f343ad",
+      "Id": "861c203858c74c548f32212695572a71",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.776565551757812,
+      "EyeY": 67.12528228759766,
+      "EyeZ": 31.6041316986084,
+      "LookX": 8.764512062072754,
+      "LookY": -14.684860229492188,
+      "LookZ": -8.922138214111328,
+      "UpX": 0.5335060358047485,
+      "UpY": 0.6483920812606812,
+      "UpZ": -0.5431011915206909
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "665043a86a95480e8bfdf2cfb29bbee8",
+        "Name": "Family.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1703.3768828316959,
+        "Y": 266.8333675217142
+      },
+      {
+        "Id": "ab208173d3114876a4de6caf09415d54",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1192.176882831696,
+        "Y": 209.83336752171422
+      },
+      {
+        "Id": "3002bfc33197421ca3dca4aaa5dcc2bb",
+        "Name": "Family.Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2003.3768828316963,
+        "Y": 266.8333675217142
+      },
+      {
+        "Id": "d9ed646b83f44b7c9912d73e211970ab",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1192.176882831696,
+        "Y": 357.8333675217143
+      },
+      {
+        "Id": "3d21b384805a407d93a04b7c39445a8a",
+        "Name": "List Create",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1443.376882831696,
+        "Y": 266.8333675217142
+      }
+    ],
+    "Annotations": [],
+    "X": -995.3103129053035,
+    "Y": -159.05937002426458,
+    "Zoom": 1.1718543656626157
+  }
+}
