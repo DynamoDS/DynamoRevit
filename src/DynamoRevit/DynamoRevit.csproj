@@ -8,6 +8,7 @@
     <AssemblyName>DynamoRevitDS</AssemblyName>
     <FileUpgradeFlags />
     <UpgradeBackupLocation />
+    <EnableDynamicLoading>true</EnableDynamicLoading>
 
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
@@ -159,4 +160,17 @@
   <ItemGroup>
     <Compile Remove="RevitSettings.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.0.0.7190" ExcludeAssets="runtime" GeneratePathProperty="true" />
+    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="3.0.0.7190" ExcludeAssets="runtime" />
+    <PackageReference Include="Greg" Version="3.0.0.3175" ExcludeAssets="runtime" />
+    <PackageReference Include="GregRevitAuth" Version="2.0.8718.22924" />
+    <PackageReference Include="pythonnet_py38_win" Version="2.5.1" ExcludeAssets="runtime" />
+  </ItemGroup>
+  <Target Name="Copy dll" AfterTargets="Build">
+    <ItemGroup>
+        <DetectiveDll Include="$(PkgDynamoVisualProgramming_Core)\lib\net8.0\DynamoInstallDetective.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(DetectiveDll)" DestinationFolder="$(OutputPath)\.." />
+  </Target>
 </Project>
