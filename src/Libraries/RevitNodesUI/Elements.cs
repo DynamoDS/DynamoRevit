@@ -281,8 +281,8 @@ namespace DSRevitNodesUI
             OutPorts.Add(new PortModel(PortType.Output, this, new PortData("elements", Properties.Resources.PortDataAllVisibleElementsToolTip)));
             RegisterAllPorts();
 
-            DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
+            //DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
+            //DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
 
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdaterOnElementsUpdated;
             RevitDynamoModel_RevitDocumentChanged(null, null);
@@ -291,8 +291,8 @@ namespace DSRevitNodesUI
         [JsonConstructor]
         public ElementsInView(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
-            DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
+            //DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
+            //DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
 
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdaterOnElementsUpdated;
             RevitDynamoModel_RevitDocumentChanged(null, null);
@@ -300,8 +300,8 @@ namespace DSRevitNodesUI
 
         public override void Dispose()
         {
-            DynamoRevitApp.EventHandlerProxy.ViewActivated -= RevitDynamoModel_RevitDocumentChanged;
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= RevitDynamoModel_RevitDocumentChanged;
+            //DynamoRevitApp.EventHandlerProxy.ViewActivated -= RevitDynamoModel_RevitDocumentChanged;
+            //DynamoRevitApp.EventHandlerProxy.DocumentOpened -= RevitDynamoModel_RevitDocumentChanged;
 
             RevitServicesUpdater.Instance.ElementsUpdated -= RevitServicesUpdaterOnElementsUpdated;
 
