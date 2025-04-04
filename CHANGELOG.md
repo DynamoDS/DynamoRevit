@@ -1,3 +1,6 @@
+## 0.7.12
+* Move DynamoRevit sample scripts to DynamoRevit repo
+
 ## 0.7.11
 * Update DynamoAllSelectionNodeTests_WithPreSelectedEntities test
 
