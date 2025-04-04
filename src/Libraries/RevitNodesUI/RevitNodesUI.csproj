@@ -36,6 +36,21 @@
 		<Reference Include="System.Xml" />
 		<Reference Include="WindowsBase" />
 	</ItemGroup>
+    <ItemGroup Condition="$(Platform.Contains('_DA'))">
+        <Compile Remove="Controls\**" />
+        <Compile Remove="FamilyInstanceParametersNodeViewCustomization.cs" />
+        <Compile Remove="LocationControl.xaml.cs" />
+        <Compile Remove="RevitSelectionHelper.cs" />
+        <Compile Remove="Selection.cs" />
+        <Compile Remove="SelectionCombo.cs" />
+        <Compile Remove="SelectionNodeViewCustomizations.cs" />
+        <Compile Remove="SiteLocation.cs" />
+        <Compile Remove="SunPath.cs" />
+        <EmbeddedResource Remove="Controls\**" />
+        <None Remove="Controls\**" />
+        <Page Remove="Controls\**" />
+        <Page Remove="LocationControl.xaml" />
+    </ItemGroup>
 	<ItemGroup>
 		<Reference Include="DynamoUtilities">
 			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoUtilities.dll</HintPath>
@@ -64,9 +79,9 @@
 			<HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
+        <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="Properties\AssemblySharedInfo.cs" />
 	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="Properties\AssemblySharedInfo.cs" />
+	<ItemGroup Condition="!$(Platform.Contains('_DA'))">
 		<Compile Update="Controls\ComboControl.xaml.cs">
 			<DependentUpon>ComboControl.xaml</DependentUpon>
 		</Compile>
@@ -121,7 +136,7 @@
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\DynamoRevit\DynamoRevit.csproj" />
+		<ProjectReference Include="..\..\DynamoRevit\DynamoRevit.csproj" Condition="!$(Platform.Contains('_DA'))" />
 		<ProjectReference Include="..\RevitNodes\RevitNodes.csproj" />
 		<ProjectReference Include="..\RevitServices\RevitServices.csproj" />
 	</ItemGroup>
