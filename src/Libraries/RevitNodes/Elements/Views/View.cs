@@ -618,6 +618,8 @@ namespace Revit.Elements.Views
                 {
                     newViewName = prefix + view.Name + suffix;                    
                 }
+
+#if UI_SUPPORT
                 Autodesk.Revit.UI.UIDocument uIDocument = new Autodesk.Revit.UI.UIDocument(Document);
                 var openedViews = uIDocument.GetOpenUIViews().ToList();
 
@@ -630,6 +632,7 @@ namespace Revit.Elements.Views
                     else
                         count--;
                 }
+#endif
                 
                 if (count == 0) 
                 {
@@ -651,6 +654,7 @@ namespace Revit.Elements.Views
                         var param = newView.InternalView.get_Parameter(BuiltInParameter.VIEW_NAME);
                         param.Set(newViewName);
                     }
+#if UI_SUPPORT
                     if (viewElement != null)
                     {
                         var shouldClosedViews = openedViews.FindAll(x => viewElement.Id == x.ViewId);
@@ -664,7 +668,8 @@ namespace Revit.Elements.Views
                                     throw new InvalidOperationException(string.Format(Properties.Resources.CantCloseLastOpenView, viewElement.ToString()));
                             }
                         }
-                    }                    
+                    } 
+#endif
                 }                
 
                 ElementBinder.CleanupAndSetElementForTrace(Document, newView.InternalElement);
@@ -704,7 +709,7 @@ namespace Revit.Elements.Views
             return IsUnique;
         }
 
-        #endregion
+#endregion
 
         #region CropBox
 
