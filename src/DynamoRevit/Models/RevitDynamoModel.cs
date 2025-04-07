@@ -511,6 +511,13 @@ namespace Dynamo.Applications.Models
                                         }
                                     }
                                     var unmarshalled = pyObj.AsManagedObject(typeof(object));
+
+                                    // Avoid calling this marshaler infinitely.
+                                    if (unmarshalled is Python.Runtime.PyObject)
+                                    {
+                                        return unmarshalled;
+                                    }
+
                                     return UnwrapElementMarshaler.Marshal(unmarshalled);
                                 }
                             }
