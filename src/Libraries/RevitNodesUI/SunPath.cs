@@ -32,25 +32,29 @@ namespace DSRevitNodesUI
             RegisterAllPorts();
 
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
-            DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
 
+#if UI_SUPPORT
+            DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
             DynamoRevitApp.AddIdleAction(() => CurrentUIApplicationOnViewActivated());
+#endif
         }
 
         [JsonConstructor]
         public SunSettings(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
+#if UI_SUPPORT
             DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
-
             DynamoRevitApp.AddIdleAction(() => CurrentUIApplicationOnViewActivated());
+#endif
         }
 
         public override void Dispose()
         {
             RevitServicesUpdater.Instance.ElementsUpdated -= Updater_ElementsUpdated;
+#if UI_SUPPORT
             DynamoRevitApp.EventHandlerProxy.ViewActivated -= CurrentUIApplication_ViewActivated;
-
+#endif
             base.Dispose();
         }
 

@@ -44,8 +44,6 @@
         <Compile Remove="Selection.cs" />
         <Compile Remove="SelectionCombo.cs" />
         <Compile Remove="SelectionNodeViewCustomizations.cs" />
-        <Compile Remove="SiteLocation.cs" />
-        <Compile Remove="SunPath.cs" />
         <EmbeddedResource Remove="Controls\**" />
         <None Remove="Controls\**" />
         <Page Remove="Controls\**" />
@@ -136,6 +134,7 @@
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
+        <ProjectReference Include="..\..\DADynamoApp\DADynamoApp.csproj" Condition="$(Platform.Contains('_DA'))"/> 
 		<ProjectReference Include="..\..\DynamoRevit\DynamoRevit.csproj" Condition="!$(Platform.Contains('_DA'))" />
 		<ProjectReference Include="..\RevitNodes\RevitNodes.csproj" />
 		<ProjectReference Include="..\RevitServices\RevitServices.csproj" />
