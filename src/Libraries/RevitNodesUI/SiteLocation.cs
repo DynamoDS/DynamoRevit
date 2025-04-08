@@ -3,7 +3,7 @@ using Dynamo.Applications.Models;
 #if UI_SUPPORT
 using Dynamo.Controls;
 #else
-using DynamoRevitApp = DADynamoApp.DynamoADApp;
+using DynamoRevitApp = DADynamoApp.DAEntrypoint;
 #endif
 using Dynamo.Graph.Nodes;
 using Newtonsoft.Json;

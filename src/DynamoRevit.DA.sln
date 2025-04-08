@@ -42,8 +42,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{956846
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DADynamoApp", "DADynamoApp\DADynamoApp.csproj", "{66A0E1C8-2514-48B7-8406-536983F57F88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DADynamoConsole", "DADynamoConsole\DADynamoConsole.csproj", "{A74FF970-C032-445D-8E41-8BBC70CC01AF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|NET80_DA = Debug|NET80_DA
@@ -68,9 +66,6 @@ Global
 		{66A0E1C8-2514-48B7-8406-536983F57F88}.Debug|NET80_DA.ActiveCfg = Debug|NET80_DA
 		{66A0E1C8-2514-48B7-8406-536983F57F88}.Debug|NET80_DA.Build.0 = Debug|NET80_DA
 		{66A0E1C8-2514-48B7-8406-536983F57F88}.Release|NET80_DA.ActiveCfg = Release|NET80_DA
-		{A74FF970-C032-445D-8E41-8BBC70CC01AF}.Debug|NET80_DA.ActiveCfg = Debug|NET80_DA
-		{A74FF970-C032-445D-8E41-8BBC70CC01AF}.Debug|NET80_DA.Build.0 = Debug|NET80_DA
-		{A74FF970-C032-445D-8E41-8BBC70CC01AF}.Release|NET80_DA.ActiveCfg = Release|NET80_DA
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
