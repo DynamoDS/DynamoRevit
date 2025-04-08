@@ -1,3 +1,6 @@
+## 0.7.14
+* Fix typo in Deploy.bat file in DynamoRevitUtils
+
 ## 0.7.13
 * Modify the Deploy.bat file in DynamoRevitUtils to include the Samples folder
 
