@@ -29,6 +29,10 @@ using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 using View = Revit.Elements.Views.View;
 using RevitServices.Transactions;
 
+#if !UI_SUPPORT
+using DynamoRevitApp = DADynamoApp.DAEntrypoint;
+#endif
+
 namespace DSRevitNodesUI
 {
     public abstract class ElementsQueryBase : RevitNodeModel
@@ -281,8 +285,10 @@ namespace DSRevitNodesUI
             OutPorts.Add(new PortModel(PortType.Output, this, new PortData("elements", Properties.Resources.PortDataAllVisibleElementsToolTip)));
             RegisterAllPorts();
 
-            //DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
-            //DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
+#if UI_SUPPORT
+            DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
+#endif
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
 
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdaterOnElementsUpdated;
             RevitDynamoModel_RevitDocumentChanged(null, null);
@@ -291,8 +297,10 @@ namespace DSRevitNodesUI
         [JsonConstructor]
         public ElementsInView(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
-            //DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
-            //DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
+#if UI_SUPPORT
+            DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
+#endif
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
 
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdaterOnElementsUpdated;
             RevitDynamoModel_RevitDocumentChanged(null, null);
@@ -300,8 +308,10 @@ namespace DSRevitNodesUI
 
         public override void Dispose()
         {
-            //DynamoRevitApp.EventHandlerProxy.ViewActivated -= RevitDynamoModel_RevitDocumentChanged;
-            //DynamoRevitApp.EventHandlerProxy.DocumentOpened -= RevitDynamoModel_RevitDocumentChanged;
+#if UI_SUPPORT
+            DynamoRevitApp.EventHandlerProxy.ViewActivated -= RevitDynamoModel_RevitDocumentChanged;
+#endif
+            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= RevitDynamoModel_RevitDocumentChanged;
 
             RevitServicesUpdater.Instance.ElementsUpdated -= RevitServicesUpdaterOnElementsUpdated;
 

@@ -21,21 +21,5 @@ namespace RevitServices.Elements
         /// removed.
         /// </summary>
         public static bool IsClosingHomeworkspace { get; set; }
-
-        internal void CloseDocumentsOnElementDispo(Document document, Element elementId) 
-        {
-#if UI_SUPPORT
-            Autodesk.Revit.UI.UIDocument uIDocument = new Autodesk.Revit.UI.UIDocument(document);
-            var openedViews = uIDocument.GetOpenUIViews().ToList();
-            var shouldClosedViews = openedViews.FindAll(x => elementId.Id == x.ViewId);
-            foreach (var v in shouldClosedViews)
-            {
-            if (uIDocument.GetOpenUIViews().ToList().Count() > 1)
-                v.Close();
-            else
-                throw new InvalidOperationException(string.Format(Properties.Resources.CantCloseLastOpenView, this.ToString()));
-            }
-#endif
-        }
     }
 }
