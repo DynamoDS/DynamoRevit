@@ -1,3 +1,6 @@
+## 0.7.13
+* Modify the Deploy.bat file in DynamoRevitUtils to include the Samples folder
+
 ## 0.7.12
 * Move DynamoRevit sample scripts to DynamoRevit repo
 
