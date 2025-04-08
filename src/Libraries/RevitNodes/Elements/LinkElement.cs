@@ -4,7 +4,6 @@ using System.Linq;
 using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
-//using Autodesk.Revit.UI;
 using Dynamo.Graph.Nodes;
 using Revit.GeometryConversion;
 using RevitServices.Persistence;
