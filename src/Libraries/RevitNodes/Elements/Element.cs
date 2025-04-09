@@ -287,7 +287,7 @@ namespace Revit.Elements
             // Do not delete Revit owned elements
             if (!IsRevitOwned && remainingBindings == 0 && !didRevitDelete)
             {
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
                 if(this.InternalElement is View && InternalElement.IsValidObject)
                 {
                     Autodesk.Revit.UI.UIDocument uIDocument = new Autodesk.Revit.UI.UIDocument(Document);

@@ -28,7 +28,7 @@ using System.Text.RegularExpressions;
 using RevitServices.Elements;
 using RevitServices.Transactions;
 
-#if !UI_SUPPORT
+#if DESIGN_AUTOMATION
 using DynamoRevitApp = DADynamoApp.DAEntrypoint;
 #endif
 

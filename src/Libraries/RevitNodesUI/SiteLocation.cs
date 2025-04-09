@@ -1,6 +1,6 @@
 ﻿using Dynamo.Applications;
 using Dynamo.Applications.Models;
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
 using Dynamo.Controls;
 #else
 using DynamoRevitApp = DADynamoApp.DAEntrypoint;
@@ -18,7 +18,7 @@ using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
 {
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
     public class SiteLocationNodeViewCustomization : INodeViewCustomization<SiteLocation>
     {
         public void CustomizeView(SiteLocation model, NodeView nodeView)
@@ -55,7 +55,7 @@ namespace DSRevitNodesUI
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdater_ElementsUpdated;
 
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
             DynamoRevitApp.AddIdleAction(() => Update());
 #endif
         }
@@ -71,7 +71,7 @@ namespace DSRevitNodesUI
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdater_ElementsUpdated;
 
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
             DynamoRevitApp.AddIdleAction(() => Update());
 #endif
         }

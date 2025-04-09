@@ -12,7 +12,7 @@ namespace RevitServices.EventHandler
         public event EventHandler<DocumentOpenedEventArgs> DocumentOpened;
         public event EventHandler<DocumentClosingEventArgs> DocumentClosing;
         public event EventHandler<DocumentClosedEventArgs> DocumentClosed;
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
         public event EventHandler<Autodesk.Revit.UI.Events.ViewActivatingEventArgs> ViewActivating;
         public event EventHandler<Autodesk.Revit.UI.Events.ViewActivatedEventArgs> ViewActivated;
 #endif
@@ -32,7 +32,7 @@ namespace RevitServices.EventHandler
             InvokeEventHandler(DocumentClosed, sender, args);
         }
 
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
         public void OnApplicationViewActivating(object sender, Autodesk.Revit.UI.Events.ViewActivatingEventArgs args)
         {
             InvokeEventHandler(ViewActivating, sender, args);

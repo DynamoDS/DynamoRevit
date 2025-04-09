@@ -33,7 +33,7 @@ namespace DSRevitNodesUI
 
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
 
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
             DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
             DynamoRevitApp.AddIdleAction(() => CurrentUIApplicationOnViewActivated());
 #endif
@@ -43,7 +43,7 @@ namespace DSRevitNodesUI
         public SunSettings(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
             DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
             DynamoRevitApp.AddIdleAction(() => CurrentUIApplicationOnViewActivated());
 #endif
@@ -52,7 +52,7 @@ namespace DSRevitNodesUI
         public override void Dispose()
         {
             RevitServicesUpdater.Instance.ElementsUpdated -= Updater_ElementsUpdated;
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
             DynamoRevitApp.EventHandlerProxy.ViewActivated -= CurrentUIApplication_ViewActivated;
 #endif
             base.Dispose();

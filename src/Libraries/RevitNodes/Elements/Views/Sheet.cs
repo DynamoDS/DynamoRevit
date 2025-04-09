@@ -773,7 +773,7 @@ namespace Revit.Elements.Views
                             }
                         }
                     }
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
                     if(newSheet == null)
                     {
                         Autodesk.Revit.UI.UIDocument uIDocument = new Autodesk.Revit.UI.UIDocument(Document);

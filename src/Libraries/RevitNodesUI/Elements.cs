@@ -29,7 +29,7 @@ using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 using View = Revit.Elements.Views.View;
 using RevitServices.Transactions;
 
-#if !UI_SUPPORT
+#if DESIGN_AUTOMATION
 using DynamoRevitApp = DADynamoApp.DAEntrypoint;
 #endif
 
@@ -285,7 +285,7 @@ namespace DSRevitNodesUI
             OutPorts.Add(new PortModel(PortType.Output, this, new PortData("elements", Properties.Resources.PortDataAllVisibleElementsToolTip)));
             RegisterAllPorts();
 
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
             DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
 #endif
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
@@ -297,7 +297,7 @@ namespace DSRevitNodesUI
         [JsonConstructor]
         public ElementsInView(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
             DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
 #endif
             DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
@@ -308,7 +308,7 @@ namespace DSRevitNodesUI
 
         public override void Dispose()
         {
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
             DynamoRevitApp.EventHandlerProxy.ViewActivated -= RevitDynamoModel_RevitDocumentChanged;
 #endif
             DynamoRevitApp.EventHandlerProxy.DocumentOpened -= RevitDynamoModel_RevitDocumentChanged;

@@ -619,7 +619,7 @@ namespace Revit.Elements.Views
                     newViewName = prefix + view.Name + suffix;                    
                 }
 
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
                 Autodesk.Revit.UI.UIDocument uIDocument = new Autodesk.Revit.UI.UIDocument(Document);
                 var openedViews = uIDocument.GetOpenUIViews().ToList();
 
@@ -654,7 +654,7 @@ namespace Revit.Elements.Views
                         var param = newView.InternalView.get_Parameter(BuiltInParameter.VIEW_NAME);
                         param.Set(newViewName);
                     }
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
                     if (viewElement != null)
                     {
                         var shouldClosedViews = openedViews.FindAll(x => viewElement.Id == x.ViewId);

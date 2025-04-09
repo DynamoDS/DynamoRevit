@@ -125,7 +125,7 @@ namespace RevitServices.Persistence
         public Document CurrentDBDocument {
             get
             {
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
                 var c = CurrentUIDocument;
                 return c == null ? null : c.Document;
 #else
@@ -158,7 +158,7 @@ namespace RevitServices.Persistence
         /// </summary>
         public Application CurrentApplication { get; set; }
 
-#if UI_SUPPORT
+#if !DESIGN_AUTOMATION
         /// <summary>
         /// Provides the currently active UI document.
         /// This is the document to which Dynamo is bound.
