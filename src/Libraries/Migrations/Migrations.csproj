@@ -31,6 +31,6 @@
     <Compile Remove="RevitNodes\New Node Samples\SelectElement.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.0.0.7190" ExcludeAssets="runtime" />
+    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.4.1.7055" ExcludeAssets="runtime" />
   </ItemGroup>
 </Project>
