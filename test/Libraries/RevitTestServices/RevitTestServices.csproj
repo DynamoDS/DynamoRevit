@@ -51,7 +51,7 @@
     <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="AssemblySharedInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DynamoVisualProgramming.Tests" Version="3.4.1.7055" />
+    <PackageReference Include="DynamoVisualProgramming.Tests" Version="3.4.1.7055" ExcludeAssets="runtime" />
     <ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj">
       <Private>False</Private>
     </ProjectReference>

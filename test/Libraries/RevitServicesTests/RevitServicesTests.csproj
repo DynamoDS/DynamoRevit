@@ -69,6 +69,6 @@ limitations under the License.
     <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj">
       <Private>False</Private>
     </ProjectReference>
-    <PackageReference Include="DynamoVisualProgramming.Tests" Version="3.4.1.7055" />
+    <PackageReference Include="DynamoVisualProgramming.Tests" Version="3.4.1.7055" ExcludeAssets="runtime" />
   </ItemGroup>
 </Project>

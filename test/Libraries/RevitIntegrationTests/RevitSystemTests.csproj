@@ -51,32 +51,12 @@
     <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="Properties\AssemblySharedInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RevitTestServices\RevitTestServices.csproj" />
     <ProjectReference Include="$(SolutionDir)Libraries\RevitNodesUI\RevitNodesUI.csproj" />
     <ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj" />
     <ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj" />
     <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj" />
     <ProjectReference Include="..\RevitNodesTests\RevitNodesTests.csproj" />
-    <ProjectReference Include="$(SolutionDir)..\test\Libraries\RevitTestServices\RevitTestServices.csproj" />
-    <ProjectReference Include="$(SolutionDir)Libraries\RevitNodesUI\RevitNodesUI.csproj">
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj">
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj">
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj">
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\RevitNodesTests\RevitNodesTests.csproj">
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="$(SolutionDir)..\test\Libraries\RevitTestServices\RevitTestServices.csproj">
-      <Private>False</Private>
-    </ProjectReference>
-    <PackageReference Include="DynamoVisualProgramming.Tests" Version="3.4.1.7055" />
+    <PackageReference Include="DynamoVisualProgramming.Tests" Version="3.4.1.7055" ExcludeAssets="runtime" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RevitTestConfiguration.tt">
