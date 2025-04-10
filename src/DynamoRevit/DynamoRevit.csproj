@@ -99,8 +99,8 @@
     <Compile Remove="RevitSettings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.4.1.7055" ExcludeAssets="runtime" GeneratePathProperty="true" />
-    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="3.4.1.7055" ExcludeAssets="runtime" />
+    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.5.0.8297" ExcludeAssets="runtime" GeneratePathProperty="true" />
+    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="3.5.0.8297" ExcludeAssets="runtime" />
     <PackageReference Include="Greg" Version="3.0.0.3175" ExcludeAssets="runtime" />
     <PackageReference Include="GregRevitAuth" Version="2.0.8718.22924" />
     <PackageReference Include="pythonnet_py38_win" Version="2.5.1" ExcludeAssets="runtime" />

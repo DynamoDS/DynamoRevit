@@ -80,6 +80,6 @@
     <Compile Remove="New Node Samples\ElementId.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="3.4.1.7055" ExcludeAssets="runtime" />
+    <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="3.5.0.8297" ExcludeAssets="runtime" />
   </ItemGroup>
 </Project>

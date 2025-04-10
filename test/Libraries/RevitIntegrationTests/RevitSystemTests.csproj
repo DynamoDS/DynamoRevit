@@ -56,7 +56,7 @@
     <ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj" />
     <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj" />
     <ProjectReference Include="..\RevitNodesTests\RevitNodesTests.csproj" />
-    <PackageReference Include="DynamoVisualProgramming.Tests" Version="3.4.1.7055" ExcludeAssets="runtime" />
+    <PackageReference Include="DynamoVisualProgramming.Tests" Version="3.5.0.8297" ExcludeAssets="runtime" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RevitTestConfiguration.tt">
