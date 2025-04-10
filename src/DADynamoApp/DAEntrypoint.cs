@@ -135,7 +135,8 @@ namespace DADynamoApp
             cmdArgs.UserDataFolder = Path.Combine(dynTempDir, "Dynamo Revit");
             cmdArgs.CommonDataFolder = Path.Combine(dynTempDir, "Dynamo");
 
-            app.NewProjectDocument(Autodesk.Revit.DB.UnitSystem.Metric);
+            // Startup a new project, maybe an option we can have ?
+            //app.NewProjectDocument(Autodesk.Revit.DB.UnitSystem.Metric);
 
             DocumentManager.Instance.PrepareForAutomation(app);
 
