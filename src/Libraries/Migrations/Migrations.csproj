@@ -24,29 +24,13 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamoServices">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\netstandard2.0\DynamoServices.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="Properties\AssemblySharedInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="DynamoCore">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoCore.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoUnits">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\DynamoUnits.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUnits.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="RevitNodes\dynASMToRevit.cs" />
     <Compile Remove="RevitNodes\New Node Samples\SelectElement.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.5.0.8297" ExcludeAssets="runtime" />
   </ItemGroup>
 </Project>
