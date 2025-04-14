@@ -101,7 +101,7 @@ namespace RevitSystemTests
             Assert.AreEqual(31, model.CurrentWorkspace.Connectors.Count());
 
             //check PolyCurve.ByThickeningCurve
-            var polyCurveId = "8f42e859-9f88-4b4f-b1d8-d3a2841b8d14";
+            var polyCurveId = "07fd72a70bbf48408b3ab1e7778b82b5";
             AssertPreviewCount(polyCurveId, 4);
             for (int i = 0; i < 4; i++)
             {
