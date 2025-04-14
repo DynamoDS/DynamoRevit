@@ -9,7 +9,6 @@
     <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <PreBuildEvent>"$(SolutionDir)transform_all.bat" "$(ProjectDir)"</PreBuildEvent>
-    <OutputPath>bin\</OutputPath>
     <DebugSymbols>false</DebugSymbols>
     <DebugType>None</DebugType>
     <AssemblyTitle>AssemblyInfoGenerator</AssemblyTitle>

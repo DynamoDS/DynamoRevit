@@ -28,14 +28,15 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DynamoInstallDetective">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoInstallDetective.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoInstallDetective.dll</HintPath>
+    </Reference>
     <Reference Include="RevitAddinUtility">
       <HintPath>$(ProjectDir)\RevitAddinUtility.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="Properties\AssemblySharedInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.5.0.8297" ExcludeAssets="runtime" />
   </ItemGroup>
 </Project>
