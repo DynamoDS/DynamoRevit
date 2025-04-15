@@ -92,8 +92,8 @@ namespace Revit.Elements
             //Phase 2- There was no existing point, create one
             TransactionManager.Instance.EnsureInTransaction(Document);
 
-            var topo = TopographySurface.Create(document, points);
-            InternalSetTopographySurface(topo);
+            //var topo = TopographySurface.Create(document, points);
+            //InternalSetTopographySurface(topo);
 
             TransactionManager.Instance.TransactionTaskDone();
 
