@@ -1,3 +1,6 @@
+## 0.7.15
+* Added the Samples\Data folder from the Dynamo repo
+
 ## 0.7.14
 * Fix typo in Deploy.bat file in DynamoRevitUtils
 
