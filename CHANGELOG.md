@@ -1,3 +1,6 @@
+## 0.7.16
+* Update Dynamo Core to 3.5.0.8297
+
 ## 0.7.15
 * Added the Samples\Data folder from the Dynamo repo
 
