@@ -42,6 +42,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{956846
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DADynamoApp", "DADynamoApp\DADynamoApp.csproj", "{66A0E1C8-2514-48B7-8406-536983F57F88}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedUtilities", "SharedUtilities\SharedUtilities.shproj", "{BCFD5D77-45F8-41A4-B60C-582509B9262B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|NET80_DA = Debug|NET80_DA
@@ -79,5 +81,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {757AAA40-191F-4673-9B04-8270A3370BCA}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SharedUtilities\SharedUtilities.projitems*{bcfd5d77-45f8-41a4-b60c-582509b9262b}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
