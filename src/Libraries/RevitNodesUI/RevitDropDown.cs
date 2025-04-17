@@ -28,6 +28,10 @@ using System.Text.RegularExpressions;
 using RevitServices.Elements;
 using RevitServices.Transactions;
 
+#if DESIGN_AUTOMATION
+using DynamoRevitApp = DADynamoApp.DAEntrypoint;
+#endif
+
 namespace DSRevitNodesUI
 {
     public class DropDownItemEqualityComparer : IEqualityComparer<DynamoDropDownItem>
