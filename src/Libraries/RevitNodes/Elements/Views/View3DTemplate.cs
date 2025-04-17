@@ -39,7 +39,7 @@ namespace Revit.Elements.Views
         /// <summary>
         /// Create from existing Element
         /// </summary>
-        /// <param name="plan"></param>
+        /// <param name="view"></param>
         /// <param name="isRevitOwned"></param>
         /// <returns></returns>
         internal static View3DTemplate FromExisting(Autodesk.Revit.DB.View3D view, bool isRevitOwned)

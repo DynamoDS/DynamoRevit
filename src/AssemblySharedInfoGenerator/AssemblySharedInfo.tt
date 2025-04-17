@@ -12,6 +12,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © Autodesk, Inc 2017-2018")]
 [assembly: AssemblyTrademark("")]
 
+[assembly: System.Runtime.Versioning.SupportedOSPlatform("windows")]
+
 //In order to begin building localizable applications, set 
 //<UICulture>CultureYouAreCodingWith</UICulture> in your .csproj file
 //inside a <PropertyGroup>.  For example, if you are using US english
@@ -68,7 +70,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("<#= this.MajorVersion #>.<#= this.MinorVersion #>.<#= this.BuildNumber #>.<#= this.RevisionNumber #>")]
 <#+
 int MajorVersion = 3;
-int MinorVersion = 3;
-int BuildNumber = 0;
-int RevisionNumber = ((int)(DateTime.UtcNow - new DateTime(2023,1,1)).TotalDays)*10+((int)DateTime.UtcNow.Hour)/3;
+int MinorVersion = 4;
+int BuildNumber = 1;
+int RevisionNumber = ((int)(DateTime.UtcNow - new DateTime(2025,1,1)).TotalDays)*10+((int)DateTime.UtcNow.Hour)/3;
 #>

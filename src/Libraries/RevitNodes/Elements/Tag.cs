@@ -47,7 +47,7 @@ namespace Revit.Elements
         /// <param name="orientation"></param>
         /// <param name="mode"></param>
         /// <param name="addLeader"></param>
-        /// <param name="point"></param>
+        /// <param name="vector"></param>
         private Tag(
             Autodesk.Revit.DB.View view,
             Autodesk.Revit.DB.Element host,

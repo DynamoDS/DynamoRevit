@@ -1,67 +1,159 @@
-## 0.5.44
+## 0.7.16
+* Update Dynamo Core to 3.5.0.8297
+
+## 0.7.15
+* Added the Samples\Data folder from the Dynamo repo
+
+## 0.7.14
+* Fix typo in Deploy.bat file in DynamoRevitUtils
+
+## 0.7.13
+* Modify the Deploy.bat file in DynamoRevitUtils to include the Samples folder
+
+## 0.7.12
+* Move DynamoRevit sample scripts to DynamoRevit repo
+
+## 0.7.11
+* Update DynamoAllSelectionNodeTests_WithPreSelectedEntities test
+
+## 0.7.9
+* Reinstate SplashScreen
+
+## 0.7.8
+* Fix additional paths for loading assemblies (again)
+
+## 0.7.7
+* Fix additional paths for loading assemblies
+
+## 0.7.6
+* Add abbility for internal packages to specify additional paths for loading assemblies
+
+## 0.7.5
+* Change Host version to 2026 instead of 26 for package compatibility
+
+## 0.7.4
+* Add host product info for analytics
+
+## 0.7.3
+* Remove duplicate dll files
+
+## 0.7.2
+* Replace outdated decriptions
+
+## 0.7.1
+* Target for Revit Preview Release
+
+## 0.6.35
+* Load ASM from shared components path
+
+## 0.6.34
+* Update Dynamo Core to 3.4.1.7055
+* Rename Template files for filename localization
+* Fix warning in template file
+
+## 0.6.33
+* Update Node Migrations and one test after obsolete node removal
+
+## 0.6.32
+* update Dynamo Core to 3.4.0.6892
+
+## 0.6.31
+* remove obsolete nodes
+* Set the UI culture back to default after dynamo is closed
+
+## 0.6.30
+* Update Dynamo Core to 3.4.0-beta6752
+* Move D4R content to en-US folders
+
+## 0.6.29
+* Disable Dynamo Splashscreen for Revit 2026
+* Update FilterRule.ByRuleType node to not use deprecated functions
+* Update Dynamo Core to 3.4.0-beta6616
+* Remove python runtime dependency
+
+## 0.6.27
 * Update Dynamo Core to 3.3.0.6316
+* Add node documentation: Parameter, Element, Room, Material, Views 
 
-## 0.5.43
-* Update Dynamo Core to 3.2.2.5494
+## 0.6.26
+* Use new function to get translated string of Warning Severity
 
-## 0.5.42
-* Fix Roof.Points raising an invalid argument exception by adding a wrapper over RoofBase Revit class to Roof D4R class
-* Add extra protection in FilterRule.ByRuleType node to prevent invalid data type casting in Revit
-* Improved FilterRule.ByRuleType node to use the same data type for the value and the parameter value that it takes as input
+## 0.6.25
+* update Dynamo Core to 3.2.2
 
-## 0.5.41
-* change D4R content publishing
+## 0.6.24
+* Fix Roof.Points raising an invalid argument exception by adding a wrapper over RoofBase Revit class to Roof D4R class 
 
-## 0.5.40
-* update Dynamo to published 3.2.1.5366
-* add Sample Template files
+## 0.6.23
+* Add OOTB template files for Revit 2026+ as well
 
-## 0.5.39
-* Update Dynamo to 3.2.1
-* Update RevitGregAuth
+## 0.6.22
+* Update Dynamo to 3.2.1 and RevitGregAuth
 
-## 0.5.38
-* Update D4R to 3.2.0
-* Update Greg to 2.0.1
+## 0.6.21
+* Add the support of the subelement and its parameters.
 
-## 0.5.37
-* Update D4R minor version to 3.1
+## 0.6.20
+* Update Dynamo to 3.2.0
 
-## 0.5.36
-* Integrate Dynamo Core 3.1 in Revit 2025.2
+## 0.6.19
+* Fix regression test for FamilyInstance.ByGeometry node
 
-## 0.5.35
+## 0.6.18
 * Fix regression on FamilyInstance.ByGeometry node
 
-## 0.5.33
-* Version *.customization.dll files with number from other output binary
+## 0.6.17
+* Version back DynamoRevit to 3.1
 
-## 0.5.32
-* Update DynamoRevit versioning to 3.0.3
+## 0.6.16
+* Improved FilterRule.ByRuleType node to use the same data type for the value and the parameter value that it takes as input
 
-## 0.5.31
+## 0.6.15
+* Update Dynamo Core to 3.1.0
+* Update DynamoRevit version to 2026.0.0
+
+## 0.6.14
+* Add extra protection in FilterRule.ByRuleType node to prevent invalid data type casting in Revit
+
+## 0.6.13
+* Fix CurtainPanel.ByElements displaying invalid ElementIds when Curtain Panels have their types changed to a different wall
+
+## 0.6.12
+* Fix CurtainPanel.ByElements failing to return when there is a door or window present in the curtain wall
+
+## 0.6.11
+* Update Dynamo Core to 3.0.4.7905
+
+## 0.6.10
+* Fix Dynamo not loading due to Python engine errors
+
+## 0.6.9
 * Update Dynamo Core to 3.0.3.7597
 
-## 0.5.30
+## 0.6.8
+* Fix 3 broken DynamoRevit tests
+
+## 0.6.7
 * Fix a couple of regression tests
 
-## 0.5.29
+## 0.6.6
 * Update DynamoRevit versioning to 3.0.2
 
-## 0.5.28
+## 0.6.5
 * Update Dynamo Core to 3.0.2.7476
 
-## 0.5.27
-* Build with signed binaries (including for addin)
+## 0.6.4
+* Update sign files (internal process) - no actual changes here
 
-## 0.5.26
-* Build with signed binaries
-
-## 0.5.25
+## 0.6.2
 * Fix two failed tests
 
-## 0.5.24
+## 0.6.1
+* Target for Revit 2026
 * Update GregRevitAuth to 2.0.8776.26607
+
+## 0.5.24
+* Fixed build warnings in master branch
 
 ## 0.5.23
 * RC for Revit2025

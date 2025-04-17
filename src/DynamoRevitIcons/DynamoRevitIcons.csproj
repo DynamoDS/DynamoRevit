@@ -20,7 +20,7 @@
 	<PropertyGroup>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 	</PropertyGroup>
-	<ItemGroup Condition="$(Platform.Contains('NET'))">
+	<ItemGroup>
 		<PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
 	</ItemGroup>
 	<Target Name="BeforeBuildMigrated" BeforeTargets="PreBuildEvent">
@@ -29,6 +29,7 @@
 		</GetReferenceAssemblyPaths>
 		<GetAssemblyIdentity
         AssemblyFiles="$(OutputPath)AssemblyInfoGenerator.dll">
+		  AssemblyFiles="$(OutputPath)AssemblyInfoGenerator.dll">
 			<Output
 				TaskParameter="Assemblies"
 				ItemName="MyAssemblyIdentities"/>
@@ -37,6 +38,9 @@
 		<AL TargetType="library" EmbedResources="$(ProjectDir)RevitNodesImages.resources" FileVersion="%(MyAssemblyIdentities.Version)" ProductName="Dynamo For Revit Preview Release" ProductVersion="%(MyAssemblyIdentities.Version)" Copyright="Copyright © Autodesk, Inc 2024" OutputAssembly="$(OutputPath)RevitNodes.customization.dll" />
 		<GenerateResource SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" UseSourcePath="true" Sources="$(ProjectDir)DSRevitNodesUIImages.resx" OutputResources="$(ProjectDir)DSRevitNodesUIImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
 		<AL TargetType="library" EmbedResources="$(ProjectDir)DSRevitNodesUIImages.resources" FileVersion="%(MyAssemblyIdentities.Version)" ProductName="Dynamo For Revit Preview Release" ProductVersion="%(MyAssemblyIdentities.Version)" Copyright="Copyright © Autodesk, Inc 2024" OutputAssembly="$(OutputPath)DSRevitNodesUI.customization.dll" />
+		<AL TargetType="library" EmbedResources="$(ProjectDir)RevitNodesImages.resources" FileVersion="%(MyAssemblyIdentities.Version)" ProductName="Dynamo For Revit Preview Release" ProductVersion="%(MyAssemblyIdentities.Version)" Copyright="Copyright © Autodesk, Inc 2025" OutputAssembly="$(OutputPath)RevitNodes.customization.dll" />
+		<GenerateResource SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" UseSourcePath="true" Sources="$(ProjectDir)DSRevitNodesUIImages.resx" OutputResources="$(ProjectDir)DSRevitNodesUIImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
+		<AL TargetType="library" EmbedResources="$(ProjectDir)DSRevitNodesUIImages.resources" FileVersion="%(MyAssemblyIdentities.Version)" ProductName="Dynamo For Revit Preview Release" ProductVersion="%(MyAssemblyIdentities.Version)" Copyright="Copyright © Autodesk, Inc 2025" OutputAssembly="$(OutputPath)DSRevitNodesUI.customization.dll" />
 	</Target>
 	<Target Name="AfterBuildMigrated" AfterTargets="PostBuildEvent">
 		<ItemGroup>

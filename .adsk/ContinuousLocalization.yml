@@ -26,5 +26,6 @@ common:
       content_owner: N/A
       lang: [csy, deu, esp, fra, ita, jpn, kor, plk, ptb, rus, chs, cht]
       file_rules:
-        - doc\distrib\NodeHelpFiles\*.md, doc\distrib\NodeHelpFiles\%langMsNet%\*.md
-        - doc\distrib\Templates\*.dyn, doc\distrib\Templates\%langMsNet%\*.dyn
+        - doc\distrib\NodeHelpFiles\en-US\fallback_docs\*.md, doc\distrib\NodeHelpFiles\%langMsNet%\fallback_docs\*.md
+        - doc\distrib\Templates\en-US\*.dyn, doc\distrib\Templates\%langMsNet%\*.dyn
+        - doc\distrib\Templates\en-US\filenames.json, doc\distrib\Templates\%langMsNet%\filenames.json

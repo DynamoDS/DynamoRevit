@@ -18,6 +18,7 @@ namespace RevitNodesTests.GeometryConversion
     {
         [Test]
         [TestModel(@".\topography.rvt")]
+#pragma warning disable CS0618 // Type or member is obsolete
         public void ToProtoType_ShouldReturnCorrectlyScaledMesh()
         {
             var allMeshesInDoc =
@@ -47,5 +48,6 @@ namespace RevitNodesTests.GeometryConversion
 
             convertedMesh.Dispose();
         }
+#pragma warning restore CS0618
     }
 }

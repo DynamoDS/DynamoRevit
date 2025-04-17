@@ -3,13 +3,13 @@
     <Import Project="$(SolutionDir)Config\CS_SDK.props" />
   </ImportGroup>
   <PropertyGroup>
-	  <OutputType>Library</OutputType>
+    <OutputType>Library</OutputType>
     <TransformOnBuild>true</TransformOnBuild>
     <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
     <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <PreBuildEvent>"$(SolutionDir)transform_all.bat" "$(ProjectDir)"</PreBuildEvent>
-	<DebugSymbols>false</DebugSymbols>
+    <DebugSymbols>false</DebugSymbols>
     <DebugType>None</DebugType>
     <AssemblyTitle>AssemblyInfoGenerator</AssemblyTitle>
   </PropertyGroup>
@@ -20,7 +20,20 @@
     <Exec Command="&quot;$(SolutionDir)restorepackages.bat&quot;" ContinueOnError="true" />
   </Target>
   <ItemGroup>
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <None Update="AssemblySharedInfo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblySharedInfo.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="AssemblySharedInfo.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AssemblySharedInfo.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
     <ItemGroup>
 	    <None Update="AssemblySharedInfo.tt">

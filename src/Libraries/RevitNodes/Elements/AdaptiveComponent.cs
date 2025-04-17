@@ -334,7 +334,7 @@ namespace Revit.Elements
         }
 
         [IsVisibleInDynamoLibrary(false)]
-        public static AdaptiveComponent ByParametersOnFace(Autodesk.DesignScript.Geometry.UV[] uvs, ElementFaceReference faceReference, FamilyType familyType)
+        internal static AdaptiveComponent ByParametersOnFace(Autodesk.DesignScript.Geometry.UV[] uvs, ElementFaceReference faceReference, FamilyType familyType)
         {
             if (uvs == null)
             {

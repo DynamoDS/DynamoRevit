@@ -1,0 +1,194 @@
+{
+  "Uuid": "aee56fe3-52dc-4390-bd32-3258defee624",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.View.SetDiscipline",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ViewDisciplines, DSRevitNodesUI",
+      "SelectedIndex": 1,
+      "SelectedString": "Coordination",
+      "Id": "0274999f63274abf9df960c62c181c0c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "84b95a0f1ec74d24a45a3c3fc7b2dabf",
+          "Name": "Discipline",
+          "Description": "The selected Discipline",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "View Discipline."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "0649443ef0e14569bbf283beb3c76d69",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "bc7c71070bb14cbc81d5479f4cb30a82",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ffd74c86438d4a7f987cecb32564e7f5",
+          "Name": "discipline",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "776077fa6f114c67a1e9a69e097478e0",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View.SetDiscipline@string",
+      "Replication": "Auto",
+      "Description": "Set Discipline of View.\n\nView.SetDiscipline (discipline: string): View"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "{3D}",
+      "Id": "ee0cdeb53f924149be65f81edc1099d8",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0d17586d19f0469abcec03c91b33eb83",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "84b95a0f1ec74d24a45a3c3fc7b2dabf",
+      "End": "ffd74c86438d4a7f987cecb32564e7f5",
+      "Id": "2d2d884f8bd641bc8cdaf47a90a3e9af",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0d17586d19f0469abcec03c91b33eb83",
+      "End": "bc7c71070bb14cbc81d5479f4cb30a82",
+      "Id": "ce2efa86930a42aeb73d1461ea534737",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "0274999f63274abf9df960c62c181c0c",
+        "Name": "View Disciplines",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 503.5999999999999,
+        "Y": 262.80000000000007
+      },
+      {
+        "Id": "0649443ef0e14569bbf283beb3c76d69",
+        "Name": "View.SetDiscipline",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 846.0,
+        "Y": 127.00000000000003
+      },
+      {
+        "Id": "ee0cdeb53f924149be65f81edc1099d8",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 503.5999999999999,
+        "Y": 70.00000000000003
+      }
+    ],
+    "Annotations": [],
+    "X": -392.74325857467124,
+    "Y": 41.412341288341935,
+    "Zoom": 1.7433199287549712
+  }
+}

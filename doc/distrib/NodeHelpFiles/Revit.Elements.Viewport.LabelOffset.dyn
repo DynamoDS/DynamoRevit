@@ -1,0 +1,255 @@
+{
+  "Uuid": "ba92fac8-180f-4280-b675-5bad01e9fb04",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Viewport.LabelOffset",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Sheets, DSRevitNodesUI",
+      "SelectedIndex": 53,
+      "SelectedString": "Wall Sections",
+      "Id": "293f9659f2654fc7ab7bf313fd294514",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "416d10f6ff4d4dde8c881eaa6f8536a8",
+          "Name": "Sheet",
+          "Description": "The selected Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All sheets available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b143dceff10b4b078bed355a3ef1a2c4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "84513a913d694756a6ff3092b6ed0f06",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ae2b5a53ec5b4a0884022e9812f962c9",
+          "Name": "Viewport[]",
+          "Description": "Viewport[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.Sheet.Viewports",
+      "Replication": "Auto",
+      "Description": "Get Viewports from a given sheet\n\nSheet.Viewports: Viewport[]"
+    },
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 200.0,
+      "WatchHeight": 200.0,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "ea4a3437-01c8-439e-88af-43e22ac96d6c Preview",
+        "EyeX": 0.12174127250909805,
+        "EyeY": 0.21498513221740723,
+        "EyeZ": 0.08040176331996918,
+        "LookX": -0.019710689783096313,
+        "LookY": -0.18380852043628693,
+        "LookZ": -0.07849302142858505,
+        "UpX": -0.2229040116071701,
+        "UpY": 0.40296444296836853,
+        "UpZ": -0.8876560926437378
+      },
+      "VariableInputPorts": true,
+      "Id": "ea4a343701c8439e88af43e22ac96d6c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "0b6663a93b474dcfb12a04bafab6df18",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5c7121b9b33b45208f11d6d8471a0377",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "42d0d930c823495baafbc710766598fb",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "cb7752d7bd74433f82f0bbf01785e3ad",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e69e5147eeec443f9302b6bfab340ed7",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Viewport.LabelOffset",
+      "Replication": "Auto",
+      "Description": "The offset is a two-dimensional vector from left bottom corner of the viewport with Rotation set to None to the left end of the viewport label line. The Z coordinate is ignored.\n\nViewport.LabelOffset: Point"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "416d10f6ff4d4dde8c881eaa6f8536a8",
+      "End": "84513a913d694756a6ff3092b6ed0f06",
+      "Id": "5592710c748b48c2a7dda0fc543a7c58",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ae2b5a53ec5b4a0884022e9812f962c9",
+      "End": "cb7752d7bd74433f82f0bbf01785e3ad",
+      "Id": "6cb9a1f2ad634855b9cb8369384d1b4b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e69e5147eeec443f9302b6bfab340ed7",
+      "End": "0b6663a93b474dcfb12a04bafab6df18",
+      "Id": "43eef9d85abc4dc59794e8f8c7ac6b80",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": 4.685993194580078,
+      "EyeY": -4.510719299316406,
+      "EyeZ": 49.8151969909668,
+      "LookX": -9.685993194580078,
+      "LookY": 15.510719299316406,
+      "LookZ": -57.8151969909668,
+      "UpX": 0.07552672177553177,
+      "UpY": 0.8894164562225342,
+      "UpZ": 0.4508149027824402
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "293f9659f2654fc7ab7bf313fd294514",
+        "Name": "Sheets",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 216.80000000000013,
+        "Y": 254.39999999999992
+      },
+      {
+        "Id": "b143dceff10b4b078bed355a3ef1a2c4",
+        "Name": "Sheet.Viewports",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 537.2,
+        "Y": 254.39999999999992
+      },
+      {
+        "Id": "ea4a343701c8439e88af43e22ac96d6c",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1211.1913068919387,
+        "Y": 254.39999999999992
+      },
+      {
+        "Id": "42d0d930c823495baafbc710766598fb",
+        "Name": "Viewport.LabelOffset",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 864.7999999999998,
+        "Y": 254.39999999999992
+      }
+    ],
+    "Annotations": [],
+    "X": -469.7365770393934,
+    "Y": -97.69018639920569,
+    "Zoom": 1.5729902778085953
+  }
+}

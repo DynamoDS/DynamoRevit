@@ -1,0 +1,302 @@
+{
+  "Uuid": "17ad6046-976a-4d39-aa93-76629e74ff14",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.ReferencePoint.ByPoint",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "ee7d5e4db23d4e63a23a88bf78b1cdff",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "69d592bfd2e0452d962d795abdf47d18",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "39948161d50543b1baafb112f32593a4",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f344656af5614d4cbd8ebfca46c2f385",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "515120e585214b6a9f985f723225ca07",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "668d915713464ff1afb678ce8cd7b3a7",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 1.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "48c2daea2b1440c0a65c160945a531ed",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "12a0a8cb7a534ff797b5477dad01c85b",
+          "Name": "pt",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3283c648a4284a969b0b9c2a88d4a1e2",
+          "Name": "ReferencePoint",
+          "Description": "ReferencePoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.ReferencePoint.ByPoint@Autodesk.DesignScript.Geometry.Point",
+      "Replication": "Auto",
+      "Description": "Create a Reference Point from a point.\n\nReferencePoint.ByPoint (pt: Point): ReferencePoint"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3d731fb77a7843efb06250c742ae3104",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "040ab5419d7d480fb8cdc0083e03a0b4",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2dbaa1badf0a489bb37d60ef24180db2",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c68686979d9f48ceacabb191df025254",
+          "Name": "z",
+          "Description": "Z coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "74eb7f2806394e6aa1c6b74e743f68a6",
+          "Name": "Point",
+          "Description": "Point created by coordinates",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double",
+      "Replication": "Auto",
+      "Description": "Form a Point given 3 cartesian coordinates\n\nPoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Point"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "69d592bfd2e0452d962d795abdf47d18",
+      "End": "040ab5419d7d480fb8cdc0083e03a0b4",
+      "Id": "215d1559427540dd91dac026bae1f1a4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f344656af5614d4cbd8ebfca46c2f385",
+      "End": "2dbaa1badf0a489bb37d60ef24180db2",
+      "Id": "261b7ff09aa044029d9ef9732014388c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "668d915713464ff1afb678ce8cd7b3a7",
+      "End": "c68686979d9f48ceacabb191df025254",
+      "Id": "dfe4cc0fff984479b06c642062cebcc9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "74eb7f2806394e6aa1c6b74e743f68a6",
+      "End": "12a0a8cb7a534ff797b5477dad01c85b",
+      "Id": "7f8c83a36174465b9beb58358e9334c4",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.3",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.2",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "48c2daea-2b14-40c0-a65c-160945a531ed",
+      "Binding": {
+        "ByPoint_InClassDecl-1_InFunctionScope-1_Instance0_48c2daea-2b14-40c0-a65c-160945a531ed": "H4sIAAAAAAAACh3LKw6AMBAFwLs8zSb9UPrRGDSSRZSlIRgEqWu4O4TxszTsuWYkNMZc7/M6ppGRGJvsvhRxJNkJ9TpoCiobUrHIoDax1lhSH91Hz+gY01X/64zXD571BXaJyF9cAAAA"
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.3.0.6316",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "ee7d5e4db23d4e63a23a88bf78b1cdff",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 173.93146786215323,
+        "Y": 311.80871302536696
+      },
+      {
+        "Id": "39948161d50543b1baafb112f32593a4",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 173.93146786215323,
+        "Y": 458.80871302536696
+      },
+      {
+        "Id": "515120e585214b6a9f985f723225ca07",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 173.93146786215323,
+        "Y": 605.808713025367
+      },
+      {
+        "Id": "48c2daea2b1440c0a65c160945a531ed",
+        "Name": "ReferencePoint.ByPoint",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 947.5314678621532,
+        "Y": 424.80871302536696
+      },
+      {
+        "Id": "3d731fb77a7843efb06250c742ae3104",
+        "Name": "Point.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 622.7314678621533,
+        "Y": 424.80871302536696
+      }
+    ],
+    "Annotations": [],
+    "X": 314.3732514163247,
+    "Y": -57.04938332132792,
+    "Zoom": 0.867977507649016
+  }
+}

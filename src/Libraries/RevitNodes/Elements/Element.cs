@@ -1002,7 +1002,7 @@ namespace Revit.Elements
         }
         #endregion
 
-        #region Get Parent Elemnt
+        #region Get Parent Element
         /// <summary>
         /// Gets the parent element of the Element.
         /// </summary>
@@ -1338,6 +1338,22 @@ namespace Revit.Elements
             return materialnames;
         }
 
+        #endregion
+
+        #region Subelement
+        /// <summary>
+        /// Obtain all of the Subelements from an Element.
+        /// </summary>
+        public Subelement[] Subelements
+        {
+            get
+            {
+                return
+                    InternalElement.GetSubelements().Cast<Autodesk.Revit.DB.Subelement>()
+                        .Select(x => new Subelement(x))
+                        .ToArray();
+            }
+        }
         #endregion
     }
 }

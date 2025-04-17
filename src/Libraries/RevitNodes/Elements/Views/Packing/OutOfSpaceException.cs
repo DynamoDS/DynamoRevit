@@ -47,18 +47,18 @@ namespace Nuclex.Game.Packing
         /// <param name="inner">Preceding exception that has caused this exception</param>
         public OutOfSpaceException(string message, Exception inner) : base(message, inner) { }
 
-#if !NO_SERIALIZATION
+//#if !NO_SERIALIZATION
 
-        /// <summary>Initializes the exception from its serialized state</summary>
-        /// <param name="info">Contains the serialized fields of the exception</param>
-        /// <param name="context">Additional environmental informations</param>
-        protected OutOfSpaceException(
-          System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context
-        ) :
-            base(info, context) { }
+//        /// <summary>Initializes the exception from its serialized state</summary>
+//        /// <param name="info">Contains the serialized fields of the exception</param>
+//        /// <param name="context">Additional environmental informations</param>
+//        protected OutOfSpaceException(
+//          System.Runtime.Serialization.SerializationInfo info,
+//          System.Runtime.Serialization.StreamingContext context
+//        ) :
+//            base(info, context) { }
 
-#endif
+//#endif
 
     }
 

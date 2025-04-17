@@ -91,7 +91,7 @@ namespace Revit.Filter
                 Type parameterType = Revit.Elements.InternalUtilities.ElementUtils.GetParameterType(parameter);
                 convertedValue = Convert.ChangeType(value, parameterType);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new ApplicationException(Properties.Resources.InputValueParameterValueTypeMismatch);
             }        
@@ -127,10 +127,10 @@ namespace Revit.Filter
                 }
                 else if (convertedValue.GetType() == typeof(string))
                 {
-                    System.Reflection.MethodInfo methodInfo = typeof(ParameterFilterRuleFactory).GetMethod(methodname, new[] { typeof(ElementId), typeof(string), typeof(bool) });
+                    System.Reflection.MethodInfo methodInfo = typeof(ParameterFilterRuleFactory).GetMethod(methodname, new[] { typeof(ElementId), typeof(string) });
                     if (methodInfo != null)
                     {
-                        return new FilterRule((Autodesk.Revit.DB.FilterRule)methodInfo.Invoke(null, new object[] { parameterId, (string)convertedValue, true }));
+                        return new FilterRule((Autodesk.Revit.DB.FilterRule)methodInfo.Invoke(null, new object[] { parameterId, (string)convertedValue }));
                     }
                 }
             }

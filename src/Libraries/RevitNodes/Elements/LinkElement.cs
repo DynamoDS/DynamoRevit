@@ -207,7 +207,7 @@ namespace Revit.Elements
                                             geoSet.Add(protoSolid);
                                         }
                                     }
-                                    catch (Exception ex) { }
+                                    catch (Exception) { }
                                 }
                             }
                             else if (geo is Autodesk.Revit.DB.Curve)

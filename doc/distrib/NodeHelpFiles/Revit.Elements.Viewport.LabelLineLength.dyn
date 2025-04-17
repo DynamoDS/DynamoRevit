@@ -1,0 +1,194 @@
+{
+  "Uuid": "ba92fac8-180f-4280-b675-5bad01e9fb04",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Viewport.LabelLineLength",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Sheets, DSRevitNodesUI",
+      "SelectedIndex": 53,
+      "SelectedString": "Wall Sections",
+      "Id": "293f9659f2654fc7ab7bf313fd294514",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "416d10f6ff4d4dde8c881eaa6f8536a8",
+          "Name": "Sheet",
+          "Description": "The selected Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All sheets available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b143dceff10b4b078bed355a3ef1a2c4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "84513a913d694756a6ff3092b6ed0f06",
+          "Name": "sheet",
+          "Description": "Revit.Elements.Views.Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ae2b5a53ec5b4a0884022e9812f962c9",
+          "Name": "Viewport[]",
+          "Description": "Viewport[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.Sheet.Viewports",
+      "Replication": "Auto",
+      "Description": "Get Viewports from a given sheet\n\nSheet.Viewports: Viewport[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "942f8ac0e2584455a4fae62d3e57113d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "06e98f37d2f74f19a1ac0f3a8468bf5f",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "74de9f6ac0be4d17a32d66819a7771b0",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Viewport.LabelLineLength",
+      "Replication": "Auto",
+      "Description": "The length of the viewport label line in sheet space, measured in feet.\n\nViewport.LabelLineLength: double"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "416d10f6ff4d4dde8c881eaa6f8536a8",
+      "End": "84513a913d694756a6ff3092b6ed0f06",
+      "Id": "b50d4703ecce41629bf0d0d88fdb70de",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ae2b5a53ec5b4a0884022e9812f962c9",
+      "End": "06e98f37d2f74f19a1ac0f3a8468bf5f",
+      "Id": "5e2500d7be984d96a5f902a3d6f4e506",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.2",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "8.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.2.1.5366",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": 5.165637969970703,
+      "EyeY": 10.774824142456055,
+      "EyeZ": 4.310678005218506,
+      "LookX": 0.874394416809082,
+      "LookY": -8.773530960083008,
+      "LookZ": -5.590611934661865,
+      "UpX": 0.10888437926769257,
+      "UpY": 0.7095710039138794,
+      "UpZ": -0.6961703896522522
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "293f9659f2654fc7ab7bf313fd294514",
+        "Name": "Sheets",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -146.4352309651461,
+        "Y": 297.02980087430194
+      },
+      {
+        "Id": "b143dceff10b4b078bed355a3ef1a2c4",
+        "Name": "Sheet.Viewports",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 149.03261342599535,
+        "Y": 297.02980087430194
+      },
+      {
+        "Id": "942f8ac0e2584455a4fae62d3e57113d",
+        "Name": "Viewport.LabelLineLength",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 440.357663475246,
+        "Y": 297.02980087430194
+      }
+    ],
+    "Annotations": [],
+    "X": 375.599550232184,
+    "Y": -174.20175104610797,
+    "Zoom": 1.0807429238491724
+  }
+}
