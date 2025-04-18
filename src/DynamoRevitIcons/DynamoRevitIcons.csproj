@@ -28,7 +28,7 @@
 			<Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
 		</GetReferenceAssemblyPaths>
 		<GetAssemblyIdentity
-        AssemblyFiles="C:\rmWorkspace\github\DynamoRevit\bin\NET80\Debug\Revit\AssemblyInfoGenerator.dll">
+        AssemblyFiles="E:\rmWorkspace\GitHub\DynamoRevit\bin\NET80\Debug\Revit\AssemblyInfoGenerator.dll">
 			<Output
 				TaskParameter="Assemblies"
 				ItemName="MyAssemblyIdentities"/>
