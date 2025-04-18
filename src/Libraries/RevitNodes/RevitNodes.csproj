@@ -42,14 +42,6 @@
       <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoServices.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitAPI">
-      <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI">
-      <HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="ProtoGeometry">
       <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\ProtoGeometry.dll</HintPath>
       <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\ProtoGeometry.dll</HintPath>
@@ -89,6 +81,12 @@
       <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\DynamoUnits.dll</HintPath>
       <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUnits.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPI">
+      <HintPath>..\..\..\lib\Revit Preview Release\net48\RevitAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>..\..\..\lib\Revit Preview Release\net48\RevitAPIUI.dll</HintPath>
     </Reference>
     <ProjectReference Include="..\RevitServices\RevitServices.csproj" />
   </ItemGroup>

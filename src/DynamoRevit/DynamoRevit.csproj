@@ -44,10 +44,7 @@
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <Target Name="AfterBuildMigrated" AfterTargets="PostBuildEvent">
-    <WriteLinesToFile Condition="!Exists('$(OutputPath)/../Dynamo.config')"
-           File="$(OutputPath)/../Dynamo.config"
-           Lines="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;configuration&gt;&#xD;&#xA;  &lt;appSettings&gt;&#xD;&#xA;     &lt;add key=&quot;DynamoRuntime&quot; value=&quot;$(DYNAMOAPI)&quot;/&gt;&#xD;&#xA;  &lt;/appSettings&gt;&#xD;&#xA;&lt;/configuration&gt;&#xD;&#xA;"
-           Overwrite="true" />
+    <WriteLinesToFile Condition="!Exists('$(OutputPath)/../Dynamo.config')" File="$(OutputPath)/../Dynamo.config" Lines="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;configuration&gt;&#xD;&#xA;  &lt;appSettings&gt;&#xD;&#xA;     &lt;add key=&quot;DynamoRuntime&quot; value=&quot;$(DYNAMOAPI)&quot;/&gt;&#xD;&#xA;  &lt;/appSettings&gt;&#xD;&#xA;&lt;/configuration&gt;&#xD;&#xA;" Overwrite="true" />
   </Target>
   <ItemGroup>
     <Reference Include="DynamoApplications">
@@ -75,14 +72,6 @@
     <Reference Include="ProtoGeometry">
       <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)') ">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\ProtoGeometry.dll</HintPath>
       <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)') ">$(DYNAMOBUILDPATH)\ProtoGeometry.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI">
-      <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI">
-      <HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -140,6 +129,12 @@
       <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoInstallDetective.dll</HintPath>
       <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoInstallDetective.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPI">
+      <HintPath>..\..\lib\Revit Preview Release\net48\RevitAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>..\..\lib\Revit Preview Release\net48\RevitAPIUI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

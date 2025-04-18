@@ -48,8 +48,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
-      <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\lib\Revit Preview Release\net48\RevitAPI.dll</HintPath>
     </Reference>
     <Reference Include="RevitTestFrameworkTypes">
       <HintPath>$(DynamoExternPath)\RevitTestFramework\RevitTestFrameworkTypes.dll</HintPath>
