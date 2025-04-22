@@ -1,3 +1,6 @@
+## 0.7.17
+* Update Dynamo Tests by adding more verifications or by deleting useless data
+
 ## 0.7.16
 * Update Dynamo Core to 3.5.0.8297
 
