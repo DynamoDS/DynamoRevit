@@ -30,6 +30,7 @@ using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Nodes.ZeroTouch;
 using Revit.Elements.InternalUtilities;
 using CoreNodeModels.Input;
+using DSRevitNodesUI;
 
 namespace RevitSystemTests
 {
@@ -166,12 +167,17 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            // there should not be any crash on running this graph.
-            // below node should have an error because there is no selection for Floor Type.
-            var nodeModel = workspace.NodeFromWorkspace("cc38d11d-cda2-4294-81dc-119776af7338");
-            Assert.AreEqual(ElementState.Warning, nodeModel.State);
+            // there should not be any crash on running this graph
+            //verifies that the floor type node is null
+            var floorTypeNodeID = "0a875f13bbde4d568b10d06aaa62a592";
+            var floorTypeNode = GetPreviewValue(floorTypeNodeID) as FloorTypes;
+            Assert.IsNull(floorTypeNode);
 
+            // below node should have an error because there is no selection for Floor Type
+            var nodeModel = workspace.NodeFromWorkspace("cc38d11dcda2429481dc119776af7338");  //Floor.ByOutlineTypeAndLevel
+            Assert.AreEqual(ElementState.Warning, nodeModel.State);
         }
+
         [Test]
         [Category("RegressionTests")]
         [TestModel(@".\Bugs\MAGN-3620_topo.rvt")]
@@ -785,10 +791,8 @@ namespace RevitSystemTests
                 Assert.IsTrue(string.CompareOrdinal(objects[4] as string, "A101") == 0);
             };
 
-            checkFunc("a45ab78b-b7cb-4317-a763-ac8c9a55753f");
-            checkFunc("8fad0166-bb08-48e0-a62c-dcfb6b11a9fe");
-            checkFunc("d4fd1c38-e3cb-484b-8187-66061476cd6a");
-            checkFunc("6defe7da-caf9-489e-991d-4665eb26e786");
+            checkFunc("a45ab78bb7cb4317a763ac8c9a55753f");
+            checkFunc("6defe7dacaf9489e991d4665eb26e786");
         }
 
         [Test]

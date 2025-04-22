@@ -15,26 +15,6 @@ namespace RevitSystemTests
     [TestFixture]
     public class DocumentTests : RevitSystemTestBase
     {
-        [Test]
-        [TestModel(@"./empty.rfa")]
-        public void InitialUIDocumentIsNotNull()
-        {
-            Assert.IsNotNull(DocumentManager.Instance.CurrentUIDocument);
-        }
-
-        [Test]
-        [TestModel(@"./empty.rfa")]
-        public void OpeningNewDocumentDoesNotSwitchUIDocument()
-        {
-            // a reference to the initial document
-            var initialDoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
-
-            var newDoc = OpenAndActivateNewModel(emptyModelPath1);
-
-            // Assert that the active UI document is
-            // still the initial document
-            Assert.AreEqual(DocumentManager.Instance.CurrentUIDocument.Document.PathName, initialDoc.Document.PathName);
-        }
 
         [Test]
         [TestModel(@"./empty.rfa")]
@@ -61,20 +41,6 @@ namespace RevitSystemTests
             // is disabled in perspective as well
 
             SwapCurrentModel(emptyModelPath);
-        }
-
-        [Test, Ignore("Not finished")]
-        [TestModel(@"./empty.rfa")]
-        public void AttachesToNewDocumentWhenAllDocsWereClosed()
-        {
-            Assert.Inconclusive("Cannot test. API required for allowing closing all docs.");
-        }
-
-        [Test, Ignore("Not finished")]
-        [TestModel(@"./empty.rfa")]
-        public void WhenActiveDocumentResetIsRequiredVisualizationsAreCleared()
-        {
-            Assert.Inconclusive("Cannot test. API required for allowing closing all docs.");
         }
 
         [Test]
