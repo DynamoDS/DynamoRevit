@@ -162,17 +162,20 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
-            
-            //now flip the switch for setting the pinned status to true
-            var boolNode = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is CoreNodeModels.Input.BoolSelector).First();
-            bool boolNodeValue = true;
-            ((CoreNodeModels.Input.BasicInteractive<bool>)boolNode).Value = boolNodeValue;
 
+            //the script is has the boolean set to true
+            //so after running the script the element should be pinned
+            bool firstRunPinnedStatus = elem.InternalElement.Pinned;
+            Assert.AreEqual(true, firstRunPinnedStatus);
+
+            //now flip the switch for setting the pinned status to false
+            var boolNode = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is CoreNodeModels.Input.BoolSelector).First();
+            bool boolNodeValue = false;
+            ((CoreNodeModels.Input.BasicInteractive<bool>)boolNode).Value = boolNodeValue;
             RunCurrentModel();
-            bool newPinnedStatus = elem.InternalElement.Pinned;
-            Assert.AreNotEqual(originalPinnedStatus, newPinnedStatus);
-            Assert.AreEqual(boolNodeValue, newPinnedStatus);
-            
+
+            bool secondRunPinnedStatus = elem.InternalElement.Pinned;
+            Assert.AreEqual(false, secondRunPinnedStatus);   
         }
 
         [Test]
