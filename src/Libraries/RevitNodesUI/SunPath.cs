@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
-
+#if !DESIGN_AUTOMATION
 using Autodesk.Revit.UI.Events;
-
+#endif
 using Dynamo.Applications;
 using Dynamo.Applications.Models;
 using Dynamo.Graph.Nodes;
@@ -58,11 +58,12 @@ namespace DSRevitNodesUI
             base.Dispose();
         }
 
+#if !DESIGN_AUTOMATION
         private void CurrentUIApplication_ViewActivated(object sender, ViewActivatedEventArgs e)
         {
             CurrentUIApplicationOnViewActivated();
         }
-
+#endif
         private void CurrentUIApplicationOnViewActivated()
         {
             settingsID =

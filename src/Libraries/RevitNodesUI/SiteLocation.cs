@@ -2,8 +2,7 @@
 using Dynamo.Applications.Models;
 #if !DESIGN_AUTOMATION
 using Dynamo.Controls;
-#else
-using DynamoRevitApp = DADynamoApp.DAEntrypoint;
+using Dynamo.Wpf;
 #endif
 using Dynamo.Graph.Nodes;
 using Newtonsoft.Json;
@@ -52,7 +51,7 @@ namespace DSRevitNodesUI
             
             ArgumentLacing = LacingStrategy.Disabled;
 
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened += model_RevitDocumentChanged;
+            RevitServices.Events.ApplicationEvents.DocumentOpened += model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdater_ElementsUpdated;
 
 #if !DESIGN_AUTOMATION
@@ -68,7 +67,7 @@ namespace DSRevitNodesUI
 
             ArgumentLacing = LacingStrategy.Disabled;
 
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened += model_RevitDocumentChanged;
+            RevitServices.Events.ApplicationEvents.DocumentOpened += model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdater_ElementsUpdated;
 
 #if !DESIGN_AUTOMATION
@@ -80,7 +79,7 @@ namespace DSRevitNodesUI
 
         public override void Dispose()
         {
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= model_RevitDocumentChanged;
+            RevitServices.Events.ApplicationEvents.DocumentOpened -= model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsUpdated -= RevitServicesUpdater_ElementsUpdated;
             base.Dispose();
         }

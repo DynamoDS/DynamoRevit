@@ -28,7 +28,7 @@
 			<Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
 		</GetReferenceAssemblyPaths>
 		<GetAssemblyIdentity
-		  AssemblyFiles="$(OutputPath)AssemblyInfoGenerator.dll">
+		  AssemblyFiles="$(SolutionDir)\AssemblySharedInfoGenerator\bin\$(Configuration)\AssemblyInfoGenerator.dll">
 			<Output
 				TaskParameter="Assemblies"
 				ItemName="MyAssemblyIdentities"/>

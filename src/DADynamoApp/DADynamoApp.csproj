@@ -1,13 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\SharedUtilities\SharedUtilities.projitems" Label="Shared" />
     <ImportGroup Label="PropertySheets">
         <Import Project="$(SolutionDir)Config\CS_SDK.props" />
     </ImportGroup>
     
   <PropertyGroup>
-      <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!--EnableDynamicLoading prepares the project so that it can be used as a plugin -->
+    <!--https://learn.microsoft.com/en-us/dotnet/core/tutorials/creating-app-with-plugin-support#simple-plugin-with-no-dependencies-->
+    <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
     
   <ItemGroup>
@@ -24,10 +28,21 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Autodesk.Forge.DesignAutomation.Revit" Version="2025.0.1" />
-        <PackageReference Include="DynamoVisualProgramming.Core" Version="3.3.0.6316" ExcludeAssets="runtime" GeneratePathProperty="true" />
+        <PackageReference Include="DynamoVisualProgramming.Core" Version="3.5.0.8300" ExcludeAssets="runtime" GeneratePathProperty="true" />
         <PackageReference Include="DynamoPlayer" Version="6.0.2" ExcludeAssets="runtime" GeneratePathProperty="true" />
+        <PackageReference Include="GregRevitAuth" Version="3.0.9229.39980" GeneratePathProperty="true">
+          <ExcludeAssets>runtime</ExcludeAssets>
+        </PackageReference>
+        <PackageReference Include="pythonnet_py38_win" Version="2.5.1" GeneratePathProperty="true">
+          <ExcludeAssets>runtime</ExcludeAssets>
+        </PackageReference>
+        <Reference Include="Python.Runtime">
+            <HintPath>$(Pkgpythonnet_py38_win)\pythonnet\lib\net40\Python.Runtime.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\Libraries\RevitNodes\RevitNodes.csproj" />
       <ProjectReference Include="..\Libraries\RevitServices\RevitServices.csproj" />
     </ItemGroup>
     <ItemGroup>
@@ -44,4 +59,7 @@
             <Private>False</Private>
         </Reference>
     </ItemGroup>
+    <Target Name="Copy dll" AfterTargets="Build">
+        <Copy SourceFiles="$(PkgGregRevitAuth)\lib\net8.0\GregRevitAuth.dll" DestinationFolder="$(OutputPath)" />
+    </Target>
 </Project>

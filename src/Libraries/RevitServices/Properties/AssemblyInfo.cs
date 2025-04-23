@@ -12,3 +12,4 @@ using System.Runtime.InteropServices;
 [assembly: Guid("026be738-81b6-4a11-bc14-36ee3f718921")]
 [assembly: InternalsVisibleTo("DADynamoApp")]
 [assembly: InternalsVisibleTo("RevitNodes")]
+[assembly: InternalsVisibleTo("DSRevitNodesUI")]

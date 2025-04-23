@@ -28,9 +28,13 @@ using ReferencePoint = Autodesk.Revit.DB.ReferencePoint;
 using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 using View = Revit.Elements.Views.View;
 using RevitServices.Transactions;
+using Autodesk.Revit.ApplicationServices;
+using RevitServices.Events;
+
+
 
 #if DESIGN_AUTOMATION
-using DynamoRevitApp = DADynamoApp.DAEntrypoint;
+using DynamoRevitApp = RevitServices.Events.ApplicationEvents;
 #endif
 
 namespace DSRevitNodesUI
@@ -286,9 +290,9 @@ namespace DSRevitNodesUI
             RegisterAllPorts();
 
 #if !DESIGN_AUTOMATION
-            DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
+            RevitServices.Events.ApplicationEvents.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
 #endif
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
+            RevitServices.Events.ApplicationEvents.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
 
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdaterOnElementsUpdated;
             RevitDynamoModel_RevitDocumentChanged(null, null);
@@ -298,9 +302,9 @@ namespace DSRevitNodesUI
         public ElementsInView(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
 #if !DESIGN_AUTOMATION
-            DynamoRevitApp.EventHandlerProxy.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
+            RevitServices.Events.ApplicationEvents.ViewActivated += RevitDynamoModel_RevitDocumentChanged;
 #endif
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
+            RevitServices.Events.ApplicationEvents.DocumentOpened += RevitDynamoModel_RevitDocumentChanged;
 
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdaterOnElementsUpdated;
             RevitDynamoModel_RevitDocumentChanged(null, null);
@@ -309,9 +313,9 @@ namespace DSRevitNodesUI
         public override void Dispose()
         {
 #if !DESIGN_AUTOMATION
-            DynamoRevitApp.EventHandlerProxy.ViewActivated -= RevitDynamoModel_RevitDocumentChanged;
+            RevitServices.Events.ApplicationEvents.ViewActivated -= RevitDynamoModel_RevitDocumentChanged;
 #endif
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= RevitDynamoModel_RevitDocumentChanged;
+            RevitServices.Events.ApplicationEvents.DocumentOpened -= RevitDynamoModel_RevitDocumentChanged;
 
             RevitServicesUpdater.Instance.ElementsUpdated -= RevitServicesUpdaterOnElementsUpdated;
 

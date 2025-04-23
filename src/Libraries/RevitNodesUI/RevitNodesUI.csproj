@@ -6,23 +6,9 @@
 		<RootNamespace>DSRevitNodesUI</RootNamespace>
 		<AssemblyName>DSRevitNodesUI</AssemblyName>
 		<OutputPath>$(OutputPath)\nodes\</OutputPath>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-		<Prefer32Bit>false</Prefer32Bit>
 		<UseWPF>true</UseWPF>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<PostBuildEvent />
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-		<DebugSymbols>true</DebugSymbols>
-		<DebugType>full</DebugType>
-		<Optimize>false</Optimize>
-		<DefineConstants>DEBUG;TRACE</DefineConstants>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-		<DebugType>pdbonly</DebugType>
-		<Optimize>true</Optimize>
-		<DefineConstants>TRACE</DefineConstants>
 	</PropertyGroup>
 	<PropertyGroup>
 		<PostBuildEvent />
@@ -120,8 +106,7 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\DADynamoApp\DADynamoApp.csproj" Condition="$(Platform.Contains('_DA'))"/> 
+  <ItemGroup> 
     <ProjectReference Include="..\..\DynamoRevit\DynamoRevit.csproj" Condition="!$(Platform.Contains('_DA'))">
       <Private>False</Private>
     </ProjectReference>

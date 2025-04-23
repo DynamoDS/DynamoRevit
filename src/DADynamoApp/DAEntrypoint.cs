@@ -6,10 +6,20 @@ using DynamoPlayer;
 using RevitServices.Persistence;
 using RevitServices.Elements;
 using RevitServices.EventHandler;
-using System.IO.Compression;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Diagnostics;
+using Dynamo.Applications;
+using Dynamo.Scheduler;
+using static Dynamo.Models.DynamoModel;
+using System.Text.RegularExpressions;
+using Greg.AuthProviders;
+using Revit.Elements;
+using Greg.Responses;
+using Dynamo.PythonServices;
+using Microsoft.VisualBasic.FileIO;
+using DSCPython;
+using System.Collections;
 
 namespace DADynamoApp
 {
@@ -19,49 +29,30 @@ namespace DADynamoApp
     {
         private DynamoModel model;
         internal static DynamoPlayerLoggerConfiguration logConfig = new DynamoPlayerLoggerConfiguration() { DynamoLogLevel = Dynamo.Logging.LogLevel.Console, LogLevel = DynamoPlayer.LogLevel.Information };
+        private AssemblyLoadContext loadContext = AssemblyLoadContext.GetLoadContext(Assembly.GetExecutingAssembly()) ?? AssemblyLoadContext.Default;
+        private string DynamoPath;
+        private string DynamoRevitPath;
+        private ControlledApplication controlledApplication;
 
         private string LoadMessage;
         private string WorkItemFolder;
+        private readonly string PythonDllFolder = "pythonDependencies";
 
-        private static EventHandlerProxy proxy;
-        public static EventHandlerProxy EventHandlerProxy
-        {
-            get { return proxy; }
-        }
 
         public static List<IUpdater> Updaters = new List<IUpdater>();
-
-        private void CheckIfPythonExists(string inputFolder)
-        {
-            var pyDir = "python-3.9.12-embed-amd64";
-            var pyRoot = Path.GetDirectoryName(model.PathManager.CommonDataDirectory);
-            var searchPath = Path.Combine(pyRoot, pyDir);
-            if (Directory.Exists(searchPath) && File.Exists(Path.Combine(searchPath, "python.exe")))
-            {
-                return;
-            }
-            Console.WriteLine($"<<!>> cPython not found at '{searchPath}'");
-            var inputDistributionPath = Path.Combine(inputFolder, $"{pyDir}.zip");
-            if (File.Exists(inputDistributionPath))
-            {
-                Console.WriteLine("<<!>> cPython distribution detected in input. Attempting to add it... ");
-                try
-                {
-                    ZipFile.ExtractToDirectory(inputDistributionPath, searchPath);
-                    Console.WriteLine("<<!>> cPython added.");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"<<!>> Failed to add cPython: {ex.Message}");
-                }
-            }
-        }
 
         public ExternalDBApplicationResult OnShutdown(ControlledApplication application)
         {
             AppDomain.CurrentDomain.UnhandledException -= CurrentDomain_UnhandledException;
             AppDomain.CurrentDomain.ProcessExit -= CurrentDomain_ProcessExit;
-            AppDomain.CurrentDomain.AssemblyResolve -= DynamoPathResolver.ResolveAssembly;
+            AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;
+
+            controlledApplication.DocumentClosing -= RevitServices.Events.ApplicationEvents.OnApplicationDocumentClosing;
+            controlledApplication.DocumentClosed -= RevitServices.Events.ApplicationEvents.OnApplicationDocumentClosed;
+            controlledApplication.DocumentOpened -= RevitServices.Events.ApplicationEvents.OnApplicationDocumentOpened;
+
+            DynamoRevitPythonManager.Cleanup();
+
             return ExternalDBApplicationResult.Succeeded;
         }
 
@@ -82,22 +73,37 @@ namespace DADynamoApp
 
         public ExternalDBApplicationResult OnStartup(ControlledApplication application)
         {
+            controlledApplication = application;
+
+            WorkItemFolder = Directory.GetCurrentDirectory();
+            Console.WriteLine($"<<!>> Work folder is '{WorkItemFolder}'");
+
+            DynamoRevitPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            DynamoPath = Directory.GetParent(DynamoRevitPath).FullName;
+
+            var hostloc = typeof(Autodesk.Revit.ApplicationServices.Application).Assembly.Location;
+            var hostDir = Path.GetDirectoryName(hostloc);
+
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
-            AppDomain.CurrentDomain.AssemblyResolve += DynamoPathResolver.ResolveAssembly;
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
             Console.WriteLine("<<!>> Starting to load D4DA");
 
             try
             {
-                RevitServices.Transactions.TransactionManager.SetupManager(new RevitServices.Transactions.AutomaticTransactionStrategy());
-                ElementBinder.IsEnabled = true;
-
                 RevitServicesUpdater.Initialize(Updaters);
+                Console.WriteLine("<<!>> D4DA Loaded");
+
+                RevitServices.Transactions.TransactionManager.SetupManager(new RevitServices.Transactions.AutomaticTransactionStrategy());
+                // TODO: do we need element binding in Design Automations?
+                ElementBinder.IsEnabled = true;
+ 
+                controlledApplication.DocumentClosing += RevitServices.Events.ApplicationEvents.OnApplicationDocumentClosing;
+                controlledApplication.DocumentClosed += RevitServices.Events.ApplicationEvents.OnApplicationDocumentClosed;
+                controlledApplication.DocumentOpened += RevitServices.Events.ApplicationEvents.OnApplicationDocumentOpened;
 
                 DesignAutomationBridge.DesignAutomationReadyEvent += HandleDesignAutomationReadyEvent;
-
-                Console.WriteLine("<<!>> D4DA Loaded");
 
                 return ExternalDBApplicationResult.Succeeded;
             }
@@ -107,16 +113,25 @@ namespace DADynamoApp
             }
         }
 
+        private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
+        {
+            return DynamoRevitAssemblyResolver.ResolveDynamoAssembly(DynamoPath, [Path.Combine(WorkItemFolder, PythonDllFolder)], args);
+        }
+
+        private static string GetRevitContext(Autodesk.Revit.ApplicationServices.Application app)
+        {
+            var r = new Regex(@"\b(Autodesk |Structure |MEP |Architecture )\b");
+            return r.Replace(app.VersionName, "");
+        }
+
         public void HandleDesignAutomationReadyEvent(object sender, DesignAutomationReadyEventArgs e)
         {
             Console.WriteLine("<<!>> DA event raised.");
-            WorkItemFolder = Directory.GetCurrentDirectory();
 
-            foreach (var xx in Directory.EnumerateFiles(WorkItemFolder))
-                Console.WriteLine(xx);
+            // Local Change
+            //WorkItemFolder = SpecialDirectories.CurrentUserApplicationData;
 
             var dynTempDir = Path.Combine(WorkItemFolder, "dyn_tmp");
-            Console.WriteLine($"<<!>> Work folder is '{WorkItemFolder}'");
             var app = e.DesignAutomationData?.RevitApp;
             Console.WriteLine("<<!>> Preparing Dynamo model. Vers 1");
 
@@ -124,28 +139,39 @@ namespace DADynamoApp
             var asmLocation = Path.GetDirectoryName(hostloc);
             Console.WriteLine($"using asm at location {asmLocation}");
             Console.WriteLine($"Is Loaded {LoadMessage}");
-            var curFolder = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName;
-            var cmdArgs = new Dynamo.Applications.StartupUtils.CommandLineArguments();
-            cmdArgs.ASMPath = asmLocation;
-            cmdArgs.DisableAnalytics = true;
-            cmdArgs.ServiceMode = true;
-            cmdArgs.AnalyticsInfo = new() { HostName = "Revit_DA" };
-            cmdArgs.ImportedPaths = [Path.Combine(curFolder, "nodes", "RevitNodes.dll"), Path.Combine(curFolder, "nodes", "DSRevitNodesUI.dll")];
-            // need this for cloud, does not work on local
-            cmdArgs.UserDataFolder = Path.Combine(dynTempDir, "Dynamo Revit");
-            cmdArgs.CommonDataFolder = Path.Combine(dynTempDir, "Dynamo");
 
+            // need this for cloud, does not work on local
+            var userDataFolder = Path.Combine(dynTempDir, "Dynamo Revit");
+            var commonDataFolder = Path.Combine(dynTempDir, "Dynamo");
             // Startup a new project, maybe an option we can have ?
             //app.NewProjectDocument(Autodesk.Revit.DB.UnitSystem.Metric);
 
             DocumentManager.Instance.PrepareForAutomation(app);
 
-            //true, asmLocation, "Revit_DA"
-            model = Dynamo.Applications.StartupUtils.MakeCLIModel(cmdArgs);
+            // Local Change
+            //var geometryFactoryPath = @"C:\\Program Files\\Autodesk\\Revit 2025";
+
+            var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(controlledApplication, DynamoPath);
+            var geometryFactoryPath = ASMPrealoaderUtils.GetGeometryFactoryPath(DynamoPath, loadedLibGVersion);
+
+            model = DynamoModel.Start(
+                new DefaultStartConfiguration
+                {
+                    DynamoCorePath = DynamoPath,
+                    DynamoHostPath = DynamoRevitPath,
+                    GeometryFactoryPath = geometryFactoryPath,
+                    PathResolver = new RevitPathResolver(userDataFolder, commonDataFolder),
+                    Context = GetRevitContext(app),
+                    AuthProvider = new RevitOAuth2Provider(SynchronizationContext.Current ?? new SynchronizationContext()),
+                    ProcessMode = TaskProcessMode.Synchronous,
+                    CLIMode = true,
+                    IsHeadless = true,
+                    IsServiceMode = true
+                });
+
+            SetupPython();
 
             LoadMessage = model != null ? "loaded" : "no loaded";
-            Console.WriteLine($"Checking python in {curFolder}");
-            CheckIfPythonExists(curFolder);
 
             var playerHost = new PlayerHostDynamoDefault(model, new DynamoPlayerLogger<PlayerHostDynamoDefault>(logConfig));
             var workflows = new DynamoModelWorkflows(
@@ -160,10 +186,19 @@ namespace DADynamoApp
             var dynHandler = new Handler(playerHost, [new DynamoController(controller)]);
 
             var runContent = File.ReadAllText(Path.Combine(WorkItemFolder, "run.json"));
-
+   
             var testFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var res = dynHandler.HandleRoute("POST", "/v1/graph/run", runContent);
-            var output = res.Result;
+
+            var output = string.Empty;
+            try
+            {
+                var res = dynHandler.HandleRoute("POST", "/v1/graph/run", runContent);
+                output = res.Result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             var result = Newtonsoft.Json.JsonConvert.SerializeObject(output);
             Console.WriteLine(result);
@@ -172,6 +207,54 @@ namespace DADynamoApp
 
             model.RunCompleted += Model_RunCompleted;
             e.Succeeded = true;
+        }
+
+        private void SetupPython()
+        {
+            try
+            {
+                var pyIncluded = Assembly.LoadFrom(Path.Combine(WorkItemFolder, PythonDllFolder, "Python.Included.dll"));
+                if (pyIncluded == null)
+                {
+                    throw new Exception("Null Python.Included assembly");
+                }
+                var type = pyIncluded.GetType("Python.Included.Installer");
+                if (type == null)
+                {
+                    throw new Exception("null Installer type");
+                }
+                var property = type.GetProperty("INSTALL_PATH", BindingFlags.Public | BindingFlags.Static);
+                if (property == null)
+                {
+                    throw new Exception("null INSTALL_PATH property");
+                }
+
+                // Set the python install location to the DA workfolder (that is the only place we have wrie access)
+                property.SetValue(null, WorkItemFolder);
+
+                // Dynamo's 'VerifyEngineReferences' wants all the PythonEngine's dependencies to be in the Dynamo folder.
+                // Temporary until we fix it on the Dynamo side.
+                if (PythonEngineManager.Instance.AvailableEngines.Count == 0)
+                {
+                    PropertyInfo instanceProp = typeof(CPythonEvaluator).GetProperty("Instance", BindingFlags.NonPublic | BindingFlags.Static);
+                    if (instanceProp != null)
+                    {
+                        PythonEngine engine = (PythonEngine)instanceProp.GetValue(null);
+                        if (engine == null)
+                        {
+                            throw new Exception($"Could not get a valid PythonEngine instance");
+                        }
+
+                        PythonEngineManager.Instance.AvailableEngines.Add(engine);
+                    }
+                }
+
+                DynamoRevitPythonManager.SetupPython(model.Logger);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Could not setup python " + ex.Message);
+            }
         }
 
         private void Model_RunCompleted(object sender, bool success)
