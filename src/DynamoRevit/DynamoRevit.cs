@@ -1079,8 +1079,11 @@ namespace Dynamo.Applications
             if(sender is Dynamo.UI.Views.SplashScreen ss && ss.CloseWasExplicit)
             {
                 DynamoRevitApp.DynamoButtonEnabled = true;
-                //the model is shutdown when splash screen is closed
-                RevitDynamoModel.State = DynamoModel.DynamoModelState.NotStarted;
+                if(RevitDynamoModel != null)
+                {
+                    //the model is shutdown when splash screen is closed
+                    RevitDynamoModel.State = DynamoModel.DynamoModelState.NotStarted;
+                }
             }
         }
 
