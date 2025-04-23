@@ -33,7 +33,7 @@
   <ItemGroup>
     <Reference Include="nunit.framework">
       <HintPath>$(PACKAGESPATH)\NUnit\lib\netstandard2.0\nunit.framework.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="RevitAPI">
       <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>

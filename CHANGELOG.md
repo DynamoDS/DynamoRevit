@@ -1,3 +1,6 @@
+## 0.6.45
+* Update Dynamo Core to 3.5.0.8297
+
 ## 0.6.44
 * Republish content to localize templates' filenames
 
