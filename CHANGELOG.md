@@ -1,3 +1,6 @@
+## 0.7.18
+* Added UnitTest for Undo-Delete Nodes Scenario
+
 ## 0.7.17
 * Update Dynamo Tests by adding more verifications or by deleting useless data
 
