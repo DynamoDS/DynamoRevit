@@ -1156,6 +1156,80 @@ namespace RevitSystemTests
             Assert.AreEqual(255, settings.ProjectionLineColor.Blue);
         }
 
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void UndoDeleteNodes()
+        {
+            var model = ViewModel.Model;
+
+            string filePath = Path.Combine(workingDirectory, @".\Script\UndoDeleteNodes.dyn");
+            string testPath = Path.GetFullPath(filePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            // check all the nodes and connectors are loaded  
+            Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(1, model.CurrentWorkspace.Connectors.Count());
+
+            RunCurrentModel();
+
+            //Delete all the nodes from the workspace
+            DeleteNodesInWorkspace();
+            RunCurrentModel();
+            Assert.AreEqual(0, model.CurrentWorkspace.Nodes.Count());
+
+            //Undo the changes to restore all nodes
+            UndoChangesInWorkspace(3);
+            Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count());
+            RunCurrentModel();
+
+            //Delete the nodes again
+            DeleteNodesInWorkspace();
+            RunCurrentModel();
+            Assert.AreEqual(0, model.CurrentWorkspace.Nodes.Count());
+        }
+
+        private void UndoChangesInWorkspace(int undoCount)
+        {
+            var model = ViewModel.Model;
+
+            if (model.CurrentWorkspace == null)
+            {
+                throw new InvalidOperationException("Current workspace is not available.");
+            }
+
+            for (int i = 0; i < undoCount; i++)
+            {
+                if (model.CurrentWorkspace.CanUndo)
+                {
+                    model.CurrentWorkspace.Undo();
+                }
+            }
+        }
+
+        private void DeleteNodesInWorkspace()
+        {
+            var model = ViewModel.Model;
+            if (model.CurrentWorkspace == null)
+            {
+                throw new InvalidOperationException("Current workspace is not available.");
+            }
+            foreach (var node in model.CurrentWorkspace.Nodes)
+            {
+                if (node != null)
+                {
+                    using (model.CurrentWorkspace.UndoRecorder.BeginActionGroup())
+                    {
+                        model.CurrentWorkspace.UndoRecorder.RecordDeletionForUndo(node);
+                        model.CurrentWorkspace.RemoveAndDisposeNode(node, false);
+                        Assert.IsFalse(model.CurrentWorkspace.Nodes.Contains(node));
+                    }
+                }
+            }
+        }
+
         protected static IList<Autodesk.Revit.DB.CurveElement> GetAllCurveElements()
         {
             var fec = new Autodesk.Revit.DB.FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
