@@ -5,7 +5,6 @@ using Dynamo.Models;
 using DynamoPlayer;
 using RevitServices.Persistence;
 using RevitServices.Elements;
-using RevitServices.EventHandler;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Diagnostics;
@@ -15,11 +14,8 @@ using static Dynamo.Models.DynamoModel;
 using System.Text.RegularExpressions;
 using Greg.AuthProviders;
 using Revit.Elements;
-using Greg.Responses;
 using Dynamo.PythonServices;
-using Microsoft.VisualBasic.FileIO;
 using DSCPython;
-using System.Collections;
 
 namespace DADynamoApp
 {
@@ -213,10 +209,16 @@ namespace DADynamoApp
         {
             try
             {
-                var pyIncluded = Assembly.LoadFrom(Path.Combine(WorkItemFolder, PythonDllFolder, "Python.Included.dll"));
+                // Preload all python assemblies at the PythonDllFolder.
+                foreach (var pyDll in Directory.EnumerateFiles(Path.Combine(WorkItemFolder, PythonDllFolder), "*.dll"))
+                {
+                    Assembly.LoadFrom(pyDll);
+                }
+
+                var pyIncluded = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.GetName().Name == "Python.Included");
                 if (pyIncluded == null)
                 {
-                    throw new Exception("Null Python.Included assembly");
+                    throw new Exception("Could not find Python.Included assembly");
                 }
                 var type = pyIncluded.GetType("Python.Included.Installer");
                 if (type == null)

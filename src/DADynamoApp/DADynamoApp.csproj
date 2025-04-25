@@ -33,13 +33,6 @@
         <PackageReference Include="GregRevitAuth" Version="3.0.9229.39980" GeneratePathProperty="true">
           <ExcludeAssets>runtime</ExcludeAssets>
         </PackageReference>
-        <PackageReference Include="pythonnet_py38_win" Version="2.5.1" GeneratePathProperty="true">
-          <ExcludeAssets>runtime</ExcludeAssets>
-        </PackageReference>
-        <Reference Include="Python.Runtime">
-            <HintPath>$(Pkgpythonnet_py38_win)\pythonnet\lib\net40\Python.Runtime.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\Libraries\RevitNodes\RevitNodes.csproj" />
