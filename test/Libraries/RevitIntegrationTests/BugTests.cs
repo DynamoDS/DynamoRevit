@@ -31,6 +31,8 @@ using Dynamo.Graph.Nodes.ZeroTouch;
 using Revit.Elements.InternalUtilities;
 using CoreNodeModels.Input;
 using DSRevitNodesUI;
+using System.Windows.Media;
+using NUnit.Framework.Constraints;
 
 namespace RevitSystemTests
 {
@@ -512,6 +514,8 @@ namespace RevitSystemTests
             var refPlane = GetPreviewValue("85c1f8c5-00da-4a7e-94c7-655140e39f6a") as Plane;
             Assert.IsNotNull(refPlane);
         }
+
+
         [Test]
         [Category("RegressionTests")]
         [TestModel(@".\empty.rfa")]
@@ -529,7 +533,67 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
+
+            var line = "2f175c54d970478ba1636c4b4430ccf7";
+
+            var expectedCurves = new List<Autodesk.DesignScript.Geometry.Curve>()
+            {
+
+                Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-25.360, -33.417, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-9.795, 25.822, 0.000)),
+                
+                Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-9.795, 25.822, 0.000), 
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(35.762, -27.721, 0.000)),
+
+                Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(35.762, -27.721, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(33.104, 40.253, 0.000)),
+
+                Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(33.104, 40.253, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-33.712, 46.708, 0.000)),
+
+                Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-33.712, 46.708, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-25.360, -33.417, 0.000)),
+
+            };
+
+            var polygonLines = GetFlattenedPreviewValues("b8eaf3f7392c4ec4a86c7f5d08ef772e");
+            AssertListOfCurves(expectedCurves, polygonLines);
+
+
         }
+
+        private const double Tolerance = 0.001;
+
+        private static void AssertListOfCurves(List<Autodesk.DesignScript.Geometry.Curve> expectedCurves, List<object> polygonLines)
+        {
+
+            Assert.AreEqual(expectedCurves.Count(), polygonLines.Count());
+            for (int i = 0; i < polygonLines.Count(); i++)
+            {
+                var expected = expectedCurves[i];
+                var actual = (Autodesk.DesignScript.Geometry.Curve)polygonLines[i];
+
+                var expectedStartPoint = expected.StartPoint;
+                var expectedEndPoint = expected.EndPoint;
+                var actualStartPoint = actual.StartPoint;
+                var actualEndPoint = actual.EndPoint;
+
+                Assert.AreEqual(expectedStartPoint.X, actualStartPoint.X, Tolerance);
+                Assert.AreEqual(expectedStartPoint.Y, actualStartPoint.Y, Tolerance);
+                Assert.AreEqual(expectedStartPoint.Z, actualStartPoint.Z, Tolerance);
+
+                Assert.AreEqual(expectedEndPoint.X, actualEndPoint.X, Tolerance);
+                Assert.AreEqual(expectedEndPoint.Y, actualEndPoint.Y, Tolerance);
+                Assert.AreEqual(expectedEndPoint.Z, actualEndPoint.Z, Tolerance);
+
+            }
+        }
+
         [Test]
         [Category("RegressionTests")]
         [TestModel(@".\empty.rfa")]

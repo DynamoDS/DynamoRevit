@@ -106,34 +106,33 @@ namespace RevitSystemTests
             Assert.IsNotNull(xyzNode);
 
             //test the shortest lacing
-            xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "Auto"));
-
+            xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "Shortest"));
             RunCurrentModel();
-
             var fec = new FilteredElementCollector((Autodesk.Revit.DB.Document)DocumentManager.Instance.CurrentDBDocument);
+            fec.OfClass(typeof(ReferencePoint));
+            Assert.AreEqual(1, fec.ToElements().Count());
+
+            //test the auto lacing
+            xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "Auto"));
+            RunCurrentModel();
+            fec = null;
+            fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
             fec.OfClass(typeof(ReferencePoint));
             Assert.AreEqual(4, fec.ToElements().Count());
 
             //test the longest lacing
             xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "Longest"));
             RunCurrentModel();
-
             fec = null;
-
             fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-
             fec.OfClass(typeof(ReferencePoint));
             Assert.AreEqual(5, fec.ToElements().Count());
 
             //test the cross product lacing
             xyzNode.UpdateValue(new UpdateValueParams("ArgumentLacing", "CrossProduct"));
-
             RunCurrentModel();
-
             fec = null;
-
             fec = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
-
             fec.OfClass(typeof(ReferencePoint));
             Assert.AreEqual(20, fec.ToElements().Count());
         }

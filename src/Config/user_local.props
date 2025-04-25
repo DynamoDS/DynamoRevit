@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-      <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit Preview Release\net8.0</REVITAPI>
-  </PropertyGroup>
+	<PropertyGroup>
+		<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
+		<REVIT_VERSION>Revit</REVIT_VERSION>
+		<!-- local env -->
+		<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
+		<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(OutputPath)</TestOutputPath>
+	</PropertyGroup>
+	<PropertyGroup>
+		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit Preview Release\net8.0</REVITAPI>
+		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">D:\REVIT\2027\Dev_x64_Inst_20250422_1515\Program</REVITAPI>
+	</PropertyGroup>
 </Project>
