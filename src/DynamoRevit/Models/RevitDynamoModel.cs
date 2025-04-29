@@ -5,7 +5,11 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Loader;
+using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Shapes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
@@ -209,9 +213,51 @@ namespace Dynamo.Applications.Models
             if (string.IsNullOrEmpty(configuration.Context))
                 configuration.Context = Configuration.Context.REVIT_2015;
 
+            AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
+            {
+                Assembly res = null;
+                int position = args.Name.IndexOf(",");
+                if (position == -1)
+                    position = args.Name.IndexOf(".dll");
+                if (position > -1)
+                {
+                    string assemblyName = args.Name.Substring(0, position);
+                    Assembly requestingAssembly = args.RequestingAssembly;
+                    if(requestingAssembly.Location != null && requestingAssembly.Location.Contains("steel-pkg"))
+                    {
+                        string path = System.IO.Path.Combine(
+                            requestingAssembly.Location, @"..\..\..\..\..\..\");
+                        string dependentAssemblyPath = System.IO.Path.Combine(path, "SteelConnections");
+                        string dependentAssemblyFullPath = System.IO.Path.Combine(dependentAssemblyPath, assemblyName + ".dll");
+                        if (File.Exists(dependentAssemblyFullPath))
+                            res = LoadAssembly(dependentAssemblyFullPath, args.RequestingAssembly, null);
+                    }
+                }
+                return res;
+            };
+
             return new RevitDynamoModel(configuration);
         }
 
+        public static Assembly LoadAssembly(string assemblyPath, Assembly requestingAssembly = null, System.Type contextType = null)
+        {
+            if (!File.Exists(assemblyPath))
+                return null;
+            AssemblyLoadContext loadContext = null;
+            if (requestingAssembly != null)
+                loadContext = AssemblyLoadContext.GetLoadContext(requestingAssembly);
+            else if (contextType != null)
+                loadContext = AssemblyLoadContext.GetLoadContext(contextType.Assembly);
+            // Assembly.Load() method loads assembly only to the Default context.
+            // It will call LoadFromAssemblyPath() as we do for isolated load contexts,
+            // but it will also add the path to the assembly to internal storage,
+            // which is important in some cases.
+            // So, for the Default context, we call Assembly.Load() as it does more things,
+            // and for isolated load contexts we use LoadFromAssemblyPath() method.
+            if (loadContext == null || loadContext == AssemblyLoadContext.Default)
+                return Assembly.LoadFrom(assemblyPath);
+            return loadContext.LoadFromAssemblyPath(assemblyPath);
+        }
         private RevitDynamoModel(IRevitStartConfiguration configuration) :
             base(configuration)
         {
@@ -982,7 +1028,7 @@ namespace Dynamo.Applications.Models
                 uiApplication.PostCommand(exitCommand);
             else
             {
-                MessageBox.Show(
+                System.Windows.MessageBox.Show(
                     "A command in progress prevented Dynamo from " +
                         "closing revit. Dynamo update will be cancelled.");
             }
