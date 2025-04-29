@@ -1,3 +1,6 @@
+## 0.7.19
+* Added missing test files from Dynamo Core 3.5
+
 ## 0.7.18
 * Added UnitTest for Undo-Delete Nodes Scenario
 
