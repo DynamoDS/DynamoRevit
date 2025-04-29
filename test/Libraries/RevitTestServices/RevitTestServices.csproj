@@ -35,6 +35,14 @@
       <HintPath>$(PACKAGESPATH)\NUnit\lib\netstandard2.0\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+	<Reference Include="NUnit.Engine">
+      <HintPath>$(PACKAGESPATH)\NUnit.Engine\lib\netstandard2.0\NUnit.Engine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+	<Reference Include="NUnit.Engine.Api">
+      <HintPath>$(PACKAGESPATH)\NUnit.Engine.Api\lib\netstandard2.0\NUnit.Engine.Api.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
       <Private>False</Private>
