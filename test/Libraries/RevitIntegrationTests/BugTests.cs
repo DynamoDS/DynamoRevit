@@ -30,9 +30,11 @@ using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Nodes.ZeroTouch;
 using Revit.Elements.InternalUtilities;
 using CoreNodeModels.Input;
+
+
 using DSRevitNodesUI;
-using System.Windows.Media;
-using NUnit.Framework.Constraints;
+using Fec = Autodesk.Revit.DB.FilteredElementCollector;
+using CurveElement = Autodesk.Revit.DB.CurveElement;
 
 namespace RevitSystemTests
 {
@@ -53,10 +55,24 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
+            //Verify that there is a curve in Revit before running the graph
+            Fec fec = new Fec(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(CurveElement));
+            Assert.AreEqual(fec.ToElements().Count(), 1);
+
             RunCurrentModel();
+
+            //Verify that the node creating the ReferenceLine is not null
+            var referenceLineID = "2816df3520e04562984ade1cd5d5906f";
+            var referenceLine = GetFlattenedPreviewValues(referenceLineID);
+            Assert.IsNotNull(referenceLine);
+
+            //Verify that now are 2 cureves in Revit
+            Assert.AreEqual(fec.ToElements().Count(), 2);
+
         }
 
-        //[Test, Category("Failure")]
+        //[Test, Category("Failure")]j
         //[Category("RegressionTests")]
         //[TestModel(@".\empty.rfa")]
         //public void MAGN_102()
@@ -143,6 +159,34 @@ namespace RevitSystemTests
             Assert.AreEqual(14, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
+
+            //check all the points of the beams
+            var expectedBeamsPoints = new List<Autodesk.DesignScript.Geometry.Point>()
+            {
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(0.000, 10.000, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(10.000, 12.000, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(20.000, 14.000, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(30.000, 16.000, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(40.000, 18.000, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(50.000, 20.000, 0.000),
+            };
+
+            var beamPoints = GetFlattenedPreviewValues("6b80025a09ec420ead85265e85a91966");
+            AssertListOfPoints(expectedBeamsPoints, beamPoints);
+
+
+            //verify that there are only 6 beams created
+            var beamsId = "18fe6969ef7942d3ad31b11ac64ea596";
+            var beamsValue = GetFlattenedPreviewValues(beamsId);
+            Assert.AreEqual(6, beamsValue.Count);
+
+            //verify that all the beams are of same type
+            for (int i = 0; i < beamsValue.Count; i++)
+            {
+                var beam = beamsValue[i] as StructuralFraming;
+                Assert.IsNotNull(beam);
+                Assert.AreEqual(beam.Name, "12 x 24");
+            }
         }
 
         [Test]
@@ -524,75 +568,54 @@ namespace RevitSystemTests
             //Dynamo throws exception on top of Revit but works in standalone mode.
             //http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4797
             //Open attached dyn file and run, it will create Polygons and points in standalone mode
-            
+            var model = ViewModel.Model;
+
             string samplePath = Path.Combine(workingDirectory, @".\Bugs\MarkerData.dyn");
             string testPath = Path.GetFullPath(samplePath);
-            
+
             AssertNoDummyNodes();
             
             ViewModel.OpenCommand.Execute(testPath);
 
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(23, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(26, model.CurrentWorkspace.Connectors.Count());
+
             RunCurrentModel();
 
-            var line = "2f175c54d970478ba1636c4b4430ccf7";
-
-            var expectedCurves = new List<Autodesk.DesignScript.Geometry.Curve>()
+            //These are the points we expect to have in the polygon created after running the script
+            var expectedPoints = new List<Autodesk.DesignScript.Geometry.Point>()
             {
-
-                Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(
                     Autodesk.DesignScript.Geometry.Point.ByCoordinates(-25.360, -33.417, 0.000),
-                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-9.795, 25.822, 0.000)),
-                
-                Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(
-                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-9.795, 25.822, 0.000), 
-                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(35.762, -27.721, 0.000)),
-
-                Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-9.795, -25.822, 0.000),
                     Autodesk.DesignScript.Geometry.Point.ByCoordinates(35.762, -27.721, 0.000),
-                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(33.104, 40.253, 0.000)),
-
-                Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(
                     Autodesk.DesignScript.Geometry.Point.ByCoordinates(33.104, 40.253, 0.000),
-                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-33.712, 46.708, 0.000)),
-
-                Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(
                     Autodesk.DesignScript.Geometry.Point.ByCoordinates(-33.712, 46.708, 0.000),
-                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-25.360, -33.417, 0.000)),
-
             };
 
-            var polygonLines = GetFlattenedPreviewValues("b8eaf3f7392c4ec4a86c7f5d08ef772e");
-            AssertListOfCurves(expectedCurves, polygonLines);
-
+            var polygonPoints = GetFlattenedPreviewValues("fcb9ee32e4664ddfa80d668b8e060596");
+            AssertListOfPoints(expectedPoints, polygonPoints);
 
         }
 
-        private const double Tolerance = 0.001;
-
-        private static void AssertListOfCurves(List<Autodesk.DesignScript.Geometry.Curve> expectedCurves, List<object> polygonLines)
+        private static void AssertListOfPoints(List<Autodesk.DesignScript.Geometry.Point> expectedPoints, List<object> createdPoints)
         {
+            const double Tolerance = 0.001;
 
-            Assert.AreEqual(expectedCurves.Count(), polygonLines.Count());
-            for (int i = 0; i < polygonLines.Count(); i++)
+            Assert.AreEqual(expectedPoints.Count, createdPoints.Count);
+
+            // Check that the points are equal
+            for (int i = 0; i < createdPoints.Count; i++)
             {
-                var expected = expectedCurves[i];
-                var actual = (Autodesk.DesignScript.Geometry.Curve)polygonLines[i];
+                var expected = expectedPoints[i];
+                var actual = (Autodesk.DesignScript.Geometry.Point)createdPoints[i];
 
-                var expectedStartPoint = expected.StartPoint;
-                var expectedEndPoint = expected.EndPoint;
-                var actualStartPoint = actual.StartPoint;
-                var actualEndPoint = actual.EndPoint;
-
-                Assert.AreEqual(expectedStartPoint.X, actualStartPoint.X, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Y, actualStartPoint.Y, Tolerance);
-                Assert.AreEqual(expectedStartPoint.Z, actualStartPoint.Z, Tolerance);
-
-                Assert.AreEqual(expectedEndPoint.X, actualEndPoint.X, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Y, actualEndPoint.Y, Tolerance);
-                Assert.AreEqual(expectedEndPoint.Z, actualEndPoint.Z, Tolerance);
-
+                Assert.AreEqual(expected.X, actual.X, Tolerance);
+                Assert.AreEqual(expected.Y, actual.Y, Tolerance);
+                Assert.AreEqual(expected.Z, actual.Z, Tolerance);
             }
         }
+
 
         [Test]
         [Category("RegressionTests")]
