@@ -1,3 +1,6 @@
+## 0.7.20
+* Added missing test file, NUnit.Engine.Core.dll
+
 ## 0.7.19
 * Added missing test files from Dynamo Core 3.5
 
