@@ -44,7 +44,7 @@
       <Private>True</Private>
     </Reference>
 	  <Reference Include="NUnit.Engine.Core">
-      <HintPath>$(PACKAGESPATH)\NUnit.Engine.Api\lib\netstandard2.0\NUnit.Engine.Core.dll</HintPath>
+      <HintPath>$(PACKAGESPATH)\NUnit.Engine.Core\lib\netstandard2.0\NUnit.Engine.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RevitAPI">
