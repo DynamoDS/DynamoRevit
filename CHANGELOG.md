@@ -1,3 +1,6 @@
+## 0.6.47
+* Add one more test dll file removed from Dynamo Core 3.5
+
 ## 0.6.46
 * Add removed test dll files from Dynamo Core 3.5
 

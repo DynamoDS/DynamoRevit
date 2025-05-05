@@ -14,8 +14,7 @@
       "pythonnet_py38_win": "2.5.1",
       "Newtonsoft.Json": "13.0.1",
       "NUnit": "3.13.3",
-      "NUnit.Engine.Api": "3.13.3",
-      "NUnit.Engine": "3.13.3"
+      "NUnit.Engine": "3.13.2"
     }
   }
 }
