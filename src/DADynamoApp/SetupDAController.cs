@@ -3,13 +3,13 @@ using Newtonsoft.Json;
 
 namespace DADynamoApp
 {
-    public class SetupDARequest
+    internal class SetupDARequest
     {
         //
         // Summary:
         // Save the revit document to the default result.rvt file.
         [JsonProperty("saveRvt", Required = Required.AllowNull, NullValueHandling = NullValueHandling.Ignore)]
-        public bool? SaveRvt { get; set; } = false;
+        public bool SaveRvt { get; set; } = false;
     }
 
     internal class SetupDAController(IDynamoController implementation) : DynamoController(implementation)
@@ -18,10 +18,9 @@ namespace DADynamoApp
 
         [HttpPost]
         [Route("setup", Name = "post-setup")]
-        public Task Setup([FromBody] SetupDARequest req)
+        public Task<SetupDARequest> Setup([FromBody] SetupDARequest req)
         {
-            setupDA = req;
-            return Task.CompletedTask;
+            return Task.FromResult(req);
         }
     }
 }

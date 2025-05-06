@@ -16,6 +16,7 @@ using Greg.AuthProviders;
 using Revit.Elements;
 using Dynamo.PythonServices;
 using DSCPython;
+using Newtonsoft.Json;
 
 namespace DADynamoApp
 {
@@ -187,8 +188,24 @@ namespace DADynamoApp
             var setupController = new SetupDAController(controller);
             var dynHandler = new Handler(playerHost, [new DynamoController(controller), setupController]);
 
+            bool saveRvt = false;
+            var setupReqPath = Path.Combine(WorkItemFolder, "setup.json");
+            if (File.Exists(setupReqPath))
+            {
+                var setupRequest = File.ReadAllText(setupReqPath);
+                try
+                {
+                    var res = dynHandler.HandleRoute("POST", "/v1/setup", setupRequest);
+                    SetupDARequest setupReq = JsonConvert.DeserializeObject<SetupDARequest>(res.Result);
+                    saveRvt = setupReq?.SaveRvt ?? false;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
             var runContent = File.ReadAllText(Path.Combine(WorkItemFolder, "run.json"));
-   
             var testFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             var output = string.Empty;
@@ -202,14 +219,20 @@ namespace DADynamoApp
                 Console.WriteLine(ex.Message);
             }
 
-            var result = Newtonsoft.Json.JsonConvert.SerializeObject(output);
-            Console.WriteLine(result);
+            Console.WriteLine(output);
+            File.WriteAllText(Path.Combine(WorkItemFolder, "result.json"), output);
 
-            File.WriteAllText(Path.Combine(WorkItemFolder, "result.json"), result);
-            if (setupController.setupDA?.SaveRvt ?? false)
+            if (saveRvt)
             {
-                ModelPath path = ModelPathUtils.ConvertUserVisiblePathToModelPath("result.rvt");
-                doc.SaveAs(path, new SaveAsOptions());
+                try
+                {
+                    ModelPath path = ModelPathUtils.ConvertUserVisiblePathToModelPath("result.rvt");
+                    doc.SaveAs(path, new SaveAsOptions());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
 
             model.RunCompleted += Model_RunCompleted;
