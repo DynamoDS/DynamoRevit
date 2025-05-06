@@ -132,7 +132,6 @@ namespace DADynamoApp
             var app = e.DesignAutomationData?.RevitApp;
             Console.WriteLine("<<!>> Preparing Dynamo model. Vers 1");
 
-            // Some options we may need to process before setting up the dynamo model.
             // Startup a new project, maybe an option we can have ?
             //app.NewProjectDocument(Autodesk.Revit.DB.UnitSystem.Metric);
 
@@ -185,18 +184,16 @@ namespace DADynamoApp
 
             DynamoPlayerLogger.Initialize(playerHost);
 
-            var setupController = new SetupDAController(controller);
-            var dynHandler = new Handler(playerHost, [new DynamoController(controller), setupController]);
+            var dynHandler = new Handler(playerHost, [new DynamoController(controller)]);
 
             bool saveRvt = false;
             var setupReqPath = Path.Combine(WorkItemFolder, "setup.json");
             if (File.Exists(setupReqPath))
             {
-                var setupRequest = File.ReadAllText(setupReqPath);
                 try
                 {
-                    var res = dynHandler.HandleRoute("POST", "/v1/setup", setupRequest);
-                    SetupDARequest setupReq = JsonConvert.DeserializeObject<SetupDARequest>(res.Result);
+                    var setupRequest = File.ReadAllText(setupReqPath);
+                    SetupDARequest setupReq = JsonConvert.DeserializeObject<SetupDARequest>(setupRequest, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto});
                     saveRvt = setupReq?.SaveRvt ?? false;
                 }
                 catch (Exception ex)
