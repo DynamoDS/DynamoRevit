@@ -184,7 +184,9 @@ namespace DADynamoApp
 
             DynamoPlayerLogger.Initialize(playerHost);
 
-            var dynHandler = new Handler(playerHost, [new DynamoController(controller)]);
+            workflows.LoadDependencies(new GraphTarget() { DependenciesPath = WorkItemFolder });
+
+            var dynHandler = new Handler(playerHost, [new DARunGraphController(controller, model, WorkItemFolder)]);
 
             bool saveRvt = false;
             var setupReqPath = Path.Combine(WorkItemFolder, "setup.json");
