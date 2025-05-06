@@ -39,6 +39,8 @@ namespace DADynamoApp
 
         public ExternalDBApplicationResult OnShutdown(ControlledApplication application)
         {
+            DynamoRevitPythonManager.Cleanup();
+
             AppDomain.CurrentDomain.UnhandledException -= CurrentDomain_UnhandledException;
             AppDomain.CurrentDomain.ProcessExit -= CurrentDomain_ProcessExit;
             AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;
@@ -46,8 +48,6 @@ namespace DADynamoApp
             controlledApplication.DocumentClosing -= RevitServices.Events.ApplicationEvents.OnApplicationDocumentClosing;
             controlledApplication.DocumentClosed -= RevitServices.Events.ApplicationEvents.OnApplicationDocumentClosed;
             controlledApplication.DocumentOpened -= RevitServices.Events.ApplicationEvents.OnApplicationDocumentOpened;
-
-            DynamoRevitPythonManager.Cleanup();
 
             return ExternalDBApplicationResult.Succeeded;
         }
@@ -125,11 +125,18 @@ namespace DADynamoApp
             Console.WriteLine("<<!>> DA event raised.");
 
             // Local Change
-            //WorkItemFolder = SpecialDirectories.CurrentUserApplicationData;
+            //WorkItemFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
             var dynTempDir = Path.Combine(WorkItemFolder, "dyn_tmp");
             var app = e.DesignAutomationData?.RevitApp;
             Console.WriteLine("<<!>> Preparing Dynamo model. Vers 1");
+
+            // Some options we may need to process before setting up the dynamo model.
+            // Startup a new project, maybe an option we can have ?
+            //app.NewProjectDocument(Autodesk.Revit.DB.UnitSystem.Metric);
+
+            Document? doc = e.DesignAutomationData?.RevitDoc;
+            if (doc == null) throw new InvalidOperationException("Could not open revit document.");
 
             var hostloc = typeof(Autodesk.Revit.ApplicationServices.Application).Assembly.Location;
             var asmLocation = Path.GetDirectoryName(hostloc);
@@ -139,8 +146,6 @@ namespace DADynamoApp
             // need this for cloud, does not work on local
             var userDataFolder = Path.Combine(dynTempDir, "Dynamo Revit");
             var commonDataFolder = Path.Combine(dynTempDir, "Dynamo");
-            // Startup a new project, maybe an option we can have ?
-            //app.NewProjectDocument(Autodesk.Revit.DB.UnitSystem.Metric);
 
             DocumentManager.Instance.PrepareForAutomation(app);
 
@@ -179,7 +184,8 @@ namespace DADynamoApp
 
             DynamoPlayerLogger.Initialize(playerHost);
 
-            var dynHandler = new Handler(playerHost, [new DynamoController(controller)]);
+            var setupController = new SetupDAController(controller);
+            var dynHandler = new Handler(playerHost, [new DynamoController(controller), setupController]);
 
             var runContent = File.ReadAllText(Path.Combine(WorkItemFolder, "run.json"));
    
@@ -200,6 +206,11 @@ namespace DADynamoApp
             Console.WriteLine(result);
 
             File.WriteAllText(Path.Combine(WorkItemFolder, "result.json"), result);
+            if (setupController.setupDA?.SaveRvt ?? false)
+            {
+                ModelPath path = ModelPathUtils.ConvertUserVisiblePathToModelPath("result.rvt");
+                doc.SaveAs(path, new SaveAsOptions());
+            }
 
             model.RunCompleted += Model_RunCompleted;
             e.Succeeded = true;
