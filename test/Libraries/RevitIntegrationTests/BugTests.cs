@@ -72,29 +72,29 @@ namespace RevitSystemTests
 
         }
 
-        //[Test, Category("Failure")]j
-        //[Category("RegressionTests")]
-        //[TestModel(@".\empty.rfa")]
-        //public void MAGN_102()
-        //{
-        //    // Additional Info: https://github.com/DynamoDS/Dynamo/commit/06ea6eb0ab3156f96809f4ba4c648406a9ca8155
-        //    // Verify project to face/plane now sends out the intersection point NOT the original XYZ
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void MAGN_102()
+        {
+            // Additional Info: https://github.com/DynamoDS/Dynamo/commit/06ea6eb0ab3156f96809f4ba4c648406a9ca8155
+            // Verify project to face/plane now sends out the intersection point NOT the original XYZ
 
-        //    var model = ViewModel.Model;
+            var model = ViewModel.Model;
 
-        //    string samplePath = Path.Combine(workingDirectory, @".\\Bugs\MAGN_102_projectPointsToFace_selfContained.dyn");    \\There are some obsolete node in dyn script.
-        //    string testPath = Path.GetFullPath(samplePath);
+            string samplePath = Path.Combine(workingDirectory, @".\\Bugs\MAGN_102_projectPointsToFace_selfContained.dyn");
+            string testPath = Path.GetFullPath(samplePath);
 
-        //    ViewModel.OpenCommand.Execute(testPath);
+            ViewModel.OpenCommand.Execute(testPath);
 
-        //    AssertNoDummyNodes();
+            AssertNoDummyNodes();
 
-        //    // check all the nodes and connectors are loaded
-        //    Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count());
-        //    Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
 
-        //    RunCurrentModel();
-        //}
+            RunCurrentModel();
+        }
 
         [Test]
         [Category("RegressionTests")]
@@ -120,23 +120,22 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             // Check for Walls Creation
-            var walls = "b7392d1d-6333-4bed-b10d-7b83520d2c3e";
-            AssertPreviewCount(walls, 6);
+            var walls = GetFlattenedPreviewValues("b7392d1d-6333-4bed-b10d-7b83520d2c3e");
+            Assert.AreEqual(walls.Count, 24);
 
-            // I will un-comment this code once Ian fix the issue with Document.IsFamilyDocument 
-            //var wallinst = GetPreviewValueAtIndex(walls, 3) as Floor;
-            //Assert.IsNotNull(wallinst);
-            //Assert.IsNotNullOrEmpty(wallinst.Name);
+            var wallinst = walls[3] as Wall;
+            Assert.IsNotNull(wallinst);
+            Assert.IsNotNull(wallinst.Name);
+            Assert.IsNotEmpty(wallinst.Name);
 
             // Check for Floor Creation
             var floors = "25392912-b625-4020-8dd1-81923c5e4823";
             AssertPreviewCount(floors, 6);
 
-            // I will un-comment this code once Ian fix the issue with Document.IsFamilyDocument 
-            //var floorInst = GetPreviewValueAtIndex(floors, 3) as Floor;
-            //Assert.IsNotNull(floorInst);
-            //Assert.IsNotNullOrEmpty(floorInst.Name);
-
+            var floorInst = GetPreviewValueAtIndex(floors, 3) as Floor;
+            Assert.IsNotNull(floorInst);
+            Assert.IsNotNull(floorInst.Name);
+            Assert.IsNotEmpty(floorInst.Name);
         }
 
         [Test]
