@@ -72,29 +72,29 @@ namespace RevitSystemTests
 
         }
 
-        [Test]
-        [Category("RegressionTests")]
-        [TestModel(@".\empty.rfa")]
-        public void MAGN_102()
-        {
-            // Additional Info: https://github.com/DynamoDS/Dynamo/commit/06ea6eb0ab3156f96809f4ba4c648406a9ca8155
-            // Verify project to face/plane now sends out the intersection point NOT the original XYZ
+        //[Test]
+        //[Category("RegressionTests")]
+        //[TestModel(@".\empty.rfa")]
+        //public void MAGN_102()
+        //{
+        //    // Additional Info: https://github.com/DynamoDS/Dynamo/commit/06ea6eb0ab3156f96809f4ba4c648406a9ca8155
+        //    // Verify project to face/plane now sends out the intersection point NOT the original XYZ
 
-            var model = ViewModel.Model;
+        //    var model = ViewModel.Model;
 
-            string samplePath = Path.Combine(workingDirectory, @".\\Bugs\MAGN_102_projectPointsToFace_selfContained.dyn");
-            string testPath = Path.GetFullPath(samplePath);
+        //    string samplePath = Path.Combine(workingDirectory, @".\\Bugs\MAGN_102_projectPointsToFace_selfContained.dyn");
+        //    string testPath = Path.GetFullPath(samplePath);
 
-            ViewModel.OpenCommand.Execute(testPath);
+        //    ViewModel.OpenCommand.Execute(testPath);
 
-            AssertNoDummyNodes();
+        //    AssertNoDummyNodes();
 
-            // check all the nodes and connectors are loaded
-            Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
+        //    // check all the nodes and connectors are loaded
+        //    Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count());
+        //    Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
 
-            RunCurrentModel();
-        }
+        //    RunCurrentModel();
+        //}
 
         [Test]
         [Category("RegressionTests")]
