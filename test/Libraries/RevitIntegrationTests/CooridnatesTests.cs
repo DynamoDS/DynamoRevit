@@ -12,22 +12,6 @@ namespace RevitSystemTests
     {
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
-        public void GetSurveyPoint()
-        {
-            var model = ViewModel.Model;
-
-            string samplePath = Path.Combine(workingDirectory, @".\Annotations\Coordinates.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            RunCurrentModel();
-
-            Assert.AreEqual(GetPreviewValue("ad5bb1c3-00eb-472c-92a8-d9dafe805939"), Autodesk.DesignScript.Geometry.Point.Origin());
-        }
-
-        [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
         public void GetProjectCoordinates()
         {
             var model = ViewModel.Model;
@@ -50,7 +34,7 @@ namespace RevitSystemTests
             var basePoint = GetPreviewValue("81ad46c7-29f2-4913-a1f5-832a39b62bcd") as Autodesk.DesignScript.Geometry.Point;
             var rotationPoint = GetPreviewValue("77ce2b6f-5d4a-4f45-85b8-bc2c1bac9134");
 
-            const double Tolerance = 0.001; 
+            const double Tolerance = 0.001;
             //Verify every coordinate of Survey Point
             Assert.AreEqual(expectedSurveyPoint.X, surveyPoint.X, Tolerance);
             Assert.AreEqual(expectedSurveyPoint.Y, surveyPoint.Y, Tolerance);
@@ -88,40 +72,5 @@ namespace RevitSystemTests
             Assert.AreEqual(basePoint, Autodesk.DesignScript.Geometry.Point.Origin());
             Assert.AreEqual(rotationPoint, 0.0);
         }
-
-        [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
-        public void GetBasePoint()
-        {
-            var model = ViewModel.Model;
-
-            string samplePath = Path.Combine(workingDirectory, @".\Annotations\Coordinates.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            RunCurrentModel();
-
-            Assert.AreEqual(GetPreviewValue("81ad46c7-29f2-4913-a1f5-832a39b62bcd"), Autodesk.DesignScript.Geometry.Point.Origin());
-        }
-
-        [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
-        public void GetRotation()
-        {
-            var model = ViewModel.Model;
-
-            string samplePath = Path.Combine(workingDirectory, @".\Annotations\Coordinates.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            RunCurrentModel();
-
-            Assert.AreEqual(GetPreviewValue("77ce2b6f-5d4a-4f45-85b8-bc2c1bac9134"), 0.0);
-        }
-
-
-
     }
 }
