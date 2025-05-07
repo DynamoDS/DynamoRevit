@@ -144,8 +144,8 @@ namespace Revit.Elements.Views
         /// Create a Revit Axonometric (isometric) View from an eye position
         /// and a target position.
         /// </summary>
-        /// <param name="eyePoint">A Point representing the eye point in meters.</param>
-        /// <param name="target">A Point representing the target of view in meters.</param>
+        /// <param name="eyePoint">A Point representing the eye point in project units.</param>
+        /// <param name="target">A Point representing the target of view in project units.</param>
         /// <param name="name">The name of the view.</param>
         /// <returns>An AxonometricView object.</returns>
         public static AxonometricView ByEyePointAndTarget(
