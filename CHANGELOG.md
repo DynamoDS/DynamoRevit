@@ -1,5 +1,5 @@
 ## 0.7.18
-* Verifications added to Dynamo Tests, new tests added and deleted useless verifications
+* Verifications added to Dynamo Tests, new tests added and deleting useless verifications
 
 ## 0.7.17
 * Update Dynamo Tests by adding more verifications or by deleting useless data
