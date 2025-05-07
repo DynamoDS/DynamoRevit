@@ -1,5 +1,5 @@
-## 0.7.22
-* Add new tests, verifications and delete useless tests
+## 0.7.21
+* Fixed typo in the description of node Material.AppearanceParameter
 
 ## 0.7.20
 * Added missing test file, NUnit.Engine.Core.dll
