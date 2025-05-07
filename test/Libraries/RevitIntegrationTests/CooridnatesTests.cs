@@ -11,7 +11,7 @@ namespace RevitSystemTests
     class CoordinatesTests : RevitSystemTestBase
     {
         [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
+        [TestModel(@".\emptyAnnotativeViewNew.rvt")]
         public void GetProjectCoordinates()
         {
             var model = ViewModel.Model;
@@ -52,7 +52,7 @@ namespace RevitSystemTests
         }
 
         [Test]
-        [TestModel(@".\emptyAnnotativeViewZeroCoord.rvt")]
+        [TestModel(@".\emptyAnnotativeView.rvt")]
         public void GetProjectCoordinatesZeroCoord()
         {
             var model = ViewModel.Model;
