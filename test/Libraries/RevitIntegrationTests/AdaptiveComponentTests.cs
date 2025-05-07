@@ -15,8 +15,6 @@ using Revit.Elements;
 using Dynamo.Graph.Nodes;
 using RevitServices.Persistence;
 using System;
-using DSRevitNodesUI;
-using Dynamo.Graph;
 
 namespace RevitSystemTests
 {

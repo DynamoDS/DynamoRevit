@@ -12,10 +12,7 @@ using NUnit.Framework;
 using RevitServices.Persistence;
 
 using RevitTestServices;
-
 using RTF.Framework;
-
-//using Revit.Elements;
 
 namespace RevitSystemTests
 {

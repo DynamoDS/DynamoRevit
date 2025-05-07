@@ -5,13 +5,10 @@ using System.Linq;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 
-using CoreNodeModels;
 using CoreNodeModels.Input;
 using Dynamo.Applications.Models;
 using Dynamo.Graph;
 using Dynamo.Graph.Nodes;
-using Dynamo.Models;
-using Dynamo.Nodes;
 using Dynamo.Search.SearchElements;
 using Dynamo.Selection;
 using Dynamo.Tests;
@@ -20,9 +17,7 @@ using NUnit.Framework;
 
 using RevitServices.Persistence;
 using RevitServices.Transactions;
-
 using RevitTestServices;
-
 using RTF.Framework;
 
 namespace RevitSystemTests

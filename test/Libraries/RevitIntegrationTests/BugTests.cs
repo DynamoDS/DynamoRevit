@@ -31,7 +31,6 @@ using Dynamo.Graph.Nodes.ZeroTouch;
 using Revit.Elements.InternalUtilities;
 using CoreNodeModels.Input;
 
-
 using DSRevitNodesUI;
 using Fec = Autodesk.Revit.DB.FilteredElementCollector;
 using CurveElement = Autodesk.Revit.DB.CurveElement;
