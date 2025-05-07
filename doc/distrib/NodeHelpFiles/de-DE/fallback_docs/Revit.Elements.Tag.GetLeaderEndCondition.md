@@ -1,12 +1,7 @@
 ## Im Detail
-`Tag.GetLeaderEndCondition` gibt die Endbedingung für die Führungslinie der angegebenen Beschriftung zurück.
+`Tag.GetLeaderEndCondition` gibt die Endbedingung für die Führungslinie des angegebenen Beschriftungselements zurück.
 
-Zu den möglichen Endbedingungen gehören:
-- Fixiert
-- Frei
-
-Im folgenden Beispiel werden alle Bauelementbeschriftungen aus der Detailansicht "Nordwand Fensterdetails" gesammelt. Dann werden die Endbedingungen für Führungslinie der angegebenen Beschriftungen zurückgegeben.
-
+Im folgenden Beispiel werden alle Wände aus der angegebenen Ansicht gesammelt. Die Wände werden dann mit dem vorgegebenen Wandbeschriftungstyp und den Ausrichtungs-/Führungslinienkriterien beschriftet. Die Endbedingungen werden dann mit `Tag.GetLeaderEndCondition` zurückgegeben.
 ___
 ## Beispieldatei
 

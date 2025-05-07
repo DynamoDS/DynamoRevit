@@ -1,9 +1,9 @@
 {
-  "Collect All Elements Of Category And Get Parameters": "Collect All Elements Of Category And Get Parameters",
-  "Collect All Elements Of Category": "Collect All Elements Of Category",
-  "Export Data To Excel": "Export Data To Excel",
-  "Get Geometry For All Elements Of Category": "Get Geometry For All Elements Of Category",
-  "Import Data From Excel": "Import Data From Excel",
-  "Read Image From File": "Read Image From File"
+  "Collect All Elements Of Category And Get Parameters": "Shromáždit všechny prvky kategorie a načíst parametry",
+  "Collect All Elements Of Category": "Shromáždit všechny prvky kategorie",
+  "Export Data To Excel": "Exportovat data do aplikace Excel",
+  "Get Geometry For All Elements Of Category": "Získat geometrii pro všechny prvky kategorie",
+  "Import Data From Excel": "Importovat data z aplikace Excel",
+  "Read Image From File": "Načíst obrázek ze souboru"
 }
 
