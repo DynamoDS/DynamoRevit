@@ -1,3 +1,6 @@
+## 0.7.21
+* Fixed typo in the description of node Material.AppearanceParameter
+
 ## 0.7.20
 * Added missing test file, NUnit.Engine.Core.dll
 
