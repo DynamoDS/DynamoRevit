@@ -26,8 +26,6 @@ using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Dynamo.Applications
 {
-
-
     [Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual),
      Regeneration(RegenerationOption.Manual)]
     public class DynamoRevitApp : IExternalApplication
@@ -333,35 +331,7 @@ namespace Dynamo.Applications
         /// <returns></returns>
         public static Assembly ResolveAssembly(object sender, ResolveEventArgs args)
         {
-            var assemblyPath = string.Empty;
-            var assemblyName = new AssemblyName(args.Name).Name + ".dll";
-
-            try
-            {
-                assemblyPath = Path.Combine(DynamoRevitApp.DynamoCorePath, assemblyName);
-                if(File.Exists(assemblyPath))
-                {
-                    return Assembly.LoadFrom(assemblyPath);
-                }
-
-                var assemblyLocation = Assembly.GetExecutingAssembly().Location;
-                var assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-
-                // Try "Dynamo 0.x\Revit_20xx" folder first...
-                assemblyPath = Path.Combine(assemblyDirectory, assemblyName);
-                if (!File.Exists(assemblyPath))
-                {
-                    // If assembly cannot be found, try in "Dynamo 0.x" folder.
-                    var parentDirectory = Directory.GetParent(assemblyDirectory);
-                    assemblyPath = Path.Combine(parentDirectory.FullName, assemblyName);
-                }
-
-                return (File.Exists(assemblyPath) ? Assembly.LoadFrom(assemblyPath) : null);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(string.Format("The location of the assembly, {0} could not be resolved for loading.", assemblyPath), ex);
-            }
+            return DynamoRevitAssemblyResolver.ResolveDynamoAssembly(DynamoCorePath, null, args);
         }
 
         private void SubscribeDocumentChangedEvent()

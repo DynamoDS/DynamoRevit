@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>bcfd5d77-45f8-41a4-b60c-582509b9262b</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SharedUtilities</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ASMPreloader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DynamoRevitInternalNodes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DynamoRevitPythonManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RevitPathResolver.cs" />
+  </ItemGroup>
+</Project>

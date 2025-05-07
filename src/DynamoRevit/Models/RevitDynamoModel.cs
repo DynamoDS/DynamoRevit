@@ -226,7 +226,7 @@ namespace Dynamo.Applications.Models
             SubscribeDocumentManagerEvents();
             SubscribeTransactionManagerEvents();
 
-            SetupPython();
+            DynamoRevitPythonManager.SetupPython(Logger);
         }
 
 
@@ -436,108 +436,6 @@ namespace Dynamo.Applications.Models
             InitializeMaterials(); // Initialize materials for preview.
         }
 
-        private PythonServices.EventHandlers.EvaluationStartedEventHandler OnPythonEvalStart;
-
-        /// <summary>
-        /// Setup the python engine so that it can manage Revit data
-        /// </summary>
-        /// <param name="engine"></param>
-        private void SetupPythonEngine(PythonEngine engine)
-        {
-            if (engine != null)
-            {
-                try
-                {
-                    if (engine.HostDataMarshaler is null)
-                    {
-                        var revitDataMarshaler = new DataMarshaler();
-                        revitDataMarshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
-                        revitDataMarshaler.RegisterMarshaler((Category element) => element.InternalCategory);
-                        engine.HostDataMarshaler = revitDataMarshaler;
-                        engine.RegisterHostDataMarshalers();
-                    }
-
-                    (engine.OutputDataMarshaler as DataMarshaler).RegisterMarshaler((Element element) => element.ToDSType(true));
-                    engine.EvaluationFinished += OnPythonEvalFinished;
-                    OnPythonEvalStart = (string code, IList bindingValues, PythonServices.EventHandlers.ScopeSetAction scopeSet) =>
-                    {
-                        // Turn off element binding during python script execution
-                        ElementBinder.IsEnabled = false;
-                        if (engine.HostDataMarshaler != null)
-                        {
-                            Func<object, object> unwrap = (engine.HostDataMarshaler as DataMarshaler).Marshal;
-                            // register UnwrapElement method
-                            scopeSet("UnwrapElement", unwrap);
-                        }
-                    };
-
-                    engine.EvaluationStarted += OnPythonEvalStart;
-                }
-                catch(FileNotFoundException ex)
-                {
-                    Logger.Log(ex);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Cleanup all subscribed events and registered marshalers
-        /// </summary>
-        /// <param name="engine"></param>
-        private void CleanUpPythonEngine(PythonEngine engine)
-        {
-            try
-            {
-                if (engine != null)
-                {
-                    (engine.OutputDataMarshaler as DataMarshaler).UnregisterMarshalerOfType<Element>();
-                    engine.EvaluationStarted -= OnPythonEvalStart;
-                    engine.EvaluationFinished -= OnPythonEvalFinished;
-                }
-            }
-            catch (FileNotFoundException ex)
-            {
-                Logger.Log(ex);
-            }
-        }
-
-        /// <summary>
-        /// Sets up new python engines registered in the available PythonEngine collection
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnPythonEngineCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-            {
-                foreach (var item in e.NewItems)
-                {
-                    SetupPythonEngine(item as PythonEngine);
-                }
-            }
-        }
-
-        // Python evaluation finished event handler
-        private void OnPythonEvalFinished(EvaluationState state, string code, IList bindingValues, PythonServices.EventHandlers.ScopeGetAction scopeGet)
-        {
-            // Turn on element binding after python script execution
-            ElementBinder.IsEnabled = true;
-        }
-
-        private bool setupPython;
-
-        private void SetupPython()
-        {
-            if (setupPython) return;
-
-            // Setup engines for all existing python engines
-            PythonEngineManager.Instance.AvailableEngines.ToList().ForEach(engine => SetupPythonEngine(engine));
-            // Setup engines for any python engines that might be registered later on
-            PythonEngineManager.Instance.AvailableEngines.CollectionChanged += OnPythonEngineCollectionChanged;
-
-            setupPython = true;
-        }
-
         internal void InitializeDocumentManager()
         {
             // Set the intitial document.
@@ -732,8 +630,8 @@ namespace Dynamo.Applications.Models
             UnsubscribeDocumentManagerEvents();
             UnsubscribeRevitServicesUpdaterEvents();
             UnsubscribeTransactionManagerEvents();
-            PythonEngineManager.Instance.AvailableEngines.ToList().ForEach(engine => CleanUpPythonEngine(engine));
-            PythonEngineManager.Instance.AvailableEngines.CollectionChanged -= OnPythonEngineCollectionChanged;
+
+            DynamoRevitPythonManager.Cleanup();
 
             ElementIDLifecycleManager<long>.DisposeInstance();
         }
