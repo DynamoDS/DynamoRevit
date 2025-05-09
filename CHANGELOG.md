@@ -1,3 +1,6 @@
+## 0.7.22
+* Fix crash when closing splash-screen
+
 ## 0.7.21
 * Fixed typo in the description of node Material.AppearanceParameter
 
