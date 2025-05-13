@@ -9,46 +9,29 @@
     <FileUpgradeFlags />
     <UpgradeBackupLocation />
 
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>3</WarningLevel>
-    <DebugType>full</DebugType>
     <NoWarn>$(NoWarn);618</NoWarn>
-    <DebugSymbols>true</DebugSymbols>
-    <Prefer32Bit>false</Prefer32Bit>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
 
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <BuildDependsOn>$(BuildDependsOn);AfterBuildMigrated</BuildDependsOn>
-    <PostBuildEvent>if exist $(ProjectDir)PostBuildStep.bat call $(ProjectDir)PostBuildStep.bat $(SolutionDir)</PostBuildEvent>
-    <AssemblyCompanyAttribute>DynamoRevitDS</AssemblyCompanyAttribute>
-    <UseWPF>true</UseWPF>
-    <UseWindowsForms>true</UseWindowsForms>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <Optimize>true</Optimize>
-    <DefineConstants>TRACE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>if exist $(ProjectDir)PostBuildStep.bat call $(ProjectDir)PostBuildStep.bat $(SolutionDir)</PostBuildEvent>
-    <PlatformTarget>x64</PlatformTarget>
-  </PropertyGroup>
-  <Target Name="AfterBuildMigrated" AfterTargets="PostBuildEvent">
-    <WriteLinesToFile Condition="!Exists('$(OutputPath)/../Dynamo.config')"
-           File="$(OutputPath)/../Dynamo.config"
-           Lines="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;configuration&gt;&#xD;&#xA;  &lt;appSettings&gt;&#xD;&#xA;     &lt;add key=&quot;DynamoRuntime&quot; value=&quot;$(DYNAMOAPI)&quot;/&gt;&#xD;&#xA;  &lt;/appSettings&gt;&#xD;&#xA;&lt;/configuration&gt;&#xD;&#xA;"
-           Overwrite="true" />
-  </Target>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<BuildDependsOn>$(BuildDependsOn);AfterBuildMigrated</BuildDependsOn>
+	<PostBuildEvent>if exist $(ProjectDir)PostBuildStep.bat call $(ProjectDir)PostBuildStep.bat $(SolutionDir)</PostBuildEvent>
+	<AssemblyCompanyAttribute>DynamoRevitDS</AssemblyCompanyAttribute>
+	<UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+	</PropertyGroup>
+	<PropertyGroup>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+	</PropertyGroup>
+	<PropertyGroup>
+		<PostBuildEvent>if exist $(ProjectDir)PostBuildStep.bat call $(ProjectDir)PostBuildStep.bat $(SolutionDir)</PostBuildEvent>
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+	<Target Name="AfterBuildMigrated" AfterTargets="PostBuildEvent">
+		<WriteLinesToFile Condition="!Exists('$(OutputPath)/../Dynamo.config')" File="$(OutputPath)/../Dynamo.config" Lines="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;configuration&gt;&#xD;&#xA;  &lt;appSettings&gt;&#xD;&#xA;     &lt;add key=&quot;DynamoRuntime&quot; value=&quot;$(DYNAMOAPI)&quot;/&gt;&#xD;&#xA;  &lt;/appSettings&gt;&#xD;&#xA;&lt;/configuration&gt;&#xD;&#xA;" Overwrite="true" />
+	</Target>
   <ItemGroup>
     <Reference Include="DynamoApplications">
       <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)') ">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoApplications.dll</HintPath>
@@ -116,11 +99,6 @@
       <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\ProtoCore.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DynamoCoreWpf">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\$(DCoreLibSubFolder)\DynamoCoreWpf.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCoreWpf.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="DynamoCore">
       <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoCore.dll</HintPath>
       <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCore.dll</HintPath>
@@ -159,4 +137,9 @@
   <ItemGroup>
     <Compile Remove="RevitSettings.cs" />
   </ItemGroup>
+    <ItemGroup Condition="$(Platform.Contains('_DA'))">
+        <Compile Remove="DynamoRevit.cs" />
+        <Compile Remove="DynamoRevitApp.cs" />
+        <Compile Remove="ViewModel/**" />
+    </ItemGroup>
 </Project>

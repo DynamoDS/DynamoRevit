@@ -50,12 +50,12 @@ namespace Revit.Elements
             }
             return matchingLinkInstances;
         }
-       
 
+        // TODO: move to a UI library
+#if !DESIGN_AUTOMATION
         // helper for zooming to clicked green Id
         internal static void ZoomToLinkedElement(Element element)
         {
-
             UIDocument uiDoc = DocumentManager.Instance.CurrentUIDocument;
             Autodesk.Revit.DB.View activeView = uiDoc.ActiveView;
             // get active UI view to use
@@ -65,12 +65,12 @@ namespace Revit.Elements
             // use the center of the BoundingBox as zoom center
             BoundingBoxXYZ bb = element.InternalElement.get_BoundingBox(null);
             // if the BBox cannot be found, attempt to find it using the active view
-            if (bb==null)
+            if (bb == null)
             {
-                bb=element.InternalElement.get_BoundingBox(activeView);
+                bb = element.InternalElement.get_BoundingBox(activeView);
             }
             // finally, if the BB cannot be found at all
-            if (bb==null)
+            if (bb == null)
             {
                 TaskDialog.Show("Revit", "No good view can be found.");
                 return;
@@ -88,6 +88,7 @@ namespace Revit.Elements
                 uiview.ZoomAndCenterRectangle(min, max);
             }
         }
+#endif
 
         // helper to return element's location with transform
         internal static object GetLinkElementLocation(Element linkElement)

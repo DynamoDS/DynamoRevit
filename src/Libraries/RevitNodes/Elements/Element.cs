@@ -287,6 +287,7 @@ namespace Revit.Elements
             // Do not delete Revit owned elements
             if (!IsRevitOwned && remainingBindings == 0 && !didRevitDelete)
             {
+#if !DESIGN_AUTOMATION
                 if(this.InternalElement is View && InternalElement.IsValidObject)
                 {
                     Autodesk.Revit.UI.UIDocument uIDocument = new Autodesk.Revit.UI.UIDocument(Document);
@@ -300,6 +301,7 @@ namespace Revit.Elements
                             throw new InvalidOperationException(string.Format(Properties.Resources.CantCloseLastOpenView, this.ToString()));
                     }
                 }
+#endif
                 DocumentManager.Instance.DeleteElement(new ElementUUID(InternalUniqueId));
             }
             else
@@ -492,7 +494,7 @@ namespace Revit.Elements
         public Element OverrideColorInView(Color color)
         {
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-            var view = DocumentManager.Instance.CurrentUIDocument.ActiveView;
+            var view = DocumentManager.Instance.CurrentDBDocument.ActiveView;
             var ogs = new Autodesk.Revit.DB.OverrideGraphicSettings();
 
             var patternCollector = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument);
@@ -518,7 +520,7 @@ namespace Revit.Elements
         public Element OverrideInView(Revit.Filter.OverrideGraphicSettings overrides, bool hide = false)
         {
             TransactionManager.Instance.EnsureInTransaction(DocumentManager.Instance.CurrentDBDocument);
-            var view = DocumentManager.Instance.CurrentUIDocument.ActiveView;
+            var view = DocumentManager.Instance.CurrentDBDocument.ActiveView;
             view.SetElementOverrides(InternalElementId, overrides.InternalOverrideGraphicSettings);
             if (hide) view.HideElements(new List<ElementId>() { InternalElementId });
             else view.UnhideElements(new List<ElementId>() { InternalElementId });
@@ -534,7 +536,7 @@ namespace Revit.Elements
         {
             get
             {
-                var view = DocumentManager.Instance.CurrentUIDocument.ActiveView;
+                var view = DocumentManager.Instance.CurrentDBDocument.ActiveView;
 
                 return new Filter.OverrideGraphicSettings(view.GetElementOverrides(InternalElementId));
             }
