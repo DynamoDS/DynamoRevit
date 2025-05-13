@@ -107,7 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup> 
-    <ProjectReference Include="..\..\DynamoRevit\DynamoRevit.csproj" Condition="!$(Platform.Contains('_DA'))">
+    <ProjectReference Include="..\..\DynamoRevit\DynamoRevit.csproj">
       <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\RevitNodes\RevitNodes.csproj">

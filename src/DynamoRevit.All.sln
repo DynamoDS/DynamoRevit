@@ -86,8 +86,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".adsk", ".adsk", "{D6EED31E
 		..\.adsk\ContinuousLocalization.yml = ..\.adsk\ContinuousLocalization.yml
 	EndProjectSection
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedUtilities", "SharedUtilities\SharedUtilities.shproj", "{BCFD5D77-45F8-41A4-B60C-582509B9262B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|NET80 = Debug|NET80
@@ -168,9 +166,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {757AAA40-191F-4673-9B04-8270A3370BCA}
-	EndGlobalSection
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		SharedUtilities\SharedUtilities.projitems*{bcfd5d77-45f8-41a4-b60c-582509b9262b}*SharedItemsImports = 13
-		SharedUtilities\SharedUtilities.projitems*{fd56ae51-739e-4893-8de4-925d60c7097c}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="..\SharedUtilities\SharedUtilities.projitems" Label="Shared" />
     <ImportGroup Label="PropertySheets">
         <Import Project="$(SolutionDir)Config\CS_SDK.props" />
     </ImportGroup>
@@ -35,6 +34,7 @@
         </PackageReference>
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\DynamoRevit\DynamoRevit.csproj" />
       <ProjectReference Include="..\Libraries\RevitNodes\RevitNodes.csproj" />
       <ProjectReference Include="..\Libraries\RevitServices\RevitServices.csproj" />
     </ItemGroup>

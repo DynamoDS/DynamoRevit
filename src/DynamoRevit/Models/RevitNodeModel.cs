@@ -1,6 +1,6 @@
-﻿using Dynamo.Graph.Nodes;
+﻿using System.Collections.Generic;
+using Dynamo.Graph.Nodes;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace Dynamo.Applications.Models
 {

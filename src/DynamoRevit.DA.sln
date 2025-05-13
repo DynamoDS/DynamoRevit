@@ -42,7 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{956846
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DADynamoApp", "DADynamoApp\DADynamoApp.csproj", "{66A0E1C8-2514-48B7-8406-536983F57F88}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedUtilities", "SharedUtilities\SharedUtilities.shproj", "{BCFD5D77-45F8-41A4-B60C-582509B9262B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoRevit", "DynamoRevit\DynamoRevit.csproj", "{BD7126B6-E716-4024-854F-6DA2CFA25B84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +74,10 @@ Global
 		{66A0E1C8-2514-48B7-8406-536983F57F88}.Debug|NET80_DA.Build.0 = Debug|NET80_DA
 		{66A0E1C8-2514-48B7-8406-536983F57F88}.Release|NET80_DA.ActiveCfg = Release|NET80_DA
 		{66A0E1C8-2514-48B7-8406-536983F57F88}.Release|NET80_DA.Build.0 = Release|NET80_DA
+		{BD7126B6-E716-4024-854F-6DA2CFA25B84}.Debug|NET80_DA.ActiveCfg = Debug|NET80_DA
+		{BD7126B6-E716-4024-854F-6DA2CFA25B84}.Debug|NET80_DA.Build.0 = Debug|NET80_DA
+		{BD7126B6-E716-4024-854F-6DA2CFA25B84}.Release|NET80_DA.ActiveCfg = Release|NET80_DA
+		{BD7126B6-E716-4024-854F-6DA2CFA25B84}.Release|NET80_DA.Build.0 = Release|NET80_DA
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +94,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedUtilities\SharedUtilities.projitems*{66a0e1c8-2514-48b7-8406-536983f57f88}*SharedItemsImports = 5
-		SharedUtilities\SharedUtilities.projitems*{bcfd5d77-45f8-41a4-b60c-582509b9262b}*SharedItemsImports = 13
+		SharedUtilities\SharedUtilities.projitems*{bd7126b6-e716-4024-854f-6da2cfa25b84}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

@@ -17,6 +17,7 @@ using Revit.Elements;
 using Dynamo.PythonServices;
 using DSCPython;
 using Newtonsoft.Json;
+using Revit.Transaction;
 
 namespace DADynamoApp
 {
@@ -155,7 +156,9 @@ namespace DADynamoApp
             var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(controlledApplication, DynamoPath);
             var geometryFactoryPath = ASMPrealoaderUtils.GetGeometryFactoryPath(DynamoPath, loadedLibGVersion);
 
-            model = DynamoModel.Start(
+            PreInstallPythonDependencies();
+
+            model = Dynamo.Applications.Models.RevitDynamoModel.Start(
                 new DefaultStartConfiguration
                 {
                     DynamoCorePath = DynamoPath,
@@ -169,8 +172,6 @@ namespace DADynamoApp
                     IsHeadless = true,
                     IsServiceMode = true
                 });
-
-            SetupPython();
 
             LoadMessage = model != null ? "loaded" : "no loaded";
 
@@ -196,6 +197,8 @@ namespace DADynamoApp
                 try
                 {
                     var setupRequest = File.ReadAllText(setupReqPath);
+                    Console.WriteLine(setupRequest);
+
                     SetupDARequest setupReq = JsonConvert.DeserializeObject<SetupDARequest>(setupRequest, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto});
                     saveRvt = setupReq?.SaveRvt ?? saveRvt;
                 }
@@ -222,10 +225,12 @@ namespace DADynamoApp
             Console.WriteLine(output);
             File.WriteAllText(Path.Combine(WorkItemFolder, "result.json"), output);
 
+            Console.WriteLine($"{nameof(saveRvt)} is set to {saveRvt}");
             if (saveRvt)
             {
                 try
                 {
+                    RevitServices.Transactions.TransactionManager.Instance.ForceCloseTransaction();
                     ModelPath path = ModelPathUtils.ConvertUserVisiblePathToModelPath("result.rvt");
                     doc.SaveAs(path, new SaveAsOptions());
                 }
@@ -239,7 +244,7 @@ namespace DADynamoApp
             e.Succeeded = true;
         }
 
-        private void SetupPython()
+        private void PreInstallPythonDependencies()
         {
             try
             {
@@ -284,8 +289,6 @@ namespace DADynamoApp
                         PythonEngineManager.Instance.AvailableEngines.Add(engine);
                     }
                 }
-
-                DynamoRevitPythonManager.SetupPython(model.Logger);
             }
             catch (Exception ex)
             {
