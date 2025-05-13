@@ -188,7 +188,8 @@ namespace DADynamoApp
 
             var dynHandler = new Handler(playerHost, [new DARunGraphController(controller, model, WorkItemFolder)]);
 
-            bool saveRvt = false;
+            // Default, save the rvt
+            bool saveRvt = true;
             var setupReqPath = Path.Combine(WorkItemFolder, "setup.json");
             if (File.Exists(setupReqPath))
             {
@@ -196,7 +197,7 @@ namespace DADynamoApp
                 {
                     var setupRequest = File.ReadAllText(setupReqPath);
                     SetupDARequest setupReq = JsonConvert.DeserializeObject<SetupDARequest>(setupRequest, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto});
-                    saveRvt = setupReq?.SaveRvt ?? false;
+                    saveRvt = setupReq?.SaveRvt ?? saveRvt;
                 }
                 catch (Exception ex)
                 {
