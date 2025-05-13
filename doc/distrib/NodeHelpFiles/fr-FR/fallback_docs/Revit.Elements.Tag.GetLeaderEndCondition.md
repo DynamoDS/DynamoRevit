@@ -1,12 +1,7 @@
 ## Description approfondie
-'Tag.GetLeaderEndCondition' renvoie la condition donnée d'extrémité de repère des étiquettes.
+'Tag.GetLeaderEndCondition' renvoie la condition d'extrémité de repère de l'élément d'étiquette donné.
 
-Conditions d'extrémité possibles:
-- Attachée
-- Libre
-
-Dans l'exemple ci-dessous, toutes les étiquettes de note d'identification sont collectées à partir de la vue de détail "Détail de la fenêtre du mur nord". Les conditions d'extrémité de repère des étiquettes sont ensuite renvoyées.
-
+Dans l'exemple ci-dessous, tous les murs sont collectés à partir de la vue donnée. Les murs sont ensuite étiquetés avec le type d'étiquette de mur par défaut et les critères d'alignement/de ligne de repère. Les conditions d'extrémité sont ensuite renvoyées avec 'Tag.GetLeaderEndCondition'.
 ___
 ## Exemple de fichier
 

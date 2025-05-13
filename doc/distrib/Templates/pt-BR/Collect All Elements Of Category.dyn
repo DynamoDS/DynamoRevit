@@ -2,7 +2,7 @@
   "Uuid": "f36fba0c-8a97-4fef-b3dc-6f0d4d61aafa",
   "IsCustomNode": false,
   "Description": "Coletar todos os elementos de uma categoria escolhida (padronizando para ambientes)",
-  "Name": "Collect All Elements Of Category",
+  "Name": "Coletar todos os elementos da categoria",
   "ElementResolver": {
     "ResolutionMap": {}
   },

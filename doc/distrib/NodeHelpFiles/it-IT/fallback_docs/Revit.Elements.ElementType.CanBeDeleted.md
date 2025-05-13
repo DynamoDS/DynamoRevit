@@ -1,7 +1,7 @@
 ## In profondità
-`ElementType.CanBeDeleted` determina se il tipo di elemento può essere eliminato dal file di Revit.
+`ElementType.CanBeDeleted` restituisce un valore true/false che indica se il tipo di elemento specificato può essere eliminato o meno.
 
-Nell'esempio seguente, tutte le viste di pianta vengono raccolte dal file di Revit corrente. Le viste di pianta vengono quindi separate in 2 elenchi, "can be deleted" e "cannot be deleted".
+Nell'esempio seguente, tutti i tipi di muro vengono raccolti dal documento di Revit corrente e viene verificato se possono essere eliminati.
 ___
 ## File di esempio
 

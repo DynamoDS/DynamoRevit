@@ -2,7 +2,7 @@
   "Uuid": "b3342583-c831-4c51-800a-ffbe4db82efa",
   "IsCustomNode": false,
   "Description": "선택한 카테고리의 모든 요소(기본값: 룸)를 수집하고 각 요소의 룸 면적을 가져옵니다.",
-  "Name": "Collect All Elements Of Category And Get Parameters",
+  "Name": "카테고리의 모든 요소 수집 및 매개변수 가져오기",
   "ElementResolver": {
     "ResolutionMap": {}
   },
