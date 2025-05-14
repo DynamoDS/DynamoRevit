@@ -4,6 +4,7 @@ using System.Linq;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.Creation;
 using Autodesk.Revit.DB;
+using DynamoServices;
 using Revit.GeometryConversion;
 using Revit.GeometryReferences;
 using RevitServices.Elements;
@@ -432,6 +433,8 @@ namespace Revit.Elements
         {
             if (points == null)
             {
+                LogWarningMessageEvents.OnLogInfoMessage("Warning: AdaptiveComponents.ByPoints operation failed. " +
+                    "The AdaptiveComponents.ByPoints node accepts as imput a 2D array of points (structured list of lists) and a Family type to be used for creating the adaptive component");
                 throw new ArgumentNullException("points");
             }
 
