@@ -1,3 +1,7 @@
+## 0.7.23
+* Imporve warning messages for certain dynamo nodes
+
+
 ## 0.7.22
 * Fix crash when closing splash-screen
 
