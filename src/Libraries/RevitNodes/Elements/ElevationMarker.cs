@@ -1,6 +1,7 @@
 ﻿using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+using DynamoServices;
 using Revit.Elements.Views;
 using Revit.GeometryConversion;
 using RevitServices.Transactions;
@@ -106,6 +107,10 @@ namespace Revit.Elements
             var view = planView as PlanView;
             if (view == null)
                 throw new InvalidOperationException(Properties.Resources.NotPlanView);
+
+            LogWarningMessageEvents.OnLogInfoMessage("ElevationMarker.CreateElevationByMarkerIndex operation failed. Selected index is already occupied by a View or not available." +
+                "The elevation marker can have up to four views, indexed from 0 to 3. The index on the ElevationMarker specifies where the new elevation View will be placed." +
+                " Check how many views the Elevation Mark family loaded in the model contains and which indexes are empty.");
 
             TransactionManager.Instance.EnsureInTransaction(Document);
             Autodesk.Revit.DB.ViewSection sectionView = this.InternalMarker.CreateElevation(Document, view.InternalViewPlan.Id, index);
