@@ -433,9 +433,7 @@ namespace Revit.Elements
         {
             if (points == null)
             {
-                LogWarningMessageEvents.OnLogInfoMessage("Warning: AdaptiveComponents.ByPoints operation failed. " +
-                    "The AdaptiveComponents.ByPoints node accepts as imput a 2D array of points (structured list of lists) and a Family type to be used for creating the adaptive component");
-                throw new ArgumentNullException("points");
+                throw new ArgumentNullException(Properties.Resources.NotSingleList);
             }
 
             if (familyType == null)

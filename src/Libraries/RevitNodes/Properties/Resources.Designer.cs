@@ -106,6 +106,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to StructuralPlans can only be created when the structural discipline is enabled...
+        /// </summary>
+        internal static string ArchitectureOrMepEnabled {
+            get {
+                return ResourceManager.GetString("ArchitectureOrMepEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must supply an Area Scheme..
         /// </summary>
         internal static string AreaSchemeArgumentException {
@@ -707,7 +716,7 @@ namespace Revit.Properties {
                 return ResourceManager.GetString("GroupObsolete", resourceCulture);
             }
         }
-        
+              
         /// <summary>
         ///   Looks up a localized string similar to The input list of parameters does not have the same number of values required by the adaptive component..
         /// </summary>
@@ -1092,6 +1101,15 @@ namespace Revit.Properties {
         internal static string NotPositiveIntegerError {
             get {
                 return ResourceManager.GetString("NotPositiveIntegerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to node accepts as imput a 2D array of points...
+        /// </summary>
+        internal static string NotSingleList {
+            get {
+                return ResourceManager.GetString("NotSingleList", resourceCulture);
             }
         }
         

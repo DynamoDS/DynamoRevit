@@ -73,9 +73,7 @@ namespace Revit.Elements.Views
         {
             if (level == null)
             {
-                LogWarningMessageEvents.OnLogInfoMessage("StructuralPlans can only be created when the structural discipline is enabled whereas FloorPlans and CeilingPlans can only be created when architecture or MEP disciplines are enabled. " +
-                    "Check which tabs are active under File -> Options -> User Interface -> Configure Tools and analysis");
-                throw new ArgumentNullException("level");
+                throw new ArgumentNullException(Properties.Resources.ArchitectureOrMepEnabled);
             }
 
             return new StructuralPlanView(level.InternalLevel);

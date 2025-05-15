@@ -100,17 +100,13 @@ namespace Revit.Elements
         /// Creates a new elevation ViewSection on the ElevationMarker at the desired index.
         /// </summary>
         /// <param name="planView">The PlanView in which the ElevationMarker is visible. The new elevation ViewSection will derive its extents and inherit settings from the ViewPlan.</param>
-        /// <param name="index">The index on the ElevationMarker where the new elevation ViewSection will be placed. The elevation marker can have up to four views, indexed from 0 to 3.</param>
+        /// <param name="index">ElevationMarker.CreateElevationByMarkerIndex operation failed. Selected index is already occupied by a View or not available.The elevation marker can have up to four views, indexed from 0 to 3. The index on the ElevationMarker specifies where the new elevation View will be placed. Check how many views the Elevation Mark family loaded in the model contains and which indexes are empty.</param>
         /// <returns>The new elevation ViewSection.</returns>
         public SectionView CreateElevationByMarkerIndex(Revit.Elements.Views.View planView, int index)
         {
             var view = planView as PlanView;
             if (view == null)
                 throw new InvalidOperationException(Properties.Resources.NotPlanView);
-
-            LogWarningMessageEvents.OnLogInfoMessage("ElevationMarker.CreateElevationByMarkerIndex operation failed. Selected index is already occupied by a View or not available." +
-                "The elevation marker can have up to four views, indexed from 0 to 3. The index on the ElevationMarker specifies where the new elevation View will be placed. " +
-                "Check how many views the Elevation Mark family loaded in the model contains and which indexes are empty.");
 
             TransactionManager.Instance.EnsureInTransaction(Document);
             Autodesk.Revit.DB.ViewSection sectionView = this.InternalMarker.CreateElevation(Document, view.InternalViewPlan.Id, index);
