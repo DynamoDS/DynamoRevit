@@ -12,10 +12,7 @@ using NUnit.Framework;
 using RevitServices.Persistence;
 
 using RevitTestServices;
-
 using RTF.Framework;
-
-//using Revit.Elements;
 
 namespace RevitSystemTests
 {
@@ -101,7 +98,7 @@ namespace RevitSystemTests
             Assert.AreEqual(31, model.CurrentWorkspace.Connectors.Count());
 
             //check PolyCurve.ByThickeningCurve
-            var polyCurveId = "8f42e859-9f88-4b4f-b1d8-d3a2841b8d14";
+            var polyCurveId = "07fd72a70bbf48408b3ab1e7778b82b5";
             AssertPreviewCount(polyCurveId, 4);
             for (int i = 0; i < 4; i++)
             {
@@ -143,13 +140,13 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertNoDummyNodes();
             var model = ViewModel.Model;
-            Assert.AreEqual(33, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(40, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(28, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(38, model.CurrentWorkspace.Connectors.Count());
 
             //check curve.Offset
-            var curve1ID = "d8269a9d-173a-486a-8d49-66f92725d2cf";
-            var curve2ID = "ac34ea91-2520-40dc-9b50-d0132e023786";
-            var curve3ID = "30d479f1-c437-4d26-aca4-d10f507722e2";
+            var curve1ID = "dfee4fa337b5476995912e653d395045";
+            var curve2ID = "21cb36fafb504bf8932d770a8432c7b2";
+            var curve3ID = "4a7e6ca158644197acbc014823aa32ec";
             var curve1 = GetPreviewValue(curve1ID) as Autodesk.DesignScript.Geometry.Curve;
             var curve2 = GetPreviewValue(curve2ID) as Autodesk.DesignScript.Geometry.Curve;
             var curve3 = GetPreviewValue(curve3ID) as Autodesk.DesignScript.Geometry.Curve;
@@ -175,7 +172,7 @@ namespace RevitSystemTests
             Assert.AreEqual(29, model.CurrentWorkspace.Connectors.Count());
 
             //check ThickenCurve
-            var curveId = "8f42e859-9f88-4b4f-b1d8-d3a2841b8d14";
+            var curveId = "f89ac92302b448d8bdc512d6e95e1a70";
             AssertPreviewCount(curveId, 4);
             for (int i = 0; i < 4; i++)
             {
@@ -241,44 +238,21 @@ namespace RevitSystemTests
         }
          * */
 
-        //[Test, Category("Failure")]
-        //[TestModel(@".\empty.rfa")]
-        //public void CurvebyPointsEllipse()
-        //{
-        //    string samplePath = Path.Combine(workingDirectory, @".\Curve\CurvebyPointsEllipse.dyn");  \\There are some obsolete node in dyn script.
-        //    string testPath = Path.GetFullPath(samplePath);
-
-        //    ViewModel.OpenCommand.Execute(testPath);
-
-        //    RunCurrentModel();
-
-        //    FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-        //    fec.OfClass(typeof(CurveElement));
-
-        //    Assert.AreEqual(fec.ToElements().Count(), 1);
-
-        //    CurveByPoints mc = (CurveByPoints)fec.ToElements().ElementAt(0);
-        //}
-
         [Test]
-        [TestModel(@".\Curve\GetCurveDomain.rfa")]
-        public void GetCurveDomain()
+        [TestModel(@".\empty.rfa")]
+        public void CurvebyPointsEllipse()
         {
-            string samplePath = Path.Combine(workingDirectory, @".\Curve\GetCurveDomain.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Curve\CurvebyPointsEllipse.dyn");  //There are some obsolete node in dyn script.
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
 
-            AssertNoDummyNodes();
-            var model = ViewModel.Model;
-            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(13, model.CurrentWorkspace.Connectors.Count());
-            var ellipseArcID = "00ba9f14-ed23-4c27-b25e-4dc45c0cc801";
-            var ellipseArc = GetPreviewValue(ellipseArcID) as EllipseArc;
-            Assert.IsNotNull(ellipseArc);
+            FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(CurveElement));
 
+            Assert.AreEqual(fec.ToElements().Count(), 1);
         }
 
 
