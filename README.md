@@ -78,6 +78,15 @@ where `<version>` is the version of Revit for which the addin is built. Notice t
 
 Now you should be able to launch Revit and see the Dynamo and Dynamo Player icons on the Manage tab. If you experience issues, check the troubleshooting tips in the next section.
 
+### Build dynamo revit against a local version of Dynamo
+
+1. Build Dynamo locally
+2. Run the Dynamo nuget script (more info [here](https://github.com/DynamoDS/Dynamo/blob/master/tools/NuGet/README.md))
+```.\BuildPackages.bat "template-nuget" "...\GitHub\Dynamo\bin\AnyCPU\Release"```
+This will locally produce all the dynamo nugets.
+3. In you Visual Studio editor, add/change the nuget sources to point to your local nuget folder (where the local nugets are).
+![alt text](images/local_dynamo_nugets.png)
+
 ## Troubleshooting Build Issues
 
 * If you see errors like: 
