@@ -4,6 +4,7 @@ using System.Linq;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.Creation;
 using Autodesk.Revit.DB;
+using DynamoServices;
 using Revit.GeometryConversion;
 using Revit.GeometryReferences;
 using RevitServices.Elements;
@@ -432,7 +433,7 @@ namespace Revit.Elements
         {
             if (points == null)
             {
-                throw new ArgumentNullException("points");
+                throw new ArgumentNullException(Properties.Resources.NotSingleList);
             }
 
             if (familyType == null)

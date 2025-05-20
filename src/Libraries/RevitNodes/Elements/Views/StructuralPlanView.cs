@@ -1,6 +1,7 @@
 using System;
 
 using Autodesk.Revit.DB;
+using DynamoServices;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
@@ -72,7 +73,7 @@ namespace Revit.Elements.Views
         {
             if (level == null)
             {
-                throw new ArgumentNullException("level");
+                throw new ArgumentNullException(Properties.Resources.ArchitectureOrMepEnabled);
             }
 
             return new StructuralPlanView(level.InternalLevel);
