@@ -126,6 +126,7 @@ namespace RevitSystemTests
             var modelGroupLocationZ = GetPreviewValue("0e84e93aad5f427ea1a7c2ef254f711e");
 
             var attachedDetailGroupId = GetPreviewCollection("a9e7e1ef060b45ea9f7176adde8bd90f");
+            var attachedDetailGroupIsAttached = GetPreviewValue("6184d48100614e4cbf97148d587ec93d");
 
             // Assert
             Assert.AreEqual(false, modelGroupIsAttached);
@@ -139,6 +140,7 @@ namespace RevitSystemTests
             Assert.AreEqual(expectedModelGroupLocation.Z, (double)modelGroupLocationZ, Tolerance);
 
             Assert.AreEqual(expectedAttachedDetailGroup, attachedDetailGroupId);
+            Assert.AreEqual(true, attachedDetailGroupIsAttached);
         }
     }
 }

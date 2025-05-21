@@ -1,3 +1,6 @@
+## 0.7.23
+* Add changes to D4R tests
+
 ## 0.7.22
 * Fix crash when closing splash-screen
 
