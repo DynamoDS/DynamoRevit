@@ -33,8 +33,7 @@ namespace RevitSystemTests
 
             //check length of String
             var length = GetPreviewValue("c0ecff8e98204341a73b04de6e99c90e");
-            var lengthValue = (length is KeyValuePair<string, object> kvp) ? kvp.Value : length;
-            var firstValue = ((IEnumerable<object>)((dynamic)lengthValue).Values).Cast<object>().First();
+            var firstValue = ((IEnumerable<object>)((dynamic)length).Values).Cast<object>().First();
             Assert.AreEqual((double)firstValue, -27.341145833333332d, Tolerance);
         }
     }
