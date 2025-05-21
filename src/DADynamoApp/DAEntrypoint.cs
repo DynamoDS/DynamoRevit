@@ -153,7 +153,7 @@ namespace DADynamoApp
             // Local Change
             //var geometryFactoryPath = @"C:\\Program Files\\Autodesk\\Revit 2025";
 
-            var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(controlledApplication, DynamoPath);
+            var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(controlledApplication.SharedComponentsLocation, DynamoPath);
             var geometryFactoryPath = ASMPrealoaderUtils.GetGeometryFactoryPath(DynamoPath, loadedLibGVersion);
 
             PreInstallPythonDependencies();
