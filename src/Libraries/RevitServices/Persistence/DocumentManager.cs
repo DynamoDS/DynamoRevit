@@ -156,7 +156,7 @@ namespace RevitServices.Persistence
         /// <summary>
         /// Provides the current Application
         /// </summary>
-        public Application CurrentApplication { get; set; }
+        internal Application CurrentApplication { get; set; }
 
 #if !DESIGN_AUTOMATION
         /// <summary>
