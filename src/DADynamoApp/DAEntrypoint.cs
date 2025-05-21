@@ -148,7 +148,7 @@ namespace DADynamoApp
             var userDataFolder = Path.Combine(dynTempDir, "Dynamo Revit");
             var commonDataFolder = Path.Combine(dynTempDir, "Dynamo");
 
-            DocumentManager.Instance.PrepareForAutomation(app);
+            DocumentManager.Instance.PrepareForDesignAutomation(app);
 
             // Local Change
             //var geometryFactoryPath = @"C:\\Program Files\\Autodesk\\Revit 2025";

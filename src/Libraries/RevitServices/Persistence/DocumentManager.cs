@@ -188,7 +188,11 @@ namespace RevitServices.Persistence
             }
         }
 
-        public void PrepareForAutomation(Application app)
+        /// <summary>
+        /// Setup the CurrentDBDocument and CurrentApplication.
+        /// </summary>
+        /// <param name="app"></param>
+        internal void PrepareForDesignAutomation(Application app)
         {
             if (app == null)
             {
