@@ -26,11 +26,11 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertNoDummyNodes();
             var model = ViewModel.Model;
-            Assert.AreEqual(18, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(14, model.CurrentWorkspace.Connectors.Count());
 
             //check Transaction.End
-            var dividedPathID = "340aca5c-2b33-4d87-b8d0-96768cbdf1da";
+            var dividedPathID = "468d07ae1a5d4dc695871182981703e8";
             AssertPreviewCount(dividedPathID, 11);
             for (int i = 0; i < 1; i++)
             {
@@ -39,7 +39,7 @@ namespace RevitSystemTests
             }
 
             // check DividedPath.Point
-            var pointsID = "c5733de3-da97-456a-88cc-f7f363afa921";
+            var pointsID = "c5733de3da97456a88ccf7f363afa921";
             AssertPreviewCount(pointsID, 11);
             var points = GetFlattenedPreviewValues(pointsID);
             Assert.AreEqual(points.Count(), 33);

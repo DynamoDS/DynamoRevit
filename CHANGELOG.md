@@ -1,3 +1,24 @@
+## 0.7.23
+* Add changes to D4R tests
+
+## 0.7.22
+* Fix crash when closing splash-screen
+
+## 0.7.21
+* Fixed typo in the description of node Material.AppearanceParameter
+
+## 0.7.20
+* Added missing test file, NUnit.Engine.Core.dll
+
+## 0.7.19
+* Added missing test files from Dynamo Core 3.5
+
+## 0.7.18
+* Added UnitTest for Undo-Delete Nodes Scenario
+
+## 0.7.17
+* Update Dynamo Tests by adding more verifications or by deleting useless data
+
 ## 0.7.16
 * Update Dynamo Core to 3.5.0.8297
 

@@ -29,6 +29,7 @@
 		</GetReferenceAssemblyPaths>
 		<GetAssemblyIdentity
 		  AssemblyFiles="$(SolutionDir)\AssemblySharedInfoGenerator\bin\$(Configuration)\AssemblyInfoGenerator.dll">
+		  AssemblyFiles="$(SolutionDir)\AssemblySharedInfoGenerator\bin\AssemblyInfoGenerator.dll">
 			<Output
 				TaskParameter="Assemblies"
 				ItemName="MyAssemblyIdentities"/>

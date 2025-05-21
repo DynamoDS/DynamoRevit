@@ -40,10 +40,11 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="$(Platform.Contains('_DA'))">
-	<DefineConstants>$(DefineConstants);DESIGN_AUTOMATION</DefineConstants>
+	  <DefineConstants>$(DefineConstants);DESIGN_AUTOMATION</DefineConstants>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ProjectReference>
+      <Private>false</Private>
       <PrivateAssets>all</PrivateAssets>
     </ProjectReference>
   </ItemDefinitionGroup>

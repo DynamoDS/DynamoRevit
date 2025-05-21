@@ -397,6 +397,12 @@ namespace Dynamo.Applications
                 // Let the host (e.g. Revit) control the rendering mode
                 var save = RenderOptions.ProcessRenderMode;
 
+                if (splashScreen == null)
+                {
+                    RevitDynamoModel.State = DynamoModel.DynamoModelState.NotStarted;
+                    DynamoRevitApp.DynamoButtonEnabled = true;
+                    return;
+                }
                 splashScreen.DynamoView = InitializeCoreView(extCommandData);
 
                 RenderOptions.ProcessRenderMode = save;
@@ -1001,8 +1007,11 @@ namespace Dynamo.Applications
             if (sender is Dynamo.UI.Views.SplashScreen ss && ss.CloseWasExplicit)
             {
                 DynamoRevitApp.DynamoButtonEnabled = true;
-                //the model is shutdown when splash screen is closed
-                RevitDynamoModel.State = DynamoModel.DynamoModelState.NotStarted;
+                if (RevitDynamoModel != null)
+                {
+                    //the model is shutdown when splash screen is closed
+                    RevitDynamoModel.State = DynamoModel.DynamoModelState.NotStarted;
+                }
             }
 
             splashScreen = null;

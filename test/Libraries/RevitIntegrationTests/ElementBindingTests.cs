@@ -242,8 +242,7 @@ namespace RevitSystemTests
             Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
         }
 
-        // TODO: Re-enable the test when open workspace in JSON is enabled.
-        [Test, Ignore("Was disabled 6 years ago, TODO - check if it should be re-enabled")]
+        [Test]
         [TestModel(@".\empty.rfa")]
         public void CreateInDynamoSaveCloseGraphReopenGraphRerun()
         {
@@ -253,11 +252,11 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
 
-            RunCurrentModel();
-
             //Save the current graph
             string tempPath = Path.Combine(Path.GetTempPath(), "CreateOneReferencePoint.dyn");
             ViewModel.SaveAsCommand.Execute(tempPath);
+            RunCurrentModel();
+            ViewModel.SaveCommand.Execute(null);
 
             //Close the current graph
             ViewModel.CloseHomeWorkspaceCommand.Execute(null);

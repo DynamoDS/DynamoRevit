@@ -31,6 +31,10 @@ using Dynamo.Graph.Nodes.ZeroTouch;
 using Revit.Elements.InternalUtilities;
 using CoreNodeModels.Input;
 
+using DSRevitNodesUI;
+using Fec = Autodesk.Revit.DB.FilteredElementCollector;
+using CurveElement = Autodesk.Revit.DB.CurveElement;
+
 namespace RevitSystemTests
 {
     [TestFixture]
@@ -50,32 +54,54 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
+            //Verify that there is a curve in Revit before running the graph
+            Fec fec = new Fec(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(CurveElement));
+            Assert.AreEqual(fec.ToElements().Count(), 1);
+
             RunCurrentModel();
+
+            //Verify that the node creating the ReferenceLine is not null
+            var referenceLineID = "2816df3520e04562984ade1cd5d5906f";
+            var referenceLine = GetFlattenedPreviewValues(referenceLineID);
+            Assert.IsNotNull(referenceLine);
+
+            //Verify that now are 2 cureves in Revit
+            Assert.AreEqual(fec.ToElements().Count(), 2);
+
         }
 
-        //[Test, Category("Failure")]
-        //[Category("RegressionTests")]
-        //[TestModel(@".\empty.rfa")]
-        //public void MAGN_102()
-        //{
-        //    // Additional Info: https://github.com/DynamoDS/Dynamo/commit/06ea6eb0ab3156f96809f4ba4c648406a9ca8155
-        //    // Verify project to face/plane now sends out the intersection point NOT the original XYZ
+        [Test]
+        [Category("RegressionTests")]
+        [TestModel(@".\empty.rfa")]
+        public void MAGN_102()
+        {
+            // Additional Info: https://github.com/DynamoDS/Dynamo/commit/06ea6eb0ab3156f96809f4ba4c648406a9ca8155
+            // Verify project to face/plane now sends out the intersection point NOT the original XYZ
 
-        //    var model = ViewModel.Model;
+            var model = ViewModel.Model;
 
-        //    string samplePath = Path.Combine(workingDirectory, @".\\Bugs\MAGN_102_projectPointsToFace_selfContained.dyn");    \\There are some obsolete node in dyn script.
-        //    string testPath = Path.GetFullPath(samplePath);
+            string samplePath = Path.Combine(workingDirectory, @".\\Bugs\MAGN_102_projectPointsToFace_selfContained.dyn");
+            string testPath = Path.GetFullPath(samplePath);
 
-        //    ViewModel.OpenCommand.Execute(testPath);
+            ViewModel.OpenCommand.Execute(testPath);
 
-        //    AssertNoDummyNodes();
+            AssertNoDummyNodes();
 
-        //    // check all the nodes and connectors are loaded
-        //    Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count());
-        //    Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(11, model.CurrentWorkspace.Connectors.Count());
 
-        //    RunCurrentModel();
-        //}
+            RunCurrentModel();
+
+            //Verify that there are 11 points in the output
+            var geometryDistanceID = GetFlattenedPreviewValues("4dfb09a2fec44f6aa53cbde3c271ffa6");
+            Assert.AreEqual(geometryDistanceID.Count(), 11);
+
+            //Verify that the distance between the points is 50
+            double expectedDistance = 50;
+            Assert.IsTrue(geometryDistanceID.All(value => value.Equals(expectedDistance)));
+        }
 
         [Test]
         [Category("RegressionTests")]
@@ -101,23 +127,22 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             // Check for Walls Creation
-            var walls = "b7392d1d-6333-4bed-b10d-7b83520d2c3e";
-            AssertPreviewCount(walls, 6);
+            var walls = GetFlattenedPreviewValues("b7392d1d-6333-4bed-b10d-7b83520d2c3e");
+            Assert.AreEqual(walls.Count, 24);
 
-            // I will un-comment this code once Ian fix the issue with Document.IsFamilyDocument 
-            //var wallinst = GetPreviewValueAtIndex(walls, 3) as Floor;
-            //Assert.IsNotNull(wallinst);
-            //Assert.IsNotNullOrEmpty(wallinst.Name);
+            var wallinst = walls[3] as Wall;
+            Assert.IsNotNull(wallinst);
+            Assert.IsNotNull(wallinst.Name);
+            Assert.IsNotEmpty(wallinst.Name);
 
             // Check for Floor Creation
             var floors = "25392912-b625-4020-8dd1-81923c5e4823";
             AssertPreviewCount(floors, 6);
 
-            // I will un-comment this code once Ian fix the issue with Document.IsFamilyDocument 
-            //var floorInst = GetPreviewValueAtIndex(floors, 3) as Floor;
-            //Assert.IsNotNull(floorInst);
-            //Assert.IsNotNullOrEmpty(floorInst.Name);
-
+            var floorInst = GetPreviewValueAtIndex(floors, 3) as Floor;
+            Assert.IsNotNull(floorInst);
+            Assert.IsNotNull(floorInst.Name);
+            Assert.IsNotEmpty(floorInst.Name);
         }
 
         [Test]
@@ -140,6 +165,34 @@ namespace RevitSystemTests
             Assert.AreEqual(14, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
+
+            //check all the points of the beams
+            var expectedBeamsPoints = new List<Autodesk.DesignScript.Geometry.Point>()
+            {
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(0.000, 10.000, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(10.000, 12.000, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(20.000, 14.000, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(30.000, 16.000, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(40.000, 18.000, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(50.000, 20.000, 0.000),
+            };
+
+            var beamPoints = GetFlattenedPreviewValues("6b80025a09ec420ead85265e85a91966");
+            AssertListOfPoints(expectedBeamsPoints, beamPoints);
+
+
+            //verify that there are only 6 beams created
+            var beamsId = "18fe6969ef7942d3ad31b11ac64ea596";
+            var beamsValue = GetFlattenedPreviewValues(beamsId);
+            Assert.AreEqual(6, beamsValue.Count);
+
+            //verify that all the beams are of same type
+            for (int i = 0; i < beamsValue.Count; i++)
+            {
+                var beam = beamsValue[i] as StructuralFraming;
+                Assert.IsNotNull(beam);
+                Assert.AreEqual(beam.Name, "12 x 24");
+            }
         }
 
         [Test]
@@ -166,12 +219,17 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            // there should not be any crash on running this graph.
-            // below node should have an error because there is no selection for Floor Type.
-            var nodeModel = workspace.NodeFromWorkspace("cc38d11d-cda2-4294-81dc-119776af7338");
-            Assert.AreEqual(ElementState.Warning, nodeModel.State);
+            // there should not be any crash on running this graph
+            //verifies that the floor type node is null
+            var floorTypeNodeID = "0a875f13bbde4d568b10d06aaa62a592";
+            var floorTypeNode = GetPreviewValue(floorTypeNodeID) as FloorTypes;
+            Assert.IsNull(floorTypeNode);
 
+            // below node should have an error because there is no selection for Floor Type
+            var nodeModel = workspace.NodeFromWorkspace("cc38d11dcda2429481dc119776af7338");  //Floor.ByOutlineTypeAndLevel
+            Assert.AreEqual(ElementState.Warning, nodeModel.State);
         }
+
         [Test]
         [Category("RegressionTests")]
         [TestModel(@".\Bugs\MAGN-3620_topo.rvt")]
@@ -506,6 +564,8 @@ namespace RevitSystemTests
             var refPlane = GetPreviewValue("85c1f8c5-00da-4a7e-94c7-655140e39f6a") as Plane;
             Assert.IsNotNull(refPlane);
         }
+
+
         [Test]
         [Category("RegressionTests")]
         [TestModel(@".\empty.rfa")]
@@ -514,16 +574,55 @@ namespace RevitSystemTests
             //Dynamo throws exception on top of Revit but works in standalone mode.
             //http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4797
             //Open attached dyn file and run, it will create Polygons and points in standalone mode
-            
+            var model = ViewModel.Model;
+
             string samplePath = Path.Combine(workingDirectory, @".\Bugs\MarkerData.dyn");
             string testPath = Path.GetFullPath(samplePath);
-            
+
             AssertNoDummyNodes();
             
             ViewModel.OpenCommand.Execute(testPath);
 
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(23, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(26, model.CurrentWorkspace.Connectors.Count());
+
             RunCurrentModel();
+
+            //These are the points we expect to have in the polygon created after running the script
+            var expectedPoints = new List<Autodesk.DesignScript.Geometry.Point>()
+            {
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-25.360, -33.417, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-9.795, -25.822, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(35.762, -27.721, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(33.104, 40.253, 0.000),
+                    Autodesk.DesignScript.Geometry.Point.ByCoordinates(-33.712, 46.708, 0.000),
+            };
+
+            var polygonPoints = GetFlattenedPreviewValues("fcb9ee32e4664ddfa80d668b8e060596");
+            AssertListOfPoints(expectedPoints, polygonPoints);
+
         }
+
+        private static void AssertListOfPoints(List<Autodesk.DesignScript.Geometry.Point> expectedPoints, List<object> createdPoints)
+        {
+            const double Tolerance = 0.001;
+
+            Assert.AreEqual(expectedPoints.Count, createdPoints.Count);
+
+            // Check that the points are equal
+            for (int i = 0; i < createdPoints.Count; i++)
+            {
+                var expected = expectedPoints[i];
+                var actual = (Autodesk.DesignScript.Geometry.Point)createdPoints[i];
+
+                Assert.AreEqual(expected.X, actual.X, Tolerance);
+                Assert.AreEqual(expected.Y, actual.Y, Tolerance);
+                Assert.AreEqual(expected.Z, actual.Z, Tolerance);
+            }
+        }
+
+
         [Test]
         [Category("RegressionTests")]
         [TestModel(@".\empty.rfa")]
@@ -785,10 +884,8 @@ namespace RevitSystemTests
                 Assert.IsTrue(string.CompareOrdinal(objects[4] as string, "A101") == 0);
             };
 
-            checkFunc("a45ab78b-b7cb-4317-a763-ac8c9a55753f");
-            checkFunc("8fad0166-bb08-48e0-a62c-dcfb6b11a9fe");
-            checkFunc("d4fd1c38-e3cb-484b-8187-66061476cd6a");
-            checkFunc("6defe7da-caf9-489e-991d-4665eb26e786");
+            checkFunc("a45ab78bb7cb4317a763ac8c9a55753f");
+            checkFunc("6defe7dacaf9489e991d4665eb26e786");
         }
 
         [Test]

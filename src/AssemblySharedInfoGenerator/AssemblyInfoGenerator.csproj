@@ -10,6 +10,8 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <PreBuildEvent>"$(SolutionDir)transform_all.bat" "$(ProjectDir)"</PreBuildEvent>
 	<DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugSymbols>false</DebugSymbols>
     <DebugType>None</DebugType>
     <AssemblyTitle>AssemblyInfoGenerator</AssemblyTitle>
     <OutputPath>bin\$(Configuration)\</OutputPath>

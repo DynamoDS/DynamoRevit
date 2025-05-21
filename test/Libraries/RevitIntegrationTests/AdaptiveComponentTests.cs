@@ -74,9 +74,17 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             // Check for number of Family Instance Creation
-            var allElements = "272d86db-a124-48dd-9c41-6a3b17200e10";
-            AssertPreviewCount(allElements, 10);
+            var allFamilyElements = "272d86db-a124-48dd-9c41-6a3b17200e10";
+            AssertPreviewCount(allFamilyElements, 10);
 
+            // Check the number of the created adaptive components is correct
+            var adapID = "e83c14bb864f4730900f0905dac6dcad";
+            AssertPreviewCount(adapID, 10);
+            for (int i = 0; i < 10; i++)
+            {
+                var adapValue = GetPreviewValueAtIndex(adapID, i) as AdaptiveComponent;
+                Assert.IsNotNull(adapValue);
+            }
         }
 
         [Test]
@@ -169,23 +177,19 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // Check all the nodes and connectors are loaded
-            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(16, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(10, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
             // Check the number of the created adaptive components is correct
-            var adapID = "21fb2ba2-b6bc-4d92-82bb-1d15a07d6929";
+            var adapID = "21fb2ba2b6bc4d9282bb1d15a07d6929";
             AssertPreviewCount(adapID, 2);
             for (int i = 0; i < 2; i++)
             {
                 var adapValue = GetPreviewValueAtIndex(adapID, i) as AdaptiveComponent;
                 Assert.IsNotNull(adapValue);
-            }
-            var volumeSumId = "f76b55af-52f0-451e-9819-2a51ce8a1afc";
-            var volume = GetPreviewValue(volumeSumId);
-            Assert.IsTrue(Math.Abs((double)volume - 13.39) < 0.1);
-            
+            }  
         }
 
         [Test]

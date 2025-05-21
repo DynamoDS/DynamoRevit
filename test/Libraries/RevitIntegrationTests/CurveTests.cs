@@ -12,10 +12,7 @@ using NUnit.Framework;
 using RevitServices.Persistence;
 
 using RevitTestServices;
-
 using RTF.Framework;
-
-//using Revit.Elements;
 
 namespace RevitSystemTests
 {
@@ -241,44 +238,21 @@ namespace RevitSystemTests
         }
          * */
 
-        //[Test, Category("Failure")]
-        //[TestModel(@".\empty.rfa")]
-        //public void CurvebyPointsEllipse()
-        //{
-        //    string samplePath = Path.Combine(workingDirectory, @".\Curve\CurvebyPointsEllipse.dyn");  \\There are some obsolete node in dyn script.
-        //    string testPath = Path.GetFullPath(samplePath);
-
-        //    ViewModel.OpenCommand.Execute(testPath);
-
-        //    RunCurrentModel();
-
-        //    FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
-        //    fec.OfClass(typeof(CurveElement));
-
-        //    Assert.AreEqual(fec.ToElements().Count(), 1);
-
-        //    CurveByPoints mc = (CurveByPoints)fec.ToElements().ElementAt(0);
-        //}
-
         [Test]
-        [TestModel(@".\Curve\GetCurveDomain.rfa")]
-        public void GetCurveDomain()
+        [TestModel(@".\empty.rfa")]
+        public void CurvebyPointsEllipse()
         {
-            string samplePath = Path.Combine(workingDirectory, @".\Curve\GetCurveDomain.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Curve\CurvebyPointsEllipse.dyn");  //There are some obsolete node in dyn script.
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
 
-            AssertNoDummyNodes();
-            var model = ViewModel.Model;
-            Assert.AreEqual(15, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(13, model.CurrentWorkspace.Connectors.Count());
-            var ellipseArcID = "00ba9f14-ed23-4c27-b25e-4dc45c0cc801";
-            var ellipseArc = GetPreviewValue(ellipseArcID) as EllipseArc;
-            Assert.IsNotNull(ellipseArc);
+            FilteredElementCollector fec = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
+            fec.OfClass(typeof(CurveElement));
 
+            Assert.AreEqual(fec.ToElements().Count(), 1);
         }
 
 

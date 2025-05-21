@@ -57,18 +57,6 @@ limitations under the License.
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DynamoCore">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoCore.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="ProtoCore">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\ProtoCore.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\ProtoCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -81,5 +69,8 @@ limitations under the License.
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Threading\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.5.0.8297" ExcludeAssets="runtime" />
   </ItemGroup>
 </Project>
