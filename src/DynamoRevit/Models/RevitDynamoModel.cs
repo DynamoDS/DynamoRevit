@@ -8,8 +8,11 @@ using System.Linq;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
+#if !DESIGN_AUTOMATION
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
+using RevitServices.Threading;
+#endif
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Nodes.ZeroTouch;
 using Dynamo.Graph.Workspaces;
@@ -27,7 +30,6 @@ using Revit.Elements;
 using RevitServices.Elements;
 using RevitServices.Materials;
 using RevitServices.Persistence;
-using RevitServices.Threading;
 using RevitServices.Transactions;
 using Category = Revit.Elements.Category;
 using Element = Autodesk.Revit.DB.Element;
@@ -39,7 +41,9 @@ namespace Dynamo.Applications.Models
     {
         public interface IRevitStartConfiguration : IStartConfiguration
         {
+#if !DESIGN_AUTOMATION
             DynamoRevitCommandData ExternalCommandData { get; set; }
+#endif
         }
 
         public struct RevitStartConfiguration : IRevitStartConfiguration
@@ -55,7 +59,9 @@ namespace Dynamo.Applications.Models
             public string GeometryFactoryPath { get; set; }
             public IAuthProvider AuthProvider { get; set; }
             public string PackageManagerAddress { get; set; }
+#if !DESIGN_AUTOMATION
             public DynamoRevitCommandData ExternalCommandData { get; set; }
+#endif
             public IEnumerable<Dynamo.Extensions.IExtension> Extensions { get; set; }
             public TaskProcessMode ProcessMode { get; set; }
             //the property will contain revit host information, to be passed on to Dynamo.
@@ -69,9 +75,10 @@ namespace Dynamo.Applications.Models
         /// </summary>
         private bool updateCurrentUIDoc;
 
+#if !DESIGN_AUTOMATION
         private readonly DynamoRevitCommandData externalCommandData;
-
-        #region Events
+#endif
+#region Events
 
         public event EventHandler RevitDocumentChanged;
 
@@ -155,7 +162,7 @@ namespace Dynamo.Applications.Models
             var dm = DocumentManager.Instance;
             if (dm.CurrentDBDocument != null)
             {
-                SetRunEnabledBasedOnContext(dm.CurrentUIDocument.ActiveView);
+                SetRunEnabledBasedOnContext(dm.CurrentDBDocument.ActiveView);
             }
         }
 
@@ -185,7 +192,7 @@ namespace Dynamo.Applications.Models
                     return false; // There's no current document stored.
 
                 // Selection is not allowed in perspective view mode.
-                var view3D = dm.CurrentUIDocument.ActiveView as View3D;
+                var view3D = dm.CurrentDBDocument.ActiveView as View3D;
                 if ((view3D != null) && view3D.IsPerspective)
                     return false; // There's no view, or in perspective view.
 
@@ -216,21 +223,21 @@ namespace Dynamo.Applications.Models
             base(configuration)
         {
             DisposeLogic.IsShuttingDown = false;
-
+#if !DESIGN_AUTOMATION
             externalCommandData = configuration.ExternalCommandData;
-
+            SubscribeApplicationEvents(configuration.ExternalCommandData);
+#endif
             SubscribeRevitServicesUpdaterEvents();
 
-            SubscribeApplicationEvents(configuration.ExternalCommandData);
             InitializeDocumentManager();
             SubscribeDocumentManagerEvents();
             SubscribeTransactionManagerEvents();
 
-            SetupPython();
+            DynamoRevitPythonManager.SetupPython(Logger);
         }
 
 
-        #endregion
+#endregion
 
         #region trace reconciliation
 
@@ -325,12 +332,14 @@ namespace Dynamo.Applications.Models
             }
             else
             {
+#if !DESIGN_AUTOMATION
                 // Delete all the orphans.
                 IdlePromise.ExecuteOnIdleAsync(
                     () =>
                     {
                         DeleteOrphanedElements(orphanedIds, Logger);
                     });
+#endif
             }
         }
 
@@ -422,7 +431,7 @@ namespace Dynamo.Applications.Models
             }
         }
 
-        #endregion
+#endregion
 
         #region Initialization
 
@@ -436,110 +445,9 @@ namespace Dynamo.Applications.Models
             InitializeMaterials(); // Initialize materials for preview.
         }
 
-        private PythonServices.EventHandlers.EvaluationStartedEventHandler OnPythonEvalStart;
-
-        /// <summary>
-        /// Setup the python engine so that it can manage Revit data
-        /// </summary>
-        /// <param name="engine"></param>
-        private void SetupPythonEngine(PythonEngine engine)
-        {
-            if (engine != null)
-            {
-                try
-                {
-                    if (engine.HostDataMarshaler is null)
-                    {
-                        var revitDataMarshaler = new DataMarshaler();
-                        revitDataMarshaler.RegisterMarshaler((Revit.Elements.Element element) => element.InternalElement);
-                        revitDataMarshaler.RegisterMarshaler((Category element) => element.InternalCategory);
-                        engine.HostDataMarshaler = revitDataMarshaler;
-                        engine.RegisterHostDataMarshalers();
-                    }
-
-                    (engine.OutputDataMarshaler as DataMarshaler).RegisterMarshaler((Element element) => element.ToDSType(true));
-                    engine.EvaluationFinished += OnPythonEvalFinished;
-                    OnPythonEvalStart = (string code, IList bindingValues, PythonServices.EventHandlers.ScopeSetAction scopeSet) =>
-                    {
-                        // Turn off element binding during python script execution
-                        ElementBinder.IsEnabled = false;
-                        if (engine.HostDataMarshaler != null)
-                        {
-                            Func<object, object> unwrap = (engine.HostDataMarshaler as DataMarshaler).Marshal;
-                            // register UnwrapElement method
-                            scopeSet("UnwrapElement", unwrap);
-                        }
-                    };
-
-                    engine.EvaluationStarted += OnPythonEvalStart;
-                }
-                catch(FileNotFoundException ex)
-                {
-                    Logger.Log(ex);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Cleanup all subscribed events and registered marshalers
-        /// </summary>
-        /// <param name="engine"></param>
-        private void CleanUpPythonEngine(PythonEngine engine)
-        {
-            try
-            {
-                if (engine != null)
-                {
-                    (engine.OutputDataMarshaler as DataMarshaler).UnregisterMarshalerOfType<Element>();
-                    engine.EvaluationStarted -= OnPythonEvalStart;
-                    engine.EvaluationFinished -= OnPythonEvalFinished;
-                }
-            }
-            catch (FileNotFoundException ex)
-            {
-                Logger.Log(ex);
-            }
-        }
-
-        /// <summary>
-        /// Sets up new python engines registered in the available PythonEngine collection
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnPythonEngineCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-            {
-                foreach (var item in e.NewItems)
-                {
-                    SetupPythonEngine(item as PythonEngine);
-                }
-            }
-        }
-
-        // Python evaluation finished event handler
-        private void OnPythonEvalFinished(EvaluationState state, string code, IList bindingValues, PythonServices.EventHandlers.ScopeGetAction scopeGet)
-        {
-            // Turn on element binding after python script execution
-            ElementBinder.IsEnabled = true;
-        }
-
-        private bool setupPython;
-
-        private void SetupPython()
-        {
-            if (setupPython) return;
-
-            // Setup engines for all existing python engines
-            PythonEngineManager.Instance.AvailableEngines.ToList().ForEach(engine => SetupPythonEngine(engine));
-            // Setup engines for any python engines that might be registered later on
-            PythonEngineManager.Instance.AvailableEngines.CollectionChanged += OnPythonEngineCollectionChanged;
-
-            setupPython = true;
-        }
-
         internal void InitializeDocumentManager()
         {
+#if !DESIGN_AUTOMATION
             // Set the intitial document.
             var activeUIDocument = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
             if (activeUIDocument != null)
@@ -549,6 +457,7 @@ namespace Dynamo.Applications.Models
 
                 OnRevitDocumentChanged();
             }
+#endif
         }
 
         private static void InitializeMaterials()
@@ -556,10 +465,14 @@ namespace Dynamo.Applications.Models
             // Ensure that the current document has the needed materials
             // and graphic styles to support visualization in Revit.
             var mgr = MaterialsManager.Instance;
+#if !DESIGN_AUTOMATION
             IdlePromise.ExecuteOnIdleAsync(mgr.InitializeForActiveDocumentOnIdle);
+#else
+            mgr.InitializeForActiveDocumentOnIdle();
+#endif
         }
 
-        #endregion
+#endregion
 
         #region Event subscribe/unsubscribe
 
@@ -595,6 +508,7 @@ namespace Dynamo.Applications.Models
             DocumentManager.OnLogError -= Logger.Log;
         }
 
+#if !DESIGN_AUTOMATION
         private bool hasRegisteredApplicationEvents;
         private void SubscribeApplicationEvents(DynamoRevitCommandData commandData)
         {
@@ -603,11 +517,11 @@ namespace Dynamo.Applications.Models
                 return;
             }
 
-            DynamoRevitApp.EventHandlerProxy.ViewActivating += OnApplicationViewActivating;
-            DynamoRevitApp.EventHandlerProxy.ViewActivated += OnApplicationViewActivated;
-            DynamoRevitApp.EventHandlerProxy.DocumentClosing += OnApplicationDocumentClosing;
-            DynamoRevitApp.EventHandlerProxy.DocumentClosed += OnApplicationDocumentClosed;
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened += OnApplicationDocumentOpened;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivating += OnApplicationViewActivating;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivated += OnApplicationViewActivated;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentClosing += OnApplicationDocumentClosing;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentClosed += OnApplicationDocumentClosed;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened += OnApplicationDocumentOpened;
 
             hasRegisteredApplicationEvents = true;
         }
@@ -619,16 +533,17 @@ namespace Dynamo.Applications.Models
                 return;
             }
 
-            DynamoRevitApp.EventHandlerProxy.ViewActivating -= OnApplicationViewActivating;
-            DynamoRevitApp.EventHandlerProxy.ViewActivated -= OnApplicationViewActivated;
-            DynamoRevitApp.EventHandlerProxy.DocumentClosing -= OnApplicationDocumentClosing;
-            DynamoRevitApp.EventHandlerProxy.DocumentClosed -= OnApplicationDocumentClosed;
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= OnApplicationDocumentOpened;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivating -= OnApplicationViewActivating;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivated -= OnApplicationViewActivated;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentClosing -= OnApplicationDocumentClosing;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentClosed -= OnApplicationDocumentClosed;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened -= OnApplicationDocumentOpened;
 
             hasRegisteredApplicationEvents = false;
         }
+#endif
 
-        #endregion
+#endregion
 
         #region Application event handler
         /// <summary>
@@ -666,6 +581,7 @@ namespace Dynamo.Applications.Models
             HandleApplicationDocumentClosed();
         }
 
+#if !DESIGN_AUTOMATION
         /// <summary>
         /// Handler for Revit's ViewActivating event.
         /// Addins are not available in some views in Revit, notably perspective views.
@@ -688,8 +604,8 @@ namespace Dynamo.Applications.Models
         {
             HandleRevitViewActivated();
         }
-
-        #endregion
+#endif
+#endregion
 
         #region Public methods
 
@@ -707,7 +623,11 @@ namespace Dynamo.Applications.Models
         {
             if (shutdownHost)
             {
+#if !DESIGN_AUTOMATION
                 DynamoRevitApp.AddIdleAction(ShutdownRevitHostOnce);
+#else
+                ShutdownRevitHostOnce();
+#endif
             }
 
             base.PreShutdownCore(shutdownHost);
@@ -715,7 +635,6 @@ namespace Dynamo.Applications.Models
 
         private static void ShutdownRevitHostOnce()
         {
-            var uiApplication = DocumentManager.Instance.CurrentUIApplication;
             ShutdownRevitHost();
         }
 
@@ -728,12 +647,14 @@ namespace Dynamo.Applications.Models
             // unsubscribe events
             RevitServicesUpdater.Instance.UnRegisterAllChangeHooks();
 
+#if !DESIGN_AUTOMATION
             UnsubscribeApplicationEvents(externalCommandData);
+#endif
             UnsubscribeDocumentManagerEvents();
             UnsubscribeRevitServicesUpdaterEvents();
             UnsubscribeTransactionManagerEvents();
-            PythonEngineManager.Instance.AvailableEngines.ToList().ForEach(engine => CleanUpPythonEngine(engine));
-            PythonEngineManager.Instance.AvailableEngines.CollectionChanged -= OnPythonEngineCollectionChanged;
+
+            DynamoRevitPythonManager.Cleanup();
 
             ElementIDLifecycleManager<long>.DisposeInstance();
         }
@@ -741,9 +662,11 @@ namespace Dynamo.Applications.Models
         protected override void PostShutdownCore(bool shutdownHost)
         {
             base.PostShutdownCore(shutdownHost);
-            
+
+#if !DESIGN_AUTOMATION
             // Always reset current UI document on shutdown
             DocumentManager.Instance.CurrentUIDocument = null;
+#endif
         }
 
         /// <summary>
@@ -830,7 +753,7 @@ namespace Dynamo.Applications.Models
                 // If there is a current document, then set the run enabled
                 // state based on whether the view just activated is 
                 // the same document.
-                if (DocumentManager.Instance.CurrentUIDocument != null)
+                if (DocumentManager.Instance.CurrentDBDocument != null)
                 {
                     var newEnabled = newView != null &&
                         newView.Document.Equals(DocumentManager.Instance.CurrentDBDocument);
@@ -849,7 +772,7 @@ namespace Dynamo.Applications.Models
             }
         }
 
-        #endregion
+#endregion
 
         #region Event handlers
 
@@ -863,14 +786,15 @@ namespace Dynamo.Applications.Models
             // If the current document is null, for instance if there are
             // no documents open, then set the current document, and 
             // present a message telling us where Dynamo is pointing.
-            if (DocumentManager.Instance.CurrentUIDocument == null)
+            if (DocumentManager.Instance.CurrentDBDocument == null)
             {
+#if !DESIGN_AUTOMATION
                 var activeUIDocument = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
 
                 DocumentManager.Instance.CurrentUIDocument = activeUIDocument;
                 if (activeUIDocument != null)
                     DocumentManager.Instance.HandleDocumentActivation(activeUIDocument.ActiveView);
-
+#endif
                 OnRevitDocumentChanged();
 
                 foreach (HomeWorkspaceModel ws in Workspaces.OfType<HomeWorkspaceModel>())
@@ -901,6 +825,7 @@ namespace Dynamo.Applications.Models
         /// </summary>
         private void HandleApplicationDocumentClosed()
         {
+#if !DESIGN_AUTOMATION
             // If the active UI document is null, it means that all views have been 
             // closed from all document. Clear our reference, present a warning,
             // and disable running.
@@ -933,6 +858,7 @@ namespace Dynamo.Applications.Models
             {
                 SetRunEnabledBasedOnContext(uiDoc.ActiveView);
             }
+#endif
         }
 
         /// <summary>
@@ -944,11 +870,12 @@ namespace Dynamo.Applications.Models
         {
             // If there is no active document, then set it to whatever
             // document has just been activated
-            if (DocumentManager.Instance.CurrentUIDocument == null)
+            if (DocumentManager.Instance.CurrentDBDocument == null)
             {
+#if !DESIGN_AUTOMATION
                 DocumentManager.Instance.CurrentUIDocument =
                     DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument;
-
+#endif
                 OnRevitDocumentChanged();
 
                 InitializeMaterials();
@@ -974,6 +901,7 @@ namespace Dynamo.Applications.Models
 
         private static void ShutdownRevitHost()
         {
+#if !DESIGN_AUTOMATION
             // this method cannot be called without Revit 2014
             var exitCommand = RevitCommandId.LookupPostableCommandId(PostableCommand.ExitRevit);
             var uiApplication = DocumentManager.Instance.CurrentUIApplication;
@@ -986,6 +914,7 @@ namespace Dynamo.Applications.Models
                     "A command in progress prevented Dynamo from " +
                         "closing revit. Dynamo update will be cancelled.");
             }
+#endif
         }
 
         private void TransactionManager_FailuresRaised(FailuresAccessor failuresAccessor)
