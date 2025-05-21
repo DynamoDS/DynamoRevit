@@ -1,3 +1,6 @@
+## 0.7.25
+* add missing test dependencies
+
 ## 0.7.24
 * Fix test references
 
