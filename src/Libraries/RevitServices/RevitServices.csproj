@@ -56,10 +56,7 @@ limitations under the License.
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="RevitTraceUtils.cs" />
-    <Compile Condition="$(Platform.Contains('_DA'))" Remove="Threading\RevitSchedulerThread.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Threading\" />
+    <Compile Condition="$(Platform.Contains('_DA'))" Remove="Threading\*.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DynamoVisualProgramming.Core" Version="3.5.0.8297" ExcludeAssets="runtime" />
