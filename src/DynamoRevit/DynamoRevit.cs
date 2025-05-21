@@ -548,7 +548,9 @@ namespace Dynamo.Applications
 
             // when Dynamo runs on top of Revit we must load the same version of ASM as revit
             // so tell Dynamo core we've loaded that version.
-            var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(DynamoRevitApp.ControlledApplication, DynamoRevitApp.DynamoCorePath);
+            var asmLocation = DynamoRevitApp.ControlledApplication.SharedComponentsLocation;
+
+            var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(asmLocation, DynamoRevitApp.DynamoCorePath);
 
             return RevitDynamoModel.Start(
             new RevitDynamoModel.RevitStartConfiguration()

@@ -46,10 +46,8 @@ namespace Dynamo.Applications
             return new Version();
         }
 
-        internal static Version PreloadAsmFromRevit(ControlledApplication controlledApplication, string dynamoCorePath)
+        internal static Version PreloadAsmFromRevit(string asmLocation, string dynamoCorePath)
         {
-            var asmLocation = controlledApplication.SharedComponentsLocation;
-
             Version libGVersion = findRevitASMVersion(asmLocation);
             // Get the corresponding libG preloader location for the target ASM loading version.
             // If there is exact match preloader version to the target ASM version, use it, 

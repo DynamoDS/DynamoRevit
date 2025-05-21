@@ -51,7 +51,7 @@ namespace DSRevitNodesUI
             
             ArgumentLacing = LacingStrategy.Disabled;
 
-            RevitServices.Events.ApplicationEvents.DocumentOpened += model_RevitDocumentChanged;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened += model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdater_ElementsUpdated;
 
 #if !DESIGN_AUTOMATION
@@ -67,7 +67,7 @@ namespace DSRevitNodesUI
 
             ArgumentLacing = LacingStrategy.Disabled;
 
-            RevitServices.Events.ApplicationEvents.DocumentOpened += model_RevitDocumentChanged;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened += model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdater_ElementsUpdated;
 
 #if !DESIGN_AUTOMATION
@@ -79,7 +79,7 @@ namespace DSRevitNodesUI
 
         public override void Dispose()
         {
-            RevitServices.Events.ApplicationEvents.DocumentOpened -= model_RevitDocumentChanged;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened -= model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsUpdated -= RevitServicesUpdater_ElementsUpdated;
             base.Dispose();
         }

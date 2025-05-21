@@ -47,9 +47,9 @@ namespace DADynamoApp
             AppDomain.CurrentDomain.ProcessExit -= CurrentDomain_ProcessExit;
             AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;
 
-            controlledApplication.DocumentClosing -= RevitServices.Events.ApplicationEvents.OnApplicationDocumentClosing;
-            controlledApplication.DocumentClosed -= RevitServices.Events.ApplicationEvents.OnApplicationDocumentClosed;
-            controlledApplication.DocumentOpened -= RevitServices.Events.ApplicationEvents.OnApplicationDocumentOpened;
+            controlledApplication.DocumentClosing -= RevitServices.EventHandler.EventHandlerProxy.Instance.OnApplicationDocumentClosing;
+            controlledApplication.DocumentClosed -= RevitServices.EventHandler.EventHandlerProxy.Instance.OnApplicationDocumentClosed;
+            controlledApplication.DocumentOpened -= RevitServices.EventHandler.EventHandlerProxy.Instance.OnApplicationDocumentOpened;
 
             return ExternalDBApplicationResult.Succeeded;
         }
@@ -96,10 +96,10 @@ namespace DADynamoApp
                 RevitServices.Transactions.TransactionManager.SetupManager(new RevitServices.Transactions.AutomaticTransactionStrategy());
                 // TODO: do we need element binding in Design Automations?
                 ElementBinder.IsEnabled = true;
- 
-                controlledApplication.DocumentClosing += RevitServices.Events.ApplicationEvents.OnApplicationDocumentClosing;
-                controlledApplication.DocumentClosed += RevitServices.Events.ApplicationEvents.OnApplicationDocumentClosed;
-                controlledApplication.DocumentOpened += RevitServices.Events.ApplicationEvents.OnApplicationDocumentOpened;
+
+                controlledApplication.DocumentClosing += RevitServices.EventHandler.EventHandlerProxy.Instance.OnApplicationDocumentClosing;
+                controlledApplication.DocumentClosed += RevitServices.EventHandler.EventHandlerProxy.Instance.OnApplicationDocumentClosed;
+                controlledApplication.DocumentOpened += RevitServices.EventHandler.EventHandlerProxy.Instance.OnApplicationDocumentOpened;
 
                 DesignAutomationBridge.DesignAutomationReadyEvent += HandleDesignAutomationReadyEvent;
 

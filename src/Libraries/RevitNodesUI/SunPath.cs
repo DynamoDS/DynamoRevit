@@ -34,7 +34,7 @@ namespace DSRevitNodesUI
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
 
 #if !DESIGN_AUTOMATION
-            DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivated += CurrentUIApplication_ViewActivated;
             DynamoRevitApp.AddIdleAction(() => CurrentUIApplicationOnViewActivated());
 #endif
         }
@@ -44,7 +44,7 @@ namespace DSRevitNodesUI
         {
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
 #if !DESIGN_AUTOMATION
-            DynamoRevitApp.EventHandlerProxy.ViewActivated += CurrentUIApplication_ViewActivated;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivated += CurrentUIApplication_ViewActivated;
             DynamoRevitApp.AddIdleAction(() => CurrentUIApplicationOnViewActivated());
 #endif
         }
@@ -53,7 +53,7 @@ namespace DSRevitNodesUI
         {
             RevitServicesUpdater.Instance.ElementsUpdated -= Updater_ElementsUpdated;
 #if !DESIGN_AUTOMATION
-            DynamoRevitApp.EventHandlerProxy.ViewActivated -= CurrentUIApplication_ViewActivated;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivated -= CurrentUIApplication_ViewActivated;
 #endif
             base.Dispose();
         }

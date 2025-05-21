@@ -7,7 +7,7 @@ namespace RevitServices.EventHandler
     /// This is a event handler proxy class to serve as a proxy between the event publisher and
     /// the event subscriber
     /// </summary>
-    [Obsolete("Obsolete class, please use RevitServices.Events.ApplicationEvents instead.")]
+    [Obsolete("This class will be made internal")]
     public class EventHandlerProxy
     {
         public event EventHandler<DocumentOpenedEventArgs> DocumentOpened;
@@ -17,6 +17,8 @@ namespace RevitServices.EventHandler
         public event EventHandler<Autodesk.Revit.UI.Events.ViewActivatingEventArgs> ViewActivating;
         public event EventHandler<Autodesk.Revit.UI.Events.ViewActivatedEventArgs> ViewActivated;
 #endif
+
+        internal static EventHandlerProxy Instance = new();
 
         public void OnApplicationDocumentOpened(object sender, DocumentOpenedEventArgs args)
         {

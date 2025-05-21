@@ -48,14 +48,14 @@ namespace DSRevitNodesUI
         protected RevitDropDownBase(string value) : base(value)
         {
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
-            RevitServices.Events.ApplicationEvents.DocumentOpened += Controller_RevitDocumentChanged;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
         [JsonConstructor]
         public RevitDropDownBase(string value, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(value, inPorts, outPorts)
         {
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
-            RevitServices.Events.ApplicationEvents.DocumentOpened += Controller_RevitDocumentChanged;
+           RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
         void Controller_RevitDocumentChanged(object sender, EventArgs e)
@@ -90,7 +90,7 @@ namespace DSRevitNodesUI
         public override void Dispose()
         {
             RevitServicesUpdater.Instance.ElementsUpdated -= Updater_ElementsUpdated;
-            RevitServices.Events.ApplicationEvents.DocumentOpened -= Controller_RevitDocumentChanged;
+           RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened -= Controller_RevitDocumentChanged;
             base.Dispose();
         }
 

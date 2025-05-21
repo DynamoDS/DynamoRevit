@@ -13,3 +13,4 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("DADynamoApp")]
 [assembly: InternalsVisibleTo("RevitNodes")]
 [assembly: InternalsVisibleTo("DSRevitNodesUI")]
+[assembly: InternalsVisibleTo("DynamoRevitDS")]

@@ -93,7 +93,6 @@ namespace Dynamo.Applications
 
         private static string dynamopath;
         private static readonly Queue<Action> idleActionQueue = new Queue<Action>(10);
-        private static EventHandlerProxy proxy;
         private AddInCommandBinding dynamoCommand;
 
         private Result loadDependentComponents()
@@ -253,7 +252,7 @@ namespace Dynamo.Applications
 
         public static EventHandlerProxy EventHandlerProxy
         {
-            get { return proxy; }
+            get { return EventHandlerProxy.Instance; }
         }
 
         // should be handled by the ModelUpdater class. But there are some
@@ -284,28 +283,26 @@ namespace Dynamo.Applications
         {
             UIControlledApplication.Idling += OnApplicationIdle;
 
-            proxy = new EventHandlerProxy();
+            UIControlledApplication.ViewActivated += EventHandlerProxy.Instance.OnApplicationViewActivated;
+            UIControlledApplication.ViewActivating += EventHandlerProxy.Instance.OnApplicationViewActivating;
 
-            UIControlledApplication.ViewActivated += proxy.OnApplicationViewActivated;
-            UIControlledApplication.ViewActivating += proxy.OnApplicationViewActivating;
-
-            ControlledApplication.DocumentClosing += proxy.OnApplicationDocumentClosing;
-            ControlledApplication.DocumentClosed += proxy.OnApplicationDocumentClosed;
-            ControlledApplication.DocumentOpened += proxy.OnApplicationDocumentOpened;
+            ControlledApplication.DocumentClosing += EventHandlerProxy.Instance.OnApplicationDocumentClosing;
+            ControlledApplication.DocumentClosed += EventHandlerProxy.Instance.OnApplicationDocumentClosed;
+            ControlledApplication.DocumentOpened += EventHandlerProxy.Instance.OnApplicationDocumentOpened;
         }
 
         private void UnsubscribeApplicationEvents()
         {
             UIControlledApplication.Idling -= OnApplicationIdle;
 
-            UIControlledApplication.ViewActivated -= proxy.OnApplicationViewActivated;
-            UIControlledApplication.ViewActivating -= proxy.OnApplicationViewActivating;
+            UIControlledApplication.ViewActivated -= EventHandlerProxy.Instance.OnApplicationViewActivated;
+            UIControlledApplication.ViewActivating -= EventHandlerProxy.Instance.OnApplicationViewActivating;
 
-            ControlledApplication.DocumentClosing -= proxy.OnApplicationDocumentClosing;
-            ControlledApplication.DocumentClosed -= proxy.OnApplicationDocumentClosed;
-            ControlledApplication.DocumentOpened -= proxy.OnApplicationDocumentOpened;
+            ControlledApplication.DocumentClosing -= EventHandlerProxy.Instance.OnApplicationDocumentClosing;
+            ControlledApplication.DocumentClosed -= EventHandlerProxy.Instance.OnApplicationDocumentClosed;
+            ControlledApplication.DocumentOpened -= EventHandlerProxy.Instance.OnApplicationDocumentOpened;
 
-            proxy = null;
+            EventHandlerProxy.Instance = null;
         }
 
         private void SubscribeAssemblyEvents()

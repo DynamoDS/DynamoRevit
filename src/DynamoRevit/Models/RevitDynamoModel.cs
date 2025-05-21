@@ -517,11 +517,11 @@ namespace Dynamo.Applications.Models
                 return;
             }
 
-            DynamoRevitApp.EventHandlerProxy.ViewActivating += OnApplicationViewActivating;
-            DynamoRevitApp.EventHandlerProxy.ViewActivated += OnApplicationViewActivated;
-            DynamoRevitApp.EventHandlerProxy.DocumentClosing += OnApplicationDocumentClosing;
-            DynamoRevitApp.EventHandlerProxy.DocumentClosed += OnApplicationDocumentClosed;
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened += OnApplicationDocumentOpened;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivating += OnApplicationViewActivating;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivated += OnApplicationViewActivated;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentClosing += OnApplicationDocumentClosing;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentClosed += OnApplicationDocumentClosed;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened += OnApplicationDocumentOpened;
 
             hasRegisteredApplicationEvents = true;
         }
@@ -533,11 +533,11 @@ namespace Dynamo.Applications.Models
                 return;
             }
 
-            DynamoRevitApp.EventHandlerProxy.ViewActivating -= OnApplicationViewActivating;
-            DynamoRevitApp.EventHandlerProxy.ViewActivated -= OnApplicationViewActivated;
-            DynamoRevitApp.EventHandlerProxy.DocumentClosing -= OnApplicationDocumentClosing;
-            DynamoRevitApp.EventHandlerProxy.DocumentClosed -= OnApplicationDocumentClosed;
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= OnApplicationDocumentOpened;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivating -= OnApplicationViewActivating;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.ViewActivated -= OnApplicationViewActivated;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentClosing -= OnApplicationDocumentClosing;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentClosed -= OnApplicationDocumentClosed;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened -= OnApplicationDocumentOpened;
 
             hasRegisteredApplicationEvents = false;
         }

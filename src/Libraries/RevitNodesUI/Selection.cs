@@ -161,7 +161,7 @@ namespace Dynamo.Nodes
             : base(selectionType, selectionObjectType, message, prefix)
         {
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
         [JsonConstructor]
@@ -171,7 +171,7 @@ namespace Dynamo.Nodes
             : base(selectionType, selectionObjectType, message, prefix, selectionIdentifier, inPorts, outPorts)
         {
             RevitServicesUpdater.Instance.ElementsUpdated += Updater_ElementsUpdated;
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened += Controller_RevitDocumentChanged;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened += Controller_RevitDocumentChanged;
         }
 
         #endregion
@@ -192,7 +192,7 @@ namespace Dynamo.Nodes
             base.Dispose();
 
             RevitServicesUpdater.Instance.ElementsUpdated -= Updater_ElementsUpdated;
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= Controller_RevitDocumentChanged;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened -= Controller_RevitDocumentChanged;
 
             if (revitDynamoModel != null)
             {
