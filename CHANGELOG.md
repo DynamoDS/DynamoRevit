@@ -1,3 +1,6 @@
+## 0.7.24
+* Fix test references
+
 ## 0.7.23
 * Add changes to D4R tests
 
