@@ -1,3 +1,7 @@
+## 0.7.26
+* Modify ContinuousLocalization.yml to include the Samples Folder
+
+
 ## 0.7.25
 * add missing test dependencies
 
