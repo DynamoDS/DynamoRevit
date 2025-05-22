@@ -50,8 +50,7 @@ namespace RevitSystemTests
             Assert.AreEqual(levelColl.ToElements().Count(), 11);
        }
 
-        //this test runs in automatic to attempt to reproduce the defect in MAGN 8187
-        [Test,Ignore("Because it throws exceptions during nodeModified")]
+        [Test]
         [TestModel(@".\Level\Level.rvt")]
         public void SetAllLevelsToSameName()
         {
@@ -66,25 +65,27 @@ namespace RevitSystemTests
             levelColl.OfClass(typeof(Level));
             Assert.AreEqual(levelColl.ToElements().Count(),6);
 
-            var firstLevelID = levelColl.ToElementIds().First().Value;
-
-            //change the name and run again
-            var stringNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<StringInput>();
-            stringNode.Value = "aNewName";
-            
-            //ensure that the first level has new name
+            //verify the name of the levels before running the script
             levelColl = new FilteredElementCollector(DocumentManager.Instance.CurrentUIDocument.Document);
             levelColl.OfClass(typeof(Level));
+
+            Assert.AreEqual(levelColl.ToElements().First().Name, "steve");
+            Assert.AreEqual(levelColl.ToElements().Last().Name, "steve(5)");
+
+            //change the name and run the script
+            var stringNode = ViewModel.Model.CurrentWorkspace.FirstNodeFromWorkspace<StringInput>();
+            stringNode.Value = "aNewName";
+            RunCurrentModel();
+
+            //verify the name of the levels after running the script
             Assert.AreEqual(levelColl.ToElements().First().Name,"aNewName");
             Assert.AreEqual(levelColl.ToElements().Last().Name, "aNewName(5)");
 
+            var firstLevelID = levelColl.ToElementIds().First().Value;
             var firstLevelIDModified = levelColl.ToElementIds().First().Value;
 
             //assert that the elementId of the first level is unchanged... and rebinding has succeeded.
-            //while this is true... currently this test throws exceptions during nodeModified runs
-            //so the infinite loop would not occur even before the fix, so I have marked the test ignore.
-            Assert.AreEqual(firstLevelID, firstLevelIDModified);
-            
+            Assert.AreEqual(firstLevelID, firstLevelIDModified);    
         }
 
         [Test]
