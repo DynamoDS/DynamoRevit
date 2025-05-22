@@ -73,7 +73,7 @@ namespace Revit.Elements.Views
         {
             if (level == null)
             {
-                throw new ArgumentNullException(Properties.Resources.ArchitectureOrMepEnabled);
+                throw new ArgumentNullException(Properties.Resources.StructuralPlanNotEnabled);
             }
 
             return new StructuralPlanView(level.InternalLevel);

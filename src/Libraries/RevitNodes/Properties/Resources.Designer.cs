@@ -106,15 +106,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to StructuralPlans can only be created when the structural discipline is enabled...
-        /// </summary>
-        internal static string ArchitectureOrMepEnabled {
-            get {
-                return ResourceManager.GetString("ArchitectureOrMepEnabled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to You must supply an Area Scheme..
         /// </summary>
         internal static string AreaSchemeArgumentException {
@@ -716,7 +707,16 @@ namespace Revit.Properties {
                 return ResourceManager.GetString("GroupObsolete", resourceCulture);
             }
         }
-              
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ElevationMarker.CreateElevationByMarkerIndex operation failed. Selected index is already occupied by a View or not available.The elevation marker can have up to four views, indexed from 0 to 3. The index on the ElevationMarker specifies where the new elevation View will be placed. Check how many views the Elevation Mark family loaded in the model contains and which indexes are empty.
+        /// </summary>
+        internal static string IndexNotAvailable {
+            get {
+                return ResourceManager.GetString("IndexNotAvailable", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to The input list of parameters does not have the same number of values required by the adaptive component..
         /// </summary>
@@ -1105,7 +1105,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to node accepts as imput a 2D array of points...
+        ///   Looks up a localized string similar to AdaptiveComponents.ByPoints operation failed. The AdaptiveComponents.ByPoints node accepts as imput a 2D array of points (structured list of lists) and a Family type to be used for creating the adaptive component..
         /// </summary>
         internal static string NotSingleList {
             get {
@@ -1389,6 +1389,15 @@ namespace Revit.Properties {
         internal static string StartPointListHasNulls {
             get {
                 return ResourceManager.GetString("StartPointListHasNulls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to StructuralPlans can only be created when the structural discipline is enabled whereas FloorPlans and CeilingPlans can only be created when architecture or MEP disciplines are enabled. Check which tabs are active under File -&gt; Options -&gt; User Interface -&gt; Configure Tools and analysis.
+        /// </summary>
+        internal static string StructuralPlanNotEnabled {
+            get {
+                return ResourceManager.GetString("StructuralPlanNotEnabled", resourceCulture);
             }
         }
         
