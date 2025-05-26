@@ -43,14 +43,6 @@ namespace RevitSystemTests
             }
         }
 
-        [Test, Ignore("DynamoRaaS was removed from DynamoRevit")]
-        [TestModel(@".\empty.rfa")]
-        public void TestMigration_Analyze_Daylighting()
-        {
-            // DynamoRaaS was removed from DynamoRevit, this test can no longer run.
-            TestMigration(@".\Migration\TestMigration_Analyze_Daylighting.dyn");
-        }
-
         [Test]
         [TestModel(@".\empty.rfa")]
         public void TestMigration_Analyze_Display()
@@ -146,9 +138,9 @@ namespace RevitSystemTests
 
         [Test]
         [TestModel(@".\empty.rfa")]
-        public void TestMigration_Revit_Referemce()
+        public void TestMigration_Revit_Reference()
         {
-            TestMigration(@".\Migration\TestMigration_Revit_Referemce.dyn");
+            TestMigration(@".\Migration\TestMigration_Revit_Reference.dyn");
         }
 
         [Test]

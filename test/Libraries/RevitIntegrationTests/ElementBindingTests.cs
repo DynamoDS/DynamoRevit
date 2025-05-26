@@ -534,19 +534,23 @@ namespace RevitSystemTests
             
             //Change the value of the slider from 19.89 to 18.0
             slider.Value = 18.0;
+
             //Run the graph again
-           
             RunCurrentModel();
-            
+
+            //Check that the number of family instances stays the same
+            instances = TestUtils.GetAllFamilyInstances();
+            Assert.AreEqual(8, instances.Count);
+
             //Change the value of the slider from 18.0 to 16.0
-            slider.Value = 16.0;
-            //Run the graph again
-           
+            slider.Value = 8.0;
+
+            //Run the graph again - it should throw an exception, so there will be 0 elements in the document
             RunCurrentModel();
 
             //Check the number of family instances
             instances = TestUtils.GetAllFamilyInstances();
-            Assert.AreEqual(8, instances.Count);
+            Assert.AreEqual(0, instances.Count);
         }
 
         [Test]
