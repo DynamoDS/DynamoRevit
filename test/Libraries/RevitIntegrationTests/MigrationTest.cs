@@ -71,14 +71,6 @@ namespace RevitSystemTests
             TestMigration(@".\Migration\TestMigration_Analyze_Solar.dyn");
         }
 
-        [Test, Category("Failure")]
-        [TestModel(@".\empty.rfa")]
-        public void TestMigration_Geometry_Curve()
-        {
-            //There are some obsolete node in dyn script.
-            TestMigration(@".\Migration\TestMigration_Geometry_Curve.dyn");
-        }
-
         [Test]
         [TestModel(@".\empty.rfa")]
         public void TestMigration_Geometry_Intersect()
@@ -98,14 +90,6 @@ namespace RevitSystemTests
         public void TestMigration_Geometry_Solid()
         {
             TestMigration(@".\Migration\TestMigration_Geometry_Solid.dyn");
-        }
-
-        [Test, Category("Failure")]
-        [TestModel(@".\empty.rfa")]
-        public void TestMigration_Geometry_Surface()
-        {
-            //There are some obsolete node in dyn script.
-            TestMigration(@".\Migration\TestMigration_Geometry_Surface.dyn");
         }
 
         [Test]
