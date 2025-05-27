@@ -1,6 +1,24 @@
+## 0.7.28
+* Imporve warning messages for CreateElevationByMarkerIndex &  StructuralPlanView.ByLevel nodes
+
+## 0.7.28
+* Update Dynamo Core to 3.5.1.8731
+
+## 0.7.27
+* Create an end-to-end test for Dynamo in Revit
+
+## 0.7.26
+* Modify ContinuousLocalization.yml to include the Samples Folder
+
+
+## 0.7.25
+* add missing test dependencies
+
+## 0.7.24
+* Fix test references
+
 ## 0.7.23
 * Imporve warning messages for certain dynamo nodes
-
 
 ## 0.7.22
 * Fix crash when closing splash-screen
