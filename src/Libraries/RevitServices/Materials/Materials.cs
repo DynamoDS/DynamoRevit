@@ -34,14 +34,23 @@ namespace RevitServices.Materials
 
         /// <summary>
         /// Finds or creates materials and graphics styles required by the
+        /// material manager in the given document.
+        /// </summary>
+        public void InitializeForDocument(Document doc)
+        {
+            FindOrCreateDynamoMaterial(doc);
+            FindOrCreateDynamoErrorMaterial(doc);
+            FindDynamoGraphicsStyle(doc);
+        }
+
+        /// <summary>
+        /// Finds or creates materials and graphics styles required by the
         /// material manager in the active document. Note that this method 
         /// must be called from Revit idle thread.
         /// </summary>
         public void InitializeForActiveDocumentOnIdle()
         {
-            FindOrCreateDynamoMaterial();
-            FindOrCreateDynamoErrorMaterial();
-            FindDynamoGraphicsStyle();
+            InitializeForDocument(DocumentManager.Instance.CurrentDBDocument);
         }
 
         public static void Reset()
@@ -50,9 +59,9 @@ namespace RevitServices.Materials
             instance = new MaterialsManager();
         }
 
-        private void FindOrCreateDynamoMaterial()
+        private void FindOrCreateDynamoMaterial(Document doc)
         {
-            var materials = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+            var materials = new FilteredElementCollector(doc)
                 .OfClass(typeof(Material))
                 .Cast<Material>();
 
@@ -65,8 +74,7 @@ namespace RevitServices.Materials
             }
 
 
-            TransactionManager.Instance.EnsureInTransaction(
-                DocumentManager.Instance.CurrentDBDocument);
+            TransactionManager.Instance.EnsureInTransaction(doc);
 
             Material glassMaterial = materials.FirstOrDefault(x => x.Name == "Glass");
             Material dynamoMaterial;
@@ -76,8 +84,8 @@ namespace RevitServices.Materials
             }
             else
             {
-                var dynamoMaterialId = Material.Create(DocumentManager.Instance.CurrentDBDocument, "Dynamo");
-                dynamoMaterial = DocumentManager.Instance.CurrentDBDocument.GetElement(dynamoMaterialId) as Material;
+                var dynamoMaterialId = Material.Create(doc, "Dynamo");
+                dynamoMaterial = doc.GetElement(dynamoMaterialId) as Material;
                 dynamoMaterial.Transparency = 90;
                 dynamoMaterial.UseRenderAppearanceForShading = true;
             }
@@ -87,9 +95,9 @@ namespace RevitServices.Materials
             TransactionManager.Instance.ForceCloseTransaction();
         }
 
-        private void FindOrCreateDynamoErrorMaterial()
+        private void FindOrCreateDynamoErrorMaterial(Document doc)
         {
-            var materials = new FilteredElementCollector(DocumentManager.Instance.CurrentDBDocument)
+            var materials = new FilteredElementCollector(doc)
                .OfClass(typeof(Material))
                .Cast<Material>();
 
@@ -102,11 +110,10 @@ namespace RevitServices.Materials
                 return;
             }
 
-            TransactionManager.Instance.EnsureInTransaction(
-                DocumentManager.Instance.CurrentDBDocument);
+            TransactionManager.Instance.EnsureInTransaction(doc);
 
-            var dynamoErrorMaterialId = Material.Create(DocumentManager.Instance.CurrentDBDocument, "DynamoError");
-            var dynamoErrorMaterial = DocumentManager.Instance.CurrentDBDocument.GetElement(dynamoErrorMaterialId) as Material;
+            var dynamoErrorMaterialId = Material.Create(doc, "DynamoError");
+            var dynamoErrorMaterial = doc.GetElement(dynamoErrorMaterialId) as Material;
             dynamoErrorMaterial.Transparency = 95;
             dynamoErrorMaterial.UseRenderAppearanceForShading = true;
             dynamoErrorMaterial.Color = new Color(255, 0, 0);
@@ -115,9 +122,9 @@ namespace RevitServices.Materials
             TransactionManager.Instance.ForceCloseTransaction();
         }
 
-        private void FindDynamoGraphicsStyle()
+        private void FindDynamoGraphicsStyle(Document doc)
         {
-            var genericModelCategory = Category.GetCategory(DocumentManager.Instance.CurrentDBDocument, BuiltInCategory.OST_GenericModel);
+            var genericModelCategory = Category.GetCategory(doc, BuiltInCategory.OST_GenericModel);
             if(genericModelCategory != null)
             {
                 var gStyle = genericModelCategory.GetGraphicsStyle(GraphicsStyleType.Projection);

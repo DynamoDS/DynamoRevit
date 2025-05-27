@@ -1,3 +1,6 @@
+## 0.7.27
+* Create an end-to-end test for Dynamo in Revit
+
 ## 0.7.26
 * Modify ContinuousLocalization.yml to include the Samples Folder
 
