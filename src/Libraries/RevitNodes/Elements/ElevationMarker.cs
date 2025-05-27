@@ -105,13 +105,14 @@ namespace Revit.Elements
         public SectionView CreateElevationByMarkerIndex(Revit.Elements.Views.View planView, int index)
         {
             var view = planView as PlanView;
-            if (view == null)
-                throw new InvalidOperationException(Properties.Resources.NotPlanView);
+            if (view == null || (index < 0 || index > 3))
+                throw new InvalidOperationException(Properties.Resources.IndexOccupiedOrNotAvailable);
 
-            TransactionManager.Instance.EnsureInTransaction(Document);
-            Autodesk.Revit.DB.ViewSection sectionView = this.InternalMarker.CreateElevation(Document, view.InternalViewPlan.Id, index);
-            TransactionManager.Instance.TransactionTaskDone();
-            return sectionView.ToDSType(true) as SectionView;
+                TransactionManager.Instance.EnsureInTransaction(Document);
+                Autodesk.Revit.DB.ViewSection sectionView = this.InternalMarker.CreateElevation(Document, view.InternalViewPlan.Id, index);
+                TransactionManager.Instance.TransactionTaskDone();
+                return sectionView.ToDSType(true) as SectionView;
+
         }
 
         /// <summary>

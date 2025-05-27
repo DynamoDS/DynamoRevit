@@ -709,11 +709,11 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ElevationMarker.CreateElevationByMarkerIndex operation failed. Selected index is already occupied by a View or not available.The elevation marker can have up to four views, indexed from 0 to 3. The index on the ElevationMarker specifies where the new elevation View will be placed. Check how many views the Elevation Mark family loaded in the model contains and which indexes are empty.
+        ///   Looks up a localized string similar to Selected index is already occupied by a View or not available.The elevation marker can have up to four views, indexed from 0 to 3. The index on the ElevationMarker specifies where the new elevation View will be placed. Check how many views the Elevation Mark family loaded in the model contains and which indexes are empty..
         /// </summary>
-        internal static string IndexNotAvailable {
+        internal static string IndexOccupiedOrNotAvailable {
             get {
-                return ResourceManager.GetString("IndexNotAvailable", resourceCulture);
+                return ResourceManager.GetString("IndexOccupiedOrNotAvailable", resourceCulture);
             }
         }
         
