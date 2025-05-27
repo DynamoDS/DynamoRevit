@@ -433,7 +433,7 @@ namespace Revit.Elements
         {
             if (points == null)
             {
-                throw new ArgumentNullException(Properties.Resources.NotSingleList);
+                throw new ArgumentNullException("points");
             }
 
             if (familyType == null)
