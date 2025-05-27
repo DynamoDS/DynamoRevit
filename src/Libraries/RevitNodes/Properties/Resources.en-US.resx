@@ -378,6 +378,9 @@
   <data name="NotJoinedElements" xml:space="preserve">
     <value>Cannot unjoin Elements that are not already joined.</value>
   </data>
+  <data name="NotPlanView" xml:space="preserve">
+    <value>The provided input view is not a plan view.</value>
+  </data>
   <data name="NotPositiveIntegerError" xml:space="preserve">
     <value>{0} must be a positive integer</value>
   </data>

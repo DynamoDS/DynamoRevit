@@ -105,7 +105,10 @@ namespace Revit.Elements
         public SectionView CreateElevationByMarkerIndex(Revit.Elements.Views.View planView, int index)
         {
             var view = planView as PlanView;
-            if (view == null || (index < 0 || index > 3))
+            if (view == null)
+                throw new InvalidOperationException(Properties.Resources.NotPlanView);
+
+            if (index < 0 || index > 3)
                 throw new InvalidOperationException(Properties.Resources.IndexOccupiedOrNotAvailable);
 
                 TransactionManager.Instance.EnsureInTransaction(Document);
