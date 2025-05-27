@@ -1,3 +1,6 @@
+## 0.7.28
+* Update Dynamo Core to 3.5.1.8731
+
 ## 0.7.27
 * Create an end-to-end test for Dynamo in Revit
 

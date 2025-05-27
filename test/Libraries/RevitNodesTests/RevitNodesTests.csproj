@@ -43,7 +43,7 @@
     <ProjectReference Include="$(SolutionDir)Libraries\RevitNodes\RevitNodes.csproj" />
     <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj" />
     <ProjectReference Include="..\RevitTestServices\RevitTestServices.csproj" />
-    <PackageReference Include="DynamoVisualProgramming.Tests" Version="3.5.0.8297" ExcludeAssets="runtime" />
+    <PackageReference Include="DynamoVisualProgramming.Tests" Version="3.5.1.8731" ExcludeAssets="runtime" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Elements\Views\StructuralPlanViewTests.cs" />
