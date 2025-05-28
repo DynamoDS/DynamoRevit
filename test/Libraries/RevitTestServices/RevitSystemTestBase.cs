@@ -28,6 +28,7 @@ using RTF.Framework;
 using Dynamo.Controls;
 using Dynamo.Interfaces;
 using Dynamo.Updates;
+using RevitServices.Journaling;
 
 namespace RevitTestServices
 {
@@ -94,7 +95,7 @@ namespace RevitTestServices
             //The path to the journal files is different. 
             //We have to get where each journal file runs when Revit gets it,
             //and then get the location of the required Revit files and dynamo files.
-            if (RevitSystemTestBase.IsJournalReplaying())
+            if (Journaling.IsJournalReplaying())
             {
                 string journalPath = RevitTestExecutive.CommandData.Application.Application.RecordingJournalFilename;
                 WorkingDirectory = Path.GetDirectoryName(journalPath);
@@ -222,21 +223,6 @@ namespace RevitTestServices
                 emptyModelPath1 = Path.Combine(workingDirectory, "empty1.rfa");
             }
         }
-
-        /// <summary>
-        /// Indicates whether it is in journal replaying mode.
-        /// </summary>
-        /// <returns>Whether journal is replaying or not.</returns>
-        public static bool IsJournalReplaying()
-        {
-            var method = typeof(Autodesk.Revit.UI.UIFabricationUtils).GetMethod("IsJournalReplaying", BindingFlags.NonPublic | BindingFlags.Static);
-            if (method != null)
-            {
-                return (bool)method.Invoke(null, null);
-            }
-            return false;
-        }
-
         protected override void StartDynamo(TestSessionConfiguration testConfig)
         {
             try

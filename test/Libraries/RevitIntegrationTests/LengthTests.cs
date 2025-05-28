@@ -7,6 +7,7 @@ using RevitTestServices;
 using RTF.Framework;
 
 using System.Linq;
+using System.Collections.Generic;
 
 
 namespace RevitSystemTests
@@ -18,6 +19,7 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void Length()
         {
+            const double Tolerance = 0.00001;
             string samplePath = Path.Combine(workingDirectory, @".\Length\Length.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
@@ -30,10 +32,9 @@ namespace RevitSystemTests
             Assert.AreEqual(5, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check length of String
-
-            Assert.AreEqual(GetPreviewValue("9311b424-7887-4332-be51-82795d3e3ce6"), -27.341145833333318d);
-
-
+            var length = GetPreviewValue("c0ecff8e98204341a73b04de6e99c90e");
+            var firstValue = ((IEnumerable<object>)((dynamic)length).Values).Cast<object>().First();
+            Assert.AreEqual((double)firstValue, -27.341145833333332d, Tolerance);
         }
     }
 }

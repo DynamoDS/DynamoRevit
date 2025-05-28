@@ -31,22 +31,6 @@
     <Copy SourceFiles="@(DllConfig)" DestinationFolder="$(TestOutputPath)" />
   </Target>
   <ItemGroup>
-    <Reference Include="nunit.framework">
-      <HintPath>$(PACKAGESPATH)\NUnit\lib\netstandard2.0\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-	<Reference Include="NUnit.Engine">
-      <HintPath>$(PACKAGESPATH)\NUnit.Engine\lib\netstandard2.0\NUnit.Engine.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-	<Reference Include="NUnit.Engine.Api">
-      <HintPath>$(PACKAGESPATH)\NUnit.Engine\lib\netstandard2.0\NUnit.Engine.Api.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-	<Reference Include="NUnit.Engine.Core">
-      <HintPath>$(PACKAGESPATH)\NUnit.Engine\lib\netstandard2.0\NUnit.Engine.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -67,41 +51,19 @@
     <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="AssemblySharedInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DynamoCore">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoCore.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoCoreWpf">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\$(DCoreLibSubFolder)\DynamoCoreWpf.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCoreWpf.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <PackageReference Include="DynamoVisualProgramming.Tests" Version="3.5.1.8731" ExcludeAssets="runtime" />
+	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+	  <PackageReference Include="NUnit" Version="3.13.3" />
+	  <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
     <ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj">
       <Private>False</Private>
     </ProjectReference>
-    <Reference Include="DynamoUtilities">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoUtilities.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUtilities.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoUnits">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\DynamoUnits.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUnits.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj">
       <Private>False</Private>
     </ProjectReference>
-    <Reference Include="TestServices">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\$(DCoreLibSubFolder)\TestServices.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\TestServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SystemTestServices">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Tests\lib\$(DCoreLibSubFolder)\SystemTestServices.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\SystemTestServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj" />
+    <ProjectReference Include="$(SolutionDir)Libraries\RevitServices\RevitServices.csproj" />
   </ItemGroup>
 </Project>

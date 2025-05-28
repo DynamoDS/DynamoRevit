@@ -1,4 +1,4 @@
-## 0.7.28
+## 0.7.29
 * Imporve warning messages for CreateElevationByMarkerIndex &  StructuralPlanView.ByLevel nodes
 
 ## 0.7.28
@@ -18,7 +18,7 @@
 * Fix test references
 
 ## 0.7.23
-* Imporve warning messages for certain dynamo nodes
+* Add changes to D4R tests
 
 ## 0.7.22
 * Fix crash when closing splash-screen

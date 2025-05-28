@@ -10,6 +10,9 @@ using RevitServices.Persistence;
 using RevitTestServices;
 using RTF.Framework;
 using Revit.Elements;
+using Dynamo.Graph.Nodes;
+using System.Collections.Generic;
+using Dynamo.Tests;
 
 namespace RevitSystemTests
 {
@@ -86,6 +89,26 @@ namespace RevitSystemTests
 
             // Assert
             Assert.AreEqual(false, isFoundationSlab);
+
+            //Change the element selected in the node
+            var selectElementNodeID = "5576b80a36a74d7d8c318465d38b0f7b";
+            int newElementSelected = 316157;
+
+            // Change the selected element in the SelectModelElement node
+            var selectElementNode = ViewModel.Model.CurrentWorkspace.Nodes
+                .FirstOrDefault(n => n.GUID.ToString("N") == selectElementNodeID) as DSModelElementSelection;
+            if (selectElementNode != null)
+            {
+                var document = RevitServices.Persistence.DocumentManager.Instance.CurrentDBDocument;
+                selectElementNode.UpdateSelection(new List<Autodesk.Revit.DB.Element> { document.GetElement(new ElementId(newElementSelected)) });
+            }
+
+            // Re-run the model to update outputs
+            RunCurrentModel();
+
+            // Verify the new selection is a slab
+            var isFoundationSlabAfterChange = GetPreviewValue("4b5c27789bab4c43a6864e33786a2847");
+            Assert.AreEqual(true, isFoundationSlabAfterChange);
         }
 
     }
