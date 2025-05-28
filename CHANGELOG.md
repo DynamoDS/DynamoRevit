@@ -1,3 +1,6 @@
+## 0.7.29
+* Imporve warning messages for CreateElevationByMarkerIndex &  StructuralPlanView.ByLevel nodes
+
 ## 0.7.28
 * Update Dynamo Core to 3.5.1.8731
 
