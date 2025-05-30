@@ -2,7 +2,7 @@
   "Uuid": "6ab2aa77-03ac-43aa-996a-9bcba72a6560",
   "IsCustomNode": false,
   "Description": "선택한 카테고리의 모든 요소(기본값: 문)를 수집하고 각 요소의 형상을 가져옵니다.",
-  "Name": "Get Geometry For All Elements Of Category",
+  "Name": "카테고리의 모든 요소에 대한 형상 가져오기",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -251,7 +251,7 @@
       },
       {
         "Id": "8ba36ad66fd043f8b9db0ffc465a667f",
-        "Title": "We recommend you save your graph with a category you expect to exist in your models to prevent a warning.\n\nFor example, try saving and running the graph with the Doors category on the sample model Snowdon Towers Sample Architectural.rvt, available at:\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
+        "Title": "경고가 발생하지 않도록 모델에 있을 것으로 예상되는 카테고리로 그래프를 저장하는 것이 좋습니다.\n\n예를 들어, 다음 위치에서 사용할 수 있는 샘플 모델 Snowdon Towers Sample Architectural.rvt에서는 Doors 범주를 사용하여 그래프를 저장하고 실행해 보십시오.\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,

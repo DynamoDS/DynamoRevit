@@ -2,7 +2,7 @@
   "Uuid": "107641db-6b6a-4a08-8282-d474513714b1",
   "IsCustomNode": false,
   "Description": "Exportuje data do aplikace Excel podle názvu vybraného výkresu. Bude nutné připojit data k exportu.",
-  "Name": "Export Data To Excel",
+  "Name": "Exportovat data do aplikace Excel",
   "ElementResolver": {
     "ResolutionMap": {}
   },
