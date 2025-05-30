@@ -104,41 +104,5 @@ namespace RevitSystemTests
 
             Assert.AreEqual(new string[] { "Autodesk.Revit.DB.FootPrintRoof" }, GetPreviewValue("e1d5a65df6364196bcba7a21bf69f5ac"));
         }
-
-        //[Test]
-        //public void CreateSineWaveFromSelectedPoints()
-        //{
-        //    var model = ViewModel.Model;
-
-        //    string samplePath = Path.Combine(_samplesPath, @".\06 Python Node\create sine wave from selected points.dyn");
-        //    string testPath = Path.GetFullPath(samplePath);
-
-        //    ReferencePoint p1 = null;
-        //    ReferencePoint p2 = null;
-
-        //    using (_trans = new Transaction( DocumentManager.Instance.CurrentDBDocument))
-        //    {
-        //        _trans.Start("Create reference points for testing python node.");
-        //var doc = DocumentManager.Instance.CurrentDBDocument;
-        //        p1 = doc.FamilyCreate.NewReferencePoint(new XYZ());
-        //        p2 = doc.FamilyCreate.NewReferencePoint(new XYZ(0, 10, 0));
-
-        //        _trans.Commit();
-        //    }
-
-        //    ViewModel.OpenCommand.Execute(testPath);
-
-        //    var selectionNodes = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is dynPointBySelection);
-        //    Assert.AreEqual(2, selectionNodes.Count());
-
-        //    ((dynPointBySelection)selectionNodes.ElementAt(0)).SelectedElement = p1;
-        //    ((dynPointBySelection)selectionNodes.ElementAt(1)).SelectedElement = p2;
-
-        //    //delete the transaction node when testing
-        //    //var transNode = ViewModel.Model.CurrentWorkspace.Nodes.Where(x => x is dynTransaction).First();
-        //    //ViewModel.RunCommand(vm.DeleteCommand, transNode);
-
-        //    ViewModel.RunExpressionCommand.Execute(true);
-        //}
     }
 }
