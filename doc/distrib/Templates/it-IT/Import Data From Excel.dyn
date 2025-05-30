@@ -2,7 +2,7 @@
   "Uuid": "c49c9e5d-746d-42f7-975a-5a40f1ad1c6c",
   "IsCustomNode": false,
   "Description": "Importa i dati da un file di Excel e li traspone per invertire le colonne e le righe.",
-  "Name": "Import Data From Excel",
+  "Name": "Importa dati da Excel",
   "ElementResolver": {
     "ResolutionMap": {}
   },

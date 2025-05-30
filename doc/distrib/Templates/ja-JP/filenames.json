@@ -1,9 +1,9 @@
 {
-  "Collect All Elements Of Category And Get Parameters": "Collect All Elements Of Category And Get Parameters",
-  "Collect All Elements Of Category": "Collect All Elements Of Category",
-  "Export Data To Excel": "Export Data To Excel",
-  "Get Geometry For All Elements Of Category": "Get Geometry For All Elements Of Category",
-  "Import Data From Excel": "Import Data From Excel",
-  "Read Image From File": "Read Image From File"
+  "Collect All Elements Of Category And Get Parameters": "カテゴリのすべての要素を収集し、パラメータを取得",
+  "Collect All Elements Of Category": "カテゴリのすべての要素を収集",
+  "Export Data To Excel": "Excel にデータを書き出す",
+  "Get Geometry For All Elements Of Category": "カテゴリのすべての要素のジオメトリを取得",
+  "Import Data From Excel": "Excel からデータを読み込む",
+  "Read Image From File": "ファイルからイメージを読み込む"
 }
 

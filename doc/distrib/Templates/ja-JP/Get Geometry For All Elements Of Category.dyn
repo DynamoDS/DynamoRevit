@@ -2,7 +2,7 @@
   "Uuid": "6ab2aa77-03ac-43aa-996a-9bcba72a6560",
   "IsCustomNode": false,
   "Description": "選択したカテゴリ(既定はドア)のすべての要素を収集し、各要素のジオメトリを取得します",
-  "Name": "Get Geometry For All Elements Of Category",
+  "Name": "カテゴリのすべての要素のジオメトリを取得",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -251,7 +251,7 @@
       },
       {
         "Id": "8ba36ad66fd043f8b9db0ffc465a667f",
-        "Title": "We recommend you save your graph with a category you expect to exist in your models to prevent a warning.\n\nFor example, try saving and running the graph with the Doors category on the sample model Snowdon Towers Sample Architectural.rvt, available at:\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
+        "Title": "警告が表示されないように、モデルに存在すると予想されるカテゴリでグラフを保存することをお勧めします。\n\nたとえば、サンプル モデル Snowdon Towers Sample Architectural.rvt の Doors カテゴリを使用してグラフを保存して実行してみてください。\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
