@@ -39,6 +39,7 @@ namespace RevitSystemTests
                 DocumentManager.Instance.CurrentDBDocument.Delete(rp.Id);
 
                 trans.Commit();
+                Assert.AreEqual(0, fec.ToElements().Count());
             }
         }
 
@@ -52,7 +53,13 @@ namespace RevitSystemTests
             Assert.AreEqual(3, ViewModel.Model.CurrentWorkspace.Nodes.Count());
 
             RunCurrentModel();
-            //ViewModel.Model.RunExpression();
+
+            //Ensure that the reference point is created
+            var rpFilter = new ElementClassFilter(typeof(ReferencePoint));
+
+            var referencePointNode = GetPreviewValue("25456637-2521-4245-900a-2272c4df3581");
+            var expectedResult = "Reference Point: Location=(X=0, Y=0, Z=0)";
+            Assert.AreEqual(expectedResult, referencePointNode.ToString());
         }
     }
 }

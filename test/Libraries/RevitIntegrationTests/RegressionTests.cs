@@ -118,11 +118,6 @@ namespace RevitSystemTests
             {
                 exception = ex;
             }
-            // this is not needed anymore, NUnit ensures this happens between each test case
-            //finally
-            //{
-            //    TearDown();
-            //}
 
             if (exception != null)
             {
@@ -146,7 +141,6 @@ namespace RevitSystemTests
             Assert.NotNull(homespace, "The current workspace is not a HomeWorkspaceModel");
 
             // Iterate through all loaded nodes in library & add Revit UI nodes to ws
-            //var nodeList = Model.SearchModel.Search(string.Empty, Model.LuceneUtility);
             var nodeList = Model.SearchModel.Entries;
             foreach (var node in nodeList)
             {

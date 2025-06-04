@@ -20,9 +20,12 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
 
-
+            AssertNoDummyNodes();
             RunCurrentModel();
-            
+
+            var modelText = GetFlattenedPreviewValues("f2e6e48d704648bdbdd039c1eada4375");
+            Assert.IsNotNull(modelText);
+            Assert.AreEqual(101, modelText.Count);
         }
     }
 }
