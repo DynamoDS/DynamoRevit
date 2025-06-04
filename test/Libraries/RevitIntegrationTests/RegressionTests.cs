@@ -292,7 +292,7 @@ namespace RevitSystemTests
 
          try
          {
-            // get the dells from the vuild folder
+            // get the dlls from the build folder
             var currentDlls = Directory
                 .EnumerateFiles(buildOutputFolder, "*.dll", SearchOption.AllDirectories)
                 .Select(fullPath => Path.GetRelativePath(buildOutputFolder, fullPath).Replace("\\", "/"))
@@ -313,7 +313,7 @@ namespace RevitSystemTests
             var unexpectedDlls = currentDlls.Except(approvedDlls).ToList();
             var missingDlls = approvedDlls.Except(currentDlls).ToList();
 
-            // fail test is there are unexpected or missing DLLs
+            // fail test if there are unexpected or missing DLLs
             if (unexpectedDlls.Any() || missingDlls.Any())
             {
                var message = new StringBuilder();
@@ -357,7 +357,10 @@ namespace RevitSystemTests
 
       private static string GetDynamoForRevitBuildFolder(string testDirectory)
       {
-         string relativePath = Path.Combine(testDirectory, @"..\..\..\..\..\..\Revit\Debugx64\Addins\DynamoForRevit");
+         string solutionDir = GetSolutionDirectory(testDirectory);
+         string platform = GetPlatform();
+         string configuration = GetConfiguration();
+         string relativePath = Path.Combine(solutionDir, $@"..\bin\{platform}\{configuration}\Revit\");
          string fullPath = Path.GetFullPath(relativePath);
 
          if (!Directory.Exists(fullPath))
@@ -366,6 +369,22 @@ namespace RevitSystemTests
          }
 
          return fullPath;
+      }
+
+      private static string GetSolutionDirectory(string testDirectory)
+      {
+         string solutionDir = Directory.GetParent(testDirectory).Parent.Parent.FullName;
+         return solutionDir;
+      }
+
+      private static string GetPlatform()
+      {
+         return "x64";
+      }
+
+      private static string GetConfiguration()
+      {
+         return "Debug";
       }
 
 
