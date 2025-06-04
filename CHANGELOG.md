@@ -1,3 +1,55 @@
+## 0.7.32
+* Regression test to check for new Dynamo .dll files
+
+## 0.7.31
+* Imporve warning messages for dynamo nodes attempt #2
+
+## 0.7.30
+* Imporve regression tests by adding more verifications or by deleting useless data
+
+## 0.7.29
+* Imporve warning messages for CreateElevationByMarkerIndex &  StructuralPlanView.ByLevel nodes
+
+## 0.7.28
+* Update Dynamo Core to 3.5.1.8731
+
+## 0.7.27
+* Create an end-to-end test for Dynamo in Revit
+
+## 0.7.26
+* Modify ContinuousLocalization.yml to include the Samples Folder
+
+
+## 0.7.25
+* add missing test dependencies
+
+## 0.7.24
+* Fix test references
+
+## 0.7.23
+* Add changes to D4R tests
+
+## 0.7.22
+* Fix crash when closing splash-screen
+
+## 0.7.21
+* Fixed typo in the description of node Material.AppearanceParameter
+
+## 0.7.20
+* Added missing test file, NUnit.Engine.Core.dll
+
+## 0.7.19
+* Added missing test files from Dynamo Core 3.5
+
+## 0.7.18
+* Added UnitTest for Undo-Delete Nodes Scenario
+
+## 0.7.17
+* Update Dynamo Tests by adding more verifications or by deleting useless data
+
+## 0.7.16
+* Update Dynamo Core to 3.5.0.8297
+
 ## 0.7.15
 * Added the Samples\Data folder from the Dynamo repo
 

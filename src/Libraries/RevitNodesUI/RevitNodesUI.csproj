@@ -28,25 +28,6 @@
     <PostBuildEvent />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DynamoUtilities">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoUtilities.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUtilities.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>$(PACKAGESPATH)\Newtonsoft.Json\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="ProtoGeometry">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\ProtoGeometry.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\ProtoGeometry.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoServices">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\netstandard2.0\DynamoServices.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="RevitAPI">
       <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -71,41 +52,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="DynamoCoreWpf">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\$(DCoreLibSubFolder)\DynamoCoreWpf.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCoreWpf.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="ProtoCore">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\ProtoCore.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\ProtoCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="CoreNodeModelsWpf">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.WpfUILibrary\lib\$(DCoreLibSubFolder)\CoreNodeModelsWpf.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\nodes\CoreNodeModelsWpf.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="CoreNodeModels">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\$(DCoreLibSubFolder)\CoreNodeModels.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\nodes\CoreNodeModels.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoCore">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoCore.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DSCoreNodes">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoCoreNodes\lib\$(DCoreLibSubFolder)\DSCoreNodes.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DSCoreNodes.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DynamoUnits">
-      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\DynamoUnits.dll</HintPath>
-      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUnits.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+    <ProjectReference Include="..\..\DynamoRevit\DynamoRevit.csproj" />
+    <ProjectReference Include="..\RevitNodes\RevitNodes.csproj" />
+    <ProjectReference Include="..\RevitServices\RevitServices.csproj" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DynamoRevit\DynamoRevit.csproj">
@@ -124,5 +73,8 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="3.5.1.8731" ExcludeAssets="runtime" />
   </ItemGroup>
 </Project>

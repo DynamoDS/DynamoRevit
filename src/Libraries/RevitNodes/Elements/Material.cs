@@ -188,7 +188,7 @@ namespace Revit.Elements
         }
 
         /// <summary>
-        /// Get all apperance parameters
+        /// Get all appearance parameters
         /// </summary>
         public IEnumerable<Parameter> AppearanceParameters
         {

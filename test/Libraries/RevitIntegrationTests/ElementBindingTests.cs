@@ -242,8 +242,7 @@ namespace RevitSystemTests
             Assert.IsTrue(pnt.Position.IsAlmostEqualTo(new XYZ(0.0, 0.0, 0.0)));
         }
 
-        // TODO: Re-enable the test when open workspace in JSON is enabled.
-        [Test, Ignore("Was disabled 6 years ago, TODO - check if it should be re-enabled")]
+        [Test]
         [TestModel(@".\empty.rfa")]
         public void CreateInDynamoSaveCloseGraphReopenGraphRerun()
         {
@@ -253,11 +252,11 @@ namespace RevitSystemTests
 
             ViewModel.OpenCommand.Execute(testPath);
 
-            RunCurrentModel();
-
             //Save the current graph
             string tempPath = Path.Combine(Path.GetTempPath(), "CreateOneReferencePoint.dyn");
             ViewModel.SaveAsCommand.Execute(tempPath);
+            RunCurrentModel();
+            ViewModel.SaveCommand.Execute(null);
 
             //Close the current graph
             ViewModel.CloseHomeWorkspaceCommand.Execute(null);
@@ -508,52 +507,6 @@ namespace RevitSystemTests
             Assert.AreEqual(6, points.Count);
         }
 
-        [Test, Ignore("Not finished")]
-        [TestModel(@".\empty.rfa")]
-        public void CreateDifferentNumberOfElementsInDynamoWithDifferentLacingStrategies()
-        {
-
-            //This is to test that the same node can bind correctly with different number of elements
-            //when the lacing strategies for the node change
-
-            Assert.Inconclusive("TO DO");
-
-            /*
-            //Create 4x2 reference points
-            string dynFilePath = Path.Combine(workingDirectory, @".\ElementBinding\CreateDifferentNumberOfPoints.dyn");
-            string testPath = Path.GetFullPath(dynFilePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            RunCurrentModel();
-            
-
-            //Check the number of the refrence points
-            var points = GetAllReferencePointElements(true);
-            Assert.AreEqual(8, points.Count);
-
-            var model = ViewModel.Model;
-            var selNodes = model.AllNodes.Where(x => string.Equals(x.Name, "ReferencePoint.ByCoordinates"));
-            Assert.IsTrue(selNodes.Any());
-            var node = selNodes.First() as DSFunction;
-
-            //As the unit test will hang, so make it fail
-            Assert.Fail("Reference points will be created at the same location!");
-
-            //Change the slider value from 4 to 3
-            node.ArgumentLacing = Dynamo.Models.LacingStrategy.Longest;
-
-            //Run the graph again
-          
-            RunCurrentModel();
-            
-
-            //Check the number of the refrence points
-            points = GetAllReferencePointElements(true);
-            Assert.AreEqual(4, points.Count);
-            */
-        }
-
         [Test]
         [TestModel(@".\ElementBinding\magn-2523.rfa")]
         public void Rebinding_ExceptionIsThrown()
@@ -581,19 +534,23 @@ namespace RevitSystemTests
             
             //Change the value of the slider from 19.89 to 18.0
             slider.Value = 18.0;
+
             //Run the graph again
-           
             RunCurrentModel();
-            
+
+            //Check that the number of family instances stays the same
+            instances = TestUtils.GetAllFamilyInstances();
+            Assert.AreEqual(8, instances.Count);
+
             //Change the value of the slider from 18.0 to 16.0
-            slider.Value = 16.0;
-            //Run the graph again
-           
+            slider.Value = 8.0;
+
+            //Run the graph again - it should throw an exception, so there will be 0 elements in the document
             RunCurrentModel();
 
             //Check the number of family instances
             instances = TestUtils.GetAllFamilyInstances();
-            Assert.AreEqual(8, instances.Count);
+            Assert.AreEqual(0, instances.Count);
         }
 
         [Test]

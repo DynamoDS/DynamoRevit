@@ -32,6 +32,8 @@ using Dynamo.Wpf.Interfaces;
 using DynamoInstallDetective;
 using Greg.AuthProviders;
 using Newtonsoft.Json;
+using RevitServices.Journaling;
+using RevitServices.Materials;
 using RevitServices.Persistence;
 using RevitServices.Threading;
 using RevitServices.Transactions;
@@ -294,6 +296,8 @@ namespace Dynamo.Applications
 
             try
             {
+                MaterialsManager.Instance.InitializeForDocument(commandData.Application.ActiveUIDocument.Document);
+
                 // Launch main Dynamo directly when ShowUiKey is true.
                 if (CheckJournalForKey(commandData, JournalKeys.ShowUiKey, false))
                 {
@@ -307,7 +311,36 @@ namespace Dynamo.Applications
                 {
                     var ssEventHandler = new DynamoExternalEventHandler(new Action(() =>
                     {
-                        LoadDynamoView();
+                        try
+                        {
+                            LoadDynamoView();
+
+                            if (Journaling.IsJournalReplaying())
+                            {
+                                var closeSplashScreen = new DynamoExternalEventHandler(new Action(() =>
+                                {
+                                    splashScreen?.RequestLaunchDynamo(false);
+                                }));
+                                var closeSplashScreenEvt = ExternalEvent.Create(closeSplashScreen);
+                                closeSplashScreenEvt.Raise();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // notify instrumentation
+                            Analytics.TrackException(ex, true);
+                            Journaling.WriteError("Dynamo Revit failed to load: {0}", ex.Message);
+                            MessageBox.Show(ex.ToString());
+
+                            DynamoRevitApp.DynamoButtonEnabled = true;
+
+                            //If for some reason Dynamo has crashed while startup make sure the Dynamo Model is properly shutdown.
+                            if (RevitDynamoModel != null)
+                            {
+                                RevitDynamoModel.ShutDown(false);
+                                RevitDynamoModel = null;
+                            }
+                        }
                     }));
 
                     /* Register DynamoExternalEventHandler so Revit will call our callback
@@ -362,6 +395,7 @@ namespace Dynamo.Applications
             {
                 // notify instrumentation
                 Analytics.TrackException(ex, true);
+                Journaling.WriteError("Dynamo Revit failed to load: {0}", ex.Message);
                 MessageBox.Show(ex.ToString());
 
                 DynamoRevitApp.DynamoButtonEnabled = true;
@@ -397,6 +431,12 @@ namespace Dynamo.Applications
                 // Let the host (e.g. Revit) control the rendering mode
                 var save = RenderOptions.ProcessRenderMode;
 
+                if (splashScreen == null)
+                {
+                    RevitDynamoModel.State = DynamoModel.DynamoModelState.NotStarted;
+                    DynamoRevitApp.DynamoButtonEnabled = true;
+                    return;
+                }
                 splashScreen.DynamoView = InitializeCoreView(extCommandData);
 
                 RenderOptions.ProcessRenderMode = save;
@@ -422,7 +462,8 @@ namespace Dynamo.Applications
             Analytics.TrackStartupTime("DynamoRevit", startupTimer.Elapsed, RevitDynamoModel.State.ToString());
 
             splashScreen.OnRequestStaticSplashScreen();
-            splashScreen.DynamicSplashScreenReady -= LoadDynamoView;
+            if(splashScreen != null) // OnRequestStaticSplashScreen can close splashscreen 
+                splashScreen.DynamicSplashScreenReady -= LoadDynamoView;
         }
 
         // Start main Dynamo directly without splash screen.
@@ -652,7 +693,8 @@ namespace Dynamo.Applications
                 {
                     DynamoModel = revitDynamoModel,
                     WatchHandler =
-                        new RevitWatchHandler(revitDynamoModel.PreferenceSettings)
+                        new RevitWatchHandler(revitDynamoModel.PreferenceSettings),
+                    HideReportOptions = Journaling.IsJournalReplaying()
                 });
             return viewModel;
         }
@@ -672,6 +714,9 @@ namespace Dynamo.Applications
             var appEventHandler = new DynamoExternalEventHandler(new Action(() =>
             {
                 UpdateLibraryLayoutSpec();
+
+                const int timeout = 1000 * 60; // 60s timeout
+                Journaling.WriteAsyncEvent("Dynamo UI loaded", () => { }, timeout);
             }));
 
             DynamoAppExternalEvent = ExternalEvent.Create(appEventHandler);
@@ -1085,8 +1130,11 @@ namespace Dynamo.Applications
             if (sender is Dynamo.UI.Views.SplashScreen ss && ss.CloseWasExplicit)
             {
                 DynamoRevitApp.DynamoButtonEnabled = true;
-                //the model is shutdown when splash screen is closed
-                RevitDynamoModel.State = DynamoModel.DynamoModelState.NotStarted;
+                if (RevitDynamoModel != null)
+                {
+                    //the model is shutdown when splash screen is closed
+                    RevitDynamoModel.State = DynamoModel.DynamoModelState.NotStarted;
+                }
             }
 
             splashScreen = null;

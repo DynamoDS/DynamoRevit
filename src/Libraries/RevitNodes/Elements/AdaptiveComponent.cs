@@ -440,8 +440,54 @@ namespace Revit.Elements
                 throw new ArgumentNullException("familtType");
             }
 
+
+            if (points.Length > 0 && points[0] is Point)
+            {
+                throw new Exception(Properties.Resources.NotSingleList);
+            }
+
+
+            if (!AdaptiveComponent.IsAdaptiveFamilyType(familyType))
+            {
+                throw new Exception(Properties.Resources.NotAdaptiveFamily);
+
+            }
+
+
+
             return InternalByPoints(points, familyType);
         }
+
+
+
+
+        internal static bool IsAdaptiveFamilyType(FamilyType familyType)
+        {
+            if (familyType?.InternalFamilySymbol == null)
+                return false;
+
+            var symbol = familyType.InternalFamilySymbol;
+            var doc = symbol.Document;
+
+            try
+            {
+                var instance = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(doc, symbol);
+                if (instance != null)
+                {
+                    doc.Delete(instance.Id);
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return false;
+        }
+
+
+
 
         /// <summary>
         /// Create an adaptive component by uv points on a face.
