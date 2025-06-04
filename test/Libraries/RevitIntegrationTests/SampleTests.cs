@@ -150,7 +150,7 @@ namespace RevitSystemTests
 
             var refPt = GetPreviewValueAtIndex(refPtNodeId, 3) as ReferencePoint;
             Assert.IsNotNull(refPt);
-            //Assert.AreEqual(57, refPt.Y, 0.000001);
+            Assert.AreEqual(-90.836, refPt.Y, 0.001);
 
             // change slider value and re-evaluate graph
             DoubleSlider slider = model.CurrentWorkspace.NodeFromWorkspace
@@ -161,6 +161,7 @@ namespace RevitSystemTests
             AssertPreviewCount(refPtNodeId, 15);
             var refPt1 = GetPreviewValueAtIndex(refPtNodeId, 3) as ReferencePoint;
             Assert.IsNotNull(refPt1);
+            Assert.AreEqual(-46.253, refPt.Y, 0.001);
 
         }
 
@@ -713,36 +714,36 @@ namespace RevitSystemTests
 
         }
 
-        //[Test, Category("Failure")]
-        //[TestModel(@".\Samples\AllCurves.rfa")]
-        //public void ArcAndLine()
-        //{
-        //    var model = ViewModel.Model;
+        [Test]
+        [TestModel(@".\Samples\AllCurves.rfa")]
+        public void ArcAndLine()
+        {
+            var model = ViewModel.Model;
 
-        //    string samplePath = Path.Combine(workingDirectory, @".\Samples\Arc and Line.dyn");
-        //    string testPath = Path.GetFullPath(samplePath);
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Arc and Line.dyn");
+            string testPath = Path.GetFullPath(samplePath);
 
-        //    ViewModel.OpenCommand.Execute(testPath);
-            
-        //    AssertNoDummyNodes();
+            ViewModel.OpenCommand.Execute(testPath);
 
-        //    // check all the nodes and connectors are loaded
-        //    Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
-        //    Assert.AreEqual(18, model.CurrentWorkspace.Connectors.Count());
+            AssertNoDummyNodes();
 
-        //    RunCurrentModel();
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(18, model.CurrentWorkspace.Connectors.Count());
 
-        //    var nodeID = "6de77be2-fa0f-41ec-a494-151d47ad8274";
+            RunCurrentModel();
 
-        //    var arc = GetPreviewValueAtIndex(nodeID, 0) as Arc;
-        //    Assert.IsNotNull(arc);
+            var nodeID = "6de77be2-fa0f-41ec-a494-151d47ad8274";
 
-        //    var circle = GetPreviewValueAtIndex(nodeID, 1) as Line;
-        //    Assert.IsNotNull(circle);
+            var arc = GetPreviewValueAtIndex(nodeID, 0) as Arc;
+            Assert.IsNotNull(arc);
 
-        //    var modelCurve = GetPreviewValue("a91af17e-111e-4945-9f74-9ac09d168ad4") as ModelCurve;
-        //    Assert.IsNotNull(modelCurve);
-        //}
+            var circle = GetPreviewValueAtIndex(nodeID, 1) as Line;
+            Assert.IsNotNull(circle);
+
+            var modelCurve = GetPreviewValue("a91af17e-111e-4945-9f74-9ac09d168ad4") as ModelCurve;
+            Assert.IsNotNull(modelCurve);
+        }
 
         [Test]
         [TestModel(@".\Samples\AllCurves.rfa")]
