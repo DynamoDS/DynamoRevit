@@ -272,8 +272,7 @@ namespace RevitSystemTests
          string testDirectory = Path.GetDirectoryName(testAssemblyPath);
 
          // Revit addin build output where the dlls are located
-         string relativeBuildPath = Path.Combine(testDirectory, @"..\..\..\..\..\..\Revit\Debugx64\Addins\DynamoForRevit");
-         string buildOutputFolder = Path.GetFullPath(relativeBuildPath);
+         string buildOutputFolder = GetDynamoForRevitBuildFolder(testDirectory);
 
          if (!Directory.Exists(buildOutputFolder))
          {
@@ -355,12 +354,27 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
         }
 
-        /// <summary>
-        /// Method referenced by the automated regression testing setup method.
-        /// Populates the test cases based on file pairings in the regression tests folder.
-        /// </summary>
-        /// <returns></returns>
-        private static List<RegressionTestData> SetupRevitRegressionTests()
+
+      private static string GetDynamoForRevitBuildFolder(string testDirectory)
+      {
+         string relativePath = Path.Combine(testDirectory, @"..\..\..\..\..\..\Revit\Debugx64\Addins\DynamoForRevit");
+         string fullPath = Path.GetFullPath(relativePath);
+
+         if (!Directory.Exists(fullPath))
+         {
+            throw new DirectoryNotFoundException($"DynamoForRevit build folder not found at: {fullPath}");
+         }
+
+         return fullPath;
+      }
+
+
+      /// <summary>
+      /// Method referenced by the automated regression testing setup method.
+      /// Populates the test cases based on file pairings in the regression tests folder.
+      /// </summary>
+      /// <returns></returns>
+      private static List<RegressionTestData> SetupRevitRegressionTests()
         {
             var testParameters = new List<RegressionTestData>();
 
