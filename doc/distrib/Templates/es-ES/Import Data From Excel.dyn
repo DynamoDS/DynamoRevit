@@ -2,7 +2,7 @@
   "Uuid": "c49c9e5d-746d-42f7-975a-5a40f1ad1c6c",
   "IsCustomNode": false,
   "Description": "Importe datos de un archivo de Excel y transponga los datos para voltear columnas y filas.",
-  "Name": "Import Data From Excel",
+  "Name": "Importar datos de Excel",
   "ElementResolver": {
     "ResolutionMap": {}
   },

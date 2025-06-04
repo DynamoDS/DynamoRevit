@@ -2,7 +2,7 @@
   "Uuid": "107641db-6b6a-4a08-8282-d474513714b1",
   "IsCustomNode": false,
   "Description": "根据选定的图纸名称将数据输出到 Excel。您需要连接要输出的数据",
-  "Name": "Export Data To Excel",
+  "Name": "将数据导出到 Excel",
   "ElementResolver": {
     "ResolutionMap": {}
   },

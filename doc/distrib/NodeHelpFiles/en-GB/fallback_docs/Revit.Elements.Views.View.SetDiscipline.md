@@ -1,5 +1,5 @@
 ## In Depth
-`View.SetDiscipline` modifies the discipline of the given view. 
+`View.SetDiscipline` modifies the discipline of the given view.
 
 View discipline options include:
 - Architectural

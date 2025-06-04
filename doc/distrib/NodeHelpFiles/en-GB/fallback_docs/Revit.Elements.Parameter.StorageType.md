@@ -1,5 +1,5 @@
 ## In Depth
-`Parameter.StorageType` helps determine what type of data a parameter stores. 
+`Parameter.StorageType` helps determine what type of data a parameter stores.
 
 Data types include:
 - None
