@@ -1402,7 +1402,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to StructuralPlans can only be created when the structural discipline is enabled whereas FloorPlans and CeilingPlans can only be created when architecture or MEP disciplines are enabled. Check which tabs are active under File -&gt; Options -&gt; User Interface -&gt; Configure Tools and analysis.
+        ///   Looks up a localized string similar to StructuralPlans can only be created when the structural discipline is enabled whereas FloorPlans and CeilingPlans can only be created when architecture or MEP disciplines are enabled. Check which tabs are active under File -&gt; Options -&gt; User Interface -&gt; Configure Tools and analyses.
         /// </summary>
         internal static string StructuralPlanNotEnabled {
             get {
