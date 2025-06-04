@@ -112,10 +112,16 @@ namespace Revit.Elements
                 throw new InvalidOperationException(Properties.Resources.IndexOccupiedOrNotAvailable);
 
                 TransactionManager.Instance.EnsureInTransaction(Document);
+            try
+            {
                 Autodesk.Revit.DB.ViewSection sectionView = this.InternalMarker.CreateElevation(Document, view.InternalViewPlan.Id, index);
                 TransactionManager.Instance.TransactionTaskDone();
                 return sectionView.ToDSType(true) as SectionView;
-
+            }
+            catch (Exception)
+            {
+                throw new Exception(Properties.Resources.IndexOccupiedOrNotAvailable);
+            }
         }
 
         /// <summary>
