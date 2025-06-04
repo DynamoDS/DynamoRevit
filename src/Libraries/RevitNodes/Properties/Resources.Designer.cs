@@ -1042,6 +1042,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The selected FamilyType is not an adaptive family. AdaptiveComponent.ByPoints requires an adaptive family with placement points..
+        /// </summary>
+        internal static string NotAdaptiveFamily {
+            get {
+                return ResourceManager.GetString("NotAdaptiveFamily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Element not valid. Use an element from a BuiltInCategory..
         /// </summary>
         internal static string NotBuiltInCategory {
