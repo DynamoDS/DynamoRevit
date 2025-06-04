@@ -1,5 +1,5 @@
 ## In Depth
-`TextNote.HorizontalAlignment` returns the assigned horizontal alignment of the given text note. 
+`TextNote.HorizontalAlignment` returns the assigned horizontal alignment of the given text note.
 
 Horizontal Alignment Options include:
 - Right

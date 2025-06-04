@@ -1,5 +1,5 @@
 ## In Depth
-`Room.Volume` returns the volume of the given room element in the current document's units. _(E.g. Feet and Inches)_ 
+`Room.Volume` returns the volume of the given room element in the current document's units. _(E.g. Feet and Inches)_
 
 If an unbounded or unplaced room is given, a null value is returned.
 
