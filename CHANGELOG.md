@@ -1,6 +1,8 @@
+## 0.7.32
+* Regression test to check for new Dynamo .dll files
+
 ## 0.7.31
 * Imporve warning messages for dynamo nodes attempt #2
-
 
 ## 0.7.30
 * Imporve regression tests by adding more verifications or by deleting useless data

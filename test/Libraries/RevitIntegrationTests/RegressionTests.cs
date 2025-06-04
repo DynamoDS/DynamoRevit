@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Text;
 using Dynamo.Applications.Models;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
@@ -262,9 +264,90 @@ namespace RevitSystemTests
             File.Delete(Path.Combine(workingDirectory, @".\DupePorts.dyn"));
         }
 
-        // Helper Functions
+      [Test]
+      public void NoUnexpectedDlls_ShouldExist()
+      {
+         // Folder of the test
+         string testAssemblyPath = Assembly.GetExecutingAssembly().Location;
+         string testDirectory = Path.GetDirectoryName(testAssemblyPath);
 
-        private void OpenAndAssertNoDummyNodes(string samplePath)
+         string revitExecutablePath = Assembly.GetEntryAssembly().Location;
+         string revitDirectory = Path.GetDirectoryName(revitExecutablePath);
+
+         // Revit addin build output where the dlls are located
+         string buildOutputFolder = Path.Combine(revitDirectory, @"Addins\DynamoForRevit");
+
+         if (!Directory.Exists(buildOutputFolder))
+         {
+            Assert.Fail($"Build output folder not found: {buildOutputFolder}");
+         }
+
+         // path for the approved list of dlls
+         string approvedListPath = Path.Combine(testDirectory, "ApprovedDllList.txt");
+
+         if (!File.Exists(approvedListPath))
+         {
+            Assert.Fail($"Approved DLL list not found: {approvedListPath}");
+         }
+
+         // define list for storing the dlls
+         string tempDllListPath = Path.Combine(testDirectory, "CurrentDllList.txt");
+
+         try
+         {
+            // get the dlls from the build folder
+            var currentDlls = Directory
+                .EnumerateFiles(buildOutputFolder, "*.dll", SearchOption.AllDirectories)
+                .Select(fullPath => Path.GetRelativePath(buildOutputFolder, fullPath).Replace("\\", "/"))
+                .OrderBy(x => x)
+                .ToList();
+
+            // save the temp list
+            File.WriteAllLines(tempDllListPath, currentDlls);
+
+            // load approved DLLs from file
+            var approvedDlls = File.ReadAllLines(approvedListPath)
+                .Select(line => line.Trim().Replace("\\", "/"))
+                .Where(line => !string.IsNullOrWhiteSpace(line))
+                .OrderBy(x => x)
+                .ToList();
+
+            // compare the lists
+            var unexpectedDlls = currentDlls.Except(approvedDlls).ToList();
+            var missingDlls = approvedDlls.Except(currentDlls).ToList();
+
+            // fail test if there are unexpected or missing DLLs
+            if (unexpectedDlls.Any() || missingDlls.Any())
+            {
+               var message = new StringBuilder();
+               if (missingDlls.Any())
+               {
+                  message.AppendLine("Missing DLLs:");
+                  message.AppendLine(string.Join("\n", missingDlls));
+               }
+
+               if (unexpectedDlls.Any())
+               {
+                  message.AppendLine("Unexpected DLLs:");
+                  message.AppendLine(string.Join("\n", unexpectedDlls));
+               }
+
+               Assert.Fail(message.ToString());
+            }
+         }
+         finally
+         {
+            // cleanup the temp list
+            if (File.Exists(tempDllListPath))
+            {
+               File.Delete(tempDllListPath);
+            }
+         }
+      }
+
+      // Helper Functions
+
+      private void OpenAndAssertNoDummyNodes(string samplePath)
         {
             var testPath = Path.GetFullPath(samplePath);
 
@@ -274,12 +357,13 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
         }
 
-        /// <summary>
-        /// Method referenced by the automated regression testing setup method.
-        /// Populates the test cases based on file pairings in the regression tests folder.
-        /// </summary>
-        /// <returns></returns>
-        private static List<RegressionTestData> SetupRevitRegressionTests()
+
+      /// <summary>
+      /// Method referenced by the automated regression testing setup method.
+      /// Populates the test cases based on file pairings in the regression tests folder.
+      /// </summary>
+      /// <returns></returns>
+      private static List<RegressionTestData> SetupRevitRegressionTests()
         {
             var testParameters = new List<RegressionTestData>();
 
