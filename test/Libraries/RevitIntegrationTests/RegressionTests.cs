@@ -271,8 +271,11 @@ namespace RevitSystemTests
          string testAssemblyPath = Assembly.GetExecutingAssembly().Location;
          string testDirectory = Path.GetDirectoryName(testAssemblyPath);
 
+         string revitExecutablePath = Assembly.GetEntryAssembly().Location;
+         string revitDirectory = Path.GetDirectoryName(revitExecutablePath);
+
          // Revit addin build output where the dlls are located
-         string buildOutputFolder = GetDynamoForRevitBuildFolder(testDirectory);
+         string buildOutputFolder = Path.Combine(revitDirectory, @"Addins\DynamoForRevit");
 
          if (!Directory.Exists(buildOutputFolder))
          {
@@ -353,39 +356,6 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
         }
-
-
-      private static string GetDynamoForRevitBuildFolder(string testDirectory)
-      {
-         string solutionDir = GetSolutionDirectory(testDirectory);
-         string platform = GetPlatform();
-         string configuration = GetConfiguration();
-         string relativePath = Path.Combine(solutionDir, $@"..\bin\{platform}\{configuration}\Revit\");
-         string fullPath = Path.GetFullPath(relativePath);
-
-         if (!Directory.Exists(fullPath))
-         {
-            throw new DirectoryNotFoundException($"DynamoForRevit build folder not found at: {fullPath}");
-         }
-
-         return fullPath;
-      }
-
-      private static string GetSolutionDirectory(string testDirectory)
-      {
-         string solutionDir = Directory.GetParent(testDirectory).Parent.Parent.FullName;
-         return solutionDir;
-      }
-
-      private static string GetPlatform()
-      {
-         return "x64";
-      }
-
-      private static string GetConfiguration()
-      {
-         return "Debug";
-      }
 
 
       /// <summary>
