@@ -1042,6 +1042,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The selected FamilyType is not an adaptive family. AdaptiveComponent.ByPoints requires an adaptive family with placement points..
+        /// </summary>
+        internal static string NotAdaptiveFamily {
+            get {
+                return ResourceManager.GetString("NotAdaptiveFamily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Element not valid. Use an element from a BuiltInCategory..
         /// </summary>
         internal static string NotBuiltInCategory {
@@ -1393,7 +1402,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to StructuralPlans can only be created when the structural discipline is enabled whereas FloorPlans and CeilingPlans can only be created when architecture or MEP disciplines are enabled. Check which tabs are active under File -&gt; Options -&gt; User Interface -&gt; Configure Tools and analysis.
+        ///   Looks up a localized string similar to StructuralPlans can only be created when the structural discipline is enabled whereas FloorPlans and CeilingPlans can only be created when architecture or MEP disciplines are enabled. Check which tabs are active under File -&gt; Options -&gt; User Interface -&gt; Configure Tools and analyses.
         /// </summary>
         internal static string StructuralPlanNotEnabled {
             get {
