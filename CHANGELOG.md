@@ -1,3 +1,6 @@
+## 0.7.30
+* Imporve regression tests by adding more verifications or by deleting useless data
+
 ## 0.7.29
 * Imporve warning messages for CreateElevationByMarkerIndex &  StructuralPlanView.ByLevel nodes
 
