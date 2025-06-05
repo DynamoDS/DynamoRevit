@@ -1,3 +1,6 @@
+## 0.7.33
+* Undo changes made for adaptive component by points node 
+
 ## 0.7.32
 * Regression test to check for new Dynamo .dll files
 
