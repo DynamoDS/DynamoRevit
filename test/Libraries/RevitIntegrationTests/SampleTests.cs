@@ -555,6 +555,19 @@ namespace RevitSystemTests
                 var point = GetPreviewValueAtIndex(refPointNodeID, i) as ReferencePoint;
                 Assert.IsNotNull(point);
             }
+
+            var firstPoint = GetPreviewValueAtIndex(refPointNodeID, 0) as ReferencePoint;
+            Assert.AreEqual(54.529, firstPoint.Y, 0.01);
+
+            // change slider value and re-evaluate graph
+            DoubleSlider slider = model.CurrentWorkspace.NodeFromWorkspace
+                ("98875cee-9e61-46d3-96f3-e1484be3d497") as DoubleSlider;
+            slider.Value = 40.0;
+
+            RunCurrentModel();
+
+            firstPoint = GetPreviewValueAtIndex(refPointNodeID, 0) as ReferencePoint;
+            Assert.AreEqual(40, firstPoint.Y, 0.01);
         }
 
         [Test]
@@ -1132,7 +1145,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            // Validation for Reference Points.
+            // Validation for Points.
             var pointNodeGuid = "0aa5294e-af81-4a93-8b6a-14a8944d8478";
 
             AssertPreviewCount(pointNodeGuid, 11);
