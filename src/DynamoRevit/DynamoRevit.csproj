@@ -99,8 +99,8 @@
     <Compile Remove="RevitSettings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.5.1.8731" ExcludeAssets="runtime" GeneratePathProperty="true" />
-    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="3.5.1.8731" ExcludeAssets="runtime" />
+    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.5.2.8856" ExcludeAssets="runtime" GeneratePathProperty="true" />
+    <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="3.5.2.8856" ExcludeAssets="runtime" />
     <PackageReference Include="Greg" Version="3.0.1.4707" ExcludeAssets="runtime" />
     <!--Exclude GregRevitAuth runtime to avoid having the transitive deps copied to the output. PrivateAssets does not work for that. -->
     <PackageReference Include="GregRevitAuth" Version="3.0.8935.26399" ExcludeAssets="runtime" GeneratePathProperty="true" />

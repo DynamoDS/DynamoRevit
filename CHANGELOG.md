@@ -1,3 +1,6 @@
+## 0.7.34
+* Update Dynamo Core to 3.5.2.8856
+
 ## 0.7.33
 * Undo changes made for adaptive component by points node 
 
