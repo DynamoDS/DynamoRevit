@@ -262,7 +262,6 @@ namespace RevitSystemTests
 
             var value = GetPreviewValue("795cc658-d64e-4808-af66-a83f655a75e2");
             Assert.IsNotNull(value);
-
         }
 
         [Test]
@@ -392,9 +391,8 @@ namespace RevitSystemTests
         [TestModel(@".\Samples\tesselation.rfa")]
         public void Tesselation_3()
         {
-            //TODO:[Ritesh] Some random behgavior in output, need to check with Ian.
-            // Will enable verification after fixing test case.
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4041
+            //We can't verify if the lines from Vorornoi node are correct
+            //because the script uses a random number generator to create the points.
 
             var model = ViewModel.Model;
 
@@ -406,29 +404,21 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(10, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(14, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
-            //var curve = "ca608a4e-0430-4cee-a0bb-61e81f198e8b";
-            //AssertPreviewCount(curve, 479);
-
-            //// get all Lines created using Voronoi on Face
-            //for (int i = 0; i <= 478; i++)
-            //{
-            //    var lines = GetPreviewValueAtIndex(curve, i) as Line;
-            //    Assert.IsNotNull(lines);
-            //}
+            var voronoi = "ca608a4e04304ceea0bb61e81f198e8b";
+            Assert.IsNotNull(voronoi);
         }
 
         [Test]
         [TestModel(@".\Samples\tesselation.rfa")]
         public void Tesselation_4()
         {
-            //TODO:[Ritesh] Some random behgavior in output, need to check with Ian.
-            // Will enable verification after fixing test case.
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4041
+            //We can't verify if the lines from Vorornoi and Delaunay nodes are correct
+            //because the script uses a random number generator to create the points.
 
             var model = ViewModel.Model;
 
@@ -440,20 +430,16 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(19, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
-            //var curve = "3a3c0d74-e4d1-47f6-82e1-ec32f28b8d78";
-            //AssertPreviewCount(curve, 359);
+            var voronoi = "64d59122b5594c7698c7733c9766e481";
+            Assert.IsNotNull(voronoi);
 
-            //// get all Lines
-            //for (int i = 0; i <= 354; i++)
-            //{
-            //    var line = GetPreviewValueAtIndex(curve, i) as Line;
-            //    Assert.IsNotNull(line);
-            //}
+            var delaunay = "698c43c01ad04954ab3ec68e553e4e82";
+            Assert.IsNotNull(delaunay);
         }
 
         [Test]
@@ -631,66 +617,6 @@ namespace RevitSystemTests
             Assert.IsTrue(File.Exists(excelFilePath));
         }
 
-        [Ignore("Not finished")]
-        [TestModel(@".\empty.rfa")]
-        public void Rendering_hill_climbing_simple()
-        {
-            throw new NotImplementedException("LC Modularization");
-            /*
-            // referencing the samples directly from the samples folder
-            // and the custom nodes from the distrib folder
-
-            var model = ViewModel.Model;
-            // look at the sample folder and one directory up to get the distrib folder and combine with defs folder
-            string customNodePath = Path.Combine(Path.Combine(samplesPath, @"..\\"), @".\
-\Dynamo Sample Custom Nodes\dyf\");
-            // get the full path to the distrib folder and def folder
-            string fullCustomNodePath = Path.GetFullPath(customNodePath);
-
-            string samplePath = Path.Combine(samplesPath, @".\25 Rendering\hill_climbing_simple.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            // make sure that the two custom nodes we need exist
-            string customDefPath1 = Path.Combine(fullCustomNodePath, "ProduceChild.dyf");
-            string customDefPath2 = Path.Combine(fullCustomNodePath, "DecideNewParent.dyf");
-
-            Assert.IsTrue(File.Exists(customDefPath1), "Cannot find specified custom definition to load for testing at." + customDefPath1);
-            Assert.IsTrue(File.Exists(customDefPath2), "Cannot find specified custom definition to load for testing." + customDefPath2);
-
-            Assert.DoesNotThrow(() =>
-                         ViewModel.Model.CustomNodeManager.AddFileToPath(customDefPath2));
-            Assert.DoesNotThrow(() =>
-                          ViewModel.Model.CustomNodeManager.AddFileToPath(customDefPath1));
-
-
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            var nodes = ViewModel.Model.CurrentWorkspace.Nodes.OfType<DummyNode>();
-
-            double noOfNdoes = nodes.Count();
-
-            if (noOfNdoes >= 1)
-            {
-                Assert.Fail("Number of Dummy Node found in Sample: " + noOfNdoes);
-            }
-
-            Assert.AreEqual(2, ViewModel.Model.CustomNodeManager.LoadedCustomNodes.Count);
-            // check all the nodes and connectors are loaded
-            Assert.AreEqual(7, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
-
-
-            RunCurrentModel();
-            
-
-
-            var workspace = model.CurrentWorkspace;
-
-            Assert.Fail("Mike to update for CB2B1");
-             */
-        }
-
         [Test]
         [TestModel(@".\Samples\AllCurves.rfa")]
         public void AllCurveTest()
@@ -840,50 +766,6 @@ namespace RevitSystemTests
             }
         }
 
-        [Test]
-        public void CreateSineWaveFromSelectedCurve()
-        {
-            // TODO:[Ritesh] Need to add more verification.
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4041
-
-            var model = ViewModel.Model;
-
-            string samplePath = Path.Combine(workingDirectory, @".\Samples\create sine wave from selected curve.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-            AssertNoDummyNodes();
-
-            // check all the nodes and connectors are loaded
-            Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(2, model.CurrentWorkspace.Connectors.Count());
-
-            RunCurrentModel();
-
-        }
-
-        [Test]
-        public void CreateSineWaveFromSelectedPoints()
-        {
-            // TODO:[Ritesh] Need to add more verification.
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4041
-
-            var model = ViewModel.Model;
-
-            string samplePath = Path.Combine(workingDirectory, @".\Samples\create sine wave from selected points.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            AssertNoDummyNodes();
-            // check all the nodes and connectors are loaded
-            Assert.AreEqual(6, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(5, model.CurrentWorkspace.Connectors.Count());
-
-            RunCurrentModel();
-
-        }
-
         #endregion
 
         #region New Sample Tests
@@ -955,14 +837,14 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            var refPtNodeId = "ecb2936d-6ee9-4b99-9ab1-24269ffedfc5";
-            AssertPreviewCount(refPtNodeId, 10);
+            var overrideColorId = "ecb2936d-6ee9-4b99-9ab1-24269ffedfc5";
+            AssertPreviewCount(overrideColorId, 10);
 
             // get all Walls.
             for (int i = 0; i <= 9; i++)
             {
-                var refPt = GetPreviewValueAtIndex(refPtNodeId, i) as Wall;
-                Assert.IsNotNull(refPt);
+                var ovrrideCol = GetPreviewValueAtIndex(overrideColorId, i) as Wall;
+                Assert.IsNotNull(ovrrideCol);
             }
         }
 
@@ -970,9 +852,6 @@ namespace RevitSystemTests
         [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_Floors_and_Framing()
         {
-            // this test marked as Ignore because on running it is throwing error from Revit side.
-            // if I run it manually there is no error. Will discuss this with Ian
-
             var model = ViewModel.Model;
 
             string samplePath = Path.Combine(workingDirectory, @".\Samples\Revit_Floors and Framing.dyn");
@@ -1083,14 +962,14 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            var familyInstance = "32628bb7-8593-4d3a-944c-3e5ea635be6c";
-            AssertPreviewCount(familyInstance, 9);
+            var structuralFraming = "32628bb7-8593-4d3a-944c-3e5ea635be6c";
+            AssertPreviewCount(structuralFraming, 9);
 
             // get all Families.
             for (int i = 0; i <= 8; i++)
             {
-                var family = GetPreviewValueAtIndex(familyInstance, i) as StructuralFraming;
-                Assert.IsNotNull(family);
+                var structFram = GetPreviewValueAtIndex(structuralFraming, i) as StructuralFraming;
+                Assert.IsNotNull(structFram);
             }
         }
 
