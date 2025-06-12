@@ -5,6 +5,7 @@ using System.Linq;
 using Autodesk.DesignScript.Geometry;
 
 using CoreNodeModels.Input;
+using Dynamo.Graph.Nodes;
 using Dynamo.Selection;
 using Dynamo.Tests;
 
@@ -446,9 +447,6 @@ namespace RevitSystemTests
         [TestModel(@".\empty.rfa")]
         public void Transforms_TranslateAndRotatesequence()
         {
-            // TODO:[Ritesh] Need to add more verification.
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4041
-
             var model = ViewModel.Model;
 
             string samplePath = Path.Combine(workingDirectory, @".\Samples\TranslateandRotatesequence.dyn");
@@ -463,15 +461,48 @@ namespace RevitSystemTests
             Assert.AreEqual(19, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
+
+            //Assert that the node for the rotation system is not null
+            var coordRotationID = "17c25612-5339-4677-9174-b541428e33b5";
+            Assert.IsNotNull(GetFlattenedPreviewValues(coordRotationID));
+
+            //Veify the first value of the geometry transform
+            var geometryTransform = "42ae3686-d28c-42de-9084-f68efe97ea3b";
+            var expectedFirstValue = "Point(X = -0.047, Y = 1.599, Z = 0.000)";
+            Assert.AreEqual(25, GetFlattenedPreviewValues(geometryTransform).Count);
+
+            for (int i = 0; i < 24; i++)
+            {
+                Assert.IsNotNull(GetPreviewValueAtIndex(geometryTransform, i) as Point);
+            }
+            Assert.AreEqual(expectedFirstValue, GetPreviewValueAtIndex(geometryTransform, 6).ToString());
+
+            //Change the value for the steps and re-evaluate graph
+            var stepValue = model.CurrentWorkspace.NodeFromWorkspace
+                ("f37a8769-d70e-46ed-b0ee-dd6bb170bbbe") as DoubleInput;
+            stepValue.Value = "0.5";
+
+            RunCurrentModel();
+
+            //Verify the second value of the geometry transform
+            coordRotationID = "17c25612-5339-4677-9174-b541428e33b5";
+            Assert.IsNotNull(GetFlattenedPreviewValues(coordRotationID));
+
+            geometryTransform = "42ae3686-d28c-42de-9084-f68efe97ea3b";
+            var expectedSecondValue = "Point(X = -3.097, Y = 0.129, Z = 0.000)";
+            Assert.AreEqual(13, GetFlattenedPreviewValues(geometryTransform).Count);
+
+            for (int i = 0; i < 12; i++)
+            {
+                Assert.IsNotNull(GetPreviewValueAtIndex(geometryTransform, i) as Point);
+            }
+            Assert.AreEqual(expectedSecondValue, GetPreviewValueAtIndex(geometryTransform, 6).ToString());
         }
 
         [Test]
         [TestModel(@".\empty.rfa")]
         public void Transforms_TranslateAndRotate()
         {
-            // TODO:[Ritesh] Need to add more verification.
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4041
-
             var model = ViewModel.Model;
 
             string samplePath = Path.Combine(workingDirectory, @".\Samples\TranslateandRotate.dyn");
@@ -486,6 +517,33 @@ namespace RevitSystemTests
             Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
+
+            //Assert that the node for the rotation system is not null
+            var coordRotationID = "e186bc1c-6fef-4cf8-a2a5-95f59cded924";
+            Assert.IsNotNull(GetPreviewValue(coordRotationID));
+
+
+            //Veify the first value of the geometry transform
+            var geometryTransform = "a0c9c845-00fa-4152-8fc7-b6a86ab56d60";
+            var expectedFirstValue = "Point(X = 3.156, Y = 4.960, Z = 0.000)";
+            Assert.IsNotNull(GetPreviewValue(geometryTransform) as Point);
+            Assert.AreEqual(expectedFirstValue, GetPreviewValue(geometryTransform).ToString());
+
+
+            //Change the slider value and re-evaluate graph
+            var degreesSlider = model.CurrentWorkspace.NodeFromWorkspace
+                ("9082826e-60cf-4089-a55b-692a05f7de80") as DoubleSlider;
+            degreesSlider.Value = 2.5;
+
+            RunCurrentModel();
+
+            //Verify the second value of the geometry transform
+            coordRotationID = "e186bc1c-6fef-4cf8-a2a5-95f59cded924";
+            Assert.IsNotNull(GetPreviewValue(coordRotationID));
+
+            geometryTransform = "a0c9c845-00fa-4152-8fc7-b6a86ab56d60";
+            var expectedSecondValue = "Point(X = -4.710, Y = 3.518, Z = 0.000)";
+            Assert.AreEqual(expectedSecondValue, GetPreviewValue(geometryTransform).ToString());
         }
 
         [Test]
