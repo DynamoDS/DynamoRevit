@@ -440,53 +440,8 @@ namespace Revit.Elements
                 throw new ArgumentNullException("familtType");
             }
 
-
-            if (points.Length > 0 && points[0] is Point)
-            {
-                throw new Exception(Properties.Resources.NotSingleList);
-            }
-
-
-            if (!AdaptiveComponent.IsAdaptiveFamilyType(familyType))
-            {
-                throw new Exception(Properties.Resources.NotAdaptiveFamily);
-
-            }
-
-
-
             return InternalByPoints(points, familyType);
         }
-
-
-
-
-        internal static bool IsAdaptiveFamilyType(FamilyType familyType)
-        {
-            if (familyType?.InternalFamilySymbol == null)
-                return false;
-
-            var symbol = familyType.InternalFamilySymbol;
-            var doc = symbol.Document;
-
-            try
-            {
-                var instance = AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(doc, symbol);
-                if (instance != null)
-                {
-                    doc.Delete(instance.Id);
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-
-            return false;
-        }
-
-
 
 
         /// <summary>
@@ -596,10 +551,23 @@ namespace Revit.Elements
                     // Prepare the creation data for batch processing
                     int numOfComponents = remainingPoints.Count();
                     List<FamilyInstanceCreationData> creationDatas = new List<FamilyInstanceCreationData>(numOfComponents);
+                    int desiredNumOfPoints = AdaptiveComponentFamilyUtils.GetNumberOfAdaptivePoints(familyType.InternalFamilySymbol.Family);
+
+                    if (numOfComponents == desiredNumOfPoints && remainingPoints.All(points => points.Length == 1))
+                    {
+                        throw new Exception(Properties.Resources.NotSingleList);
+                    }
+
                     for (int i = 0; i < numOfComponents; ++i)
                     {
                         int numOfPoints = remainingPoints[i].Length;
                         var aPoints = remainingPoints[i].ToXyzs();
+
+
+                        if (aPoints.Length != desiredNumOfPoints)
+                        {
+                            throw new Exception(Properties.Resources.DesiredNumberOfPoints);
+                        }
 
                         var creationData = DocumentManager.Instance.CurrentUIApplication.Application.Create.
                             NewFamilyInstanceCreationData(familyType.InternalFamilySymbol, aPoints);
