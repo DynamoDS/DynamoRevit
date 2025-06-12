@@ -1,3 +1,6 @@
+## 0.7.34
+* Make the proper changes for the adaptive component node
+
 ## 0.7.33
 * Undo changes made for adaptive component by points node 
 
