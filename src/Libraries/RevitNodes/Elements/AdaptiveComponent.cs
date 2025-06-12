@@ -566,7 +566,7 @@ namespace Revit.Elements
 
                         if (aPoints.Length != desiredNumOfPoints)
                         {
-                            throw new Exception(Properties.Resources.DesiredNumberOfPoints);
+                            throw new Exception(string.Format(Properties.Resources.DesiredNumberOfPoints, i, desiredNumOfPoints, numOfPoints));
                         }
 
                         var creationData = DocumentManager.Instance.CurrentUIApplication.Application.Create.
