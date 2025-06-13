@@ -1,3 +1,6 @@
+## 0.7.35
+* Update Dynamo Core to 3.5.2.8914
+
 ## 0.7.34
 * Make the proper changes for the adaptive component node
 
