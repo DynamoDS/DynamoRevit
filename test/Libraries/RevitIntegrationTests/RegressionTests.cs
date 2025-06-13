@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Windows.Markup;
 using Dynamo.Applications.Models;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
@@ -265,25 +266,25 @@ namespace RevitSystemTests
         }
 
       [Test]
-      public void NoUnexpectedDlls_ShouldExist()
+      public void NoUnexpectedOrMissingDlls_ShouldExist()
       {
-         // Folder of the test
-         string testAssemblyPath = Assembly.GetExecutingAssembly().Location;
-         string testDirectory = Path.GetDirectoryName(testAssemblyPath);
 
-         string revitExecutablePath = Assembly.GetEntryAssembly().Location;
-         string revitDirectory = Path.GetDirectoryName(revitExecutablePath);
+         string regressionTest = Path.Combine(workingDirectory, "ApprovedDllList.txt");
+
+         //localtie corecta buildout
+         string revitApiDll = Assembly.GetAssembly(typeof(Autodesk.Revit.DB.ElementId)).Location;
+         string revitDirectory = Path.GetDirectoryName(revitApiDll);
 
          // Revit addin build output where the dlls are located
-         string buildOutputFolder = Path.Combine(revitDirectory, @"Addins\DynamoForRevit");
+         string dynamoRevitFolder = Path.Combine(revitDirectory, @"Addins\DynamoForRevit");
 
-         if (!Directory.Exists(buildOutputFolder))
+         if (!Directory.Exists(dynamoRevitFolder))
          {
-            Assert.Fail($"Build output folder not found: {buildOutputFolder}");
+            Assert.Fail($"Build output folder not found: {dynamoRevitFolder}");
          }
 
          // path for the approved list of dlls
-         string approvedListPath = Path.Combine(testDirectory, "ApprovedDllList.txt");
+         string approvedListPath = Path.Combine(workingDirectory, "ApprovedDllList.txt");
 
          if (!File.Exists(approvedListPath))
          {
@@ -291,14 +292,14 @@ namespace RevitSystemTests
          }
 
          // define list for storing the dlls
-         string tempDllListPath = Path.Combine(testDirectory, "CurrentDllList.txt");
+         string tempDllListPath = Path.Combine(workingDirectory, "CurrentDllList.txt");
 
          try
          {
             // get the dlls from the build folder
             var currentDlls = Directory
-                .EnumerateFiles(buildOutputFolder, "*.dll", SearchOption.AllDirectories)
-                .Select(fullPath => Path.GetRelativePath(buildOutputFolder, fullPath).Replace("\\", "/"))
+                .EnumerateFiles(dynamoRevitFolder, "*.dll", SearchOption.AllDirectories)
+                .Select(fullPath => Path.GetRelativePath(dynamoRevitFolder, fullPath).Replace("\\", "/"))
                 .OrderBy(x => x)
                 .ToList();
 

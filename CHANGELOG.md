@@ -1,3 +1,6 @@
+## 0.7.36
+* Fix test NoUnexpectedOrMissingDlls_ShouldExist
+
 ## 0.7.35
 * Update Dynamo Core to 3.5.2.8914
 
