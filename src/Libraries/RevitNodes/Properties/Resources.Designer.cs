@@ -385,6 +385,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to At index {0} expected {1} points, but given {2}..
+        /// </summary>
+        internal static string DesiredNumberOfPoints {
+            get {
+                return ResourceManager.GetString("DesiredNumberOfPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Can only create DirectShapes from Solids, Surfaces or Meshes..
         /// </summary>
         internal static string DirectShapeInvalidArgument {
@@ -1042,15 +1051,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The selected FamilyType is not an adaptive family. AdaptiveComponent.ByPoints requires an adaptive family with placement points..
-        /// </summary>
-        internal static string NotAdaptiveFamily {
-            get {
-                return ResourceManager.GetString("NotAdaptiveFamily", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Element not valid. Use an element from a BuiltInCategory..
         /// </summary>
         internal static string NotBuiltInCategory {
@@ -1114,7 +1114,7 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AdaptiveComponents.ByPoints operation failed. The AdaptiveComponents.ByPoints node accepts as imput a 2D array of points (structured list of lists) and a Family type to be used for creating the adaptive component..
+        ///   Looks up a localized string similar to The AdaptiveComponents.ByPoints node accepts as input a 2D array of points (structured list of lists) and a Family type to be used for creating the adaptive component..
         /// </summary>
         internal static string NotSingleList {
             get {

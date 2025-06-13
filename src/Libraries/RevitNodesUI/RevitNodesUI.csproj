@@ -75,6 +75,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="3.5.1.8731" ExcludeAssets="runtime" />
+    <PackageReference Include="DynamoVisualProgramming.DynamoCoreNodes" Version="$(DYNAMOCORENODES_VERSION)" ExcludeAssets="runtime" />
   </ItemGroup>
 </Project>

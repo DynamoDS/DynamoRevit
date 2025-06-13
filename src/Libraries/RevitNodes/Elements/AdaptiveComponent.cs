@@ -443,6 +443,7 @@ namespace Revit.Elements
             return InternalByPoints(points, familyType);
         }
 
+
         /// <summary>
         /// Create an adaptive component by uv points on a face.
         /// </summary>
@@ -550,10 +551,23 @@ namespace Revit.Elements
                     // Prepare the creation data for batch processing
                     int numOfComponents = remainingPoints.Count();
                     List<FamilyInstanceCreationData> creationDatas = new List<FamilyInstanceCreationData>(numOfComponents);
+                    int desiredNumOfPoints = AdaptiveComponentFamilyUtils.GetNumberOfAdaptivePoints(familyType.InternalFamilySymbol.Family);
+
+                    if (numOfComponents == desiredNumOfPoints && remainingPoints.All(points => points.Length == 1))
+                    {
+                        throw new Exception(Properties.Resources.NotSingleList);
+                    }
+
                     for (int i = 0; i < numOfComponents; ++i)
                     {
                         int numOfPoints = remainingPoints[i].Length;
                         var aPoints = remainingPoints[i].ToXyzs();
+
+
+                        if (aPoints.Length != desiredNumOfPoints)
+                        {
+                            throw new Exception(string.Format(Properties.Resources.DesiredNumberOfPoints, i, desiredNumOfPoints, numOfPoints));
+                        }
 
                         var creationData = DocumentManager.Instance.CurrentUIApplication.Application.Create.
                             NewFamilyInstanceCreationData(familyType.InternalFamilySymbol, aPoints);
