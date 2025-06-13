@@ -77,6 +77,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{956846
 		Config\dynamo-nuget.config = Config\dynamo-nuget.config
 		Config\packages-template.aget = Config\packages-template.aget
 		Config\packages.aget = Config\packages.aget
+		Config\packages_versions.props = Config\packages_versions.props
 		Config\user_local.props = Config\user_local.props
 	EndProjectSection
 EndProject
