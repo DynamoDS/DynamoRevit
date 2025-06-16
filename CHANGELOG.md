@@ -1,3 +1,12 @@
+## 0.7.37
+* Fix warning message for adaptive compintent by points node
+
+## 0.7.36
+* Fix test NoUnexpectedOrMissingDlls_ShouldExist
+
+## 0.7.35
+* Update Dynamo Core to 3.5.2.8914
+
 ## 0.7.34
 * Make the proper changes for the adaptive component node
 

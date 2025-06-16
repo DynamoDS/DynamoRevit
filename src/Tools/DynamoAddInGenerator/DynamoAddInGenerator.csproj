@@ -36,6 +36,6 @@
     <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="Properties\AssemblySharedInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.5.1.8731" ExcludeAssets="runtime" />
+    <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DYNAMOCORE_VERSION)" ExcludeAssets="runtime" />
   </ItemGroup>
 </Project>

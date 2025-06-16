@@ -519,6 +519,15 @@ namespace Revit.Elements
 
             try
             {
+                int numOfComponents = points.Count();
+                List<FamilyInstanceCreationData> creationDatas = new List<FamilyInstanceCreationData>(numOfComponents);
+                int desiredNumOfPoints = AdaptiveComponentFamilyUtils.GetNumberOfAdaptivePoints(familyType.InternalFamilySymbol.Family);
+
+                if (numOfComponents == desiredNumOfPoints && points.All(subListOfPoints => subListOfPoints.Length == 1))
+                {
+                    throw new Exception(Properties.Resources.NotSingleList);
+                }
+
                 // Reuse the adaptive components that can be reused if possible
                 for (int i = 0; i < reusableCount; i++)
                 {
@@ -548,15 +557,7 @@ namespace Revit.Elements
                 if (countToBeCreated > countOfOldInstances)
                 {
                     var remainingPoints = points.Skip(reusableCount).ToArray();
-                    // Prepare the creation data for batch processing
-                    int numOfComponents = remainingPoints.Count();
-                    List<FamilyInstanceCreationData> creationDatas = new List<FamilyInstanceCreationData>(numOfComponents);
-                    int desiredNumOfPoints = AdaptiveComponentFamilyUtils.GetNumberOfAdaptivePoints(familyType.InternalFamilySymbol.Family);
-
-                    if (numOfComponents == desiredNumOfPoints && remainingPoints.All(points => points.Length == 1))
-                    {
-                        throw new Exception(Properties.Resources.NotSingleList);
-                    }
+                    // Prepare the creation data for batch processing       
 
                     for (int i = 0; i < numOfComponents; ++i)
                     {
