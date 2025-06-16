@@ -1,3 +1,6 @@
+## 0.7.37
+* Fix warning message for adaptive compintent by points node
+
 ## 0.7.36
 * Fix test NoUnexpectedOrMissingDlls_ShouldExist
 
