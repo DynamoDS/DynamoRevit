@@ -673,6 +673,26 @@ namespace RevitSystemTests
 
             Assert.IsFalse(string.IsNullOrEmpty(excelFilePath));
             Assert.IsTrue(File.Exists(excelFilePath));
+
+            RunCurrentModel();
+
+            //Verifiy that there are 101 points created and that they are not null
+            var pointCoordinates = "634811dd9af44cd294a2a820f5a2d96b";
+            Assert.AreEqual(101, GetFlattenedPreviewValues(pointCoordinates).Count);
+
+            for (int i = 0; i < 100; i++)
+            {
+                var point = GetPreviewValueAtIndex(pointCoordinates, i) as Point;
+                Assert.IsNotNull(point);
+            }
+
+            //Verfiy the fifth point
+            var expectedFifthValue = "Point(X = 0.626, Y = 0.712, Z = -2.846)";
+            Assert.AreEqual(expectedFifthValue, GetPreviewValueAtIndex(pointCoordinates, 5).ToString());
+
+            //Ensure that the family types node is not null
+            var familyTypes = "e4310aa278aa4d028d260a668e0ae7eb";
+            Assert.IsNotNull(GetPreviewValue(familyTypes) as FamilyType);
         }
 
         [Test]
