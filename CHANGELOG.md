@@ -1,3 +1,6 @@
+## 0.7.38
+* Add changes to D4R tests and remove irrelevant tests
+
 ## 0.7.37
 * Fix warning message for adaptive compintent by points node
 

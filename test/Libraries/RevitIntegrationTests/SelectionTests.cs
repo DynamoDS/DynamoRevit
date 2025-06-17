@@ -145,41 +145,31 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests"), TestModel(@".\Selection\Selection.rfa")]
-        public void EmptySingleSelectionReturnsNull()
+        public void EmptySelectionReturnsNull()
         {
-            // Verify that an empty single-selection returns null
+            // Verify that an empty multi-selection and single selection returns null
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectAndMultiSelect.dyn"));
 
-            var guid = "938e1543-c1d5-4c92-83a7-3abcae2b8264";
-            var selectionNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == guid) as ElementSelection<Element>;
-            Assert.NotNull(selectionNode, "The requested node could not be found");
-            
-            selectionNode.ClearSelections();
+            var multiSelection = "34f4f2cc-63c3-41ec-91fa-68db7820cee5";
+            var multiSelectionNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == multiSelection) as ElementSelection<Element>;
+            Assert.NotNull(multiSelectionNode, "The requested node could not be found");
+
+            multiSelectionNode.ClearSelections();
+
+            var singleSelection = "938e1543-c1d5-4c92-83a7-3abcae2b8264";
+            var singleSelectionNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == singleSelection) as ElementSelection<Element>;
+            Assert.NotNull(singleSelectionNode, "The requested node could not be found");
+
+            singleSelectionNode.ClearSelections();
 
 
             RunCurrentModel();
             
-            var element = GetPreviewCollection(guid);
+            var element = GetPreviewCollection(multiSelection);
             Assert.Null(element);
-        }
 
-        [Test, Category("SmokeTests"), TestModel(@".\Selection\Selection.rfa")]
-        public void EmptyMultiSelectionReturnsNull()
-        {
-            // Verify that an empty multi-selection returns null
-            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectAndMultiSelect.dyn"));
-
-            var guid = "34f4f2cc-63c3-41ec-91fa-68db7820cee5";
-            var selectionNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == guid) as ElementSelection<Element>;
-            Assert.NotNull(selectionNode, "The requested node could not be found");
-
-            selectionNode.ClearSelections();
-
-
-            RunCurrentModel();
-            
-            var element = GetPreviewCollection(guid);
-            Assert.Null(element);
+            var element2 = GetPreviewCollection(singleSelection);
+            Assert.Null(element2);
         }
 
         [Test, Category("SmokeTests"), TestModel(@".\Selection\Selection.rfa")]
