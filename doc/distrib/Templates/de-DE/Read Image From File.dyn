@@ -2,7 +2,7 @@
   "Uuid": "847b8d50-8963-40c7-90ca-c0afb7b9b9a6",
   "IsCustomNode": false,
   "Description": "Bild von der Festplatte lesen, um in Dynamo arbeiten zu können",
-  "Name": "Read Image From File",
+  "Name": "Bild aus Datei lesen",
   "ElementResolver": {
     "ResolutionMap": {}
   },

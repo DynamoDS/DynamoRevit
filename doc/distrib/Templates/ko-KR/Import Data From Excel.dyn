@@ -2,7 +2,7 @@
   "Uuid": "c49c9e5d-746d-42f7-975a-5a40f1ad1c6c",
   "IsCustomNode": false,
   "Description": "Excel 파일에서 데이터를 가져오고 데이터를 전치하여 열과 행을 바꿉니다.",
-  "Name": "Import Data From Excel",
+  "Name": "Excel에서 데이터 가져오기",
   "ElementResolver": {
     "ResolutionMap": {}
   },

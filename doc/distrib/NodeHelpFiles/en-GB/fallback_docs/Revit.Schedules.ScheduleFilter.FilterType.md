@@ -15,7 +15,7 @@ Possible filter types include:
 - EndsWith - For a string field, the field value ends with specified string.
 - NotEndsWith - For a string field, the field value does not end with the specified string.
 - IsAssociatedWithGlobalParameter - The field is associated with a specified global parameter of a compatible type
-- IsNotAssociatedWithGlobalParameter - The field is not associated with a specified global parameter of a compatible type 
+- IsNotAssociatedWithGlobalParameter - The field is not associated with a specified global parameter of a compatible type
 
 In the example below, the first schedule from the current Revit file is collected. The schedule view is then checked for filters, and the only filter applied is a "string does not end with" filter type.
 ___

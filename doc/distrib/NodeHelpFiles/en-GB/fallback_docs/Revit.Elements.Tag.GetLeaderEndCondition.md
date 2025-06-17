@@ -1,12 +1,7 @@
 ## In Depth
-`Tag.GetLeaderEndCondition` returns the given tags leader end condition.
+`Tag.GetLeaderEndCondition` returns the given tag element's leader end condition.
 
-Possible end conditions include:
-- Attached
-- Free
-
-In the example below, all keynote tags are collected from the "North Wall Window Detail" detail view. The tags' leader end conditions are then returned.
-
+In the example below, all walls are collected from the given view. The walls are then tagged with the default wall tag type and alignment/leader criteria. The end conditions are then returned with `Tag.GetLeaderEndCondition`.
 ___
 ## Example File
 
