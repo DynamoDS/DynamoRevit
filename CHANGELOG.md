@@ -1,3 +1,6 @@
+## 0.7.39
+* Fix typo for null warning message for AdaptiveComponent.ByPoints
+
 ## 0.7.38
 * Add changes to D4R tests and remove irrelevant tests
 
