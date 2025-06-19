@@ -437,7 +437,7 @@ namespace Revit.Elements
 
             if (familyType == null)
             {
-                throw new ArgumentNullException("familtType");
+                throw new ArgumentNullException("familyType");
             }
 
             return InternalByPoints(points, familyType);
