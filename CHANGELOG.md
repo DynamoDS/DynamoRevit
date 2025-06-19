@@ -1,3 +1,6 @@
+## 0.6.48
+* Update Dynamo Core to 3.5.2.8914
+
 ## 0.6.47
 * Add one more test dll file removed from Dynamo Core 3.5
 
