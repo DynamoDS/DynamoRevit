@@ -1,3 +1,6 @@
+## 0.7.40
+* Separete Dll test for Package and Install
+
 ## 0.7.39
 * Fix typo for null warning message for AdaptiveComponent.ByPoints
 
