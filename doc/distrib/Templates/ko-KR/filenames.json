@@ -1,9 +1,9 @@
 {
-  "Collect All Elements Of Category And Get Parameters": "Collect All Elements Of Category And Get Parameters",
-  "Collect All Elements Of Category": "Collect All Elements Of Category",
-  "Export Data To Excel": "Export Data To Excel",
-  "Get Geometry For All Elements Of Category": "Get Geometry For All Elements Of Category",
-  "Import Data From Excel": "Import Data From Excel",
-  "Read Image From File": "Read Image From File"
+  "Collect All Elements Of Category And Get Parameters": "카테고리의 모든 요소 수집 및 매개변수 가져오기",
+  "Collect All Elements Of Category": "카테고리의 모든 요소 수집",
+  "Export Data To Excel": "Excel로 데이터 내보내기",
+  "Get Geometry For All Elements Of Category": "카테고리의 모든 요소에 대한 형상 가져오기",
+  "Import Data From Excel": "Excel에서 데이터 가져오기",
+  "Read Image From File": "파일에서 이미지 읽기"
 }
 

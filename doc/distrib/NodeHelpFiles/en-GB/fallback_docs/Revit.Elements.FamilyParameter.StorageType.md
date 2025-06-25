@@ -1,5 +1,5 @@
 ## In Depth
-`FamilyParameter.StorageType` reports the type of data a given parameter stores. 
+`FamilyParameter.StorageType` reports the type of data a given parameter stores.
 
 Possible options are:
 - Double

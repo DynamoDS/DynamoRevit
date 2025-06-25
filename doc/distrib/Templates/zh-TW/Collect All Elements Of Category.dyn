@@ -2,7 +2,7 @@
   "Uuid": "f36fba0c-8a97-4fef-b3dc-6f0d4d61aafa",
   "IsCustomNode": false,
   "Description": "收集所選品類 (預設為房間) 的所有元素",
-  "Name": "Collect All Elements Of Category",
+  "Name": "收集品類的所有元素",
   "ElementResolver": {
     "ResolutionMap": {}
   },

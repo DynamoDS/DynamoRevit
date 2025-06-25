@@ -1,7 +1,7 @@
 ## 详细
-“ElementType.CanBeDeleted”确定是否可以从 Revit 文件中删除图元类型。
+“ElementType.CanBeDeleted”返回表示是否可以删除给定图元的 true/false 值。
 
-在下面的示例中，所有平面视图都收集自当前 Revit 文件。然后，平面视图将分为两个列表，分别为“可以删除”和“无法删除”。
+在下面的示例中，所有墙类型都收集自当前 Revit 文档并验证它们是否可以删除。
 ___
 ## 示例文件
 

@@ -2,7 +2,7 @@
   "Uuid": "f36fba0c-8a97-4fef-b3dc-6f0d4d61aafa",
   "IsCustomNode": false,
   "Description": "收集选定类别的所有图元(默认为房间)",
-  "Name": "Collect All Elements Of Category",
+  "Name": "收集类别的所有图元",
   "ElementResolver": {
     "ResolutionMap": {}
   },

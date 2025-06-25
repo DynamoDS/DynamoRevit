@@ -2,7 +2,7 @@
   "Uuid": "f36fba0c-8a97-4fef-b3dc-6f0d4d61aafa",
   "IsCustomNode": false,
   "Description": "Сбор всех элементов выбранной категории (по умолчанию — «Помещения»)",
-  "Name": "Collect All Elements Of Category",
+  "Name": "Сбор всех элементов категории",
   "ElementResolver": {
     "ResolutionMap": {}
   },

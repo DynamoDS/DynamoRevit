@@ -1,5 +1,5 @@
 ## In Depth
-`Parameter.SpecType` returns the given parameter's SpecType. SpecType describes the type of data that a given parameter stores. 
+`Parameter.SpecType` returns the given parameter's SpecType. SpecType describes the type of data that a given parameter stores.
 
 These data types include:
 - Boolean

@@ -1,7 +1,7 @@
 ## Podrobnosti
-Uzel `ElementType.CanBeDeleted` určuje, zda je možné typ prvku ze souboru aplikace Revit odstranit.
+Uzel `ElementType.CanBeDeleted` vrací hodnotu true/false označující, zda lze daný typ prvku odstranit.
 
-V níže uvedeném příkladu jsou z aktuálního souboru aplikace Revit shromážděny všechny půdorysné pohledy. Půdorysné pohledy jsou poté rozděleny do 2 seznamů, „je možné odstranit“ a „není možné odstranit“.
+V níže uvedeném příkladu jsou z aktuálního dokumentu aplikace Revit shromážděny všechny typy stěn a ověří se, zda je možné je odstranit.
 ___
 ## Vzorový soubor
 

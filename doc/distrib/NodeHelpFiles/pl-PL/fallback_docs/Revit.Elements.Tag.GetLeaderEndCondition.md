@@ -1,12 +1,7 @@
 ## Informacje szczegółowe
-Węzeł `Tag.GetLeaderEndCondition` zwraca stan zakończenia linii odniesienia oznaczenia.
+Węzeł `Tag.GetLeaderEndCondition` zwraca stan zakończenia linii odniesienia elementu oznaczenia.
 
-Możliwe stany zakończenia to:
-- Attached (przywiązany)
-- Free (wolny)
-
-W poniższym przykładzie pobierane są wszystkie oznaczenia opisów indeksowych z widoku szczegółowego „North Wall Window Detail”. Następnie zwracane są stany zakończenia linii odniesienia oznaczeń.
-
+W poniższym przykładzie pobierane są wszystkie ściany z danego widoku. Ściany są następnie oznaczane domyślnym typem oznaczenia ściany i za pomocą kryteriów linii trasowania/linii odniesienia. Potem zwracane są stany zakończeń za pomocą węzła `Tag.GetLeaderEndCondition`.
 ___
 ## Plik przykładowy
 

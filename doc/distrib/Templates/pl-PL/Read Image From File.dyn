@@ -2,7 +2,7 @@
   "Uuid": "847b8d50-8963-40c7-90ca-c0afb7b9b9a6",
   "IsCustomNode": false,
   "Description": "Odczytaj obraz z dysku, aby pracować z wewnętrznym środowiskiem dodatku Dynamo",
-  "Name": "Read Image From File",
+  "Name": "Odczytaj obraz z pliku",
   "ElementResolver": {
     "ResolutionMap": {}
   },

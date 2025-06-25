@@ -2,7 +2,7 @@
   "Uuid": "f36fba0c-8a97-4fef-b3dc-6f0d4d61aafa",
   "IsCustomNode": false,
   "Description": "選択したカテゴリ(既定は部屋)のすべての要素を収集します",
-  "Name": "Collect All Elements Of Category",
+  "Name": "カテゴリのすべての要素を収集",
   "ElementResolver": {
     "ResolutionMap": {}
   },
