@@ -427,7 +427,7 @@ namespace RevitSystemTests
 
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectionSyncElements.dyn"));
 
-            const string selectNodeGuid = "3dbe16b8-e855-4229-a1cf-4643e69ba7b4";
+            var selectNodeGuid = "3dbe16b8-e855-4229-a1cf-4643e69ba7b4";
 
             var walls = fec.ToElements();
             int remainingWallCount = walls.Count;
@@ -435,6 +435,7 @@ namespace RevitSystemTests
             {
                 remainingWallCount = DeleteWallAndRun<Revit.Elements.Wall>(selectNodeGuid);
             }
+            Assert.AreEqual(1, remainingWallCount, "There should be only one wall left in the model after deletions.");
         }
 
         [Test, Category("SmokeTests"), TestModel(@".\Selection\SelectionSync.rvt")]
@@ -445,14 +446,14 @@ namespace RevitSystemTests
 
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectionSyncReferences.dyn"));
 
-            const string selectNodeGuid = "91fd4f06-dde2-449f-aff5-f6203e4777ed";
+            const string selectFaceNodeGuid = "91fd4f06-dde2-449f-aff5-f6203e4777ed";
             var walls = fec.ToElements();
             int remainingWallCount = walls.Count;
             while (remainingWallCount > 1)
             {
-                remainingWallCount = DeleteWallAndRun<Surface>(selectNodeGuid);
+                remainingWallCount = DeleteWallAndRun<Surface>(selectFaceNodeGuid);
             }
-
+            Assert.AreEqual(1, remainingWallCount, "There should be only one surface wall left in the model after deletions.");
         }
 
         [Test]
