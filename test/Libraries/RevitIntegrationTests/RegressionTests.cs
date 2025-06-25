@@ -266,10 +266,10 @@ namespace RevitSystemTests
         }
 
       [Test]
-      public void NoUnexpectedOrMissingDlls_ShouldExist()
+      public void PackageDllTest()
       {
 
-         string regressionTest = Path.Combine(workingDirectory, "ApprovedDllList.txt");
+         string regressionTest = Path.Combine(workingDirectory, "PackageApprovedDllList.txt");
 
          //localtie corecta buildout
          string revitApiDll = Assembly.GetAssembly(typeof(Autodesk.Revit.DB.ElementId)).Location;
@@ -284,11 +284,11 @@ namespace RevitSystemTests
          }
 
          // path for the approved list of dlls
-         string approvedListPath = Path.Combine(workingDirectory, "ApprovedDllList.txt");
+         string approvedListPath = Path.Combine(workingDirectory, "PackageApprovedDllList.txt");
 
          if (!File.Exists(approvedListPath))
          {
-            Assert.Fail($"Approved DLL list not found: {approvedListPath}");
+            Assert.Fail($"PackageApprovedDllList list not found: {approvedListPath}");
          }
 
          // define list for storing the dlls
@@ -336,19 +336,88 @@ namespace RevitSystemTests
                Assert.Fail(message.ToString());
             }
          }
-         finally
-         {
-            // cleanup the temp list
-            if (File.Exists(tempDllListPath))
+            finally { }
+        }
+
+
+        [Test]
+        public void InstalDllTest()
+        {
+
+            string regressionTest = Path.Combine(workingDirectory, "InstalDllTest.txt");
+
+            //localtie corecta buildout
+            string revitApiDll = Assembly.GetAssembly(typeof(Autodesk.Revit.DB.ElementId)).Location;
+            string revitDirectory = Path.GetDirectoryName(revitApiDll);
+
+            // Revit addin build output where the dlls are located
+            string dynamoRevitFolder = Path.Combine(revitDirectory, @"Addins\DynamoForRevit");
+
+            if (!Directory.Exists(dynamoRevitFolder))
             {
-               File.Delete(tempDllListPath);
+                Assert.Fail($"Build output folder not found: {dynamoRevitFolder}");
             }
-         }
-      }
 
-      // Helper Functions
+            // path for the approved list of dlls
+            string approvedListPath = Path.Combine(workingDirectory, "InstalDllTest.txt");
 
-      private void OpenAndAssertNoDummyNodes(string samplePath)
+            if (!File.Exists(approvedListPath))
+            {
+                Assert.Fail($"InstalDllTest list not found: {approvedListPath}");
+            }
+
+            // define list for storing the dlls
+            string tempDllListPath = Path.Combine(workingDirectory, "CurrentDllListInstall.txt");
+
+            try
+            {
+                // get the dlls from the build folder
+                var currentDlls = Directory
+                    .EnumerateFiles(dynamoRevitFolder, "*.dll", SearchOption.AllDirectories)
+                    .Select(fullPath => Path.GetRelativePath(dynamoRevitFolder, fullPath).Replace("\\", "/"))
+                    .OrderBy(x => x)
+                    .ToList();
+
+                // save the temp list
+                File.WriteAllLines(tempDllListPath, currentDlls);
+
+                // load approved DLLs from file
+                var approvedDlls = File.ReadAllLines(approvedListPath)
+                    .Select(line => line.Trim().Replace("\\", "/"))
+                    .Where(line => !string.IsNullOrWhiteSpace(line))
+                    .OrderBy(x => x)
+                    .ToList();
+
+                // compare the lists
+                var unexpectedDlls = currentDlls.Except(approvedDlls).ToList();
+                var missingDlls = approvedDlls.Except(currentDlls).ToList();
+
+                // fail test if there are unexpected or missing DLLs
+                if (unexpectedDlls.Any() || missingDlls.Any())
+                {
+                    var message = new StringBuilder();
+                    if (missingDlls.Any())
+                    {
+                        message.AppendLine("Missing DLLs:");
+                        message.AppendLine(string.Join("\n", missingDlls));
+                    }
+
+                    if (unexpectedDlls.Any())
+                    {
+                        message.AppendLine("Unexpected DLLs:");
+                        message.AppendLine(string.Join("\n", unexpectedDlls));
+                    }
+
+                    Assert.Fail(message.ToString());
+                }
+            }
+            finally { }
+        }
+
+
+        // Helper Functions
+
+        private void OpenAndAssertNoDummyNodes(string samplePath)
         {
             var testPath = Path.GetFullPath(samplePath);
 
