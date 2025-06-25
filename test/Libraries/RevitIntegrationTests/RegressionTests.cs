@@ -341,10 +341,10 @@ namespace RevitSystemTests
 
 
         [Test]
-        public void InstalDllTest()
+        public void InstallDllTest()
         {
 
-            string regressionTest = Path.Combine(workingDirectory, "InstalDllTest.txt");
+            string regressionTest = Path.Combine(workingDirectory, "InstallApprovedDllList.txt");
 
             //localtie corecta buildout
             string revitApiDll = Assembly.GetAssembly(typeof(Autodesk.Revit.DB.ElementId)).Location;
@@ -359,11 +359,11 @@ namespace RevitSystemTests
             }
 
             // path for the approved list of dlls
-            string approvedListPath = Path.Combine(workingDirectory, "InstalDllTest.txt");
+            string approvedListPath = Path.Combine(workingDirectory, "InstallApprovedDllList.txt");
 
             if (!File.Exists(approvedListPath))
             {
-                Assert.Fail($"InstalDllTest list not found: {approvedListPath}");
+                Assert.Fail($"InstallApprovedDllList list not found: {approvedListPath}");
             }
 
             // define list for storing the dlls

@@ -1,3 +1,6 @@
+## 0.7.41
+* Change the Install Dll test as it had some typos
+
 ## 0.7.40
 * Separete Dll test for Package and Install
 
