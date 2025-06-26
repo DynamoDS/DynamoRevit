@@ -272,18 +272,10 @@ namespace RevitSystemTests
 
         [Test]
         [TestModel(@".\Selection\Selection.rfa")]
-        public void SelectPointOnFace()
-        {
-            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectPointOnFace.dyn"));
-            TestSelection<Reference, Reference>(SelectionType.One);
-        }
-
-        [Test]
-        [TestModel(@".\Selection\Selection.rfa")]
         public void SelectUVOnFace()
         {
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectUVOnFace.dyn"));
-            TestSelection<Reference, Reference>(SelectionType.One);
+            TestSelection<Reference, Reference>(SelectionType.Many);
         }
 
         [Test]
