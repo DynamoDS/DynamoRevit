@@ -2,7 +2,7 @@
   "Uuid": "b3342583-c831-4c51-800a-ffbe4db82efa",
   "IsCustomNode": false,
   "Description": "Recopile todos los elementos de una categoría seleccionada (por defecto, Habitaciones) y obtenga el área de habitación de cada elemento.",
-  "Name": "Collect All Elements Of Category And Get Parameters",
+  "Name": "Recopilar todos los elementos de categoría y obtener parámetros",
   "ElementResolver": {
     "ResolutionMap": {}
   },

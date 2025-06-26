@@ -1,5 +1,5 @@
 ## In Depth
-`Room.Area` returns the area of the given room element in the current document's units. _(E.g. Feet and Inches)_ 
+`Room.Area` returns the area of the given room element in the current document's units. _(E.g. Feet and Inches)_
 
 If an unbounded or unplaced room is given, a null value is returned.
 

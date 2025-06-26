@@ -2,7 +2,7 @@
   "Uuid": "107641db-6b6a-4a08-8282-d474513714b1",
   "IsCustomNode": false,
   "Description": "Exporte datos a Excel con un nombre de plano seleccionado. Deberá conectar los datos para exportarlos.",
-  "Name": "Export Data To Excel",
+  "Name": "Exportar datos a Excel",
   "ElementResolver": {
     "ResolutionMap": {}
   },

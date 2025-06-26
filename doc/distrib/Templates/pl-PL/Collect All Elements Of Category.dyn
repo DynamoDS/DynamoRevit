@@ -2,7 +2,7 @@
   "Uuid": "f36fba0c-8a97-4fef-b3dc-6f0d4d61aafa",
   "IsCustomNode": false,
   "Description": "Zbierz wszystkie elementy wybranej kategorii (ustawienie domyślne to pomieszczenia)",
-  "Name": "Collect All Elements Of Category",
+  "Name": "Zbierz wszystkie elementy kategorii",
   "ElementResolver": {
     "ResolutionMap": {}
   },

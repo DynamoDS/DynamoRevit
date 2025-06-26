@@ -1,5 +1,5 @@
 ## In Depth
-`Rooms By Status` returns all rooms in the document grouped by status. 
+`Rooms By Status` returns all rooms in the document grouped by status.
 
 Status includes rooms that are:
 - Placed and bounded properly

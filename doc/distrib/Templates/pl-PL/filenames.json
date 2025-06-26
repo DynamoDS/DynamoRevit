@@ -1,9 +1,9 @@
 {
-  "Collect All Elements Of Category And Get Parameters": "Collect All Elements Of Category And Get Parameters",
-  "Collect All Elements Of Category": "Collect All Elements Of Category",
-  "Export Data To Excel": "Export Data To Excel",
-  "Get Geometry For All Elements Of Category": "Get Geometry For All Elements Of Category",
-  "Import Data From Excel": "Import Data From Excel",
-  "Read Image From File": "Read Image From File"
+  "Collect All Elements Of Category And Get Parameters": "Zbierz wszystkie elementy kategorii i pobierz parametry",
+  "Collect All Elements Of Category": "Zbierz wszystkie elementy kategorii",
+  "Export Data To Excel": "Eksportuj dane do programu Excel",
+  "Get Geometry For All Elements Of Category": "Pobierz geometrię dla wszystkich elementów kategorii",
+  "Import Data From Excel": "Importuj dane z programu Excel",
+  "Read Image From File": "Odczytaj obraz z pliku"
 }
 
