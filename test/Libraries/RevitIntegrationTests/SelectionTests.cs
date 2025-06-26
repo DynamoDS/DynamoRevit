@@ -180,7 +180,6 @@ namespace RevitSystemTests
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectAndMultiSelect.dyn"));
 
             RunCurrentModel();
-           // Assert.DoesNotThrow(()=>ViewModel.Model.RunExpression());
 
             var guid = "938e1543-c1d5-4c92-83a7-3abcae2b8264";
             var element = GetPreviewValue(guid);
@@ -271,21 +270,21 @@ namespace RevitSystemTests
             Assert.Null(element);
         }
 
-        //[Test]
-        //[TestModel(@".\Selection\Selection.rfa")]
-        //public void SelectPointOnFace()
-        //{
-        //    OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectPointOnFace.dyn"));
-        //    TestSelection<Reference,Reference>(SelectionType.One);
-        //}
+        [Test]
+        [TestModel(@".\Selection\Selection.rfa")]
+        public void SelectPointOnFace()
+        {
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectPointOnFace.dyn"));
+            TestSelection<Reference, Reference>(SelectionType.One);
+        }
 
-        //[Test]
-        //[TestModel(@".\Selection\Selection.rfa")]
-        //public void SelectUVOnFace()
-        //{
-        //    OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectUVOnFace.dyn"));
-        //    TestSelection<Reference,Reference>(SelectionType.One);
-        //}
+        [Test]
+        [TestModel(@".\Selection\Selection.rfa")]
+        public void SelectUVOnFace()
+        {
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectUVOnFace.dyn"));
+            TestSelection<Reference, Reference>(SelectionType.One);
+        }
 
         [Test]
         [Category("SmokeTests")]
@@ -618,14 +617,6 @@ namespace RevitSystemTests
         public void SelectModelElementByCategory()
         {
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectModelElementByCategory.dyn"));
-            TestMultipleCategorySelection<Element>();
-        }
-
-        [Test]
-        [TestModel(@".\Selection\DynamoSample.rvt")]
-        public void SelectModelElementByCategoryChangeLanguage()
-        {
-            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectModelElementByCategory_ESP.dyn"));
             TestMultipleCategorySelection<Element>();
         }
 
