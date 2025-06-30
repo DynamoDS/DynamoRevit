@@ -1,3 +1,6 @@
+## 0.7.42
+* Change version of D4R to match the one in Revit
+
 ## 0.7.41
 * Change the Install Dll test as it had some typos
 
