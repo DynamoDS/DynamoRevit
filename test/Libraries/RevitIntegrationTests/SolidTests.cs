@@ -208,7 +208,31 @@ namespace RevitSystemTests
                 Assert.IsNotNull(solid);
                 Assert.IsTrue(solid.Volume > 0);
             }
+        }
 
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void Extrusion()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Solid\Extrusion.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            AssertNoDummyNodes();
+
+            Assert.AreEqual(11, ViewModel.Model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(11, ViewModel.Model.CurrentWorkspace.Connectors.Count());
+
+            //check Curve.ExtrudeAsSolid
+            var solidID = GetFlattenedPreviewValues("321139d19a7649f1a3048b2e6a358a30");
+            Assert.AreEqual(1, solidID.Count());
+            var solid = solidID.FirstOrDefault() as Solid;
+            Assert.IsNotNull(solid);
+            Assert.IsTrue(solid.Volume > 0);
         }
     }
 }
