@@ -43,21 +43,6 @@ namespace RevitSystemTests
             Assert.IsNotNull(solid);
         }
 
-
-        /*  [Test]
-          [TestModel(@".\empty.rfa")]
-          public void Loft()
-          {
-              string samplePath = Path.Combine(workingDirectory, @".\Solid\Loft.dyn");
-              string testPath = Path.GetFullPath(samplePath);
-              ViewModel.OpenCommand.Execute(testPath);
-              RunCurrentModel();
-              AssertNoDummyNodes();
-              Assert.AreEqual(30, ViewModel.Model.CurrentWorkspace.Nodes.Count());
-              Assert.AreEqual(53, ViewModel.Model.CurrentWorkspace.Connectors.Count());
-            
-          }
-  */
         [Test]
         [TestModel(@".\empty.rfa")]
         public void RevolveSolid()
@@ -71,16 +56,16 @@ namespace RevitSystemTests
 
             AssertNoDummyNodes();
 
-            Assert.AreEqual(32, ViewModel.Model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(33, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(41, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Solid.ByRevolve
-            var solidID = "22bcf6c3-d181-4809-b31c-fabb81497e56";
+            var solidID = "e6179aa194db4c85a8eb988b61c36d03";
             var solid = GetPreviewValue(solidID) as Solid;
             Assert.IsNotNull(solid);
 
             //check Polycurve.ByThickeningCurve
-            var polyCurveID = "17552e36-97a1-4187-a8b5-69085465a7dc";
+            var polyCurveID = "37c32bbebac04b5280c7b5ccbe0c978b";
             var polyCurve = GetPreviewValue(polyCurveID) as PolyCurve;
             Assert.AreEqual(polyCurve.ToString(), "PolyCurve(NumberOfCurves = 4)");
 
@@ -103,34 +88,13 @@ namespace RevitSystemTests
             Assert.AreEqual(57, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
             //check Create List, which contain a list of Line
-            var listID = "623a22b5-34df-4542-9c79-1ae68f5bf706";
+            var listID = "623a22b534df45429c791ae68f5bf706";
             AssertPreviewCount(listID, 3);
             for (int i = 0; i < 3; i++)
             {
                 var line = GetPreviewValueAtIndex(listID, i) as Line;
                 Assert.IsNotNull(line);
             }
-        }
-
-        [Test]
-        [TestModel(@".\empty.rfa")]
-        public void SweepToMakeSolid()
-        {
-            //var model = ViewModel.Model;
-
-            //string samplePath = Path.Combine(workingDirectory, @".\Solid\SweepToMakeSolid.dyn");
-            //string testPath = Path.GetFullPath(samplePath);
-
-            //model.Open(testPath);
-            //ViewModel.Model.RunExpression();
-
-            //var sweepNode = ViewModel.Model.CurrentWorkspace.Nodes.First(x => x is CreateSweptGeometry);
-            //var result = (Solid)VisualizationManager.GetDrawablesFromNode(sweepNode).Values.First();
-            //double volumeMin = 11800.0;
-            //double volumeMax = 12150.0;
-            //double actualVolume = result.Volume;
-            //Assert.Greater(actualVolume, volumeMin);
-            //Assert.Less(actualVolume, volumeMax);
         }
 
         [Test]
@@ -149,8 +113,8 @@ namespace RevitSystemTests
             Assert.AreEqual(22, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(31, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
-            //check Autodesk.DesignScript.Geomery.Solid.BySweep
-            var solidID = "7a8eb5f7-083e-435b-935b-3a2284061542";
+            //check Solid.BySweep
+            var solidID = "eca5b608c2314aa38ad0d3530e309bb8";
             AssertPreviewCount(solidID, 3);
             for (int i = 0; i < 3; i++)
             {
@@ -208,6 +172,43 @@ namespace RevitSystemTests
             var cuboid = GetPreviewValue(cuboidID) as Cuboid;
             Assert.IsNotNull(cuboid);
             Assert.AreEqual(cuboid.ToString(), "Cuboid(Length = 4.000, Width = 4.000, Height = 4.000)");
+        }
+
+        [Test]
+        [TestModel(@".\empty.rfa")]
+        public void ExtrudeMultiple()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Solid\ExtrudeMultiple.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+
+            RunCurrentModel();
+
+            AssertNoDummyNodes();
+
+            Assert.AreEqual(17, ViewModel.Model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(18, ViewModel.Model.CurrentWorkspace.Connectors.Count());
+
+            //check both Rectangle.ByWidthLength nodes
+            var rectangleID1 = "11639f45aaa449599b274a1f3c13cced";
+            var rectangle1 = GetPreviewValue(rectangleID1) as Rectangle;
+            Assert.AreEqual(rectangle1.ToString(), "Rectangle(Width = 5.000, Height = 5.000)");
+
+            var rectangleID2 = "1ba7c2e9153d4c099d787a7e460b565a";
+            var rectangle2 = GetPreviewValue(rectangleID2) as Rectangle;
+            Assert.AreEqual(rectangle2.ToString(), "Rectangle(Width = 2.000, Height = 2.000)");
+
+            //check Curve.ExtrudeAsSolid
+            var solidID = "321139d19a7649f1a3048b2e6a358a30";
+            AssertPreviewCount(solidID, 2);
+            for (int i = 0; i < 2; i++)
+            {
+                var solid = GetPreviewValueAtIndex(solidID, i) as Solid;
+                Assert.IsNotNull(solid);
+                Assert.IsTrue(solid.Volume > 0);
+            }
+
         }
     }
 }
