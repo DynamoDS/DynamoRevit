@@ -38,8 +38,5 @@ namespace RevitSystemTests
             Assert.AreEqual(note.Text, "Hello World\r");
 
         }
-
-
-
     }
 }
