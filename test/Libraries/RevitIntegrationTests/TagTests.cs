@@ -18,7 +18,7 @@ namespace RevitSystemTests
     {
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
-        public void PlaceTag()
+        public void PlaceTagWithOffset()
         {
             var model = ViewModel.Model;
 
@@ -30,30 +30,14 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             var tagelement = GetPreviewValue("73d7876d-c04a-418c-8f86-2e36c44d9833");
-
             Assert.AreEqual(typeof(Revit.Elements.Tag), tagelement.GetType());
 
-        }     
+            var tagelementOffset = GetPreviewValue("022d664d-b236-4a20-a55d-72a3beba04d5");
 
-        [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
-        public void PlaceTagWithOffset()
-        {
-            var model = ViewModel.Model;
-
-            string samplePath = Path.Combine(workingDirectory, @".\Annotations\Tag.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            RunCurrentModel();
-            var tagelement = GetPreviewValue("022d664d-b236-4a20-a55d-72a3beba04d5");
-
-            Assert.AreEqual(typeof(Revit.Elements.Tag), tagelement.GetType());
-            Assert.IsTrue(((tagelement as Revit.Elements.Tag)
+            Assert.AreEqual(typeof(Revit.Elements.Tag), tagelementOffset.GetType());
+            Assert.IsTrue(((tagelementOffset as Revit.Elements.Tag)
                 .InternalElement as IndependentTag)
                 .TagHeadPosition.IsAlmostEqualTo(new XYZ(10, 25, 0)));
-
         }
 
         private const double Tolerance = 0.001;
@@ -102,23 +86,6 @@ namespace RevitSystemTests
 
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
-        public void LeaderEndCondition()
-        {
-            var model = ViewModel.Model;
-
-            string samplePath = Path.Combine(workingDirectory, @".\Tag\CanGetSetConditionAndLocationOfLeaderEnd.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            RunCurrentModel();
-            var leaderEndCondition = GetPreviewValue("316f8fd5b05441cda070c36a1e122c81");
-
-            Assert.AreEqual("Free", leaderEndCondition);
-        }
-
-        [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
         public void LeaderEnd()
         {
             var model = ViewModel.Model;
@@ -135,6 +102,10 @@ namespace RevitSystemTests
             Assert.IsNotNull(leaderEnd1);
             Assert.IsNotNull(leaderEnd2);
             Assert.AreEqual(2, (leaderEnd2.Y - leaderEnd1.Y), Tolerance);
+
+            var leaderEndCondition = GetPreviewValue("316f8fd5b05441cda070c36a1e122c81");
+
+            Assert.AreEqual("Free", leaderEndCondition);
         }
     }
 }
