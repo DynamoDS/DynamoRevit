@@ -1,5 +1,6 @@
 ## 0.7.43
 * Add new validations to D4R tests and add new tests for existing scripts
+* Revert D4R version to match Dynamo Core version - temporarily
 
 ## 0.7.42
 * Change version of D4R to match the one in Revit
