@@ -1,3 +1,6 @@
+## 0.7.44
+* Merged some D4R tests in one
+
 ## 0.7.43
 * Add new validations to D4R tests and add new tests for existing scripts
 * Revert D4R version to match Dynamo Core version - temporarily
