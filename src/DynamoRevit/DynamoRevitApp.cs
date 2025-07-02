@@ -410,6 +410,11 @@ namespace Dynamo.Applications
 
         private bool TryResolveDynamoCore(UIControlledApplication application)
         {
+            if (true)
+            {
+                MessageBox.Show("stai asa ca sa pot sa fac debug");
+            }
+
             if(IsRevitInternalAddin(application))
             {
                 dynamopath = Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
