@@ -1,0 +1,307 @@
+{
+  "Uuid": "c8d7b69b-e2ba-453a-8515-91c70f418ced",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.FamilyInstance.ByCoordinateSystem",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "437669dafba74258bdae7651387bc538",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b69caf45a0b245c1887879f78f156c24",
+          "Name": "familyType",
+          "Description": "Family Type. Also called Family Symbol.\n\nFamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5c30582f308640fcabab3a813f307a6a",
+          "Name": "coordinateSystem",
+          "Description": "Coordinates system to place the new family instance in.\n\nCoordinateSystem",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3abdcc675d30444384f633590d2de529",
+          "Name": "FamilyInstance",
+          "Description": "New family instance.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FamilyInstance.ByCoordinateSystem@Revit.Elements.FamilyType,Autodesk.DesignScript.Geometry.CoordinateSystem",
+      "Replication": "Auto",
+      "Description": "Place a Revit FamilyInstance given the FamilyType (also known as the FamilySymbol in the Revit API) and its coordinate system.\n\nFamilyInstance.ByCoordinateSystem (familyType: FamilyType, coordinateSystem: CoordinateSystem): FamilyInstance"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "ea89dcd6c5004a3da56fb050670fdd78",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "2e10277a3f174858b9f67ee2c2f07853",
+          "Name": "name",
+          "Description": "The name of the FamilyType\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0b4a0e3f485d4bf193566a59029235be",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FamilyType.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a FamilyType given it's name. This method will return the first FamilyType it finds if there are two or more FamilyTypes with the same name.\n\nFamilyType.ByName (name: string): FamilyType"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "d5be70f803cb40309956d7cabf50f626",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0f33fa1c39e84b388b2f221b468d8d21",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "TableWithUmbrella"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d95d1afeb2014bb299e1efeab7e94a8b",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "74ce3d15ca464373afea23acc9ac063f",
+          "Name": "x",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7bb6b5cbc5d34634aae413528ad43e19",
+          "Name": "y",
+          "Description": "double\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c0fdf8ca1cef4e3da98515724d18ae3e",
+          "Name": "CoordinateSystem",
+          "Description": "CoordinateSystem",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.CoordinateSystem.ByOrigin@double,double",
+      "Replication": "Auto",
+      "Description": "Create a CoordinateSystem with origin at X and Y locations, with X and Y Axes set as WCS X and Y Axes. Z defaults to 0.\n\nCoordinateSystem.ByOrigin (x: double = 0, y: double = 0): CoordinateSystem"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "1e97194161a14ddc8bd0701b834192eb",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c9bcb1122b6241a6a8edc49c08d62811",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 100.0
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0b4a0e3f485d4bf193566a59029235be",
+      "End": "b69caf45a0b245c1887879f78f156c24",
+      "Id": "ef4e7a30fd694a3e835b75adfc146030",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0f33fa1c39e84b388b2f221b468d8d21",
+      "End": "2e10277a3f174858b9f67ee2c2f07853",
+      "Id": "4bcc9d837b7a4956a3cead6dbe034c16",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c0fdf8ca1cef4e3da98515724d18ae3e",
+      "End": "5c30582f308640fcabab3a813f307a6a",
+      "Id": "9d60257dbc0b4f8aa16fe414a9f2fd30",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c9bcb1122b6241a6a8edc49c08d62811",
+      "End": "74ce3d15ca464373afea23acc9ac063f",
+      "Id": "aca9a56102ad41fc9e8ffcea1f595ad8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c9bcb1122b6241a6a8edc49c08d62811",
+      "End": "7bb6b5cbc5d34634aae413528ad43e19",
+      "Id": "08c1b4da732c41f6b98c3e2d7774d003",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "437669da-fba7-4258-bdae-7651387bc538",
+      "Binding": {
+        "ByCoordinateSystem_InClassDecl-1_InFunctionScope-1_Instance0_437669da-fba7-4258-bdae-7651387bc538": "H4sIAAAAAAAACh3Lqw6AMAwF0H+5miasQHlozDSSIlY2CAZB5gj/DiE59sw3YsgBA27FlK/j3P2oGBSOo3MfkooT1WYtWR8DtSlWHW8mSRoqS+761YKiUPgz/5dFXCP84Fleg3+UBF8AAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "437669dafba74258bdae7651387bc538",
+        "Name": "FamilyInstance.ByCoordinateSystem",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1034.5,
+        "Y": 591.5
+      },
+      {
+        "Id": "ea89dcd6c5004a3da56fb050670fdd78",
+        "Name": "FamilyType.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 655.5,
+        "Y": 534.5
+      },
+      {
+        "Id": "d5be70f803cb40309956d7cabf50f626",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 348.5,
+        "Y": 534.5
+      },
+      {
+        "Id": "d95d1afeb2014bb299e1efeab7e94a8b",
+        "Name": "CoordinateSystem.ByOrigin",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 656.5,
+        "Y": 707.5
+      },
+      {
+        "Id": "1e97194161a14ddc8bd0701b834192eb",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 352.5,
+        "Y": 720.5
+      }
+    ],
+    "Annotations": [],
+    "X": 247.55500000000006,
+    "Y": -175.51499999999987,
+    "Zoom": 1.1575
+  }
+}
