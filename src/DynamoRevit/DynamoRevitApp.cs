@@ -410,7 +410,6 @@ namespace Dynamo.Applications
 
         private bool TryResolveDynamoCore(UIControlledApplication application)
         {
-            MessageBox.Show("debug");
 
             if (IsRevitInternalAddin(application))
             {
