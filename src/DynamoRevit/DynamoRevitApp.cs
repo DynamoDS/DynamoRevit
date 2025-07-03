@@ -390,7 +390,7 @@ namespace Dynamo.Applications
             if (application == null)
                 return false;
             var revitVersion = application.ControlledApplication.VersionNumber;
-            var dynamoRevitRoot = Path.GetFullPath(Path.GetDirectoryName(assemblyName));
+            var dynamoRevitRoot = Path.GetFullPath(Path.GetDirectoryName(Path.GetDirectoryName(assemblyName)));
             var RevitRoot = Path.GetFullPath(Path.GetDirectoryName(application.GetType().Assembly.Location));
             if (dynamoRevitRoot.StartsWith(RevitRoot))
             {
