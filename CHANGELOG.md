@@ -1,3 +1,6 @@
+## 0.7.45
+* Modified path for D4R files
+
 ## 0.7.44
 * Merged some D4R tests in one
 
