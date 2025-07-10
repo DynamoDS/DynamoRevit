@@ -1,3 +1,6 @@
+## 0.7.46
+* Sign DynamoAddInGenerator.exe
+
 ## 0.7.45
 * Modified path for D4R files
 
