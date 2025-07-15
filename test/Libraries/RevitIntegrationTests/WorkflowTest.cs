@@ -9,6 +9,7 @@ using Autodesk.DesignScript.Geometry;
 using RevitServices.Persistence;
 using System.Collections.Generic;
 using RevitServices.Transactions;
+using System.ComponentModel;
 
 namespace RevitSystemTests
 {
@@ -502,7 +503,7 @@ namespace RevitSystemTests
             {
                 var elementValue = GetPreviewValueAtIndex(elementId, i) as Element;
                 Assert.IsNotNull(elementValue);
-            }                     
+            }
         }
 
 
@@ -519,8 +520,8 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertNoDummyNodes();
             var model = ViewModel.Model;
-            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(28, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(20, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(29, model.CurrentWorkspace.Connectors.Count());
 
             //check Element.OverrideColorInView
             var elementId = "ae04fa3b-c494-403d-92d3-1f728dde45c9";
@@ -530,6 +531,9 @@ namespace RevitSystemTests
                 var elementValue = GetPreviewValueAtIndex(elementId, i) as Element;
                 Assert.IsNotNull(elementValue);
             }
+
+            var openXMLExport = GetPreviewValue("266f7ba633704a47b62d6b80ec40d594");
+            Assert.IsTrue(openXMLExport is true);
         }
 
 
@@ -546,8 +550,8 @@ namespace RevitSystemTests
             RunCurrentModel();
             AssertNoDummyNodes();
             var model = ViewModel.Model;
-            Assert.AreEqual(28, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(35, model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(29, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(36, model.CurrentWorkspace.Connectors.Count());
 
             //check Element.OverrideColorInView
             var elementId = "ae04fa3b-c494-403d-92d3-1f728dde45c9";
@@ -561,11 +565,17 @@ namespace RevitSystemTests
             //check Polygon.PlaneDeviation
             var listId = "f80ed841-3ccb-4fe5-9c13-594ffd53ab88";
             var listValue = GetFlattenedPreviewValues(listId);
-            foreach (var ele in listValue)
-            {
-                Assert.IsNotNull(ele);
-            }
-        }
+            Assert.AreEqual(880, listValue.Count());
 
-    }
+            var expectedValue = 0.052669449441363536;
+            Assert.AreEqual(expectedValue, (double)listValue[5], 0.01);
+            foreach (var elem in listValue)
+            {
+                Assert.IsNotNull(elem);
+            }
+
+            var openXMLExport = GetPreviewValue("5aeca9bb3e3b4433b855a08124b52101");
+            Assert.IsTrue(openXMLExport is true);
+        }
+     }
 }
