@@ -1,3 +1,6 @@
+## 0.7.47
+* New tests for D4R and new validations for existing tests
+
 ## 0.7.46
 * Sign DynamoAddInGenerator.exe
 
