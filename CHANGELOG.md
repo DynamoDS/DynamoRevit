@@ -1,3 +1,6 @@
+## 0.7.48
+* Modifications for D4R XYZ tests
+
 ## 0.7.47
 * New tests for D4R and new validations for existing tests
 
