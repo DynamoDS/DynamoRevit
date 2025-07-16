@@ -70,6 +70,12 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
 
+            var viewportLocation = GetPreviewValue("37b783b725e948e193eef58cfbe8f659") as Point;
+
+            //Assert the default location
+            Assert.AreEqual(0, viewportLocation.X, Tolerance);
+            Assert.AreEqual(0, viewportLocation.Y, Tolerance);
+
             IntegerSlider64Bit slider = model.CurrentWorkspace.NodeFromWorkspace
                 ("d443e82fd58143f5a30fd35f41ca0426") as IntegerSlider64Bit;
             slider.Value = 100;
@@ -80,6 +86,12 @@ namespace RevitSystemTests
 
             // Assert
             Assert.AreEqual(expectedViewportName, viewportName);
+
+            viewportLocation = GetPreviewValue("37b783b725e948e193eef58cfbe8f659") as Point;
+
+            //Assert the reseted location
+            Assert.AreEqual(100, viewportLocation.X, Tolerance);
+            Assert.AreEqual(100, viewportLocation.Y, Tolerance);
         }
 
         [Test]
