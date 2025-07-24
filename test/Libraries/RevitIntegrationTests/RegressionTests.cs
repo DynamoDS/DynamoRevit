@@ -265,121 +265,78 @@ namespace RevitSystemTests
             File.Delete(Path.Combine(workingDirectory, @".\DupePorts.dyn"));
         }
 
-        [Test]
-        public void PackageDllTest()
-        {
-            // Determine which approved DLL list to use based on build_info.json in the Revit folder
-            string revitApiDll = Assembly.GetAssembly(typeof(Autodesk.Revit.DB.ElementId)).Location;
-            string revitDirectory = Path.GetDirectoryName(revitApiDll);
-            string buildInfoPath = Path.Combine(revitDirectory, "build_info.json");
+      [Test]
+      public void PackageDllTest()
+      {
 
-            string approvedListFileName = "PackageApprovedDllList.txt";
-            string tempDllListFileName = "CurrentDllList.txt";
+         string regressionTest = Path.Combine(workingDirectory, "PackageApprovedDllList.txt");
 
-            if (File.Exists(buildInfoPath))
+         //localtie corecta buildout
+         string revitApiDll = Assembly.GetAssembly(typeof(Autodesk.Revit.DB.ElementId)).Location;
+         string revitDirectory = Path.GetDirectoryName(revitApiDll);
+
+         // Revit addin build output where the dlls are located
+         string dynamoRevitFolder = Path.Combine(revitDirectory, @"Addins\DynamoForRevit");
+
+         if (!Directory.Exists(dynamoRevitFolder))
+         {
+            Assert.Fail($"Build output folder not found: {dynamoRevitFolder}");
+         }
+
+         // path for the approved list of dlls
+         string approvedListPath = Path.Combine(workingDirectory, "PackageApprovedDllList.txt");
+
+         if (!File.Exists(approvedListPath))
+         {
+            Assert.Fail($"PackageApprovedDllList list not found: {approvedListPath}");
+         }
+
+         // define list for storing the dlls
+         string tempDllListPath = Path.Combine(workingDirectory, "CurrentDllList.txt");
+
+         try
+         {
+            // get the dlls from the build folder
+            var currentDlls = Directory
+                .EnumerateFiles(dynamoRevitFolder, "*.dll", SearchOption.AllDirectories)
+                .Select(fullPath => Path.GetRelativePath(dynamoRevitFolder, fullPath).Replace("\\", "/"))
+                .OrderBy(x => x)
+                .ToList();
+
+            // save the temp list
+            File.WriteAllLines(tempDllListPath, currentDlls);
+
+            // load approved DLLs from file
+            var approvedDlls = File.ReadAllLines(approvedListPath)
+                .Select(line => line.Trim().Replace("\\", "/"))
+                .Where(line => !string.IsNullOrWhiteSpace(line))
+                .OrderBy(x => x)
+                .ToList();
+
+            // compare the lists
+            var unexpectedDlls = currentDlls.Except(approvedDlls).ToList();
+            var missingDlls = approvedDlls.Except(currentDlls).ToList();
+
+            // fail test if there are unexpected or missing DLLs
+            if (unexpectedDlls.Any() || missingDlls.Any())
             {
-                try
-                {
-                    var buildInfoJson = File.ReadAllText(buildInfoPath);
-                    // Simple JSON parsing for "build_type"
-                    var buildType = GetJsonValue(buildInfoJson, "build_type");
-                    if (string.Equals(buildType, "CI", StringComparison.OrdinalIgnoreCase))
-                    {
-                        approvedListFileName = "PackageApprovedDllListCI.txt";
-                        tempDllListFileName = "CurrentDllListCI.txt";
-                    }
-                    else if (string.Equals(buildType, "Inst", StringComparison.OrdinalIgnoreCase))
-                    {
-                        approvedListFileName = "PackageApprovedDllListInst.txt";
-                        tempDllListFileName = "CurrentDllListInst.txt";
-                    }
-                }
-                catch
-                {
-                    // If parsing fails, fall back to default
-                }
+               var message = new StringBuilder();
+               if (missingDlls.Any())
+               {
+                  message.AppendLine("Missing DLLs:");
+                  message.AppendLine(string.Join("\n", missingDlls));
+               }
+
+               if (unexpectedDlls.Any())
+               {
+                  message.AppendLine("Unexpected DLLs:");
+                  message.AppendLine(string.Join("\n", unexpectedDlls));
+               }
+
+               Assert.Fail(message.ToString());
             }
-
-            // Path for the approved list of dlls
-            string approvedListPath = Path.Combine(workingDirectory, approvedListFileName);
-
-            // Revit addin build output where the dlls are located
-            string dynamoRevitFolder = Path.Combine(revitDirectory, @"Addins\DynamoForRevit");
-
-            if (!Directory.Exists(dynamoRevitFolder))
-            {
-                Assert.Fail($"Build output folder not found: {dynamoRevitFolder}");
-            }
-
-            if (!File.Exists(approvedListPath))
-            {
-                Assert.Fail($"Approved DLL list not found: {approvedListPath}");
-            }
-
-            // Define list for storing the dlls
-            string tempDllListPath = Path.Combine(workingDirectory, tempDllListFileName);
-
-            try
-            {
-                // Get the dlls from the build folder
-                var currentDlls = Directory
-                    .EnumerateFiles(dynamoRevitFolder, "*.dll", SearchOption.AllDirectories)
-                    .Select(fullPath => Path.GetRelativePath(dynamoRevitFolder, fullPath).Replace("\\", "/"))
-                    .OrderBy(x => x)
-                    .ToList();
-
-                // Save the temp list
-                File.WriteAllLines(tempDllListPath, currentDlls);
-
-                // Load approved DLLs from file
-                var approvedDlls = File.ReadAllLines(approvedListPath)
-                    .Select(line => line.Trim().Replace("\\", "/"))
-                    .Where(line => !string.IsNullOrWhiteSpace(line))
-                    .OrderBy(x => x)
-                    .ToList();
-
-                // Compare the lists
-                var unexpectedDlls = currentDlls.Except(approvedDlls).ToList();
-                var missingDlls = approvedDlls.Except(currentDlls).ToList();
-
-                // Fail test if there are unexpected or missing DLLs
-                if (unexpectedDlls.Any() || missingDlls.Any())
-                {
-                    var message = new StringBuilder();
-                    if (missingDlls.Any())
-                    {
-                        message.AppendLine("Missing DLLs:");
-                        message.AppendLine(string.Join("\n", missingDlls));
-                    }
-
-                    if (unexpectedDlls.Any())
-                    {
-                        message.AppendLine("Unexpected DLLs:");
-                        message.AppendLine(string.Join("\n", unexpectedDlls));
-                    }
-
-                    Assert.Fail(message.ToString());
-                }
-            }
+         }
             finally { }
-        }
-
-        // Helper to extract a value from a simple JSON string (no dependencies)
-        private static string GetJsonValue(string json, string key)
-        {
-            if (string.IsNullOrEmpty(json) || string.IsNullOrEmpty(key))
-                return null;
-            var keyPattern = $"\"{key}\"";
-            int keyIndex = json.IndexOf(keyPattern, StringComparison.OrdinalIgnoreCase);
-            if (keyIndex < 0) return null;
-            int colonIndex = json.IndexOf(':', keyIndex);
-            if (colonIndex < 0) return null;
-            int valueStart = json.IndexOfAny(new[] { '"', '\'' }, colonIndex + 1);
-            if (valueStart < 0) return null;
-            valueStart++;
-            int valueEnd = json.IndexOfAny(new[] { '"', '\'' }, valueStart);
-            if (valueEnd < 0) return null;
-            return json.Substring(valueStart, valueEnd - valueStart);
         }
 
 

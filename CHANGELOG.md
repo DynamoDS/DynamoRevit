@@ -1,3 +1,6 @@
+## 0.7.51
+* Reverted changes made for package dll test
+
 ## 0.7.50
 * Modify package test to run correctly for all types of jobs
 
