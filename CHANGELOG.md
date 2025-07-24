@@ -1,3 +1,12 @@
+## 0.7.51
+* Reverted changes made for package dll test
+
+## 0.7.50
+* Modify package test to run correctly for all types of jobs
+
+## 0.7.49
+* Modify package test to run correctly for both types of packages
+
 ## 0.7.48
 * Modifications for D4R XYZ tests
 
