@@ -1,0 +1,506 @@
+{
+  "Uuid": "350e63d0-c895-49f4-95d9-9ed733d44fed",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.AxonometricView.ByEyePointTargetAndElement",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "76f378d30a344762b516481baef351e6",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "c565fe9dca354bdaa47602c1835880d3",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "28ce783d7f9d46ddaeb276c22dea3bfa",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a57daf31e630423babf7f27f72a2861a",
+          "Name": "z",
+          "Description": "Z coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0853aad52216463ead8aa43958303140",
+          "Name": "Point",
+          "Description": "Point created by coordinates",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double",
+      "Replication": "Auto",
+      "Description": "Form a Point given 3 cartesian coordinates\n\nPoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9585ab74314544f591b53cad94225f01",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "83813bd0058c4771a53a5a93cdbad4a4",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "13e30fc86d5c48f18d18d92220244685",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9881824ad24d46ca8a908a4aca2596f5",
+          "Name": "z",
+          "Description": "Z coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2b7493a9a763482a9075d01fa1de1ba0",
+          "Name": "Point",
+          "Description": "Point created by coordinates",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double",
+      "Replication": "Auto",
+      "Description": "Form a Point given 3 cartesian coordinates\n\nPoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "bc11d50ed15a4b89824e24b79a001f91",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "789f33a1d5e24329a5f98335eddffcdb",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 0.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "25b0c613ef7445c39c112998da9d96c8",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7dbeafd9bb5946edadde94bd326574e6",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 100.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "48ed123167dd4251befd2bc5d89baaf0",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "c5e57eddd3bf4c6392c5bbcbcaaa7526",
+          "Name": "eyePoint",
+          "Description": "A Point representing the eye point.\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e067ec925e314ff1b52b626ff5b57af0",
+          "Name": "target",
+          "Description": "A Point representing the target of view.\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5644731eaeab4d648fda5eadfb63af8d",
+          "Name": "name",
+          "Description": "The name of the view.\n\nstring\nDefault value : \"dynamo3D\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "440e7719b38f4eecab4d0095b7476d87",
+          "Name": "element",
+          "Description": "This argument cannot be null, and it has to be either a Revit.Elements.Element or Revit.GeometryObjectsBoundingBox.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0504291b0ea543348984e40e6ea1a73b",
+          "Name": "isolateElement",
+          "Description": "If this argument is set to true, the element or bounding box will be isolated in the current view by creating a minimum size crop box around it.\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9c2e56991d4d412bb76310cd1574bee2",
+          "Name": "AxonometricView",
+          "Description": "An AxonometricView object.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.AxonometricView.ByEyePointTargetAndElement@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point,string,Revit.Elements.Element,bool",
+      "Replication": "Auto",
+      "Description": "Create a Revit Axonometric (isometric) View from an Eye position and target position and Element\n\nAxonometricView.ByEyePointTargetAndElement (eyePoint: Point, target: Point, name: string = \"dynamo3D\", element: Element, isolateElement: bool = false): AxonometricView"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "601901214dca4fcda3f77567cde50071",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "12ab7636a7ae4256bbe488ecc1911845",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "f95c23ef-18af-4830-998b-8ecf57dc4e14-00215878"
+      ],
+      "Id": "9cf5c00268a64744969d98b7d9336169",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "07b462b7e51649dcaf1af5f170308e56",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "00feccb6f5574c94854de0b8895e88e2",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "3b8923b9ce934f74a9a83ee66b9ef27f",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b0d2f3a8ade549d5a305d59c6fc29b16",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0853aad52216463ead8aa43958303140",
+      "End": "e067ec925e314ff1b52b626ff5b57af0",
+      "Id": "aacb22bd69bc4088b07bef753814d3cb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2b7493a9a763482a9075d01fa1de1ba0",
+      "End": "c5e57eddd3bf4c6392c5bbcbcaaa7526",
+      "Id": "b9ed7e3b616d4f10a31e707599a39788",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "789f33a1d5e24329a5f98335eddffcdb",
+      "End": "a57daf31e630423babf7f27f72a2861a",
+      "Id": "1953bf75a1454db2b9bfb1885a016091",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "789f33a1d5e24329a5f98335eddffcdb",
+      "End": "83813bd0058c4771a53a5a93cdbad4a4",
+      "Id": "3ebd2dda66d54e2c96ef29afc6aced4e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "789f33a1d5e24329a5f98335eddffcdb",
+      "End": "13e30fc86d5c48f18d18d92220244685",
+      "Id": "5796620a8aca46bc99424ec2679788b7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7dbeafd9bb5946edadde94bd326574e6",
+      "End": "c565fe9dca354bdaa47602c1835880d3",
+      "Id": "9e52d69c3842491cb07655937e8b12fe",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7dbeafd9bb5946edadde94bd326574e6",
+      "End": "28ce783d7f9d46ddaeb276c22dea3bfa",
+      "Id": "511ababce2af45c69c3391e54aa9ffd8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7dbeafd9bb5946edadde94bd326574e6",
+      "End": "9881824ad24d46ca8a908a4aca2596f5",
+      "Id": "0ffa92de2e24433187fafb0e86364fe0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "12ab7636a7ae4256bbe488ecc1911845",
+      "End": "0504291b0ea543348984e40e6ea1a73b",
+      "Id": "f92e2c0db6a844e1bbb4ae9c68da18eb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "07b462b7e51649dcaf1af5f170308e56",
+      "End": "3b8923b9ce934f74a9a83ee66b9ef27f",
+      "Id": "6609e6bbdd73487db570367afadfd09e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "07b462b7e51649dcaf1af5f170308e56",
+      "End": "440e7719b38f4eecab4d0095b7476d87",
+      "Id": "5bafeac0fda842deb5fbe8ba23c238d3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b0d2f3a8ade549d5a305d59c6fc29b16",
+      "End": "5644731eaeab4d648fda5eadfb63af8d",
+      "Id": "da64105347e74630bbf852d0f2d14e52",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "48ed1231-67dd-4251-befd-2bc5d89baaf0",
+      "Binding": {
+        "ByEyePointTargetAndElement_InClassDecl-1_InFunctionScope-1_Instance0_48ed1231-67dd-4251-befd-2bc5d89baaf0": "H4sIAAAAAAAACh3LoQ6EMAwG4Hf5NU1GB6xDY9AnKaKwQs4gyBzh3S+5z3/Lg2LVMOJRfOr9vc55UoyK6Ad3KfXEuyfqShbaxHtykyAeC/u+UQgs2SwrGsV81f/lYWhDjC/e9Qco2a2eXwAAAA=="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "76f378d30a344762b516481baef351e6",
+        "Name": "Point.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1218.8768789476542,
+        "Y": 828.2505470537815
+      },
+      {
+        "Id": "9585ab74314544f591b53cad94225f01",
+        "Name": "Point.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1217.6320474777447,
+        "Y": 605.047063824597
+      },
+      {
+        "Id": "bc11d50ed15a4b89824e24b79a001f91",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 881.6320474777447,
+        "Y": 660.2091988130567
+      },
+      {
+        "Id": "25b0c613ef7445c39c112998da9d96c8",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 881.6320474777447,
+        "Y": 838.2091988130567
+      },
+      {
+        "Id": "48ed123167dd4251befd2bc5d89baaf0",
+        "Name": "AxonometricView.ByEyePointTargetAndElement",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1541.3872160078351,
+        "Y": 869.2091988130567
+      },
+      {
+        "Id": "601901214dca4fcda3f77567cde50071",
+        "Name": "Boolean",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1217.6320474777447,
+        "Y": 1219.459498480158
+      },
+      {
+        "Id": "9cf5c00268a64744969d98b7d9336169",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 881.6320474777447,
+        "Y": 1011.2091988130566
+      },
+      {
+        "Id": "00feccb6f5574c94854de0b8895e88e2",
+        "Name": "Element.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1217.6320474777447,
+        "Y": 1051.2091988130564
+      }
+    ],
+    "Annotations": [],
+    "X": -445.70724077154,
+    "Y": -506.62132455737503,
+    "Zoom": 1.079253728951835
+  }
+}
