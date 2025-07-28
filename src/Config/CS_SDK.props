@@ -1,6 +1,6 @@
 <Project>
 	<Import Project="$(SolutionDir)Config/user_local.props" />
-   <Import Project="$(SolutionDir)Config/user_local.props" />
+   <Import Project="$(SolutionDir)Config/packages_versions.props" />
 	<PropertyGroup>
 		<Platforms>NET70;NET80</Platforms>
 		<PlatformTarget >x64</PlatformTarget>
