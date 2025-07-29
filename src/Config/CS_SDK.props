@@ -9,7 +9,7 @@
 		<TargetFramework Condition="'$(Platform)' == 'NET60'">net6.0-windows</TargetFramework>
 		<TargetFramework Condition="'$(Platform)' == 'net48'">net48</TargetFramework>
 		<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
-		<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">25.4.10-b025</RevitVersionNumber>
+		<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2025</RevitVersionNumber>
 		<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
 		<PACKAGESPATH>$(SolutionDir)packages</PACKAGESPATH>
 		<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
