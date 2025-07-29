@@ -56,13 +56,13 @@ limitations under the License.
 			<HintPath>$(PACKAGESPATH)\Prism\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="RevitAPI">
-			<HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="RevitAPIUI">
-			<HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
-			<Private>False</Private>
+      <Reference Include="RevitAPI">
+         <HintPath>$(RevitAPIPath)\RevitAPI.dll</HintPath>
+         <Private>False</Private>
+      </Reference>
+      <Reference Include="RevitAPIUI">
+         <HintPath>$(RevitAPIPath)\RevitAPIUI.dll</HintPath>
+         <Private>False</Private>
 		</Reference>
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 	</ItemGroup>
