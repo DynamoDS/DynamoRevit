@@ -14,8 +14,6 @@
 		<PACKAGESPATH>$(SolutionDir)packages</PACKAGESPATH>
 		<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
 
-      <RevitAPIPath>$(REVITAPI)</RevitAPIPath>
-
 		<Prefer32Bit>false</Prefer32Bit>
 		<ErrorReport>prompt</ErrorReport>
 		<WarningLevel>4</WarningLevel>
