@@ -15,6 +15,9 @@ REM 1. set variable values
 set DynamoPackages=%~dp0\packages\_packages
 echo %DynamoPackages%
 set CurrentDir=%~dp0
+
+echo Current Dir: %CurrentDir%
+
 if %CurrentDir:~-1%==\ (
     set CurrentDir=%CurrentDir:~0,-1%
 )
