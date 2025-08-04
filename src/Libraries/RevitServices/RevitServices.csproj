@@ -65,7 +65,11 @@ limitations under the License.
          <HintPath>$(RevitAPI)\RevitAPIUI.dll</HintPath>
          <Private>False</Private>
 		</Reference>
-      <PackageReference Include="DynamoVisualProgramming.Core" Version="3.3.1.7726" ExcludeAssets="runtime" />
+      <Reference Include="DynamoVisualProgramming.Core">
+         <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\NET8.0\DynamoCore.dll</HintPath>
+         <Private>False</Private>
+      </Reference>
+      <!--   <PackageReference Include="DynamoVisualProgramming.Core" Version="3.3.1.7726" ExcludeAssets="runtime" /> -->
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 	</ItemGroup>
 	<ItemGroup>
