@@ -21,8 +21,9 @@ limitations under the License.
 		<ProductVersion>8.0.30703</ProductVersion>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
-   <Target Name="LogREVITAPIPath" BeforeTargets="Build">
+   <Target Name="LogREVITAPIPath" BeforeTargets="PreBuildEvent">
       <Message Text=">> MSBUILD RESOLVED REVITAPI = $(REVITAPI)" Importance="High" />
+      <Exec Command="cmd /c dir &quot;$(REVITAPI)&quot;" />
    </Target>
 	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
 		<DebugSymbols>true</DebugSymbols>
@@ -58,6 +59,7 @@ limitations under the License.
 		</Reference>
       <Reference Include="RevitAPI">
          <HintPath>$(RevitAPI)\RevitAPI.dll</HintPath>
+         
          <Private>False</Private>
       </Reference>
       <Reference Include="RevitAPIUI">
