@@ -4,7 +4,8 @@
   </ImportGroup>
    <ItemGroup>
       <Reference Include="RevitAPI">
-         <HintPath>C:\DynamoRevit\lib\Revit 25.4.10-b025\net8.0\RevitAPI.dll</HintPath>
+         <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
+         <!-- <HintPath>C:\DynamoRevit\lib\Revit 25.4.10-b025\net8.0\RevitAPI.dll</HintPath> -->
          <Private>False</Private>
       </Reference>
       <Reference Include="RevitAPIUI">
