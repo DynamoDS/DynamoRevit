@@ -69,7 +69,7 @@ limitations under the License.
          <HintPath>$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\NET8.0\DynamoCore.dll</HintPath>
          <Private>False</Private>
       </Reference>-->
-      <Reference Include="DynamoVisualProgramming.Core" Version="3.3.1.7726" ExcludeAssets="runtime" />
+      <PackageReference Include="DynamoVisualProgramming.Core" Version="3.3.1.7726" ExcludeAssets="runtime" />
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 	</ItemGroup>
 	<ItemGroup>
