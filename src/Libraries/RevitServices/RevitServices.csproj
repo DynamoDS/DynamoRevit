@@ -54,11 +54,11 @@ limitations under the License.
 			<Private>False</Private>
 		</Reference>
       <Reference Include="RevitAPI">
-         <HintPath>$(REVITAPI)\RevitAPI.dll</HintPath>
+         <HintPath>$(RevitAPI)\RevitAPI.dll</HintPath>
          <Private>False</Private>
       </Reference>
       <Reference Include="RevitAPIUI">
-         <HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
+         <HintPath>$(RevitAPI)\RevitAPIUI.dll</HintPath>
          <Private>False</Private>
 		</Reference>
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
