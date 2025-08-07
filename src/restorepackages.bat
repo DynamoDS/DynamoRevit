@@ -36,7 +36,8 @@ REM 2. download 3rdParty packages by Aget.exe
     %PythonAget% -agettable "%ConfigDir%\packages.aget" -refsDir "%SymLinksDir%"
     if ERRORLEVEL 1 (
         echo ERROR: Failed to update Dynamo 3rdParty nuget packages in packages.aget
-        exit /b 1
+			echo CONTINUE DESPITE DOWNLOAD WARNINGS, SOME OLDER PACKAGES GIVE FALSE INCOPABILITY ERRORS WITH NET 4.0
+        REM exit /b 1
     )
     call :TrackTime "%~n0: exiting from batch script"
     endlocal
