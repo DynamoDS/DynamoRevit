@@ -1,3 +1,6 @@
+## 0.6.50
+* Update Dynamo Core to 3.6.0.9395
+
 ## 0.6.49
 * Update D4R version to align with Dynamo Core
 
