@@ -1,5 +1,6 @@
 <Project>
 	<Import Project="$(SolutionDir)Config/user_local.props" />
+   <Import Project="$(SolutionDir)Config/packages_versions.props" />
 	<PropertyGroup>
 		<Platforms>NET70;NET80</Platforms>
 		<PlatformTarget >x64</PlatformTarget>
@@ -8,7 +9,7 @@
 		<TargetFramework Condition="'$(Platform)' == 'NET60'">net6.0-windows</TargetFramework>
 		<TargetFramework Condition="'$(Platform)' == 'net48'">net48</TargetFramework>
 		<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
-		<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
+		<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">25.4.10-b025</RevitVersionNumber>
 		<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
 		<PACKAGESPATH>$(SolutionDir)packages</PACKAGESPATH>
 		<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
