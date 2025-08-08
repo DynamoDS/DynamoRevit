@@ -535,6 +535,51 @@
       "FunctionSignature": "Revit.Elements.FamilyType.VoidByGeometry@Autodesk.DesignScript.Geometry.Solid,string,Revit.Elements.Category,string",
       "Replication": "Auto",
       "Description": "Create a Void Family Type from a solid geometry. This method exports the solid to SAT and imports it into a new family document.\n\nFamilyType.VoidByGeometry (solidGeometry: Solid, name: string, category: Category, templatePath: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 200.0,
+      "WatchHeight": 200.0,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "00d27991-150b-4130-a189-327bc0640a16 Preview",
+        "EyeX": -12.946659088134766,
+        "EyeY": 113.5282211303711,
+        "EyeZ": 43.16437911987305,
+        "LookX": 31.05194854736328,
+        "LookY": -48.929588317871094,
+        "LookZ": -61.26974868774414,
+        "UpX": 0.17724572122097015,
+        "UpY": 0.9199309945106506,
+        "UpZ": -0.34972989559173584
+      },
+      "VariableInputPorts": true,
+      "Id": "00d27991150b4130a189327bc0640a16",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "87290610fd994b62854fc2ed0be9e7e8",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a472b263e4314c7989e8f7d0110e2569",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry"
     }
   ],
   "Connectors": [
@@ -584,6 +629,12 @@
       "Start": "7d087f07587d4ef4bf0b5dcbaaf64051",
       "End": "e7fb5e66989c4c8e9e52cbdf485bc2e6",
       "Id": "360cfd26b65242d6aab0dc95f08392a4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7d087f07587d4ef4bf0b5dcbaaf64051",
+      "End": "87290610fd994b62854fc2ed0be9e7e8",
+      "Id": "96f7c63b889a4a9c9267fc4d546879a3",
       "IsHidden": "False"
     },
     {
@@ -673,7 +724,7 @@
     {
       "NodeId": "938edd5e-e024-4d14-a3e4-da82ce8d5e45",
       "Binding": {
-        "ByPoint_InClassDecl-1_InFunctionScope-1_Instance0_938edd5e-e024-4d14-a3e4-da82ce8d5e45": "H4sIAAAAAAAACh3LIQ6AMAwF0Lt8TZOyQdnQGDSSIpptIRgEmSPcHULy7FtvZKuGEbdiqddx7vOkGBWxCIdkA3nXRup6L2TcZ+JOUszeZUuFmF2wlk3RKOaz/teJfOTBs71EjiEoXwAAAA=="
+        "ByPoint_InClassDecl-1_InFunctionScope-1_Instance0_938edd5e-e024-4d14-a3e4-da82ce8d5e45": "H4sIAAAAAAAACh3Lqw6AMAwF0H+5miZdx8pDY9BIiigsEAyCzBH+nYTjz/wge3H0eAxTuc/rGAdDb4gsWdLm1G2hoTrsHXlYlTRyarT1uCYmZmmd92yoDONV/iuqoim+eJcPVYltdV8AAAA="
       }
     }
   ],
@@ -683,7 +734,7 @@
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
       "Version": "3.4.1.7055",
-      "RunType": "Automatic",
+      "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "Camera": {
@@ -868,12 +919,22 @@
         "Excluded": false,
         "ShowGeometry": true,
         "X": 2526.527654806636,
-        "Y": 1717.0
+        "Y": 1707.9469461245005
+      },
+      {
+        "Id": "00d27991150b4130a189327bc0640a16",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2328.2588264382825,
+        "Y": 1250.776515999934
       }
     ],
     "Annotations": [],
-    "X": -253.2166751530433,
-    "Y": -619.6112196662425,
-    "Zoom": 0.7125948326284883
+    "X": -661.3445848448719,
+    "Y": -806.4898385306931,
+    "Zoom": 0.8230805626436526
   }
 }

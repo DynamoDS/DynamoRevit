@@ -623,6 +623,51 @@
       "Replication": "Disabled",
       "Description": "Produces numeric values",
       "InputValue": 60.5
+    },
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 434.0,
+      "WatchHeight": 327.0,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "5bb9895f-eff2-48f6-9a5e-1bfaba6b80dd Preview",
+        "EyeX": 50.02211380004883,
+        "EyeY": 118.13480377197266,
+        "EyeZ": -14.113748550415039,
+        "LookX": -6.8914642333984375,
+        "LookY": -72.70852661132812,
+        "LookZ": -19.345766067504883,
+        "UpX": -0.29587286710739136,
+        "UpY": 0.47181040048599243,
+        "UpZ": -0.830574631690979
+      },
+      "VariableInputPorts": true,
+      "Id": "5bb9895feff248f69a5e1bfaba6b80dd",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "1bd9e343e94f4d0db54ca2cdb85d18c2",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dabfcc3c516040399ad0b6cd1f3709cc",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry"
     }
   ],
   "Connectors": [
@@ -660,6 +705,12 @@
       "Start": "13b031c24ce147d2971d8e59e689c985",
       "End": "dd4fc822cfff49a8932b17a5e4dc81bc",
       "Id": "c79b5d775c564f0480a37f4c3dd8ed19",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "13b031c24ce147d2971d8e59e689c985",
+      "End": "1bd9e343e94f4d0db54ca2cdb85d18c2",
+      "Id": "523b4301c2874be2989c03d18fb002f1",
       "IsHidden": "False"
     },
     {
@@ -779,7 +830,7 @@
     {
       "NodeId": "b86ba75a-1050-4443-bf4d-c33a0fb9e26d",
       "Binding": {
-        "ByPoint_InClassDecl-1_InFunctionScope-1_Instance0_b86ba75a-1050-4443-bf4d-c33a0fb9e26d": "H4sIAAAAAAAACh3Lqw6EMBAF0H+5eicZhnagaEz1yp0VfQDBIEgd4d9JOP78LtTUEiZchm8792OLs2Ey6NrV7MTTqlzIVRkoLUMg9X3Rhb2wFmKWMecUDB9DPNp7RTW4sbtx/x8f6mCRXwAAAA=="
+        "ByPoint_InClassDecl-1_InFunctionScope-1_Instance0_b86ba75a-1050-4443-bf4d-c33a0fb9e26d": "H4sIAAAAAAAACh3LoQ6EMAwG4Hf5NU26lZUNjUGfvJ4oLBAMgswR3p3kPv99b1RvjhG34dOu49znyTAahGONaXUqaxioD1shD4uSCqdBs8uSmJhjLrWKoTPMZ/vfqBpyLw+e3wtjOLi+XwAAAA=="
       }
     }
   ],
@@ -789,7 +840,7 @@
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
       "Version": "3.4.1.7055",
-      "RunType": "Automatic",
+      "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "Camera": {
@@ -864,7 +915,7 @@
         "Excluded": false,
         "ShowGeometry": true,
         "X": 1668.945054467863,
-        "Y": 1458.7247973009316
+        "Y": 1451.2732177563337
       },
       {
         "Id": "037d80ba55f649e9903edf8a3a6d9849",
@@ -1005,11 +1056,21 @@
         "ShowGeometry": true,
         "X": 1668.945054467863,
         "Y": 2047.7247973009316
+      },
+      {
+        "Id": "5bb9895feff248f69a5e1bfaba6b80dd",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2047.8009803797054,
+        "Y": 760.725732550095
       }
     ],
     "Annotations": [],
-    "X": 62.28750690827394,
-    "Y": -250.75284584914732,
-    "Zoom": 0.70422587858429
+    "X": -151.66539175590276,
+    "Y": -234.42075250978166,
+    "Zoom": 0.6549252599349398
   }
 }
