@@ -1,0 +1,383 @@
+{
+  "Uuid": "3ef6c4b1-438f-4eb7-b895-59f9230e2643",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.Sheet.ByNameNumberTitleBlockAndViews",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.FamilyTypes, DSRevitNodesUI",
+      "SelectedIndex": 218,
+      "SelectedString": "E1 30 x 42 Horizontal_Snowdon:E1 30 x 42 Horizontal_Snowdon",
+      "Id": "716485f4baec4ce188d7627af26fd5db",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f7b1bf02d6ee41b69fcf573a796b90db",
+          "Name": "Family Type",
+          "Description": "The selected Family Type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All family types available in the document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "Id": "e80a1ba1dc864285a5a32ff56e1a14e3",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "bd1ab55eb66944a0a9363577cb2c2d36",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9c3283ea461844e7b6adb4627b6939b3",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e6233d6c596c461290e9e936df14918d",
+          "Name": "list",
+          "Description": "A list (type: var[]..[])",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list from the given inputs"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 341,
+      "SelectedString": "WV_Under Lobby Stair Landing",
+      "Id": "f5c63742442a4f9fb6ed6ac4cc76273c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8f18a5e957434544bbea56cb9bb1c08c",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 49,
+      "SelectedString": "Café Kitchen - Section",
+      "Id": "29efb593adbf4387ba1fddfae4d32e0c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5b2ee784708e4feba7e1724beff11b3e",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "4a34f41cf9b04f01b7ff67d9e5ef6c4c",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d37ea71ee2c74b6f8aaa1019837d93db",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "DynamoDemo20"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "9b162d82b1a245398106e098263542bf",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4ccdffe786084feda5c7d0600feacd16",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "_D-020"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9a09402ff332418daf2c2fb44179ef77",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "172ee75dc6314cc3bac40a5bc154f509",
+          "Name": "sheetName",
+          "Description": "Sheet Name as String.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1c47cb94aa474f74a304bd9407da4258",
+          "Name": "sheetNumber",
+          "Description": "Sheet Number as String.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "38ac687f1f6c4340ab2dfc21d0d1bb67",
+          "Name": "titleBlockFamilyType",
+          "Description": "Titleblock that will be assigned to created Sheet.\n\nFamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "63b94c17a3fb40a0a420515d68356d71",
+          "Name": "views",
+          "Description": "Views to be placed on Sheet.\n\nView[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a9dd29eb55f649daa37cbd6b6985571d",
+          "Name": "Sheet",
+          "Description": "Sheet",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.Sheet.ByNameNumberTitleBlockAndViews@string,string,Revit.Elements.FamilyType,Revit.Elements.Views.View[]",
+      "Replication": "Auto",
+      "Description": "Create a Revit Sheet. This method will automatically pack the views onto the sheet.\n\nSheet.ByNameNumberTitleBlockAndViews (sheetName: string, sheetNumber: string, titleBlockFamilyType: FamilyType, views: View[]): Sheet"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "f7b1bf02d6ee41b69fcf573a796b90db",
+      "End": "38ac687f1f6c4340ab2dfc21d0d1bb67",
+      "Id": "cbaca852446349f885afd644ff36e095",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e6233d6c596c461290e9e936df14918d",
+      "End": "63b94c17a3fb40a0a420515d68356d71",
+      "Id": "c2280ddb02664791aea5a813b65adf9c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8f18a5e957434544bbea56cb9bb1c08c",
+      "End": "bd1ab55eb66944a0a9363577cb2c2d36",
+      "Id": "42f0e0ca02dd4268ad9703070ff3b9dc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5b2ee784708e4feba7e1724beff11b3e",
+      "End": "9c3283ea461844e7b6adb4627b6939b3",
+      "Id": "ff480673a2db425b8b2e96b2e2595ecd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d37ea71ee2c74b6f8aaa1019837d93db",
+      "End": "172ee75dc6314cc3bac40a5bc154f509",
+      "Id": "7dd4192044924ebba40b85d1bc10abeb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4ccdffe786084feda5c7d0600feacd16",
+      "End": "1c47cb94aa474f74a304bd9407da4258",
+      "Id": "e738f7c74a58487c9ec699a872d9a3a8",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "9a09402f-f332-418d-af2c-2fb44179ef77",
+      "Binding": {
+        "ByNameNumberTitleBlockAndViews_InClassDecl-1_InFunctionScope-1_Instance0_9a09402f-f332-418d-af2c-2fb44179ef77": "H4sIAAAAAAAACh3LMQ7CMAwF0Lv8GUuOk9p1Z5bOjJghaghi6YCyVb17Jd7+ngdaHRULjsBj/L77Z70HloAyv6VxJzdNVFxn8m6Jtm4meSuSy0TMMnurOXALrPv4X1FN5tOJ83UBmUs+vl8AAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "716485f4baec4ce188d7627af26fd5db",
+        "Name": "Family Types",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 912.9122767847421,
+        "Y": 1023.1016384876445
+      },
+      {
+        "Id": "e80a1ba1dc864285a5a32ff56e1a14e3",
+        "Name": "List Create",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1362.912276784742,
+        "Y": 1209.346647302561
+      },
+      {
+        "Id": "f5c63742442a4f9fb6ed6ac4cc76273c",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 904.5590006187106,
+        "Y": 1201.0645892796986
+      },
+      {
+        "Id": "29efb593adbf4387ba1fddfae4d32e0c",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 904.5590006187106,
+        "Y": 1349.0645892796986
+      },
+      {
+        "Id": "4a34f41cf9b04f01b7ff67d9e5ef6c4c",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1335.912276784742,
+        "Y": 745.6942286460553
+      },
+      {
+        "Id": "9b162d82b1a245398106e098263542bf",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1374.912276784742,
+        "Y": 892.6942286460553
+      },
+      {
+        "Id": "9a09402ff332418daf2c2fb44179ef77",
+        "Name": "Sheet.ByNameNumberTitleBlockAndViews",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1783.3767005746106,
+        "Y": 963.0588944571614
+      }
+    ],
+    "Annotations": [],
+    "X": -318.1436772794689,
+    "Y": -459.2084980049764,
+    "Zoom": 0.9713773556310532
+  }
+}
