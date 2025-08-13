@@ -2,7 +2,7 @@
   "nuget": {
     "references": {
       "DynamicLanguageRuntime": "1.2.2",
-      "DynamoVisualProgramming.Core": "2.16.4.10216",
+      "DynamoVisualProgramming.Core": "2.17.0.3472",
       "DynamoVisualProgramming.DynamoCoreNodes": "2.16.4.10216",
       "DynamoVisualProgramming.DynamoServices": "2.16.4.10216",
       "DynamoVisualProgramming.Tests": "2.16.4.10216",
