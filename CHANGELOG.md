@@ -1,3 +1,6 @@
+## 0.7.53
+* new node help files
+
 ## 0.7.52
 * Update Dynamo Core to 3.6.0.9395
 ## 0.7.51
