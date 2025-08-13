@@ -1,0 +1,475 @@
+{
+  "Uuid": "f5735df5-9bc5-432c-90ae-a18959a1018a",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.SectionView.ByCoordinateSystemMinPointMaxPoint",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "c5aa2b91807f4e76bbabbfbc4d753e87",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "13eaa63c0d0140fcaf6f49bccaada04b",
+          "Name": "cs",
+          "Description": "CoordinateSystem",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ea584681e61e4af0a2b116b100eeda14",
+          "Name": "minPoint",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "53c0cdc5fc804237a44a268c837fe85d",
+          "Name": "maxPoint",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "23c10b4c53e84bd590f3860e840ba73b",
+          "Name": "SectionView",
+          "Description": "SectionView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.SectionView.ByCoordinateSystemMinPointMaxPoint@Autodesk.DesignScript.Geometry.CoordinateSystem,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point",
+      "Replication": "Auto",
+      "Description": "Creates a Revit ViewSection by a specified corrdinate system, minPoint and maxPoint\n\nSectionView.ByCoordinateSystemMinPointMaxPoint (cs: CoordinateSystem, minPoint: Point, maxPoint: Point): SectionView"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "4e5021b327f1407584a4fe2e8452302a",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0180a73d94d14f3883dbf38a238c5f0c",
+          "Name": "Point",
+          "Description": "Origin point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.Origin",
+      "Replication": "Auto",
+      "Description": "Get the Origin point (0,0,0)\n\nPoint.Origin ( ): Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e07e04def29c434595356ebe270f9a65",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "91d6b396488c4504b48b94ab5c256eae",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c807e0bdf7264f44a7b96fad9ba32029",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6e03a169935e4aa1a070ffa015cd92a0",
+          "Name": "z",
+          "Description": "Z coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2425f55035944261b78bbec9d0ef1305",
+          "Name": "Point",
+          "Description": "Point created by coordinates",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double",
+      "Replication": "Auto",
+      "Description": "Form a Point given 3 cartesian coordinates\n\nPoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "11bb8597797447e3838335d6852a0211",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9ada35b6a1414b85b0e66e0fd25592be",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 10.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "2a5a247633594f5898e2c83c1a76d966",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d987f8a904df40058fcb142aa00d89bd",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5f451d1764f5402280c668c3a4369f89",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f51b50601d3c432eb09d22ac06aca0de",
+          "Name": "z",
+          "Description": "Z coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3b9bff9aa8844b7896128cac2ab7a4c4",
+          "Name": "Point",
+          "Description": "Point created by coordinates",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Point.ByCoordinates@double,double,double",
+      "Replication": "Auto",
+      "Description": "Form a Point given 3 cartesian coordinates\n\nPoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "3a322f65bc254b84838f010f11487c4d",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1fa7a80dd57c4205bffd4d9ad6e81f41",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 80.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "232e35fa46004075aaae28cd7bb9117f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b61535b1873a48a0a69843bb1e02cee1",
+          "Name": "origin",
+          "Description": "Point\nDefault value : Autodesk.DesignScript.Geometry.Point.ByCoordinates(0, 0, 0)",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "58ed81f3a3d0432aa619dfdfdf1e7028",
+          "Name": "CoordinateSystem",
+          "Description": "CoordinateSystem",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.CoordinateSystem.ByOrigin@Autodesk.DesignScript.Geometry.Point",
+      "Replication": "Auto",
+      "Description": "Create a CoordinateSystem with origin at input Point, with X and Y Axes set as WCS X and Y Axes.\n\nCoordinateSystem.ByOrigin (origin: Point = Autodesk.DesignScript.Geometry.Point.ByCoordinates(0, 0, 0)): CoordinateSystem"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "f8e182ff0cf24afc87eca5886a3f120b",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "27ea22435fda4ca1b789af65c46fdb01",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 0.0
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0180a73d94d14f3883dbf38a238c5f0c",
+      "End": "b61535b1873a48a0a69843bb1e02cee1",
+      "Id": "b91ed2dd82bb489fb04dd4fb74554b2c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2425f55035944261b78bbec9d0ef1305",
+      "End": "ea584681e61e4af0a2b116b100eeda14",
+      "Id": "9cb7c1cf470a41ce958b37b646ab187f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9ada35b6a1414b85b0e66e0fd25592be",
+      "End": "91d6b396488c4504b48b94ab5c256eae",
+      "Id": "e22b0aad295944089874756637de33ea",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9ada35b6a1414b85b0e66e0fd25592be",
+      "End": "c807e0bdf7264f44a7b96fad9ba32029",
+      "Id": "3897cf2fbf274101b5e27f251e8f8859",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3b9bff9aa8844b7896128cac2ab7a4c4",
+      "End": "53c0cdc5fc804237a44a268c837fe85d",
+      "Id": "e9607e5e7ea148548055fdf99140c4d5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1fa7a80dd57c4205bffd4d9ad6e81f41",
+      "End": "d987f8a904df40058fcb142aa00d89bd",
+      "Id": "9ed8a76a93984ce49909205a65f587c6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1fa7a80dd57c4205bffd4d9ad6e81f41",
+      "End": "5f451d1764f5402280c668c3a4369f89",
+      "Id": "57096440cd554977ab499d21ed45f2ba",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1fa7a80dd57c4205bffd4d9ad6e81f41",
+      "End": "f51b50601d3c432eb09d22ac06aca0de",
+      "Id": "335f687ebe364498a2c9a8ec084ff987",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "58ed81f3a3d0432aa619dfdfdf1e7028",
+      "End": "13eaa63c0d0140fcaf6f49bccaada04b",
+      "Id": "bf21b45016174f18aeb668bd891e300d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "27ea22435fda4ca1b789af65c46fdb01",
+      "End": "6e03a169935e4aa1a070ffa015cd92a0",
+      "Id": "245879b042f04ae1877a30ea2d4d6393",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "c5aa2b91-807f-4e76-bbab-bfbc4d753e87",
+      "Binding": {
+        "ByCoordinateSystemMinPointMaxPoint_InClassDecl-1_InFunctionScope-1_Instance0_c5aa2b91-807f-4e76-bbab-bfbc4d753e87": "H4sIAAAAAAAACh3LMQ6DMAwF0Lv8uZYcxzgJMwtzx5oBkabqwoCyIe6OxNvf50Rd+4oRp+Pdj//+myfH6DDmr1RuVJIF0mKZSkuBtpaSxE0l6kDMkkuN6ng55r0/V8yCZb1wLTekMedbXwAAAA=="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "c5aa2b91807f4e76bbabbfbc4d753e87",
+        "Name": "SectionView.ByCoordinateSystemMinPointMaxPoint",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 485.0273510669531,
+        "Y": 828.6328204941271
+      },
+      {
+        "Id": "4e5021b327f1407584a4fe2e8452302a",
+        "Name": "Point.Origin",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -144.97772749347985,
+        "Y": 691.6337438687513
+      },
+      {
+        "Id": "e07e04def29c434595356ebe270f9a65",
+        "Name": "Point.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 106.02735106695309,
+        "Y": 840.6328204941271
+      },
+      {
+        "Id": "11bb8597797447e3838335d6852a0211",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -147.90253329060602,
+        "Y": 861.1826277567258
+      },
+      {
+        "Id": "2a5a247633594f5898e2c83c1a76d966",
+        "Name": "Point.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 104.68233179321294,
+        "Y": 1067.0830132315284
+      },
+      {
+        "Id": "3a322f65bc254b84838f010f11487c4d",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -160.46390142672556,
+        "Y": 1141.7790724047845
+      },
+      {
+        "Id": "232e35fa46004075aaae28cd7bb9117f",
+        "Name": "CoordinateSystem.ByOrigin",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 101.99229324573264,
+        "Y": 674.8025506617653
+      },
+      {
+        "Id": "f8e182ff0cf24afc87eca5886a3f120b",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -155.1514431909393,
+        "Y": 1006.3833267948262
+      }
+    ],
+    "Annotations": [],
+    "X": 737.8223220508602,
+    "Y": -397.4162266552264,
+    "Zoom": 1.0004619005657112
+  }
+}
