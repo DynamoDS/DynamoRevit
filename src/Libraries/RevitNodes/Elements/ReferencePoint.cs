@@ -397,7 +397,7 @@ namespace Revit.Elements
         /// Create a Reference Point at a particular length along a curve
         /// </summary>
         /// <param name="elementCurveReference"></param>
-        /// <param name="length">Distance in meters along the curve</param>
+        /// <param name="length">Distance in project units along the curve</param>
         /// <returns></returns>
         public static ReferencePoint ByLengthOnCurveReference(object elementCurveReference, double length)
         {
