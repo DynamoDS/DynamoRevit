@@ -10,10 +10,10 @@
    </PropertyGroup>
    <PropertyGroup Condition="$(Platform.Contains('NET'))">
       <REVITAPI Condition=" !Exists('$(REVITAPI)') ">E:\RevitVersion\2026\Releasex64_NET7_20230907\Releasex64</REVITAPI>
-      <REVITAPI Condition=" !Exists('$(REVITAPI)') ">D:\src\git.adsk\revit\Debugx64</REVITAPI>
+      <REVITAPI Condition=" !Exists('$(REVITAPI)') ">D:\Fisiere\BuildRevit</REVITAPI>
    </PropertyGroup>
    <PropertyGroup Condition="!$(Platform.Contains('NET'))">
       <!-- local env -->
-      <REVITAPI Condition=" !Exists('$(REVITAPI)') ">D:\src\git.adsk\revit.release.branch\Debugx64</REVITAPI>
+      <REVITAPI Condition=" !Exists('$(REVITAPI)') ">D:\Fisiere\BuildRevit</REVITAPI>
    </PropertyGroup>
 </Project>
