@@ -1,0 +1,310 @@
+{
+  "Uuid": "3ef6c4b1-438f-4eb7-b895-59f9230e2643",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.View.SetCropBox",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "b1cc1332fcd54cf2b432ca411e23bc08",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "6265e70df9be445eb34db23d88162d0d",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3e8372834fee4dec9f37d22be42cb740",
+          "Name": "boundingBox",
+          "Description": "BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c54850820d864d5ab265c506024413d0",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View.SetCropBox@Autodesk.DesignScript.Geometry.BoundingBox",
+      "Replication": "Auto",
+      "Description": "Set CropBox for a view.\n\nView.SetCropBox (boundingBox: BoundingBox): View"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "bac856b94cfc441fb3701a22306e7551",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d982ae06ecd84851ae2fc3d2c40d3a7e",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c052285c3014427295345e2620b9345c",
+          "Name": "BoundingBox",
+          "Description": "BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.BoundingBox",
+      "Replication": "Auto",
+      "Description": "Get an Axis-aligned BoundingBox of the Element\n\nElement.BoundingBox: BoundingBox"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "4d75e994620d4c518b386426cc3de7c8",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "db08ebbc138048cb9c89b82a7cfd9863",
+          "Name": "viewport",
+          "Description": "Revit.Elements.Viewport",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "91deb01c5af44675a6b8229c77b254c6",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Viewport.View",
+      "Replication": "Auto",
+      "Description": "Get the associated View\n\nViewport.View: View"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "676b85f5-7db8-478c-8bcb-e82db93706d5-0015ba02"
+      ],
+      "Id": "14e325eedf084b2db959b851b5ba21ed",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3d2c7a47076948829373bfed120a2d85",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "abf6d7c8-77b7-4005-a8b7-5dd2b1220a3c-00149be0"
+      ],
+      "Id": "dd52b471013642078b004cf69bbeb57e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cff9c9bd44794b7ba98517b66acfa767",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "c052285c3014427295345e2620b9345c",
+      "End": "3e8372834fee4dec9f37d22be42cb740",
+      "Id": "eb802769eb5b4344875f15215ce488c1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "91deb01c5af44675a6b8229c77b254c6",
+      "End": "6265e70df9be445eb34db23d88162d0d",
+      "Id": "ca239ae499474295b4e2da71a189c7ef",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3d2c7a47076948829373bfed120a2d85",
+      "End": "d982ae06ecd84851ae2fc3d2c40d3a7e",
+      "Id": "80d4488ea6774ee8a7c9ee5a0bae783b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "cff9c9bd44794b7ba98517b66acfa767",
+      "End": "db08ebbc138048cb9c89b82a7cfd9863",
+      "Id": "0820548ce1e94941b49b87a435f7c828",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -49.63959312438965,
+      "EyeY": 24.22845458984375,
+      "EyeZ": 78.21772766113281,
+      "LookX": 18.62912368774414,
+      "LookY": -20.18155288696289,
+      "LookZ": -90.04078674316406,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "b1cc1332fcd54cf2b432ca411e23bc08",
+        "Name": "View.SetCropBox",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1371.541033339112,
+        "Y": 880.978563720131
+      },
+      {
+        "Id": "bac856b94cfc441fb3701a22306e7551",
+        "Name": "Element.BoundingBox",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 996.4681962025033,
+        "Y": 999.4699375336254
+      },
+      {
+        "Id": "4d75e994620d4c518b386426cc3de7c8",
+        "Name": "Viewport.View",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1030.275582155844,
+        "Y": 823.2125748294316
+      },
+      {
+        "Id": "14e325eedf084b2db959b851b5ba21ed",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 714.4899499772728,
+        "Y": 1000.9894659757788
+      },
+      {
+        "Id": "dd52b471013642078b004cf69bbeb57e",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 713.0,
+        "Y": 809.0
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "9988824765ea416fa69d492b5aec32d9",
+        "Title": "A viewport is selected",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [],
+        "HasNestedGroups": false,
+        "Left": 761.5,
+        "Top": 759.0,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676",
+        "PinnedNode": "dd52b471013642078b004cf69bbeb57e"
+      }
+    ],
+    "X": -311.81323288081023,
+    "Y": -194.6975961621904,
+    "Zoom": 0.8327379369130651
+  }
+}

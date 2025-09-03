@@ -1,3 +1,11 @@
+## 0.7.53
+* new node help files
+
+## 0.7.52
+* Update Dynamo Core to 3.6.0.9395
+## 0.7.51
+* Reverted changes made for package dll test
+
 ## 0.7.50
 * Modify package test to run correctly for all types of jobs
 
@@ -45,7 +53,7 @@
 * Fix test NoUnexpectedOrMissingDlls_ShouldExist
 
 ## 0.7.35
-* Update Dynamo Core to 3.5.2.8914
+* Update Dynamo Core to 3.6.0.9395
 
 ## 0.7.34
 * Make the proper changes for the adaptive component node
