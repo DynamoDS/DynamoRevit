@@ -209,7 +209,7 @@
     {
       "NodeId": "206e24f8-7b5a-445f-b3d3-2c270ab3a49d",
       "Binding": {
-        "ByBoundingBox_InClassDecl-1_InFunctionScope-1_Instance0_206e24f8-7b5a-445f-b3d3-2c270ab3a49d": "H4sIAAAAAAAACq3MoRLDIAyA4XeJbu4ggVCqa6onS0Vaut0MYsNxvPt2tbNzv/m/tUE53/XMs1aFaW2Qr4CW4FZfz/JY5gRTAjaUyR+K8bABnb1HVLsLChsfZFTevUFjaFRHMcGQYCn1ekmEnfgOffiHzvSrB/fVt759AO+7RzrOAAAA"
+        "ByBoundingBox_InClassDecl-1_InFunctionScope-1_Instance0_206e24f8-7b5a-445f-b3d3-2c270ab3a49d": "H4sIAAAAAAAACq3Mqw7EIBBA0X8Z3UlgoANU11SvLBWEx2YNYhdH+Pduamvrrrln71Dzr+W0hhZg2TukK6B7eLXvp7631cPiwbGxs1UCNStGLeeMwZWE2pgojeJIJFEIsi4W9jB52Gq7XmKWTDRgTI/o5a4r+dePcZwPuIKKzgAAAA=="
       }
     }
   ],
@@ -287,9 +287,36 @@
         "Y": 891.5751993858167
       }
     ],
-    "Annotations": [],
-    "X": -60.77452530120729,
-    "Y": -565.85999915518,
-    "Zoom": 1.085703560447186
+    "Annotations": [
+      {
+        "Id": "934a21297554433dbd3c5042070b4c27",
+        "Title": "Title <Double click here to edit group title>",
+        "DescriptionText": "Description <Double click here to edit group description>",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "206e24f87b5a445fb3d32c270ab3a49d",
+          "e1cdaa08060e4d2181b7981df4dfef62",
+          "65d048a2150a44f4a3af35ec0a134ea1",
+          "ebb1cc38a0d24debbc885c8f8cbfacf1",
+          "1a392c341dca46c380d5ce515a9ca8c8"
+        ],
+        "HasNestedGroups": false,
+        "Left": 218.8759946166805,
+        "Top": 751.5751993858169,
+        "Width": 1263.1953567139185,
+        "Height": 407.94235551288943,
+        "FontSize": 36.0,
+        "GroupStyleId": "00000000-0000-0000-0000-000000000000",
+        "InitialTop": 824.5751993858169,
+        "InitialHeight": 478.4833716477624,
+        "TextblockHeight": 63.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 165.60361901362944,
+    "Y": -399.141051724872,
+    "Zoom": 1.1917937712929565
   }
 }

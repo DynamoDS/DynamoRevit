@@ -1,0 +1,537 @@
+{
+  "Uuid": "bd0e7cfb-6a89-4b62-999e-164da305a3c7",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.DirectShape.ByMesh",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 266,
+      "SelectedString": "OST_FurnitureSystems",
+      "Id": "73b638db50b44ceeb963786daf4d67fc",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a01aba92b6cf4bbd993af3ebd7b4c476",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a4537f7f4a994a52a7a94f45818d4203",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "7b5741b93a9d4aa7906f87dee76e98e3",
+          "Name": "name",
+          "Description": "The name of the material\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e12d7814790247e4aa91559fbdcb38d2",
+          "Name": "Material",
+          "Description": "Material",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Material.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a material from the current document by the name\n\nMaterial.ByName (name: string): Material"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "8585182736df4965a3931b145137dec8",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9ae95ff453644c4c8ff9a6320a26289d",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Default"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "06acef9832274430a146b030b9978261",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d8b73cceb28848808c9cbe702ea3a503",
+          "Name": "x",
+          "Description": "Integer value, double value or string\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dcf5ea331ea04c85827d13716591f11d",
+          "Name": "y",
+          "Description": "Integer value, double value or string\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7382d5a165a049a3ab72c2a2b786258f",
+          "Name": "var",
+          "Description": "The sum of two input numbers, or the concatenation of two strings",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "+@var[]..[],var[]..[]",
+      "Replication": "Auto",
+      "Description": "Returns addition of x and y\n\n+ (x: var[]..[], y: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "0e77933f340d4977bf88ffe8a4bf99eb",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3e70d8f768b940d7a3b1463e7b09cace",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "DynamoDirectSHape "
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "49c644d225654ec2a97317c357434fc4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "1fb681a0b1cd4795b687cf17c12986a9",
+          "Name": "mesh",
+          "Description": "A Mesh that will be tessellated and placed in the Revit model as a DirectShape\n\nMesh",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "85c8f1d9e7a847d9952e446aa7a028e7",
+          "Name": "category",
+          "Description": "Must be a top level Built-in Category\n\nCategory",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "43b4dee7b60e4963835c856444cb4953",
+          "Name": "material",
+          "Description": "A Material to apply to the faces of the DirectShape\n\nMaterial\nDefault value : Revit.Elements.DirectShape.DynamoPreviewMaterial",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7ee57181b9de4a33afc73270e05b2c75",
+          "Name": "name",
+          "Description": "A string name for the DirectShape\n\nstring\nDefault value : \"DirectShape\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e7d7d3c5327946c28d6dca394ce509a7",
+          "Name": "DirectShape",
+          "Description": "A DirectShape Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.DirectShape.ByMesh@Autodesk.DesignScript.Geometry.Mesh,Revit.Elements.Category,Revit.Elements.Material,string",
+      "Replication": "Auto",
+      "Description": "Create a Revit DirectShape given some geometry, a name for the shape, a Category, and Material. The geometry will be tessellated before being placed in the Revit model The category of a DirectShape cannot be changed after creation, so a new DirectShape will be generated if the category input is changed.\n\nDirectShape.ByMesh (mesh: Mesh, category: Category, material: Material = Revit.Elements.DirectShape.DynamoPreviewMaterial, name: string = \"DirectShape\"): DirectShape"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "5f38df6479144cd88fa7bfecd9063507",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "ee774c1a6c01487a8ddf2cae47a5c57c",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ebeb97cde938437cbb3decf55fce09db",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "cdcb1c83f10a4d51ac5fd804c5123f20",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "71e2d451c9684cb1a66fd39c86e80ba7",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2f95b2e8d0b4415d9b8a0e0f2548445b",
+          "Name": "geometry[]",
+          "Description": "List of geometry from the element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Geometry",
+      "Replication": "Auto",
+      "Description": "Returns all geometry associated with an element. Ignores transforms when used with linked elements.\n\nElement.Geometry ( ): var[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "c527d6db-3cd7-41e5-bb3a-3dcd744150fb-001f4f79"
+      ],
+      "Id": "9e48f2f7e8df4beaa250107227decce4",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ca9a5915068444febb977b04ddea3bb9",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "208215a7ccda40918ca51a8d54a9cef4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "1f3fabc50d9c4b839178e2f01f7c69cf",
+          "Name": "object",
+          "Description": "Object to query type\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9e2144b9a1bc4958aa518240ee32d3dc",
+          "Name": "string",
+          "Description": "Type of object.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.Object.Type@var",
+      "Replication": "Auto",
+      "Description": "Returns the type of object represented as string.\n\nObject.Type (object: var): string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "a01aba92b6cf4bbd993af3ebd7b4c476",
+      "End": "85c8f1d9e7a847d9952e446aa7a028e7",
+      "Id": "697df549aa7c4b0192c40a2922b69286",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e12d7814790247e4aa91559fbdcb38d2",
+      "End": "43b4dee7b60e4963835c856444cb4953",
+      "Id": "57ae9c73c96a48e090786e49e7c7d1f6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9ae95ff453644c4c8ff9a6320a26289d",
+      "End": "7b5741b93a9d4aa7906f87dee76e98e3",
+      "Id": "4320985ce1e64f679cbe92314bed128a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7382d5a165a049a3ab72c2a2b786258f",
+      "End": "7ee57181b9de4a33afc73270e05b2c75",
+      "Id": "b38255c652044a7d9f7cbcbbfff38188",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3e70d8f768b940d7a3b1463e7b09cace",
+      "End": "d8b73cceb28848808c9cbe702ea3a503",
+      "Id": "00e3e4d2ca904c3d9787c0afd66e5bc1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ebeb97cde938437cbb3decf55fce09db",
+      "End": "dcf5ea331ea04c85827d13716591f11d",
+      "Id": "f77b62e8c93b45788920017cdbc03802",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2f95b2e8d0b4415d9b8a0e0f2548445b",
+      "End": "1f3fabc50d9c4b839178e2f01f7c69cf",
+      "Id": "2cbfe8883c8b40d3ab61946be43d88c6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2f95b2e8d0b4415d9b8a0e0f2548445b",
+      "End": "1fb681a0b1cd4795b687cf17c12986a9",
+      "Id": "3744113b24dd4afd8eef4d17a1d26467",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ca9a5915068444febb977b04ddea3bb9",
+      "End": "71e2d451c9684cb1a66fd39c86e80ba7",
+      "Id": "f3040043bf8946dead9d2b275da447e4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ca9a5915068444febb977b04ddea3bb9",
+      "End": "ee774c1a6c01487a8ddf2cae47a5c57c",
+      "Id": "1c38922ad4b64b71b68f3e07349e317d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "49c644d2-2565-4ec2-a973-17c357434fc4",
+      "Binding": {
+        "ByMesh_InClassDecl-1_InFunctionScope-1_Instance0_49c644d2-2565-4ec2-a973-17c357434fc4": "H4sIAAAAAAAACi2MPQuDQBBE/8vWLty3e9ZprFN6FqurQUgs9Jpw+N8jR2AYhoH3hgL7cuZFHpwZuqGA1AElwfnd514SdAmi5yhRC4p2Cp2KAVlbj8rM1nvSLRElaBJ8OC/Hxu/KaXLW3+czH9v+6h9VFdQaiNnj3LJBt5LgtJK7i92kbYyGLSplKIrx1dnvubImBB1CvOBqyj/jNf4Aap9xfMIAAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -44.30190658569336,
+      "EyeY": 66.58492660522461,
+      "EyeZ": 12.247150421142578,
+      "LookX": 7.7298431396484375,
+      "LookY": -8.373992919921875,
+      "LookZ": -37.36087417602539,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "73b638db50b44ceeb963786daf4d67fc",
+        "Name": "Categories",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 314.76821605639975,
+        "Y": 275.98775123947985
+      },
+      {
+        "Id": "a4537f7f4a994a52a7a94f45818d4203",
+        "Name": "Material.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 314.76821605639975,
+        "Y": 430.50000000000006
+      },
+      {
+        "Id": "8585182736df4965a3931b145137dec8",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1.5,
+        "Y": 393.5
+      },
+      {
+        "Id": "06acef9832274430a146b030b9978261",
+        "Name": "+",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 314.76821605639975,
+        "Y": 595.6708543097604
+      },
+      {
+        "Id": "0e77933f340d4977bf88ffe8a4bf99eb",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1.5,
+        "Y": 540.5
+      },
+      {
+        "Id": "49c644d225654ec2a97317c357434fc4",
+        "Name": "DirectShape.ByMesh",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 678.5,
+        "Y": 321.5
+      },
+      {
+        "Id": "5f38df6479144cd88fa7bfecd9063507",
+        "Name": "Element.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1.5,
+        "Y": 687.5
+      },
+      {
+        "Id": "cdcb1c83f10a4d51ac5fd804c5123f20",
+        "Name": "Element.Geometry",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 314.76821605639975,
+        "Y": -3.135050534483014
+      },
+      {
+        "Id": "9e48f2f7e8df4beaa250107227decce4",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -334.5,
+        "Y": 405.5
+      },
+      {
+        "Id": "208215a7ccda40918ca51a8d54a9cef4",
+        "Name": "Object.Type",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 686.0122487605202,
+        "Y": 3.9378136911159913
+      }
+    ],
+    "Annotations": [],
+    "X": 645.6994168818187,
+    "Y": 87.27910405508419,
+    "Zoom": 1.3153754050082145
+  }
+}
