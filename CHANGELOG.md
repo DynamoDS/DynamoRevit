@@ -1,3 +1,7 @@
+## 0.7.54
+* Batch 02 - Submit Node Help: Added in-depth documentation for 14 nodes, including updates to help files for Sheet.ByNameNumberTitleBlockAndViews, ScheduleView.RemoveFields, ScheduleView.ClearAllFilters, AxonometricView.ByEyePointAndTarget, AreaPlanView.ByLevelAndAreaScheme, ModelCurve.ByCurve, DetailCurve.ByCurve, and related images.
+* Add en-GB language support for CL.
+
 ## 0.7.53
 * new node help files
 
