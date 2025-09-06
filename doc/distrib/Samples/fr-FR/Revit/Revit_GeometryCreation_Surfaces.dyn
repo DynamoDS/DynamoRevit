@@ -597,7 +597,7 @@
         {
           "Id": "24d83f34454e4318a4fd2b4314e259e0",
           "Name": "",
-          "Description": "noeud à évaluer.",
+          "Description": "Noeud à évaluer.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -628,7 +628,7 @@
         {
           "Id": "3839954b56b34ab683b6591073dd71bd",
           "Name": "",
-          "Description": "noeud à évaluer.",
+          "Description": "Noeud à évaluer.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -659,7 +659,7 @@
         {
           "Id": "9a68805d44b64baf9a90650bab59315b",
           "Name": "",
-          "Description": "noeud à évaluer.",
+          "Description": "Noeud à évaluer.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -688,7 +688,7 @@
         {
           "Id": "530c072cf1a44f19aef3381e5a84f6a3",
           "Name": "path",
-          "Description": "Trajectoire d'entrée du balayage.\n\nCurve",
+          "Description": "Trajectoire d'entrée du balayage.\n\nCourbe",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -697,7 +697,7 @@
         {
           "Id": "88f5a2b8cd654b6bb63ba4c25f061bc5",
           "Name": "guideRail",
-          "Description": "Rail de guidage pour l'orientation du balayage.\n\nCurve",
+          "Description": "Rail de guidage pour l'orientation du balayage.\n\nCourbe",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -706,7 +706,7 @@
         {
           "Id": "0fe1c2b54ba1414bbaea618b9a30297f",
           "Name": "profile",
-          "Description": "Courbe de profil à balayer le long de la trajectoire.\n\nCurve",
+          "Description": "Courbe de profil à balayer le long de la trajectoire.\n\nCourbe",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
