@@ -35,6 +35,9 @@ REM 2. download 3rdParty packages by Aget.exe
 
     set PythonAget="%AgetFile%" -os win -config release -iset intel64 -toolchain v140 -linkage shared -packagesDir "%DynamoPackages%" -nuget "%NugetExe%" -framework net8.0 -nugetConfig "%NugetConfig%"   
 
+    echo [DEBUG] Framework argument: -framework net8.0
+    echo [DEBUG] Full command: %PythonAget% -agettable "%ConfigDir%\packages.aget" -refsDir "%SymLinksDir%"
+
     call :TrackTime "[Aget] Downloading NuGet packages from the NuGet Gallery and the Artifactory server, might take a while if running for the first time."
     echo If any package is not found in the NuGet Gallery, redirect to look up in the Artifactory server...
 
