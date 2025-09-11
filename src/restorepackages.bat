@@ -1,42 +1,11 @@
+
 @echo off
-REM ***********************************************************************
-REM This bat file uses Aget: https://git.autodesk.com/Dynamo/Aget to 
-REM download the nuget packages from NuGet server or closest Artifactory server for 
-REM
-REM NuGet Server: https://www.nuget.org
-REM Santa Clara: https://art-bobcat.autodesk.com
-REM
+REM Modernized: Use dotnet restore for SDK-style projects and .NET 6+/8+ compatibility
 REM ***********************************************************************
 
-setlocal EnableDelayedExpansion
-setlocal EnableExtensions
-
-REM 1. set variable values
-set DynamoPackages=%~dp0\packages\_packages
-echo %DynamoPackages%
-set CurrentDir=%~dp0
-
-echo Current Dir: %CurrentDir%
-
-if %CurrentDir:~-1%==\ (
-    set CurrentDir=%CurrentDir:~0,-1%
-)
-set ConfigDir=%CurrentDir%\Config
-set SymLinksDir=%CurrentDir%\packages
-
-set NugetExe=%CurrentDir%\Tools\NugetCLI\nuget.exe
-set AgetFile=%CurrentDir%\Tools\Aget\aget.exe
-set NugetConfig=%ConfigDir%\dynamo-nuget.config
-
-REM 2. download 3rdParty packages by Aget.exe
-	
-	echo Python Aget:
-    echo Running Python script from %AgetFile% using dynamo-nuget.config file
-
-    set PythonAget="%AgetFile%" -os win -config release -iset intel64 -toolchain v140 -linkage shared -packagesDir "%DynamoPackages%" -nuget "%NugetExe%" -framework net8.0 -nugetConfig "%NugetConfig%"   
-
-    echo [DEBUG] Framework argument: -framework net8.0
-    echo [DEBUG] Full command: %PythonAget% -agettable "%ConfigDir%\packages.aget" -refsDir "%SymLinksDir%"
+echo Restoring NuGet packages using dotnet CLI...
+dotnet restore ..\DynamoRevit.All.sln
+echo Done restoring packages.
 
     call :TrackTime "[Aget] Downloading NuGet packages from the NuGet Gallery and the Artifactory server, might take a while if running for the first time."
     echo If any package is not found in the NuGet Gallery, redirect to look up in the Artifactory server...
