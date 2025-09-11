@@ -50,11 +50,14 @@
          <Private>False</Private>
       </Reference>
       <Reference Include="RevitAPIUI">
-         <HintPath>$(REVITAPI)\RevitAPIUI.dll</HintPath>
-         <Private>False</Private>
-      </Reference>
-      <Reference Include="ProtoGeometry">
-         <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.ZeroTouchLibrary\lib\$(DCoreLibSubFolder)\ProtoGeometry.dll</HintPath>
+      </ItemGroup>
+      <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+         <Reference Include="DynamoServices">
+            <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\netstandard2.0\DynamoServices.dll</HintPath>
+            <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoServices.dll</HintPath>
+            <Private>False</Private>
+         </Reference>
+      </ItemGroup>
          <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\ProtoGeometry.dll</HintPath>
          <Private>False</Private>
       </Reference>

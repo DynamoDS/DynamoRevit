@@ -10,11 +10,11 @@
 		<AssemblyName>DSRevitNodesUI</AssemblyName>
 		<OutputPath>$(OutputPath)\nodes\</OutputPath>
 		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-		<Prefer32Bit>false</Prefer32Bit>
-		<UseWPF>true</UseWPF>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<PostBuildEvent />
+		<Reference Include="DynamoServices" Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\netstandard2.0\DynamoServices.dll</HintPath>
+			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoServices.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
 		<DebugSymbols>true</DebugSymbols>

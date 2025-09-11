@@ -58,11 +58,13 @@
 			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)') ">$(DYNAMOBUILDPATH)\DynamoApplications.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="DynamoServices">
-			<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)') ">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\netstandard2.0\DynamoServices.dll</HintPath>
-			<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)') ">$(DYNAMOBUILDPATH)\DynamoServices.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
+		<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+			<Reference Include="DynamoServices">
+				<HintPath Condition="!Exists('$(DYNAMOBUILDPATH)') ">$(PACKAGESPATH)\DynamoVisualProgramming.DynamoServices\lib\netstandard2.0\DynamoServices.dll</HintPath>
+				<HintPath Condition=" Exists('$(DYNAMOBUILDPATH)') ">$(DYNAMOBUILDPATH)\DynamoServices.dll</HintPath>
+				<Private>False</Private>
+			</Reference>
+		</ItemGroup>
 		<Reference Include="Greg">
 			<HintPath>$(PACKAGESPATH)\Greg\lib\net8.0\Greg.dll</HintPath>
 			<Private>False</Private>
