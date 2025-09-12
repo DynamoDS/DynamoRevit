@@ -27,7 +27,9 @@
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\$(DCoreLibSubFolder)</REVITAPI>
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
-		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Preview Release</REVITAPI>
+	<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Preview Release</REVITAPI>
+	<!-- Fallback for CI/local: place RevitAPI.dll and RevitAPIUI.dll in extern/RevitAPI/ -->
+	<REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\..\extern\RevitAPI</REVITAPI>
 
 		<BaseIntermediateOutputPath>$(SolutionDir)..\obj\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
 		<IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
