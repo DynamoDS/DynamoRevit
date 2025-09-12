@@ -25,22 +25,59 @@ set NugetExe=%CurrentDir%\Tools\NugetCLI\nuget.exe
 set AgetFile=%CurrentDir%\Tools\Aget\aget.exe
 set NugetConfig=%ConfigDir%\dynamo-nuget.config
 
-REM 2. download 3rdParty packages by Aget.exe
-    echo Running Python script from %AgetFile% using dynamo-nuget.config file
-    set PythonAget="%AgetFile%" -os win -config release -iset intel64 -toolchain v140 -linkage shared -packagesDir "%DynamoPackages%" -nuget "%NugetExe%" -framework NET70 -nugetConfig "%NugetConfig%"
+REM 2. Restore NuGet packages using dotnet CLI
+set SolutionFile=%CurrentDir%\DynamoRevit.All.sln
+if not exist "%SolutionFile%" (
+    echo ERROR: Solution file %SolutionFile% not found.
+    exit /b 1
+)
+call :TrackTime "[dotnet] Restoring NuGet packages for solution, might take a while if running for the first time."
+dotnet restore "%SolutionFile%" --configfile "%NugetConfig%" --packages "%DynamoPackages%"
+if ERRORLEVEL 1 (
+    echo ERROR: dotnet restore failed.
+    exit /b 1
+)
 
-    call :TrackTime "[Aget] Downloading NuGet packages from the NuGet Gallery and the Artifactory server, might take a while if running for the first time."
-    echo If any package is not found in the NuGet Gallery, redirect to look up in the Artifactory server...
+REM 3. Create symlinks for each package as specified in packages.aget
+set PKGROOT=%CurrentDir%\packages\_packages
+set SYMLINKDIR=%CurrentDir%\packages
+set AGETFILE=%ConfigDir%\packages.aget
 
-    :: Symlinks are generated here
-    %PythonAget% -agettable "%ConfigDir%\packages.aget" -refsDir "%SymLinksDir%"
-    if ERRORLEVEL 1 (
-        echo ERROR: Failed to update Dynamo 3rdParty nuget packages in packages.aget
-        exit /b 1
+REM Parse packages.aget and create symlinks
+REM Only process lines that look like "PackageName": "Version"
+for /f "tokens=1,2 delims=:" %%a in ('findstr /r /c:"^[ ]*\"[A-Za-z0-9_.-]*\"[ ]*:[ ]*\"[A-Za-z0-9_.-]*\"" "%AGETFILE%"') do (
+    set "pkg=%%~a"
+    set "ver=%%~b"
+    setlocal enabledelayedexpansion
+    rem Remove spaces and quotes
+    set "pkg=!pkg: =!"
+    set "pkg=!pkg:~1,-1!"
+    set "ver=!ver: =!"
+    set "ver=!ver:~1,-1!"
+    set "srcdir=%PKGROOT%\!pkg!\!ver!"
+    set "linkdir=%SYMLINKDIR%\!pkg!"
+    echo Processing package !pkg! version !ver!
+    if exist !linkdir! (
+        if exist !linkdir!\NUL (
+            echo Removing directory or directory symlink: !linkdir!
+            rmdir /s /q !linkdir!
+        ) else (
+            echo Removing file or file symlink: !linkdir!
+            del /f /q !linkdir!
+        )
     )
-    call :TrackTime "%~n0: exiting from batch script"
+    if exist !srcdir! (
+        echo Creating symlink: !linkdir! -> !srcdir!
+        mklink /D !linkdir! !srcdir!
+    ) else (
+        echo WARNING: Source directory !srcdir! does not exist, skipping symlink.
+    )
     endlocal
-    exit /b 0
+)
+
+call :TrackTime "%~n0: exiting from batch script"
+endlocal
+exit /b 0
 :TrackTime
 echo ========================================================
 echo %~1
