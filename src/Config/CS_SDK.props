@@ -23,10 +23,7 @@
 		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET80'">net8.0</DCoreLibSubFolder>
 		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET70'">net6.0</DCoreLibSubFolder>
 		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET60'">net6.0</DCoreLibSubFolder>
-		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\$(DCoreLibSubFolder)</REVITAPI>
-		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
-		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
-	<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Preview Release</REVITAPI>
+			<REVITAPI>$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\$(DCoreLibSubFolder)</REVITAPI>
 
 		<BaseIntermediateOutputPath>$(SolutionDir)..\obj\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
 		<IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
