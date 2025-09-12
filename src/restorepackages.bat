@@ -5,7 +5,7 @@ REM ***********************************************************************
 
 echo Restoring NuGet packages using dotnet CLI...
 
-set SOLN=.\DynamoRevit.All.sln
+set SOLN=..\DynamoRevit.All.sln
 if not exist %SOLN% (
 	echo ERROR: Solution file %SOLN% not found.
 	exit /b 1
