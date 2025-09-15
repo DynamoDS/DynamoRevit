@@ -20,9 +20,11 @@
 	<PropertyGroup>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 	</PropertyGroup>
-	<ItemGroup Condition="$(Platform.Contains('NET'))">
-		<PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
-	</ItemGroup>
+	   <ItemGroup Condition="$(Platform.Contains('NET'))">
+		   <Reference Include="System.Resources.Extensions">
+			   <HintPath>..\packages\System.Resources.Extensions\lib\netstandard2.0\System.Resources.Extensions.dll</HintPath>
+		   </Reference>
+	   </ItemGroup>
 	<Target Name="BeforeBuildMigrated" BeforeTargets="PreBuildEvent">
 		<GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v4.8">
 			<Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
