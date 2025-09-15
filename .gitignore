@@ -225,3 +225,6 @@ test/SystemInJson
 
 # Icon resources
 /src/DynamoRevitIcons/*.resources
+
+# Revit API DLLs (these should be obtained via the RevitAPI NuGet package)
+lib/*

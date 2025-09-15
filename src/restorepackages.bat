@@ -32,9 +32,17 @@ if not exist "%SolutionFile%" (
     exit /b 1
 )
 call :TrackTime "[dotnet] Restoring NuGet packages for solution, might take a while if running for the first time."
-dotnet restore "%SolutionFile%" --configfile "%NugetConfig%" --packages "%DynamoPackages%"
+REM Use nuget.exe restore to ensure packages go to the correct folder
+set NugetExePath=%CurrentDir%\..\..\DynamoRevitUtils\tools\NuGet.exe
+if not exist "%NugetExePath%" set NugetExePath=%CurrentDir%\tools\NuGet.exe
+if not exist "%NugetExePath%" (
+    echo ERROR: NuGet.exe not found at %NugetExePath%
+    exit /b 1
+)
+call :TrackTime "[nuget.exe] Restoring NuGet packages for solution, might take a while if running for the first time."
+"%NugetExePath%" restore "%SolutionFile%" -ConfigFile "%NugetConfig%" -PackagesDirectory "%DynamoPackages%"
 if ERRORLEVEL 1 (
-    echo ERROR: dotnet restore failed.
+    echo ERROR: nuget.exe restore failed.
     exit /b 1
 )
 
