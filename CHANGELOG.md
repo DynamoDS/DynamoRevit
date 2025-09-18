@@ -1,3 +1,6 @@
+## 0.7.55
+* Update Dynamo Core to 3.6.1.9895
+
 ## 0.7.54
 * Batch 02 - Submit Node Help: Added in-depth documentation for 14 nodes, including updates to help files for Sheet.ByNameNumberTitleBlockAndViews, ScheduleView.RemoveFields, ScheduleView.ClearAllFilters, AxonometricView.ByEyePointAndTarget, AreaPlanView.ByLevelAndAreaScheme, ModelCurve.ByCurve, DetailCurve.ByCurve, and related images.
 * Add en-GB language support for CL.
