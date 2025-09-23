@@ -1,0 +1,217 @@
+{
+  "Uuid": "798b0663-2565-4be2-ba4e-89ec5c1d8b59",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.FailureMessage.Severity",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Point": {
+        "Key": "Autodesk.DesignScript.Geometry.Point",
+        "Value": "ProtoGeometry.dll"
+      },
+      "Line": {
+        "Key": "Autodesk.DesignScript.Geometry.Line",
+        "Value": "ProtoGeometry.dll"
+      },
+      "Wall": {
+        "Key": "Revit.Elements.Wall",
+        "Value": "RevitNodes.dll"
+      }
+    }
+  },
+  "Inputs": [
+    {
+      "Id": "4afe4fdd46634bc1923c48210fff043f",
+      "Name": "Performance Adviser Rules",
+      "Type": "selection",
+      "Type2": "dropdownSelection",
+      "Value": "View clipping is disabled",
+      "Description": "All Performance Adviser rules.",
+      "SelectedIndex": 14
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.PerformanceAdviserRules, DSRevitNodesUI",
+      "SelectedIndex": 14,
+      "SelectedString": "View clipping is disabled",
+      "Id": "4afe4fdd46634bc1923c48210fff043f",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ffbc42c171b84a3f9b2939038f9beb45",
+          "Name": "Performance Adviser Rules",
+          "Description": "The selected Performance Adviser Rules",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All Performance Adviser rules."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9b3163a310164a46b515c7c79da66852",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e2329a6405664a1f9a90afdb5e05de82",
+          "Name": "rules",
+          "Description": "PerformanceAdviserRule[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dde94d8820774c34b140d7c45a991501",
+          "Name": "FailureMessage[]",
+          "Description": "FailureMessage[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.PerformanceAdviserRule.Execute@Revit.Elements.PerformanceAdviserRule[]",
+      "Replication": "Auto",
+      "Description": "Execute Rules\n\nPerformanceAdviserRule.Execute (rules: PerformanceAdviserRule[]): FailureMessage[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "5992984db8e9491c91222baee8979374",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b58d462c2a944a14a02ff55d6a022bfe",
+          "Name": "failureMessage",
+          "Description": "Revit.Elements.FailureMessage",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7474fa357e44424eadefc3baa85a99b6",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FailureMessage.Severity",
+      "Replication": "Auto",
+      "Description": "Get the failure severity.\n\nFailureMessage.Severity: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ffbc42c171b84a3f9b2939038f9beb45",
+      "End": "e2329a6405664a1f9a90afdb5e05de82",
+      "Id": "67bd92b323da467194757a5b2452e2cf",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "dde94d8820774c34b140d7c45a991501",
+      "End": "b58d462c2a944a14a02ff55d6a022bfe",
+      "Id": "6240b989fd9545e09100abcb6c69b1ca",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -14.49935531616211,
+      "EyeY": 12.279585838317871,
+      "EyeZ": 70.00637817382812,
+      "LookX": 14.339941024780273,
+      "LookY": -15.53493595123291,
+      "LookZ": -69.3097152709961,
+      "UpX": 0.04343581572175026,
+      "UpY": 0.9767492413520813,
+      "UpZ": -0.20993980765342712
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "4afe4fdd46634bc1923c48210fff043f",
+        "Name": "Performance Adviser Rules",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -457.09686433037825,
+        "Y": 37.3967001984974
+      },
+      {
+        "Id": "9b3163a310164a46b515c7c79da66852",
+        "Name": "PerformanceAdviserRule.Execute",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 74.575673167703,
+        "Y": 32.919355772170775
+      },
+      {
+        "Id": "5992984db8e9491c91222baee8979374",
+        "Name": "FailureMessage.Severity",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 516.4885111890391,
+        "Y": 32.38233173367456
+      }
+    ],
+    "Annotations": [],
+    "X": 982.0405203186758,
+    "Y": 452.61560727691864,
+    "Zoom": 1.313026171465246
+  }
+}
