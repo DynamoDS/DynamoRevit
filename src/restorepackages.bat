@@ -27,7 +27,19 @@ set NugetConfig=%ConfigDir%\dynamo-nuget.config
 
 REM 2. download 3rdParty packages by Aget.exe
     echo Running Python script from %AgetFile% using dynamo-nuget.config file
-    set PythonAget="%AgetFile%" -os win -config release -iset intel64 -toolchain v140 -linkage shared -packagesDir "%DynamoPackages%" -nuget "%NugetExe%" -framework NET80 -nugetConfig "%NugetConfig%"
+    REM TODO: check if this actually works with .NET 10 version of Dynamo
+    REM Auto-detect default platform from solution file
+    set Framework=NET100
+    set SolutionFile=%CurrentDir%\DynamoRevit.All.sln
+    if exist "%SolutionFile%" (
+        REM Find the first platform in SolutionConfigurationPlatforms section
+        for /f "tokens=1 delims=|" %%i in ('findstr /R "Debug|.*=" "%SolutionFile%" ^| findstr /V "ProjectConfigurationPlatforms"') do (
+            set Framework=%%i
+            set FrameworkFound=true
+        )
+    )
+    echo Using framework: %Framework%
+    set PythonAget="%AgetFile%" -os win -config release -iset intel64 -toolchain v140 -linkage shared -packagesDir "%DynamoPackages%" -nuget "%NugetExe%" -framework %Framework% -nugetConfig "%NugetConfig%"
 
     call :TrackTime "[Aget] Downloading NuGet packages from the NuGet Gallery and the Artifactory server, might take a while if running for the first time."
     echo If any package is not found in the NuGet Gallery, redirect to look up in the Artifactory server...
