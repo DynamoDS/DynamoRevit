@@ -8,6 +8,7 @@
     <TargetFramework Condition="'$(Platform)' == 'NET80'">net8.0-windows</TargetFramework>
     <TargetFramework Condition="'$(Platform)' == 'NET100'">net10.0-windows</TargetFramework>
     <DCoreLibSubFolder Condition="'$(Platform)' == 'NET80'">net8.0</DCoreLibSubFolder>
+    <!-- TODO: Temporary, until we have DynamoCore build on net10.0 -->
     <DCoreLibSubFolder Condition="'$(Platform)' == 'NET100'">net8.0</DCoreLibSubFolder>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
     <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
