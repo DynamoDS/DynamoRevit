@@ -14,10 +14,7 @@
       "pythonnet_py38_win": "2.5.1",
       "Newtonsoft.Json": "13.0.1",
       "NUnit": "3.13.3",
-      "NUnit.Engine": "3.13.2",
-      "Prism": "4.1.0",
-      "RestSharp": "112.0.0",
-      "System.Resources.Extensions": "4.7.0"
+      "NUnit.Engine": "3.13.2"
     }
   }
 }
