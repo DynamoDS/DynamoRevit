@@ -1,3 +1,6 @@
+## 0.6.51
+* Update Dynamo Core to 3.6.1.9895
+
 ## 0.6.50
 * Update Dynamo Core to 3.6.0.9395
 
