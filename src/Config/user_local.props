@@ -7,8 +7,6 @@
 	   	<!-- local env -->
 		<OutputPath Condition=" '$(OutputPath)' == '' ">$(SolutionDir)..\bin\$(Platform)\$(Configuration)\$(REVIT_VERSION)</OutputPath>
 		<TestOutputPath Condition=" '$(TestOutputPath)' == '' ">$(OutputPath)</TestOutputPath>
-		<!-- For NET80, always use Revit Preview Release/net8.0 -->
-		<!-- REVITAPI for NET80 is now configured in Directory.Build.props -->
 	</PropertyGroup>
 	<PropertyGroup Condition="$(Platform.Contains('NET'))">
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">E:\RevitVersion\2025\Releasex64_NET7_20230907\Releasex64</REVITAPI>
