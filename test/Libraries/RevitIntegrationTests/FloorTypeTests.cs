@@ -111,5 +111,31 @@ namespace RevitSystemTests
             Assert.AreEqual(true, isFoundationSlabAfterChange);
         }
 
+
+        [Test]
+        [TestModel(@".\DifferentTypeRooms.rvt")]
+        public void FloorNodes()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Script\FloorNodes.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            var floorTypeName = GetPreviewValue("810634a9a60f41a2ab24833354eb6f54");
+            Assert.AreEqual("Standard", floorTypeName);
+
+            var floorTypeByName = GetPreviewValue("a450f0ac27ea4802902459aa1e2b374b");
+            Assert.AreEqual("FloorTest", floorTypeByName.ToString());
+
+            var categoryName = GetPreviewValue("de31ecaf910a407bb9d94fd8fe9c67a2");
+            Assert.AreEqual("Floors", categoryName);
+
+            var floorPlanView = GetPreviewValue("8fbbb68682a2473e9289ee30c476cfe6");
+            var expectedValue = "FloorPlanView(Name = Level 0(1) )";
+            Assert.AreEqual(expectedValue, floorPlanView.ToString());
+        }
+
+
     }
 }
