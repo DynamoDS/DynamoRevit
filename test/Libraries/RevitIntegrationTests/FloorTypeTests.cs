@@ -136,6 +136,47 @@ namespace RevitSystemTests
             Assert.AreEqual(expectedValue, floorPlanView.ToString());
         }
 
+        [Test]
+        [TestModel(@".\DifferentTypeRooms.rvt")]
+        public void FloorPointsAddMove()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Script\FloorPointsAddMove.dyn");
+            string testPath = Path.GetFullPath(samplePath);
 
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+            RunCurrentModel();
+
+            //On the first run of the script, only the added point will be read
+            //Assert that the new node was added
+            var floorPoints1 = GetFlattenedPreviewValues("cbd1efa4ba4f4941a541c213aa272e99");
+            Assert.AreEqual(1, floorPoints1.Count);
+            var pointAddedExceptedValue = "Point(X = 1000.000, Y = 0.000, Z = 0.000)";
+            Assert.AreEqual(pointAddedExceptedValue, floorPoints1[0].ToString());
+
+            var indexFloorPoints = AllNodes
+            .OfType<CoreNodeModels.Input.DoubleInput>()
+            .FirstOrDefault(n => n.Name == "IndexFloorPoints");
+            indexFloorPoints.Value = "4.0";
+
+            var movePoint = AllNodes
+            .OfType<CoreNodeModels.Input.DoubleInput>()
+            .FirstOrDefault(n => n.Name == "MovePoint");
+            movePoint.Value = "8.0";
+
+            //Now we rerun the script, the new point will be moved on Z axis,
+            //and the 4 points of the floor will be read and will appear in the canvas
+            RunCurrentModel();
+
+
+            floorPoints1 = GetFlattenedPreviewValues("cbd1efa4ba4f4941a541c213aa272e99");
+            Assert.AreEqual(5, floorPoints1.Count);
+
+            //Verify the moved point
+            var floorPoints2 = GetFlattenedPreviewValues("489a118ecc204a29a7459aa2e1f7ec9b");
+            Assert.AreEqual(5, floorPoints2.Count);
+            var pointMovedExceptedValue = "Point(X = 1000.000, Y = 0.000, Z = 2438.400)";
+            Assert.AreEqual(pointMovedExceptedValue, floorPoints2[4].ToString());
+        }
     }
 }
