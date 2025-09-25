@@ -11,6 +11,7 @@ using RevitServices.Persistence;
 using RevitTestServices;
 
 using RTF.Framework;
+using Revit.Elements.Views;
 
 namespace RevitSystemTests
 {
@@ -49,6 +50,29 @@ namespace RevitSystemTests
             Assert.AreEqual(expectedCeilingTypeRoughness, resultCeilingTypeRoughness);
             Assert.AreEqual(expectedCeilingTypeThermalMass, resultCeilingTypeThermalMass, Tolerance);
             Assert.AreEqual(expectedCeilingTypeThermalResistance, resultCeilingTypeThermalResistance, Tolerance);
+        }
+
+        [Test]
+        [TestModel(@".\DifferentTypeRooms.rvt")]
+        public void CeilingTypeNodes()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Script\CeilingTypeNodes.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            RunCurrentModel();
+
+            var ceilingPlanViewByLevel = GetPreviewValue("6d03e1bf752c4c199e8d68cbae93ccae");
+            var expectedValue = "CeilingPlanView(Name = Level 1(1) )";
+            Assert.AreEqual(expectedValue, ceilingPlanViewByLevel.ToString());
+
+            var ceilingTypeByName = GetPreviewValue("09150f0f5f58453b86399bd9b777d86c");
+            Assert.AreEqual("Plain", ceilingTypeByName.ToString());
+
+            var ceilingTypeName = GetPreviewValue("58acf00a88bb4aadaa56cc403f06e6b0");
+            Assert.AreEqual("Generic", ceilingTypeName);
         }
     }
 }
