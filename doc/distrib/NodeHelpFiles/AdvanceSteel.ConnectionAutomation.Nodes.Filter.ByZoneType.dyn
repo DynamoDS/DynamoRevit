@@ -1,0 +1,558 @@
+{
+  "Uuid": "1290f39e-e19a-47d4-9bc1-1535a4a1bebe",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AdvanceSteel.ConnectionAutomation.Nodes.Filter.ByZoneType",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "dee48169d8e2419f88476cb0f282fabc",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "3ba846afc5dc4eb88cc61f520ca3bd8e",
+          "Name": "node",
+          "Description": "The input connection nodes.\n\nConnectionNode",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fb8e1df075d54c5c8eb3639a664cc814",
+          "Name": "index",
+          "Description": "The zero-based index of the structure data element to be compared.\n\nint\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": true,
+          "KeepListStructure": true
+        },
+        {
+          "Id": "67f5203c892d40b0b1feea3f3355da80",
+          "Name": "zoneType",
+          "Description": "A case insensitive string representing the zone type (it can be end or body).\n\nstring\nDefault value : \"End\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d8e9c5ee8c184790ac80ddaeab5738a4",
+          "Name": "accepted",
+          "Description": "The nodes that pass the filter.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6c87058ada0f465783107a88882b1c6f",
+          "Name": "rejected",
+          "Description": "The nodes that do not pass the filter.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.Filter.ByZoneType@AdvanceSteel.ConnectionAutomation.Nodes.ConnectionNode,int,string",
+      "Replication": "Auto",
+      "Description": "Returns the connection nodes where the structure data element at an index has a certain zone type for that node.\n\nFilter.ByZoneType (node: ConnectionNode, index: int = 0, zoneType: string = \"End\"): var[]..[]"
+    },
+    {
+      "ConcreteType": "AdvanceSteel.ConnectionAutomation.SelectStructureData, AdvanceSteelConnAutoNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "568476",
+        "568486",
+        "568736",
+        "568744",
+        "568756",
+        "568758",
+        "569198",
+        "569200",
+        "569202",
+        "569231",
+        "569233",
+        "569235",
+        "569237"
+      ],
+      "Id": "059797c0519e419e95b6980da389632d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "27d9fb907f49405ab29d645d5bf48cdb",
+          "Name": "structureData",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select the structure data used for filtering Fabrication Elements"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a5778277a4f349428c06b65924d50f42",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "61c23bec1e6b4cb1a1ca1deb2017b433",
+          "Name": "objects",
+          "Description": "A list of structure data elements.\n\nModelObject[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6334ca0f2ea74ce887c944997dc91c9b",
+          "Name": "ConnectionNode[]",
+          "Description": "A list of connection nodes. For more info, see grouping.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionNode.FromStructure@AdvanceSteel.ConnectionAutomation.Nodes.ModelObject[]",
+      "Replication": "Auto",
+      "Description": "Groups structure data elements into connection nodes.\n\nConnectionNode.FromStructure (objects: ModelObject[]): ConnectionNode[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.CustomSelection, CoreNodeModels",
+      "IsVisibleDropDownTextBlock": true,
+      "SerializedItems": [
+        {
+          "Name": "End",
+          "Item": "End"
+        },
+        {
+          "Name": "Body",
+          "Item": "Body"
+        }
+      ],
+      "SelectedIndex": 0,
+      "SelectedString": "End",
+      "Id": "50c2a7b72d744caab632d075482d6227",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8e79a859957546e7970ea4a5ffdfccfe",
+          "Name": "value",
+          "Description": "Selected value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A dropdown menu with customizable values."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1f011d2d14a84a59aba2ce0e11db224e",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "46b6417cc5e4433ead5c021c3402af4f",
+          "Name": "structureData",
+          "Description": "AdvanceSteel.ConnectionAutomation.Nodes.StructureData",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "de84a84ccba744ab8bc1c36d2bf0a8e7",
+          "Name": "string",
+          "Description": "The output section shape, as string.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.StructureData.SectionShape",
+      "Replication": "Auto",
+      "Description": "Returns the section shape of a structure data element.\n\nStructureData.SectionShape: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d80def774b904de486a6703acca820c9",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a7df811f11b54a45bde6a64c9bddadb1",
+          "Name": "connectionNode",
+          "Description": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionNode",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "85676a02c861412091636172d3f3acc0",
+          "Name": "Zone[]",
+          "Description": "A list of zones.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionNode.Zones",
+      "Replication": "Auto",
+      "Description": "Returns the zones within each input connection node.\n\nConnectionNode.Zones: Zone[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "ab8b75b5d063451ca903c9bc4dff64b4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "9d87f0c7e2924f47bbdd6811449e4415",
+          "Name": "zone",
+          "Description": "AdvanceSteel.ConnectionAutomation.Nodes.Zone",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f1b2552e3bd04f6ea870ae2c1ee76e82",
+          "Name": "string",
+          "Description": "The output zone type (end or body), as string.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.Zone.ZoneType",
+      "Replication": "Auto",
+      "Description": "Returns the zone type for a zone.\n\nZone.ZoneType: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a4c3b9b700b24eaa88ea5ad5bd01d3c7",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "42aa8419dbe14257928e76a736c63109",
+          "Name": "nodes",
+          "Description": "The nested lists of connection nodes (ConnectionNode[]). It is recommended to filter by geometric conditions beforehand.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8cbed370757e488d9b290bb28ba559bf",
+          "Name": "ConnectionNode[]",
+          "Description": "A partially flattened and cleaned list containing only one connection node for each group of structure data elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionNode.RemoveDuplicates@var[]..[]",
+      "Replication": "Auto",
+      "Description": "Finds all connection nodes that are permutations of one another { [beam1, beam2], [beam2, beam1] }, keeps only the first node { [beam1, beam2] } and removes null and empty items.\n\nConnectionNode.RemoveDuplicates (nodes: var[]..[]): ConnectionNode[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e47a5cc36d3447b79debc09af0d61183",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b9728f45477c48918504b5d053fb49c8",
+          "Name": "zone",
+          "Description": "AdvanceSteel.ConnectionAutomation.Nodes.Zone",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fb60e2ceb8bf4d8c9d0513f77fb0ffcb",
+          "Name": "string",
+          "Description": "The output zone type (end or body), as string.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.Zone.ZoneType",
+      "Replication": "Auto",
+      "Description": "Returns the zone type for a zone.\n\nZone.ZoneType: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "01b94c2ae7a14291850512ca9e528268",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "64d677519d3c43169eb504e1a0a13c50",
+          "Name": "connectionNode",
+          "Description": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionNode",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f02bc2afe5cc420799335acd137b82cc",
+          "Name": "Zone[]",
+          "Description": "A list of zones.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionNode.Zones",
+      "Replication": "Auto",
+      "Description": "Returns the zones within each input connection node.\n\nConnectionNode.Zones: Zone[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d8e9c5ee8c184790ac80ddaeab5738a4",
+      "End": "42aa8419dbe14257928e76a736c63109",
+      "Id": "5e24454d454241548f4681bc1973ae7d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "27d9fb907f49405ab29d645d5bf48cdb",
+      "End": "61c23bec1e6b4cb1a1ca1deb2017b433",
+      "Id": "08e2f30a7e5e4cb8986b9e3dc5534867",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "27d9fb907f49405ab29d645d5bf48cdb",
+      "End": "46b6417cc5e4433ead5c021c3402af4f",
+      "Id": "fbe4e9b8d3e649d38c2daa12f585d925",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6334ca0f2ea74ce887c944997dc91c9b",
+      "End": "3ba846afc5dc4eb88cc61f520ca3bd8e",
+      "Id": "d1be542582894f9dadabe9d7ffb6bcb5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6334ca0f2ea74ce887c944997dc91c9b",
+      "End": "a7df811f11b54a45bde6a64c9bddadb1",
+      "Id": "a97a7708c23e4e7bac0a206edbcfce75",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8e79a859957546e7970ea4a5ffdfccfe",
+      "End": "67f5203c892d40b0b1feea3f3355da80",
+      "Id": "4c412597978e4ce6b79543c0e296bdb2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "85676a02c861412091636172d3f3acc0",
+      "End": "9d87f0c7e2924f47bbdd6811449e4415",
+      "Id": "7fa1002f24f44cd7a55debd21312545d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8cbed370757e488d9b290bb28ba559bf",
+      "End": "64d677519d3c43169eb504e1a0a13c50",
+      "Id": "9271f765695b416a8b06ee982453948c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f02bc2afe5cc420799335acd137b82cc",
+      "End": "b9728f45477c48918504b5d053fb49c8",
+      "Id": "742f8ebb2be54bada28bb8eb3d9e8b61",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.5.2.8914",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "dee48169d8e2419f88476cb0f282fabc",
+        "Name": "Filter.ByZoneType",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 6806.710564495272,
+        "Y": 69.06311278765816
+      },
+      {
+        "Id": "059797c0519e419e95b6980da389632d",
+        "Name": "SelectStructureData",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 5970.710564495272,
+        "Y": -116.18688721234186
+      },
+      {
+        "Id": "a5778277a4f349428c06b65924d50f42",
+        "Name": "ConnectionNode.FromStructure",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 6384.710564495272,
+        "Y": -7.436887212341844
+      },
+      {
+        "Id": "50c2a7b72d744caab632d075482d6227",
+        "Name": "Custom Selection",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 6384.710564495272,
+        "Y": 140.06311278765816
+      },
+      {
+        "Id": "1f011d2d14a84a59aba2ce0e11db224e",
+        "Name": "StructureData.SectionShape",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 7946.710564495272,
+        "Y": -224.93688721234184
+      },
+      {
+        "Id": "d80def774b904de486a6703acca820c9",
+        "Name": "ConnectionNode.Zones",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 7583.710564495272,
+        "Y": -77.93688721234184
+      },
+      {
+        "Id": "ab8b75b5d063451ca903c9bc4dff64b4",
+        "Name": "Zone.ZoneType",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 7946.710564495272,
+        "Y": -77.93688721234184
+      },
+      {
+        "Id": "a4c3b9b700b24eaa88ea5ad5bd01d3c7",
+        "Name": "ConnectionNode.RemoveDuplicates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 7143.710564495272,
+        "Y": 69.06311278765816
+      },
+      {
+        "Id": "e47a5cc36d3447b79debc09af0d61183",
+        "Name": "Zone.ZoneType",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 7946.710564495272,
+        "Y": 69.06311278765816
+      },
+      {
+        "Id": "01b94c2ae7a14291850512ca9e528268",
+        "Name": "ConnectionNode.Zones",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 7583.710564495272,
+        "Y": 69.06311278765816
+      }
+    ],
+    "Annotations": [],
+    "X": -2369.370425785235,
+    "Y": 277.5449294765777,
+    "Zoom": 0.40185676392572944
+  }
+}
