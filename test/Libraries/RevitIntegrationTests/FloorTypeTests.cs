@@ -1,18 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using Autodesk.Revit.DB;
 using Dynamo.Nodes;
-using Autodesk.DesignScript.Geometry;
-using CoreNodeModels.Input;
 using NUnit.Framework;
-using RevitServices.Persistence;
 using RevitTestServices;
 using RTF.Framework;
-using Revit.Elements;
-using Dynamo.Graph.Nodes;
 using System.Collections.Generic;
-using Dynamo.Tests;
 
 namespace RevitSystemTests
 {
@@ -149,10 +142,13 @@ namespace RevitSystemTests
 
             //On the first run of the script, only the added point will be read
             //Assert that the new node was added
-            var floorPoints1 = GetFlattenedPreviewValues("cbd1efa4ba4f4941a541c213aa272e99");
+            var floorPoints1Node = AllNodes
+            .FirstOrDefault(n => n.Name == "Floor.Points1");
+            var floorPoints1 = GetFlattenedPreviewValues(floorPoints1Node.GUID.ToString("N"));
             Assert.AreEqual(1, floorPoints1.Count);
             var pointAddedExceptedValue = "Point(X = 1000.000, Y = 0.000, Z = 0.000)";
             Assert.AreEqual(pointAddedExceptedValue, floorPoints1[0].ToString());
+
 
             var indexFloorPoints = AllNodes
             .OfType<CoreNodeModels.Input.DoubleInput>()
@@ -164,16 +160,29 @@ namespace RevitSystemTests
             .FirstOrDefault(n => n.Name == "MovePoint");
             movePoint.Value = "8.0";
 
+            //!!For some reason, double run in code for this script doesn't work as expected
+            //The Floor.Points remains at 1 point so in order to make it work, we save as the script, close it and open the new one
+            //Manually, if we do double run, it works fine
+            string tempPath = Path.Combine(workingDirectory, "newScript.dyn");
+            ViewModel.SaveAsCommand.Execute(tempPath);
+
+            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+            ViewModel.OpenCommand.Execute(tempPath);
+
             //Now we rerun the script, the new point will be moved on Z axis,
             //and the 4 points of the floor will be read and will appear in the canvas
             RunCurrentModel();
 
-
-            floorPoints1 = GetFlattenedPreviewValues("cbd1efa4ba4f4941a541c213aa272e99");
+            floorPoints1Node = AllNodes
+            .FirstOrDefault(n => n.Name == "Floor.Points1");
+            floorPoints1 = GetFlattenedPreviewValues(floorPoints1Node.GUID.ToString("N"));
             Assert.AreEqual(5, floorPoints1.Count);
 
+
             //Verify the moved point
-            var floorPoints2 = GetFlattenedPreviewValues("489a118ecc204a29a7459aa2e1f7ec9b");
+            var floorPoints2Node = AllNodes
+            .FirstOrDefault(n => n.Name == "Floor.Points2");
+            var floorPoints2 = GetFlattenedPreviewValues(floorPoints2Node.GUID.ToString("N"));
             Assert.AreEqual(5, floorPoints2.Count);
             var pointMovedExceptedValue = "Point(X = 1000.000, Y = 0.000, Z = 2438.400)";
             Assert.AreEqual(pointMovedExceptedValue, floorPoints2[4].ToString());

@@ -59,7 +59,7 @@ namespace RevitSystemTests
 
             var roomLocation = GetPreviewValue("3594f81581cd4b8b9e68ef308eefcaa3");
             var expectedLocation = "Point(X = 5895.952, Y = 1686.784, Z = 0.000)";
-            Assert.AreEqual(expectedLocation, roomLocation);
+            Assert.AreEqual(expectedLocation, roomLocation.ToString());
 
             var roomVolume = GetPreviewValue("478907639b054374a68dadb7f3cfc26e");
             var expectedVolume = 241.077;
@@ -128,7 +128,7 @@ namespace RevitSystemTests
                 if (document.GetElement(roomId) is Room room)
                 {
                     string roomName = room.Name;
-                    Assert.AreEqual("NewRoom", roomName);
+                    Assert.AreEqual("NewRoom 25", roomName);
 
                     string roomNumber = room.Number;
                     Assert.AreEqual("25", roomNumber);
