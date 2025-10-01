@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+﻿using System.IO;
 using NUnit.Framework;
-
-using RevitServices.Persistence;
-
 using RevitTestServices;
-
 using RTF.Framework;
-using Revit.Elements.Views;
+
 
 namespace RevitSystemTests
 {
