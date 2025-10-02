@@ -10,6 +10,8 @@ namespace RevitSystemTests
     [TestFixture]
     class TagTests : RevitSystemTestBase
     {
+        private const double Tolerance = 0.001;
+
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
         public void PlaceTagWithOffset()
@@ -33,8 +35,6 @@ namespace RevitSystemTests
                 .InternalElement as IndependentTag)
                 .TagHeadPosition.IsAlmostEqualTo(new XYZ(10, 25, 0)));
         }
-
-        private const double Tolerance = 0.001;
 
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
