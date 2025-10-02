@@ -101,13 +101,13 @@
   <ItemGroup>
     <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DYNAMOCORE_VERSION)" ExcludeAssets="runtime" GeneratePathProperty="true" />
     <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DYNAMOWPFUI_VERSION)" ExcludeAssets="runtime" />
-    <PackageReference Include="Greg" Version="3.0.1.4707" ExcludeAssets="runtime" />
+    <PackageReference Include="Greg" Version="$(Greg_VERSION)" ExcludeAssets="runtime" />
     <!--Exclude GregRevitAuth runtime to avoid having the transitive deps copied to the output. PrivateAssets does not work for that. -->
-    <PackageReference Include="GregRevitAuth" Version="3.0.8935.26399" ExcludeAssets="runtime" GeneratePathProperty="true" />
-    <PackageReference Include="pythonnet_py38_win" Version="2.5.1" ExcludeAssets="runtime" />
+    <PackageReference Include="GregRevitAuth" Version="$(GregRevitAuth_VERSION)" ExcludeAssets="runtime" GeneratePathProperty="true" />
+    <PackageReference Include="pythonnet_py38_win" Version="$(PYTHONNET_PY38_VERSION)" ExcludeAssets="runtime" />
   </ItemGroup>
   <Target Name="Copy dll" AfterTargets="Build">
     <Copy SourceFiles="$(PkgDynamoVisualProgramming_Core)\lib\$(DCoreLibSubFolder)\DynamoInstallDetective.dll" DestinationFolder="$(OutputPath)\.." />
-    <Copy SourceFiles="$(PkgGregRevitAuth)\lib\$(DCoreLibSubFolder)\GregRevitAuth.dll" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="$(PkgGregRevitAuth)\lib\$(GregRevitAuthLibSubFolder)\GregRevitAuth.dll" DestinationFolder="$(OutputPath)" />
   </Target>
 </Project>
