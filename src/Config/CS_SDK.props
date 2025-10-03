@@ -8,7 +8,7 @@
 		<TargetFramework Condition="'$(Platform)' == 'NET60'">net6.0-windows</TargetFramework>
 		<TargetFramework Condition="'$(Platform)' == 'net48'">net48</TargetFramework>
 		<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
-		<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
+		<RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">2025</RevitVersionNumber>
 		<REVIT_VERSION>Revit_$(RevitVersionNumber)</REVIT_VERSION>
 		<PACKAGESPATH>$(SolutionDir)packages</PACKAGESPATH>
 		<DynamoExternPath  Condition=" '$(DynamoExternPath)' == '' ">$(SolutionDir)..\extern</DynamoExternPath>
@@ -23,7 +23,10 @@
 		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET80'">net8.0</DCoreLibSubFolder>
 		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET70'">net6.0</DCoreLibSubFolder>
 		<DCoreLibSubFolder Condition="'$(Platform)' == 'NET60'">net6.0</DCoreLibSubFolder>
-		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\$(DCoreLibSubFolder)</REVITAPI>
+		<REVITAPI Condition="'$(Platform)' == 'NET80'">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\net8.0</REVITAPI>
+		<REVITAPI Condition="'$(Platform)' != 'NET80' and !Exists('$(REVITAPI)')">$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\$(DCoreLibSubFolder)</REVITAPI>
+		
+		<!-- Fallback paths for when the above don't exist -->
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)</REVITAPI>
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit $(RevitVersionNumber)</REVITAPI>
 		<REVITAPI Condition=" !Exists('$(REVITAPI)') ">C:\Program Files\Autodesk\Revit Preview Release</REVITAPI>
