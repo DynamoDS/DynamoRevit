@@ -59,8 +59,6 @@ namespace RevitSystemTests
             var roofPoints1 = AllNodes
             .FirstOrDefault(n => n.Name == "roof.Points1");
 
-            //var roofPoints1 = "0a224bb8655743fcbb6fb5c1e002bbf0";
-
             var roofByOutlineNode = GetNode<DSFunction>("58315d46-b993-4faf-b62b-ceaca05b2255");
             var roofPoints1Node = GetNode<DSFunction>("0a224bb8-6557-43fc-bb6f-b5c1e002bbf0");
 
