@@ -2,9 +2,6 @@
 using System.IO;
 using System.Linq;
 using Autodesk.Revit.DB;
-using Dynamo.Nodes;
-using Autodesk.DesignScript.Geometry;
-using CoreNodeModels.Input;
 using NUnit.Framework;
 using RevitServices.Persistence;
 using RevitTestServices;
@@ -54,6 +51,37 @@ namespace RevitSystemTests
             AssertListOfCurves(expectedCurves, areaBoundaries);
         }
 
+        [Test]
+        [TestModel(@".\Revision2025.rvt")]
+        public void AreaPlanViewLvlAreaScheme()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\Script\AreaPlanViewLvlAreaScheme.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var areaPlanView = GetFlattenedPreviewValues("024e9355feec40a189d6a44485e3b72f");
+            Assert.AreEqual(3, areaPlanView.Count);
+            foreach (var view in areaPlanView)
+            {
+                Assert.AreEqual(typeof(Revit.Elements.Views.AreaPlanView), view.GetType());
+                Assert.IsNotNull(view);
+            }
+
+            //Verify that the Area Plan Views are present in Revit as well
+            var doc = DocumentManager.Instance.CurrentDBDocument;
+            var allAreaPlanViewsInDoc = new FilteredElementCollector(doc)
+                .OfClass(typeof(Autodesk.Revit.DB.View))
+                .Cast<Autodesk.Revit.DB.View>()
+                .Where(x => x.ViewType == ViewType.AreaPlan)
+                .ToList();
+            Assert.IsTrue(allAreaPlanViewsInDoc.Any(), "No Area Plan Views found in the document.");
+        }
+
         private static void AssertListOfCurves(List<Autodesk.DesignScript.Geometry.Curve> expectedCurves, List<object> areaBoundaries)
         {
             Assert.AreEqual(expectedCurves.Count(), areaBoundaries.Count());
@@ -74,8 +102,8 @@ namespace RevitSystemTests
                 Assert.AreEqual(expectedEndPoint.X, actualEndPoint.X, Tolerance);
                 Assert.AreEqual(expectedEndPoint.Y, actualEndPoint.Y, Tolerance);
                 Assert.AreEqual(expectedEndPoint.Z, actualEndPoint.Z, Tolerance);
-
             }
         }
+
     }
 }
