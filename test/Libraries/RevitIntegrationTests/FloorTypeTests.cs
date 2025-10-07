@@ -1,18 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using Autodesk.Revit.DB;
 using Dynamo.Nodes;
-using Autodesk.DesignScript.Geometry;
-using CoreNodeModels.Input;
 using NUnit.Framework;
-using RevitServices.Persistence;
 using RevitTestServices;
 using RTF.Framework;
-using Revit.Elements;
-using Dynamo.Graph.Nodes;
 using System.Collections.Generic;
-using Dynamo.Tests;
 
 namespace RevitSystemTests
 {
@@ -110,6 +103,5 @@ namespace RevitSystemTests
             var isFoundationSlabAfterChange = GetPreviewValue("4b5c27789bab4c43a6864e33786a2847");
             Assert.AreEqual(true, isFoundationSlabAfterChange);
         }
-
     }
 }
