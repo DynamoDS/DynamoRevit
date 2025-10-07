@@ -2,5 +2,6 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
       <REVITAPI Condition=" !Exists('$(REVITAPI)') ">$(SolutionDir)..\lib\Revit Preview Release\net8.0</REVITAPI>
+      <REVITAPI Condition=" !Exists('$(REVITAPI)') ">D:\src\git.adsk\Revit\dev2\Debugx64</REVITAPI>
   </PropertyGroup>
 </Project>
