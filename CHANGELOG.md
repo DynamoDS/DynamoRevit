@@ -1,3 +1,10 @@
+## 0.7.56
+* cover 80 new D4R nodes with regression tests
+
+## 0.7.56
+* update to .NET 10
+* update Dynamo Core to 4.0.0-beta2685
+
 ## 0.7.55
 * Update Dynamo Core to 3.6.1.9895
 

@@ -4,9 +4,9 @@
   <PropertyGroup>
     <PlatformTarget >x64</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
-    <Platforms>NET80</Platforms>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <DCoreLibSubFolder>net8.0</DCoreLibSubFolder>
+    <Platforms>NET80;NET100</Platforms>
+    <TargetFramework Condition="'$(Platform)' == 'NET80'">net8.0-windows</TargetFramework>
+    <TargetFramework Condition="'$(Platform)' == 'NET100'">net10.0-windows</TargetFramework>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
     <RevitVersionNumber Condition=" '$(RevitVersionNumber)' == '' ">Preview Release</RevitVersionNumber>
     <PACKAGESPATH>$(SolutionDir)packages</PACKAGESPATH>

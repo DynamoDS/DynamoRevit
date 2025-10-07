@@ -1,12 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using Autodesk.Revit.DB;
-using Dynamo.Nodes;
-using Autodesk.DesignScript.Geometry;
-using CoreNodeModels.Input;
 using NUnit.Framework;
-using RevitServices.Persistence;
 using RevitTestServices;
 using RTF.Framework;
 
@@ -16,6 +10,8 @@ namespace RevitSystemTests
     [TestFixture]
     class TagTests : RevitSystemTestBase
     {
+        private const double Tolerance = 0.001;
+
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
         public void PlaceTagWithOffset()
@@ -39,8 +35,6 @@ namespace RevitSystemTests
                 .InternalElement as IndependentTag)
                 .TagHeadPosition.IsAlmostEqualTo(new XYZ(10, 25, 0)));
         }
-
-        private const double Tolerance = 0.001;
 
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
@@ -106,6 +100,29 @@ namespace RevitSystemTests
             var leaderEndCondition = GetPreviewValue("316f8fd5b05441cda070c36a1e122c81");
 
             Assert.AreEqual("Free", leaderEndCondition);
+        }
+
+        [Test]
+        [TestModel(@".\Revision2025.rvt")]
+        public void TagByElemAndLoc()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\Script\TagByElemAndLoc.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var tagElemLoc = GetPreviewValue("8feaaed99bf949f493364d965688797b");
+            Assert.AreEqual(typeof(Revit.Elements.Tag), tagElemLoc.GetType());
+
+            var tagText = GetPreviewValue("22f8ead075444f4eba6e9bc95b12b5b4");
+            Assert.AreEqual("Wall-Ret_300Con", tagText);
+
+            var taggedElem = GetPreviewValue("985761979ebe4be3aae9f9d67beb0c9f");
+            Assert.AreEqual("Wall", taggedElem.ToString());
         }
     }
 }
