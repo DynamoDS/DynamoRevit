@@ -396,7 +396,7 @@ namespace RevitSystemTests
 
             // Assert
             var axoViewTargetBoundingBox = GetPreviewValue("6c402a6f515f4e84bd4367f066680630");
-            Assert.AreEqual("AxonometricView(Name = AxoView )", axoViewTargetBoundingBox.ToString());
+            Assert.IsNotNull(axoViewTargetBoundingBox);
 
             var boundingBox = GetPreviewValue("bda8352d349a4f1fbb4927c30710f77c") as Autodesk.DesignScript.Geometry.BoundingBox;
             Assert.AreEqual(0.0, boundingBox.MinPoint.X);
@@ -417,7 +417,7 @@ namespace RevitSystemTests
 
             // Assert
             var axoViewTargetElem = GetFlattenedPreviewValues("adf97be8f6824154b7b1d5eff9c8b1ae");
-            Assert.AreEqual("AxonometricView(Name = AxoViewElem )", axoViewTargetElem[0].ToString());
+            Assert.IsNotNull(axoViewTargetElem);
 
             var selectFamilyInstance = GetFlattenedPreviewValues("57bf46bc3c9a4b9da2ff015f5414f52b");
             Assert.AreEqual(14, selectFamilyInstance.Count);

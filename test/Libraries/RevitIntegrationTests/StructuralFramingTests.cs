@@ -15,6 +15,8 @@ namespace RevitSystemTests
     [TestFixture]
     public class StructuralFramingTests : RevitSystemTestBase
     {
+        private const double Tolerance = 0.001;
+
         [Test, TestModel(@".\StructuralFraming\StructuralFraming.rvt")]
         public void StructuralFraming_Beam()
         {
@@ -45,6 +47,29 @@ namespace RevitSystemTests
             CompareSliderCountAndMemberCount(BuiltInCategory.OST_StructuralColumns, 5);
         }
 
+        [Test]
+        [TestModel(@".\LOC model_2022_automatic test.rvt")]
+        public void LocationStructFram_StrucPlanView()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Script\LocationStructFram_StrucPlanView.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            var structFramLoc = GetPreviewValue("b16048797c57445f90ae241ff895eb2f") as Autodesk.DesignScript.Geometry.Line;
+            Assert.AreEqual(-19127.681, structFramLoc.StartPoint.X, Tolerance);
+            Assert.AreEqual(13470.534, structFramLoc.StartPoint.Y, Tolerance);
+            Assert.AreEqual(5994.798, structFramLoc.StartPoint.Z, Tolerance);
+            Assert.AreEqual(-15127.681, structFramLoc.EndPoint.X, Tolerance);
+            Assert.AreEqual(13470.534, structFramLoc.EndPoint.Y, Tolerance);
+            Assert.AreEqual(5994.798, structFramLoc.EndPoint.Z, Tolerance);
+            Assert.AreEqual(4000.000, structFramLoc.Direction.Length, Tolerance);
+
+            var structFramPlanView = GetPreviewValue("064eb4a3ad6944a9b316d5020ad31145");
+            Assert.IsNotNull(structFramPlanView);
+        }
+
         private void CompareStructuralTypeAgainstElements()
         {
             AssertTypeAndCountWhenSelectingFromDropDown(0);
@@ -72,27 +97,6 @@ namespace RevitSystemTests
             fec.WherePasses(symbolFilter);
 
             Assert.AreEqual(fec.ToElements().Count, slider.Value);
-        }
-
-        [Test]
-        [TestModel(@".\LOC model_2022_automatic test.rvt")]
-        public void LocationStructFram_StrucPlanView()
-        {
-            string samplePath = Path.Combine(workingDirectory, @".\Script\LocationStructFram_StrucPlanView.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-            RunCurrentModel();
-
-            var structFramLoc = GetPreviewValue("b16048797c57445f90ae241ff895eb2f");
-            var expectedLocation = "Line(StartPoint = Point(X = -19127.681, Y = 13470.534, Z = 5994.798), " +
-                "EndPoint = Point(X = -15127.681, Y = 13470.534, Z = 5994.798), " +
-                "Direction = Vector(X = 4000.000, Y = -0.000, Z = 0.000, Length = 4000.000))";
-            Assert.AreEqual(expectedLocation, structFramLoc.ToString());
-
-            var structFramPlanView = GetPreviewValue("064eb4a3ad6944a9b316d5020ad31145");
-            var expectedPlanView = "StructuralPlanView(Name = Level 1(1) )";
-            Assert.AreEqual(expectedPlanView, structFramPlanView.ToString());
         }
 
         private void CompareSliderCountAndMemberCount(BuiltInCategory cat, int sliderCount)

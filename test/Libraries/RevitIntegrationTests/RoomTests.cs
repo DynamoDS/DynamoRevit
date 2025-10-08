@@ -12,6 +12,8 @@ namespace RevitSystemTests
     [TestFixture]
     class RoomTests : RevitSystemTestBase
     {
+        private const double Tolerance = 0.001;
+
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
         public void Room()
@@ -45,21 +47,21 @@ namespace RevitSystemTests
             Assert.AreEqual(false, isInsideRoom[1]);
         }
 
-        private const double Tolerance = 0.001;
         [Test]
         [TestModel(@".\Room2025.rvt")]
         public void LocationAndVolumeRoom()
         {
-        string samplePath = Path.Combine(workingDirectory, @".\Script\LocationAndVolumeRoom.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Script\LocationAndVolumeRoom.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
 
-            var roomLocation = GetPreviewValue("3594f81581cd4b8b9e68ef308eefcaa3");
-            var expectedLocation = "Point(X = 5895.952, Y = 1686.784, Z = 0.000)";
-            Assert.AreEqual(expectedLocation, roomLocation.ToString());
+            var roomLocation = GetPreviewValue("3594f81581cd4b8b9e68ef308eefcaa3") as Autodesk.DesignScript.Geometry.Point;
+            Assert.AreEqual(5895.952, roomLocation.X, Tolerance);
+            Assert.AreEqual(1686.784, roomLocation.Y, Tolerance);
+            Assert.AreEqual(0.000, roomLocation.Z, Tolerance);
 
             var roomVolume = GetPreviewValue("478907639b054374a68dadb7f3cfc26e");
             var expectedVolume = 241.077;
@@ -91,21 +93,48 @@ namespace RevitSystemTests
             Assert.AreEqual(roomCenterBoundary.Count, roomCoreBoundary.Count);
             Assert.AreEqual(roomCoreCenterBoundary.Count, roomFinishBoundary.Count);
 
-            var thirdLineCenterBoundary = "Line(StartPoint = Point(X = 10568.339, Y = -1574.928, Z = 0.000), EndPoint = Point(X = 10568.339, Y = 5125.072, Z = 0.000), " +
+            //Center Boundary assertions
+            var thirdLineCenterBoundary1 = "Line(StartPoint = Point(X = 10568.339, Y = -1574.928, Z = 0.000), EndPoint = Point(X = 10568.339, Y = 5125.072, Z = 0.000), " +
                 "Direction = Vector(X = 0.000, Y = 6700.000, Z = 0.000, Length = 6700.000))";
-            Assert.AreEqual(thirdLineCenterBoundary, roomCenterBoundary[3].ToString());
+            var thirdLineCenterBoundary = roomCenterBoundary[3] as Autodesk.DesignScript.Geometry.Line;
+            Assert.AreEqual(10568.339, thirdLineCenterBoundary.StartPoint.X, Tolerance);
+            Assert.AreEqual(-1574.928, thirdLineCenterBoundary.StartPoint.Y, Tolerance);
+            Assert.AreEqual(0.000, thirdLineCenterBoundary.StartPoint.Z, Tolerance);
+            Assert.AreEqual(10568.339, thirdLineCenterBoundary.EndPoint.X, Tolerance);
+            Assert.AreEqual(5125.072, thirdLineCenterBoundary.EndPoint.Y, Tolerance);
+            Assert.AreEqual(0.000, thirdLineCenterBoundary.EndPoint.Z, Tolerance);
+            Assert.AreEqual(6700.000, thirdLineCenterBoundary.Direction.Length, Tolerance);
 
-            var thirdLineCoreBoundary = "Line(StartPoint = Point(X = 10435.839, Y = -1424.928, Z = 0.000), EndPoint = Point(X = 10435.839, Y = 4992.572, Z = 0.000), " +
-                "Direction = Vector(X = 0.000, Y = 6417.500, Z = 0.000, Length = 6417.500))";
-            Assert.AreEqual(thirdLineCoreBoundary, roomCoreBoundary[3].ToString());
+            //Core Boundary assertions
+            var thirdLineCoreBoundary = roomCoreBoundary[3] as Autodesk.DesignScript.Geometry.Line;
+            Assert.AreEqual(10435.839, thirdLineCoreBoundary.StartPoint.X, Tolerance);
+            Assert.AreEqual(-1424.928, thirdLineCoreBoundary.StartPoint.Y, Tolerance);
+            Assert.AreEqual(0.000, thirdLineCoreBoundary.StartPoint.Z, Tolerance);
+            Assert.AreEqual(10435.839, thirdLineCoreBoundary.EndPoint.X, Tolerance);
+            Assert.AreEqual(4992.572, thirdLineCoreBoundary.EndPoint.Y, Tolerance);
+            Assert.AreEqual(0.000, thirdLineCoreBoundary.EndPoint.Z, Tolerance);
+            Assert.AreEqual(6417.500, thirdLineCoreBoundary.Direction.Length, Tolerance);
 
-            var thirdLineCoreCenterBoundary = "Line(StartPoint = Point(X = 10485.839, Y = -1574.928, Z = 0.000), EndPoint = Point(X = 10485.839, Y = 5042.572, Z = 0.000), " +
-                "Direction = Vector(X = 0.000, Y = 6617.500, Z = 0.000, Length = 6617.500))";
-            Assert.AreEqual(thirdLineCoreCenterBoundary, roomCoreCenterBoundary[3].ToString());
+            //Core Center Boundary assertions
+            var thirdLineCoreCenterBoundary = roomCoreCenterBoundary[3] as Autodesk.DesignScript.Geometry.Line;
+            Assert.AreEqual(10485.839, thirdLineCoreCenterBoundary.StartPoint.X, Tolerance);
+            Assert.AreEqual(-1574.928, thirdLineCoreCenterBoundary.StartPoint.Y, Tolerance);
+            Assert.AreEqual(0.000, thirdLineCoreCenterBoundary.StartPoint.Z, Tolerance);
+            Assert.AreEqual(10485.839, thirdLineCoreCenterBoundary.EndPoint.X, Tolerance);
+            Assert.AreEqual(5042.572, thirdLineCoreCenterBoundary.EndPoint.Y, Tolerance);
+            Assert.AreEqual(0.000, thirdLineCoreCenterBoundary.EndPoint.Z, Tolerance);
+            Assert.AreEqual(6617.500, thirdLineCoreCenterBoundary.Direction.Length, Tolerance);
 
-            var thirdLineFinishBoundary = "Line(StartPoint = Point(X = 10423.339, Y = -1424.928, Z = 0.000), EndPoint = Point(X = 10423.339, Y = 4980.072, Z = 0.000), " +
-                "Direction = Vector(X = 0.000, Y = 6405.000, Z = 0.000, Length = 6405.000))";
-            Assert.AreEqual(thirdLineFinishBoundary, roomFinishBoundary[3].ToString());
+
+            //Finish Boundary assertions
+            var thirdLineFinishBoundary = roomFinishBoundary[3] as Autodesk.DesignScript.Geometry.Line;
+            Assert.AreEqual(10423.339, thirdLineFinishBoundary.StartPoint.X, Tolerance);
+            Assert.AreEqual(-1424.928, thirdLineFinishBoundary.StartPoint.Y, Tolerance);
+            Assert.AreEqual(0.000, thirdLineFinishBoundary.StartPoint.Z, Tolerance);
+            Assert.AreEqual(10423.339, thirdLineFinishBoundary.EndPoint.X, Tolerance);
+            Assert.AreEqual(4980.072, thirdLineFinishBoundary.EndPoint.Y, Tolerance);
+            Assert.AreEqual(0.000, thirdLineFinishBoundary.EndPoint.Z, Tolerance);
+            Assert.AreEqual(6405.000, thirdLineFinishBoundary.Direction.Length, Tolerance);
         }
 
         [Test]
