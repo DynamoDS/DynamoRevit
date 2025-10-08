@@ -1,0 +1,329 @@
+{
+  "Uuid": "3ef6c4b1-438f-4eb7-b895-59f9230e2643",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Schedules.ScheduleExportOptions.ByProperties",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ExportTextQualifier, DSRevitNodesUI",
+      "SelectedIndex": 2,
+      "SelectedString": "Quote",
+      "Id": "d3be3f844eef4c85bcf3078abb4fb32d",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5f6e485be0ec4a92a2367d07858d8e12",
+          "Name": "TextQualifier",
+          "Description": "The selected TextQualifier",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "How to qualify text fields. Default is DoubleQuote."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "18f3abb7d2dd49478b34f6c49288365a",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "c2600f5025f44918ac8d9081fe6f39d6",
+          "Name": "columnHeaders",
+          "Description": "How to export column headers. Default is MultipleRows.\n\nstring\nDefault value : \"MultipleRows\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0a3a03cb7870488daf36c5e0060aa80e",
+          "Name": "fieldDelimiter",
+          "Description": "How to delimit fields. Default is Tab.\n\nstring\nDefault value : \"\t\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "93fe1231dfaf47869f0f0d9ce875223b",
+          "Name": "headersFootersBlanks",
+          "Description": "Whether to export group headers, footers, and blank lines. Default is false.\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "62ca15533891411294cb77b3275e255d",
+          "Name": "textQualifier",
+          "Description": "How to qualify text fields. Default is DoubleQuote.\n\nstring\nDefault value : \"DoubleQuote\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5950c308503a428cab809076c61d8c03",
+          "Name": "title",
+          "Description": "Whether or not to export the schedule title. Default is false.\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "366c675060ac42b3806dc6c9a471adb8",
+          "Name": "exportOptions",
+          "Description": "View Schedule Export Options.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Schedules.ScheduleExportOptions.ByProperties@string,string,bool,string,bool",
+      "Replication": "Auto",
+      "Description": "Creates View Schedule Export Options element.\n\nScheduleExportOptions.ByProperties (columnHeaders: string = \"MultipleRows\", fieldDelimiter: string = \"\t\", headersFootersBlanks: bool = false, textQualifier: string = \"DoubleQuote\", title: bool = false): ScheduleExportOptions"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ExportColumnHeaders, DSRevitNodesUI",
+      "SelectedIndex": 2,
+      "SelectedString": "OneRow",
+      "Id": "7927da51a73943e1b3560e2a0676c5e9",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "537bcaa6ff804a6191009492030c65f1",
+          "Name": "ColumnHeaders",
+          "Description": "The selected ColumnHeaders",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "How to export column headers. Default is MultipleRows."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "9425fe25e6364e91b92c5dee10dd0276",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d1e98e56b1a94ce0a95a7a652a189fbb",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "fb008046ff124e898fc13366e1331874",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "90ab573b51094c68934f8162202ee25b",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "cad9a89d9f7242f9931c5c1273e5baf2",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "508a87fdc3bc48ef90f2ac2be0777711",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": false
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "5f6e485be0ec4a92a2367d07858d8e12",
+      "End": "62ca15533891411294cb77b3275e255d",
+      "Id": "8ce10cf758a44a87867a48c391f0574d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "537bcaa6ff804a6191009492030c65f1",
+      "End": "c2600f5025f44918ac8d9081fe6f39d6",
+      "Id": "45a0c011e0364bef8c856ffbcb621825",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d1e98e56b1a94ce0a95a7a652a189fbb",
+      "End": "0a3a03cb7870488daf36c5e0060aa80e",
+      "Id": "7454802f33e843ada87eef9325f91549",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "90ab573b51094c68934f8162202ee25b",
+      "End": "93fe1231dfaf47869f0f0d9ce875223b",
+      "Id": "01b0dbee58304dcfbb7f1d7e7dbe5376",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "508a87fdc3bc48ef90f2ac2be0777711",
+      "End": "5950c308503a428cab809076c61d8c03",
+      "Id": "686f6640253640838224e8f03dde394f",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "d3be3f844eef4c85bcf3078abb4fb32d",
+        "Name": "Export Text Qualifier",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 750.5,
+        "Y": 841.9999999999999
+      },
+      {
+        "Id": "18f3abb7d2dd49478b34f6c49288365a",
+        "Name": "ScheduleExportOptions.ByProperties",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1236.75,
+        "Y": 630.0
+      },
+      {
+        "Id": "7927da51a73943e1b3560e2a0676c5e9",
+        "Name": "Export Column Headers",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 749.2582349836772,
+        "Y": 396.52744994559043
+      },
+      {
+        "Id": "9425fe25e6364e91b92c5dee10dd0276",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 751.5,
+        "Y": 551.0
+      },
+      {
+        "Id": "fb008046ff124e898fc13366e1331874",
+        "Name": "Boolean",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 751.5,
+        "Y": 699.0
+      },
+      {
+        "Id": "cad9a89d9f7242f9931c5c1273e5baf2",
+        "Name": "Boolean",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 753.7417650163229,
+        "Y": 1000.7252950489686
+      }
+    ],
+    "Annotations": [],
+    "X": -509.35375849082084,
+    "Y": -396.22604950053994,
+    "Zoom": 1.33823125
+  }
+}
