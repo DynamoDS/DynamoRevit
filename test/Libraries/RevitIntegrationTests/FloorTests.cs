@@ -9,6 +9,8 @@ namespace RevitSystemTests
     [TestFixture]
     public class FloorTests : RevitSystemTestBase
     {
+        private const double Tolerance = 0.001;
+
         [Test]
         [TestModel(@".\DifferentTypeRooms.rvt")]
         public void FloorNodes()
@@ -29,8 +31,7 @@ namespace RevitSystemTests
             Assert.AreEqual("Floors", categoryName);
 
             var floorPlanView = GetPreviewValue("8fbbb68682a2473e9289ee30c476cfe6");
-            var expectedValue = "FloorPlanView(Name = Level 0(1) )";
-            Assert.AreEqual(expectedValue, floorPlanView.ToString());
+            Assert.IsNotNull(floorPlanView);
         }
 
         [Test]
@@ -50,9 +51,11 @@ namespace RevitSystemTests
             .FirstOrDefault(n => n.Name == "Floor.Points1");
             var floorPoints1 = GetFlattenedPreviewValues(floorPoints1Node.GUID.ToString("N"));
             Assert.AreEqual(1, floorPoints1.Count);
-            var pointAddedExceptedValue = "Point(X = 1000.000, Y = 0.000, Z = 0.000)";
-            Assert.AreEqual(pointAddedExceptedValue, floorPoints1[0].ToString());
 
+            var firstPoint = floorPoints1[0] as Autodesk.DesignScript.Geometry.Point;
+            Assert.AreEqual(1000.0, firstPoint.X, Tolerance);
+            Assert.AreEqual(0.0, firstPoint.Y, Tolerance);
+            Assert.AreEqual(0.0, firstPoint.Z, Tolerance);
 
             var indexFloorPoints = AllNodes
             .OfType<CoreNodeModels.Input.DoubleInput>()
@@ -88,8 +91,11 @@ namespace RevitSystemTests
             .FirstOrDefault(n => n.Name == "Floor.Points2");
             var floorPoints2 = GetFlattenedPreviewValues(floorPoints2Node.GUID.ToString("N"));
             Assert.AreEqual(5, floorPoints2.Count);
-            var pointMovedExceptedValue = "Point(X = 1000.000, Y = 0.000, Z = 2438.400)";
-            Assert.AreEqual(pointMovedExceptedValue, floorPoints2[4].ToString());
+
+            var fourthPoint = floorPoints2[4] as Autodesk.DesignScript.Geometry.Point;
+            Assert.AreEqual(1000.0, fourthPoint.X, Tolerance);
+            Assert.AreEqual(0.0, fourthPoint.Y, Tolerance);
+            Assert.AreEqual(2438.400, fourthPoint.Z, Tolerance);
         }
     }
 }

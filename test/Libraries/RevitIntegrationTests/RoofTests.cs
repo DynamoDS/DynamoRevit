@@ -10,6 +10,8 @@ namespace RevitSystemTests
     [TestFixture]
     class RoofTests : RevitSystemTestBase
     {
+        private const double Tolerance = 0.001;
+
         [Test]
         [TestModel(@".\empty.rvt")]
         public void ByOutlineExtrusionTypeAndLevel()
@@ -68,8 +70,10 @@ namespace RevitSystemTests
 
             var roofPoints1Value = GetFlattenedPreviewValues(roofPoints1Node.GUID.ToString("N"));
             Assert.AreEqual(7, roofPoints1Value.Count);
-            var roofPoints1ExpectedValue = "Point(X = -9976.661, Y = -7119.928, Z = 4350.500)";
-            Assert.AreEqual(roofPoints1ExpectedValue, roofPoints1Value[0].ToString());
+            var firstPoint1 = roofPoints1Value[0] as Autodesk.DesignScript.Geometry.Point;
+            Assert.AreEqual(-9976.661, firstPoint1.X, Tolerance);
+            Assert.AreEqual(-7119.928, firstPoint1.Y, Tolerance);
+            Assert.AreEqual(4350.500, firstPoint1.Z, Tolerance);
 
             var roofPoints2 = AllNodes
             .FirstOrDefault(n => n.Name == "roof.Points2");
@@ -81,8 +85,10 @@ namespace RevitSystemTests
 
             var roofPoints2Value = GetFlattenedPreviewValues(roofPoints2Node.GUID.ToString("N"));
             Assert.AreEqual(7, roofPoints2Value.Count);
-            var roofPoints2ExpectedValue = "Point(X = -9976.661, Y = -7119.928, Z = 4960.100)";
-            Assert.AreEqual(roofPoints2ExpectedValue, roofPoints2Value[0].ToString());
+            var firstPoint2 = roofPoints2Value[0] as Autodesk.DesignScript.Geometry.Point;
+            Assert.AreEqual(-9976.661, firstPoint2.X, Tolerance);
+            Assert.AreEqual(-7119.928, firstPoint2.Y, Tolerance);
+            Assert.AreEqual(4960.100, firstPoint2.Z, Tolerance);
         }
 
         [Test]

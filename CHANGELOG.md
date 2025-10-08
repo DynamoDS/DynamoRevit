@@ -1,4 +1,7 @@
-## 0.7.56
+## 0.7.58
+* Little changes added to D4R tests
+
+## 0.7.57
 * cover 80 new D4R nodes with regression tests
 
 ## 0.7.56
