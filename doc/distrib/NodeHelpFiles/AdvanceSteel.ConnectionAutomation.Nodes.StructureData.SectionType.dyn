@@ -1,0 +1,149 @@
+{
+  "Uuid": "1669b9de-a50e-46a5-92c2-bd6c2a97f44b",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AdvanceSteel.ConnectionAutomation.Nodes.StructureData.SectionType",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e303d77fd5654902a6620de10b0cf167",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "db81e81eefda4b7eba5dcee4a8f2f150",
+          "Name": "structureData",
+          "Description": "AdvanceSteel.ConnectionAutomation.Nodes.StructureData",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "08fd47a95c2f485aa26295e6fafcd035",
+          "Name": "string",
+          "Description": "The output section type, as string.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.StructureData.SectionType",
+      "Replication": "Auto",
+      "Description": "Returns the section type of a structure data element.\n\nStructureData.SectionType: string"
+    },
+    {
+      "ConcreteType": "AdvanceSteel.ConnectionAutomation.SelectStructureData, AdvanceSteelConnAutoNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "569792"
+      ],
+      "Id": "6f3c3f10c163472ea55a951ed7c38178",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "710a0b8ecf3c43db95f57627b44e4f6d",
+          "Name": "structureData",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select the structure data used for filtering Fabrication Elements"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "710a0b8ecf3c43db95f57627b44e4f6d",
+      "End": "db81e81eefda4b7eba5dcee4a8f2f150",
+      "Id": "2eea819842704eed8aee824ff7c32115",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.5.2.8914",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e303d77fd5654902a6620de10b0cf167",
+        "Name": "StructureData.SectionType",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -211.6507299551771,
+        "Y": 71.82780394131612
+      },
+      {
+        "Id": "6f3c3f10c163472ea55a951ed7c38178",
+        "Name": "SelectStructureData",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -544.493322117632,
+        "Y": 71.82780394131612
+      }
+    ],
+    "Annotations": [],
+    "X": 725.0720260364046,
+    "Y": 144.17219605868388,
+    "Zoom": 1.0
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "Uuid": "0e6563e8-7df8-465a-a1b3-4ad3cee4efd2",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AdvanceSteel.ConnectionAutomation.Nodes.StructureData.ZAxis",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "AdvanceSteel.ConnectionAutomation.SelectStructureData, AdvanceSteelConnAutoNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "569792"
+      ],
+      "Id": "edcecf1fb5294f7aa89c40f14066227f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ea07940be69a48a99b77a8c7f5397e82",
+          "Name": "structureData",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select the structure data used for filtering Fabrication Elements"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "313a79f472d145aebecb240411190241",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "a214a556477e4504a2f2ebb958db54bd",
+          "Name": "structureData",
+          "Description": "AdvanceSteel.ConnectionAutomation.Nodes.StructureData",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3a7636cd3cf14ae7a48218be872cb767",
+          "Name": "Vector",
+          "Description": "The output Z axis, as vector.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.StructureData.ZAxis",
+      "Replication": "Auto",
+      "Description": "Returns the Z axis of a structure data element.\n\nStructureData.ZAxis: Vector"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ea07940be69a48a99b77a8c7f5397e82",
+      "End": "a214a556477e4504a2f2ebb958db54bd",
+      "Id": "36738cfbf2d04cdfbceb91d1075a2d9e",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.5.2.8914",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "edcecf1fb5294f7aa89c40f14066227f",
+        "Name": "SelectStructureData",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1325.0933007390431,
+        "Y": 1340.89455197822
+      },
+      {
+        "Id": "313a79f472d145aebecb240411190241",
+        "Name": "StructureData.ZAxis",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -993.0933007390431,
+        "Y": 1340.89455197822
+      }
+    ],
+    "Annotations": [],
+    "X": 1833.9275142563633,
+    "Y": -1611.5521763186478,
+    "Zoom": 1.328380829015544
+  }
+}
