@@ -299,9 +299,60 @@
       "Replication": "Disabled",
       "Description": "Creates a number",
       "InputValue": 100.0
+    },
+    {
+      "ConcreteType": "Watch3DNodeModels.Watch3D, Watch3DNodeModels",
+      "WatchWidth": 200.0,
+      "WatchHeight": 200.0,
+      "WasExecuted": true,
+      "Camera": {
+        "Name": "b7eaa7d5-5576-4e3c-870a-2a14a2fb2f2f Preview",
+        "EyeX": -4.81032133102417,
+        "EyeY": 8.511480331420898,
+        "EyeZ": -0.2017408311367035,
+        "LookX": -0.0357966423034668,
+        "LookY": -0.05582714080810547,
+        "LookZ": -0.45478859543800354,
+        "UpX": -0.009300312958657742,
+        "UpY": 0.9695309400558472,
+        "UpZ": -0.11828085780143738
+      },
+      "VariableInputPorts": true,
+      "Id": "b7eaa7d555764e3c870a2a14a2fb2f2f",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "fb7434cb277946d987c408758aad3194",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "aa27f49bf0ea4eb5af5923e7886c6bd4",
+          "Name": "",
+          "Description": "Incoming geometry objects.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Shows a dynamic preview of geometry"
     }
   ],
   "Connectors": [
+    {
+      "Start": "ede404bf7c68463488d121261dac6f23",
+      "End": "fb7434cb277946d987c408758aad3194",
+      "Id": "60bd0a15e4d94782b562d197ffef92cd",
+      "IsHidden": "False"
+    },
     {
       "Start": "ff335c864930414eafa17d2031af8b5b",
       "End": "9e2b11e9ac76413494afccc6f6b71337",
@@ -387,7 +438,7 @@
     {
       "NodeId": "1dd669ef-ebf5-47bc-afcb-be14e47ddba6",
       "Binding": {
-        "ByStartPointEndPoint_InClassDecl-1_InFunctionScope-1_Instance0_1dd669ef-ebf5-47bc-afcb-be14e47ddba6": "H4sIAAAAAAAACh3Lqw7DMAwF0H+5uJbyTlw8Ujw4F7hdPI0UTGFV/31SDz+vE28dihmn4Dl+3+OzPASzIG6ZuXOhaKlQMjVia5V8Trb3XHP1jpwLjVWjYBIsx7hvKMW7UC9c6x+m/KaTXwAAAA=="
+        "ByStartPointEndPoint_InClassDecl-1_InFunctionScope-1_Instance0_1dd669ef-ebf5-47bc-afcb-be14e47ddba6": "H4sIAAAAAAAACh3LMQqDQBAF0Lv8OgO6DhPXOo21pZPimx3ExiJsJ95dsX3w5gOFlRhwOKb63/Z1/DgGB7kke4eKaQnR1Ifk/AuhFe1iYdsFpWlSn0l1vBzjXp+bzNrbT5zfC4UsFIRfAAAA"
       }
     }
   ],
@@ -513,11 +564,21 @@
         "ShowGeometry": true,
         "X": -261.2,
         "Y": 668.4
+      },
+      {
+        "Id": "b7eaa7d555764e3c870a2a14a2fb2f2f",
+        "Name": "Watch 3D",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1121.413684012758,
+        "Y": 398.6583111552297
       }
     ],
     "Annotations": [],
-    "X": 606.5915286452052,
-    "Y": -36.40466658508382,
-    "Zoom": 1.315375405008215
+    "X": 529.8062692472412,
+    "Y": 59.84620733083375,
+    "Zoom": 1.111357532769503
   }
 }
