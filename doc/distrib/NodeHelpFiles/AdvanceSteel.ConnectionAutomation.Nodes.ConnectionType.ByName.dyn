@@ -1,0 +1,249 @@
+{
+  "Uuid": "c421e913-aefd-4886-9419-484eb4938237",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionType.ByName",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3025f014556e4544b6f42f678912ceaf",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "709606f9ea404f11ab092d8327e18835",
+          "Name": "connectionType",
+          "Description": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0223bd17e770487c9bb413929b994a2a",
+          "Name": "string",
+          "Description": "The output string containing the connection name.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionType.ConnectionName",
+      "Replication": "Auto",
+      "Description": "Returns the connection name from a connection type.\n\nConnectionType.ConnectionName: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d8446c0319dc46cab7037571d4c789b3",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "bd923503f0014b59ab95bcff101375b1",
+          "Name": "connectionName",
+          "Description": "The name of the connection. If it is null, this node will return all the connection types from the source model.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3f15e2ea1f224dd89bf42b1ba9c7e6a0",
+          "Name": "filePath",
+          "Description": "The source file path for listing the connection types. If it is null, this node will use the current model as source.\n\nstring\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "08694f5b99a546f4b8d522ce6f8c2b6d",
+          "Name": "ConnectionTypes",
+          "Description": "A list of connection types.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionType.ByName@string,string",
+      "Replication": "Auto",
+      "Description": "Gets a list of connection types.\n\nConnectionType.ByName (connectionName: string, filePath: string = null): ConnectionType[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "ccadfbe62eb0436684581598ddeef89a",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f77f6daca25f41809342fed5ce298832",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Base Plate"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "bb829805c8dc432080a036244b648e29",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cbb5d3f9bcf14f9cb646d589e2dc464d",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "C:\\Users\\kjwil\\Downloads\\AISC 10.2WB_Adv_Stl_Projects\\ACO_Supermarket building_2022_AISC.0001_SADE.rvt",
+      "InputValue": "..\\..\\Downloads\\AISC 10.2WB_Adv_Stl_Projects\\ACO_Supermarket building_2022_AISC.0001_SADE.rvt"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "08694f5b99a546f4b8d522ce6f8c2b6d",
+      "End": "709606f9ea404f11ab092d8327e18835",
+      "Id": "404698b7a7914e1e9fcd26a271c0f7c6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f77f6daca25f41809342fed5ce298832",
+      "End": "bd923503f0014b59ab95bcff101375b1",
+      "Id": "8582a6baa95a4f659a6bc6930a4a9423",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "cbb5d3f9bcf14f9cb646d589e2dc464d",
+      "End": "3f15e2ea1f224dd89bf42b1ba9c7e6a0",
+      "Id": "af0cd371b3d744cd94a7ae2c02156c86",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "ACO_Supermarket building_2022_AISC.0001_SADE.rvt",
+      "ReferenceType": "External",
+      "Nodes": [
+        "bb829805c8dc432080a036244b648e29"
+      ]
+    }
+  ],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.5.2.8914",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "3025f014556e4544b6f42f678912ceaf",
+        "Name": "ConnectionType.ConnectionName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 3522.308774855249,
+        "Y": 3229.6801799890623
+      },
+      {
+        "Id": "d8446c0319dc46cab7037571d4c789b3",
+        "Name": "ConnectionType.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 3097.308774855249,
+        "Y": 3229.6801799890623
+      },
+      {
+        "Id": "ccadfbe62eb0436684581598ddeef89a",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2188.308774855249,
+        "Y": 3172.6801799890623
+      },
+      {
+        "Id": "bb829805c8dc432080a036244b648e29",
+        "Name": "File Path",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2188.308774855249,
+        "Y": 3320.6801799890623
+      }
+    ],
+    "Annotations": [],
+    "X": -1169.019093636782,
+    "Y": -1529.441400608835,
+    "Zoom": 0.5479204339963833
+  }
+}
