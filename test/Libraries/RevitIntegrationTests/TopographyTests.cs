@@ -17,7 +17,7 @@ namespace RevitSystemTests
     [TestFixture]
     class TopographyTests : RevitSystemTestBase
     {
-        [Test]
+        [Test, Ignore("test uses a deleted node")]
         [TestModel(@".\empty.rvt")]
         public void TopographyFromPoints()
         {
@@ -31,14 +31,14 @@ namespace RevitSystemTests
             Assert.AreEqual(8, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(11, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
-            //check Topography.ByPoint
+            // Topography.ByPoint node is deleted and needs to be replaced with a node that returns a Toposolid, maybe Toposolid.ByPointsTypeAndLevel
             var topographyID = "a0b02f6c-a144-4267-b62c-31983661aefa";
-            var topography = GetPreviewValue(topographyID) as Topography;
+            var topography = GetPreviewValue(topographyID) as Toposolid;
             Assert.IsNotNull(topography);
         }
 
 
-        [Test]
+        [Test, Ignore("test uses a deleted node")]
         [TestModel(@".\Topography\topography.rvt")]
         public void PointsFromTopography()
         {
@@ -53,7 +53,7 @@ namespace RevitSystemTests
             Assert.AreEqual(2, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(1, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
-            //check Topography.Points
+            // Topography.Points node is deleted and needs to be replaced with Toposolid.Points
             var pointsID = "c366f888-3b98-4101-9bd7-a1a84e538c61";
             AssertPreviewCount(pointsID, 1156);
             for (int i = 0; i < 1156; i++)

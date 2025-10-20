@@ -10,69 +10,67 @@ using RTF.Framework;
 namespace RevitNodesTests.Elements
 {
     [TestFixture]
-#pragma warning disable CS0618 // Type or member is obsolete
     class TopographyTests : RevitNodeTestBase
     {
-        [Test]
+        [Test, Ignore("Topography.ByPoint node is deleted and needs to be replaced with a node that returns a Toposolid, maybe Toposolid.ByPointsTypeAndLevel")]
         [TestModel(@".\empty.rvt")]
         public void ByPoints_ValidArgs()
         {   
-            var p1 = Point.ByCoordinates(0, 0, 0);
-            var p2 = Point.ByCoordinates(1, 3, 4);
-            var p3 = Point.ByCoordinates(27, 5, 12);
-            var p4 = Point.ByCoordinates(-10, 8, -3);
-            var p5 = Point.ByCoordinates(.005, 0.01, -10);
+            //var p1 = Point.ByCoordinates(0, 0, 0);
+            //var p2 = Point.ByCoordinates(1, 3, 4);
+            //var p3 = Point.ByCoordinates(27, 5, 12);
+            //var p4 = Point.ByCoordinates(-10, 8, -3);
+            //var p5 = Point.ByCoordinates(.005, 0.01, -10);
 
-            Assert.NotNull(p1);
-            Assert.NotNull(p2);
-            Assert.NotNull(p3);
+            //Assert.NotNull(p1);
+            //Assert.NotNull(p2);
+            //Assert.NotNull(p3);
 
-            var topoSurf = Topography.ByPoints(new List<Point> { p1,p2,p3,p4,p5 });
-            Assert.NotNull(topoSurf);
+            //var topoSurf = Topography.ByPoints(new List<Point> { p1,p2,p3,p4,p5 });
+            //Assert.NotNull(topoSurf);
 
-            topoSurf.Points[0].ShouldBeApproximately(p1);
-            topoSurf.Points[1].ShouldBeApproximately(p2);
-            topoSurf.Points[2].ShouldBeApproximately(p3);
-            topoSurf.Points[3].ShouldBeApproximately(p4);
-            topoSurf.Points[4].ShouldBeApproximately(p5);
+            //topoSurf.Points[0].ShouldBeApproximately(p1);
+            //topoSurf.Points[1].ShouldBeApproximately(p2);
+            //topoSurf.Points[2].ShouldBeApproximately(p3);
+            //topoSurf.Points[3].ShouldBeApproximately(p4);
+            //topoSurf.Points[4].ShouldBeApproximately(p5);
         }
 
-        [Test]
+        [Test, Ignore("Topography.ByPoint node is deleted and needs to be replaced with a node that returns a Toposolid, maybe Toposolid.ByPointsTypeAndLevel")]
         [TestModel(@".\empty.rvt")]
         public void ByPoints_InvalidArgs()
         {
-            var p1 = Point.ByCoordinates(0, 0, 0);
-            var p2 = Point.ByCoordinates(1, 3, 4);
+            //var p1 = Point.ByCoordinates(0, 0, 0);
+            //var p2 = Point.ByCoordinates(1, 3, 4);
 
-            Assert.NotNull(p1);
-            Assert.NotNull(p2);
+            //Assert.NotNull(p1);
+            //Assert.NotNull(p2);
 
-            Assert.Throws<System.Exception>(()=>Topography.ByPoints(new List<Point> { p1, p2 }));
+            //Assert.Throws<System.Exception>(()=>Topography.ByPoints(new List<Point> { p1, p2 }));
         }
 
-        [Test]
+        [Test, Ignore("Topography.ByPoint node is deleted and needs to be replaced with a node that returns a Toposolid, maybe Toposolid.ByPointsTypeAndLevel")]
         [TestModel(@".\empty.rvt")]
         public void ByPoints_Mutation()
         {
-            var p1 = Point.ByCoordinates(0, 0, 0);
-            var p2 = Point.ByCoordinates(1, 3, 4);
-            var p3 = Point.ByCoordinates(27, 5, 12);
-            var p4 = Point.ByCoordinates(-10, 8, -3);
-            var p5 = Point.ByCoordinates(.005, 0.01, -10);
+            //var p1 = Point.ByCoordinates(0, 0, 0);
+            //var p2 = Point.ByCoordinates(1, 3, 4);
+            //var p3 = Point.ByCoordinates(27, 5, 12);
+            //var p4 = Point.ByCoordinates(-10, 8, -3);
+            //var p5 = Point.ByCoordinates(.005, 0.01, -10);
 
-            Assert.NotNull(p1);
-            Assert.NotNull(p2);
-            Assert.NotNull(p3);
+            //Assert.NotNull(p1);
+            //Assert.NotNull(p2);
+            //Assert.NotNull(p3);
 
-            var topoSurf = Topography.ByPoints(new List<Point> { p1, p2, p3, p4, p5 });
-            Assert.NotNull(topoSurf);
+            //var topoSurf = Topography.ByPoints(new List<Point> { p1, p2, p3, p4, p5 });
+            //Assert.NotNull(topoSurf);
 
-            var p6 = Point.ByCoordinates(10, 42, -3.3);
-            topoSurf = Topography.ByPoints(new List<Point> {p1, p2, p3, p4, p6});
-            Assert.NotNull(topoSurf);
+            //var p6 = Point.ByCoordinates(10, 42, -3.3);
+            //topoSurf = Topography.ByPoints(new List<Point> {p1, p2, p3, p4, p6});
+            //Assert.NotNull(topoSurf);
 
-            topoSurf.Points[4].ShouldBeApproximately(p6);
+            //topoSurf.Points[4].ShouldBeApproximately(p6);
         }
     }
-#pragma warning restore CS0618
 }

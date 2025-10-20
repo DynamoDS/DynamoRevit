@@ -370,66 +370,6 @@ namespace DSRevitNodesUI
 
             return null == elem ? null : elem.InternalElement;
         }
-
-        [Obsolete]
-        protected override void SerializeCore(XmlElement nodeElement, SaveContext context)
-        {
-            base.SerializeCore(nodeElement, context);
-            if (this.storedId != null)
-            {
-                XmlElement outEl = nodeElement.OwnerDocument.CreateElement("familyid");
-                outEl.SetAttribute("value", this.storedId.Value.ToString(CultureInfo.InvariantCulture));
-                nodeElement.AppendChild(outEl);
-
-                XmlElement param = nodeElement.OwnerDocument.CreateElement("index");
-                param.SetAttribute("value", SelectedIndex.ToString(CultureInfo.InvariantCulture));
-                nodeElement.AppendChild(param);
-            }
-
-        }
-
-        [Obsolete]
-        protected override void DeserializeCore(XmlElement nodeElement, SaveContext context)
-        {
-            base.DeserializeCore(nodeElement, context);
-            var doc = DocumentManager.Instance.CurrentDBDocument;
-
-            int index = -1;
-
-            foreach (XmlNode subNode in nodeElement.ChildNodes)
-            {
-                if (subNode.Name.Equals("familyid"))
-                {
-                    long id;
-                    try
-                    {
-                        id = Convert.ToInt64(subNode.Attributes[0].Value);
-                    }
-                    catch
-                    {
-                        continue;
-                    }
-                    element = doc.GetElement(new ElementId(id));
-
-                }
-                else if (subNode.Name.Equals("index"))
-                {
-                    try
-                    {
-                        index = Convert.ToInt32(subNode.Attributes[0].Value);
-                    }
-                    catch
-                    {
-                    }
-                }
-            }
-
-            if (element != null)
-            {
-                PopulateItems();
-                SelectedIndex = index;
-            }
-        }
     }
 
     [NodeName("Floor Types")]

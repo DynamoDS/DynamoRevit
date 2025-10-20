@@ -16,14 +16,13 @@ namespace RevitNodesTests.GeometryConversion
     [TestFixture]
     public class RevitToProtoMeshTests : RevitNodeTestBase
     {
-        [Test]
+        [Test, Ignore("This test references the obsolete class Topography that was removed")]
         [TestModel(@".\topography.rvt")]
-#pragma warning disable CS0618 // Type or member is obsolete
         public void ToProtoType_ShouldReturnCorrectlyScaledMesh()
         {
             var allMeshesInDoc =
                 ElementSelector.ByType<Autodesk.Revit.DB.Architecture.TopographySurface>(true)
-                    .Cast<Revit.Elements.Topography>()
+                    .Cast<Revit.Elements.Toposolid>()
                     .SelectMany(x => x.InternalGeometry())
                     .OfType<Autodesk.Revit.DB.Mesh>()
                     .ToList();
@@ -48,6 +47,5 @@ namespace RevitNodesTests.GeometryConversion
 
             convertedMesh.Dispose();
         }
-#pragma warning restore CS0618
     }
 }
