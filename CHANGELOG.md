@@ -1,3 +1,6 @@
+## 0.7.59
+* Update Dynamo Core to 4.0.0-beta2804
+
 ## 0.7.58
 * Little changes added to D4R tests
 

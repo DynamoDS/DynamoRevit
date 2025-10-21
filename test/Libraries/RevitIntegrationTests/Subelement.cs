@@ -29,7 +29,7 @@ namespace RevitSystemTests
             Assert.AreEqual(20, getAllParams.Count);
 
             var getParamValue = GetFlattenedPreviewValues("c0448b187dc74bce8e0ecbfba591d0fc");
-            Assert.AreEqual(20, getAllParams.Count);
+            Assert.AreEqual(20, getParamValue.Count);
             Assert.AreEqual("Supply Air", getParamValue[3].ToString());
         }
     }
