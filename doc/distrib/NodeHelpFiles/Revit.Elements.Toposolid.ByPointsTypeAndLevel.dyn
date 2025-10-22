@@ -1,0 +1,484 @@
+{
+  "Uuid": "ef6ae161-fc5e-46c9-951f-526a5f00b264",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Toposolid.ByPointsTypeAndLevel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "59d0c7c21dd44f068885d1847f0ca78a",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "851f32dff94d44cd90b6da2c0a6cf378",
+          "Name": "plane",
+          "Description": "Plane used to center rectangle\n\nPlane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d625a409740e4467b54ca0632e65d1ff",
+          "Name": "width",
+          "Description": "Width of rectangle\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "576f5b03310344b8b820d0138aba7591",
+          "Name": "length",
+          "Description": "Length of rectangle\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8b1f2f850bbe46a38fd912ab36f56999",
+          "Name": "Rectangle",
+          "Description": "Rectangle created by width and length",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Rectangle.ByWidthLength@Autodesk.DesignScript.Geometry.Plane,double,double",
+      "Replication": "Auto",
+      "Description": "Create a Rectangle centered at input Plane root, with input width (Plane X axis length), and length (Plane Y axis length).\n\nRectangle.ByWidthLength (plane: Plane, width: double = 1, length: double = 1): Rectangle"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1133fcce0bce485c892d8b52bdf02e6f",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b70d14d4b19146248baf350ecb53b9e3",
+          "Name": "Plane",
+          "Description": "Plane at XY plane of world",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Plane.XY",
+      "Replication": "Auto",
+      "Description": "Creates a plane in the world XY\n\nPlane.XY ( ): Plane"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "4c1b79e16c5e4e7f9adfd92e1665de37",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0d2aae896c09440f9649e01fd51d760e",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 500.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "b79376145c9e4098954a56fbf6f316ce",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e813fc0475b545f4b8de849f93a85630",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 100.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "4c878233813c4fb9b235d358becd546a",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "0b26f36e170c4cccb5d2c5188b1a8127",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e6ec37aafb3348abbafade3fd9dc46c1",
+          "Name": "ToposolidType",
+          "Description": "ToposolidType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.ToposolidType.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a toposolid type from the current document by name\n\nToposolidType.ByName (name: string): ToposolidType"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "5fcb72c5cbb94ca3930bb5648647fafd",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "38323b9d84d14920ad6ac5cb5ba53aaa",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Toposolid 1"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
+      "SelectedIndex": 5,
+      "SelectedString": "L1 - Block 37",
+      "Id": "f8eab31716fa434bb408783abf3f561c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "16f6b5e06c47468bac3277ceab49f4a8",
+          "Name": "Levels",
+          "Description": "The selected Levels",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a level in the active document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "20ed14daa8564407beb3bc1ec501f834",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "ae62d2256b41403ebf1c1c359e6e031a",
+          "Name": "points",
+          "Description": "Point[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e52b5d2d6d9f4ecfacf1e88cb766df89",
+          "Name": "toposolidType",
+          "Description": "ToposolidType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "79dee72591b9402eabb0a66123e85107",
+          "Name": "level",
+          "Description": "Level",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d5592e5f6d7b4989b9ba923ccc182c94",
+          "Name": "Toposolid",
+          "Description": "Toposolid",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Toposolid.ByPointsTypeAndLevel@Autodesk.DesignScript.Geometry.Point[],Revit.Elements.ToposolidType,Revit.Elements.Level",
+      "Replication": "Auto",
+      "Description": "Create a Revit Toposolid given its points, type and Level\n\nToposolid.ByPointsTypeAndLevel (points: Point[], toposolidType: ToposolidType, level: Level): Toposolid"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "c56bc79798614011827b3619ea74d456",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "8538b2ed98fa4858a0ab7339142a4e62",
+          "Name": "curve",
+          "Description": "Autodesk.DesignScript.Geometry.Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fcda79cbf3bc412ebbe239cadd0c8494",
+          "Name": "divisions",
+          "Description": "Number of divisions\n\nint\nDefault value : 10",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "15cf07dcaf5a48efa51e0c21a81b7682",
+          "Name": "Point[]",
+          "Description": "List of points on curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.PointsAtEqualChordLength@int",
+      "Replication": "Auto",
+      "Description": "Returns points spaced along curve at equal chord length based on the input number of divisions\n\nCurve.PointsAtEqualChordLength (divisions: int = 10): Point[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "8b1f2f850bbe46a38fd912ab36f56999",
+      "End": "8538b2ed98fa4858a0ab7339142a4e62",
+      "Id": "e9bd75269d0046c2b938dccd7e212af4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b70d14d4b19146248baf350ecb53b9e3",
+      "End": "851f32dff94d44cd90b6da2c0a6cf378",
+      "Id": "9268e57794c84eefbb1c7d2649341e45",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0d2aae896c09440f9649e01fd51d760e",
+      "End": "d625a409740e4467b54ca0632e65d1ff",
+      "Id": "ad3fb7d9e18c42e39c6db82a4b07d3f8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e813fc0475b545f4b8de849f93a85630",
+      "End": "576f5b03310344b8b820d0138aba7591",
+      "Id": "f06965cf304f4a1f9a9ba7b41b3dc087",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e6ec37aafb3348abbafade3fd9dc46c1",
+      "End": "e52b5d2d6d9f4ecfacf1e88cb766df89",
+      "Id": "7052883aa43148f0ba20d834fbcda2a9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "38323b9d84d14920ad6ac5cb5ba53aaa",
+      "End": "0b26f36e170c4cccb5d2c5188b1a8127",
+      "Id": "860dfd99144148de810e9fa4a7af1c01",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "16f6b5e06c47468bac3277ceab49f4a8",
+      "End": "79dee72591b9402eabb0a66123e85107",
+      "Id": "e555aa386e1f4787b4be6365df885ea6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "15cf07dcaf5a48efa51e0c21a81b7682",
+      "End": "ae62d2256b41403ebf1c1c359e6e031a",
+      "Id": "2f5adbcd24794af2a4271c0e2d33397d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "20ed14da-a856-4407-beb3-bc1ec501f834",
+      "Binding": {
+        "ByPointsTypeAndLevel_InClassDecl-1_InFunctionScope-1_Instance0_20ed14da-a856-4407-beb3-bc1ec501f834": "H4sIAAAAAAAACh3LsQ5AMBAG4Hf5Z5fU0UuZLWajM1xLxWKQbuLdifnLN99YrRh63IqpXMe5j4OiV0SL2TVZSLoYqBXvKSSfiY1b2+qtyV7IOQ4fJ0WlGM/yXxapWdyDZ3kBUmUOLF8AAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "59d0c7c21dd44f068885d1847f0ca78a",
+        "Name": "Rectangle.ByWidthLength",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 372.96898981157835,
+        "Y": 395.56054969955073
+      },
+      {
+        "Id": "1133fcce0bce485c892d8b52bdf02e6f",
+        "Name": "Plane.XY",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 139.95311741961746,
+        "Y": 291.85684745164156
+      },
+      {
+        "Id": "4c1b79e16c5e4e7f9adfd92e1665de37",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 138.6250748836045,
+        "Y": 445.49706013170646
+      },
+      {
+        "Id": "b79376145c9e4098954a56fbf6f316ce",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 138.6250748836045,
+        "Y": 592.4970601317065
+      },
+      {
+        "Id": "4c878233813c4fb9b235d358becd546a",
+        "Name": "ToposolidType.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 747.9372450276564,
+        "Y": 683.5235272204591
+      },
+      {
+        "Id": "5fcb72c5cbb94ca3930bb5648647fafd",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 409.67405424097956,
+        "Y": 684.6106128244309
+      },
+      {
+        "Id": "f8eab31716fa434bb408783abf3f561c",
+        "Name": "Levels",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 741.2970323475915,
+        "Y": 850.1161227246407
+      },
+      {
+        "Id": "20ed14daa8564407beb3bc1ec501f834",
+        "Name": "Toposolid.ByPointsTypeAndLevel",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1169.281438369617,
+        "Y": 614.4635850869804
+      },
+      {
+        "Id": "c56bc79798614011827b3619ea74d456",
+        "Name": "Curve.PointsAtEqualChordLength",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 750.5933300996824,
+        "Y": 267.8039132741364
+      }
+    ],
+    "Annotations": [],
+    "X": 165.7132084481459,
+    "Y": -75.03629298032436,
+    "Zoom": 1.1454087827614299
+  }
+}

@@ -1,0 +1,329 @@
+{
+  "Uuid": "3ef6c4b1-438f-4eb7-b895-59f9230e2643",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Element.SetLocation",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "ddaaaf80cef34d49b2e12a491297b261",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "470e446b1aa24f798d96e6b321aba840",
+          "Name": "geometry",
+          "Description": "Autodesk.DesignScript.Geometry.Geometry",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d648ec17bdc84979b801d2fb4d5c16e1",
+          "Name": "xTranslation",
+          "Description": "Displacement along X-axis.\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a1b137c7c47e4fdfb772e815977dc2de",
+          "Name": "yTranslation",
+          "Description": "Displacement along Y-axis.\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c658fe31ad1747258bd8adf8da025012",
+          "Name": "zTranslation",
+          "Description": "Displacement along Z-axis.\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1c950cde3b654272aae49565b7508898",
+          "Name": "Geometry",
+          "Description": "Transformed Geometry.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Geometry.Translate@double,double,double",
+      "Replication": "Auto",
+      "Description": "Translates any given geometry by the given displacements in the x, y, and z directions defined in WCS respectively.\n\nGeometry.Translate (xTranslation: double = 0, yTranslation: double = 0, zTranslation: double = 0): Geometry"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "c97bb30120a44760a928a70cda78e911",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "85d699f1cecf46f585904c530ddf68db",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "94c9cd91a47541b9aa7f6035ca370f38",
+          "Name": "geometry",
+          "Description": "New Location Point or Curve\n\nGeometry",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "55199d72346c4c86a9c10f110f13f166",
+          "Name": "void",
+          "Description": "void",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.SetLocation@Autodesk.DesignScript.Geometry.Geometry",
+      "Replication": "Auto",
+      "Description": "Update an existing element's location\n\nElement.SetLocation (geometry: Geometry): void"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3c165324487b41dca694ef15103b7797",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b5d46b92d8d34ca488897eefe467e027",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "35f645d1c57c49a2a3dbf1bceda749b5",
+          "Name": "geometry[]",
+          "Description": "The element’s location",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.GetLocation",
+      "Replication": "Auto",
+      "Description": "Returns an element's location\n\nElement.GetLocation ( ): Geometry"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "788cffbb-d393-40eb-aa93-2b49828755d1-00258682"
+      ],
+      "Id": "cd84cf8c0d154be5a53feca83a79652b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fb0cc7fa90f94ba28c8757beb57bd157",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "a50d57b339ee4cd789e8a5b97f29c04d",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "78811cb0ad9b4abe9bf25db660f04f00",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 100.0
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "1c950cde3b654272aae49565b7508898",
+      "End": "94c9cd91a47541b9aa7f6035ca370f38",
+      "Id": "f935fa331dc2498f99339f70f5e00900",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "35f645d1c57c49a2a3dbf1bceda749b5",
+      "End": "470e446b1aa24f798d96e6b321aba840",
+      "Id": "e82d96d267464bafa3238dec259b73c7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fb0cc7fa90f94ba28c8757beb57bd157",
+      "End": "85d699f1cecf46f585904c530ddf68db",
+      "Id": "66dad82d261f4d3faccc7df81926c59d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fb0cc7fa90f94ba28c8757beb57bd157",
+      "End": "b5d46b92d8d34ca488897eefe467e027",
+      "Id": "41df3023ce2f4e3db42c6226a472b119",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "78811cb0ad9b4abe9bf25db660f04f00",
+      "End": "d648ec17bdc84979b801d2fb4d5c16e1",
+      "Id": "38721d454eeb42078fa42ef33824f1e6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "78811cb0ad9b4abe9bf25db660f04f00",
+      "End": "a1b137c7c47e4fdfb772e815977dc2de",
+      "Id": "a3897255dc5b48f99dd15ceccce70b3e",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "ddaaaf80cef34d49b2e12a491297b261",
+        "Name": "Geometry.Translate",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1388.4428466389952,
+        "Y": 697.3094909189103
+      },
+      {
+        "Id": "c97bb30120a44760a928a70cda78e911",
+        "Name": "Element.SetLocation",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1711.4428466389952,
+        "Y": 604.3094909189103
+      },
+      {
+        "Id": "3c165324487b41dca694ef15103b7797",
+        "Name": "Element.GetLocation",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 961.4428466389952,
+        "Y": 637.3094909189103
+      },
+      {
+        "Id": "cd84cf8c0d154be5a53feca83a79652b",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 650.4428466389952,
+        "Y": 534.8094909189103
+      },
+      {
+        "Id": "a50d57b339ee4cd789e8a5b97f29c04d",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 940.4428466389952,
+        "Y": 797.3094909189102
+      }
+    ],
+    "Annotations": [],
+    "X": -872.639657221727,
+    "Y": -489.59453400849657,
+    "Zoom": 1.545620359375
+  }
+}
