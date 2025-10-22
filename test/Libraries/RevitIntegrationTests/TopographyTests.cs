@@ -15,34 +15,33 @@ using Autodesk.DesignScript.Geometry;
 namespace RevitSystemTests
 {
     [TestFixture]
-    class TopographyTests : RevitSystemTestBase
+    class ToposolidTests : RevitSystemTestBase
     {
-        [Test, Ignore("test uses a deleted node")]
+        [Test]
         [TestModel(@".\empty.rvt")]
-        public void TopographyFromPoints()
+        public void ToposolidFromPointsTypeAndLevel()
         {
-            string samplePath = Path.Combine(workingDirectory, @".\Topography\TopographyFromPoints.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Toposolid\ToposolidFromPointsTypeAndLevel.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
             AssertNoDummyNodes();
 
-            Assert.AreEqual(8, ViewModel.Model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(11, ViewModel.Model.CurrentWorkspace.Connectors.Count());
+            Assert.AreEqual(11, ViewModel.Model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(14, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
-            // Topography.ByPoint node is deleted and needs to be replaced with a node that returns a Toposolid, maybe Toposolid.ByPointsTypeAndLevel
-            var topographyID = "a0b02f6c-a144-4267-b62c-31983661aefa";
-            var topography = GetPreviewValue(topographyID) as Toposolid;
-            Assert.IsNotNull(topography);
+            var toposolidID = "4ee4adcf329b41b39bbbea243f77aba3";
+            var toposolid = GetPreviewValue(toposolidID) as Toposolid;
+            Assert.IsNotNull(toposolidID);
         }
 
 
-        [Test, Ignore("test uses a deleted node")]
-        [TestModel(@".\Topography\topography.rvt")]
-        public void PointsFromTopography()
+        [Test]
+        [TestModel(@".\Toposolid\toposolid.rvt")]
+        public void PointsFromToposolid()
         {
-            string samplePath = Path.Combine(workingDirectory, @".\Topography\PointsFromTopography.dyn");
+            string samplePath = Path.Combine(workingDirectory, @".\Toposolid\PointsFromToposolid.dyn");
             string testPath = Path.GetFullPath(samplePath);
 
             ViewModel.OpenCommand.Execute(testPath);
@@ -53,8 +52,7 @@ namespace RevitSystemTests
             Assert.AreEqual(2, ViewModel.Model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(1, ViewModel.Model.CurrentWorkspace.Connectors.Count());
 
-            // Topography.Points node is deleted and needs to be replaced with Toposolid.Points
-            var pointsID = "c366f888-3b98-4101-9bd7-a1a84e538c61";
+            var pointsID = "bccd461dc5f7460385efb965192d8f56";
             AssertPreviewCount(pointsID, 1156);
             for (int i = 0; i < 1156; i++)
             {
