@@ -40,6 +40,12 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System.Resources.Extensions">
+      <HintPath>..\packages\System.Resources.Extensions\lib\netstandard2.0\System.Resources.Extensions.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\Revit.Application.Document.GetWorksharingPath.Large.png" />
   </ItemGroup>
   <ItemGroup>
