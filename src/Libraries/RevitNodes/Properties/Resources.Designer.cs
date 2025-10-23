@@ -1429,15 +1429,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A minimum of three points is required to create a topography surface..
-        /// </summary>
-        internal static string TopographyNeedsThreePoints {
-            get {
-                return ResourceManager.GetString("TopographyNeedsThreePoints", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to There is no ToposolidType of the given name in the current Document..
         /// </summary>
         internal static string ToposolidTypeNotFound {

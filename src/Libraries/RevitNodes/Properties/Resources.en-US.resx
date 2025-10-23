@@ -456,9 +456,6 @@
   <data name="Tag_Lookup_Error" xml:space="preserve">
     <value>A Revit face with the corresponding tag could not be found.</value>
   </data>
-  <data name="TopographyNeedsThreePoints" xml:space="preserve">
-    <value>A minimum of three points is required to create a topography surface.</value>
-  </data>
   <data name="TypeNotFound" xml:space="preserve">
     <value>Type not found in document.</value>
   </data>
