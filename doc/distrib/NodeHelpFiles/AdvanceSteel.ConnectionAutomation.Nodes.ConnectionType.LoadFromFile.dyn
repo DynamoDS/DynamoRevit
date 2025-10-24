@@ -1,0 +1,264 @@
+{
+  "Uuid": "c421e913-aefd-4886-9419-484eb4938237",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionType.LoadFromFile",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "faabfbfd32ce4d9d9c72a27a5c664275",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "6502fde5d9184265a5754bb550992abe",
+          "Name": "filePath",
+          "Description": "Provide the source file path for loading the ConnectionType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1b3901a47d484a52a97b35b627522ea7",
+          "Name": "connectionName",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "54e8f32d312a456fa758298fbfcaa254",
+          "Name": "typeName",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c9db5311c26b49b58d03130a85cd386d",
+          "Name": "ConnectionType",
+          "Description": "A connection type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionType.LoadFromFile@string,string,string",
+      "Replication": "Auto",
+      "Description": "Loads a ConnectionType into the current document from an external .rvt file using a specified file path.\n\nConnectionType.LoadFromFile (filePath: string, connectionName: string, typeName: string): ConnectionType"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "Id": "a5126fae18414790a15e2644a86bd482",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c4c66b5e6221462b909cb0b9358032ac",
+          "Name": "",
+          "Description": "File Path",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system and returns its file path",
+      "HintPath": "C:\\Users\\kjwil\\Downloads\\AISC 10.2WB_Adv_Stl_Projects\\AISC 10.2WB.rvt",
+      "InputValue": "..\\..\\Downloads\\AISC 10.2WB_Adv_Stl_Projects\\AISC 10.2WB.rvt"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "02d655f097714f31b1e1c7ccd41cf8e2",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "326899cc579d4e489a01fac2d12602f4",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "Clip angle"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "37d810cc56ad4126b41e7421b82477e2",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "89bbc80f3ea744dc96a3f94da0c73893",
+          "Name": "connectionType",
+          "Description": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9bb44d2a7a08427688af4601804a524e",
+          "Name": "string",
+          "Description": "The output string containing the connection name.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionType.ConnectionName",
+      "Replication": "Auto",
+      "Description": "Returns the connection name from a connection type.\n\nConnectionType.ConnectionName: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "c9db5311c26b49b58d03130a85cd386d",
+      "End": "89bbc80f3ea744dc96a3f94da0c73893",
+      "Id": "b9a7f40caa96415ea98e86093c03fa3f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c4c66b5e6221462b909cb0b9358032ac",
+      "End": "6502fde5d9184265a5754bb550992abe",
+      "Id": "d08b27efc75843cebb274226899b894d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "326899cc579d4e489a01fac2d12602f4",
+      "End": "54e8f32d312a456fa758298fbfcaa254",
+      "Id": "a0cbf1c917594afcb21f8833f183826f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "326899cc579d4e489a01fac2d12602f4",
+      "End": "1b3901a47d484a52a97b35b627522ea7",
+      "Id": "98ff65306d3f4536a8d87349625946c7",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "AISC 10.2WB.rvt",
+      "ReferenceType": "External",
+      "Nodes": [
+        "a5126fae18414790a15e2644a86bd482"
+      ]
+    }
+  ],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.5.2.8914",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "faabfbfd32ce4d9d9c72a27a5c664275",
+        "Name": "ConnectionType.LoadFromFile",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2826.3201052815557,
+        "Y": 2552.4945566729616
+      },
+      {
+        "Id": "a5126fae18414790a15e2644a86bd482",
+        "Name": "File Path",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2206.3201052815557,
+        "Y": 2499.4945566729616
+      },
+      {
+        "Id": "02d655f097714f31b1e1c7ccd41cf8e2",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2206.3201052815557,
+        "Y": 2656.4945566729616
+      },
+      {
+        "Id": "37d810cc56ad4126b41e7421b82477e2",
+        "Name": "ConnectionType.ConnectionName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 3245.3201052815557,
+        "Y": 2552.4945566729616
+      }
+    ],
+    "Annotations": [],
+    "X": -1440.3408912763446,
+    "Y": -1473.0187331493562,
+    "Zoom": 0.6664222873900293
+  }
+}
