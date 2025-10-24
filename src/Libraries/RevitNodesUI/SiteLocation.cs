@@ -20,7 +20,7 @@ namespace DSRevitNodesUI
         public void CustomizeView(SiteLocation model, NodeView nodeView)
         {
             var locCtrl = new LocationControl { DataContext = this };
-            nodeView.inputGrid.Children.Add(locCtrl);
+            nodeView.ContentGrid.Children.Add(locCtrl);
         }
 
         public void Dispose()

@@ -1,3 +1,7 @@
+## 0.7.60
+* remove obsolete nodes and methods, refactor tests that used them
+* add node view customization for family instance selection
+
 ## 0.7.59
 * Update Dynamo Core to 4.0.0-beta2804
 

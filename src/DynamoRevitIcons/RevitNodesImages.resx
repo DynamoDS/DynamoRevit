@@ -1852,24 +1852,6 @@
   <data name="Revit.Elements.Views.Sheet.ByNameNumberTitleBlock.Small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DSRevitNodes\Revit.Elements.Views.Sheet.ByNameNumberTitleBlock.Small.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Revit.Elements.Topography.ByPoints.Large" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DSRevitNodes\Revit.Elements.Topography.ByPoints.Large.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Revit.Elements.Topography.ByPoints.Small" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DSRevitNodes\Revit.Elements.Topography.ByPoints.Small.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Revit.Elements.Topography.Mesh.Large" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DSRevitNodes\Revit.Elements.Topography.Mesh.Large.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Revit.Elements.Topography.Mesh.Small" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DSRevitNodes\Revit.Elements.Topography.Mesh.Small.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Revit.Elements.Topography.Points.Large" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DSRevitNodes\Revit.Elements.Topography.Points.Large.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Revit.Elements.Topography.Points.Small" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DSRevitNodes\Revit.Elements.Topography.Points.Small.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Revit.Elements.Views.AxonometricView.ByEyePointAndTarget.Large" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DSRevitNodes\Revit.Elements.Views.AxonometricView.ByEyePointAndTarget.Large.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -2067,9 +2049,6 @@
   </data>
   <data name="SunSettings.Small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DSRevitNodes\SunSettings.Small.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Topography.Small" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\DSRevitNodes\Topography.Small.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Transaction.Small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\DSRevitNodes\Transaction.Small.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

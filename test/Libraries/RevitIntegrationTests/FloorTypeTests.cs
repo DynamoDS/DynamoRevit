@@ -23,7 +23,7 @@ namespace RevitSystemTests
             string testPath = Path.GetFullPath(samplePath);
 
             double expectedFloorTypeAbsorptance = 0.7;
-            double expectedFloorTypeHeatTransferCoefficient = 0.117437;
+            double expectedFloorTypeThermalTransmittance = 0.117437;
             int expectedFloorTypeRoughness = 3;
             double expectedFloorTypeThermalMass = 365549.43;
             double expectedFloorTypeThermalResistance = 8.515159;
@@ -33,14 +33,14 @@ namespace RevitSystemTests
             RunCurrentModel();
 
             var resultFloorTypeAbsorptance = GetPreviewValue("56cb939de2cc4ca4a21731ba78f4299b");
-            var resultFloorTypeHeatTransferCoefficient = GetPreviewValue("6d63251353044032b5167428b7749f62");
+            var resultFloorTypeThermalTransmittance = GetPreviewValue("6d63251353044032b5167428b7749f62");
             var resultFloorTypeRoughness = GetPreviewValue("9cd0f885729641dc928f93250bae096a");
             var resultFloorTypeThermalMass = GetPreviewValue("e60b5201ae23449196beb090d0d825d1");
             var resultFloorTypeThermalResistance = GetPreviewValue("1ca68872f565419b838cdbb8306057d3");
 
             // Assert
             Assert.AreEqual(expectedFloorTypeAbsorptance, (double)resultFloorTypeAbsorptance, Tolerance);
-            Assert.AreEqual(expectedFloorTypeHeatTransferCoefficient, (double)resultFloorTypeHeatTransferCoefficient, Tolerance);
+            Assert.AreEqual(expectedFloorTypeThermalTransmittance, (double)resultFloorTypeThermalTransmittance, Tolerance);
             Assert.AreEqual(expectedFloorTypeRoughness, resultFloorTypeRoughness);
             Assert.AreEqual(expectedFloorTypeThermalMass, (double)resultFloorTypeThermalMass, Tolerance);
             Assert.AreEqual(expectedFloorTypeThermalResistance, (double)resultFloorTypeThermalResistance, Tolerance);

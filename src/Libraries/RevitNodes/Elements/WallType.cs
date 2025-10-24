@@ -13,7 +13,7 @@ namespace Revit.Elements
     public class WallType : ElementType
     {
         private const string absorptanceOutputPort = "Absorptance";
-        private const string heatTransferCoefficientOutputPort = "HeatTransferCoefficient";
+        private const string thermalTransmittanceOutputPort = "ThermalTransmittance";
         private const string roughnessOutputPort = "Roughness";
         private const string thermalMassOutputPort = "ThermalMass";
         private const string thermalResistanceOutputPort = "ThermalResistance";
@@ -126,11 +126,11 @@ namespace Revit.Elements
         /// The calculated and settable thermal properties of the WallType
         /// </summary>
         /// <returns name = "Absorptance">Value of absorptance.</returns>
-        /// <returns name = "HeatTransferCoefficient">The heat transfer coefficient value (U-Value).</returns>
+        /// <returns name = "ThermalTransmittance">The thermal transmittance value (U-Value).</returns>
         /// <returns name = "Roughness">Value of roughness.</returns>
         /// <returns name = "ThermalMass">The calculated thermal mass value.</returns>
         /// <returns name = "ThermalResistance">The calculated thermal resistance value (R-Value).</returns>
-        [MultiReturn(new[] { absorptanceOutputPort, heatTransferCoefficientOutputPort, roughnessOutputPort, thermalMassOutputPort, thermalResistanceOutputPort})]
+        [MultiReturn(new[] { absorptanceOutputPort, thermalTransmittanceOutputPort, roughnessOutputPort, thermalMassOutputPort, thermalResistanceOutputPort})]
         public Dictionary<string, object> GetThermalProperties()
         {
             ThermalProperties thermalProperties = this.InternalWallType.ThermalProperties;
@@ -140,7 +140,7 @@ namespace Revit.Elements
             return new Dictionary<string, object>
             {
                 { absorptanceOutputPort, thermalProperties.Absorptance },
-                { heatTransferCoefficientOutputPort, thermalProperties.HeatTransferCoefficient },
+                { thermalTransmittanceOutputPort, thermalProperties.ThermalTransmittance },
                 { roughnessOutputPort, thermalProperties.Roughness },
                 { thermalMassOutputPort, thermalProperties.ThermalMass },
                 { thermalResistanceOutputPort, thermalProperties.ThermalResistance }

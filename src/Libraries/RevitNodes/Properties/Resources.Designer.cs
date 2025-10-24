@@ -214,24 +214,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This node may be removed in future version. Use CreateProjectParameterForAllCategories(string, string, SpecType, GroupType, bool) instead..
-        /// </summary>
-        internal static string CreateProjectParameterForAllCategoriesObsolete {
-            get {
-                return ResourceManager.GetString("CreateProjectParameterForAllCategoriesObsolete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This node may be removed in future version. Use CreateProjectParameter(string, string, SpecType, GroupType, bool, IEnumerable&lt;Category&gt;) instead..
-        /// </summary>
-        internal static string CreateProjectParameterObsolete {
-            get {
-                return ResourceManager.GetString("CreateProjectParameterObsolete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to This node may be removed in future version. Use CreateSharedParameterForAllCategories(string, string, SpecType, GroupType, bool) instead..
         /// </summary>
         internal static string CreateSharedParameterForAllCategoriesObsolete {
@@ -1425,15 +1407,6 @@ namespace Revit.Properties {
         internal static string Tag_Lookup_Error {
             get {
                 return ResourceManager.GetString("Tag_Lookup_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A minimum of three points is required to create a topography surface..
-        /// </summary>
-        internal static string TopographyNeedsThreePoints {
-            get {
-                return ResourceManager.GetString("TopographyNeedsThreePoints", resourceCulture);
             }
         }
         

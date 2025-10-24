@@ -198,7 +198,7 @@ namespace Dynamo.ComboNodes
                 }));
             };
             var comboControl = new ComboControl { DataContext = this };
-            nodeView.inputGrid.Children.Add(comboControl);
+            nodeView.ContentGrid.Children.Add(comboControl);
         }
 
         public void Dispose()
@@ -225,7 +225,7 @@ namespace Dynamo.ComboNodes
                 }));
             };
             var comboControl = new ComboControl { DataContext = this };
-            nodeView.inputGrid.Children.Add(comboControl);
+            nodeView.ContentGrid.Children.Add(comboControl);
         }
 
         public void Dispose()
