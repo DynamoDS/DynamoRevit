@@ -1,0 +1,195 @@
+{
+  "Uuid": "79dff255-c63e-4ca5-8330-ee940679010f",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Revision.IssuedBy",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8d251a27cf5e4e8a95b5e98f8cbd6b3b",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e4a46b550b8547b68425d8f7b1fc6c5c",
+          "Name": "revision",
+          "Description": "Revit.Elements.Revision",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e250b2e476fe4852a4f2dea484014a47",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Revision.IssuedBy",
+      "Replication": "Auto",
+      "Description": "Get IssuedBy\n\nRevision.IssuedBy: string"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.RevitRevisions, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Seq. 1 - Revision 1",
+      "Id": "52d0e61efcb84f2880f7be76839f0274",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d9229e4ef14c46488b8d4c4d09b4d468",
+          "Name": "Revision",
+          "Description": "The selected Revision",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select an existing Revit Revision from the active document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 200.0,
+      "WatchHeight": 40.0,
+      "Id": "a4cee328fcf74b6ea8e33db429c28985",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "81c3bde4c5b543e9a951f0725f113d1e",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e4b1b23661ca4894b0aeb1d1817f626a",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e250b2e476fe4852a4f2dea484014a47",
+      "End": "81c3bde4c5b543e9a951f0725f113d1e",
+      "Id": "6f95875b4c6048fb936a52e8bd9679cc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d9229e4ef14c46488b8d4c4d09b4d468",
+      "End": "e4a46b550b8547b68425d8f7b1fc6c5c",
+      "Id": "743c056b254a4b86b009aa9478ffa851",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "8d251a27cf5e4e8a95b5e98f8cbd6b3b",
+        "Name": "Revision.IssuedBy",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 578.4000000000002,
+        "Y": 172.79999999999998
+      },
+      {
+        "Id": "52d0e61efcb84f2880f7be76839f0274",
+        "Name": "Select Revision",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 224.8,
+        "Y": 171.1999999999999
+      },
+      {
+        "Id": "a4cee328fcf74b6ea8e33db429c28985",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 894.4,
+        "Y": 173.6
+      }
+    ],
+    "Annotations": [],
+    "X": -184.3773841210923,
+    "Y": 124.50532487084052,
+    "Zoom": 1.9392723451761564
+  }
+}

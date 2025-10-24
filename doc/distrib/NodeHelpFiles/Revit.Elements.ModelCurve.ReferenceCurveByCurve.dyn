@@ -1,8 +1,8 @@
 {
-  "Uuid": "350e63d0-c895-49f4-95d9-9ed733d44fed",
+  "Uuid": "3ef6c4b1-438f-4eb7-b895-59f9230e2643",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Revit.Elements.Views.AxonometricView.ByEyePointAndTarget",
+  "Name": "Revit.Elements.ModelCurve.ReferenceCurveByCurve",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -11,32 +11,14 @@
   "Nodes": [
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "cb7ab0cfb8c64dcd9821caa237750a9a",
+      "Id": "7c26573ebfcb40c8957c7047f6ee4c09",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "3628951cd6024227b79d7c53b355b095",
-          "Name": "eyePoint",
-          "Description": "A Point representing the eye point in meters.\n\nPoint",
+          "Id": "2031e42924bc4fffbe68de146a64231d",
+          "Name": "curve",
+          "Description": "Curve",
           "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "f5189dc696c548c3bfc37b32ecee2c0d",
-          "Name": "target",
-          "Description": "A Point representing the target of view in meters.\n\nPoint",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "07ea8600570b4db8a03aef25f2f02717",
-          "Name": "name",
-          "Description": "The name of the view.\n\nstring\nDefault value : \"dynamo3D\"",
-          "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
@@ -44,48 +26,95 @@
       ],
       "Outputs": [
         {
-          "Id": "cce3524d8f8742fc8b1e1ed0b1d8f463",
-          "Name": "AxonometricView",
-          "Description": "An AxonometricView object.",
+          "Id": "eb763eb77a5d47f8b8507b4be013823a",
+          "Name": "ModelCurve",
+          "Description": "ModelCurve",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false
         }
       ],
-      "FunctionSignature": "Revit.Elements.Views.AxonometricView.ByEyePointAndTarget@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point,string",
+      "FunctionSignature": "Revit.Elements.ModelCurve.ReferenceCurveByCurve@Autodesk.DesignScript.Geometry.Curve",
       "Replication": "Auto",
-      "Description": "Create a Revit Axonometric (isometric) View from an eye position and a target position.\n\nAxonometricView.ByEyePointAndTarget (eyePoint: Point, target: Point, name: string = \"dynamo3D\"): AxonometricView"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
-      "SerializedWidth": 0.0,
-      "SerializedHeight": 0.0,
-      "Id": "4d414db80b9d4db8b3a32f664a698f28",
-      "NodeType": "StringInputNode",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "2dbcbaa3750340b0a099092c9f544859",
-          "Name": "",
-          "Description": "String",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Creates a string.",
-      "InputValue": "DynamoAxonView"
+      "Description": "Construct a Revit ModelCurve element from a Curve\n\nModelCurve.ReferenceCurveByCurve (curve: Curve): ModelCurve"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "2e6602d8737e4c0b92584a938e8b1972",
+      "Id": "45f462fbbf9141239edc663f7d54a54a",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "090cdebd881c41afba10c50d8168a6b6",
+          "Id": "d9596bfde0094396b70c6b5d50d13741",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "052892b64d1c45ea8a17739c6413ad52",
+          "Name": "Parameter[]",
+          "Description": "Parameter[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Parameters",
+      "Replication": "Auto",
+      "Description": "Obtain all of the Parameters from an Element, sorted by Name.\n\nElement.Parameters: Parameter[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "57c3b9e03f244bd4aa1efc147efd22e1",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "784f2c683eda475dabf1038f58cbbc45",
+          "Name": "startPoint",
+          "Description": "Line start point\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0968ea690b7a449b82c64a9d52212033",
+          "Name": "endPoint",
+          "Description": "Line end point\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1af48fef822244449ef9b2d3423931ad",
+          "Name": "Line",
+          "Description": "Line from start and end point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point",
+      "Replication": "Auto",
+      "Description": "Creates a straight Line between two input Points.\n\nLine.ByStartPointEndPoint (startPoint: Point, endPoint: Point): Line"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d0d442a6b2734f52a653f58565f8aea6",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f1d98f83638b414881f2cb23690d4261",
           "Name": "x",
           "Description": "X coordinate\n\ndouble\nDefault value : 0",
           "UsingDefaultValue": true,
@@ -94,7 +123,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "df61fdc65b1a4e0bb7d6c6794e7fd4c3",
+          "Id": "1f28e8b8e428483b8998e58097119ead",
           "Name": "y",
           "Description": "Y coordinate\n\ndouble\nDefault value : 0",
           "UsingDefaultValue": true,
@@ -103,7 +132,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "48adf38970c94a2397a5674e41b3840c",
+          "Id": "71d27e69afa34d3abec93b58c0832424",
           "Name": "z",
           "Description": "Z coordinate\n\ndouble\nDefault value : 0",
           "UsingDefaultValue": true,
@@ -114,7 +143,7 @@
       ],
       "Outputs": [
         {
-          "Id": "76d52b4bcfa54d02ba923aa5c52f88b0",
+          "Id": "e3b2036103e74979958a8074910b8fa3",
           "Name": "Point",
           "Description": "Point created by coordinates",
           "UsingDefaultValue": false,
@@ -129,11 +158,11 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "af4445eb49b9401bb5939a076224b340",
+      "Id": "2f352a0e0c0c40f985b84628f5e3b30e",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "023796317fcc41f99881007b786e9852",
+          "Id": "7ea66f646acf4902a3710abc5ffc4e8c",
           "Name": "x",
           "Description": "X coordinate\n\ndouble\nDefault value : 0",
           "UsingDefaultValue": true,
@@ -142,7 +171,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "8c6d4dbb9c1d41ccae0cceb6a1802175",
+          "Id": "8e54e97c047e4356b33e02457101c775",
           "Name": "y",
           "Description": "Y coordinate\n\ndouble\nDefault value : 0",
           "UsingDefaultValue": true,
@@ -151,7 +180,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "e673049b32ce4fda86e29521cdb84898",
+          "Id": "26195a1aea984f4497691aa9140ac3cf",
           "Name": "z",
           "Description": "Z coordinate\n\ndouble\nDefault value : 0",
           "UsingDefaultValue": true,
@@ -162,7 +191,7 @@
       ],
       "Outputs": [
         {
-          "Id": "504ddcaeea494d5288f58d7eb6dba489",
+          "Id": "7f58a931989947a0b2eca72b6a50d2a9",
           "Name": "Point",
           "Description": "Point created by coordinates",
           "UsingDefaultValue": false,
@@ -176,14 +205,17 @@
       "Description": "Form a Point given 3 cartesian coordinates\n\nPoint.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Point"
     },
     {
-      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
       "NumberType": "Double",
-      "Id": "56553a1653f347e2a2c4d93046681565",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "cee03b97857e4e61aaa227150b45f088",
       "NodeType": "NumberInputNode",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "04d4c9a7918541eb8b5beae5786c1263",
+          "Id": "fde4dda65c2d422fb9f096030f66a10d",
           "Name": "",
           "Description": "Double",
           "UsingDefaultValue": false,
@@ -193,84 +225,45 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "Creates a number.",
-      "InputValue": 0.0
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
-      "NumberType": "Double",
-      "Id": "6eac1e0dce6744d585d69b1c4db6d12c",
-      "NodeType": "NumberInputNode",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "9ca051ce591c482695ef38ba76ea6968",
-          "Name": "",
-          "Description": "Double",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Creates a number.",
-      "InputValue": 100.0
+      "Description": "Produces numeric values",
+      "InputValue": 20.0
     }
   ],
   "Connectors": [
     {
-      "Start": "2dbcbaa3750340b0a099092c9f544859",
-      "End": "07ea8600570b4db8a03aef25f2f02717",
-      "Id": "2dccfae9d2ab4e378ec7ed9342358060",
+      "Start": "eb763eb77a5d47f8b8507b4be013823a",
+      "End": "d9596bfde0094396b70c6b5d50d13741",
+      "Id": "cf4ce04bdca042bbb80f973b0a154695",
       "IsHidden": "False"
     },
     {
-      "Start": "76d52b4bcfa54d02ba923aa5c52f88b0",
-      "End": "3628951cd6024227b79d7c53b355b095",
-      "Id": "7ec6edb049b249e58e2952cd7ba2647f",
+      "Start": "1af48fef822244449ef9b2d3423931ad",
+      "End": "2031e42924bc4fffbe68de146a64231d",
+      "Id": "ed7214022b6d4301b2f3e2bb07a8ebad",
       "IsHidden": "False"
     },
     {
-      "Start": "504ddcaeea494d5288f58d7eb6dba489",
-      "End": "f5189dc696c548c3bfc37b32ecee2c0d",
-      "Id": "fecad82bdac94d569dd10ebd44bd5d20",
+      "Start": "e3b2036103e74979958a8074910b8fa3",
+      "End": "0968ea690b7a449b82c64a9d52212033",
+      "Id": "15ab4a720e3341c9a472a21ea47edb3b",
       "IsHidden": "False"
     },
     {
-      "Start": "04d4c9a7918541eb8b5beae5786c1263",
-      "End": "090cdebd881c41afba10c50d8168a6b6",
-      "Id": "01e0e3b4fa614de794f3bf13148b5d2b",
+      "Start": "7f58a931989947a0b2eca72b6a50d2a9",
+      "End": "784f2c683eda475dabf1038f58cbbc45",
+      "Id": "e47488b584ce4049b250103c72275f5a",
       "IsHidden": "False"
     },
     {
-      "Start": "04d4c9a7918541eb8b5beae5786c1263",
-      "End": "df61fdc65b1a4e0bb7d6c6794e7fd4c3",
-      "Id": "ac45eb0ae35f4efb877dbf2156b528d7",
+      "Start": "fde4dda65c2d422fb9f096030f66a10d",
+      "End": "f1d98f83638b414881f2cb23690d4261",
+      "Id": "f6f20c5b35eb41a1b3ef5101a6d37374",
       "IsHidden": "False"
     },
     {
-      "Start": "04d4c9a7918541eb8b5beae5786c1263",
-      "End": "e673049b32ce4fda86e29521cdb84898",
-      "Id": "9612450d5c224650b54350d88bd7f0fb",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "9ca051ce591c482695ef38ba76ea6968",
-      "End": "023796317fcc41f99881007b786e9852",
-      "Id": "a9afbca9684648f7b5c0c1481ea12474",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "9ca051ce591c482695ef38ba76ea6968",
-      "End": "8c6d4dbb9c1d41ccae0cceb6a1802175",
-      "Id": "46af11c906034140b004aa73399a5858",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "9ca051ce591c482695ef38ba76ea6968",
-      "End": "48adf38970c94a2397a5674e41b3840c",
-      "Id": "8c25a5d7faf648f29a3e23a07d577388",
+      "Start": "fde4dda65c2d422fb9f096030f66a10d",
+      "End": "1f28e8b8e428483b8998e58097119ead",
+      "Id": "b3b2a7fc499b4defb093cb51bfd5a4b8",
       "IsHidden": "False"
     }
   ],
@@ -283,13 +276,13 @@
     {
       "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
       "Name": "Properties",
-      "Version": "3.5",
+      "Version": "3.4",
       "Data": {}
     },
     {
       "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
       "Name": "Generative Design",
-      "Version": "9.1",
+      "Version": "9.0",
       "Data": {}
     }
   ],
@@ -302,9 +295,9 @@
   },
   "Bindings": [
     {
-      "NodeId": "cb7ab0cf-b8c6-4dcd-9821-caa237750a9a",
+      "NodeId": "7c26573e-bfcb-40c8-957c-7047f6ee4c09",
       "Binding": {
-        "ByEyePointAndTarget_InClassDecl-1_InFunctionScope-1_Instance0_cb7ab0cf-b8c6-4dcd-9821-caa237750a9a": "H4sIAAAAAAAACh3LMQ6DMAwF0Lv8uZbsAKnDzJK5Y83gJG3VhQFlQ9wdibe/94Hm3THjMLz6/t9+eTHMBm31o2EQikmeNDaNVKQy8eiNyze5FCXmoMlrMDwMeev3DTEKT3riXC8FxlLgXwAAAA=="
+        "ReferenceCurveByCurve_InClassDecl-1_InFunctionScope-1_Instance0_7c26573e-bfcb-40c8-957c-7047f6ee4c09": "H4sIAAAAAAAACh3Lqw7DMAwF0H+5uJZSd8ujuCR4cC6w85hGCqawqv8+qYef94mqQ7HiFLzG73t88iZYBRZLqS0x9SUoPVqvpMV5CmZpjk+2sBg5xzFpVcEkyMe4L3s/u8gXrv0PfmQO5F8AAAA="
       }
     }
   ],
@@ -313,7 +306,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "3.5.0.8297",
+      "Version": "3.4.1.7055",
       "RunType": "Manual",
       "RunPeriod": "1000"
     },
@@ -332,69 +325,69 @@
     "ConnectorPins": [],
     "NodeViews": [
       {
-        "Id": "cb7ab0cfb8c64dcd9821caa237750a9a",
-        "Name": "AxonometricView.ByEyePointAndTarget",
+        "Id": "7c26573ebfcb40c8957c7047f6ee4c09",
+        "Name": "ModelCurve.ReferenceCurveByCurve",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 537.8468502539381,
-        "Y": 340.854498882856
+        "X": 1489.374822306626,
+        "Y": 923.0625749167752
       },
       {
-        "Id": "4d414db80b9d4db8b3a32f664a698f28",
-        "Name": "String",
+        "Id": "45f462fbbf9141239edc663f7d54a54a",
+        "Name": "Element.Parameters",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 212.8468502539381,
-        "Y": 584.854498882856
+        "X": 1934.374822306626,
+        "Y": 923.0625749167751
       },
       {
-        "Id": "2e6602d8737e4c0b92584a938e8b1972",
+        "Id": "57c3b9e03f244bd4aa1efc147efd22e1",
+        "Name": "Line.ByStartPointEndPoint",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1118.374822306626,
+        "Y": 923.0625749167752
+      },
+      {
+        "Id": "d0d442a6b2734f52a653f58565f8aea6",
         "Name": "Point.ByCoordinates",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 212.8468502539381,
-        "Y": 164.85449888285592
+        "X": 793.3748223066259,
+        "Y": 1046.0625749167752
       },
       {
-        "Id": "af4445eb49b9401bb5939a076224b340",
+        "Id": "2f352a0e0c0c40f985b84628f5e3b30e",
         "Name": "Point.ByCoordinates",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 212.8468502539381,
-        "Y": 374.854498882856
+        "X": 793.3748223066259,
+        "Y": 822.4921332956989
       },
       {
-        "Id": "56553a1653f347e2a2c4d93046681565",
-        "Name": "Number",
+        "Id": "cee03b97857e4e61aaa227150b45f088",
+        "Name": "Number Slider",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": -19.1531497460619,
-        "Y": 198.85449888285595
-      },
-      {
-        "Id": "6eac1e0dce6744d585d69b1c4db6d12c",
-        "Name": "Number",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": -19.1531497460619,
-        "Y": 374.854498882856
+        "X": 345.3748223066259,
+        "Y": 1063.0625749167752
       }
     ],
     "Annotations": [],
-    "X": 323.29219467323594,
-    "Y": -52.14844254139837,
-    "Zoom": 1.117987883042385
+    "X": -141.61201652089858,
+    "Y": -412.4300553435072,
+    "Zoom": 0.9487688270376051
   }
 }
