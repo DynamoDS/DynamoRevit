@@ -135,7 +135,7 @@ This will locally produce all the dynamo nugets.
 ## Troubleshooting Build Issues
 
 * If you see errors like: 
-
+   
    ```1>  "C:\Program Files (x86)\Common Files\microsoft shared\TextTemplating\11.0\TextTransform.exe" -out AssemblySharedInfo.cs AssemblySharedInfo.tt
    1>c:\Users\bykovsm\AppData\Local\Temp\AssemblySharedInfo.tt(1,1): error CS1519: Compiling transformation: Invalid token 'this' in class, struct, or interface member declaration
    1>c:\Users\bykovsm\AppData\Local\Temp\AssemblySharedInfo.tt(1,6): error CS1520: Compiling transformation: Method must have a return type
@@ -147,6 +147,7 @@ This will locally produce all the dynamo nugets.
 * If your addin is not appearing in Revit, try removing any old copies of the Dynamo.addin file from these locations:
    -  `Users/<user>/AppData/Roaming/Autodesk/Revit/Addins/<version>`
    -  `ProgramFiles/Autodesk/Revit <version>/AddIns`
+
 * Revit 2020 and later do not use the DynamoVersionSelector by default, but it's still in the DynamoRevit build. If you'd like to try using it, you can create a Dynamo.addin file that looks like this:
 
 ```xml
@@ -158,12 +159,16 @@ This will locally produce all the dynamo nugets.
     <AddInId>8D83C886-B739-4ACD-A9DB-1BC78F315B2B</AddInId>
     <FullClassName>Dynamo.Applications.VersionLoader</FullClassName>
     <VendorId>ADSK</VendorId>
-	@@ -121,33 +162,32 @@ This will locally produce all the dynamo nugets.
+    <VendorDescription>Dynamo</VendorDescription>
+  </AddIn>
+</RevitAddIns>
+```
 
 ## Running DynamoRevit Tests with RevitTestFramework
 
 (This documentation is a work in progress, still being assembled and verified from internal documents)
 For more information, see https://github.com/DynamoDS/RevitTestFramework/blob/master/README.md
+
 ### Option 1: RevitTestFrameworkConsole.exe
 
 A console application which allows running RTF without a user interface. If you'd like to learn more about the command line options for RTF, you can simply type "RevitTestFrameworkConsole -h".
@@ -190,3 +195,4 @@ The input fields to set the test assembly, the working directory, and the result
 - *Working Directory* is the folder contains your test Revit file and dyn file like Empty.rvt and D4RCreateWallSystemTests.dyn.
 - *Additional Resolution Directories* are the DynamoCore and DynamoRevit locations you want to use to run the test (Do they need to match what's in the Dynamo.addin file?)
 - *Revit 2020* you can choose which Revit version you want to use in this DropDown List. (Only installed versions of Revit.)
+
