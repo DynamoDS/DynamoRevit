@@ -37,7 +37,7 @@ Ensure the following software is installed on your system:
 - Open `DynamoRevit.All.sln` in Visual Studio and select a build configuration:
 
   - Configuration: `Debug` or `Release`
-  - Platform: `NET80` (for Revit 2025 and later)
+  - Platform: `NET80` (or `NET100` for Revit 2027 and later)
 
 - In `src/AssemblySharedInfoGenerator/AssemblySharedInfo.tt`, change `MajorVersion` from `27` to `4` to match DynamoCore.dll version `4.0.0.xxxx`. This workaround is only needed for Revit 2027; post-Dynamo 4.0 versions will use the host-specified version.
 
@@ -47,20 +47,26 @@ Ensure the following software is installed on your system:
   int BuildNumber = 0;
   ```
 
-- Configure `src/Config/user_local.props` by setting the `RevitVersionNumber` to match your installed Revit version (e.g., `2025` or `2026`).
+- (Optional) Set the `RevitVersionNumber` environment variable to the Revit version you're building against (e.g., `2025`, `2026`, `2027`). If not set, it defaults to `"Preview Release"`.
 
-  - If Revit is not installed or you need to override the default location, also specify a custom `REVITAPI` path in `user_local.props`.
+- If Revit is not installed locally or you need to use a specific version, copy `RevitAPI.dll` & `RevitAPIUI.dll` to the appropriate folder based on your build platform. These DLLs are located in the same folder as `Revit.exe` on your computer:
+
+  - `DynamoRevit\lib\Revit Preview Release\net8.0` (for NET80 builds), OR
+  - `DynamoRevit\lib\Revit Preview Release\net10.0` (for NET100 builds)
+
+  - If you want to build other branches of DynamoRevit but the corresponding version of Revit is not installed locally, you can get these DLLs from [NuGet](https://www.nuget.org/).
+
+  > **Revit API DLL Lookup Order**
+  >
+  > The build process automatically locates Revit API DLLs in the following order:
+  >
+  > 1. Custom `REVITAPI` paths defined in `src/Config/user_local.props` (highest priority if set)
+  > 2. `$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\net8.0` (or `net10.0`)
+  > 3. `C:\Program Files\Autodesk\Revit Architecture $(RevitVersionNumber)`
+  > 4. `C:\Program Files\Autodesk\Revit $(RevitVersionNumber)`
+  > 5. `C:\Program Files\Autodesk\Revit Preview Release`
 
 - Build `DynamoRevit` solution to produce the right version of `DynamoRevitDS.dll` (i.e. `4.0.0.xxxx` in this case).
-
-#### Revit API DLL Lookup Order
-
-The build process automatically locates Revit API DLLs in the following order:
-
-1. Custom `REVITAPI` path defined in `src/Config/user_local.props` (highest priority if set)
-2. `$(SolutionDir)..\lib\Revit $(RevitVersionNumber)\net8.0`
-3. `%ProgramFiles%\Autodesk\Revit Architecture $(RevitVersionNumber)`
-4. `%ProgramFiles%\Autodesk\Revit $(RevitVersionNumber)`
 
 ### 2. Get or Build Dynamo Core
 
@@ -91,7 +97,7 @@ will configure DynamoRevit to use the DynamoCore located at `C:\my\repos\Dynamo\
 
 ### 4. Create a Revit Addin
 
-Beginning with Revit 2020, DynamoCore and the DynamoRevit addin are included in the Revit installation folder. For development purposes, first remove or delete the DynamoForRevit addin folder from: `%ProgramFiles%\Autodesk\Revit 2020\AddIns` (or `%ProgramFiles%\Autodesk\Revit Preview Release\AddIns` for pre-RTM installation of Revit).
+Beginning with Revit 2020, DynamoCore and the DynamoRevit addin are included in the Revit installation folder. For development purposes, first remove or delete the DynamoForRevit addin folder from: `%ProgramFiles%\Autodesk\Revit 2026\AddIns`.
 
 For development, you must manually create an addin file that instructs Revit to load your custom plugin on startup. A `DynamoForRevit.addin` file should be structured as follows:
 
@@ -117,77 +123,70 @@ where `<version>` corresponds to your target Revit version. Note that the `Assem
 
 After completing these steps, launch Revit to verify that the Dynamo and Dynamo Player icons appear on the Manage tab. If you encounter issues, refer to the troubleshooting section below.
 
-### Build DynamoRevit Against a Local Dynamo Version
+### Build dynamo revit against a local version of Dynamo
 
 1. Build Dynamo locally
-2. Execute the Dynamo NuGet script (detailed instructions [here](https://github.com/DynamoDS/Dynamo/blob/master/tools/NuGet/README.md)):
-   `.\BuildPackages.bat "template-nuget" "...\GitHub\Dynamo\bin\AnyCPU\Release"`
-   This command generates all Dynamo NuGet packages locally.
-3. In Visual Studio, configure the NuGet package sources to reference your local NuGet folder containing the generated packages.
-   ![alt text](images/local_dynamo_nugets.png)
+2. Run the Dynamo nuget script (more info [here](https://github.com/DynamoDS/Dynamo/blob/master/tools/NuGet/README.md))
+```.\BuildPackages.bat "template-nuget" "...\GitHub\Dynamo\bin\AnyCPU\Release"```
+This will locally produce all the dynamo nugets.
+3. In you Visual Studio editor, add/change the nuget sources to point to your local nuget folder (where the local nugets are).
+![alt text](images/local_dynamo_nugets.png)
 
 ## Troubleshooting Build Issues
 
-- If you encounter errors similar to:
+* If you see errors like: 
 
-  ```1> "C:\Program Files (x86)\Common Files\microsoft shared\TextTemplating\11.0\TextTransform.exe" -out AssemblySharedInfo.cs AssemblySharedInfo.tt
-  1>c:\Users\bykovsm\AppData\Local\Temp\AssemblySharedInfo.tt(1,1): error CS1519: Compiling transformation: Invalid token 'this' in class, struct, or interface member declaration
-  1>c:\Users\bykovsm\AppData\Local\Temp\AssemblySharedInfo.tt(1,6): error CS1520: Compiling transformation: Method must have a return type
-  ```
+   ```1>  "C:\Program Files (x86)\Common Files\microsoft shared\TextTemplating\11.0\TextTransform.exe" -out AssemblySharedInfo.cs AssemblySharedInfo.tt
+   1>c:\Users\bykovsm\AppData\Local\Temp\AssemblySharedInfo.tt(1,1): error CS1519: Compiling transformation: Invalid token 'this' in class, struct, or interface member declaration
+   1>c:\Users\bykovsm\AppData\Local\Temp\AssemblySharedInfo.tt(1,6): error CS1520: Compiling transformation: Method must have a return type
+   ```  	
+   then you need to get rid of any white space in the last line of *DynamoRevit/src/AssemblyInfoGenerator/transform_all.tt*. It's also possible that *transform_all.bat* is looking for a text templating engine for a version of visual studio you do not have installed.
 
-  Remove any trailing whitespace from the last line of _DynamoRevit/src/AssemblyInfoGenerator/transform_all.tt_. This error may also occur if _transform_all.bat_ references a text templating engine for a Visual Studio version that is not installed on your system.
+* If you see missing classes or namespaces from the Revit or Dynamo APIs, look at the environment variable values in [CS.props](https://github.com/DynamoDS/DynamoRevit/blob/Revit2017/src/Config/CS.props). These environment variables can be overwritten by providing correct path for Dynamo and Revit libraries in [user_locals.props](https://github.com/DynamoDS/DynamoRevit/blob/Revit2017/src/Config/user_local.props)
 
-- If you encounter missing classes or namespaces from the Revit or Dynamo APIs, review the environment variable values in [CS_SDK.props](https://github.com/DynamoDS/DynamoRevit/blob/master/src/Config/CS_SDK.props). These environment variables can be overridden by specifying the correct paths for Dynamo and Revit libraries in [user_local.props](https://github.com/DynamoDS/DynamoRevit/blob/master/src/Config/user_local.props).
-
-- If your addin does not appear in Revit, remove any existing copies of the Dynamo.addin file from these locations:
-
-  - `Users/<user>/AppData/Roaming/Autodesk/Revit/Addins/<version>`
-  - `ProgramFiles/Autodesk/Revit <version>/AddIns`
-
-- Revit 2020 and later versions do not use the DynamoVersionSelector by default, though it remains available in the DynamoRevit build. To use the DynamoVersionSelector, create a Dynamo.addin file with the following structure:
+* If your addin is not appearing in Revit, try removing any old copies of the Dynamo.addin file from these locations:
+   -  `Users/<user>/AppData/Roaming/Autodesk/Revit/Addins/<version>`
+   -  `ProgramFiles/Autodesk/Revit <version>/AddIns`
+* Revit 2020 and later do not use the DynamoVersionSelector by default, but it's still in the DynamoRevit build. If you'd like to try using it, you can create a Dynamo.addin file that looks like this:
 
 ```xml
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RevitAddIns>
   <AddIn Type="Application">
     <Name>Dynamo For Revit</Name>
-    <Assembly>"C:\my\repos\Dynamo\bin\AnyCPU\Debug\Revit_xxxx\DynamoRevitVersionSelector.dll"</Assembly>
+    <Assembly>"E:\MyGitPath\Dynamo\bin\AnyCPU\Debug\Revit_xxxx\DynamoRevitVersionSelector.dll"</Assembly>
     <AddInId>8D83C886-B739-4ACD-A9DB-1BC78F315B2B</AddInId>
     <FullClassName>Dynamo.Applications.VersionLoader</FullClassName>
     <VendorId>ADSK</VendorId>
-    <VendorDescription>Dynamo</VendorDescription>
-  </AddIn>
-</RevitAddIns>
-```
+	@@ -121,33 +162,32 @@ This will locally produce all the dynamo nugets.
 
 ## Running DynamoRevit Tests with RevitTestFramework
 
-_Note: This documentation is currently under development and being compiled from internal sources._
-For comprehensive information, refer to https://github.com/DynamoDS/RevitTestFramework/blob/master/README.md
-
+(This documentation is a work in progress, still being assembled and verified from internal documents)
+For more information, see https://github.com/DynamoDS/RevitTestFramework/blob/master/README.md
 ### Option 1: RevitTestFrameworkConsole.exe
 
-This console application enables running RTF without a user interface. To view available command line options for RTF, execute "RevitTestFrameworkConsole -h".
+A console application which allows running RTF without a user interface. If you'd like to learn more about the command line options for RTF, you can simply type "RevitTestFrameworkConsole -h".
 
-Example command:
+As an example, the following command:
 
-`RevitTestFrameworkConsole.exe --dir [DynamoRevit dev root]\test\System -a [DynamoRevit dev root]\bin\AnyCPU\Debug\Revit\RevitSystemTests.dll -r MyTestResults.xml -revit:"C:\Program Files\Autodesk\Revit 2019\Revit.exe" --copyAddins --continuous`
+```RevitTestFrameworkConsole.exe --dir [DynamoRevit dev root]\test\System -a [DynamoRevit dev root]\bin\AnyCPU\Debug\Revit\RevitSystemTests.dll -r MyTestResults.xml -revit:"C:\Program Files\Autodesk\Revit 2019\Revit.exe" --copyAddins --continuous```
 
-This command executes all tests in MyTest.dll located in C:\MyTestDir and outputs results to MyTestResults.xml (in the same directory). It uses Revit 2019 as specified and runs all tests continuously without shutting down Revit.
+will execute all tests in MyTest.dll located in C:\MyTestDir and place all results in MyTestResults.xml (in the same folder). It will use Revit 2019 as specified and will run all tests without shutting down Revit.
 
-For development packages, use this alternative example:
+If you use dev package, another example:
 
-`RevitTestFrameworkConsole.exe --dir [DynamoRevit dev root]\test\System -a [DynamoRevit dev root]\bin\AnyCPU\Debug\Revit\RevitSystemTests.dll -r MyTestResults.xml -revit:"D:\Revit\Revit.exe" --continuous`
+```RevitTestFrameworkConsole.exe --dir [DynamoRevit dev root]\test\System -a [DynamoRevit dev root]\bin\AnyCPU\Debug\Revit\RevitSystemTests.dll -r MyTestResults.xml -revit:"D:\Revit\Revit.exe" --continuous```
 
-When specifying a non-standard Revit.exe installation path, the '--copyAddins' parameter is not required. However, you must manually copy a Dynamo.addin file to your working directory 'C:\MyTestDir'.
+You specified a non-normally installed Revit.exe, you do not need to add the '--copyAddins' parameter. You need to manually copy a Dynamo.addin file to your working directory 'C:\MyTestDir'.
 
-### Option 2: RevitTestFrameworkGUI.exe (Supports Revit Installation Builds Only)
+### Option 2: RevitTestFrameworkGUI.exe (This only supports Revit install build)
 
-This tool provides a visual interface for selecting tests from a tree view and monitoring test execution results in real-time. All settings available through command line arguments are accessible in the UI, and the interface supports saving testing sessions.
+Provides a visual interface for you to choose tests from a treeview and to visualize the results of the tests as they are run. The same settings provided in the command line argument help above are available in the UI. The UI also allows you to save your testing session.
 
-The input fields for test assembly, working directory, and results file, along with the test tree view, support drag-and-drop functionality for files and folders.
+The input fields to set the test assembly, the working directory, and the results file, as well as the tree view where available tests are displayed, support dragging and dropping of files and folders.
 
-- **Test Assembly**: The DLL containing your tests
-- **Working Directory**: The folder containing test Revit files and Dynamo files (e.g., Empty.rvt and D4RCreateWallSystemTests.dyn)
-- **Additional Resolution Directories**: The DynamoCore and DynamoRevit locations for test execution (these should correspond to your Dynamo.addin file configuration)
-- **Revit Version**: Select your target Revit version from the dropdown (displays only installed Revit versions)
+- *Test Assembly* is your dll to test. 
+- *Working Directory* is the folder contains your test Revit file and dyn file like Empty.rvt and D4RCreateWallSystemTests.dyn.
+- *Additional Resolution Directories* are the DynamoCore and DynamoRevit locations you want to use to run the test (Do they need to match what's in the Dynamo.addin file?)
+- *Revit 2020* you can choose which Revit version you want to use in this DropDown List. (Only installed versions of Revit.)
