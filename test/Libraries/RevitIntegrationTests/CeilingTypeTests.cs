@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+﻿using System.IO;
 using NUnit.Framework;
-
-using RevitServices.Persistence;
-
 using RevitTestServices;
-
 using RTF.Framework;
+
 
 namespace RevitSystemTests
 {
@@ -26,7 +18,7 @@ namespace RevitSystemTests
             string samplePath = Path.Combine(workingDirectory, @".\CeilingType\CanGetCeilingTypeThermal.dyn");
             string testPath = Path.GetFullPath(samplePath);
             double expectedCeilingTypeAbsorptance = 0.1;
-            double expectedCeilingTypeHeatTransferCoefficient = 0.269729;
+            double expectedCeilingTypeThermalTransmittance = 0.269729;
             int expectedCeilingTypeRoughness = 1;
             double expectedCeilingTypeThermalMass = 14779.376715;
             double expectedCeilingTypeThermalResistance = 3.707423;
@@ -38,17 +30,39 @@ namespace RevitSystemTests
 
             //var thermalProperties = GetPreviewCollection("c6fe2793b6b440738e49bcffd21d8913");
             double resultCeilingTypeAbsorptance = (double)GetPreviewValue("1c4a77ba20dc48f689f4935a93d0550e");
-            double resultCeilingTypeHeatTransferCoefficient = (double)GetPreviewValue("ba2eef6c8d4c4b99ae7669acf29a22b4");
+            double resultCeilingTypeThermalTransmittance = (double)GetPreviewValue("ba2eef6c8d4c4b99ae7669acf29a22b4");
             var resultCeilingTypeRoughness = GetPreviewValue("8b2f11cc1c9c469d9f1ccfd6e732ceb0");
             double resultCeilingTypeThermalMass = (double)GetPreviewValue("106b74b022304826b587879ce515f547");
             double resultCeilingTypeThermalResistance = (double)GetPreviewValue("7eeea37764ad40bc94a9fdda0ceca0eb");
 
             // Assert
             Assert.AreEqual(expectedCeilingTypeAbsorptance, resultCeilingTypeAbsorptance, Tolerance);
-            Assert.AreEqual(expectedCeilingTypeHeatTransferCoefficient, resultCeilingTypeHeatTransferCoefficient, Tolerance);
+            Assert.AreEqual(expectedCeilingTypeThermalTransmittance, resultCeilingTypeThermalTransmittance, Tolerance);
             Assert.AreEqual(expectedCeilingTypeRoughness, resultCeilingTypeRoughness);
             Assert.AreEqual(expectedCeilingTypeThermalMass, resultCeilingTypeThermalMass, Tolerance);
             Assert.AreEqual(expectedCeilingTypeThermalResistance, resultCeilingTypeThermalResistance, Tolerance);
+        }
+
+        [Test]
+        [TestModel(@".\DifferentTypeRooms.rvt")]
+        public void CeilingTypeNodes()
+        {
+            string samplePath = Path.Combine(workingDirectory, @".\Script\CeilingTypeNodes.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            ViewModel.OpenCommand.Execute(testPath);
+            AssertNoDummyNodes();
+
+            RunCurrentModel();
+
+            var ceilingPlanViewByLevel = GetPreviewValue("6d03e1bf752c4c199e8d68cbae93ccae");
+            Assert.IsNotNull(ceilingPlanViewByLevel);
+
+            var ceilingTypeByName = GetPreviewValue("09150f0f5f58453b86399bd9b777d86c");
+            Assert.AreEqual("Plain", ceilingTypeByName.ToString());
+
+            var ceilingTypeName = GetPreviewValue("58acf00a88bb4aadaa56cc403f06e6b0");
+            Assert.AreEqual("Generic", ceilingTypeName);
         }
     }
 }

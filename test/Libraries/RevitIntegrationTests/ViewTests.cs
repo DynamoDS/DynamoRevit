@@ -1,16 +1,10 @@
 ﻿using System.IO;
 using System.Linq;
 using CoreNodeModels.Input;
-using Dynamo.Nodes;
-
 using NUnit.Framework;
-
 using RevitTestServices;
-
 using RTF.Framework;
-
 using Revit.Elements;
-using Revit.Elements.Views;
 
 
 namespace RevitSystemTests
@@ -386,6 +380,47 @@ namespace RevitSystemTests
                 Assert.IsNotNull(view);
                 Assert.IsTrue(view.Name.Contains("view" + i.ToString()));
             }
+        }
+
+        [Test]
+        [TestModel(@".\AxonometricView.rfa")]
+        public void AxoViewTargetBoundingBox()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\Script\AxoViewTargetBoundingBox.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var axoViewTargetBoundingBox = GetPreviewValue("6c402a6f515f4e84bd4367f066680630");
+            Assert.IsNotNull(axoViewTargetBoundingBox);
+
+            var boundingBox = GetPreviewValue("bda8352d349a4f1fbb4927c30710f77c") as Autodesk.DesignScript.Geometry.BoundingBox;
+            Assert.AreEqual(0.0, boundingBox.MinPoint.X);
+            Assert.AreEqual(10.0, boundingBox.MaxPoint.X);
+        }
+
+        [Test]
+        [TestModel(@".\Revision2025.rvt")]
+        public void AxoViewTargetElement()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\Script\AxoViewTargetElement.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var axoViewTargetElem = GetFlattenedPreviewValues("adf97be8f6824154b7b1d5eff9c8b1ae");
+            Assert.IsNotNull(axoViewTargetElem);
+
+            var selectFamilyInstance = GetFlattenedPreviewValues("57bf46bc3c9a4b9da2ff015f5414f52b");
+            Assert.AreEqual(14, selectFamilyInstance.Count);
         }
     }
 }

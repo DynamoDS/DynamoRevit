@@ -1,3 +1,20 @@
+## 0.7.60
+* remove obsolete nodes and methods, refactor tests that used them
+* add node view customization for family instance selection
+
+## 0.7.59
+* Update Dynamo Core to 4.0.0-beta2804
+
+## 0.7.58
+* Little changes added to D4R tests
+
+## 0.7.57
+* cover 80 new D4R nodes with regression tests
+
+## 0.7.56
+* update to .NET 10
+* update Dynamo Core to 4.0.0-beta2685
+
 ## 0.7.55
 * Update Dynamo Core to 3.6.1.9895
 

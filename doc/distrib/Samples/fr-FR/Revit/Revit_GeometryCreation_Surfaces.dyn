@@ -597,7 +597,7 @@
         {
           "Id": "24d83f34454e4318a4fd2b4314e259e0",
           "Name": "",
-          "Description": "noeud à évaluer.",
+          "Description": "Noeud à évaluer.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -628,7 +628,7 @@
         {
           "Id": "3839954b56b34ab683b6591073dd71bd",
           "Name": "",
-          "Description": "noeud à évaluer.",
+          "Description": "Noeud à évaluer.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -659,7 +659,7 @@
         {
           "Id": "9a68805d44b64baf9a90650bab59315b",
           "Name": "",
-          "Description": "noeud à évaluer.",
+          "Description": "Noeud à évaluer.",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,

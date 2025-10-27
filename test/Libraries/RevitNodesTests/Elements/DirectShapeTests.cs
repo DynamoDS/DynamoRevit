@@ -54,7 +54,7 @@ namespace RevitNodesTests.Elements
         private static DirectShape CreateDirectShapeFromQuadPoints(Point p1, Point p2, Point p3, Point p4)
         {
             var index = IndexGroup.ByIndices(0, 1, 2, 3);
-            var mesh = Mesh.ByPointsFaceIndices(new List<Point>() { p1, p2, p3, p4 }, new List<IndexGroup>() { index });
+            var mesh = Mesh.ByPointsIndexGroups(new List<Point>() { p1, p2, p3, p4 }, new List<IndexGroup>() { index });
             var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
             var ds = DirectShape.ByMesh(mesh, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a mesh");
             mesh.Dispose();
@@ -191,7 +191,7 @@ namespace RevitNodesTests.Elements
 
             var index1 = IndexGroup.ByIndices(0,1,2);
 
-           var mesh= Mesh.ByPointsFaceIndices(new List<Point>() { p1, p2, p3 }, new List<IndexGroup>() { index1 });
+            var mesh= Mesh.ByPointsIndexGroups(new List<Point>() { p1, p2, p3 }, new List<IndexGroup>() { index1 });
             var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();
 
             var ds = DirectShape.ByMesh(mesh, Category.ByName("OST_GenericModel"), Material.ByName(mat.Name), "a mesh");
@@ -220,7 +220,7 @@ namespace RevitNodesTests.Elements
 
             var index1 = IndexGroup.ByIndices(0, 1, 2);
 
-            var mesh = Mesh.ByPointsFaceIndices(new List<Point>() { p1, p2, p3 }, new List<IndexGroup>() { index1 });
+            var mesh = Mesh.ByPointsIndexGroups(new List<Point>() { p1, p2, p3 }, new List<IndexGroup>() { index1 });
             var surf = Surface.ByPerimeterPoints(new List<Point>() { p1, p2, p3 });
 
             var mat = DocumentManager.Instance.ElementsOfType<Autodesk.Revit.DB.Material>().First();

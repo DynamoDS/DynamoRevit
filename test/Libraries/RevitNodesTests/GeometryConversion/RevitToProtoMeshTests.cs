@@ -1,15 +1,10 @@
-﻿using System.Linq;
-
-using Autodesk.DesignScript.Geometry;
-
+﻿using Autodesk.DesignScript.Geometry;
 using NUnit.Framework;
-
 using Revit.Elements;
 using Revit.GeometryConversion;
-
 using RevitTestServices;
-
 using RTF.Framework;
+using System.Linq;
 
 namespace RevitNodesTests.GeometryConversion
 {
@@ -17,37 +12,41 @@ namespace RevitNodesTests.GeometryConversion
     public class RevitToProtoMeshTests : RevitNodeTestBase
     {
         [Test]
-        [TestModel(@".\topography.rvt")]
-#pragma warning disable CS0618 // Type or member is obsolete
+        [TestModel(@".\toposolid.rvt")]
         public void ToProtoType_ShouldReturnCorrectlyScaledMesh()
         {
-            var allMeshesInDoc =
-                ElementSelector.ByType<Autodesk.Revit.DB.Architecture.TopographySurface>(true)
-                    .Cast<Revit.Elements.Topography>()
-                    .SelectMany(x => x.InternalGeometry())
-                    .OfType<Autodesk.Revit.DB.Mesh>()
-                    .ToList();
+            var allSolidsInDoc = ElementSelector.ByType<Autodesk.Revit.DB.Toposolid>(true)
+             .Cast<Revit.Elements.Toposolid>()
+             .SelectMany(x => x.InternalGeometry())
+             .OfType<Autodesk.Revit.DB.Solid>()
+             .Where(solid => solid != null && solid.Faces.Size > 0)
+             .ToList();
 
-            Assert.AreEqual(4, allMeshesInDoc.Count, "There should be 4 meshes in topography.rvt.  Has the file changed?");
+            var allMeshesInDoc = allSolidsInDoc
+                .SelectMany(solid => solid.Faces.OfType<Autodesk.Revit.DB.Face>())
+                .Select(face => face.Triangulate())
+                .Where(mesh => mesh != null)
+                .ToList();
 
-            // get the big mesh in the doc
-            var bigMesh = allMeshesInDoc.First(x => x.NumTriangles > 5000);
+            Assert.AreEqual(2292, allMeshesInDoc.Count, "There should be 2292 meshes in toposolid.rvt.  Has the file changed?");
 
-            // convert, performing unit conversion
-            var convertedMesh = bigMesh.ToProtoType();
+            var convertedMeshes = allMeshesInDoc.Select(m => m.ToProtoType()).ToList();
+            Assert.IsTrue(convertedMeshes.All(m => m != null));
 
-            var bb = BoundingBox.ByGeometry(convertedMesh.VertexPositions);
+            var allVertices = convertedMeshes.SelectMany(m => m.VertexPositions).ToList();
+            Assert.IsTrue(allVertices.Count > 0);
+
+            var bb = BoundingBox.ByGeometry(allVertices);
 
             var bbvol = BoundingBoxTests.BoundingBoxVolume(bb);
             var bbmin = bb.MinPoint;
             var bbmax = bb.MaxPoint;
 
-            bbvol.ShouldBeApproximately(19806060.78503, 1e-1);
-            bbmin.X.ShouldBeApproximately(-376.2729659, 1e-2);
-            bbmax.X.ShouldBeApproximately(670.5314961, 1e-2);
+            bbvol.ShouldBeApproximately(76865.989621639252, 1e-1);
+            bbmin.X.ShouldBeApproximately(0.0, 1e-2);
+            bbmax.X.ShouldBeApproximately(99.0, 1e-2);
 
-            convertedMesh.Dispose();
-        }
-#pragma warning restore CS0618
+            convertedMeshes.ForEach(m => m.Dispose());
+      }
     }
 }
