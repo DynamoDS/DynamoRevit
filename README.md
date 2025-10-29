@@ -39,14 +39,6 @@ Ensure the following software is installed on your system:
   - Configuration: `Debug` or `Release`
   - Platform: `NET80` (or `NET100` for Revit 2027 and later)
 
-- In `src/AssemblySharedInfoGenerator/AssemblySharedInfo.tt`, change `MajorVersion` from `27` to `4` to match DynamoCore.dll version `4.0.0.xxxx`. This workaround is only needed for Revit 2027; post-Dynamo 4.0 versions will use the host-specified version.
-
-  ```cs
-  int MajorVersion = 4; // Change from `27`
-  int MinorVersion = 0;
-  int BuildNumber = 0;
-  ```
-
 - (Optional) Set the `RevitVersionNumber` environment variable to the Revit version you're building against (e.g., `2025`, `2026`, `2027`). If not set, it defaults to `"Preview Release"`.
 
 - If Revit is not installed locally or you need to use a specific version, copy `RevitAPI.dll` & `RevitAPIUI.dll` to the appropriate folder based on your build platform. These DLLs are located in the same folder as `Revit.exe` on your computer:
