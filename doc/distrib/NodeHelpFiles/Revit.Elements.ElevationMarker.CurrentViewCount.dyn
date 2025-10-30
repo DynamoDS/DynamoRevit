@@ -1,0 +1,193 @@
+{
+  "Uuid": "a5d69d74-1c26-447a-9a5d-7307ab61141f",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.ElevationMarker.CurrentViewCount",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "33865dac50184a6e83d817dbe552e508",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "7dc3231f669d4cc294b83c41c99e15b0",
+          "Name": "elevationMarker",
+          "Description": "Revit.Elements.ElevationMarker",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cf02eb2885584314adc9f33cfb2b3928",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.ElevationMarker.CurrentViewCount",
+      "Replication": "Auto",
+      "Description": "The current number of views hosted by this ElevationMarker.\n\nElevationMarker.CurrentViewCount: int"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfType, DSRevitNodesUI",
+      "Id": "cd600c3d849d447795cb4736769cfb9b",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "104671c58fd24184a7b91425f5552ecc",
+          "Name": "element class",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "68101fca26504d05bc57edb5548f43b6",
+          "Name": "elements",
+          "Description": "All elements in the active document of a given class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All elements in the active document of a given class."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementTypes, DSRevitNodesUI",
+      "SelectedIndex": 112,
+      "SelectedString": "ElevationMarker",
+      "Id": "83cf1ba09037416f81d552cbb1ca72b4",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "09ae3f7cb2754c0a99b0e9fd22b68a83",
+          "Name": "Classes",
+          "Description": "The selected Classes",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All element subclasses."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "68101fca26504d05bc57edb5548f43b6",
+      "End": "7dc3231f669d4cc294b83c41c99e15b0",
+      "Id": "88026c1e24044a848c81d80c385bd93f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "09ae3f7cb2754c0a99b0e9fd22b68a83",
+      "End": "104671c58fd24184a7b91425f5552ecc",
+      "Id": "f4f7bab0b976413487a6da6e3ee1205f",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "33865dac50184a6e83d817dbe552e508",
+        "Name": "ElevationMarker.CurrentViewCount",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1004.1844978956747,
+        "Y": 1142.3070303067313
+      },
+      {
+        "Id": "cd600c3d849d447795cb4736769cfb9b",
+        "Name": "All Elements of Class",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 675.1844978956747,
+        "Y": 1140.3070303067313
+      },
+      {
+        "Id": "83cf1ba09037416f81d552cbb1ca72b4",
+        "Name": "Element Classes",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 373.5332821796094,
+        "Y": 1139.9484758253234
+      }
+    ],
+    "Annotations": [],
+    "X": -354.6489894770448,
+    "Y": -1518.8589891834697,
+    "Zoom": 1.7039168245549963
+  }
+}
