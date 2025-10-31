@@ -1,0 +1,185 @@
+{
+  "Uuid": "99698e05-a059-410d-ade7-6a3301a27594",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AnalyticalAutomation.AnalyticalElements.AnalyticalPanel.ByElement",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a7c9b35a02474b98942dfebdc2af3721",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "4bd6ef3fb2da41fe839c76c0afb1146c",
+          "Name": "element",
+          "Description": "Instance of a Floor or a Wall.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7957e052c0b44a1fa04da70695b84492",
+          "Name": "updateGeometry",
+          "Description": "Specifies if the AnalyticalPanel should inherit geometry and geometrical parameters of the creating element.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "05d61e7c0f8f4c718489acf15e590021",
+          "Name": "updateParameters",
+          "Description": "Specifies if the AnalyticalPanel should inherit properties of the creating element.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "42ce32c2449a49a7acfb733c046e5875",
+          "Name": "addAssociation",
+          "Description": "Specifies if the AnalyticalPanel should be associated with the creating element. true: add the association; false: break the association (if exists); null: do nothing - the previous association remains.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "09750e04816c4f09ad7b86f3fbcae9b9",
+          "Name": "includeOpenings",
+          "Description": "Specifies if AnalyticalOpenings (based on openings in the creating element) should be created and attached to the AnalyticalPanel.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "19b23e82a8f64483b22230a28f8fbb08",
+          "Name": "AnalyticalPanel",
+          "Description": "AnalyticalPanel",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AnalyticalAutomation.AnalyticalElements.AnalyticalPanel.ByElement@Revit.Elements.Element,bool,bool,bool,bool",
+      "Replication": "Auto",
+      "Description": "Creates an AnalyticalPanel based on a physical element: Floor or Wall. The AnalyticalPanel may derive properties of the creating element and may be associated with it. If the creating physical element is based on multiple, independent geometries (e.g., Floor composed of multiple sketch loops), the method will create multiple AnalyticalPanels for one physical element. [check this node Help to see examples and restrictions]\n\nAnalyticalPanel.ByElement (element: Element, updateGeometry: bool = true, updateParameters: bool = true, addAssociation: bool = true, includeOpenings: bool = true): AnalyticalPanel"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "e62ae598-d012-4038-9417-14692b034bf4-000a7edf"
+      ],
+      "Id": "0294258a8840436fa36cb239c53e4c8d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6586292cfcbe458ab73f2caa7d41a434",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "6586292cfcbe458ab73f2caa7d41a434",
+      "End": "4bd6ef3fb2da41fe839c76c0afb1146c",
+      "Id": "db5138989a6b42f394adab6c19c667e4",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.0.9395",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "a7c9b35a02474b98942dfebdc2af3721",
+        "Name": "AnalyticalPanel.ByElement",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1164.3158826514805,
+        "Y": 372.0
+      },
+      {
+        "Id": "0294258a8840436fa36cb239c53e4c8d",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 858.7459691830786,
+        "Y": 372.0
+      }
+    ],
+    "Annotations": [],
+    "X": -1308.623998824182,
+    "Y": -507.29216841318953,
+    "Zoom": 1.703916824554996
+  }
+}
