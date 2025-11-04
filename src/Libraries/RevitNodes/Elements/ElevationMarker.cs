@@ -1,6 +1,7 @@
 ﻿using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 using Autodesk.Revit.DB;
+using DynamoServices;
 using Revit.Elements.Views;
 using Revit.GeometryConversion;
 using RevitServices.Transactions;
@@ -107,10 +108,20 @@ namespace Revit.Elements
             if (view == null)
                 throw new InvalidOperationException(Properties.Resources.NotPlanView);
 
-            TransactionManager.Instance.EnsureInTransaction(Document);
-            Autodesk.Revit.DB.ViewSection sectionView = this.InternalMarker.CreateElevation(Document, view.InternalViewPlan.Id, index);
-            TransactionManager.Instance.TransactionTaskDone();
-            return sectionView.ToDSType(true) as SectionView;
+            if (index < 0 || index > 3)
+                throw new InvalidOperationException(Properties.Resources.IndexOccupiedOrNotAvailable);
+
+                TransactionManager.Instance.EnsureInTransaction(Document);
+            try
+            {
+                Autodesk.Revit.DB.ViewSection sectionView = this.InternalMarker.CreateElevation(Document, view.InternalViewPlan.Id, index);
+                TransactionManager.Instance.TransactionTaskDone();
+                return sectionView.ToDSType(true) as SectionView;
+            }
+            catch (Exception)
+            {
+                throw new Exception(Properties.Resources.IndexOccupiedOrNotAvailable);
+            }
         }
 
         /// <summary>

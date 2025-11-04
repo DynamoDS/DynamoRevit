@@ -266,9 +266,6 @@
                   "path": "RevitNodes.Revit.Elements.TextNoteType"
                 },
                 {
-                  "path": "RevitNodes.Revit.Elements.Topography"
-                },
-                {
                   "path": "RevitNodes.Revit.Elements.Toposolid"
                 },
                 {

@@ -59,6 +59,6 @@ limitations under the License.
     <Compile Condition="$(Platform.Contains('_DA'))" Remove="Threading\*.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DynamoVisualProgramming.Core" Version="3.5.0.8297" ExcludeAssets="runtime" />
+    <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DYNAMOCORE_VERSION)" ExcludeAssets="runtime" />
   </ItemGroup>
 </Project>

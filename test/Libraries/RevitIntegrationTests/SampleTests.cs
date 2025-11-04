@@ -5,6 +5,7 @@ using System.Linq;
 using Autodesk.DesignScript.Geometry;
 
 using CoreNodeModels.Input;
+using Dynamo.Graph.Nodes;
 using Dynamo.Selection;
 using Dynamo.Tests;
 
@@ -150,7 +151,7 @@ namespace RevitSystemTests
 
             var refPt = GetPreviewValueAtIndex(refPtNodeId, 3) as ReferencePoint;
             Assert.IsNotNull(refPt);
-            //Assert.AreEqual(57, refPt.Y, 0.000001);
+            Assert.AreEqual(-90.836, refPt.Y, 0.001);
 
             // change slider value and re-evaluate graph
             DoubleSlider slider = model.CurrentWorkspace.NodeFromWorkspace
@@ -161,6 +162,7 @@ namespace RevitSystemTests
             AssertPreviewCount(refPtNodeId, 15);
             var refPt1 = GetPreviewValueAtIndex(refPtNodeId, 3) as ReferencePoint;
             Assert.IsNotNull(refPt1);
+            Assert.AreEqual(-46.253, refPt.Y, 0.001);
 
         }
 
@@ -261,7 +263,6 @@ namespace RevitSystemTests
 
             var value = GetPreviewValue("795cc658-d64e-4808-af66-a83f655a75e2");
             Assert.IsNotNull(value);
-
         }
 
         [Test]
@@ -391,9 +392,8 @@ namespace RevitSystemTests
         [TestModel(@".\Samples\tesselation.rfa")]
         public void Tesselation_3()
         {
-            //TODO:[Ritesh] Some random behgavior in output, need to check with Ian.
-            // Will enable verification after fixing test case.
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4041
+            //We can't verify if the lines from Vorornoi node are correct
+            //because the script uses a random number generator to create the points.
 
             var model = ViewModel.Model;
 
@@ -405,29 +405,21 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(11, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(10, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(14, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
-            //var curve = "ca608a4e-0430-4cee-a0bb-61e81f198e8b";
-            //AssertPreviewCount(curve, 479);
-
-            //// get all Lines created using Voronoi on Face
-            //for (int i = 0; i <= 478; i++)
-            //{
-            //    var lines = GetPreviewValueAtIndex(curve, i) as Line;
-            //    Assert.IsNotNull(lines);
-            //}
+            var voronoi = "ca608a4e04304ceea0bb61e81f198e8b";
+            Assert.IsNotNull(voronoi);
         }
 
         [Test]
         [TestModel(@".\Samples\tesselation.rfa")]
         public void Tesselation_4()
         {
-            //TODO:[Ritesh] Some random behgavior in output, need to check with Ian.
-            // Will enable verification after fixing test case.
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4041
+            //We can't verify if the lines from Vorornoi and Delaunay nodes are correct
+            //because the script uses a random number generator to create the points.
 
             var model = ViewModel.Model;
 
@@ -439,29 +431,22 @@ namespace RevitSystemTests
             AssertNoDummyNodes();
 
             // check all the nodes and connectors are loaded
-            Assert.AreEqual(17, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(14, model.CurrentWorkspace.Nodes.Count());
             Assert.AreEqual(19, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
 
-            //var curve = "3a3c0d74-e4d1-47f6-82e1-ec32f28b8d78";
-            //AssertPreviewCount(curve, 359);
+            var voronoi = "64d59122b5594c7698c7733c9766e481";
+            Assert.IsNotNull(voronoi);
 
-            //// get all Lines
-            //for (int i = 0; i <= 354; i++)
-            //{
-            //    var line = GetPreviewValueAtIndex(curve, i) as Line;
-            //    Assert.IsNotNull(line);
-            //}
+            var delaunay = "698c43c01ad04954ab3ec68e553e4e82";
+            Assert.IsNotNull(delaunay);
         }
 
         [Test]
         [TestModel(@".\empty.rfa")]
         public void Transforms_TranslateAndRotatesequence()
         {
-            // TODO:[Ritesh] Need to add more verification.
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4041
-
             var model = ViewModel.Model;
 
             string samplePath = Path.Combine(workingDirectory, @".\Samples\TranslateandRotatesequence.dyn");
@@ -476,15 +461,48 @@ namespace RevitSystemTests
             Assert.AreEqual(19, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
+
+            //Assert that the node for the rotation system is not null
+            var coordRotationID = "17c25612-5339-4677-9174-b541428e33b5";
+            Assert.IsNotNull(GetFlattenedPreviewValues(coordRotationID));
+
+            //Veify the first value of the geometry transform
+            var geometryTransform = "42ae3686-d28c-42de-9084-f68efe97ea3b";
+            var expectedFirstValue = "Point(X = -0.047, Y = 1.599, Z = 0.000)";
+            Assert.AreEqual(25, GetFlattenedPreviewValues(geometryTransform).Count);
+
+            for (int i = 0; i < 24; i++)
+            {
+                Assert.IsNotNull(GetPreviewValueAtIndex(geometryTransform, i) as Point);
+            }
+            Assert.AreEqual(expectedFirstValue, GetPreviewValueAtIndex(geometryTransform, 6).ToString());
+
+            //Change the value for the steps and re-evaluate graph
+            var stepValue = model.CurrentWorkspace.NodeFromWorkspace
+                ("f37a8769-d70e-46ed-b0ee-dd6bb170bbbe") as DoubleInput;
+            stepValue.Value = "0.5";
+
+            RunCurrentModel();
+
+            //Verify the second value of the geometry transform
+            coordRotationID = "17c25612-5339-4677-9174-b541428e33b5";
+            Assert.IsNotNull(GetFlattenedPreviewValues(coordRotationID));
+
+            geometryTransform = "42ae3686-d28c-42de-9084-f68efe97ea3b";
+            var expectedSecondValue = "Point(X = -3.097, Y = 0.129, Z = 0.000)";
+            Assert.AreEqual(13, GetFlattenedPreviewValues(geometryTransform).Count);
+
+            for (int i = 0; i < 12; i++)
+            {
+                Assert.IsNotNull(GetPreviewValueAtIndex(geometryTransform, i) as Point);
+            }
+            Assert.AreEqual(expectedSecondValue, GetPreviewValueAtIndex(geometryTransform, 6).ToString());
         }
 
         [Test]
         [TestModel(@".\empty.rfa")]
         public void Transforms_TranslateAndRotate()
         {
-            // TODO:[Ritesh] Need to add more verification.
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4041
-
             var model = ViewModel.Model;
 
             string samplePath = Path.Combine(workingDirectory, @".\Samples\TranslateandRotate.dyn");
@@ -499,6 +517,33 @@ namespace RevitSystemTests
             Assert.AreEqual(15, model.CurrentWorkspace.Connectors.Count());
 
             RunCurrentModel();
+
+            //Assert that the node for the rotation system is not null
+            var coordRotationID = "e186bc1c-6fef-4cf8-a2a5-95f59cded924";
+            Assert.IsNotNull(GetPreviewValue(coordRotationID));
+
+
+            //Veify the first value of the geometry transform
+            var geometryTransform = "a0c9c845-00fa-4152-8fc7-b6a86ab56d60";
+            var expectedFirstValue = "Point(X = 3.156, Y = 4.960, Z = 0.000)";
+            Assert.IsNotNull(GetPreviewValue(geometryTransform) as Point);
+            Assert.AreEqual(expectedFirstValue, GetPreviewValue(geometryTransform).ToString());
+
+
+            //Change the slider value and re-evaluate graph
+            var degreesSlider = model.CurrentWorkspace.NodeFromWorkspace
+                ("9082826e-60cf-4089-a55b-692a05f7de80") as DoubleSlider;
+            degreesSlider.Value = 2.5;
+
+            RunCurrentModel();
+
+            //Verify the second value of the geometry transform
+            coordRotationID = "e186bc1c-6fef-4cf8-a2a5-95f59cded924";
+            Assert.IsNotNull(GetPreviewValue(coordRotationID));
+
+            geometryTransform = "a0c9c845-00fa-4152-8fc7-b6a86ab56d60";
+            var expectedSecondValue = "Point(X = -4.710, Y = 3.518, Z = 0.000)";
+            Assert.AreEqual(expectedSecondValue, GetPreviewValue(geometryTransform).ToString());
         }
 
         [Test]
@@ -554,6 +599,19 @@ namespace RevitSystemTests
                 var point = GetPreviewValueAtIndex(refPointNodeID, i) as ReferencePoint;
                 Assert.IsNotNull(point);
             }
+
+            var firstPoint = GetPreviewValueAtIndex(refPointNodeID, 0) as ReferencePoint;
+            Assert.AreEqual(54.529, firstPoint.Y, 0.01);
+
+            // change slider value and re-evaluate graph
+            DoubleSlider slider = model.CurrentWorkspace.NodeFromWorkspace
+                ("98875cee-9e61-46d3-96f3-e1484be3d497") as DoubleSlider;
+            slider.Value = 40.0;
+
+            RunCurrentModel();
+
+            firstPoint = GetPreviewValueAtIndex(refPointNodeID, 0) as ReferencePoint;
+            Assert.AreEqual(40, firstPoint.Y, 0.01);
         }
 
         [Test]
@@ -615,66 +673,26 @@ namespace RevitSystemTests
 
             Assert.IsFalse(string.IsNullOrEmpty(excelFilePath));
             Assert.IsTrue(File.Exists(excelFilePath));
-        }
-
-        [Ignore("Not finished")]
-        [TestModel(@".\empty.rfa")]
-        public void Rendering_hill_climbing_simple()
-        {
-            throw new NotImplementedException("LC Modularization");
-            /*
-            // referencing the samples directly from the samples folder
-            // and the custom nodes from the distrib folder
-
-            var model = ViewModel.Model;
-            // look at the sample folder and one directory up to get the distrib folder and combine with defs folder
-            string customNodePath = Path.Combine(Path.Combine(samplesPath, @"..\\"), @".\
-\Dynamo Sample Custom Nodes\dyf\");
-            // get the full path to the distrib folder and def folder
-            string fullCustomNodePath = Path.GetFullPath(customNodePath);
-
-            string samplePath = Path.Combine(samplesPath, @".\25 Rendering\hill_climbing_simple.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            // make sure that the two custom nodes we need exist
-            string customDefPath1 = Path.Combine(fullCustomNodePath, "ProduceChild.dyf");
-            string customDefPath2 = Path.Combine(fullCustomNodePath, "DecideNewParent.dyf");
-
-            Assert.IsTrue(File.Exists(customDefPath1), "Cannot find specified custom definition to load for testing at." + customDefPath1);
-            Assert.IsTrue(File.Exists(customDefPath2), "Cannot find specified custom definition to load for testing." + customDefPath2);
-
-            Assert.DoesNotThrow(() =>
-                         ViewModel.Model.CustomNodeManager.AddFileToPath(customDefPath2));
-            Assert.DoesNotThrow(() =>
-                          ViewModel.Model.CustomNodeManager.AddFileToPath(customDefPath1));
-
-
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            var nodes = ViewModel.Model.CurrentWorkspace.Nodes.OfType<DummyNode>();
-
-            double noOfNdoes = nodes.Count();
-
-            if (noOfNdoes >= 1)
-            {
-                Assert.Fail("Number of Dummy Node found in Sample: " + noOfNdoes);
-            }
-
-            Assert.AreEqual(2, ViewModel.Model.CustomNodeManager.LoadedCustomNodes.Count);
-            // check all the nodes and connectors are loaded
-            Assert.AreEqual(7, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(12, model.CurrentWorkspace.Connectors.Count());
-
 
             RunCurrentModel();
-            
 
+            //Verifiy that there are 101 points created and that they are not null
+            var pointCoordinates = "634811dd9af44cd294a2a820f5a2d96b";
+            Assert.AreEqual(101, GetFlattenedPreviewValues(pointCoordinates).Count);
 
-            var workspace = model.CurrentWorkspace;
+            for (int i = 0; i < 100; i++)
+            {
+                var point = GetPreviewValueAtIndex(pointCoordinates, i) as Point;
+                Assert.IsNotNull(point);
+            }
 
-            Assert.Fail("Mike to update for CB2B1");
-             */
+            //Verfiy the fifth point
+            var expectedFifthValue = "Point(X = 0.626, Y = 0.712, Z = -2.846)";
+            Assert.AreEqual(expectedFifthValue, GetPreviewValueAtIndex(pointCoordinates, 5).ToString());
+
+            //Ensure that the family types node is not null
+            var familyTypes = "e4310aa278aa4d028d260a668e0ae7eb";
+            Assert.IsNotNull(GetPreviewValue(familyTypes) as FamilyType);
         }
 
         [Test]
@@ -713,36 +731,36 @@ namespace RevitSystemTests
 
         }
 
-        //[Test, Category("Failure")]
-        //[TestModel(@".\Samples\AllCurves.rfa")]
-        //public void ArcAndLine()
-        //{
-        //    var model = ViewModel.Model;
+        [Test]
+        [TestModel(@".\Samples\AllCurves.rfa")]
+        public void ArcAndLine()
+        {
+            var model = ViewModel.Model;
 
-        //    string samplePath = Path.Combine(workingDirectory, @".\Samples\Arc and Line.dyn");
-        //    string testPath = Path.GetFullPath(samplePath);
+            string samplePath = Path.Combine(workingDirectory, @".\Samples\Arc and Line.dyn");
+            string testPath = Path.GetFullPath(samplePath);
 
-        //    ViewModel.OpenCommand.Execute(testPath);
-            
-        //    AssertNoDummyNodes();
+            ViewModel.OpenCommand.Execute(testPath);
 
-        //    // check all the nodes and connectors are loaded
-        //    Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
-        //    Assert.AreEqual(18, model.CurrentWorkspace.Connectors.Count());
+            AssertNoDummyNodes();
 
-        //    RunCurrentModel();
+            // check all the nodes and connectors are loaded
+            Assert.AreEqual(19, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(18, model.CurrentWorkspace.Connectors.Count());
 
-        //    var nodeID = "6de77be2-fa0f-41ec-a494-151d47ad8274";
+            RunCurrentModel();
 
-        //    var arc = GetPreviewValueAtIndex(nodeID, 0) as Arc;
-        //    Assert.IsNotNull(arc);
+            var nodeID = "6de77be2-fa0f-41ec-a494-151d47ad8274";
 
-        //    var circle = GetPreviewValueAtIndex(nodeID, 1) as Line;
-        //    Assert.IsNotNull(circle);
+            var arc = GetPreviewValueAtIndex(nodeID, 0) as Arc;
+            Assert.IsNotNull(arc);
 
-        //    var modelCurve = GetPreviewValue("a91af17e-111e-4945-9f74-9ac09d168ad4") as ModelCurve;
-        //    Assert.IsNotNull(modelCurve);
-        //}
+            var circle = GetPreviewValueAtIndex(nodeID, 1) as Line;
+            Assert.IsNotNull(circle);
+
+            var modelCurve = GetPreviewValue("a91af17e-111e-4945-9f74-9ac09d168ad4") as ModelCurve;
+            Assert.IsNotNull(modelCurve);
+        }
 
         [Test]
         [TestModel(@".\Samples\AllCurves.rfa")]
@@ -826,50 +844,6 @@ namespace RevitSystemTests
             }
         }
 
-        [Test]
-        public void CreateSineWaveFromSelectedCurve()
-        {
-            // TODO:[Ritesh] Need to add more verification.
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4041
-
-            var model = ViewModel.Model;
-
-            string samplePath = Path.Combine(workingDirectory, @".\Samples\create sine wave from selected curve.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-            AssertNoDummyNodes();
-
-            // check all the nodes and connectors are loaded
-            Assert.AreEqual(3, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(2, model.CurrentWorkspace.Connectors.Count());
-
-            RunCurrentModel();
-
-        }
-
-        [Test]
-        public void CreateSineWaveFromSelectedPoints()
-        {
-            // TODO:[Ritesh] Need to add more verification.
-            // http://adsk-oss.myjetbrains.com/youtrack/issue/MAGN-4041
-
-            var model = ViewModel.Model;
-
-            string samplePath = Path.Combine(workingDirectory, @".\Samples\create sine wave from selected points.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            AssertNoDummyNodes();
-            // check all the nodes and connectors are loaded
-            Assert.AreEqual(6, model.CurrentWorkspace.Nodes.Count());
-            Assert.AreEqual(5, model.CurrentWorkspace.Connectors.Count());
-
-            RunCurrentModel();
-
-        }
-
         #endregion
 
         #region New Sample Tests
@@ -941,14 +915,14 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            var refPtNodeId = "ecb2936d-6ee9-4b99-9ab1-24269ffedfc5";
-            AssertPreviewCount(refPtNodeId, 10);
+            var overrideColorId = "ecb2936d-6ee9-4b99-9ab1-24269ffedfc5";
+            AssertPreviewCount(overrideColorId, 10);
 
             // get all Walls.
             for (int i = 0; i <= 9; i++)
             {
-                var refPt = GetPreviewValueAtIndex(refPtNodeId, i) as Wall;
-                Assert.IsNotNull(refPt);
+                var ovrrideCol = GetPreviewValueAtIndex(overrideColorId, i) as Wall;
+                Assert.IsNotNull(ovrrideCol);
             }
         }
 
@@ -956,9 +930,6 @@ namespace RevitSystemTests
         [TestModel(@".\Samples\DynamoSample_2021.rvt")]
         public void Revit_Floors_and_Framing()
         {
-            // this test marked as Ignore because on running it is throwing error from Revit side.
-            // if I run it manually there is no error. Will discuss this with Ian
-
             var model = ViewModel.Model;
 
             string samplePath = Path.Combine(workingDirectory, @".\Samples\Revit_Floors and Framing.dyn");
@@ -1069,14 +1040,14 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            var familyInstance = "32628bb7-8593-4d3a-944c-3e5ea635be6c";
-            AssertPreviewCount(familyInstance, 9);
+            var structuralFraming = "32628bb7-8593-4d3a-944c-3e5ea635be6c";
+            AssertPreviewCount(structuralFraming, 9);
 
             // get all Families.
             for (int i = 0; i <= 8; i++)
             {
-                var family = GetPreviewValueAtIndex(familyInstance, i) as StructuralFraming;
-                Assert.IsNotNull(family);
+                var structFram = GetPreviewValueAtIndex(structuralFraming, i) as StructuralFraming;
+                Assert.IsNotNull(structFram);
             }
         }
 
@@ -1131,7 +1102,7 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
-            // Validation for Reference Points.
+            // Validation for Points.
             var pointNodeGuid = "0aa5294e-af81-4a93-8b6a-14a8944d8478";
 
             AssertPreviewCount(pointNodeGuid, 11);

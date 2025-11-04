@@ -2,7 +2,7 @@
   "Uuid": "847b8d50-8963-40c7-90ca-c0afb7b9b9a6",
   "IsCustomNode": false,
   "Description": "從磁碟讀取影像，以便能在 Dynamo 中使用",
-  "Name": "Read Image From File",
+  "Name": "從檔案讀取影像",
   "ElementResolver": {
     "ResolutionMap": {}
   },

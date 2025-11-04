@@ -51,7 +51,10 @@
     <Compile Include="$(SolutionDir)AssemblySharedInfoGenerator\AssemblySharedInfo.cs" Link="AssemblySharedInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DynamoVisualProgramming.Tests" Version="3.5.0.8297" ExcludeAssets="runtime" />
+    <PackageReference Include="DynamoVisualProgramming.Tests" Version="$(DYNAMOTESTS_VERSION)" ExcludeAssets="runtime" />
+	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+	  <PackageReference Include="NUnit" Version="$(NUnit_VERSION)" />
+	  <PackageReference Include="NUnit3TestAdapter" Version="$(NUnit3TestAdapter_VERSION)" />
     <ProjectReference Include="$(SolutionDir)DynamoRevit\DynamoRevit.csproj">
       <Private>False</Private>
     </ProjectReference>

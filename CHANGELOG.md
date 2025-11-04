@@ -1,3 +1,121 @@
+## 0.7.61
+* Update Dynamo Core to 4.0.0-beta2972
+
+## 0.7.60
+* remove obsolete nodes and methods, refactor tests that used them
+* add node view customization for family instance selection
+
+## 0.7.59
+* Update Dynamo Core to 4.0.0-beta2804
+
+## 0.7.58
+* Little changes added to D4R tests
+
+## 0.7.57
+* cover 80 new D4R nodes with regression tests
+
+## 0.7.56
+* update to .NET 10
+* update Dynamo Core to 4.0.0-beta2685
+
+## 0.7.55
+* Update Dynamo Core to 3.6.1.9895
+
+## 0.7.54
+* Batch 02 - Submit Node Help: Added in-depth documentation for 14 nodes, including updates to help files for Sheet.ByNameNumberTitleBlockAndViews, ScheduleView.RemoveFields, ScheduleView.ClearAllFilters, AxonometricView.ByEyePointAndTarget, AreaPlanView.ByLevelAndAreaScheme, ModelCurve.ByCurve, DetailCurve.ByCurve, and related images.
+* Add en-GB language support for CL.
+
+## 0.7.53
+* new node help files
+
+## 0.7.52
+* Update Dynamo Core to 3.6.0.9395
+## 0.7.51
+* Reverted changes made for package dll test
+
+## 0.7.50
+* Modify package test to run correctly for all types of jobs
+
+## 0.7.49
+* Modify package test to run correctly for both types of packages
+
+## 0.7.48
+* Modifications for D4R XYZ tests
+
+## 0.7.47
+* New tests for D4R and new validations for existing tests
+
+## 0.7.46
+* Sign DynamoAddInGenerator.exe
+
+## 0.7.45
+* Modified path for D4R files
+
+## 0.7.44
+* Merged some D4R tests in one
+
+## 0.7.43
+* Add new validations to D4R tests and add new tests for existing scripts
+* Revert D4R version to match Dynamo Core version - temporarily
+
+## 0.7.42
+* Change version of D4R to match the one in Revit
+
+## 0.7.41
+* Change the Install Dll test as it had some typos
+
+## 0.7.40
+* Separete Dll test for Package and Install
+
+## 0.7.39
+* Fix typo for null warning message for AdaptiveComponent.ByPoints
+
+## 0.7.38
+* Add changes to D4R tests and remove irrelevant tests
+
+## 0.7.37
+* Fix warning message for adaptive compintent by points node
+
+## 0.7.36
+* Fix test NoUnexpectedOrMissingDlls_ShouldExist
+
+## 0.7.35
+* Update Dynamo Core to 3.6.0.9395
+
+## 0.7.34
+* Make the proper changes for the adaptive component node
+
+## 0.7.33
+* Undo changes made for adaptive component by points node 
+
+## 0.7.32
+* Regression test to check for new Dynamo .dll files
+
+## 0.7.31
+* Imporve warning messages for dynamo nodes attempt #2
+
+## 0.7.30
+* Imporve regression tests by adding more verifications or by deleting useless data
+
+## 0.7.29
+* Imporve warning messages for CreateElevationByMarkerIndex &  StructuralPlanView.ByLevel nodes
+
+## 0.7.28
+* Update Dynamo Core to 3.5.1.8731
+
+## 0.7.27
+* Create an end-to-end test for Dynamo in Revit
+
+## 0.7.26
+* Modify ContinuousLocalization.yml to include the Samples Folder
+
+
+## 0.7.25
+* add missing test dependencies
+
+## 0.7.24
+* Fix test references
+
 ## 0.7.23
 * Add changes to D4R tests
 

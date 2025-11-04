@@ -1,12 +1,7 @@
 ## In profondità
-`Tag.GetLeaderEndCondition` restituisce la condizione dell'estremità della direttrice dell'etichetta specificata.
+`Tag.GetLeaderEndCondition` restituisce la condizione dell'estremità della direttrice dell'elemento etichetta specificato.
 
-Le possibili condizioni finali includono:
-- Attached
-- Free
-
-Nell'esempio seguente, vengono raccolte tutte le etichette della nota chiave dalla vista di dettaglio "North Wall Window Detail". Vengono quindi restituite le condizioni dell'estremità della direttrice delle etichette.
-
+Nell'esempio seguente, vengono raccolti tutti i muri dalla vista specificata. I muri vengono quindi etichettati con il tipo di etichetta di default e con i criteri di allineamento/direttrice. Le condizioni finali vengono restituite con `Tag.GetLeaderEndCondition`.
 ___
 ## File di esempio
 

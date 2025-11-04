@@ -1,12 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using Autodesk.Revit.DB;
-using Dynamo.Nodes;
-using Autodesk.DesignScript.Geometry;
-using CoreNodeModels.Input;
 using NUnit.Framework;
-using RevitServices.Persistence;
 using RevitTestServices;
 using RTF.Framework;
 
@@ -16,24 +10,7 @@ namespace RevitSystemTests
     [TestFixture]
     class TagTests : RevitSystemTestBase
     {
-        [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
-        public void PlaceTag()
-        {
-            var model = ViewModel.Model;
-
-            string samplePath = Path.Combine(workingDirectory, @".\Annotations\Tag.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            RunCurrentModel();
-
-            var tagelement = GetPreviewValue("73d7876d-c04a-418c-8f86-2e36c44d9833");
-
-            Assert.AreEqual(typeof(Revit.Elements.Tag), tagelement.GetType());
-
-        }     
+        private const double Tolerance = 0.001;
 
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
@@ -47,16 +24,17 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
-            var tagelement = GetPreviewValue("022d664d-b236-4a20-a55d-72a3beba04d5");
 
+            var tagelement = GetPreviewValue("73d7876d-c04a-418c-8f86-2e36c44d9833");
             Assert.AreEqual(typeof(Revit.Elements.Tag), tagelement.GetType());
-            Assert.IsTrue(((tagelement as Revit.Elements.Tag)
+
+            var tagelementOffset = GetPreviewValue("022d664d-b236-4a20-a55d-72a3beba04d5");
+
+            Assert.AreEqual(typeof(Revit.Elements.Tag), tagelementOffset.GetType());
+            Assert.IsTrue(((tagelementOffset as Revit.Elements.Tag)
                 .InternalElement as IndependentTag)
                 .TagHeadPosition.IsAlmostEqualTo(new XYZ(10, 25, 0)));
-
         }
-
-        private const double Tolerance = 0.001;
 
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
@@ -102,23 +80,6 @@ namespace RevitSystemTests
 
         [Test]
         [TestModel(@".\emptyAnnotativeView.rvt")]
-        public void LeaderEndCondition()
-        {
-            var model = ViewModel.Model;
-
-            string samplePath = Path.Combine(workingDirectory, @".\Tag\CanGetSetConditionAndLocationOfLeaderEnd.dyn");
-            string testPath = Path.GetFullPath(samplePath);
-
-            ViewModel.OpenCommand.Execute(testPath);
-
-            RunCurrentModel();
-            var leaderEndCondition = GetPreviewValue("316f8fd5b05441cda070c36a1e122c81");
-
-            Assert.AreEqual("Free", leaderEndCondition);
-        }
-
-        [Test]
-        [TestModel(@".\emptyAnnotativeView.rvt")]
         public void LeaderEnd()
         {
             var model = ViewModel.Model;
@@ -135,6 +96,33 @@ namespace RevitSystemTests
             Assert.IsNotNull(leaderEnd1);
             Assert.IsNotNull(leaderEnd2);
             Assert.AreEqual(2, (leaderEnd2.Y - leaderEnd1.Y), Tolerance);
+
+            var leaderEndCondition = GetPreviewValue("316f8fd5b05441cda070c36a1e122c81");
+
+            Assert.AreEqual("Free", leaderEndCondition);
+        }
+
+        [Test]
+        [TestModel(@".\Revision2025.rvt")]
+        public void TagByElemAndLoc()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\Script\TagByElemAndLoc.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var tagElemLoc = GetPreviewValue("8feaaed99bf949f493364d965688797b");
+            Assert.AreEqual(typeof(Revit.Elements.Tag), tagElemLoc.GetType());
+
+            var tagText = GetPreviewValue("22f8ead075444f4eba6e9bc95b12b5b4");
+            Assert.AreEqual("Wall-Ret_300Con", tagText);
+
+            var taggedElem = GetPreviewValue("985761979ebe4be3aae9f9d67beb0c9f");
+            Assert.AreEqual("Wall", taggedElem.ToString());
         }
     }
 }

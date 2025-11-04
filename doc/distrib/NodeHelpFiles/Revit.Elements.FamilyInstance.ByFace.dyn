@@ -1,0 +1,385 @@
+{
+  "Uuid": "c8d7b69b-e2ba-453a-8515-91c70f418ced",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.FamilyInstance.ByFace",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "0688b5e648bd40a3a7e22c2cc45dcce5",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "08bcb3dff53141be8a118a4c2bad1fb2",
+          "Name": "familyType",
+          "Description": "Family Type. Also called Family Symbol.\n\nFamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "73ad9056c223420ca6d4ca17a141a5f3",
+          "Name": "face",
+          "Description": "Surface geometry derived from a Revit face as reference element\n\nSurface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "29fd68972c724429b04a768b5471f647",
+          "Name": "location",
+          "Description": "Point on the face where the instance is to be placed\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "96165e714be84a618704a4865bd6c8bb",
+          "Name": "referenceDirection",
+          "Description": "A vector that defines the direction of placement of the family instance\n\nVector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "63edefacbf334d8fb206dc374c44a43c",
+          "Name": "FamilyInstance",
+          "Description": "FamilyInstance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FamilyInstance.ByFace@Revit.Elements.FamilyType,Autodesk.DesignScript.Geometry.Surface,Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Vector",
+      "Replication": "Auto",
+      "Description": "Place a Revit family instance given the FamilyType (also known as the FamilySymbol in the Revit API) on a surface derived from a backing Revit face as reference, a reference direction and a point location where to place the family. Note: The FamilyType should be workplane based and the input surface must be created from a Revit Face. The reference direction defines the rotation of the instance on the reference, and thus cannot be perpendicular to the face.\n\nFamilyInstance.ByFace (familyType: FamilyType, face: Surface, location: Point, referenceDirection: Vector): FamilyInstance"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "03af50116d27406e917805ae8edaadd3",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "562784373f604359a12999850903f40f",
+          "Name": "name",
+          "Description": "The name of the FamilyType\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "63c696d93b8844ed916d232c40dc8af7",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FamilyType.ByName@string",
+      "Replication": "Auto",
+      "Description": "Select a FamilyType given it's name. This method will return the first FamilyType it finds if there are two or more FamilyTypes with the same name.\n\nFamilyType.ByName (name: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "Id": "39087e6da0854d8091550d8eeb59bf82",
+      "NodeType": "CodeBlockNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d729ac1ab1f64c4d920419f9da4b6e4b",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly",
+      "Code": "\"150W - 120V\";"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSFaceSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "76867461-1fdb-480a-a688-a7ca418f6f82-001d595c:0:INSTANCE:76867461-1fdb-480a-a688-a7ca418f6f82-001d5986:54:SURFACE"
+      ],
+      "Id": "12b295c0946c45bca54c82c47aaaafb4",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a36e883f23d543aea45b7a3f8cda3902",
+          "Name": "Surface",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a face."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9154f42f002f48ad9619e7b2851aa7d7",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "95dee37889d64cfc9b6dd0a81d8747c1",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "99944567de824063bb2fa315b043be7a",
+          "Name": "geometry[]",
+          "Description": "The element’s location",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.GetLocation",
+      "Replication": "Auto",
+      "Description": "Returns an element's location\n\nElement.GetLocation ( ): Geometry"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "76867461-1fdb-480a-a688-a7ca418f6f82-001d595c"
+      ],
+      "Id": "858b36b908c64a5e875c02e09d31ecfe",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c1e2824f00b9462fa560962e3811bc94",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "964df4af7d8d45f78b021b39020ff65b",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8c284148173942a4802b0a24da6f1094",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Vector.YAxis",
+      "Replication": "Auto",
+      "Description": "Get the canonical Y axis Vector (0,1,0)\n\nVector.YAxis ( ): Vector"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "63c696d93b8844ed916d232c40dc8af7",
+      "End": "08bcb3dff53141be8a118a4c2bad1fb2",
+      "Id": "6d602559483d4c16907cc2043d6fcf73",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d729ac1ab1f64c4d920419f9da4b6e4b",
+      "End": "562784373f604359a12999850903f40f",
+      "Id": "2b33ca2679ff4e019a6e8ca244c8f04a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a36e883f23d543aea45b7a3f8cda3902",
+      "End": "73ad9056c223420ca6d4ca17a141a5f3",
+      "Id": "04aadb4bc7324a7a8468d71dc8e26ba4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "99944567de824063bb2fa315b043be7a",
+      "End": "29fd68972c724429b04a768b5471f647",
+      "Id": "7d468be3a0d94104bc3b8f6537e3a066",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c1e2824f00b9462fa560962e3811bc94",
+      "End": "95dee37889d64cfc9b6dd0a81d8747c1",
+      "Id": "c80020e6a90244e8aa82299722f2317f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8c284148173942a4802b0a24da6f1094",
+      "End": "96165e714be84a618704a4865bd6c8bb",
+      "Id": "769b87aa17174023927c5541c7e8b19c",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": null,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "0688b5e6-48bd-40a3-a7e2-2c2cc45dcce5",
+      "Binding": {
+        "ByFace_InClassDecl-1_InFunctionScope-1_Instance0_0688b5e6-48bd-40a3-a7e2-2c2cc45dcce5": "H4sIAAAAAAAACh3LIQ7DMAxA0bsYz1LtLm5aXFJcWBfEizeNBGxhUe6+qdIHj/yjQfFv9bymmmA5GuQL0BT2+nmX17YqLArEmegfysiOd7MJbc4JJ89j5KeJS8Bh4Dg/oincFLZSr5dFKFDo0M9+/gCwpeF4cAAAAA=="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "0688b5e648bd40a3a7e22c2cc45dcce5",
+        "Name": "FamilyInstance.ByFace",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 530.5905700776568,
+        "Y": 485.1757419234909
+      },
+      {
+        "Id": "03af50116d27406e917805ae8edaadd3",
+        "Name": "FamilyType.ByName",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 181.82728601208345,
+        "Y": 291.6370883497166
+      },
+      {
+        "Id": "39087e6da0854d8091550d8eeb59bf82",
+        "Name": "Code Block",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -149.69928211906296,
+        "Y": 291.4645883497166
+      },
+      {
+        "Id": "12b295c0946c45bca54c82c47aaaafb4",
+        "Name": "Select Face",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 179.59057007765676,
+        "Y": 453.1757419234909
+      },
+      {
+        "Id": "9154f42f002f48ad9619e7b2851aa7d7",
+        "Name": "Element.GetLocation",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 179.59057007765676,
+        "Y": 619.1757419234909
+      },
+      {
+        "Id": "858b36b908c64a5e875c02e09d31ecfe",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -156.40942992234324,
+        "Y": 619.1757419234909
+      },
+      {
+        "Id": "964df4af7d8d45f78b021b39020ff65b",
+        "Name": "Vector.YAxis",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 250.04712201210117,
+        "Y": 814.2651345136672
+      }
+    ],
+    "Annotations": [],
+    "X": 743.290760953832,
+    "Y": 99.24187561152155,
+    "Zoom": 0.8941680833120766
+  }
+}

@@ -216,7 +216,7 @@ namespace Revit.Elements
                             newVertList.Add(transformedVertex);
                         }
 
-                        var newMesh = Autodesk.DesignScript.Geometry.Mesh.ByPointsFaceIndices(newVertList, meshIndices);
+                        var newMesh = Autodesk.DesignScript.Geometry.Mesh.ByPointsIndexGroups(newVertList, meshIndices);
                         geoSet.Add(newMesh);
                         break;
                     case GeometryInstance gi:

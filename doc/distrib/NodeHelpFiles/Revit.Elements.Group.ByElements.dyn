@@ -1,0 +1,243 @@
+{
+  "Uuid": "3ef6c4b1-438f-4eb7-b895-59f9230e2643",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Group.ByElements",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction, DynamoCore",
+      "FunctionSignature": "DSCore.List.Join@var[]..[]",
+      "FunctionType": "VariableArgument",
+      "Id": "9c4bda8d0c6f4dd0b2465a71136c8688",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "52e272e50fd14ab98aa769ee947ef7c6",
+          "Name": "list0",
+          "Description": "Lists to join into one.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d945b29d7ee14ca8a4e2122bb8becfd4",
+          "Name": "list1",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0f4807f190c94085b388d6875765ac6a",
+          "Name": "list",
+          "Description": "Joined list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Concatenates all given lists into a single list.\n\nList.Join (lists: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d5e0d6b87e6a467d9cb42696acb78b45",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "13449541c45d4a5b8ae9b6172898ec2b",
+          "Name": "elements",
+          "Description": "Revit elements to group.\n\nElement[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a9ba645d289a420380b28c7a7dd5955b",
+          "Name": "Group",
+          "Description": "The new group type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Group.ByElements@Revit.Elements.Element[]",
+      "Replication": "Auto",
+      "Description": "Creates a new type of group, with all of the input elements.\n\nGroup.ByElements (elements: Element[]): Group"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "953595ec-d7b9-467b-9128-24782533c4f5-00158724"
+      ],
+      "Id": "a80c8d6a1aab440dbdbf719f42f38d6f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9eab329d96004f1299c3eaa3ca20a1e5",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "953595ec-d7b9-467b-9128-24782533c4f5-00158725"
+      ],
+      "Id": "75853aebe94d423f9039acd85e648dba",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "167fa173e39e4ca68ee4df156a88bf2e",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0f4807f190c94085b388d6875765ac6a",
+      "End": "13449541c45d4a5b8ae9b6172898ec2b",
+      "Id": "80378bb0a8a340208eeabb64f9397998",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9eab329d96004f1299c3eaa3ca20a1e5",
+      "End": "52e272e50fd14ab98aa769ee947ef7c6",
+      "Id": "92ba171dfe9043b5af4813b3c6bd213f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "167fa173e39e4ca68ee4df156a88bf2e",
+      "End": "d945b29d7ee14ca8a4e2122bb8becfd4",
+      "Id": "126e53ed7c4a4cdf88eb2ff3f1e85e18",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "9c4bda8d0c6f4dd0b2465a71136c8688",
+        "Name": "List.Join",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1481.0,
+        "Y": 706.0
+      },
+      {
+        "Id": "d5e0d6b87e6a467d9cb42696acb78b45",
+        "Name": "Group.ByElements",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1733.0,
+        "Y": 706.0
+      },
+      {
+        "Id": "a80c8d6a1aab440dbdbf719f42f38d6f",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1145.0,
+        "Y": 640.0
+      },
+      {
+        "Id": "75853aebe94d423f9039acd85e648dba",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1145.0,
+        "Y": 806.0
+      }
+    ],
+    "Annotations": [],
+    "X": -862.47911875,
+    "Y": -480.09845625,
+    "Zoom": 1.33823125
+  }
+}

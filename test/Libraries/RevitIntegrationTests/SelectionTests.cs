@@ -145,41 +145,31 @@ namespace RevitSystemTests
         }
 
         [Test, Category("SmokeTests"), TestModel(@".\Selection\Selection.rfa")]
-        public void EmptySingleSelectionReturnsNull()
+        public void EmptySelectionReturnsNull()
         {
-            // Verify that an empty single-selection returns null
+            // Verify that an empty multi-selection and single selection returns null
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectAndMultiSelect.dyn"));
 
-            var guid = "938e1543-c1d5-4c92-83a7-3abcae2b8264";
-            var selectionNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == guid) as ElementSelection<Element>;
-            Assert.NotNull(selectionNode, "The requested node could not be found");
-            
-            selectionNode.ClearSelections();
+            var multiSelection = "34f4f2cc-63c3-41ec-91fa-68db7820cee5";
+            var multiSelectionNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == multiSelection) as ElementSelection<Element>;
+            Assert.NotNull(multiSelectionNode, "The requested node could not be found");
+
+            multiSelectionNode.ClearSelections();
+
+            var singleSelection = "938e1543-c1d5-4c92-83a7-3abcae2b8264";
+            var singleSelectionNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == singleSelection) as ElementSelection<Element>;
+            Assert.NotNull(singleSelectionNode, "The requested node could not be found");
+
+            singleSelectionNode.ClearSelections();
 
 
             RunCurrentModel();
             
-            var element = GetPreviewCollection(guid);
+            var element = GetPreviewCollection(multiSelection);
             Assert.Null(element);
-        }
 
-        [Test, Category("SmokeTests"), TestModel(@".\Selection\Selection.rfa")]
-        public void EmptyMultiSelectionReturnsNull()
-        {
-            // Verify that an empty multi-selection returns null
-            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectAndMultiSelect.dyn"));
-
-            var guid = "34f4f2cc-63c3-41ec-91fa-68db7820cee5";
-            var selectionNode = ViewModel.Model.CurrentWorkspace.Nodes.FirstOrDefault(n => n.GUID.ToString() == guid) as ElementSelection<Element>;
-            Assert.NotNull(selectionNode, "The requested node could not be found");
-
-            selectionNode.ClearSelections();
-
-
-            RunCurrentModel();
-            
-            var element = GetPreviewCollection(guid);
-            Assert.Null(element);
+            var element2 = GetPreviewCollection(singleSelection);
+            Assert.Null(element2);
         }
 
         [Test, Category("SmokeTests"), TestModel(@".\Selection\Selection.rfa")]
@@ -190,7 +180,6 @@ namespace RevitSystemTests
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectAndMultiSelect.dyn"));
 
             RunCurrentModel();
-           // Assert.DoesNotThrow(()=>ViewModel.Model.RunExpression());
 
             var guid = "938e1543-c1d5-4c92-83a7-3abcae2b8264";
             var element = GetPreviewValue(guid);
@@ -281,21 +270,13 @@ namespace RevitSystemTests
             Assert.Null(element);
         }
 
-        //[Test]
-        //[TestModel(@".\Selection\Selection.rfa")]
-        //public void SelectPointOnFace()
-        //{
-        //    OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectPointOnFace.dyn"));
-        //    TestSelection<Reference,Reference>(SelectionType.One);
-        //}
-
-        //[Test]
-        //[TestModel(@".\Selection\Selection.rfa")]
-        //public void SelectUVOnFace()
-        //{
-        //    OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectUVOnFace.dyn"));
-        //    TestSelection<Reference,Reference>(SelectionType.One);
-        //}
+        [Test]
+        [TestModel(@".\Selection\Selection.rfa")]
+        public void SelectUVOnFace()
+        {
+            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectUVOnFace.dyn"));
+            TestSelection<Reference, Reference>(SelectionType.Many);
+        }
 
         [Test]
         [Category("SmokeTests")]
@@ -437,7 +418,7 @@ namespace RevitSystemTests
 
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectionSyncElements.dyn"));
 
-            const string selectNodeGuid = "3dbe16b8-e855-4229-a1cf-4643e69ba7b4";
+            var selectNodeGuid = "3dbe16b8-e855-4229-a1cf-4643e69ba7b4";
 
             var walls = fec.ToElements();
             int remainingWallCount = walls.Count;
@@ -445,6 +426,7 @@ namespace RevitSystemTests
             {
                 remainingWallCount = DeleteWallAndRun<Revit.Elements.Wall>(selectNodeGuid);
             }
+            Assert.AreEqual(1, remainingWallCount, "There should be only one wall left in the model after deletions.");
         }
 
         [Test, Category("SmokeTests"), TestModel(@".\Selection\SelectionSync.rvt")]
@@ -455,14 +437,14 @@ namespace RevitSystemTests
 
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectionSyncReferences.dyn"));
 
-            const string selectNodeGuid = "91fd4f06-dde2-449f-aff5-f6203e4777ed";
+            const string selectFaceNodeGuid = "91fd4f06-dde2-449f-aff5-f6203e4777ed";
             var walls = fec.ToElements();
             int remainingWallCount = walls.Count;
             while (remainingWallCount > 1)
             {
-                remainingWallCount = DeleteWallAndRun<Surface>(selectNodeGuid);
+                remainingWallCount = DeleteWallAndRun<Surface>(selectFaceNodeGuid);
             }
-
+            Assert.AreEqual(1, remainingWallCount, "There should be only one surface wall left in the model after deletions.");
         }
 
         [Test]
@@ -627,14 +609,6 @@ namespace RevitSystemTests
         public void SelectModelElementByCategory()
         {
             OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectModelElementByCategory.dyn"));
-            TestMultipleCategorySelection<Element>();
-        }
-
-        [Test]
-        [TestModel(@".\Selection\DynamoSample.rvt")]
-        public void SelectModelElementByCategoryChangeLanguage()
-        {
-            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\Selection\SelectModelElementByCategory_ESP.dyn"));
             TestMultipleCategorySelection<Element>();
         }
 

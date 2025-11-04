@@ -2,7 +2,7 @@
   "Uuid": "6ab2aa77-03ac-43aa-996a-9bcba72a6560",
   "IsCustomNode": false,
   "Description": "Сбор всех элементов выбранной категории (по умолчанию — «Двери») и получение геометрии каждого элемента",
-  "Name": "Get Geometry For All Elements Of Category",
+  "Name": "Получение геометрии для всех элементов категории",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -251,7 +251,7 @@
       },
       {
         "Id": "8ba36ad66fd043f8b9db0ffc465a667f",
-        "Title": "We recommend you save your graph with a category you expect to exist in your models to prevent a warning.\n\nFor example, try saving and running the graph with the Doors category on the sample model Snowdon Towers Sample Architectural.rvt, available at:\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
+        "Title": "Чтобы предотвратить появление предупреждения, рекомендуется сохранить график с категорией, которая, как предполагается, присутствует в моделях.\n\nНапример, попробуйте сохранить и запустить график с категорией «Двери» в файле примера модели Snowdon Towers Sample Architectural.rvt, который находится в следующей папке:\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,

@@ -239,13 +239,6 @@ namespace Revit.Elements
             return DraftingView.FromExisting(view, isRevitOwned);
         }
 
-
-        [System.Obsolete("This method is deprecated with the introduction of the new Toposolid elements. It is recommended that Toposolid elements should be used in place of Topography elements.")]
-        public static Topography Wrap(Autodesk.Revit.DB.Architecture.TopographySurface topoSurface, bool isRevitOwned)
-        {
-            return Topography.FromExisting(topoSurface, isRevitOwned);
-        }
-
         public static Toposolid Wrap(Autodesk.Revit.DB.Toposolid toposolid, bool isRevitOwned)
         {
             return Toposolid.FromExisting(toposolid, isRevitOwned);

@@ -2,7 +2,7 @@
   "Uuid": "6ab2aa77-03ac-43aa-996a-9bcba72a6560",
   "IsCustomNode": false,
   "Description": "Zbierz wszystkie elementy wybranej kategorii (ustawienie domyślne to drzwi) i pobierz geometrię poszczególnych elementów",
-  "Name": "Get Geometry For All Elements Of Category",
+  "Name": "Pobierz geometrię dla wszystkich elementów kategorii",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -251,7 +251,7 @@
       },
       {
         "Id": "8ba36ad66fd043f8b9db0ffc465a667f",
-        "Title": "We recommend you save your graph with a category you expect to exist in your models to prevent a warning.\n\nFor example, try saving and running the graph with the Doors category on the sample model Snowdon Towers Sample Architectural.rvt, available at:\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
+        "Title": "Zalecamy zapisanie wykresu przy użyciu kategorii, której istnienia oczekuje się w modelach, aby zapobiec ostrzeżeniu.\n\nNa przykład spróbuj zapisać i uruchomić wykres z kategorią Drzwi (Doors) w przykładowym modelu Snowdon Towers Sample Architectural.rvt dostępnym tutaj:\nC:\\Program Files\\Autodesk\\<Revit ....>\\Samples",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,

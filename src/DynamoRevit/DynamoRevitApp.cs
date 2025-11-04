@@ -357,8 +357,8 @@ namespace Dynamo.Applications
             if (application == null)
                 return false;
             var revitVersion = application.ControlledApplication.VersionNumber;
-            var dynamoRevitRoot = Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
-            var RevitRoot = Path.GetDirectoryName(application.GetType().Assembly.Location);
+            var dynamoRevitRoot = Path.GetFullPath(Path.GetDirectoryName(Path.GetDirectoryName(assemblyName)));
+            var RevitRoot = Path.GetFullPath(Path.GetDirectoryName(application.GetType().Assembly.Location));
             if (dynamoRevitRoot.StartsWith(RevitRoot))
             {
                 if (File.Exists(Path.Combine(dynamoRevitRoot, "DynamoInstallDetective.dll")) && File.Exists(Path.Combine(dynamoRevitRoot, "DynamoCore.dll")))
@@ -377,7 +377,8 @@ namespace Dynamo.Applications
 
         private bool TryResolveDynamoCore(UIControlledApplication application)
         {
-            if(IsRevitInternalAddin(application))
+
+            if (IsRevitInternalAddin(application))
             {
                 dynamopath = Path.GetDirectoryName(Path.GetDirectoryName(assemblyName));
             }

@@ -1,6 +1,8 @@
 using System;
-
+using Autodesk.Revit.ApplicationServices;
+using Autodesk.Revit.UI;
 using Autodesk.Revit.DB;
+using DynamoServices;
 using RevitServices.Persistence;
 using RevitServices.Transactions;
 
@@ -70,6 +72,11 @@ namespace Revit.Elements.Views
         /// <returns>A StructuralPlanView if successful.</returns>
         public static StructuralPlanView ByLevel(Level level)
         {
+            if (!DocumentManager.Instance.CurrentUIApplication.Application.IsStructureEnabled)
+            {
+                throw new InvalidOperationException(Properties.Resources.StructuralPlanNotEnabled);
+            }
+
             if (level == null)
             {
                 throw new ArgumentNullException("level");

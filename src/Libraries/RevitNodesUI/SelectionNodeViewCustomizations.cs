@@ -29,6 +29,18 @@ namespace Dynamo.Wpf.Nodes.Revit
         }
     }
 
+    public class DSFamilyInstanceSelectionNodeViewCustomization :
+    SelectionBaseNodeViewCustomization<FamilyInstance, Element>,
+    INodeViewCustomization<ElementSelection<FamilyInstance>>
+    {
+        public void CustomizeView(ElementSelection<FamilyInstance> model, NodeView nodeView)
+        {
+            base.CustomizeView(model, nodeView);
+            model.RevitDynamoModel =
+                nodeView.ViewModel.DynamoViewModel.Model as Applications.Models.RevitDynamoModel;
+        }
+    }
+
     public class DSDividedSurfaceFamiliesSelectionNodeViewCustomization :
         SelectionBaseNodeViewCustomization<DividedSurface, Element>,
         INodeViewCustomization<ElementSelection<DividedSurface>>

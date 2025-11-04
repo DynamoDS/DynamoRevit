@@ -214,24 +214,6 @@ namespace Revit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This node may be removed in future version. Use CreateProjectParameterForAllCategories(string, string, SpecType, GroupType, bool) instead..
-        /// </summary>
-        internal static string CreateProjectParameterForAllCategoriesObsolete {
-            get {
-                return ResourceManager.GetString("CreateProjectParameterForAllCategoriesObsolete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This node may be removed in future version. Use CreateProjectParameter(string, string, SpecType, GroupType, bool, IEnumerable&lt;Category&gt;) instead..
-        /// </summary>
-        internal static string CreateProjectParameterObsolete {
-            get {
-                return ResourceManager.GetString("CreateProjectParameterObsolete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to This node may be removed in future version. Use CreateSharedParameterForAllCategories(string, string, SpecType, GroupType, bool) instead..
         /// </summary>
         internal static string CreateSharedParameterForAllCategoriesObsolete {
@@ -381,6 +363,15 @@ namespace Revit.Properties {
         internal static string CurveRequired {
             get {
                 return ResourceManager.GetString("CurveRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At index {0} expected {1} points, but given {2}..
+        /// </summary>
+        internal static string DesiredNumberOfPoints {
+            get {
+                return ResourceManager.GetString("DesiredNumberOfPoints", resourceCulture);
             }
         }
         
@@ -705,6 +696,15 @@ namespace Revit.Properties {
         internal static string GroupObsolete {
             get {
                 return ResourceManager.GetString("GroupObsolete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected index is already occupied by a View or not available.The elevation marker can have up to four views, indexed from 0 to 3. The index on the ElevationMarker specifies where the new elevation View will be placed. Check how many views the Elevation Mark family loaded in the model contains and which indexes are empty..
+        /// </summary>
+        internal static string IndexOccupiedOrNotAvailable {
+            get {
+                return ResourceManager.GetString("IndexOccupiedOrNotAvailable", resourceCulture);
             }
         }
         
@@ -1096,6 +1096,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The AdaptiveComponents.ByPoints node accepts as input a 2D array of points (structured list of lists) and a Family type to be used for creating the adaptive component..
+        /// </summary>
+        internal static string NotSingleList {
+            get {
+                return ResourceManager.GetString("NotSingleList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Some of the input curves are null..
         /// </summary>
         internal static string NullInputCurvesError {
@@ -1375,6 +1384,15 @@ namespace Revit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to StructuralPlans can only be created when the structural discipline is enabled whereas FloorPlans and CeilingPlans can only be created when architecture or MEP disciplines are enabled. Check which tabs are active under File -&gt; Options -&gt; User Interface -&gt; Configure Tools and analyses.
+        /// </summary>
+        internal static string StructuralPlanNotEnabled {
+            get {
+                return ResourceManager.GetString("StructuralPlanNotEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use FaceAnalysisDisplay.ByViewFacePointsAndValues instead..
         /// </summary>
         internal static string SurfaceDataObsolete {
@@ -1389,15 +1407,6 @@ namespace Revit.Properties {
         internal static string Tag_Lookup_Error {
             get {
                 return ResourceManager.GetString("Tag_Lookup_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A minimum of three points is required to create a topography surface..
-        /// </summary>
-        internal static string TopographyNeedsThreePoints {
-            get {
-                return ResourceManager.GetString("TopographyNeedsThreePoints", resourceCulture);
             }
         }
         

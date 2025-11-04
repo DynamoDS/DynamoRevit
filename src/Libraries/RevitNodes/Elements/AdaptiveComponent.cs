@@ -437,11 +437,12 @@ namespace Revit.Elements
 
             if (familyType == null)
             {
-                throw new ArgumentNullException("familtType");
+                throw new ArgumentNullException("familyType");
             }
 
             return InternalByPoints(points, familyType);
         }
+
 
         /// <summary>
         /// Create an adaptive component by uv points on a face.
@@ -518,6 +519,15 @@ namespace Revit.Elements
 
             try
             {
+                int numOfComponents = points.Count();
+                List<FamilyInstanceCreationData> creationDatas = new List<FamilyInstanceCreationData>(numOfComponents);
+                int desiredNumOfPoints = AdaptiveComponentFamilyUtils.GetNumberOfAdaptivePoints(familyType.InternalFamilySymbol.Family);
+
+                if (numOfComponents == desiredNumOfPoints && points.All(subListOfPoints => subListOfPoints.Length == 1))
+                {
+                    throw new Exception(Properties.Resources.NotSingleList);
+                }
+
                 // Reuse the adaptive components that can be reused if possible
                 for (int i = 0; i < reusableCount; i++)
                 {
@@ -547,15 +557,20 @@ namespace Revit.Elements
                 if (countToBeCreated > countOfOldInstances)
                 {
                     var remainingPoints = points.Skip(reusableCount).ToArray();
-                    // Prepare the creation data for batch processing
-                    int numOfComponents = remainingPoints.Count();
-                    List<FamilyInstanceCreationData> creationDatas = new List<FamilyInstanceCreationData>(numOfComponents);
+                    // Prepare the creation data for batch processing       
+
                     for (int i = 0; i < numOfComponents; ++i)
                     {
                         int numOfPoints = remainingPoints[i].Length;
                         var aPoints = remainingPoints[i].ToXyzs();
 
-                        var creationData = DocumentManager.Instance.CurrentDBDocument.Application.Create.
+
+                        if (aPoints.Length != desiredNumOfPoints)
+                        {
+                            throw new Exception(string.Format(Properties.Resources.DesiredNumberOfPoints, i, desiredNumOfPoints, numOfPoints));
+                        }
+
+                        var creationData = DocumentManager.Instance.CurrentUIApplication.Application.Create.
                             NewFamilyInstanceCreationData(familyType.InternalFamilySymbol, aPoints);
 
                         if (creationData != null)

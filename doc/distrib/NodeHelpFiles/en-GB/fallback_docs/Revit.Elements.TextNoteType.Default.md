@@ -1,8 +1,7 @@
 ## In Depth
-`TextNoteType.Default` provides access to the default text note type in the current Revit document. This text note type is the same as the one used when creating text in the Revit UI.
+`TextNoteType.Default` returns the default text note type in the current Revit document. This matches the default text type that is used when a new text note is created in the Revit UI by the user.
 
-In the example below, a new drafting view is created and a new text note is created at the origin in the current Revit document.
-
+In the example below, the default text note type, "1/4" Trebuchet MS" is returned for the Snowdon Towers Sample model.
 ___
 ## Example File
 

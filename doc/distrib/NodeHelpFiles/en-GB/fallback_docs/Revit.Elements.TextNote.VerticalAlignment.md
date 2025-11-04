@@ -1,5 +1,5 @@
 ## In Depth
-`TextNote.VerticalAlignment` returns the assigned vertical alignment of the given text note. 
+`TextNote.VerticalAlignment` returns the assigned vertical alignment of the given text note.
 
 Vertical Alignment Options include:
 - Top

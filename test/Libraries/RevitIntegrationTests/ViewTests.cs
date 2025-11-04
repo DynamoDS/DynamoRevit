@@ -1,14 +1,9 @@
 ﻿using System.IO;
 using System.Linq;
 using CoreNodeModels.Input;
-using Dynamo.Nodes;
-
 using NUnit.Framework;
-
 using RevitTestServices;
-
 using RTF.Framework;
-
 using Revit.Elements;
 
 
@@ -30,6 +25,19 @@ namespace RevitSystemTests
 
             RunCurrentModel();
 
+            var model = ViewModel.Model;
+            Assert.AreEqual(39, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(47, model.CurrentWorkspace.Connectors.Count());
+
+            var axonometricViewID = GetFlattenedPreviewValues("b8763786a5a74459955ddf9454707f0a");
+            Assert.AreEqual(101, axonometricViewID.Count);
+
+            for (int i = 0; i < axonometricViewID.Count; i++)
+            {
+                var view = GetPreviewValueAtIndex("b8763786a5a74459955ddf9454707f0a", i) as Revit.Elements.Views.View;
+                Assert.IsNotNull(view);
+                Assert.IsTrue(view.Name.Contains("ModelText"));
+            }
         }
 
         [Test]
@@ -66,7 +74,19 @@ namespace RevitSystemTests
             ViewModel.OpenCommand.Execute(testPath);
 
             RunCurrentModel();
+            var model = ViewModel.Model;
+            Assert.AreEqual(38, model.CurrentWorkspace.Nodes.Count());
+            Assert.AreEqual(48, model.CurrentWorkspace.Connectors.Count());
 
+            var perspectiveViewID = GetFlattenedPreviewValues("14c79b8209d14ce5a0ea77f0a230ad75");
+            Assert.AreEqual(101, perspectiveViewID.Count);
+
+            for (int i = 0; i < perspectiveViewID.Count; i++)
+            {
+                var view = GetPreviewValueAtIndex("14c79b8209d14ce5a0ea77f0a230ad75", i) as Revit.Elements.Views.View;
+                Assert.IsNotNull(view);
+                Assert.IsTrue(view.Name.Contains(i.ToString()));
+            }
         }
 
         [Test, TestModel(@".\Empty.rvt")]
@@ -87,7 +107,7 @@ namespace RevitSystemTests
             var tmp2 = Path.GetTempFileName();
 
             tmp1 = Path.ChangeExtension(tmp1, ".png");
-            tmp2 = Path.ChangeExtension(tmp1, ".png");
+            tmp2 = Path.ChangeExtension(tmp2, ".png");
 
             stringNodes[0].Value = tmp1;
             stringNodes[1].Value = tmp2;
@@ -102,7 +122,6 @@ namespace RevitSystemTests
 
             var tmp2Info = new FileInfo(tmp2);
             Assert.Greater(tmp2Info.Length, 0);
-
         }
 
         [Test]
@@ -185,7 +204,7 @@ namespace RevitSystemTests
             // Arrange
             string samplePath = Path.Combine(workingDirectory, @".\View\CanGetSetDiscipline.dyn");
             string testPath = Path.GetFullPath(samplePath);
-            
+
             // Act
             ViewModel.OpenCommand.Execute(testPath);
             RunCurrentModel();
@@ -283,7 +302,7 @@ namespace RevitSystemTests
             // Assert
             var view = GetPreviewValue("1fe4f90c6cc044bd91bee7a61258f83b") as Revit.Elements.Views.View;
             Assert.IsNotNull(view);
-            
+
             Assert.IsFalse((bool)GetPreviewValue("0c1c543858f343b89d659f2b537b66dc"));
         }
 
@@ -338,6 +357,70 @@ namespace RevitSystemTests
             // Assert
             var view = GetPreviewValue("f516cb1302f549e3b5eb62b80a7688a7") as Revit.Elements.Views.View;
             Assert.IsNotNull(view);
+        }
+
+        [Test]
+        [TestModel(@".\SampleModel.rvt")]
+        public void DraftingView()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\View\DraftingView.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var draftingView = GetFlattenedPreviewValues("df4c321c76c74c188106ccf9d989aa85");
+            Assert.AreEqual(11, draftingView.Count);
+            for (int i = 0; i < draftingView.Count; i++)
+            {
+                var view = draftingView[i] as Revit.Elements.Views.DraftingView;
+                Assert.IsNotNull(view);
+                Assert.IsTrue(view.Name.Contains("view" + i.ToString()));
+            }
+        }
+
+        [Test]
+        [TestModel(@".\AxonometricView.rfa")]
+        public void AxoViewTargetBoundingBox()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\Script\AxoViewTargetBoundingBox.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var axoViewTargetBoundingBox = GetPreviewValue("6c402a6f515f4e84bd4367f066680630");
+            Assert.IsNotNull(axoViewTargetBoundingBox);
+
+            var boundingBox = GetPreviewValue("bda8352d349a4f1fbb4927c30710f77c") as Autodesk.DesignScript.Geometry.BoundingBox;
+            Assert.AreEqual(0.0, boundingBox.MinPoint.X);
+            Assert.AreEqual(10.0, boundingBox.MaxPoint.X);
+        }
+
+        [Test]
+        [TestModel(@".\Revision2025.rvt")]
+        public void AxoViewTargetElement()
+        {
+            // Arrange
+            string samplePath = Path.Combine(workingDirectory, @".\Script\AxoViewTargetElement.dyn");
+            string testPath = Path.GetFullPath(samplePath);
+
+            // Act
+            ViewModel.OpenCommand.Execute(testPath);
+            RunCurrentModel();
+
+            // Assert
+            var axoViewTargetElem = GetFlattenedPreviewValues("adf97be8f6824154b7b1d5eff9c8b1ae");
+            Assert.IsNotNull(axoViewTargetElem);
+
+            var selectFamilyInstance = GetFlattenedPreviewValues("57bf46bc3c9a4b9da2ff015f5414f52b");
+            Assert.AreEqual(14, selectFamilyInstance.Count);
         }
     }
 }

@@ -1,7 +1,7 @@
 ## Informacje szczegółowe
-Węzeł `ElementType.CanBeDeleted` określa, czy typ elementu można usunąć z pliku programu Revit.
+Węzeł `ElementType.CanBeDeleted` zwraca wartość true/false (prawda/fałsz) wskazującą, czy dany typ elementu można usunąć.
 
-W poniższym przykładzie zbierane są wszystkie rzuty z bieżącego pliku programu Revit. Rzuty są następnie rozdzielane na 2 listy: „można usunąć” i „nie można usunąć”.
+W poniższym przykładzie z bieżącego dokumentu programu Revit zostają pobrane wszystkie typy ścian, a następnie zostaje sprawdzone, czy można je usunąć.
 ___
 ## Plik przykładowy
 
