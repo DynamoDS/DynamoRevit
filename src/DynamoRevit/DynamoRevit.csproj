@@ -125,7 +125,7 @@
     <PackageReference Include="pythonnet_py38_win" Version="$(PYTHONNET_PY38_VERSION)" ExcludeAssets="runtime" />
   </ItemGroup>
   <Target Name="Copy dll" AfterTargets="Build">
-    <Copy SourceFiles="$(PkgDynamoVisualProgramming_Core)\lib\$(DCoreLibSubFolder)\DynamoInstallDetective.dll" DestinationFolder="$(OutputPath)\.." />
-    <Copy SourceFiles="$(PkgGregRevitAuth)\lib\$(GregRevitAuthLibSubFolder)\GregRevitAuth.dll" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="$(PkgDynamoVisualProgramming_Core)\lib\$(DotnetVerSubFolder)\DynamoInstallDetective.dll" DestinationFolder="$(OutputPath)\.." />
+    <Copy SourceFiles="$(PkgGregRevitAuth)\lib\$(DotnetVerSubFolder)\GregRevitAuth.dll" DestinationFolder="$(OutputPath)" />
   </Target>
 </Project>

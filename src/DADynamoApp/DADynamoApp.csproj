@@ -4,7 +4,6 @@
     </ImportGroup>
     
   <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -27,9 +26,9 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Autodesk.Forge.DesignAutomation.Revit" Version="2025.0.1" />
-        <PackageReference Include="DynamoVisualProgramming.Core" Version="3.5.0.8300" ExcludeAssets="runtime" GeneratePathProperty="true" />
+        <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DYNAMOCORE_VERSION)" ExcludeAssets="runtime" GeneratePathProperty="true" />
         <PackageReference Include="DynamoPlayer" Version="6.0.2" ExcludeAssets="runtime" GeneratePathProperty="true" />
-        <PackageReference Include="GregRevitAuth" Version="3.0.9229.39980" GeneratePathProperty="true">
+        <PackageReference Include="GregRevitAuth" Version="$(GregRevitAuth_VERSION)" GeneratePathProperty="true">
           <ExcludeAssets>runtime</ExcludeAssets>
         </PackageReference>
     </ItemGroup>
@@ -53,6 +52,6 @@
         </Reference>
     </ItemGroup>
     <Target Name="Copy dll" AfterTargets="Build">
-        <Copy SourceFiles="$(PkgGregRevitAuth)\lib\net8.0\GregRevitAuth.dll" DestinationFolder="$(OutputPath)" />
+        <Copy SourceFiles="$(PkgGregRevitAuth)\lib\$(DotnetVerSubFolder)\GregRevitAuth.dll" DestinationFolder="$(OutputPath)" />
     </Target>
 </Project>
