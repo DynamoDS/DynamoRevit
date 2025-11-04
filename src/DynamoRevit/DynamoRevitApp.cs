@@ -250,6 +250,7 @@ namespace Dynamo.Applications
             }
         }
 
+        [Obsolete("This property will be made internal")]
         public static EventHandlerProxy EventHandlerProxy
         {
             get { return EventHandlerProxy.Instance; }
