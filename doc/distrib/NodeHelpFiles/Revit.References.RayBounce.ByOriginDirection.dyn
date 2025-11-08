@@ -1,0 +1,344 @@
+{
+  "Uuid": "3682eb5a-4c1d-434b-9ab9-7cf26afdfd98",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.References.RayBounce.ByOriginDirection",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a9f7b181862e4218a97591e92a064bf2",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "23d0a10a1b9643a69186f945ee2f4425",
+          "Name": "origin",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3ecd1274b24f4b618c8b77675ff922f0",
+          "Name": "direction",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8c0eff437c80495eaed92d6934e2a892",
+          "Name": "maxBounces",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0ad8ca04241a4b1eae076f375e802ec8",
+          "Name": "view",
+          "Description": "View3D",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "230c33a5324a4ca0b15fec3d3da4a9ba",
+          "Name": "points",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a5414420fa464652b1cccd6c67433ee6",
+          "Name": "elements",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.References.RayBounce.ByOriginDirection@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Vector,int,Revit.Elements.Views.View3D",
+      "Replication": "Auto",
+      "Description": "Returns positions and elements hit by ray bounce from the specified origin point and direction\n\nRayBounce.ByOriginDirection (origin: Point, direction: Vector, maxBounces: int, view: View3D): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "808f2c0e9bf443f2904459aa98aa38b7",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "476cda8e2d544209b973f69f9eade64a",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3ebbe4d442e940a1b8e8a827016269f1",
+          "Name": "geometry[]",
+          "Description": "The element’s location",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.GetLocation",
+      "Replication": "Auto",
+      "Description": "Returns an element's location\n\nElement.GetLocation ( ): Geometry"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "300fcbd2-53ce-4f4a-9240-613827778885-0019f517"
+      ],
+      "Id": "837d2ebfd4404f5896331f3f9148549a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "16ec96057ca84fa98459aaafcacb906f",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "ea100e8849f24569a8997838cc9fdabf",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b75e7c36ab0a4d23a925f9cfbdd439d1",
+          "Name": "Vector",
+          "Description": "Vector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Vector.ZAxis",
+      "Replication": "Auto",
+      "Description": "Get the canonical Z axis Vector (0,0,1)\n\nVector.ZAxis ( ): Vector"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "{3D}",
+      "Id": "9950a47c50b64e1a9cd516b56fe85d90",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "174432ac2ac845509804df4a1a987bd0",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NumberType": "Integer",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "64913b1ddd004e53ad2ce2d9aa0d4f7c",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d1cc25a011d84935955979297a00dfbe",
+          "Name": "",
+          "Description": "Int64",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces integer values",
+      "InputValue": 3
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "3ebbe4d442e940a1b8e8a827016269f1",
+      "End": "23d0a10a1b9643a69186f945ee2f4425",
+      "Id": "b0188b7f99584cd68a0127568f998815",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "16ec96057ca84fa98459aaafcacb906f",
+      "End": "476cda8e2d544209b973f69f9eade64a",
+      "Id": "cba1c312918b4a0a9f2960b90fd27775",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b75e7c36ab0a4d23a925f9cfbdd439d1",
+      "End": "3ecd1274b24f4b618c8b77675ff922f0",
+      "Id": "896732a3254d400c84eb8b4b71eda6f6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "174432ac2ac845509804df4a1a987bd0",
+      "End": "0ad8ca04241a4b1eae076f375e802ec8",
+      "Id": "7a04a6ab2f544a69b6b4ac181b87f37a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d1cc25a011d84935955979297a00dfbe",
+      "End": "8c0eff437c80495eaed92d6934e2a892",
+      "Id": "f744e79e9d9b4f70a6aca6d9e9e3baea",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "a9f7b181862e4218a97591e92a064bf2",
+        "Name": "RayBounce.ByOriginDirection",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1087.0,
+        "Y": 567.0
+      },
+      {
+        "Id": "808f2c0e9bf443f2904459aa98aa38b7",
+        "Name": "Element.GetLocation",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 644.0,
+        "Y": 567.0
+      },
+      {
+        "Id": "837d2ebfd4404f5896331f3f9148549a",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 343.0,
+        "Y": 567.0
+      },
+      {
+        "Id": "ea100e8849f24569a8997838cc9fdabf",
+        "Name": "Vector.ZAxis",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 644.0,
+        "Y": 728.0
+      },
+      {
+        "Id": "9950a47c50b64e1a9cd516b56fe85d90",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 644.0,
+        "Y": 1012.9999999999999
+      },
+      {
+        "Id": "64913b1ddd004e53ad2ce2d9aa0d4f7c",
+        "Name": "Integer Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 644.0,
+        "Y": 867.0
+      }
+    ],
+    "Annotations": [],
+    "X": -454.9627617254673,
+    "Y": -889.4662760750537,
+    "Zoom": 1.7835993623828124
+  }
+}

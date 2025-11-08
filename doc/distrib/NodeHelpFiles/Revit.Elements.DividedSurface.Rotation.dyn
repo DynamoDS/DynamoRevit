@@ -1,0 +1,487 @@
+{
+  "Uuid": "3682eb5a-4c1d-434b-9ab9-7cf26afdfd98",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.DividedSurface.Rotation",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "4677864003574342bd5d8e3689ee63e0",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "3b21368be7c144c9b6a2102bd7184d01",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "857acd8bd2ca475285d82617a8381b83",
+          "Name": "geometry[]",
+          "Description": "List of geometry from the element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Geometry",
+      "Replication": "Auto",
+      "Description": "Returns all geometry associated with an element. Ignores transforms when used with linked elements.\n\nElement.Geometry ( ): var[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "d1263ca17eb240f2bfae40e72b656643",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "6d70aa1a7e0e4ef2879c1daf1804c6f4",
+          "Name": "dividedSurface",
+          "Description": "Revit.Elements.DividedSurface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fd269c15495342a7bc2e397ec93daea4",
+          "Name": "double",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.DividedSurface.Rotation",
+      "Replication": "Auto",
+      "Description": "Rotation of the grid lines with respect to the UV parameterization of the face\n\nDividedSurface.Rotation: double"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a1321be7bc084cf79bb612a0134d1cd0",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e180cfb8dfef483782918cb22a1f9274",
+          "Name": "surface",
+          "Description": "Surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c1a41f4003b744c7ab85a0a6e89b80cc",
+          "Name": "uDivs",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c71320a0041a4419b8ad5b01121ee89f",
+          "Name": "vDivs",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fe65d2fe5f0141f99f88159935b68b6f",
+          "Name": "gridRotation",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bd47b8a02eda46bca5c553f0043daa00",
+          "Name": "DividedSurface",
+          "Description": "DividedSurface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.DividedSurface.ByFaceUVDivisionsAndRotation@Autodesk.DesignScript.Geometry.Surface,int,int,double",
+      "Replication": "Auto",
+      "Description": "Create a Revit DividedSurface on a face given the face and number of divisions in u and v directon and the rotation of the grid lines with respect to the natural UV parameterization of the face\n\nDividedSurface.ByFaceUVDivisionsAndRotation (surface: Surface, uDivs: int, vDivs: int, gridRotation: double): DividedSurface"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "c4c7293ab484410399f87a77ba1ccdc9",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "be8761d4f77d4af39912eed915e5ecc6",
+          "Name": "dividedSurface",
+          "Description": "Revit.Elements.DividedSurface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5e8796097c3e43129bf2de6fcaf3d35d",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.DividedSurface.VDivisions",
+      "Replication": "Auto",
+      "Description": "Number of divisions in V direction\n\nDividedSurface.VDivisions: int"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NumberType": "Integer",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "61ed77498f0d4c4e81379bcc7a490663",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7c5f945fe0bd4ac89321a974eed7f9aa",
+          "Name": "",
+          "Description": "Int64",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces integer values",
+      "InputValue": 10
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NumberType": "Integer",
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "572b842ab825494db02228d39589c468",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "09b56bfb94a54c3590f6b5efa420f4d6",
+          "Name": "",
+          "Description": "Int64",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces integer values",
+      "InputValue": 20
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 90.0,
+      "MinimumValue": 0.0,
+      "StepValue": 1.0,
+      "Id": "188e172034b44a7cbe53dd3a23249cf3",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6cb95225b19f4acfa06b94fe47702159",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 1.0
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSFaceSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "8b2fcbb6-3350-4536-a114-8d91a78c59b4-000aa55d:6:SURFACE"
+      ],
+      "Id": "3e2c30da58c9405fb8601d6e7b1233ea",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9c005c79a2ac4c72b0c11d930da45f8b",
+          "Name": "Surface",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a face."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "939b85304d0d488b99edad68f63fa369",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "9ef3c67a0e2b484ebafeabe5167dbe97",
+          "Name": "dividedSurface",
+          "Description": "Revit.Elements.DividedSurface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1d3f08ab3e7242abb6aeaa57e60b208a",
+          "Name": "int",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.DividedSurface.UDivisions",
+      "Replication": "Auto",
+      "Description": "Number of divisions in U direction\n\nDividedSurface.UDivisions: int"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "bd47b8a02eda46bca5c553f0043daa00",
+      "End": "3b21368be7c144c9b6a2102bd7184d01",
+      "Id": "a8d13d895cfe4477ab4671a6dcca3493",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bd47b8a02eda46bca5c553f0043daa00",
+      "End": "6d70aa1a7e0e4ef2879c1daf1804c6f4",
+      "Id": "a90ae1eb783d4150a0f54ed5c4279565",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bd47b8a02eda46bca5c553f0043daa00",
+      "End": "be8761d4f77d4af39912eed915e5ecc6",
+      "Id": "136c2906f3aa45f595bc9643a724240d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bd47b8a02eda46bca5c553f0043daa00",
+      "End": "9ef3c67a0e2b484ebafeabe5167dbe97",
+      "Id": "6fadd3ece9004e16bf20bcc185b4ded0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7c5f945fe0bd4ac89321a974eed7f9aa",
+      "End": "c1a41f4003b744c7ab85a0a6e89b80cc",
+      "Id": "d91bd17b61ad4d1c955d8e0d576ea072",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "09b56bfb94a54c3590f6b5efa420f4d6",
+      "End": "c71320a0041a4419b8ad5b01121ee89f",
+      "Id": "9889c40f78c3439b81a8f9b3617dab25",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6cb95225b19f4acfa06b94fe47702159",
+      "End": "fe65d2fe5f0141f99f88159935b68b6f",
+      "Id": "5bb4eb1db27f4a2392f1bb49a25819ce",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9c005c79a2ac4c72b0c11d930da45f8b",
+      "End": "e180cfb8dfef483782918cb22a1f9274",
+      "Id": "ca5ed73bfc5c4c1b98b3fced42490ae6",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "a1321be7-bc08-4cf7-9bb6-12a0134d1cd0",
+      "Binding": {
+        "ByFaceUVDivisionsAndRotation_InClassDecl-1_InFunctionScope-1_Instance0_a1321be7-bc08-4cf7-9bb6-12a0134d1cd0": "H4sIAAAAAAAACh3LIQ7DMAwAwL8Yz5Kbeq5XXFI8WBc4SzKNBGxhUf4+qezIHR1q/rWcNm8O69EhXYBu8GzfT33vm8FqoAsJR1Is9CrIoUR0UUVipcQh+ywzEgV9eMwGN4O9tusGkYnuPGCc4/wD/VwmGHAAAAA="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "4677864003574342bd5d8e3689ee63e0",
+        "Name": "Element.Geometry",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2231.0260427707026,
+        "Y": 1292.2160972823808
+      },
+      {
+        "Id": "d1263ca17eb240f2bfae40e72b656643",
+        "Name": "DividedSurface.Rotation",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2231.0260427707026,
+        "Y": 1069.2720603821676
+      },
+      {
+        "Id": "a1321be7bc084cf79bb612a0134d1cd0",
+        "Name": "DividedSurface.ByFaceUVDivisionsAndRotation",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1639.1640117409765,
+        "Y": 988.3680570276028
+      },
+      {
+        "Id": "c4c7293ab484410399f87a77ba1ccdc9",
+        "Name": "DividedSurface.VDivisions",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2231.0260427707026,
+        "Y": 857.4100293524425
+      },
+      {
+        "Id": "61ed77498f0d4c4e81379bcc7a490663",
+        "Name": "Integer Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1167.0,
+        "Y": 985.9020645753735
+      },
+      {
+        "Id": "572b842ab825494db02228d39589c468",
+        "Name": "Integer Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1167.0,
+        "Y": 1133.9020645753735
+      },
+      {
+        "Id": "188e172034b44a7cbe53dd3a23249cf3",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1167.0,
+        "Y": 1280.9020645753735
+      },
+      {
+        "Id": "3e2c30da58c9405fb8601d6e7b1233ea",
+        "Name": "Select Face",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1170.4520016772826,
+        "Y": 763.6700377388547
+      },
+      {
+        "Id": "939b85304d0d488b99edad68f63fa369",
+        "Name": "DividedSurface.UDivisions",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2231.0260427707026,
+        "Y": 650.0
+      }
+    ],
+    "Annotations": [],
+    "X": -758.0,
+    "Y": -490.0,
+    "Zoom": 1.0
+  }
+}
