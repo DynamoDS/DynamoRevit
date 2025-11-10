@@ -1,0 +1,149 @@
+{
+  "Uuid": "e6796afe-a131-4bd3-b13b-6e10c1e3e4b8",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AdvanceSteel.ConnectionAutomation.Nodes.StructureData.GetCoordinateSystem",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "fd92f9fb867f471591ccda5311786e51",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "49246820c463449faf724aa2dffbe10f",
+          "Name": "structureData",
+          "Description": "AdvanceSteel.ConnectionAutomation.Nodes.StructureData",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0b1aa6d8eafe4d86a8d49380e80d80b3",
+          "Name": "CoordinateSystem",
+          "Description": "The output coordinate system (X axis is red, Y axis is green, Z axis is blue)",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.StructureData.GetCoordinateSystem",
+      "Replication": "Auto",
+      "Description": "Returns the coordinate system of a structure data element.\n\nStructureData.GetCoordinateSystem ( ): CoordinateSystem"
+    },
+    {
+      "ConcreteType": "AdvanceSteel.ConnectionAutomation.SelectStructureData, AdvanceSteelConnAutoNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "569792"
+      ],
+      "Id": "b2f12ab0a9f24c26b084d0cf9b5a6303",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e4fabbeb3d18419da09fec73d6bdf5ea",
+          "Name": "structureData",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select the structure data used for filtering Fabrication Elements"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e4fabbeb3d18419da09fec73d6bdf5ea",
+      "End": "49246820c463449faf724aa2dffbe10f",
+      "Id": "74fef6e7f5234c1c8687c7132ec219d4",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.5.2.8914",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "fd92f9fb867f471591ccda5311786e51",
+        "Name": "StructureData.GetCoordinateSystem",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -985.979618842282,
+        "Y": -439.84611877784675
+      },
+      {
+        "Id": "b2f12ab0a9f24c26b084d0cf9b5a6303",
+        "Name": "SelectStructureData",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -1317.979618842282,
+        "Y": -439.84611877784675
+      }
+    ],
+    "Annotations": [],
+    "X": 1459.9452732544912,
+    "Y": 571.0274815252517,
+    "Zoom": 1.0069845831029895
+  }
+}
