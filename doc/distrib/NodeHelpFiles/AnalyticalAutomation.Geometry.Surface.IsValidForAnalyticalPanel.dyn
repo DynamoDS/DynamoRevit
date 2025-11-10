@@ -1,0 +1,340 @@
+{
+  "Uuid": "38522659-0bfc-4028-be96-2e4cc10f1597",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AnalyticalAutomation.Geometry.Surface.IsValidForAnalyticalPanel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "51e56905d9534054be4ba0a680307633",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "31187f7031e847df8e62d5f2a2330c35",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 1.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "326ac156986a4249b25cdc4b70c7b494",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "9ffc39f009434902be0a943a3550f52c",
+          "Name": "surface",
+          "Description": "Input Surface\n\nSurface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5046b9de4c94497db1a49389dae68567",
+          "Name": "checkOpenings",
+          "Description": "Specifies if the surface openings (if exist) also should be checked for their validity to form AnalyticalOpenings.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a73ad185164148c182d5d1ca60493194",
+          "Name": "bool",
+          "Description": "Returns true if a surface can be a base for AnalyticalPanel, otherwise returns false",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c01124859d884bcda0f0d1ba209f4616",
+          "Name": "exceptionMessage",
+          "Description": "The error message",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AnalyticalAutomation.Geometry.Surface.IsValidForAnalyticalPanel@Autodesk.DesignScript.Geometry.Surface,bool",
+      "Replication": "Auto",
+      "Description": "Checks if a surface can be a base for AnalyticalPanel. If so, it can be an input of the AnalyticalPanel.BySurface method. If the method result is false, it provides the exception message informing about the cause.\n\nSurface.IsValidForAnalyticalPanel (surface: Surface, checkOpenings: bool = true): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "33cc7c39b92e42229d7b1f548ee3df17",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "68af46899cb44497ac084ad22925d65e",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2289290cd5d043808f3e2dddfd95ef6c",
+          "Name": "Surface[]",
+          "Description": "Surface[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Faces",
+      "Replication": "Auto",
+      "Description": "The Faces in this Element\n\nElement.Faces: Surface[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "0521e9d6e7cd4888b3bfd6de24e8d155",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "9e06de6f5e164631995b84c6fdcd28db",
+          "Name": "list",
+          "Description": "List to get the first item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4802708e1f6d477eae054c00be9ec751",
+          "Name": "item",
+          "Description": "First item in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
+      "Replication": "Auto",
+      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "5e15f6be82c34576be5531f554e93d4a",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c339596dab8b4f308f5d8bacfa287de6",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number",
+      "InputValue": 687839.0
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementById, DSRevitNodesUI",
+      "Id": "289b0ca1e11d4813bb3f3dba30d48bd6",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "3e26688b9a1c4527aa87f4120ef0a03a",
+          "Name": "Id",
+          "Description": "Element Id as string, int or ElementId",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3dbe14488ae04c0288af8aef5fbd1ce0",
+          "Name": "Element",
+          "Description": "The list of elements matching the query.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Gets the Element with the specified Id"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "31187f7031e847df8e62d5f2a2330c35",
+      "End": "5046b9de4c94497db1a49389dae68567",
+      "Id": "41f1d8b3419542379aedb46cf53d6a9d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2289290cd5d043808f3e2dddfd95ef6c",
+      "End": "9e06de6f5e164631995b84c6fdcd28db",
+      "Id": "ea5a39adf1b042a9842ad8ae57379a69",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4802708e1f6d477eae054c00be9ec751",
+      "End": "9ffc39f009434902be0a943a3550f52c",
+      "Id": "87614e6a88be462aaac8dfb629ed83d5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c339596dab8b4f308f5d8bacfa287de6",
+      "End": "3e26688b9a1c4527aa87f4120ef0a03a",
+      "Id": "4a8bdaed29c542729ffc22477315f4a0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3dbe14488ae04c0288af8aef5fbd1ce0",
+      "End": "68af46899cb44497ac084ad22925d65e",
+      "Id": "4122565eb46049e382941798f836e969",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.13",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "2.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -37.28171157836914,
+      "EyeY": 45.97184753417969,
+      "EyeZ": 148.02828979492188,
+      "LookX": 32.28171157836914,
+      "LookY": -34.97184753417969,
+      "LookZ": -156.02828979492188,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "51e56905d9534054be4ba0a680307633",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 258.7431293888337,
+        "Y": -467.6627673628752
+      },
+      {
+        "Id": "326ac156986a4249b25cdc4b70c7b494",
+        "Name": "Surface.IsValidForAnalyticalPanel",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 438.48206968443355,
+        "Y": -580.7858927393884
+      },
+      {
+        "Id": "33cc7c39b92e42229d7b1f548ee3df17",
+        "Name": "Element.Faces",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -62.50887323473182,
+        "Y": -636.0117055743272
+      },
+      {
+        "Id": "0521e9d6e7cd4888b3bfd6de24e8d155",
+        "Name": "List.FirstItem",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 214.7431293888337,
+        "Y": -634.160716078304
+      },
+      {
+        "Id": "5e15f6be82c34576be5531f554e93d4a",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -486.7271641961486,
+        "Y": -637.8119554980464
+      },
+      {
+        "Id": "289b0ca1e11d4813bb3f3dba30d48bd6",
+        "Name": "Element By Id",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -286.6180187154402,
+        "Y": -638.0092766024787
+      }
+    ],
+    "Annotations": [],
+    "X": 967.736968065059,
+    "Y": 1391.8847288561624,
+    "Zoom": 1.5376184155430068
+  }
+}

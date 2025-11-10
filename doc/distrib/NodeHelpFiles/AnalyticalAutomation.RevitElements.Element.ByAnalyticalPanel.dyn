@@ -1,0 +1,254 @@
+{
+  "Uuid": "39e2c0eb-7bff-45b9-aee0-5f6ef84ab1a6",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AnalyticalAutomation.RevitElements.Element.ByAnalyticalPanel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "a8389e7f-9c5a-42d6-a217-ea19385d0a61-0008aca6"
+      ],
+      "Id": "2e8ad72146aa4e769e197c4167ddb7ca",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fe4944f389e44e69be943aea1ff29bcc",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "bca8933190e84d7586951a8c99266388",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "dbffacd6c9c44b509c75f550f1896d74",
+          "Name": "analyticalPanel",
+          "Description": "Analytical panel which will be a base for a newly created physical element, or which will have its associated element updated.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6804aa52ed214a2cb9dd6fc5a3e3a41b",
+          "Name": "updateGeometry",
+          "Description": "Specifies if the geometry of an associated physical element should be updated to match the geometry of the analytical panel.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0b1e9909fffe48c3b6d72d562a988a4f",
+          "Name": "updateParameters",
+          "Description": "Specifies if parameters of an associated physical element should be updated to match the parameters of the analytical panel.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f0b61392601847a0ad5e0828b3dc751c",
+          "Name": "includeOpenings",
+          "Description": "Specifies if existing openings of the analytical panel should be created in a physical element.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "12e7f0e39bd643aca9eca38c2f4296dd",
+          "Name": "preserveExistingJoin",
+          "Description": "Specifies if the settings of structural joins should be preserved for an updated associated wall.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a85a46ea47d740b1afc8531f74aed62c",
+          "Name": "generateDefaultJoin",
+          "Description": "Specifies if default structural joins should be created for a wall. For an associated wall, the option will cause changes only if preserveExistingJoin = false.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "737722898d954441b512fe7b8e0b8f82",
+          "Name": "Element",
+          "Description": "Physical element (wall or floor) associated with the analytical panel.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AnalyticalAutomation.RevitElements.Element.ByAnalyticalPanel@Revit.Elements.Element,bool,bool,bool,bool,bool",
+      "Replication": "Auto",
+      "Description": "Creates a planar physical element (wall or floor) based on an analytical panel. If a selected analytical panel is not associated with any element, a newly created structural element will inherit the geometry and parameters from the analytical panel. If a selected analytical panel is already associated with an element, the associated element geometry and/or parameters can be updated.\n\nElement.ByAnalyticalPanel (analyticalPanel: Element, updateGeometry: bool = true, updateParameters: bool = true, includeOpenings: bool = true, preserveExistingJoin: bool = true, generateDefaultJoin: bool = true): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "Id": "df2043fbb2eb4f37902488ae57e3a047",
+      "NodeType": "BooleanInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f4d8d65b85524d24acd84b93960ab3f7",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Enables selection between True and False",
+      "InputValue": true
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "fe4944f389e44e69be943aea1ff29bcc",
+      "End": "dbffacd6c9c44b509c75f550f1896d74",
+      "Id": "5f72325d6e9c49e6a69a64ee3be1a0a2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f4d8d65b85524d24acd84b93960ab3f7",
+      "End": "a85a46ea47d740b1afc8531f74aed62c",
+      "Id": "324ed7d2f58649c08da077aa09cb2d46",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f4d8d65b85524d24acd84b93960ab3f7",
+      "End": "12e7f0e39bd643aca9eca38c2f4296dd",
+      "Id": "9047535d8607453fbd353f218e9a7abc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f4d8d65b85524d24acd84b93960ab3f7",
+      "End": "f0b61392601847a0ad5e0828b3dc751c",
+      "Id": "6724d1199941449189250f70de4bf701",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f4d8d65b85524d24acd84b93960ab3f7",
+      "End": "0b1e9909fffe48c3b6d72d562a988a4f",
+      "Id": "1f58fe66d5af4a74b8253eaac3d42751",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f4d8d65b85524d24acd84b93960ab3f7",
+      "End": "6804aa52ed214a2cb9dd6fc5a3e3a41b",
+      "Id": "7d020b3d06dc4c6cb377c9d031a29799",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "2e8ad72146aa4e769e197c4167ddb7ca",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 15.909382643893764,
+        "Y": 50.0926833785681
+      },
+      {
+        "Id": "bca8933190e84d7586951a8c99266388",
+        "Name": "Element.ByAnalyticalPanel",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 303.65768746204606,
+        "Y": 50.0926833785681
+      },
+      {
+        "Id": "df2043fbb2eb4f37902488ae57e3a047",
+        "Name": "Boolean",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 15.909382643893764,
+        "Y": 234.4278717468405
+      }
+    ],
+    "Annotations": [],
+    "X": 451.85514558354157,
+    "Y": 195.07767895285406,
+    "Zoom": 1.8169640500505917
+  }
+}
