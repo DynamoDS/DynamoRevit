@@ -13,12 +13,9 @@ using Dynamo.Scheduler;
 using static Dynamo.Models.DynamoModel;
 using System.Text.RegularExpressions;
 using Greg.AuthProviders;
-using Revit.Elements;
 using Dynamo.PythonServices;
 using DSCPython;
 using Newtonsoft.Json;
-using Revit.Transaction;
-using System.Linq;
 
 namespace DADynamoApp
 {
