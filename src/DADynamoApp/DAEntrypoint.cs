@@ -18,6 +18,7 @@ using Dynamo.PythonServices;
 using DSCPython;
 using Newtonsoft.Json;
 using Revit.Transaction;
+using System.Linq;
 
 namespace DADynamoApp
 {
@@ -133,10 +134,38 @@ namespace DADynamoApp
             var app = e.DesignAutomationData?.RevitApp;
             Console.WriteLine("<<!>> Preparing Dynamo model. Vers 1");
 
+            SetupDARequest? setupReq = null;
+            var setupReqPath = Path.Combine(WorkItemFolder, "setup.json");
+            if (File.Exists(setupReqPath))
+            {
+                try
+                {
+                    var setupRequest = File.ReadAllText(setupReqPath);
+                    Console.WriteLine(setupRequest);
+
+                    setupReq = JsonConvert.DeserializeObject<SetupDARequest>(setupRequest, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto });
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            Document? doc = null;
+            var cModel = setupReq?.CloudModel;
+            if (cModel != null || true)
+            {
+                var cloudModelPath = ModelPathUtils.ConvertCloudGUIDsToCloudPath(cModel.Region, cModel.ProjectGuid, cModel.ModelGuid);
+                doc = app?.OpenDocumentFile(cloudModelPath, new OpenOptions());
+            }
+            else
+            {
+                doc = e.DesignAutomationData?.RevitDoc;
+            }
+
             // Startup a new project, maybe an option we can have ?
             //app.NewProjectDocument(Autodesk.Revit.DB.UnitSystem.Metric);
 
-            Document? doc = e.DesignAutomationData?.RevitDoc;
             if (doc == null) throw new InvalidOperationException("Could not open revit document.");
 
             var hostloc = typeof(Autodesk.Revit.ApplicationServices.Application).Assembly.Location;
@@ -189,25 +218,6 @@ namespace DADynamoApp
 
             var dynHandler = new Handler(playerHost, [new DARunGraphController(controller, model, WorkItemFolder)]);
 
-            // Default, save the rvt
-            bool saveRvt = true;
-            var setupReqPath = Path.Combine(WorkItemFolder, "setup.json");
-            if (File.Exists(setupReqPath))
-            {
-                try
-                {
-                    var setupRequest = File.ReadAllText(setupReqPath);
-                    Console.WriteLine(setupRequest);
-
-                    SetupDARequest setupReq = JsonConvert.DeserializeObject<SetupDARequest>(setupRequest, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto});
-                    saveRvt = setupReq?.SaveRvt ?? saveRvt;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-
             var runContent = File.ReadAllText(Path.Combine(WorkItemFolder, "run.json"));
             var testFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
@@ -225,18 +235,36 @@ namespace DADynamoApp
             Console.WriteLine(output);
             File.WriteAllText(Path.Combine(WorkItemFolder, "result.json"), output);
 
+            // Default, save the rvt
+            bool saveRvt = setupReq?.SaveRevitFile ?? true;
             Console.WriteLine($"{nameof(saveRvt)} is set to {saveRvt}");
             if (saveRvt)
             {
-                try
+                if (doc.IsModelInCloud)
                 {
-                    RevitServices.Transactions.TransactionManager.Instance.ForceCloseTransaction();
-                    ModelPath path = ModelPathUtils.ConvertUserVisiblePathToModelPath("result.rvt");
-                    doc.SaveAs(path, new SaveAsOptions());
+                    var newLoc = setupReq?.SaveToNewCloudLocation;
+                    if (newLoc != null)
+                    {
+                        doc.SaveAsCloudModel(newLoc.AccountId, newLoc.ProjectId, newLoc.FolderId, newLoc.ModelName ?? Path.GetFileName(doc.PathName));
+                    }
+                    else
+                    {
+                        doc.SaveCloudModel();
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine(ex.Message);
+                    try
+                    {
+                        RevitServices.Transactions.TransactionManager.Instance.ForceCloseTransaction();
+                        ModelPath path = ModelPathUtils.ConvertUserVisiblePathToModelPath("result.rvt");
+                        doc.SaveAs(path, new SaveAsOptions());
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+
                 }
             }
 

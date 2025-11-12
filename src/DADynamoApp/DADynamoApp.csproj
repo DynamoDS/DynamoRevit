@@ -27,6 +27,8 @@
     <ItemGroup>
         <PackageReference Include="Autodesk.Forge.DesignAutomation.Revit" Version="2025.0.1" />
         <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DYNAMOCORE_VERSION)" ExcludeAssets="runtime" GeneratePathProperty="true" />
+        <PackageReference Include="Autodesk.Forge.DesignAutomation.Revit" Version="2026.0.0" />
+        <PackageReference Include="DynamoVisualProgramming.Core" Version="3.5.0.8300" ExcludeAssets="runtime" GeneratePathProperty="true" />
         <PackageReference Include="DynamoPlayer" Version="6.0.2" ExcludeAssets="runtime" GeneratePathProperty="true" />
         <PackageReference Include="GregRevitAuth" Version="$(GregRevitAuth_VERSION)" GeneratePathProperty="true">
           <ExcludeAssets>runtime</ExcludeAssets>
