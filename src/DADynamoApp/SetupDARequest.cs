@@ -23,11 +23,29 @@ namespace DADynamoApp
         public Guid ModelGuid;
     }
 
-    internal class NewCloudModelLocation
+    /// <summary>
+    /// Represents the save location for the current DA work model.
+    /// </summary>
+    internal class SaveCloudModelLocation
     {
+        /// <summary>
+        /// Gets or sets the unique identifier for the account.
+        /// </summary>
         public Guid AccountId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the unique identifier for the project.
+        /// </summary>
         public Guid ProjectId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the unique identifier for the folder.
+        /// </summary>
         public string FolderId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the model to be created on the save operation.
+        /// </summary>
         public string ModelName { get; set; } = string.Empty;
     }
 
@@ -42,7 +60,11 @@ namespace DADynamoApp
         [JsonProperty(nameof(SaveRevitFile), Required = Required.DisallowNull, NullValueHandling = NullValueHandling.Ignore)]
         public bool SaveRevitFile { get; set; } = false;
 
-        public NewCloudModelLocation? SaveToNewCloudLocation { get; set; } = null;
+        /// <summary>
+        /// The location to save the current DA work model.
+        /// </summary>
+        [JsonProperty(nameof(SaveCloudModelLocation), Required = Required.DisallowNull, NullValueHandling = NullValueHandling.Ignore)]
+        public SaveCloudModelLocation? SaveCloudModelLocation { get; set; } = null;
 
         /// <summary>
         /// Gets or sets the configuration for the cloud model.

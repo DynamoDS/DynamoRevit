@@ -239,7 +239,7 @@ namespace DADynamoApp
             {
                 if (doc.IsModelInCloud)
                 {
-                    var newLoc = setupReq?.SaveToNewCloudLocation;
+                    var newLoc = setupReq?.SaveCloudModelLocation;
                     if (newLoc != null)
                     {
                         doc.SaveAsCloudModel(newLoc.AccountId, newLoc.ProjectId, newLoc.FolderId, newLoc.ModelName ?? Path.GetFileName(doc.PathName));
