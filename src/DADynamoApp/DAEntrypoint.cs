@@ -150,7 +150,7 @@ namespace DADynamoApp
 
             Document? doc = null;
             var cModel = setupReq?.CloudModel;
-            if (cModel != null || true)
+            if (cModel != null)
             {
                 var cloudModelPath = ModelPathUtils.ConvertCloudGUIDsToCloudPath(cModel.Region, cModel.ProjectGuid, cModel.ModelGuid);
                 doc = app?.OpenDocumentFile(cloudModelPath, new OpenOptions());
@@ -242,11 +242,23 @@ namespace DADynamoApp
                     var newLoc = setupReq?.SaveCloudModelLocation;
                     if (newLoc != null)
                     {
+                        // Single user cloud model
                         doc.SaveAsCloudModel(newLoc.AccountId, newLoc.ProjectId, newLoc.FolderId, newLoc.ModelName ?? Path.GetFileName(doc.PathName));
                     }
                     else
                     {
-                        doc.SaveCloudModel();
+                        if (doc.IsWorkshared) // work-shared/C4R model
+                        {
+                            // Syncronize with central (i.e get latest)
+                            SynchronizeWithCentralOptions swc = new SynchronizeWithCentralOptions();
+                            swc.SetRelinquishOptions(new RelinquishOptions(/*relinquishAll*/true));// Should this be configurable?
+                            doc.SynchronizeWithCentral(new TransactWithCentralOptions(), swc);
+                        }
+                        else
+                        {
+                            // Single user cloud model
+                            doc.SaveCloudModel();
+                        }
                     }
                 }
                 else
