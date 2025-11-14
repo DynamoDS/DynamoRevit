@@ -1,5 +1,5 @@
 ## In Depth
-This node allows you to select a Revision Numbering option from the active document (example, numeric, alphanumeric, or custom sequences)..
+This node provides a dropdown list that defines how revision numbering is managed in a Revit project — either globally (Per Project) or individually per sheet (Per Sheet).
 
 In this example, a new revision is created using the Select Revision Numbering node, value "PerProject."  
 
