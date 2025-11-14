@@ -544,8 +544,19 @@ namespace RevitSystemTests
             AssemblyName assemblyName = AssemblyName.GetAssemblyName(assemblyPath);
             return assemblyName.Version;
          }
-         catch
+         catch (BadImageFormatException ex)
          {
+            var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(assemblyPath);
+            if (!string.IsNullOrEmpty(versionInfo.FileVersion))
+            {
+               Version version = new Version(versionInfo.FileMajorPart, versionInfo.FileMinorPart, versionInfo.FileBuildPart, versionInfo.FilePrivatePart);
+               return version;   
+            }
+            else return new Version(0, 0, 0, 0);
+         }
+         catch (Exception ex)
+         {
+            Assert.Fail($"Error getting version for assembly at {assemblyPath}: {ex.Message}");
             return new Version(0, 0, 0, 0);
          }
 
