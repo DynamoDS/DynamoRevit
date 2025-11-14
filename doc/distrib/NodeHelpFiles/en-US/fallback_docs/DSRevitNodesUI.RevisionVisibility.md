@@ -1,5 +1,5 @@
 ## In Depth
-This node allows you to select the Revision Visibility setting for a revision. The visibility determines where the selected revision will appear ( example, whether it displays in clouds, tags, sheets, or is hidden).
+This node allows you to select the Revision Visibility setting for a revision (here are the available options "CloudsAndTagVisible", "Tag Visible" and "Hidden"). The visibility determines where the selected revision will appear ( example, whether it displays in clouds, tags, sheets, or is hidden).
 
 In this example, a new revision is created using the Select Revision Visibility node, value "TagVisible."  
 
