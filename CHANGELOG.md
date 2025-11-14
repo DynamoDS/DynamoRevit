@@ -1,3 +1,6 @@
+## 0.7.62
+* Improve regression tests PackageDllTest and InstallDllTest to check dll versions against a list of expected versions
+
 ## 0.7.61
 * Update Dynamo Core to 4.0.0-beta2972
 
