@@ -10,34 +10,12 @@
   "Outputs": [],
   "Nodes": [
     {
-      "ConcreteType": "AdvanceSteel.ConnectionAutomation.SelectStructureData, AdvanceSteelConnAutoNodesUI",
-      "NodeType": "ExtensionNode",
-      "InstanceId": [
-        "568744"
-      ],
-      "Id": "687f8564a1ae42cfad9c2608329e5c7f",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "e368469c740e455481864491b4f73df4",
-          "Name": "structureData",
-          "Description": "The selected elements.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Select the structure data used for filtering Fabrication Elements"
-    },
-    {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "9340227ab9fe40b2a83425d23b9ad370",
+      "Id": "32413758aa45493db618dd8d9b4d159a",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "dc7102ce10404892bdf6234231a5f5c1",
+          "Id": "b0fdf4ec768443e5b3c8c7b7473bc844",
           "Name": "objects",
           "Description": "A list of structure data elements.\n\nModelObject[]",
           "UsingDefaultValue": false,
@@ -48,7 +26,7 @@
       ],
       "Outputs": [
         {
-          "Id": "e4a7fc50d2af4acf92740733c1fa75e0",
+          "Id": "349f537d64464f73af1f209e7cd07399",
           "Name": "ConnectionNode[]",
           "Description": "A list of connection nodes. For more info, see grouping.",
           "UsingDefaultValue": false,
@@ -63,11 +41,11 @@
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "Id": "6cb7318aa4504dea85ca0d225154e992",
+      "Id": "8abbd79572734ef68f59f8e97e2f04e9",
       "NodeType": "FunctionNode",
       "Inputs": [
         {
-          "Id": "ae9b43dfa8e0470dad43f581a777d62d",
+          "Id": "c1fc37b564fe438ea1b6a2a5b880bad6",
           "Name": "nodes",
           "Description": "The nested lists of connection nodes (ConnectionNode[]). It is recommended to filter by geometric conditions beforehand.\n\nvar[]..[]",
           "UsingDefaultValue": false,
@@ -78,7 +56,7 @@
       ],
       "Outputs": [
         {
-          "Id": "29232da0f9204409ab6cddae070640c4",
+          "Id": "a9cb7afd2cd944f6a4a14482b273dba1",
           "Name": "ConnectionNode[]",
           "Description": "A partially flattened and cleaned list containing only one connection node for each group of structure data elements.",
           "UsingDefaultValue": false,
@@ -90,19 +68,43 @@
       "FunctionSignature": "AdvanceSteel.ConnectionAutomation.Nodes.ConnectionNode.RemoveDuplicates@var[]..[]",
       "Replication": "Auto",
       "Description": "Finds all connection nodes that are permutations of one another { [beam1, beam2], [beam2, beam1] }, keeps only the first node { [beam1, beam2] } and removes null and empty items.\n\nConnectionNode.RemoveDuplicates (nodes: var[]..[]): ConnectionNode[]"
+    },
+    {
+      "ConcreteType": "AdvanceSteel.ConnectionAutomation.SelectStructureData, AdvanceSteelConnAutoNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "568768",
+        "569264",
+        "569364"
+      ],
+      "Id": "a4ef3a80a6324a8dbe97806e735853df",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "825140dd3ecf4a31a9266fdd0c942976",
+          "Name": "structureData",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select the structure data used for filtering Fabrication Elements"
     }
   ],
   "Connectors": [
     {
-      "Start": "e368469c740e455481864491b4f73df4",
-      "End": "dc7102ce10404892bdf6234231a5f5c1",
-      "Id": "1652dc8b99f04e12a7387416fa013c20",
+      "Start": "349f537d64464f73af1f209e7cd07399",
+      "End": "c1fc37b564fe438ea1b6a2a5b880bad6",
+      "Id": "de18de5d4d264ecfa8dcc2fd9c1f6455",
       "IsHidden": "False"
     },
     {
-      "Start": "e4a7fc50d2af4acf92740733c1fa75e0",
-      "End": "ae9b43dfa8e0470dad43f581a777d62d",
-      "Id": "fa7a8871bf0e417e81c6c3f52e0336f1",
+      "Start": "825140dd3ecf4a31a9266fdd0c942976",
+      "End": "b0fdf4ec768443e5b3c8c7b7473bc844",
+      "Id": "1afced93e5a3469e944ff2f4b47d6613",
       "IsHidden": "False"
     }
   ],
@@ -138,58 +140,58 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "3.5.2.8914",
+      "Version": "3.4.1.7055",
       "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "Camera": {
       "Name": "_Background Preview",
-      "EyeX": -17.0,
-      "EyeY": 24.0,
-      "EyeZ": 50.0,
-      "LookX": 12.0,
-      "LookY": -13.0,
-      "LookZ": -58.0,
-      "UpX": 0.0,
-      "UpY": 1.0,
-      "UpZ": 0.0
+      "EyeX": -79.93281173706055,
+      "EyeY": 21.294151306152344,
+      "EyeZ": 13.346043586730957,
+      "LookX": 15.904144287109375,
+      "LookY": -21.905221939086914,
+      "LookZ": -23.856796264648438,
+      "UpX": 0.3367478847503662,
+      "UpY": 0.7946319580078125,
+      "UpZ": -0.5051347613334656
     },
     "ConnectorPins": [],
     "NodeViews": [
       {
-        "Id": "687f8564a1ae42cfad9c2608329e5c7f",
-        "Name": "SelectStructureData",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "ShowGeometry": true,
-        "X": 1996.2095721728638,
-        "Y": -1818.0925415584866
-      },
-      {
-        "Id": "9340227ab9fe40b2a83425d23b9ad370",
+        "Id": "32413758aa45493db618dd8d9b4d159a",
         "Name": "ConnectionNode.FromStructure",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 2411.8480684059623,
-        "Y": -1830.1883159934514
+        "X": 2463.287853534539,
+        "Y": -1363.404608677767
       },
       {
-        "Id": "6cb7318aa4504dea85ca0d225154e992",
+        "Id": "8abbd79572734ef68f59f8e97e2f04e9",
         "Name": "ConnectionNode.RemoveDuplicates",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
         "ShowGeometry": true,
-        "X": 2828.099807445414,
-        "Y": -1843.087159140593
+        "X": 2879.539592573991,
+        "Y": -1376.3034518249087
+      },
+      {
+        "Id": "a4ef3a80a6324a8dbe97806e735853df",
+        "Name": "SelectStructureData",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2047.6493573014404,
+        "Y": -1351.3088342428023
       }
     ],
     "Annotations": [],
-    "X": -1048.2585443179694,
-    "Y": 1236.068155949582,
-    "Zoom": 0.5401529775975829
+    "X": -2763.287390359739,
+    "Y": 2486.974582305228,
+    "Zoom": 1.4563635010688873
   }
 }
