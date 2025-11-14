@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Markup;
+using Autodesk.Revit.DB.Electrical;
 using Dynamo.Applications.Models;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
@@ -19,251 +20,251 @@ using static Dynamo.ViewModels.SearchViewModel;
 
 namespace RevitSystemTests
 {
-    [TestFixture]
-    public class RegressionTest : RevitSystemTestBase
-    {
-        //protected static RegressionTest s_initedInstance = null;
+   [TestFixture]
+   public class RegressionTest : RevitSystemTestBase
+   {
+      //protected static RegressionTest s_initedInstance = null;
 
-        //[SetUp]
-        //public override void Setup()
-        //{
-        //    if (s_initedInstance == null)
-        //    {
-        //        base.Setup();
+      //[SetUp]
+      //public override void Setup()
+      //{
+      //    if (s_initedInstance == null)
+      //    {
+      //        base.Setup();
 
-        //        ViewModel.Model.AddZeroTouchNodesToSearch(ViewModel.Model.LibraryServices.GetAllFunctionGroups());
+      //        ViewModel.Model.AddZeroTouchNodesToSearch(ViewModel.Model.LibraryServices.GetAllFunctionGroups());
 
-        //        s_initedInstance = this;
-        //    }
-        //    else
-        //    {
-        //        WrapOf(s_initedInstance);
-        //        CreateTemporaryFolder();
+      //        s_initedInstance = this;
+      //    }
+      //    else
+      //    {
+      //        WrapOf(s_initedInstance);
+      //        CreateTemporaryFolder();
 
-        //        // This is needed because TearDown will clear the Model, and TearDown
-        //        //  is needed in order to clear the dependencyGraph, otherwise adding
-        //        //  a node will take exponentially long time
-        //        (ViewModel.Model as RevitDynamoModel).InitializeDocumentManager();
-        //    }
-        //}
+      //        // This is needed because TearDown will clear the Model, and TearDown
+      //        //  is needed in order to clear the dependencyGraph, otherwise adding
+      //        //  a node will take exponentially long time
+      //        (ViewModel.Model as RevitDynamoModel).InitializeDocumentManager();
+      //    }
+      //}
 
-        protected override void GetLibrariesToPreload(List<string> libraries)
-        {
-            // Add multiple libraries to better simulate typical Dynamo application usage.
+      protected override void GetLibrariesToPreload(List<string> libraries)
+      {
+         // Add multiple libraries to better simulate typical Dynamo application usage.
 
-            var assemblyDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            var revitNodesDirectory = Path.Combine(assemblyDirectory, "nodes");
-            var revitUINodesDll = Path.Combine(assemblyDirectory, @"nodes\DSRevitNodesUI.dll");
-            var revitAANodesDirectory = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin");
-            var revitAANodesDll = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin\AnalyticalAutomation.dll");
-            var revitAAUINodesDll = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin\AnalyticalAutomationGUI.dll");
-            libraries.Add(revitNodesDirectory);
-            //libraries.Add(revitUINodesDll); // UI nodes seem to have a problem being loaded in this context
-            //libraries.Add(revitAANodesDirectory); // do not load AA nodes, they have their own tests, for now we believe this is not really needed
-            //libraries.Add(revitAANodesDll); // UI nodes seem to have a problem being loaded in this context
-            base.GetLibrariesToPreload(libraries);
-        }
+         var assemblyDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+         var revitNodesDirectory = Path.Combine(assemblyDirectory, "nodes");
+         var revitUINodesDll = Path.Combine(assemblyDirectory, @"nodes\DSRevitNodesUI.dll");
+         var revitAANodesDirectory = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin");
+         var revitAANodesDll = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin\AnalyticalAutomation.dll");
+         var revitAAUINodesDll = Path.Combine(assemblyDirectory, @"nodes\analytical-automation-pkg\bin\AnalyticalAutomationGUI.dll");
+         libraries.Add(revitNodesDirectory);
+         //libraries.Add(revitUINodesDll); // UI nodes seem to have a problem being loaded in this context
+         //libraries.Add(revitAANodesDirectory); // do not load AA nodes, they have their own tests, for now we believe this is not really needed
+         //libraries.Add(revitAANodesDll); // UI nodes seem to have a problem being loaded in this context
+         base.GetLibrariesToPreload(libraries);
+      }
 
-        /// <summary>
-        /// Automated creation of regression test cases. Opens each workflow
-        /// runs it, and checks for errors or warnings. Regression test cases should
-        /// be structured such that they do not yield warnings or errors.
-        /// </summary>
-        /// <param name="dynamoFilePath">The path of the dynamo workspace.</param>
-        /// <param name="revitFilePath">The path of the Revit rfa or rvt file.</param>
-        [Test]
-        [TestCaseSource(nameof(SetupRevitRegressionTests))]
-        public void Regressions(RegressionTestData testData)
-        {
-            Exception exception = null;
+      /// <summary>
+      /// Automated creation of regression test cases. Opens each workflow
+      /// runs it, and checks for errors or warnings. Regression test cases should
+      /// be structured such that they do not yield warnings or errors.
+      /// </summary>
+      /// <param name="dynamoFilePath">The path of the dynamo workspace.</param>
+      /// <param name="revitFilePath">The path of the Revit rfa or rvt file.</param>
+      [Test]
+      [TestCaseSource(nameof(SetupRevitRegressionTests))]
+      public void Regressions(RegressionTestData testData)
+      {
+         Exception exception = null;
 
-            try
-            {
-                var dynamoFilePath = testData.Arguments[0].ToString();
-                var revitFilePath = testData.Arguments[1].ToString();
+         try
+         {
+            var dynamoFilePath = testData.Arguments[0].ToString();
+            var revitFilePath = testData.Arguments[1].ToString();
 
-                //ensure that the incoming arguments are not empty or null
-                //if a dyn file is found in the regression tests directory
-                //and there is no corresponding rfa or rvt, then an empty string
-                //or a null will be passed into here.
-                Assert.IsNotNull(dynamoFilePath, "Dynamo file path is invalid or missing.");
-                Assert.IsNotEmpty(dynamoFilePath, "Dynamo file path is invalid or missing.");
-                Assert.IsNotNull(revitFilePath, "Revit file path is invalid or missing.");
-                Assert.IsNotEmpty(revitFilePath, "Revit file path is invalid or missing.");
+            //ensure that the incoming arguments are not empty or null
+            //if a dyn file is found in the regression tests directory
+            //and there is no corresponding rfa or rvt, then an empty string
+            //or a null will be passed into here.
+            Assert.IsNotNull(dynamoFilePath, "Dynamo file path is invalid or missing.");
+            Assert.IsNotEmpty(dynamoFilePath, "Dynamo file path is invalid or missing.");
+            Assert.IsNotNull(revitFilePath, "Revit file path is invalid or missing.");
+            Assert.IsNotEmpty(revitFilePath, "Revit file path is invalid or missing.");
 
-                //open the revit model
-                SwapCurrentModel(revitFilePath);
+            //open the revit model
+            SwapCurrentModel(revitFilePath);
 
-                //Ensure SystemTestBase picks up the right directory.
-                pathResolver = new RevitTestPathResolver();
-                (pathResolver as RevitTestPathResolver).InitializePreloadedLibraries();
+            //Ensure SystemTestBase picks up the right directory.
+            pathResolver = new RevitTestPathResolver();
+            (pathResolver as RevitTestPathResolver).InitializePreloadedLibraries();
 
-                //Setup should be called after swapping document, so that RevitDynamoModel 
-                //is now associated with swapped model.
-                Setup();
+            //Setup should be called after swapping document, so that RevitDynamoModel 
+            //is now associated with swapped model.
+            Setup();
 
-                //open the dyn file
-                ViewModel.OpenCommand.Execute(dynamoFilePath);
-                Assert.IsTrue(ViewModel.Model.CurrentWorkspace.Nodes.Any());
-                AssertNoDummyNodes();
+            //open the dyn file
+            ViewModel.OpenCommand.Execute(dynamoFilePath);
+            Assert.IsTrue(ViewModel.Model.CurrentWorkspace.Nodes.Any());
+            AssertNoDummyNodes();
 
-                //run the expression and assert that it does not
-                //throw an error
+            //run the expression and assert that it does not
+            //throw an error
 
-                RunCurrentModel();
-
-                var errorNodes =
-                    ViewModel.Model.CurrentWorkspace.Nodes.Where(
-                        x => x.State == ElementState.Error || x.State == ElementState.Warning);
-                Assert.AreEqual(0, errorNodes.Count());
-            }
-            catch (Exception ex)
-            {
-                exception = ex;
-            }
-
-            if (exception != null)
-            {
-                Assert.Fail(exception.Message);
-            }
-        }
-
-        [Test]
-        [TestModel(@".\empty.rfa")]
-        public void NoUINodesLeftBehind()
-        {
-            // This verifies Revit UI Nodes are not lost in translation by comparing
-            // the overall node count on the active ws pre and post save
-
-            // Assertion variables
-            int preSaveNodeCount = 0;
-            int postSaveNodeCount = 0;
-
-            // Setup home ws
-            var homespace = Model.CurrentWorkspace as HomeWorkspaceModel;
-            Assert.NotNull(homespace, "The current workspace is not a HomeWorkspaceModel");
-
-            // Iterate through all loaded nodes in library & add Revit UI nodes to ws
-            var nodeList = Model.SearchModel.Entries;
-            foreach (var node in nodeList)
-            {
-                var assembly = Path.GetFileName(node.Assembly);
-
-                var searchElement = node as NodeSearchElement;
-                if (assembly == "DSRevitNodesUI.dll")
-                {
-                    var currentNode = searchElement.CreateNode();
-                    Model.AddNodeToCurrentWorkspace(currentNode, true);
-                }
-            }
-
-            // Number of nodes sucessfully added to ws before saving
-            preSaveNodeCount = Model.CurrentWorkspace.Nodes.Count();
-
-            // Save workspace
-            ViewModel.CurrentSpace.Save(Path.Combine(workingDirectory, @".\AllNodes.dyn"));
-
-            // Close workspace
-            Assert.IsTrue(ViewModel.CloseHomeWorkspaceCommand.CanExecute(null));
-            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
-
-            // Open Json temp file
-            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\AllNodes.dyn"));
             RunCurrentModel();
 
-            // Number of nodes sucessfully restored to ws after saving/opening
-            postSaveNodeCount = Model.CurrentWorkspace.Nodes.Count();
+            var errorNodes =
+                ViewModel.Model.CurrentWorkspace.Nodes.Where(
+                    x => x.State == ElementState.Error || x.State == ElementState.Warning);
+            Assert.AreEqual(0, errorNodes.Count());
+         }
+         catch (Exception ex)
+         {
+            exception = ex;
+         }
 
-            // Active node count is the same after reopening saved file
-            Assert.IsTrue(preSaveNodeCount == postSaveNodeCount);
+         if (exception != null)
+         {
+            Assert.Fail(exception.Message);
+         }
+      }
 
-            // Close workspace
-            Assert.IsTrue(ViewModel.CloseHomeWorkspaceCommand.CanExecute(null));
-            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+      [Test]
+      [TestModel(@".\empty.rfa")]
+      public void NoUINodesLeftBehind()
+      {
+         // This verifies Revit UI Nodes are not lost in translation by comparing
+         // the overall node count on the active ws pre and post save
 
-            // Delete temp file
-            File.Delete(Path.Combine(workingDirectory, @".\AllNodes.dyn"));
-        }
+         // Assertion variables
+         int preSaveNodeCount = 0;
+         int postSaveNodeCount = 0;
 
-        [Test]
-        [TestModel(@".\empty.rfa")]
-        public void NoDuplicatePortsOnUINodes()
-        {
-            // This test verifies Revit UI Nodes are not producing duplicate
-            // outports upon deserialization due to a lack of a JSON constructor
+         // Setup home ws
+         var homespace = Model.CurrentWorkspace as HomeWorkspaceModel;
+         Assert.NotNull(homespace, "The current workspace is not a HomeWorkspaceModel");
 
-            // Assertion variables
-            List<int> preSaveOutPortCount = new List<int>();
-            List<int> postSaveOutPortCount = new List<int>();
-            List<string> nodeCreationNames = new List<string>();
-            string outputData = "";
+         // Iterate through all loaded nodes in library & add Revit UI nodes to ws
+         var nodeList = Model.SearchModel.Entries;
+         foreach (var node in nodeList)
+         {
+            var assembly = Path.GetFileName(node.Assembly);
 
-            // Setup home ws
-            var homespace = Model.CurrentWorkspace as HomeWorkspaceModel;
-            Assert.NotNull(homespace, "The current workspace is not a HomeWorkspaceModel");
-
-            // Iterate through all loaded nodes in library & add Revit UI nodes to ws
-            var nodeList = Model.SearchModel.Entries;
-            foreach (var node in nodeList)
+            var searchElement = node as NodeSearchElement;
+            if (assembly == "DSRevitNodesUI.dll")
             {
-                var searchElement = node as NodeSearchElement;
-                var assembly = Path.GetFileName(node.Assembly);
-
-                if (assembly == "DSRevitNodesUI.dll")
-                {
-                    var currentNode = searchElement.CreateNode();
-                    Model.AddNodeToCurrentWorkspace(currentNode, true);
-                    nodeCreationNames.Add(searchElement.CreationName);
-                }
+               var currentNode = searchElement.CreateNode();
+               Model.AddNodeToCurrentWorkspace(currentNode, true);
             }
+         }
 
-            // Build list of outport counts for each active nodes before saving
-            foreach (var node in ViewModel.CurrentSpace.Nodes)
+         // Number of nodes sucessfully added to ws before saving
+         preSaveNodeCount = Model.CurrentWorkspace.Nodes.Count();
+
+         // Save workspace
+         ViewModel.CurrentSpace.Save(Path.Combine(workingDirectory, @".\AllNodes.dyn"));
+
+         // Close workspace
+         Assert.IsTrue(ViewModel.CloseHomeWorkspaceCommand.CanExecute(null));
+         ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+
+         // Open Json temp file
+         OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\AllNodes.dyn"));
+         RunCurrentModel();
+
+         // Number of nodes sucessfully restored to ws after saving/opening
+         postSaveNodeCount = Model.CurrentWorkspace.Nodes.Count();
+
+         // Active node count is the same after reopening saved file
+         Assert.IsTrue(preSaveNodeCount == postSaveNodeCount);
+
+         // Close workspace
+         Assert.IsTrue(ViewModel.CloseHomeWorkspaceCommand.CanExecute(null));
+         ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+
+         // Delete temp file
+         File.Delete(Path.Combine(workingDirectory, @".\AllNodes.dyn"));
+      }
+
+      [Test]
+      [TestModel(@".\empty.rfa")]
+      public void NoDuplicatePortsOnUINodes()
+      {
+         // This test verifies Revit UI Nodes are not producing duplicate
+         // outports upon deserialization due to a lack of a JSON constructor
+
+         // Assertion variables
+         List<int> preSaveOutPortCount = new List<int>();
+         List<int> postSaveOutPortCount = new List<int>();
+         List<string> nodeCreationNames = new List<string>();
+         string outputData = "";
+
+         // Setup home ws
+         var homespace = Model.CurrentWorkspace as HomeWorkspaceModel;
+         Assert.NotNull(homespace, "The current workspace is not a HomeWorkspaceModel");
+
+         // Iterate through all loaded nodes in library & add Revit UI nodes to ws
+         var nodeList = Model.SearchModel.Entries;
+         foreach (var node in nodeList)
+         {
+            var searchElement = node as NodeSearchElement;
+            var assembly = Path.GetFileName(node.Assembly);
+
+            if (assembly == "DSRevitNodesUI.dll")
             {
-                preSaveOutPortCount.Add(node.OutPorts.Count);
+               var currentNode = searchElement.CreateNode();
+               Model.AddNodeToCurrentWorkspace(currentNode, true);
+               nodeCreationNames.Add(searchElement.CreationName);
             }
+         }
 
-            // Save workspace
-            ViewModel.CurrentSpace.Save(Path.Combine(workingDirectory, @".\DupePorts.dyn"));
+         // Build list of outport counts for each active nodes before saving
+         foreach (var node in ViewModel.CurrentSpace.Nodes)
+         {
+            preSaveOutPortCount.Add(node.OutPorts.Count);
+         }
 
-            // Close workspace
-            Assert.IsTrue(ViewModel.CloseHomeWorkspaceCommand.CanExecute(null));
-            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
+         // Save workspace
+         ViewModel.CurrentSpace.Save(Path.Combine(workingDirectory, @".\DupePorts.dyn"));
 
-            // Open Json temp file
-            OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\DupePorts.dyn"));
-            RunCurrentModel();
+         // Close workspace
+         Assert.IsTrue(ViewModel.CloseHomeWorkspaceCommand.CanExecute(null));
+         ViewModel.CloseHomeWorkspaceCommand.Execute(null);
 
-            // Build list of outport counts for each sucessfully restored nodes after saving/opening
-            foreach (var node in ViewModel.CurrentSpace.Nodes)
+         // Open Json temp file
+         OpenAndAssertNoDummyNodes(Path.Combine(workingDirectory, @".\DupePorts.dyn"));
+         RunCurrentModel();
+
+         // Build list of outport counts for each sucessfully restored nodes after saving/opening
+         foreach (var node in ViewModel.CurrentSpace.Nodes)
+         {
+            postSaveOutPortCount.Add(node.OutPorts.Count);
+         }
+
+         // PortCount lists have matching lengths pre/post save
+         Assert.IsTrue(preSaveOutPortCount.Count == postSaveOutPortCount.Count);
+         // PortCount values for each node match pre/post save
+         for (int i = 0; i < preSaveOutPortCount.Count; i++)
+         {
+            // Write node name to the xml results if assertion is false
+            if (preSaveOutPortCount[i] != postSaveOutPortCount[i])
             {
-                postSaveOutPortCount.Add(node.OutPorts.Count);
+               outputData += nodeCreationNames[i] + ", ";
             }
+         }
 
-            // PortCount lists have matching lengths pre/post save
-            Assert.IsTrue(preSaveOutPortCount.Count == postSaveOutPortCount.Count);
-            // PortCount values for each node match pre/post save
-            for (int i = 0; i < preSaveOutPortCount.Count; i++)
-            {
-                // Write node name to the xml results if assertion is false
-                if (preSaveOutPortCount[i] != postSaveOutPortCount[i])
-                {
-                    outputData += nodeCreationNames[i] + ", ";
-                }
-            }
+         if (outputData.Length > 0)
+         {
+            Assert.Fail("OutPort Count Inconsistency: " + outputData.Remove(outputData.Length - 2));
+         }
 
-            if (outputData.Length > 0)
-            {
-                Assert.Fail("OutPort Count Inconsistency: " + outputData.Remove(outputData.Length - 2));
-            }
+         // Close workspace
+         Assert.IsTrue(ViewModel.CloseHomeWorkspaceCommand.CanExecute(null));
+         ViewModel.CloseHomeWorkspaceCommand.Execute(null);
 
-            // Close workspace
-            Assert.IsTrue(ViewModel.CloseHomeWorkspaceCommand.CanExecute(null));
-            ViewModel.CloseHomeWorkspaceCommand.Execute(null);
-
-            // Delete temp file
-            File.Delete(Path.Combine(workingDirectory, @".\DupePorts.dyn"));
-        }
+         // Delete temp file
+         File.Delete(Path.Combine(workingDirectory, @".\DupePorts.dyn"));
+      }
 
       [Test]
       public void PackageDllTest()
@@ -271,7 +272,7 @@ namespace RevitSystemTests
 
          string regressionTest = Path.Combine(workingDirectory, "PackageApprovedDllList.txt");
 
-         //localtie corecta buildout
+         // Revit build output
          string revitApiDll = Assembly.GetAssembly(typeof(Autodesk.Revit.DB.ElementId)).Location;
          string revitDirectory = Path.GetDirectoryName(revitApiDll);
 
@@ -299,26 +300,47 @@ namespace RevitSystemTests
             // get the dlls from the build folder
             var currentDlls = Directory
                 .EnumerateFiles(dynamoRevitFolder, "*.dll", SearchOption.AllDirectories)
-                .Select(fullPath => Path.GetRelativePath(dynamoRevitFolder, fullPath).Replace("\\", "/"))
-                .OrderBy(x => x)
+                .Select(fullPath =>
+                {
+                   var relativePath = Path.GetRelativePath(dynamoRevitFolder, fullPath).Replace("\\", "/");
+                   Version version = GetAssemblyVersion(fullPath);
+                   return new DllInfo() { Path = relativePath, Version = version };
+                })
                 .ToList();
 
             // save the temp list
-            File.WriteAllLines(tempDllListPath, currentDlls);
+            File.WriteAllLines(tempDllListPath, currentDlls.Select(dll => dll.ToString()));
 
             // load approved DLLs from file
             var approvedDlls = File.ReadAllLines(approvedListPath)
-                .Select(line => line.Trim().Replace("\\", "/"))
                 .Where(line => !string.IsNullOrWhiteSpace(line))
-                .OrderBy(x => x)
+                .Select(line =>
+                {
+                   var parts = line.Trim().Split('|');
+                   var path = parts[0].Trim().Replace("\\", "/");
+                   var versionString = parts[1].Replace("Version:", "").Trim();
+
+                   Version version = versionString.Contains("*") ? null : new Version(versionString);
+
+                   return new DllInfo()
+                   {
+                      Path = path,
+                      Version = version,
+                      VersionWildcard = versionString
+                   };
+                })
                 .ToList();
 
             // compare the lists
-            var unexpectedDlls = currentDlls.Except(approvedDlls).ToList();
-            var missingDlls = approvedDlls.Except(currentDlls).ToList();
+            var unexpectedDlls = currentDlls.Select(dll => dll.Path).Except(approvedDlls.Select(dll => dll.Path)).ToList();
+            var missingDlls = approvedDlls.Select(dll => dll.Path).Except(currentDlls.Select(dll => dll.Path)).ToList();
+
+            var versionMismatchedDlls = currentDlls
+                .Where(cd => approvedDlls.Any(ad => ad.Path == cd.Path && !cd.IsCompatibleWith(ad)))
+                .ToList();
 
             // fail test if there are unexpected or missing DLLs
-            if (unexpectedDlls.Any() || missingDlls.Any())
+            if (unexpectedDlls.Any() || missingDlls.Any() || versionMismatchedDlls.Any())
             {
                var message = new StringBuilder();
                if (missingDlls.Any())
@@ -333,99 +355,140 @@ namespace RevitSystemTests
                   message.AppendLine(string.Join("\n", unexpectedDlls));
                }
 
+               if (versionMismatchedDlls.Any())
+               {
+                  message.AppendLine("Version Mismatched DLLs:");
+                  foreach (var dll in versionMismatchedDlls)
+                  {
+                     var approvedVersion = approvedDlls.First(ad => ad.Path == dll.Path).Version;
+                     message.AppendLine($"{dll.Path} | Current Version: {dll.Version}, Approved Version: {approvedVersion}");
+                  }
+               }
+
                Assert.Fail(message.ToString());
             }
          }
-            finally { }
-        }
+         finally { }
+      }
 
 
-        [Test]
-        public void InstallDllTest()
-        {
+      [Test]
+      public void InstallDllTest()
+      {
 
-            string regressionTest = Path.Combine(workingDirectory, "InstallApprovedDllList.txt");
+         string regressionTest = Path.Combine(workingDirectory, "InstallApprovedDllList.txt");
 
-            //localtie corecta buildout
-            string revitApiDll = Assembly.GetAssembly(typeof(Autodesk.Revit.DB.ElementId)).Location;
-            string revitDirectory = Path.GetDirectoryName(revitApiDll);
+         // Revit build output
+         string revitApiDll = Assembly.GetAssembly(typeof(Autodesk.Revit.DB.ElementId)).Location;
+         string revitDirectory = Path.GetDirectoryName(revitApiDll);
 
-            // Revit addin build output where the dlls are located
-            string dynamoRevitFolder = Path.Combine(revitDirectory, @"Addins\DynamoForRevit");
+         // Revit addin build output where the dlls are located
+         string dynamoRevitFolder = Path.Combine(revitDirectory, @"Addins\DynamoForRevit");
 
-            if (!Directory.Exists(dynamoRevitFolder))
-            {
-                Assert.Fail($"Build output folder not found: {dynamoRevitFolder}");
-            }
+         if (!Directory.Exists(dynamoRevitFolder))
+         {
+            Assert.Fail($"Build output folder not found: {dynamoRevitFolder}");
+         }
 
-            // path for the approved list of dlls
-            string approvedListPath = Path.Combine(workingDirectory, "InstallApprovedDllList.txt");
+         // path for the approved list of dlls
+         string approvedListPath = Path.Combine(workingDirectory, "InstallApprovedDllList.txt");
 
-            if (!File.Exists(approvedListPath))
-            {
-                Assert.Fail($"InstallApprovedDllList list not found: {approvedListPath}");
-            }
+         if (!File.Exists(approvedListPath))
+         {
+            Assert.Fail($"InstallApprovedDllList list not found: {approvedListPath}");
+         }
 
-            // define list for storing the dlls
-            string tempDllListPath = Path.Combine(workingDirectory, "CurrentDllListInstall.txt");
+         // define list for storing the dlls
+         string tempDllListPath = Path.Combine(workingDirectory, "CurrentDllListInstall.txt");
 
-            try
-            {
-                // get the dlls from the build folder
-                var currentDlls = Directory
-                    .EnumerateFiles(dynamoRevitFolder, "*.dll", SearchOption.AllDirectories)
-                    .Select(fullPath => Path.GetRelativePath(dynamoRevitFolder, fullPath).Replace("\\", "/"))
-                    .OrderBy(x => x)
-                    .ToList();
-
-                // save the temp list
-                File.WriteAllLines(tempDllListPath, currentDlls);
-
-                // load approved DLLs from file
-                var approvedDlls = File.ReadAllLines(approvedListPath)
-                    .Select(line => line.Trim().Replace("\\", "/"))
-                    .Where(line => !string.IsNullOrWhiteSpace(line))
-                    .OrderBy(x => x)
-                    .ToList();
-
-                // compare the lists
-                var unexpectedDlls = currentDlls.Except(approvedDlls).ToList();
-                var missingDlls = approvedDlls.Except(currentDlls).ToList();
-
-                // fail test if there are unexpected or missing DLLs
-                if (unexpectedDlls.Any() || missingDlls.Any())
+         try
+         {
+            // get the dlls from the build folder
+            var currentDlls = Directory
+                .EnumerateFiles(dynamoRevitFolder, "*.dll", SearchOption.AllDirectories)
+                .Select(fullPath =>
                 {
-                    var message = new StringBuilder();
-                    if (missingDlls.Any())
-                    {
-                        message.AppendLine("Missing DLLs:");
-                        message.AppendLine(string.Join("\n", missingDlls));
-                    }
+                   var relativePath = Path.GetRelativePath(dynamoRevitFolder, fullPath).Replace("\\", "/");
+                   Version version = GetAssemblyVersion(fullPath);
+                   return new DllInfo() { Path = relativePath, Version = version };
+                })
+                .ToList();
 
-                    if (unexpectedDlls.Any())
-                    {
-                        message.AppendLine("Unexpected DLLs:");
-                        message.AppendLine(string.Join("\n", unexpectedDlls));
-                    }
+            // save the temp list
+            File.WriteAllLines(tempDllListPath, currentDlls.Select(dll => dll.ToString()));
 
-                    Assert.Fail(message.ToString());
-                }
+            // load approved DLLs from file
+            var approvedDlls = File.ReadAllLines(approvedListPath)
+                .Where(line => !string.IsNullOrWhiteSpace(line))
+                .Select(line =>
+                {
+                   var parts = line.Trim().Split('|');
+                   var path = parts[0].Trim().Replace("\\", "/");
+                   var versionString = parts[1].Replace("Version:", "").Trim();
+
+                   Version version = versionString.Contains("*") ? null : new Version(versionString);
+
+                   return new DllInfo()
+                   {
+                      Path = path,
+                      Version = version,
+                      VersionWildcard = versionString
+                   };
+                })
+                .ToList();
+
+            // compare the lists
+            var unexpectedDlls = currentDlls.Select(dll => dll.Path).Except(approvedDlls.Select(dll => dll.Path)).ToList();
+            var missingDlls = approvedDlls.Select(dll => dll.Path).Except(currentDlls.Select(dll => dll.Path)).ToList();
+
+            var versionMismatchedDlls = currentDlls
+                .Where(cd => approvedDlls.Any(ad => ad.Path == cd.Path && !cd.IsCompatibleWith(ad)))
+                .ToList();
+
+            // fail test if there are unexpected or missing DLLs
+            if (unexpectedDlls.Any() || missingDlls.Any() || versionMismatchedDlls.Any())
+            {
+               var message = new StringBuilder();
+               if (missingDlls.Any())
+               {
+                  message.AppendLine("Missing DLLs:");
+                  message.AppendLine(string.Join("\n", missingDlls));
+               }
+
+               if (unexpectedDlls.Any())
+               {
+                  message.AppendLine("Unexpected DLLs:");
+                  message.AppendLine(string.Join("\n", unexpectedDlls));
+               }
+
+               if (versionMismatchedDlls.Any())
+               {
+                  message.AppendLine("Version Mismatched DLLs:");
+                  foreach (var dll in versionMismatchedDlls)
+                  {
+                     var approvedVersion = approvedDlls.First(ad => ad.Path == dll.Path).Version;
+                     message.AppendLine($"{dll.Path} | Current Version: {dll.Version}, Approved Version: {approvedVersion}");
+                  }
+               }
+
+               Assert.Fail(message.ToString());
             }
-            finally { }
-        }
+         }
+         finally { }
+      }
 
 
-        // Helper Functions
+      // Helper Functions
 
-        private void OpenAndAssertNoDummyNodes(string samplePath)
-        {
-            var testPath = Path.GetFullPath(samplePath);
+      private void OpenAndAssertNoDummyNodes(string samplePath)
+      {
+         var testPath = Path.GetFullPath(samplePath);
 
-            // Open the test file
-            ViewModel.OpenCommand.Execute(testPath);
+         // Open the test file
+         ViewModel.OpenCommand.Execute(testPath);
 
-            AssertNoDummyNodes();
-        }
+         AssertNoDummyNodes();
+      }
 
 
       /// <summary>
@@ -434,46 +497,71 @@ namespace RevitSystemTests
       /// </summary>
       /// <returns></returns>
       private static List<RegressionTestData> SetupRevitRegressionTests()
-        {
-            var testParameters = new List<RegressionTestData>();
+      {
+         var testParameters = new List<RegressionTestData>();
 
-            var config = RevitTestConfiguration.LoadConfiguration();
-            string testsLoc = Path.Combine(config.WorkingDirectory, "Regression");
-            var regTestPath = Path.GetFullPath(testsLoc);
+         var config = RevitTestConfiguration.LoadConfiguration();
+         string testsLoc = Path.Combine(config.WorkingDirectory, "Regression");
+         var regTestPath = Path.GetFullPath(testsLoc);
 
-            var di = new DirectoryInfo(regTestPath);
-            foreach (var folder in di.GetDirectories())
+         var di = new DirectoryInfo(regTestPath);
+         foreach (var folder in di.GetDirectories())
+         {
+            var dyns = folder.GetFiles("*.dyn");
+            foreach (var fileInfo in dyns)
             {
-                var dyns = folder.GetFiles("*.dyn");
-                foreach (var fileInfo in dyns)
-                {
-                    var data = new object[2];
-                    data[0] = fileInfo.FullName;
+               var data = new object[2];
+               data[0] = fileInfo.FullName;
 
-                    //find the corresponding rfa or rvt file
-                    var nameBase = fileInfo.FullName.Remove(fileInfo.FullName.Length - 4);
-                    var rvt = nameBase + ".rvt";
-                    var rfa = nameBase + ".rfa";
+               //find the corresponding rfa or rvt file
+               var nameBase = fileInfo.FullName.Remove(fileInfo.FullName.Length - 4);
+               var rvt = nameBase + ".rvt";
+               var rfa = nameBase + ".rfa";
 
-                    //add test parameters for rvt, rfa, or both
-                    if (File.Exists(rvt))
-                    {
-                        data[1] = rvt;
-                    }
+               //add test parameters for rvt, rfa, or both
+               if (File.Exists(rvt))
+               {
+                  data[1] = rvt;
+               }
 
-                    if (File.Exists(rfa))
-                    {
-                        data[1] = rfa;
-                    }
+               if (File.Exists(rfa))
+               {
+                  data[1] = rfa;
+               }
 
-                    testParameters.Add(new RegressionTestData { Arguments = data, TestName = folder.Name });
-                }
+               testParameters.Add(new RegressionTestData { Arguments = data, TestName = folder.Name });
             }
+         }
 
 
-            return testParameters;
-        }
-    }
+         return testParameters;
+      }
+
+      private Version GetAssemblyVersion(string assemblyPath)
+      {
+         try
+         {
+            AssemblyName assemblyName = AssemblyName.GetAssemblyName(assemblyPath);
+            return assemblyName.Version;
+         }
+         catch (BadImageFormatException ex)
+         {
+            var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(assemblyPath);
+            if (!string.IsNullOrEmpty(versionInfo.FileVersion))
+            {
+               Version version = new Version(versionInfo.FileMajorPart, versionInfo.FileMinorPart, versionInfo.FileBuildPart, versionInfo.FilePrivatePart);
+               return version;   
+            }
+            else return new Version(0, 0, 0, 0);
+         }
+         catch (Exception ex)
+         {
+            Assert.Fail($"Error getting version for assembly at {assemblyPath}: {ex.Message}");
+            return new Version(0, 0, 0, 0);
+         }
+
+      }
+   }
 
     public class RegressionTestData
     {
@@ -484,4 +572,40 @@ namespace RevitSystemTests
             return TestName ?? "RegressionTest";
         }
     }
+
+   public class DllInfo
+   {
+      public string Path { get; set; }
+      public Version Version { get; set; }
+      public string VersionWildcard { get; set; }
+
+      public override String ToString()
+      {
+         return $"{Path} | Version: {VersionWildcard ?? Version.ToString()}";
+      }
+
+      public bool MatchesPattern(string pattern)
+      {
+         string versionStr = this.Version.ToString();
+         if (pattern.EndsWith("*"))
+         {
+            string prefix = pattern.TrimEnd('*', '.');
+            return versionStr.StartsWith(prefix + ".");
+         }
+
+         return versionStr == pattern;
+      }
+
+      public bool IsCompatibleWith(DllInfo other)
+      {
+         // For internal Dynamo DLLs, only check if wildcard matches current version
+         if (other.Version is null)
+         {
+            return MatchesPattern(other.VersionWildcard);
+         }
+
+         // For external DLLs, check full version
+         return this.Version == other.Version;
+      }
+   }
 }
