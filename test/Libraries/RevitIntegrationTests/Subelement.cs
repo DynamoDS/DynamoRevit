@@ -26,11 +26,11 @@ namespace RevitSystemTests
             Assert.AreEqual("Duct", subelemElement[0].ToString());
 
             var getAllParams = GetFlattenedPreviewValues("01312066e09b4b1e86b76bad85944e9f");
-            Assert.AreEqual(20, getAllParams.Count);
+            Assert.AreEqual(21, getAllParams.Count);
 
             var getParamValue = GetFlattenedPreviewValues("c0448b187dc74bce8e0ecbfba591d0fc");
-            Assert.AreEqual(20, getParamValue.Count);
-            Assert.AreEqual("Supply Air", getParamValue[3].ToString());
+            Assert.AreEqual(21, getParamValue.Count);
+            Assert.AreEqual("Supply Air", getParamValue[4].ToString());
         }
     }
 }
