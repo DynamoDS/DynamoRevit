@@ -732,9 +732,36 @@ namespace DSRevitNodesUI
             if (name == "Value" && value != null)
             {
                 // Un-exception: Find selection by display name, just like the base class does!
-                SelectedIndex = ParseSelectedIndexImpl(value, Items);
+                try
+                {
+                    SelectedIndex = ParseSelectedIndexImpl(value, Items);
+                }
+                catch
+                {
+                    SelectedIndex = -1;
+                }
+
+                //Value could also refer to BuiltInCategory enum name.
+                //In fact this should be the way to do it since display names can change with localization.
                 if (SelectedIndex < 0)
+                {
+                    var allCategories = Enum.GetValues(typeof(BuiltInCategory))
+                        .Cast<BuiltInCategory>()
+                        .Where(x => value.Equals(x.ToString(), StringComparison.OrdinalIgnoreCase));
+
+                    BuiltInCategory foundCategory = allCategories?.FirstOrDefault() ?? BuiltInCategory.INVALID;
+
+                    if (foundCategory != BuiltInCategory.INVALID)
+                    {                        
+                        SelectedIndex = Items.ToList().FindIndex(x => ((BuiltInCategory)x.Item) == foundCategory);
+                    }
+                }
+
+                if (SelectedIndex < 0)
+                {
                     Warning(Dynamo.Properties.Resources.NothingIsSelectedWarning);
+                }
+
                 return true; // UpdateValueCore handled.
             }
 
