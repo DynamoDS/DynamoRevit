@@ -239,30 +239,28 @@ namespace DADynamoApp
             {
                 if (doc.IsModelInCloud)
                 {
-                    var newLoc = setupReq?.SaveCloudModelLocation;
-                    if (newLoc != null)
+                    if (doc.IsWorkshared) // work-shared/C4R model
                     {
-                        // Single user cloud model
-                        doc.SaveAsCloudModel(newLoc.AccountId, newLoc.ProjectId, newLoc.FolderId, newLoc.ModelName ?? Path.GetFileName(doc.PathName));
+                        // Syncronize with central
+                        SynchronizeWithCentralOptions swc = new SynchronizeWithCentralOptions();
+                        swc.SetRelinquishOptions(new RelinquishOptions(/*relinquishAll*/true));// Should this be configurable?
+                        doc.SynchronizeWithCentral(new TransactWithCentralOptions(), swc);
                     }
-                    else
-                    {
-                        if (doc.IsWorkshared) // work-shared/C4R model
+                    else 
+                    {// Single user cloud model
+                        var newLoc = setupReq?.SaveCloudModelLocation;
+                        if (newLoc != null)
                         {
-                            // Syncronize with central (i.e get latest)
-                            SynchronizeWithCentralOptions swc = new SynchronizeWithCentralOptions();
-                            swc.SetRelinquishOptions(new RelinquishOptions(/*relinquishAll*/true));// Should this be configurable?
-                            doc.SynchronizeWithCentral(new TransactWithCentralOptions(), swc);
+                            doc.SaveAsCloudModel(newLoc.AccountId, newLoc.ProjectId, newLoc.FolderId, newLoc.ModelName ?? Path.GetFileName(doc.PathName));
                         }
                         else
                         {
-                            // Single user cloud model
                             doc.SaveCloudModel();
                         }
                     }
                 }
                 else
-                {
+                {// Save locally 
                     try
                     {
                         RevitServices.Transactions.TransactionManager.Instance.ForceCloseTransaction();
