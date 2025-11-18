@@ -10,40 +10,26 @@
     <UpgradeBackupLocation />
     <EnableDynamicLoading>true</EnableDynamicLoading>
 
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>3</WarningLevel>
-    <DebugType>full</DebugType>
     <NoWarn>$(NoWarn);618</NoWarn>
-    <DebugSymbols>true</DebugSymbols>
-    <Prefer32Bit>false</Prefer32Bit>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
 
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <BuildDependsOn>$(BuildDependsOn);AfterBuildMigrated</BuildDependsOn>
-    <PostBuildEvent>if exist $(ProjectDir)PostBuildStep.bat call $(ProjectDir)PostBuildStep.bat $(SolutionDir)</PostBuildEvent>
-    <AssemblyCompanyAttribute>DynamoRevitDS</AssemblyCompanyAttribute>
-    <UseWPF>true</UseWPF>
-    <UseWindowsForms>true</UseWindowsForms>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <Optimize>false</Optimize>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <Optimize>true</Optimize>
-    <DefineConstants>TRACE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>if exist $(ProjectDir)PostBuildStep.bat call $(ProjectDir)PostBuildStep.bat $(SolutionDir)</PostBuildEvent>
-    <PlatformTarget>x64</PlatformTarget>
-  </PropertyGroup>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<BuildDependsOn>$(BuildDependsOn);AfterBuildMigrated</BuildDependsOn>
+	<PostBuildEvent>if exist $(ProjectDir)PostBuildStep.bat call $(ProjectDir)PostBuildStep.bat $(SolutionDir)</PostBuildEvent>
+	<AssemblyCompanyAttribute>DynamoRevitDS</AssemblyCompanyAttribute>
+	<UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+	</PropertyGroup>
+	<PropertyGroup>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+	</PropertyGroup>
+	<PropertyGroup>
+		<PostBuildEvent>if exist $(ProjectDir)PostBuildStep.bat call $(ProjectDir)PostBuildStep.bat $(SolutionDir)</PostBuildEvent>
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
   <Target Name="AfterBuildMigrated" AfterTargets="PostBuildEvent">
     <WriteLinesToFile Condition="!Exists('$(OutputPath)/../Dynamo.config')" File="$(OutputPath)/../Dynamo.config" Lines="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;configuration&gt;&#xD;&#xA;  &lt;appSettings&gt;&#xD;&#xA;     &lt;add key=&quot;DynamoRuntime&quot; value=&quot;$(DYNAMOAPI)&quot;/&gt;&#xD;&#xA;  &lt;/appSettings&gt;&#xD;&#xA;&lt;/configuration&gt;&#xD;&#xA;" Overwrite="true" />
   </Target>
@@ -82,6 +68,33 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ProtoCore">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\ProtoCore.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\ProtoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoCore">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoCore.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoCore.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoUtilities">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoUtilities.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoUtilities.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoShapeManager">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoShapeManager.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoShapeManager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DynamoInstallDetective">
+      <HintPath Condition="!Exists('$(DYNAMOBUILDPATH)')">$(PACKAGESPATH)\DynamoVisualProgramming.Core\lib\$(DCoreLibSubFolder)\DynamoInstallDetective.dll</HintPath>
+      <HintPath Condition=" Exists('$(DYNAMOBUILDPATH)')">$(DYNAMOBUILDPATH)\DynamoInstallDetective.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Resources\Category.Revit.svg" />
     <EmbeddedResource Include="Resources\LayoutSpecs.json" />
     <Content Include="Resources\logo_square_32x32.png" />
@@ -98,6 +111,11 @@
   <ItemGroup>
     <Compile Remove="RevitSettings.cs" />
   </ItemGroup>
+    <ItemGroup Condition="$(Platform.Contains('_DA'))">
+        <Compile Remove="DynamoRevit.cs" />
+        <Compile Remove="DynamoRevitApp.cs" />
+        <Compile Remove="ViewModel/**" />
+    </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DynamoVisualProgramming.Core" Version="$(DYNAMOCORE_VERSION)" ExcludeAssets="runtime" GeneratePathProperty="true" />
     <PackageReference Include="DynamoVisualProgramming.WpfUILibrary" Version="$(DYNAMOWPFUI_VERSION)" ExcludeAssets="runtime" />
@@ -107,7 +125,7 @@
     <PackageReference Include="pythonnet_py38_win" Version="$(PYTHONNET_PY38_VERSION)" ExcludeAssets="runtime" />
   </ItemGroup>
   <Target Name="Copy dll" AfterTargets="Build">
-    <Copy SourceFiles="$(PkgDynamoVisualProgramming_Core)\lib\$(DCoreLibSubFolder)\DynamoInstallDetective.dll" DestinationFolder="$(OutputPath)\.." />
-    <Copy SourceFiles="$(PkgGregRevitAuth)\lib\$(GregRevitAuthLibSubFolder)\GregRevitAuth.dll" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="$(PkgDynamoVisualProgramming_Core)\lib\$(DotnetVerSubFolder)\DynamoInstallDetective.dll" DestinationFolder="$(OutputPath)\.." />
+    <Copy SourceFiles="$(PkgGregRevitAuth)\lib\$(DotnetVerSubFolder)\GregRevitAuth.dll" DestinationFolder="$(OutputPath)" />
   </Target>
 </Project>

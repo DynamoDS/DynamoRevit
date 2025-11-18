@@ -524,34 +524,6 @@ namespace Dynamo.Applications
 
         #region Initialization
 
-        /// <summary>
-        /// DynamoShapeManager.dll is a companion assembly of Dynamo core components,
-        /// we do not want a static reference to it (since the Revit add-on can be 
-        /// installed anywhere that's outside of Dynamo), we do not want a duplicated 
-        /// reference to it. Here we use reflection to obtain GetGeometryFactoryPath
-        /// method, and call it to get the geometry factory assembly path.
-        /// </summary>
-        /// <param name="corePath">The path where DynamoShapeManager.dll can be 
-        /// located.</param>
-        /// <param name="version">The version of DynamoShapeManager.dll</param>
-        /// <returns>Returns the full path to geometry factory assembly.</returns>
-        /// <exception cref="FileNotFoundException"></exception>
-        public static string GetGeometryFactoryPath(string corePath, Version version)
-        {
-            var dynamoAsmPath = Path.Combine(corePath, "DynamoShapeManager.dll");
-            var assembly = Assembly.LoadFrom(dynamoAsmPath);
-            if (assembly == null)
-                throw new FileNotFoundException("File not found", dynamoAsmPath);
-
-            var utilities = assembly.GetType("DynamoShapeManager.Utilities");
-            var getGeometryFactoryPath = utilities.GetMethod("GetGeometryFactoryPath2");
-
-            return (getGeometryFactoryPath.Invoke(null,
-                new object[] { corePath, version }) as string);
-        }
-
-
-
         private static void PreloadDynamoCoreDlls()
         {
             // Assume Revit Install folder as look for root. Assembly name is compromised.
@@ -611,15 +583,16 @@ namespace Dynamo.Applications
 
             // when Dynamo runs on top of Revit we must load the same version of ASM as revit
             // so tell Dynamo core we've loaded that version.
-            var loadedLibGVersion = PreloadAsmFromRevit();
+            var asmLocation = DynamoRevitApp.ControlledApplication.SharedComponentsLocation;
 
+            var loadedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(asmLocation, DynamoRevitApp.DynamoCorePath);
 
             return RevitDynamoModel.Start(
             new RevitDynamoModel.RevitStartConfiguration()
             {
                 DynamoCorePath = corePath,
                 DynamoHostPath = dynamoRevitRoot,
-                GeometryFactoryPath = GetGeometryFactoryPath(corePath, loadedLibGVersion),
+                GeometryFactoryPath = ASMPrealoaderUtils.GetGeometryFactoryPath(corePath, loadedLibGVersion),
                 PathResolver = new RevitPathResolver(userDataFolder, commonDataFolder),
                 Context = GetRevitContext(commandData),
                 SchedulerThread = new RevitSchedulerThread(commandData.Application),
@@ -629,61 +602,6 @@ namespace Dynamo.Applications
                 ProcessMode = isAutomationMode ? TaskProcessMode.Synchronous : TaskProcessMode.Asynchronous,
                 HostAnalyticsInfo = hostAnalyticsInfo
             });
-        }
-
-        internal static Version PreloadAsmFromRevit()
-        {
-            var asmLocation = DynamoRevitApp.ControlledApplication.SharedComponentsLocation;
-
-            Version libGVersion = findRevitASMVersion(asmLocation);
-            var dynCorePath = DynamoRevitApp.DynamoCorePath;
-            // Get the corresponding libG preloader location for the target ASM loading version.
-            // If there is exact match preloader version to the target ASM version, use it, 
-            // otherwise use the closest below.
-            var preloaderLocation = DynamoShapeManager.Utilities.GetLibGPreloaderLocation(libGVersion, dynCorePath);
-
-            // [Tech Debt] (Will refactor the code later)
-            // The LibG version maybe different in Dynamo and Revit, using the one which is in Dynamo.
-            Version preLoadLibGVersion = PreloadLibGVersion(preloaderLocation);
-            DynamoShapeManager.Utilities.PreloadAsmFromPath(preloaderLocation, asmLocation);
-            return preLoadLibGVersion;
-        }
-
-        // [Tech Debt] (Will refactor the code later)
-        /// <summary>
-        /// Return the preload version of LibG.
-        /// </summary>
-        /// <param name="preloaderLocation"></param>
-        /// <returns></returns>
-        internal static Version PreloadLibGVersion(string preloaderLocation)
-        {
-            preloaderLocation = new DirectoryInfo(preloaderLocation).Name;
-            var regExp = new Regex(@"^libg_(\d\d\d)_(\d)_(\d)$", RegexOptions.IgnoreCase);
-
-            var match = regExp.Match(preloaderLocation);
-            if (match.Groups.Count == 4)
-            {
-                return new Version(
-                    Convert.ToInt32(match.Groups[1].Value),
-                    Convert.ToInt32(match.Groups[2].Value),
-                    Convert.ToInt32(match.Groups[3].Value));
-            }
-
-            return new Version();
-        }
-
-        /// <summary>
-        /// Returns the version of ASM which is installed with Revit at the requested path.
-        /// This version number can be used to load the appropriate libG version.
-        /// </summary>
-        /// <param name="asmLocation">path where asm dlls are located, this is usually the product(Revit) install path</param>
-        /// <returns></returns>
-        internal static Version findRevitASMVersion(string asmLocation)
-        {
-            var lookup = new InstalledProductLookUp("Revit", "ASMAHL*.dll");
-            var product = lookup.GetProductFromInstallPath(asmLocation);
-            var libGversion = new Version(product.VersionInfo.Item1, product.VersionInfo.Item2, product.VersionInfo.Item3);
-            return libGversion;
         }
 
         private static DynamoViewModel InitializeCoreViewModel(RevitDynamoModel revitDynamoModel)
@@ -1160,118 +1078,6 @@ namespace Dynamo.Applications
                     idleActions.Add(a);
                 }
             }
-        }
-    }
-
-    /// <summary>
-    /// Defines parameters used for loading internal Dynamo Revit packages
-    /// </summary>
-    [Serializable()]
-    public class InternalPackage
-    {
-        /// <summary>
-        /// keeps the path to the node file
-        /// </summary>
-        public string NodePath { get; set; }
-
-        /// <summary>
-        /// keeps the path to the layoutSpecs.json file
-        /// </summary>
-        public string LayoutSpecsPath { get; set; }
-
-        /// <summary>
-        /// keeps paths to additional assembly load paths
-        /// </summary>
-        public List<string> AdditionalAssemblyLoadPaths { get; set; }
-    }
-    internal static class DynamoRevitInternalNodes
-    {
-        private const string InternalNodesDir = "nodes";
-        private static IEnumerable<string> GetAllInternalPackageFiles()
-        {
-            string currentAssemblyPath = Assembly.GetExecutingAssembly().Location;
-            string currentAssemblyDir = Path.GetDirectoryName(currentAssemblyPath);
-
-            string internalNodesDir = Path.Combine(currentAssemblyDir, InternalNodesDir);
-            if (false == Directory.Exists(internalNodesDir))
-            {
-                return new List<string>();
-            }
-
-            string[] internalNodesFolders = Directory.GetDirectories(internalNodesDir);
-
-            List<string> internalPackageFiles = new List<string>();
-            foreach (string dir in internalNodesFolders)
-            {
-                string internalPackageFile = Path.Combine(dir, "internalPackage.xml");
-                if (true == File.Exists(internalPackageFile))
-                {
-                    internalPackageFiles.Add(internalPackageFile);
-                }
-            }
-            return internalPackageFiles;
-        }
-        private static IEnumerable<InternalPackage> ParseinternalPackageFiles(IEnumerable<string> internalPackageFiles)
-        {
-            List<InternalPackage> internalPackages = new List<InternalPackage>();
-            string basePath = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
-
-            foreach (string internalPackageFile in internalPackageFiles)
-            {
-                try
-                {
-                    string internalPackageDir = Path.GetDirectoryName(internalPackageFile);
-                    using (StreamReader reader = new StreamReader(internalPackageFile))
-                    {
-                        XmlSerializer serializer = new XmlSerializer(typeof(InternalPackage));
-                        InternalPackage intPackage = serializer.Deserialize(reader) as InternalPackage;
-
-                        // convert to absolute path, if needed
-                        if (false == Path.IsPathRooted(intPackage.NodePath))
-                        {
-                            intPackage.NodePath = Path.Combine(internalPackageDir, intPackage.NodePath);
-                        }
-
-                        // convert to absolute path, if needed
-                        if (false == Path.IsPathRooted(intPackage.LayoutSpecsPath))
-                        {
-                            intPackage.LayoutSpecsPath = Path.Combine(internalPackageDir, intPackage.LayoutSpecsPath);
-                        }
-
-                        // convert to absolute paths, if needed
-                        if (null != intPackage.AdditionalAssemblyLoadPaths && intPackage.AdditionalAssemblyLoadPaths.Count > 0)
-                        {
-                            intPackage.AdditionalAssemblyLoadPaths = intPackage.AdditionalAssemblyLoadPaths
-                                .Select(p => !Path.IsPathRooted(p) ? Path.Combine(basePath, p) : p)
-                                .Where(Path.Exists).ToList();
-                        }
-
-                        internalPackages.Add(intPackage);
-                    }
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine(string.Format("Exception while trying to parse internalPackage file {0}", internalPackageFile));
-                }
-            }
-
-            return internalPackages;
-        }
-        internal static IEnumerable<string> GetNodesToPreload()
-        {
-            IEnumerable<string> internalPackageFiles = GetAllInternalPackageFiles();
-            return ParseinternalPackageFiles(internalPackageFiles).Select(pkg => pkg.NodePath);
-        }
-        internal static IEnumerable<string> GetLayoutSpecsFiles()
-        {
-            IEnumerable<string> internalPackageFiles = GetAllInternalPackageFiles();
-            return ParseinternalPackageFiles(internalPackageFiles).Select(pkg => pkg.LayoutSpecsPath);
-        }
-
-        internal static IEnumerable<string> GetAdditionalAssemblyLoadPaths()
-        {
-            IEnumerable<string> internalPackageFiles = GetAllInternalPackageFiles();
-            return ParseinternalPackageFiles(internalPackageFiles).SelectMany(pkg => pkg.AdditionalAssemblyLoadPaths);
         }
     }
 }

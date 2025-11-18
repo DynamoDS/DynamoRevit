@@ -1,8 +1,10 @@
 ﻿using Dynamo.Applications;
 using Dynamo.Applications.Models;
+#if !DESIGN_AUTOMATION
 using Dynamo.Controls;
-using Dynamo.Graph.Nodes;
 using Dynamo.Wpf;
+#endif
+using Dynamo.Graph.Nodes;
 using Newtonsoft.Json;
 using ProtoCore.AST.AssociativeAST;
 using Revit.GeometryConversion;
@@ -15,7 +17,8 @@ using BuiltinNodeCategories = Revit.Elements.BuiltinNodeCategories;
 
 namespace DSRevitNodesUI
 {
-   public class SiteLocationNodeViewCustomization : INodeViewCustomization<SiteLocation>
+#if !DESIGN_AUTOMATION
+    public class SiteLocationNodeViewCustomization : INodeViewCustomization<SiteLocation>
     {
         public void CustomizeView(SiteLocation model, NodeView nodeView)
         {
@@ -28,6 +31,7 @@ namespace DSRevitNodesUI
 
         }
     }
+#endif
 
     [NodeName("SiteLocation"), NodeCategory(BuiltinNodeCategories.ANALYZE),
      NodeDescription("SiteLocationDescription", typeof(Properties.Resources)), IsDesignScriptCompatible]
@@ -47,10 +51,12 @@ namespace DSRevitNodesUI
             
             ArgumentLacing = LacingStrategy.Disabled;
 
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened += model_RevitDocumentChanged;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened += model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdater_ElementsUpdated;
-            
+
+#if !DESIGN_AUTOMATION
             DynamoRevitApp.AddIdleAction(() => Update());
+#endif
         }
 
         [JsonConstructor]
@@ -61,17 +67,19 @@ namespace DSRevitNodesUI
 
             ArgumentLacing = LacingStrategy.Disabled;
 
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened += model_RevitDocumentChanged;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened += model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsUpdated += RevitServicesUpdater_ElementsUpdated;
 
+#if !DESIGN_AUTOMATION
             DynamoRevitApp.AddIdleAction(() => Update());
+#endif
         }
 
         #region public methods
 
         public override void Dispose()
         {
-            DynamoRevitApp.EventHandlerProxy.DocumentOpened -= model_RevitDocumentChanged;
+            RevitServices.EventHandler.EventHandlerProxy.Instance.DocumentOpened -= model_RevitDocumentChanged;
             RevitServicesUpdater.Instance.ElementsUpdated -= RevitServicesUpdater_ElementsUpdated;
             base.Dispose();
         }

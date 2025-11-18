@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
 using RevitServices.Elements;
 using RevitServices.Transactions;
 
@@ -116,6 +116,8 @@ namespace RevitServices.Persistence
                 ActiveDocumentHashCode = revitView.Document.GetHashCode();
         }
 
+        private Document currentDBDocument;
+
         /// <summary>
         /// Provides the currently active DB document.
         /// This is based on the CurrentUIDocument
@@ -123,8 +125,15 @@ namespace RevitServices.Persistence
         public Document CurrentDBDocument {
             get
             {
+#if !DESIGN_AUTOMATION
                 var c = CurrentUIDocument;
                 return c == null ? null : c.Document;
+#else
+                return currentDBDocument;
+#endif
+            }
+            set {
+                currentDBDocument = value;
             }
         }
 
@@ -143,17 +152,24 @@ namespace RevitServices.Persistence
         /// </summary>
         public int ActiveDocumentHashCode { get; private set; }
 
+
+        /// <summary>
+        /// Provides the current Application
+        /// </summary>
+        internal Application CurrentApplication { get; set; }
+
+#if !DESIGN_AUTOMATION
         /// <summary>
         /// Provides the currently active UI document.
         /// This is the document to which Dynamo is bound.
         /// </summary>
-        public UIDocument CurrentUIDocument {get; set; }
+        public Autodesk.Revit.UI.UIDocument CurrentUIDocument {get; set; }
 
         /// <summary>
         /// Provides the current UIApplication
         /// </summary>
-        public UIApplication CurrentUIApplication { get; set; }
-
+        public Autodesk.Revit.UI.UIApplication CurrentUIApplication { get; set; }
+#endif
         /// <summary>
         /// Trigger a document regeneration in the idle context or without
         /// depending on the state of the transaction manager.
@@ -169,6 +185,27 @@ namespace RevitServices.Persistence
             else
             {
                 Instance.CurrentDBDocument.Regenerate();
+            }
+        }
+
+        /// <summary>
+        /// Setup the CurrentDBDocument and CurrentApplication.
+        /// </summary>
+        /// <param name="app"></param>
+        internal void PrepareForDesignAutomation(Application app)
+        {
+            if (app == null)
+            {
+                return;
+            }
+            CurrentApplication = app;
+            foreach (Document d in app.Documents)
+            {
+                if (!d.IsLinked)
+                {
+                    CurrentDBDocument = d;
+                    break;
+                }
             }
         }
     }

@@ -270,13 +270,13 @@ namespace RevitTestServices
                 // Init DynamoTestPath to get DynamoSettings.xml which under user data folder
                 PreferenceSettings.DynamoTestPath = string.Empty;
                 //preload ASM and instruct dynamo to load that version of libG.
-                var requestedLibGVersion = DynamoRevit.PreloadAsmFromRevit();
+                var requestedLibGVersion = ASMPrealoaderUtils.PreloadAsmFromRevit(DynamoRevitApp.ControlledApplication.SharedComponentsLocation, testConfig.DynamoCorePath);
 
                 DynamoRevit.RevitDynamoModel = RevitDynamoModel.Start(
                     new RevitDynamoModel.RevitStartConfiguration()
                     {
                         StartInTestMode = true,
-                        GeometryFactoryPath = DynamoRevit.GetGeometryFactoryPath(testConfig.DynamoCorePath, requestedLibGVersion),
+                        GeometryFactoryPath = ASMPrealoaderUtils.GetGeometryFactoryPath(testConfig.DynamoCorePath, requestedLibGVersion),
                         DynamoCorePath = testConfig.DynamoCorePath,
                         PathResolver = revitTestPathResolver,
                         Context = DynamoRevit.GetRevitContext(commandData),

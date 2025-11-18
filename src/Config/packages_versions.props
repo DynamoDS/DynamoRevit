@@ -14,7 +14,7 @@
 
         <Greg_VERSION>3.0.1.4707</Greg_VERSION>
         <GregRevitAuth_VERSION>4.0.9405.33709</GregRevitAuth_VERSION>
-        <GregRevitAuthLibSubFolder>net10.0</GregRevitAuthLibSubFolder>
+        <DotnetVerSubFolder>net10.0</DotnetVerSubFolder>
 
         <!-- Keep in sync with DynamoCore & TODO: check if still needed -->
         <DynamicLanguageRuntime_VERSION>1.2.2</DynamicLanguageRuntime_VERSION>
