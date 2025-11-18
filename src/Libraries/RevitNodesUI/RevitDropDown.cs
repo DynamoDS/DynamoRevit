@@ -745,14 +745,8 @@ namespace DSRevitNodesUI
                 //In fact this should be the way to do it since display names can change with localization.
                 if (SelectedIndex < 0)
                 {
-                    var allCategories = Enum.GetValues(typeof(BuiltInCategory))
-                        .Cast<BuiltInCategory>()
-                        .Where(x => value.Equals(x.ToString(), StringComparison.OrdinalIgnoreCase));
-
-                    BuiltInCategory foundCategory = allCategories?.FirstOrDefault() ?? BuiltInCategory.INVALID;
-
-                    if (foundCategory != BuiltInCategory.INVALID)
-                    {                        
+                    if (Enum.TryParse(value, true, out BuiltInCategory foundCategory))
+                    {
                         SelectedIndex = Items.ToList().FindIndex(x => ((BuiltInCategory)x.Item) == foundCategory);
                     }
                 }
