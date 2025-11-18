@@ -1,0 +1,357 @@
+{
+  "Uuid": "fcbc7078-b463-4880-8056-b3e6a28ca11e",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.SketchPlane.ByPlane",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "a7f8804dce6b4e54a953a71ff501d250",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "4915bf4b5dd04211b482a372077fbfe7",
+          "Name": "plane",
+          "Description": "Plane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0951adb03e94461f86db63978849ee41",
+          "Name": "SketchPlane",
+          "Description": "SketchPlane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.SketchPlane.ByPlane@Autodesk.DesignScript.Geometry.Plane",
+      "Replication": "Auto",
+      "Description": "Make a Revit SketchPlane given a plane\n\nSketchPlane.ByPlane (plane: Plane): SketchPlane"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "952f55000d3d427bbfaf00d7c5c22cbb",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "59f016fb95054ec5865279f2ea73fbd0",
+          "Name": "origin",
+          "Description": "Origin point of plane\n\nPoint\nDefault value : Autodesk.DesignScript.Geometry.Point.ByCoordinates(0, 0, 0)",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ae4b4f4e38ff4360b6ea6bbb60dfd261",
+          "Name": "normal",
+          "Description": "Normal direction vector of plane\n\nVector\nDefault value : Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0, 0, 1)",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "02826e3414ae4e079cc70c8d092d7941",
+          "Name": "Plane",
+          "Description": "Plane created by origin and normal",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Plane.ByOriginNormal@Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Vector",
+      "Replication": "Auto",
+      "Description": "Create a Plane centered at root Point, with input normal Vector.\n\nPlane.ByOriginNormal (origin: Point = Autodesk.DesignScript.Geometry.Point.ByCoordinates(0, 0, 0), normal: Vector = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0, 0, 1)): Plane"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "3f2545be33214512bf757c68150c65ec",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "6a85f57ee58a40769f6beff686fa970b",
+          "Name": "x",
+          "Description": "X coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "594e4218737546d79fa22033ce653b3d",
+          "Name": "y",
+          "Description": "Y coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0790b4183020415980c34237f7a9a5c3",
+          "Name": "z",
+          "Description": "Z coordinate\n\ndouble\nDefault value : 0",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7a9334fae4644dbfb0ae2f621ffa2462",
+          "Name": "Vector",
+          "Description": "Vector created by coordinates",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Vector.ByCoordinates@double,double,double",
+      "Replication": "Auto",
+      "Description": "Form a Vector by 3 Euclidean coordinates\n\nVector.ByCoordinates (x: double = 0, y: double = 0, z: double = 0): Vector"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "d2939056b43c44faa038d3b6b3e5d72e",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "41a8512a7d2c4abb8ee362c9fad7715f",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 1.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "718aa5d8c7024f31a353e17942f9a582",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a47bb05e92834bd4b66a416d0ec06386",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 1.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "87c865e7416b43728109bd9dc28f9b28",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "54a8d7f596dd4c2f9021b3f3ffe7c6e2",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 1.0
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "02826e3414ae4e079cc70c8d092d7941",
+      "End": "4915bf4b5dd04211b482a372077fbfe7",
+      "Id": "8498e4d15f9a44aeb1c26060fb27b62b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7a9334fae4644dbfb0ae2f621ffa2462",
+      "End": "ae4b4f4e38ff4360b6ea6bbb60dfd261",
+      "Id": "98e6474a35694d65a2ab2c49d7d91572",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "41a8512a7d2c4abb8ee362c9fad7715f",
+      "End": "6a85f57ee58a40769f6beff686fa970b",
+      "Id": "c85938f5c8fc4cc7ae9182e372190286",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a47bb05e92834bd4b66a416d0ec06386",
+      "End": "594e4218737546d79fa22033ce653b3d",
+      "Id": "92f325b043b84f49917838fe5c0093ce",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "54a8d7f596dd4c2f9021b3f3ffe7c6e2",
+      "End": "0790b4183020415980c34237f7a9a5c3",
+      "Id": "8d70376236164219ac2c3b725aef7d62",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "a7f8804d-ce6b-4e54-a953-a71ff501d250",
+      "Binding": {
+        "ByPlane_InClassDecl-1_InFunctionScope-1_Instance0_a7f8804d-ce6b-4e54-a953-a71ff501d250": "H4sIAAAAAAAACh3LrQ6AIBQG0Hf5sneTHwXJFrPRa7jIcBaCozHfXefpZ2tIUgUBjbHW+yrnMjMCI4obUhwz+Zwmsj57kjglGoxSh8uitRqp/3jthNExllL/a4zt9YNnfwEKpgb1XQAAAA=="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "a7f8804dce6b4e54a953a71ff501d250",
+        "Name": "SketchPlane.ByPlane",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 946.3999999999999,
+        "Y": 228.80000000000004
+      },
+      {
+        "Id": "952f55000d3d427bbfaf00d7c5c22cbb",
+        "Name": "Plane.ByOriginNormal",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 656.8000000000001,
+        "Y": 230.39999999999998
+      },
+      {
+        "Id": "3f2545be33214512bf757c68150c65ec",
+        "Name": "Vector.ByCoordinates",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 374.4,
+        "Y": 229.6
+      },
+      {
+        "Id": "d2939056b43c44faa038d3b6b3e5d72e",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -78.70860534124637,
+        "Y": 104.71691394658748
+      },
+      {
+        "Id": "718aa5d8c7024f31a353e17942f9a582",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -73.58813056379825,
+        "Y": 261.45281899109784
+      },
+      {
+        "Id": "87c865e7416b43728109bd9dc28f9b28",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -75.93234421364997,
+        "Y": 421.4824925816024
+      }
+    ],
+    "Annotations": [],
+    "X": 345.6936506039932,
+    "Y": 159.20814447650537,
+    "Zoom": 1.3076413563671876
+  }
+}

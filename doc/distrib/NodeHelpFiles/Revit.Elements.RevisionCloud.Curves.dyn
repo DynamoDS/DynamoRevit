@@ -1,0 +1,492 @@
+{
+  "Uuid": "375148a1-1745-44e9-99f7-e99a0598e2bc",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.RevisionCloud.Curves",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "1be39d12b49c488a89c510b852c084d1",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9b48cae212f246399d6dd9195a200ab4",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 20.0
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NumberType": "Double",
+      "MaximumValue": 100.0,
+      "MinimumValue": 0.0,
+      "StepValue": 0.1,
+      "Id": "8cfbdfb0e5f14fa7802173512f0862f2",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "42e35664501d43debb8a91d545d87615",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces numeric values",
+      "InputValue": 40.0
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "729f744b7734412c856b7dd804861c7f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "7aa1ced1911e404fbf4d0831bfbf364e",
+          "Name": "coordinateSystem",
+          "Description": "Coordinate system of rectangle (center of rectangle)\n\nCoordinateSystem\nDefault value : Autodesk.DesignScript.Geometry.CoordinateSystem.ByOrigin(0, 0, 0)",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "59f1dec553574a90babf6b23e2014bbd",
+          "Name": "width",
+          "Description": "Width of rectangle\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b9abaa60ab6d45ccaa9e15b73de05c73",
+          "Name": "length",
+          "Description": "Length of rectangle\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "df4b215d0734436593bc3405d8a7a332",
+          "Name": "Rectangle",
+          "Description": "Rectangle created from width and length",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Rectangle.ByWidthLength@Autodesk.DesignScript.Geometry.CoordinateSystem,double,double",
+      "Replication": "Auto",
+      "Description": "Create a Rectangle centered at the input origin in the CoordinateSystem XY Plane, with specified width (X Axis length), and length (Y Axis length).\n\nRectangle.ByWidthLength (coordinateSystem: CoordinateSystem = Autodesk.DesignScript.Geometry.CoordinateSystem.ByOrigin(0, 0, 0), width: double = 1, length: double = 1): Rectangle"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "c90779acec594c7b9b9b8270de755528",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "f2c4deb34e894415bba40d1fdfac8d71",
+          "Name": "geometry",
+          "Description": "Autodesk.DesignScript.Geometry.Geometry",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e6a0362c75844bddb22c2f866cc0979a",
+          "Name": "Geometry[]",
+          "Description": "Geometry[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Geometry.Explode",
+      "Replication": "Auto",
+      "Description": "Separates compound or non-separated elements into their component parts.\n\nGeometry.Explode ( ): Geometry[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "68659318f0e4411cbadc8396e1764930",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "e696d86056814285badfa37348e9701c",
+          "Name": "curve",
+          "Description": "Autodesk.DesignScript.Geometry.Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e6b4929a2894428788501f37253f581d",
+          "Name": "Curve",
+          "Description": "A new Curve with the opposite direction",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.Reverse",
+      "Replication": "Auto",
+      "Description": "Reverse the direction of the curve\n\nCurve.Reverse ( ): Curve"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 96,
+      "SelectedString": "First Floor Plan",
+      "Id": "0e94f70cfb2142e4880dd084a7f93673",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6fbae2ee930c44969e90d634fcedb5b3",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.RevitRevisions, DSRevitNodesUI",
+      "SelectedIndex": 1,
+      "SelectedString": "Seq. 2 - Not For Construction",
+      "Id": "617b50d638244ffcb876953456bb2dcb",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8d8b0e3d2615444993682306b1adeee9",
+          "Name": "Revision",
+          "Description": "The selected Revision",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select an existing Revit Revision from the active document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1eeba0b1c7a84f3991982c56bd47874e",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "3d4d216ad0864a65a76df8c600b57c63",
+          "Name": "view",
+          "Description": "View to place element on\n\nView",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e80897b4d4c547a3842a1369b57d7197",
+          "Name": "curves",
+          "Description": "Cloud outline\n\nCurve[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a4c1f591c4d04cfb8097e79968586f50",
+          "Name": "revision",
+          "Description": "Revit revision\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "de11a82e91c74741ab85d1121d48537e",
+          "Name": "RevisionCloud",
+          "Description": "RevisionCloud",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.RevisionCloud.ByCurve@Revit.Elements.Views.View,Autodesk.DesignScript.Geometry.Curve[],Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "Construct a Revit RevisionCloud element by curves\n\nRevisionCloud.ByCurve (view: View, curves: Curve[], revision: Element): RevisionCloud"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "81d10251f2f64327b173d78a413b80cc",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "906186fff6504acc8406b75f72465e90",
+          "Name": "revisionCloud",
+          "Description": "Revit.Elements.RevisionCloud",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a5b049f1691e4c3fa4ddddf45db09cf6",
+          "Name": "Curve[]",
+          "Description": "Curve[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.RevisionCloud.Curves",
+      "Replication": "Auto",
+      "Description": "Get Revision cloud's curves\n\nRevisionCloud.Curves: Curve[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "9b48cae212f246399d6dd9195a200ab4",
+      "End": "59f1dec553574a90babf6b23e2014bbd",
+      "Id": "78362efde9284f19ab95727b24d8f910",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "42e35664501d43debb8a91d545d87615",
+      "End": "b9abaa60ab6d45ccaa9e15b73de05c73",
+      "Id": "b8c0b3033d7b4be7a66beaaacaa16d3d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "df4b215d0734436593bc3405d8a7a332",
+      "End": "f2c4deb34e894415bba40d1fdfac8d71",
+      "Id": "9c6c33df9bd14ee7aa40f49dee3d2c05",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e6a0362c75844bddb22c2f866cc0979a",
+      "End": "e696d86056814285badfa37348e9701c",
+      "Id": "64941e84abca402698e6dcf672a7bb40",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e6b4929a2894428788501f37253f581d",
+      "End": "e80897b4d4c547a3842a1369b57d7197",
+      "Id": "b6c958adc2174566940b52ab6b1726b5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6fbae2ee930c44969e90d634fcedb5b3",
+      "End": "3d4d216ad0864a65a76df8c600b57c63",
+      "Id": "c4b3848d467846a19f20e82294a61ed5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8d8b0e3d2615444993682306b1adeee9",
+      "End": "a4c1f591c4d04cfb8097e79968586f50",
+      "Id": "5a12bdb11467457aadd45f7833753da0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "de11a82e91c74741ab85d1121d48537e",
+      "End": "906186fff6504acc8406b75f72465e90",
+      "Id": "f70dc725af4541acaa30598cc115af8b",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "1eeba0b1-c7a8-4f39-9198-2c56bd47874e",
+      "Binding": {
+        "ByCurve_InClassDecl-1_InFunctionScope-1_Instance0_1eeba0b1-c7a8-4f39-9198-2c56bd47874e": "H4sIAAAAAAAACh3LKw6AMBAFwLs8zSYthX7QmGoki9ilQDAIUke4OwnjZ35QpAoGPIyp3ud15JExMKzGIPsaaC3aUeeCkIpT8prK7nTz2m9kTBuTlMRoGPmq/229tybaF+/yAVaWlp1fAAAA"
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "1be39d12b49c488a89c510b852c084d1",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 164.8,
+        "Y": 159.99999999999997
+      },
+      {
+        "Id": "8cfbdfb0e5f14fa7802173512f0862f2",
+        "Name": "Number Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 166.40000000000003,
+        "Y": 320.8
+      },
+      {
+        "Id": "729f744b7734412c856b7dd804861c7f",
+        "Name": "Rectangle.ByWidthLength",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 629.8992772487799,
+        "Y": 159.66905307971294
+      },
+      {
+        "Id": "c90779acec594c7b9b9b8270de755528",
+        "Name": "Geometry.Explode",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1010.5659027330407,
+        "Y": 156.28032941071353
+      },
+      {
+        "Id": "68659318f0e4411cbadc8396e1764930",
+        "Name": "Curve.Reverse",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1353.9565678583087,
+        "Y": 151.7620311853812
+      },
+      {
+        "Id": "0e94f70cfb2142e4880dd084a7f93673",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1328.6208009743852,
+        "Y": -18.803726820919962
+      },
+      {
+        "Id": "617b50d638244ffcb876953456bb2dcb",
+        "Name": "Select Revision",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1289.7651786787558,
+        "Y": 447.08184711461854
+      },
+      {
+        "Id": "1eeba0b1c7a84f3991982c56bd47874e",
+        "Name": "RevisionCloud.ByCurve",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1702.9951057652424,
+        "Y": 112.22692171372188
+      },
+      {
+        "Id": "81d10251f2f64327b173d78a413b80cc",
+        "Name": "RevisionCloud.Curves",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2091.9084141574176,
+        "Y": 109.36210004781381
+      }
+    ],
+    "Annotations": [],
+    "X": -95.4276874321763,
+    "Y": 354.2066251453113,
+    "Zoom": 0.9524898671331772
+  }
+}
