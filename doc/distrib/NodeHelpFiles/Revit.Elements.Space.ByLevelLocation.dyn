@@ -1,0 +1,338 @@
+{
+  "Uuid": "41cd4cec-1c82-49b5-b3e0-1f409242feba",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Space.ByLevelLocation",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "563895d16d5643c2a2041c84f3ed5d1f",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b03d8bf0676e4cb7aa1380b2d8add180",
+          "Name": "level",
+          "Description": "Level the space is hosted on\n\nLevel",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5d1390fdb60342ba9a8a862573e41602",
+          "Name": "location",
+          "Description": "Location for the center of the space\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b5fa62b24ac3406aaadbeb84fb238e69",
+          "Name": "name",
+          "Description": "Space name\n\nstring\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "51c61c8c197c4e20bedc5f3e8b819f2e",
+          "Name": "number",
+          "Description": "Space number\n\nstring\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8a11940ba0b3442db6da7917320409f1",
+          "Name": "Space",
+          "Description": "Space",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Space.ByLevelLocation@Revit.Elements.Level,Autodesk.DesignScript.Geometry.Point,string,string",
+      "Replication": "Auto",
+      "Description": "Create a Revit Space Element by level and location.\n\nSpace.ByLevelLocation (level: Level, location: Point, name: string = \"\", number: string = \"\"): Space"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
+      "SelectedIndex": 4,
+      "SelectedString": "L1 - Block 35",
+      "Id": "1a9ab2a9799c49428383e57bc75fa47e",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a828cff8241949779f51923e4dcbf73d",
+          "Name": "Levels",
+          "Description": "The selected Levels",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a level in the active document"
+    },
+    {
+      "ConcreteType": "Dynamo.Nodes.DSModelElementSelection, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [
+        "8b7e8681-7346-452a-b757-63c42dc46dd6-00115567"
+      ],
+      "Id": "dcd8ec4539fe4bc8beb88111d6aab582",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "39d1f63f67114da894b4604dc8bbec8a",
+          "Name": "Element",
+          "Description": "The selected elements.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a model element from the document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "7fa78b43f22743aa89ae37440359fcd8",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "652f47ed1f124379b705f062dfaef8de",
+          "Name": "familyInstance",
+          "Description": "Revit.Elements.FamilyInstance",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f8f4f8740c4c469980bb2bd021a235ae",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.FamilyInstance.Location",
+      "Replication": "Auto",
+      "Description": "Gets the location of the specific family instance\n\nFamilyInstance.Location: Point"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "d1a5a4344fe8435a8ffd23da1620ea2e",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8834c51ffae845d7bf4b43eb61a3454e",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Dynamo Space"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "aea002a14bb9448da741ae4b563e4c90",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a137ffd9683841d29a0f4993d6279980",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "DYN01"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "a828cff8241949779f51923e4dcbf73d",
+      "End": "b03d8bf0676e4cb7aa1380b2d8add180",
+      "Id": "a4966e26962444d2b15fdeff576c8d88",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "39d1f63f67114da894b4604dc8bbec8a",
+      "End": "652f47ed1f124379b705f062dfaef8de",
+      "Id": "c20ca2a325af4b12a8880c3708360566",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f8f4f8740c4c469980bb2bd021a235ae",
+      "End": "5d1390fdb60342ba9a8a862573e41602",
+      "Id": "3be6d4d4177b44779cd189bfc65bb51e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8834c51ffae845d7bf4b43eb61a3454e",
+      "End": "b5fa62b24ac3406aaadbeb84fb238e69",
+      "Id": "3e18fc60db7440328f535526c38b1483",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a137ffd9683841d29a0f4993d6279980",
+      "End": "51c61c8c197c4e20bedc5f3e8b819f2e",
+      "Id": "aa95a520a3d44cee95b9075e0bcadfad",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "563895d1-6d56-43c2-a204-1c84f3ed5d1f",
+      "Binding": {
+        "ByLevelLocation_InClassDecl-1_InFunctionScope-1_Instance0_563895d1-6d56-43c2-a204-1c84f3ed5d1f": "H4sIAAAAAAAACh3LKw6AMBAFwLs8zSZtKUsXjalGsoi2fIJBkDrC3UkYP/ODNdWEAY9iqvd5HXFUDIqycSsm7OS9L+RttpRdn8nmfetCLyJByBgXJBVWNIp41f86ZmvYvXiXD5OTmIZfAAAA"
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "563895d16d5643c2a2041c84f3ed5d1f",
+        "Name": "Space.ByLevelLocation",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 579.5,
+        "Y": 676.8574514038877
+      },
+      {
+        "Id": "1a9ab2a9799c49428383e57bc75fa47e",
+        "Name": "Levels",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 224.36393088552916,
+        "Y": 511.04103671706264
+      },
+      {
+        "Id": "dcd8ec4539fe4bc8beb88111d6aab582",
+        "Name": "Select Model Element",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -111.63606911447084,
+        "Y": 660.0410367170625
+      },
+      {
+        "Id": "7fa78b43f22743aa89ae37440359fcd8",
+        "Name": "FamilyInstance.Location",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 224.36393088552916,
+        "Y": 660.0410367170625
+      },
+      {
+        "Id": "d1a5a4344fe8435a8ffd23da1620ea2e",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 223.5,
+        "Y": 820.0
+      },
+      {
+        "Id": "aea002a14bb9448da741ae4b563e4c90",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 223.5,
+        "Y": 967.0
+      }
+    ],
+    "Annotations": [],
+    "X": 589.3677884332483,
+    "Y": -668.0688940334096,
+    "Zoom": 1.545620359375
+  }
+}
