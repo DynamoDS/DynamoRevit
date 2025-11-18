@@ -1,0 +1,262 @@
+{
+  "Uuid": "40fa75ca-1ca5-4a1c-beeb-e25e5c57949d",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.PerformanceAdviserRule.ById",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Point": {
+        "Key": "Autodesk.DesignScript.Geometry.Point",
+        "Value": "ProtoGeometry.dll"
+      },
+      "Line": {
+        "Key": "Autodesk.DesignScript.Geometry.Line",
+        "Value": "ProtoGeometry.dll"
+      },
+      "Wall": {
+        "Key": "Revit.Elements.Wall",
+        "Value": "RevitNodes.dll"
+      }
+    }
+  },
+  "Inputs": [
+    {
+      "Id": "c5f55ef325aa45ac93ba702747ee950c",
+      "Name": "Performance Adviser Rules",
+      "Type": "selection",
+      "Type2": "dropdownSelection",
+      "Value": "Project contains unused families and types",
+      "Description": "All Performance Adviser rules.",
+      "SelectedIndex": 7
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.PerformanceAdviserRules, DSRevitNodesUI",
+      "SelectedIndex": 7,
+      "SelectedString": "Project contains unused families and types",
+      "Id": "c5f55ef325aa45ac93ba702747ee950c",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fbd076e5cc4642cc8204fd8cde2a0222",
+          "Name": "Performance Adviser Rules",
+          "Description": "The selected Performance Adviser Rules",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All Performance Adviser rules."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "5c21158a1eb8477889f339dd7e858ebf",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "9cb46a7f217948e0934c31ec0b93b512",
+          "Name": "performanceAdviserRule",
+          "Description": "Revit.Elements.PerformanceAdviserRule",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "25197c1e07f9436285d60732b3a4805f",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.PerformanceAdviserRule.RuleId",
+      "Replication": "Auto",
+      "Description": "The id of the rule.\n\nPerformanceAdviserRule.RuleId: var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "8c1c10fe7bbd4a3babca9bed452c5499",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "3d93068ce38b4c089916e574cf6346be",
+          "Name": "guid",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ab1e4c473a11475485f38cf564e952e2",
+          "Name": "PerformanceAdviserRule",
+          "Description": "PerformanceAdviserRule",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.PerformanceAdviserRule.ById@string",
+      "Replication": "Auto",
+      "Description": "Create Performance Adviser Rule by Id\n\nPerformanceAdviserRule.ById (guid: string): PerformanceAdviserRule"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.FromObject, CoreNodeModels",
+      "Id": "3d1c3989b8254dd895ca7ba445c16b17",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "582d8f83ca154b54a81675d2eaedfc9b",
+          "Name": "object",
+          "Description": "Object to be serialized",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "aec7d36af7744ecb920eb8e384808ec2",
+          "Name": "string",
+          "Description": "String representation of the object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Converts an object to a string representation"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "fbd076e5cc4642cc8204fd8cde2a0222",
+      "End": "9cb46a7f217948e0934c31ec0b93b512",
+      "Id": "6195a251040b4992a809da8e75c0b93d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "25197c1e07f9436285d60732b3a4805f",
+      "End": "582d8f83ca154b54a81675d2eaedfc9b",
+      "Id": "974f0c47add9438a925dc3c11084ed00",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "aec7d36af7744ecb920eb8e384808ec2",
+      "End": "3d93068ce38b4c089916e574cf6346be",
+      "Id": "1cde77e8e7074899a4f8f9f78e29eb00",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.5",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -15.750494956970215,
+      "EyeY": 22.64636993408203,
+      "EyeZ": 43.960723876953125,
+      "LookX": 10.750494956970215,
+      "LookY": -11.646369934082031,
+      "LookZ": -51.960723876953125,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "c5f55ef325aa45ac93ba702747ee950c",
+        "Name": "Performance Adviser Rules",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -439.68836957831365,
+        "Y": 333.10871592862253
+      },
+      {
+        "Id": "5c21158a1eb8477889f339dd7e858ebf",
+        "Name": "PerformanceAdviserRule.RuleId",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 208.69291103058697,
+        "Y": 331.8312649550549
+      },
+      {
+        "Id": "8c1c10fe7bbd4a3babca9bed452c5499",
+        "Name": "PerformanceAdviserRule.ById",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 958.610961695992,
+        "Y": 336.9121120386889
+      },
+      {
+        "Id": "3d1c3989b8254dd895ca7ba445c16b17",
+        "Name": "String from Object",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 637.8662282844073,
+        "Y": 333.8599127760529
+      }
+    ],
+    "Annotations": [],
+    "X": 690.8798500346393,
+    "Y": 196.9255846148515,
+    "Zoom": 0.9968202489401115
+  }
+}
