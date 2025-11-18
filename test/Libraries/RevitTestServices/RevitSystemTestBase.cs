@@ -240,15 +240,12 @@ namespace RevitTestServices
                 var userDataFolder = Path.Combine(Environment.GetFolderPath(
                   Environment.SpecialFolder.ApplicationData),
                   "Dynamo", "Dynamo Revit");
-                var commonDataFolder = Path.Combine(Environment.GetFolderPath(
-                  Environment.SpecialFolder.CommonApplicationData),
-                  "Autodesk", "RVT " + commandData.Application.Application.VersionNumber, "Dynamo");
 
                 // Set Path Resolver's user data folder and common data folder with DynamoRevit runtime.
                 var pathResolverParams = new TestPathResolverParams()
                 {
                     UserDataRootFolder = userDataFolder,
-                    CommonDataRootFolder = commonDataFolder
+                    CommonDataRootFolder = DynamoRevitApp.DynamoCorePath
                 };
                 RevitTestPathResolver revitTestPathResolver = new RevitTestPathResolver(pathResolverParams);
                 revitTestPathResolver.InitializePreloadedLibraries();
