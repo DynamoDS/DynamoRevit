@@ -1,0 +1,148 @@
+{
+  "Uuid": "cfb0dbaf-34b1-42cc-b682-902c7918a038",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AnalyticalAutomation.Utilities.UnitsUtilities.GetCurrentProjectLengthUnit",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "1192a22b109f422ca862951be64a11d4",
+      "NodeType": "FunctionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e64f90eab8bf4f46be257ac4c70430fe",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AnalyticalAutomation.Utilities.UnitsUtilities.GetCurrentProjectLengthUnit",
+      "Replication": "Auto",
+      "Description": "UnitsUtilities.GetCurrentProjectLengthUnit ( ): string"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 303.42857142857144,
+      "WatchHeight": 56.57142857142857,
+      "Id": "e710281d221340339c2e1e96481518ec",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "cc0487e74a4845ec9c93f7ebf3e778c2",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b5a06300c45e4ad595b6d03fdd04b2f2",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e64f90eab8bf4f46be257ac4c70430fe",
+      "End": "cc0487e74a4845ec9c93f7ebf3e778c2",
+      "Id": "9f12a869a0b545ea8c0d8e263034dd7a",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.6",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.1",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.0.9395",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "1192a22b109f422ca862951be64a11d4",
+        "Name": "UnitsUtilities.GetCurrentProjectLengthUnit",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 318.28571428571394,
+        "Y": 197.14285714285728
+      },
+      {
+        "Id": "e710281d221340339c2e1e96481518ec",
+        "Name": "Watch",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 781.1428571428571,
+        "Y": 197.14285714285728
+      }
+    ],
+    "Annotations": [],
+    "X": -419.0910146048935,
+    "Y": 8.932972241029006,
+    "Zoom": 1.4109681787406902
+  }
+}

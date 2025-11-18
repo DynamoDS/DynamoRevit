@@ -1,0 +1,205 @@
+{
+  "Uuid": "38522659-0bfc-4028-be96-2e4cc10f1597",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AnalyticalAutomation.RevitElements.Element.HasActualLocation",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "4b669af506724869af16eefea14fdfca",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "451871e4905e4e71983abf782fa0175a",
+          "Name": "element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ef0b2e158bf34891ae145777c34cebdf",
+          "Name": "bool",
+          "Description": "Returns true if element is eligible for getting the actual location, otherwise returns false",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7ddd4a2af74149f5b96fb47cd91f6fa2",
+          "Name": "exceptionMessage",
+          "Description": "The error message",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AnalyticalAutomation.RevitElements.Element.HasActualLocation@Revit.Elements.Element",
+      "Replication": "Auto",
+      "Description": "Checks if a Revit model element is eligible for getting the actual location. If the method result is false, it provides the exception message informing about the cause.\n\nElement.HasActualLocation (element: Element): var[]..[]"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementById, DSRevitNodesUI",
+      "Id": "585edbb1fbeb430cbce4708baca8d8a3",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "d965f7dda4534b1abdd0c46137d49915",
+          "Name": "Id",
+          "Description": "Element Id as string, int or ElementId",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ed67736cf756418dba8cd092d7020b26",
+          "Name": "Element",
+          "Description": "The list of elements matching the query.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Gets the Element with the specified Id"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NumberType": "Integer",
+      "MaximumValue": 769857,
+      "MinimumValue": 769857,
+      "StepValue": 1,
+      "Id": "a92905836e6a4c7490e4d821a521083e",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "479c89b0551242bf8d7e19acd21aaa2b",
+          "Name": "",
+          "Description": "Int64",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces integer values",
+      "InputValue": 769857
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ed67736cf756418dba8cd092d7020b26",
+      "End": "451871e4905e4e71983abf782fa0175a",
+      "Id": "042aefc0ae7d4b8596ebc3603d6955ef",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "479c89b0551242bf8d7e19acd21aaa2b",
+      "End": "d965f7dda4534b1abdd0c46137d49915",
+      "Id": "dc466a0b86924b30a06b3c41a2c3abcc",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.13",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "2.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.0.9395",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -37.28171157836914,
+      "EyeY": 45.97184753417969,
+      "EyeZ": 148.02828979492188,
+      "LookX": 32.28171157836914,
+      "LookY": -34.97184753417969,
+      "LookZ": -156.02828979492188,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "4b669af506724869af16eefea14fdfca",
+        "Name": "Element.HasActualLocation",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -214.3265170523353,
+        "Y": -597.885873506415
+      },
+      {
+        "Id": "585edbb1fbeb430cbce4708baca8d8a3",
+        "Name": "Element By Id",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -474.7053575659341,
+        "Y": -597.885873506415
+      },
+      {
+        "Id": "a92905836e6a4c7490e4d821a521083e",
+        "Name": "Integer Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -905.9413409366757,
+        "Y": -597.885873506415
+      }
+    ],
+    "Annotations": [],
+    "X": 924.0878063016223,
+    "Y": 808.478499332688,
+    "Zoom": 0.9869157812990433
+  }
+}

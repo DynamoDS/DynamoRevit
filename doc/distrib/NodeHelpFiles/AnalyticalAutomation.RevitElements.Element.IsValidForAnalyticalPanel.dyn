@@ -1,0 +1,251 @@
+{
+  "Uuid": "38522659-0bfc-4028-be96-2e4cc10f1597",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AnalyticalAutomation.RevitElements.Element.IsValidForAnalyticalPanel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e636eb41d28648b7b58c53c3366bf00d",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "9c97470c22bc49c096e41ea441c14195",
+          "Name": "element",
+          "Description": "Input Element\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0b69b60721124f2b8435bd3caa8d4a39",
+          "Name": "checkOpenings",
+          "Description": "Specifies if the element openings (if exist) also should be checked for their validity to form AnalyticalOpenings.\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fbd4cb3ff86546b3b45be0a36aeb2bdd",
+          "Name": "bool",
+          "Description": "Returns true if element is valid for being a base for AnalyticalPanel, otherwise returns false",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c25a60d005c94bf98f09f273025c9062",
+          "Name": "exceptionMessage",
+          "Description": "The error message",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "AnalyticalAutomation.RevitElements.Element.IsValidForAnalyticalPanel@Revit.Elements.Element,bool",
+      "Replication": "Auto",
+      "Description": "Checks if a Revit model element is valid for being a base for AnalyticalPanel. If so, it can be an input of the AnalyticalPanel.ByElement method. If the method result is false, it provides the exception message informing about the cause.\n\nElement.IsValidForAnalyticalPanel (element: Element, checkOpenings: bool = true): var[]..[]"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementById, DSRevitNodesUI",
+      "Id": "c77b520185d7434bad7bd5548033647b",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "f25522c0b4ff46a280874e118f17b31e",
+          "Name": "Id",
+          "Description": "Element Id as string, int or ElementId",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "58cf298faf6249bcb5cf235a5dd2eed0",
+          "Name": "Element",
+          "Description": "The list of elements matching the query.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Gets the Element with the specified Id"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NumberType": "Integer",
+      "MaximumValue": 769857,
+      "MinimumValue": 687839,
+      "StepValue": 1,
+      "Id": "b36c2bca414a470588e8e5b3ea57ea5b",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d43057d5c0894ad3b927ef5249533b79",
+          "Name": "",
+          "Description": "Int64",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces integer values",
+      "InputValue": 687839
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NumberType": "Double",
+      "Id": "51e56905d9534054be4ba0a680307633",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "31187f7031e847df8e62d5f2a2330c35",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number.",
+      "InputValue": 1.0
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "58cf298faf6249bcb5cf235a5dd2eed0",
+      "End": "9c97470c22bc49c096e41ea441c14195",
+      "Id": "87a866fc21384d4b9bda680ad540d16f",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "d43057d5c0894ad3b927ef5249533b79",
+      "End": "f25522c0b4ff46a280874e118f17b31e",
+      "Id": "5200fe6d20aa40e4a85c1a7a1f1265a9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "31187f7031e847df8e62d5f2a2330c35",
+      "End": "0b69b60721124f2b8435bd3caa8d4a39",
+      "Id": "e5ddf235d0684910bd0557f009f3407f",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.13",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "2.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.6.0.9395",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -37.28171157836914,
+      "EyeY": 45.97184753417969,
+      "EyeZ": 148.02828979492188,
+      "LookX": 32.28171157836914,
+      "LookY": -34.97184753417969,
+      "LookZ": -156.02828979492188,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "e636eb41d28648b7b58c53c3366bf00d",
+        "Name": "Element.IsValidForAnalyticalPanel",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 225.017045469614,
+        "Y": -753.5281326558496
+      },
+      {
+        "Id": "c77b520185d7434bad7bd5548033647b",
+        "Name": "Element By Id",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -8.919006076720393,
+        "Y": -754.8071016676893
+      },
+      {
+        "Id": "b36c2bca414a470588e8e5b3ea57ea5b",
+        "Name": "Integer Slider",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": -440.154989447462,
+        "Y": -754.8071016676893
+      },
+      {
+        "Id": "51e56905d9534054be4ba0a680307633",
+        "Name": "Number",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 23.233262816951765,
+        "Y": -579.7250382805579
+      }
+    ],
+    "Annotations": [],
+    "X": 453.28325770320976,
+    "Y": 901.2660699741235,
+    "Zoom": 1.0
+  }
+}
