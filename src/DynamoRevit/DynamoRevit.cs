@@ -603,9 +603,6 @@ namespace Dynamo.Applications
             var userDataFolder = Path.Combine(Environment.GetFolderPath(
                 Environment.SpecialFolder.ApplicationData),
                 "Dynamo", "Dynamo Revit");
-            var commonDataFolder = Path.Combine(Environment.GetFolderPath(
-                Environment.SpecialFolder.CommonApplicationData),
-                "Autodesk", "RVT " + commandData.Application.Application.VersionNumber, "Dynamo");
 
             bool isAutomationMode = CheckJournalForKey(extCommandData, JournalKeys.AutomationModeKey);
 
@@ -620,7 +617,7 @@ namespace Dynamo.Applications
                 DynamoCorePath = corePath,
                 DynamoHostPath = dynamoRevitRoot,
                 GeometryFactoryPath = GetGeometryFactoryPath(corePath, loadedLibGVersion),
-                PathResolver = new RevitPathResolver(userDataFolder, commonDataFolder),
+                PathResolver = new RevitPathResolver(userDataFolder, corePath),
                 Context = GetRevitContext(commandData),
                 SchedulerThread = new RevitSchedulerThread(commandData.Application),
                 StartInTestMode = isAutomationMode,
