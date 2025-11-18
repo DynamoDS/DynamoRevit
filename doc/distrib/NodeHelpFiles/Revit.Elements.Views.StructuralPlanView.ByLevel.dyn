@@ -1,0 +1,201 @@
+{
+  "Uuid": "3ef6c4b1-438f-4eb7-b895-59f9230e2643",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.StructuralPlanView.ByLevel",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "98014b44a69e44f7a35b7adab3a558e2",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "5baae7822cdb45c8b29622f935a3eb5a",
+          "Name": "level",
+          "Description": "The Level on which the StructuralPlanView is based.\n\nLevel",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "db920478acdb4a1494d4da46f524517c",
+          "Name": "StructuralPlanView",
+          "Description": "A StructuralPlanView if successful.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.StructuralPlanView.ByLevel@Revit.Elements.Level",
+      "Replication": "Auto",
+      "Description": "Create a Structural Plan View at the given Level.\n\nStructuralPlanView.ByLevel (level: Level): StructuralPlanView"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
+      "SelectedIndex": 7,
+      "SelectedString": "L2",
+      "Id": "8489fb4941c24479871b2469b3ecd0ee",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9f37c08de63d4ef3ad141aac8f7c7497",
+          "Name": "Levels",
+          "Description": "The selected Levels",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Select a level in the active document"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "2f40846c5c5042f991ce583cdea46ae4",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "b09642a17a0843c199d6059425b85112",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1a1d37f8ad634dd19045c8ede65a7a5b",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "db920478acdb4a1494d4da46f524517c",
+      "End": "b09642a17a0843c199d6059425b85112",
+      "Id": "482deb83047a4265bbe2ef1d0b5098c5",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9f37c08de63d4ef3ad141aac8f7c7497",
+      "End": "5baae7822cdb45c8b29622f935a3eb5a",
+      "Id": "ce011358a35d4f67a4fbafbae85b7c2b",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "98014b44-a69e-44f7-a35b-7adab3a558e2",
+      "Binding": {
+        "ByLevel_InClassDecl-1_InFunctionScope-1_Instance0_98014b44-a69e-44f7-a35b-7adab3a558e2": "H4sIAAAAAAAACh3Lqw6EMBAF0H+5mkmmU1paNKZ65c6K7vAIBkHqCP9OwvHne2GurWLEpfi0cz+2MilGhc/R0iCe2JZEvQ8rpRqEQi8WOJuYCDFLyn/Hik5RjvZeidE5H2/cvwdT1T/vXwAAAA=="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "98014b44a69e44f7a35b7adab3a558e2",
+        "Name": "StructuralPlanView.ByLevel",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 875.0,
+        "Y": 631.5
+      },
+      {
+        "Id": "8489fb4941c24479871b2469b3ecd0ee",
+        "Name": "Levels",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 495.0,
+        "Y": 631.5
+      },
+      {
+        "Id": "2f40846c5c5042f991ce583cdea46ae4",
+        "Name": "Element.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1280.0,
+        "Y": 631.5
+      }
+    ],
+    "Annotations": [],
+    "X": -655.5504054626883,
+    "Y": -720.7919757048837,
+    "Zoom": 1.7835993623828124
+  }
+}

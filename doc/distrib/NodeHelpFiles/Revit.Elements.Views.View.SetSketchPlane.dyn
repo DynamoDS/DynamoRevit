@@ -1,0 +1,575 @@
+{
+  "Uuid": "3ef6c4b1-438f-4eb7-b895-59f9230e2643",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Revit.Elements.Views.View.SetSketchPlane",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfType, DSRevitNodesUI",
+      "Id": "80169af03aa4403584068d34831908e6",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "28873b991c93442fbe97638c4650b114",
+          "Name": "element class",
+          "Description": "An element class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c72054dfe36d40428696f937bf6af51e",
+          "Name": "elements",
+          "Description": "All elements in the active document of a given class.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All elements in the active document of a given class."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementTypes, DSRevitNodesUI",
+      "SelectedIndex": 317,
+      "SelectedString": "SketchPlane",
+      "Id": "eab8038d7ed04f228eed690a7dce6b88",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7a609cf97f1f481c949b562122b84be8",
+          "Name": "Classes",
+          "Description": "The selected Classes",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All element subclasses."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e1ef46fcb26545549dcb22525b5b21bd",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "bc6d0489911d4dd580cafdc3e47c447e",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a4e81694501f44609cb890dd1ee5a462",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Views, DSRevitNodesUI",
+      "SelectedIndex": 294,
+      "SelectedString": "WV_3D Walls Only",
+      "Id": "ccb909b69a4d47d198ec4d3d450bc4ff",
+      "NodeType": "ExtensionNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5b564e30527f463ea292b08ad23e2443",
+          "Name": "Views",
+          "Description": "The selected Views",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All views available in the current document."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "e6b05fe5962d4663a0f27cec5820d094",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "008a635e42c9445786b20ab57a1c9248",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9ecfcc45fe6844719287bb6fecfdaf59",
+          "Name": "SketchPlane",
+          "Description": "SketchPlane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View.SketchPlane",
+      "Replication": "Auto",
+      "Description": "The sketch plane assigned to the view for model curve creation.\n\nView.SketchPlane: SketchPlane"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "Id": "4e0752f6ffcd4f3f8ec80cb19a4922fe",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "91dd9623055a41a58aa04413eef491a4",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string",
+      "InputValue": "Parking"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "cdd4c4947a4a4467bdeebccc07b2cc66",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "35f9268a0dda4f86b833f057e4484a9f",
+          "Name": "list",
+          "Description": "List to search in. If this argument is null, an empty list is returned.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3c9ab43855d741f0923c64de3437f9a3",
+          "Name": "item",
+          "Description": "Item to look for.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "40ccbf98bb0541c09a78743d121c026d",
+          "Name": "indices",
+          "Description": "A list of zero-based indices of all occurrences of the item if found, or an empty list if the item does not exist in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.AllIndicesOf@var[]..[],var",
+      "Replication": "Auto",
+      "Description": "Given an item, returns the zero-based indices of all its occurrences in the list. If the item cannot be found, an empty list is returned.\n\nList.AllIndicesOf (list: var[]..[], item: var): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "21aeabde7fb84e98ba3cf8dcefbb5ae7",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "9ad135a783fe4e708c1cea925448dfdc",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "af8bf1c0b4294a20b9d1d450691f1d82",
+          "Name": "sketchPlane",
+          "Description": "SketchPlane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e556c9fce7cf4df7965f237f257c0f5d",
+          "Name": "View",
+          "Description": "View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View.SetSketchPlane@Revit.Elements.SketchPlane",
+      "Replication": "Auto",
+      "Description": "Set SketchPlane of View.\n\nView.SetSketchPlane (sketchPlane: SketchPlane): View"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "90b219254476477b9b09d71ee557b204",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "0e6d5aeee6ac41af825bbc08b287f4c1",
+          "Name": "list",
+          "Description": "List to get the first item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e4b7df95222748d291ae430e2421bad1",
+          "Name": "item",
+          "Description": "First item in the list.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.FirstItem@var[]..[]",
+      "Replication": "Auto",
+      "Description": "Returns the first item in a list.\n\nList.FirstItem (list: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "db16f1fc8c1048cebe44cf47ea6a42d3",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "97b81a7a0aab4284946a134d80e99600",
+          "Name": "list",
+          "Description": "List to fetch an item from.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "262ae79b91ef43b49b9c2bf3ea015a78",
+          "Name": "index",
+          "Description": "Index of the item to be fetched.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3f41cd5e11fb43b3b5a179b5d05bd8bd",
+          "Name": "item",
+          "Description": "Item in the list at the given index.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "DSCore.List.GetItemAtIndex@var[]..[],int",
+      "Replication": "Auto",
+      "Description": "Returns an item from the given list that's located at the specified index.\n\nList.GetItemAtIndex (list: var[]..[], index: int): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "Id": "9fc332f282554477bd2a6ee2e02b3392",
+      "NodeType": "FunctionNode",
+      "Inputs": [
+        {
+          "Id": "d435de8742a549c5acefa80f61bf01a7",
+          "Name": "view",
+          "Description": "Revit.Elements.Views.View",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "44d59c13cb0a4ce8a607068c323c8943",
+          "Name": "SketchPlane",
+          "Description": "SketchPlane",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "FunctionSignature": "Revit.Elements.Views.View.SketchPlane",
+      "Replication": "Auto",
+      "Description": "The sketch plane assigned to the view for model curve creation.\n\nView.SketchPlane: SketchPlane"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "c72054dfe36d40428696f937bf6af51e",
+      "End": "bc6d0489911d4dd580cafdc3e47c447e",
+      "Id": "3d7275c93d2c4316a69650e783e392cd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c72054dfe36d40428696f937bf6af51e",
+      "End": "97b81a7a0aab4284946a134d80e99600",
+      "Id": "125495732a544d9eba9f8f622b0b3a4b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7a609cf97f1f481c949b562122b84be8",
+      "End": "28873b991c93442fbe97638c4650b114",
+      "Id": "ebc20cdcdb4242b2b7b7b9deb92620f4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a4e81694501f44609cb890dd1ee5a462",
+      "End": "35f9268a0dda4f86b833f057e4484a9f",
+      "Id": "a7c4a516973646d9b9bb58e1dffff71a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5b564e30527f463ea292b08ad23e2443",
+      "End": "008a635e42c9445786b20ab57a1c9248",
+      "Id": "ce62b7f37e7946dbb4e8c7e3e6509845",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5b564e30527f463ea292b08ad23e2443",
+      "End": "9ad135a783fe4e708c1cea925448dfdc",
+      "Id": "fa8ff9cfc42d46248716a3b8ceef0241",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "91dd9623055a41a58aa04413eef491a4",
+      "End": "3c9ab43855d741f0923c64de3437f9a3",
+      "Id": "6c5cf1d7c85943f2951a9b238793871a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "40ccbf98bb0541c09a78743d121c026d",
+      "End": "0e6d5aeee6ac41af825bbc08b287f4c1",
+      "Id": "c94b81b9efe34e6fa3f943ca5820e529",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e556c9fce7cf4df7965f237f257c0f5d",
+      "End": "d435de8742a549c5acefa80f61bf01a7",
+      "Id": "6676d4d37ad24f8da5234071daf5d8e1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e4b7df95222748d291ae430e2421bad1",
+      "End": "262ae79b91ef43b49b9c2bf3ea015a78",
+      "Id": "229eab2e6638452fa7ce5866416a1d45",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3f41cd5e11fb43b3b5a179b5d05bd8bd",
+      "End": "af8bf1c0b4294a20b9d1d450691f1d82",
+      "Id": "4f485a76e62542d28e954ddff287be54",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": true,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "3.4",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "9.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "3.4.1.7055",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "80169af03aa4403584068d34831908e6",
+        "Name": "All Elements of Class",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 659.1054403383064,
+        "Y": 635.586149127786
+      },
+      {
+        "Id": "eab8038d7ed04f228eed690a7dce6b88",
+        "Name": "Element Classes",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 358.24483146990906,
+        "Y": 635.1647385914698
+      },
+      {
+        "Id": "e1ef46fcb26545549dcb22525b5b21bd",
+        "Name": "Element.Name",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 970.1197990875339,
+        "Y": 726.3297060325426
+      },
+      {
+        "Id": "ccb909b69a4d47d198ec4d3d450bc4ff",
+        "Name": "Views",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1967.2175066616642,
+        "Y": 521.8824957496997
+      },
+      {
+        "Id": "e6b05fe5962d4663a0f27cec5820d094",
+        "Name": "View.SketchPlane",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2638.999622018892,
+        "Y": 527.6969291550761
+      },
+      {
+        "Id": "4e0752f6ffcd4f3f8ec80cb19a4922fe",
+        "Name": "String",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1262.6650240340318,
+        "Y": 924.5164369264844
+      },
+      {
+        "Id": "cdd4c4947a4a4467bdeebccc07b2cc66",
+        "Name": "List.AllIndicesOf",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1469.6662755832117,
+        "Y": 809.2621422240668
+      },
+      {
+        "Id": "21aeabde7fb84e98ba3cf8dcefbb5ae7",
+        "Name": "View.SetSketchPlane",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2307.8532652301715,
+        "Y": 699.3068538309967
+      },
+      {
+        "Id": "90b219254476477b9b09d71ee557b204",
+        "Name": "List.FirstItem",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1710.3830714773053,
+        "Y": 808.4268218075908
+      },
+      {
+        "Id": "db16f1fc8c1048cebe44cf47ea6a42d3",
+        "Name": "List.GetItemAtIndex",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 1966.5348357658154,
+        "Y": 713.7873347234713
+      },
+      {
+        "Id": "9fc332f282554477bd2a6ee2e02b3392",
+        "Name": "View.SketchPlane",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 2636.8532652301715,
+        "Y": 699.3068538309967
+      }
+    ],
+    "Annotations": [],
+    "X": -176.29008965959497,
+    "Y": -1.3052965507745284,
+    "Zoom": 0.821494706635911
+  }
+}
