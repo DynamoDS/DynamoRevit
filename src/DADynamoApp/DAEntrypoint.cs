@@ -237,41 +237,40 @@ namespace DADynamoApp
             Console.WriteLine($"{nameof(saveRvt)} is set to {saveRvt}");
             if (saveRvt)
             {
-                if (doc.IsModelInCloud)
+                try
                 {
-                    if (doc.IsWorkshared) // work-shared/C4R model
+                    if (doc.IsModelInCloud)
                     {
-                        // Syncronize with central
-                        SynchronizeWithCentralOptions swc = new SynchronizeWithCentralOptions();
-                        swc.SetRelinquishOptions(new RelinquishOptions(/*relinquishAll*/true));// Should this be configurable?
-                        doc.SynchronizeWithCentral(new TransactWithCentralOptions(), swc);
-                    }
-                    else 
-                    {// Single user cloud model
-                        var newLoc = setupReq?.SaveCloudModelLocation;
-                        if (newLoc != null)
+                        if (doc.IsWorkshared) // work-shared/C4R model
                         {
-                            doc.SaveAsCloudModel(newLoc.AccountId, newLoc.ProjectId, newLoc.FolderId, newLoc.ModelName ?? Path.GetFileName(doc.PathName));
+                            // Syncronize with central
+                            SynchronizeWithCentralOptions swc = new SynchronizeWithCentralOptions();
+                            swc.SetRelinquishOptions(new RelinquishOptions(/*relinquishAll*/true));// Should this be configurable?
+                            doc.SynchronizeWithCentral(new TransactWithCentralOptions(), swc);
                         }
-                        else
-                        {
-                            doc.SaveCloudModel();
+                        else 
+                        {// Single user cloud model
+                            var newLoc = setupReq?.SaveCloudModelLocation;
+                            if (newLoc != null)
+                            {
+                                doc.SaveAsCloudModel(newLoc.AccountId, newLoc.ProjectId, newLoc.FolderId, newLoc.ModelName ?? Path.GetFileName(doc.PathName));
+                            }
+                            else
+                            {
+                                doc.SaveCloudModel();
+                            }
                         }
                     }
-                }
-                else
-                {// Save locally 
-                    try
-                    {
+                    else
+                    {// Save locally 
                         RevitServices.Transactions.TransactionManager.Instance.ForceCloseTransaction();
                         ModelPath path = ModelPathUtils.ConvertUserVisiblePathToModelPath("result.rvt");
                         doc.SaveAs(path, new SaveAsOptions());
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
-
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
                 }
             }
 
