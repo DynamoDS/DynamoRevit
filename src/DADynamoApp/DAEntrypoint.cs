@@ -152,8 +152,15 @@ namespace DADynamoApp
             var cModel = setupReq?.CloudModel;
             if (cModel != null)
             {
-                var cloudModelPath = ModelPathUtils.ConvertCloudGUIDsToCloudPath(cModel.Region, cModel.ProjectGuid, cModel.ModelGuid);
-                doc = app?.OpenDocumentFile(cloudModelPath, new OpenOptions());
+                try
+                {
+                    var cloudModelPath = ModelPathUtils.ConvertCloudGUIDsToCloudPath(cModel.Region, cModel.ProjectGuid, cModel.ModelGuid);
+                    doc = app?.OpenDocumentFile(cloudModelPath, new OpenOptions());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
             else
             {
