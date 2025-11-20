@@ -1,0 +1,12 @@
+{
+  "Revit_Adaptive Component Placement": "Revit_Adaptive Component Placement",
+  "Revit_Color": "Revit_Color",
+  "Revit_Floors and Framing": "Revit_Floors and Framing",
+  "Revit_GeometryCreation_Curves": "Revit_GeometryCreation_Curves",
+  "Revit_GeometryCreation_Points": "Revit_GeometryCreation_Points",
+  "Revit_GeometryCreation_Solids": "Revit_GeometryCreation_Solids",
+  "Revit_GeometryCreation_Surfaces": "Revit_GeometryCreation_Surfaces",
+  "Revit_ImportSolid": "Revit_ImportSolid",
+  "Revit_PlaceFamiliesByLevel_Set Parameters": "Revit_PlaceFamiliesByLevel_Set Parameters",
+  "Revit_StructuralFraming": "Revit_StructuralFraming"
+}

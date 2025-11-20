@@ -1226,7 +1226,7 @@
     "Annotations": [
       {
         "Id": "57d38c261dfc4f2bbb89befb182b50ef",
-        "Title": "替代方法 - 演算準則是否通過給定的門檻",
+        "Title": "替代方法 - 演算準則是否通過給定的閾值",
         "DescriptionText": "",
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -1388,7 +1388,7 @@
       },
       {
         "Id": "cf49f7017e784246a5bcc4aaecd9d60c",
-        "Title": "門檻",
+        "Title": "閾值",
         "DescriptionText": "",
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
@@ -1681,7 +1681,7 @@
       },
       {
         "Id": "e8dc1940afa840ffac31c83e195544a5",
-        "Title": "與門檻值比較 ",
+        "Title": "與閾值比較 ",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
