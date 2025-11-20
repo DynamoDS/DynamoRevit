@@ -1,0 +1,9 @@
+## 詳細
+This node creates a grid line based on a start point and end point.
+
+In this example 2 points are generated and used as the inputs to Grid.ByStartPointEndPoint.    A grid created and named “Dynamo.”
+
+___
+## サンプル ファイル
+
+![Grid.ByStartPointEndPoint](./Revit.Elements.Grid.ByStartPointEndPoint_img.jpg)

@@ -1,0 +1,8 @@
+## En detalle:
+This node provides the structural role of an analytical panel.
+
+In this example, a floor element is selected from the Snowdon Structural model and converted to an analytical panel. The node outputs the structural role assigned to that panel.
+___
+## Archivo de ejemplo
+
+![AnalyticalPanel.StructuralRole](./AnalyticalAutomation.AnalyticalElements.AnalyticalPanel.StructuralRole_img.jpg)
