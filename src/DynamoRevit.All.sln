@@ -94,6 +94,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D
 		transform_all.bat = transform_all.bat
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc-distrib", "doc-distrib", "{53DD11D7-BFA8-4A84-9A3E-EDC64DFBA968}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{81EDFF7A-59DE-447F-90EF-016C152902FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{3916484C-73C6-4FAA-980E-EDF20AA23476}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "en-US", "en-US", "{2ADD9475-3A81-4AC4-B740-C209BFBA62C2}"
+	ProjectSection(SolutionItems) = preProject
+		..\doc\distrib\Samples\en-US\Revit\filenames.json = ..\doc\distrib\Samples\en-US\Revit\filenames.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "en-US", "en-US", "{C89B347C-A2E8-479C-90A0-B8B5F82D41E3}"
+	ProjectSection(SolutionItems) = preProject
+		..\doc\distrib\Templates\en-US\filenames.json = ..\doc\distrib\Templates\en-US\filenames.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|NET100 = Debug|NET100
@@ -226,6 +242,11 @@ Global
 		{9568462D-249F-4494-856B-5B25751DB361} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{D6EED31E-BD59-4E53-B6C8-574A8C9A61B3} = {4466E6F6-F644-43AB-96B3-5ECE1622E711}
 		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {4466E6F6-F644-43AB-96B3-5ECE1622E711}
+		{53DD11D7-BFA8-4A84-9A3E-EDC64DFBA968} = {4466E6F6-F644-43AB-96B3-5ECE1622E711}
+		{81EDFF7A-59DE-447F-90EF-016C152902FC} = {53DD11D7-BFA8-4A84-9A3E-EDC64DFBA968}
+		{3916484C-73C6-4FAA-980E-EDF20AA23476} = {53DD11D7-BFA8-4A84-9A3E-EDC64DFBA968}
+		{2ADD9475-3A81-4AC4-B740-C209BFBA62C2} = {3916484C-73C6-4FAA-980E-EDF20AA23476}
+		{C89B347C-A2E8-479C-90A0-B8B5F82D41E3} = {81EDFF7A-59DE-447F-90EF-016C152902FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {757AAA40-191F-4673-9B04-8270A3370BCA}
