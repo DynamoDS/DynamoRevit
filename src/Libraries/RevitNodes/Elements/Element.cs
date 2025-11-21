@@ -430,20 +430,38 @@ namespace Revit.Elements
             // This happens when a loadable family defines a user parameter with the same name
             // as a built-in parameter.
             //
-            // Currently, we try to resolve this and get consistent results by
-            // 1. Get all parameters for the given name
-            // 2. Sort parameters by ElementId - This will give us built-in parameters first (ID's for built-ins are always < -1)
-            // 3. If it exist: Use the first writable parameter
-            // 4. Otherwise: Use the first read-only parameter
+            // Optimization: Try LookupParameter first (fast path) before enumerating all parameters
+            // (slow path). This avoids the expensive ParameterSet enumeration when possible.
             //
-            var allParams =
-            InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
+
+            // Try LookupParameter first (doesn't enumerate all parameters)
+            var param = InternalElement.LookupParameter(parameterName);
+            
+            if (param != null)
+            {
+                // If found and it's writable, return it immediately (true fast path - no enumeration)
+                if (!param.IsReadOnly)
+                {
+                    return param;
+                }
+                
+                // If found but read-only, check if there's a writable duplicate
+                // This still requires enumeration
+                var allParams = InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
+                    .Where(x => string.CompareOrdinal(x.Definition.Name, parameterName) == 0)
+                    .OrderBy(x => x.Id.Value);
+
+                var writableParam = allParams.FirstOrDefault(x => !x.IsReadOnly);
+                return writableParam ?? param; // Return writable if exists, otherwise the read-only one
+            }
+            
+            // Slow path: Not found via LookupParameter - fall back to full enumeration
+            // (This handles edge cases where LookupParameter might not find it)
+            var allParamsFallback = InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
                 .Where(x => string.CompareOrdinal(x.Definition.Name, parameterName) == 0)
                 .OrderBy(x => x.Id.Value);
 
-            var param = allParams.FirstOrDefault(x => x.IsReadOnly == false) ?? allParams.FirstOrDefault();
-
-            return param;
+            return allParamsFallback.FirstOrDefault(x => !x.IsReadOnly) ?? allParamsFallback.FirstOrDefault();
         }
 
         /// <summary>
