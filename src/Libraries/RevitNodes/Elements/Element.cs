@@ -142,7 +142,7 @@ namespace Revit.Elements
                 TransactionManager.Instance.EnsureInTransaction(Document);
                 DocumentManager.Regenerate();
                 var bb = InternalElement.get_BoundingBox(null);
-                if (bb == null) 
+                if (bb == null)
                 {
                     bb = InternalElement.get_BoundingBox(Document.GetElement(InternalElement.OwnerViewId) as Autodesk.Revit.DB.View);
                 }
@@ -178,11 +178,11 @@ namespace Revit.Elements
         /// </summary>
         public bool IsPinned
         {
-            get 
+            get
             {
                 if (InternalElement == null)
                     return false;
-                return this.InternalElement.Pinned; 
+                return this.InternalElement.Pinned;
             }
         }
 
@@ -229,7 +229,7 @@ namespace Revit.Elements
                 var typeId = this.InternalElement.GetTypeId();
                 if (typeId == ElementId.InvalidElementId)
                     return null;
-                
+
                 var doc = DocumentManager.Instance.CurrentDBDocument;
                 return doc.GetElement(typeId).ToDSType(true) as ElementType;
             }
@@ -278,7 +278,7 @@ namespace Revit.Elements
             // closing homeworkspace or the element itself is frozen.
             if (DisposeLogic.IsShuttingDown || DisposeLogic.IsClosingHomeworkspace || IsFrozen)
                 return;
-            
+
             bool didRevitDelete = ElementIDLifecycleManager<long>.GetInstance().IsRevitDeleted(Id);
 
             var elementManager = ElementIDLifecycleManager<long>.GetInstance();
@@ -402,10 +402,11 @@ namespace Revit.Elements
             }
 
             // return deleted elements
-            return deletedElements; 
+            return deletedElements;
         }
 
         #region Get/Set Parameter
+
         /// <summary>
         /// Get a parameter by name of an element
         /// </summary>
@@ -430,38 +431,32 @@ namespace Revit.Elements
             // This happens when a loadable family defines a user parameter with the same name
             // as a built-in parameter.
             //
-            // Optimization: Try LookupParameter first (fast path) before enumerating all parameters
-            // (slow path). This avoids the expensive ParameterSet enumeration when possible.
+            // Optimization: Use GetParameters(string) first which is optimized by Revit API to filter
+            // parameters by name without building the entire parameter collection. If no exact
+            // match is found, fall back to case-insensitive matching via full parameter enumeration.
             //
+            // Try GetParameters first (doesn't enumerate all parameters, requires exact name match)
+            //
+            var exactMatchParams = InternalElement.GetParameters(parameterName)
+                .Cast<Autodesk.Revit.DB.Parameter>()
+                .OrderBy(x => x.Id.Value);
 
-            // Try LookupParameter first (doesn't enumerate all parameters)
-            var param = InternalElement.LookupParameter(parameterName);
-            
-            if (param != null)
+            if (exactMatchParams.Any())
             {
-                // If found and it's writable, return it immediately (true fast path - no enumeration)
-                if (!param.IsReadOnly)
-                {
-                    return param;
-                }
-                
-                // If found but read-only, check if there's a writable duplicate
-                // This still requires enumeration
-                var allParams = InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
+                return exactMatchParams.FirstOrDefault(x => !x.IsReadOnly) ?? exactMatchParams.FirstOrDefault();
+            }
+
+            // Fallback: Use case-insensitive matching via full parameter enumeration
+            // This handles scenarios where parameter names have mixed case and GetParameters
+            // (which requires exact match) doesn't find them.
+            var allParams =
+                InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
                     .Where(x => string.CompareOrdinal(x.Definition.Name, parameterName) == 0)
                     .OrderBy(x => x.Id.Value);
 
-                var writableParam = allParams.FirstOrDefault(x => !x.IsReadOnly);
-                return writableParam ?? param; // Return writable if exists, otherwise the read-only one
-            }
-            
-            // Slow path: Not found via LookupParameter - fall back to full enumeration
-            // (This handles edge cases where LookupParameter might not find it)
-            var allParamsFallback = InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
-                .Where(x => string.CompareOrdinal(x.Definition.Name, parameterName) == 0)
-                .OrderBy(x => x.Id.Value);
+            var param = allParams.FirstOrDefault(x => x.IsReadOnly == false) ?? allParams.FirstOrDefault();
 
-            return allParamsFallback.FirstOrDefault(x => !x.IsReadOnly) ?? allParamsFallback.FirstOrDefault();
+            return param;
         }
 
         /// <summary>
@@ -472,7 +467,7 @@ namespace Revit.Elements
         public object GetParameterValueByName(string parameterName)
         {
             var param = GetParameterByName(parameterName);
-            
+
             if (param == null || !param.HasValue)
                 return string.Empty;
 
@@ -916,7 +911,7 @@ namespace Revit.Elements
         public IEnumerable<Element> GetChildElements()
         {
             return GetElementChildren(this.InternalElement);
-            
+
         }
 
         private IEnumerable<Element> GetElementChildren(Autodesk.Revit.DB.Element element)
@@ -1206,7 +1201,7 @@ namespace Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
             return elements;
         }
-        
+
         /// <summary>
         /// Sets the order in which the geometry of two elements is joined.
         /// </summary>
@@ -1222,13 +1217,13 @@ namespace Revit.Elements
             if (JoinGeometryUtils.IsCuttingElementInJoin(Document, cuttingElement.InternalElement, otherElement.InternalElement))
             {
                 return new List<Element>() { cuttingElement, otherElement };
-            }         
+            }
             TransactionManager.Instance.EnsureInTransaction(Document);
             JoinGeometryUtils.SwitchJoinOrder(Document, cuttingElement.InternalElement, otherElement.InternalElement);
             TransactionManager.Instance.TransactionTaskDone();
             return new List<Element>() { cuttingElement, otherElement };
         }
-        
+
         /// <summary>
         /// Joins the geometry of two elements, if they are intersecting.
         /// </summary>
