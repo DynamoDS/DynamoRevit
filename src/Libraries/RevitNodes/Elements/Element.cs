@@ -142,7 +142,7 @@ namespace Revit.Elements
                 TransactionManager.Instance.EnsureInTransaction(Document);
                 DocumentManager.Regenerate();
                 var bb = InternalElement.get_BoundingBox(null);
-                if (bb == null)
+                if (bb == null) 
                 {
                     bb = InternalElement.get_BoundingBox(Document.GetElement(InternalElement.OwnerViewId) as Autodesk.Revit.DB.View);
                 }
@@ -178,11 +178,11 @@ namespace Revit.Elements
         /// </summary>
         public bool IsPinned
         {
-            get
+            get 
             {
                 if (InternalElement == null)
                     return false;
-                return this.InternalElement.Pinned;
+                return this.InternalElement.Pinned; 
             }
         }
 
@@ -229,7 +229,7 @@ namespace Revit.Elements
                 var typeId = this.InternalElement.GetTypeId();
                 if (typeId == ElementId.InvalidElementId)
                     return null;
-
+                
                 var doc = DocumentManager.Instance.CurrentDBDocument;
                 return doc.GetElement(typeId).ToDSType(true) as ElementType;
             }
@@ -278,7 +278,7 @@ namespace Revit.Elements
             // closing homeworkspace or the element itself is frozen.
             if (DisposeLogic.IsShuttingDown || DisposeLogic.IsClosingHomeworkspace || IsFrozen)
                 return;
-
+            
             bool didRevitDelete = ElementIDLifecycleManager<long>.GetInstance().IsRevitDeleted(Id);
 
             var elementManager = ElementIDLifecycleManager<long>.GetInstance();
@@ -402,11 +402,10 @@ namespace Revit.Elements
             }
 
             // return deleted elements
-            return deletedElements;
+            return deletedElements; 
         }
 
         #region Get/Set Parameter
-
         /// <summary>
         /// Get a parameter by name of an element
         /// </summary>
@@ -431,32 +430,21 @@ namespace Revit.Elements
             // This happens when a loadable family defines a user parameter with the same name
             // as a built-in parameter.
             //
-            // Optimization: Use GetParameters(string) first which is optimized by Revit API to filter
-            // parameters by name without building the entire parameter collection. If no exact
-            // match is found, fall back to case-insensitive matching via full parameter enumeration.
+            // To resolve duplicate parameter names consistently:
+            // 1. Get all parameters matching the given name (case-sensitive)
+            // 2. Sort by ElementId to prioritize built-in parameters (ID's for built-ins are always < -1)
+            // 3. Prefer the first writable parameter, otherwise use the first read-only parameter
             //
-            // Try GetParameters first (doesn't enumerate all parameters, requires exact name match)
+            // Optimization: Use GetParameters(string) which is optimized by Revit API to filter
+            // parameters by name without enumerating the entire parameter collection. This replaces
+            // the previous manual enumeration via InternalElement.Parameters while maintaining
+            // identical behavior (both use case-sensitive comparison via string.CompareOrdinal).
             //
             var exactMatchParams = InternalElement.GetParameters(parameterName)
                 .Cast<Autodesk.Revit.DB.Parameter>()
                 .OrderBy(x => x.Id.Value);
 
-            if (exactMatchParams.Any())
-            {
-                return exactMatchParams.FirstOrDefault(x => !x.IsReadOnly) ?? exactMatchParams.FirstOrDefault();
-            }
-
-            // Fallback: Use case-insensitive matching via full parameter enumeration
-            // This handles scenarios where parameter names have mixed case and GetParameters
-            // (which requires exact match) doesn't find them.
-            var allParams =
-                InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
-                    .Where(x => string.CompareOrdinal(x.Definition.Name, parameterName) == 0)
-                    .OrderBy(x => x.Id.Value);
-
-            var param = allParams.FirstOrDefault(x => x.IsReadOnly == false) ?? allParams.FirstOrDefault();
-
-            return param;
+            return exactMatchParams.FirstOrDefault(x => !x.IsReadOnly) ?? exactMatchParams.FirstOrDefault();
         }
 
         /// <summary>
@@ -467,7 +455,7 @@ namespace Revit.Elements
         public object GetParameterValueByName(string parameterName)
         {
             var param = GetParameterByName(parameterName);
-
+            
             if (param == null || !param.HasValue)
                 return string.Empty;
 
@@ -911,7 +899,7 @@ namespace Revit.Elements
         public IEnumerable<Element> GetChildElements()
         {
             return GetElementChildren(this.InternalElement);
-
+            
         }
 
         private IEnumerable<Element> GetElementChildren(Autodesk.Revit.DB.Element element)
@@ -1201,7 +1189,7 @@ namespace Revit.Elements
             TransactionManager.Instance.TransactionTaskDone();
             return elements;
         }
-
+        
         /// <summary>
         /// Sets the order in which the geometry of two elements is joined.
         /// </summary>
@@ -1217,13 +1205,13 @@ namespace Revit.Elements
             if (JoinGeometryUtils.IsCuttingElementInJoin(Document, cuttingElement.InternalElement, otherElement.InternalElement))
             {
                 return new List<Element>() { cuttingElement, otherElement };
-            }
+            }         
             TransactionManager.Instance.EnsureInTransaction(Document);
             JoinGeometryUtils.SwitchJoinOrder(Document, cuttingElement.InternalElement, otherElement.InternalElement);
             TransactionManager.Instance.TransactionTaskDone();
             return new List<Element>() { cuttingElement, otherElement };
         }
-
+        
         /// <summary>
         /// Joins the geometry of two elements, if they are intersecting.
         /// </summary>
