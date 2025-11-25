@@ -1,3 +1,6 @@
+## 0.7.65
+* Re-save sample scripts
+
 ## 0.7.64
 * Update common data folder location
 
