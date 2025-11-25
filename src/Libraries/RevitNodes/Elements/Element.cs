@@ -430,20 +430,21 @@ namespace Revit.Elements
             // This happens when a loadable family defines a user parameter with the same name
             // as a built-in parameter.
             //
-            // Currently, we try to resolve this and get consistent results by
-            // 1. Get all parameters for the given name
-            // 2. Sort parameters by ElementId - This will give us built-in parameters first (ID's for built-ins are always < -1)
-            // 3. If it exist: Use the first writable parameter
-            // 4. Otherwise: Use the first read-only parameter
+            // To resolve duplicate parameter names consistently:
+            // 1. Get all parameters matching the given name (case-sensitive)
+            // 2. Sort by ElementId to prioritize built-in parameters (ID's for built-ins are always < -1)
+            // 3. Prefer the first writable parameter, otherwise use the first read-only parameter
             //
-            var allParams =
-            InternalElement.Parameters.Cast<Autodesk.Revit.DB.Parameter>()
-                .Where(x => string.CompareOrdinal(x.Definition.Name, parameterName) == 0)
+            // Optimization: Use GetParameters(string) which is optimized by Revit API to filter
+            // parameters by name without enumerating the entire parameter collection. This replaces
+            // the previous manual enumeration via InternalElement.Parameters while maintaining
+            // identical behavior (both use case-sensitive comparison via string.CompareOrdinal).
+            //
+            var exactMatchParams = InternalElement.GetParameters(parameterName)
+                .Cast<Autodesk.Revit.DB.Parameter>()
                 .OrderBy(x => x.Id.Value);
 
-            var param = allParams.FirstOrDefault(x => x.IsReadOnly == false) ?? allParams.FirstOrDefault();
-
-            return param;
+            return exactMatchParams.FirstOrDefault(x => !x.IsReadOnly) ?? exactMatchParams.FirstOrDefault();
         }
 
         /// <summary>
