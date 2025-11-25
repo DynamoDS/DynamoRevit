@@ -1828,19 +1828,19 @@
     {
       "NodeId": "4969601b-341f-4d9c-96b4-a3886375566c",
       "Binding": {
-        "ByGeometries_InClassDecl-1_InFunctionScope-1_Instance0_4969601b-341f-4d9c-96b4-a3886375566c": "H4sIAAAAAAAACh3LKw6AMBAFwLs8zSbbtNAWjUEjWcT2A8EgSB3h7iSMn/VB0aYY8QiWdp/XMU+CUVBT7FMcPLmUlZwpmYJ6SzVqUrcHZVeImdlnbwWdYL7af60JfXzxbh+Max4TXQAAAA=="
+        "ByGeometries_InClassDecl-1_InFunctionScope-1_Instance0_4969601b-341f-4d9c-96b4-a3886375566c": "H4sIAAAAAAAACh3LoQ6AIBAG4Hf5s7eB3BDMFrPRMxwKzmJwNMe7u/n1b31xaFWMeAVLfa77nCfBKPCRi017IMvBEbMLFCNn8rmkpMlZLT0ZY8ywHyroBPNd/+ts9H1D2z5omM5sXQAAAA=="
       }
     },
     {
       "NodeId": "7780a4bc-844f-4f2e-8639-f5c78aa8191d",
       "Binding": {
-        "ByLoftCrossSections_InClassDecl-1_InFunctionScope-1_Instance0_7780a4bc-844f-4f2e-8639-f5c78aa8191d": "H4sIAAAAAAAACh3LoQ6EMAwG4Hf5NU1KKNuKPoM+eUV0GxAMgswR3p3kPv/9blRvjgm34duu49znj2EyrFnHrCGS5OIkfS2UPA60qmeXLTlLJWbmWIIaOsN8tv8d+iT64FlewU1ItF0AAAA="
+        "ByLoftCrossSections_InClassDecl-1_InFunctionScope-1_Instance0_7780a4bc-844f-4f2e-8639-f5c78aa8191d": "H4sIAAAAAAAACh3LKw6AMBAFwLs8zSZbukCLxqCRLKIfSjAIUke4OwnjZ32QQw0Y8SiWep/XMU+KUdF7KSYmR0acJRHryHvZqd9LjCFaE0pLzMxDyqxoFPNV/2uN79oX7/YBbp+RdV0AAAA="
       }
     },
     {
       "NodeId": "7104a6e9-86ff-48ef-adb8-a7c7b8509e1d",
       "Binding": {
-        "ReferenceCurveByCurve_InClassDecl-1_InFunctionScope-1_Instance0_7104a6e9-86ff-48ef-adb8-a7c7b8509e1d": "H4sIAAAAAAAACq3MKw7DMBBF0b08HEuOMrXHwSHBhXHA+NOqxKA1s2bvlUJLyy655xho9dNr2aQL1mOgXIERce/vV3vuW8QaUVO4peC8oZTF0FyyYfGLqUGS0IPFUjHWWuuzcxFTxN769S4zk1Po9Bebf2xW6KnnFxxXMqTKAAAA"
+        "ReferenceCurveByCurve_InClassDecl-1_InFunctionScope-1_Instance0_7104a6e9-86ff-48ef-adb8-a7c7b8509e1d": "H4sIAAAAAAAACq3MoQ7DIBRG4Xf5dUmg3DCorqmuLBWXFpoaxIYj992X1M7OHXO+raPmT8vnzI0xbR3nE+gRa3vf9VrmiCnCBSomHV4Z8lYRWa9CoKxcLilxsobLqLTW+nXwGDFELLU9rzVBO4EMf7Hpx/YC2WX/ApWhABfKAAAA"
       }
     }
   ],
@@ -2304,14 +2304,14 @@
           "c461c76094ec416e8bea59167c2cf169"
         ],
         "HasNestedGroups": false,
-        "Left": -25164.754040202617,
-        "Top": -20983.720819822196,
-        "Width": 317.1773727638574,
-        "Height": 536.1106054866796,
+        "Left": -25168.058639492032,
+        "Top": -21010.305985340234,
+        "Width": 316.68409126498227,
+        "Height": 582.6675444865577,
         "FontSize": 36.0,
         "GroupStyleId": "bc688959-ce34-4bf5-90f8-6ddd23f80989",
-        "InitialTop": -20910.609708711087,
-        "InitialHeight": 428.99949437557007,
+        "InitialTop": -20937.194874229124,
+        "InitialHeight": 455.58465989360775,
         "TextblockHeight": 63.111111111111114,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
@@ -2700,8 +2700,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -25154.021111883205,
-        "Top": -20902.609708711087,
+        "Left": -25157.818992671495,
+        "Top": -20929.194874229124,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -2726,8 +2726,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -25154.021111883205,
-        "Top": -20716.454380568783,
+        "Left": -25156.553032408734,
+        "Top": -20732.27888385333,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -2779,8 +2779,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -25154.754040202617,
-        "Top": -20618.610214335517,
+        "Left": -25158.058639492032,
+        "Top": -20598.638440853676,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -2822,8 +2822,8 @@
         "PinnedNode": "9ccc54cc765c467997ac565d7a1c4162"
       }
     ],
-    "X": 8086.6442137333115,
-    "Y": 6706.678639862879,
-    "Zoom": 0.31918904209979315
+    "X": 7455.941070388417,
+    "Y": 6084.757088100421,
+    "Zoom": 0.28929718149625827
   }
 }

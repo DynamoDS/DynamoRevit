@@ -1929,7 +1929,14 @@
     "warningCount": 0,
     "errorCount": 0
   },
-  "Bindings": [],
+  "Bindings": [
+    {
+      "NodeId": "991327ac-0281-4144-bda0-62375e09384c",
+      "Binding": {
+        "ByGeometry_InClassDecl-1_InFunctionScope-1_Instance0_991327ac-0281-4144-bda0-62375e09384c": "H4sIAAAAAAAACh3LsQ5AUAwF0H+5syZV1Txmi9mohgpPLAZ5m/h3ibOf+cEWJdDjcUzlPq9jHBy9Q1I2bWQl07SRWqvUWVNTKItx5Mi8E7Ok4FBH5Riv8l8xk9b0xbt8kCo7u18AAAA="
+      }
+    }
+  ],
   "View": {
     "Dynamo": {
       "ScaleFactor": 1.0,
@@ -1954,37 +1961,37 @@
     "ConnectorPins": [
       {
         "Left": 3101.5100395560307,
-        "Top": 1956.159126174685,
+        "Top": 1946.159226174685,
         "IsHidden": false,
         "ConnectorGuid": "28d7f84e-0752-4bee-8c0d-801fddd570a0"
       },
       {
         "Left": 3338.993756232225,
-        "Top": 1795.941176437208,
+        "Top": 1785.941276437208,
         "IsHidden": false,
         "ConnectorGuid": "4ec369a0-3443-44fe-bfff-11f991d3d05a"
       },
       {
         "Left": 7233.093468691076,
-        "Top": 2233.1701466281456,
+        "Top": 2223.170246628146,
         "IsHidden": false,
         "ConnectorGuid": "aa09340e-3603-411e-a993-22c4592a8c19"
       },
       {
         "Left": 5565.090437626043,
-        "Top": 2212.995752036801,
+        "Top": 2202.9958520368014,
         "IsHidden": false,
         "ConnectorGuid": "0cd6bc08-0420-4a92-a1ec-e81f1be44b13"
       },
       {
         "Left": 5538.250326183912,
-        "Top": 2172.502891184269,
+        "Top": 2162.5029911842694,
         "IsHidden": false,
         "ConnectorGuid": "c55f7a15-5f9d-4712-8f2b-5bf17eb59ff7"
       },
       {
         "Left": 7480.55681716184,
-        "Top": 2295.7164556742123,
+        "Top": 2285.7165556742125,
         "IsHidden": false,
         "ConnectorGuid": "ddfc3569-3e53-4959-9920-1652f776f3a1"
       }

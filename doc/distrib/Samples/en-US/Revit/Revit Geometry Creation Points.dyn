@@ -476,13 +476,13 @@
     {
       "NodeId": "32a21b61-d9f2-4239-989f-97ca0a4a4189",
       "Binding": {
-        "ByCurve_InClassDecl-1_InFunctionScope-1_Instance0_32a21b61-d9f2-4239-989f-97ca0a4a4189": "H4sIAAAAAAAACh3LIQ6EMBAF0Lt8zSRTGGiLxlSvZBDTFsgaBKkj3H2Tff6tD6o1w4xH8Wn39zrTopgVe45jjpMnycVIXC0UzA+0R8smRzCWSszMvkiv6BTpav87uOD4xbv9ABcI8kZdAAAA"
+        "ByCurve_InClassDecl-1_InFunctionScope-1_Instance0_32a21b61-d9f2-4239-989f-97ca0a4a4189": "H4sIAAAAAAAACh3LIQ6AMAwF0Lt8TZOWNWNDY9BIitiAEQyCzBHuTsLzb36wpZrQ4zFM9T6vYxwMvcFHLZLXQKLBkaoLFKPu5PeSc8pOUmmJmblbtTU0hvGq/3UShF+8ywfN05aGXQAAAA=="
       }
     },
     {
       "NodeId": "62bde202-1eb0-4e88-b6aa-be6e7379a978",
       "Binding": {
-        "ByPoint_InClassDecl-1_InFunctionScope-1_Instance0_62bde202-1eb0-4e88-b6aa-be6e7379a978": "H4sIAAAAAAAACh3Lqw7DMAwF0H+5uJYcxVuS4pHiwnnAebQqCZjCov77pB1+3hPVhmHFVOzje/VzeylWRcvpkdMzkORiJK4WihY8tWTZ5IjGUomZORTxikWx9fG/3kXnbtyfH3PL4eBdAAAA"
+        "ByPoint_InClassDecl-1_InFunctionScope-1_Instance0_62bde202-1eb0-4e88-b6aa-be6e7379a978": "H4sIAAAAAAAACh3LIQ6AMAwF0Lt8TZOVNmNDY9BIitiAEQyCzBHuTsLzb36wpZrQ4zFM9T6vYxwMvcFHLZzXQKxBSFUCxag7+b3knLJwKi0551y3qhgaw3jV/woH5hfv8gGpEIUgXQAAAA=="
       }
     }
   ],
@@ -616,8 +616,8 @@
         "Title": "Info",
         "DescriptionText": "",
         "IsExpanded": true,
-        "WidthAdjustment": 0.1284127689007164,
-        "HeightAdjustment": 36.84517473271137,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 12.042883566878345,
         "UserSetWidth": 320.1284127689007,
         "UserSetHeight": 390.48156933904215,
         "Nodes": [
@@ -626,13 +626,13 @@
           "467cffc5116f411f84fcd2e970ef1b87"
         ],
         "HasNestedGroups": false,
-        "Left": 2671.1678129477323,
-        "Top": 145.6211207042652,
-        "Width": 320.1284127689007,
+        "Left": 2689.2631426791313,
+        "Top": 230.9744683533011,
+        "Width": 321.78237952842665,
         "Height": 453.59268045015324,
         "FontSize": 36.0,
         "GroupStyleId": "bc688959-ce34-4bf5-90f8-6ddd23f80989",
-        "InitialTop": 218.7322318153763,
+        "InitialTop": 304.0855794644122,
         "InitialHeight": 381.6363946063308,
         "TextblockHeight": 63.111111111111114,
         "IsOptionalInPortsCollapsed": false,
@@ -709,8 +709,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 2681.1678129477323,
-        "Top": 463.36862642170706,
+        "Left": 2701.045522207558,
+        "Top": 573.524265236576,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -762,8 +762,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 2682.219980981115,
-        "Top": 226.7322318153763,
+        "Left": 2699.2631426791313,
+        "Top": 312.0855794644122,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -788,8 +788,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 2683.091632607442,
-        "Top": 395.5548554114075,
+        "Left": 2702.9693418672678,
+        "Top": 505.7104942262764,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -885,8 +885,8 @@
         "PinnedNode": "2a0405887d4d4166a10168b37f352fc7"
       }
     ],
-    "X": -1343.2120081845019,
-    "Y": -29.58009749322244,
-    "Zoom": 0.5366144824456527
+    "X": -1481.8385986881603,
+    "Y": -161.48733626778898,
+    "Zoom": 0.6135731634778232
   }
 }

@@ -2016,7 +2016,26 @@
     "warningCount": 0,
     "errorCount": 0
   },
-  "Bindings": [],
+  "Bindings": [
+    {
+      "NodeId": "e0e441ca-08a4-48b7-8f64-96e65e320376",
+      "Binding": {
+        "ByGeometries_InClassDecl-1_InFunctionScope-1_Instance0_e0e441ca-08a4-48b7-8f64-96e65e320376": "H4sIAAAAAAAACh3LoQ6AIBAG4Hf5s7eBdwqYLWajZwAUZzE4mvPd3fz6tzzYYo0Y8Cjmep/XMY2KQdEHKTZlT1Y8kwh7CkF26veSUkxsY2nJGGNcdqxoFNNV/8vWd+HFu35WsHrTXQAAAA=="
+      }
+    },
+    {
+      "NodeId": "df80f241-8853-4ca6-99ed-cd2e5beba478",
+      "Binding": {
+        "ReferenceCurveByCurve_InClassDecl-1_InFunctionScope-1_Instance0_df80f241-8853-4ca6-99ed-cd2e5beba478": "H4sIAAAAAAAACq2PoRLDIBBE/+V0mIHcJYHomOjKHAIS6NQgWlyGf+8UWSxuV+zbeccNKXxyuDaXHaxHU68a4GZ45PcrPfeNYWWYDUXlTy0UaRREqIUxFMQcovfOo3JxFFJKuZw0MQwMe8p1i0orLFCGLmzfsE2BYn/0/iLx/2zsJjJhw16qiC32C92pMNykAQAA"
+      }
+    },
+    {
+      "NodeId": "d8b7c8f4-2f70-4e3b-a913-91316e009759",
+      "Binding": {
+        "ByLoftCrossSections_InClassDecl-1_InFunctionScope-1_Instance0_d8b7c8f4-2f70-4e3b-a913-91316e009759": "H4sIAAAAAAAACh3LrQ6AIBQG0Hf5sncDueMvW8xGrwEQnMXgaM53d/P0sz7YU0+IeARLv8/rmCdBFNjATefiSbM3xGw8hcCVbG05p2x0aiMppZQr1gkGwXz1/xrt2b14tw8mGW8mXQAAAA=="
+      }
+    }
+  ],
   "View": {
     "Dynamo": {
       "ScaleFactor": 1.0,
@@ -2811,13 +2830,13 @@
           "9e22bfe5fa1f430da622671f92d965b1"
         ],
         "HasNestedGroups": false,
-        "Left": -25586.054587736882,
-        "Top": -20869.61591848384,
-        "Width": 321.80023380817147,
-        "Height": 506.9696398906199,
+        "Left": -25589.664690947324,
+        "Top": -21001.384685665,
+        "Width": 320.0,
+        "Height": 548.4858268107128,
         "FontSize": 36.0,
         "GroupStyleId": "bc688959-ce34-4bf5-90f8-6ddd23f80989",
-        "InitialTop": -20796.50480737273,
+        "InitialTop": -20928.273574553892,
         "InitialHeight": 342.080751001733,
         "TextblockHeight": 63.111111111111114,
         "IsOptionalInPortsCollapsed": false,
@@ -2894,8 +2913,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -25576.054587736882,
-        "Top": -20591.424056370997,
+        "Left": -25579.664690947324,
+        "Top": -20681.676636632066,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -3271,8 +3290,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -25572.476576150933,
-        "Top": -20788.50480737273,
+        "Left": -25577.8917309666,
+        "Top": -20920.273574553892,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -3287,8 +3306,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": 5705.204147996179,
-    "Y": 4799.5178868884395,
-    "Zoom": 0.2193417057408246
+    "X": 6328.31462909748,
+    "Y": 5258.303126188042,
+    "Zoom": 0.2462225695702155
   }
 }

@@ -1563,19 +1563,19 @@
     {
       "NodeId": "effe1561-9cd2-4994-9800-0724bfaa912d",
       "Binding": {
-        "BeamByCurve_InClassDecl-1_InFunctionScope-1_Instance0_effe1561-9cd2-4994-9800-0724bfaa912d": "H4sIAAAAAAAACq3MqxLDIBBA0X9ZHWZgeUfHRFeGCBJopyaixTH8e2diu3LdNfdsHa76bbUsuWWYtw7lDugJHu3zvl7rkmBO4Opx2oBOGDSnMMoWEaLUQtXw1Db6mvEQUmKIuaoEU4L1aveLzikZ4oAxsej4r0fJpmtCV2y6IXRk0y2hazbdEbph0z2hWzY9ELpj0yOh+wFjH/sP21FerGADAAA="
+        "BeamByCurve_InClassDecl-1_InFunctionScope-1_Instance0_effe1561-9cd2-4994-9800-0724bfaa912d": "H4sIAAAAAAAACq3MoQ6EMAyA4XepZknZoDA0Bn2SIQYdlzOIu7ll706Cvcq63/zfWuBKv5x4jjnCtBbgJ6AEeOXv53ovc4ApgHMD8clsfCQ2ne2c2YnI7GT7dJzIiIdBtKOPvAdoAixXfl5L1OLoKtRGRT8EvVPTWdB7NT0JOqnpp6APWnpCQR/V9FbQvZpu/3WParoT9LZC3ep2A3tI0c1gAwAA"
       }
     },
     {
       "NodeId": "8fe59086-ce7b-4400-a2ce-dbc270af9476",
       "Binding": {
-        "BeamByCurve_InClassDecl-1_InFunctionScope-1_Instance0_8fe59086-ce7b-4400-a2ce-dbc270af9476": "H4sIAAAAAAAACq3MoQ7DIBRG4Xf5dUmAAr1U11RPlgpabpcZxIYj992XVE/OHXO+raPyp3FZcsuYt45yB3rCo71f9bkuCXNC4OP0ZINy1p3KGV8URT0qw3SNPk6c7aG0thRzuRKGhLW2+7UhGE2TQIZ/6Kx/6CSQXfYvWP38gM4AAAA="
+        "BeamByCurve_InClassDecl-1_InFunctionScope-1_Instance0_8fe59086-ce7b-4400-a2ce-dbc270af9476": "H4sIAAAAAAAACq3MoRKDMBBF0X95mp1ZErolaAy6kiAWNnRqItq4TP69M+jKumvuWSty+pRksxbFtFbYFagRj/J+5ecyR0wR3t/FTjMKKkaDGzztIkK7uFs6Tjbmg5jdGNRCRBex5HK9TqTnsW9o3V90/aG7hra17Qs9u1oRzgAAAA=="
       }
     },
     {
       "NodeId": "16434ff3-76f1-4674-8dfb-82b23008f021",
       "Binding": {
-        "ColumnByCurve_InClassDecl-1_InFunctionScope-1_Instance0_16434ff3-76f1-4674-8dfb-82b23008f021": "H4sIAAAAAAAACrXPrRLDIBBG0XdZHWaA8LNEx0RXBgQE2qmJaHEZ3r3T2KwkjhXcb856wF6+teQ51gjTejnz+YDDw6N+3vtrmT1MHkxJm0ZpmJJqY0rozNDxkYmCz1E7W6JMjHOJLmbtYfCw7PX8K40R3NoGbehSN0QdG7Tw7/fHWGLOdcPgtY78Powj5kQ3TCTq8j5MIubGbpiNqKv7MJmY090whaibExNa+AFMvW06EwQAAA=="
+        "ColumnByCurve_InClassDecl-1_InFunctionScope-1_Instance0_16434ff3-76f1-4674-8dfb-82b23008f021": "H4sIAAAAAAAACrXPIROEIBCG4f+yWWZWwAXNFvNFMaCrN1cMdzSH/+6c1Y3Y2MD7zTMesK+/tHIfU4RuvJ18PeAI8Erfz/4e+gBdAGMc8cas2kisrLZGzUSkZtLNumzIiItC1L6NyxagCjDs6fqriWp0dYZclagzCnWdIU//fnEM18KcKYbRQt0+hzHCXFMMY4U6PYdphDlXDENC3T+HccJcWwzj73WPF2bK0wmGHkT7EwQAAA=="
       }
     }
   ],
@@ -1603,25 +1603,25 @@
     "ConnectorPins": [
       {
         "Left": 4395.341521590691,
-        "Top": 723.2439333408881,
+        "Top": 703.2441333408881,
         "IsHidden": false,
         "ConnectorGuid": "66240279-a8d3-4e92-9d58-14deb9ebbd8e"
       },
       {
         "Left": 2332.874377224438,
-        "Top": 1426.1362828712588,
+        "Top": 1406.1364828712587,
         "IsHidden": false,
         "ConnectorGuid": "542e9414-26e4-4a4c-81ad-3a97c364dbae"
       },
       {
         "Left": 6558.452756523093,
-        "Top": 2405.2683026501186,
+        "Top": 2385.268502650119,
         "IsHidden": false,
         "ConnectorGuid": "ce1bcbf8-6c0e-4ac3-8616-196c0b8c23d7"
       },
       {
         "Left": 2221.9269305324706,
-        "Top": 1364.8805154727415,
+        "Top": 1344.8807154727415,
         "IsHidden": false,
         "ConnectorGuid": "7621259c-5606-4936-b3d0-b3fb297555c4"
       }
@@ -2064,13 +2064,13 @@
           "716d7ebfb5754c409e728c9ce1fb7b08"
         ],
         "HasNestedGroups": false,
-        "Left": 331.232868368215,
-        "Top": 409.12092597170727,
-        "Width": 304.9956034921704,
-        "Height": 244.2203574987284,
+        "Left": 324.2061417740098,
+        "Top": 497.83334922355175,
+        "Width": 307.6306259649973,
+        "Height": 267.935559754172,
         "FontSize": 36.0,
         "GroupStyleId": "bc688959-ce34-4bf5-90f8-6ddd23f80989",
-        "InitialTop": 482.2320370828184,
+        "InitialTop": 570.9444603346628,
         "InitialHeight": 252.22035749872833,
         "TextblockHeight": 63.111111111111114,
         "IsOptionalInPortsCollapsed": false,
@@ -2321,8 +2321,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 341.232868368215,
-        "Top": 597.4523945815467,
+        "Left": 334.2061417740098,
+        "Top": 709.8800200888348,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -2374,8 +2374,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": 341.78402741594095,
-        "Top": 490.2320370828184,
+        "Left": 337.39232329456263,
+        "Top": 578.9444603346628,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,

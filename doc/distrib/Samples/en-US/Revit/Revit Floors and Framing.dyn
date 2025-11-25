@@ -1432,13 +1432,13 @@
     {
       "NodeId": "4074e4e4-c6ee-4413-8cbb-cc9af5b6127f",
       "Binding": {
-        "ByOutlineTypeAndLevel_InClassDecl-1_InFunctionScope-1_Instance0_4074e4e4-c6ee-4413-8cbb-cc9af5b6127f": "H4sIAAAAAAAACq3SqxLDIBCF4XdZHWZgYblEx0RXhggCtFODaHEM795pLBZ3zP+pczQo+Vtz2kINsB4N0j2geXjUz7u89s3D6kHnK5JFzRSqyJSgxKzjkolsn5KcyQEvxjnawCl5WDzspd4tao3KyQ59maHrOOjE7Szd0KgLM03Po456lm7NqEuapTs+6kpN092o0/8zZz9/90YtaKQCAAA="
+        "ByOutlineTypeAndLevel_InClassDecl-1_InFunctionScope-1_Instance0_4074e4e4-c6ee-4413-8cbb-cc9af5b6127f": "H4sIAAAAAAAACq3SoRLDIBBF0X9ZHWY2y2aB6JjoyhBBBujURLS4DP/eaSyVuGfuUW+74EyfkuISSoB5uyDeAy4Pj/J+nc918TB7IJuFNR1K2EbFMrFyokcVGEkw5JAxKUSyATl7GDysZ7lbEiE2rkIdeuhTanXHvXQxjT6h7qUbbPWRuumu1WnspVtqdY3d9OOP/vvMXvcvtiLqbaQCAAA="
       }
     },
     {
       "NodeId": "e779956e-198b-4518-96fb-e95c79a15dbf",
       "Binding": {
-        "BeamByCurve_InClassDecl-1_InFunctionScope-1_Instance0_e779956e-198b-4518-96fb-e95c79a15dbf": "H4sIAAAAAAAACrWVsY7DIBAF/4U6SBhYWFKnSX1lSIFtEqVxcecu8r+fnDavfBYNFAxC2tHc3mbpf2ufL21t5nz7Os6fjXlX87P+vpbn9VLNuZrUx0nUJxt9nGwcZLZaXLBD10eQknvzo3XOa3NhruZUzXVZP3d9Sj6mYTPbiULvgO5p9AegBxY9OkCPNPoA6EKje0BPm9nuO58+RDGA5zLtMxHQlUYXQC80evqmZ0ejZ0CnyRsV0P1xQ1TAczybG6DzbB4BnWfzBOiJRgcFyDx5QQGyHjdEIAmZZrOAJCjNZgFJUJrNApKgtBQLKIDS5BVQAI2HDZGAJCjNZgFJUJrNApKgNJsFJEFpKRZQAOXJCwpQdnnv+/oHXbL4JmsLAAA="
+        "BeamByCurve_InClassDecl-1_InFunctionScope-1_Instance0_e779956e-198b-4518-96fb-e95c79a15dbf": "H4sIAAAAAAAACrWVoY7DMBAF/2VxIznrzdopLik+WBe4l6QqCbgLq/LvVUrz4ItMbOCxLO1obm+Zx/9lHC51qXK+7Y7DdyPvIj/L32t+Xi9FzkU0T25RH41bHhrzzpreY9tUC+qhTnUKYxOC5hp0KnIqcp2X7111V7O0ynpi0GMA9Eyjt4De0+i6p3eBRo+A3tLoBui6ynrf+PQhih14LtI+44BuNHoC9I5Gz4DuNHoP6Dx5K6Dn44boAZ7j2fy7pzvP5gHQeTaPgK40OiiA0+Q1UAC3w4bIQBKcZrOBJDjNZgNJcJrNBpLgtBQbKIDT5DVQgBSOGyKQhESz2UASEs1mA0lIPJsroNNSbKAAiScvKEDa5L1v6wOLqH4PawsAAA=="
       }
     }
   ],
@@ -1466,7 +1466,7 @@
     "ConnectorPins": [
       {
         "Left": 909.5470894887627,
-        "Top": -287.51330110997503,
+        "Top": -327.51290110997513,
         "IsHidden": false,
         "ConnectorGuid": "fe0d298f-c03a-444a-9e90-aad8e457781e"
       }
@@ -2044,17 +2044,17 @@
           "3d565146685446479617885a01768bf2",
           "3c337fcb1f474c148d7ab126ca117cc4",
           "48c981868e2642a3afef96ec0d5dbc7f",
-          "8b638d1551cf4eb1b065d2ea669eea4f"
+          "863b57c41f7249749a8cb125d7eb45b3"
         ],
         "HasNestedGroups": false,
         "Left": -531.5451693318497,
-        "Top": -356.3109932450577,
+        "Top": -390.6241122210862,
         "Width": 2265.8130457158404,
-        "Height": 1112.6438753723423,
+        "Height": 1146.9569943483707,
         "FontSize": 36.0,
         "GroupStyleId": "4d68be4a-a04d-4945-9dd5-cdf61079d790",
-        "InitialTop": -283.19988213394663,
-        "InitialHeight": 1025.5327642612313,
+        "InitialTop": -317.5130011099751,
+        "InitialHeight": 1059.8458832372598,
         "TextblockHeight": 63.111111111111114,
         "IsOptionalInPortsCollapsed": false,
         "IsUnconnectedOutPortsCollapsed": false,
@@ -2076,13 +2076,13 @@
           "e596e89bf69f47f0b3456a6a4f67d265"
         ],
         "HasNestedGroups": false,
-        "Left": -1188.9875471552587,
-        "Top": -865.2644188543414,
+        "Left": -1175.3929846428616,
+        "Top": -709.4172730027432,
         "Width": 318.66666666666674,
         "Height": 257.2085665327371,
         "FontSize": 36.0,
         "GroupStyleId": "bc688959-ce34-4bf5-90f8-6ddd23f80989",
-        "InitialTop": -792.1533077432304,
+        "InitialTop": -636.3061618916321,
         "InitialHeight": 250.98634431051494,
         "TextblockHeight": 63.111111111111114,
         "IsOptionalInPortsCollapsed": false,
@@ -2156,8 +2156,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -1177.8603258666694,
-        "Top": -784.1533077432304,
+        "Left": -1164.2657633542724,
+        "Top": -628.3061618916321,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -2182,8 +2182,8 @@
         "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -1178.9875471552587,
-        "Top": -678.1669634327154,
+        "Left": -1165.3929846428616,
+        "Top": -522.3198175811171,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -2657,8 +2657,8 @@
         "PinnedNode": "9fff18f6ca014727b2c91e663a0e28fa"
       }
     ],
-    "X": 820.1530146402795,
-    "Y": 526.0036215712175,
-    "Zoom": 0.5727411649808397
+    "X": 392.9279935163109,
+    "Y": 297.9219246822374,
+    "Zoom": 0.18637928513810847
   }
 }
