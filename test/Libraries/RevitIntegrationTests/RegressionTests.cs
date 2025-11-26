@@ -360,8 +360,9 @@ namespace RevitSystemTests
                   message.AppendLine("Version Mismatched DLLs:");
                   foreach (var dll in versionMismatchedDlls)
                   {
-                     var approvedVersion = approvedDlls.First(ad => ad.Path == dll.Path).Version;
-                     message.AppendLine($"{dll.Path} | Current Version: {dll.Version}, Approved Version: {approvedVersion}");
+                     var approvedDll = approvedDlls.First(ad => ad.Path == dll.Path);
+                     var approvedVersionStr = approvedDll.Version?.ToString() ?? approvedDll.VersionWildcard;
+                     message.AppendLine($"{dll.Path} | Current Version: {dll.Version}, Approved Version: {approvedVersionStr}");
                   }
                }
 
@@ -466,8 +467,9 @@ namespace RevitSystemTests
                   message.AppendLine("Version Mismatched DLLs:");
                   foreach (var dll in versionMismatchedDlls)
                   {
-                     var approvedVersion = approvedDlls.First(ad => ad.Path == dll.Path).Version;
-                     message.AppendLine($"{dll.Path} | Current Version: {dll.Version}, Approved Version: {approvedVersion}");
+                     var approvedDll = approvedDlls.First(ad=> ad.Path == dll.Path);
+                     var approvedVersionStr = approvedDll.Version?.ToString() ?? approvedDll.VersionWildcard;
+                     message.AppendLine($"{dll.Path} | Current Version: {dll.Version}, Approved Version: {approvedVersionStr}");
                   }
                }
 
@@ -537,22 +539,13 @@ namespace RevitSystemTests
          return testParameters;
       }
 
-      private Version GetAssemblyVersion(string assemblyPath)
+      private static Version GetAssemblyVersion(string assemblyPath)
       {
          try
          {
-            AssemblyName assemblyName = AssemblyName.GetAssemblyName(assemblyPath);
-            return assemblyName.Version;
-         }
-         catch (BadImageFormatException ex)
-         {
             var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(assemblyPath);
-            if (!string.IsNullOrEmpty(versionInfo.FileVersion))
-            {
-               Version version = new Version(versionInfo.FileMajorPart, versionInfo.FileMinorPart, versionInfo.FileBuildPart, versionInfo.FilePrivatePart);
-               return version;   
-            }
-            else return new Version(0, 0, 0, 0);
+            Version version = new Version(versionInfo.FileMajorPart, versionInfo.FileMinorPart, versionInfo.FileBuildPart, versionInfo.FilePrivatePart);
+            return version;   
          }
          catch (Exception ex)
          {
@@ -586,6 +579,9 @@ namespace RevitSystemTests
 
       public bool MatchesPattern(string pattern)
       {
+         if (pattern.Equals("*"))
+            return true;
+         
          string versionStr = this.Version.ToString();
          if (pattern.EndsWith("*"))
          {
