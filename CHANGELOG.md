@@ -1,3 +1,6 @@
+## 0.7.67
+* Update Dynamo Core to 4.0.0.3277
+
 ## 0.7.66
 * Improve reg tests InstallDllTest and PackageDllTest to check for file version instead of assembly version
 
