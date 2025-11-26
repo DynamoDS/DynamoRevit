@@ -24,19 +24,111 @@
 		<PackageReference Include="System.Resources.Extensions" Version="5.0.0" />
 	</ItemGroup>
 	<Target Name="BeforeBuildMigrated" BeforeTargets="PreBuildEvent">
+		<Message Text="[Versioning *customization.dll] Starting target execution" Importance="high" />
+		<Message Text="[Versioning *customization.dll] SolutionDir: $(SolutionDir)" Importance="high" />
+		<Message Text="[Versioning *customization.dll] ProjectDir: $(ProjectDir)" Importance="high" />
+		<Message Text="[Versioning *customization.dll] OutputPath: $(OutputPath)" Importance="high" />
+		<Message Text="[Versioning *customization.dll] Configuration: $(Configuration)" Importance="high" />
+		<Message Text="[Versioning *customization.dll] Platform: $(Platform)" Importance="high" />
+		<Message Text="[Versioning *customization.dll] TargetFrameworkSDKToolsDirectory: $(TargetFrameworkSDKToolsDirectory)" Importance="high" />
+
 		<GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v4.8">
 			<Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
 		</GetReferenceAssemblyPaths>
+		<Message Text="[Versioning *customization.dll] FrameworkAssembliesPath: $(FrameworkAssembliesPath)" Importance="high" />
+		
+		<PropertyGroup>
+			<_AssemblyInfoGeneratorPath>$(SolutionDir)\AssemblySharedInfoGenerator\bin\AssemblyInfoGenerator.dll</_AssemblyInfoGeneratorPath>
+		</PropertyGroup>
+		<Message Text="[Versioning *customization.dll] Looking for AssemblyInfoGenerator.dll at: $(_AssemblyInfoGeneratorPath)" Importance="high" />
+		
+		<PropertyGroup>
+			<_AssemblyInfoGeneratorExists Condition="Exists('$(_AssemblyInfoGeneratorPath)')">true</_AssemblyInfoGeneratorExists>
+			<_AssemblyInfoGeneratorExists Condition="!Exists('$(_AssemblyInfoGeneratorPath)')">false</_AssemblyInfoGeneratorExists>
+		</PropertyGroup>
+		<Message Text="[Versioning *customization.dll] AssemblyInfoGenerator.dll exists: $(_AssemblyInfoGeneratorExists)" Importance="high" />
+		
+		<Error Condition="!Exists('$(_AssemblyInfoGeneratorPath)')" Text="[Versioning *customization.dll] ERROR: AssemblyInfoGenerator.dll not found at $(_AssemblyInfoGeneratorPath). Ensure AssemblySharedInfoGenerator project is built first." />
+		
 		<GetAssemblyIdentity
-		  AssemblyFiles="$(SolutionDir)\AssemblySharedInfoGenerator\bin\AssemblyInfoGenerator.dll">
+		  AssemblyFiles="$(_AssemblyInfoGeneratorPath)"
+		  Condition="Exists('$(_AssemblyInfoGeneratorPath)')">
 			<Output
 				TaskParameter="Assemblies"
 				ItemName="MyAssemblyIdentities"/>
 		</GetAssemblyIdentity>
-		<GenerateResource SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" UseSourcePath="true" Sources="$(ProjectDir)RevitNodesImages.resx" OutputResources="$(ProjectDir)RevitNodesImages.resources" />
-		<AL TargetType="library" EmbedResources="$(ProjectDir)RevitNodesImages.resources" FileVersion="%(MyAssemblyIdentities.Version)" ProductName="Dynamo For Revit Preview Release" ProductVersion="%(MyAssemblyIdentities.Version)" Copyright="Copyright © Autodesk, Inc 2025" OutputAssembly="$(OutputPath)RevitNodes.customization.dll" />
-		<GenerateResource SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" UseSourcePath="true" Sources="$(ProjectDir)DSRevitNodesUIImages.resx" OutputResources="$(ProjectDir)DSRevitNodesUIImages.resources" />
-		<AL TargetType="library" EmbedResources="$(ProjectDir)DSRevitNodesUIImages.resources" FileVersion="%(MyAssemblyIdentities.Version)" ProductName="Dynamo For Revit Preview Release" ProductVersion="%(MyAssemblyIdentities.Version)" Copyright="Copyright © Autodesk, Inc 2025" OutputAssembly="$(OutputPath)DSRevitNodesUI.customization.dll" />
+		
+		<Message Condition="'@(MyAssemblyIdentities)' != ''" Text="[Versioning *customization.dll] GetAssemblyIdentity completed. Found assembly identity" Importance="high" />
+		<Message Condition="'@(MyAssemblyIdentities)' == ''" Text="[Versioning *customization.dll] GetAssemblyIdentity completed. WARNING: No assembly identity found!" Importance="high" />
+		<Message Condition="'@(MyAssemblyIdentities)' != ''" Text="[Versioning *customization.dll] Assembly Identity - Name: %(MyAssemblyIdentities.Name), Version: %(MyAssemblyIdentities.Version), Culture: %(MyAssemblyIdentities.Culture), PublicKeyToken: %(MyAssemblyIdentities.PublicKeyToken)" Importance="high" />
+		
+		<ItemGroup>
+			<_VersionItems Include="@(MyAssemblyIdentities->'%(Version)')" Condition="'@(MyAssemblyIdentities)' != ''" />
+		</ItemGroup>
+		<PropertyGroup>
+			<_VersionToUse Condition="'@(_VersionItems)' != ''">@(_VersionItems)</_VersionToUse>
+			<_VersionToUse Condition="'@(_VersionItems)' == ''">0.0.0.0</_VersionToUse>
+		</PropertyGroup>
+		<Message Text="[Versioning *customization.dll] Version to use for customization DLLs: $(_VersionToUse)" Importance="high" />
+		
+		<Error Condition="'$(_VersionToUse)' == '0.0.0.0' AND '@(MyAssemblyIdentities)' == ''" Text="[Versioning *customization.dll] ERROR: Failed to retrieve version from AssemblyInfoGenerator.dll. Version will be set to 0.0.0.0" />
+		
+		<Message Text="[Versioning *customization.dll] Generating resource: RevitNodesImages.resx" Importance="high" />
+		<GenerateResource 
+			SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" 
+			UseSourcePath="true" 
+			Sources="$(ProjectDir)RevitNodesImages.resx" 
+			OutputResources="$(ProjectDir)RevitNodesImages.resources" />
+		<Message Text="[Versioning *customization.dll] Resource generation completed for RevitNodesImages.resources" Importance="high" />
+		
+		<PropertyGroup>
+			<_OutputAssembly1>$(OutputPath)RevitNodes.customization.dll</_OutputAssembly1>
+		</PropertyGroup>
+		<Message Text="[Versioning *customization.dll] Creating customization DLL: $(_OutputAssembly1)" Importance="high" />
+		<Message Text="[Versioning *customization.dll] Using FileVersion: $(_VersionToUse), ProductVersion: $(_VersionToUse)" Importance="high" />
+		
+		<MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+		<Message Text="[Versioning *customization.dll] OutputPath directory exists or created: $(OutputPath)" Importance="high" />
+		
+		<AL 
+			TargetType="library" 
+			EmbedResources="$(ProjectDir)RevitNodesImages.resources" 
+			FileVersion="$(_VersionToUse)" 
+			ProductName="Dynamo For Revit Preview Release" 
+			ProductVersion="$(_VersionToUse)" 
+			Copyright="Copyright © Autodesk, Inc 2025" 
+			OutputAssembly="$(_OutputAssembly1)" />
+		<Message Text="[Versioning *customization.dll] AL task completed for RevitNodes.customization.dll" Importance="high" />
+		<Message Condition="Exists('$(_OutputAssembly1)')" Text="[Versioning *customization.dll] SUCCESS: Output file exists: $(_OutputAssembly1)" Importance="high" />
+		<Error Condition="!Exists('$(_OutputAssembly1)')" Text="[Versioning *customization.dll] ERROR: Output file was not created: $(_OutputAssembly1)" />
+		
+		<Message Text="[Versioning *customization.dll] Generating resource: DSRevitNodesUIImages.resx" Importance="high" />
+		<GenerateResource 
+			SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" 
+			UseSourcePath="true" 
+			Sources="$(ProjectDir)DSRevitNodesUIImages.resx" 
+			OutputResources="$(ProjectDir)DSRevitNodesUIImages.resources" />
+		<Message Text="[Versioning *customization.dll] Resource generation completed for DSRevitNodesUIImages.resources" Importance="high" />
+		
+		<PropertyGroup>
+			<_OutputAssembly2>$(OutputPath)DSRevitNodesUI.customization.dll</_OutputAssembly2>
+		</PropertyGroup>
+		<Message Text="[Versioning *customization.dll] Creating customization DLL: $(_OutputAssembly2)" Importance="high" />
+		<Message Text="[Versioning *customization.dll] Using FileVersion: $(_VersionToUse), ProductVersion: $(_VersionToUse)" Importance="high" />
+		
+		<AL 
+			TargetType="library" 
+			EmbedResources="$(ProjectDir)DSRevitNodesUIImages.resources" 
+			FileVersion="$(_VersionToUse)" 
+			ProductName="Dynamo For Revit Preview Release" 
+			ProductVersion="$(_VersionToUse)" 
+			Copyright="Copyright © Autodesk, Inc 2025" 
+			OutputAssembly="$(_OutputAssembly2)" />
+		<Message Text="[Versioning *customization.dll] AL task completed for DSRevitNodesUI.customization.dll" Importance="high" />
+		<Message Condition="Exists('$(_OutputAssembly2)')" Text="[Versioning *customization.dll] SUCCESS: Output file exists: $(_OutputAssembly2)" Importance="high" />
+		<Error Condition="!Exists('$(_OutputAssembly2)')" Text="[Versioning *customization.dll] ERROR: Output file was not created: $(_OutputAssembly2)" />
+		
+		<Message Text="[Versioning *customization.dll] Target execution completed successfully" Importance="high" />
 	</Target>
 	<Target Name="AfterBuildMigrated" AfterTargets="PostBuildEvent">
 		<ItemGroup>
