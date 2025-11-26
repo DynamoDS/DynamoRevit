@@ -48,6 +48,16 @@
       <DependentUpon>AssemblySharedInfo.tt</DependentUpon>
     </Compile>
   </ItemGroup>
+  <!-- Ensure stale DLL is deleted before build to force recompilation with version info -->
+  <Target Name="CleanStaleDll" BeforeTargets="BeforeBuildMigrated">
+    <PropertyGroup>
+      <_StaleDllPath>$(ProjectDir)bin\AssemblyInfoGenerator.dll</_StaleDllPath>
+    </PropertyGroup>
+    <!-- Delete the DLL if it exists to force a fresh build -->
+    <!-- This ensures we don't use a stale DLL that might have version 0.0.0.0 -->
+    <Delete Files="$(_StaleDllPath)" ContinueOnError="true" />
+    <Message Importance="high" Condition="Exists('$(_StaleDllPath)')" Text="Deleted stale DLL at: $(_StaleDllPath)" />
+  </Target>
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>

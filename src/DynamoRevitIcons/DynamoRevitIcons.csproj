@@ -29,8 +29,10 @@
 		</GetReferenceAssemblyPaths>
 		<!-- Ensure AssemblyInfoGenerator is fully built before we try to read its version -->
 		<!-- This is critical for Jenkins builds where build order might not be guaranteed -->
+		<!-- Use Rebuild target to ensure we get a fresh DLL with version information -->
+		<!-- This is especially important for Debug builds where incremental builds might use stale DLLs -->
 		<MSBuild Projects="$(SolutionDir)AssemblySharedInfoGenerator\AssemblyInfoGenerator.csproj"
-				 Targets="Build"
+				 Targets="Rebuild"
 				 Properties="Configuration=$(Configuration);Platform=$(Platform)"
 				 ContinueOnError="false" />
 		<!-- Get the actual output path from AssemblyInfoGenerator project -->
@@ -52,6 +54,10 @@
 		</PropertyGroup>
 		<!-- Wait a moment to ensure the DLL is fully written and not locked (helps with timing issues in Jenkins) -->
 		<Exec Command="timeout /t 1 /nobreak &gt;nul 2&gt;&amp;1 || ping 127.0.0.1 -n 2 &gt;nul" ContinueOnError="true" />
+		<!-- Diagnostic: Log the path we're trying to read from -->
+		<Message Importance="high" Text="Attempting to read AssemblyInfoGenerator.dll from: $(_AssemblyInfoGeneratorPath)" />
+		<Message Importance="high" Condition="Exists('$(_AssemblyInfoGeneratorPath)')" Text="DLL exists at primary path: $(_AssemblyInfoGeneratorPath)" />
+		<Message Importance="high" Condition="!Exists('$(_AssemblyInfoGeneratorPath)')" Text="DLL does NOT exist at primary path. Trying alternative path: $(_AssemblyInfoGeneratorAltPath)" />
 		<!-- Try to get assembly identity from primary path first -->
 		<GetAssemblyIdentity
 		  AssemblyFiles="$(_AssemblyInfoGeneratorPath)"
@@ -61,6 +67,8 @@
 				TaskParameter="Assemblies"
 				ItemName="MyAssemblyIdentities"/>
 		</GetAssemblyIdentity>
+		<!-- Diagnostic: Log what version we got -->
+		<Message Importance="high" Condition="'@(MyAssemblyIdentities)' != ''" Text="Got version from primary path: %(MyAssemblyIdentities.Version)" />
 		<!-- If primary path didn't work, try alternative path -->
 		<GetAssemblyIdentity
 		  AssemblyFiles="$(_AssemblyInfoGeneratorAltPath)"
