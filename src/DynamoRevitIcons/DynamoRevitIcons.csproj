@@ -27,12 +27,41 @@
 		<GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v4.8">
 			<Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
 		</GetReferenceAssemblyPaths>
+		<!-- Resolve the correct path to AssemblyInfoGenerator.dll -->
+		<!-- AssemblyInfoGenerator uses OutputPath=bin\ which is relative to project directory -->
+		<!-- This path should work for both Debug and Release configurations -->
+		<PropertyGroup>
+			<_AssemblyInfoGeneratorPath>$(SolutionDir)AssemblySharedInfoGenerator\bin\AssemblyInfoGenerator.dll</_AssemblyInfoGeneratorPath>
+			<!-- Alternative path in case output goes to standard location from CS_SDK.props -->
+			<_AssemblyInfoGeneratorAltPath>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\Revit\AssemblyInfoGenerator.dll</_AssemblyInfoGeneratorAltPath>
+		</PropertyGroup>
+		<!-- Try to get assembly identity from primary path first -->
 		<GetAssemblyIdentity
-		  AssemblyFiles="$(SolutionDir)\AssemblySharedInfoGenerator\bin\AssemblyInfoGenerator.dll">
+		  AssemblyFiles="$(_AssemblyInfoGeneratorPath)"
+		  Condition="Exists('$(_AssemblyInfoGeneratorPath)')"
+		  ContinueOnError="true">
 			<Output
 				TaskParameter="Assemblies"
 				ItemName="MyAssemblyIdentities"/>
 		</GetAssemblyIdentity>
+		<!-- If primary path didn't work, try alternative path -->
+		<GetAssemblyIdentity
+		  AssemblyFiles="$(_AssemblyInfoGeneratorAltPath)"
+		  Condition="'@(MyAssemblyIdentities)' == '' AND Exists('$(_AssemblyInfoGeneratorAltPath)')"
+		  ContinueOnError="true">
+			<Output
+				TaskParameter="Assemblies"
+				ItemName="MyAssemblyIdentities"/>
+		</GetAssemblyIdentity>
+		<!-- Verify we found the file and got assembly identity -->
+		<Error Condition="'@(MyAssemblyIdentities)' == ''" Text="AssemblyInfoGenerator.dll not found. Configuration: $(Configuration), Platform: $(Platform). Searched at: $(_AssemblyInfoGeneratorPath) and $(_AssemblyInfoGeneratorAltPath). Please ensure AssemblyInfoGenerator project is built before DynamoRevitIcons." />
+		<!-- Extract version to a property for easier checking -->
+		<PropertyGroup>
+			<_AssemblyInfoVersion>%(MyAssemblyIdentities.Version)</_AssemblyInfoVersion>
+		</PropertyGroup>
+		<!-- Verify we got a valid version (not 0.0.0.0) -->
+		<!-- This is the key fix: detect when version is 0.0.0.0 and provide helpful error -->
+		<Error Condition="'$(_AssemblyInfoVersion)' == '' OR '$(_AssemblyInfoVersion)' == '0.0.0.0'" Text="Failed to get valid version from AssemblyInfoGenerator.dll. Got version: $(_AssemblyInfoVersion). This usually means the DLL exists but wasn't properly built or versioned. In Jenkins Debug builds, ensure AssemblyInfoGenerator is fully built with version information before DynamoRevitIcons builds. Try rebuilding AssemblyInfoGenerator project." />
 		<GenerateResource SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" UseSourcePath="true" Sources="$(ProjectDir)RevitNodesImages.resx" OutputResources="$(ProjectDir)RevitNodesImages.resources" />
 		<AL TargetType="library" EmbedResources="$(ProjectDir)RevitNodesImages.resources" FileVersion="%(MyAssemblyIdentities.Version)" ProductName="Dynamo For Revit Preview Release" ProductVersion="%(MyAssemblyIdentities.Version)" Copyright="Copyright © Autodesk, Inc 2025" OutputAssembly="$(OutputPath)RevitNodes.customization.dll" />
 		<GenerateResource SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" UseSourcePath="true" Sources="$(ProjectDir)DSRevitNodesUIImages.resx" OutputResources="$(ProjectDir)DSRevitNodesUIImages.resources" />
