@@ -1,3 +1,6 @@
+## 0.7.66
+* Improve reg tests InstallDllTest and PackageDllTest to check for file version instead of assembly version
+
 ## 0.7.65
 * Re-save sample scripts
 
