@@ -8,6 +8,7 @@
     <OverwriteReadOnlyOutputFiles>true</OverwriteReadOnlyOutputFiles>
     <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- PreBuildEvent runs transform_all.bat, but we also ensure it runs in BeforeBuildMigrated for reliability -->
     <PreBuildEvent>"$(SolutionDir)transform_all.bat" "$(ProjectDir)"</PreBuildEvent>
     <OutputPath>bin\</OutputPath>
     <DebugSymbols>false</DebugSymbols>
@@ -19,6 +20,20 @@
   </PropertyGroup>
   <Target Name="BeforeBuildMigrated" BeforeTargets="PreBuildEvent">
     <Exec Command="&quot;$(SolutionDir)restorepackages.bat&quot;" ContinueOnError="true" />
+    <!-- Ensure T4 template transformation happens before build -->
+    <!-- This is critical for version information to be embedded in the assembly -->
+    <!-- Run transformation explicitly to ensure it happens in all build scenarios (including Jenkins Debug) -->
+    <!-- In Visual Studio, T4 templates are transformed automatically, but in Jenkins/MSBuild command line, we need the batch script -->
+    <Exec Command="&quot;$(SolutionDir)transform_all.bat&quot; &quot;$(ProjectDir)&quot;" ContinueOnError="false" />
+    <!-- Verify that AssemblySharedInfo.cs was generated -->
+    <PropertyGroup>
+      <_AssemblySharedInfoPath>$(ProjectDir)AssemblySharedInfo.cs</_AssemblySharedInfoPath>
+      <_AssemblySharedInfoTemplatePath>$(ProjectDir)AssemblySharedInfo.tt</_AssemblySharedInfoTemplatePath>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(_AssemblySharedInfoPath)')" Text="AssemblySharedInfo.cs was not generated. T4 template transformation failed. Expected at: $(_AssemblySharedInfoPath). Configuration: $(Configuration), Platform: $(Platform). This is required for version information." />
+    <!-- Force touch the generated file to ensure MSBuild sees it as changed (important for incremental builds in Jenkins) -->
+    <Touch Files="$(_AssemblySharedInfoPath)" AlwaysCreate="false" />
+    <Message Importance="high" Text="Verified AssemblySharedInfo.cs exists at: $(_AssemblySharedInfoPath) for Configuration: $(Configuration)" />
   </Target>
   <ItemGroup>
     <None Update="AssemblySharedInfo.tt">

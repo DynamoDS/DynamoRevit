@@ -31,16 +31,50 @@ IF EXIST "%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" (
 
 :: not found in IDE, use legacy
 IF NOT DEFINED TEXTTRANSFORMPATH (
+   :: Try to determine VisualStudioVersion if not set (common in Jenkins builds)
+   IF "%VisualStudioVersion%"=="" (
+      :: Default to a common version, or try to detect from installed VS
+      set VisualStudioVersion=17.0
+   )
    set TEXTTRANSFORMPATH="%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\%VisualStudioVersion%\TextTransform.exe"
+   :: If still not found, try other common versions
+   IF NOT EXIST %TEXTTRANSFORMPATH% (
+      set TEXTTRANSFORMPATH="%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\16.0\TextTransform.exe"
+   )
+   IF NOT EXIST %TEXTTRANSFORMPATH% (
+      set TEXTTRANSFORMPATH="%COMMONPROGRAMFILES(x86)%\microsoft shared\TextTemplating\15.0\TextTransform.exe"
+   )
+)
+
+:: Verify TextTransform.exe exists before attempting transformation
+IF NOT DEFINED TEXTTRANSFORMPATH (
+   echo ERROR: TextTransform.exe not found. Cannot transform T4 templates.
+   echo Searched for Visual Studio TextTransform.exe but could not locate it.
+   exit /b 1
+)
+IF NOT EXIST %TEXTTRANSFORMPATH% (
+   echo ERROR: TextTransform.exe not found at: %TEXTTRANSFORMPATH%
+   echo This is required for T4 template transformation. Please ensure Visual Studio is installed.
+   exit /b 1
 )
 
 :: transform all the templates
+set TRANSFORM_FAILED=0
 for /f %%d in (t4list.txt) do (
 set file_name=%%d
 set file_name=!file_name:~0,-3!.%extension%
 echo:  \--^> !file_name!
 echo %TEXTTRANSFORMPATH% -out !file_name! %%d
     %TEXTTRANSFORMPATH% -out !file_name! %%d
+    IF ERRORLEVEL 1 (
+        echo ERROR: Failed to transform %%d
+        set TRANSFORM_FAILED=1
+    )
+)
+
+IF %TRANSFORM_FAILED%==1 (
+    echo ERROR: One or more T4 template transformations failed.
+    exit /b 1
 )
 
 :: delete T4 list and return to previous directory
