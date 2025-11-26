@@ -27,14 +27,31 @@
 		<GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v4.8">
 			<Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
 		</GetReferenceAssemblyPaths>
+		<!-- Ensure AssemblyInfoGenerator is fully built before we try to read its version -->
+		<!-- This is critical for Jenkins builds where build order might not be guaranteed -->
+		<MSBuild Projects="$(SolutionDir)AssemblySharedInfoGenerator\AssemblyInfoGenerator.csproj"
+				 Targets="Build"
+				 Properties="Configuration=$(Configuration);Platform=$(Platform)"
+				 ContinueOnError="false" />
+		<!-- Get the actual output path from AssemblyInfoGenerator project -->
+		<!-- This ensures we use the correct path regardless of OutputPath settings -->
+		<MSBuild Projects="$(SolutionDir)AssemblySharedInfoGenerator\AssemblyInfoGenerator.csproj"
+				 Targets="GetTargetPath"
+				 Properties="Configuration=$(Configuration);Platform=$(Platform);BuildProjectReferences=false"
+				 ContinueOnError="true">
+			<Output TaskParameter="TargetOutputs" ItemName="_AssemblyInfoGeneratorTargetPath" />
+		</MSBuild>
 		<!-- Resolve the correct path to AssemblyInfoGenerator.dll -->
-		<!-- AssemblyInfoGenerator uses OutputPath=bin\ which is relative to project directory -->
-		<!-- This path should work for both Debug and Release configurations -->
 		<PropertyGroup>
-			<_AssemblyInfoGeneratorPath>$(SolutionDir)AssemblySharedInfoGenerator\bin\AssemblyInfoGenerator.dll</_AssemblyInfoGeneratorPath>
+			<!-- Use the target path from MSBuild if available -->
+			<_AssemblyInfoGeneratorPath Condition="'@(_AssemblyInfoGeneratorTargetPath)' != ''">%(_AssemblyInfoGeneratorTargetPath.Identity)</_AssemblyInfoGeneratorPath>
+			<!-- Fallback to known paths if MSBuild didn't return a path -->
+			<_AssemblyInfoGeneratorPath Condition="'$(_AssemblyInfoGeneratorPath)' == ''">$(SolutionDir)AssemblySharedInfoGenerator\bin\AssemblyInfoGenerator.dll</_AssemblyInfoGeneratorPath>
 			<!-- Alternative path in case output goes to standard location from CS_SDK.props -->
 			<_AssemblyInfoGeneratorAltPath>$(SolutionDir)..\bin\$(Platform)\$(Configuration)\Revit\AssemblyInfoGenerator.dll</_AssemblyInfoGeneratorAltPath>
 		</PropertyGroup>
+		<!-- Wait a moment to ensure the DLL is fully written and not locked (helps with timing issues in Jenkins) -->
+		<Exec Command="timeout /t 1 /nobreak &gt;nul 2&gt;&amp;1 || ping 127.0.0.1 -n 2 &gt;nul" ContinueOnError="true" />
 		<!-- Try to get assembly identity from primary path first -->
 		<GetAssemblyIdentity
 		  AssemblyFiles="$(_AssemblyInfoGeneratorPath)"
@@ -61,7 +78,8 @@
 		</PropertyGroup>
 		<!-- Verify we got a valid version (not 0.0.0.0) -->
 		<!-- This is the key fix: detect when version is 0.0.0.0 and provide helpful error -->
-		<Error Condition="'$(_AssemblyInfoVersion)' == '' OR '$(_AssemblyInfoVersion)' == '0.0.0.0'" Text="Failed to get valid version from AssemblyInfoGenerator.dll. Got version: $(_AssemblyInfoVersion). This usually means the DLL exists but wasn't properly built or versioned. In Jenkins Debug builds, ensure AssemblyInfoGenerator is fully built with version information before DynamoRevitIcons builds. Try rebuilding AssemblyInfoGenerator project." />
+		<!-- If version is 0.0.0.0, it usually means the DLL was read before it was fully written, or from a stale location -->
+		<Error Condition="'$(_AssemblyInfoVersion)' == '' OR '$(_AssemblyInfoVersion)' == '0.0.0.0'" Text="Failed to get valid version from AssemblyInfoGenerator.dll. Got version: $(_AssemblyInfoVersion), Path: $(_AssemblyInfoGeneratorPath). This usually means the DLL exists but wasn't properly built or versioned, or was read before being fully written. In Jenkins Debug builds, this can happen due to timing issues. Try rebuilding AssemblyInfoGenerator project." />
 		<GenerateResource SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" UseSourcePath="true" Sources="$(ProjectDir)RevitNodesImages.resx" OutputResources="$(ProjectDir)RevitNodesImages.resources" />
 		<AL TargetType="library" EmbedResources="$(ProjectDir)RevitNodesImages.resources" FileVersion="%(MyAssemblyIdentities.Version)" ProductName="Dynamo For Revit Preview Release" ProductVersion="%(MyAssemblyIdentities.Version)" Copyright="Copyright © Autodesk, Inc 2025" OutputAssembly="$(OutputPath)RevitNodes.customization.dll" />
 		<GenerateResource SdkToolsPath="$(TargetFrameworkSDKToolsDirectory)" UseSourcePath="true" Sources="$(ProjectDir)DSRevitNodesUIImages.resx" OutputResources="$(ProjectDir)DSRevitNodesUIImages.resources" />
