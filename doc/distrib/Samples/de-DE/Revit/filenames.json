@@ -1,12 +1,12 @@
 {
-    "Revit Color":  "Revit Color",
-    "Revit Import Solid":  "Revit Import Solid",
-    "Revit Structural Framing":  "Revit Structural Framing",
-    "Revit Geometry Creation Curves":  "Revit Geometry Creation Curves",
-    "Revit Geometry Creation Surfaces":  "Revit Geometry Creation Surfaces",
-    "Revit Adaptive Component Placement":  "Revit Adaptive Component Placement",
-    "Revit Geometry Creation Points":  "Revit Geometry Creation Points",
-    "Revit Geometry Creation Solids":  "Revit Geometry Creation Solids",
-    "Revit Place Families By Level Set Parameters":  "Revit Place Families By Level Set Parameters",
-    "Revit Floors and Framing":  "Revit Floors and Framing"
+  "Revit_Adaptive Component Placement": "Revit_Adaptive Component Placement",
+  "Revit_Color": "Revit_Color",
+  "Revit_Floors and Framing": "Revit_Floors and Framing",
+  "Revit_GeometryCreation_Curves": "Revit_GeometryCreation_Curves",
+  "Revit_GeometryCreation_Points": "Revit_GeometryCreation_Points",
+  "Revit_GeometryCreation_Solids": "Revit_GeometryCreation_Solids",
+  "Revit_GeometryCreation_Surfaces": "Revit_GeometryCreation_Surfaces",
+  "Revit_ImportSolid": "Revit_ImportSolid",
+  "Revit_PlaceFamiliesByLevel_Set Parameters": "Revit_PlaceFamiliesByLevel_Set Parameters",
+  "Revit_StructuralFraming": "Revit_StructuralFraming"
 }
