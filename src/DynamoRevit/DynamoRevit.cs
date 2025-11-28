@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.Loader;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -539,7 +540,7 @@ namespace Dynamo.Applications
         public static string GetGeometryFactoryPath(string corePath, Version version)
         {
             var dynamoAsmPath = Path.Combine(corePath, "DynamoShapeManager.dll");
-            var assembly = Assembly.LoadFrom(dynamoAsmPath);
+            var assembly = AssemblyLoadContext.GetLoadContext(Assembly.GetExecutingAssembly()).LoadFromAssemblyPath(dynamoAsmPath);
             if (assembly == null)
                 throw new FileNotFoundException("File not found", dynamoAsmPath);
 
@@ -568,7 +569,7 @@ namespace Dynamo.Applications
                 if (!File.Exists(assemblyPath))
                     assemblyPath = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), assembly);
                 if (File.Exists(assemblyPath))
-                    Assembly.LoadFrom(assemblyPath);
+                    AssemblyLoadContext.GetLoadContext(Assembly.GetExecutingAssembly()).LoadFromAssemblyPath(assemblyPath);
             }
         }
 
