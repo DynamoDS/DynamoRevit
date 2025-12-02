@@ -355,24 +355,24 @@ namespace RevitSystemTests
                var message = new StringBuilder();
                if (missingDlls.Any())
                {
-                  message.AppendLine("Missing DLLs:");
-                  message.AppendLine(string.Join("\n", missingDlls));
+                  message.AppendLine("\r\nMissing DLLs:");
+                  message.AppendLine(string.Join("\r\n", missingDlls));
                }
 
                if (unexpectedDlls.Any())
                {
-                  message.AppendLine("Unexpected DLLs:");
-                  message.AppendLine(string.Join("\n", unexpectedDlls));
+                  message.AppendLine("\r\nUnexpected DLLs:");
+                  message.AppendLine(string.Join("\r\n", unexpectedDlls));
                }
 
                if (versionMismatchedDlls.Any())
                {
-                  message.AppendLine("Version Mismatched DLLs:");
+                  message.AppendLine("\r\nVersion Mismatched DLLs:");
                   foreach (var dll in versionMismatchedDlls)
                   {
                      var approvedDll = approvedDlls.First(ad => ad.Path == dll.Path);
                      var approvedVersionStr = approvedDll.Version?.ToString() ?? approvedDll.VersionWildcard;
-                     message.AppendLine($"{dll.Path} | Current Version: {dll.Version}, Approved Version: {approvedVersionStr}");
+                     message.AppendLine($"{dll.Path} | Current Version: {dll.Version}, Approved Version: {approvedVersionStr}\r\n");
                   }
                }
 
@@ -472,24 +472,24 @@ namespace RevitSystemTests
                var message = new StringBuilder();
                if (missingDlls.Any())
                {
-                  message.AppendLine("Missing DLLs:");
-                  message.AppendLine(string.Join("\n", missingDlls));
+                  message.AppendLine("\r\nMissing DLLs:");
+                  message.AppendLine(string.Join("\r\n", missingDlls));
                }
 
                if (unexpectedDlls.Any())
                {
-                  message.AppendLine("Unexpected DLLs:");
-                  message.AppendLine(string.Join("\n", unexpectedDlls));
+                  message.AppendLine("\r\nUnexpected DLLs:");
+                  message.AppendLine(string.Join("\r\n", unexpectedDlls));
                }
 
                if (versionMismatchedDlls.Any())
                {
-                  message.AppendLine("Version Mismatched DLLs:");
+                  message.AppendLine("\r\nVersion Mismatched DLLs:");
                   foreach (var dll in versionMismatchedDlls)
                   {
                      var approvedDll = approvedDlls.First(ad=> ad.Path == dll.Path);
                      var approvedVersionStr = approvedDll.Version?.ToString() ?? approvedDll.VersionWildcard;
-                     message.AppendLine($"{dll.Path} | Current Version: {dll.Version}, Approved Version: {approvedVersionStr}");
+                     message.AppendLine($"{dll.Path} | Current Version: {dll.Version}, Approved Version: {approvedVersionStr}\r\n");
                   }
                }
 

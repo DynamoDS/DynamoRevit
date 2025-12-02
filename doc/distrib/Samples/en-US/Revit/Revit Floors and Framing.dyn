@@ -1127,7 +1127,7 @@
     {
       "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
       "Code": "# Load the Python Standard and DesignScript Libraries\r\nimport sys\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\nfrom Autodesk.Revit.DB import *\r\nfrom RevitServices.Transactions import TransactionManager\r\nfrom RevitServices.Persistence import DocumentManager \r\n\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\n\r\n# The inputs to this node will be stored as a list in the IN variables.\r\ndataEnteringNode = IN\r\n\r\n# Place your code below this line\r\nstructural_framing = UnwrapElement(IN[0])\r\n\r\nunjoined_elements = []\r\n# start a Transaction\r\nTransactionManager.Instance.EnsureInTransaction(doc)\r\n# iterate through each structural framing element\r\nfor sf in structural_framing:\r\n    # check if the element passed in of Structural Framing Category\r\n    sf_category = sf.Category # get the element's Category\r\n    # use the Structural Framing's Category Id to check\r\n    if sf_category.Id.Value == -2001320:\r\n        # disallow joins at start and end of the structural framing element\r\n        Structure.StructuralFramingUtils.DisallowJoinAtEnd(sf, 0)\r\n        Structure.StructuralFramingUtils.DisallowJoinAtEnd(sf, 1)\r\n        unjoined_elements.append(sf)\r\nTransactionManager.Instance.TransactionTaskDone()\r\n\r\n    \r\n# Output the list of elements with Disallowed Join\r\nOUT = unjoined_elements",
-      "Engine": "CPython3",
+      "Engine": "PythonNet3",
       "VariableInputPorts": true,
       "Id": "227b062531f24fb58a6e1590d8c2f44d",
       "NodeType": "PythonScriptNode",

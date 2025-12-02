@@ -1,3 +1,7 @@
+## 0.7.68
+* Update one sample to PythonNet3
+* renamed samples on all languages to allow better samples filenames' translation
+
 ## 0.7.67
 * Update Dynamo Core to 4.0.0.3277
 
