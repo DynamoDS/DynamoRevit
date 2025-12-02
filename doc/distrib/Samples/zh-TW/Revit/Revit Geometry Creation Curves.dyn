@@ -2,7 +2,7 @@
   "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
   "IsCustomNode": false,
   "Description": "此圖表示範在 Dynamo 中建立曲線，並使用這些曲線建立 Revit 元素 (模型線) 的幾種方法",
-  "Name": "Revit_GeometryCreation_Curves",
+  "Name": "Revit Geometry Creation Curves",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -386,7 +386,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "建立數字",
+      "Description": "建立一個數字。",
       "InputValue": -35.0
     },
     {
@@ -407,7 +407,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "建立數字",
+      "Description": "建立一個數字。",
       "InputValue": -55.0
     },
     {
@@ -428,7 +428,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "建立數字",
+      "Description": "建立一個數字。",
       "InputValue": -40.0
     },
     {
@@ -449,7 +449,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "建立數字",
+      "Description": "建立一個數字。",
       "InputValue": -10.0
     },
     {
@@ -470,7 +470,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "建立數字",
+      "Description": "建立一個數字。",
       "InputValue": -17.0
     },
     {
@@ -491,7 +491,7 @@
         }
       ],
       "Replication": "Disabled",
-      "Description": "建立數字",
+      "Description": "建立一個數字。",
       "InputValue": -60.0
     },
     {
@@ -881,25 +881,25 @@
     {
       "NodeId": "f4ef10a1-1aed-49d5-8474-39cdbdf5fea6",
       "Binding": {
-        "ByCurve_InClassDecl-1_InFunctionScope-1_Instance0_f4ef10a1-1aed-49d5-8474-39cdbdf5fea6": "H4sIAAAAAAAACh3LrQ6AIBQG0Hf5snfjHzFbyEavARScxeBozHd38/SzdhypJUzojKU9133GmTExipC6BOcop6rJ2N1Q9l6SUaMqQdQj+52EUKMvNTAGRrzbf5WzOhj74t0+AzzCSV8AAAA="
+        "ByCurve_InClassDecl-1_InFunctionScope-1_Instance0_f4ef10a1-1aed-49d5-8474-39cdbdf5fea6": "H4sIAAAAAAAACh3LoQ6AIBAG4Hf5s7choHhmC9noGcBDZzE4mvPd3fz6tzzQVBNGPIK53ud1xEkwCizvfet4o8FbJZ8tUypZiYtq4cBbCZaMMV123ggaQbzqf11wXT+8eNcPuYlQe14AAAA="
       }
     },
     {
       "NodeId": "5b9b35e9-843f-44de-89bf-6768b8524e10",
       "Binding": {
-        "ByCurve_InClassDecl-1_InFunctionScope-1_Instance0_5b9b35e9-843f-44de-89bf-6768b8524e10": "H4sIAAAAAAAACh3LoQ6AIBQF0H+52bchIE/MFrPRZwAEZzE4muPf3Tz9bC+OUAMmvIK1Ptd9LrNgEmTVm+ydoxiKITskS5G5J6tHnb0qR+RESumRc4mCTrDc9b/aDcZbbmj7BxD23slfAAAA"
+        "ByCurve_InClassDecl-1_InFunctionScope-1_Instance0_5b9b35e9-843f-44de-89bf-6768b8524e10": "H4sIAAAAAAAACh3LMQ6DMAwF0Lv8GUupkzSYmYW5Y90hwQGxMKBsEXdH6tvft8Nyy5jQFZ92Hee+zIpJwbK9X15WGgMbhcJCuRYjqWZVkqw1MTnnYvGBFYNiOdv/+uRjcjfu3wPS3UdZXgAAAA=="
       }
     },
     {
       "NodeId": "21fbd443-af1b-4b1c-9865-95f890530407",
       "Binding": {
-        "ByCurve_InClassDecl-1_InFunctionScope-1_Instance0_21fbd443-af1b-4b1c-9865-95f890530407": "H4sIAAAAAAAACq3MrRKEIBRA4Xe5WWYu/2K2mDeKAeSys4WwS2N4d3esGm2nnG9tUOhXKc2hBpjWBukMaB5e9fsp72X2MHkg5JKcMSyGLJnSu2LRWs6UGAU5zCnanSGK0VJOHgYPS6nnK4yWTrkOfXhEz1dd84f0jPxGl39969sBUDDiZCwBAAA="
+        "ByCurve_InClassDecl-1_InFunctionScope-1_Instance0_21fbd443-af1b-4b1c-9865-95f890530407": "H4sIAAAAAAAACq3MoQ7DIBRG4Xf5dUkYUOitrqmeLBXQe7fMIDYc4d2X1NbWHXO+raHIrwovqSbMWwOfgRbxrN9Pea9LxBxh6OUflg41OcPKZUMqSWZFwiwU6JBglNZ6zNa5iCFiLfV8bbBjMB19uAX3V9zdhk9X3Hf0ve9/8jT7eikBAAA="
       }
     },
     {
       "NodeId": "08523ffd-63c1-42bc-9436-fcaa1246ece6",
       "Binding": {
-        "ByCurve_InClassDecl-1_InFunctionScope-1_Instance0_08523ffd-63c1-42bc-9436-fcaa1246ece6": "H4sIAAAAAAAACh3LoQ6AIBQF0H+52bchIE/MFrPRZwAEZzE4muPf3Tz9bC+OUAMmvIK1Ptd9LrNgEmTVm+ydoxiKITskS5G5J6tHnb0qR+RESumRc2FBJ1ju+l/tBuOtaWj7B7I2UoFfAAAA"
+        "ByCurve_InClassDecl-1_InFunctionScope-1_Instance0_08523ffd-63c1-42bc-9436-fcaa1246ece6": "H4sIAAAAAAAACh3LMQ6DMAwF0Lv8GUshhgQzd2FmxAwJdqsuDFU2xN0r8fa3XbDSCmZcirX9vudneSlmRZR36lkOmoZoNNQoVLwaiZu5ZDk8RwohjJXZFZ1iOdtzOfOY0o17/wOAtaS7XgAAAA=="
       }
     }
   ],
@@ -908,7 +908,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "3.4.0.6752",
+      "Version": "4.0.0.3076",
       "RunType": "Manual",
       "RunPeriod": "100"
     },
@@ -1145,6 +1145,8 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [
           "918f7dc4e6d04d6b9b51c329d02db2b2",
           "fb265a3222b04d2ab4f726b28bc90c10",
@@ -1159,14 +1161,18 @@
         ],
         "HasNestedGroups": false,
         "Left": -25050.853249538002,
-        "Top": -20538.711596960136,
-        "Width": 482.4612167888008,
-        "Height": 876.0,
+        "Top": -20538.822708071246,
+        "Width": 482.3501056776913,
+        "Height": 871.8888888888869,
         "FontSize": 36.0,
         "GroupStyleId": "4d68be4a-a04d-4945-9dd5-cdf61079d790",
         "InitialTop": -20465.711596960136,
         "InitialHeight": 794.0349535802088,
-        "TextblockHeight": 63.0,
+        "TextblockHeight": 63.111111111111114,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFB9F9E1"
       },
       {
@@ -1176,6 +1182,8 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [
           "6e4f5b2b2389451b95459dea13431b8b",
           "8ba3309a6ded4059a074fa0c2b291919",
@@ -1186,13 +1194,17 @@
         "HasNestedGroups": false,
         "Left": -23923.9443991488,
         "Top": -20144.63562273814,
-        "Width": 987.8951920061954,
-        "Height": 378.8427438874387,
+        "Width": 987.7285253395276,
+        "Height": 378.28718833188395,
         "FontSize": 36.0,
         "GroupStyleId": "07655dc1-2d65-4fed-8d6a-37235d3e3a8d",
-        "InitialTop": -20071.63562273814,
-        "InitialHeight": 318.8427438874387,
-        "TextblockHeight": 63.0,
+        "InitialTop": -20071.52451162703,
+        "InitialHeight": 318.7316327763292,
+        "TextblockHeight": 63.111111111111114,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFFFC999"
       },
       {
@@ -1202,6 +1214,8 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [
           "835b1ec252ca4b639a1f2a0dde80b497",
           "21fbd443af1b4b1c986595f890530407",
@@ -1212,13 +1226,17 @@
         "HasNestedGroups": false,
         "Left": -23923.9443991488,
         "Top": -20517.057379157148,
-        "Width": 990.7861492144184,
-        "Height": 319.3982292548462,
+        "Width": 990.8417047699731,
+        "Height": 316.3982292548462,
         "FontSize": 36.0,
         "GroupStyleId": "07655dc1-2d65-4fed-8d6a-37235d3e3a8d",
-        "InitialTop": -20444.057379157148,
-        "InitialHeight": 231.80537747819835,
-        "TextblockHeight": 63.0,
+        "InitialTop": -20443.94626804604,
+        "InitialHeight": 231.69426636708886,
+        "TextblockHeight": 63.111111111111114,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFFFC999"
       },
       {
@@ -1228,6 +1246,8 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [
           "d200379e5c8c4f8b968d2f0887223d68",
           "f4ef10a11aed49d5847439cdbdf5fea6",
@@ -1236,14 +1256,18 @@
         ],
         "HasNestedGroups": false,
         "Left": -23929.9443991488,
-        "Top": -19681.341697588123,
-        "Width": 1001.4857560079072,
-        "Height": 274.2412604036217,
+        "Top": -19681.67503092145,
+        "Width": 1001.3190893412393,
+        "Height": 274.01903818139544,
         "FontSize": 36.0,
         "GroupStyleId": "07655dc1-2d65-4fed-8d6a-37235d3e3a8d",
-        "InitialTop": -19608.341697588123,
-        "InitialHeight": 214.2412604036217,
-        "TextblockHeight": 63.0,
+        "InitialTop": -19608.56391981034,
+        "InitialHeight": 214.4634826258407,
+        "TextblockHeight": 63.111111111111114,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFFFC999"
       },
       {
@@ -1253,20 +1277,26 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [
           "58be9dea44e7499eadfbdeeb8890e65d",
           "b23101b8849c4528bb5e1791681bc40f"
         ],
         "HasNestedGroups": false,
-        "Left": -25054.146652315132,
-        "Top": -20828.386901570164,
-        "Width": 315.0,
+        "Left": -25053.090081618127,
+        "Top": -20842.233431742374,
+        "Width": 315.1111111111095,
         "Height": 242.98634431051323,
         "FontSize": 36.0,
         "GroupStyleId": "bc688959-ce34-4bf5-90f8-6ddd23f80989",
-        "InitialTop": -20755.386901570164,
+        "InitialTop": -20769.122320631264,
         "InitialHeight": 250.98634431051323,
-        "TextblockHeight": 63.0,
+        "TextblockHeight": 63.111111111111114,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFA4E1FF"
       },
       {
@@ -1276,6 +1306,8 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [
           "7979f6ce63b64cfb98729d05812a111c",
           "08523ffd63c142bc9436fcaa1246ece6",
@@ -1284,14 +1316,18 @@
         ],
         "HasNestedGroups": false,
         "Left": -23923.9443991488,
-        "Top": -20853.0987274803,
-        "Width": 970.0756634242462,
-        "Height": 293.0,
+        "Top": -20853.43206081363,
+        "Width": 969.7978856464651,
+        "Height": 290.3333333333285,
         "FontSize": 36.0,
         "GroupStyleId": "07655dc1-2d65-4fed-8d6a-37235d3e3a8d",
-        "InitialTop": -20780.0987274803,
-        "InitialHeight": 213.21176432301945,
-        "TextblockHeight": 63.0,
+        "InitialTop": -20780.32094970252,
+        "InitialHeight": 213.43398654523844,
+        "TextblockHeight": 63.111111111111114,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFFFC999"
       },
       {
@@ -1301,10 +1337,12 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -23226.458643140893,
-        "Top": -19600.341697588123,
+        "Left": -23226.180865363116,
+        "Top": -19600.56391981034,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1312,6 +1350,10 @@
         "InitialTop": 0.0,
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
         "PinnedNode": "f4ef10a11aed49d5847439cdbdf5fea6"
       },
@@ -1322,10 +1364,12 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -23234.049207142605,
-        "Top": -20057.30778496124,
+        "Left": -23233.771429364828,
+        "Top": -20057.530007183457,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1333,6 +1377,10 @@
         "InitialTop": 0.0,
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
         "PinnedNode": "5b9b35e9843f44de89bf6768b8524e10"
       },
@@ -1343,10 +1391,12 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -25044.146652315132,
-        "Top": -20641.40055725965,
+        "Left": -25043.090081618127,
+        "Top": -20655.13597632075,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1354,19 +1404,25 @@
         "InitialTop": 0.0,
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676"
       },
       {
         "Id": "58be9dea44e7499eadfbdeeb8890e65d",
-        "Title": "執行 Revit 安裝所在的下列「Samples」資料夾中的此圖表 Snowdon Towers Sample Architectural.rvt\r\nC:\\Program Files\\Autodesk\\Revit 2026\\Samples",
+        "Title": "Run this graph the Snowdon Towers Sample Architectural.rvt file in the Samples folder located with your Revit installation\r\nC:\\Program Files\\Autodesk\\Revit 2027\\Samples",
         "DescriptionText": null,
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -25043.019431026543,
-        "Top": -20747.386901570164,
+        "Left": -25041.96286032954,
+        "Top": -20761.122320631264,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1374,6 +1430,10 @@
         "InitialTop": 0.0,
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676"
       },
       {
@@ -1383,10 +1443,12 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -23253.868735724554,
-        "Top": -20761.88696315728,
+        "Left": -23253.479846835668,
+        "Top": -20762.1091853795,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1394,6 +1456,10 @@
         "InitialTop": 0.0,
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
         "PinnedNode": "08523ffd63c142bc9436fcaa1246ece6"
       },
@@ -1404,10 +1470,12 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -23871.9443991488,
-        "Top": -20772.0987274803,
+        "Left": -23872.166621371023,
+        "Top": -20772.32094970252,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1415,6 +1483,10 @@
         "InitialTop": 0.0,
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
         "PinnedNode": "7979f6ce63b64cfb98729d05812a111c"
       },
@@ -1425,10 +1497,12 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -23879.9443991488,
-        "Top": -20409.6591499023,
+        "Left": -23879.722176926578,
+        "Top": -20409.88137212452,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1436,6 +1510,10 @@
         "InitialTop": 0.0,
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
         "PinnedNode": "835b1ec252ca4b639a1f2a0dde80b497"
       },
@@ -1446,10 +1524,12 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -23235.158249934382,
-        "Top": -20436.057379157148,
+        "Left": -23235.102694378827,
+        "Top": -20435.94626804604,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1457,6 +1537,10 @@
         "InitialTop": 0.0,
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
         "PinnedNode": "21fbd443af1b4b1c986595f890530407"
       },
@@ -1467,10 +1551,12 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
-        "Left": -23631.237098097106,
-        "Top": -20063.63562273814,
+        "Left": -23631.014875874884,
+        "Top": -20063.52451162703,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1478,6 +1564,10 @@
         "InitialTop": 0.0,
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
         "PinnedNode": "8ba3309a6ded4059a074fa0c2b291919"
       },
@@ -1488,10 +1578,12 @@
         "IsExpanded": true,
         "WidthAdjustment": 0.0,
         "HeightAdjustment": 0.0,
+        "UserSetWidth": 0.0,
+        "UserSetHeight": 0.0,
         "Nodes": [],
         "HasNestedGroups": false,
         "Left": -23919.9443991488,
-        "Top": -19589.1004371845,
+        "Top": -19589.32265940672,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -1499,6 +1591,10 @@
         "InitialTop": 0.0,
         "InitialHeight": 0.0,
         "TextblockHeight": 0.0,
+        "IsOptionalInPortsCollapsed": false,
+        "IsUnconnectedOutPortsCollapsed": false,
+        "HasToggledOptionalInPorts": false,
+        "HasToggledUnconnectedOutPorts": false,
         "Background": "#FFC1D676",
         "PinnedNode": "d200379e5c8c4f8b968d2f0887223d68"
       }
