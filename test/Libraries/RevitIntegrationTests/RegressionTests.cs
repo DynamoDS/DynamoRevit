@@ -297,6 +297,15 @@ namespace RevitSystemTests
 
          try
          {
+            // Load ignore list
+            string ignoreListPath = Path.Combine(workingDirectory, "PackageDllIgnoreList.txt");
+            var ignoredPatterns = File.Exists(ignoreListPath)
+                ? File.ReadAllLines(ignoreListPath)
+                      .Where(line => !string.IsNullOrWhiteSpace(line) && !line.StartsWith("#"))
+                      .Select(line => line.Trim().Replace("\\", "/"))
+                      .ToList()
+                : new List<string>();
+
             // get the dlls from the build folder
             var currentDlls = Directory
                 .EnumerateFiles(dynamoRevitFolder, "*.dll", SearchOption.AllDirectories)
@@ -306,6 +315,7 @@ namespace RevitSystemTests
                    Version version = GetAssemblyVersion(fullPath);
                    return new DllInfo() { Path = relativePath, Version = version };
                 })
+                .Where(dll => !ignoredPatterns.Any(pattern => dll.Path.Contains(pattern)))
                 .ToList();
 
             // save the temp list
@@ -404,6 +414,15 @@ namespace RevitSystemTests
 
          try
          {
+            // Load ignore list
+            string ignoreListPath = Path.Combine(workingDirectory, "PackageDllIgnoreList.txt");
+            var ignoredPatterns = File.Exists(ignoreListPath)
+                ? File.ReadAllLines(ignoreListPath)
+                      .Where(line => !string.IsNullOrWhiteSpace(line) && !line.StartsWith("#"))
+                      .Select(line => line.Trim().Replace("\\", "/"))
+                      .ToList()
+                : new List<string>();
+
             // get the dlls from the build folder
             var currentDlls = Directory
                 .EnumerateFiles(dynamoRevitFolder, "*.dll", SearchOption.AllDirectories)
@@ -413,6 +432,7 @@ namespace RevitSystemTests
                    Version version = GetAssemblyVersion(fullPath);
                    return new DllInfo() { Path = relativePath, Version = version };
                 })
+                .Where(dll => !ignoredPatterns.Any(pattern => dll.Path.Contains(pattern)))
                 .ToList();
 
             // save the temp list
